@@ -7,7 +7,7 @@ markdown (hence the `.md` ending), which is being pretty printed
 by github together with Idris2 code blocks, which can be
 typechecked and built by the Idris2 compiler (more on this later).
 
-Every Idris2 source file should typicall start with a module
+Every Idris2 source file should typically start with a module
 name plus some necessary imports, and this document is no
 exception:
 
@@ -15,7 +15,7 @@ exception:
 module Tutorial1
 ```
 
-A module name consists of a list of identifiers seperated
+A module name consists of a list of identifiers separated
 by dots and must reflect the folder structure plus the module
 file's name.
 
@@ -31,7 +31,7 @@ in an Idris program. Start an Idris2 REPL (*REPL* is an acronym for
 $ rlwrap idris2
 ```
 
-(The use of command line utility `rlwrap` is optional. It
+(Using command line utility `rlwrap` is optional. It
 leads to a somewhat nicer user experience, as it allows us
 to use the up and down arrow keys to scroll through a history
 of commands and expressions we entered. It should be available
@@ -50,7 +50,7 @@ Welcome to Idris 2.  Enjoy yourself!
 Main>
 ```
 
-We can go ahead and enter some simple expressions. Idris
+We can go ahead and enter some simple arithmetic expressions. Idris
 will *evaluate* these and print the result:
 
 ```repl
@@ -79,21 +79,21 @@ Main> :t 2 * 4
 
 Whenever we perform calculations with integer literals without
 being explicit about the types we want to use, Idris will
-use `Integer` as default. `Integer` is an arbitrary precision
+use `Integer` as a default. `Integer` is an arbitrary precision
 signed integer type. It is one of the *primitive types* built
 into the language. Other primitives include fixed precision
 signed and unsigned integral types (`Bits8`, `Bits16`, `Bits32`
 `Bits64`, `Int8`, `Int16`, `Int32`, and `Int64`), double
 precision (64 bit) floating point numbers (`Double`), unicode
 characters (`Char`) and strings of unicode characters (`String`).
-We will see several of these in action in a moment.
+We use many of these in due time.
 
 ## A First Idris2 Program
 
 We will often start up a REPL for tinkering with small parts
 of the Idris language, for reading some documentation, or
 for inspecting the content of an Idris module, but now we will
-write several small Idris programs to get started with
+write several small Idris programs and functions to get started with
 the language. Fist, the mandatory *Hello World*:
 
 ```idris
@@ -102,7 +102,7 @@ main = putStrLn "Hello World!"
 ```
 
 We will inspect the code above in some detail in a moment,
-but first we'd like to compile and run it. For this project's
+but first we'd like to compile and run it. From this project's
 root directory, run the following:
 
 ```sh
@@ -140,7 +140,7 @@ some more about the code we had to write to define it.
 A typical toplevel function in Idris consists of three things:
 The function's name (`main` in our case), its type (`IO ()`)
 plus its implementation (`putStrLn "Hello World"`). It is easier
-to explain this things with a couple of simple examples. Below,
+to explain these things with a couple of simple examples. Below,
 we define a toplevel constant for the largest unsigned 8 bit
 integer:
 
@@ -179,10 +179,10 @@ distanceToMax : Bits8 -> Bits8
 distanceToMax n = maxBits8 - n
 ```
 
-This introduces some new syntax and a new kind of types: Function
+This introduces some new syntax and a new kind of type: Function
 types. `distanceToMax : Bits8 -> Bits8` can be read as follows:
-`distanceToMax` is a function of one argument of type `Bits8`, which
-returns a result of type `Bits8`. In the implementation, the argument
+"`distanceToMax` is a function of one argument of type `Bits8`, which
+returns a result of type `Bits8`". In the implementation, the argument
 is given a local identifier `n`, which is then used in the
 calculation on the right hand side. Again, go ahead and try this
 function at the REPL:
@@ -219,7 +219,7 @@ Error: ...
 
 The reason: `square` expects an argment of type `Integer`,
 but `maxBits8` is of type `Bits8`. Many primitive types
-are interconvertible (sometimes with the risk of a loss
+are interconvertible (sometimes with the risk of loss
 of precision) using function `cast` (more on the details
 later):
 
@@ -342,7 +342,7 @@ testSquare fun n = fun (square n)
 
 First `isEven` uses the `mod` function to check, whether 
 an integer is divisible by two. But the interesting function
-is `testSquare`. It takes two argument: The first argument
+is `testSquare`. It takes two arguments: The first argument
 is of type *function from `Integer` to `Bool`*, and the second
 of type `Integer`. This second argument is squared before
 being passed to the first argument. Again, give this a go
@@ -411,10 +411,10 @@ isTriple 1 2 : Integer -> Bool
 ```
 
 Note, how in Idris we can only partially apply a function
-more than one argument and a result get a new function
+with more than one argument and as a result get a new function
 back. For instance, `isTriple 1` applies argument `1` to function
-`isTriple` and as a result returns a new function,
-which still accepts two more integer arguments. We can even
+`isTriple` and as a result returns a new function of
+type `Integer -> Integer -> Bool`. We can even
 use the result of such a partially applied function in
 a new toplevel definition:
 
