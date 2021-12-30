@@ -5,4 +5,7 @@ version    = 0.1.0
 sourcedir  = "src"
 depends    = base         >= 0.5.1
 
-modules = Tutorial1
+modules = Solutions.Functions1
+
+        , Tutorial.Intro
+        , Tutorial.Functions1
