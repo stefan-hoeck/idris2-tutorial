@@ -9,3 +9,4 @@ modules = Solutions.Functions1
 
         , Tutorial.Intro
         , Tutorial.Functions1
+        , Tutorial.DataTypes
