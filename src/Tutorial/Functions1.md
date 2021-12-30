@@ -299,7 +299,7 @@ False
 
 What we learned in this part of the tutorial:
 
-* A functions in Idris can take an arbitrary number of arguments,
+* A function in Idris can take an arbitrary number of arguments,
 separated by `->` in the function's type.
 
 * Functions can be combined
