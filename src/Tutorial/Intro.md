@@ -223,7 +223,7 @@ Hello World!
 Go ahead and try both ways of building and running function `main`
 on your system!
 
-## The Shape of an Idris Declaration
+## The Shape of an Idris Definition
 
 Now that we executed our first Idris program, we will talk
 a bit more about the code we had to write to define it.
@@ -241,10 +241,15 @@ maxBits8 = 255
 ```
 
 The first line can be read as: "We'd like to declare  (nullary)
-function `maxBits8`. It is of type `Bits8`". The second line
+function `maxBits8`. It is of type `Bits8`". This is
+called the *function declaration*: We declare, that there
+shall be a function of the given name and type. The second line
 reads: "The result of invoking `maxBits8` should be `255`."
 (As you can see, we can use integer literals for other integral
-types than just `Integer`.)
+types than just `Integer`.) This is called the *function definition*:
+Function `maxBits8` should behave as described here when being
+evaluated.
+
 We can inspect this at the REPL. Load this source file into
 an Idris REPL (as described above), and run the following tests.
 
@@ -323,8 +328,8 @@ Tutorial.Intro> square (cast maxBits8)
 Note, that in the example above the result is much larger
 that `maxBits8`. The reason is, that `maxBits8` is first
 converted to an `Integer` of the same value, which is
-then squared. If on the other hand we square `maxBits8`
-directly, the result is truncated to still fit the
+then squared. If on the other hand we squared `maxBits8`
+directly, the result would be truncated to still fit the
 valid range of `Bits8`:
 
 ```repl
@@ -335,11 +340,11 @@ Tutorial.Intro> maxBits8 * maxBits8
 ## Summary
 
 In this introduction we learned about the most basic
-features of the Idris programming language. We use
+features of the Idris programming language. We used
 the REPL to tinker with our ideas and inspect the
 types of things in our code, and we used the Idris
 compiler to compile an Idris source file to an executable.
 
 We also learned about the basic shape of a top level
-declaration in Idris, which always consists of an identifier
+definition in Idris, which always consists of an identifier
 (its name), a type, and an implementation.
