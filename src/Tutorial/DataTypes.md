@@ -95,7 +95,7 @@ eqWeekday _ _                  = False
 Data types like `Weekday` consisting of a finite set
 of values are sometimes called *enumerations*. The Idris
 prelude defines some common enumerations for us, for
-instance `Bool` and `Ordering`. Like with `Weekday`,
+instance `Bool` and `Ordering`. As with `Weekday`,
 we can use pattern matching when implementing functions
 on these types:
 
@@ -127,7 +127,7 @@ the second.
 Assume we'd like to write some web form, where users of our
 web application can decide how they like to be addressed.
 We give them a choice between two common predefined
-forms of address (Mr. and Mrs.), but also allow them to
+forms of address (Mr and Mrs), but also allow them to
 decide on a different form of address. The possible
 choices should be encapsulated in an Idris data type:
 
@@ -174,7 +174,7 @@ greet : Title -> String -> String
 greet t name = "Hello, " ++ showTitle t ++ " " ++ name ++ "!"
 ```
 
-In the implementation of `greet` we use string literals
+In the implementation of `greet`, we use string literals
 and the string concatenation operator `(++)` to
 create the greeting from its different parts.
 
@@ -252,7 +252,9 @@ Tutorial.DataTypes> :t MkUser
 Tutorial.DataTypes.MkUser : String -> Title -> Bits8 -> User
 ```
 
-We can use `MkUser` to create values of type `User`:
+We can use `MkUser` (which is a function from
+`String` to `Title` to `Bits8` to `User`)
+to create values of type `User`:
 
 ```idris
 agentY : User
@@ -274,7 +276,9 @@ In the example above, the `name` and `title` field
 are bound to two new local variables (`n` and `t` respectively),
 which can then be used on the right hand side of `greetUser`'s
 implementation. For the `age` field, which is not used
-on the right hand side, we can use an underscore.
+on the right hand side, we can use an underscore as a catch-all
+pattern.
+
 Note how Idris will prevent us from making
 a common mistake: If we confuse the order of arguments, the
 implementation will no longer type check:
@@ -284,6 +288,8 @@ implementation will no longer type check:
 greetUser : User -> String
 greetUser (MkUser n t _) = greet n t
 ```
+
+### Syntactic Sugar for Records
 
 <!-- vi: filetype=idris2
 -->
