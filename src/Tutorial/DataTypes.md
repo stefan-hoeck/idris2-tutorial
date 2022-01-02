@@ -133,7 +133,7 @@ respectively.
 Note: One way to go about this is to enumerate
 all four possible combinations of two boolean
 values and give the result for each. However, there
-is a shorter, more clever way to go about this,
+is a shorter, more clever way,
 requiring only two pattern matches for each of the
 two functions.
 
@@ -168,8 +168,9 @@ Assume we'd like to write some web form, where users of our
 web application can decide how they like to be addressed.
 We give them a choice between two common predefined
 forms of address (Mr and Mrs), but also allow them to
-decide on a different form of address. The possible
-choices should be encapsulated in an Idris data type:
+decide on a customized form. The possible
+choices should be encapsulated in an Idris data type
+like so:
 
 ```idris
 data Title = Mr | Mrs | Other String
@@ -189,14 +190,14 @@ Tutorial.DataTypes.Other : String -> Title
 
 So, `Other` is a *function* from `String` to `Title`. This
 means, that we can pass `Other` a `String` argument and get
-a `Title` as the results:
+a `Title` as the result:
 
 ```idris
 dr : Title
 dr = Other "Dr."
 ```
 
-Again, we can use pattern matching to implement function
+Again, we can use pattern matching to implement functions
 on the `Title` data type:
 
 ```idris
@@ -206,11 +207,11 @@ showTitle Mrs       = "Mrs."
 showTitle (Other x) = x
 ```
 
-Note, how in the last pattern match, variable `x` is *bound*
-to the string value stored in the `Other` data constructor.
+Note, how in the last pattern match, the string value stored
+in the `Other` data constructor is *bound* to local variable `x`.
 This is a very common way to extract the values from
 data constructors.
-We can use this to implement a function for creating
+We can use `showTitle` to implement a function for creating
 a courteous greeting:
 
 ```idris
@@ -270,7 +271,8 @@ Tutorial.DataTypes> login (Key "foo")
 
 ### Exercises
 
-1. Implement an equality test for `Title`:
+1. Implement an equality test for `Title` (you can use the
+equality operator `(==)` for comparing `String`s):
 
 ```idris
 eqTitle : Title -> Title -> Bool
@@ -494,9 +496,10 @@ not handled properly in client code). Our solution will
 be similar, but instead of silently returning `null`,
 we will make the possibility of failure visible in the types!
 We define a custom data type, which encapsulates the possibility
-of failure. Unlike in other programming languages, writing
-new data types in Idris is very cheap (in terms of the
-amount of code needed). Here's an example how to do this:
+of failure. Defining new data types in Idris is very cheap
+(in terms of the amount of code needed), therefore this is
+often the way to go in order to increase type safety.
+Here's an example how to do this:
 
 ```idris
 data MaybeWeekday = WD Weekday | NoWeekday
@@ -543,9 +546,8 @@ Tutorial.DataTypes.Option : Type -> Type
 
 We need to introduce some jargon here. `Option` is what we call
 a *type constructor*. It is not yet a saturated type: It is
-a function from `Type` to `Type`. The result of a function
-can therefore not be of type `Option`, since `Option` is
-not a `Type`. `Option Bool` is a type, as is `Option Weekday`.
+a function from `Type` to `Type`.
+However, `Option Bool` is a type, as is `Option Weekday`.
 Even `Option (Option Bool)` is a valid type. `Option` is
 a type constructor *parameterized* over a *parameter* of type `Type`.
 `Some` and `None` are `Option`s *data constructors*: The functions
@@ -566,8 +568,8 @@ like `Option` already in the prelude: `Maybe`, consisting
 of data constructors `Just` and `Nothing`.
 
 It is important to understand the difference between returning `Maybe Integer`
-in a function, which might fail, and the returning of
-`null` in languages like Java: In the first case, the
+in a function, which might fail, and returning
+`null` in languages like Java: In the former case, the
 possibility of failure is visible in the types. The type checker
 will force us to treat `Maybe Integer` differently than
 `Integer`: We will *not* forget to handle the failure case.
@@ -670,9 +672,149 @@ intSum (n :: ns) = n + intSum ns
 We will have a closer look at recursion in a later part of
 this tutorial, as this one is already getting too long.
 
+### Generic Functions
+
+In order to fully appreciate the versatility that comes with
+generic data types, we also need to talk about generic functions.
+Like generic types, these are parameterized over one or more
+type parameters.
+
+Consider for instance the case of breaking out of the
+`Option` data type. In case of a `Sume`, we'd like to return
+the stored value, while for the `None` case we provide
+a default value. Here's how to do this, specialized to
+`Integer`s:
+
+```idris
+integerFromOption : Integer -> Option Integer -> Integer
+integerFromOption _ (Some y) = y
+integerFromOption x None     = x
+```
+
+It's pretty obvious that this is, again, not general enough.
+Surely, we'd also like to break out of `Option Bool` or
+`Option String` in a similar fashion. That's exactly
+what the generic function `fromOption` does:
+
+```idris
+fromOption : a -> Option a -> a
+fromOption _ (Some y) = y
+fromOption x None     = x
+```
+
+The pendant to `fromOption` for `Maybe` is called `fromMaybe`
+and available from module `Data.Maybe` from the *base* library.
+
+Sometimes, `fromOption` is not general enough. Assume we'd like to
+print the value of a freshly parsed `Bool`, giving some generic
+error message in case of a `None`. We can't use `fromOption`
+for this, as we have an `Option Bool` and we'd like to 
+return a `String`. Here's how to do this:
+
+```idris
+option : b -> (a -> b) -> Option a -> b
+option _ f (Some y) = f y
+option x _ None     = x
+
+handleBool : Option Bool -> String
+handleBool = option "Not a boolean value." show
+```
+
 ### Exercises
 
-1. Assume we store user data for our web application in
+If this is your first time programming in a purely
+functional language, the exercises below are *very*
+important. Do not skip any of them! Take your time and
+work through them all. In most cases,
+the types should be enough to explain what's going
+on, even though they might appear cryptic in the
+beginning. Otherwise, have a look at the comments.
+Remember, that lower-case identifiers in a function
+signature are treated as type parameters.
+
+1. Implement the following functions for `Maybe`:
+
+```idris
+-- make sure to map a `Just` to a `Just`.
+mapMaybe : (a -> b) -> Maybe a -> Maybe b
+
+-- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`
+appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b
+
+-- Example: `bindMaybe (Just 12) Just = Just 12`
+bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b
+
+-- keep the value in a `Just` only if the given predicate holds
+filterMaybe : (a -> Bool) -> Maybe a -> Maybe a
+
+-- keep the first value that is not a `Nothing` (if any)
+first : Maybe a -> Maybe a -> Maybe a
+
+-- keep the last value that is not a `Nothing` (if any)
+last : Maybe a -> Maybe a -> Maybe a
+
+-- this is another general way to extract a value from a `Maybe`.
+-- Make sure the following holds:
+-- `foldMaybe (+) 5 Nothing = 5`
+-- `foldMaybe (+) 5 (Just 12) = 17`
+foldMaybe : (acc -> elem -> acc) -> acc -> Maybe elem -> acc
+```
+
+2. Implement the following functions for `Either`:
+
+```idris
+mapEither : (a -> b) -> Either e a -> Either e b
+
+-- In case of both `Either`s being `Left`s, keep the
+-- value stored in the first `Left`.
+appEither : Either e (a -> b) -> Either e a -> Either e b
+
+bindEither : Either e a -> (a -> Either e b) -> Either e b
+
+-- Keep the first value that is not a `Left`
+-- If both `Either`s are `Left`s, use the given accumulator
+-- for the error values
+firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
+
+-- Keep the last value that is not a `Left`
+-- If both `Either`s are `Left`s, use the given accumulator
+-- for the error values
+lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
+
+fromEither : (e -> c) -> (a -> c) -> Either e a -> c
+```
+
+3. Implement the following functions for `List`:
+
+```idris
+mapList : (a -> b) -> List a -> List b
+
+filterList : (a -> Bool) -> List a -> List a
+
+-- return the first value of a list, if it is non-empty
+headMaybe : List a -> Maybe a
+
+-- return everything but the first value of a list, if it is non-empty
+tailMaybe : List a -> Maybe (List a)
+
+-- return the last value of a list, if it is non-empty
+lastMaybe : List a -> Maybe a
+
+-- return everything but the last value of a list,
+-- if it is non-empty
+initMaybe : List a -> Maybe (List a)
+
+-- accumulate the values in a list using the given
+-- accumulator function and initial result
+--
+-- Examples:
+-- `foldList (+) 10 [1,2,7] = 20`
+-- `foldList (++) "" ["Hello","World"] = "HelloWorld"
+-- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
+foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
+```
+
+4. Assume we store user data for our web application in
 the following record:
 
 ```idris
@@ -695,13 +837,13 @@ for whom the credentials match.
 
 While the examples in the section about parameterized
 data types are short and concise, there is a slightly
-more verbose and general form for writing such
+more verbose but much more general form for writing such
 definitions, which makes it much clearer what's going on.
 In my opinion, this more general form should be preferred
 in all but the most simple data definitions.
 
 Here are the definitions of `Option`, `Validated`, and `Seq` again,
-using this more general form (I put them in its own *namespace*,
+using this more general form (I put them in their own *namespace*,
 so Idris will not complain about identical names in
 the same namespace):
 
@@ -720,12 +862,12 @@ namespace GADT
     (::) : a -> GADT.Seq a -> Seq a
 ```
 
-In my opinion, this makes it *much* clearer what's going
-on. `Option` is clearly declared as a type constructor
+Here, `Option` is clearly declared as a type constructor
 (a function of type `Type -> Type`), while `Some`
-is a function of type `a -> Option a` (where `a` can
-be an arbitrary type define at the *use site* of `Some`),
-and `None` is a nullary function of type `Option a`.
+is a generic function of type `a -> Option a` (where `a` is
+*type parameter*)
+and `None` is a nullary generic function of type `Option a`
+(`a` again being a type parameter).
 Likewise for `Validated` and `Seq`. Note, that in case
 of `Seq` we had to disambiguate between the different
 `Seq` definitions in the recursive case. Since we will
