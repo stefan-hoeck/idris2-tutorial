@@ -102,13 +102,13 @@ eqWeekday _ _                  = False
 
 Data types like `Weekday` consisting of a finite set
 of values are sometimes called *enumerations*. The Idris
-prelude defines some common enumerations for us, for
+*Prelude* defines some common enumerations for us, for
 instance `Bool` and `Ordering`. As with `Weekday`,
 we can use pattern matching when implementing functions
 on these types:
 
 ```idris
--- this is how `not` is implemented in the prelude
+-- this is how `not` is implemented in the *Prelude*
 negate : Bool -> Bool
 negate False = True
 negate True  = False
@@ -444,9 +444,12 @@ Assignment operator `:=` assigns a new value to the `age` field
 in `u`. Remember, that this will create a new `User` value. The original
 value `u` remains unaffected by this.
 
-This is already better, but the use case of modifying a
-record field is so common that Idris provides special syntax
-for this as well:
+We can access a record field, either by using the field name
+as a projection function (`age u`; also have a look at `:t age`
+in the REPL), or by using dot syntax: `u.age`.
+
+The use case of modifying a record field is so common
+that Idris provides special syntax for this as well:
 
 ```idris
 incAge3 : User -> User
@@ -468,7 +471,7 @@ incAge4 u = { age $= \x => x + 1 } u
 ```
 
 Finally, since our function's argument `u` is only used
-once at the very end, we can just as well drop it altogether,
+once at the very end, we can drop it altogether,
 to get the following, highly concise version:
 
 ```idris
@@ -476,7 +479,7 @@ incAge5 : User -> User
 incAge5 = { age $= (+ 1) }
 ```
 
-As usual, we try the result at the REPL:
+As usual, we have a look at the result at the REPL:
 
 ```repl
 Tutorial.DataTypes> incAge5 drNo
@@ -521,7 +524,7 @@ Since it is quite common to return several values from a function
 wrapped in a `Pair` or larger tuple, Idris provides some syntactic
 sugar for working with these. Instead of `Pair Weekday Bool`, we
 can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,
-we can just write `(wd, b)` (the space is not mandatory):
+we can just write `(wd, b)` (the space is optional):
 
 ```idris
 weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)
@@ -584,7 +587,7 @@ if the unit is not already seconds.
 
 4. Implement a function for adding two time spans. If the
 two time spans use different units of time, use the smaller
-unit of time, to ensure a lossless conversion in the result.
+unit of time to ensure a lossless conversion.
 
 ## Generic Data Types
 
@@ -613,7 +616,7 @@ confusion.
 
 In an imperative language, our function would probably
 throw an exception. We could do this in Idris as
-well (there is function `idris_crash` in the prelude for
+well (there is function `idris_crash` in the *Prelude* for
 this), but doing so, we would abandon totality! A high
 price to pay for such a common thing as a parsing error.
 
@@ -691,15 +694,16 @@ safeDiv n k = Some (n `div` k)
 
 The possibility of returning some kind of *null* value in the
 face of invalid input is so common, that there is a data type
-like `Option` already in the prelude: `Maybe`, consisting
-of data constructors `Just` and `Nothing`.
+like `Option` already in the *Prelude*: `Maybe`, with
+data constructors `Just` and `Nothing`.
 
 It is important to understand the difference between returning `Maybe Integer`
 in a function, which might fail, and returning
 `null` in languages like Java: In the former case, the
 possibility of failure is visible in the types. The type checker
 will force us to treat `Maybe Integer` differently than
-`Integer`: We will *not* forget to handle the failure case.
+`Integer`: Idris will *not* allow us to forget to
+eventually handle the failure case.
 Not so, if `null` is silently returned without adjusting the
 types. Programmers may (and often *will*) forget to handle the
 `null` case, leading to unexpected and sometimes
@@ -722,7 +726,9 @@ data Validated e a = Invalid e | Valid a
 ```
 
 `Validated` is a type constructor parameterized over two
-type parameters. It's data constructors are `Invalid` and `Valid`.
+type parameters. It's data constructors are `Invalid` and `Valid`,
+the former holding a value describing some error condition,
+the latter the result in case of a successful computation.
 Let's see this in action:
 
 ```idris
@@ -734,17 +740,17 @@ readWeekdayV "Thursday"  = Valid Thursday
 readWeekdayV "Friday"    = Valid Friday
 readWeekdayV "Saturday"  = Valid Saturday
 readWeekdayV "Sunday"    = Valid Sunday
-readWeekdayV s           = Invalid s
+readWeekdayV s           = Invalid ("Not a weekday: " ++ s)
 ```
 
 Again, this is such a general concept that a data type
 similar to `Validated` is already available from the
-prelude: `Either` with data constructors `Left` and `Right`.
+*Prelude*: `Either` with data constructors `Left` and `Right`.
 It is very common for functions to encapsulate the possibility
-of functions by returning an `Either err val`, where `err`
+of failure by returning an `Either err val`, where `err`
 is the error type and `val` is the desired return type. This
-is the type safe (and total) alternative to throwing a catchable
-error in an imperative language.
+is the type safe (and total!) alternative to throwing a catchable
+exception in an imperative language.
 
 ### List
 
@@ -777,9 +783,13 @@ exactly of the two constructors `Nil` and `(::)`:
 ```idris
 ints2 : List Int64
 ints2 = [1, 2, (-3)]
+
+ints3 : List Int64
+ints3 = []
 ```
 
 The two definitions above are treated identically by the compiler.
+List syntax can also be used in pattern matches.
 
 There is another thing that's special about `Seq`: It is defined
 in terms of itself (the cons operator accepts a value
@@ -807,7 +817,7 @@ Like generic types, these are parameterized over one or more
 type parameters.
 
 Consider for instance the case of breaking out of the
-`Option` data type. In case of a `Sume`, we'd like to return
+`Option` data type. In case of a `Some`, we'd like to return
 the stored value, while for the `None` case we provide
 a default value. Here's how to do this, specialized to
 `Integer`s:
@@ -830,7 +840,7 @@ fromOption x None     = x
 ```
 
 The pendant to `fromOption` for `Maybe` is called `fromMaybe`
-and available from module `Data.Maybe` from the *base* library.
+and is available from module `Data.Maybe` from the *base* library.
 
 Sometimes, `fromOption` is not general enough. Assume we'd like to
 print the value of a freshly parsed `Bool`, giving some generic
@@ -847,6 +857,12 @@ handleBool : Option Bool -> String
 handleBool = option "Not a boolean value." show
 ```
 
+Function `option` is parameterized over *two* type parameters:
+`a` represents the type of values stored in the `Option`,
+while `b` is the return type. In case of a `Just`, we need
+a way to convert the stored `a` to a `b`, an that's done
+using the function argument of type `a -> b`.
+
 ### Exercises
 
 If this is your first time programming in a purely
@@ -855,7 +871,9 @@ important. Do not skip any of them! Take your time and
 work through them all. In most cases,
 the types should be enough to explain what's going
 on, even though they might appear cryptic in the
-beginning. Otherwise, have a look at the comments.
+beginning. Otherwise, have a look at the comments (if any)
+of each exercise.
+
 Remember, that lower-case identifiers in a function
 signature are treated as type parameters.
 
@@ -932,7 +950,7 @@ lastMaybe : List a -> Maybe a
 initMaybe : List a -> Maybe (List a)
 
 -- accumulate the values in a list using the given
--- accumulator function and initial result
+-- accumulator function and initial value
 --
 -- Examples:
 -- `foldList (+) 10 [1,2,7] = 20`
@@ -953,7 +971,7 @@ record Client where
   password : Either Bits64 String
 ```
 
-Using `LoginError` from an earlier exercise in this part,
+Using `LoginError` from an earlier exercise,
 implement function `login`, which, given a list of `Client`s
 plus a value of type `Credentials` will return either a `LoginError`
 in case no valid credentials where provided, or the first `Client`
@@ -991,7 +1009,7 @@ namespace GADT
 Here, `Option` is clearly declared as a type constructor
 (a function of type `Type -> Type`), while `Some`
 is a generic function of type `a -> Option a` (where `a` is
-*type parameter*)
+a *type parameter*)
 and `None` is a nullary generic function of type `Option a`
 (`a` again being a type parameter).
 Likewise for `Validated` and `Seq`. Note, that in case
