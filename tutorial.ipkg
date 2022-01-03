@@ -6,6 +6,8 @@ sourcedir  = "src"
 depends    = base         >= 0.5.1
 
 modules = Solutions.Functions1
+        , Solutions.DataTypes
 
         , Tutorial.Intro
         , Tutorial.Functions1
+        , Tutorial.DataTypes
