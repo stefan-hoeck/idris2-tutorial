@@ -75,7 +75,7 @@ This is a very powerful concept, as it allows us to match
 on and extract values from deeply nested data structures.
 
 The function above is provably total. Idris knows about the
-possible values of type `Weekday`, and it therefore can figure
+possible values of type `Weekday`, and can therefore figure
 out that our pattern match covers all possible cases. We can
 therefore annotate the function with the `total` keyword, and
 Idris will answer with a type error, if it can't verify the
@@ -187,7 +187,7 @@ maxBits8' x y = if compare x y == LT then y else x
 
 Note, that the `if then else` expression always returns a value
 and therefore, the `else` branch cannot be dropped. This is different
-to the behavior in typical imperative languages, where `if` is
+from the behavior in typical imperative languages, where `if` is
 a statement with possible side effects.
 
 ### Exercises
@@ -809,6 +809,11 @@ of failure by returning an `Either err val`, where `err`
 is the error type and `val` is the desired return type. This
 is the type safe (and total!) alternative to throwing a catchable
 exception in an imperative language.
+
+Note, however, that the semantics of `Either` are not always "`Left` is
+an error and `Right` a success". A function returning an `Either` just
+means that it can have to different types of results, each of which
+are *tagged* with the corresponding data constructor.
 
 ### List
 
