@@ -9,7 +9,7 @@ as arguments and results in functions.
 This is a lengthy tutorial, densely packed with information.
 If you are new to Idris and functional programming, make
 sure to follow along slowly, experimenting with the examples,
-and possibly come up with your own examples. Make sure to try
+and possibly coming up with your own. Make sure to try
 and solve *all* exercises. The solutions to the exercises
 can be found [here](../Solutions/DataTypes.idr).
 
@@ -46,6 +46,10 @@ Tutorial.DataTypes.Weekday : Type
 So, `Monday` is of type `Weekday`, while `Weekday` itself is of
 type `Type`.
 
+It is important to note, that a value of type `Weekday` can only
+ever be one of the values listed above. It is a *type error* to
+use anything else where a `Weekday` is expected.
+
 ### Pattern Matching
 
 In order to use our new data type as a function argument, we
@@ -54,6 +58,7 @@ languages: Pattern matching. Let's implement a function, which calculates
 the successor of a weekday:
 
 ```idris
+total
 next : Weekday -> Weekday
 next Monday    = Tuesday
 next Tuesday   = Wednesday
@@ -69,6 +74,22 @@ different possible values and return a result for each of them.
 This is a very powerful concept, as it allows us to match
 on and extract values from deeply nested data structures.
 
+The function above is provably total. Idris knows about the
+possible values of type `Weekday`, and it therefore can figure
+out that our pattern match covers all possible cases. We can
+therefore annotate the function with the `total` keyword, and
+Idris will answer with a type error, if it can't verify the
+function's totality. (Go ahead, and try removing one of
+the clauses in `next` to get an idea about how an error
+message from the coverage checker looks like.)
+
+Please remember, that these are very strong guarantees from
+the type checker: Given enough resources,
+a provably total function will *always* return
+a result of the given type in a finite amount of time
+(*resources* here meaning computational resources like
+memory or, in case of recursive functions, stack space).
+
 ### Catch-all Patterns
 
 Sometimes it is convenient to only match on a subset
@@ -76,17 +97,19 @@ of the possible values and collect the remaining possibilities
 in a catch-all clause:
 
 ```idris
+total
 isWeekend : Weekday -> Bool
 isWeekend Saturday = True
 isWeekend Sunday   = True
 isWeekend _        = False
 ```
 
-We can use this, to implement an equality test for `Weekday`
+We can use this to implement an equality test for `Weekday`
 (we will not yet use the `==` operator for this; this will
 have to wait until we learn about *interfaces*):
 
 ```idris
+total
 eqWeekday : Weekday -> Weekday -> Bool
 eqWeekday Monday Monday        = True
 eqWeekday Tuesday Tuesday      = True
@@ -109,6 +132,7 @@ on these types:
 
 ```idris
 -- this is how `not` is implemented in the *Prelude*
+total
 negate : Bool -> Bool
 negate False = True
 negate True  = False
@@ -118,6 +142,7 @@ The `Ordering` data type describes an ordering relation
 between two values. For instance:
 
 ```idris
+total
 compareBool : Bool -> Bool -> Ordering
 compareBool False False = EQ
 compareBool False True  = LT
@@ -139,6 +164,7 @@ situation:
 
 ```idris
 -- returns the larger of the two arguments
+total
 maxBits8 : Bits8 -> Bits8 -> Bits8
 maxBits8 x y = case compare x y of
   LT => y
@@ -154,6 +180,7 @@ When working with `Bool`, there is an alternative to pattern matching
 common to most programming languages:
 
 ```idris
+total
 maxBits8' : Bits8 -> Bits8 -> Bits8
 maxBits8' x y = if compare x y == LT then y else x
 ```
@@ -190,15 +217,18 @@ data UnitOfTime = Second -- add additional values
 
 -- calculate the number of seconds from a
 -- number of steps in the given unit of time
+total
 toSeconds : UnitOfTime -> Integer -> Integer
 
 -- Given a number of seconds, calculate the
 -- number of steps in the given unit of time
+total
 fromSeconds : UnitOfTime -> Integer -> Integer
 
 -- convert the number of steps in a given unit of time
 -- to the number of steps in another unit of time.
 -- use `fromSeconds` and `toSeconds` in your implementation
+total
 convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
 ```
 
@@ -209,8 +239,7 @@ web application can decide how they like to be addressed.
 We give them a choice between two common predefined
 forms of address (Mr and Mrs), but also allow them to
 decide on a customized form. The possible
-choices should be encapsulated in an Idris data type
-like so:
+choices can be encapsulated in an Idris data type:
 
 ```idris
 data Title = Mr | Mrs | Other String
@@ -218,8 +247,9 @@ data Title = Mr | Mrs | Other String
 
 This looks almost like an enumeration type, with the exception
 that there is a new thing, called a *data constructor*,
-which accepts a `String` argument. If we inspect
-the types at the REPL, we learn the following:
+which accepts a `String` argument (actually, the values
+in an enumeration are also called (nullary) data constructors).
+If we inspect the types at the REPL, we learn the following:
 
 ```repl
 Tutorial.DataTypes> :t Mr
@@ -233,14 +263,18 @@ means, that we can pass `Other` a `String` argument and get
 a `Title` as the result:
 
 ```idris
+total
 dr : Title
 dr = Other "Dr."
 ```
 
-Again, we can use pattern matching to implement functions
-on the `Title` data type:
+Again, a value of type `Title` can only consist of one
+of the three choices listed above, and again,
+we can use pattern matching to implement functions
+on the `Title` data type in a provably total way:
 
 ```idris
+total
 showTitle : Title -> String
 showTitle Mr        = "Mr."
 showTitle Mrs       = "Mrs."
@@ -255,6 +289,7 @@ We can use `showTitle` to implement a function for creating
 a courteous greeting:
 
 ```idris
+total
 greet : Title -> String -> String
 greet t name = "Hello, " ++ showTitle t ++ " " ++ name ++ "!"
 ```
@@ -290,6 +325,7 @@ As an example of a very primitive login function, we can
 hard-code some known credentials:
 
 ```idris
+total
 login : Credentials -> String
 login (Password "Anderson" 6665443) = greet Mr "Anderson"
 login (Key "xyz")                   = greet (Other "Agent") "Y"
@@ -315,6 +351,7 @@ Tutorial.DataTypes> login (Key "foo")
 equality operator `(==)` for comparing two `String`s):
 
 ```idris
+total
 eqTitle : Title -> Title -> Bool
 ```
 
@@ -322,6 +359,7 @@ eqTitle : Title -> Title -> Bool
 a custom title is being used:
 
 ```idris
+total
 isOther : Title -> Bool
 ```
 
@@ -333,10 +371,11 @@ ways for authentication to fail:
   the user name.
 * An invalid key was used.
 
-Encapsulate these three possibilities in a sum type `LoginError`,
+Encapsulate these three possibilities in a sum type 
+called `LoginError`,
 but make sure not to disclose any confidential information:
-An invalid user name should be stored in the error, but an
-invalid password or key should not.
+An invalid user name should be stored in the corresponding
+error value, but an invalid password or key should not.
 
 4. Implement function `showError : LoginError -> String`, which
 can be used to display an error message to the user who
@@ -375,9 +414,11 @@ We can use `MkUser` (which is a function from
 to create values of type `User`:
 
 ```idris
+total
 agentY : User
 agentY = MkUser "Y" (Other "Agent") 51
 
+total
 drNo : User
 drNo = MkUser "No" dr 73
 ```
@@ -386,6 +427,7 @@ We can also use pattern matching to extract the fields from
 a `User` value (they can again be bound to local variables):
 
 ```idris
+total
 greetUser : User -> String
 greetUser (MkUser n t _) = greet t n
 ```
@@ -426,6 +468,7 @@ adjust each field as desired. If, for instance, we'd like
 to increase the age of a `User` by one, we could do the following:
 
 ```idris
+total
 incAge : User -> User
 incAge (MkUser name title age) = MkUser name title (age + 1)
 ```
@@ -436,6 +479,7 @@ using *record* syntax, we can just access and update the `age`
 field of a value:
 
 ```idris
+total
 incAge2 : User -> User
 incAge2 u = { age := u.age + 1 } u
 ```
@@ -452,6 +496,7 @@ The use case of modifying a record field is so common
 that Idris provides special syntax for this as well:
 
 ```idris
+total
 incAge3 : User -> User
 incAge3 u = { age $= (+ 1) } u
 ```
@@ -466,6 +511,7 @@ we could have used an anonymous function
 (called a *lambda*) like so:
 
 ```idris
+total
 incAge4 : User -> User
 incAge4 u = { age $= \x => x + 1 } u
 ```
@@ -475,6 +521,7 @@ once at the very end, we can drop it altogether,
 to get the following, highly concise version:
 
 ```idris
+total
 incAge5 : User -> User
 incAge5 = { age $= (+ 1) }
 ```
@@ -490,6 +537,7 @@ It is possible to use this syntax to set and/or update
 several record fields at once:
 
 ```idris
+total
 drNoJunior : User
 drNoJunior = { name $= (++ " Jr."), title := Mr, age := 17 } drNo
 ```
@@ -516,6 +564,7 @@ is the *product* of the number of possible values for each field.
 The canonical product type is the `Pair`, which is available from the *Prelude*:
 
 ```idris
+total
 weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool
 weekdayAndBool wd b = MkPair wd b
 ```
@@ -527,6 +576,7 @@ can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,
 we can just write `(wd, b)` (the space is optional):
 
 ```idris
+total
 weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)
 weekdayAndBool2 wd b = (wd, b)
 ```
@@ -534,9 +584,11 @@ weekdayAndBool2 wd b = (wd, b)
 This works also for nested tuples:
 
 ```idris
+total
 triple : Pair Bool (Pair Weekday String)
 triple = MkPair False (Friday, "foo")
 
+total
 triple2 : (Bool, Weekday, String)
 triple2 = (False, Friday, "foo")
 ```
@@ -547,6 +599,7 @@ used in `triple` by the Idris compiler.
 We can even use tuple syntax in pattern matches:
 
 ```idris
+total
 bar : Bool
 bar = case triple of
   (b,wd,_) => b && isWeekend wd
@@ -558,6 +611,7 @@ on it but still retain the value as a whole for using it
 in further computations:
 
 ```idris
+total
 baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)
 baz t@(_,_,s) = (length s, t)
 ```
@@ -634,6 +688,7 @@ Here's an example how to do this:
 ```idris
 data MaybeWeekday = WD Weekday | NoWeekday
 
+total
 readWeekday : String -> MaybeWeekday
 readWeekday "Monday"    = WD Monday
 readWeekday "Tuesday"   = WD Tuesday
@@ -657,6 +712,7 @@ types*. Here's an example:
 ```idris
 data Option a = Some a | None
 
+total
 readBool : String -> Option Bool
 readBool "True"    = Some True
 readBool "False"   = Some False
@@ -687,6 +743,7 @@ Let's see some other use cases for `Option`. Below is a safe
 division operation:
 
 ```idris
+total
 safeDiv : Integer -> Integer -> Option Integer
 safeDiv n 0 = None
 safeDiv n k = Some (n `div` k)
@@ -732,6 +789,7 @@ the latter the result in case of a successful computation.
 Let's see this in action:
 
 ```idris
+total
 readWeekdayV : String -> Validated String Weekday
 readWeekdayV "Monday"    = Valid Monday
 readWeekdayV "Tuesday"   = Valid Tuesday
@@ -772,8 +830,9 @@ Here is an example (I use `List` here, as this is what you should
 use in your own code):
 
 ```idris
+total
 ints : List Int64
-ints = 1 :: 2 :: (-3) :: Nil
+ints = 1 :: 2 :: -3 :: Nil
 ```
 
 However, there is a more concise way of writing the above. Idris
@@ -781,9 +840,11 @@ accepts special syntax for constructing data types consisting
 exactly of the two constructors `Nil` and `(::)`:
 
 ```idris
+total
 ints2 : List Int64
-ints2 = [1, 2, (-3)]
+ints2 = [1, 2, -3]
 
+total
 ints3 : List Int64
 ints3 = []
 ```
@@ -801,6 +862,7 @@ but these things do not exist in a language without in-place
 mutation. Here's how to sum a list of integers:
 
 ```idris
+total
 intSum : List Integer -> Integer
 intSum Nil       = 0
 intSum (n :: ns) = n + intSum ns
@@ -823,6 +885,7 @@ a default value. Here's how to do this, specialized to
 `Integer`s:
 
 ```idris
+total
 integerFromOption : Integer -> Option Integer -> Integer
 integerFromOption _ (Some y) = y
 integerFromOption x None     = x
@@ -834,6 +897,7 @@ Surely, we'd also like to break out of `Option Bool` or
 what the generic function `fromOption` does:
 
 ```idris
+total
 fromOption : a -> Option a -> a
 fromOption _ (Some y) = y
 fromOption x None     = x
@@ -849,10 +913,12 @@ for this, as we have an `Option Bool` and we'd like to
 return a `String`. Here's how to do this:
 
 ```idris
+total
 option : b -> (a -> b) -> Option a -> b
 option _ f (Some y) = f y
 option x _ None     = x
 
+total
 handleBool : Option Bool -> String
 handleBool = option "Not a boolean value." show
 ```
@@ -881,72 +947,91 @@ signature are treated as type parameters.
 
 ```idris
 -- make sure to map a `Just` to a `Just`.
+total
 mapMaybe : (a -> b) -> Maybe a -> Maybe b
 
 -- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`
+total
 appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b
 
 -- Example: `bindMaybe (Just 12) Just = Just 12`
+total
 bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b
 
 -- keep the value in a `Just` only if the given predicate holds
+total
 filterMaybe : (a -> Bool) -> Maybe a -> Maybe a
 
 -- keep the first value that is not a `Nothing` (if any)
+total
 first : Maybe a -> Maybe a -> Maybe a
 
 -- keep the last value that is not a `Nothing` (if any)
+total
 last : Maybe a -> Maybe a -> Maybe a
 
 -- this is another general way to extract a value from a `Maybe`.
 -- Make sure the following holds:
 -- `foldMaybe (+) 5 Nothing = 5`
 -- `foldMaybe (+) 5 (Just 12) = 17`
+total
 foldMaybe : (acc -> elem -> acc) -> acc -> Maybe elem -> acc
 ```
 
 2. Implement the following functions for `Either`:
 
 ```idris
+total
 mapEither : (a -> b) -> Either e a -> Either e b
 
 -- In case of both `Either`s being `Left`s, keep the
 -- value stored in the first `Left`.
+total
 appEither : Either e (a -> b) -> Either e a -> Either e b
 
+total
 bindEither : Either e a -> (a -> Either e b) -> Either e b
 
 -- Keep the first value that is not a `Left`
 -- If both `Either`s are `Left`s, use the given accumulator
 -- for the error values
+total
 firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
 
 -- Keep the last value that is not a `Left`
 -- If both `Either`s are `Left`s, use the given accumulator
 -- for the error values
+total
 lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
 
+total
 fromEither : (e -> c) -> (a -> c) -> Either e a -> c
 ```
 
 3. Implement the following functions for `List`:
 
 ```idris
+total
 mapList : (a -> b) -> List a -> List b
 
+total
 filterList : (a -> Bool) -> List a -> List a
 
 -- return the first value of a list, if it is non-empty
+total
 headMaybe : List a -> Maybe a
 
 -- return everything but the first value of a list, if it is non-empty
+total
 tailMaybe : List a -> Maybe (List a)
 
 -- return the last value of a list, if it is non-empty
+total
 lastMaybe : List a -> Maybe a
 
 -- return everything but the last value of a list,
 -- if it is non-empty
+total
 initMaybe : List a -> Maybe (List a)
 
 -- accumulate the values in a list using the given
@@ -956,6 +1041,7 @@ initMaybe : List a -> Maybe (List a)
 -- `foldList (+) 10 [1,2,7] = 20`
 -- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"
 -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
+total
 foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
 ```
 

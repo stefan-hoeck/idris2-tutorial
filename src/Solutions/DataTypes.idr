@@ -1,5 +1,11 @@
 module Solutions.DataTypes
 
+-- If all or almost all functions in a module are provably
+-- total, it is convenient to add the following pragma
+-- at the top of the module. It is then no longer necessary
+-- to annotate each function with the `total` keyword.
+%default total
+
 --------------------------------------------------------------------------------
 --          Enumerations
 --------------------------------------------------------------------------------
