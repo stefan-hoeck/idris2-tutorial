@@ -6,6 +6,13 @@ them to create more complex functionality. Of equal importance
 is the ability to define our own data types and use them
 as arguments and results in functions.
 
+This is a lengthy tutorial, densely packed with information.
+If you are new to Idris and functional programming, make
+sure to follow along slowly, experimenting with the examples,
+and possibly come up with your own examples. Make sure to try
+and solve *all* exercises. The solutions to the exercises
+can be found [here](../Solutions/DataTypes.idr).
+
 ```idris
 module Tutorial.DataTypes
 ```
@@ -254,7 +261,7 @@ greet t name = "Hello, " ++ showTitle t ++ " " ++ name ++ "!"
 
 In the implementation of `greet`, we use string literals
 and the string concatenation operator `(++)` to
-create the greeting from its different parts.
+assemble the greeting from its parts.
 
 At the REPL:
 
@@ -290,8 +297,8 @@ login _                             = "Access denied!"
 ```
 
 As can be seen in the example above, we can also pattern
-match against primitive data types by using integer and
-string literals. Give it a go at the REPL:
+match against primitive values by using integer and
+string literals. Give `login` a go at the REPL:
 
 ```repl
 Tutorial.DataTypes> login (Password "Anderson" 6665443)
@@ -305,7 +312,7 @@ Tutorial.DataTypes> login (Key "foo")
 ### Exercises
 
 1. Implement an equality test for `Title` (you can use the
-equality operator `(==)` for comparing `String`s):
+equality operator `(==)` for comparing two `String`s):
 
 ```idris
 eqTitle : Title -> Title -> Bool
@@ -324,7 +331,7 @@ ways for authentication to fail:
 * An unknown user name was used.
 * The password given does not match the one associated with
   the user name.
-* An invalid key was used
+* An invalid key was used.
 
 Encapsulate these three possibilities in a sum type `LoginError`,
 but make sure not to disclose any confidential information:
@@ -338,11 +345,11 @@ unsuccessfully tried to login into our web application.
 ## Records
 
 It is often useful to group together several values
-in a logical unit. For instance, in our web application
+as a logical unit. For instance, in our web application
 we might want to group information about a user
 in a single data type. Such data types are often called
 *product types*. The most common and convenient way to
-define such data types is the `record` construct:
+define them is the `record` construct:
 
 ```idris
 record User where
@@ -408,8 +415,12 @@ we are not allowed to modify global mutable state. As such,
 if we want to modify a record value, we will always
 create a *new* value with the original value remaining
 unchanged: Records and other Idris values are *immutable*.
+While this *can* have a slight impact on performance, it has
+the benefit that we can freely pass a record value to
+different functions, without fear of the functions modifying
+the value by in-place mutation.
 
-There are several ways to modify a record, but the most
+There are several ways to modify a record, the most
 general being to pattern match on the record and
 adjust each field as desired. If, for instance, we'd like
 to increase the age of a `User` by one, we could do the following:
@@ -420,7 +431,7 @@ incAge (MkUser name title age) = MkUser name title (age + 1)
 ```
 
 That's a lot of code for such a simple thing, so Idris offers
-several syntactic conveniences for this use case. For instance,
+several syntactic conveniences for this. For instance,
 using *record* syntax, we can just access and update the `age`
 field of a value:
 
@@ -429,18 +440,26 @@ incAge2 : User -> User
 incAge2 u = { age := u.age + 1 } u
 ```
 
+Assignment operator `:=` assigns a new value to the `age` field
+in `u`. Remember, that this will create a new `User` value. The original
+value `u` remains unaffected by this.
+
 This is already better, but the use case of modifying a
 record field is so common that Idris provides special syntax
-for this:
+for this as well:
 
 ```idris
 incAge3 : User -> User
 incAge3 u = { age $= (+ 1) } u
 ```
 
-The `(+ 1)` is a partially applied operator. These are
-called *operator sections* and have to be put in parentheses.
-As an alternative, we could have used an anonymous function
+`(+ 1)` is a partially applied operator. This is
+called an *operator section* and has to be put in parentheses.
+In all other aspects, it behaves like any other partially applied
+function.
+
+As an alternative to an operator section,
+we could have used an anonymous function
 (called a *lambda*) like so:
 
 ```idris
@@ -464,7 +483,7 @@ Tutorial.DataTypes> incAge5 drNo
 MkUser "No" (Other "Dr.") 74
 ```
 
-It is possible to use this syntax to set and / or update
+It is possible to use this syntax to set and/or update
 several record fields at once:
 
 ```idris
@@ -475,8 +494,8 @@ drNoJunior = { name $= (++ " Jr."), title := Mr, age := 17 } drNo
 ### Tuples
 
 I wrote above that a record is also called a *product type*.
-This naming becomes most obvious when we consider the number
-of possible value inhabiting a given type. For instance, consider
+This is quite obvious when we consider the number
+of possible values inhabiting a given type. For instance, consider
 the following custom record:
 
 ```idris
@@ -488,7 +507,8 @@ record Foo where
 
 How many possible values of type `Foo` are there? The answer is `7 * 2 = 14`,
 as we can pair every possible `Weekday` (seven in total) with every possible
-`Bool` (two in total).
+`Bool` (two in total). So, the number of possible values of a record type
+is the *product* of the number of possible values for each field.
 
 The canonical product type is the `Pair`, which is available from the *Prelude*:
 
@@ -530,7 +550,7 @@ bar = case triple of
 ```
 ### As Patterns
 
-Sometimes we'd like take apart a value by pattern matching
+Sometimes, we'd like to take apart a value by pattern matching
 on it but still retain the value as a whole for using it
 in further computations:
 
@@ -539,18 +559,19 @@ baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)
 baz t@(_,_,s) = (length s, t)
 ```
 
-In `baz`, variable `t` is bound to the triple as a whole, which
-is then reused to construct the resulting quadruple. Don't
-forget, that `(Nat,Bool,Weekday,String)` is just sugar for
+In `baz`, variable `t` is *bound* to the triple as a whole, which
+is then reused to construct the resulting quadruple. Remember,
+that `(Nat,Bool,Weekday,String)` is just sugar for
 `Pair Nat (Bool,Weekday,String)`, and `(length s, t)` is just
-sugar for `MkPair (length s) t`.
+sugar for `MkPair (length s) t`. Hence, the implementation above
+is correct as is confirmed by the type checker.
 
 ### Exercises
 
 1. Define a record type for time spans by pairing a `UnitOfTime`
 with an integer representing the duration of the time span in
-the given unit of time. Define a function for converting a time span
-to seconds.
+the given unit of time. Define also a function for converting
+a time span to an `Integer` representing the duration in seconds.
 
 2. Implement an equality check for time spans: Two time spans
 should be considered equal, if and only if they correspond to
