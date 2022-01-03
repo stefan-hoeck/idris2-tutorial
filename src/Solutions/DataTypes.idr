@@ -117,7 +117,6 @@ bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b
 bindMaybe Nothing  _ = Nothing
 bindMaybe (Just x) f = f x
 
--- TODO: Was if then else introduced?
 filterMaybe : (a -> Bool) -> Maybe a -> Maybe a
 filterMaybe f Nothing  = Nothing
 filterMaybe f (Just x) = if (f x) then Just x else Nothing

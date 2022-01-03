@@ -57,7 +57,7 @@ next Saturday  = Sunday
 next Sunday    = Monday
 ```
 
-So, in order to inspect a `Weekday` argument, we match on the
+In order to inspect a `Weekday` argument, we match on the
 different possible values and return a result for each of them.
 This is a very powerful concept, as it allows us to match
 on and extract values from deeply nested data structures.
@@ -139,7 +139,22 @@ maxBits8 x y = case compare x y of
 ```
 
 Function `compare` is overloaded for many data types. We will
-learn about this works exactly when we talk about interfaces.
+learn how this works when we talk about interfaces.
+
+#### If Then Else
+
+When working with `Bool`, there is an alternative to pattern matching
+common to most programming languages:
+
+```idris
+maxBits8' : Bits8 -> Bits8 -> Bits8
+maxBits8' x y = if compare x y == LT then y else x
+```
+
+Note, that the `if then else` expression always returns a value
+and therefore, the `else` branch cannot be dropped. This is different
+to the behavior in typical imperative languages, where `if` is
+a statement with possible side effects.
 
 ### Exercises
 
@@ -456,6 +471,79 @@ several record fields at once:
 drNoJunior : User
 drNoJunior = { name $= (++ " Jr."), title := Mr, age := 17 } drNo
 ```
+
+### Tuples
+
+I wrote above that a record is also called a *product type*.
+This naming becomes most obvious when we consider the number
+of possible value inhabiting a given type. For instance, consider
+the following custom record:
+
+```idris
+record Foo where
+  constructor MkFoo
+  wd   : Weekday
+  bool : Bool
+```
+
+How many possible values of type `Foo` are there? The answer is `7 * 2 = 14`,
+as we can pair every possible `Weekday` (seven in total) with every possible
+`Bool` (two in total).
+
+The canonical product type is the `Pair`, which is available from the *Prelude*:
+
+```idris
+weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool
+weekdayAndBool wd b = MkPair wd b
+```
+
+Since it is quite common to return several values from a function
+wrapped in a `Pair` or larger tuple, Idris provides some syntactic
+sugar for working with these. Instead of `Pair Weekday Bool`, we
+can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,
+we can just write `(wd, b)` (the space is not mandatory):
+
+```idris
+weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)
+weekdayAndBool2 wd b = (wd, b)
+```
+
+This works also for nested tuples:
+
+```idris
+triple : Pair Bool (Pair Weekday String)
+triple = MkPair False (Friday, "foo")
+
+triple2 : (Bool, Weekday, String)
+triple2 = (False, Friday, "foo")
+```
+
+In the example above, `triple2` is converted to the form
+used in `triple` by the Idris compiler.
+
+We can even use tuple syntax in pattern matches:
+
+```idris
+bar : Bool
+bar = case triple of
+  (b,wd,_) => b && isWeekend wd
+```
+### As Patterns
+
+Sometimes we'd like take apart a value by pattern matching
+on it but still retain the value as a whole for using it
+in further computations:
+
+```idris
+baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)
+baz t@(_,_,s) = (length s, t)
+```
+
+In `baz`, variable `t` is bound to the triple as a whole, which
+is then reused to construct the resulting quadruple. Don't
+forget, that `(Nat,Bool,Weekday,String)` is just sugar for
+`Pair Nat (Bool,Weekday,String)`, and `(length s, t)` is just
+sugar for `MkPair (length s) t`.
 
 ### Exercises
 
