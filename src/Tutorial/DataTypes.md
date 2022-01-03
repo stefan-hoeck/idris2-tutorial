@@ -123,6 +123,24 @@ the second, `EQ` means that the two arguments are equal
 and `GT` means, that the first argument is *greater than*
 the second.
 
+### Case Blocks
+
+Sometimes we need to perform a computation with one
+of the arguments and want to pattern match on the result
+of this computation. We can use *case blocks* in this
+situation:
+
+```idris
+-- returns the larger of the two arguments
+maxBits8 : Bits8 -> Bits8 -> Bits8
+maxBits8 x y = case compare x y of
+  LT => y
+  _  => x
+```
+
+Function `compare` is overloaded for many data types. We will
+learn about this works exactly when we talk about interfaces.
+
 ### Exercises
 
 1. Use pattern matching to implement your own
@@ -809,7 +827,7 @@ initMaybe : List a -> Maybe (List a)
 --
 -- Examples:
 -- `foldList (+) 10 [1,2,7] = 20`
--- `foldList (++) "" ["Hello","World"] = "HelloWorld"
+-- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"
 -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
 foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
 ```
@@ -823,8 +841,7 @@ record Client where
   name     : String
   title    : Title
   age      : Bits8
-  password : Maybe Bits64
-  key      : Maybe String
+  password : Either Bits64 String
 ```
 
 Using `LoginError` from an earlier exercise in this part,
