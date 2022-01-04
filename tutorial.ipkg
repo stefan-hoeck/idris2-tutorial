@@ -7,9 +7,11 @@ depends    = base         >= 0.5.1
 
 modules = Solutions.Functions1
         , Solutions.Functions2
+        , Solutions.Interfaces
         , Solutions.DataTypes
 
         , Tutorial.DataTypes
+        , Tutorial.Interfaces
         , Tutorial.Intro
         , Tutorial.Functions1
         , Tutorial.Functions2
