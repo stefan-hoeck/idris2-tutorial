@@ -343,7 +343,7 @@ Equals Bool where
 1. Implement interfaces `Equals`, `Comp`, `Concat`, and
   `Empty` for pairs, constraining your implementations as necessary.
   (Note, that multiple constraints can be given sequentially like
-  other function arguments: `Comp a => Comp b => Comp (a,b)`.
+  other function arguments: `Comp a => Comp b => Comp (a,b)`.)
 
 2. Below is an implementation of a binary tree. Implement
    interfaces `Equals` and `Concat` for this type.
@@ -410,7 +410,7 @@ so whenever there is an `Ord` constraint, we also have access to operators
 
 We expect the following laws to hold for all implementations of `Ord`:
 
-* `(<=)` is *reflexive* and *transitive.
+* `(<=)` is *reflexive* and *transitive*.
 * `(<=)` is *antisymmetric*: From `x <= y = True` and `y <= x = True`
 follows `x == y = True`.
 * `x <= y = y >= x`.
@@ -542,7 +542,11 @@ functions they provide:
 
 * `Fractional`
   * `(/)` : Division
-  * `recip` : Calculates the reciproce of a value
+  * `recip` : Calculates the reciprocal of a value
+
+### `Cast`
+
+TODO
 
 ### Exercises
 
@@ -569,9 +573,11 @@ functions they provide:
    Implement interfaces `Eq`, `Ord`, `Show`, `FromString`, `FromChar`, `FromDouble`,
    `Num`, `Neg`, `Integral`, and `Fractional` for `First a`. All of these will require
    corresponding constraints on type parameter `a`. Consider using the following
-   two utility functions where they make sense:
+   utility functions where they make sense:
 
    ```idris
+   pureFirst : a -> First a
+
    mapFirst : (a -> b) -> First a -> First b
 
    mapFirst2 : (a -> b -> c) -> First a -> First b -> First c
