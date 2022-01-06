@@ -1,11 +1,11 @@
 # Introduction
 
-Welcome to my Idris2 tutorial. I'll try and treat as many aspects
-of the Idris2 programming language as possible here.
-All `.md` files in here a literate Idris2 files: They consist of
+Welcome to my Idris 2 tutorial. I'll try and treat as many aspects
+of the Idris 2 programming language as possible here.
+All `.md` files in here a literate Idris files: They consist of
 markdown (hence the `.md` ending), which is being pretty printed
-by github together with Idris2 code blocks, which can be
-type checked and built by the Idris2 compiler (more on this later).
+by github together with Idris code blocks, which can be
+type checked and built by the Idris compiler (more on this later).
 Note, however, that regular Idris source files use an `.idr` ending,
 and that you go with that file type unless you end up writing
 much more prose than code as I do at the moment. Later in this
@@ -34,9 +34,9 @@ in this section.
 ### Functional Programming
 
 In functional programming languages, functions are first-class
-constructs, meaning that they can be assigned to variable,
+constructs, meaning that they can be assigned to variables,
 passed as arguments to other functions, and returned as results
-from other functions. Unlike for instance in
+from functions. Unlike for instance in
 object-oriented programming languages, in functional programming,
 functions are the main form of abstraction.
 
@@ -46,7 +46,7 @@ concerned with the execution of statements.
 
 ### Pure Functional Programming
 
-Pure functional programming language come with an additional
+Pure functional programming languages come with an additional
 important guarantee: Functions don't have side effects like
 writing to a file or mutating global state. They can only
 compute a result from their arguments possibly by invoking other
@@ -60,9 +60,9 @@ Pure functions have several advantages:
 * They can easily be tested by specifying (possibly randomly generated)
   sets of input arguments together with the expected results.
 
-* They are thread safe, since the don't mutate global state, and
-  as such can be freely used in computations running on several
-  threads in parallel.
+* They are thread-safe, since the don't mutate global state, and
+  as such can be freely used in several computations running
+  in parallel.
 
 There are, of course, also some disadvantages:
 
@@ -91,7 +91,7 @@ Even more, Idris is *dependently typed*, which is one of its most
 characteristic properties in the landscape of programming
 languages. In Idris, types are *first class*: Types can be passed
 as arguments to functions, and functions can return types as
-their result. Even more, types can *depend* on other *values*.
+their results. Even more, types can *depend* on other *values*.
 What this means, and why this is incredibly useful, we'll explore
 in due time.
 
