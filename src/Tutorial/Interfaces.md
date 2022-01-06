@@ -637,5 +637,10 @@ TODO
    allElems : (a -> Bool) -> List a -> Bool
    ```
 
+Final notes: If you are new to functional programming, make sure
+to give your implementations of exercies 6 to 8 a try at the REPL.
+Note, how we can implement these functions with a minimal amount
+of code.
+
 <!-- vi: filetype=idris2
 -->
