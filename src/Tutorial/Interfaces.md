@@ -548,7 +548,27 @@ functions each provides:
 
 ### `Cast`
 
-TODO
+The last interface we will quickly discuss in this section is `Cast`. It
+is used to convert values of one type to values of another via
+function `cast`. `Cast` is special, since it is parameterized
+over *two* type parameters unlike the other interfaces we looked
+at so far, with only one type parameter.
+
+So far, `Cast` is mainly used for interconversion
+between primitive types in the standard libraries,
+especially numeric types. When you look
+at the implementations exported from the *Prelude* (for instance,
+by invoking `:doc Cast` at the REPL), you'll see that there are
+dozens of implementations for most pairings of primitive types.
+
+Although `Cast` would also be useful for other conversions (for
+going from `Maybe` to `List` or for going from `Either e` to `Maybe`,
+for instance), the *Prelude* and
+*base* seem not to introduce these consistently. For instance,
+there are `Cast` implementations from going from `SnocList` to
+`List` and vice versa, but not for going from `Vect n` to `List`,
+or for going from `List1` to `List`, although these would
+be just as feasible.
 
 ### Exercises
 
@@ -600,7 +620,7 @@ different instances for these.
    the corresponding neutral element. There must be no constraints on type
    parameter `a` in these implementations.
 
-5. Repeat exercises 3 and 4 for type `Last`. The `Semigroup` implementation
+5. Repeat exercises 3 and 4 for record `Last`. The `Semigroup` implementation
    should return the last non-nothing value.
 
    ```idris
@@ -615,8 +635,9 @@ different instances for these.
    Use `foldMap` and `Last` to extract the last element (if any) from a list.
 
    Note, that the type of `foldMap` is more general and not specialized
-   to lists only. It works also for `Maybe`, `Either`, and other container
-   types. We will learn about interface `Foldable` in a later section.
+   to lists only. It works also for `Maybe`, `Either` and other container
+   types we haven't looked at so far. We will learn about
+   interface `Foldable` in a later section.
 
 7. Consider record wrappers `Any` and `All` for boolean values:
 
@@ -674,16 +695,16 @@ different instances for these.
 10. Implement `sumList` and `productList` by using `foldMap` together
     with the wrappers from Exercise 9:
 
-   ```idris
-   sumList : Num a => List a -> a
-
-   productList : Num a => List a -> a
-   ```
+    ```idris
+    sumList : Num a => List a -> a
+ 
+    productList : Num a => List a -> a
+    ```
 
 11. To appreciate the power and versatility of `foldMap`, after
     solving exercises 6 to 10 (or by loading `Solutions.Inderfaces`
     in a REPL session), run the following at the REPL, which will -
-    in a single list traversal - calculate the first and last
+    in a single list traversal! - calculate the first and last
     element of the list as well as the sum and product of all values.
 
     ```repl
