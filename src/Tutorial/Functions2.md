@@ -3,12 +3,13 @@
 So far, we learned about the core features of the Idris
 language, which it has in common with several other
 pure, strongly typed programming languages like Haskell:
-(Higher order) Functions, algebraic data types, pattern matching
-and parametric polymorphism (generic types and functions).
+(Higher order) Functions, algebraic data types, pattern matching,
+parametric polymorphism (generic types and functions), and
+ad hoc polymorphism (interfaces).
 
-In this part we start to dissect Idris functions for real.
-We learn about implicit and named arguments, erasure and
-quantities and auto implicits.
+In this part we start to dissect Idris functions and their types
+for real. We learn about implicit, named arguments, as well 
+as erasure and quantities.
 
 ```idris
 module Tutorial.Functions2
@@ -40,14 +41,10 @@ Main> :t sum
 Prelude.sum : Num a => Foldable t => t a -> a
 ```
 
-At this moment, you might think: "Why is that useful?
-It's not about lists at all! And what are those strange
-arrows in the function's signature?" I keep repeating myself:
-You will learn about how this works in due time. For
-the time being, suffice to say that `sum` allows us to
-sum up different kinds of numeric values stored in
-different kinds of container types like `List`, `Maybe`,
-`Either`, and several others you have not yet learned about.
+This is - of course - similar to `sumList` from Exercise 10
+of the [last section](Interfaces.md), but generalized to all
+container types with a `Foldable` implementation. We will
+learn about `Foldable` in a later section.
 
 In order to also calculate the variance,
 we need to convert every value in the list to
@@ -58,8 +55,7 @@ defined function `mapList` for this. The *Prelude* - of course -
 already exports a similar function called `map`,
 which is again more general
 and works also like our `mapMaybe` for `Maybe`
-and `mapEither` for `Either e`. Have a look at its
-type, if you'd like to freak out again :-).
+and `mapEither` for `Either e`. Here's its type:
 
 ```repl
 Main> :t map
@@ -193,37 +189,24 @@ up with many `String` fields, which can be hard to disambiguate.
 In order not to confuse an email string with a password string,
 it can therefore be helpful to wrap both of them in a new
 record type to drastically increase type safety at the cost
-of having to write some rather boring utility functions.
-
-For instance, we will need check pairs of values of types
-`Artist`, `Email`, and `Password` for being equal. With `String`,
-we could just have used the equality operator `(==)`, but
-with our custom data types, this is no longer possible. (Actually,
-it *is* possible and very straight forward, but we'll have to
-learn about interfaces first.)
-
-We therefore have to write some quick boilerplate code. Utility
-function `on` from the *Prelude* is very useful here. Don't
+of having reimplement some interfaces.
+Utility function `on` from the *Prelude* is very useful here. Don't
 forget to inspect its type at the REPL, and try to understand what's
 going on here.
 
 ```idris
-eqArtist : Artist -> Artist -> Bool
-eqArtist = (==) `on` name
+Eq Artist where (==) = (==) `on` name
 
-eqEmail : Email -> Email -> Bool
-eqEmail = (==) `on` value
+Eq Email where (==) = (==) `on` value
 
-eqPassword : Password -> Password -> Bool
-eqPassword = (==) `on` value
+Eq Password where (==) = (==) `on` value
+
+Eq Album where (==) = (==) `on` \a => (a.name, a.artist)
 ```
 
-We will also need to compare two `Album`s for equality.
-
-```idris
-eqAlbum : Album -> Album -> Bool
-eqAlbum (MkAlbum n1 a1) (MkAlbum n2 a2) = n1 == n2 && eqArtist a1 a2
-```
+In case of `Album`, we wrap the two fields of the record in
+a `Pair`, which already comes with an implementation of `Eq`.
+This allows us to again use function `on`, which is very convenient.
 
 Next, we have to define the data types representing
 server requests and responses:
@@ -249,12 +232,12 @@ data Response : Type where
 For server responses, we use a custom sum type encoding
 the possible outcomes of a client request. In practice,
 the `Success` case would return some kind of connection
-to start the actual album stream, but we will just
-wrap up the album we found.
+to start the actual album stream, but we just
+wrap up the album we found to simulate this behavior.
 
 We can now go ahead and simulate the handling of
 a request at the server. To emulate our user data base,
-we just use a list of users. Here's the type of the
+a simple list of users will do. Here's the type of the
 function we'd like to implement:
 
 ```idris
@@ -264,14 +247,14 @@ DB = List User
 handleRequest : DB -> Request -> Response
 ```
 
-Note, how we defined a shorter alias for `List User` called `DB`.
+Note, how we defined a short alias for `List User` called `DB`.
 This is often useful to make lengthy type signatures more readable
-and communicate the meaning of a type in the given context. Note,
-however, that this will *not* introduce a new type, nor will it
+and communicate the meaning of a type in the given context. However,
+this will *not* introduce a new type, nor will it
 increase type safety: `DB` is *identical* to `List User`, and as
-such a value of type `DB` can be used wherever a `List User` is
+such, a value of type `DB` can be used wherever a `List User` is
 expected and vice versa. In more complex programs it is therefore
-often preferable to define a new types by wrapping values in
+usually preferable to define new types by wrapping values in
 single-field records.
 
 The implementation will proceed as follows: It will first
@@ -289,21 +272,19 @@ Here's a possible implementation:
 handleRequest db (MkRequest (MkCredentials email pw) album) =
   case lookupUser db of
     Just (MkUser _ _ password albums)  =>
-      if eqPassword password pw
-         then lookupAlbum albums
-         else InvalidPassword
+      if password == pw then lookupAlbum albums else InvalidPassword
 
     Nothing => UnknownUser email
 
   where lookupUser : List User -> Maybe User
         lookupUser []        = Nothing
         lookupUser (x :: xs) =
-          if eqEmail x.email email then Just x else lookupUser xs
+          if x.email == email then Just x else lookupUser xs
 
         lookupAlbum : List Album -> Response
         lookupAlbum []        = AccessDenied email album
         lookupAlbum (x :: xs) =
-          if eqAlbum x album then Success album else lookupAlbum xs
+          if x == album then Success album else lookupAlbum xs
 ```
 
 I'd like to point out several things in this example. First,
@@ -331,14 +312,15 @@ cases it might be useful to use `let` expressions or
 Exercise 3 is again of utmost importance. `traverseList`
 is a specialized version of the more general `traverse`,
 one of the most powerful and versatile functions
-available in the *Prelude*.
+available in the *Prelude* (check out its type!).
 
 1. Module `Data.List` in *base* exports functions `find` and `elemBy`.
 Inspect their types and use these in the implementation of
 `handleRequest`. This should allow you to completely get rid
 of the `where` block.
 
-2. Define an enumeration type listing the four nucleobases
+2. Define an enumeration type listing the four
+[nucleobases](https://en.wikipedia.org/wiki/Nucleobase)
 occurring in DNA strands. Define also a type alias
 `DNA` for lists of nucleobases.
 Declare and implement function `readBase`
@@ -348,7 +330,7 @@ You can use character literals in your implementation like so:
 result type accordingly.
 
 3. Implement the following function, which tries to convert all
-values in a list with a function which might fail. The
+values in a list with a function, which might fail. The
 result should be a `Just` holding the list of converted
 values in unmodified order, if and
 only if every single conversion was successful.
@@ -415,9 +397,9 @@ fromMaybe _    (Just x) = x
 
 Here, the first argument is given name `deflt`, the second `ma`. These
 names can be reused in a function's implementation, as was done for `deflt`,
-but this is not mandatory. We are free to use different names in the
+but this is not mandatory: We are free to use different names in the
 implementation. There are several reasons, why we'd choose to name our
-arguments. It can serve as documentation, but it also
+arguments: It can serve as documentation, but it also
 allows us to pass the arguments to a function in arbitrary order
 when using the following syntax:
 
@@ -472,7 +454,7 @@ boolean argument `v`: If `v` is `True`, the return type is (in accordance
 with `IntOrString True = Integer`) `Integer`, otherwise it is `String`.
 
 Note, how in the type signature of `intOrString`, we *must* give the
-argument of type `Bool` a name (`v`), in order to reference it in
+argument of type `Bool` a name (`v`) in order to reference it in
 the result type `IntOrString v`.
 
 You might wonder at this moment, why this is useful and why we should
@@ -514,13 +496,10 @@ Tutorial.Functions2> show (maybeToEither Nothing)
 Error: Can't find an implementation for Show (Either String ?a).
 ```
 
-Since we haven't learned about interfaces yet, you might not fully understand
-the error message above. However, note the question mark in front of the
-type parameter: `?a`. This means, Idris could not figure out the
-value of the implicit argument from the other arguments. This
-is not always a problem, but here, Idris
-can't decide how to properly display the result using `show`
-without knowing the value of `?a`.
+Idris is unable to find an implementation of `Show (Either String a)`
+without knowing what `a` actually is.
+Note the question mark in front of the
+type parameter: `?a`.
 If this happens, there are several ways to help the type checker.
 We could, for instance, pass a value for the implicit argument
 explicitly. Here's the syntax to do this:
@@ -560,8 +539,8 @@ The only difference between the two: In case of `the`,
 the type parameter `a` is an *explicit* argument, while
 in case of `id`, it is an *implicit* argument. Although
 the two functions have almost identical types (and implementations!),
-the serve quite different purposes: `the` is used to help
-with type inference, while `id` is used whenever we'd like
+they serve quite different purposes: `the` is used to help
+type inference, while `id` is used whenever we'd like
 to return an argument without modifying it at all (which,
 in the presence of higher order functions,
 happens surprisingly often).
@@ -578,15 +557,15 @@ its predecessor Idris 1, is based on a core language called
 *quantitative type theory* (QTT): Every variable in Idris 2 is
 associated with one of three possible multiplicities:
 
-* `0`, meaning that the variable is *erased* at runtime
-* `1`, meaning that the variable is used *exactly once* at runtime
+* `0`, meaning that the variable is *erased* at runtime.
+* `1`, meaning that the variable is used *exactly once* at runtime.
 * *Unrestricted* (the default), meaning that the variable is used
-an arbitrary number of times at runtime
+an arbitrary number of times at runtime.
 
 We will not talk about the most complex of the three, multiplicity `1`, here.
 We are, however, often interested in multiplicity `0`: A variable with
 multiplicity `0` is only relevant at *compile time*. It will not make
-any appearance at runtime, and the computation of such a multiplicity will
+any appearance at runtime, and the computation of such a variable will
 never affect a program's runtime performance.
 
 In the type signature of `maybeToEither` we see that type
@@ -601,12 +580,11 @@ see examples of this later on.
 ### Underscores
 
 It is often desirable, to only write as little code as necessary
-and let Idris figure out the rest. There are several occasions, where
-we need to fill in some piece of information, but would rather
-use a placeholder and let Idris figure out the rest.
+and let Idris figure out the rest.
 We have already learned about one such occasion: Catch-all patterns.
 If a variable in a pattern match is not used on the right hand side,
-we can't just drop, but we can use an underscore as a placeholder instead:
+we can't just drop it, but we can use an underscore as a
+placeholder instead:
 
 ```idris
 isRight : Either a b -> Bool
@@ -665,17 +643,240 @@ obfuscate the written code. Always use a syntactic
 convenience to make code more readable, and not to
 show people how clever you are.
 
-## Interfaces and Auto Implicits
+## Programming with Holes
 
-Finally, it is time to learn the basics about interfaces. We will not
-yet cover all the details here, and we will definitely not yet
-introduce all the interfaces available from the *Prelude*, as some
-of them can be rather mind-boggling when use for the first time.
+Solved all the exercises so far? Got angry at the type checker
+for always complaining and never being really helpful? It's time
+to change that. Idris comes with several highly useful interactive
+editing features implemented. Sometimes, the compiler is able to implement
+complete functions for us (if the types are specific enough). Even
+if that's not possible, there's an incredibly useful and important
+feature, which can help us when the types are getting too complicated: Holes.
+Holes are variables, the names of which are prefixed with a question mark.
+We can use them as placeholders whenever we plan to implement a piece
+of functionality at a later time. In addition, their types and the types
+and quantities of all other variables in scope can be inspected
+in the REPL (or in your editor, if you setup a corresponding plugin).
+Let's see them in action.
 
-We have already seen several occasions, where we used the
-same kind of functionality for different types, the most
-prevalent probably being comparing two values for being
-equal.
+Remember the `traverseList` example from an Exercise earlier in
+this section? If this was your first encounter with applicative list
+traversals, this might have been a nasty bit of work. Well, let's just
+make it a wee bit harder still. We'd like to implement the same
+piece of functionality for functions returning `Either e`, where
+`e` is a type with a `Semigroup` implementation, and we'd like
+to accumulate the values in all `Left`s we meet along the way.
+
+Here's the type of the function:
+
+```idris
+traverseEither :  Semigroup e
+               => (a -> Either e b)
+               -> List a
+               -> Either e (List b)
+```
+
+Now, in order to follow along, you might want to start your own
+Idris source file, load it into a REPL session and adjust the
+code as described here. The first thing we'll do, is write a
+skeleton implementation with a hole on the right hand side:
+
+```repl
+traverseEither fun as = ?impl
+```
+
+When you now go to the REPL and reload the file using command `:r`,
+you can enter `:m` to list all the *meta variables*:
+
+```repl
+Tutorial.Functions2> :m
+1 hole:
+  Tutorial.Functions2.impl : Either e (List b)
+```
+
+Next, we'd like to display the hole's type (including all variables in the
+surrounding context plus their types):
+
+```repl
+Tutorial.Functions2> :t impl
+ 0 b : Type
+ 0 a : Type
+ 0 e : Type
+   as : List a
+   fun : a -> Either e b
+------------------------------
+impl : Either e (List b)
+```
+
+So, we have some erased type parameters (`a`, `b`, and `e`), a value
+of type `List a` called `as`, and a function from `a` to
+`Either e b` called `fun`. Our goal is to come up with a value
+of type `Either a (List b)`.
+
+We *could* just return a `Right []`, but that's only make sense
+if our input list is indeed the empty list. We therefore should
+start with a pattern match on the list:
+
+```repl
+traverseEither fun []        = ?impl_0
+traverseEither fun (x :: xs) = ?impl_1
+```
+
+The result is two holes, which must be given distinct names. When inspecting `impl_0`,
+we get the following result:
+
+```repl
+Tutorial.Functions2> :t impl_0
+ 0 b : Type
+ 0 a : Type
+ 0 e : Type
+   fun : a -> Either e b
+------------------------------
+impl_0 : Either e (List b)
+```
+
+Now, this is an interesting situation. We should come up with a value
+of type `Either e (List b)` with nothing to work with. We know nothing
+about `a`, so we can't provide an argument with which to invoke `fun`.
+Likewise, we know nothing about `e` or `b` either, so we can't produce
+any values of these either. The *only* option we have is to replace `impl_0`
+with an empty list wrapped in a `Right`:
+
+```idris
+traverseEither fun []        = Right []
+```
+
+The non-empty case is of course slightly more involved. Here's the context
+of `?impl_1`:
+
+```repl
+Tutorial.Functions2> :t impl_1
+ 0 b : Type
+ 0 a : Type
+ 0 e : Type
+   x : a
+   xs : List a
+   fun : a -> Either e b
+------------------------------
+impl_1 : Either e (List b)
+```
+
+Since `x` is of type `a`, we can either us it as an argument
+to `fun` or drop and ignore it. `xs`, on the other hand, is
+the remainder of the list of type `List a`. We could again
+drop it or process it further by invoking `traverseEither`
+recursively. Since the goal is to try and convert *all* values,
+we should drop neither. Since in case of two `Left`s we
+are supposed to accumulate the values, we eventually need to
+run both computations anyway (invoking `fun`, and recursively
+calling `traverseEither`). We therefore can do both at the
+same time and analyze the results in a single pattern match:
+
+```repl
+traverseEither fun (x :: xs) =
+  case (fun x, traverseEither fun xs) of
+   p => ?impl_2
+```
+
+Once again, we inspect the context:
+
+```repl
+Tutorial.Functions2> :t impl_2
+ 0 b : Type
+ 0 a : Type
+ 0 e : Type
+   xs : List a
+   fun : a -> Either e b
+   x : a
+   p : (Either e b, Either e (List b))
+------------------------------
+impl_2 : Either e (List b)
+```
+
+We'll definitely need to pattern match on pair `p` next
+to figure out, which of the two computations succeeded:
+
+```repl
+traverseEither fun (x :: xs) =
+  case (fun x, traverseEither fun xs) of
+    (Left y, Left z)   => ?impl_6
+    (Left y, Right _)  => ?impl_7
+    (Right _, Left z)  => ?impl_8
+    (Right y, Right z) => ?impl_9
+```
+
+At this point we might have forgotten what we actually
+want to do, so we'll just quickly check out what our goal is:
+
+```repl
+Tutorial.Functions2> :t impl_6
+ 0 b : Type
+ 0 a : Type
+ 0 e : Type
+   xs : List a
+   fun : a -> Either e b
+   x : a
+   y : e
+   z : e
+------------------------------
+impl_6 : Either e (List b)
+```
+
+So, we are still looking for a value of type `Either e (List b)`, and
+we have two values of type `e` in scope. According to the spec we
+want to accumulate these using `e`s `Semigroup` implementation.
+We can proceed for the other cases in a similar manner, remembering
+that we should return a `Right`, if and only if all conversions
+where successful:
+
+```idris
+traverseEither fun (x :: xs) =
+  case (fun x, traverseEither fun xs) of
+    (Left y, Left z)   => Left (y <+> z)
+    (Left y, Right _)  => Left y
+    (Right _, Left z)  => Left z
+    (Right y, Right z) => Right (y :: z)
+```
+
+Let's give this a go with a small example:
+
+```idris
+data Nucleobase = Adenine | Cytosine | Guanine | Thymine
+
+readNucleobase : Char -> Either (List String) Nucleobase
+readNucleobase 'A' = Right Adenine
+readNucleobase 'C' = Right Cytosine
+readNucleobase 'G' = Right Guanine
+readNucleobase 'T' = Right Thymine
+readNucleobase c   = Left ["Unknown nucleobase: " ++ show c]
+
+DNA : Type
+DNA = List Nucleobase
+
+readDNA : String -> Either (List String) DNA
+readDNA = traverseEither readNucleobase . unpack
+```
+
+Let's try this at the REPL:
+
+
+```repl
+Tutorial.Functions2> readDNA "CGTTA"
+Right [Cytosine, Guanine, Thymine, Thymine, Adenine]
+Tutorial.Functions2> readDNA "CGFTAQR"
+Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'", "Unknown nucleobase: 'R'"]
+```
+
+## Conclusion
+
+We again covered a lot of ground in this section. I can't stress enough that
+should get yourselves accustomed to programming with holes and let the
+type checker help you figure out what to do next. In the next chapter
+we'll start using dependent types to help us write provably correct code.
+Having a good understanding of how to read and understand
+Idris' type signatures will be of paramount importance there. Whenever
+you feel lost, add a hole and inspect the context to decide what to
+do next.
 
 <!-- vi: filetype=idris2
 -->

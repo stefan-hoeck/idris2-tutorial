@@ -720,7 +720,7 @@ different instances for these.
     be extended to `Monoid`.
 
 Final notes: If you are new to functional programming, make sure
-to give your implementations of exercies 6 to 10 a try at the REPL.
+to give your implementations of exercises 6 to 10 a try at the REPL.
 Note, how we can implement all of these functions with a minimal amount
 of code and how, as shown in exercise 11, these behaviors can be
 combined in a single list traveral.
