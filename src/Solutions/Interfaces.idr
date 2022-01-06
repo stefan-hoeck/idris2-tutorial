@@ -268,3 +268,32 @@ anyElem f = any . foldMap (MkAny . f)
 
 allElems : (a -> Bool) -> List a -> Bool
 allElems f = all . foldMap (MkAll . f)
+
+-- 9
+record Sum a where
+  constructor MkSum
+  value : a
+
+record Product a where
+  constructor MkProduct
+  value : a
+
+Num a => Semigroup (Sum a) where
+  MkSum x <+> MkSum y = MkSum (x + y)
+
+Num a => Monoid (Sum a) where
+  neutral = MkSum 0
+
+Num a => Semigroup (Product a) where
+  MkProduct x <+> MkProduct y = MkProduct (x * y)
+
+Num a => Monoid (Product a) where
+  neutral = MkProduct 1
+
+-- 10
+
+sumList : Num a => List a -> a
+sumList = value . foldMap MkSum
+
+productList : Num a => List a -> a
+productList = value . foldMap MkProduct
