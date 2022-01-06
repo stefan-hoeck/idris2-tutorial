@@ -8,8 +8,10 @@ parametric polymorphism (generic types and functions), and
 ad hoc polymorphism (interfaces).
 
 In this part we start to dissect Idris functions and their types
-for real. We learn about implicit, named arguments, as well 
-as erasure and quantities.
+for real. We learn about implicit arguments, named arguments, as well 
+as erasure and quantities. But first, we'll look at `let` bindings
+and `where` blocks, which help us implement functions too complex
+to fit on a single line of code. Let's get started!
 
 ```idris
 module Tutorial.Functions2
@@ -24,7 +26,8 @@ to be implemented directly via pattern matching
 without the need of additional auxiliary functions or
 variables. This is not always the case, and there are two
 important language constructs for introducing and reusing
-new local variables and functions.
+new local variables and functions. We'll look at these
+in two case studies.
 
 ### Use Case 1: Arithmetic Mean and Standard Deviation
 
@@ -189,8 +192,8 @@ up with many `String` fields, which can be hard to disambiguate.
 In order not to confuse an email string with a password string,
 it can therefore be helpful to wrap both of them in a new
 record type to drastically increase type safety at the cost
-of having reimplement some interfaces.
-Utility function `on` from the *Prelude* is very useful here. Don't
+of having to reimplement some interfaces.
+Utility function `on` from the *Prelude* is very useful for this. Don't
 forget to inspect its type at the REPL, and try to understand what's
 going on here.
 
@@ -315,39 +318,39 @@ one of the most powerful and versatile functions
 available in the *Prelude* (check out its type!).
 
 1. Module `Data.List` in *base* exports functions `find` and `elemBy`.
-Inspect their types and use these in the implementation of
-`handleRequest`. This should allow you to completely get rid
-of the `where` block.
+   Inspect their types and use these in the implementation of
+   `handleRequest`. This should allow you to completely get rid
+   of the `where` block.
 
 2. Define an enumeration type listing the four
-[nucleobases](https://en.wikipedia.org/wiki/Nucleobase)
-occurring in DNA strands. Define also a type alias
-`DNA` for lists of nucleobases.
-Declare and implement function `readBase`
-for converting a single character (type `Char`) to a nucleobase.
-You can use character literals in your implementation like so:
-`'A'`, `'a'`. Note, that this function might fail, so adjust the
-result type accordingly.
+   [nucleobases](https://en.wikipedia.org/wiki/Nucleobase)
+   occurring in DNA strands. Define also a type alias
+   `DNA` for lists of nucleobases.
+   Declare and implement function `readBase`
+   for converting a single character (type `Char`) to a nucleobase.
+   You can use character literals in your implementation like so:
+   `'A'`, `'a'`. Note, that this function might fail, so adjust the
+   result type accordingly.
 
 3. Implement the following function, which tries to convert all
-values in a list with a function, which might fail. The
-result should be a `Just` holding the list of converted
-values in unmodified order, if and
-only if every single conversion was successful.
+   values in a list with a function, which might fail. The
+   result should be a `Just` holding the list of converted
+   values in unmodified order, if and
+   only if every single conversion was successful.
 
-```idris
-traverseList : (a -> Maybe b) -> List a -> Maybe (List b)
-```
+   ```idris
+   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)
+   ```
 
-You can verify, that the function behaves correctly with
-the following test: `traverseList Just [1,2,3] = Just [1,2,3]`.
+   You can verify, that the function behaves correctly with
+   the following test: `traverseList Just [1,2,3] = Just [1,2,3]`.
 
 4. Implement function `readDNA : String -> Maybe DNA`
-using the functions and types defined in exercises 2 and 3.
-You will also need function `unpack` from the *Prelude*.
+   using the functions and types defined in exercises 2 and 3.
+   You will also need function `unpack` from the *Prelude*.
 
 5. Implement function `complement : DNA -> DNA` to
-calculate the complement of a strand of DNA.
+   calculate the complement of a strand of DNA.
 
 ## The Truth about Function Arguments
 
@@ -574,8 +577,8 @@ only relevant at compile time, while the `Maybe a` argument
 has *unrestricted* multiplicity.
 
 It is also possible to annotate explicit arguments with multiplicities,
-in which case the argument must again be put in parentheses. We'll
-see examples of this later on.
+in which case the argument must again be put in parentheses. For an example.
+look again at the type signature of `the`.
 
 ### Underscores
 
@@ -648,7 +651,7 @@ show people how clever you are.
 Solved all the exercises so far? Got angry at the type checker
 for always complaining and never being really helpful? It's time
 to change that. Idris comes with several highly useful interactive
-editing features implemented. Sometimes, the compiler is able to implement
+editing features. Sometimes, the compiler is able to implement
 complete functions for us (if the types are specific enough). Even
 if that's not possible, there's an incredibly useful and important
 feature, which can help us when the types are getting too complicated: Holes.
@@ -656,8 +659,8 @@ Holes are variables, the names of which are prefixed with a question mark.
 We can use them as placeholders whenever we plan to implement a piece
 of functionality at a later time. In addition, their types and the types
 and quantities of all other variables in scope can be inspected
-in the REPL (or in your editor, if you setup a corresponding plugin).
-Let's see them in action.
+at the REPL (or in your editor, if you setup the necessary plugin).
+Let's see them holes in action.
 
 Remember the `traverseList` example from an Exercise earlier in
 this section? If this was your first encounter with applicative list
@@ -713,7 +716,7 @@ of type `List a` called `as`, and a function from `a` to
 `Either e b` called `fun`. Our goal is to come up with a value
 of type `Either a (List b)`.
 
-We *could* just return a `Right []`, but that's only make sense
+We *could* just return a `Right []`, but that only make sense
 if our input list is indeed the empty list. We therefore should
 start with a pattern match on the list:
 
@@ -735,7 +738,7 @@ Tutorial.Functions2> :t impl_0
 impl_0 : Either e (List b)
 ```
 
-Now, this is an interesting situation. We should come up with a value
+Now, this is an interesting situation. We are supposed to come up with a value
 of type `Either e (List b)` with nothing to work with. We know nothing
 about `a`, so we can't provide an argument with which to invoke `fun`.
 Likewise, we know nothing about `e` or `b` either, so we can't produce
@@ -770,7 +773,8 @@ we should drop neither. Since in case of two `Left`s we
 are supposed to accumulate the values, we eventually need to
 run both computations anyway (invoking `fun`, and recursively
 calling `traverseEither`). We therefore can do both at the
-same time and analyze the results in a single pattern match:
+same time and analyze the results in a single pattern match
+by wrapping both in a `Pair`:
 
 ```repl
 traverseEither fun (x :: xs) =
@@ -806,7 +810,8 @@ traverseEither fun (x :: xs) =
 ```
 
 At this point we might have forgotten what we actually
-want to do, so we'll just quickly check out what our goal is:
+wanted to do (at least to me, this happens annoyingly often),
+so we'll just quickly check out what our goal is:
 
 ```repl
 Tutorial.Functions2> :t impl_6
@@ -838,7 +843,7 @@ traverseEither fun (x :: xs) =
     (Right y, Right z) => Right (y :: z)
 ```
 
-Let's give this a go with a small example:
+To reap the fruits of our labour, let's show off with a small example:
 
 ```idris
 data Nucleobase = Adenine | Cytosine | Guanine | Thymine
@@ -869,7 +874,7 @@ Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'", "Unknown nucleobase:
 
 ## Conclusion
 
-We again covered a lot of ground in this section. I can't stress enough that
+We again covered a lot of ground in this section. I can't stress enough that you
 should get yourselves accustomed to programming with holes and let the
 type checker help you figure out what to do next. In the next chapter
 we'll start using dependent types to help us write provably correct code.
