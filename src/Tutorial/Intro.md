@@ -408,7 +408,7 @@ language. Here is a non-comprehensive list of them:
     or even `:doc ?`), or an interface (`:doc Uninhabited`),
   * use `:module` to import a module from one of the available
     packages: `:module Data.Vect`,
-  * use `:browse` to list the name and types of all functions
+  * use `:browse` to list the names and types of all functions
     exported by a loaded module: `:browse Data.Vect`,
   * use `:help` to get a list of other commands plus a short
     description for each.
