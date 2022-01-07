@@ -78,7 +78,7 @@ There are, of course, also some disadvantages:
 Idris is a strongly, statically typed programming language. This
 means, that ever Idris expression is given a *type* (for instance:
 integer, list of strings, boolean, function from integer to boolean, etc.)
-and types are verified at compile time, to rule out certain
+and types are verified at compile time to rule out certain
 common programming errors.
 
 For instance, if a function expects an argument of type `String`
@@ -117,7 +117,7 @@ Idris comes with a useful REPL (an acronym for *Read Evaluate
 Print Loop*), which we will use for tinkering with small
 ideas, and for quickly experimenting with the code we just wrote.
 In order to start a REPL session, run the following command
-from a terminal.
+in a terminal.
 
 ```sh
 $ rlwrap idris2
@@ -159,7 +159,7 @@ Main> :t 2
 2 : Integer
 ```
 
-Here `:t` is a command of the Idris REPL (it is not part of
+Here `:t` is a command of the Idris REPL (it is not part of the
 Idris programming language), and it is used to inspect the type
 of an expression.
 
@@ -177,7 +177,7 @@ signed and unsigned integral types (`Bits8`, `Bits16`, `Bits32`
 `Bits64`, `Int8`, `Int16`, `Int32`, and `Int64`), double
 precision (64 bit) floating point numbers (`Double`), unicode
 characters (`Char`) and strings of unicode characters (`String`).
-We use many of these in due time.
+We will use many of these in due time.
 
 ## A First Idris Program
 
@@ -208,6 +208,13 @@ $ build/exec/hello
 Hello World!
 ```
 
+The `--find-ipkg` option will look for an `.ipkg` file in the
+current directory or one of its parent directories, from which
+it will get other settings like the source directory to use
+(`src` in our case). The `-o` option gives the name of the
+executable to be generated. Type `idris2 --help` for a list
+of available command line options and environment variables.
+
 As an alternative, you can also load this source file in a REPL
 session and invoke function `main` from there:
 
@@ -222,6 +229,11 @@ Hello World!
 
 Go ahead and try both ways of building and running function `main`
 on your system!
+
+Note: It might be instructive to omit the `--find-ipkg` option.
+You will get an error message about the module name `Tutorial.Intro`
+not matching the file path `src/Tutorial/Intro.md`. You can
+also use option `--source-dir src` to silence this error.
 
 ## The Shape of an Idris Definition
 
@@ -336,6 +348,70 @@ valid range of `Bits8`:
 Tutorial.Intro> maxBits8 * maxBits8
 1
 ```
+
+## Where to get Help
+
+There are several resources available online and in print, where
+you can find help and documentation about the Idris programming
+language. Here is a non-comprehensive list of them:
+
+* [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris)
+
+  *The* Idris book! This describes in great detail
+  the core concepts for using Idris and dependent types
+  to write robust and concise code. It uses Idris 1 in
+  its examples, so parts of it have to be slightly adjusted
+  when using Idris 2. There is also a
+  [list of required updates](https://idris2.readthedocs.io/en/latest/typedd/typedd.html).
+
+* [A Crash Course in Idris 2](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
+
+  The official Idris 2 tutorial. A comprehensive but dense explanation of
+  all features of Idris 2. I find this to be useful as a reference, and as such
+  it is highly accessible. However, it is not an introduction to functional
+  programming or type-driven development in general.
+
+* [The Idris 2 Github Repository](https://github.com/idris-lang/Idris2)
+
+  Look here for detailed installation instructions and some
+  introductory material. There is also a [wiki](https://github.com/idris-lang/Idris2/wiki),
+  where you can find a [list of editor plugins](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience),
+  a [list of community libraries](https://github.com/idris-lang/Idris2/wiki/Libraries),
+  a [list of external backends](https://github.com/idris-lang/Idris2/wiki/External-backends),
+  and other useful information.
+
+* [The Idris 2 Discord Channel](https://discord.gg/UX68fDs2jc)
+
+  If you get stuck with a piece of code, want to ask about some
+  obscure language feature, want to promote your new library,
+  or want to just hang out with other Idris programmers, this
+  is the place to go. The discord channel is pretty active and
+  *very* friendly towards newcomers.
+
+* The Idris REPL
+
+  Finally, a lot of useful information can be provided by
+  Idris itself. I tend to have at least one REPL session open all the
+  time when programming in Idris. My editor (neovim) is set up
+  to use the [language server for Idris 2](https://github.com/idris-community/idris2-lsp),
+  which is incredibly useful. In the REPL,
+
+  * use `:t` to inspect the type of an expression
+    or meta variable (hole): `:t foldl`,
+  * use `:ti` to inspect the type of a function
+    including implicit arguments: `:ti foldl`,
+  * use `:m` to list all meta variables (holes) in scope,
+  * use `:doc` to access the documentation of a
+    top level function (`:doc the`), a data type plus all its constructors
+    and available hints (`:doc Bool`), a language feature (`:doc case`,
+    `:doc let`, `:doc interface`, `:doc record`,
+    or even `:doc ?`), or an interface (`:doc Uninhabited`),
+  * use `:module` to import a module from one of the available
+    packages: `:module Data.Vect`,
+  * use `:browse` to list the names and types of all functions
+    exported by a loaded module: `:browse Data.Vect`,
+  * use `:help` to get a list of other commands plus a short
+    description for each.
 
 ## Summary
 
