@@ -356,6 +356,7 @@ you can find help and documentation about the Idris programming
 language. Here is a non-comprehensive list of them:
 
 * [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris)
+
   *The* Idris book! This describes in great detail
   the core concepts for using Idris and dependent types
   to write robust and concise code. It uses Idris 1 in
@@ -364,12 +365,14 @@ language. Here is a non-comprehensive list of them:
   [list of required updates](https://idris2.readthedocs.io/en/latest/typedd/typedd.html).
 
 * [A Crash Course in Idris 2](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
+
   The official Idris 2 tutorial. A comprehensive but dense explanation of
   all features of Idris 2. I find this to be useful as a reference, and as such
   it is highly accessible. However, it is not an introduction to functional
   programming or type-driven development in general.
 
 * [The Idris 2 Github Repository](https://github.com/idris-lang/Idris2)
+
   Look here for detailed installation instructions and some
   introductory material. There is also a [wiki](https://github.com/idris-lang/Idris2/wiki),
   where you can find a [list of editor plugins](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience),
@@ -378,6 +381,7 @@ language. Here is a non-comprehensive list of them:
   and other useful information.
 
 * [The Idris 2 Discord Channel](https://discord.gg/UX68fDs2jc)
+
   If you get stuck with a piece of code, want to ask about some
   obscure language feature, want to promote your new library,
   or want to just hang out with other Idris programmers, this
@@ -385,6 +389,7 @@ language. Here is a non-comprehensive list of them:
   *very* friendly towards newcomers.
 
 * The Idris REPL
+
   Finally, a lot of useful information can be provided by
   Idris itself. I tend to have at least one REPL session open all the
   time when programming in Idris. My editor (neovim) is set up
