@@ -43,16 +43,34 @@ True
 
 As can be seen from this example, the type of a function
 of several arguments consists just of a sequence
-of argument types chained by function arrows (`->`), which
-is terminated by a return type (`Bool` in this case).
+of argument types (also called *input types*)
+chained by function arrows (`->`), which
+is terminated by an output type (`Bool` in this case).
 
-Now, unlike `Integer` or `Bits8`, `Bool` is not a primitive
+The implementation looks a bit like a mathematical equation:
+We list the arguments on the left hand side of `=` and describe the
+computation(s) to perform with them on the right hand
+side. Function implementations in functional programming
+languages often have this more mathematical look compared
+to implementations in imperative  languages, which often
+consist describe not *what* to compute, but *how* to
+compute it by describing an algorithm as a sequence of
+imperative statements. We will later see that this more
+imperative style is also available in Idris, but whenever
+possible we prefer the more declarative style.
+
+As can be seen in the REPL example, functions can be invoked
+by passing the arguments separated by whitespace. No parentheses
+are necessary. This comes in very handy when we apply functions
+only partially (see later in this tutorial).
+
+Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive
 data type built into the Idris language but just a custom
 data type that you could have written yourself. We will
 learn more about declaring new data types in another
 part of this tutorial.
 
-### Function Composition
+## Function Composition
 
 Functions can be combined in several way, the most direct
 probably being the dot operator:
@@ -97,7 +115,7 @@ reversing the resulting `String` (functions `show` and
 `reverse` are part of the Idris prelude and as such are
 available in every Idris program).
 
-### Higher Order Functions
+## Higher Order Functions
 
 Functions can take other functions as arguments. This is
 an incredibly powerful concept and we can go crazy with
@@ -164,7 +182,7 @@ and so on, until `twice (twice (twice (twice square)))`
 raises it to its 65536th power resulting in an impressively
 huge result.
 
-### Currying
+## Currying
 
 Once we start using higher order functions, the concept
 of partial function application (also called *currying*
@@ -205,6 +223,147 @@ True
 We already used partial function application in our `twice`
 examples above to get some impressive results with very
 little code.
+
+## Anonymous Functions
+
+Sometimes, we'd like to pass a small custom function to
+a higher order function without bothering to write a
+top level definition. For instance, in the following example,
+function `someTest` is very specific and probably not
+very useful in general, but we'd still like to pass it
+to higher order function `testSquare`:
+
+```idris
+someTest : Integer -> Bool
+someTest n = n >= 3 || n <= 10
+```
+
+Here's, how to pass it to `testSquare`:
+
+```repl
+Tutorial.Functions1> testSquare someTest 100
+True
+```
+
+Instead of defining and using `someTest`, we can use an
+anonymous function:
+
+```repl
+Tutorial.Functions1> testSquare (\n => n >= 3 || n <= 10) 100
+True
+```
+
+Anonymous functions are sometimes also called *lambdas* (from
+[lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus)),
+and the backslash is chosen since it resembles the Greek
+letter *lambda*. The `\n =>` syntax introduces a new anonymous
+function of one argument called `n`, the implementation of
+which is on the right hand side of the function error.
+Like other top level functions, lambdas can have more
+than one arguments, separated by commas: `\x,y => x * x + y`.
+When we pass lambdas as arguments to higher order functions,
+they typically need to be wrapped in parentheses or separated
+by the dollar operator `($)` (see the next section about `($)`).
+
+Note that, in a lambda, arguments are not annotated with types,
+so Idris has to be able to infer them from the current context.
+
+## Operators
+
+In Idris, infix operators like `.`, `*` or `+` are not built into
+the language, but are just like regular Idris function with
+some special support for using them in infix notation.
+When we don't use operators in infix notation, we have
+to wrap them in parentheses.
+
+As an example, let us define a custom operator for sequencing
+functions of type `Bits8 -> Bits8`:
+
+```idris
+infixr 4 >>>
+
+(>>>) : (Bits8 -> Bits8) -> (Bits8 -> Bits8) -> Bits8 -> Bits8
+f1 >>> f2 = f2 . f1
+
+foo : Bits8 -> Bits8
+foo n = 2 * n + 3
+
+test : Bits8 -> Bits8
+test = foo >>> foo >>> foo >>> foo
+```
+
+In addition to declaring and defining the operator function
+itself, we also have to specify its fixity: `infixr 4 >>>` means,
+that `(>>>)` associates to the right (meaning, that
+`f >>> g >>> h` is to be interpreted as `f >>> (g >>> h)`)
+with a priority of `4`. You can also have a look at the fixity
+of operators exported by the *Prelude* in the REPL:
+
+```repl
+Tutorial.Functions1> :doc (.)
+Prelude.. : (b -> c) -> (a -> b) -> a -> c
+  Function composition.
+  Totality: total
+  Fixity Declaration: infixr operator, level 9
+```
+
+When you mix infix operators in an expression, those with
+a higher priority bind more tightly. For instance, `(+)`
+is left associated with a priority of 8, while `(*)`
+is left associated with a priority of 9. Hence,
+`a * b + c` is the same as `(a * b) + c`.
+
+### Operator Sections
+
+Operators can be partially applied just like regular
+functions. In this case, the whole expression has to
+be wrapped in parentheses and is called an *operator
+section*. Here are two examples:
+
+```repl
+Tutorial.Functions1> testSquare (< 10) 5
+False
+Tutorial.Functions1> testSquare (10 <) 5
+True
+```
+
+As you can see, there is a difference between `(< 10)`
+and `(10 <)`. The first tests, whether its argument is
+less than 10, the second, whether 10 is less than its
+argument.
+
+### Operators exported by the *Prelude*
+
+Here is a list of important operators exported by the *Prelude*.
+Most of these are *constrained*, that is they work only
+for types implementing a certain *interface*. Don't worry
+about this right now. We will learn about interfaces in due
+time, and the operators behave as they intuitively should.
+For instance, addition and multiplication works for all
+numeric types, comparison operators work for almost all
+types with the exception of functions.
+
+* `(.)`: Function composition
+* `(+)`: Addition
+* `(*)`: Multiplication
+* `(-)`: Subtraction
+* `(/)`: Division
+* `(==) : True, if two values are equal
+* `(/=) : True, if two values are not equal
+* `(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators
+* `($)`: Function application
+
+The most special of the above is the last one. It has a
+priority of 0, so all other operators bind more tightly.
+In addition, function application binds more tightly, so
+this can be used to reduce the number of parentheses
+required. For instance, instead of writing
+`isTriple 3 4 (2 + 3 * 1)`
+we can write
+`isTriple 3 4 $ 2 + 3 * 1`,
+which is exactly the same. Sometimes, this helps readability,
+sometimes, it doesn't. The important thing to remember is
+that `fun $ x y` is just the same as `fun (x y)`.
 
 ## Exercises
 
@@ -258,10 +417,7 @@ Tutorial.Functions1> negate (isSmall `and` isOdd) 73
 False
 ```
 
-7. Idris allows us to define our own infix operators. In
-fact, all infix operators we encountered so far (`==`, `&&`,
-`||`, `.`, and so on) are custom operators defined in the
-Idris prelude and not built into the language itself.
+7. As explained above, Idris allows us to define our own infix operators.
 Even better, Idris supports *overloading* of function names,
 that is, two functions or operators can have the same
 name, but different types and implementations.
@@ -284,9 +440,6 @@ x && y = and x y
 -- return true, if the predicate does not hold
 not : (Integer -> Bool) -> Integer -> Bool
 ```
-
-Operator names have to be wrapped in parentheses unless they
-are being used in infix notation (see the `(&&)`) example above.
 
 Implement the other two functions and test them at the REPL:
 
