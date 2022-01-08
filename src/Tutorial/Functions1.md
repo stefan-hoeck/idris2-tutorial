@@ -53,15 +53,17 @@ computation(s) to perform with them on the right hand
 side. Function implementations in functional programming
 languages often have this more mathematical look compared
 to implementations in imperative  languages, which often
-consist describe not *what* to compute, but *how* to
+describe not *what* to compute, but *how* to
 compute it by describing an algorithm as a sequence of
-imperative statements. We will later see that this more
+imperative statements. We will later see that this
 imperative style is also available in Idris, but whenever
-possible we prefer the more declarative style.
+possible we prefer the declarative style.
 
 As can be seen in the REPL example, functions can be invoked
 by passing the arguments separated by whitespace. No parentheses
-are necessary. This comes in very handy when we apply functions
+are necessary unless one of the expressions we pass as the
+function's arguments contains itself additional whitespace.
+This comes in very handy when we apply functions
 only partially (see later in this tutorial).
 
 Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive
@@ -72,7 +74,7 @@ part of this tutorial.
 
 ## Function Composition
 
-Functions can be combined in several way, the most direct
+Functions can be combined in several ways, the most direct
 probably being the dot operator:
 
 ```idris
@@ -112,7 +114,7 @@ dotChain = reverse . show . square . square . times2 . times2
 This will first multiply the argument by four, then square
 it twice before converting it to a string (`show`) and
 reversing the resulting `String` (functions `show` and
-`reverse` are part of the Idris prelude and as such are
+`reverse` are part of the Idris *Prelude* and as such are
 available in every Idris program).
 
 ## Higher Order Functions
@@ -143,8 +145,14 @@ Tutorial.Functions1> testSquare isEven 12
 True
 ```
 
-We can use higher order functions (functions taking other
-functions as their arguments) to build powerful abstractions.
+Take your time to understand what's going on here. We pass
+function `isEven` as an argument to `testSquare`. The
+second argument is an integers, which will first be squared
+and then passed to `isEven`. While this is not very interesting,
+we will see lots of use cases for passing functions as
+arguments to other functions.
+
+I said above, we could go crazy pretty easily.
 Consider for instance the following example:
 
 ```idris
@@ -176,8 +184,10 @@ expr2 = twice (twice (twice (twice square)))
 ```
 
 So, `square` raises its argument to the 2nd power,
-`twice square` raises it to its 4th power,
-`twice (twice square)` raises it to its 16th power,
+`twice square` raises it to its 4th power (by invoking
+`square` twice in succession),
+`twice (twice square)` raises it to its 16th power
+(by invoking `twice square` twice in succession),
 and so on, until `twice (twice (twice (twice square)))`
 raises it to its 65536th power resulting in an impressively
 huge result.
@@ -200,7 +210,7 @@ Tutorial.Functions1> :t isTriple 1 2
 isTriple 1 2 : Integer -> Bool
 ```
 
-Note, how in Idris we can only partially apply a function
+Note, how in Idris we can partially apply a function
 with more than one argument and as a result get a new function
 back. For instance, `isTriple 1` applies argument `1` to function
 `isTriple` and as a result returns a new function of
@@ -226,7 +236,7 @@ little code.
 
 ## Anonymous Functions
 
-Sometimes, we'd like to pass a small custom function to
+Sometimes we'd like to pass a small custom function to
 a higher order function without bothering to write a
 top level definition. For instance, in the following example,
 function `someTest` is very specific and probably not
@@ -263,7 +273,7 @@ Like other top level functions, lambdas can have more
 than one arguments, separated by commas: `\x,y => x * x + y`.
 When we pass lambdas as arguments to higher order functions,
 they typically need to be wrapped in parentheses or separated
-by the dollar operator `($)` (see the next section about `($)`).
+by the dollar operator `($)` (see the next section about this).
 
 Note that, in a lambda, arguments are not annotated with types,
 so Idris has to be able to infer them from the current context.
@@ -271,7 +281,7 @@ so Idris has to be able to infer them from the current context.
 ## Operators
 
 In Idris, infix operators like `.`, `*` or `+` are not built into
-the language, but are just like regular Idris function with
+the language, but are just regular Idris function with
 some special support for using them in infix notation.
 When we don't use operators in infix notation, we have
 to wrap them in parentheses.
@@ -292,7 +302,7 @@ test : Bits8 -> Bits8
 test = foo >>> foo >>> foo >>> foo
 ```
 
-In addition to declaring and defining the operator function
+In addition to declaring and defining the operator
 itself, we also have to specify its fixity: `infixr 4 >>>` means,
 that `(>>>)` associates to the right (meaning, that
 `f >>> g >>> h` is to be interpreted as `f >>> (g >>> h)`)
@@ -311,7 +321,7 @@ When you mix infix operators in an expression, those with
 a higher priority bind more tightly. For instance, `(+)`
 is left associated with a priority of 8, while `(*)`
 is left associated with a priority of 9. Hence,
-`a * b + c` is the same as `(a * b) + c`.
+`a * b + c` is the same as `(a * b) + c` instead of `a * (b + c)`.
 
 ### Operator Sections
 
@@ -339,9 +349,9 @@ Most of these are *constrained*, that is they work only
 for types implementing a certain *interface*. Don't worry
 about this right now. We will learn about interfaces in due
 time, and the operators behave as they intuitively should.
-For instance, addition and multiplication works for all
+For instance, addition and multiplication work for all
 numeric types, comparison operators work for almost all
-types with the exception of functions.
+types in the *Prelude* with the exception of functions.
 
 * `(.)`: Function composition
 * `(+)`: Addition
@@ -358,8 +368,7 @@ priority of 0, so all other operators bind more tightly.
 In addition, function application binds more tightly, so
 this can be used to reduce the number of parentheses
 required. For instance, instead of writing
-`isTriple 3 4 (2 + 3 * 1)`
-we can write
+`isTriple 3 4 (2 + 3 * 1)` we can write
 `isTriple 3 4 $ 2 + 3 * 1`,
 which is exactly the same. Sometimes, this helps readability,
 sometimes, it doesn't. The important thing to remember is
@@ -376,7 +385,7 @@ way of writing function implementations is sometimes called
 small utility functions.
 
 2. Declare and implement function `isOdd` by combining functions `isEven`
-from above and `not` (from the Idris prelude). Use point-free style.
+from above and `not` (from the Idris *Prelude*). Use point-free style.
 
 3. Declare and implement function `isSquareOf`, which checks whether
 its first `Integer` argument is the square of the second argument.
@@ -387,7 +396,7 @@ comparison operators `<=` or `>=` in your implementation.
 
 5. Declare and implement function `absIsSmall`, which checks whether
 the absolute value of its `Integer` argument is less than or equal to 100.
-Use functions `isSmall` and `abs` (from the Idris prelude) in your implementation,
+Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your implementation,
 which should be in point-free style.
 
 6. In this slightly extended exercise we are going to implement
