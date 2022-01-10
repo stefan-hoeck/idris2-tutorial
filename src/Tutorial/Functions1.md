@@ -477,9 +477,18 @@ expecting the remaining arguments. This technique is called
 allows us to easily combine small coding units to create
 more complex behavior.
 
+* We can pass anonymous functions (*lambdas*) to higher
+order functions, if writing a corresponding top level
+function would be too cumbersome.
+
 * Idris allows us to define our own infix operators. These
 have to be written in parentheses unless they are being used
 in infix notation.
+
+* Infix operators can also be partially applied. These *operator sections*
+have to be wrapped in parentheses, and the position of the
+argument determines, whether it is used as the operator's first
+or second argument.
 
 * Idris supports name overloading: Functions can have the same
 names but different implementations. Idris will decide, which function
@@ -498,6 +507,13 @@ Prelude.not : Bool -> Bool
 Tutorial.Functions1> :t Functions1.not
 Tutorial.Functions1.not : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 ```
+
+### What's next
+
+In the [next section](DataTypes.md), we will learn how to define
+our own data types and how to construct and deconstruct
+values of these new types. We will also learn about
+generic types and functions.
 
 <!-- vi: filetype=idris2
 -->
