@@ -92,7 +92,7 @@ memory or, in case of recursive functions, stack space).
 
 ### Catch-all Patterns
 
-Sometimes it is convenient to only match on a subset
+Sometimes, it is convenient to only match on a subset
 of the possible values and collect the remaining possibilities
 in a catch-all clause:
 
@@ -151,7 +151,7 @@ compareBool True False  = GT
 ```
 
 Here, `LT` means that the first argument is *less than*
-the second, `EQ` means that the two arguments are equal
+the second, `EQ` means that the two arguments are *equal*
 and `GT` means, that the first argument is *greater than*
 the second.
 
@@ -166,10 +166,15 @@ situation:
 -- returns the larger of the two arguments
 total
 maxBits8 : Bits8 -> Bits8 -> Bits8
-maxBits8 x y = case compare x y of
-  LT => y
-  _  => x
+maxBits8 x y =
+  case compare x y of
+    LT => y
+    _  => x
 ```
+
+Note, that indentation matters here: The case block as a whole
+must be indented (if it starts on a new line), and the different
+cases must also be indented by the same amount of white space.
 
 Function `compare` is overloaded for many data types. We will
 learn how this works when we talk about interfaces.
@@ -193,44 +198,44 @@ a statement with possible side effects.
 ### Exercises
 
 1. Use pattern matching to implement your own
-versions of boolean operators
-`(&&)` and `(||)` calling them `and` and `or`
-respectively.
+   versions of boolean operators
+   `(&&)` and `(||)` calling them `and` and `or`
+   respectively.
 
-Note: One way to go about this is to enumerate
-all four possible combinations of two boolean
-values and give the result for each. However, there
-is a shorter, more clever way,
-requiring only two pattern matches for each of the
-two functions.
+   Note: One way to go about this is to enumerate
+   all four possible combinations of two boolean
+   values and give the result for each. However, there
+   is a shorter, more clever way,
+   requiring only two pattern matches for each of the
+   two functions.
 
 2. Define your own data type representing different
-units of time (seconds, minutes,
-hours, days, weeks), and implement the following
-functions for converting between time spans using
-different units. Hint: Use integer division (`div`)
-when going from seconds to some larger unit like
-hours).
-
-```idris
-data UnitOfTime = Second -- add additional values
-
--- calculate the number of seconds from a
--- number of steps in the given unit of time
-total
-toSeconds : UnitOfTime -> Integer -> Integer
-
--- Given a number of seconds, calculate the
--- number of steps in the given unit of time
-total
-fromSeconds : UnitOfTime -> Integer -> Integer
-
--- convert the number of steps in a given unit of time
--- to the number of steps in another unit of time.
--- use `fromSeconds` and `toSeconds` in your implementation
-total
-convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
-```
+   units of time (seconds, minutes,
+   hours, days, weeks), and implement the following
+   functions for converting between time spans using
+   different units. Hint: Use integer division (`div`)
+   when going from seconds to some larger unit like
+   hours).
+   
+   ```idris
+   data UnitOfTime = Second -- add additional values
+   
+   -- calculate the number of seconds from a
+   -- number of steps in the given unit of time
+   total
+   toSeconds : UnitOfTime -> Integer -> Integer
+   
+   -- Given a number of seconds, calculate the
+   -- number of steps in the given unit of time
+   total
+   fromSeconds : UnitOfTime -> Integer -> Integer
+   
+   -- convert the number of steps in a given unit of time
+   -- to the number of steps in another unit of time.
+   -- use `fromSeconds` and `toSeconds` in your implementation
+   total
+   convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
+   ```
 
 ## Sum Types
 
@@ -283,6 +288,10 @@ showTitle (Other x) = x
 
 Note, how in the last pattern match, the string value stored
 in the `Other` data constructor is *bound* to local variable `x`.
+Also, the `Other x` pattern has to be wrapped in parentheses,
+as other wise Idris would think `Other` and `x` were to
+distinct function arguments.
+
 This is a very common way to extract the values from
 data constructors.
 We can use `showTitle` to implement a function for creating
@@ -313,9 +322,9 @@ is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.
 
 Here's another (drastically simplified) example of a sum type.
 Assume we allow two forms of authentication in our web application:
-Either by entering a user name plus a password (an unsigned 64 bit
-integer), or by providing a (very complex) secret key. Here's a data
-type to encapsulate this use case:
+Either by entering a user name plus a password (for which we'll use
+an unsigned 64 bit integer here), or by providing a (very complex) secret key.
+Here's a data type to encapsulate this use case:
 
 ```idris
 data Credentials = Password String Bits64 | Key String
@@ -348,38 +357,38 @@ Tutorial.DataTypes> login (Key "foo")
 ### Exercises
 
 1. Implement an equality test for `Title` (you can use the
-equality operator `(==)` for comparing two `String`s):
-
-```idris
-total
-eqTitle : Title -> Title -> Bool
-```
+   equality operator `(==)` for comparing two `String`s):
+   
+   ```idris
+   total
+   eqTitle : Title -> Title -> Bool
+   ```
 
 2. For `Title`, implement a simple test to check, whether
-a custom title is being used:
-
-```idris
-total
-isOther : Title -> Bool
-```
+   a custom title is being used:
+   
+   ```idris
+   total
+   isOther : Title -> Bool
+   ```
 
 3. Given our simple `Credentials` type, there are three
-ways for authentication to fail:
-
-* An unknown user name was used.
-* The password given does not match the one associated with
-  the user name.
-* An invalid key was used.
-
-Encapsulate these three possibilities in a sum type 
-called `LoginError`,
-but make sure not to disclose any confidential information:
-An invalid user name should be stored in the corresponding
-error value, but an invalid password or key should not.
+   ways for authentication to fail:
+   
+   * An unknown user name was used.
+   * The password given does not match the one associated with
+     the user name.
+   * An invalid key was used.
+   
+   Encapsulate these three possibilities in a sum type 
+   called `LoginError`,
+   but make sure not to disclose any confidential information:
+   An invalid user name should be stored in the corresponding
+   error value, but an invalid password or key should not.
 
 4. Implement function `showError : LoginError -> String`, which
-can be used to display an error message to the user who
-unsuccessfully tried to login into our web application.
+   can be used to display an error message to the user who
+   unsuccessfully tried to login into our web application.
 
 ## Records
 
@@ -387,7 +396,8 @@ It is often useful to group together several values
 as a logical unit. For instance, in our web application
 we might want to group information about a user
 in a single data type. Such data types are often called
-*product types*. The most common and convenient way to
+*product types* (see below for an explanation).
+The most common and convenient way to
 define them is the `record` construct:
 
 ```idris
@@ -460,7 +470,9 @@ unchanged: Records and other Idris values are *immutable*.
 While this *can* have a slight impact on performance, it has
 the benefit that we can freely pass a record value to
 different functions, without fear of the functions modifying
-the value by in-place mutation.
+the value by in-place mutation. These are, again, very strong
+guarantees, which makes it drastically easier to reason
+about our code.
 
 There are several ways to modify a record, the most
 general being to pattern match on the record and
@@ -490,7 +502,9 @@ value `u` remains unaffected by this.
 
 We can access a record field, either by using the field name
 as a projection function (`age u`; also have a look at `:t age`
-in the REPL), or by using dot syntax: `u.age`.
+in the REPL), or by using dot syntax: `u.age`. This is special
+syntax and *not* related to the dot operator for function
+composition (`(.)`).
 
 The use case of modifying a record field is so common
 that Idris provides special syntax for this as well:
@@ -501,14 +515,10 @@ incAge3 : User -> User
 incAge3 u = { age $= (+ 1) } u
 ```
 
-`(+ 1)` is a partially applied operator. This is
-called an *operator section* and has to be put in parentheses.
-In all other aspects, it behaves like any other partially applied
-function.
-
+Here, I used an *operator section* (`(+ 1)`) to make
+the code more concise.
 As an alternative to an operator section,
-we could have used an anonymous function
-(called a *lambda*) like so:
+we could have used an anonymous function like so:
 
 ```idris
 total
@@ -526,7 +536,7 @@ incAge5 : User -> User
 incAge5 = { age $= (+ 1) }
 ```
 
-As usual, we have a look at the result at the REPL:
+As usual, we should have a look at the result at the REPL:
 
 ```repl
 Tutorial.DataTypes> incAge5 drNo
@@ -783,7 +793,8 @@ data Validated e a = Invalid e | Valid a
 ```
 
 `Validated` is a type constructor parameterized over two
-type parameters. It's data constructors are `Invalid` and `Valid`,
+type parameters `e` and `a`. It's data constructors
+are `Invalid` and `Valid`,
 the former holding a value describing some error condition,
 the latter the result in case of a successful computation.
 Let's see this in action:
@@ -828,11 +839,14 @@ data Seq a = Nil | (::) a (Seq a)
 
 This calls for some explanations. `Seq` consists of two *data constructors*:
 `Nil` (representing an empty sequence of values) and `(::)` (also
-called *cons*), which prepends a new value of type `a` to
-an already existing list of values of the same type.
+called the *cons operator*), which prepends a new value of type `a` to
+an already existing list of values of the same type. As you can see,
+we can also use operators as data constructors, but please do not overuse
+this. Use clear names for your functions and data constructors and only
+introduce new operators when it truly helps readability!
 
-Here is an example (I use `List` here, as this is what you should
-use in your own code):
+Here is an example of how to use the `List` constructors
+(I use `List` here, as this is what you should use in your own code):
 
 ```idris
 total
@@ -854,14 +868,17 @@ ints3 : List Int64
 ints3 = []
 ```
 
-The two definitions above are treated identically by the compiler.
-List syntax can also be used in pattern matches.
+The two definitions `ints` and `ints2`
+are treated identically by the compiler.
+Note, that list syntax can also be used in pattern matches.
 
-There is another thing that's special about `Seq`: It is defined
+There is another thing that's special about
+`Seq` and `List`: Each of them is defined
 in terms of itself (the cons operator accepts a value
-and another `Seq` as arguments). This means, that in order to
-decompose or consume a `Seq`, we typically require a recursive
-function. In an imperative language, we might use a for loop or
+and another `Seq` as arguments). We call such data types
+*recursive* data types, and their recursive nature means, that in order to
+decompose or consume them, we typically require recursive
+functions. In an imperative language, we might use a for loop or
 similar construct to iterate over the values of a `List` or a `Seq`,
 but these things do not exist in a language without in-place
 mutation. Here's how to sum a list of integers:
@@ -896,7 +913,7 @@ integerFromOption _ (Some y) = y
 integerFromOption x None     = x
 ```
 
-It's pretty obvious that this is, again, not general enough.
+It's pretty obvious that this, again, is not general enough.
 Surely, we'd also like to break out of `Option Bool` or
 `Option String` in a similar fashion. That's exactly
 what the generic function `fromOption` does:
@@ -907,6 +924,14 @@ fromOption : a -> Option a -> a
 fromOption _ (Some y) = y
 fromOption x None     = x
 ```
+
+The lower-case `a` is again a *type parameter*. You can read
+the type signature as follows: "For any type `a`, given a *value*
+of type `a`, and an `Option a`, we can return a value of
+type `a`." Note, that `fromOption` knows nothing else about
+`a`, other than it being a type. It is therefore not possible,
+to conjure a value of type `a` out of thin air. We *must* have
+a value available to deal with the `None` case.
 
 The pendant to `fromOption` for `Maybe` is called `fromMaybe`
 and is available from module `Data.Maybe` from the *base* library.
@@ -934,6 +959,11 @@ while `b` is the return type. In case of a `Just`, we need
 a way to convert the stored `a` to a `b`, an that's done
 using the function argument of type `a -> b`.
 
+In Idris, lower-case identifiers in function types are
+treated as *type parameters*, while upper-case identifiers
+are treated as types or type constructors that must
+be in scope.
+
 ### Exercises
 
 If this is your first time programming in a purely
@@ -948,125 +978,125 @@ of each exercise.
 Remember, that lower-case identifiers in a function
 signature are treated as type parameters.
 
-1. Implement the following functions for `Maybe`:
+1. Implement the following generic functions for `Maybe`:
 
-```idris
--- make sure to map a `Just` to a `Just`.
-total
-mapMaybe : (a -> b) -> Maybe a -> Maybe b
+   ```idris
+   -- make sure to map a `Just` to a `Just`.
+   total
+   mapMaybe : (a -> b) -> Maybe a -> Maybe b
+   
+   -- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`
+   total
+   appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b
+   
+   -- Example: `bindMaybe (Just 12) Just = Just 12`
+   total
+   bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b
+   
+   -- keep the value in a `Just` only if the given predicate holds
+   total
+   filterMaybe : (a -> Bool) -> Maybe a -> Maybe a
+   
+   -- keep the first value that is not a `Nothing` (if any)
+   total
+   first : Maybe a -> Maybe a -> Maybe a
+   
+   -- keep the last value that is not a `Nothing` (if any)
+   total
+   last : Maybe a -> Maybe a -> Maybe a
+   
+   -- this is another general way to extract a value from a `Maybe`.
+   -- Make sure the following holds:
+   -- `foldMaybe (+) 5 Nothing = 5`
+   -- `foldMaybe (+) 5 (Just 12) = 17`
+   total
+   foldMaybe : (acc -> elem -> acc) -> acc -> Maybe elem -> acc
+   ```
 
--- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`
-total
-appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b
+2. Implement the following generic functions for `Either`:
 
--- Example: `bindMaybe (Just 12) Just = Just 12`
-total
-bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b
-
--- keep the value in a `Just` only if the given predicate holds
-total
-filterMaybe : (a -> Bool) -> Maybe a -> Maybe a
-
--- keep the first value that is not a `Nothing` (if any)
-total
-first : Maybe a -> Maybe a -> Maybe a
-
--- keep the last value that is not a `Nothing` (if any)
-total
-last : Maybe a -> Maybe a -> Maybe a
-
--- this is another general way to extract a value from a `Maybe`.
--- Make sure the following holds:
--- `foldMaybe (+) 5 Nothing = 5`
--- `foldMaybe (+) 5 (Just 12) = 17`
-total
-foldMaybe : (acc -> elem -> acc) -> acc -> Maybe elem -> acc
+   ```idris
+   total
+   mapEither : (a -> b) -> Either e a -> Either e b
+   
+   -- In case of both `Either`s being `Left`s, keep the
+   -- value stored in the first `Left`.
+   total
+   appEither : Either e (a -> b) -> Either e a -> Either e b
+   
+   total
+   bindEither : Either e a -> (a -> Either e b) -> Either e b
+   
+   -- Keep the first value that is not a `Left`
+   -- If both `Either`s are `Left`s, use the given accumulator
+   -- for the error values
+   total
+   firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
+   
+   -- Keep the last value that is not a `Left`
+   -- If both `Either`s are `Left`s, use the given accumulator
+   -- for the error values
+   total
+   lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
+   
+   total
+   fromEither : (e -> c) -> (a -> c) -> Either e a -> c
 ```
 
-2. Implement the following functions for `Either`:
+3. Implement the following generic functions for `List`:
 
-```idris
-total
-mapEither : (a -> b) -> Either e a -> Either e b
-
--- In case of both `Either`s being `Left`s, keep the
--- value stored in the first `Left`.
-total
-appEither : Either e (a -> b) -> Either e a -> Either e b
-
-total
-bindEither : Either e a -> (a -> Either e b) -> Either e b
-
--- Keep the first value that is not a `Left`
--- If both `Either`s are `Left`s, use the given accumulator
--- for the error values
-total
-firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
-
--- Keep the last value that is not a `Left`
--- If both `Either`s are `Left`s, use the given accumulator
--- for the error values
-total
-lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
-
-total
-fromEither : (e -> c) -> (a -> c) -> Either e a -> c
-```
-
-3. Implement the following functions for `List`:
-
-```idris
-total
-mapList : (a -> b) -> List a -> List b
-
-total
-filterList : (a -> Bool) -> List a -> List a
-
--- return the first value of a list, if it is non-empty
-total
-headMaybe : List a -> Maybe a
-
--- return everything but the first value of a list, if it is non-empty
-total
-tailMaybe : List a -> Maybe (List a)
-
--- return the last value of a list, if it is non-empty
-total
-lastMaybe : List a -> Maybe a
-
--- return everything but the last value of a list,
--- if it is non-empty
-total
-initMaybe : List a -> Maybe (List a)
-
--- accumulate the values in a list using the given
--- accumulator function and initial value
---
--- Examples:
--- `foldList (+) 10 [1,2,7] = 20`
--- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"
--- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
-total
-foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
-```
+   ```idris
+   total
+   mapList : (a -> b) -> List a -> List b
+   
+   total
+   filterList : (a -> Bool) -> List a -> List a
+   
+   -- return the first value of a list, if it is non-empty
+   total
+   headMaybe : List a -> Maybe a
+   
+   -- return everything but the first value of a list, if it is non-empty
+   total
+   tailMaybe : List a -> Maybe (List a)
+   
+   -- return the last value of a list, if it is non-empty
+   total
+   lastMaybe : List a -> Maybe a
+   
+   -- return everything but the last value of a list,
+   -- if it is non-empty
+   total
+   initMaybe : List a -> Maybe (List a)
+   
+   -- accumulate the values in a list using the given
+   -- accumulator function and initial value
+   --
+   -- Examples:
+   -- `foldList (+) 10 [1,2,7] = 20`
+   -- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"
+   -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
+   total
+   foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
+   ```
 
 4. Assume we store user data for our web application in
-the following record:
+   the following record:
 
-```idris
-record Client where
-  constructor MkClient
-  name     : String
-  title    : Title
-  age      : Bits8
-  password : Either Bits64 String
-```
-
-Using `LoginError` from an earlier exercise,
-implement function `login`, which, given a list of `Client`s
-plus a value of type `Credentials` will return either a `LoginError`
-in case no valid credentials where provided, or the first `Client`
-for whom the credentials match.
+   ```idris
+   record Client where
+     constructor MkClient
+     name     : String
+     title    : Title
+     age      : Bits8
+     password : Either Bits64 String
+   ```
+   
+   Using `LoginError` from an earlier exercise,
+   implement function `login`, which, given a list of `Client`s
+   plus a value of type `Credentials` will return either a `LoginError`
+   in case no valid credentials where provided, or the first `Client`
+   for whom the credentials match.
 
 ## Alternative Syntax for Data Definitions
 
@@ -1080,9 +1110,10 @@ in all but the most simple data definitions.
 Here are the definitions of `Option`, `Validated`, and `Seq` again,
 using this more general form (I put them in their own *namespace*,
 so Idris will not complain about identical names in
-the same namespace):
+the same source file):
 
 ```idris
+-- GADT is an acronym for "generalized algebraic data type"
 namespace GADT
   data Option : Type -> Type where
     Some : a -> Option a
@@ -1108,6 +1139,54 @@ of `Seq` we had to disambiguate between the different
 `Seq` definitions in the recursive case. Since we will
 usually not define several data types with the same name in
 a source file, this is not necessary most of the time.
+
+## Conclusion
+
+We covered a lot of ground in this part of the tutorial,
+so I'll summarize the most important points below:
+
+* Enumerations are data types consisting of a finite
+number of possible *values*.
+
+* Sum types are data types with more than one data
+constructor, where each constructor describes a
+*choice* that can be made.
+
+* Product types are data types with a single constructor
+used to group several values of possibly different types.
+
+* We use pattern matching to deconstruct immutable
+values in Idris. The possible patterns correspond to
+a data type's data constructors. 
+
+* We can *bind* variables to values in a patter or
+use an underscore as a placeholder for a value that's
+not needed on the right hand side of an implementation.
+
+* We can pattern match on an intermediary result by introducing
+a *case block*.
+
+* The preferred way to define new product types is
+to define them as *records*, since these come with
+additional syntactic conveniences for setting and
+modifying individual *record fields*.
+
+* Generic types and functions allow us generalize
+certain concepts and make them available for many
+types by using *type parameters* instead of
+concrete types in function and type signatures.
+
+* Common concepts like *nullary values* (`Maybe`),
+computations that might fail with some error
+condition (`Either`) and handling collections
+of values of the same type at once (`List`) are
+example use cases of generic types and functions
+already provided by the *Prelude*.
+
+## What's next
+
+In the [next section](Interfaces.md), we will introduce
+*interfaces*, another approach to *function overloading*.
 
 <!-- vi: filetype=idris2
 -->
