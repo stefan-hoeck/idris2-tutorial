@@ -342,6 +342,32 @@ and `(10 <)`. The first tests, whether its argument is
 less than 10, the second, whether 10 is less than its
 argument.
 
+### Infix Notation for Non-Operators
+
+In Idris, it is possible to use infix notation for
+regular binary functions, by wrapping them in backticks.
+It is even possible to define a precedence (fixity) for
+these and use them in operator sections, just like regular
+operators:
+
+```idris
+infixl 8 `plus`
+
+infixl 9 `mult`
+
+plus : Integer -> Integer -> Integer
+plus = (+)
+
+mult : Integer -> Integer -> Integer
+mult = (*)
+
+arithTest : Integer
+arithTest = 5 `plus` 10 `mult` 12
+
+arithTest' : Integer
+arithTest' = 5 + 10 * 12
+```
+
 ### Operators exported by the *Prelude*
 
 Here is a list of important operators exported by the *Prelude*.
