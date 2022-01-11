@@ -43,18 +43,38 @@ True
 
 As can be seen from this example, the type of a function
 of several arguments consists just of a sequence
-of argument types chained by function arrows (`->`), which
-is terminated by a return type (`Bool` in this case).
+of argument types (also called *input types*)
+chained by function arrows (`->`), which
+is terminated by an output type (`Bool` in this case).
 
-Now, unlike `Integer` or `Bits8`, `Bool` is not a primitive
+The implementation looks a bit like a mathematical equation:
+We list the arguments on the left hand side of `=` and describe the
+computation(s) to perform with them on the right hand
+side. Function implementations in functional programming
+languages often have this more mathematical look compared
+to implementations in imperative  languages, which often
+describe not *what* to compute, but *how* to
+compute it by describing an algorithm as a sequence of
+imperative statements. We will later see that this
+imperative style is also available in Idris, but whenever
+possible we prefer the declarative style.
+
+As can be seen in the REPL example, functions can be invoked
+by passing the arguments separated by whitespace. No parentheses
+are necessary unless one of the expressions we pass as the
+function's arguments contains itself additional whitespace.
+This comes in very handy when we apply functions
+only partially (see later in this tutorial).
+
+Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive
 data type built into the Idris language but just a custom
 data type that you could have written yourself. We will
 learn more about declaring new data types in another
 part of this tutorial.
 
-### Function Composition
+## Function Composition
 
-Functions can be combined in several way, the most direct
+Functions can be combined in several ways, the most direct
 probably being the dot operator:
 
 ```idris
@@ -94,10 +114,10 @@ dotChain = reverse . show . square . square . times2 . times2
 This will first multiply the argument by four, then square
 it twice before converting it to a string (`show`) and
 reversing the resulting `String` (functions `show` and
-`reverse` are part of the Idris prelude and as such are
+`reverse` are part of the Idris *Prelude* and as such are
 available in every Idris program).
 
-### Higher Order Functions
+## Higher Order Functions
 
 Functions can take other functions as arguments. This is
 an incredibly powerful concept and we can go crazy with
@@ -125,8 +145,14 @@ Tutorial.Functions1> testSquare isEven 12
 True
 ```
 
-We can use higher order functions (functions taking other
-functions as their arguments) to build powerful abstractions.
+Take your time to understand what's going on here. We pass
+function `isEven` as an argument to `testSquare`. The
+second argument is an integers, which will first be squared
+and then passed to `isEven`. While this is not very interesting,
+we will see lots of use cases for passing functions as
+arguments to other functions.
+
+I said above, we could go crazy pretty easily.
 Consider for instance the following example:
 
 ```idris
@@ -158,13 +184,15 @@ expr2 = twice (twice (twice (twice square)))
 ```
 
 So, `square` raises its argument to the 2nd power,
-`twice square` raises it to its 4th power,
-`twice (twice square)` raises it to its 16th power,
+`twice square` raises it to its 4th power (by invoking
+`square` twice in succession),
+`twice (twice square)` raises it to its 16th power
+(by invoking `twice square` twice in succession),
 and so on, until `twice (twice (twice (twice square)))`
 raises it to its 65536th power resulting in an impressively
 huge result.
 
-### Currying
+## Currying
 
 Once we start using higher order functions, the concept
 of partial function application (also called *currying*
@@ -182,7 +210,7 @@ Tutorial.Functions1> :t isTriple 1 2
 isTriple 1 2 : Integer -> Bool
 ```
 
-Note, how in Idris we can only partially apply a function
+Note, how in Idris we can partially apply a function
 with more than one argument and as a result get a new function
 back. For instance, `isTriple 1` applies argument `1` to function
 `isTriple` and as a result returns a new function of
@@ -206,6 +234,172 @@ We already used partial function application in our `twice`
 examples above to get some impressive results with very
 little code.
 
+## Anonymous Functions
+
+Sometimes we'd like to pass a small custom function to
+a higher order function without bothering to write a
+top level definition. For instance, in the following example,
+function `someTest` is very specific and probably not
+very useful in general, but we'd still like to pass it
+to higher order function `testSquare`:
+
+```idris
+someTest : Integer -> Bool
+someTest n = n >= 3 || n <= 10
+```
+
+Here's, how to pass it to `testSquare`:
+
+```repl
+Tutorial.Functions1> testSquare someTest 100
+True
+```
+
+Instead of defining and using `someTest`, we can use an
+anonymous function:
+
+```repl
+Tutorial.Functions1> testSquare (\n => n >= 3 || n <= 10) 100
+True
+```
+
+Anonymous functions are sometimes also called *lambdas* (from
+[lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus)),
+and the backslash is chosen since it resembles the Greek
+letter *lambda*. The `\n =>` syntax introduces a new anonymous
+function of one argument called `n`, the implementation of
+which is on the right hand side of the function error.
+Like other top level functions, lambdas can have more
+than one arguments, separated by commas: `\x,y => x * x + y`.
+When we pass lambdas as arguments to higher order functions,
+they typically need to be wrapped in parentheses or separated
+by the dollar operator `($)` (see the next section about this).
+
+Note that, in a lambda, arguments are not annotated with types,
+so Idris has to be able to infer them from the current context.
+
+## Operators
+
+In Idris, infix operators like `.`, `*` or `+` are not built into
+the language, but are just regular Idris function with
+some special support for using them in infix notation.
+When we don't use operators in infix notation, we have
+to wrap them in parentheses.
+
+As an example, let us define a custom operator for sequencing
+functions of type `Bits8 -> Bits8`:
+
+```idris
+infixr 4 >>>
+
+(>>>) : (Bits8 -> Bits8) -> (Bits8 -> Bits8) -> Bits8 -> Bits8
+f1 >>> f2 = f2 . f1
+
+foo : Bits8 -> Bits8
+foo n = 2 * n + 3
+
+test : Bits8 -> Bits8
+test = foo >>> foo >>> foo >>> foo
+```
+
+In addition to declaring and defining the operator
+itself, we also have to specify its fixity: `infixr 4 >>>` means,
+that `(>>>)` associates to the right (meaning, that
+`f >>> g >>> h` is to be interpreted as `f >>> (g >>> h)`)
+with a priority of `4`. You can also have a look at the fixity
+of operators exported by the *Prelude* in the REPL:
+
+```repl
+Tutorial.Functions1> :doc (.)
+Prelude.. : (b -> c) -> (a -> b) -> a -> c
+  Function composition.
+  Totality: total
+  Fixity Declaration: infixr operator, level 9
+```
+
+When you mix infix operators in an expression, those with
+a higher priority bind more tightly. For instance, `(+)`
+is left associated with a priority of 8, while `(*)`
+is left associated with a priority of 9. Hence,
+`a * b + c` is the same as `(a * b) + c` instead of `a * (b + c)`.
+
+### Operator Sections
+
+Operators can be partially applied just like regular
+functions. In this case, the whole expression has to
+be wrapped in parentheses and is called an *operator
+section*. Here are two examples:
+
+```repl
+Tutorial.Functions1> testSquare (< 10) 5
+False
+Tutorial.Functions1> testSquare (10 <) 5
+True
+```
+
+As you can see, there is a difference between `(< 10)`
+and `(10 <)`. The first tests, whether its argument is
+less than 10, the second, whether 10 is less than its
+argument.
+
+### Infix Notation for Non-Operators
+
+In Idris, it is possible to use infix notation for
+regular binary functions, by wrapping them in backticks.
+It is even possible to define a precedence (fixity) for
+these and use them in operator sections, just like regular
+operators:
+
+```idris
+infixl 8 `plus`
+
+infixl 9 `mult`
+
+plus : Integer -> Integer -> Integer
+plus = (+)
+
+mult : Integer -> Integer -> Integer
+mult = (*)
+
+arithTest : Integer
+arithTest = 5 `plus` 10 `mult` 12
+
+arithTest' : Integer
+arithTest' = 5 + 10 * 12
+```
+
+### Operators exported by the *Prelude*
+
+Here is a list of important operators exported by the *Prelude*.
+Most of these are *constrained*, that is they work only
+for types implementing a certain *interface*. Don't worry
+about this right now. We will learn about interfaces in due
+time, and the operators behave as they intuitively should.
+For instance, addition and multiplication work for all
+numeric types, comparison operators work for almost all
+types in the *Prelude* with the exception of functions.
+
+* `(.)`: Function composition
+* `(+)`: Addition
+* `(*)`: Multiplication
+* `(-)`: Subtraction
+* `(/)`: Division
+* `(==) : True, if two values are equal
+* `(/=) : True, if two values are not equal
+* `(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators
+* `($)`: Function application
+
+The most special of the above is the last one. It has a
+priority of 0, so all other operators bind more tightly.
+In addition, function application binds more tightly, so
+this can be used to reduce the number of parentheses
+required. For instance, instead of writing
+`isTriple 3 4 (2 + 3 * 1)` we can write
+`isTriple 3 4 $ 2 + 3 * 1`,
+which is exactly the same. Sometimes, this helps readability,
+sometimes, it doesn't. The important thing to remember is
+that `fun $ x y` is just the same as `fun (x y)`.
+
 ## Exercises
 
 1. Reimplement functions `testSquare` and `twice` by using the dot
@@ -217,7 +411,7 @@ way of writing function implementations is sometimes called
 small utility functions.
 
 2. Declare and implement function `isOdd` by combining functions `isEven`
-from above and `not` (from the Idris prelude). Use point-free style.
+from above and `not` (from the Idris *Prelude*). Use point-free style.
 
 3. Declare and implement function `isSquareOf`, which checks whether
 its first `Integer` argument is the square of the second argument.
@@ -228,7 +422,7 @@ comparison operators `<=` or `>=` in your implementation.
 
 5. Declare and implement function `absIsSmall`, which checks whether
 the absolute value of its `Integer` argument is less than or equal to 100.
-Use functions `isSmall` and `abs` (from the Idris prelude) in your implementation,
+Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your implementation,
 which should be in point-free style.
 
 6. In this slightly extended exercise we are going to implement
@@ -258,10 +452,7 @@ Tutorial.Functions1> negate (isSmall `and` isOdd) 73
 False
 ```
 
-7. Idris allows us to define our own infix operators. In
-fact, all infix operators we encountered so far (`==`, `&&`,
-`||`, `.`, and so on) are custom operators defined in the
-Idris prelude and not built into the language itself.
+7. As explained above, Idris allows us to define our own infix operators.
 Even better, Idris supports *overloading* of function names,
 that is, two functions or operators can have the same
 name, but different types and implementations.
@@ -284,9 +475,6 @@ x && y = and x y
 -- return true, if the predicate does not hold
 not : (Integer -> Bool) -> Integer -> Bool
 ```
-
-Operator names have to be wrapped in parentheses unless they
-are being used in infix notation (see the `(&&)`) example above.
 
 Implement the other two functions and test them at the REPL:
 
@@ -315,9 +503,18 @@ expecting the remaining arguments. This technique is called
 allows us to easily combine small coding units to create
 more complex behavior.
 
+* We can pass anonymous functions (*lambdas*) to higher
+order functions, if writing a corresponding top level
+function would be too cumbersome.
+
 * Idris allows us to define our own infix operators. These
 have to be written in parentheses unless they are being used
 in infix notation.
+
+* Infix operators can also be partially applied. These *operator sections*
+have to be wrapped in parentheses, and the position of the
+argument determines, whether it is used as the operator's first
+or second argument.
 
 * Idris supports name overloading: Functions can have the same
 names but different implementations. Idris will decide, which function
@@ -336,6 +533,13 @@ Prelude.not : Bool -> Bool
 Tutorial.Functions1> :t Functions1.not
 Tutorial.Functions1.not : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 ```
+
+### What's next
+
+In the [next section](DataTypes.md), we will learn how to define
+our own data types and how to construct and deconstruct
+values of these new types. We will also learn about
+generic types and functions.
 
 <!-- vi: filetype=idris2
 -->

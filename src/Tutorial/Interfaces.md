@@ -45,9 +45,13 @@ mean : List Integer -> Integer
 mean xs = sum xs `div` size xs
 ```
 
+As you can see, Idris can disambiguate between the different
+`size` functions, since `xs` is of type `List Integer`, which
+unifies only with `List a`, the argument type of `List.size`.
+
 ## Interface Basics
 
-While function overloading as described at the beginning of this tutorial
+While function overloading as described above
 works well, there are use cases, where
 this form of overloaded functions leads to a lot of code duplication.
 
@@ -72,14 +76,16 @@ greaterThan' : String -> String -> Bool
 greaterThan' s1 s2 = GT == cmp s1 s2
 
 minimum' : String -> String -> String
-minimum' s1 s2 = case cmp s1 s2 of
-  LT => s1
-  _  => s2
+minimum' s1 s2 =
+  case cmp s1 s2 of
+    LT => s1
+    _  => s2
 
 maximum' : String -> String -> String
-maximum' s1 s2 = case cmp s1 s2 of
-  GT => s1
-  _  => s2
+maximum' s1 s2 =
+  case cmp s1 s2 of
+    GT => s1
+    _  => s2
 ```
 
 We'd need to implement all of these again for the other types with a `cmp`
@@ -93,9 +99,10 @@ of the two remaining arguments:
 
 ```idris
 minimumBy : (a -> a -> Ordering) -> a -> a -> a
-minimumBy f a1 a2 = case f a1 a2 of
-  LT => a1
-  _  => a2
+minimumBy f a1 a2 =
+  case f a1 a2 of
+    LT => a1
+    _  => a2
 ```
 
 This solution is another proof of how higher order functions
@@ -118,7 +125,8 @@ implementation Comp Bits16 where
   comp = compare
 ```
 
-The code above defines *interface* `Comp` for calculating the
+The code above defines *interface* `Comp` providing
+function `comp` for calculating the
 ordering for two values of a type `a`, followed by two *implementations*
 of this interface for types `Bits8` and `Bits16`. Note, that the
 `implementation` keyword is optional.
@@ -136,14 +144,15 @@ Tutorial.Interfaces.comp : Comp a => a -> a -> Ordering
 
 The interesting part in the type signature of `comp` is
 the initial `Comp a =>` argument. Here, `Comp` is a *constraint* on
-type `a`. This signature can be read as: "Given an implementation
-of interface `Comp` for type `a`, we can compare two values
+type parameter `a`. This signature can be read as:
+"For any type `a`, given an implementation
+of interface `Comp` for `a`, we can compare two values
 of type `a` and return an `Ordering` for these."
 Whenever we invoke `comp`, we expect Idris to come up with a
 value of type `Comp a` on its own, hence the new `=>` arrow.
 If Idris fails to do so, it will answer with a type error.
 
-We can now use `comp` in the implementation of related functions.
+We can now use `comp` in the implementations of related functions.
 All we have to do is to also prefix these derived functions
 with a `Comp` constraint:
 
@@ -155,14 +164,16 @@ greaterThan : Comp a => a -> a -> Bool
 greaterThan s1 s2 = GT == comp s1 s2
 
 minimum : Comp a => a -> a -> a
-minimum s1 s2 = case comp s1 s2 of
-  LT => s1
-  _  => s2
+minimum s1 s2 =
+  case comp s1 s2 of
+    LT => s1
+    _  => s2
 
 maximum : Comp a => a -> a -> a
-maximum s1 s2 = case comp s1 s2 of
-  GT => s1
-  _  => s2
+maximum s1 s2 =
+  case comp s1 s2 of
+    GT => s1
+    _  => s2
 ```
 
 Note, how the definition of `minimum` is almost identical
@@ -191,7 +202,7 @@ for the empty list. Use interface `Comp` in your implementation.
 largest element from a list of values with a `Comp` implementation.
 Likewise for `minElem`, which tries to extract the smallest element.
 Note, that the possibility of the list being empty must be considered
-when choosing the return type.
+when deciding on the output type.
 
 4. Define an interface `Concat` for values like lists or
 strings, which can be concatenated. Provide implementations
@@ -200,7 +211,7 @@ for lists and strings.
 5. Implement function `concatList` for concatenating the
 values in a list holding values with a `Concat` implementation.
 Make sure to reflect the possibility of the list being empty in your
-return type.
+output type.
 
 ## More about Interfaces
 
@@ -724,6 +735,31 @@ to give your implementations of exercises 6 to 10 a try at the REPL.
 Note, how we can implement all of these functions with a minimal amount
 of code and how, as shown in exercise 11, these behaviors can be
 combined in a single list traveral.
+
+## Conclusion
+
+* Interfaces allow us to implement the same function with different
+behavior for different types.
+
+* Functions taking one or more interface implementations as
+arguments are called *constrained functions*.
+
+* Interfaces can be organized hierarchically by *extending*
+other interfaces.
+
+* Interfaces implementations can themselves be *constrained*
+requiring other implementations to be available.
+
+* Interface functions can be given a *default implementation*,
+which can be overridden by implementers, for instance for reasons
+of efficiency.
+
+### What's next
+
+In the [next section](Functions2.md), we have a closer look
+at functions and their types. We will learn about named arguments,
+implicit arguments, and erased arguments as well as some
+constructors for implementing more complex functions.
 
 <!-- vi: filetype=idris2
 -->
