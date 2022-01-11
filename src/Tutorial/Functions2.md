@@ -5,9 +5,9 @@ language, which it has in common with several other
 pure, strongly typed programming languages like Haskell:
 (Higher order) Functions, algebraic data types, pattern matching,
 parametric polymorphism (generic types and functions), and
-ad hoc polymorphism (interfaces).
+ad hoc polymorphism (interfaces and constrained functions).
 
-In this part we start to dissect Idris functions and their types
+In this part, we start to dissect Idris functions and their types
 for real. We learn about implicit arguments, named arguments, as well 
 as erasure and quantities. But first, we'll look at `let` bindings
 and `where` blocks, which help us implement functions too complex
@@ -47,7 +47,7 @@ Prelude.sum : Num a => Foldable t => t a -> a
 This is - of course - similar to `sumList` from Exercise 10
 of the [last section](Interfaces.md), but generalized to all
 container types with a `Foldable` implementation. We will
-learn about `Foldable` in a later section.
+learn about interface `Foldable` in a later section.
 
 In order to also calculate the variance,
 we need to convert every value in the list to
@@ -64,6 +64,9 @@ and `mapEither` for `Either e`. Here's its type:
 Main> :t map
 Prelude.map : Functor f => (a -> b) -> f a -> f b
 ```
+
+Interface `Functor` is another one we'll talk about
+in a later section.
 
 Finally, we need a way to calculate the length of
 a list of values. We use function `length` for this:
@@ -364,7 +367,7 @@ zipEitherWith f (Left e)   _          = Left e
 zipEitherWith f _          (Left e)   = Left e
 ```
 
-Function `zipEitherWith` is a generic function combining the
+Function `zipEitherWith` is a generic higher-order function combining the
 values stored in two `Either`s via a binary function. If either
 of the `Either` arguments is a `Left`, the result is also a `Left`.
 
@@ -460,11 +463,11 @@ Note, how in the type signature of `intOrString`, we *must* give the
 argument of type `Bool` a name (`v`) in order to reference it in
 the result type `IntOrString v`.
 
-You might wonder at this moment, why this is useful and why we should
+You might wonder at this moment, why this is useful and why we would
 ever want to define a function with such a strange type. We will see
 lots of very useful examples in due time! For now, suffice to say that
 in order to express dependent function types, we need to name
-at least some of the function's arguments in order to refer to them
+at least some of the function's arguments and refer to them by name
 in the types of other arguments.
 
 ### Implicit Arguments
@@ -474,7 +477,7 @@ should infer and fill in for us automatically. For instance, in
 the following function signature, we expect the compiler to
 infer the value of type parameter `a` automatically from the
 types of the other arguments (ignore the 0 quantity for the moment;
-I'll explain it in the next session):
+I'll explain it in the next subsection):
 
 ```idris
 maybeToEither : {0 a : Type} -> Maybe a -> Either String a
@@ -563,7 +566,7 @@ associated with one of three possible multiplicities:
 * `0`, meaning that the variable is *erased* at runtime.
 * `1`, meaning that the variable is used *exactly once* at runtime.
 * *Unrestricted* (the default), meaning that the variable is used
-an arbitrary number of times at runtime.
+   an arbitrary number of times at runtime.
 
 We will not talk about the most complex of the three, multiplicity `1`, here.
 We are, however, often interested in multiplicity `0`: A variable with
@@ -573,11 +576,11 @@ never affect a program's runtime performance.
 
 In the type signature of `maybeToEither` we see that type
 parameter `a` has multiplicity `0`, and will therefore be erased and
-only relevant at compile time, while the `Maybe a` argument
+is only relevant at compile time, while the `Maybe a` argument
 has *unrestricted* multiplicity.
 
 It is also possible to annotate explicit arguments with multiplicities,
-in which case the argument must again be put in parentheses. For an example.
+in which case the argument must again be put in parentheses. For an example,
 look again at the type signature of `the`.
 
 ### Underscores
@@ -586,8 +589,9 @@ It is often desirable, to only write as little code as necessary
 and let Idris figure out the rest.
 We have already learned about one such occasion: Catch-all patterns.
 If a variable in a pattern match is not used on the right hand side,
-we can't just drop it, but we can use an underscore as a
-placeholder instead:
+we can't just drop it, as this would make it impossible for
+Idris, which of several arguments we were planning to drop,
+but we can use an underscore as a placeholder instead:
 
 ```idris
 isRight : Either a b -> Bool
@@ -811,7 +815,7 @@ traverseEither fun (x :: xs) =
 
 At this point we might have forgotten what we actually
 wanted to do (at least to me, this happens annoyingly often),
-so we'll just quickly check out what our goal is:
+so we'll just quickly check what our goal is:
 
 ```repl
 Tutorial.Functions2> :t impl_6
@@ -876,11 +880,39 @@ Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'", "Unknown nucleobase:
 
 We again covered a lot of ground in this section. I can't stress enough that you
 should get yourselves accustomed to programming with holes and let the
-type checker help you figure out what to do next. In the next chapter
+type checker help you figure out what to do next.
+
+* When in need of local utility functions, consider defining them
+in a *where block*.
+
+* Use *let expressions* to define and reuse local variables.
+
+* Function arguments can be given a name, which can serve as documentation,
+can be used to pass arguments in any order, and is used to refer to
+them in dependent types.
+
+* Implicit arguments are wrapped in curly braces. The compiler is
+supposed to infer them from the context. If that's not possible,
+they can be passed explicitly as other named arguments.
+
+* Whenever possible, Idris adds implicit erased arguments for all
+type parameters automatically.
+
+* Quantities allow us to track how often a function argument is
+used. Quantity 0 means, the argument is erased at runtime.
+
+* Use *holes* as placeholders for pieces of code you plan to fill
+in at a later time. Use the REPL (or your editor) to inspect
+the types of holes together with the names, types, and quantities of all
+variables in their context.
+
+### What's next
+
+In the next chapter
 we'll start using dependent types to help us write provably correct code.
-Having a good understanding of how to read and understand
+Having a good understanding of how to read
 Idris' type signatures will be of paramount importance there. Whenever
-you feel lost, add a hole and inspect the context to decide what to
+you feel lost, add one or more holes and inspect their context to decide what to
 do next.
 
 <!-- vi: filetype=idris2

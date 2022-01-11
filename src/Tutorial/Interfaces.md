@@ -736,5 +736,30 @@ Note, how we can implement all of these functions with a minimal amount
 of code and how, as shown in exercise 11, these behaviors can be
 combined in a single list traveral.
 
+## Conclusion
+
+* Interfaces allow us to implement the same function with different
+behavior for different types.
+
+* Functions taking one or more interface implementations as
+arguments are called *constrained functions*.
+
+* Interfaces can be organized hierarchically by *extending*
+other interfaces.
+
+* Interfaces implementations can themselves be *constrained*
+requiring other implementations to be available.
+
+* Interface functions can be given a *default implementation*,
+which can be overridden by implementers, for instance for reasons
+of efficiency.
+
+### What's next
+
+In the [next section](Functions2.md), we have a closer look
+at functions and their types. We will learn about named arguments,
+implicit arguments, and erased arguments as well as some
+constructors for implementing more complex functions.
+
 <!-- vi: filetype=idris2
 -->
