@@ -1159,7 +1159,7 @@ used to group several values of possibly different types.
 values in Idris. The possible patterns correspond to
 a data type's data constructors. 
 
-* We can *bind* variables to values in a patter or
+* We can *bind* variables to values in a pattern or
 use an underscore as a placeholder for a value that's
 not needed on the right hand side of an implementation.
 
@@ -1178,7 +1178,7 @@ concrete types in function and type signatures.
 
 * Common concepts like *nullary values* (`Maybe`),
 computations that might fail with some error
-condition (`Either`) and handling collections
+condition (`Either`), and handling collections
 of values of the same type at once (`List`) are
 example use cases of generic types and functions
 already provided by the *Prelude*.
