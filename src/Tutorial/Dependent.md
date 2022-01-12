@@ -321,7 +321,7 @@ Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 It is amazing to experience the amount of work Idris can do
 for use and the amount of things it can infer on its own when
 things go well. When things don't go well, however, the
-errors messages we get from Idris can
+error messages we get from Idris can
 be quite long and hard to understand, especially
 for programmers new to the language. For instance, the error
 message in the last REPL example above was pretty long, listing
@@ -353,7 +353,7 @@ and:
 Mismatch between: 0 and 1.
 ```
 
-Here, the message is much clearer: Idris can't *unify* the length of the
+Here, the message is much clearer: Idris can't *unify* the lengths of the
 two vectors. *Unification* means: Idris tries to at compile time convert
 two expressions to the same normal form. If this succeeds,
 the two expressions are considered to be equivalent,
@@ -397,20 +397,26 @@ for instance, leads to a type error:
 fill va = [va,va]
 ```
 
-The problem is, that the callers of our function decide on
-the length of the resulting vector. The following type checks
-perfectly fine:
+The problem is, that the *callers of our function decide on
+the length of the resulting vector*. The full type of `fill` is
+actually the following:
 
 ```idris
-vect10 : Vect 10 Char
-vect10 = fill 'a'
+fill' : {0 a : Type} -> {0 n : Nat} -> a -> Vect n a
 ```
 
-However, in order to implement `fill`, we need to know what
-`n` actually is. But this is impossible, since right now,
-`n` is an erased implicit argument. But this also the
-solution: We need to pass `n` as an explicit argument, which
-will allow us to pattern match on it:
+You can read this type as follows: For every type `a` and for
+every natural number `n` (about which I know *nothing* at runtime,
+since it has quantity zero), given a value of type `a`, I'll give
+you a vector holding exactly `n` elements of type `a`. This is
+like saying: "Think about a natural number `n`, and
+I'll give you `n` apples without you telling me the value of `n`".
+Idris is powerful, but it is not a clairvoyant.
+
+In order to implement `fill`, we need to know what
+`n` actually is: We need to pass `n` as an explicit, unerased argument, which
+will allow us to pattern match on it and decide - based on this pattern
+match - which constructors of `Vect` to use:
 
 ```idris
 replicate : (n : Nat) -> a -> Vect n a
@@ -426,14 +432,14 @@ replicate (S k) va = va :: replicate k va
 ```
 
 This is a pattern that comes up often when working with
-indexed types: We can learn about the values of indices
-by pattern matching on a value of the type family. However,
-in order to come up with a value of the type family, we
-need to either know the values of the indices at compile
+indexed types: We can learn about the values of the indices
+by pattern matching on the values of the type family. However,
+in order to return a value of the type family from a function,
+we need to either know the values of the indices at compile
 time (see constants `ex1` or `ex3`, for instance), or we
-need to have access to the values of the indices, in
-which case we can pattern match on them a learn from
-this, which constructor of the type family to use.
+need to have access to the values of the indices at runtime, in
+which case we can pattern match on them and learn from
+this, which constructor(s) of the type family to use.
 
 ### Exercises
 
