@@ -69,3 +69,65 @@ maybeSize = maybe 0 (const 1)
 fromMaybe : (m : Maybe a) -> Vect (maybeSize m) a
 fromMaybe Nothing  = []
 fromMaybe (Just x) = [x]
+
+--------------------------------------------------------------------------------
+--          Fin: Safe Indexing into Vectors
+--------------------------------------------------------------------------------
+
+data Fin : (n : Nat) -> Type where
+  FZ : {0 n : Nat} -> Fin (S n)
+  FS : (k : Fin n) -> Fin (S n)
+
+-- 1
+update : (a -> a) -> Fin n -> Vect n a -> Vect n a
+update f FZ     (x :: xs) = f x :: xs
+update f (FS k) (x :: xs) = x :: update f k xs
+
+-- 2
+insert : a -> Fin (S n) -> Vect n a -> Vect (S n) a
+insert v FZ     xs         = v :: xs
+insert v (FS k) (x :: xs)  = x :: insert v k xs
+insert v (FS k) []  impossible
+
+-- 3
+-- The trick here is to pattern match on the tail of the
+-- vector in the `FS k` case and realize that an empty
+-- tail is impossible. Otherwise we won't be able to
+-- convince the type checker, that the vector's tail is
+-- non-empty in the recursive case.
+delete : Fin (S n) -> Vect (S n) a -> Vect n a
+delete FZ     (_ :: xs)          = xs
+delete (FS k) (x :: xs@(_ :: _)) = x :: delete k xs
+delete (FS k) (x :: []) impossible
+
+-- 4
+safeIndexList : (xs : List a) -> Fin (length xs) -> a
+safeIndexList (x :: _)  FZ     = x
+safeIndexList (x :: xs) (FS k) = safeIndexList xs k
+safeIndexList Nil _ impossible
+
+-- 5
+finToNat : Fin n -> Nat
+finToNat FZ     = Z
+finToNat (FS k) = S $ finToNat k
+
+take : (k : Fin (S n)) -> Vect n a -> Vect (finToNat k) a
+take FZ     x         = []
+take (FS k) (x :: xs) = x :: take k xs
+
+-- 6
+minus : (n : Nat) -> Fin (S n) -> Nat
+minus n FZ         = n
+minus (S j) (FS k) = minus j k
+minus 0 (FS k) impossible
+
+-- 7
+drop : (k : Fin (S n)) -> Vect n a -> Vect (minus n k) a
+drop FZ     xs        = xs
+drop (FS k) (_ :: xs) = drop k xs
+
+-- 8
+splitAt :  (k : Fin (S n))
+        -> Vect n a
+        -> (Vect (finToNat k) a, Vect (minus n k) a)
+splitAt k xs = (take k xs, drop k xs)

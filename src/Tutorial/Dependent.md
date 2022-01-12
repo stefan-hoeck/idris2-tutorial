@@ -13,8 +13,6 @@ module Tutorial.Dependent
 %default total
 ```
 
-## Fighting Bugs with Precise Types
-
 Consider the following functions:
 
 ```idris
@@ -35,7 +33,7 @@ length as the smaller of the two? Return an empty list? Or shouldn't
 we in most use cases expect the two lists to be of the same length?
 How could we even describe such a precondition?
 
-### Length-Indexed Lists
+## Length-Indexed Lists
 
 The answer to the issues described above is of course: Dependent types.
 And the most common introductory example is the *vector*: A list indexed
@@ -92,7 +90,7 @@ allows us to be more precise in the types and rule out additional
 programming mistakes. But first, we need to quickly clarify some
 jargon.
 
-#### Type Indices versus Type Parameters
+### Type Indices versus Type Parameters
 
 `Vect` is not only a generic type, parameterized over the type
 of elements it holds, it is actually a *family of types*, each
@@ -340,9 +338,10 @@ each of which will again fail with a type error since `zipWith`
 expects arguments of type `Vect`, and neither `List` nor `Stream`
 will work.
 
-If this happens, it can often simplify things, if we help Idris
-disambiguate overloaded function names by prefixing them with
-their namespace:
+If this happens, prefixing overloaded function names with
+their namespaces can often simplify things, as Idris no
+longer needs to try and disambiguate between functions
+based on the types alone:
 
 ```repl
 Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil
@@ -436,7 +435,7 @@ indexed types: We can learn about the values of the indices
 by pattern matching on the values of the type family. However,
 in order to return a value of the type family from a function,
 we need to either know the values of the indices at compile
-time (see constants `ex1` or `ex3`, for instance), or we
+time (see constants `ex1` or `ex2`, for instance), or we
 need to have access to the values of the indices at runtime, in
 which case we can pattern match on them and learn from
 this, which constructor(s) of the type family to use.
@@ -456,10 +455,10 @@ this, which constructor(s) of the type family to use.
    case (although this is not strictly necessary here).
 
 2. Using `head` as a reference, declare and implement function `tail`
-   for non-empty vectors. The types should reflect, that the result
+   for non-empty vectors. The types should reflect that the output
    is exactly one element shorter than the input.
 
-3. Implement `zipWith3`. If possible, try to doing without looking at
+3. Implement `zipWith3`. If possible, try to doing so without looking at
    the implementation of `zipWith`:
 
    ```idris
@@ -472,7 +471,7 @@ this, which constructor(s) of the type family to use.
    a `Monoid` constraint.)
 
 5. Do the same as in Exercise 4, but for non-empty vectors. How
-   does a vector's non-emptyness affect the output type?
+   does a vector's non-emptiness affect the output type?
 
 6. Given an initial value of type `a` and a function `a -> a`,
    we'd like to generate `Vect`s of `a`s, the first value of
@@ -508,8 +507,8 @@ this, which constructor(s) of the type family to use.
    fromList : (as : List a) -> Vect (length as) a
    ```
 
-   Note, how in the type of `fromList`, we can *calculate* the
-   length of the resulting vector, by passing the list argument
+   Note, how in the type of `fromList` we can *calculate* the
+   length of the resulting vector by passing the list argument
    to function *length*.
 
 9. Consider the following declarations:
@@ -522,6 +521,177 @@ this, which constructor(s) of the type family to use.
 
    Choose a reasonable implementation for `maybeSize` and
    implement `fromMaybe` afterwards.
+
+## `Fin`: Safe Indexing into Vectors
+
+Consider function `index`, which tries to extract a value from
+a `List` at the given position:
+
+```idris
+indexList : (pos : Nat) -> List a -> Maybe a
+indexList _     []        = Nothing
+indexList 0     (x :: _)  = Just x
+indexList (S k) (_ :: xs) = indexList k xs
+```
+
+Now, here is a thing to consider when writing functions like `indexList`:
+Do we want to express the possibility of failure in the output type,
+or do we want to restrict the accepted arguments,
+so the function can no longer fail? These are important design decisions,
+especially in larger applications.
+Returning a `Maybe` or `Either` from a function forces client code to eventually
+deal with the `Nothing` or `Left` case, and until this happens, all intermediary
+results will carry the `Maybe` or `Either` stain, which will make it more
+cumbersome to run calculations with these intermediary results.
+On the other hand, restricting the
+values accepted as input will complicate the argument types
+and will put the burden of input validation on our functions' callers,
+(although, at compile time we can get help from Idris, as we will
+see when we talk about auto implicits) while keeping the output pure and clean.
+
+Languages without dependent types (like Haskell), can often only take
+the route described above: To wrap the result in a `Maybe` or `Either`.
+However, in Idris we can often *refine* the input types to restrict the
+set of accepted values, thus ruling out the possibility of failure.
+
+Assume, as an example, we'd like to extract a value from a `Vect n a`
+at (zero-based) index `k`. Surely, this can succeed if and only if
+`k` is a natural number strictly smaller than the length `n` of
+the vector. Luckily, we can express this precondition in an indexed
+type:
+
+```idris
+data Fin : (n : Nat) -> Type where
+  FZ : {0 n : Nat} -> Fin (S n)
+  FS : (k : Fin n) -> Fin (S n)
+```
+
+`Fin n` is the type of natural numbers strictly smaller than `n`.
+It is defined inductively: `FZ` corresponds to natural number *zero*,
+which, as can be seen in its type, is strictly smaller than
+`S n` for any natural number `n`. `FS` is the inductive case:
+If `k` is strictly smaller than `n` (`k` being of type `Fin n`),
+then `FS k` is strictly smaller than `S n`.
+
+Let's come up with some values of type `Fin`:
+
+```idris
+fin0_5 : Fin 5
+fin0_5 = FZ
+
+fin0_7 : Fin 7
+fin0_7 = FZ
+
+fin1_3 : Fin 3
+fin1_3 = FS FZ
+
+fin4_5 : Fin 5
+fin4_5 = FS (FS (FS (FS FZ)))
+```
+
+Note, that there is no value of type `Fin 0`. We will learn
+in a later session, how to express "there is no value of type `x`"
+in a type.
+
+Let us now check, whether we can use `Fin` to safely index
+into a `Vect`:
+
+```idris
+index : Fin n -> Vect n a -> a
+```
+
+Before you continue, try to implement `index` yourself, making use
+of holes if you get stuck.
+
+```idris
+index FZ     (x :: _) = x
+index (FS k) (_ :: xs) = index k xs
+```
+
+Note, how there is no `Nil` case and the totality checker is still
+happy. That's because `Nil` is of type `Vect 0 a`, but there is no
+value of type `Fin 0`! We can verify this by adding the missing
+impossible clauses:
+
+```idris
+index FZ     Nil impossible
+index (FS _) Nil impossible
+```
+
+### Exercises
+
+1. Implement function `update`, which, given a function of
+   type `a -> a`, updates the value in a`Vect n a` at position `k < n`.
+
+2. Implement function `insert`, which inserts a value of type `a`
+   at position `k <= n` in a `Vect n a`. Note, that `k` is the
+   index of the freshly inserted value, so that the following holds:
+
+   ```repl
+   index k (insert k v vs) = v
+   ```
+
+3. Implement function `delete`, which deletes a value from a
+   vector at the given index.
+
+   This is trickier than Exercises 1 and 2, as we have to properly
+   encode in the types that the vector is getting an element shorter.
+
+4. We can use `Fin` to implement safe indexing into `List`s as well. Try to
+   come up with a type and implementation for `safeIndexList`.
+
+   Note: If you don't know how to start, look at the type of `fromList`
+   for some inspiration. You might also need give the arguments in
+   a different order than for `index`.
+
+5. Implement function `finToNat`, which converts a `Fin n` to the
+   corresponding natural number, and use this to declare and
+   implement function `take` for splitting of the first `k`
+   elements of a `Vect n a` with `k <= n`.
+
+6. Implement function `minus` for subtracting a value `k` from
+   a natural number `n` with `k <= n`.
+
+7. Use `minus` from Exercise 6 to declare and implement function
+   `drop`, for dropping the first `k` values from a `Vect n a`,
+   with `k <= n`.
+
+8. Implement function `splitAt` for splitting a `Vect n a` at
+   position `k <= n`, returning the prefix and suffix of the
+   vector wrapped in a pair.
+
+   Hint: Use `take` and `drop` in your implementation.
+
+Hint: Since `Fin n` consists of the values strictly smaller
+than `n`, `Fin (S n)` consists of the values smaller than
+or equal to `n`.
+
+Note: Functions `take`, `drop`, and `splitAt`, while correct and
+provably total, are rather cumbersome to type.
+There is an alternative way to declare their types,
+as we will see in the next section.
+
+## Compile-Time Computations
+
+In the last section - especially in some of the exercises - we
+started more and more to use compile time computations to
+describe the types of our functions and values.
+
+```idris
+(++) : Vect m a -> Vect n a -> Vect (m + n) a
+(++) []        ys = ys
+(++) (x :: xs) ys = x :: (xs ++ ys)
+```
+
+```idris
+drop : (m : Nat) -> Vect (m + n) a -> Vect n a
+drop 0     xs        = xs
+drop (S k) (_ :: xs) = drop k xs
+
+take : (m : Nat) -> Vect (m + n) a -> Vect m a
+take 0     _         = []
+take (S k) (x :: xs) = x :: take k xs
+```
 
 <!-- vi: filetype=idris2
 -->
