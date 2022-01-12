@@ -381,10 +381,10 @@ to values `0` and `1`, which is the discrepancy reported in the error message.
 ### Creating Vectors
 
 So far, we were able to learn something about the lengths
-of our vectors by pattern matching on them. In the `Nil`
+of vectors by pattern matching on them. In the `Nil`
 case, it was clear that the length is 0, while in the *cons*
 case the length was the successor of another natural number.
-This is not possible, when we want to create a new vector:
+This is not possible when we want to create a new vector:
 
 ```idris
 fill : a -> Vect n a
@@ -450,7 +450,7 @@ this, which constructor(s) of the type family to use.
    ```
 
    Note, how we can describe non-emptiness by using a *pattern*
-   in length of `Vect`. This rules out the `Nil` case, and we can
+   in the length of `Vect`. This rules out the `Nil` case, and we can
    return a value of type `a`, without having to wrap it in
    a `Maybe`! Make sure to add an `impossible` clause for the `Nil`
    case (although this is not strictly necessary here).
@@ -459,35 +459,46 @@ this, which constructor(s) of the type family to use.
    for non-empty vectors. The types should reflect, that the result
    is exactly one element shorter than the input.
 
-3. Implement `zipWith3`. If possible, try to do so without looking at
+3. Implement `zipWith3`. If possible, try to doing without looking at
    the implementation of `zipWith`:
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
 
-4. Declare and implement a function for accumulating the values stored
-   in a list through `Semigroup`s append operator (`(<+>)`).
+4. Declare and implement a function `foldSemi`
+   for accumulating the values stored
+   in a `List` through `Semigroup`s append operator (`(<+>)`).
+   (Make sure to only use a `Semigroup` constraint, as opposed to
+   a `Monoid` constraint.)
 
 5. Do the same as in Exercise 4, but for non-empty vectors. How
-   does a vector's non-emptyness affect the output type.
+   does a vector's non-emptyness affect the output type?
 
 6. Given an initial value of type `a` and a function `a -> a`,
    we'd like to generate `Vect`s of `a`s, the first value of
    which is `a`, the second value being `f a`, the third
-   being `f (f a)`.
+   being `f (f a)` and so on.
 
    For instance, if `a` is 1 and `f` is `(* 2)`, we'd like
    to get results similar to the following: `[1,2,4,8,16,...]`.
 
    Declare and implement function `iterate`, which should
    encapsulate this behavior. Get some inspiration from `replicate`
-   if don't know where to start.
+   if you don't know where to start.
 
 7. Given an initial value of a state type `s` and
    a function `fun : s -> (s,a)`,
    we'd like to generate `Vect`s of `a`s. Declare and implement
-   function `generate` to encapsulate this behavior. Make sure to use
+   function `generate`, which should encapsulate this behavior. Make sure to use
    the updated state in every new invocation of `fun`.
+
+   Here's an example how this can be used to generate the first
+   `n` Fibonacci number:
+
+   ```repl
+   generate 10 (\(x,y) => let z = x + y in ((y,z),z)) (0,1)
+   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+   ```
 
 8. Implement function `fromList`, which converts a list of
    values to a `Vect` of the same length. Use holes if you
