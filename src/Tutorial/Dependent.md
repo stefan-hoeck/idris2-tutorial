@@ -4,8 +4,8 @@ The ability to calculate types from values, pass them as arguments
 to functions, and return them as results from functions - in
 short, being a dependently typed language - is one of the
 most distinguishing features of Idris. Many of the more advanced
-type level extensions of languages like Haskell can be treated
-in one fell swoop by dependent types.
+type level extensions of languages like Haskell (and quite a
+bit more) can be treated in one fell swoop with dependent types.
 
 ```idris
 module Tutorial.Dependent
@@ -13,7 +13,7 @@ module Tutorial.Dependent
 %default total
 ```
 
-## Fighting Bugs with More Precise Types
+## Fighting Bugs with Precise Types
 
 Consider the following functions:
 
@@ -30,7 +30,7 @@ what users of our library would expect. In the first example, we'd expect
 the implementation to apply the function argument to all values stored
 in the list, without dropping any of them or changing their order.
 The second is trickier: The two list arguments might be of different length.
-What are we supposed when that's the case? Return a list of the same
+What are we supposed to do when that's the case? Return a list of the same
 length as the smaller of the two? Return an empty list? Or shouldn't
 we in most use cases expect the two lists to be of the same length?
 How could we even describe such a precondition?
@@ -84,11 +84,13 @@ ex3 : Vect 1 Integer
 ex3 = [12]
 ```
 
-So, we found a way to encode the *length* of a list-like data type in
+So, we found a way to encode the *length* of a list-like data structure in
 its *type*, and it is a *type error* if the number of elements in
 a vector does not agree with then length given in its type. We will
-now see several use cases, where this additional piece of information
-allows us to be more precise in our types.
+shortly see several use cases, where this additional piece of information
+allows us to be more precise in the types and rule out additional
+programming mistakes. But first, we need to quickly clarify some
+jargon.
 
 #### Type Indices versus Type Parameters
 
@@ -115,9 +117,10 @@ data Indexed : Nat -> Type where
 ```
 
 Here, `Indexed` is indexed over its `Nat` argument, as
-value of the index changes across constructors, and we
-can learn about this value by pattern matching on `Indexed`.
-We can use this, to create a `Vect` of the same length
+values of the index changes across constructors (I chose some
+arbitrary value for each constructor), and we
+can learn about these values by pattern matching on `Indexed` values.
+We can use this, for instance, to create a `Vect` of the same length
 as the index of `Indexed`:
 
 ```idris
@@ -127,15 +130,14 @@ fromIndexed : Indexed n -> a -> Vect n a
 Go ahead, and try implementing this yourself! Work with
 holes, pattern match on the `Indexed` argument, and
 learn about the expected output type in each case by
-inspecting the holes and their types on the right
-hand side.
+inspecting the holes and their context.
 
 Here is my implementation:
 
 ```idris
 fromIndexed I0     va = []
 fromIndexed I3     va = [va, va, va]
-fromIndexed (I4 x) va = [va, va, va, va]
+fromIndexed (I4 _) va = [va, va, va, va]
 ```
 
 As you can see, by pattern matching on the value of the
@@ -143,7 +145,7 @@ As you can see, by pattern matching on the value of the
 the `n` index itself, which was necessary to return a
 `Vect` of the correct length.
 
-### Length-Preserving Map
+### Length-Preserving `map`
 
 Function `bogusMapList` behaved unexpectedly, because it always
 returned the empty list. With `Vect`, we need to be true to the
@@ -162,9 +164,13 @@ map5_10 : (a -> b) -> Vect 5 a -> Vect 10 b
 map5_10 f [u,v,w,x,y] = [f u, f u, f v, f v, f w, f w, f x, f x, f y, f y]
 ```
 
-While this might be interesting, it is not really useful, is it?
-However, instead of using concrete lengths in type signatures,
-we can also use *variables* as already seen in the definition of `Vect`:
+While these examples are quite interesting,
+they are not really useful, are they? This is, because they are too
+specialized. We'd like to have a *general* function for mapping
+vectors of any length.
+Instead of using concrete lengths in type signatures,
+we can also use *variables* as already seen in the definition of `Vect`.
+This allows us declare the general case:
 
 ```idris
 mapVect' : (a -> b) -> Vect n a -> Vect n b
@@ -184,7 +190,7 @@ of the same type and quantity in a single pair of curly braces; this
 is optional, but it sometimes helps making type signatures a bit
 shorter). The implicit argument of type `Nat`, however, tells us that the
 input and output `Vect` are of the same length. It is a type error
-to not uphold this contract. In order to implement `mapVect`, it
+to not uphold to this contract. When implementing `mapVect`, it
 is very instructive to follow along and use some holes. In order
 to get *any* information about the length of the `Vect` argument,
 we need to pattern match on it:
@@ -255,8 +261,8 @@ on `xs`, but this would quickly lead us down a rabbit hole, since after
 such a pattern match, we'd end up with another `Nil` case and another
 *cons* case, with a new tail of unknown length. Instead, we can invoke
 `mapVect` recursively to convert the remainder (`xs`) to a `Vect n b`.
-The type checker guarantees, that the lengths of `xs` and `mapVect f xs`,
-are the same, so the whole expression type checks, and we are done:
+The type checker guarantees, that the lengths of `xs` and `mapVect f xs`
+are the same, so the whole expression type checks and we are done:
 
 ```idris
 mapVect f (x :: xs) = f x :: mapVect f xs
@@ -267,8 +273,8 @@ mapVect f (x :: xs) = f x :: mapVect f xs
 Let us now have a look at `bogusZipList`: We'd like to pairwise merge
 two lists holding elements of (possibly) distinct types through a
 given binary function. As discussed above, the most reasonable thing
-to do, is to expect the two lists as well as the result to be of equal length.
-With `Vect`, this can be done as follows:
+to do is to expect the two lists as well as the result to be of equal length.
+With `Vect`, this can be expressed and implemented as follows:
 
 ```idris
 zipWith : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
@@ -277,7 +283,7 @@ zipWith f (x :: xs) (y :: ys)  = f x y :: zipWith f xs ys
 ```
 
 Now, here is an interesting thing: The totality checker (activated
-throughout this source file due to the initial `%default total` pragma),
+throughout this source file due to the initial `%default total` pragma)
 accepts the above implementation as being total, although it is
 missing two more cases. This works, because Idris
 can figure out on its own, that the other two cases are *impossible*.
@@ -293,7 +299,13 @@ zipWith _ [] (_ :: _) impossible
 zipWith _ (_ :: _) [] impossible
 ```
 
-Let's give this a spin at the REPL:
+It is - of course - a type error to annotate a case in a pattern
+match with `impossible`, if Idris cannot verify that this case is
+indeed impossible. We will learn in a later section what to do,
+when we think we are right about an impossible case
+and Idris is not.
+
+Let's give `zipWith` a spin at the REPL:
 
 ```repl
 Tutorial.Dependent> zipWith (*) [1,2,3] [10,20,30]
@@ -303,6 +315,68 @@ Tutorial.Dependent> zipWith (\x,y => x ++ ": " ++ show y) ["The answer"] [42]
 Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 ... Nasty type error ...
 ```
+
+#### Simplifying Type Errors
+
+It is amazing to experience the amount of work Idris can do
+for use and the amount of things it can infer on its own when
+things go well. When things don't go well, however, the
+errors messages we get from Idris can
+be quite long and hard to understand, especially
+for programmers new to the language. For instance, the error
+message in the last REPL example above was pretty long, listing
+different things Idris tried to do together with the reason
+why each of them failed.
+
+If this happens, it often means that a combination of a type error
+and an ambiguity resulting from overloaded function names is
+at work. In the example above, the two vectors are of distinct
+length, which leads to a type error if we interpret the list
+literals as vectors. However, list literals are overloaded to work
+with all data types with constructors `Nil` and `(::)`, so Idris
+will now try other data constructors than those of `Vect` (the
+ones of `List` and `Stream` from the *Prelude* in this case),
+each of which will again fail with a type error since `zipWith`
+expects arguments of type `Vect`, and neither `List` nor `Stream`
+will work.
+
+If this happens, it can often simplify things, if we help Idris
+disambiguate overloaded function names by prefixing them with
+their namespace:
+
+```repl
+Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil
+Error: When unifying:
+    Vect 0 ?c
+and:
+    Vect 1 ?c
+Mismatch between: 0 and 1.
+```
+
+Here, the message is much clearer: Idris can't *unify* the length of the
+two vectors. *Unification* means: Idris tries to at compile time convert
+two expressions to the same normal form. If this succeeds,
+the two expressions are considered to be equivalent,
+if it doesn't, Idris fails with a unification error.
+
+As an alternative to prefixing overloaded functions with their
+namespace, we can use `the` to help with type inference:
+
+```repl
+Tutorial.Dependent> zipWith (*) (the (Vect 3 _) [1,2,3]) (the (Vect 2 _) [10,20])
+Error: When unifying:
+    Vect 2 ?c
+and:
+    Vect 3 ?c
+Mismatch between: 0 and 1.
+```
+
+It is interesting to note, that the error above is not "Mismatch between: 2 and 3"
+but "Mismatch between: 0 and 1" instead. Here's what's going on: Idris tries to
+unify integer literals `2` and `3`, which are first converted to the
+corresponding `Nat` values `S (S Z)` and `S (S (S Z))`, respectively.
+The two patterns match until we arrive at `Z` vs `S Z`, corresponding
+to values `0` and `1`, which is the discrepancy reported in the error message.
 
 ### Creating Vectors
 
