@@ -32,10 +32,10 @@ in the list, without dropping any of them or changing their order.
 The second is trickier: The two list arguments might be of different length.
 What are we supposed when that's the case? Return a list of the same
 length as the smaller of the two? Return an empty list? Or shouldn't
-we in most use cases expect the two lists be of the same length?
+we in most use cases expect the two lists to be of the same length?
 How could we even describe such a precondition?
 
-### Length Indexed Lists
+### Length-Indexed Lists
 
 The answer to the issues described above is of course: Dependent types.
 And the most common introductory example is the *vector*: A list indexed
@@ -50,12 +50,13 @@ data Vect : (len : Nat) -> (a : Type) -> Type where
 Before we move on, please compare this with the implementation of `Seq` in
 the [section about algebraic data types](DataTypes.md). The constructors
 are exactly the same: `Nil` and `(::)`. But there is an important difference:
-`Vect`, unlike `Seq`, is not a function from `Type` to `Type`, it is
+`Vect`, unlike `Seq` or `List`, is not a function from `Type` to `Type`, it is
 a function from `Nat` to `Type` to `Type`. Go ahead! Open the REPL and
-verify this! The `Nat` argument (also called an *index*) describes
-the *length* of the vector. `Nil` has type `Vect 0 a`: A vector of length
+verify this! The `Nat` argument (also called an *index*) represents
+the *length* of the vector here.
+`Nil` has type `Vect 0 a`: A vector of length
 zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one
-element longer than its second argument.
+element longer (`S n`) than its second argument, which is of length `n`.
 
 Let's experiment with this idea to gain a better understanding.
 There is only one way to come up with a vector of length zero:
@@ -89,7 +90,60 @@ a vector does not agree with then length given in its type. We will
 now see several use cases, where this additional piece of information
 allows us to be more precise in our types.
 
-### Length-preserving map
+#### Type Indices versus Type Parameters
+
+`Vect` is not only a generic type, parameterized over the type
+of elements it holds, it is actually a *family of types*, each
+of them associated with a natural number representing it's
+length. We also say, the type family `Vect` is *indexed* by
+its length.
+
+The difference between a type parameter and an index is, that
+the latter can and does change across data constructors, while
+the former is the same for all data constructors. Or, put differently,
+we can learn about the *value* of an index by pattern matching
+on a *value* of the type family, while this is not possible
+with a type parameter.
+
+Let's demonstrate this with a contrived example:
+
+```idris
+data Indexed : Nat -> Type where
+  I0 : Indexed 0
+  I3 : Indexed 3
+  I4 : String -> Indexed 4
+```
+
+Here, `Indexed` is indexed over its `Nat` argument, as
+value of the index changes across constructors, and we
+can learn about this value by pattern matching on `Indexed`.
+We can use this, to create a `Vect` of the same length
+as the index of `Indexed`:
+
+```idris
+fromIndexed : Indexed n -> a -> Vect n a
+```
+
+Go ahead, and try implementing this yourself! Work with
+holes, pattern match on the `Indexed` argument, and
+learn about the expected output type in each case by
+inspecting the holes and their types on the right
+hand side.
+
+Here is my implementation:
+
+```idris
+fromIndexed I0     va = []
+fromIndexed I3     va = [va, va, va]
+fromIndexed (I4 x) va = [va, va, va, va]
+```
+
+As you can see, by pattern matching on the value of the
+`Indexed n` argument, we learned about the value of
+the `n` index itself, which was necessary to return a
+`Vect` of the correct length.
+
+### Length-Preserving Map
 
 Function `bogusMapList` behaved unexpectedly, because it always
 returned the empty list. With `Vect`, we need to be true to the
@@ -108,16 +162,17 @@ map5_10 : (a -> b) -> Vect 5 a -> Vect 10 b
 map5_10 f [u,v,w,x,y] = [f u, f u, f v, f v, f w, f w, f x, f x, f y, f y]
 ```
 
-While this *might* be interesting, it is not really useful, is it?
+While this might be interesting, it is not really useful, is it?
 However, instead of using concrete lengths in type signatures,
-we can also use *variables*:
+we can also use *variables* as already seen in the definition of `Vect`:
 
 ```idris
 mapVect' : (a -> b) -> Vect n a -> Vect n b
 ```
 
-This type signature describes a length-preserving map. It is actually
-more instructive, to include implicit arguments as well:
+This type describes a length-preserving map. It is actually
+more instructive (but not necessary) to include the
+implicit arguments as well:
 
 ```idris
 mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b
@@ -125,8 +180,9 @@ mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b
 
 We ignore the two type parameters `a`, and `b`, as these just
 describe a generic function (note, however, that we can group arguments
-of the same type and quantity in a single pare of curly braces).
-The implicit argument of type `Nat` however, tells us that the
+of the same type and quantity in a single pair of curly braces; this
+is optional, but it sometimes helps making type signatures a bit
+shorter). The implicit argument of type `Nat`, however, tells us that the
 input and output `Vect` are of the same length. It is a type error
 to not uphold this contract. In order to implement `mapVect`, it
 is very instructive to follow along and use some holes. In order
@@ -170,7 +226,7 @@ mapVect _ Nil       = Nil
 The second case is again more interesting. We note, that `xs` is
 of type `Vect n a`, for an arbitrary length `n` (given as an erased
 argument), while the result is of type `Vect (S n) b`. So, the
-result has to be one element longer than `xs`. Luckily, we
+result has to be one element longer than `xs`. Luckily, we already
 have a value of type `a` (bound to variable `x`) and a function
 from `a` to `b` (bound to variable `f`), so we can apply `f`
 to `x` and prepend the result to a yet unknown remainder:
@@ -223,12 +279,12 @@ zipWith f (x :: xs) (y :: ys)  = f x y :: zipWith f xs ys
 Now, here is an interesting thing: The totality checker (activated
 throughout this source file due to the initial `%default total` pragma),
 accepts the above implementation as being total, although it is
-missing two more cases. The reason why this works is, that Idris
+missing two more cases. This works, because Idris
 can figure out on its own, that the other two cases are *impossible*.
 From the pattern match on the first `Vect` argument, Idris learns
 whether `n` is zero or the successor of another natural number. But
-from this it can derive, whether the second vector, being of length `n`,
-is a `Nil` or a *cons*. Still, it can be informative, to add the
+from this it can derive, whether the second vector, being also
+of length `n`, is a `Nil` or a *cons*. Still, it can be informative to add the
 impossible cases explicitly. We can use keyword `impossible` to
 do so:
 
@@ -247,6 +303,63 @@ Tutorial.Dependent> zipWith (\x,y => x ++ ": " ++ show y) ["The answer"] [42]
 Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 ... Nasty type error ...
 ```
+
+### Creating Vectors
+
+So far, we were able to learn something about the lengths
+of our vectors by pattern matching on them. In the `Nil`
+case, it was clear that the length is 0, while in the *cons*
+case the length was the successor of another natural number.
+This is not possible, when we want to create a new vector:
+
+```idris
+fill : a -> Vect n a
+```
+
+You will have a hard time implementing `fill`. The following,
+for instance, leads to a type error:
+
+```repl
+fill va = [va,va]
+```
+
+The problem is, that the callers of our function decide on
+the length of the resulting vector. The following type checks
+perfectly fine:
+
+```idris
+vect10 : Vect 10 Char
+vect10 = fill 'a'
+```
+
+However, in order to implement `fill`, we need to know what
+`n` actually is. But this is impossible, since right now,
+`n` is an erased implicit argument. But this also the
+solution: We need to pass `n` as an explicit argument, which
+will allow us to pattern match on it:
+
+```idris
+replicate : (n : Nat) -> a -> Vect n a
+```
+
+Now, `replicate` is a *dependent function type*: The output type
+*depends* on the value of one the arguments. It is now possible to
+implement `replicate` by pattern matching on `n`:
+
+```idris
+replicate 0     _  = []
+replicate (S k) va = va :: replicate k va
+```
+
+This is a pattern that comes up often when working with
+indexed types: We can learn about the values of indices
+by pattern matching on a value of the type family. However,
+in order to come up with a value of the type family, we
+need to either know the values of the indices at compile
+time (see constants `ex1` or `ex3`, for instance), or we
+need to have access to the values of the indices, in
+which case we can pattern match on them a learn from
+this, which constructor of the type family to use.
 
 ### Exercises
 
@@ -277,6 +390,47 @@ Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 
 5. Do the same as in Exercise 4, but for non-empty vectors. How
    does a vector's non-emptyness affect the output type.
+
+6. Given an initial value of type `a` and a function `a -> a`,
+   we'd like to generate `Vect`s of `a`s, the first value of
+   which is `a`, the second value being `f a`, the third
+   being `f (f a)`.
+
+   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like
+   to get results similar to the following: `[1,2,4,8,16,...]`.
+
+   Declare and implement function `iterate`, which should
+   encapsulate this behavior. Get some inspiration from `replicate`
+   if don't know where to start.
+
+7. Given an initial value of a state type `s` and
+   a function `fun : s -> (s,a)`,
+   we'd like to generate `Vect`s of `a`s. Declare and implement
+   function `generate` to encapsulate this behavior. Make sure to use
+   the updated state in every new invocation of `fun`.
+
+8. Implement function `fromList`, which converts a list of
+   values to a `Vect` of the same length. Use holes if you
+   get stuck:
+
+   ```idris
+   fromList : (as : List a) -> Vect (length as) a
+   ```
+
+   Note, how in the type of `fromList`, we can *calculate* the
+   length of the resulting vector, by passing the list argument
+   to function *length*.
+
+9. Consider the following declarations:
+
+   ```idris
+   maybeSize : Maybe a -> Nat
+
+   fromMaybe : (m : Maybe a) -> Vect (maybeSize m) a
+   ```
+
+   Choose a reasonable implementation for `maybeSize` and
+   implement `fromMaybe` afterwards.
 
 <!-- vi: filetype=idris2
 -->
