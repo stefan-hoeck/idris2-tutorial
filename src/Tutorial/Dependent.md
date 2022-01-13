@@ -691,8 +691,12 @@ do this:
 (++) (x :: xs) ys = x :: (xs ++ ys)
 ```
 
-We can also use type-level computations on the input
-types. Here is an alternative type and implementation
+Note, how we keep track of the lengths at the type-level, again
+ruling out certain common programming errors like inadvertently dropping
+some values.
+
+We can also use type-level computations as patterns
+on the input types. Here is an alternative type and implementation
 for `drop`, which you implemented in the exercises by
 using a `Fin n` argument:
 
@@ -709,7 +713,7 @@ you might have come to the conclusion that we can
 use arbitrary expressions in the types and Idris
 will happily evaluate and unify all of them for us.
 
-Nothing could be further from the truth. The examples
+I'm afraid that's not even close to the truth. The examples
 in this section were hand-picked because they are known
 to *just work*. The reason being, that there was always
 a direct link between our own pattern matches and the
@@ -804,9 +808,10 @@ replicate' = replicate n
 Note how, in the implementation of `replicate'`, we can refer to `n`
 and pass it as an explicit argument to `replicate`.
 
-Deciding, whether to pass inferable arguments to a function implicitly
-or explicitly is a question of how often the argument is inferable
-by Idris. Note, however, that even in case of an implicit argument,
+Deciding whether to pass potentially inferable arguments to a function implicitly
+or explicitly is a question of how often the arguments actually *are* inferable
+by Idris. Sometimes it might even be useful to have both verions
+of a function. Remember, however, that even in case of an implicit argument
 we can still pass the value explicitly:
 
 ```idris
@@ -815,12 +820,13 @@ ex6 = replicate' {n = 2} True
 ```
 
 In the type signature above, the question mark (`?`) means, that Idris
-should try and figure out the value on its own by unification.
+should try and figure out the value on its own by unification. This
+forces us to specify `n` explicitly on the right hand side of `ex6`.
 
 #### Pattern Matching on Implicits
 
 The implementation of `replicate'` makes use of function `replicate`,
-where we could pattern-match on the explicit argument `n`. However, it
+where we could pattern match on the explicit argument `n`. However, it
 is also possible to pattern match on implicit, named arguments of
 non-zero quantity:
 
@@ -841,7 +847,7 @@ replicate'' {n = S _} v = v :: replicate'' v
    Implement `flattenList` and declare and implement a similar
    function `flattenVect` for flattening vectors of vectors.
 
-2. Implement functions `take'` and `splitAt'` as in
+2. Implement functions `take'` and `splitAt'` like in
    the exercises of the previous section but using the
    technique shown for `drop'`.
 
@@ -867,7 +873,7 @@ replicate'' {n = S _} v = v :: replicate'' v
   time.
 
 * Length-indexed lists (vectors) let us rule out certain implementation
-  errors, by forcing us to be precise about the length of input
+  errors, by forcing us to be precise about the lengths of input
   and output vectors.
 
 * We can use patterns in type signatures, for instance to
@@ -877,7 +883,7 @@ replicate'' {n = S _} v = v :: replicate'' v
 * When creating values of a type family, the values of the indices
   need to be known at compile time, or they need to be passed as
   arguments to the function creating the values, where we can
-  pattern-match on them to figure out, which constructors to use.
+  pattern match on them to figure out, which constructors to use.
 
 * We can use `Fin n`, the type of natural numbers strictly smaller
   than `n`, to safely index into a vector of length `n`.
@@ -886,6 +892,10 @@ replicate'' {n = S _} v = v :: replicate'' v
   non-erased implicits, in which case we can still inspect them
   by pattern matching or pass them to other functions, while Idris
   will try and fill in the values for us.
+
+Note, that data type `Vect` together with many of the functions we
+implemented here is available from module `Data.Vect` from the *base*
+library. Likewise, `Fin` is available from `Data.Fin` from *base*.
 
 ### What's next
 

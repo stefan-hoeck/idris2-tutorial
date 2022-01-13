@@ -151,9 +151,13 @@ splitAt k xs = (take k xs, drop k xs)
 --------------------------------------------------------------------------------
 
 -- 1
-join : Vect m (Vect n a) -> Vect (m * n) a
-join []          = []
-join (xs :: xss) = xs ++ join xss
+flattenList : List (List a) -> List a
+flattenList []          = []
+flattenList (xs :: xss) = xs ++ flattenList xss
+
+flattenVect : Vect m (Vect n a) -> Vect (m * n) a
+flattenVect []          = []
+flattenVect (xs :: xss) = xs ++ flattenVect xss
 
 -- 2
 take' : (m : Nat) -> Vect (m + n) a -> Vect m a
