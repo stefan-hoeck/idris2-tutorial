@@ -88,7 +88,7 @@ a vector does not agree with then length given in its type. We will
 shortly see several use cases, where this additional piece of information
 allows us to be more precise in the types and rule out additional
 programming mistakes. But first, we need to quickly clarify some
-jargon.
+terminology.
 
 ### Type Indices versus Type Parameters
 
@@ -149,7 +149,7 @@ Function `bogusMapList` behaved unexpectedly, because it always
 returned the empty list. With `Vect`, we need to be true to the
 types here. If we map over a `Vect`, the argument *and* output type
 contain a length index, and these length indices will tell us
-*exactly*, if and how the length of our vectors are modified:
+*exactly*, if and how the lengths of our vectors are modified:
 
 ```idris
 map3_1 : (a -> b) -> Vect 3 a -> Vect 1 b
@@ -163,12 +163,12 @@ map5_10 f [u,v,w,x,y] = [f u, f u, f v, f v, f w, f w, f x, f x, f y, f y]
 ```
 
 While these examples are quite interesting,
-they are not really useful, are they? This is, because they are too
+they are not really useful, are they? That's because they are too
 specialized. We'd like to have a *general* function for mapping
 vectors of any length.
 Instead of using concrete lengths in type signatures,
 we can also use *variables* as already seen in the definition of `Vect`.
-This allows us declare the general case:
+This allows us to declare the general case:
 
 ```idris
 mapVect' : (a -> b) -> Vect n a -> Vect n b
@@ -317,7 +317,7 @@ Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 #### Simplifying Type Errors
 
 It is amazing to experience the amount of work Idris can do
-for use and the amount of things it can infer on its own when
+for us and the amount of things it can infer on its own when
 things go well. When things don't go well, however, the
 error messages we get from Idris can
 be quite long and hard to understand, especially
@@ -340,8 +340,7 @@ will work.
 
 If this happens, prefixing overloaded function names with
 their namespaces can often simplify things, as Idris no
-longer needs to try and disambiguate between functions
-based on the types alone:
+longer needs to disambiguate these functions:
 
 ```repl
 Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil
@@ -396,7 +395,7 @@ for instance, leads to a type error:
 fill va = [va,va]
 ```
 
-The problem is, that the *callers of our function decide on
+The problem is, that *the callers of our function decide about
 the length of the resulting vector*. The full type of `fill` is
 actually the following:
 
@@ -422,8 +421,8 @@ replicate : (n : Nat) -> a -> Vect n a
 ```
 
 Now, `replicate` is a *dependent function type*: The output type
-*depends* on the value of one the arguments. It is now possible to
-implement `replicate` by pattern matching on `n`:
+*depends* on the value of one the arguments. It is straight forward
+to implement `replicate` by pattern matching on `n`:
 
 ```idris
 replicate 0     _  = []
@@ -435,7 +434,7 @@ indexed types: We can learn about the values of the indices
 by pattern matching on the values of the type family. However,
 in order to return a value of the type family from a function,
 we need to either know the values of the indices at compile
-time (see constants `ex1` or `ex2`, for instance), or we
+time (see constants `ex1` or `ex3`, for instance), or we
 need to have access to the values of the indices at runtime, in
 which case we can pattern match on them and learn from
 this, which constructor(s) of the type family to use.
@@ -492,7 +491,7 @@ this, which constructor(s) of the type family to use.
    the updated state in every new invocation of `fun`.
 
    Here's an example how this can be used to generate the first
-   `n` Fibonacci number:
+   `n` Fibonacci numbers:
 
    ```repl
    generate 10 (\(x,y) => let z = x + y in ((y,z),z)) (0,1)
@@ -507,7 +506,7 @@ this, which constructor(s) of the type family to use.
    fromList : (as : List a) -> Vect (length as) a
    ```
 
-   Note, how in the type of `fromList` we can *calculate* the
+   Note how, in the type of `fromList`, we can *calculate* the
    length of the resulting vector by passing the list argument
    to function *length*.
 
@@ -635,7 +634,7 @@ index (FS _) Nil impossible
    vector at the given index.
 
    This is trickier than Exercises 1 and 2, as we have to properly
-   encode in the types that the vector is getting an element shorter.
+   encode in the types that the vector is getting one element shorter.
 
 4. We can use `Fin` to implement safe indexing into `List`s as well. Try to
    come up with a type and implementation for `safeIndexList`.
@@ -676,6 +675,15 @@ as we will see in the next section.
 In the last section - especially in some of the exercises - we
 started more and more to use compile time computations to
 describe the types of our functions and values.
+This is a very powerful concept, as it allows us to
+compute output types from input types. Here's an example:
+
+It is possible to concatenate two `List`s with the `(++)`
+operator. Surely, this should also be possible for
+`Vect`. But `Vect` is indexed by its length, so we have
+to reflect in the types exactly how the lengths of the
+inputs affect the lengths of the output. Here's how to
+do this:
 
 ```idris
 (++) : Vect m a -> Vect n a -> Vect (m + n) a
@@ -683,15 +691,99 @@ describe the types of our functions and values.
 (++) (x :: xs) ys = x :: (xs ++ ys)
 ```
 
-```idris
-drop : (m : Nat) -> Vect (m + n) a -> Vect n a
-drop 0     xs        = xs
-drop (S k) (_ :: xs) = drop k xs
+We can also use type-level computations on the input
+types. Here is an alternative type and implementation
+for `drop`, which you implemented in the exercises by
+using a `Fin n` argument:
 
-take : (m : Nat) -> Vect (m + n) a -> Vect m a
-take 0     _         = []
-take (S k) (x :: xs) = x :: take k xs
+```idris
+drop' : (m : Nat) -> Vect (m + n) a -> Vect n a
+drop' 0     xs        = xs
+drop' (S k) (_ :: xs) = drop' k xs
 ```
+
+### Limitations
+
+After all the examples and exercises in this section
+you might have come to the conclusion that we can
+use arbitrary expressions in the types and Idris
+will happily evaluate and unify all of them for us.
+
+Nothing could be further from the truth. The examples
+in this section were hand-picked because they are known
+to *just work*. The reason being, that there was always
+a direct link between our own pattern matches and the
+implementations of functions we used at compile time.
+
+For instance, here is the implementation of addition of
+natural numbers:
+
+```idris
+add : Nat -> Nat -> Nat
+add Z     n = n
+add (S k) n = S $ add k n
+```
+
+As you can see, `add` is implemented via a pattern match
+on its *first* argument, while the second argument is never
+inspected. Note, how this is exactly how `(++)` for `Vect`
+is implemented: There, we also pattern match on the first
+argument, returning the second unmodified in the `Nil`
+case, and prepending the head to the result of appending
+the tail in the *cons* case. Since there is a direct
+correspondence between the two pattern matches, it
+is possible for Idris to unify `0 + n` with `n` in the
+`Nil` case, and `(S k) + n` with `S (k + n)` in the
+*cons* case.
+
+Here is a simple example, where Idris will not longer
+be convinced without some help from us:
+
+```repl
+reverse : Vect n a -> Vect n a
+reverse []        = []
+reverse (x :: xs) = reverse xs ++ [x]
+```
+
+When we type-check the above,
+Idris will fail with the following error message:
+"Can't solve constraint between: plus n 1 and S n."
+Here's what's going on: From the pattern match on the
+left hand side, Idris knows that the length of the
+vector is `S n`, for some natural number `n`
+corresponding to the length of `xs`. The length
+of the vector on the right hand side is `n + 1`,
+according to the type of `(++)` and the lengths
+of `xs` and `[x]`. Overloaded operator `(+)`
+is implemented via function `Prelude.plus`, that's
+why Idris replaces `(+)` with `plus` in the error message.
+
+As you can see from the above, Idris can't verify on
+its own that `1 + n` is the same thing as `n + 1`.
+It can accept some help from us, though. If we come
+up with a *proof* that the above equality holds
+(or - more generally - that our implementation of
+addition for natural numbers is *commutative*),
+we can use this proof to *rewrite* the types on
+the right hand side of `reverse`. Writing proofs and
+using `rewrite` will require some in-depth explanations
+and examples. Therefore, these things will have to wait
+until another tutorial.
+
+### Exercises
+
+1. Here is a function declaration for flattening a `List` of `List`s:
+
+   ```idris
+   flattenList : List (List a) -> List a
+   ```
+   
+   Implement `flattenList` and declare and implement a similar
+   function `flattenVect` for flattening vectors of vectors.
+
+2. Implement functions `take'` and `splitAt'` as in
+   the exercises of the previous section but using the
+   technique shown for `drop'`.
 
 <!-- vi: filetype=idris2
 -->

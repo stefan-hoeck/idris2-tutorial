@@ -78,6 +78,20 @@ data Fin : (n : Nat) -> Type where
   FZ : {0 n : Nat} -> Fin (S n)
   FS : (k : Fin n) -> Fin (S n)
 
+(++) : Vect m a -> Vect n a -> Vect (m + n) a
+(++) []        ys = ys
+(++) (x :: xs) ys = x :: (xs ++ ys)
+
+replicate : (n : Nat) -> a -> Vect n a
+replicate 0     _ = []
+replicate (S k) x = x :: replicate k x
+
+zipWith : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
+zipWith _ []        []        = []
+zipWith f (x :: xs) (y :: ys) = f x y :: zipWith f xs ys
+
+
+
 -- 1
 update : (a -> a) -> Fin n -> Vect n a -> Vect n a
 update f FZ     (x :: xs) = f x :: xs
@@ -131,3 +145,15 @@ splitAt :  (k : Fin (S n))
         -> Vect n a
         -> (Vect (finToNat k) a, Vect (minus n k) a)
 splitAt k xs = (take k xs, drop k xs)
+
+--------------------------------------------------------------------------------
+--          Compile-Time Computations
+--------------------------------------------------------------------------------
+
+join : Vect m (Vect n a) -> Vect (m * n) a
+join []          = []
+join (xs :: xss) = xs ++ join xss
+
+transform : {k : _} -> Vect m (Vect k a) -> Vect k (Vect m a)
+transform []          = replicate k []
+transform (xs :: xss) = zipWith (::) xs (transform xss)
