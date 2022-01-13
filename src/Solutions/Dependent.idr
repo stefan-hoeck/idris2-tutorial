@@ -150,10 +150,35 @@ splitAt k xs = (take k xs, drop k xs)
 --          Compile-Time Computations
 --------------------------------------------------------------------------------
 
+-- 1
 join : Vect m (Vect n a) -> Vect (m * n) a
 join []          = []
 join (xs :: xss) = xs ++ join xss
 
-transform : {k : _} -> Vect m (Vect k a) -> Vect k (Vect m a)
-transform []          = replicate k []
-transform (xs :: xss) = zipWith (::) xs (transform xss)
+-- 2
+take' : (m : Nat) -> Vect (m + n) a -> Vect m a
+take' 0     _         = []
+take' (S k) (x :: xs) = x :: take' k xs
+take' (S k) Nil impossible
+
+drop' : (m : Nat) -> Vect (m + n) a -> Vect n a
+drop' 0     xs        = xs
+drop' (S k) (x :: xs) = drop' k xs
+drop' (S k) Nil impossible
+
+splitAt' : (m : Nat) -> Vect (m + n) a -> (Vect m a, Vect n a)
+splitAt' m xs = (take' m xs, drop' m xs)
+
+-- 3
+-- Since we must call `replicate` in the `Nil` case, `k`
+-- must be a non-erased argument. I used an implicit argument here,
+-- since this reflects the type of the mathematical function
+-- more closely.
+--
+-- Empty matrices probably don't make too much sense,
+-- so we could also request at the type-level that `k` and `m`
+-- are non-zero, in which case both values could be derived
+-- by pattern matching on the vectors.
+transpose : {k : _} -> Vect m (Vect k a) -> Vect k (Vect m a)
+transpose []          = replicate k []
+transpose (xs :: xss) = zipWith (::) xs (transpose xss)

@@ -770,6 +770,66 @@ using `rewrite` will require some in-depth explanations
 and examples. Therefore, these things will have to wait
 until another tutorial.
 
+### Unrestricted Implicits
+
+In functions like `replicate`, we pass a natural number `n`
+as an explicit, unrestricted argument from which we infer
+the length of the vector to return.
+In some circumstances, `n` can be inferred from the context.
+For instance, in the following example it is tedious to
+pass `n` explicitly:
+
+```idris
+ex4 : Vect 3 Integer
+ex4 = zipWith (*) (replicate 3 10) (replicate 3 11)
+```
+
+The value `n` is clearly derivable from the context, which
+can be confirmed by replacing it with underscores:
+
+```idris
+ex5 : Vect 3 Integer
+ex5 = zipWith (*) (replicate _ 10) (replicate _ 11)
+```
+
+We therefore can implement an alternative version of `replicate`,
+where we pass `n` as an implicit argument of *unrestricted*
+quantity:
+
+```idris
+replicate' : {n : _} -> a -> Vect n a
+replicate' = replicate n
+```
+
+Note how, in the implementation of `replicate'`, we can refer to `n`
+and pass it as an explicit argument to `replicate`.
+
+Deciding, whether to pass inferable arguments to a function implicitly
+or explicitly is a question of how often the argument is inferable
+by Idris. Note, however, that even in case of an implicit argument,
+we can still pass the value explicitly:
+
+```idris
+ex6 : Vect ? Bool
+ex6 = replicate' {n = 2} True
+```
+
+In the type signature above, the question mark (`?`) means, that Idris
+should try and figure out the value on its own by unification.
+
+#### Pattern Matching on Implicits
+
+The implementation of `replicate'` makes use of function `replicate`,
+where we could pattern-match on the explicit argument `n`. However, it
+is also possible to pattern match on implicit, named arguments of
+non-zero quantity:
+
+```idris
+replicate'' : {n : _} -> a -> Vect n a
+replicate'' {n = Z}   _ = Nil
+replicate'' {n = S _} v = v :: replicate'' v
+```
+
 ### Exercises
 
 1. Here is a function declaration for flattening a `List` of `List`s:
@@ -784,6 +844,53 @@ until another tutorial.
 2. Implement functions `take'` and `splitAt'` as in
    the exercises of the previous section but using the
    technique shown for `drop'`.
+
+3. Implement function `transpose` for converting an
+   `m x n`-matrix (represented as a `Vect m (Vect n a)`)
+   to an `n x m`-matrix.
+
+   Note: This might be a challenging exercise, but make sure
+   to give it a try. As usual, make use of holes if you get stuck!
+
+   Here is an example how this should work in action:
+
+   ```repl
+   Solutions.Dependent> transpose [[1,2,3],[4,5,6]]
+   [[1, 4], [2, 5], [3, 6]]
+   ```
+
+## Conclusion
+
+* Dependent types allow us to calculate types from values.
+  This makes it possible to encode properties of values
+  at the type-level and verify these properties at compile
+  time.
+
+* Length-indexed lists (vectors) let us rule out certain implementation
+  errors, by forcing us to be precise about the length of input
+  and output vectors.
+
+* We can use patterns in type signatures, for instance to
+  express that the length of a vector is non-zero and therefore,
+  the vector is non-empty.
+
+* When creating values of a type family, the values of the indices
+  need to be known at compile time, or they need to be passed as
+  arguments to the function creating the values, where we can
+  pattern-match on them to figure out, which constructors to use.
+
+* We can use `Fin n`, the type of natural numbers strictly smaller
+  than `n`, to safely index into a vector of length `n`.
+
+* Sometimes, it is convenient to pass inferable arguments as
+  non-erased implicits, in which case we can still inspect them
+  by pattern matching or pass them to other functions, while Idris
+  will try and fill in the values for us.
+
+### What's next
+
+In the next section, it is time to learn how to write effectful programs
+and how to do this while still staying *pure*.
 
 <!-- vi: filetype=idris2
 -->
