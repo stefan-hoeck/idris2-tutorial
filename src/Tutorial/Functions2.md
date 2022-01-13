@@ -311,7 +311,7 @@ be explicitly typed and indented by the same amount of whitespace.
 Local definitions can also be introduce *before* a function's
 implementation by using the `let` keyword. This usage
 of `let` is not to be confused with *let bindings* described
-above, which are used to bind and reused the results of intermediate
+above, which are used to bind and reuse the results of intermediate
 computations. Below is how we could have implemented `handleRequest` with
 local definitions introduced by the `let` keyword. Again,
 all definitions have to be properly typed and indented:
