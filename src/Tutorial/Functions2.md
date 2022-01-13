@@ -19,7 +19,7 @@ module Tutorial.Functions2
 %default total
 ```
 
-## `let` Bindings and `where` Blocks
+## Let Bindings and Local Definitions
 
 The functions we looked at so far where simple enough
 to be implemented directly via pattern matching
@@ -303,10 +303,38 @@ in the surrounding scope. For instance, `lookupUser` uses the
 first line. Likewise, `lookupAlbum` makes use of the `album`
 variable.
 
-Unlike in a `let` binding where we can often omit explicit
-type annotations, local functions in a `where` block need to
-be explicitly typed. Also, all functions in a `where` block
-must be indented by the same amount of whitespace.
+A `where` block introduces new local definitions, accessible
+only from the surrounding scope and from other functions
+defined later in the same `where` block. These need to
+be explicitly typed and indented by the same amount of whitespace.
+
+Local definitions can also be introduce *before* a function's
+implementation by using the `let` keyword. This usage
+of `let` is not to be confused with *let bindings* described
+above, which are used to bind and reused the results of intermediate
+computations. Below is how we could have implemented `handleRequest` with
+local definitions introduced by the `let` keyword. Again,
+all definitions have to be properly typed and indented:
+
+```idris
+handleRequest' : DB -> Request -> Response
+handleRequest' db (MkRequest (MkCredentials email pw) album) =
+  let lookupUser : List User -> Maybe User
+      lookupUser []        = Nothing
+      lookupUser (x :: xs) =
+        if x.email == email then Just x else lookupUser xs
+
+      lookupAlbum : List Album -> Response
+      lookupAlbum []        = AccessDenied email album
+      lookupAlbum (x :: xs) =
+        if x == album then Success album else lookupAlbum xs
+
+   in case lookupUser db of
+        Just (MkUser _ _ password albums)  =>
+          if password == pw then lookupAlbum albums else InvalidPassword
+
+        Nothing => UnknownUser email
+```
 
 ### Exercises
 
@@ -883,7 +911,7 @@ should get yourselves accustomed to programming with holes and let the
 type checker help you figure out what to do next.
 
 * When in need of local utility functions, consider defining them
-in a *where block*.
+as local definitions in a *where block*.
 
 * Use *let expressions* to define and reuse local variables.
 
