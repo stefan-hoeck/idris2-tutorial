@@ -908,7 +908,7 @@ variables in their context.
 
 ### What's next
 
-In the next chapter
+In the [next chapter](Dependent.md)
 we'll start using dependent types to help us write provably correct code.
 Having a good understanding of how to read
 Idris' type signatures will be of paramount importance there. Whenever

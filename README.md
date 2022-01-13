@@ -37,3 +37,4 @@ new to functional programming.
    3. [Algebraic Data Types](src/Tutorial/DataTypes.md)
    4. [Interfaces](src/Tutorial/Interfaces.md)
    5. [Functions Part 2](src/Tutorial/Functions2.md)
+   6. [Dependent Types](src/Tutorial/Dependent.md)
