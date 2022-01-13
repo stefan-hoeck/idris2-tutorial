@@ -1041,7 +1041,7 @@ signature are treated as type parameters.
    
    total
    fromEither : (e -> c) -> (a -> c) -> Either e a -> c
-```
+   ```
 
 3. Implement the following generic functions for `List`:
 
