@@ -268,7 +268,7 @@ Anonymous functions are sometimes also called *lambdas* (from
 and the backslash is chosen since it resembles the Greek
 letter *lambda*. The `\n =>` syntax introduces a new anonymous
 function of one argument called `n`, the implementation of
-which is on the right hand side of the function error.
+which is on the right hand side of the function arrow.
 Like other top level functions, lambdas can have more
 than one arguments, separated by commas: `\x,y => x * x + y`.
 When we pass lambdas as arguments to higher order functions,
