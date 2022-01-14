@@ -899,7 +899,7 @@ library. Likewise, `Fin` is available from `Data.Fin` from *base*.
 
 ### What's next
 
-In the next section, it is time to learn how to write effectful programs
+In the [next section](IO.md), it is time to learn how to write effectful programs
 and how to do this while still staying *pure*.
 
 <!-- vi: filetype=idris2

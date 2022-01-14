@@ -15,5 +15,6 @@ modules = Solutions.Dependent
         , Tutorial.Dependent
         , Tutorial.Interfaces
         , Tutorial.Intro
+        , Tutorial.IO
         , Tutorial.Functions1
         , Tutorial.Functions2

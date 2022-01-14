@@ -38,3 +38,4 @@ new to functional programming.
    4. [Interfaces](src/Tutorial/Interfaces.md)
    5. [Functions Part 2](src/Tutorial/Functions2.md)
    6. [Dependent Types](src/Tutorial/Dependent.md)
+   7. [IO: Programming with Side Effects](src/Tutorial/IO.md)
