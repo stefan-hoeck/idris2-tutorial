@@ -46,11 +46,8 @@ Idris knows nothing about the implementations of foreign functions
 and therefore can't reduce foreign function calls, unless they are
 built into the compiler itself. But even then, values of type `IO a`
 (`a` being a type parameter) are typically not reduced.
-We will quickly look at how `IO` is implemented
-at the end of this tutorial, where we will also see, why these values
-can't be reduced any further.
 
-For now, it is important to understand that values of type `IO a` *describe*
+It is important to understand that values of type `IO a` *describe*
 a program, which, when being *executed*, will return a value of type `a`,
 after performing arbitrary side effects along the way. For instance,
 `putStrLn` has type `String -> IO ()`. Read this as: "`putStrLn` is a function,
@@ -62,7 +59,7 @@ for which we can also use `()` in our code.)
 
 Since values of type `IO a` are mere descriptions of effectful computations,
 functions returning such values or taking such values as
-arguments are still *pure* and referentially transparent.
+arguments are still *pure* and thus referentially transparent.
 It is, however, not possible to extract a value of type `a` from
 a value of type `IO a`, that is, there is no generic function `IO a -> a`,
 as such a function would inadvertently execute the side
@@ -166,8 +163,8 @@ the action was not executed, and we are (probably) still here.
 
 From this example we learn several things:
 
-  * Values of type `IO a` are *pure descriptions* of programs, which
-    - when being *executed* - perform arbitrary side effects before
+  * Values of type `IO a` are *pure descriptions* of programs, which,
+    when being *executed*, perform arbitrary side effects before
     returning a value of type `a`.
 
   * Values of type `IO a` can be safely returned from functions and
@@ -179,7 +176,7 @@ From this example we learn several things:
 
   * An `IO` action will only ever get executed when it's passed to
     `:exec` at the REPL, or when it is the `main` function of
-    a compiled Idris program, that's being executed.
+    a compiled Idris program that is being executed.
 
   * It is not possible to ever break out of the `IO` context: There
     is no function of type `IO a -> a`, as such a function would
@@ -201,7 +198,7 @@ for instance `12 + 13`.
 We are going to use function `split` from `Data.String` in
 *base* to tokenize arithmetic expressions. We are then trying
 to parse the two integer values and the operator. These operations
-might fail, since user input can be invalid, so we need an
+might fail, since user input can be invalid, so we also need an
 error type. We could actually just use `String`, but I
 consider it to be good practice to use custom sum types
 for erroneous conditions.
@@ -241,7 +238,7 @@ expressions. This consists of several steps (splitting the
 input string, parsing each literal), each of which can fail.
 Later, when we learn about monads, we will see that do
 blocks can be used in such occasions just as well. However,
-in this case we can an alternative syntactic convenience:
+in this case we can use an alternative syntactic convenience:
 Pattern matching in let bindings. Here is the code:
 
 ```idris
@@ -278,8 +275,9 @@ available in *do blocks*.
 Note, how all of the functionality implemented so far is
 *pure*, that is, it does not describe computations with
 side effects. (One could argue that already the possibility
-of failure is an *effect*, but even then, the code above
-can be easily tested at the REPL or evaluated at
+of failure is an observable *effect*, but even then, the code above
+is still referentially transparent,
+can be easily tested at the REPL, and evaluated at
 compile time, which is the important thing here.)
 
 Finally, we can wrap this functionality in an `IO`
@@ -318,16 +316,16 @@ but your program might still loop due to unrestricted
 recursion.
 
 1. Implement function `rep`, which will read a line
-   of input from the terminal, convert it using the
-   given function, and print the result to standard out:
+   of input from the terminal, evaluate it using the
+   given function, and print the result to standard output:
 
    ```idris
    rep : (String -> String) -> IO ()
    ```
 
 2. Implement function `repl`, which behaves just like `rep`
-   but will keep repeating its behavior until being force
-   fully terminated:
+   but will keep repeating its behavior until being forcefully
+   terminated:
 
    ```idris
    covering
@@ -347,7 +345,7 @@ recursion.
 4. Write a program, which reads arithmetic
    expressions from standard input, evaluates them
    using `eval`, and prints the result to standard
-   output. The program should loop until the
+   output. The program should loop until
    users stops it by entering "done", in which case
    the program should terminate with a friendly greeting.
    Use `replTill` in your implementation.
@@ -356,7 +354,8 @@ recursion.
    but uses some internal state to accumulate values.
    At each iteration (including the very first one!),
    the current state should be printed
-   to standard output using function `dispState`.
+   to standard output using function `dispState`, and
+   the next state should be computed using function `next`.
    The loop should terminate in case of a `Left` and
    print a final message using `dispResult`:
 
