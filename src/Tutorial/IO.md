@@ -374,5 +374,156 @@ recursion.
    The program should terminate in case of invalid input
    and if a user enters "done".
 
+## Do Blocks, Desugared
+
+Here's an important piece of information: There is nothing
+special about *do blocks*. They are just syntactic sugar,
+which is converted to a sequence of operator applications.
+With [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar),
+we mean syntax in a programming language that makes it
+easier to express certain things in that language without
+making the language itself any more powerful or expressive.
+Here, it means you could write all the `IO` programs
+without using `do` notation, but the code you'll write
+will sometimes be harder to read, so *do blocks* provide
+nicer syntax for these occasions.
+
+Consider the following example program:
+
+```idris
+sugared1 : IO ()
+sugared1 = do
+  str1 <- getLine
+  str2 <- getLine
+  str3 <- getLine
+  putStrLn (str1 ++ str2 ++ str3)
+```
+
+The compiler will convert this to the following program
+*before disambiguating function names and type checking*:
+
+```idris
+desugared1 : IO ()
+desugared1 =
+  getLine >>= (\str1 =>
+    getLine >>= (\str2 =>
+      getLine >>= (\str3 =>
+        putStrLn (str1 ++ str2 ++ str3)
+      )
+    )
+  )
+```
+
+There is a new operator (`(>>=)`) called *bind* in the
+implementation of `desugared1`. If you look at its type
+at the REPL, you'll see the following:
+
+```repl
+Main> :t (>>=)
+Prelude.>>= : Monad m => m a -> (a -> m b) -> m b
+```
+
+This is a constrained function requiring an interface called `Monad`.
+We will talk about `Monad` and some of its friends in the next
+chapter. Specialized to `IO`, *bind* has the following type:
+
+```repl
+Main> :t (>>=) {m = IO}
+>>= : IO a -> (a -> IO b) -> IO b
+```
+
+This describes a sequencing of `IO` action. Upon execution,
+the first `IO` action is being run and its result is
+being passed as an argument to the function generating
+the second `IO` action, which is the also being executed.
+
+You might remember, that you already implemented something
+similar in an earlier exercise: In [Algebraic Data Types](DataTypes.md),
+you implemented *bind* for `Maybe` and `Either e`. We will
+learn in the next chapter, that `Maybe` and `Either e` too come
+with an implementation of `Monad`. For now, suffice to say
+that `Monad` allows us to run computations with some kind
+of effect in sequence by passing the *result* of the
+first computation to the function returning the
+second computation. In `desugared1` you can see, how
+we first perform an `IO` action and pass its result
+to the next `IO` action and so on.
+
+Since *do block* are always desugared to sequences of
+applied *bind* operators, we can use them to chain
+any monadic computation. For instance, we can rewrite
+function `eval` by using a *do block* like so:
+
+```idris
+evalDo : String -> Either Error Integer
+evalDo s = case forget $ split isSpace s of
+  [x,y,z] => do
+    v1 <- readInteger x
+    op <- readOperator y
+    v2 <- readInteger z
+    Right $ op v1 v2
+  _       => Left (ParseError s)
+```
+
+Don't worry, if this doesn't make too much sense yet. We will
+see many more examples, and you'll get the hang of this
+soon enough. The important thing to remember is how *do
+blocks* are always converted to sequences of *bind*
+operators as shown in `desugared1`.
+
+### Do, Overloaded
+
+As Idris supports function and operator overloading, we
+can write custom *bind* operators, which allows us to
+use *do notation* for types without an implementation
+of `Monad`.
+
+For instance, here is a custom implementation for
+`(>>=)` for sequencing computations returning vectors.
+Every value in the first vector (of length `m`)
+will be converted to a vector of length `n`, and
+the results will be concatenated leading to
+a vector of length `m * n`:
+
+```idris
+flatten : Vect m (Vect n a) -> Vect (m * n) a
+flatten []        = []
+flatten (x :: xs) = x ++ flatten xs
+
+(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b
+as >>= f = flatten (map f as)
+```
+
+It is not possible to write an implementation of `Monad`,
+which encapsulates this behavior, as the types wouldn't
+match: The *bind* operator specialized to `Vect` has
+type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you
+see, the sizes of all three occurrences of `Vect`
+have to be the same, which is not what we expressed
+in our custom *bind* operator.
+
+Here it is in action:
+
+```idris
+modString : String -> Vect 4 String
+modString s = [s, reverse s, toUpper s, toLower s]
+
+testDo : Vect 24 String
+testDo = IO.do
+  s1 <- ["Hello", "World"]
+  s2 <- [1, 2, 3]
+  modString (s1 ++ show s2)
+```
+
+Try to figure out how `testDo` works by desugaring it
+manually and then compare its result with what you
+expected at the REPL. Note, how we helped Idris disambiguate,
+which version of the *bind* operator to use by prefixing
+the `do` keyword with part of the operator's namespace.
+In this case, this wasn't strictly necessary, although
+`Vect k` does have an implementation of `Monad`, but it is
+still good to know that it is possible to help
+the compiler with disambiguating do blocks.
+
 <!-- vi: filetype=idris2
 -->
