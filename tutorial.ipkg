@@ -8,6 +8,7 @@ depends    = base         >= 0.5.1
 modules = Solutions.Dependent
         , Solutions.Functions1
         , Solutions.Functions2
+        , Solutions.IO
         , Solutions.Interfaces
         , Solutions.DataTypes
 

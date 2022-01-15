@@ -198,6 +198,14 @@ keep things simple and allow only expressions with a single
 operator and two arguments, both of which must be integers,
 for instance `12 + 13`.
 
+We are going to use function `split` from `Data.String` in
+*base* to tokenize arithmetic expressions. We are then trying
+to parse the two integer values and the operator. These operations
+might fail, since user input can be invalid, so we need an
+error type. We could actually just use `String`, but I
+consider it to be good practice to use custom sum types
+for erroneous conditions.
+
 ```idris
 data Error : Type where
   NotAnInteger    : (value : String) -> Error
@@ -208,33 +216,164 @@ dispError : Error -> String
 dispError (NotAnInteger v)    = "Not an integer: " ++ v ++ "."
 dispError (UnknownOperator v) = "Unknown operator: " ++ v ++ "."
 dispError (ParseError v)      = "Invalid expression: " ++ v ++ "."
+```
 
+In order to parse integer literals, we use function `parseInteger`
+from `Data.String`:
+
+```idris
 readInteger : String -> Either Error Integer
-readInteger "0" = Right 0
-readInteger s =
-  case cast {to = Integer} s of
-    0 => Left (NotAnInteger s)
-    n => Right n
+readInteger s = maybe (Left $ NotAnInteger s) Right $ parseInteger s
+```
 
+Likewise, we declare and implement a function for parsing
+arithmetic operators:
+
+```idris
 readOperator : String -> Either Error (Integer -> Integer -> Integer)
 readOperator "+" = Right (+)
 readOperator "*" = Right (*)
 readOperator s   = Left (UnknownOperator s)
+```
 
+We are now ready to parse and evaluate simple arithmetic
+expressions. This consists of several steps (splitting the
+input string, parsing each literal), each of which can fail.
+Later, when we learn about monads, we will see that do
+blocks can be used in such occasions just as well. However,
+in this case we can an alternative syntactic convenience:
+Pattern matching in let bindings. Here is the code:
+
+```idris
 eval : String -> Either Error Integer
 eval s =
-  let (s1 ::: [s2,s3]) := split isSpace s | _ => Left (ParseError s)
-      Right v1 := readInteger s1  | Left e => Left e
-      Right op := readOperator s2 | Left e => Left e
-      Right v2 := readInteger s3  | Left e => Left e
+  let [x,y,z]  := forget $ split isSpace s | _ => Left (ParseError s)
+      Right v1 := readInteger x  | Left e => Left e
+      Right op := readOperator y | Left e => Left e
+      Right v2 := readInteger z  | Left e => Left e
    in Right $ op v1 v2
+```
 
+Let's break this down a bit. On the first line, we split
+the input string at all white space occurrences. Since
+`split` returns a `List1` (a type for non-empty lists
+exported from `Data.List1` in *base*) but pattern matching
+on `List` is more convenient, we convert the result using
+`Data.List1.forget`. Note, how we use a pattern match
+on the left hand side of the assignment operator `:=`.
+This would be a non-covering pattern match, therefore we have
+to deal with the other possibilities as well, which is
+done after the vertical line. This can be read as follows:
+"If the pattern match on the left hand side is successful,
+and we get a list of exactly three tokens, continue with
+the `let` expression, otherwise return a `ParseError` in
+a `Left`".
+
+The other three lines behave exactly the same: Each has
+a partial pattern match on the left hand side with
+instructions what to return in case of invalid input after
+the vertical bar. We will later see, that this syntax is also
+available in *do blocks*.
+
+Note, how all of the functionality implemented so far is
+*pure*, that is, it does not describe computations with
+side effects. (One could argue that already the possibility
+of failure is an *effect*, but even then, the code above
+can be easily tested at the REPL or evaluated at
+compile time, which is the important thing here.)
+
+Finally, we can wrap this functionality in an `IO`
+action, which reads a string from standard input
+and tries to evaluate the arithmetic expression:
+
+```idris
 exprProg : IO ()
 exprProg = do
   s <- getLine
   case eval s of
-    Left err  => putStrLn (dispError err)
+    Left err  => do
+      putStrLn "An error occured:"
+      putStrLn (dispError err)
     Right res => putStrLn (s ++ " = " ++ show res)
 ```
+
+Note, how in `exprProg` we were forced to deal with the
+possibility of failure and handle both constructors
+of `Either` differently in order to print a result.
+Note also, that *do blocks* are ordinary expressions,
+and we can, for instance, start a new *do block* on 
+the right hand side of a case expression.
+
+### Exercises
+
+In these exercises, you are going to implement some
+small command line applications. Some of these will potentially
+run forever, as they will only stop when the user enters
+a keyword for quitting the application. Such programs
+are no longer provably total. If you added the
+`%default total` pragma at the top of your source file,
+you'll need to annotate these functions with `covering`,
+meaning that you covered all cases in all pattern matches
+but your program might still loop due to unrestricted
+recursion.
+
+1. Implement function `rep`, which will read a line
+   of input from the terminal, convert it using the
+   given function, and print the result to standard out:
+
+   ```idris
+   rep : (String -> String) -> IO ()
+   ```
+
+2. Implement function `repl`, which behaves just like `rep`
+   but will keep repeating its behavior until being force
+   fully terminated:
+
+   ```idris
+   covering
+   repl : (String -> String) -> IO ()
+   ```
+
+3. Implement function `replTill`, which behaves just like `repl`
+   but will only continue looping if the given function returns
+   a `Right`. If it returns a `Left`, `replTill` should print
+   the final message wrapped in the `Left` and then stop.
+
+   ```idris
+   covering
+   replTill : (String -> Either String String) -> IO ()
+   ```
+
+4. Write a program, which reads arithmetic
+   expressions from standard input, evaluates them
+   using `eval`, and prints the result to standard
+   output. The program should loop until the
+   users stops it by entering "done", in which case
+   the program should terminate with a friendly greeting.
+   Use `replTill` in your implementation.
+
+5. Implement function `replWith`, which behaves just like `repl`
+   but uses some internal state to accumulate values.
+   At each iteration (including the very first one!),
+   the current state should be printed
+   to standard output using function `dispState`.
+   The loop should terminate in case of a `Left` and
+   print a final message using `dispResult`:
+
+   ```idris
+   covering
+   replWith :  (state      : s)
+            -> (next       : s -> String -> Either res s)
+            -> (dispState  : s -> String)
+            -> (dispResult : res -> s -> String)
+            -> IO ()
+   ```
+
+6. Use `replWith` from Exercise 5 to write a program
+   for reading natural numbers from standard input and
+   printing the accumulated sum of these numbers.
+   The program should terminate in case of invalid input
+   and if a user enters "done".
+
 <!-- vi: filetype=idris2
 -->
