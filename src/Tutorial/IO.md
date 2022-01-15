@@ -500,9 +500,9 @@ match: The *bind* operator specialized to `Vect` has
 type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you
 see, the sizes of all three occurrences of `Vect`
 have to be the same, which is not what we expressed
-in our custom *bind* operator.
+in our version of *bind*.
 
-Here it is in action:
+Below you see our custom *bind* operator in action:
 
 ```idris
 modString : String -> Vect 4 String
