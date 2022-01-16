@@ -1,6 +1,6 @@
 # IO: Programming with Side Effects
 
-So far, all examples and exercises dealt with pure, total functions.
+So far, all our examples and exercises dealt with pure, total functions.
 We didn't read or write content from or to files, nor did
 we write any messages to the standard output. It is time to change
 that and learn, how we can write effectful programs in Idris.
@@ -76,7 +76,7 @@ have descriptions of effectful programs without being able to run them.
 So please, hear me out. While we are not able to run values of type
 `IO a` when writing programs, that is, there is no function of
 type `IO a -> a`, we are able to chain such computations and describe more
-complex programs. Idris provides special syntax for this: Do blocks.
+complex programs. Idris provides special syntax for this: *Do blocks*.
 Here's an example:
 
 ```idris
@@ -106,14 +106,14 @@ intermediary results to variables using arrows pointing
 to the left (`<-`), which can then be used in later
 `IO` actions. This concept is powerful enough to let us encapsulate arbitrary
 programs with side effects in a single value of type `IO`. Such a
-description can be returned by function `main`, the main entry point
+description can then be returned by function `main`, the main entry point
 to an Idris program, which is being executed when we run a compiled
 Idris binary.
 
 ### The Difference between Program Description and Execution
 
 In order to better understand the difference between *describing*
-an effectful computation and *executing* it, here is a small
+an effectful computation and *executing* or *running* it, here is a small
 program:
 
 ```idris
@@ -140,6 +140,15 @@ readHellos : IO ()
 readHellos = runActions actions
 ```
 
+Before I explain what the code above does, please note function
+`pure` used in the implementation of `runActions`. It is
+a constrained function, about which we will learn in the next
+chapter. Specialized to `IO`, it has generic type `a -> IO a`:
+It allows us to wrap a value in an `IO` action. The resulting
+`IO` program will just return the wrapped value without performing
+any side effects. We can now look at the big picture of what's
+going on in `readHellos`.
+
 First, we define a friendlier version of `readHello`: When executed, this will
 ask about our name explicitly. Since we will not use the result
 of `putStrLn` any further, we can use an underscore as a catch-all
@@ -149,7 +158,7 @@ destruction of planet earth.
 
 Now, `runActions` is the function we use to
 demonstrate that *describing* an `IO` action is not the
-same as *executing* it. It will drop the first action from
+same as *running* it. It will drop the first action from
 the non-empty vector it takes as its
 argument and return a new `IO` action, which describes the
 execution of the remaining `IO` actions in sequence. If this behaves
@@ -157,7 +166,7 @@ as expected, the first `IO` action passed to `runActions` should be
 silently dropped together with all its potential side effects.
 
 When we execute `readHellos` at the REPL, we will be asked for our
-name twice, although `actions` contains also `launchMissiles` at the
+name twice, although `actions` also contains `launchMissiles` at the
 beginning. Luckily, although we described how to destroy the planet, 
 the action was not executed, and we are (probably) still here.
 
@@ -432,10 +441,10 @@ Main> :t (>>=) {m = IO}
 >>= : IO a -> (a -> IO b) -> IO b
 ```
 
-This describes a sequencing of `IO` action. Upon execution,
+This describes a sequencing of `IO` actions. Upon execution,
 the first `IO` action is being run and its result is
 being passed as an argument to the function generating
-the second `IO` action, which is the also being executed.
+the second `IO` action, which is then also being executed.
 
 You might remember, that you already implemented something
 similar in an earlier exercise: In [Algebraic Data Types](DataTypes.md),
@@ -447,7 +456,10 @@ of effect in sequence by passing the *result* of the
 first computation to the function returning the
 second computation. In `desugared1` you can see, how
 we first perform an `IO` action and pass its result
-to the next `IO` action and so on.
+to the next `IO` action and so on. The code is somewhat
+hard to read, since we use several layers of nested
+anonymous function, that's why in such cases, *do blocks*
+are a nice alternative to express the same functionality.
 
 Since *do block* are always desugared to sequences of
 applied *bind* operators, we can use them to chain
@@ -473,12 +485,10 @@ operators as shown in `desugared1`.
 
 ### Do, Overloaded
 
-As Idris supports function and operator overloading, we
+Because Idris supports function and operator overloading, we
 can write custom *bind* operators, which allows us to
 use *do notation* for types without an implementation
-of `Monad`.
-
-For instance, here is a custom implementation for
+of `Monad`. For instance, here is a custom implementation for
 `(>>=)` for sequencing computations returning vectors.
 Every value in the first vector (of length `m`)
 will be converted to a vector of length `n`, and
@@ -496,13 +506,12 @@ as >>= f = flatten (map f as)
 
 It is not possible to write an implementation of `Monad`,
 which encapsulates this behavior, as the types wouldn't
-match: The *bind* operator specialized to `Vect` has
+match: The monadic *bind* specialized to `Vect` has
 type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you
 see, the sizes of all three occurrences of `Vect`
 have to be the same, which is not what we expressed
-in our version of *bind*.
-
-Below you see our custom *bind* operator in action:
+in our custom version of *bind*. Here is an example to
+see this in action:
 
 ```idris
 modString : String -> Vect 4 String
@@ -516,7 +525,7 @@ testDo = IO.do
 ```
 
 Try to figure out how `testDo` works by desugaring it
-manually and then compare its result with what you
+manually and then comparing its result with what you
 expected at the REPL. Note, how we helped Idris disambiguate,
 which version of the *bind* operator to use by prefixing
 the `do` keyword with part of the operator's namespace.
@@ -524,6 +533,76 @@ In this case, this wasn't strictly necessary, although
 `Vect k` does have an implementation of `Monad`, but it is
 still good to know that it is possible to help
 the compiler with disambiguating do blocks.
+
+#### Modules and Namespaces
+
+Every data type, function, and operator can be unambiguously
+identified by prefixing it with its *namespace*. A function's
+namespace typically is the same as the module where it was defined.
+For instance, the fully qualified name of function `eval`
+would be `Tutorial.IO.eval`. Function and operator names must
+be unique in their namespace.
+
+As we already learned, Idris can often disambiguate between
+functions with the same name but defined in different namespaces
+based on the types involved. If this is not possible, we can help
+the compiler by *prefixing* the function or operator name with
+a *suffix* of the full namespace. Let's demonstrate this in
+a REPL session:
+
+```repl
+Tutorial.IO> :t (>>=)
+Prelude.>>= : Monad m => m a -> (a -> m b) -> m b
+Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b
+```
+
+As you can see, if we load this module in a REPL session and
+inspect the type of `(>>=)`, we get two results as two
+operators with this name are in scope. If we only want
+the REPL to print the type of our custom *bind* operator,
+is is sufficient to prefix it with `IO`, although we could
+also prefix it with its full namespace:
+
+```repl
+Tutorial.IO> :t IO.(>>=)
+Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b
+Tutorial.IO> :t Tutorial.IO.(>>=)
+Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b
+```
+
+Since function names must be unique in their namespace and
+we still want to define two overloaded versions of a function
+in an Idris module, Idris makes it possible to add
+additional namespaces to modules. For instance, in order
+to define another function called `eval`, we need to add
+it to its own namespace:
+
+```idris
+namespace Foo
+  export
+  eval : Nat -> Nat -> Nat
+  eval = (*)
+```
+
+Now, here is an important thing: For functions and data types to
+be accessible from outside of their namespace, they need to
+be *exported* by annotating them with the `export` or `public export`
+keywords.
+
+The difference between `export` and `public export` is the following:
+A function annotated with `export` exports its type and can be
+called from other namespaces. A data type annotated with `export`
+exports its type constructor but not its data constructors.
+A function annotated with `public export` also exports its
+implementation. This is necessary to use the function in compile-time
+computations. A data type annotated with `public export`
+exports its data constructors as well.
+
+In general, consider annotating data types with `public export`,
+since otherwise you will not be able construct values of these
+types or deconstruct them in pattern matches. Likewise, unless you
+plan to use your functions in compile-time computations, annotate
+them with `export`.
 
 <!-- vi: filetype=idris2
 -->
