@@ -506,7 +506,7 @@ as >>= f = flatten (map f as)
 
 It is not possible to write an implementation of `Monad`,
 which encapsulates this behavior, as the types wouldn't
-match: The monadic *bind* specialized to `Vect` has
+match: Monadic *bind* specialized to `Vect` has
 type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you
 see, the sizes of all three occurrences of `Vect`
 have to be the same, which is not what we expressed
@@ -536,7 +536,7 @@ the compiler with disambiguating do blocks.
 
 #### Modules and Namespaces
 
-Every data type, function, and operator can be unambiguously
+Every data type, function, or operator can be unambiguously
 identified by prefixing it with its *namespace*. A function's
 namespace typically is the same as the module where it was defined.
 For instance, the fully qualified name of function `eval`
@@ -547,8 +547,7 @@ As we already learned, Idris can often disambiguate between
 functions with the same name but defined in different namespaces
 based on the types involved. If this is not possible, we can help
 the compiler by *prefixing* the function or operator name with
-a *suffix* of the full namespace. Let's demonstrate this in
-a REPL session:
+a *suffix* of the full namespace. Let's demonstrate this at the REPL:
 
 ```repl
 Tutorial.IO> :t (>>=)
@@ -571,21 +570,27 @@ Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b
 ```
 
 Since function names must be unique in their namespace and
-we still want to define two overloaded versions of a function
+we still may want to define two overloaded versions of a function
 in an Idris module, Idris makes it possible to add
 additional namespaces to modules. For instance, in order
 to define another function called `eval`, we need to add
-it to its own namespace:
+it to its own namespace (note, that all definitions in a
+namespace must be indented by the same amount of
+white space):
 
 ```idris
 namespace Foo
   export
   eval : Nat -> Nat -> Nat
   eval = (*)
+
+-- prefixing `eval` with its namespace is not strictly necessary here
+testFooEval : Nat
+testFooEval = Foo.eval 12 100
 ```
 
 Now, here is an important thing: For functions and data types to
-be accessible from outside of their namespace, they need to
+be accessible from outside their namespace or module, they need to
 be *exported* by annotating them with the `export` or `public export`
 keywords.
 
@@ -599,10 +604,190 @@ computations. A data type annotated with `public export`
 exports its data constructors as well.
 
 In general, consider annotating data types with `public export`,
-since otherwise you will not be able construct values of these
+since otherwise you will not be able to create values of these
 types or deconstruct them in pattern matches. Likewise, unless you
 plan to use your functions in compile-time computations, annotate
 them with `export`.
+
+### Bind, with a Bang!
+
+Sometimes, even *do blocks* are too noisy to express a
+combination of effectful computations. In this case, we
+can prefix the effectful parts with an exclamation mark
+(wrapping them in parentheses if they contain additional
+white space), while leaving pure expressions unmodified:
+
+```idris
+getHello : IO ()
+getHello = putStrLn $ "Hello " ++ !getLine ++ "!"
+```
+
+The above gets desugared to the following *do block*:
+
+```idris
+getHello' : IO ()
+getHello' = do
+  s <- getLine
+  putStrLn $ "Hello " ++ s ++ "!"
+```
+
+Here is another example:
+
+```idris
+bangExpr : String -> String -> String -> Maybe Integer
+bangExpr s1 s2 s3 =
+  Just $ !(parseInteger s1) + !(parseInteger s2) * !(parseInteger s3)
+```
+
+And here is the desugared *do block*:
+
+```idris
+bangExpr' : String -> String -> String -> Maybe Integer
+bangExpr' s1 s2 s3 = do
+  x1 <- parseInteger s1
+  x2 <- parseInteger s2
+  x3 <- parseInteger s3
+  Just $ x1 + x2 * x3
+```
+
+Please remember the following: Syntactic sugar has been introduced
+to make code more readably or more convenient to write. If
+it is abused just to show how clever you are, you make things
+harder for other people (including your future self!)
+reading and trying to understand your code.
+
+
+### Exercises
+
+1. Reimplement the following *do blocks*, once by using
+   *bang notation*, and once by writing them in their
+   desugared form with nested *bind*s:
+
+
+   ```idris
+   ex1a : IO String
+   ex1a = do
+     s1 <- getLine
+     s2 <- getLine
+     s3 <- getLine
+     pure $ s1 ++ reverse s2 ++ s3
+
+   ex1b : Maybe Integer
+   ex1b = do
+     n1 <- parsetInteger "12"
+     n2 <- parsetInteger "300"
+     Just $ n1 + n2 * 100
+   ```
+
+2. Below is the definition of an indexed family of types,
+   the index of which keeps track of whether the value in
+   question is possibly empty or provably non-empty:
+
+   ```idris
+   data List01 : (nonEmpty : Bool) -> Type -> Type where
+     Nil  : List01 False a
+     (::) : a -> List01 False a -> List01 ne a
+   ```
+
+   Please note, that the `Nil` case *must* have the `nonEmpty`
+   tag set to `False`, while with the *cons* case, this is
+   optional. So, a `List01 False a` can be empty or non-empty,
+   and we'll only find out, which is the case, by pattern
+   matching on it. A `List01 True a` on the other hand *must*
+   be a *cons*, as for the `Nil` case the `nonEmpty` tag is
+   always set to `False`.
+
+   1. Declare and implement function `head` for non-empty lists:
+
+      ```idris
+      head : List01 True a -> a
+      ```
+
+   2. Declare and implement function `weaken` for converting any `List01 ne a`
+      to a `List01 False a` of the same length and order
+      of values.
+
+   3. Declare and implement function `tail` for extracting the possibly
+      empty tail from a non-empty list.
+      ```
+
+   4. Implement function `(++)` for concatenating two
+      values of type `List01`. Note, how we use a type-level computation
+      to make sure the result is non-empty if and only if
+      at least one of the two arguments is non-empty:
+
+      ```idris
+      (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a
+      ```
+
+   5. Implement utility function `concat'` and us it in
+      the implementation of `concat`. Note, that the
+      two boolean tags are passed as unrestricted implicits,
+      since you will need to pattern match on these to determine,
+      whether the result is provably non-empty or not:
+
+      ```idris
+      concat' : List01 ne1 (List01 ne2 a) -> List01 False a
+
+      concat :  {ne1, ne2 : _}
+             -> List01 ne1 (List01 ne2 a)
+             -> List01 (ne1 && ne2) a
+      ```
+
+   6. Implement `map01`:
+
+      ```idris
+      map01 : (a -> b) -> List01 ne a -> List01 ne b
+      ```
+
+   7. Implement a custom *bind* operator in namespace `List01`
+      for sequencing computations returning `List01`s.
+
+      Hint: Use `map01` and `concat` in your implementation and
+      make sure to use unrestricted implicits where necessary.
+
+      You can use the following examples to test your
+      custom *bind* operator:
+
+      ```idris
+      -- this and lf are necessary to make sure, which tag to use
+      -- when using list literals
+      lt : List01 True a -> List01 True a
+      lt = id
+
+      lf : List01 False a -> List01 False a
+      lf = id
+
+      test : List01 True Integer
+      test = List01.do
+        x  <- lt [1,2,3]
+        y  <- lt [4,5,6,7]
+        op <- lt [(*), (+), (-)]
+        [op x y]
+
+      test2 : List01 False Integer
+      test2 = List01.do
+        x  <- lt [1,2,3]
+        y  <- Nil {a = Integer}
+        op <- lt [(*), (+), (-)]
+        lt [op x y]
+      ```
+
+Some notes on Exercise 2: Here, we combined the capabilities
+of `List` and `Data.List1` in a single indexed type family.
+This allowed us to treat list concatenation correctly: If
+at least one of the arguments is provably non-empty, the
+result is also non-empty. To tackle this correctly with
+`List` and `List1`, a total of four concatenation functions
+would have to be written. So, while it is often possible to
+define distinct data types instead of a indexed families,
+the latter allow us to perform type-level computations to
+be more precise about the pre- and postconditions of the functions
+we write, at the cost of more-complex type signatures.
+In addition, sometimes it's not possible to derive the
+values of the indices from pattern matching on the data
+values alone, so they have to be passed as unerased
+(possibly implicit) arguments.
 
 <!-- vi: filetype=idris2
 -->

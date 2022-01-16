@@ -105,3 +105,50 @@ readInput n s      = case parseInteger {a = Integer} s of
 covering
 sumProg : IO ()
 sumProg = replWith 0 readInput printSum printRes
+
+--------------------------------------------------------------------------------
+--          Do Blocks, Desugared
+--------------------------------------------------------------------------------
+
+-- 2
+data List01 : (nonEmpty : Bool) -> Type -> Type where
+  Nil  : List01 False a
+  (::) : a -> List01 False a -> List01 ne a
+
+head : List01 True a -> a
+head (x :: _) = x
+
+weaken : List01 ne a -> List01 False a
+weaken []       = []
+weaken (h :: t) = h :: t
+
+map01 : (a -> b) -> List01 ne a -> List01 ne b
+map01 _ []       = []
+map01 f (x :: y) = f x :: map01 f y
+
+tail : List01 True a -> List01 False a
+tail (_ :: t) = weaken t
+
+(++) : List01 ne1 a -> List01 ne2 a -> List01 (ne1 || ne2) a
+(++) []       []       = []
+(++) []       (h :: t) = h :: t
+(++) (h :: t) xs       = h :: weaken (t ++ xs)
+
+concat' : List01 ne1 (List01 ne2 a) -> List01 False a
+concat' []       = []
+concat' (x :: y) = weaken (x ++ concat' y)
+
+concat :  {ne1, ne2 : _}
+       -> List01 ne1 (List01 ne2 a)
+       -> List01 (ne1 && ne2) a
+concat {ne1 = True}  {ne2 = True}  (x :: y) = x ++ concat' y
+concat {ne1 = True}  {ne2 = False} x        = concat' x
+concat {ne1 = False} {ne2 = _}     x        = concat' x
+
+namespace List01
+  export
+  (>>=) :  {ne1, ne2 : _}
+        -> List01 ne1 a
+        -> (a -> List01 ne2 b)
+        -> List01 (ne1 && ne2) b
+  as >>= f = concat (map01 f as)
