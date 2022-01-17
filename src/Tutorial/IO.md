@@ -677,8 +677,8 @@ reading and trying to understand your code.
 
    ex1b : Maybe Integer
    ex1b = do
-     n1 <- parsetInteger "12"
-     n2 <- parsetInteger "300"
+     n1 <- parseInteger "12"
+     n2 <- parseInteger "300"
      Just $ n1 + n2 * 100
    ```
 
@@ -805,7 +805,7 @@ you have a file path (for instance "/home/hock/idris/tutorial/tutorial.ipkg"),
 the first thing we will typically do is to try and create a file handle
 (of type `System.File.File` by calling `fileOpen`).
 
-Here is a program for counting all empty lines in a file:
+Here is a program for counting all empty lines in a Unix/Linux-file:
 
 ```idris
 covering
@@ -842,6 +842,215 @@ Finally, go is not provably total and rightfully so. Files like `/dev/urandom`
 or `/dev/zero` provide an infinite stream of data, so `countEmpty` will never
 terminate when invoked with such a file path.
 
+### Safe Resource Handling
+
+Note, how we had to manually open and close the file handle in
+`countEmpty`. This is error prone and tedious. Resource handling
+is a big topic, and we definitely won't be going into the
+details here, but there is a convenient function exported
+from `System.File`: `withFile`, which handles the opening,
+closing and handling of file errors for us.
+
+```idris
+covering
+countEmpty' : (path : String) -> IO (Either FileError Nat)
+countEmpty' path = withFile path Read pure (go 0)
+  where covering go : Nat -> File -> IO (Either FileError Nat)
+        go k file = do
+          False <- fEOF file | True => pure (Right k)
+          Right "\n" <- fGetLine file
+            | Right _  => go k file
+            | Left err => pure (Left err)
+          go (k + 1) file
+```
+
+Go ahead, and have a look at the type of `withFile`. Reading
+and understanding slightly more complex function types
+is important when learning to program in Idris.
+
+#### Interface `HasIO`
+
+When you look at the `IO` functions we used so far, you'll
+notice that most if not all of them actually don't work
+with `IO` itself but with a type parameter `io` with a
+constraint of `HasIO`. This interface allows us to *lift*
+a value of type `IO a` into another context. We will see
+use cases for this in later chapters, especially when we
+talk about monad transformers. For now, you can treat these
+`io` parameters as being specialized to `IO`.
+
+### Exercises
+
+1. As we have seen in the examples above, `IO` actions
+   working with file handles often come with the risk
+   of failure. We can therefore simplify things by
+   writing some utility functions and a custom *bind*
+   operator to work with these nested effects. In
+   a new namespace `IOErr`, implement the following
+   utility functions and use these to further cleanup
+   the implementation of `countEmpty'`:
+
+   ```idris
+   pure : a -> IO (Either e a)
+
+   fail : e -> IO (Either e a)
+
+   lift : IO a -> IO (Either e a)
+
+   catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)
+
+   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)
+   ```
+
+2. Write a function `countWords` for counting the words in a file.
+   Consider using `Data.String.words` and the utilities from
+   exercise 1 in your implementation.
+
+3. We can generalize the functionality used in `countEmpty`
+   and `countWords`, by implementing a helper function for
+   iterating over the lines in a file and accumulating some
+   state along the way. Implement `withLines` and use it to
+   reimplement `countEmpty` and `countWords`:
+
+   ```idris
+   covering
+   withLines :  (path : String)
+             -> (accum : s -> String -> s)
+             -> (initialState : s)
+             -> IO (Either FileError s)
+   ```
+
+4. We often use a `Monoid` for accumulating values.
+   It is therefore convenient to specialize `withLines`
+   for this case. Use `withLines` to implement
+   `foldLines` according to the type given below:
+
+   ```idris
+   covering
+   foldLines :  Monoid s
+             => (path : String)
+             -> (f    : String -> s)
+             -> IO (Either FileError s)
+   ```
+
+5. Implement function `wordCount` for counting
+   the number of lines, words, and characters in
+   a text document. Define a custom record type
+   together with an implementation of `Monoid`
+   for storing and accumulating these values
+   and use `foldLines` in your implementation of
+   `wordCount`.
+
+## How `IO` is Implemented
+
+In this final section of an already lengthy chapter, we will risk
+a glance at how `IO` is implemented in Idris. It is interesting
+to note, that `IO` is not a built-in type but a regular data type
+with only one minor speciality. Let's learn about it at the REPL:
+
+```repl
+Tutorial.IO> :doc IO
+data PrimIO.IO : Type -> Type
+  Totality: total
+  Constructor: MkIO : (1 _ : PrimIO a) -> IO a
+  Hints:
+    Applicative IO
+    Functor IO
+    HasLinearIO IO
+    Monad IO
+```
+
+Here, we learn that `IO` has a single data constructor
+called `MkIO`, which takes a single argument of type
+`PrimIO a` with quantity *1*. We are not going to
+talk about the quantities here, as in fact they are not
+important to understand how `IO` works.
+
+Now, `PrimIO a` is a type alias for the following function:
+
+```repl
+Tutorial.IO> :printdef PrimIO
+PrimIO.PrimIO : Type -> Type
+PrimIO a = (1 _ : %World) -> IORes a
+```
+
+Again, don't mind the quantities. There is only
+one piece of the puzzle missing: `IORes a`, which is
+a publicly exported record type:
+
+```repl
+Solutions.IO> :doc IORes
+data PrimIO.IORes : Type -> Type
+  Totality: total
+  Constructor: MkIORes : a -> (1 _ : %World) -> IORes a
+```
+
+So, to put this all together, `IO` is a wrapper around
+something similar to the following function type:
+
+```repl
+%World -> (a, %World)
+```
+
+You can think of type `%World` as a placeholder for the
+state of the outside world of a program (file system,
+memory, network connections, and so on). Conceptually,
+to execute an `IO a` action, we pass it the current state
+of the world, and in return get an updated world state
+plus a result of type `a`. The world state being updated
+represents all the side effects describable in a computer
+program.
+
+Now, it is important to understand that there is no such
+thing as the *state of the world*. The `%World` type is
+just a placeholder, which is converted to some kind of
+constant that's passed around and never inspected at
+runtime. So, if we had a value of type `%World`, we could
+pass it to an `IO a` action and execute it, and this is
+exactly what happens at runtime: A single value of
+type `%World` (an uninteresting placeholder like `null`,
+`0`, or - in case of the JavaScript backends - `undefined`)
+is passed to the `main` function, thus
+setting the whole program in motion. However, it
+is impossible to programmatically create a value of
+type `%World` (it is an abstract, primitive type), and
+therefore we cannot ever extract a value of type `a`
+from an `IO a` action (modulo `unsafePerformIO`).
+
+Once we will talk about monad transformers and the state
+monad, you will see that `IO` is nothing else but
+a state monad in disguise but with an abstract state
+type, which makes it impossible for us to run the
+stateful computation.
+
+## Conclusion
+
+* Values of type `IO a` describe programs with side effects,
+  which will eventually result in a value of type `a`.
+
+* While we cannot safely extract a value of type `a`
+  from an `IO a`, we can use several combinators and
+  syntactic constructs to combine `IO` actions and
+  build more-complex programs.
+
+* *Do blocks* offer a convenient way to run and combine
+  `IO` actions sequentially.
+
+* *Do blocks* are desugared to nested applications of
+  *bind* operators (`(>>=)`).
+
+* *Bind* operators, and thus *do blocks*, can be overloaded
+  to achieve custom behavior instead of the default
+  (monadic) *bind*.
+
+* Under the hood, `IO` actions are stateful computations
+  operating on a symbolic `%World` state.
+
+### What's next
+
+Now, that we had a glimpse and *monads* and the *bind* operator,
+it is time to in the next chapter introduce `Monad` and some
+related interfaces for real.
 
 <!-- vi: filetype=idris2
 -->

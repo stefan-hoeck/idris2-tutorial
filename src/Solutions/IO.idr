@@ -3,6 +3,8 @@ module Solutions.IO
 import Data.List1
 import Data.String
 
+import System.File
+
 %default total
 
 --------------------------------------------------------------------------------
@@ -110,6 +112,46 @@ sumProg = replWith 0 readInput printSum printRes
 --          Do Blocks, Desugared
 --------------------------------------------------------------------------------
 
+-- 1
+ex1a : IO String
+ex1a = do
+  s1 <- getLine
+  s2 <- getLine
+  s3 <- getLine
+  pure $ s1 ++ reverse s2 ++ s3
+
+ex1aBind : IO String
+ex1aBind =
+  getLine >>= (\s1 =>
+    getLine >>= (\s2 =>
+      getLine >>= (\s3 =>
+        pure $ s1 ++ reverse s2 ++ s3
+      )
+    )
+  )
+
+ex1aBang : IO String
+ex1aBang =
+  pure $ !getLine ++ reverse !getLine ++ !getLine
+
+ex1b : Maybe Integer
+ex1b = do
+  n1 <- parseInteger "12"
+  n2 <- parseInteger "300"
+  Just $ n1 + n2 * 100
+
+ex1bBind : Maybe Integer
+ex1bBind =
+  parseInteger "12" >>= (\n1 =>
+    parseInteger "300" >>= (\n2 =>
+      Just $ n1 + n2 * 100
+    )
+  )
+
+ex1bBang : Maybe Integer
+ex1bBang =
+  Just $ !(parseInteger "12") + !(parseInteger "300") * 100
+
 -- 2
 data List01 : (nonEmpty : Bool) -> Type -> Type where
   Nil  : List01 False a
@@ -182,3 +224,92 @@ namespace IOErr
   io >>= f = Prelude.do
     Right v <- io | Left err => fail err
     f v
+
+covering
+countEmpty'' : (path : String) -> IO (Either FileError Nat)
+countEmpty'' path = withFile path Read pure (go 0)
+  where covering go : Nat -> File -> IO (Either FileError Nat)
+        go k file = do
+          False <- lift (fEOF file) | True => pure k
+          "\n"  <- fGetLine file    | _  => go k file
+          go (k + 1) file
+
+-- 2
+covering
+countWords : (path : String) -> IO (Either FileError Nat)
+countWords path = withFile path Read pure (go 0)
+  where covering go : Nat -> File -> IO (Either FileError Nat)
+        go k file = do
+          False <- lift (fEOF file) | True => pure k
+          s     <- fGetLine file
+          go (k + length (words s)) file
+
+-- 3
+covering
+withLines :  (path : String)
+          -> (accum : s -> String -> s)
+          -> (initialState : s)
+          -> IO (Either FileError s)
+withLines path accum ini = withFile path Read pure (go ini)
+  where covering go : s -> File -> IO (Either FileError s)
+        go st file = do
+          False <- lift (fEOF file) | True => pure st
+          line  <- fGetLine file
+          go (accum st line) file
+
+covering
+countEmpty3 : (path : String) -> IO (Either FileError Nat)
+countEmpty3 path = withLines path acc 0
+  where acc : Nat -> String -> Nat
+        acc k "\n" = k + 1
+        acc k _    = k
+
+covering
+countWords2 : (path : String) -> IO (Either FileError Nat)
+countWords2 path = withLines path (\n,s => n + length (words s)) 0
+
+-- 4
+covering
+foldLines :  Monoid s
+          => (path : String)
+          -> (f    : String -> s)
+          -> IO (Either FileError s)
+foldLines path f = withLines path (\vs => (vs <+>) . f) neutral
+
+-- 5
+
+-- Instead of returning a triple of natural numbers,
+-- it is better to make the semantics clear and use
+-- a custom record type to store the result.
+--
+-- In a larger, more-complex application it might be
+-- even better to make things truly type safe and
+-- define a single field record together with an instance
+-- of monoid for each kind of count.
+record WC where
+  constructor MkWC
+  lines : Nat
+  words : Nat
+  chars : Nat
+
+Semigroup WC where
+  MkWC l1 w1 c1 <+> MkWC l2 w2 c2 = MkWC (l1 + l2) (w1 + w2) (c1 + c2)
+
+Monoid WC where
+  neutral = MkWC 0 0 0
+
+covering
+toWC : String -> WC
+toWC s = MkWC 1 (length (words s)) (length s)
+
+covering
+wordCount : (path : String) -> IO (Either FileError WC)
+wordCount path = foldLines path toWC
+
+-- this is for testing the `wordCount` example.
+covering
+testWC : (path : String) -> IO ()
+testWC path = Prelude.do
+  Right (MkWC ls ws cs) <- wordCount path
+    | Left err => putStrLn "Error: \{show err}"
+  putStrLn "\{show ls} lines, \{show ws} words, \{show cs} characters"
