@@ -225,6 +225,12 @@ namespace IOErr
     Right v <- io | Left err => fail err
     f v
 
+  export
+  (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)
+  iou >> ioa = Prelude.do
+    Right _ <- iou | Left err => fail err
+    ioa
+
 covering
 countEmpty'' : (path : String) -> IO (Either FileError Nat)
 countEmpty'' path = withFile path Read pure (go 0)

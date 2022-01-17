@@ -486,12 +486,74 @@ soon enough. The important thing to remember is how *do
 blocks* are always converted to sequences of *bind*
 operators as shown in `desugared1`.
 
+### Binding Unit
+
+Remember our implementation of `friendlyReadHello`? Here it is again:
+
+```idris
+friendlyReadHello' : IO ()
+friendlyReadHello' = do
+  _ <- putStrLn "Please enter your name."
+  readHello
+```
+
+The underscore in there is a bit ugly and unnecessary. In fact,
+a common use case is to just chain effectful computations with
+result type `Unit` (`()`), merely for the side
+effects they perform. For instance, we could repeat `friendlyReadHello`
+three times, like so:
+
+```idris
+friendly3 : IO ()
+friendly3 = do
+  _ <- friendlyReadHello
+  _ <- friendlyReadHello
+  friendlyReadHello
+```
+
+This is such a common thing to do, that Idris allows us to
+drop the bound underscore altogether:
+
+```idris
+friendly4 : IO ()
+friendly4 = do
+  friendlyReadHello
+  friendlyReadHello
+  friendlyReadHello
+  friendlyReadHello
+```
+
+Note, however, that the above gets desugared slightly differently:
+
+```idris
+friendly4Desugared : IO ()
+friendly4Desugared =
+  friendlyReadHello >>
+  friendlyReadHello >>
+  friendlyReadHello >>
+  friendlyReadHello
+```
+
+Operator `(>>)` has the following type:
+
+```repl
+Main> :t (>>)
+Prelude.>> : Monad m => m () -> Lazy (m b) -> m b
+```
+
+Note the `Lazy` keyword in the type signature. This means,
+that the wrapped argument will be *lazily evaluated*. This
+makes sense in many occasions. For instance, if the `Monad`
+in question is `Maybe` the result will be `Nothing` if
+the first argument is `Nothing`, in which case there is no
+need to even evaluate the second argument.
+
 ### Do, Overloaded
 
 Because Idris supports function and operator overloading, we
 can write custom *bind* operators, which allows us to
 use *do notation* for types without an implementation
-of `Monad`. For instance, here is a custom implementation for
+of `Monad`. For instance, here is a custom implementation of
 `(>>=)` for sequencing computations returning vectors.
 Every value in the first vector (of length `m`)
 will be converted to a vector of length `n`, and
@@ -536,6 +598,10 @@ In this case, this wasn't strictly necessary, although
 `Vect k` does have an implementation of `Monad`, but it is
 still good to know that it is possible to help
 the compiler with disambiguating do blocks.
+
+Of course, we can (and should!) overload `(>>)` in the
+same manner as `(>>=)`, if we want to overload the
+behavior of *do blocks*.
 
 #### Modules and Namespaces
 
@@ -654,7 +720,7 @@ bangExpr' s1 s2 s3 = do
 ```
 
 Please remember the following: Syntactic sugar has been introduced
-to make code more readably or more convenient to write. If
+to make code more readable or more convenient to write. If
 it is abused just to show how clever you are, you make things
 harder for other people (including your future self!)
 reading and trying to understand your code.
@@ -900,6 +966,8 @@ talk about monad transformers. For now, you can treat these
    catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)
 
    (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)
+
+   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)
    ```
 
 2. Write a function `countWords` for counting the words in a file.
@@ -1048,7 +1116,7 @@ stateful computation.
 
 ### What's next
 
-Now, that we had a glimpse and *monads* and the *bind* operator,
+Now, that we had a glimpse at *monads* and the *bind* operator,
 it is time to in the next chapter introduce `Monad` and some
 related interfaces for real.
 
