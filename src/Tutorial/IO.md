@@ -336,8 +336,8 @@ recursion.
    ```
 
 2. Implement function `repl`, which behaves just like `rep`
-   but will keep repeating its behavior until being forcefully
-   terminated:
+   but will repeat itself forever (or until being forcefully
+   terminated):
 
    ```idris
    covering
@@ -458,8 +458,8 @@ that `Monad` allows us to run computations with some kind
 of effect in sequence by passing the *result* of the
 first computation to the function returning the
 second computation. In `desugared1` you can see, how
-we first perform an `IO` action and pass its result
-to the next `IO` action and so on. The code is somewhat
+we first perform an `IO` action and use its result
+to compute the next `IO` action and so on. The code is somewhat
 hard to read, since we use several layers of nested
 anonymous function, that's why in such cases, *do blocks*
 are a nice alternative to express the same functionality.
@@ -512,7 +512,7 @@ friendly3 = do
 ```
 
 This is such a common thing to do, that Idris allows us to
-drop the bound underscore altogether:
+drop the bound underscores altogether:
 
 ```idris
 friendly4 : IO ()
@@ -848,7 +848,7 @@ at least one of the arguments is provably non-empty, the
 result is also non-empty. To tackle this correctly with
 `List` and `List1`, a total of four concatenation functions
 would have to be written. So, while it is often possible to
-define distinct data types instead of a indexed families,
+define distinct data types instead of indexed families,
 the latter allow us to perform type-level computations to
 be more precise about the pre- and postconditions of the functions
 we write, at the cost of more-complex type signatures.
@@ -861,7 +861,8 @@ Please remember, that *do blocks* are first desugared, before
 type-checking, disambiguating which *bind* operator to use,
 and filling in implicit arguments. It is therefore perfectly fine
 to define *bind* operators with arbitrary constraints or
-implicit arguments as was shown above.
+implicit arguments as was shown above. Idris will handle
+all the details, *after* desugaring the *do blocks*.
 
 ## Working with Files
 
@@ -896,7 +897,7 @@ as the second argument to `either`.
 Function `go` calls for some additional explanations. First, note how
 we used the same syntax for pattern matching intermediary results
 as we also saw for `let` bindings. As you can see, we can use several
-vertical bars to handle more than one additional patterns. In order to
+vertical bars to handle more than one additional pattern. In order to
 read a single line from a file, we use function `fGetLine`. As with
 most operations working with the file system, this function might fail
 with a `FileError`, which we have to handle correctly. Note also, that
@@ -904,8 +905,9 @@ with a `FileError`, which we have to handle correctly. Note also, that
 `'\n'`, so in order to check for empty lines, we have to match against
 `"\n"` instead of the empty string `""`.
 
-Finally, go is not provably total and rightfully so. Files like `/dev/urandom`
-or `/dev/zero` provide an infinite stream of data, so `countEmpty` will never
+Finally, `go` is not provably total and rightfully so.
+Files like `/dev/urandom` or `/dev/zero` provide infinite
+streams of data, so `countEmpty` will never
 terminate when invoked with such a file path.
 
 ### Safe Resource Handling
@@ -930,9 +932,10 @@ countEmpty' path = withFile path Read pure (go 0)
           go (k + 1) file
 ```
 
-Go ahead, and have a look at the type of `withFile`. Reading
-and understanding slightly more complex function types
-is important when learning to program in Idris.
+Go ahead, and have a look at the type of `withFile`, then
+have a look how we use it to simplify the implementation of
+`countEmpty'`. Reading and understanding slightly more complex
+function types is important when learning to program in Idris.
 
 #### Interface `HasIO`
 
