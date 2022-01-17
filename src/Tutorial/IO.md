@@ -267,13 +267,14 @@ exported from `Data.List1` in *base*) but pattern matching
 on `List` is more convenient, we convert the result using
 `Data.List1.forget`. Note, how we use a pattern match
 on the left hand side of the assignment operator `:=`.
-This would be a non-covering pattern match, therefore we have
+This is a partial pattern match (*partial* meaning,
+that it doesn't cover all possible cases), therefore we have
 to deal with the other possibilities as well, which is
 done after the vertical line. This can be read as follows:
 "If the pattern match on the left hand side is successful,
 and we get a list of exactly three tokens, continue with
 the `let` expression, otherwise return a `ParseError` in
-a `Left`".
+a `Left` immediately".
 
 The other three lines behave exactly the same: Each has
 a partial pattern match on the left hand side with
@@ -709,7 +710,6 @@ reading and trying to understand your code.
 
    3. Declare and implement function `tail` for extracting the possibly
       empty tail from a non-empty list.
-      ```
 
    4. Implement function `(++)` for concatenating two
       values of type `List01`. Note, how we use a type-level computation
@@ -720,10 +720,10 @@ reading and trying to understand your code.
       (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a
       ```
 
-   5. Implement utility function `concat'` and us it in
-      the implementation of `concat`. Note, that the
+   5. Implement utility function `concat'` and use it in
+      the implementation of `concat`. Note, that in `concat` the
       two boolean tags are passed as unrestricted implicits,
-      since you will need to pattern match on these to determine,
+      since you will need to pattern match on these to determine
       whether the result is provably non-empty or not:
 
       ```idris
@@ -789,5 +789,12 @@ values of the indices from pattern matching on the data
 values alone, so they have to be passed as unerased
 (possibly implicit) arguments.
 
+Please remember, that *do blocks* are first desugared, before
+type-checking, disambiguating which *bind* operator to use,
+and filling in implicit arguments. It is therefore perfectly fine
+to define *bind* operators with arbitrary constraints or
+implicit arguments as was shown above.
+
+## Working with Files
 <!-- vi: filetype=idris2
 -->
