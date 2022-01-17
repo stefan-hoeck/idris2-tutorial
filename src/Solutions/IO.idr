@@ -152,3 +152,33 @@ namespace List01
         -> (a -> List01 ne2 b)
         -> List01 (ne1 && ne2) b
   as >>= f = concat (map01 f as)
+
+--------------------------------------------------------------------------------
+--          Working with Files
+--------------------------------------------------------------------------------
+
+-- 1
+namespace IOErr
+  export
+  pure : a -> IO (Either e a)
+  pure = pure . Right
+
+  export
+  fail : e -> IO (Either e a)
+  fail = pure . Left
+
+  export
+  lift : IO a -> IO (Either e a)
+  lift = map Right
+
+  export
+  catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)
+  catch io f = do
+    Left err <- io | Right v => pure v
+    f err
+
+  export
+  (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)
+  io >>= f = Prelude.do
+    Right v <- io | Left err => fail err
+    f v
