@@ -1,16 +1,16 @@
 # Functor and Friends
 
 Programming, like mathematics, is about abstraction. We
-try to model parts of the real world, reusing reoccurring
+try to model parts of the real world, reusing recurring
 patterns by abstracting over them.
 
 In this chapter, we will learn about several related interfaces,
-which are all about abstraction, and thus can be hard to
-understand in the beginning. Especially figuring out
+which are all about abstraction and therefore can be hard to
+understand at the beginning. Especially figuring out
 *why* they are useful and *when* to use them will take
 time and experience. This chapter therefore comes
 with tons of exercises, most of which can be solved
-with less than three short lines of code. Don't skip them.
+with only a few short lines of code. Don't skip them.
 Come back to them several times until these things start
 feeling natural to you. You will then realize that their
 initial complexity has vanished.
@@ -20,6 +20,7 @@ module Tutorial.Functor
 
 import Data.List1
 import Data.String
+import Data.Vect
 
 %default total
 ```
@@ -75,7 +76,7 @@ toLengthList []        = []
 toLengthList (x :: xs) = length x :: toLengthList xs
 ```
 
-I'd like you appreciate, just how boring these functions are. They
+I'd like you to appreciate, just how boring these functions are. They
 are almost identical, with the only interesting part being
 the function we apply to each element. Surely, there must be
 pattern to abstract over:
@@ -133,7 +134,7 @@ mapIO f io = fromPrim $ mapPrimIO (toPrim io)
 
 From the concept of *mapping a pure function over
 values in a context* follow some derived functions, which are
-often useful. Here they are some of them for `IO`:
+often useful. Here are some of them for `IO`:
 
 ```idris
 mapConstIO : b -> IO a -> IO b
@@ -222,10 +223,10 @@ tailShowReversNoOp xs = map (reverse . show) (tail xs)
 ```
 
 `(<&>)` is an alias for `(<$>)` with the arguments flipped.
-The other three (`ignore`, `($>)`, and `(<$)`) all are used
-to map a constant over a data structure. They are often useful
-when you don't care about the values stored in a context but
-what to keep the underlying structure.
+The other three (`ignore`, `($>)`, and `(<$)`) are all used
+to replace the values in a context with a constant. They are often useful
+when you don't care about the values themselves but
+want to keep the underlying structure.
 
 ### Functors with more than one Type Parameter
 
@@ -234,7 +235,8 @@ of type `Type -> Type`. However, we can also implement `Functor`
 for other type constructors. The only prerequisite is that
 the type parameter we'd like to change with function `map` must
 be the last in the argument list. For instance, here is the
-`Functor` implementation for `Either e`:
+`Functor` implementation for `Either e` (note, that `Either e`
+has of course type `Type -> Type` as required):
 
 ```idris
 implementation Functor' (Either e) where
@@ -243,7 +245,8 @@ implementation Functor' (Either e) where
 ```
 
 Here is another example, this time for a type constructor of
-type `Bool -> Type -> Type`:
+type `Bool -> Type -> Type` (you might remember this from
+the exercises in the [last chapter](IO.md):
 
 ```idris
 data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -314,7 +317,8 @@ be given a name. For instance:
 ```
 
 Note, that this defines a new implementation of `Functor`, which will
-*not* be considered during implicit search to avoid ambiguities. However,
+*not* be considered during implicit resolution in order
+to avoid ambiguities. However,
 it is possible to explicitly choose to use this implementation
 by passing it as an explicit argument to `map`, prefixed with an `@`:
 
@@ -328,7 +332,7 @@ the former is already exported by the *Prelude*.
 
 ### Functor Laws
 
-Implementations of `Functor` are supposed to follow certain laws,
+Implementations of `Functor` are supposed to adhere to certain laws,
 just like implementations of `Eq` or `Ord`. Again, these laws are
 not verified by Idris, although it would be possible (and
 often cumbersome) to so.
@@ -361,7 +365,7 @@ often cumbersome) to so.
 4. Here is a curious one: Implement `Functor` for `Const e` (which is also
    available from `Control.Applicative.Const` in *base*). You might be
    confused about the fact that the second type parameter has absolutely
-   no relevance at runtime, as there is not value of that type. Such
+   no relevance at runtime, as there is no value of that type. Such
    types are sometimes called *phantom types*. They can be quite useful
    for tagging values with additional typing information.
 
@@ -399,6 +403,149 @@ often cumbersome) to so.
    ```
 
    Implement `Functor` for `Repsonse e i`.
+
+7. Implement `Functor` for `Validated e`:
+
+   ```idris
+   data Validated : (e,a : Type) -> Type where
+     Invalid : (err : e) -> Validated e a
+     Valid   : (val : a) -> Validated e a
+   ```
+
+## Applicative
+
+While `Functor` allows us to map a pure, unary function
+over a value in a context, it doesn't allow us to combine
+`n` such values under an n-ary function.
+
+For instance, consider the following functions:
+
+```idris
+liftMaybe2 : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+liftMaybe2 f (Just va) (Just vb) = Just $ f va vb
+liftMaybe2 _ _         _         = Nothing
+
+liftVect2 : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
+liftVect2 _ []        []        = []
+liftVect2 f (x :: xs) (y :: ys) = f x y :: liftVect2 f xs ys
+
+liftIO2 : (a -> b -> c) -> IO a -> IO b -> IO c
+liftIO2 f ioa iob = fromPrim $ go (toPrim ioa) (toPrim iob)
+  where go : PrimIO a -> PrimIO b -> PrimIO c
+        go pa pb w =
+          let MkIORes va w2 = pa w
+              MkIORes vb w3 = pb w2
+           in MkIORes (f va vb) w3
+```
+
+This behavior is not covered by `Functor`, yet it is a very
+common thing to do. For instance, we might want to read two numbers
+from standard input (both operations might fail), calculating the
+product of the two. Here's the code:
+
+```idris
+multNumbers : Num a => Neg a => IO (Maybe a)
+multNumbers = do
+  s1 <- getLine
+  s2 <- getLine
+  pure $ liftMaybe2 (*) (parseInteger s1) (parseInteger s2)
+```
+
+And it won't stop here. We might just as well want to have
+`liftMaybe3` for ternary functions and three `Maybe` arguments
+and so on, for arbitrary numbers of arguments.
+
+But there is more: We'd also like to lift pure values into
+the context in question. With this, we could to the following:
+
+```idris
+liftMaybe3 : (a -> b -> c -> d) -> Maybe a -> Maybe b -> Maybe c -> Maybe d
+liftMaybe3 f (Just va) (Just vb) (Just vc) = Just $ f va vb vc
+liftMaybe3 _ _         _         _         = Nothing
+
+pureMaybe : a -> Maybe a
+pureMaybe = Just
+
+multAdd100 : Num a => Neg a => String -> String -> Maybe a
+multAdd100 s t = liftMaybe3 calc (parseInteger s) (parseInteger t) (pure 100)
+  where calc : a -> a -> a -> a
+        calc x y z = x * y + z
+```
+
+As you'll of course already know, I am now going to present a new
+interface to encapsulate this behavior. It's called `Applicative`.
+Here is its definition and an example implementation:
+
+```idris
+interface Functor' f => Applicative' f where
+  app   : f (a -> b) -> f a -> f b
+  pure' : a -> f a
+
+implementation Applicative' Maybe where
+  app (Just fun) (Just val) = Just $ fun val
+  app _          _          = Nothing
+
+  pure' = Just
+```
+
+Interface `Applicative` is of course already exported by the *Prelude*.
+There, function `app` is an operator sometimes called *app* or *apply*:
+`(<*>)`.
+
+You may wonder, how functions like `liftMaybe2` or `liftIO3` are related
+to operator *apply*. Let me demonstrate this:
+
+```idris
+liftA2 : Applicative f => (a -> b -> c) -> f a -> f b -> f c
+liftA2 fun fa fb = pure fun <*> fa <*> fb
+
+liftA3 : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc
+```
+
+It is really important for you to understand what's going on here, so let's
+break these down. If we specialize `liftA2` to use `Maybe` for `f`,
+`pure fun` is of type `Maybe (a -> b -> c)`. Likewise, `pure fun <*> fa`
+is of type `Maybe (b -> c)`, as `(<*>)` will apply the value stored
+in `fa` to the function stored in `pure fun` (currying!).
+
+You'll often see such chains of applications of *apply*, the number
+of *applies* reflecting the arity of the function we apply.
+You'll sometimes also see the following, which allows us to drop
+the initial call to `pure`, and use the operator version of `map`
+instead:
+
+
+```idris
+liftA2' : Applicative f => (a -> b -> c) -> f a -> f b -> f c
+liftA2' fun fa fb = fun <$> fa <*> fb
+
+liftA3' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc
+```
+
+### Idiom Brackets
+
+The programming style used for implementing `liftA2'` and `liftA3'`
+is also referred to as *applicative style* and is used a lot
+in Haskell for processing several effectful computations
+with a single pure function.
+
+In Idris, there is an alternative to using such chains of
+operator applications: Idiom brackets. Here's another
+reimplementation of `liftA2` and `liftA3`:
+
+```idris
+liftA2'' : Applicative f => (a -> b -> c) -> f a -> f b -> f c
+liftA2'' fun fa fb = [| fun fa fb |]
+
+liftA3'' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+liftA3'' fun fa fb fc = [| fun fa fb fc |]
+```
+
+The above implementations will be desugared to the one given
+for `liftA2` and `liftA3`, again *before disambiguating,
+type checking, and filling in of implicit values*.
 
 <!-- vi: filetype=idris2
 -->
