@@ -547,5 +547,228 @@ The above implementations will be desugared to the one given
 for `liftA2` and `liftA3`, again *before disambiguating,
 type checking, and filling in of implicit values*.
 
+### Use Case: CSV Reader
+
+In order to understand the power and versatility that comes
+from applicative functors, we will look at a slightly
+extended example. We are going to write some utilities
+for parsing and decoding content from CSV files. These
+are files where each line holds a list of values separated
+by commas (or some other delimiter). Typically, they are
+used to store tabular data, for instance from spread sheet
+applications. What we would like to do is convert
+lines in a CSV file and store the result in custom
+records, where each record field corresponds to a column
+in the table. For instance, here is a simple example
+file, containing tabular user information from a web
+store: First name, last name, age, email address (optional),
+gender, and password.
+
+```repl
+Jon,Doe,42,jon@doe.ch,m,weijr332sdk
+Jane,Doe,44,,f,aa433sd112
+```
+
+And here are the data types necessary to store
+this information:
+
+```idris
+data Gender = Male | Female | Other
+
+record Name where
+  constructor MkName
+  value : String
+
+record Email where
+  constructor MkEmail
+  value : String
+
+record Password where
+  constructor MkPassword
+  value : String
+
+record User where
+  constructor MkUser
+  firstName : Name
+  lastName  : Name
+  age       : Nat
+  email     : Maybe Email
+  gender    : Gender
+  password  : Password
+```
+
+We start by defining an interface for reading fields
+in a CSV file and writing implementations for
+the data types we'd like to read:
+
+```idris
+interface CSVField a where
+  read : String -> Maybe a
+
+readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a
+readIf p mk s = if p s then Just (mk s) else Nothing
+
+validName : String -> Bool
+validName s =
+  let len = length s
+   in 0 < len && len <= 100 && all isAlpha (unpack s)
+
+CSVField Name where
+  read = readIf validName MkName
+
+isEmailChar : Char -> Bool
+isEmailChar '.' = True
+isEmailChar '@' = True
+isEmailChar c   = isAlphaNum c
+
+validEmail : String -> Bool
+validEmail s =
+  let len = length s
+   in 0 < len && len <= 100 && all isAlpha (unpack s)
+
+CSVField Email where
+  read = readIf validEmail MkEmail
+
+CSVField Nat where
+  read = parsePositive
+
+isPasswordChar : Char -> Bool
+isPasswordChar ' ' = True
+isPasswordChar c   = not (isControl c) && not (isSpace c)
+
+validPassword : String -> Bool
+validPassword s =
+  let len = length s
+   in 0 < len && len <= 100 && all isPasswordChar (unpack s)
+
+CSVField Password where
+  read = readIf validPassword MkPassword
+
+CSVField Gender where
+  read "m" = Just Male
+  read "f" = Just Female
+  read "o" = Just Other
+  read _   = Nothing
+
+CSVField a => CSVField (Maybe a) where
+  read "" = Just Nothing
+  read s  = Just <$> read s
+```
+
+For each wrapper type for strings, we defined a function for testing
+the validity of a string value, and used this together with
+utility function `readIf` to implement `read`.
+
+In a later chapter, we will learn about refinement types and
+how to store an erased proof of validity together with
+a validated value.
+
+Parsing a CSV file might fail, so we need a custom error
+type to describe the different possibilities of failure.
+
+```idris
+data CSVError : Type where
+  FieldError           : (column : Nat) -> (str : String) -> CSVError
+  UnexpectedEndOfInput : (n : Nat) -> CSVError
+  ExpectedEndOfInput   : (n : Nat) -> CSVError
+```
+
+We can now use `CSVField` to read a single field at a given
+position in a CSV file, and return a `FieldError` in case
+of a failure.
+
+```idris
+readField : CSVField a => (column : Nat) -> String -> Either CSVError a
+readField col str = maybe (Left $ FieldError col str) Right (read str)
+```
+
+If we know in advance the number of fields we need to read,
+we can try and convert a list of strings to a `Vect` of
+the given help. This facilitates reading record values of
+a known number of fields, as we get the correct number
+of string variables when pattern matching on the vector:
+
+```idris
+toVect : (n : Nat) -> (pos : Nat) -> List a -> Either CSVError (Vect n a)
+toVect 0     _   []        = Right []
+toVect 0     pos _         = Left (ExpectedEndOfInput pos)
+toVect (S k) pos []        = Left (UnexpectedEndOfInput pos)
+toVect (S k) pos (x :: xs) = (x ::) <$> toVect k (S pos) xs
+```
+
+Finally, we can implement function `readUser` to read
+the fields of a user entry (a single line in a CSV-file):
+
+```idris
+readUser' : List String -> Either CSVError User
+readUser' ss = do
+  [fn,ln,a,em,g,pw] <- toVect 6 0 ss
+  [| MkUser (readField 1 fn)
+            (readField 2 ln)
+            (readField 3 a)
+            (readField 4 em)
+            (readField 5 g)
+            (readField 6 pw) |]
+
+readUser : String -> Either CSVError User
+readUser = readUser' . forget . split (',' ==)
+```
+
+Note, how in the implementation of `readUser'` we used
+an idiom bracket to map a function of six arguments (`MkUser`)
+over six values of type `Either CSVError`. This will automatically
+succeed, if and only if all of the parsings have
+succeeded. It would have been notoriously cumberson to implement
+`readUser'` with a succession of six nested pattern matches.
+
+
+#### A Case for Heterogeneous Lists
+
+So, while the above was quite interesting, let's make use
+of dependent types and write a data type for representing
+rows in a CSV-file: A heterogeneous list.
+
+```idris
+
+namespace HList
+  public export
+  data HList : (ts : List Type) -> Type where
+    Nil  : HList Nil
+    (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)
+
+head : HList (t :: ts) -> t
+head (v :: _) = v
+
+tail : HList (t :: ts) -> HList ts
+tail (_ :: vs) = vs
+
+(++) : HList xs -> HList ys -> HList (xs ++ ys)
+[] ++ ws        = ws
+(v :: vs) ++ ws = v :: (vs ++ ws)
+
+interface CSVDecoder a where
+  decodeAt : Nat -> List String -> Either CSVError a
+
+CSVDecoder (HList []) where
+  decodeAt _ [] = Right Nil
+  decodeAt n _  = Left (ExpectedEndOfInput n)
+
+CSVField t => CSVDecoder (HList ts) => CSVDecoder (HList (t :: ts)) where
+  decodeAt n []        = Left (UnexpectedEndOfInput n)
+  decodeAt n (s :: ss) = [| readField n s :: decodeAt (S n) ss |]
+
+decode : CSVDecoder a => String -> Either CSVError a
+decode = decodeAt 1 . forget . split (',' ==)
+
+decode_ : (0 a : Type) -> CSVDecoder a => String -> Either CSVError a
+decode_ _ = decode
+
+decodeH : (0 ts : List Type) -> CSVDecoder (HList ts) => String -> Either CSVError (HList ts)
+decodeH _ = decode
+
+test1 : Either CSVError (HList [Name, Name, Gender, Maybe Email, Nat])
+test1 = decode "Jon,Doe,f,jon@doe.ch,23"
+```
+
 <!-- vi: filetype=idris2
 -->
