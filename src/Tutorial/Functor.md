@@ -537,7 +537,7 @@ is also referred to as *applicative style* and is used a lot
 in Haskell for combining several effectful computations
 with a single pure function.
 
-In Idris, there is an alternative to using such of
+In Idris, there is an alternative to using such chains of
 operator applications: Idiom brackets. Here's another
 reimplementation of `liftA2` and `liftA3`:
 
@@ -559,7 +559,7 @@ can disambiguate between the overloaded function names.
 ### Use Case: CSV Reader
 
 In order to understand the power and versatility that comes
-from applicative functors, we will look at a slightly
+with applicative functors, we will look at a slightly
 extended example. We are going to write some utilities
 for parsing and decoding content from CSV files. These
 are files where each line holds a list of values separated
@@ -583,7 +583,7 @@ Stefan,Hoeck,46,,m,password123
 
 And here are the Idris data types necessary to hold
 this information at runtime. We use again custom
-string wrappers for increased type safety, and
+string wrappers for increased type safety and
 because it will allow us to define for each data type
 what we consider to be valid input:
 
@@ -655,7 +655,8 @@ CSVField Double where
 For optional values, the stored type must itself
 come with an instance of `CSVField`. We can then treat
 the empty string `""` as `Nothing`, while a non-empty
-string will be passed the stored type's field reader:
+string will be passed to the encapsulated type's field reader.
+(Remember that `(<$>)` is an alias for `map`.)
 
 ```idris
 CSVField a => CSVField (Maybe a) where
