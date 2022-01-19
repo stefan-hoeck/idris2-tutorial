@@ -86,7 +86,7 @@ isEmailChar c   = isAlphaNum c
 isValidEmail : String -> Bool
 isValidEmail s =
   let len = length s
-   in 0 < len && len <= 100 && all isAlpha (unpack s)
+   in 0 < len && len <= 100 && all isEmailChar (unpack s)
 
 CSVField Email where
   read = readIf isValidEmail MkEmail

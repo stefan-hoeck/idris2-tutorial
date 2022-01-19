@@ -689,7 +689,7 @@ isEmailChar c   = isAlphaNum c
 isValidEmail : String -> Bool
 isValidEmail s =
   let len = length s
-   in 0 < len && len <= 100 && all isAlpha (unpack s)
+   in 0 < len && len <= 100 && all isEmailChar (unpack s)
 
 CSVField Email where
   read = readIf isValidEmail MkEmail
@@ -978,6 +978,136 @@ Left (FieldError 3 2 "")
       Note, however, that such a function might be useful when working with
       CSV-files, as it allows us to convert a table represented as
       rows (a vector of tuples) to one represented as columns (a tuple of vectors).
+
+## Monad
+
+Finally, `Monad`. A lot of ink has been spilled about this one.
+However, after what we already saw in the [chapter about `IO`](IO.md),
+there is not much new stuff to discuss here. `Monad` extends
+`Applicative` and adds two new related functions: The *bind*
+operator (`(>>=)`) and function `join`. Here is its definition:
+
+```idris
+interface Applicative' m => Monad' m where
+  bind  : m a -> (a -> m b) -> m b
+  join' : m (m a) -> m a
+```
+
+Implementers of `Monad` are free to choose to either implement
+`(>>=)` or `join` or both. You will show in an exercise, how
+`join` can be implemented in terms of *bind* and vice versa.
+
+The big difference between `Monad` and `Applicative` is, that the
+former allows a computation to depend on the result of an
+earlier computation. For instance, we could decide based on
+a string read from standard input whether to delete a file
+or play a song. The result of the first `IO` action
+(reading some user input) will affect, which `IO` action to run next.
+This is not possible with the *apply* operator:
+
+```repl
+(<*>) : IO (a -> b) -> IO a -> IO b
+```
+
+The two `IO` actions have already been decided on when they
+are being passed as arguments to `(<*>)`. The result of the first
+cannot - in the general case - affect which computation to
+run in the second. (Actually, with `IO` this would theoretically be
+possible via side effects: The first action could write some
+command to a file or overwrite some mutable state, and the
+second action could read from that file or state, thus
+deciding on the next thing to do. But this is a speciality
+of `IO`, not of applicative functors in general. If the functor in
+question was `Maybe`, `List`, or `Vector`, no such thing
+would be possible.)
+
+Let's demonstrate the difference with an example. Assume
+we'd like to enhance our CSV-reader with the ability to
+decode a line of tokens to a sum type. For instance,
+we'd like to decode CRUD requests from the lines of a
+CSV-file:
+
+```idris
+data Crud : (i : Type) -> (a : Type) -> Type where
+  Create : (value : a) -> Crud i a
+  Update : (id : i) -> (value : a) -> Crud i a
+  Read   : (id : i) -> Crud i a
+  Delete : (id : i) -> Crud i a
+```
+
+We need a way to on each line decide, which data constructor
+to choose for our decoding. One way to do this is to
+put the name of the data constructor (or some other
+tag of identification) in the first column of the CSV-file:
+
+```idris
+hlift : (a -> b) -> HList [a] -> b
+hlift f [x] = f x
+
+hlift2 : (a -> b -> c) -> HList [a,b] -> c
+hlift2 f [x,y] = f x y
+
+decodeCRUD :  CSVField i
+           => CSVField a
+           => (line : Nat)
+           -> (s    : String)
+           -> Either CSVError (Crud i a)
+decodeCRUD l s =
+  let h ::: t = split (',' ==) s
+   in do
+     MkName n <- readField l 1 h
+     case n of
+       "Create" => hlift  Create  <$> decodeAt l 2 t
+       "Update" => hlift2 Update  <$> decodeAt l 2 t
+       "Read"   => hlift  Read    <$> decodeAt l 2 t
+       "Delete" => hlift  Delete  <$> decodeAt l 2 t
+       _        => Left (FieldError l 1 n)
+```
+
+I added two utility function for helping with type inference
+and to get slightly nicer syntax. The important thing to note
+is, how we pattern match on the result of the first
+parsing function to decide on the data constructor
+and thus the next parsing function to use.
+
+Here's how this works at the REPL:
+
+```repl
+Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 "Create,jon@doe.ch"
+Right (Create (MkEmail "jon@doe.ch"))
+Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 "Update,12,jane@doe.ch"
+Right (Update 12 (MkEmail "jane@doe.ch"))
+Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 "Delete,jon@doe.ch"
+Left (FieldError 1 2 "jon@doe.ch")
+```
+
+To conclude, `Monad`, unlike `Applicative`, allows us to
+chain computations sequentially, where every intermediary
+result can affect the behavior of later computations.
+So, if you have n unrelated effectful computations and want
+to combine them under a pure, n-ary function, `Applicative`
+will be sufficient. If, however, you want to decide
+based on the result of an effectful computation what
+computation to run next, you need a `Monad`.
+
+### Exercises
+
+1. `Applicative` extends `Functor`, because every `Applicative`
+   is also a `Functor`. Proof this by implementing `map` in
+   terms of `pure` and `(<*>)`.
+
+2. `Monad` extends `Applicative`, because every `Monad` is
+   also an `Applicative`. Proof this by implementing
+   `(<*>)` in terms of `(>>=)` and `pure`.
+
+3. Implement `(>>=)` in terms of `join` and other functions
+   in the `Monad` hierarchy.
+
+4. Implement `join` in terms of `(>>=)` and other functions
+   in the `Monad` hierarchy.
+
+5. There is no lawful `Monad` implementation for `Validated e`.
+   Why?
 
 <!-- vi: filetype=idris2
 -->
