@@ -923,10 +923,10 @@ Left (FieldError 3 2 "")
    Invalid (App (FieldError 1 1 "o") (App (FieldError 1 2 "-12") (FieldError 1 3 "foo")))
    ```
 
-   Behold the power of applicative functors and dependent types: With
+   Behold the power of applicative functors and heterogeneous lists: With
    only a few lines of code we wrote a pure, type-safe, and total
-   parser with error accumulation for lines in CSV-files that is
-   very convenient to use!
+   parser with error accumulation for lines in CSV-files, which is
+   very convenient to use at the same time!
 
 8. Since we introduced heterogeneous lists in this chapter, it
    would be a pity not to experiment with them a little.
