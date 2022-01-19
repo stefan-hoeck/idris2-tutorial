@@ -416,7 +416,7 @@ often cumbersome) to so.
 
 While `Functor` allows us to map a pure, unary function
 over a value in a context, it doesn't allow us to combine
-`n` such values under an n-ary function.
+n such values under an n-ary function.
 
 For instance, consider the following functions:
 
@@ -456,7 +456,7 @@ And it won't stop here. We might just as well want to have
 and so on, for arbitrary numbers of arguments.
 
 But there is more: We'd also like to lift pure values into
-the context in question. With this, we could to the following:
+the context in question. With this, we could do the following:
 
 ```idris
 liftMaybe3 : (a -> b -> c -> d) -> Maybe a -> Maybe b -> Maybe c -> Maybe d
@@ -510,7 +510,7 @@ is of type `Maybe (b -> c)`, as `(<*>)` will apply the value stored
 in `fa` to the function stored in `pure fun` (currying!).
 
 You'll often see such chains of applications of *apply*, the number
-of *applies* reflecting the arity of the function we apply.
+of *applies* corresponding to the arity of the function we lift.
 You'll sometimes also see the following, which allows us to drop
 the initial call to `pure`, and use the operator version of `map`
 instead:
@@ -524,14 +524,20 @@ liftA3' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc
 ```
 
+So, interface `Applicative` allows us to lift values (and functions!)
+into computational contexts and apply them to values in the same
+contexts. Before we will see an extended example why this is
+useful, I'll quickly introduce some syntactic sugar for working
+with applicative functors.
+
 ### Idiom Brackets
 
 The programming style used for implementing `liftA2'` and `liftA3'`
 is also referred to as *applicative style* and is used a lot
-in Haskell for processing several effectful computations
+in Haskell for combining several effectful computations
 with a single pure function.
 
-In Idris, there is an alternative to using such chains of
+In Idris, there is an alternative to using such of
 operator applications: Idiom brackets. Here's another
 reimplementation of `liftA2` and `liftA3`:
 
@@ -545,7 +551,10 @@ liftA3'' fun fa fb fc = [| fun fa fb fc |]
 
 The above implementations will be desugared to the one given
 for `liftA2` and `liftA3`, again *before disambiguating,
-type checking, and filling in of implicit values*.
+type checking, and filling in of implicit values*. Like with the
+*bind* operator, we can therefore write custom implementations
+for `pure` and `(<*>)`, and Idris will use these if it
+can disambiguate between the overloaded function names.
 
 ### Use Case: CSV Reader
 
@@ -559,7 +568,9 @@ used to store tabular data, for instance from spread sheet
 applications. What we would like to do is convert
 lines in a CSV file and store the result in custom
 records, where each record field corresponds to a column
-in the table. For instance, here is a simple example
+in the table.
+
+For instance, here is a simple example
 file, containing tabular user information from a web
 store: First name, last name, age, email address (optional),
 gender, and password.
@@ -567,10 +578,14 @@ gender, and password.
 ```repl
 Jon,Doe,42,jon@doe.ch,m,weijr332sdk
 Jane,Doe,44,,f,aa433sd112
+Stefan,Hoeck,46,,m,password123
 ```
 
-And here are the data types necessary to store
-this information:
+And here are the Idris data types necessary to hold
+this information at runtime. We use again custom
+string wrappers for increased type safety, and
+because it will allow us to define for each data type
+what we consider to be valid input:
 
 ```idris
 data Gender = Male | Female | Other
@@ -604,171 +619,339 @@ the data types we'd like to read:
 ```idris
 interface CSVField a where
   read : String -> Maybe a
+```
 
-readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a
-readIf p mk s = if p s then Just (mk s) else Nothing
+Below are implementations for `Gender` and `Bool`. I decided
+to in these cases encode each value with a single lower
+case character:
 
-validName : String -> Bool
-validName s =
-  let len = length s
-   in 0 < len && len <= 100 && all isAlpha (unpack s)
-
-CSVField Name where
-  read = readIf validName MkName
-
-isEmailChar : Char -> Bool
-isEmailChar '.' = True
-isEmailChar '@' = True
-isEmailChar c   = isAlphaNum c
-
-validEmail : String -> Bool
-validEmail s =
-  let len = length s
-   in 0 < len && len <= 100 && all isAlpha (unpack s)
-
-CSVField Email where
-  read = readIf validEmail MkEmail
-
-CSVField Nat where
-  read = parsePositive
-
-isPasswordChar : Char -> Bool
-isPasswordChar ' ' = True
-isPasswordChar c   = not (isControl c) && not (isSpace c)
-
-validPassword : String -> Bool
-validPassword s =
-  let len = length s
-   in 0 < len && len <= 100 && all isPasswordChar (unpack s)
-
-CSVField Password where
-  read = readIf validPassword MkPassword
-
+```idris
 CSVField Gender where
   read "m" = Just Male
   read "f" = Just Female
   read "o" = Just Other
   read _   = Nothing
 
+CSVField Bool where
+  read "t" = Just True
+  read "f" = Just False
+  read _   = Nothing
+```
+
+For numeric types, we can use the parsing functions
+from `Data.String`:
+
+```idris
+CSVField Nat where
+  read = parsePositive
+
+CSVField Integer where
+  read = parseInteger
+
+CSVField Double where
+  read = parseDouble
+```
+
+For optional values, the stored type must itself
+come with an instance of `CSVField`. We can then treat
+the empty string `""` as `Nothing`, while a non-empty
+string will be passed the stored type's field reader:
+
+```idris
 CSVField a => CSVField (Maybe a) where
   read "" = Just Nothing
   read s  = Just <$> read s
 ```
 
-For each wrapper type for strings, we defined a function for testing
-the validity of a string value, and used this together with
-utility function `readIf` to implement `read`.
+Finally, for our string wrappers, we need to decide what
+we consider to be valid values. For simplicity, I decided
+to limit the length of allowed strings and the set of
+valid characters.
+
+```idris
+readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a
+readIf p mk s = if p s then Just (mk s) else Nothing
+
+isValidName : String -> Bool
+isValidName s =
+  let len = length s
+   in 0 < len && len <= 100 && all isAlpha (unpack s)
+
+CSVField Name where
+  read = readIf isValidName MkName
+
+isEmailChar : Char -> Bool
+isEmailChar '.' = True
+isEmailChar '@' = True
+isEmailChar c   = isAlphaNum c
+
+isValidEmail : String -> Bool
+isValidEmail s =
+  let len = length s
+   in 0 < len && len <= 100 && all isAlpha (unpack s)
+
+CSVField Email where
+  read = readIf isValidEmail MkEmail
+
+isPasswordChar : Char -> Bool
+isPasswordChar ' ' = True
+isPasswordChar c   = not (isControl c) && not (isSpace c)
+
+isValidPassword : String -> Bool
+isValidPassword s =
+  let len = length s
+   in 8 < len && len <= 100 && all isPasswordChar (unpack s)
+
+CSVField Password where
+  read = readIf isValidPassword MkPassword
+```
 
 In a later chapter, we will learn about refinement types and
 how to store an erased proof of validity together with
 a validated value.
 
-Parsing a CSV file might fail, so we need a custom error
-type to describe the different possibilities of failure.
+We can now start to decode whole lines in a CSV file.
+In order to do so, we first introduce a custom error
+type encapsulating how things can go wrong:
 
 ```idris
 data CSVError : Type where
-  FieldError           : (column : Nat) -> (str : String) -> CSVError
-  UnexpectedEndOfInput : (n : Nat) -> CSVError
-  ExpectedEndOfInput   : (n : Nat) -> CSVError
+  FieldError           : (line, column : Nat) -> (str : String) -> CSVError
+  UnexpectedEndOfInput : (line, column : Nat) -> CSVError
+  ExpectedEndOfInput   : (line, column : Nat) -> CSVError
 ```
 
 We can now use `CSVField` to read a single field at a given
-position in a CSV file, and return a `FieldError` in case
+line and position in a CSV file, and return a `FieldError` in case
 of a failure.
 
 ```idris
-readField : CSVField a => (column : Nat) -> String -> Either CSVError a
-readField col str = maybe (Left $ FieldError col str) Right (read str)
+readField : CSVField a => (line, column : Nat) -> String -> Either CSVError a
+readField line col str =
+  maybe (Left $ FieldError line col str) Right (read str)
 ```
 
 If we know in advance the number of fields we need to read,
 we can try and convert a list of strings to a `Vect` of
-the given help. This facilitates reading record values of
+the given length. This facilitates reading record values of
 a known number of fields, as we get the correct number
 of string variables when pattern matching on the vector:
 
 ```idris
-toVect : (n : Nat) -> (pos : Nat) -> List a -> Either CSVError (Vect n a)
-toVect 0     _   []        = Right []
-toVect 0     pos _         = Left (ExpectedEndOfInput pos)
-toVect (S k) pos []        = Left (UnexpectedEndOfInput pos)
-toVect (S k) pos (x :: xs) = (x ::) <$> toVect k (S pos) xs
+toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n a)
+toVect 0     line _   []        = Right []
+toVect 0     line col _         = Left (ExpectedEndOfInput line col)
+toVect (S k) line col []        = Left (UnexpectedEndOfInput line col)
+toVect (S k) line col (x :: xs) = (x ::) <$> toVect k line (S col) xs
 ```
 
-Finally, we can implement function `readUser` to read
-the fields of a user entry (a single line in a CSV-file):
+Finally, we can implement function `readUser` to try and convert
+a single line in a CSV-file to a value of type `User`:
 
 ```idris
-readUser' : List String -> Either CSVError User
-readUser' ss = do
-  [fn,ln,a,em,g,pw] <- toVect 6 0 ss
-  [| MkUser (readField 1 fn)
-            (readField 2 ln)
-            (readField 3 a)
-            (readField 4 em)
-            (readField 5 g)
-            (readField 6 pw) |]
+readUser' : (line : Nat) -> List String -> Either CSVError User
+readUser' line ss = do
+  [fn,ln,a,em,g,pw] <- toVect 6 line 0 ss
+  [| MkUser (readField line 1 fn)
+            (readField line 2 ln)
+            (readField line 3 a)
+            (readField line 4 em)
+            (readField line 5 g)
+            (readField line 6 pw) |]
 
-readUser : String -> Either CSVError User
-readUser = readUser' . forget . split (',' ==)
+readUser : (line : Nat) -> String -> Either CSVError User
+readUser line = readUser' line . forget . split (',' ==)
+```
+
+Let's give this a go at the REPL:
+
+```repl
+Tutorial.Functor> readUser 1 "Joe,Foo,46,,m,pw1234567"
+Right (MkUser (MkName "Joe") (MkName "Foo") 46 Nothing Male (MkPassword "pw1234567"))
+Tutorial.Functor> readUser 7 "Joe,Foo,46,,m,shortPW"
+Left (FieldError 7 6 "shortPW")
 ```
 
 Note, how in the implementation of `readUser'` we used
 an idiom bracket to map a function of six arguments (`MkUser`)
 over six values of type `Either CSVError`. This will automatically
 succeed, if and only if all of the parsings have
-succeeded. It would have been notoriously cumberson to implement
+succeeded. It would have been notoriously cumbersome resulting
+in much less readable code to implement
 `readUser'` with a succession of six nested pattern matches.
 
+However, the idiom bracket above looks still quite repetitive.
+Surely, we can do better?
 
 #### A Case for Heterogeneous Lists
 
-So, while the above was quite interesting, let's make use
-of dependent types and write a data type for representing
-rows in a CSV-file: A heterogeneous list.
+It is time to learn about a family of types, which can
+be used as a generic representation for record types, and
+which will allow us to represent and read rows in
+heterogeneous tables with a minimal amount of code: Heterogeneous
+lists.
 
 ```idris
-
 namespace HList
   public export
   data HList : (ts : List Type) -> Type where
     Nil  : HList Nil
     (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)
-
-head : HList (t :: ts) -> t
-head (v :: _) = v
-
-tail : HList (t :: ts) -> HList ts
-tail (_ :: vs) = vs
-
-(++) : HList xs -> HList ys -> HList (xs ++ ys)
-[] ++ ws        = ws
-(v :: vs) ++ ws = v :: (vs ++ ws)
-
-interface CSVDecoder a where
-  decodeAt : Nat -> List String -> Either CSVError a
-
-CSVDecoder (HList []) where
-  decodeAt _ [] = Right Nil
-  decodeAt n _  = Left (ExpectedEndOfInput n)
-
-CSVField t => CSVDecoder (HList ts) => CSVDecoder (HList (t :: ts)) where
-  decodeAt n []        = Left (UnexpectedEndOfInput n)
-  decodeAt n (s :: ss) = [| readField n s :: decodeAt (S n) ss |]
-
-decode : CSVDecoder a => String -> Either CSVError a
-decode = decodeAt 1 . forget . split (',' ==)
-
-decode_ : (0 a : Type) -> CSVDecoder a => String -> Either CSVError a
-decode_ _ = decode
-
-decodeH : (0 ts : List Type) -> CSVDecoder (HList ts) => String -> Either CSVError (HList ts)
-decodeH _ = decode
-
-test1 : Either CSVError (HList [Name, Name, Gender, Maybe Email, Nat])
-test1 = decode "Jon,Doe,f,jon@doe.ch,23"
 ```
+
+A heterogeneous list is a list type indexed over a *list of types*.
+This allows us to at each position store a value of the
+type at the same position in the list index. For instance,
+here is a variant, which stores three values of types
+`Bool`, `Nat`, and `Maybe String` (in that order):
+
+```idris
+hlist1 : HList [Bool, Nat, Maybe String]
+hlist1 = [True, 12, Nothing]
+```
+
+You could argue that heterogeneous lists are just tuples
+storing values of the given types. That's right, of course,
+however, as you'll learn the hard way in the exercises,
+we can use the list index to perform compile-time computations
+on `HList`, for instance when concatenating two such lists
+to keep track of the types stored in the result at the
+same time.
+
+But first, we'll make use of `HList` as a means to
+concisely parse CSV-lines. In order to do that, we
+need to introduce a new interface for types corresponding
+to whole lines in a CSV-file:
+
+```idris
+interface CSVLine a where
+  decodeAt : (line, col : Nat) -> List String -> Either CSVError a
+```
+
+We'll now write two implementations of `CSVLine` for `HList`:
+One for the `Nil` case, which will succeed if and only if
+the current list of strings is empty. The other for the *cons*
+case, which will try and read a single field from the head
+of the list and the remainder from its tail. We use
+again an idiom bracket to concatenate the results:
+
+```idris
+CSVLine (HList []) where
+  decodeAt _ _ [] = Right Nil
+  decodeAt l c _  = Left (ExpectedEndOfInput l c)
+
+CSVField t => CSVLine (HList ts) => CSVLine (HList (t :: ts)) where
+  decodeAt l c []        = Left (UnexpectedEndOfInput l c)
+  decodeAt l c (s :: ss) = [| readField l c s :: decodeAt l (S c) ss |]
+```
+
+And that's it! All we need to add is two utility function
+for decoding whole lines before they have been split into
+tokens, one of which is specialized to `HList` and takes an
+erased list of types as argument to make it more convenient to
+use at the REPL:
+
+```idris
+decode : CSVLine a => (line : Nat) -> String -> Either CSVError a
+decode line = decodeAt line 1 . forget . split (',' ==)
+
+hdecode :  (0 ts : List Type)
+        -> CSVLine (HList ts)
+        => (line : Nat)
+        -> String
+        -> Either CSVError (HList ts)
+hdecode _ = decode
+```
+
+It's time to reap the fruits of our labour and give this a go at
+the REPL:
+
+```repl
+Tutorial.Functor> hdecode [Bool,Nat,Double] 1 "f,100,12.123"
+Right [False, 100, 12.123]
+Tutorial.Functor> hdecode [Name,Name,Gender] 3 "Idris,,f"
+Left (FieldError 3 2 "")
+```
+
+### Applicative Laws
+
+### Exercises
+
+1. Implement `Applicative'` for `Either e` and `Identity`.
+
+2. Implement `Applicative'` for `Vect n`. Note: In order to
+   implement `pure`, the length must be known at runtime.
+   This can be done by passing it as an unerased implicit
+   to the interface implementation:
+
+   ```idris
+   implementation {n : _} -> Applicative' (Vect n) where
+   ```
+
+3. Implement `Applicative'` for `Pair e`, with `e` having
+   a `Monoid` constraint.
+
+4. Implement `Applicative` for `Const e`, with `e` having
+   a `Semigroup` constraint.
+
+5. Implement `Applicative` for `Validated e`, with `e` having
+   a `Semigroup` constraint. This will allow us to use `(<+>)`
+   to accumulate errors in case of two `Invalid` values in
+   the implementation of *apply*.
+
+6. Add an additional data constructor of
+   type `CSVError -> CSVError -> CSVError`
+   to `CSVError` and use this to implement `Semigroup` for
+   `CSVError`.
+
+7. Refactor our CSV-parsers and all related functions so that
+   they return `Validated` instead of `Either`. This will only
+   work, if you solved exercise 6.
+
+   Two things to note: You will have to adjust very little of
+   the existing code, as we can still use applicative syntax
+   with `Validated`. Also, with this change, we enhanced our CSV-parsers
+   with the ability of error accumulation. Here are some examples
+   from a REPL session:
+
+   ```repl
+   TODO
+   ```
+
+8. Since we introduced heterogeneous lists in this chapter, it
+   would be a pity not to experiment with them a little.
+
+   This exercise is meant to sharpen your skills in type wizardry.
+   It therefore comes with very few hints. Try to decide yourself
+   what behavior you'd expect from a given function, how to express
+   this in the types, and how to implement it afterwards.
+   If your types are correct and precise enough, the implementations
+   will almost come for free. Don't give up too early if you get stuck.
+   Only if you truly run out of ideas should you have a glance
+   at the solutions (and then, only at the types at first!)
+
+   1. Implement `head` for `HList`.
+
+   2. Implement `tail` for `HList`.
+
+   3. Implement `(++)` for `HList`.
+
+   4. Implement `index` for `HList`. This might be harder than the other three.
+      Go back and look how we implemented `indexList` in an
+      [earlier exercise](Dependent.md) and start from there.
+
+   5. Package *contrib*, which is part of the Idris project, provides
+      `Data.HVect.HVect`, a data type for heterogeneous vectors. The only difference
+      to our own `HList` is, that `HVect` is indexed over a vector of
+      types instead of a list of types. This makes it easier to express certain
+      operations at the type level.
+
+      Write your own implementation of `HVect` together with functions
+      `head`, `tail`, `(++)`, and `index`.
+
+   6. For a challenge, try implementing a function for
+      transposing a `Vect m (HVect ts)`. You'll first have to
+      be creative about how to even express this in the types.
 
 <!-- vi: filetype=idris2
 -->
