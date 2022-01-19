@@ -373,7 +373,7 @@ often cumbersome) to so.
    As usual, use holes and let the compiler guide you if you get lost.
 
    ```idris
-   record Const e a where
+   record Const (e,a : Type) where
      constructor MkConst
      value : e
    ```
@@ -892,7 +892,7 @@ Left (FieldError 3 2 "")
    a `Monoid` constraint.
 
 4. Implement `Applicative` for `Const e`, with `e` having
-   a `Semigroup` constraint.
+   a `Monoid` constraint.
 
 5. Implement `Applicative` for `Validated e`, with `e` having
    a `Semigroup` constraint. This will allow us to use `(<+>)`
@@ -915,8 +915,18 @@ Left (FieldError 3 2 "")
    from a REPL session:
 
    ```repl
-   TODO
+   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 "t,12,f"
+   Valid [True, 12, Female]
+   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 "o,-12,f"
+   Invalid (App (FieldError 1 1 "o") (FieldError 1 2 "-12"))
+   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 "o,-12,foo"
+   Invalid (App (FieldError 1 1 "o") (App (FieldError 1 2 "-12") (FieldError 1 3 "foo")))
    ```
+
+   Behold the power of applicative functors and dependent types: With
+   only a few lines of code we wrote a pure, type-safe, and total
+   parser with error accumulation for lines in CSV-files that is
+   very convenient to use!
 
 8. Since we introduced heterogeneous lists in this chapter, it
    would be a pity not to experiment with them a little.
@@ -949,9 +959,24 @@ Left (FieldError 3 2 "")
       Write your own implementation of `HVect` together with functions
       `head`, `tail`, `(++)`, and `index`.
 
-   6. For a challenge, try implementing a function for
+   6. For a real challenge, try implementing a function for
       transposing a `Vect m (HVect ts)`. You'll first have to
       be creative about how to even express this in the types.
+
+      Note: In order to implement this, you'll need to pattern match
+      on an erased argument in at least one case to help Idris with
+      type inference. Pattern matching on erased arguments is forbidden
+      (they are erased after all, so we can't inspect them at runtime),
+      *unless* the structure of the value being matched on can be derived
+      from another, un-erased argument.
+
+      Also, don't worry if you get stuck on this one. It took me several
+      tries to figure it out. But I enjoyed the experience, so I just *had*
+      to include it here. :-)
+
+      Note, however, that such a function might be useful when working with
+      CSV-files, as it allows us to convert a table represented as
+      rows (a vector of tuples) to one represented as columns (a tuple of vectors).
 
 <!-- vi: filetype=idris2
 -->
