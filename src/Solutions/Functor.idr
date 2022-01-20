@@ -17,6 +17,20 @@ interface Functor' f => Applicative' f where
   app   : f (a -> b) -> f a -> f b
   pure' : a -> f a
 
+record Comp (f,g : Type -> Type) (a : Type) where
+  constructor MkComp
+  unComp  : f (g a)
+
+implementation Functor f => Functor g => Functor (Comp f g) where
+  map f (MkComp v) = MkComp $ map f <$> v
+
+record Product (f,g : Type -> Type) (a : Type) where
+  constructor MkProduct
+  pair  : (f a, g a)
+
+implementation Functor f => Functor g => Functor (Product f g) where
+  map f (MkProduct (l, r)) = MkProduct (map f l, map f r)
+
 data Gender = Male | Female | Other
 
 record Name where
@@ -391,3 +405,51 @@ vects = [[True, 100, "Hello"], [False, 0, "Idris"], [False, 2, "!"]]
 
 vects' : HVect [Vect 3 Bool, Vect 3 Nat, Vect 3 String]
 vects' = htranspose vects
+
+-- 9
+Applicative f => Applicative g => Applicative (Comp f g) where
+  pure = MkComp . pure . pure
+  MkComp ff <*> MkComp fa = MkComp [| ff <*> fa |]
+
+-- 10
+Applicative f => Applicative g => Applicative (Product f g) where
+  pure v = MkProduct (pure v, pure v)
+  MkProduct (ffl, ffr)  <*> MkProduct (fal, far) =
+    MkProduct (ffl <*> fal, ffr <*> far)
+
+--------------------------------------------------------------------------------
+--          Monad
+--------------------------------------------------------------------------------
+
+-- 1
+mapWithApp : Applicative f => (a -> b) -> f a -> f b
+mapWithApp fun fa = pure fun <*> fa
+
+-- 2
+appWithBind : Monad f => f (a -> b) -> f a -> f b
+appWithBind ff fa = ff >>= (\fun => fa >>= (\va => pure $ fun va))
+
+-- or, more readable, the same thing with do notation
+appWithBindDo : Monad f => f (a -> b) -> f a -> f b
+appWithBindDo ff fa = do
+  fun <- ff
+  va  <- fa
+  pure $ fun va
+
+-- 3
+bindFromJoin : Monad m => m a -> (a -> m b) -> m b
+bindFromJoin ma f = join $ map f ma
+
+-- 4
+joinFromBind : Monad m => m (m a) -> m a
+joinFromBind = (>>= id)
+
+-- 5
+-- The third law
+-- `mf <*> ma = mf >>= (\fun => map (fun $) ma)`
+-- does not hold, as implementation of *apply* on the
+-- right hand side does not perform error accumulation.
+--
+-- `Validated e` therefore comes without implementation of
+-- `Monad`. In order to use it in do blocks, it's best to
+-- convert it to Either and back.

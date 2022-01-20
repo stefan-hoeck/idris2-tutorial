@@ -1036,6 +1036,14 @@ laws. Here they are:
       CSV-files, as it allows us to convert a table represented as
       rows (a vector of tuples) to one represented as columns (a tuple of vectors).
 
+  9. Show, that the composition of two applicative functors is
+     again an applicative functor by implementing `Applicative`
+     for `Comp f g`.
+
+  10. Show, that the product of two applicative functors is
+      again an applicative functor by implementing `Applicative`
+      for `Prod f g`.
+
 ## Monad
 
 Finally, `Monad`. A lot of ink has been spilled about this one.
@@ -1147,6 +1155,12 @@ will be sufficient. If, however, you want to decide
 based on the result of an effectful computation what
 computation to run next, you need a `Monad`.
 
+Note, however, that `Monad` has one important drawback
+compared to `Applicative`: In general, monads don't compose.
+For instance, there is no `Monad` instance for `Either e . IO`.
+We will later learn about monad transformers, which can
+be composed with other monads.
+
 ### Monad Laws
 
 Without further ado, here are the laws for `Monad`:
@@ -1208,5 +1222,50 @@ must behave the same as the implementation in terms of `(>>=)`:
 5. There is no lawful `Monad` implementation for `Validated e`.
    Why?
 
+## Background and further Reading
+
+Concepts like *functor* and *monad* have their origin in *category theory*,
+a branch of mathematics. That is also where their laws come from.
+Category theory was found to have applications in
+programming language theory, especially functional programming.
+It is a highly abstract topic, but there is a pretty accessible
+introduction for programmers, written by 
+[Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).
+
+The usefulness of applicative functors as a middle ground between
+functor and monad was discovered several years after monads had
+already been in use in Haskell. They where introduced in the
+article [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html),
+which is freely available online and a highly recommended read.
+
+## Conclusion
+
+* Interfaces `Functor`, `Applicative`, and `Monad` abstract over
+  programming patterns that come up when working with type
+  constructors of type `Type -> Type`. Such data types are also
+  referred to as *values in a context*, or *effectful computations*.
+
+* `Functor` allows us to *map* over values in a context, without
+  affecting the underlying structure of the context.
+
+* `Applicative` allows us to apply n-ary functions to n values
+  in the same context.
+
+* `Monad` allows us to chain effectful computations, where the
+  intermediary results can affect, which computation to run
+  further down the chain.
+
+* Unlike `Monad`, `Functor` and `Applicative` compose: The
+  product and composition of two functors or applicatives
+  are again functors or applicatives, respectively.
+
+* Idris provides syntactic sugar for working with some of
+  the interfaces presented here: Idiom brackets for `Applicative`,
+  *do blocks* and the bang operator for `Monad`.
+
+### What's next?
+
+In the next session we get to learn about two other highly
+important interfaces: `Foldable` and `Traversable`.
 <!-- vi: filetype=idris2
 -->
