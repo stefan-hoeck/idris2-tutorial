@@ -78,7 +78,7 @@ toLengthList (x :: xs) = length x :: toLengthList xs
 
 I'd like you to appreciate, just how boring these functions are. They
 are almost identical, with the only interesting part being
-the function we apply to each element. Surely, there must be
+the function we apply to each element. Surely, there must be a
 pattern to abstract over:
 
 ```idris
@@ -188,6 +188,18 @@ Tutorial.Functor> :ti map'
 Tutorial.Functor.map' : {0 b : Type} -> {0 a : Type} -> {0 f : Type -> Type} -> Functor' f => (a -> b) -> f a -> f b
 ```
 
+It can also be helpful to replace type parameter `f` with a concrete
+value of the same type:
+
+```repl
+Tutorial.Functor> :t map' {f = Maybe}
+map' : (?a -> ?b) -> Maybe ?a -> Maybe ?b
+```
+
+Remember, being able to interpret type signatures is paramount to
+understanding what's going on in an Idris declaration. You *must*
+practice this making use of the tools and utilities given to you.
+
 ### Derived Functions
 
 There are several functions and operators directly derivable from interface 
@@ -215,11 +227,11 @@ Prelude.ignore : Functor f => f a -> f ()
 drop some parentheses. For instance:
 
 ```idris
-tailShowReverse : Show a => List1 a -> List String
-tailShowReverse xs = reverse . show <$> tail xs
-
 tailShowReversNoOp : Show a => List1 a -> List String
 tailShowReversNoOp xs = map (reverse . show) (tail xs)
+
+tailShowReverse : Show a => List1 a -> List String
+tailShowReverse xs = reverse . show <$> tail xs
 ```
 
 `(<&>)` is an alias for `(<$>)` with the arguments flipped.
@@ -246,7 +258,7 @@ implementation Functor' (Either e) where
 
 Here is another example, this time for a type constructor of
 type `Bool -> Type -> Type` (you might remember this from
-the exercises in the [last chapter](IO.md):
+the exercises in the [last chapter](IO.md)):
 
 ```idris
 data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -260,7 +272,7 @@ implementation Functor (List01 ne) where
 
 ### Functor Composition
 
-The nice thing about `Functor`s is how they can be paired and
+The nice thing about functors is how they can be paired and
 nested with other functors and the results are functors again:
 
 ```idris
@@ -335,7 +347,7 @@ the former is already exported by the *Prelude*.
 Implementations of `Functor` are supposed to adhere to certain laws,
 just like implementations of `Eq` or `Ord`. Again, these laws are
 not verified by Idris, although it would be possible (and
-often cumbersome) to so.
+often cumbersome) to do so.
 
 1. `map id = id`: Mapping the identity function over a functor
     must not have any visible effect like changing a container's
@@ -1245,11 +1257,11 @@ which is freely available online and a highly recommended read.
   constructors of type `Type -> Type`. Such data types are also
   referred to as *values in a context*, or *effectful computations*.
 
-* `Functor` allows us to *map* over values in a context, without
-  affecting the underlying structure of the context.
+* `Functor` allows us to *map* over values in a context without
+  affecting the context's underlying structure.
 
-* `Applicative` allows us to apply n-ary functions to n values
-  in the same context.
+* `Applicative` allows us to apply n-ary functions to n effectful
+  computations and to lift pure values into a context.
 
 * `Monad` allows us to chain effectful computations, where the
   intermediary results can affect, which computation to run
