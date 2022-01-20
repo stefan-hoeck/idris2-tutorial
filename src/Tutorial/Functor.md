@@ -345,6 +345,13 @@ often cumbersome) to so.
 2. `map (f . g) = map f . map g`: Sequencing two mappings must be identical
    to a single mapping using the composition of the two functions.
 
+Both of these laws request, that `map` is preserving the *structure*
+of values. This is easier to understand with container types like
+`List`, `Maybe`, or `Either e`, where `map` is not allowed to
+add or remove any wrapped value, nor - in case of `List` -
+change their order. With `IO`, this can best be described as `map`
+not performing additional side effects.
+
 ### Exercises
 
 1. Write your own implementations of `Functor'` for `Maybe`, `List`,
@@ -876,6 +883,56 @@ Left (FieldError 3 2 "")
 
 ### Applicative Laws
 
+Again, `Applicative` implementations must follow certain
+laws. Here they are:
+
+* `pure id <*> fa = fa`: Lifting and applying the identity
+  function has no visible effect.
+
+* `[| f . g |] <*> v = f <*> (g <*> v)`:  
+  I must not matter, whether we compose our functions
+  first and then apply them, or whether we apply
+  our functions first and then compose them.
+
+  The above might be hard to understand, so here
+  they are again with explicit types and implementations:
+
+  ```idris
+  compL : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c
+  compL f g v = [| f . g |] <*> v
+
+  compR : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c
+  compR f g v = f <*> (g <*> v)
+  ```
+
+  The second applicative law states, that the two implementations
+  `compL` and `compR` should behave identically.
+
+* `pure f <*> pure x = pure (f x)`. This is also called the
+  *homomorphism* law. It should be pretty self-explaining.
+
+*  `f <*> pure v = pure ($ v) <*> f`. This is called the law
+   of *interchange*. 
+
+   This should again be explained with a concrete example:
+
+   ```idris
+   interL : Maybe (a -> b) -> a -> Maybe b
+   interL f v = f <*> pure v
+
+   interR : Maybe (a -> b) -> a -> Maybe b
+   interR f v = pure ($ v) <*> f
+   ```
+
+   Note, that `($ v)` has type `(a -> b) -> b`, so this
+   is a function type being applied to `f`, which has
+   a function of type `a -> b` wrapped in a `Maybe`
+   context.
+
+   The law of interchange states that it must not matter
+   whether we apply a pure value from the left or
+   right of the *apply* operator.
+
 ### Exercises
 
 1. Implement `Applicative'` for `Either e` and `Identity`.
@@ -1082,13 +1139,55 @@ Left (FieldError 1 2 "jon@doe.ch")
 ```
 
 To conclude, `Monad`, unlike `Applicative`, allows us to
-chain computations sequentially, where every intermediary
-result can affect the behavior of later computations.
+chain computations sequentially, where intermediary
+results can affect the behavior of later computations.
 So, if you have n unrelated effectful computations and want
 to combine them under a pure, n-ary function, `Applicative`
 will be sufficient. If, however, you want to decide
 based on the result of an effectful computation what
 computation to run next, you need a `Monad`.
+
+### Monad Laws
+
+Without further ado, here are the laws for `Monad`:
+
+* `ma >>= pure = ma` and `pure v >>= f = f v`.
+  These are monad's identity laws. Here they are as
+  concrete examples:
+
+  ```idris
+  id1L : Maybe a -> Maybe a
+  id1L ma = ma >>= pure
+
+  id2L : a -> (a -> Maybe b) -> Maybe b
+  id2L v f = pure v >>= f
+
+  id2R : a -> (a -> Maybe b) -> Maybe b
+  id2R v f = f v
+  ```
+
+  These two laws state that `pure` should behave
+  neutrally w.r.t. *bind*.
+
+* (m >>= f) >>= g = m >>= (f >=> g)
+  This is the law of associativity for monad.
+  You might not have seen the second operator `(>=>)`.
+  It can be used to sequence effectful computations
+  and has the following type:
+
+  ```repl
+  Tutorial.Functor> :t (>=>)
+  Prelude.>=> : Monad m => (a -> m b) -> (b -> m c) -> a -> m c
+  ```
+
+The above are the *official* monad laws. However, we need to
+consider a third one, given that in Idris (and Haskell)
+`Monad` extends `Applicative`: As `(<*>)` can be implemented
+in terms of `(>>=)`, the actual implementation of `(<*>)`
+must behave the same as the implementation in terms of `(>>=)`:
+
+
+* `mf <*> ma = mf >>= (\fun => map (fun $) ma)`.
 
 ### Exercises
 
