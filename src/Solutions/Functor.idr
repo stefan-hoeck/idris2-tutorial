@@ -1,5 +1,7 @@
 module Solutions.Functor
 
+import Data.IORef
+import Data.List
 import Data.List1
 import Data.String
 import Data.Vect
@@ -49,8 +51,8 @@ record User where
   constructor MkUser
   firstName : Name
   lastName  : Name
-  age       : Nat
-  email     : Maybe Email
+  age       : Maybe Nat
+  email     : Email
   gender    : Gender
   password  : Password
 
@@ -453,3 +455,129 @@ joinFromBind = (>>= id)
 -- `Validated e` therefore comes without implementation of
 -- `Monad`. In order to use it in do blocks, it's best to
 -- convert it to Either and back.
+
+-- 6
+
+DB : Type
+DB = IORef (List (Nat,User))
+
+data DBError : Type where
+  UserExists        : Email -> Nat -> DBError
+  UserNotFound      : Nat -> DBError
+  SizeLimitExceeded : DBError
+
+record Prog a where
+  constructor MkProg
+  runProg : DB -> IO (Either DBError a)
+
+-- 6.1
+
+-- make sure you are able to read and understand the
+-- point-free style in the implementation of `map`!
+Functor Prog where
+  map f (MkProg run) = MkProg $ map (map f) . run
+
+Applicative Prog where
+  pure v = MkProg $ \_ => pure (Right v)
+  MkProg rf <*> MkProg ra = MkProg $ \db => do
+    Right fun <- rf db | Left err => pure (Left err)
+    Right va  <- ra db | Left err => pure (Left err)
+    pure (Right $ fun va)
+
+Monad Prog where
+  MkProg ra >>= f = MkProg $ \db => do
+    Right va <- ra db | Left err => pure (Left err)
+    runProg (f va) db
+
+-- 6.2
+
+HasIO Prog where
+  liftIO act = MkProg $ \_ => map Right act
+
+-- 6.3
+throw : DBError -> Prog a
+throw err = MkProg $ \_ => pure (Left err)
+
+getUsers : Prog (List (Nat,User))
+getUsers = MkProg (map Right . readIORef)
+
+putUsers : List (Nat,User) -> Prog ()
+putUsers us =
+  if length us > 1000 then throw SizeLimitExceeded
+  else MkProg $ \db => Right <$> writeIORef db us
+
+modifyDB : (List (Nat,User) -> List (Nat,User)) -> Prog ()
+modifyDB f = getUsers >>= putUsers . f
+
+-- 6.4
+lookupUser : (id : Nat) -> Prog User
+lookupUser id = do
+  db <- getUsers
+  case lookup id db of
+    Just u  => pure u
+    Nothing => throw (UserNotFound id)
+
+-- 6.5
+deleteUser : (id : Nat) -> Prog ()
+deleteUser id =
+  -- In the first step, we are only interested in the potential
+  -- of failure, not the actual user value.
+  -- We can therefore use `(>>)` to chain the operations.
+  -- In order to do so, we must wrap `lookupUser` in a call
+  -- to `ignore`.
+  ignore (lookupUser id) >> modifyDB (filter $ (id /=) . fst)
+
+-- 6.6
+Eq Email where (==) = (==) `on` value
+
+newId : List (Nat,User) -> Nat
+newId = S . foldl (\n1,(n2,_) => max n1 n2) 0
+
+addUser : (u : User) -> Prog Nat
+addUser u = do
+  us <- getUsers
+  case find ((u.email ==) . email . snd) us of
+    Just (id,_) => throw $ UserExists u.email id
+    Nothing     => let id = newId us in putUsers ((id, u) :: us) $> id
+
+-- 6.7
+
+update : Eq a => a -> b -> List (a,b) -> List (a,b)
+update va vb = map (\p@(va',vb') => if va == va' then (va,vb) else p)
+
+updateUser : (id : Nat) -> (mod : User -> User) -> Prog User
+updateUser id mod = do
+  u  <- mod <$> lookupUser id
+  us <- getUsers
+  case find ((u.email ==) . email . snd) us of
+    Just (id',_) => if id /= id'
+                      then throw $ UserExists u.email id'
+                      else putUsers (update id u us) $> u
+    Nothing      => putUsers (update id u us) $> u
+
+-- 6.8
+
+record Prog' env err a where
+  constructor MkProg'
+  runProg' : env -> IO (Either err a)
+
+Functor (Prog' env err) where
+  map f (MkProg' run) = MkProg' $ map (map f) . run
+
+Applicative (Prog' env err) where
+  pure v = MkProg' $ \_ => pure (Right v)
+  MkProg' rf <*> MkProg' ra = MkProg' $ \db => do
+    Right fun <- rf db | Left err => pure (Left err)
+    Right va  <- ra db | Left err => pure (Left err)
+    pure (Right $ fun va)
+
+Monad (Prog' env err) where
+  MkProg' ra >>= f = MkProg' $ \db => do
+    Right va <- ra db | Left err => pure (Left err)
+    runProg' (f va) db
+
+HasIO (Prog' env err) where
+  liftIO act = MkProg' $ \_ => map Right act
+
+throw' : err -> Prog' env err a
+throw' ve = MkProg' $ \_ => pure (Left ve)
