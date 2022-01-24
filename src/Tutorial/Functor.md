@@ -1060,7 +1060,7 @@ laws. Here they are:
 
 Finally, `Monad`. A lot of ink has been spilled about this one.
 However, after what we already saw in the [chapter about `IO`](IO.md),
-there is not much new stuff to discuss here. `Monad` extends
+there is not much left to discuss here. `Monad` extends
 `Applicative` and adds two new related functions: The *bind*
 operator (`(>>=)`) and function `join`. Here is its definition:
 
@@ -1284,7 +1284,7 @@ must behave the same as the implementation in terms of `(>>=)`:
    * The size limit of 1000 entries must not be exceeded.
 
    * Operations trying to lookup a user by their ID must
-     fail with `UserNotFound`, in case no entry was found
+     fail with `UserNotFound` in case no entry was found
      in the DB.
 
    You'll need the following functions from `Data.IORef` when working
