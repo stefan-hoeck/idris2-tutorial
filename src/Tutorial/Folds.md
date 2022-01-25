@@ -1,23 +1,24 @@
-# Folds and Traversals
+# Recursion and Folds
 
 In this chapter, we are going to have a closer look at the
 computations we typically perform with *container types*:
 Parameterized data types like `List`, `Maybe`, or
 `Identity`, holding zero or more values of the parameter's
-type.
+type. Many of these functions are recursive in nature,
+so we start with a discourse about recursion in general,
+and tail recursion as an important optimization technique
+in particular. Most recursive functions in this part
+will describe pure iterations over lists.
 
-We start with concrete, pure functions like "calculating
-the sum of the numeric values stored in a container", but will
-soon begin to experiment with generalizations,
-eventually arriving at three highly versatile functions
-for accumulating the values stored in a container: `foldl`,
-`foldr`, and `foldMap`.
+It is recursive functions, for which totality is hard
+to determine, so we will next have a quick look at the 
+totality checker and learn, when it will refuse to
+accept a function as being total and what to do about this.
 
-We will then look at running effectful conversions over the
-elements stored in a container, while reassembling and
-preserving the container's structure. This will eventually
-lead us to one of the most powerful functions exported by
-the *Prelude*: `traverse`.
+Finally, we will start looking for common patterns in
+the recursive functions from the first part and will
+eventually introduce a new interface for consuming
+container types: Interface `Foldable`.
 
 ```idris
 module Tutorial.Folds
@@ -28,7 +29,6 @@ import Data.Vect
 
 %default total
 ```
-
 ## Recursion
 
 In this section, we are going to have a closer look at
@@ -41,8 +41,8 @@ at totality in more detail in a later chapter, but right
 now, please note that it is recursive functions, which
 make it hard to verify totality: Non-recursive functions,
 which are *covering* (they cover all possible cases in their
-pattern matches) are automatically total (if they only invoke
-other total functions).
+pattern matches) are automatically total if they only invoke
+other total functions.
 
 Here is an example: The following function generates
 a list of a given length filling it with the given argument:
@@ -254,16 +254,17 @@ countTR p = go 0
 
 ### Mutual Recursion
 
-It is sometimes convenient, to implement several related
+It is sometimes convenient to implement several related
 functions, which call each other recursively. In Idris,
 unlike in many other programming languages,
-a function must be declared before it can be called by other
-functions, as in general, a function's implementation must
+a function must be declared in a source file
+*before* it can be called by other functions, as in general,
+a function's implementation must
 be available during type checking (because Idris has
 dependent types). There are two ways around this, which
 actually result in the same internal representation in the
-compiler. One thing to do, is write down the functions' declarations
-first, with the implementations following after. Here's a
+compiler. Our first option is to write down the functions' declarations
+first with the implementations following after. Here's a
 silly example:
 
 ```idris
@@ -280,7 +281,8 @@ odd (S k) = even k
 
 If you're like me and want to keep declarations and implementations
 next to each other, you can introduce a `mutual` block, which has
-the same effect:
+the same effect. Like with other code blocks, functions in a `mutual`
+block must all be indented by the same amount of white space:
 
 ```idris
 mutual
@@ -296,8 +298,8 @@ mutual
 Just like with single recursive functions, mutually recursive
 functions can be optimized to imperative loops if all
 recursive calls occur at tail position. This is the case
-with our functions `even` and `odd`, as can again be
-verified on the *node* backend:
+with functions `even` and `odd`, as can again be
+verified at the *node* backend:
 
 ```idris
 main2 : IO ()
@@ -314,7 +316,7 @@ False
 ### Final Remarks
 
 In this section, we learned about several important aspects
-of recursion, which are summarized here:
+of recursion and totality checking, which are summarized here:
 
 * In pure functional programming, recursion is the
   way to implement iterative expressions.
@@ -449,10 +451,155 @@ behavior of all functions at the REPL.
    joinTR : List (List a) -> List a
    ```
 
+## A few Notes on Totality Checking
+
+The totality checker in Idris verifies, that at least one
+(possibly erased!) argument in a recursive call converges towards
+a base case. For instance with natural numbers, if the base case
+is zero (corresponding to data constructor `Z`), and we continue
+with `k` after pattern matching on `S k`, Idris can derive from
+`Nat`'s constructors, that `k` is strictly smaller than `S k`
+and therefore, converges towards a base case. Exactly the same
+reasoning is used when pattern matching on a list and continuing
+only with its tail in the recursive call.
+
+While this works in many cases, it doesn't always go as expected.
+Below, I'll show you a couple of examples where totality checking
+fails, although *we* know, that the function in question is provably
+total.
+
+### Case 1: Recursion over a Primitive
+
+Idris doesn't know anything about the internal structure of
+primitive data types. So the following function, although
+being obviously total, will not be accepted by the totality
+checker:
+
+```idris
+covering
+replicatePrim : Bits32 -> a -> List a
+replicatePrim 0 v = []
+replicatePrim x v = v :: replicatePrim (x - 1) v
+```
+
+Unlike with natural numbers (`Nat`), which are define as an inductive
+data type (and are only converted to integer primitives during compilation),
+Idris can't tell that `x - 1` is strictly smaller than `x` and therefore
+converges towards the base case.
+
+For such occasions, there is utility function `assert_smaller`, which
+we can use to convince the totality checker:
+
+```idris
+replicatePrim' : Bits32 -> a -> List a
+replicatePrim' 0 v = []
+replicatePrim' x v = v :: replicatePrim' (assert_smaller x $ x - 1) v
+```
+
+Please note, though, that whenever you use `assert_smaller` to
+silence the totality checker, the burden of proving totality rests
+on your shoulders. Failing to do so, can lead to arbitrary program
+behavior.
+
+Here, as a demonstration, is a proof of `Void` (`Void` is an uninhabited
+type: a type with no values. Proofing `Void` allows us to completely
+disable the type system together with all the guarantees it provides.)
+
+```idris
+proofOfVoid : Bits8 -> Void
+proofOfVoid n = proofOfVoid (assert_smaller n n)
+
+exFalsoQuodLibet : Void -> a
+exFalsoQuodLibet _ impossible
+
+coerce : a -> b
+coerce _ = exFalsoQuodLibet (proofOfVoid 0)
+
+pain : IO ()
+pain = putStrLn $ coerce () {b = String}
+```
+
+Please take a moment and marvel at provably total function `coerce`:
+It claims to convert *any* value to a value of *any* other type.
+In `pain` we used it to coerce `Unit` to a string.
+
+Well, we'll get what we deserve. Run the following at your own risk:
+
+```sh
+$> idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
+ERROR: Error: Executed 'void'
+```
+
+So, with a single thoughtless placement of `assert_smaller` we wrought
+havoc within our pure and total code base. Definitely: Use at your
+own risk!
+
+Note: I do not expect you to understand all the dark magic at
+work in the code above. I'll explain them in more detail in due
+time.
+
+### Case 2: Recursion via Function Calls
+
+Here is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_tree):
+
+```idris
+data Tree : Type -> Type where
+  Leaf : (val : a) -> Tree a
+  Node : (trees : List (Tree a)) -> Tree a
+```
+
+We could try and compute the size of such a tree as follows:
+
+```idris
+covering
+size : Tree a -> Nat
+size (Leaf _)     = 1
+size (Node trees) = sum $ map size trees
+```
+
+In the code above, the recursive call happens within `map`. *We* know that
+we are using only subtrees in the recursive calls (since we know how `map`
+is implemented for `List`), but Idris can't know this (teaching a totality
+checker how to figure this out on its own seems to be an open research
+question). So it will refuse to accept the function to be total.
+
+There are two ways to handle the case above. If we don't mind writing
+a bit of otherwise unneeded boilerplate code, we can use explicit recursion:
+
+
+```idris
+size' : Tree a -> Nat
+size' (Leaf _)     = 1
+size' (Node trees) = go 0 trees
+  where go : Nat -> List (Tree a) -> Nat
+        go k []        = k
+        go k (x :: xs) = go (k + size' x) xs
+```
+
+In the case above, Idris can verify that we don't blow up our trees behind
+its back as we are explicit about what happens in each recursive step.
+This is the safe, preferable way of going about this, especially if you are
+new to the language and totality checking in general.
+
+However, sometimes the solution presented above is just too cumbersome to
+write. For instance, here is an implementation of `Show` for rose trees:
+
+```idris
+Show a => Show (Tree a) where
+  showPrec p (Leaf v)  = showCon p "Leaf" (showArg v)
+  showPrec p (Node ts) = assert_total $ showCon p "Node" (showArg ts)
+```
+
+In this case, we'd have to manually reimplement `Show` for lists of trees:
+A tedious task - and error prone on its own. Instead, we resort to using the
+mighty sledgehammer of totality checking: `assert_total`. Needless to say,
+that this comes with the same risks as `assert_smaller`, so be very
+careful.
+
 ## Interface Foldable
 
 When looking back at all the exercises we solved
-in the last section, most tail recursive functions
+in the section about recursion, most tail recursive functions
 on lists where of the following pattern: Iterate
 over all list elements from head to tail, while
 passing along some state for accumulating intermediate
