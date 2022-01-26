@@ -34,18 +34,17 @@ import Data.Vect
 In this section, we are going to have a closer look at
 recursion in general and at tail recursion in particular.
 
-Recursive functions are functions, which call themselves,
+Recursive functions are functions, which call themselves
 to repeat a task or calculation until a certain aborting
-condition (called the *base case*) holds. We will look
-at totality in more detail in a later chapter, but right
-now, please note that it is recursive functions, which
+condition (called the *base case*) holds.
+Please note, that it is recursive functions, which
 make it hard to verify totality: Non-recursive functions,
 which are *covering* (they cover all possible cases in their
 pattern matches) are automatically total if they only invoke
 other total functions.
 
-Here is an example: The following function generates
-a list of a given length filling it with the given argument:
+Here is an example of a recursive function: It generates
+a list of the given length filling it with identical values:
 
 ```idris
 replicateList : Nat -> a -> List a
@@ -83,7 +82,7 @@ But when is a recursive function non-total? Here is an example: The
 following function creates a sequence of values until the given
 generation function (`gen`) returns a `Nothing`. Note, how we use
 a *state* value (of generic type `s`) and use `gen` to calculate
-a value and the next state:
+a value together with the next state:
 
 ```idris
 covering
@@ -127,7 +126,7 @@ fibonacciN n = unfoldTot n (Just . fiboHelper) (1,1)
 
 ### The Call Stack
 
-In order to demonstrate what tail recursion is about, we will need
+In order to demonstrate what tail recursion is about, we require
 the following `main` function:
 
 ```idris
@@ -138,7 +137,8 @@ main = printLn . len $ replicateList 10000 10
 If you have [NodeJS](https://nodejs.org/en/) installed on your system,
 you might try the following experiment. Compile and run this
 module using the *node* backend of Idris instead of the default
-*Chez Scheme* backend:
+*Chez Scheme* backend and run the resulting JavaScript source file
+with the `node` binary:
 
 ```sh
 $> idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
@@ -148,7 +148,9 @@ $> node build/exec/test.js
 Node will fail with the following error message and a lengthy
 stack trace: `RangeError: Maximum call stack size exceeded`.
 What's going on here? How can it be that `main` fails with an
-exception although it is provably total? First, a function
+exception although it is provably total?
+
+First, remember that a function
 being total means that it will eventually produce a value
 of the given type in a finite amount of time, *given
 enough resources like computer memory*. Here, `main` hasn't
@@ -160,7 +162,7 @@ the stack size increases by one with every recursive function
 call. In case of our `main` function, we create and consume
 a list of length 10'000, so the call stack will hold
 at least 10'000 function calls before they are being invoked
-and the stack size is reduced again. This exceeds *node*'s
+and the stack's size is reduced again. This exceeds NodeJS's
 stack size limit by far, hence the overflow error.
 
 Now, before we look at a solution how to circumvent this issue,
@@ -205,7 +207,7 @@ lenTR = lenOnto 0
 
 This is a common pattern when writing tail recursive functions:
 We typically add an additional function argument for accumulating
-intermediary results, which is then handed explicitly at the
+intermediary results, which is then passed on explicitly at each
 recursive call. For instance, here is a tail recursive version
 of `replicateList`:
 
@@ -237,6 +239,9 @@ $> idris2 --cg node --exec main1 --find-ipkg src/Tutorial/Folds.md
 10000
 ```
 
+As you can see, this time the computation finished without
+overflowing the call stack.
+
 Tail recursive functions are allowed to consist of
 (possibly nested) pattern matches, with recursive
 calls at tail position in several of the branches.
@@ -252,13 +257,16 @@ countTR p = go 0
           False => go k xs
 ```
 
+Note, how each invocation of `go` is in tail position in
+its branch of the case expression.
+
 ### Mutual Recursion
 
 It is sometimes convenient to implement several related
 functions, which call each other recursively. In Idris,
 unlike in many other programming languages,
 a function must be declared in a source file
-*before* it can be called by other functions, as in general,
+*before* it can be called by other functions, as in general
 a function's implementation must
 be available during type checking (because Idris has
 dependent types). There are two ways around this, which
@@ -279,10 +287,14 @@ odd 0     = False
 odd (S k) = even k
 ```
 
+As you can see, function `even` is allowed to call function `odd` in
+its implementation, since `odd` has already been declare (but not yet
+implemented).
+
 If you're like me and want to keep declarations and implementations
 next to each other, you can introduce a `mutual` block, which has
 the same effect. Like with other code blocks, functions in a `mutual`
-block must all be indented by the same amount of white space:
+block must all be indented by the same amount of whitespace:
 
 ```idris
 mutual
@@ -326,14 +338,15 @@ of recursion and totality checking, which are summarized here:
   in every recursive function call.
 
 * Arbitrary recursion can lead to stack overflow exceptions on
-  backends small stack size limits.
+  backends with small stack size limits.
 
 * The JavaScript backends of Idris perform mutual tail call
   optimization: Tail recursive functions are converted to
   stack-safe, imperative loops.
 
-Note, that not all backends you will come across in the wild
-will perform tail call optimization.
+Note, that not all Idris backends you will come across in the wild
+will perform tail call optimization. Please check the corresponding
+documentation.
 
 Note also, that most recursive functions in the core libraries (*prelude*
 and *base*) do not yet make use of tail recursion. There is an
@@ -455,13 +468,13 @@ behavior of all functions at the REPL.
 
 The totality checker in Idris verifies, that at least one
 (possibly erased!) argument in a recursive call converges towards
-a base case. For instance with natural numbers, if the base case
+a base case. For instance, with natural numbers, if the base case
 is zero (corresponding to data constructor `Z`), and we continue
 with `k` after pattern matching on `S k`, Idris can derive from
 `Nat`'s constructors, that `k` is strictly smaller than `S k`
-and therefore, converges towards a base case. Exactly the same
-reasoning is used when pattern matching on a list and continuing
-only with its tail in the recursive call.
+and therefore the recursive call must converge towards a base case.
+Exactly the same reasoning is used when pattern matching on a list
+and continuing only with its tail in the recursive call.
 
 While this works in many cases, it doesn't always go as expected.
 Below, I'll show you a couple of examples where totality checking
@@ -483,9 +496,9 @@ replicatePrim x v = v :: replicatePrim (x - 1) v
 ```
 
 Unlike with natural numbers (`Nat`), which are define as an inductive
-data type (and are only converted to integer primitives during compilation),
-Idris can't tell that `x - 1` is strictly smaller than `x` and therefore
-converges towards the base case.
+data type and are only converted to integer primitives during compilation,
+Idris can't tell that `x - 1` is strictly smaller than `x`, and so it
+fails to verify that this must converge towards the base case.
 
 For such occasions, there is utility function `assert_smaller`, which
 we can use to convince the totality checker:
@@ -498,45 +511,77 @@ replicatePrim' x v = v :: replicatePrim' (assert_smaller x $ x - 1) v
 
 Please note, though, that whenever you use `assert_smaller` to
 silence the totality checker, the burden of proving totality rests
-on your shoulders. Failing to do so, can lead to arbitrary program
-behavior.
+on your shoulders. Failing to do so can lead to arbitrary and
+unpredictable program behavior (which is the default with most
+other programming languages).
 
-Here, as a demonstration, is a proof of `Void` (`Void` is an uninhabited
-type: a type with no values. Proofing `Void` allows us to completely
-disable the type system together with all the guarantees it provides.)
+#### Ex Falso Quodlibet
+
+Below - as a demonstration - is a simple proof of `Void`.
+`Void` is an *uninhabited type*: a type with no values.
+*Proofing `Void`* means, that we implement a function accepted
+by the totality checker, which returns a value of type `Void`,
+although this is supposed to be impossible as there is no
+such value. Doing so allows us to completely
+disable the type system together with all the guarantees it provides.
+Here's the code and its dire consequences:
 
 ```idris
+-- In order to proof `Void`, we just loop forever, using
+-- `assert_smaller` to silence the totality checker.
 proofOfVoid : Bits8 -> Void
 proofOfVoid n = proofOfVoid (assert_smaller n n)
 
-exFalsoQuodLibet : Void -> a
-exFalsoQuodLibet _ impossible
+-- From a value of type `Void`, anything follows!
+-- This function is safe and total, as there is no
+-- value of type `Void`!
+exFalsoQuodlibet : Void -> a
+exFalsoQuodlibet _ impossible
 
+-- By passing our proof of void to `exFalsoQuodlibet`
+-- (exported by the *Prelude* by the name of `void`), we
+-- can coerce any value to a value of any other type.
+-- This renders type checking completely useless, as
+-- we can freely convert between values of different
+-- types.
 coerce : a -> b
-coerce _ = exFalsoQuodLibet (proofOfVoid 0)
+coerce _ = exFalsoQuodlibet (proofOfVoid 0)
 
+-- Finally, we invoke `putStrLn` with a number instead
+-- of a string. `coerce` allows us to do just that.
 pain : IO ()
-pain = putStrLn $ coerce () {b = String}
+pain = putStrLn $ coerce 0
 ```
 
-Please take a moment and marvel at provably total function `coerce`:
+Please take a moment to marvel at provably total function `coerce`:
 It claims to convert *any* value to a value of *any* other type.
-In `pain` we used it to coerce `Unit` to a string.
+And it is completely safe, as it only uses total functions in its
+implementation. The problem - of course - is that `proofOfVoid` should
+never ever have been a total function.
 
-Well, we'll get what we deserve. Run the following at your own risk:
+In `pain` we use `coerce` to conjure a string from an integer.
+In the end, we get what we deserve. Run the following at your own risk:
 
 ```sh
 $> idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
-ERROR: Error: Executed 'void'
+ERROR: No clauses
 ```
 
 So, with a single thoughtless placement of `assert_smaller` we wrought
-havoc within our pure and total code base. Definitely: Use at your
-own risk!
+havoc within our pure and total code base sacrificing totality and
+type safety in one fell swoop. Therefore: Use at your own risk!
 
 Note: I do not expect you to understand all the dark magic at
-work in the code above. I'll explain them in more detail in due
-time.
+work in the code above. I'll explain the details in due time
+in another chapter.
+
+Second note: *Ex falso quodlibet*, also called
+[the principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion)
+is a law in classical logic: From a contradiction, any statement can be proven.
+In our case, the contradiction was our proof of `Void`: The claim that we wrote
+a total function producing such a value, although `Void` is an uninhabited type.
+You can verify this by inspecting `Void` at the REPL with `:doc Void`: It
+has no data constructors.
 
 ### Case 2: Recursion via Function Calls
 
@@ -592,7 +637,7 @@ Show a => Show (Tree a) where
 
 In this case, we'd have to manually reimplement `Show` for lists of trees:
 A tedious task - and error prone on its own. Instead, we resort to using the
-mighty sledgehammer of totality checking: `assert_total`. Needless to say,
+mighty sledgehammer of totality checking: `assert_total`. Needless to say
 that this comes with the same risks as `assert_smaller`, so be very
 careful.
 
