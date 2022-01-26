@@ -495,7 +495,7 @@ replicatePrim 0 v = []
 replicatePrim x v = v :: replicatePrim (x - 1) v
 ```
 
-Unlike with natural numbers (`Nat`), which are define as an inductive
+Unlike with natural numbers (`Nat`), which are defined as an inductive
 data type and are only converted to integer primitives during compilation,
 Idris can't tell that `x - 1` is strictly smaller than `x`, and so it
 fails to verify that this must converge towards the base case.
