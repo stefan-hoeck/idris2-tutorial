@@ -221,7 +221,7 @@ replicateListTR n v = go Nil n
 ```
 
 The big advantage of tail recursive functions is, that they
-can be easily converted to an imperative loop by the Idris
+can be easily converted to efficient, imperative loops by the Idris
 compiler, an are thus *stack safe*: Recursive function calls
 are *not* added to the call stack, thus avoiding the dreaded
 stack overflow errors.
@@ -289,7 +289,7 @@ odd (S k) = even k
 ```
 
 As you can see, function `even` is allowed to call function `odd` in
-its implementation, since `odd` has already been declare (but not yet
+its implementation, since `odd` has already been declared (but not yet
 implemented).
 
 If you're like me and want to keep declarations and implementations
@@ -332,7 +332,7 @@ In this section, we learned about several important aspects
 of recursion and totality checking, which are summarized here:
 
 * In pure functional programming, recursion is the
-  way to implement iterative expressions.
+  way to implement iterative procedures.
 
 * Recursive functions pass the totality checker, if it can
   verify that one of the arguments is getting strictly smaller
@@ -343,7 +343,7 @@ of recursion and totality checking, which are summarized here:
 
 * The JavaScript backends of Idris perform mutual tail call
   optimization: Tail recursive functions are converted to
-  stack-safe, imperative loops.
+  stack safe, imperative loops.
 
 Note, that not all Idris backends you will come across in the wild
 will perform tail call optimization. Please check the corresponding
@@ -359,7 +359,7 @@ in Idris (as we will see in later chapters), so there is a
 compromise to be made between what performs well at runtime
 and what works well at compile time. Eventually, the way
 to go might be to provide two implementations for most
-recursive function with a *transform rule* telling the
+recursive functions with a *transform rule* telling the
 compiler to use the optimized version at runtime whenever
 programmers use the non-optimized version in their code.
 Such transform rules have - for instance - already been
@@ -401,7 +401,7 @@ behavior of all functions at the REPL.
    Implement `lookupList` in terms of `collectList`:
 
    ```idris
-   lookupList : Eq a => a List (a,b) -> Maybe b
+   lookupList : Eq a => a -> List (a,b) -> Maybe b
    ```
 
 4. For functions like `map` or `filter`, which must
@@ -456,7 +456,7 @@ behavior of all functions at the REPL.
    concatTR : List a -> List a -> List a
    ```
 
-8. Implement a tail recursive version of *bind* and `join`
+8. Implement tail recursive versions of *bind* and `join`
    for `List`:
 
    ```idris
@@ -479,7 +479,7 @@ and continuing only with its tail in the recursive call.
 
 While this works in many cases, it doesn't always go as expected.
 Below, I'll show you a couple of examples where totality checking
-fails, although *we* know, that the function in question is provably
+fails, although *we* know, that the functions in question are definitely
 total.
 
 ### Case 1: Recursion over a Primitive
@@ -500,9 +500,20 @@ Unlike with natural numbers (`Nat`), which are defined as an inductive
 data type and are only converted to integer primitives during compilation,
 Idris can't tell that `x - 1` is strictly smaller than `x`, and so it
 fails to verify that this must converge towards the base case.
+(The reason is, that `x - 1` is implemented in terms of primitive
+function `prim__sub_Bits32`, which is built into the compiler and
+must be implemented by each backend individually. The totality
+checker knows about data types, constructors, and functions
+defined in Idris, but not about (primitive) functions and foreign functions
+implemented at the backends. While it is theoretically possible to
+also define and use laws for primitive and foreign functions, this hasn't yet
+been done for most of them.)
 
-For such occasions, there is utility function `assert_smaller`, which
-we can use to convince the totality checker:
+Since non-totality is highly contagious (all functions invoking a
+partial function are themselves considered to be partial by the
+totality checker), there is utility function `assert_smaller`, which
+we can use to convince the totality checker and still annotate our
+functions with the `total` keyword:
 
 ```idris
 replicatePrim' : Bits32 -> a -> List a
@@ -557,11 +568,13 @@ pain = putStrLn $ coerce 0
 Please take a moment to marvel at provably total function `coerce`:
 It claims to convert *any* value to a value of *any* other type.
 And it is completely safe, as it only uses total functions in its
-implementation. The problem - of course - is that `proofOfVoid` should
+implementation. The problem is - of course - that `proofOfVoid` should
 never ever have been a total function.
 
 In `pain` we use `coerce` to conjure a string from an integer.
-In the end, we get what we deserve. Run the following at your own risk:
+In the end, we get what we deserve: The program crashes with an error.
+While things could have been much worse, it can still be quite
+time consuming and annoying to localize the source of such an error.
 
 ```sh
 $> idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
@@ -591,7 +604,7 @@ Here is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_
 ```idris
 data Tree : Type -> Type where
   Leaf : (val : a) -> Tree a
-  Node : (trees : List (Tree a)) -> Tree a
+  Node : (forest : List (Tree a)) -> Tree a
 ```
 
 We could try and compute the size of such a tree as follows:
@@ -599,15 +612,15 @@ We could try and compute the size of such a tree as follows:
 ```idris
 covering
 size : Tree a -> Nat
-size (Leaf _)     = 1
-size (Node trees) = sum $ map size trees
+size (Leaf _)      = 1
+size (Node forest) = sum $ map size forest
 ```
 
 In the code above, the recursive call happens within `map`. *We* know that
 we are using only subtrees in the recursive calls (since we know how `map`
 is implemented for `List`), but Idris can't know this (teaching a totality
 checker how to figure this out on its own seems to be an open research
-question). So it will refuse to accept the function to be total.
+question). So it will refuse to accept the function as being total.
 
 There are two ways to handle the case above. If we don't mind writing
 a bit of otherwise unneeded boilerplate code, we can use explicit recursion:
@@ -647,7 +660,7 @@ careful.
 When looking back at all the exercises we solved
 in the section about recursion, most tail recursive functions
 on lists where of the following pattern: Iterate
-over all list elements from head to tail, while
+over all list elements from head to tail while
 passing along some state for accumulating intermediate
 results. At the end of the list,
 return the final state or convert it with an
@@ -697,7 +710,8 @@ toSnocListLF = leftFold (:<) Lin
 ### Right Folds
 
 The example functions we implemented in terms of `leftFold` had
-to always completely traverse the whole list. This is not always
+to always completely traverse the whole list, as every single
+element was required to compute the result. This is not always
 necessary, however. For instance, if you look at `findList` from
 the exercises, we could abort iterating over the list as soon
 as our search was successful. It is *not* possible to implement
@@ -707,7 +721,8 @@ the `Nil` case.
 
 Interestingly, there is another, non-tail recursive fold, which
 reflects the list structure more naturally, we can use for
-this. We call this a *right fold*. Here is its implementation:
+breaking out early from an iteration. We call this a
+*right fold*. Here is its implementation:
 
 ```idris
 rightFold : (acc : el -> state -> state) -> state -> List el -> state
@@ -722,7 +737,7 @@ first.
 #### Lazy Evaluation in Idris
 
 For some computations, it is not necessary to evaluate all function
-arguments in order to return the result. Consider, for instance,
+arguments in order to return a result. For instance, consider
 boolean operator `(&&)`: If the first argument evaluates to `False`,
 we already know that the result is `False` without even looking at
 the second argument. In such a case, we don't want to unnecessarily evaluate
@@ -735,9 +750,9 @@ Tutorial.Folds> False && (length [1..10000000000] > 100)
 False
 ```
 
-If the second argument where evaluated, this computation would most
-certainly blow up your computer's memory, or at least take very long
-to run to completion. However, in this case, the result `False` is
+If the second argument were evaluated, this computation would most
+certainly blow up your computer's memory, or at least take a very long
+time to run to completion. However, in this case, the result `False` is
 printed immediately. If you look at the type of `(&&)`, you'll see
 the following:
 
@@ -749,13 +764,16 @@ Prelude.&& : Bool -> Lazy Bool -> Bool
 As you can see, the second argument is wrapped in a `Lazy` type
 constructor. This is a built-in type, and the details are handled
 by Idris automatically most of the time. For instance, when passing
-arguments to `(&&)`, we don't have to wrap the values.
-An lazy argument will only be evaluated if it is *required* in
-the implementation of a function, for instance, because it is being
-pattern matched on, or it is passed as a strict argument to another
-function. In the implementation of `(&&)`, the pattern match happens
+arguments to `(&&)`, we don't have to manually wrap the values in
+some data constructor.
+A lazy function argument will only be evaluated at the moment it
+is *required* in the function's implementation, for instance,
+because it is being pattern matched on, or it is being passed
+as a strict argument to another function. In the implementation
+of `(&&)`, the pattern match happens
 on the first argument, so the second will only be evaluated if
-the first argument is `True`.
+the first argument is `True` and the second is returned as the function's
+(strict) result.
 
 There are two utility functions for working with lazy evaluation:
 Function `delay` wraps a value in the `Lazy` data type. Note, that
@@ -767,14 +785,17 @@ Tutorial.Folds> False && (delay $ length [1..10000] > 100)
 False
 ```
 
-Function `force`, forces evaluation of a `Lazy` value.
+In addition, there is function `force`, which forces evaluation
+of a `Lazy` value.
 
 #### Lazy Evaluation and Right Folds
 
-We will now learn, how to make use of `rightFold` and lazy evaluation
-to implement a fold, which can abort early. Note that in the
-implementation, the result of folding over the remainder of the list
-is passed as an argument to the accumulator:
+We will now learn how to make use of `rightFold` and lazy evaluation
+to implement folds, which can break out from iteration early.
+Note, that in the implementation of `rightFold` the result of
+folding over the remainder of the list is passed as an argument
+to the accumulator (instead of the result of invoking the accumulator
+being used in the recursive call):
 
 ```repl
 rightFold acc st (x :: xs) = acc x (rightFold acc st xs)
@@ -803,8 +824,8 @@ code. Please note, that this is for debugging purposes only and should
 never be left lying around in production code, as, strictly speaking,
 printing stuff to the console breaks referential transparency.
 
-Here is an adjusted version of `foldHead`, which prints "folded" to standard out
-every time utility function `first` is being invoked:
+Here is an adjusted version of `foldHead`, which prints "folded" to
+standard output every time utility function `first` is being invoked:
 
 ```idris
 foldHeadTraced : List a -> Maybe a
@@ -856,7 +877,74 @@ folded
 Just 1
 ```
 
+While this technique can sometimes lead to very elegant code, always
+remember that `rightFold` is not stack safe in the general case. So,
+unless your accumulator is not guaranteed to return a result after
+not too many iterations, consider implementing your function
+tail recursively with an explicit pattern match. Your code will be
+slightly more verbose, but with the guaranteed benefit of stack safety.
+
 ### Folds and Monoids
+
+Left and right folds share a common pattern: In both cases, we start
+with an initial *state* value and use an accumulator function for
+combining the current state with the current element. This principle
+of *combining values* when starting from an *initial value* lies
+at the heart of an interface we've already learned about: `Monoid`.
+It therefore makes sense to fold a list over a monoid:
+
+```idris
+foldMapList : Monoid m => (a -> m) -> List a -> m
+foldMapList f = leftFold (\vm,va => vm <+> f va) neutral
+```
+
+Note how, with `foldMapList`, we no longer need to pass an accumulator
+function. All we need is a conversion from the element type to
+a type with an implementation of `Monoid`. As we have already seen
+in the chapter about [interfaces](Interfaces.md), there are *many*
+monoids in functional programming, and therefore, `foldMapList` is
+an incredibly useful function.
+
+We could make this even shorter: If the elements in our list already
+are of a type with a monoid implementation, we don't even need a
+conversion function to collapse the list:
+
+```idris
+concatList : Monoid m => List m -> m
+concatList = foldMapList id
+```
+
+### Stop Using `List` for Everything
+
+And here we are, finally, looking at a large pile of utility functions
+all dealing in some way with the concept of collapsing (or folding)
+a list of values into a single result. But all of this folding functions
+are just as useful when working with vectors, with non-empty lists, with
+rose trees, even with single-value containers like `Maybe`, `Either e`,
+or `Identity`. Heck, for the sake of completeness, they are even useful
+when working with zero-value containers like `Control.Applicative.Const e`!
+And since there are so many of these functions, we'd better look out for
+an essential set of functions in terms of which we can implement all
+the others, and wrap up the whole bunch in an interface. This interface
+is called `Foldable`, and is available from the `Prelude`. When you
+look at its definition in the REPL (`:doc Foldable`), you'll see that
+it consists of six essential functions:
+
+* `foldr`, for folds from the right
+* `foldl`, for folds from the left
+* `null`, for testing if the container is empty or not
+* `foldM`, for effectful folds in a monad
+* `toList`, for converting the container to a list of values
+* `foldMap`, for folding over a monoid
+
+For a minimal implementation of `Foldable`, it is sufficient to only
+implement `foldr`. However, consider implementing all six functions
+manually, because folds over container types are often performance
+critical operations, and each of them should be optimized accordingly.
+For instance, implementing `toList` in terms of `foldr` for `List`
+just makes no sense, as this is a non-tail recursive function
+running in linear time complexity, while a hand-written implementation
+can just return its argument without any modifications.
 
 <!-- vi: filetype=idris2
 -->
