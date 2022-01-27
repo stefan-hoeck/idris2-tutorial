@@ -26,6 +26,7 @@ module Tutorial.Folds
 import Data.List1
 import Data.Maybe
 import Data.Vect
+import Debug.Trace
 
 %default total
 ```
@@ -652,10 +653,12 @@ results. At the end of the list,
 return the final state or convert it with an
 additional function call.
 
+### Left Folds
+
 This is functional programming, and we'd like to abstract
 over such reoccurring patterns. In order to tail recursively
 iterate over a list, all we need is an accumulator function
-and some initial state. But what would be the type of
+and some initial state. But what should be the type of
 the accumulator? Well, it combines the current state
 with the list's next element and returns an updated
 state: `state -> elem -> state`. Surely, we can come
@@ -663,7 +666,7 @@ up with a higher order function to encapsulate this
 behavior:
 
 ```idris
-leftFold : (state -> el -> state) -> state -> List el -> state
+leftFold : (acc : state -> el -> state) -> (st : state) -> List el -> state
 leftFold _   st []        = st
 leftFold acc st (x :: xs) = leftFold acc (acc st x) xs
 ```
@@ -690,6 +693,170 @@ reverseLF = leftFold (flip (::)) Nil
 toSnocListLF : List a -> SnocList a
 toSnocListLF = leftFold (:<) Lin
 ```
+
+### Right Folds
+
+The example functions we implemented in terms of `leftFold` had
+to always completely traverse the whole list. This is not always
+necessary, however. For instance, if you look at `findList` from
+the exercises, we could abort iterating over the list as soon
+as our search was successful. It is *not* possible to implement
+this more efficient behavior in terms of `leftFold`: There,
+the result will only be returned when our pattern match reaches
+the `Nil` case.
+
+Interestingly, there is another, non-tail recursive fold, which
+reflects the list structure more naturally, we can use for
+this. We call this a *right fold*. Here is its implementation:
+
+```idris
+rightFold : (acc : el -> state -> state) -> state -> List el -> state
+rightFold acc st []        = st
+rightFold acc st (x :: xs) = acc x (rightFold acc st xs)
+```
+
+Now, it might not immediately be obvious how this differs from `leftFold`.
+In order to see this, we will have to talk about lazy evaluation
+first.
+
+#### Lazy Evaluation in Idris
+
+For some computations, it is not necessary to evaluate all function
+arguments in order to return the result. Consider, for instance,
+boolean operator `(&&)`: If the first argument evaluates to `False`,
+we already know that the result is `False` without even looking at
+the second argument. In such a case, we don't want to unnecessarily evaluate
+the second argument, as this might include a lengthy computation.
+
+Consider the following REPL session:
+
+```repl
+Tutorial.Folds> False && (length [1..10000000000] > 100)
+False
+```
+
+If the second argument where evaluated, this computation would most
+certainly blow up your computer's memory, or at least take very long
+to run to completion. However, in this case, the result `False` is
+printed immediately. If you look at the type of `(&&)`, you'll see
+the following:
+
+```repl
+Tutorial.Folds> :t (&&)
+Prelude.&& : Bool -> Lazy Bool -> Bool
+```
+
+As you can see, the second argument is wrapped in a `Lazy` type
+constructor. This is a built-in type, and the details are handled
+by Idris automatically most of the time. For instance, when passing
+arguments to `(&&)`, we don't have to wrap the values.
+An lazy argument will only be evaluated if it is *required* in
+the implementation of a function, for instance, because it is being
+pattern matched on, or it is passed as a strict argument to another
+function. In the implementation of `(&&)`, the pattern match happens
+on the first argument, so the second will only be evaluated if
+the first argument is `True`.
+
+There are two utility functions for working with lazy evaluation:
+Function `delay` wraps a value in the `Lazy` data type. Note, that
+the argument of `lazy` is strict, so the following might take
+several seconds to print its result:
+
+```repl
+Tutorial.Folds> False && (delay $ length [1..10000] > 100)
+False
+```
+
+Function `force`, forces evaluation of a `Lazy` value.
+
+#### Lazy Evaluation and Right Folds
+
+We will now learn, how to make use of `rightFold` and lazy evaluation
+to implement a fold, which can abort early. Note that in the
+implementation, the result of folding over the remainder of the list
+is passed as an argument to the accumulator:
+
+```repl
+rightFold acc st (x :: xs) = acc x (rightFold acc st xs)
+```
+
+If the second argument of `acc` were lazily evaluated, it would be possible
+to abort the computation of `acc`'s result without having to iterate
+till the end of the list:
+
+```idris
+foldHead : List a -> Maybe a
+foldHead = force . rightFold first Nothing
+  where first : a -> Lazy (Maybe a) -> Lazy (Maybe a)
+        first v _ = Just v
+```
+
+Note, how Idris takes care of the bookkeeping of laziness most of the time. (It
+doesn't handle the curried invocation of `rightFold` correctly, though, so we
+either must pass on the list argument of `foldHead` explicitly, or compose
+the curried function with `force` to get the types right.)
+
+In order to verify that this works correctly, we need a debugging utility
+called `trace` from module `Debug.Trace`. This "function" allows us to
+print debugging messages to the console at certain points in our pure
+code. Please note, that this is for debugging purposes only and should
+never be left lying around in production code, as, strictly speaking,
+printing stuff to the console breaks referential transparency.
+
+Here is an adjusted version of `foldHead`, which prints "folded" to standard out
+every time utility function `first` is being invoked:
+
+```idris
+foldHeadTraced : List a -> Maybe a
+foldHeadTraced = force . rightFold first Nothing
+  where first : a -> Lazy (Maybe a) -> Lazy (Maybe a)
+        first v _ = trace "folded" (Just v)
+```
+
+In order to test this at the REPL, we need to know that `trace` uses `unsafePerformIO`
+internally and therefore will not reduce during evaluation. We have to
+resort to the `:exec` command to see this in action at the REPL:
+
+```repl
+Tutorial.Folds> :exec printLn $ foldHeadTraced [1..10]
+folded
+Just 1
+```
+
+As you can see, although the list holds ten elements, `first` is only called
+once resulting in a considerable increase of efficiency.
+
+Let's see what happens, if we change the implementation of `first` to
+use strict evaluation:
+
+```idris
+foldHeadTracedStrict : List a -> Maybe a
+foldHeadTracedStrict = rightFold first Nothing
+  where first : a -> Maybe a -> Maybe a
+        first v _ = trace "folded" (Just v)
+```
+
+Although we don't use the second argument in the implementation of `first`,
+it is still being evaluated before evaluating the body of `first`, because
+Idris - unlike Haskell! - defaults to use strict semantics. Here's how this
+behaves at the REPL:
+
+```repl
+Tutorial.Folds> :exec printLn $ foldHeadTracedStrict [1..10]
+folded
+folded
+folded
+folded
+folded
+folded
+folded
+folded
+folded
+folded
+Just 1
+```
+
+### Folds and Monoids
 
 <!-- vi: filetype=idris2
 -->
