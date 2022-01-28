@@ -64,13 +64,13 @@ by passing the arguments separated by whitespace. No parentheses
 are necessary unless one of the expressions we pass as the
 function's arguments contains itself additional whitespace.
 This comes in very handy when we apply functions
-only partially (see later in this tutorial).
+only partially (see later in this chapter).
 
 Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive
 data type built into the Idris language but just a custom
 data type that you could have written yourself. We will
-learn more about declaring new data types in another
-part of this tutorial.
+learn more about declaring new data types in the
+next chapter.
 
 ## Function Composition
 
@@ -132,7 +132,7 @@ testSquare : (Integer -> Bool) -> Integer -> Bool
 testSquare fun n = fun (square n)
 ```
 
-First `isEven` uses the `mod` function to check, whether 
+First `isEven` uses the `mod` function to check, whether
 an integer is divisible by two. But the interesting function
 is `testSquare`. It takes two arguments: The first argument
 is of type *function from `Integer` to `Bool`*, and the second
@@ -417,7 +417,7 @@ from above and `not` (from the Idris *Prelude*). Use point-free style.
 its first `Integer` argument is the square of the second argument.
 
 4. Declare and implement function `isSmall`, which checks whether
-its `Integer` argument is less than or equal to 100. Use one of the 
+its `Integer` argument is less than or equal to 100. Use one of the
 comparison operators `<=` or `>=` in your implementation.
 
 5. Declare and implement function `absIsSmall`, which checks whether
@@ -485,7 +485,7 @@ False
 
 ## Conclusion
 
-What we learned in this part of the tutorial:
+What we learned in this chapter:
 
 * A function in Idris can take an arbitrary number of arguments,
 separated by `->` in the function's type.
