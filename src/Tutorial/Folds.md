@@ -602,9 +602,10 @@ has no data constructors.
 Here is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_tree):
 
 ```idris
-data Tree : Type -> Type where
-  Leaf : (val : a) -> Tree a
-  Node : (forest : List (Tree a)) -> Tree a
+record Tree a where
+  constructor Node
+  value  : a
+  forest : List (Tree a)
 ```
 
 We could try and compute the size of such a tree as follows:
@@ -612,8 +613,7 @@ We could try and compute the size of such a tree as follows:
 ```idris
 covering
 size : Tree a -> Nat
-size (Leaf _)      = 1
-size (Node forest) = sum $ map size forest
+size (Node _ forest) = S . sum $ map size forest
 ```
 
 In the code above, the recursive call happens within `map`. *We* know that
@@ -628,8 +628,7 @@ a bit of otherwise unneeded boilerplate code, we can use explicit recursion:
 
 ```idris
 size' : Tree a -> Nat
-size' (Leaf _)     = 1
-size' (Node trees) = go 0 trees
+size' (Node _ trees) = go 1 trees
   where go : Nat -> List (Tree a) -> Nat
         go k []        = k
         go k (x :: xs) = go (k + size' x) xs
@@ -645,8 +644,8 @@ write. For instance, here is an implementation of `Show` for rose trees:
 
 ```idris
 Show a => Show (Tree a) where
-  showPrec p (Leaf v)  = showCon p "Leaf" (showArg v)
-  showPrec p (Node ts) = assert_total $ showCon p "Node" (showArg ts)
+  showPrec p (Node v ts) =
+    assert_total $ showCon p "Node" (showArg v ++ showArg ts)
 ```
 
 In this case, we'd have to manually reimplement `Show` for lists of trees:
@@ -654,6 +653,25 @@ A tedious task - and error prone on its own. Instead, we resort to using the
 mighty sledgehammer of totality checking: `assert_total`. Needless to say
 that this comes with the same risks as `assert_smaller`, so be very
 careful.
+
+### Exercises
+
+Implement the following functions in a provably total
+way without "cheating". Note: It is not necessary to
+implement these in a tail recursive way.
+
+1. Implement function `depth` for rose trees. This
+   should return the maximal number of `Node` constructors
+   from the current node to the farthest child node.
+   For instance, the current node should be at depth zero,
+   all its direct child nodes are at depth one, their
+   immediate child nodes at depth two and so on.
+
+2. Implement interface `Eq` for rose trees.
+
+3. Implement interface `Functor` for rose trees.
+
+4. For the fun of it: Implement interface `Show` for rose trees.
 
 ## Interface Foldable
 

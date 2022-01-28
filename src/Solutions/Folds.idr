@@ -90,11 +90,68 @@ joinTR = go Lin
         go sx (x :: xs) = go (sx <>< x) xs
 
 --------------------------------------------------------------------------------
---          Tests
+--          A few Notes on Totality Checking
 --------------------------------------------------------------------------------
 
-lengthTR : List a -> Nat
-lengthTR = foldl (const . S) 0
+record Tree a where
+  constructor Node
+  value  : a
+  forest : List (Tree a)
+
+Forest : Type -> Type
+Forest = List . Tree
+
+example : Tree Bits8
+example = Node 0 [Node 1 [], Node 2 [Node 3 [], Node 4 [Node 5 []]]]
+
+-- 1
+
+depth : Tree a -> Nat
+depth (Node _ forest) = go 0 forest
+  where go : Nat -> Forest a -> Nat
+        go k []        = k
+        go k (x :: xs) = go (max k $ depth x + 1) xs
+
+-- 2
+
+-- It's often easier to write complex interface implementations
+-- via a utility function.
+treeEq : Eq a => Tree a -> Tree a -> Bool
+treeEq (Node v1 f1) (Node v2 f2) = v1 == v2 && go f1 f2
+  where go : Forest a -> Forest a -> Bool
+        go []        []        = True
+        go (x :: xs) (y :: ys) = treeEq x y && go xs ys
+        go _         _         = False
+
+Eq a => Eq (Tree a) where (==) = treeEq
+
+-- 3
+
+treeMap : (a -> b) -> Tree a -> Tree b
+treeMap f (Node value forest) = Node (f value) (go forest)
+  where go : Forest a -> Forest b
+        go []        = []
+        go (x :: xs) = treeMap f x :: go xs
+
+Functor Tree where map = treeMap
+
+-- 4
+
+showTree : Show a => Prec -> Tree a -> String
+showTree p (Node value forest) =
+  showCon p "Node" $ showArg value ++ case forest of
+    []      => " []"
+    x :: xs => " [" ++ showTree Open x ++ go xs ++ "]"
+
+  where go : Forest a -> String
+        go []        = ""
+        go (y :: ys) = ", " ++ showTree Open y ++ go ys
+
+Show a => Show (Tree a) where showPrec = showTree
+
+--------------------------------------------------------------------------------
+--          Tests
+--------------------------------------------------------------------------------
 
 iterateTR : Nat -> (a -> a) -> a -> List a
 iterateTR k f = go k Lin
@@ -108,8 +165,8 @@ values = iterateTR 100000 (+1) 0
 
 main : IO ()
 main = do
-  printLn . lengthTR $ mapTR (*2)  values
-  printLn . lengthTR $ filterTR (\n => n `mod` 2 == 0)  values
-  printLn . lengthTR $ mapMaybeTR (\n => toMaybe (n `mod` 2 == 1) "foo")  values
-  printLn . lengthTR $ concatTR values values
-  printLn . lengthTR $ bindTR [1..500] (\n => iterateTR n (+1) n)
+  printLn . length $ mapTR (*2)  values
+  printLn . length $ filterTR (\n => n `mod` 2 == 0)  values
+  printLn . length $ mapMaybeTR (\n => toMaybe (n `mod` 2 == 1) "foo")  values
+  printLn . length $ concatTR values values
+  printLn . length $ bindTR [1..500] (\n => iterateTR n (+1) n)
