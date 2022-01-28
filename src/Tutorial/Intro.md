@@ -3,8 +3,8 @@
 Welcome to my Idris 2 tutorial. I'll try and treat as many aspects
 of the Idris 2 programming language as possible here.
 All `.md` files in here a literate Idris files: They consist of
-markdown (hence the `.md` ending), which is being pretty printed
-by github together with Idris code blocks, which can be
+Markdown (hence the `.md` ending), which is being pretty printed
+by GitHub together with Idris code blocks, which can be
 type checked and built by the Idris compiler (more on this later).
 Note, however, that regular Idris source files use an `.idr` ending,
 and that you go with that file type unless you end up writing
@@ -123,7 +123,7 @@ in a terminal.
 $ rlwrap idris2
 ```
 
-(Using command line utility `rlwrap` is optional. It
+(Using command-line utility `rlwrap` is optional. It
 leads to a somewhat nicer user experience, as it allows us
 to use the up and down arrow keys to scroll through a history
 of commands and expressions we entered. It should be available
@@ -201,7 +201,7 @@ $ idris2 --find-ipkg -o hello src/Tutorial/Intro.md
 ```
 
 This will create executable `hello` in directory `build/exec`,
-which can be invoked from the command line like so:
+which can be invoked from the command-line like so:
 
 ```sh
 $ build/exec/hello
@@ -213,7 +213,7 @@ current directory or one of its parent directories, from which
 it will get other settings like the source directory to use
 (`src` in our case). The `-o` option gives the name of the
 executable to be generated. Type `idris2 --help` for a list
-of available command line options and environment variables.
+of available command-line options and environment variables.
 
 As an alternative, you can also load this source file in a REPL
 session and invoke function `main` from there:
@@ -371,7 +371,7 @@ language. Here is a non-comprehensive list of them:
   it is highly accessible. However, it is not an introduction to functional
   programming or type-driven development in general.
 
-* [The Idris 2 Github Repository](https://github.com/idris-lang/Idris2)
+* [The Idris 2 GitHub Repository](https://github.com/idris-lang/Idris2)
 
   Look here for detailed installation instructions and some
   introductory material. There is also a [wiki](https://github.com/idris-lang/Idris2/wiki),
