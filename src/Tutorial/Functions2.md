@@ -576,7 +576,7 @@ the two functions have almost identical types (and implementations!),
 they serve quite different purposes: `the` is used to help
 type inference, while `id` is used whenever we'd like
 to return an argument without modifying it at all (which,
-in the presence of higher order functions,
+in the presence of higher-order functions,
 happens surprisingly often).
 
 Both ways to improve type inference shown above
