@@ -7,8 +7,8 @@ pure, strongly typed programming languages like Haskell:
 parametric polymorphism (generic types and functions), and
 ad hoc polymorphism (interfaces and constrained functions).
 
-In this part, we start to dissect Idris functions and their types
-for real. We learn about implicit arguments, named arguments, as well 
+In this chapter, we start to dissect Idris functions and their types
+for real. We learn about implicit arguments, named arguments, as well
 as erasure and quantities. But first, we'll look at `let` bindings
 and `where` blocks, which help us implement functions too complex
 to fit on a single line of code. Let's get started!
