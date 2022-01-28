@@ -174,7 +174,7 @@ maxBits8 x y =
 
 Note, that indentation matters here: The case block as a whole
 must be indented (if it starts on a new line), and the different
-cases must also be indented by the same amount of white space.
+cases must also be indented by the same amount of whitespace.
 
 Function `compare` is overloaded for many data types. We will
 learn how this works when we talk about interfaces.
@@ -322,7 +322,7 @@ is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.
 
 Here's another (drastically simplified) example of a sum type.
 Assume we allow two forms of authentication in our web application:
-Either by entering a user name plus a password (for which we'll use
+Either by entering a username plus a password (for which we'll use
 an unsigned 64 bit integer here), or by providing a (very complex) secret key.
 Here's a data type to encapsulate this use case:
 
@@ -375,15 +375,15 @@ Tutorial.DataTypes> login (Key "foo")
 3. Given our simple `Credentials` type, there are three
    ways for authentication to fail:
 
-   * An unknown user name was used.
+   * An unknown username was used.
    * The password given does not match the one associated with
-     the user name.
+     the username.
    * An invalid key was used.
 
    Encapsulate these three possibilities in a sum type
    called `LoginError`,
    but make sure not to disclose any confidential information:
-   An invalid user name should be stored in the corresponding
+   An invalid username should be stored in the corresponding
    error value, but an invalid password or key should not.
 
 4. Implement function `showError : LoginError -> String`, which
