@@ -202,7 +202,7 @@ practice this and make use of the tools and utilities given to you.
 
 ### Derived Functions
 
-There are several functions and operators directly derivable from interface 
+There are several functions and operators directly derivable from interface
 `Functor`. Eventually, you should know and remember all of them as
 they are highly useful. Here they are together with their types:
 
@@ -901,7 +901,7 @@ laws. Here they are:
 * `pure id <*> fa = fa`: Lifting and applying the identity
   function has no visible effect.
 
-* `[| f . g |] <*> v = f <*> (g <*> v)`:  
+* `[| f . g |] <*> v = f <*> (g <*> v)`:
   I must not matter, whether we compose our functions
   first and then apply them, or whether we apply
   our functions first and then compose them.
@@ -924,7 +924,7 @@ laws. Here they are:
   *homomorphism* law. It should be pretty self-explaining.
 
 *  `f <*> pure v = pure ($ v) <*> f`. This is called the law
-   of *interchange*. 
+   of *interchange*.
 
    This should again be explained with a concrete example:
 
@@ -1369,7 +1369,7 @@ a branch of mathematics. That is also where their laws come from.
 Category theory was found to have applications in
 programming language theory, especially functional programming.
 It is a highly abstract topic, but there is a pretty accessible
-introduction for programmers, written by 
+introduction for programmers, written by
 [Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).
 
 The usefulness of applicative functors as a middle ground between
@@ -1405,7 +1405,9 @@ which is freely available online and a highly recommended read.
 
 ### What's next?
 
-In the next session we get to learn about two other highly
-important interfaces: `Foldable` and `Traversable`.
+In the [next chapter](Folds.md) we get to learn more about
+recursion, totality checking, and an interface for
+collapsing container types: `Foldable`.
+
 <!-- vi: filetype=idris2
 -->

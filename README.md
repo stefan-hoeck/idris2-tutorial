@@ -69,6 +69,10 @@ stuff will already be familiar to you.
    3. [Working with Files](src/Tutorial/IO.md#working-with-files)
    4. [How IO is Implemented](src/Tutorial/IO.md#how-io-is-implemented)
 8. [Functor and Friends](src/Tutorial/Functor.md)
+   1. [Functor](src/Tutorial/Functor.md#functor)
+   2. [Applicative](src/Tutorial/Functor.md#applicative)
+   3. [Monad](src/Tutorial/Functor.md#monad)
+   4. [Background and further Reading](src/Tutorial/Functor.md#background-and-further-reading)
 9. [Recursion and Folds](src/Tutorial/Folds.md)
 
 ## Prerequisites
