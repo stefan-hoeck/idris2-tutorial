@@ -169,7 +169,7 @@ silently dropped together with all its potential side effects.
 
 When we execute `readHellos` at the REPL, we will be asked for our
 name twice, although `actions` also contains `launchMissiles` at the
-beginning. Luckily, although we described how to destroy the planet, 
+beginning. Luckily, although we described how to destroy the planet,
 the action was not executed, and we are (probably) still here.
 
 From this example we learn several things:
@@ -311,7 +311,7 @@ Note, how in `exprProg` we were forced to deal with the
 possibility of failure and handle both constructors
 of `Either` differently in order to print a result.
 Note also, that *do blocks* are ordinary expressions,
-and we can, for instance, start a new *do block* on 
+and we can, for instance, start a new *do block* on
 the right hand side of a case expression.
 
 ### Exercises
@@ -1120,7 +1120,7 @@ stateful computation.
 ### What's next
 
 Now, that we had a glimpse at *monads* and the *bind* operator,
-it is time to in the next chapter introduce `Monad` and some
+it is time to in the [next chapter](Functor.md) introduce `Monad` and some
 related interfaces for real.
 
 <!-- vi: filetype=idris2

@@ -64,6 +64,10 @@ stuff will already be familiar to you.
    2. [Fin: Safe Indexing into Vectors](src/Tutorial/Dependent.md#fin-safe-indexing-into-vectors)
    3. [Compile-Time Computations](src/Tutorial/Dependent.md#compile-time-computations)
 7. [IO: Programming with Side Effects](src/Tutorial/IO.md)
+   1. [Pure Side Effects?](src/Tutorial/IO.md#pure-side-effects)
+   2. [Do Blocks, Desugared](src/Tutorial/IO.md#do-blocks-desugared)
+   3. [Working with Files](src/Tutorial/IO.md#working-with-files)
+   4. [How IO is Implemented](src/Tutorial/IO.md#how-io-is-implemented)
 8. [Functor and Friends](src/Tutorial/Functor.md)
 9. [Recursion and Folds](src/Tutorial/Folds.md)
 
