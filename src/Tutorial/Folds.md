@@ -11,7 +11,7 @@ in particular. Most recursive functions in this part
 will describe pure iterations over lists.
 
 It is recursive functions, for which totality is hard
-to determine, so we will next have a quick look at the 
+to determine, so we will next have a quick look at the
 totality checker and learn, when it will refuse to
 accept a function as being total and what to do about this.
 
@@ -302,7 +302,7 @@ mutual
   even' : Nat -> Bool
   even' 0     = True
   even' (S k) = odd' k
-  
+
   odd' : Nat -> Bool
   odd' 0     = False
   odd' (S k) = even' k
@@ -415,7 +415,7 @@ behavior of all functions at the REPL.
    Module `Data.SnocList` exports two tail recursive operators
    called *fish* and *chips* (`(<><)` and `(<>>)`) for going
    from `SnocList` to `List` and vice versa. Have a look
-   at the types of all new data constructors and operators 
+   at the types of all new data constructors and operators
    before continuing with the exercise.
 
    Implement a tail recursive version of `map` for `List`
@@ -1051,7 +1051,7 @@ functional programming in general. Wrapping one's head
 around recursion takes time and experience. Therefore - as
 usual - try to solve as many exercises as you can.
 
-In the next section, we are taking the concept of iterating
+In the next chapter, we are taking the concept of iterating
 over container types one step further and look at
 effectful data traversals.
 

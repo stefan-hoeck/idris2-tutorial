@@ -74,6 +74,9 @@ stuff will already be familiar to you.
    3. [Monad](src/Tutorial/Functor.md#monad)
    4. [Background and further Reading](src/Tutorial/Functor.md#background-and-further-reading)
 9. [Recursion and Folds](src/Tutorial/Folds.md)
+   1. [Recursion](src/Tutorial/Folds.md#recursion)
+   2. [A few Notes on Totality Checking](src/Tutorial/Folds.md#a-few-notes-on-totality-checking)
+   3. [Interface Foldable](src/Tutorial/Folds.md#interface-foldable)
 
 ## Prerequisites
 
