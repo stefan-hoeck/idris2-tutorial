@@ -599,13 +599,18 @@ has no data constructors.
 
 ### Case 2: Recursion via Function Calls
 
-Here is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_tree):
+Below is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_tree).
+Rose trees can represent search paths in computer algorithms,
+for instance in graph theory.
 
 ```idris
 record Tree a where
   constructor Node
   value  : a
   forest : List (Tree a)
+
+Forest : Type -> Type
+Forest = List . Tree
 ```
 
 We could try and compute the size of such a tree as follows:
@@ -623,15 +628,19 @@ checker how to figure this out on its own seems to be an open research
 question). So it will refuse to accept the function as being total.
 
 There are two ways to handle the case above. If we don't mind writing
-a bit of otherwise unneeded boilerplate code, we can use explicit recursion:
+a bit of otherwise unneeded boilerplate code, we can use explicit recursion.
+In fact, since we often also work with search *forests*, this is
+the preferable way here.
 
 
 ```idris
-size' : Tree a -> Nat
-size' (Node _ trees) = go 1 trees
-  where go : Nat -> List (Tree a) -> Nat
-        go k []        = k
-        go k (x :: xs) = go (k + size' x) xs
+mutual
+  treeSize : Tree a -> Nat
+  treeSize (Node _ forest) = S $ forestSize forest
+
+  forestSize : Forest a -> Nat
+  forestSize []        = 0
+  forestSize (x :: xs) = treeSize x + forestSize xs
 ```
 
 In the case above, Idris can verify that we don't blow up our trees behind
@@ -663,15 +672,23 @@ implement these in a tail recursive way.
 1. Implement function `depth` for rose trees. This
    should return the maximal number of `Node` constructors
    from the current node to the farthest child node.
-   For instance, the current node should be at depth zero,
-   all its direct child nodes are at depth one, their
-   immediate child nodes at depth two and so on.
+   For instance, the current node should be at depth one,
+   all its direct child nodes are at depth two, their
+   immediate child nodes at depth three and so on.
 
 2. Implement interface `Eq` for rose trees.
 
 3. Implement interface `Functor` for rose trees.
 
 4. For the fun of it: Implement interface `Show` for rose trees.
+
+5. In order not to forget how to program with dependent types,
+   implement function `treeToVect` for converting a rose
+   tree to a vector of the correct size.
+
+   Hint: Make sure to follow the same recursion scheme as in
+   the implementation of `treeSize`. Otherwise, this might be
+   very hard to get to work.
 
 ## Interface Foldable
 
@@ -706,7 +723,7 @@ We call this function a *left fold*, as it iterates over
 the list from left to right (head to tail), collapsing (or
 *folding*) the list until just a single value remains.
 This new value might still be a list or other container type,
-but the original list has be consumed from head to tail.
+but the original list has been consumed from head to tail.
 Note how `leftFold` is tail recursive, and therefore all
 functions implemented in terms of `leftFold` are
 tail recursive (and thus, stack safe!) as well.
@@ -963,6 +980,52 @@ For instance, implementing `toList` in terms of `foldr` for `List`
 just makes no sense, as this is a non-tail recursive function
 running in linear time complexity, while a hand-written implementation
 can just return its argument without any modifications.
+
+### Exercises
+
+In these exercises, you are going to implement `Foldable`
+for different data types. Make sure to try and manually
+implement all six functions of the interface.
+
+1. Implement `Foldable` for `Crud i`:
+
+   ```idris
+   data Crud : (i : Type) -> (a : Type) -> Type where
+     Create : (value : a) -> Crud i a
+     Update : (id : i) -> (value : a) -> Crud i a
+     Read   : (id : i) -> Crud i a
+     Delete : (id : i) -> Crud i a
+   ```
+
+2. Implement `Foldable` for `Response e i`:
+
+   ```idris
+   data Response : (e, i, a : Type) -> Type where
+     Created : (id : i) -> (value : a) -> Response e i a
+     Updated : (id : i) -> (value : a) -> Response e i a
+     Found   : (values : List a) -> Response e i a
+     Deleted : (id : i) -> Response e i a
+     Error   : (err : e) -> Response e i a
+   ```
+
+3. Implement `Foldable` for `List01`. Use tail recursion
+   in the implementations of `toList`, `foldMap`, and
+   `foldl`.
+
+   ```idris
+   data List01 : (nonEmpty : Bool) -> Type -> Type where
+     Nil  : List01 False a
+     (::) : a -> List01 False a -> List01 ne a
+   ```
+
+4. Implement `Foldable` for `Tree`. There is no need
+   to use tail recursion in your implementations, but
+   you are not allowed to cheat by using `assert_smaller`
+   or `assert_total`.
+
+   Hint: You can test the correct behavior of your implementation
+   by running the same fold on the result of `treeToVect` and
+   verify that the outcome is the same.
 
 <!-- vi: filetype=idris2
 -->
