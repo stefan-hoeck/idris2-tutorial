@@ -52,6 +52,9 @@ stuff will already be familiar to you.
    4. [Generic Data Types](src/Tutorial/DataTypes.md#generic-data-types)
    5. [Alternative Syntax for Data Definitions](src/Tutorial/DataTypes.md#alternative-syntax-for-data-definitions)
 4. [Interfaces](src/Tutorial/Interfaces.md)
+   1. [Interface Basics](src/Tutorial/Interfaces.md#interface-basics)
+   2. [More about Interfaces](src/Tutorial/Interfaces.md#more-about-interfaces)
+   3. [Interfaces in the Prelude](src/Tutorial/Interfaces.md#interfaces-in-the-prelude)
 5. [Functions Part 2](src/Tutorial/Functions2.md)
 6. [Dependent Types](src/Tutorial/Dependent.md)
 7. [IO: Programming with Side Effects](src/Tutorial/IO.md)
@@ -62,6 +65,6 @@ stuff will already be familiar to you.
 
 At the moment, this project is being actively developed and
 evolved against the main branch of the Idris 2 repository.
-It is been tested nightly on GitHub to still build against
+It is been tested nightly on GitHub and built against
 the latest commit of the Idris 2 main branch as well as the
 Idris 2 commit listed in file `.idris-version`.

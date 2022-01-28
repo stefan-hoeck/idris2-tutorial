@@ -4,7 +4,7 @@ Function overloading - the definition of functions
 with the same name but different implementations - is a concept
 found in many programming languages. Idris natively supports overloading
 of functions: Two functions with the same name can be defined in
-different modules or namespaces, and Idris will try to disambiguate 
+different modules or namespaces, and Idris will try to disambiguate
 between these based on the types involved. Here is an example:
 
 ```idris
@@ -321,7 +321,7 @@ already in the definition of `Equals`:
 ```idris
 interface Equals a where
   eq : a -> a -> Bool
-  
+
   neq : a -> a -> Bool
   neq a1 a2 = not (eq a1 a2)
 ```
@@ -600,7 +600,7 @@ different instances for these.
 2. Implement interface `Show` for `Complex`. Have a look at data type `Prec`
    and function `showPrec` and how these are used in the
    *Prelude* to implement instances for `Either` and `Maybe`.
-   
+
    Verify the correct behavior of your implementation by wrapping
    a value of type `Complex` in a `Just` and `show` the result at
    the REPL.
@@ -708,7 +708,7 @@ different instances for these.
 
     ```idris
     sumList : Num a => List a -> a
- 
+
     productList : Num a => List a -> a
     ```
 
@@ -756,7 +756,7 @@ of efficiency.
 
 ### What's next
 
-In the [next section](Functions2.md), we have a closer look
+In the [next chapter](Functions2.md), we have a closer look
 at functions and their types. We will learn about named arguments,
 implicit arguments, and erased arguments as well as some
 constructors for implementing more complex functions.
