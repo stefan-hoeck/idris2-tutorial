@@ -772,7 +772,7 @@ we can use this proof to *rewrite* the types on
 the right hand side of `reverse`. Writing proofs and
 using `rewrite` will require some in-depth explanations
 and examples. Therefore, these things will have to wait
-until another tutorial.
+until another chapter.
 
 ### Unrestricted Implicits
 
@@ -843,7 +843,7 @@ replicate'' {n = S _} v = v :: replicate'' v
    ```idris
    flattenList : List (List a) -> List a
    ```
-   
+
    Implement `flattenList` and declare and implement a similar
    function `flattenVect` for flattening vectors of vectors.
 
