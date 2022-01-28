@@ -92,7 +92,7 @@ We'd need to implement all of these again for the other types with a `cmp`
 function, and most if not all of these implementations would be identical
 to the ones written above. That's a lot of code repetition.
 
-One way to solve this is to use higher order functions.
+One way to solve this is to use higher-order functions.
 For instance, we could define function `minimumBy`, which takes
 a comparison function as its first argument and returns the smaller
 of the two remaining arguments:
@@ -105,7 +105,7 @@ minimumBy f a1 a2 =
     _  => a2
 ```
 
-This solution is another proof of how higher order functions
+This solution is another proof of how higher-order functions
 allow us to reduce code duplication. However, the need to explicitly
 pass around the comparison function all the time
 can get tedious as well.
@@ -487,7 +487,7 @@ The case of integer literals is special, and will be discussed in the next
 section.
 
 Here is an example of using `FromString`. Assume, we write an application
-where users can identify themselves with a user name and password. Both
+where users can identify themselves with a username and password. Both
 consist of strings of characters, so it is pretty easy to confuse and mix
 up the two things, although they clearly have very different semantics.
 In these cases, it is advisable to come up with new types for the two,
