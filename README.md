@@ -20,24 +20,32 @@ new to functional programming.
 
 ## Table of Contents
 
-1. Part 1: Core Language Features
+### Part 1: Core Language Features
 
-   This part tries to give a solid introduction to the
-   Idris programming language. If you are new to functional programming,
-   make sure to follow these tutorials in order and *solve all the
-   exercises*.
+This part tries to give a solid introduction to the
+Idris programming language. If you are new to functional programming,
+make sure to follow these tutorials in order and *solve all the
+exercises*.
 
-   If you already used other pure functional programming languages like
-   Haskell, you might go through the introductory material (Functions Part 1,
-   Algebraic Data Types, and Interfaces) pretty quickly, as most of this
-   stuff will already be familiar to you.
+If you already used other pure functional programming languages like
+Haskell, you might go through the introductory material (Functions Part 1,
+Algebraic Data Types, and Interfaces) pretty quickly, as most of this
+stuff will already be familiar to you.
 
-   1. [Introduction](src/Tutorial/Intro.md)
-   2. [Functions Part 1](src/Tutorial/Functions1.md)
-   3. [Algebraic Data Types](src/Tutorial/DataTypes.md)
-   4. [Interfaces](src/Tutorial/Interfaces.md)
-   5. [Functions Part 2](src/Tutorial/Functions2.md)
-   6. [Dependent Types](src/Tutorial/Dependent.md)
-   7. [IO: Programming with Side Effects](src/Tutorial/IO.md)
-   8. [Functor and Friends](src/Tutorial/Functor.md)
-   9. [Recursion and Folds](src/Tutorial/Folds.md)
+1. [Introduction](src/Tutorial/Intro.md)
+2. [Functions Part 1](src/Tutorial/Functions1.md)
+3. [Algebraic Data Types](src/Tutorial/DataTypes.md)
+4. [Interfaces](src/Tutorial/Interfaces.md)
+5. [Functions Part 2](src/Tutorial/Functions2.md)
+6. [Dependent Types](src/Tutorial/Dependent.md)
+7. [IO: Programming with Side Effects](src/Tutorial/IO.md)
+8. [Functor and Friends](src/Tutorial/Functor.md)
+9. [Recursion and Folds](src/Tutorial/Folds.md)
+
+## Prerequisites
+
+At the moment, this project is being actively developed and
+evolved against the main branch of the Idris 2 repository.
+It is been tested nightly on GitHub to still build against
+the latest commit of the Idris 2 main branch as well as the
+Idris 2 commit listed in file `.idris-version`.
