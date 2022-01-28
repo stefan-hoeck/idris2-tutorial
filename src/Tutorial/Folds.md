@@ -924,7 +924,7 @@ slightly more verbose, but with the guaranteed benefit of stack safety.
 Left and right folds share a common pattern: In both cases, we start
 with an initial *state* value and use an accumulator function for
 combining the current state with the current element. This principle
-of *combining values* when starting from an *initial value* lies
+of *combining values* after starting from an *initial value* lies
 at the heart of an interface we've already learned about: `Monoid`.
 It therefore makes sense to fold a list over a monoid:
 
