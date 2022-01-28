@@ -1,12 +1,12 @@
 # Algebraic Data Types
 
-In the [previous part](Functions1.md) of the tutorial,
+In the [previous chapter](Functions1.md),
 we learned how to write our own functions and combine
 them to create more complex functionality. Of equal importance
 is the ability to define our own data types and use them
 as arguments and results in functions.
 
-This is a lengthy tutorial, densely packed with information.
+This is a lengthy chapter, densely packed with information.
 If you are new to Idris and functional programming, make
 sure to follow along slowly, experimenting with the examples,
 and possibly coming up with your own. Make sure to try
@@ -216,20 +216,20 @@ a statement with possible side effects.
    different units. Hint: Use integer division (`div`)
    when going from seconds to some larger unit like
    hours).
-   
+
    ```idris
    data UnitOfTime = Second -- add additional values
-   
+
    -- calculate the number of seconds from a
    -- number of steps in the given unit of time
    total
    toSeconds : UnitOfTime -> Integer -> Integer
-   
+
    -- Given a number of seconds, calculate the
    -- number of steps in the given unit of time
    total
    fromSeconds : UnitOfTime -> Integer -> Integer
-   
+
    -- convert the number of steps in a given unit of time
    -- to the number of steps in another unit of time.
    -- use `fromSeconds` and `toSeconds` in your implementation
@@ -358,7 +358,7 @@ Tutorial.DataTypes> login (Key "foo")
 
 1. Implement an equality test for `Title` (you can use the
    equality operator `(==)` for comparing two `String`s):
-   
+
    ```idris
    total
    eqTitle : Title -> Title -> Bool
@@ -366,7 +366,7 @@ Tutorial.DataTypes> login (Key "foo")
 
 2. For `Title`, implement a simple test to check, whether
    a custom title is being used:
-   
+
    ```idris
    total
    isOther : Title -> Bool
@@ -374,13 +374,13 @@ Tutorial.DataTypes> login (Key "foo")
 
 3. Given our simple `Credentials` type, there are three
    ways for authentication to fail:
-   
+
    * An unknown user name was used.
    * The password given does not match the one associated with
      the user name.
    * An invalid key was used.
-   
-   Encapsulate these three possibilities in a sum type 
+
+   Encapsulate these three possibilities in a sum type
    called `LoginError`,
    but make sure not to disclose any confidential information:
    An invalid user name should be stored in the corresponding
@@ -774,7 +774,7 @@ eventually handle the failure case.
 Not so, if `null` is silently returned without adjusting the
 types. Programmers may (and often *will*) forget to handle the
 `null` case, leading to unexpected and sometimes
-hard to debug runtime exceptions. 
+hard to debug runtime exceptions.
 
 ### Either
 
@@ -890,8 +890,8 @@ intSum Nil       = 0
 intSum (n :: ns) = n + intSum ns
 ```
 
-We will have a closer look at recursion in a later part of
-this tutorial, as this one is already getting too long.
+We will have a closer look at recursion in a later chapter,
+as this one is already getting too long.
 
 ### Generic Functions
 
@@ -939,7 +939,7 @@ and is available from module `Data.Maybe` from the *base* library.
 Sometimes, `fromOption` is not general enough. Assume we'd like to
 print the value of a freshly parsed `Bool`, giving some generic
 error message in case of a `None`. We can't use `fromOption`
-for this, as we have an `Option Bool` and we'd like to 
+for this, as we have an `Option Bool` and we'd like to
 return a `String`. Here's how to do this:
 
 ```idris
@@ -984,27 +984,27 @@ signature are treated as type parameters.
    -- make sure to map a `Just` to a `Just`.
    total
    mapMaybe : (a -> b) -> Maybe a -> Maybe b
-   
+
    -- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`
    total
    appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b
-   
+
    -- Example: `bindMaybe (Just 12) Just = Just 12`
    total
    bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b
-   
+
    -- keep the value in a `Just` only if the given predicate holds
    total
    filterMaybe : (a -> Bool) -> Maybe a -> Maybe a
-   
+
    -- keep the first value that is not a `Nothing` (if any)
    total
    first : Maybe a -> Maybe a -> Maybe a
-   
+
    -- keep the last value that is not a `Nothing` (if any)
    total
    last : Maybe a -> Maybe a -> Maybe a
-   
+
    -- this is another general way to extract a value from a `Maybe`.
    -- Make sure the following holds:
    -- `foldMaybe (+) 5 Nothing = 5`
@@ -1018,27 +1018,27 @@ signature are treated as type parameters.
    ```idris
    total
    mapEither : (a -> b) -> Either e a -> Either e b
-   
+
    -- In case of both `Either`s being `Left`s, keep the
    -- value stored in the first `Left`.
    total
    appEither : Either e (a -> b) -> Either e a -> Either e b
-   
+
    total
    bindEither : Either e a -> (a -> Either e b) -> Either e b
-   
+
    -- Keep the first value that is not a `Left`
    -- If both `Either`s are `Left`s, use the given accumulator
    -- for the error values
    total
    firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
-   
+
    -- Keep the last value that is not a `Left`
    -- If both `Either`s are `Left`s, use the given accumulator
    -- for the error values
    total
    lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a
-   
+
    total
    fromEither : (e -> c) -> (a -> c) -> Either e a -> c
    ```
@@ -1048,27 +1048,27 @@ signature are treated as type parameters.
    ```idris
    total
    mapList : (a -> b) -> List a -> List b
-   
+
    total
    filterList : (a -> Bool) -> List a -> List a
-   
+
    -- return the first value of a list, if it is non-empty
    total
    headMaybe : List a -> Maybe a
-   
+
    -- return everything but the first value of a list, if it is non-empty
    total
    tailMaybe : List a -> Maybe (List a)
-   
+
    -- return the last value of a list, if it is non-empty
    total
    lastMaybe : List a -> Maybe a
-   
+
    -- return everything but the last value of a list,
    -- if it is non-empty
    total
    initMaybe : List a -> Maybe (List a)
-   
+
    -- accumulate the values in a list using the given
    -- accumulator function and initial value
    --
@@ -1091,7 +1091,7 @@ signature are treated as type parameters.
      age      : Bits8
      password : Either Bits64 String
    ```
-   
+
    Using `LoginError` from an earlier exercise,
    implement function `login`, which, given a list of `Client`s
    plus a value of type `Credentials` will return either a `LoginError`
@@ -1142,7 +1142,7 @@ a source file, this is not necessary most of the time.
 
 ## Conclusion
 
-We covered a lot of ground in this part of the tutorial,
+We covered a lot of ground in this chapter,
 so I'll summarize the most important points below:
 
 * Enumerations are data types consisting of a finite
@@ -1157,7 +1157,7 @@ used to group several values of possibly different types.
 
 * We use pattern matching to deconstruct immutable
 values in Idris. The possible patterns correspond to
-a data type's data constructors. 
+a data type's data constructors.
 
 * We can *bind* variables to values in a pattern or
 use an underscore as a placeholder for a value that's
