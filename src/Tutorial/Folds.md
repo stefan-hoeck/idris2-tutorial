@@ -953,13 +953,13 @@ concatList = foldMapList id
 
 And here we are, finally, looking at a large pile of utility functions
 all dealing in some way with the concept of collapsing (or folding)
-a list of values into a single result. But all of this folding functions
+a list of values into a single result. But all of these folding functions
 are just as useful when working with vectors, with non-empty lists, with
 rose trees, even with single-value containers like `Maybe`, `Either e`,
 or `Identity`. Heck, for the sake of completeness, they are even useful
 when working with zero-value containers like `Control.Applicative.Const e`!
 And since there are so many of these functions, we'd better look out for
-an essential set of functions in terms of which we can implement all
+an essential set of them in terms of which we can implement all
 the others, and wrap up the whole bunch in an interface. This interface
 is called `Foldable`, and is available from the `Prelude`. When you
 look at its definition in the REPL (`:doc Foldable`), you'll see that
@@ -1020,12 +1020,40 @@ implement all six functions of the interface.
 
 4. Implement `Foldable` for `Tree`. There is no need
    to use tail recursion in your implementations, but
-   you are not allowed to cheat by using `assert_smaller`
-   or `assert_total`.
+   your functions must be accepted by the totality
+   checker, and you are not allowed to cheat by using
+   `assert_smaller` or `assert_total`.
 
-   Hint: You can test the correct behavior of your implementation
-   by running the same fold on the result of `treeToVect` and
+   Hint: You can test the correct behavior of your implementations
+   by running the same folds on the result of `treeToVect` and
    verify that the outcome is the same.
+
+5. Like `Functor` and `Applicative`, `Foldable` composes:
+   The product and composition of two foldable container
+   types are again foldable container types. Proof
+   this by implementing `Foldable` for `Comp` and `Product`:
+
+   ```idris
+   record Comp (f,g : Type -> Type) (a : Type) where
+     constructor MkComp
+     unComp  : f (g a)
+
+   record Product (f,g : Type -> Type) (a : Type) where
+     constructor MkProduct
+     pair  : (f a, g a)
+   ```
+
+## Conclusion
+
+We learned a lot about recursion, totality checking, and folds
+in this chapter, all of which are important concepts in pure
+functional programming in general. Wrapping one's head
+around recursion takes time and experience. Therefore - as
+usual - try to solve as many exercises as you can.
+
+In the next section, we are taking the concept of iterating
+over container types one step further and look at
+effectful data traversals.
 
 <!-- vi: filetype=idris2
 -->

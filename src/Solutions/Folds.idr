@@ -350,6 +350,32 @@ Foldable Tree where
   null _  = False
   toList  = toListTree
 
+-- 5
+
+record Comp (f,g : Type -> Type) (a : Type) where
+  constructor MkComp
+  unComp  : f (g a)
+
+Foldable f => Foldable g => Foldable (Comp f g) where
+  foldr f st (MkComp v)  = foldr (flip $ foldr f) st v
+  foldl f st (MkComp v)  = foldl (foldl f) st v
+  foldMap f (MkComp v)   = foldMap (foldMap f) v
+  foldlM f st (MkComp v) = foldlM (foldlM f) st v
+  toList (MkComp v)      = foldMap toList v
+  null (MkComp v)        = all null v
+
+record Product (f,g : Type -> Type) (a : Type) where
+  constructor MkProduct
+  pair  : (f a, g a)
+
+Foldable f => Foldable g => Foldable (Product f g) where
+  foldr f st (MkProduct (v,w))  = foldr f (foldr f st w) v
+  foldl f st (MkProduct (v,w))  = foldl f (foldl f st v) w
+  foldMap f (MkProduct (v,w))   = foldMap f v <+> foldMap f w 
+  toList  (MkProduct (v,w))     = toList v ++ toList w
+  null (MkProduct (v,w))        = null v && null w
+  foldlM f st (MkProduct (v,w)) = foldlM f st v >>= \st' => foldlM f st' w
+
 --------------------------------------------------------------------------------
 --          Tests
 --------------------------------------------------------------------------------

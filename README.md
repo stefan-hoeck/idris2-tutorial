@@ -40,4 +40,4 @@ new to functional programming.
    6. [Dependent Types](src/Tutorial/Dependent.md)
    7. [IO: Programming with Side Effects](src/Tutorial/IO.md)
    8. [Functor and Friends](src/Tutorial/Functor.md)
-   9. [Folds and Traversals](src/Tutorial/Folds.md)
+   9. [Recursion and Folds](src/Tutorial/Folds.md)
