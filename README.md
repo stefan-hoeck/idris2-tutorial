@@ -41,7 +41,7 @@ stuff will already be familiar to you.
 2. [Functions Part 1](src/Tutorial/Functions1.md)
    1. [Functions with more that one Argument](src/Tutorial/Functions1.md#functions-with-more-that-one-argument)
    2. [Function Composition](src/Tutorial/Functions1.md#function-composition)
-   3. [Higher Order Functions](src/Tutorial/Functions1.md#higher-order-functions)
+   3. [Higher-order Functions](src/Tutorial/Functions1.md#higher-order-functions)
    4. [Currying](src/Tutorial/Functions1.md#currying)
    5. [Anonymous Functions](src/Tutorial/Functions1.md#anonymous-functions)
    6. [Operators](src/Tutorial/Functions1.md#operators)

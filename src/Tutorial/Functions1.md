@@ -117,7 +117,7 @@ reversing the resulting `String` (functions `show` and
 `reverse` are part of the Idris *Prelude* and as such are
 available in every Idris program).
 
-## Higher Order Functions
+## Higher-order Functions
 
 Functions can take other functions as arguments. This is
 an incredibly powerful concept and we can go crazy with
@@ -194,7 +194,7 @@ huge result.
 
 ## Currying
 
-Once we start using higher order functions, the concept
+Once we start using higher-order functions, the concept
 of partial function application (also called *currying*
 after mathematician and logician Haskell Curry) becomes
 very important.
@@ -237,11 +237,11 @@ little code.
 ## Anonymous Functions
 
 Sometimes we'd like to pass a small custom function to
-a higher order function without bothering to write a
+a higher-order function without bothering to write a
 top level definition. For instance, in the following example,
 function `someTest` is very specific and probably not
 very useful in general, but we'd still like to pass it
-to higher order function `testSquare`:
+to higher-order function `testSquare`:
 
 ```idris
 someTest : Integer -> Bool
@@ -271,7 +271,7 @@ function of one argument called `n`, the implementation of
 which is on the right hand side of the function arrow.
 Like other top level functions, lambdas can have more
 than one arguments, separated by commas: `\x,y => x * x + y`.
-When we pass lambdas as arguments to higher order functions,
+When we pass lambdas as arguments to higher-order functions,
 they typically need to be wrapped in parentheses or separated
 by the dollar operator `($)` (see the next section about this).
 
@@ -427,7 +427,7 @@ which should be in point-free style.
 
 6. In this slightly extended exercise we are going to implement
 some utilities for working with `Integer` predicates (functions
-from `Integer` to `Bool`). Implement the following higher order
+from `Integer` to `Bool`). Implement the following higher-order
 functions (use boolean operators `&&`, `||`, and function `not` in
 your implementations):
 
@@ -503,8 +503,8 @@ expecting the remaining arguments. This technique is called
 allows us to easily combine small coding units to create
 more complex behavior.
 
-* We can pass anonymous functions (*lambdas*) to higher
-order functions, if writing a corresponding top level
+* We can pass anonymous functions (*lambdas*) to higher-order
+functions, if writing a corresponding top level
 function would be too cumbersome.
 
 * Idris allows us to define our own infix operators. These
