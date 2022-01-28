@@ -263,7 +263,7 @@ eval s =
 ```
 
 Let's break this down a bit. On the first line, we split
-the input string at all white space occurrences. Since
+the input string at all whitespace occurrences. Since
 `split` returns a `List1` (a type for non-empty lists
 exported from `Data.List1` in *base*) but pattern matching
 on `List` is more convenient, we convert the result using
@@ -317,7 +317,7 @@ the right hand side of a case expression.
 ### Exercises
 
 In these exercises, you are going to implement some
-small command line applications. Some of these will potentially
+small command-line applications. Some of these will potentially
 run forever, as they will only stop when the user enters
 a keyword for quitting the application. Such programs
 are no longer provably total. If you added the
@@ -913,7 +913,7 @@ terminate when invoked with such a file path.
 ### Safe Resource Handling
 
 Note, how we had to manually open and close the file handle in
-`countEmpty`. This is error prone and tedious. Resource handling
+`countEmpty`. This is error-prone and tedious. Resource handling
 is a big topic, and we definitely won't be going into the
 details here, but there is a convenient function exported
 from `System.File`: `withFile`, which handles the opening,
