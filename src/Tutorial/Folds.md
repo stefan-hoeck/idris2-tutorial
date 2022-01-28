@@ -135,9 +135,9 @@ main : IO ()
 main = printLn . len $ replicateList 10000 10
 ```
 
-If you have [NodeJS](https://nodejs.org/en/) installed on your system,
+If you have [Node.js](https://nodejs.org/en/) installed on your system,
 you might try the following experiment. Compile and run this
-module using the *node* backend of Idris instead of the default
+module using the *Node.js* backend of Idris instead of the default
 *Chez Scheme* backend and run the resulting JavaScript source file
 with the `node` binary:
 
@@ -146,7 +146,7 @@ $> idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
 $> node build/exec/test.js
 ```
 
-Node will fail with the following error message and a lengthy
+Node.js will fail with the following error message and a lengthy
 stack trace: `RangeError: Maximum call stack size exceeded`.
 What's going on here? How can it be that `main` fails with an
 exception although it is provably total?
@@ -231,7 +231,7 @@ main1 : IO ()
 main1 = printLn . lenTR $ replicateListTR 10000 10
 ```
 
-We can again run `main1` using the *node* backend. This time,
+We can again run `main1` using the *Node.js* backend. This time,
 we use slightly different syntax to execute a function other than
 `main`:
 
@@ -312,7 +312,7 @@ Just like with single recursive functions, mutually recursive
 functions can be optimized to imperative loops if all
 recursive calls occur at tail position. This is the case
 with functions `even` and `odd`, as can again be
-verified at the *node* backend:
+verified at the *Node.js* backend:
 
 ```idris
 main2 : IO ()
@@ -582,7 +582,7 @@ ERROR: No clauses
 ```
 
 So, with a single thoughtless placement of `assert_smaller` we wrought
-havoc within our pure and total code base sacrificing totality and
+havoc within our pure and total codebase sacrificing totality and
 type safety in one fell swoop. Therefore: Use at your own risk!
 
 Note: I do not expect you to understand all the dark magic at
@@ -658,7 +658,7 @@ Show a => Show (Tree a) where
 ```
 
 In this case, we'd have to manually reimplement `Show` for lists of trees:
-A tedious task - and error prone on its own. Instead, we resort to using the
+A tedious task - and error-prone on its own. Instead, we resort to using the
 mighty sledgehammer of totality checking: `assert_total`. Needless to say
 that this comes with the same risks as `assert_smaller`, so be very
 careful.
@@ -710,7 +710,7 @@ and some initial state. But what should be the type of
 the accumulator? Well, it combines the current state
 with the list's next element and returns an updated
 state: `state -> elem -> state`. Surely, we can come
-up with a higher order function to encapsulate this
+up with a higher-order function to encapsulate this
 behavior:
 
 ```idris
