@@ -1,0 +1,38 @@
+---
+name: Notify if build fails
+
+on:
+  workflow_run:
+    workflows:
+      - "Build"
+    branches:
+      - main
+      - master
+    types:
+      - completed
+
+jobs:
+  on-failure:
+    runs-on: ubuntu-latest
+    env:
+      notification_receiver_mail:   ${{ secrets.NOTIFICATION_RECEIVER_MAIL   }}
+      notification_sender_username: ${{ secrets.NOTIFICATION_SENDER_USERNAME }}
+      notification_sender_password: ${{ secrets.NOTIFICATION_SENDER_PASSWORD }}
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        if: ${{ env.notification_receiver_mail != '' }}
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+
+          username: ${{ env.notification_sender_username }}
+          password: ${{ env.notification_sender_password }}
+          from: Github Actions Bot
+
+          to: ${{ env.notification_receiver_mail }}
+
+          subject: '[${{ github.repository }}] Github Actions job has failed'
+          body: Build job of ${{ github.repository }} has failed,
+                see https://github.com/${{github.repository}}/actions
