@@ -46,6 +46,6 @@ stuff will already be familiar to you.
 
 At the moment, this project is being actively developed and
 evolved against the main branch of the Idris 2 repository.
-It is been tested nightly on github to still build against
+It is been tested nightly on GitHub to still build against
 the latest commit of the Idris 2 main branch as well as the
 Idris 2 commit listed in file `.idris-version`.
