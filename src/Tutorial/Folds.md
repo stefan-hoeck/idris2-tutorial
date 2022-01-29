@@ -140,7 +140,7 @@ If you have [Node.js](https://nodejs.org/en/) installed on your system,
 you might try the following experiment. Compile and run this
 module using the *Node.js* backend of Idris instead of the default
 *Chez Scheme* backend and run the resulting JavaScript source file
-with the `node` binary:
+with the Node.js binary:
 
 ```sh
 $> idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
@@ -669,12 +669,14 @@ Implement the following functions in a provably total
 way without "cheating". Note: It is not necessary to
 implement these in a tail recursive way.
 
+<!-- textlint-disable terminology -->
 1. Implement function `depth` for rose trees. This
    should return the maximal number of `Node` constructors
    from the current node to the farthest child node.
    For instance, the current node should be at depth one,
    all its direct child nodes are at depth two, their
    immediate child nodes at depth three and so on.
+<!-- textlint-enable -->
 
 2. Implement interface `Eq` for rose trees.
 
