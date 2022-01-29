@@ -5,7 +5,10 @@ version    = 0.1.0
 sourcedir  = "src"
 depends    = base         >= 0.5.1
 
-modules = Solutions.Dependent
+modules = Data.HList
+        , Data.Validated
+
+        , Solutions.Dependent
         , Solutions.Folds
         , Solutions.Functions1
         , Solutions.Functions2
@@ -13,6 +16,8 @@ modules = Solutions.Dependent
         , Solutions.IO
         , Solutions.Interfaces
         , Solutions.DataTypes
+
+        , Text.CSV
 
         , Tutorial.DataTypes
         , Tutorial.Dependent
