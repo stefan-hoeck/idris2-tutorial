@@ -8,6 +8,7 @@ depends    = base         >= 0.5.1
 modules = Data.HList
         , Data.Validated
 
+        , Solutions.DataTypes
         , Solutions.Dependent
         , Solutions.Folds
         , Solutions.Functions1
@@ -15,7 +16,7 @@ modules = Data.HList
         , Solutions.Functor
         , Solutions.IO
         , Solutions.Interfaces
-        , Solutions.DataTypes
+        , Solutions.Traverse
 
         , Text.CSV
 
@@ -28,3 +29,4 @@ modules = Data.HList
         , Tutorial.IO
         , Tutorial.Interfaces
         , Tutorial.Intro
+        , Tutorial.Traverse

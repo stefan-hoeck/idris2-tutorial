@@ -77,6 +77,7 @@ stuff will already be familiar to you.
    1. [Recursion](src/Tutorial/Folds.md#recursion)
    2. [A few Notes on Totality Checking](src/Tutorial/Folds.md#a-few-notes-on-totality-checking)
    3. [Interface Foldable](src/Tutorial/Folds.md#interface-foldable)
+10. [Effectful Traversals](src/Tutorial/Traverse.md)
 
 ## Prerequisites
 
