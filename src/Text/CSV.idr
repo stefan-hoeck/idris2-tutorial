@@ -101,6 +101,17 @@ data CSVError : Type where
   Append               : CSVError -> CSVError -> CSVError
 
 public export
+Show CSVError where
+  showPrec p (FieldError l c s) =
+    showCon p "FieldError" $ showArg l ++ showArg c ++ showArg s
+  showPrec p (UnexpectedEndOfInput l c) =
+    showCon p "UnexpectedEndOfInput" $ showArg l ++ showArg c
+  showPrec p (ExpectedEndOfInput l c) =
+    showCon p "ExpectedEndOfInput" $ showArg l ++ showArg c
+  showPrec p (Append l r) =
+    showCon p "Append" $ " " ++ showPrec App l ++ " " ++ showPrec App r
+
+public export
 Semigroup CSVError where
   (<+>) = Append
 
