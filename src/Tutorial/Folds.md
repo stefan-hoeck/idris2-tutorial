@@ -156,7 +156,7 @@ First, remember that a function
 being total means that it will eventually produce a value
 of the given type in a finite amount of time, *given
 enough resources like computer memory*. Here, `main` hasn't
-been given enough resources as NodeJS has a very small size
+been given enough resources as Node.js has a very small size
 limit on its call stack. The *call stack* can be thought
 of as a stack data structure (first in, last out), where
 nested function calls are put. In case of recursive functions,
