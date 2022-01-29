@@ -119,8 +119,8 @@ ideas, and for quickly experimenting with the code we just wrote.
 In order to start a REPL session, run the following command
 in a terminal.
 
-```sh
-$ rlwrap idris2
+```repl
+rlwrap idris2
 ```
 
 (Using command-line utility `rlwrap` is optional. It
@@ -141,6 +141,7 @@ Idris should now be ready to accept you commands:
 Welcome to Idris 2.  Enjoy yourself!
 Main>
 ```
+
 We can go ahead and enter some simple arithmetic expressions. Idris
 will *evaluate* these and print the result:
 
@@ -197,7 +198,7 @@ but first we'd like to compile and run it. From this project's
 root directory, run the following:
 
 ```sh
-$ idris2 --find-ipkg -o hello src/Tutorial/Intro.md
+idris2 --find-ipkg -o hello src/Tutorial/Intro.md
 ```
 
 This will create executable `hello` in directory `build/exec`,

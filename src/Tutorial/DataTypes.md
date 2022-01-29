@@ -195,7 +195,7 @@ and therefore, the `else` branch cannot be dropped. This is different
 from the behavior in typical imperative languages, where `if` is
 a statement with possible side effects.
 
-### Exercises
+### Exercises part 1
 
 1. Use pattern matching to implement your own
    versions of boolean operators
@@ -354,7 +354,7 @@ Tutorial.DataTypes> login (Key "foo")
 "Access denied!"
 ```
 
-### Exercises
+### Exercises part 2
 
 1. Implement an equality test for `Title` (you can use the
    equality operator `(==)` for comparing two `String`s):
@@ -614,6 +614,7 @@ bar : Bool
 bar = case triple of
   (b,wd,_) => b && isWeekend wd
 ```
+
 ### As Patterns
 
 Sometimes, we'd like to take apart a value by pattern matching
@@ -633,7 +634,7 @@ that `(Nat,Bool,Weekday,String)` is just sugar for
 sugar for `MkPair (length s) t`. Hence, the implementation above
 is correct as is confirmed by the type checker.
 
-### Exercises
+### Exercises part 3
 
 1. Define a record type for time spans by pairing a `UnitOfTime`
 with an integer representing the duration of the time span in
@@ -964,7 +965,7 @@ treated as *type parameters*, while upper-case identifiers
 are treated as types or type constructors that must
 be in scope.
 
-### Exercises
+### Exercises part 4
 
 If this is your first time programming in a purely
 functional language, the exercises below are *very*

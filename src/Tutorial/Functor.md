@@ -181,11 +181,18 @@ Now, reading type signatures consisting only of type parameters
 like the one of `map'` can take some time to get used to, especially
 when some type parameters are applied to other parameters as in
 `f a`. It can be very helpful to inspect these signatures together
-with all implicit arguments at the REPL:
+with all implicit arguments at the REPL (I formatted the output to
+make it more readable):
 
 ```repl
 Tutorial.Functor> :ti map'
-Tutorial.Functor.map' : {0 b : Type} -> {0 a : Type} -> {0 f : Type -> Type} -> Functor' f => (a -> b) -> f a -> f b
+Tutorial.Functor.map' :  {0 b : Type}
+                      -> {0 a : Type}
+                      -> {0 f : Type -> Type}
+                      -> Functor' f
+                      => (a -> b)
+                      -> f a
+                      -> f b
 ```
 
 It can also be helpful to replace type parameter `f` with a concrete
@@ -364,7 +371,7 @@ add or remove any wrapped value, nor - in case of `List` -
 change their order. With `IO`, this can best be described as `map`
 not performing additional side effects.
 
-### Exercises
+### Exercises part 1
 
 1. Write your own implementations of `Functor'` for `Maybe`, `List`,
    `List1`, `Vect n`, `Either e`, and `Pair a`.
@@ -533,7 +540,6 @@ of *applies* corresponding to the arity of the function we lift.
 You'll sometimes also see the following, which allows us to drop
 the initial call to `pure`, and use the operator version of `map`
 instead:
-
 
 ```idris
 liftA2' : Applicative f => (a -> b -> c) -> f a -> f b -> f c
@@ -787,7 +793,8 @@ Let's give this a go at the REPL:
 
 ```repl
 Tutorial.Functor> readUser 1 "Joe,Foo,46,j@f.ch,m,pw1234567"
-Right (MkUser (MkName "Joe") (MkName "Foo") (Just 46) (MkEmail "j@f.ch") Male (MkPassword "pw1234567"))
+Right (MkUser (MkName "Joe") (MkName "Foo")
+  (Just 46) (MkEmail "j@f.ch") Male (MkPassword "pw1234567"))
 Tutorial.Functor> readUser 7 "Joe,Foo,46,j@f.ch,m,shortPW"
 Left (FieldError 7 6 "shortPW")
 ```
@@ -923,29 +930,29 @@ laws. Here they are:
 * `pure f <*> pure x = pure (f x)`. This is also called the
   *homomorphism* law. It should be pretty self-explaining.
 
-*  `f <*> pure v = pure ($ v) <*> f`. This is called the law
-   of *interchange*.
+* `f <*> pure v = pure ($ v) <*> f`. This is called the law
+  of *interchange*.
 
-   This should again be explained with a concrete example:
+  This should again be explained with a concrete example:
 
-   ```idris
-   interL : Maybe (a -> b) -> a -> Maybe b
-   interL f v = f <*> pure v
+  ```idris
+  interL : Maybe (a -> b) -> a -> Maybe b
+  interL f v = f <*> pure v
 
-   interR : Maybe (a -> b) -> a -> Maybe b
-   interR f v = pure ($ v) <*> f
-   ```
+  interR : Maybe (a -> b) -> a -> Maybe b
+  interR f v = pure ($ v) <*> f
+  ```
 
-   Note, that `($ v)` has type `(a -> b) -> b`, so this
-   is a function type being applied to `f`, which has
-   a function of type `a -> b` wrapped in a `Maybe`
-   context.
+  Note, that `($ v)` has type `(a -> b) -> b`, so this
+  is a function type being applied to `f`, which has
+  a function of type `a -> b` wrapped in a `Maybe`
+  context.
 
-   The law of interchange states that it must not matter
-   whether we apply a pure value from the left or
-   right of the *apply* operator.
+  The law of interchange states that it must not matter
+  whether we apply a pure value from the left or
+  right of the *apply* operator.
 
-### Exercises
+### Exercises part 2
 
 1. Implement `Applicative'` for `Either e` and `Identity`.
 
@@ -990,7 +997,8 @@ laws. Here they are:
    Solutions.Functor> hdecode [Bool,Nat,Gender] 1 "o,-12,f"
    Invalid (App (FieldError 1 1 "o") (FieldError 1 2 "-12"))
    Solutions.Functor> hdecode [Bool,Nat,Gender] 1 "o,-12,foo"
-   Invalid (App (FieldError 1 1 "o") (App (FieldError 1 2 "-12") (FieldError 1 3 "foo")))
+   Invalid (App (FieldError 1 1 "o")
+     (App (FieldError 1 2 "-12") (FieldError 1 3 "foo")))
    ```
 
    Behold the power of applicative functors and heterogeneous lists: With
@@ -1048,13 +1056,13 @@ laws. Here they are:
       CSV-files, as it allows us to convert a table represented as
       rows (a vector of tuples) to one represented as columns (a tuple of vectors).
 
-  9. Show, that the composition of two applicative functors is
-     again an applicative functor by implementing `Applicative`
-     for `Comp f g`.
+9. Show, that the composition of two applicative functors is
+   again an applicative functor by implementing `Applicative`
+   for `Comp f g`.
 
-  10. Show, that the product of two applicative functors is
-      again an applicative functor by implementing `Applicative`
-      for `Prod f g`.
+10. Show, that the product of two applicative functors is
+    again an applicative functor by implementing `Applicative`
+    for `Prod f g`.
 
 ## Monad
 
@@ -1212,10 +1220,9 @@ consider a third one, given that in Idris (and Haskell)
 in terms of `(>>=)`, the actual implementation of `(<*>)`
 must behave the same as the implementation in terms of `(>>=)`:
 
-
 * `mf <*> ma = mf >>= (\fun => map (fun $) ma)`.
 
-### Exercises
+### Exercises part 3
 
 1. `Applicative` extends `Functor`, because every `Applicative`
    is also a `Functor`. Proof this by implementing `map` in

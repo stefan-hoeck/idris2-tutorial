@@ -30,6 +30,7 @@ import Debug.Trace
 
 %default total
 ```
+
 ## Recursion
 
 In this section, we are going to have a closer look at
@@ -367,7 +368,7 @@ written for functions `pack` and `unpack` (which use
 `fastPack` and `fastUnpack` at runtime; see the corresponding
 rules in [the following source file](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)).
 
-### Exercises
+### Exercises part 1
 
 In these exercises you are going to implement several
 recursive functions. Make sure to use tail recursion
@@ -632,7 +633,6 @@ a bit of otherwise unneeded boilerplate code, we can use explicit recursion.
 In fact, since we often also work with search *forests*, this is
 the preferable way here.
 
-
 ```idris
 mutual
   treeSize : Tree a -> Nat
@@ -663,7 +663,7 @@ mighty sledgehammer of totality checking: `assert_total`. Needless to say
 that this comes with the same risks as `assert_smaller`, so be very
 careful.
 
-### Exercises
+### Exercises part 2
 
 Implement the following functions in a provably total
 way without "cheating". Note: It is not necessary to
@@ -981,7 +981,7 @@ just makes no sense, as this is a non-tail recursive function
 running in linear time complexity, while a hand-written implementation
 can just return its argument without any modifications.
 
-### Exercises
+### Exercises part 3
 
 In these exercises, you are going to implement `Foldable`
 for different data types. Make sure to try and manually

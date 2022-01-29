@@ -439,7 +439,7 @@ need to have access to the values of the indices at runtime, in
 which case we can pattern match on them and learn from
 this, which constructor(s) of the type family to use.
 
-### Exercises
+### Exercises part 1
 
 1. Implement function `head` for non-empty vectors:
 
@@ -617,7 +617,7 @@ index FZ     Nil impossible
 index (FS _) Nil impossible
 ```
 
-### Exercises
+### Exercises part 2
 
 1. Implement function `update`, which, given a function of
    type `a -> a`, updates the value in a`Vect n a` at position `k < n`.
@@ -836,7 +836,7 @@ replicate'' {n = Z}   _ = Nil
 replicate'' {n = S _} v = v :: replicate'' v
 ```
 
-### Exercises
+### Exercises part 3
 
 1. Here is a function declaration for flattening a `List` of `List`s:
 

@@ -896,12 +896,11 @@ readDNA = traverseEither readNucleobase . unpack
 
 Let's try this at the REPL:
 
-
 ```repl
 Tutorial.Functions2> readDNA "CGTTA"
 Right [Cytosine, Guanine, Thymine, Thymine, Adenine]
-Tutorial.Functions2> readDNA "CGFTAQR"
-Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'", "Unknown nucleobase: 'R'"]
+Tutorial.Functions2> readDNA "CGFTAQ"
+Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'"]
 ```
 
 ## Conclusion

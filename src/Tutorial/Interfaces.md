@@ -186,7 +186,7 @@ by Idris for us.
 Thus, we have defined all these utility functions once and for
 all for every type with an implementation of interface `Comp`.
 
-### Exercises
+### Exercises part 1
 
 1. Implement function `anyLarger`, which should return `True`,
 if and only if a list of values contains at least one element larger
@@ -349,7 +349,7 @@ Equals Bool where
   neq _ _         = False
 ```
 
-### Exercises
+### Exercises part 2
 
 1. Implement interfaces `Equals`, `Comp`, `Concat`, and
   `Empty` for pairs, constraining your implementations as necessary.
@@ -522,7 +522,6 @@ This is rather cumbersome, and some people might think this to be too high
 a price to pay just for an increase in type safety (I'd tend to disagree).
 Luckily, we can get the convenience of string literals back very easily:
 
-
 ```idris
 FromString UserName where
   fromString = MkUserName
@@ -581,7 +580,7 @@ there are `Cast` implementations from going from `SnocList` to
 or for going from `List1` to `List`, although these would
 be just as feasible.
 
-### Exercises
+### Exercises part 3
 
 These exercises are meant to make you confortable with
 implementing interfaces for your own data types, as you
@@ -719,7 +718,7 @@ different instances for these.
     element of the list as well as the sum and product of all values.
 
     ```repl
-    Solutions.Interfaces> foldMap (\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]
+    > foldMap (\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]
     (MkFirst (Just 3), (MkLast (Just 12), (MkSum 26, MkProduct 1008)))
     ```
 
