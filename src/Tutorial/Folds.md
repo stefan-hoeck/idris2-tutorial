@@ -11,7 +11,7 @@ in particular. Most recursive functions in this part
 will describe pure iterations over lists.
 
 It is recursive functions, for which totality is hard
-to determine, so we will next have a quick look at the 
+to determine, so we will next have a quick look at the
 totality checker and learn, when it will refuse to
 accept a function as being total and what to do about this.
 
@@ -30,6 +30,7 @@ import Debug.Trace
 
 %default total
 ```
+
 ## Recursion
 
 In this section, we are going to have a closer look at
@@ -135,18 +136,18 @@ main : IO ()
 main = printLn . len $ replicateList 10000 10
 ```
 
-If you have [NodeJS](https://nodejs.org/en/) installed on your system,
+If you have [Node.js](https://nodejs.org/en/) installed on your system,
 you might try the following experiment. Compile and run this
-module using the *node* backend of Idris instead of the default
+module using the *Node.js* backend of Idris instead of the default
 *Chez Scheme* backend and run the resulting JavaScript source file
-with the `node` binary:
+with the Node.js binary:
 
 ```sh
 $> idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
 $> node build/exec/test.js
 ```
 
-Node will fail with the following error message and a lengthy
+Node.js will fail with the following error message and a lengthy
 stack trace: `RangeError: Maximum call stack size exceeded`.
 What's going on here? How can it be that `main` fails with an
 exception although it is provably total?
@@ -155,7 +156,7 @@ First, remember that a function
 being total means that it will eventually produce a value
 of the given type in a finite amount of time, *given
 enough resources like computer memory*. Here, `main` hasn't
-been given enough resources as NodeJS has a very small size
+been given enough resources as Node.js has a very small size
 limit on its call stack. The *call stack* can be thought
 of as a stack data structure (first in, last out), where
 nested function calls are put. In case of recursive functions,
@@ -231,7 +232,7 @@ main1 : IO ()
 main1 = printLn . lenTR $ replicateListTR 10000 10
 ```
 
-We can again run `main1` using the *node* backend. This time,
+We can again run `main1` using the *Node.js* backend. This time,
 we use slightly different syntax to execute a function other than
 `main`:
 
@@ -302,7 +303,7 @@ mutual
   even' : Nat -> Bool
   even' 0     = True
   even' (S k) = odd' k
-  
+
   odd' : Nat -> Bool
   odd' 0     = False
   odd' (S k) = even' k
@@ -312,7 +313,7 @@ Just like with single recursive functions, mutually recursive
 functions can be optimized to imperative loops if all
 recursive calls occur at tail position. This is the case
 with functions `even` and `odd`, as can again be
-verified at the *node* backend:
+verified at the *Node.js* backend:
 
 ```idris
 main2 : IO ()
@@ -367,7 +368,7 @@ written for functions `pack` and `unpack` (which use
 `fastPack` and `fastUnpack` at runtime; see the corresponding
 rules in [the following source file](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)).
 
-### Exercises
+### Exercises part 1
 
 In these exercises you are going to implement several
 recursive functions. Make sure to use tail recursion
@@ -415,7 +416,7 @@ behavior of all functions at the REPL.
    Module `Data.SnocList` exports two tail recursive operators
    called *fish* and *chips* (`(<><)` and `(<>>)`) for going
    from `SnocList` to `List` and vice versa. Have a look
-   at the types of all new data constructors and operators 
+   at the types of all new data constructors and operators
    before continuing with the exercise.
 
    Implement a tail recursive version of `map` for `List`
@@ -582,7 +583,7 @@ ERROR: No clauses
 ```
 
 So, with a single thoughtless placement of `assert_smaller` we wrought
-havoc within our pure and total code base sacrificing totality and
+havoc within our pure and total codebase sacrificing totality and
 type safety in one fell swoop. Therefore: Use at your own risk!
 
 Note: I do not expect you to understand all the dark magic at
@@ -632,7 +633,6 @@ a bit of otherwise unneeded boilerplate code, we can use explicit recursion.
 In fact, since we often also work with search *forests*, this is
 the preferable way here.
 
-
 ```idris
 mutual
   treeSize : Tree a -> Nat
@@ -658,23 +658,25 @@ Show a => Show (Tree a) where
 ```
 
 In this case, we'd have to manually reimplement `Show` for lists of trees:
-A tedious task - and error prone on its own. Instead, we resort to using the
+A tedious task - and error-prone on its own. Instead, we resort to using the
 mighty sledgehammer of totality checking: `assert_total`. Needless to say
 that this comes with the same risks as `assert_smaller`, so be very
 careful.
 
-### Exercises
+### Exercises part 2
 
 Implement the following functions in a provably total
 way without "cheating". Note: It is not necessary to
 implement these in a tail recursive way.
 
+<!-- textlint-disable terminology -->
 1. Implement function `depth` for rose trees. This
    should return the maximal number of `Node` constructors
    from the current node to the farthest child node.
    For instance, the current node should be at depth one,
    all its direct child nodes are at depth two, their
    immediate child nodes at depth three and so on.
+<!-- textlint-enable -->
 
 2. Implement interface `Eq` for rose trees.
 
@@ -710,7 +712,7 @@ and some initial state. But what should be the type of
 the accumulator? Well, it combines the current state
 with the list's next element and returns an updated
 state: `state -> elem -> state`. Surely, we can come
-up with a higher order function to encapsulate this
+up with a higher-order function to encapsulate this
 behavior:
 
 ```idris
@@ -981,7 +983,7 @@ just makes no sense, as this is a non-tail recursive function
 running in linear time complexity, while a hand-written implementation
 can just return its argument without any modifications.
 
-### Exercises
+### Exercises part 3
 
 In these exercises, you are going to implement `Foldable`
 for different data types. Make sure to try and manually
@@ -1051,7 +1053,7 @@ functional programming in general. Wrapping one's head
 around recursion takes time and experience. Therefore - as
 usual - try to solve as many exercises as you can.
 
-In the next section, we are taking the concept of iterating
+In the next chapter, we are taking the concept of iterating
 over container types one step further and look at
 effectful data traversals.
 

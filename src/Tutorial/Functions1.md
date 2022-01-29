@@ -64,13 +64,13 @@ by passing the arguments separated by whitespace. No parentheses
 are necessary unless one of the expressions we pass as the
 function's arguments contains itself additional whitespace.
 This comes in very handy when we apply functions
-only partially (see later in this tutorial).
+only partially (see later in this chapter).
 
 Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive
 data type built into the Idris language but just a custom
 data type that you could have written yourself. We will
-learn more about declaring new data types in another
-part of this tutorial.
+learn more about declaring new data types in the
+next chapter.
 
 ## Function Composition
 
@@ -117,7 +117,7 @@ reversing the resulting `String` (functions `show` and
 `reverse` are part of the Idris *Prelude* and as such are
 available in every Idris program).
 
-## Higher Order Functions
+## Higher-order Functions
 
 Functions can take other functions as arguments. This is
 an incredibly powerful concept and we can go crazy with
@@ -132,7 +132,7 @@ testSquare : (Integer -> Bool) -> Integer -> Bool
 testSquare fun n = fun (square n)
 ```
 
-First `isEven` uses the `mod` function to check, whether 
+First `isEven` uses the `mod` function to check, whether
 an integer is divisible by two. But the interesting function
 is `testSquare`. It takes two arguments: The first argument
 is of type *function from `Integer` to `Bool`*, and the second
@@ -194,7 +194,7 @@ huge result.
 
 ## Currying
 
-Once we start using higher order functions, the concept
+Once we start using higher-order functions, the concept
 of partial function application (also called *currying*
 after mathematician and logician Haskell Curry) becomes
 very important.
@@ -237,11 +237,11 @@ little code.
 ## Anonymous Functions
 
 Sometimes we'd like to pass a small custom function to
-a higher order function without bothering to write a
+a higher-order function without bothering to write a
 top level definition. For instance, in the following example,
 function `someTest` is very specific and probably not
 very useful in general, but we'd still like to pass it
-to higher order function `testSquare`:
+to higher-order function `testSquare`:
 
 ```idris
 someTest : Integer -> Bool
@@ -271,7 +271,7 @@ function of one argument called `n`, the implementation of
 which is on the right hand side of the function arrow.
 Like other top level functions, lambdas can have more
 than one arguments, separated by commas: `\x,y => x * x + y`.
-When we pass lambdas as arguments to higher order functions,
+When we pass lambdas as arguments to higher-order functions,
 they typically need to be wrapped in parentheses or separated
 by the dollar operator `($)` (see the next section about this).
 
@@ -403,89 +403,89 @@ that `fun $ x y` is just the same as `fun (x y)`.
 ## Exercises
 
 1. Reimplement functions `testSquare` and `twice` by using the dot
-operator and dropping the second arguments (have a look at the
-implementation of `squareTimes2` to get an idea where this should
-lead you). This highly concise
-way of writing function implementations is sometimes called
-*point-free style* and is often the preferred way of writing
-small utility functions.
+   operator and dropping the second arguments (have a look at the
+   implementation of `squareTimes2` to get an idea where this should
+   lead you). This highly concise
+   way of writing function implementations is sometimes called
+   *point-free style* and is often the preferred way of writing
+   small utility functions.
 
 2. Declare and implement function `isOdd` by combining functions `isEven`
-from above and `not` (from the Idris *Prelude*). Use point-free style.
+   from above and `not` (from the Idris *Prelude*). Use point-free style.
 
 3. Declare and implement function `isSquareOf`, which checks whether
-its first `Integer` argument is the square of the second argument.
+   its first `Integer` argument is the square of the second argument.
 
 4. Declare and implement function `isSmall`, which checks whether
-its `Integer` argument is less than or equal to 100. Use one of the 
-comparison operators `<=` or `>=` in your implementation.
+   its `Integer` argument is less than or equal to 100. Use one of the
+   comparison operators `<=` or `>=` in your implementation.
 
 5. Declare and implement function `absIsSmall`, which checks whether
-the absolute value of its `Integer` argument is less than or equal to 100.
-Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your implementation,
-which should be in point-free style.
+   the absolute value of its `Integer` argument is less than or equal to 100.
+   Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your implementation,
+   which should be in point-free style.
 
 6. In this slightly extended exercise we are going to implement
-some utilities for working with `Integer` predicates (functions
-from `Integer` to `Bool`). Implement the following higher order
-functions (use boolean operators `&&`, `||`, and function `not` in
-your implementations):
+   some utilities for working with `Integer` predicates (functions
+   from `Integer` to `Bool`). Implement the following higher-order
+   functions (use boolean operators `&&`, `||`, and function `not` in
+   your implementations):
 
-```idris
--- return true, if and only if both predicates hold
-and : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
+   ```idris
+   -- return true, if and only if both predicates hold
+   and : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 
--- return true, if and only if at least one predicate holds
-or : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
+   -- return true, if and only if at least one predicate holds
+   or : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 
--- return true, if the predicate does not hold
-negate : (Integer -> Bool) -> Integer -> Bool
-```
+   -- return true, if the predicate does not hold
+   negate : (Integer -> Bool) -> Integer -> Bool
+   ```
 
-After solving exercise 6, give it a go in the REPL. In the
-example below, we use binary function `and` in infix notation
-by wrapping it in backticks. This is just a syntactic convenience
-to make certain function applications more readable:
+   After solving this exercise, give it a go in the REPL. In the
+   example below, we use binary function `and` in infix notation
+   by wrapping it in backticks. This is just a syntactic convenience
+   to make certain function applications more readable:
 
-```repl
-Tutorial.Functions1> negate (isSmall `and` isOdd) 73
-False
-```
+   ```repl
+   Tutorial.Functions1> negate (isSmall `and` isOdd) 73
+   False
+   ```
 
 7. As explained above, Idris allows us to define our own infix operators.
-Even better, Idris supports *overloading* of function names,
-that is, two functions or operators can have the same
-name, but different types and implementations.
-Idris will make use of the
-types to distinguish between equally named operators and
-functions.
+   Even better, Idris supports *overloading* of function names,
+   that is, two functions or operators can have the same
+   name, but different types and implementations.
+   Idris will make use of the
+   types to distinguish between equally named operators and
+   functions.
 
-This allows us, to reimplement functions `and`, `or`, and `negate`
-from Exercise 6 by using the existing operator and function
-names from boolean algebra:
+   This allows us, to reimplement functions `and`, `or`, and `negate`
+   from Exercise 6 by using the existing operator and function
+   names from boolean algebra:
 
-```idris
--- return true, if and only if both predicates hold
-(&&) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
-x && y = and x y
+   ```idris
+   -- return true, if and only if both predicates hold
+   (&&) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
+   x && y = and x y
 
--- return true, if and only if at least one predicate holds
-(||) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
+   -- return true, if and only if at least one predicate holds
+   (||) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 
--- return true, if the predicate does not hold
-not : (Integer -> Bool) -> Integer -> Bool
-```
+   -- return true, if the predicate does not hold
+   not : (Integer -> Bool) -> Integer -> Bool
+   ```
 
-Implement the other two functions and test them at the REPL:
+   Implement the other two functions and test them at the REPL:
 
-```repl
-Tutorial.Functions1> not (isSmall && isOdd) 73
-False
-```
+   ```repl
+   Tutorial.Functions1> not (isSmall && isOdd) 73
+   False
+   ```
 
 ## Conclusion
 
-What we learned in this part of the tutorial:
+What we learned in this chapter:
 
 * A function in Idris can take an arbitrary number of arguments,
 separated by `->` in the function's type.
@@ -503,8 +503,8 @@ expecting the remaining arguments. This technique is called
 allows us to easily combine small coding units to create
 more complex behavior.
 
-* We can pass anonymous functions (*lambdas*) to higher
-order functions, if writing a corresponding top level
+* We can pass anonymous functions (*lambdas*) to higher-order
+functions, if writing a corresponding top level
 function would be too cumbersome.
 
 * Idris allows us to define our own infix operators. These

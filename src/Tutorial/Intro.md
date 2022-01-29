@@ -3,8 +3,8 @@
 Welcome to my Idris 2 tutorial. I'll try and treat as many aspects
 of the Idris 2 programming language as possible here.
 All `.md` files in here a literate Idris files: They consist of
-markdown (hence the `.md` ending), which is being pretty printed
-by github together with Idris code blocks, which can be
+Markdown (hence the `.md` ending), which is being pretty printed
+by GitHub together with Idris code blocks, which can be
 type checked and built by the Idris compiler (more on this later).
 Note, however, that regular Idris source files use an `.idr` ending,
 and that you go with that file type unless you end up writing
@@ -119,11 +119,11 @@ ideas, and for quickly experimenting with the code we just wrote.
 In order to start a REPL session, run the following command
 in a terminal.
 
-```sh
-$ rlwrap idris2
+```repl
+rlwrap idris2
 ```
 
-(Using command line utility `rlwrap` is optional. It
+(Using command-line utility `rlwrap` is optional. It
 leads to a somewhat nicer user experience, as it allows us
 to use the up and down arrow keys to scroll through a history
 of commands and expressions we entered. It should be available
@@ -141,6 +141,7 @@ Idris should now be ready to accept you commands:
 Welcome to Idris 2.  Enjoy yourself!
 Main>
 ```
+
 We can go ahead and enter some simple arithmetic expressions. Idris
 will *evaluate* these and print the result:
 
@@ -197,11 +198,11 @@ but first we'd like to compile and run it. From this project's
 root directory, run the following:
 
 ```sh
-$ idris2 --find-ipkg -o hello src/Tutorial/Intro.md
+idris2 --find-ipkg -o hello src/Tutorial/Intro.md
 ```
 
 This will create executable `hello` in directory `build/exec`,
-which can be invoked from the command line like so:
+which can be invoked from the command-line like so:
 
 ```sh
 $ build/exec/hello
@@ -213,7 +214,7 @@ current directory or one of its parent directories, from which
 it will get other settings like the source directory to use
 (`src` in our case). The `-o` option gives the name of the
 executable to be generated. Type `idris2 --help` for a list
-of available command line options and environment variables.
+of available command-line options and environment variables.
 
 As an alternative, you can also load this source file in a REPL
 session and invoke function `main` from there:
@@ -371,7 +372,7 @@ language. Here is a non-comprehensive list of them:
   it is highly accessible. However, it is not an introduction to functional
   programming or type-driven development in general.
 
-* [The Idris 2 Github Repository](https://github.com/idris-lang/Idris2)
+* [The Idris 2 GitHub Repository](https://github.com/idris-lang/Idris2)
 
   Look here for detailed installation instructions and some
   introductory material. There is also a [wiki](https://github.com/idris-lang/Idris2/wiki),
@@ -424,3 +425,11 @@ compiler to compile an Idris source file to an executable.
 We also learned about the basic shape of a top level
 definition in Idris, which always consists of an identifier
 (its name), a type, and an implementation.
+
+### What's next?
+
+In the [next chapter](Functions1.md), we start programming
+in Idris for real. We learn how to write our own pure
+functions, how functions compose, and how we can treat
+functions just like other values and pass them around
+as arguments to other functions.

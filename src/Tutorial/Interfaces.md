@@ -4,7 +4,7 @@ Function overloading - the definition of functions
 with the same name but different implementations - is a concept
 found in many programming languages. Idris natively supports overloading
 of functions: Two functions with the same name can be defined in
-different modules or namespaces, and Idris will try to disambiguate 
+different modules or namespaces, and Idris will try to disambiguate
 between these based on the types involved. Here is an example:
 
 ```idris
@@ -92,7 +92,7 @@ We'd need to implement all of these again for the other types with a `cmp`
 function, and most if not all of these implementations would be identical
 to the ones written above. That's a lot of code repetition.
 
-One way to solve this is to use higher order functions.
+One way to solve this is to use higher-order functions.
 For instance, we could define function `minimumBy`, which takes
 a comparison function as its first argument and returns the smaller
 of the two remaining arguments:
@@ -105,7 +105,7 @@ minimumBy f a1 a2 =
     _  => a2
 ```
 
-This solution is another proof of how higher order functions
+This solution is another proof of how higher-order functions
 allow us to reduce code duplication. However, the need to explicitly
 pass around the comparison function all the time
 can get tedious as well.
@@ -186,7 +186,7 @@ by Idris for us.
 Thus, we have defined all these utility functions once and for
 all for every type with an implementation of interface `Comp`.
 
-### Exercises
+### Exercises part 1
 
 1. Implement function `anyLarger`, which should return `True`,
 if and only if a list of values contains at least one element larger
@@ -321,7 +321,7 @@ already in the definition of `Equals`:
 ```idris
 interface Equals a where
   eq : a -> a -> Bool
-  
+
   neq : a -> a -> Bool
   neq a1 a2 = not (eq a1 a2)
 ```
@@ -349,7 +349,7 @@ Equals Bool where
   neq _ _         = False
 ```
 
-### Exercises
+### Exercises part 2
 
 1. Implement interfaces `Equals`, `Comp`, `Concat`, and
   `Empty` for pairs, constraining your implementations as necessary.
@@ -487,7 +487,7 @@ The case of integer literals is special, and will be discussed in the next
 section.
 
 Here is an example of using `FromString`. Assume, we write an application
-where users can identify themselves with a user name and password. Both
+where users can identify themselves with a username and password. Both
 consist of strings of characters, so it is pretty easy to confuse and mix
 up the two things, although they clearly have very different semantics.
 In these cases, it is advisable to come up with new types for the two,
@@ -521,7 +521,6 @@ hock = MkUser (MkUserName "hock") (MkPassword "not telling")
 This is rather cumbersome, and some people might think this to be too high
 a price to pay just for an increase in type safety (I'd tend to disagree).
 Luckily, we can get the convenience of string literals back very easily:
-
 
 ```idris
 FromString UserName where
@@ -581,7 +580,7 @@ there are `Cast` implementations from going from `SnocList` to
 or for going from `List1` to `List`, although these would
 be just as feasible.
 
-### Exercises
+### Exercises part 3
 
 These exercises are meant to make you confortable with
 implementing interfaces for your own data types, as you
@@ -600,7 +599,7 @@ different instances for these.
 2. Implement interface `Show` for `Complex`. Have a look at data type `Prec`
    and function `showPrec` and how these are used in the
    *Prelude* to implement instances for `Either` and `Maybe`.
-   
+
    Verify the correct behavior of your implementation by wrapping
    a value of type `Complex` in a `Just` and `show` the result at
    the REPL.
@@ -708,7 +707,7 @@ different instances for these.
 
     ```idris
     sumList : Num a => List a -> a
- 
+
     productList : Num a => List a -> a
     ```
 
@@ -719,7 +718,7 @@ different instances for these.
     element of the list as well as the sum and product of all values.
 
     ```repl
-    Solutions.Interfaces> foldMap (\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]
+    > foldMap (\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]
     (MkFirst (Just 3), (MkLast (Just 12), (MkSum 26, MkProduct 1008)))
     ```
 
@@ -756,7 +755,7 @@ of efficiency.
 
 ### What's next
 
-In the [next section](Functions2.md), we have a closer look
+In the [next chapter](Functions2.md), we have a closer look
 at functions and their types. We will learn about named arguments,
 implicit arguments, and erased arguments as well as some
 constructors for implementing more complex functions.

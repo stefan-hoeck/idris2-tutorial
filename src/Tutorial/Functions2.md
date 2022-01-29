@@ -7,8 +7,8 @@ pure, strongly typed programming languages like Haskell:
 parametric polymorphism (generic types and functions), and
 ad hoc polymorphism (interfaces and constrained functions).
 
-In this part, we start to dissect Idris functions and their types
-for real. We learn about implicit arguments, named arguments, as well 
+In this chapter, we start to dissect Idris functions and their types
+for real. We learn about implicit arguments, named arguments, as well
 as erasure and quantities. But first, we'll look at `let` bindings
 and `where` blocks, which help us implement functions too complex
 to fit on a single line of code. Let's get started!
@@ -576,7 +576,7 @@ the two functions have almost identical types (and implementations!),
 they serve quite different purposes: `the` is used to help
 type inference, while `id` is used whenever we'd like
 to return an argument without modifying it at all (which,
-in the presence of higher order functions,
+in the presence of higher-order functions,
 happens surprisingly often).
 
 Both ways to improve type inference shown above
@@ -896,12 +896,11 @@ readDNA = traverseEither readNucleobase . unpack
 
 Let's try this at the REPL:
 
-
 ```repl
 Tutorial.Functions2> readDNA "CGTTA"
 Right [Cytosine, Guanine, Thymine, Thymine, Adenine]
-Tutorial.Functions2> readDNA "CGFTAQR"
-Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'", "Unknown nucleobase: 'R'"]
+Tutorial.Functions2> readDNA "CGFTAQ"
+Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'"]
 ```
 
 ## Conclusion

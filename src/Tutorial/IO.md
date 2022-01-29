@@ -169,30 +169,30 @@ silently dropped together with all its potential side effects.
 
 When we execute `readHellos` at the REPL, we will be asked for our
 name twice, although `actions` also contains `launchMissiles` at the
-beginning. Luckily, although we described how to destroy the planet, 
+beginning. Luckily, although we described how to destroy the planet,
 the action was not executed, and we are (probably) still here.
 
 From this example we learn several things:
 
-  * Values of type `IO a` are *pure descriptions* of programs, which,
-    when being *executed*, perform arbitrary side effects before
-    returning a value of type `a`.
+* Values of type `IO a` are *pure descriptions* of programs, which,
+  when being *executed*, perform arbitrary side effects before
+  returning a value of type `a`.
 
-  * Values of type `IO a` can be safely returned from functions and
-    passed around as arguments or in data structures, without
-    the risk of them being executed.
+* Values of type `IO a` can be safely returned from functions and
+  passed around as arguments or in data structures, without
+  the risk of them being executed.
 
-  * Values of type `IO a` can be safely combined in *do blocks* to
-    *describe* new `IO` actions.
+* Values of type `IO a` can be safely combined in *do blocks* to
+  *describe* new `IO` actions.
 
-  * An `IO` action will only ever get executed when it's passed to
-    `:exec` at the REPL, or when it is the `main` function of
-    a compiled Idris program that is being executed.
+* An `IO` action will only ever get executed when it's passed to
+  `:exec` at the REPL, or when it is the `main` function of
+  a compiled Idris program that is being executed.
 
-  * It is not possible to ever break out of the `IO` context: There
-    is no function of type `IO a -> a`, as such a function would
-    need to execute its argument in order to extract the final
-    result, and this would break referential transparency.
+* It is not possible to ever break out of the `IO` context: There
+  is no function of type `IO a -> a`, as such a function would
+  need to execute its argument in order to extract the final
+  result, and this would break referential transparency.
 
 ### Combining Pure Code with `IO` Actions
 
@@ -263,7 +263,7 @@ eval s =
 ```
 
 Let's break this down a bit. On the first line, we split
-the input string at all white space occurrences. Since
+the input string at all whitespace occurrences. Since
 `split` returns a `List1` (a type for non-empty lists
 exported from `Data.List1` in *base*) but pattern matching
 on `List` is more convenient, we convert the result using
@@ -311,13 +311,13 @@ Note, how in `exprProg` we were forced to deal with the
 possibility of failure and handle both constructors
 of `Either` differently in order to print a result.
 Note also, that *do blocks* are ordinary expressions,
-and we can, for instance, start a new *do block* on 
+and we can, for instance, start a new *do block* on
 the right hand side of a case expression.
 
-### Exercises
+### Exercises part 1
 
 In these exercises, you are going to implement some
-small command line applications. Some of these will potentially
+small command-line applications. Some of these will potentially
 run forever, as they will only stop when the user enters
 a keyword for quitting the application. Such programs
 are no longer provably total. If you added the
@@ -678,7 +678,7 @@ types or deconstruct them in pattern matches. Likewise, unless you
 plan to use your functions in compile-time computations, annotate
 them with `export`.
 
-### Bind, with a Bang!
+### Bind, with a Bang
 
 Sometimes, even *do blocks* are too noisy to express a
 combination of effectful computations. In this case, we
@@ -725,13 +725,11 @@ it is abused just to show how clever you are, you make things
 harder for other people (including your future self!)
 reading and trying to understand your code.
 
-
-### Exercises
+### Exercises part 2
 
 1. Reimplement the following *do blocks*, once by using
    *bang notation*, and once by writing them in their
    desugared form with nested *bind*s:
-
 
    ```idris
    ex1a : IO String
@@ -913,7 +911,7 @@ terminate when invoked with such a file path.
 ### Safe Resource Handling
 
 Note, how we had to manually open and close the file handle in
-`countEmpty`. This is error prone and tedious. Resource handling
+`countEmpty`. This is error-prone and tedious. Resource handling
 is a big topic, and we definitely won't be going into the
 details here, but there is a convenient function exported
 from `System.File`: `withFile`, which handles the opening,
@@ -948,7 +946,7 @@ use cases for this in later chapters, especially when we
 talk about monad transformers. For now, you can treat these
 `io` parameters as being specialized to `IO`.
 
-### Exercises
+### Exercises part 3
 
 1. As we have seen in the examples above, `IO` actions
    working with file handles often come with the risk
@@ -1120,7 +1118,7 @@ stateful computation.
 ### What's next
 
 Now, that we had a glimpse at *monads* and the *bind* operator,
-it is time to in the next chapter introduce `Monad` and some
+it is time to in the [next chapter](Functor.md) introduce `Monad` and some
 related interfaces for real.
 
 <!-- vi: filetype=idris2

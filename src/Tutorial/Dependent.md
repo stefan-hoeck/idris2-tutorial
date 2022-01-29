@@ -439,7 +439,7 @@ need to have access to the values of the indices at runtime, in
 which case we can pattern match on them and learn from
 this, which constructor(s) of the type family to use.
 
-### Exercises
+### Exercises part 1
 
 1. Implement function `head` for non-empty vectors:
 
@@ -617,7 +617,7 @@ index FZ     Nil impossible
 index (FS _) Nil impossible
 ```
 
-### Exercises
+### Exercises part 2
 
 1. Implement function `update`, which, given a function of
    type `a -> a`, updates the value in a`Vect n a` at position `k < n`.
@@ -772,7 +772,7 @@ we can use this proof to *rewrite* the types on
 the right hand side of `reverse`. Writing proofs and
 using `rewrite` will require some in-depth explanations
 and examples. Therefore, these things will have to wait
-until another tutorial.
+until another chapter.
 
 ### Unrestricted Implicits
 
@@ -836,14 +836,14 @@ replicate'' {n = Z}   _ = Nil
 replicate'' {n = S _} v = v :: replicate'' v
 ```
 
-### Exercises
+### Exercises part 3
 
 1. Here is a function declaration for flattening a `List` of `List`s:
 
    ```idris
    flattenList : List (List a) -> List a
    ```
-   
+
    Implement `flattenList` and declare and implement a similar
    function `flattenVect` for flattening vectors of vectors.
 
