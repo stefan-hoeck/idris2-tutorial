@@ -203,22 +203,22 @@ foldList fun vacc (x :: xs) = foldList fun (fun vacc x) xs
 -- 4
 record Client where
   constructor MkClient
-  name     : String
-  title    : Title
-  age      : Bits8
-  password : Either Bits64 String
+  name          : String
+  title         : Title
+  age           : Bits8
+  passwordOrKey : Either Bits64 String
 
 data Credentials = Password String Bits64 | Key String String
 
 login1 : Client -> Credentials -> Either LoginError Client
 login1 c (Password u y) =
   if c.name == u then
-    if c.password == Left y then Right c else Left InvalidPassword
+    if c.passwordOrKey == Left y then Right c else Left InvalidPassword
   else Left (UnknownUser u)
 
 login1 c (Key u x) =
   if c.name == u then
-    if c.password == Right x then Right c else Left InvalidKey
+    if c.passwordOrKey == Right x then Right c else Left InvalidKey
   else Left (UnknownUser u)
 
 login : List Client -> Credentials -> Either LoginError Client

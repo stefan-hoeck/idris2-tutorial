@@ -1088,10 +1088,10 @@ signature are treated as type parameters.
    ```idris
    record Client where
      constructor MkClient
-     name     : String
-     title    : Title
-     age      : Bits8
-     password : Either Bits64 String
+     name          : String
+     title         : Title
+     age           : Bits8
+     passwordOrKey : Either Bits64 String
    ```
 
    Using `LoginError` from an earlier exercise,
