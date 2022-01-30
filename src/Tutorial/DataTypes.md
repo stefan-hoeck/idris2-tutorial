@@ -323,11 +323,12 @@ is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.
 Here's another (drastically simplified) example of a sum type.
 Assume we allow two forms of authentication in our web application:
 Either by entering a username plus a password (for which we'll use
-an unsigned 64 bit integer here), or by providing a (very complex) secret key.
+an unsigned 64 bit integer here), or by providing user name
+plus a (very complex) secret key.
 Here's a data type to encapsulate this use case:
 
 ```idris
-data Credentials = Password String Bits64 | Key String
+data Credentials = Password String Bits64 | Key String String
 ```
 
 As an example of a very primitive login function, we can
@@ -337,7 +338,7 @@ hard-code some known credentials:
 total
 login : Credentials -> String
 login (Password "Anderson" 6665443) = greet Mr "Anderson"
-login (Key "xyz")                   = greet (Other "Agent") "Y"
+login (Key "Y" "xyz")               = greet (Other "Agent") "Y"
 login _                             = "Access denied!"
 ```
 
@@ -348,9 +349,9 @@ string literals. Give `login` a go at the REPL:
 ```repl
 Tutorial.DataTypes> login (Password "Anderson" 6665443)
 "Hello, Mr. Anderson!"
-Tutorial.DataTypes> login (Key "xyz")
+Tutorial.DataTypes> login (Key "Y" "xyz")
 "Hello, Agent Y!"
-Tutorial.DataTypes> login (Key "foo")
+Tutorial.DataTypes> login (Key "Y" "foo")
 "Access denied!"
 ```
 
@@ -1011,7 +1012,7 @@ signature are treated as type parameters.
    -- `foldMaybe (+) 5 Nothing = 5`
    -- `foldMaybe (+) 5 (Just 12) = 17`
    total
-   foldMaybe : (acc -> elem -> acc) -> acc -> Maybe elem -> acc
+   foldMaybe : (acc -> el -> acc) -> acc -> Maybe el -> acc
    ```
 
 2. Implement the following generic functions for `Either`:
@@ -1078,7 +1079,7 @@ signature are treated as type parameters.
    -- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"
    -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
    total
-   foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
+   foldList : (acc -> el -> acc) -> acc -> List el -> acc
    ```
 
 4. Assume we store user data for our web application in

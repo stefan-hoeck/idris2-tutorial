@@ -134,7 +134,7 @@ first (Just x) _ = Just x
 last : Maybe a -> Maybe a -> Maybe a
 last x y = first y x
 
-foldMaybe : (acc -> elem -> acc) -> acc -> Maybe elem -> acc
+foldMaybe : (acc -> el -> acc) -> acc -> Maybe el -> acc
 foldMaybe f x = maybe x (f x)
 
 -- 2
@@ -196,7 +196,7 @@ initMaybe Nil        = Nothing
 initMaybe (x :: Nil) = Just Nil
 initMaybe (x :: xs)  = mapMaybe (x ::) (initMaybe xs)
 
-foldList : (acc -> elem -> acc) -> acc -> List elem -> acc
+foldList : (acc -> el -> acc) -> acc -> List el -> acc
 foldList fun vacc Nil       = vacc
 foldList fun vacc (x :: xs) = foldList fun (fun vacc x) xs
 
@@ -208,7 +208,7 @@ record Client where
   age      : Bits8
   password : Either Bits64 String
 
-data Credentials = Password String Bits64 | Key String
+data Credentials = Password String Bits64 | Key String String
 
 login1 : Client -> Credentials -> Either LoginError Client
 login1 c (Password u y) =
@@ -216,12 +216,14 @@ login1 c (Password u y) =
     if c.password == Left y then Right c else Left InvalidPassword
   else Left (UnknownUser u)
 
-login1 c (Key x) =
-  if c.password == Right x then Right c else Left InvalidKey
+login1 c (Key u x) =
+  if c.name == u then
+    if c.password == Right x then Right c else Left InvalidKey
+  else Left (UnknownUser u)
 
 login : List Client -> Credentials -> Either LoginError Client
 login Nil       (Password u _) = Left (UnknownUser u)
-login Nil       (Key x)        = Left InvalidKey
+login Nil       (Key u _)      = Left (UnknownUser u)
 login (x :: xs) cs             = case login1 x cs of
   Right c               => Right c
   Left  InvalidPassword => Left InvalidPassword
