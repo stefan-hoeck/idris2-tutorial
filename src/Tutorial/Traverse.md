@@ -484,7 +484,11 @@ execState s = fst . runState s
 ```
 
 All of these are useful on their own, but the real power of
-`State s` comes from the observation that it is a monad:
+`State s` comes from the observation that it is a monad.
+Before you go on, please spend some time and try implementing
+`Functor`, `Applicative`, and `Monad` for `State s` yourself.
+Even if you don't succeed, you will have an easier time
+understanding how the implementations below work.
 
 ```idris
 Functor (State state) where
@@ -511,7 +515,7 @@ the information about state updates is getting lost. This can
 best be seen in the implementation of `Applicative`: The initial
 state, `s`, is used in the computation of the function value,
 which will also return an updated state, `s2`, which is then
-use in the computation of the function argument. This will
+used in the computation of the function argument. This will
 again return an updated state, `s3`, which is passed on to
 later stateful computations together with the result of
 applying `f` to `va`.
@@ -527,7 +531,7 @@ a state monad, which allows us to not only change the
 state's value but also its *type* during computations.
 
 1. Below is the implementation of a simple pseudo-random number
-   generator. We call this a *pseudo-random" number generator,
+   generator. We call this a *pseudo-random* number generator,
    because the numbers look pretty random but are generated
    predictably. If we initialize a series of such computations
    with a truly random seed, most users of our library will not
@@ -556,12 +560,13 @@ state's value but also its *type* during computations.
    pseudo-random number generator. It will not generate values in
    the full 64bit range, nor is it safe to use in cryptographic
    applications. It is sufficient for our purposes in this chapter,
-   however. Note also, that we could replace `rnd` with a strong
-   generator, without any change to the functions you will implement
+   however. Note also, that we could replace `rnd` with a stronger
+   generator without any changes to the functions you will implement
    as part of this exercise.
 
    1. Implement `bits64` in terms of `rnd`. Make sure
-      the state is properly updated, otherwise this won't work:
+      the state is properly updated, otherwise this won't behave
+      as expected.
 
       ```idris
       bits64 : Gen Bits64
@@ -685,6 +690,34 @@ state's value but also its *type* during computations.
    While it is possible to proof many of the simpler properties in Idris
    directly without the need for tests, this is no longer possible
    as soon as functions are involved, which don't reduce during evaluation.
+
+2. While `State s a` gives us a convenient way to talk about
+   stateful computations, it only allows us to mutate the
+   state's *value* but not its *type". For instance, the following
+   function cannot be encapsulated in `State` because the type
+   of the state changes:
+
+   ```idris
+   uncons : Vect (S n) a -> (Vect n a, a)
+   ```
+
+   1. Come up with a data type for encapsulating stateful
+      computations where the input and output state type can
+      differ.
+
+   2. Implement `Functor` for your state type.
+
+   3. It is not possible to implement `Applicative` for this
+      *indexed* state type. Still, implement the necessary functions
+      to use it with idom brackets.
+
+   4. It is not possible to implement `Monad` for this
+      indexed state type. Still, implement the necessary functions
+      to use it in do blocks.
+
+   5. Generalize the functions from exercises 3 and 4 in two new
+      interfaces `IxApplicative` and `IxMonad`.
+
 
 <!-- vi: filetype=idris2
 -->
