@@ -19,6 +19,8 @@ module Tutorial.Traverse
 import Data.Bits
 import Data.HList
 import Data.IORef
+import Data.List1
+import Data.String
 import Data.Validated
 import Data.Vect
 import Text.CSV
@@ -271,7 +273,22 @@ TODO
      Error   : (err : e) -> Response e i a
    ```
 
-## Programming with mutable State
+8. Like `Applicative` and `Foldable`, `Traversable` is closed under
+   composition. Proof this by implementing `Traversable` for `Comp`
+   and `Product`:
+
+   ```idris
+   record Comp (f,g : Type -> Type) (a : Type) where
+     constructor MkComp
+     unComp  : f (g a)
+
+   record Product (f,g : Type -> Type) (a : Type) where
+     constructor MkProduct
+     fst : f a
+     snd : g a
+   ```
+
+## Programming with State
 
 Let's go back to our CSV reader. In order to get reasonable
 error messages, we'd like to tag each line with its
@@ -685,11 +702,12 @@ state's value but also its *type* during computations.
    pure functions against a large number of randomly generated arguments,
    to get strong guarantees about these properties to hold for *all*
    possible arguments. One example would be a test for verifying
-   that reversing a list twice results in the original list.
-
+   that the result of reversing a list twice equals the original list.
    While it is possible to proof many of the simpler properties in Idris
    directly without the need for tests, this is no longer possible
-   as soon as functions are involved, which don't reduce during evaluation.
+   as soon as functions are involved, which don't reduce during unification
+   such as foreign function call or functions not publicly exported from
+   other modules.
 
 2. While `State s a` gives us a convenient way to talk about
    stateful computations, it only allows us to mutate the
@@ -701,14 +719,25 @@ state's value but also its *type* during computations.
    uncons : Vect (S n) a -> (Vect n a, a)
    ```
 
-   1. Come up with a data type for encapsulating stateful
-      computations where the input and output state type can
+   Your task is to come up with a new state type allowing for
+   such changes (sometimes referred to as an *indexed* state).
+   The goal of this exercise is to also sharpen your skills in
+   expressing things at the type level and derive function
+   types and interfaces from there. Therefore, I give only little
+   guidance how to go about this. If you get stuck, feel free to
+   peek at the solutions but make sure to only look at the types
+   at first.
+
+
+   1. Come up with a parameterized data type for encapsulating
+      stateful computations where the input and output state type can
       differ.
 
    2. Implement `Functor` for your state type.
 
    3. It is not possible to implement `Applicative` for this
-      *indexed* state type. Still, implement the necessary functions
+      *indexed* state type (but see also exercise 2.1).
+      Still, implement the necessary functions
       to use it with idom brackets.
 
    4. It is not possible to implement `Monad` for this
@@ -723,6 +752,211 @@ state's value but also its *type* during computations.
       `evalState`, and `execState` for the indexed state data type. Make
       sure to adjust the type parameters where necessary.
 
+   7. Show that your indexed state type is strictly more powerful than
+      `State` by implementing `Applicative` and `Monad` for it.
+
+      Hint: Keep the input and output state identical. Note also,
+      that you might need to implement `join` manually if Idris
+      has trouble inferring the types correctly.
+
+   Indexed state types can be useful when we want to make sure that
+   stateful computations are combined in the correct sequence, or
+   that scarce resources get cleaned up properly. We might get back
+   to these in later examples.
+
+## The Power of Composition
+
+After our excursion into the realms of stateful computations, we
+will go back and combine mutable state with error accumulation
+to tag and read CSV lines in a single traversal. We already
+defined `pairWithIndex` for tagging lines with their indices.
+We also have `uncurry $ hdecode ts` for decoding a single line.
+We can combine the two effects in a single funcion:
+
+```idris
+tagAndDecode :  (0 ts : List Type)
+             -> CSVLine (HList ts)
+             => String
+             -> State Nat (Validated CSVError (HList ts))
+tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s
+```
+
+Now, as we learned before, applicative functors are closed under
+composition, and the result of `tagAndDecode` is a nesting
+of two applicatives: `State Nat` and `Validated CSVError`.
+The *Prelude* exports a corresponding named interface implementation
+(`Prelude.Applicative.Compose`), which we can use for this.
+Remember, that we have to provide named implementations explicitly.
+Since the type of `traverse` has the applicative functor as its
+second implicit argument, we also need to provide the first
+argument (the `Traversable` implementation) explicitly. But this
+is an unnamed default implementation! To get our hands on such
+a value, we can use the `%search` pragma:
+
+```idris
+readTable :  (0 ts : List Type)
+          -> CSVLine (HList ts)
+          => List String
+          -> Validated CSVError (List $ HList ts)
+readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)
+```
+
+While this syntax is not very nice, it doesn't come up too often, and
+if it does, we can improve things by providing custom functions
+for better readability:
+
+```idris
+traverseComp : Traversable t
+             => Applicative f
+             => Applicative g
+             => (a -> f (g b))
+             -> t a
+             -> f (g (t b))
+traverseComp = traverse @{%search} @{Compose}
+
+readTable' :  (0 ts : List Type)
+           -> CSVLine (HList ts)
+           => List String
+           -> Validated CSVError (List $ HList ts)
+readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)
+```
+
+But I am not done yet demonstrating the power of composition. As you showed
+in one of the exercises, `Traversable` is also closed under composition,
+so a nesting of traversables is again a traversable. Consider the following
+use case: When reading a CSV file, we'd like to allow lines to be
+annotated with additional information. Such annotations could be
+mere commets but also some formating instructions or other
+custom data. Annotations are supposed to be separated from the rest of the
+content by a hash (`#`).
+We want to keep track of these optional annotations
+so we come up with a new data type encapsulating this distinction:
+
+```idris
+data Line : Type -> Type where
+  Annotated : String -> a -> Line a
+  Content   : a -> Line a
+```
+
+This is just another container type and we can
+easily implement `Traversable` for `Line` (do this yourself as
+a quick exercise):
+
+```idris
+Functor Line where
+  map f (Annotated s x) = Annotated s $ f x
+  map f (Content x)     = Content $ f x
+
+Foldable Line where
+  foldr f acc (Annotated _ x) = f x acc
+  foldr f acc (Content x)     = f x acc
+
+Traversable Line where
+  traverse f (Annotated s x) = Annotated s <$> f x
+  traverse f (Content x)     = Content <$> f x
+```
+
+Below is a function for parsing a line and putting it in its
+correct category. For simplicity, we just split the line on hashes:
+If the result consists of exactly two strings, we treat the second
+part as an annotation, otherwise we treat the whole line as CSV content.
+
+```idris
+readLine : String -> Line String
+readLine s = case split ('#' ==) s of
+  h ::: [t] => Annotated t h
+  _         => Content s
+```
+
+We are now going to implement a function for reading whole
+CSV tables, keeping track line annotations:
+
+```idris
+readCSV :  (0 ts : List Type)
+        -> CSVLine (HList ts)
+        => String
+        -> Validated CSVError (List $ Line $ HList ts)
+readCSV ts = evalState 1
+           . traverse @{Compose} @{Compose} (tagAndDecode ts)
+           . map readLine
+           . lines
+```
+
+Let's digest this monstrosity. This is written in point-free
+style, so we have to read it from right to left. First, we
+split the whole string at line breaks, getting a list of strings
+(function `Data.String.lines`). Next, we analyze each line,
+keeping track of the presence of annotations (`map readLine`).
+This gives us a value of type `List (Line String)`. Since
+this is a nesting of traversables, we invoke `traverse`
+with a named instance from the *Prelude*: `Prelude.Traversable.Compose`.
+Idris can disambiguate this based on the types, so we can
+drop the namespace prefix. But the effectful computation
+we run over the list of lines results in a composition
+of applicative functors, so we also need a named implementation for
+the second constraint (again without need of an explicit
+prefix, which would be `Prelude.Applicative` in this case).
+Finally, we evaluate the stateful computation with `evalState 1`.
+
+Honestly, I wrote all of this without verifying if it works,
+so let's give it a go at the REPL. I'll provide two
+example strings for this, a valid one without errors, and
+an invalid one. I use *raw string literals* here, about which
+I'll talk about in more detail in a later chapter. For the moment,
+note that this allows us to conveniently enter strings literals
+with line breaks:
+
+```idris
+validInput : String
+validInput = """
+  f,12,-13.01#this is a comment
+  t,100,0.0017
+  t,1,100.8#color: red
+  f,255,0.0
+  f,24,1.12e17
+  """
+
+invalidInput : String
+invalidInput = """
+  o,12,-13.01#another comment
+  t,100,0.0017
+  t,1,abc
+  f,256,0.0
+  f,24,1.12e17
+  """
+```
+
+And here's how it goes at the REPL:
+
+```repl
+Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput
+Valid [Annotated "this is a comment" [False, 12, -13.01],
+       Content [True, 100, 0.0017],
+       Annotated "color: red" [True, 1, 100.8],
+       Content [False, 255, 0.0],
+       Content [False, 24, 1.12e17]]
+
+Tutorial.Traverse> readCSV [Bool,Bits8,Double] invalidInput
+Invalid (Append (FieldError 1 1 "o")
+  (Append (FieldError 3 3 "abc") (FieldError 4 2 "256")))
+```
+
+## Conclusion
+
+Interface `Traversable` and its main function `traverse` are incredibly
+powerful forms of abstraction - even more so, because both `Applicative`
+and `Traversable` are closed under composition. If you are interested
+in additional use cases, I can highly recommend the publication, which
+introduced `Traversable` to Haskell:
+[The Essence of the Iterator Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
+
+For now, this concludes our introduction of the *Prelude*'s
+higher-kinded interfaces, which started with the introduction of
+`Functor`, `Applicative`, and `Monad`, before moving on to `Foldable`,
+and - last but definitely not least - `Traversable`.
+For completeness, we might look at a few others, which come
+up less often, in a later chapter. But first, we need to make
+our brains smoke with some more type-level wizardry.
 
 <!-- vi: filetype=idris2
 -->

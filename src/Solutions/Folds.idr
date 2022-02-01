@@ -366,15 +366,16 @@ Foldable f => Foldable g => Foldable (Comp f g) where
 
 record Product (f,g : Type -> Type) (a : Type) where
   constructor MkProduct
-  pair  : (f a, g a)
+  fst : f a
+  snd : g a
 
 Foldable f => Foldable g => Foldable (Product f g) where
-  foldr f st (MkProduct (v,w))  = foldr f (foldr f st w) v
-  foldl f st (MkProduct (v,w))  = foldl f (foldl f st v) w
-  foldMap f (MkProduct (v,w))   = foldMap f v <+> foldMap f w 
-  toList  (MkProduct (v,w))     = toList v ++ toList w
-  null (MkProduct (v,w))        = null v && null w
-  foldlM f st (MkProduct (v,w)) = foldlM f st v >>= \st' => foldlM f st' w
+  foldr f st (MkProduct v w)  = foldr f (foldr f st w) v
+  foldl f st (MkProduct v w)  = foldl f (foldl f st v) w
+  foldMap f (MkProduct v w)   = foldMap f v <+> foldMap f w
+  toList  (MkProduct v w)     = toList v ++ toList w
+  null (MkProduct v w)        = null v && null w
+  foldlM f st (MkProduct v w) = foldlM f st v >>= \st' => foldlM f st' w
 
 --------------------------------------------------------------------------------
 --          Tests

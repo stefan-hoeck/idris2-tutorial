@@ -28,10 +28,11 @@ implementation Functor f => Functor g => Functor (Comp f g) where
 
 record Product (f,g : Type -> Type) (a : Type) where
   constructor MkProduct
-  pair  : (f a, g a)
+  fst  : f a
+  snd  : g a
 
 implementation Functor f => Functor g => Functor (Product f g) where
-  map f (MkProduct (l, r)) = MkProduct (map f l, map f r)
+  map f (MkProduct l r) = MkProduct (map f l) (map f r)
 
 data Gender = Male | Female | Other
 
@@ -355,16 +356,16 @@ namespace HVect
   public export
   head : HVect (t :: ts) -> t
   head (v :: _) = v
-  
+
   public export
   tail : HVect (t :: ts) -> HVect ts
   tail (_ :: t) = t
-  
+
   public export
   (++) : HVect xs -> HVect ys -> HVect (xs ++ ys)
   []        ++ ws = ws
   (v :: vs) ++ ws = v :: (vs ++ ws)
-  
+
   public export
   index :  {0 n : Nat}
         -> {0 ts : Vect n Type}
@@ -415,9 +416,9 @@ Applicative f => Applicative g => Applicative (Comp f g) where
 
 -- 10
 Applicative f => Applicative g => Applicative (Product f g) where
-  pure v = MkProduct (pure v, pure v)
-  MkProduct (ffl, ffr)  <*> MkProduct (fal, far) =
-    MkProduct (ffl <*> fal, ffr <*> far)
+  pure v = MkProduct (pure v) (pure v)
+  MkProduct ffl ffr  <*> MkProduct fal far =
+    MkProduct (ffl <*> fal) (ffr <*> far)
 
 --------------------------------------------------------------------------------
 --          Monad

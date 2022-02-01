@@ -1042,7 +1042,8 @@ implement all six functions of the interface.
 
    record Product (f,g : Type -> Type) (a : Type) where
      constructor MkProduct
-     pair  : (f a, g a)
+     fst : f a
+     snd : g a
    ```
 
 ## Conclusion

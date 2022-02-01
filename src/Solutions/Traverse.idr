@@ -196,6 +196,36 @@ Traversable (Response e i) where
   traverse _ (Deleted id)       = pure $ Deleted id
   traverse _ (Error err)        = pure $ Error err
 
+-- 8
+
+record Comp (f,g : Type -> Type) (a : Type) where
+  constructor MkComp
+  unComp  : f (g a)
+
+Functor f => Functor g => Functor (Comp f g) where
+  map fun = MkComp . (map . map) fun . unComp
+
+Foldable f => Foldable g => Foldable (Comp f g) where
+  foldr f st (MkComp v)  = foldr (flip $ foldr f) st v
+
+Traversable f => Traversable g => Traversable (Comp f g) where
+  traverse fun = map MkComp . (traverse . traverse) fun . unComp
+
+record Product (f,g : Type -> Type) (a : Type) where
+  constructor MkProduct
+  fst : f a
+  snd : g a
+
+Functor f => Functor g => Functor (Product f g) where
+  map fun (MkProduct fa ga) = MkProduct (map fun fa) (map fun ga)
+
+Foldable f => Foldable g => Foldable (Product f g) where
+  foldr f st (MkProduct v w)  = foldr f (foldr f st w) v
+
+Traversable f => Traversable g => Traversable (Product f g) where
+  traverse fun (MkProduct fa ga) =
+    [| MkProduct (traverse fun fa) (traverse fun ga) |]
+
 --------------------------------------------------------------------------------
 --          Programming with State
 --------------------------------------------------------------------------------
@@ -328,3 +358,11 @@ namespace IxState
 
   execState : s -> IxState s t a -> t
   execState vs = fst . runState vs
+
+Applicative (IxState s s) where
+  pure = Traverse.pure
+  (<*>) = Traverse.(<*>)
+
+Monad (IxState s s) where
+  (>>=) = Traverse.(>>=)
+  join = (>>= id)

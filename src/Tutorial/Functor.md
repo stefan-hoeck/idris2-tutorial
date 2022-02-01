@@ -285,20 +285,27 @@ nested with other functors and the results are functors again:
 ```idris
 record Product (f,g : Type -> Type) (a : Type) where
   constructor MkProduct
-  pair  : (f a, g a)
+  fst : f a
+  snd : g a
 
 implementation Functor f => Functor g => Functor (Product f g) where
-  map f (MkProduct (l, r)) = MkProduct (map f l, map f r)
+  map f (MkProduct l r) = MkProduct (map f l) (map f r)
 ```
 
 The above allows us to conveniently map over a pair of functors. Note,
 however, that Idris needs some help with inferring the types involved:
 
 ```idris
+toPair : Product f g a -> (f a, g a)
+toPair (MkProduct fst snd) = (fst, snd)
+
+fromPair : (f a, g a) -> Product f g a
+fromPair (x,y) = MkProduct x y
+
 productExample :  Show a
                => (Either e a, List a)
                -> (Either e String, List String)
-productExample = pair . map show . MkProduct {f = Either e, g = List}
+productExample = toPair . map show . fromPair {f = Either e, g = List}
 ```
 
 More often, we'd like to map over several layers of nested functors
