@@ -9,9 +9,10 @@ the data types and interfaces from that chapter to
 their own modules, so we can reimport them here without
 the need to start from scratch.
 
-Note, that unlike our original CSV-reader, we will use
-`Validated` instead of `Either`, since this will allow
-us to accumulate all errors when reading a CSV file.
+Note that unlike in our original CSV reader, we will use
+`Validated` instead of `Either` for handling exceptions,
+since this will allow us to accumulate all errors
+when reading a CSV file.
 
 ```idris
 module Tutorial.Traverse
@@ -32,7 +33,7 @@ import Text.CSV
 
 We stopped developing our CSV reader with function
 `hdecode`, which allows us to read a single line
-in a CSV-file and decode it to a heterogeneous list.
+in a CSV file and decode it to a heterogeneous list.
 As a reminder, here is how to use `hdecode` at the REPL:
 
 ```repl
@@ -40,10 +41,11 @@ Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 "f,foo,12"
 Valid [False, "foo", 12]
 ```
 
-The next step will be to parse a whole CSV-table, represented
-as a list of string, where each string corresponds to a line.
+The next step will be to parse a whole CSV table, represented
+as a list of strings, where each string corresponds to a line
+in a CSV table.
 We will go about this stepwise as there are several aspects
-to handle this properly. What we are looking for - eventually -
+to do this properly. What we are looking for - eventually -
 is a function of the following type (we are going to
 implement several version of this function, hence the
 numbering):
@@ -73,8 +75,8 @@ The question is: Can we extract a pattern to abstract over
 from this observation? What we do in `hreadTable1` is running
 an effectful computation of type `String -> Validated CSVError (HList ts)`
 over a list of strings, so that the result is a list of `HList ts`
-wrapped in a `Validated CSVError`. The first step when abstracting
-this should be to use generic types for the input and output:
+wrapped in a `Validated CSVError`. The first step of abstraction
+should be to use type parameters for the input and output:
 Run a computation of type `a -> Validated CSVError b` over a
 list `List a`:
 
@@ -98,7 +100,7 @@ as our effect type instead of `Validated CSVError`.
 So, the next step should be to abstract over the *effect type*.
 We note, that we used applicative syntax (idiom brackets and
 `pure`) in our implementation, so we will need to write
-an constrained function with an `Applicative` constraint
+a function with an `Applicative` constraint
 on the effect type:
 
 ```idris
@@ -113,6 +115,10 @@ hreadTable3 :  (0 ts : List Type)
 hreadTable3 ts = traverseList (hdecode ts 0)
 ```
 
+Note, how the implementation of `traverseList` is exactly the same
+as the one of `traverseValidatedList`, but the types are more general
+and therefore, `traverseList` is much more powerful.
+
 Let's give this a go at the REPL:
 
 ```repl
@@ -124,12 +130,13 @@ Tutorial.Traverse> hreadTable3 [Bool,Bits8] ["1,12","t,1000"]
 Invalid (Append (FieldError 0 1 "1") (FieldError 0 2 "1000"))
 ```
 
-This already work very well, but note how our error messages do
+This works very well already, but note how our error messages do
 not yet print the correct line numbers. That's not surprising,
 as we are using a dummy constant in our call to `hdecode`.
 We will look at how we can come up with the line numbers on the
 fly when we talk about stateful computations later in this chapters.
-For now, we could just manually annotate lines with numbers:
+For now, we could just manually annotate the lines with their
+numbers and pass a list of pairs to `hreadTable`:
 
 ```idris
 hreadTable4 :  (0 ts : List Type)
@@ -157,10 +164,10 @@ Invalid (Append (FieldError 1 2 "1000") (FieldError 2 1 "1"))
 ### Interface Traversable
 
 Now, here is an interesting observation: We can implement a function
-like `traverseList` for other container types. You might think that's
+like `traverseList` for other container types as well. You might think that's
 obvious, given that we can convert container types to lists via
 function `toList` from interface `Foldable`. However, while going
-via `List` might be feasible in some occasion, it is undesirable in
+via `List` might be feasible in some occasions, it is undesirable in
 general, as we loose typing information. For instance, here
 is such a function for `Vect`:
 
@@ -169,10 +176,10 @@ traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List b)
 traverseVect' fun = traverseList fun . toList
 ```
 
-Note how we lost the information about the structure of the
+Note how we lost all information about the structure of the
 original container type. What we are looking for is a function
-like `traverseVect'`, keeping this information: The result should
-be a vector of the same length as the input:
+like `traverseVect'`, keeping this information at the type level:
+The result should be a vector of the same length as the input.
 
 ```idris
 traverseVect : Applicative f => (a -> f b) -> Vect n a -> f (Vect n b)
@@ -182,7 +189,7 @@ traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]
 
 That's much better! And as I wrote above, we can easily get the same
 for other container types like `List1`, `SnocList`, `Maybe`, and so on.
-As usual, some derived functions follow immediately from these.
+As usual, some derived functions will follow immediately from `traverseXY`.
 For instance:
 
 ```idris
@@ -211,7 +218,15 @@ Function `traverse` is parameterized over no less than
 four parameters: The container type `t` (`List`, `Vect n`,
 `Maybe`, to just name a few), the effect type (`Validated e`,
 `IO`, `Maybe`, and so on), the input element type `a`, and
-the output element type `b`.
+the output element type `b`. Considering that the libraries
+bundled with the Idris project export more than 30 data types
+with an implementation of `Applicative`, and more than ten
+traversable container types, there are literally hundreds
+of combinations for traversing a container with an effectful
+computation. This number gets even larger, once we realize
+that traversable containers - like applicative functors -
+are closed under composition (see the exercises and
+the final section in this chapter).
 
 ### Traversable Laws
 
@@ -232,7 +247,7 @@ TODO
 
    Hint: Remember `Control.Applicative.Const`.
 
-3. To get some routine, implement `Traversable'` for
+3. To gain some routine, implement `Traversable'` for
    `List1`, `Either e`, and Maybe`.
 
 4. Implement `Traversable` for `List01 ne`:
@@ -273,7 +288,7 @@ TODO
      Error   : (err : e) -> Response e i a
    ```
 
-8. Like `Applicative` and `Foldable`, `Traversable` is closed under
+8. Like `Functor`, `Applicative` and `Foldable`, `Traversable` is closed under
    composition. Proof this by implementing `Traversable` for `Comp`
    and `Product`:
 
@@ -309,17 +324,17 @@ zipWithIndex = go 1
 ```
 
 While this is perfectly fine, we should still note that
-we might want to do the same things with trees, vectors,
-non-empty lists and so on. And again, we are interested
-in whether there is some form of abstraction we are
-looking at.
+we might want to do the same thing with the elements of
+trees, vectors, non-empty lists and so on.
+And again, we are interested in whether there is some
+form of abstraction we can use to describe such computations.
 
-### `IORef`
+### Mutable References in Idris
 
 Let us for a moment think about how we'd do such a thing
 in an imperative language. There, we'd probably define
 a local (mutable) variable to keep track of the current
-index, which is increased while iterating over the list
+index, which would then be increased while iterating over the list
 in a `for`- or `while`-loop.
 
 In Idris, there is no such thing as mutable state.
@@ -328,7 +343,10 @@ to simulate a data base connection in an earlier
 exercise. There, we actually used some truly mutable
 state. However, since accessing or modifying a mutable
 variable is not a referential transparent operation,
-such actions have to performed within `IO`.
+such actions have to be performed within `IO`.
+Other than that, nothing keeps us from using mutable
+variables in our code. The necessary functionality is
+available from module `Data.IORef` from the *base* library.
 
 As a quick exercise, try to implement a function, which -
 given an `IORef Nat` - pairs a value with the current
@@ -347,10 +365,8 @@ pairWithIndexIO ref va = do
 Now, look at the type of `pairWithIndexIO ref`: `a -> IO (Nat,a)`.
 We want to apply this effectful computation to each element
 in a list, which will lead to a new list wrapped in `IO`,
-since all of this is describes a computation with side
-effects.
-
-But this is *exactly* what function `traverse` does: Our
+since all of this describes a single computation with side
+effects. But this is *exactly* what function `traverse` does: Our
 input type is `a`, our output type is `(Nat,a)`, our
 container type is `List`, and the effect type is `IO`!
 
@@ -361,7 +377,7 @@ zipListWithIndexIO ref = traverse (pairWithIndexIO ref)
 
 Now *this* is really powerful: We could apply the same function
 to *any* traversable data structure. It therefore makes
-absolutely no sense to specialize `zipWithIndexIO` to
+absolutely no sense to specialize `zipListWithIndexIO` to
 lists only:
 
 ```idris
@@ -375,7 +391,12 @@ same function in point-free style:
 ```idris
 zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))
 zipWithIndexIO' = traverse . pairWithIndexIO
+```
 
+All that's left to do now is to initialize a new mutable variable
+before passing it to `zipWithIndexIO`:
+
+```idris
 zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))
 zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)
 ```
@@ -392,7 +413,7 @@ Just (0, 12)
 ```
 
 So, we solved the problem of tagging each element with its
-index once and for all for all container types.
+index once and for all for all traversable container types.
 
 ### The State Monad
 
@@ -406,7 +427,7 @@ case of stateful element tagging.
 Luckily, there is an alternative to using a mutable reference,
 which allows us to keep our computations pure and
 untainted. However, it is not easy to come upon this
-alternative on its own, and it can be hard to figure out
+alternative on one's own, and it can be hard to figure out
 what's going on here, so I'll try to introduce this slowly.
 
 We first need to ask ourselves what the essence of a
@@ -414,25 +435,25 @@ We first need to ask ourselves what the essence of a
 are two essential ingredients:
 
 1. Access to the *current* state. In case of a pure
-   function this means, that the function should take
+   function, this means that the function should take
    the current state as one of its arguments.
-2. Ability to communicate the updated state to other
+2. Ability to communicate the updated state to later
    stateful computations. In case of a pure function
    this means, that the function will return two
    values wrapped in a pair: The computation's result
    plus the updated state.
 
 These two prerequisites lead to the following generic
-type for a stateful computation operating on state
-type `state` and producing values of type `a`:
+type for a pure, stateful computation operating on state
+type `st` and producing values of type `a`:
 
 ```idris
-Stateful : (state : Type) -> (a : Type) -> Type
-Stateful state a = state -> (state, a)
+Stateful : (st : Type) -> (a : Type) -> Type
+Stateful st a = st -> (st, a)
 ```
 
 In case of our use case of pairing elements with indices,
-we can then arrive at the following pure (but stateful)
+we can then arrive at the following pure but stateful
 computation:
 
 ```idris
@@ -442,21 +463,21 @@ pairWithIndex' v index = (S index, (index,v))
 
 Note how we at the same time increment the index, returning
 the incremented value as the new state, while pairing
-the first argument with the current index.
+the first argument with the original index.
 
 Now, here is an important thing to note: While `Stateful` is
-a useful type alias, Idris is not very good at resolving
+a useful type alias, Idris in general does *not* resolve
 interface implementations for function types. If we want to
 write a small library of utility functions around such a type,
-it is best to wrap it in single-constructor data type and
+it is therefore best to wrap it in single-constructor data type and
 use this as our building block for writing more complex
 computations. We therefore introduce record `State` as
 a wrapper for pure, stateful computations:
 
 ```idris
-record State state a where
+record State st a where
   constructor ST
-  runST : state -> (state,a)
+  runST : st -> (st,a)
 ```
 
 We can now implement `pairWithIndex` in terms of `State` like so:
@@ -471,7 +492,7 @@ one for getting the current state without modifying it
 (this corresponds to `readIORef`):
 
 ```idris
-get : State state state
+get : State st st
 get = ST $ \s => (s,s)
 ```
 
@@ -479,10 +500,10 @@ Here are two others, for overwriting the current state. These
 corresponds to `writeIORef` and `modifyIORef`:
 
 ```idris
-put : state -> State state ()
+put : st -> State st ()
 put v = ST $ \_ => (v,())
 
-modify : (state -> state) -> State state ()
+modify : (st -> st) -> State st ()
 modify f = ST $ \v => (f v,())
 ```
 
@@ -490,13 +511,13 @@ Finally, we can define three functions in addition to `runST`
 for running stateful computations
 
 ```idris
-runState : state -> State state a -> (state, a)
+runState : st -> State st a -> (st, a)
 runState = flip runST
 
-evalState : state -> State state a -> a
+evalState : st -> State st a -> a
 evalState s = snd . runState s
 
-execState : state -> State state a -> state
+execState : st -> State st a -> st
 execState s = fst . runState s
 ```
 
@@ -508,17 +529,17 @@ Even if you don't succeed, you will have an easier time
 understanding how the implementations below work.
 
 ```idris
-Functor (State state) where
+Functor (State st) where
   map f (ST run) = ST $ \s => let (s2,va) = run s in (s2, f va)
 
-Applicative (State state) where
+Applicative (State st) where
   pure v = ST $ \s => (s,v)
   ST fun <*> ST val = ST $ \s =>
     let (s2, f)  = fun s
         (s3, va) = val s2
      in (s3, f va)
 
-Monad (State state) where
+Monad (State st) where
   ST val >>= f = ST $ \s =>
     let (s2, va) = val s
      in runST (f va) s2
@@ -528,7 +549,7 @@ This may take some time to digest, so we come back to it in a
 slightly advanced exercise. The most important thing to note is,
 that we use every state value only ever once. We *must* make sure
 that the updated state is passed to later computations, otherwise
-the information about state updates is getting lost. This can
+the information about state updates is being lost. This can
 best be seen in the implementation of `Applicative`: The initial
 state, `s`, is used in the computation of the function value,
 which will also return an updated state, `s2`, which is then
@@ -573,7 +594,7 @@ state's value but also its *type* during computations.
    Gen = State Bits64
    ```
 
-   Before we begin, please note that `rnd` is not the strongest
+   Before we begin, please note that `rnd` is not a very strong
    pseudo-random number generator. It will not generate values in
    the full 64bit range, nor is it safe to use in cryptographic
    applications. It is sufficient for our purposes in this chapter,
@@ -581,16 +602,26 @@ state's value but also its *type* during computations.
    generator without any changes to the functions you will implement
    as part of this exercise.
 
-   1. Implement `bits64` in terms of `rnd`. Make sure
-      the state is properly updated, otherwise this won't behave
-      as expected.
+   1. Implement `bits64` in terms of `rnd`. This should return
+      the current state, updating it afterwards by invoking
+      function `rnd`. Make sure the state is properly updated,
+      otherwise this won't behave as expected.
 
       ```idris
       bits64 : Gen Bits64
       ```
 
+      Before you continue, quickly test `bits64` at the REPL:
+
+      ```repl
+      Solutions.Traverse> runState 100 $ bits64
+      (2274787257952781366, 100)
+      ```
+
    2. Implement `range64` for generating random values in
-      the range `[0,upper]`. Hint: Use `mod` in your implementation.
+      the range `[0,upper]`. Hint: Use `bits64` and `mod`
+      in your implementation but note that `mod x upper` produces
+      values in the range `[0,upper)`.
 
       ```idris
       range64 : (upper : Bits64) -> Gen Bits64
@@ -610,8 +641,8 @@ state's value but also its *type* during computations.
       ```
 
       Note, that `interval` will not generate all possible values in
-      the given interval but only such values with a representation
-      in the the range `[0,18446744073709551615]`.
+      the given interval but only such values with a `Bits64`
+      representation in the the range `[0,2305843009213693950]`.
 
    3. Implement a generator for random boolean values.
 
@@ -624,7 +655,7 @@ state's value but also its *type* during computations.
       exercise 4 in your implementation.
 
    6. Implement `vect` and `list`. In case of `list`, the
-      first argument is used to randomly determine the length
+      first argument should be used to randomly determine the length
       of the list.
 
       ```idris
@@ -654,30 +685,33 @@ state's value but also its *type* during computations.
 
    9. Implement a generator for printable ASCII characters.
       These are characters with ASCII codes in the interval
-      `[32,126]`. Hint: Use `chr` in your implementation.
+      `[32,126]`. Hint: Use function `chr` from the *Prelude*
+      in your implementation.
 
-   10. Implement a generator for strings. Hint: Use `pack`
-       in your implementation.
+   10. Implement a generator for strings. Hint: Function `pack`
+       from the *Prelude* might be useful for this.
 
        ```idris
        string : Gen Nat -> Gen Char -> Gen String
        ```
 
    11. We shouldn't forget about our ability to encode interesting
-       things in the types in Idris, so, for a challenge,
-       implement `hlist`:
+       things in the types in Idris, so, for a challenge and without
+       further ado, implement `hlist` (note the distinction between
+       `HListF` and `HList`; yes, if you are rather new to dependent types,
+       this might take a moment to digest):
 
        ```idris
        data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where
          Nil  : HListF f []
          (::) : (x : f t) -> (xs : HLift f ts) -> HListF f (t :: ts)
 
-       hlist : HListF f ts -> Gen (HList ts)
+       hlist : HListF Gen ts -> Gen (HList ts)
        ```
 
-   12. Generalize `hlist` to work for any applicative functor, not just `Gen`.
+   12. Generalize `hlist` to work with any applicative functor, not just `Gen`.
 
-   If you arrived here, please realize how we can generate pseudo-random
+   If you arrived here, please realize how we can now generate pseudo-random
    values for most primitives, as well as regular sum- and product types.
    Here is an example REPL session:
 
