@@ -716,7 +716,12 @@ state's value but also its *type* during computations.
       to use it in do blocks.
 
    5. Generalize the functions from exercises 3 and 4 in two new
-      interfaces `IxApplicative` and `IxMonad`.
+      interfaces `IxApplicative` and `IxMonad` and provide implementations
+      of these for your indexed state data type.
+
+   6. Implement functions `get`, `put`, `modify`, `runState`,
+      `evalState`, and `execState` for the indexed state data type. Make
+      sure to adjust the type parameters where necessary.
 
 
 <!-- vi: filetype=idris2

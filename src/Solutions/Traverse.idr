@@ -4,6 +4,7 @@ import Control.Applicative.Const
 import Control.Monad.Identity
 import Data.HList
 import Data.List1
+import Data.Singleton
 import Data.Vect
 
 %default total
@@ -267,3 +268,63 @@ hlist (gh :: gt) = [| gh :: hlist gt |]
 hlistT : Applicative f => HListF f ts -> f (HList ts)
 hlistT Nil        = pure Nil
 hlistT (fh :: ft) = [| fh :: hlistT ft |]
+
+-- 2
+
+record IxState s t a where
+  constructor IxST
+  runIxST : s -> (t,a)
+
+Functor (IxState s t) where
+  map f (IxST run) = IxST $ \vs => let (vt,va) = run vs in (vt, f va)
+
+pure : a -> IxState s s a
+pure va = IxST $ \vs => (vs,va)
+
+(<*>) : IxState r s (a -> b) -> IxState s t a -> IxState r t b
+IxST ff <*> IxST fa = IxST $ \vr =>
+  let (vs,f)  = ff vr
+      (vt,va) = fa vs
+   in (vt, f va)
+
+(>>=) : IxState r s a -> (a -> IxState s t b) -> IxState r t b
+IxST fa >>= f = IxST $ \vr =>
+  let (vs,va) = fa vr in runIxST (f va) vs
+
+(>>) : IxState r s () -> IxState s t a -> IxState r t a
+IxST fu >> IxST fb = IxST $ fb . fst . fu
+
+namespace IxMonad
+  interface Functor (m s t) =>
+            IxApplicative (0 m : Type -> Type -> Type -> Type) where
+    pure : a -> m s s a
+    (<*>) : m r s (a -> b) -> m s t a -> m r t b
+
+  interface IxApplicative m => IxMonad m where
+    (>>=) : m r s a -> (a -> m s t b) -> m r t b
+
+  IxApplicative IxState where
+    pure = Traverse.pure
+    (<*>) = Traverse.(<*>)
+
+  IxMonad IxState where
+    (>>=) = Traverse.(>>=)
+
+namespace IxState
+  get : IxState s s s
+  get = IxST $ \vs => (vs,vs)
+
+  put : t -> IxState s t ()
+  put vt = IxST $ \_ => (vt,())
+
+  modify : (s -> t) -> IxState s t ()
+  modify f = IxST $ \vs => (f vs, ())
+
+  runState : s -> IxState s t a -> (t,a)
+  runState = flip runIxST
+
+  evalState : s -> IxState s t a -> a
+  evalState vs = snd . runState vs
+
+  execState : s -> IxState s t a -> t
+  execState vs = fst . runState vs
