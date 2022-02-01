@@ -366,3 +366,79 @@ Applicative (IxState s s) where
 Monad (IxState s s) where
   (>>=) = Traverse.(>>=)
   join = (>>= id)
+
+--------------------------------------------------------------------------------
+--          The Power of Composition
+--------------------------------------------------------------------------------
+
+-- 1
+
+data Tagged : (tag, value : Type) -> Type where
+  Tag  : tag -> value -> Tagged tag value
+  Pure : value -> Tagged tag value
+
+Functor (Tagged tag) where
+  map f (Tag x y) = Tag x (f y)
+  map f (Pure x)  = Pure (f x)
+
+Foldable (Tagged tag) where
+  foldr f acc (Tag _ x) = f x acc
+  foldr f acc (Pure x)  = f x acc
+
+Traversable (Tagged tag) where
+  traverse f (Tag x y) = Tag x <$> f y
+  traverse f (Pure x)  = Pure <$> f x
+
+Bifunctor Tagged where
+  bimap f g (Tag x y) = Tag (f x) (g y)
+  bimap _ g (Pure x)  = Pure (g x)
+
+  mapFst f (Tag x y) = Tag (f x) y
+  mapFst _ (Pure x)  = Pure x
+
+  mapSnd g (Tag x y) = Tag x (g y)
+  mapSnd g (Pure x)  = Pure (g x)
+
+Bifoldable Tagged where
+  bifoldr f g acc (Tag x y) = f x (g y acc)
+  bifoldr f g acc (Pure x)  = g x acc
+
+  bifoldl f g acc (Tag x y) = g (f acc x) y
+  bifoldl _ g acc (Pure x)  = g acc x
+
+  binull _ = False
+
+
+Bitraversable Tagged where
+  bitraverse f g (Tag x y) = [| Tag (f x) (g y) |]
+  bitraverse _ g (Pure x)  = Pure <$> g x
+
+-- 2
+
+record Biff (p : Type -> Type -> Type) (f,g : Type -> Type) (a,b : Type) where
+  constructor MkBiff
+  runBiff : p (f a) (g b)
+
+Bifunctor p => Functor f => Functor g => Bifunctor (Biff p f g) where
+  bimap ff fg = MkBiff .  bimap (map ff) (map fg) . runBiff
+
+Bifoldable p => Foldable f => Foldable g => Bifoldable (Biff p f g) where
+  bifoldr ff fg acc = bifoldr (flip $ foldr ff) (flip $ foldr fg) acc . runBiff
+
+Bitraversable p => Traversable f => Traversable g =>
+  Bitraversable (Biff p f g) where
+    bitraverse ff fg =
+      map MkBiff . bitraverse (traverse ff) (traverse fg) . runBiff
+
+record Tannen (f : Type -> Type) (p : Type -> Type -> Type) (a,b : Type) where
+  constructor MkTannen
+  runTannen : f (p a b)
+
+Bifunctor p => Functor f => Bifunctor (Tannen f p) where
+  bimap ff fg = MkTannen .  map (bimap ff fg) . runTannen
+
+Bifoldable p => Foldable f => Bifoldable (Tannen f p) where
+  bifoldr ff fg acc = foldr (flip $ bifoldr ff fg) acc . runTannen
+
+Bitraversable p => Traversable f => Bitraversable (Tannen f p) where
+  bitraverse ff fg = map MkTannen . traverse (bitraverse ff fg) . runTannen

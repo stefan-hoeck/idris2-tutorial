@@ -740,21 +740,22 @@ state's value but also its *type* during computations.
    While it is possible to proof many of the simpler properties in Idris
    directly without the need for tests, this is no longer possible
    as soon as functions are involved, which don't reduce during unification
-   such as foreign function call or functions not publicly exported from
+   such as foreign function calls or functions not publicly exported from
    other modules.
 
 2. While `State s a` gives us a convenient way to talk about
    stateful computations, it only allows us to mutate the
-   state's *value* but not its *type". For instance, the following
+   state's *value* but not its *type*. For instance, the following
    function cannot be encapsulated in `State` because the type
    of the state changes:
 
    ```idris
    uncons : Vect (S n) a -> (Vect n a, a)
+   uncons (x :: xs) = (xs, x)
    ```
 
    Your task is to come up with a new state type allowing for
-   such changes (sometimes referred to as an *indexed* state).
+   such changes (sometimes referred to as an *indexed* state data type).
    The goal of this exercise is to also sharpen your skills in
    expressing things at the type level and derive function
    types and interfaces from there. Therefore, I give only little
@@ -765,12 +766,13 @@ state's value but also its *type* during computations.
 
    1. Come up with a parameterized data type for encapsulating
       stateful computations where the input and output state type can
-      differ.
+      differ. It must be possible to wrap `uncons` in a value of
+      this type.
 
-   2. Implement `Functor` for your state type.
+   2. Implement `Functor` for your indexed state type.
 
    3. It is not possible to implement `Applicative` for this
-      *indexed* state type (but see also exercise 2.1).
+      *indexed* state type (but see also exercise 2.vii).
       Still, implement the necessary functions
       to use it with idom brackets.
 
@@ -778,7 +780,7 @@ state's value but also its *type* during computations.
       indexed state type. Still, implement the necessary functions
       to use it in do blocks.
 
-   5. Generalize the functions from exercises 3 and 4 in two new
+   5. Generalize the functions from exercises 3 and 4 with two new
       interfaces `IxApplicative` and `IxMonad` and provide implementations
       of these for your indexed state data type.
 
@@ -804,8 +806,8 @@ After our excursion into the realms of stateful computations, we
 will go back and combine mutable state with error accumulation
 to tag and read CSV lines in a single traversal. We already
 defined `pairWithIndex` for tagging lines with their indices.
-We also have `uncurry $ hdecode ts` for decoding a single line.
-We can combine the two effects in a single funcion:
+We also have `uncurry $ hdecode ts` for decoding single tagged lines.
+We can now combine the two effects in a single computation:
 
 ```idris
 tagAndDecode :  (0 ts : List Type)
@@ -819,12 +821,13 @@ Now, as we learned before, applicative functors are closed under
 composition, and the result of `tagAndDecode` is a nesting
 of two applicatives: `State Nat` and `Validated CSVError`.
 The *Prelude* exports a corresponding named interface implementation
-(`Prelude.Applicative.Compose`), which we can use for this.
+(`Prelude.Applicative.Compose`), which we can use for traversing
+a list of strings with `tagAndDecode`.
 Remember, that we have to provide named implementations explicitly.
-Since the type of `traverse` has the applicative functor as its
-second implicit argument, we also need to provide the first
-argument (the `Traversable` implementation) explicitly. But this
-is an unnamed default implementation! To get our hands on such
+Since `traverse` has the applicative functor as its
+second constraint, we also need to provide the first
+constraint (`Traversable`) explicitly. But this
+is going to be the unnamed default implementation! To get our hands on such
 a value, we can use the `%search` pragma:
 
 ```idris
@@ -835,6 +838,9 @@ readTable :  (0 ts : List Type)
 readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)
 ```
 
+This tells Idris to use the default implementation for the
+`Traverse` constraint, and `Prelude.Applicatie.Compose` for the
+`Applicative` constraint.
 While this syntax is not very nice, it doesn't come up too often, and
 if it does, we can improve things by providing custom functions
 for better readability:
@@ -855,16 +861,20 @@ readTable' :  (0 ts : List Type)
 readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)
 ```
 
+Note, how this allows us to combine two computational effects
+(mutable state and error accumulation) in a single list traversal.
+
 But I am not done yet demonstrating the power of composition. As you showed
 in one of the exercises, `Traversable` is also closed under composition,
 so a nesting of traversables is again a traversable. Consider the following
 use case: When reading a CSV file, we'd like to allow lines to be
 annotated with additional information. Such annotations could be
-mere commets but also some formating instructions or other
-custom data. Annotations are supposed to be separated from the rest of the
-content by a hash (`#`).
+mere comments but also some formatting instructions or other
+custom data tags might be feasible.
+Annotations are supposed to be separated from the rest of the
+content by a single hash character (`#`).
 We want to keep track of these optional annotations
-so we come up with a new data type encapsulating this distinction:
+so we come up with a custom data type encapsulating this distinction:
 
 ```idris
 data Line : Type -> Type where
@@ -893,7 +903,8 @@ Traversable Line where
 Below is a function for parsing a line and putting it in its
 correct category. For simplicity, we just split the line on hashes:
 If the result consists of exactly two strings, we treat the second
-part as an annotation, otherwise we treat the whole line as CSV content.
+part as an annotation, otherwise we treat the whole line as untagged
+CSV content.
 
 ```idris
 readLine : String -> Line String
@@ -903,7 +914,7 @@ readLine s = case split ('#' ==) s of
 ```
 
 We are now going to implement a function for reading whole
-CSV tables, keeping track line annotations:
+CSV tables, keeping track of line annotations:
 
 ```idris
 readCSV :  (0 ts : List Type)
@@ -917,7 +928,7 @@ readCSV ts = evalState 1
 ```
 
 Let's digest this monstrosity. This is written in point-free
-style, so we have to read it from right to left. First, we
+style, so we have to read it from end to beginning. First, we
 split the whole string at line breaks, getting a list of strings
 (function `Data.String.lines`). Next, we analyze each line,
 keeping track of the presence of annotations (`map readLine`).
@@ -936,8 +947,8 @@ Honestly, I wrote all of this without verifying if it works,
 so let's give it a go at the REPL. I'll provide two
 example strings for this, a valid one without errors, and
 an invalid one. I use *raw string literals* here, about which
-I'll talk about in more detail in a later chapter. For the moment,
-note that this allows us to conveniently enter strings literals
+I'll talk in more detail in a later chapter. For the moment,
+note that these allow us to conveniently enter strings literals
 with line breaks:
 
 ```idris
@@ -974,6 +985,45 @@ Tutorial.Traverse> readCSV [Bool,Bits8,Double] invalidInput
 Invalid (Append (FieldError 1 1 "o")
   (Append (FieldError 3 3 "abc") (FieldError 4 2 "256")))
 ```
+
+### Exercises part 3
+
+The *Prelude* provides three additional interfaces for
+container types parameterized over two type parameters
+such as `Either` or `Pair`: `Bifunctor`, `Bifoldable`,
+and `Bitraversable`. In the following exercises we get
+some hands-one experience working with these.
+
+1. Assume we'd like to not only interpret CSV content
+   but also the optional comment tags in our CSV files.
+   For this, we might use a data type such as `Tagged`:
+
+   ```idris
+   data Tagged : (tag, value : Type) -> Type where
+     Tag  : tag -> value -> Tagged tag value
+     Pure : value -> Tagged tag value
+   ```
+
+   Implement interfaces `Functor`, `Foldable`, and `Traversable`
+   but also `Bifunctor`, `Bifoldable`, and `Bitraversable`
+   for `Tagged`.
+
+2. Show that the composition of a bifunctor with two functors
+   such as `Either (List a) (Maybe b)` is again a bifunctor
+   by defining a dedicated data type for such compositions
+   and writing a corresponding implementation of `Bifunctor`.
+   Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/`Traversable`.
+   And yes, you will drown in type annotations...
+
+3. Show that the composition of a functor with a bifunctor
+   such as `List (Either a b)` is again a bifunctor
+   by defining a dedicated data type for such compositions
+   and writing a corresponding implementation of `Bifunctor`.
+   Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/`Traversable`.
+
+You can find more examples for functor/bifunctor compositions
+in Haskell's [bifunctors](https://hackage.haskell.org/package/bifunctors)
+package.
 
 ## Conclusion
 
