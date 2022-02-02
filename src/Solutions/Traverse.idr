@@ -463,7 +463,7 @@ pairWithIndex v = ST $ \index => (S index, (index, v))
 data Color = Red | Green | Blue
 
 readColor : String -> State Nat (Validated TagError Color)
-readColor s = uncurry decodeTag <$> pairWithIndex s
+readColor s = uncurry decodeTag . (`MkPair` s) <$> get
   where decodeTag : Nat -> String -> Validated TagError Color
         decodeTag k "red"   = pure Red
         decodeTag k "green" = pure Green

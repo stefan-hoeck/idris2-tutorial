@@ -198,7 +198,7 @@ sequenceList = traverseList id
 
 All of this calls for a new interface, which is called
 `Traversable` and exported from the *Prelude*. Here is
-its definitions (with primes for disambiguation):
+its definition (with primes for disambiguation):
 
 ```idris
 interface Functor t => Foldable t => Traversable' t where
@@ -207,7 +207,7 @@ interface Functor t => Foldable t => Traversable' t where
 
 Function `traverse` is one of the most abstract and versatile
 functions available from the *Prelude*. Just how powerful
-it is, will only become clear once you start using it
+it is will only become clear once you start using it
 over and over again in your code. However, it will be the
 goal of the remainder of this chapter to show you several
 diverse and interesting use cases.
@@ -219,10 +219,10 @@ four parameters: The container type `t` (`List`, `Vect n`,
 `IO`, `Maybe`, and so on), the input element type `a`, and
 the output element type `b`. Considering that the libraries
 bundled with the Idris project export more than 30 data types
-with an implementation of `Applicative`, and more than ten
+with an implementation of `Applicative` and more than ten
 traversable container types, there are literally hundreds
 of combinations for traversing a container with an effectful
-computation. This number gets even larger, once we realize
+computation. This number gets even larger once we realize
 that traversable containers - like applicative functors -
 are closed under composition (see the exercises and
 the final section in this chapter).
@@ -451,9 +451,8 @@ are two essential ingredients:
    the current state as one of its arguments.
 2. Ability to communicate the updated state to later
    stateful computations. In case of a pure function
-   this means, that the function will return two
-   values wrapped in a pair: The computation's result
-   plus the updated state.
+   this means, that the function will return a pair
+   of values: The computation's result plus the updated state.
 
 These two prerequisites lead to the following generic
 type for a pure, stateful computation operating on state
@@ -1005,9 +1004,9 @@ Invalid (Append (FieldError 1 1 "o")
   (Append (FieldError 3 3 "abc") (FieldError 4 2 "256")))
 ```
 
-It is pretty amazing, how we wrote dozens of lines of
+It is pretty amazing how we wrote dozens of lines of
 code, always being guided by the type- and totality
-checkers, arriving eventually at function for parsing
+checkers, arriving eventually at a function for parsing
 properly typed CSV tables with automatic line numbering and
 error accumulation, all of which just worked on first try.
 
@@ -1066,7 +1065,11 @@ and how to implement and use them.
    data Color = Red | Green | Blue
    ```
 
-   You should now implement the following functions:
+   You should now implement the following functions, but
+   please note that while `readColor` will need to
+   access the current line number in case of an error,
+   it must *not* increase it, as otherwise line numbers
+   will be wrong in the invocation of `tagAndDecodeTE`.
 
    ```idris
    readColor : String -> State Nat (Validated TagError Color)
@@ -1109,6 +1112,12 @@ in additional use cases, the publication, which
 introduced `Traversable` to Haskell, is a highly recommended read:
 [The Essence of the Iterator Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
 
+The *base* library provides an extended version of the
+state monad in module `Control.Monad.State`. We will look
+at this in more detail when we talk about monad transformers.
+
+Here's a short summary of what we learned in this chapter:
+
 * Function `traverse` is used to run effectful computations
   over container types without affecting their size or shape.
 * We can use `IORef` as mutable references in stateful
@@ -1125,8 +1134,8 @@ For now, this concludes our introduction of the *Prelude*'s
 higher-kinded interfaces, which started with the introduction of
 `Functor`, `Applicative`, and `Monad`, before moving on to `Foldable`,
 and - last but definitely not least - `Traversable`.
-For completeness, we might look at a few others, which come
-up less often, in a later chapter. But first, we need to make
+There's one still missing - `Alternative` - but this will
+have to wait a bit longer, because we need to first make
 our brains smoke with some more type-level wizardry.
 
 <!-- vi: filetype=idris2

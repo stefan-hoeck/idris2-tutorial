@@ -78,6 +78,9 @@ stuff will already be familiar to you.
    2. [A few Notes on Totality Checking](src/Tutorial/Folds.md#a-few-notes-on-totality-checking)
    3. [Interface Foldable](src/Tutorial/Folds.md#interface-foldable)
 10. [Effectful Traversals](src/Tutorial/Traverse.md)
+    1. [Reading CSV Tables](src/Tutorial/Traverse.md#reading-csv-tables)
+    2. [Programming with State](src/Tutorial/Traverse.md#programming-with-state)
+    3. [The Power of Composition](src/Tutorial/Traverse.md#the-power-of-composition)
 
 ## Prerequisites
 
