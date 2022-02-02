@@ -236,13 +236,18 @@ Traversable f => Traversable g => Traversable (Product f g) where
 -- 1
 
 rnd : Bits64 -> Bits64
-rnd seed = (437799614237992725 * seed) `mod` 2305843009213693951
+rnd seed = fromInteger
+         $ (437799614237992725 * cast seed) `mod` 2305843009213693951
 
 Gen : Type -> Type
 Gen = State Bits64
 
+-- 1.1
+
 bits64 : Gen Bits64
 bits64 = get <* modify rnd
+
+-- 1.2
 
 range64 : (upper : Bits64) -> Gen Bits64
 range64 18446744073709551615 = bits64
@@ -257,14 +262,22 @@ interval64 a b =
 interval : Num n => Cast n Bits64 => (a,b : n) -> Gen n
 interval a b = fromInteger . cast <$> interval64 (cast a) (cast b)
 
+-- 1.3
+
 bool : Gen Bool
 bool = (== 0) <$> range64 1
 
-fin : {n : Nat} -> Gen (Fin $ S n)
+-- 1.4
+
+fin : {n : _} -> Gen (Fin $ S n)
 fin = (\x => fromMaybe FZ $ natToFin x _) <$> interval 0 n
+
+-- 1.5
 
 element : {n : _} -> Vect (S n) a -> Gen a
 element vs = (`index` vs) <$> fin
+
+-- 1.6
 
 vect : {n : _} -> Gen a -> Gen (Vect n a)
 vect = sequence . replicate n
@@ -275,17 +288,27 @@ list gnat ga = gnat >>= \n => toList <$> vect {n} ga
 testGen : Bits64 -> Gen a -> Vect 10 a
 testGen seed = evalState seed . vect
 
+-- 1.7
+
 choice : {n : _} -> Vect (S n) (Gen a) -> Gen a
 choice gens = element gens >>= id
+
+-- 1.8
 
 either : Gen a -> Gen b -> Gen (Either a b)
 either ga gb = choice [Left <$> ga, Right <$> gb]
 
+-- 1.9
+
 printableAscii : Gen Char
 printableAscii = chr <$> interval 32 126
 
+-- 1.10
+
 string : Gen Nat -> Gen Char -> Gen String
 string gn = map pack . list gn
+
+-- 1.11
 
 namespace HListF
 
@@ -298,18 +321,26 @@ hlist : HListF Gen ts -> Gen (HList ts)
 hlist Nil        = pure Nil
 hlist (gh :: gt) = [| gh :: hlist gt |]
 
+-- 1.12
+
 hlistT : Applicative f => HListF f ts -> f (HList ts)
 hlistT Nil        = pure Nil
 hlistT (fh :: ft) = [| fh :: hlistT ft |]
 
 -- 2
 
+-- 2.1
+
 record IxState s t a where
   constructor IxST
   runIxST : s -> (t,a)
 
+-- 2.2
+
 Functor (IxState s t) where
   map f (IxST run) = IxST $ \vs => let (vt,va) = run vs in (vt, f va)
+
+-- 2.3
 
 pure : a -> IxState s s a
 pure va = IxST $ \vs => (vs,va)
@@ -320,12 +351,16 @@ IxST ff <*> IxST fa = IxST $ \vr =>
       (vt,va) = fa vs
    in (vt, f va)
 
+-- 2.4
+
 (>>=) : IxState r s a -> (a -> IxState s t b) -> IxState r t b
 IxST fa >>= f = IxST $ \vr =>
   let (vs,va) = fa vr in runIxST (f va) vs
 
 (>>) : IxState r s () -> IxState s t a -> IxState r t a
 IxST fu >> IxST fb = IxST $ fb . fst . fu
+
+-- 2.5
 
 namespace IxMonad
   interface Functor (m s t) =>
@@ -342,6 +377,8 @@ namespace IxMonad
 
   IxMonad IxState where
     (>>=) = Traverse.(>>=)
+
+-- 2.6
 
 namespace IxState
   get : IxState s s s
@@ -361,6 +398,8 @@ namespace IxState
 
   execState : s -> IxState s t a -> t
   execState vs = fst . runState vs
+
+-- 2.7
 
 Applicative (IxState s s) where
   pure = Traverse.pure

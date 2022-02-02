@@ -41,8 +41,8 @@ Valid [False, "foo", 12]
 ```
 
 The next step will be to parse a whole CSV table, represented
-as a list of strings, where each string corresponds to a line
-in a CSV table.
+as a list of strings, where each string corresponds to one
+of the table's rows.
 We will go about this stepwise as there are several aspects
 about doing this properly. What we are looking for - eventually -
 is a function of the following type (we are going to
@@ -95,7 +95,7 @@ hreadTable2 ts = traverseValidatedList (hdecode ts 0)
 
 But our observation was, that the implementation of `hreadTable1`
 would be exactly the same if we used `Either CSVError` or `Maybe`
-as our effect type instead of `Validated CSVError`.
+as our effect types instead of `Validated CSVError`.
 So, the next step should be to abstract over the *effect type*.
 We note, that we used applicative syntax (idiom brackets and
 `pure`) in our implementation, so we will need to write
@@ -197,7 +197,7 @@ sequenceList = traverseList id
 ```
 
 All of this calls for a new interface, which is called
-`Traversable` and exported from the *Prelude*. Here is
+`Traversable` and is exported from the *Prelude*. Here is
 its definition (with primes for disambiguation):
 
 ```idris
@@ -234,7 +234,7 @@ There are two laws function `traverse` must obey:
 * `traverse (Id . f) = Id . map f`: Traversing over
   the `Identity` monad is just functor `map`.
 * `traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`:
-  Traversing with a composition of effects (see exercise 8 below)
+  Traversing with a composition of effects
   must be the same when being done in a single traversal
   (left hand side) or a sequence of two traversals (right
   hand side).
@@ -270,7 +270,8 @@ type, nor is it allowed to change the order of elements.
      (::) : a -> List01 False a -> List01 ne a
    ```
 
-5. Implement `Traversable` for rose trees:
+5. Implement `Traversable` for rose trees. Try to satisfy
+   the totality checker without cheating.
 
    ```idris
    record Tree a where
@@ -374,9 +375,11 @@ pairWithIndexIO ref va = do
   pure (ix,va)
 ```
 
-Now, look at the type of `pairWithIndexIO ref`: `a -> IO (Nat,a)`.
+Note, that every time we *run* `pairWithIndexIO ref`, the
+natural number stored in `ref` is incremented by one.
+Also, look at the type of `pairWithIndexIO ref`: `a -> IO (Nat,a)`.
 We want to apply this effectful computation to each element
-in a list, which will lead to a new list wrapped in `IO`,
+in a list, which should lead to a new list wrapped in `IO`,
 since all of this describes a single computation with side
 effects. But this is *exactly* what function `traverse` does: Our
 input type is `a`, our output type is `(Nat,a)`, our
@@ -424,7 +427,7 @@ Just (0, 12)
 [(0, "hello"), (1, "world")]
 ```
 
-So, we solved the problem of tagging each element with its
+Thus, we solved the problem of tagging each element with its
 index once and for all for all traversable container types.
 
 ### The State Monad
@@ -441,7 +444,6 @@ which allows us to keep our computations pure and
 untainted. However, it is not easy to come upon this
 alternative on one's own, and it can be hard to figure out
 what's going on here, so I'll try to introduce this slowly.
-
 We first need to ask ourselves what the essence of a
 "stateful" but otherwise pure computation is. There
 are two essential ingredients:
@@ -463,16 +465,15 @@ Stateful : (st : Type) -> (a : Type) -> Type
 Stateful st a = st -> (st, a)
 ```
 
-In case of our use case of pairing elements with indices,
-we can then arrive at the following pure but stateful
-computation:
+Our use case is pairing elements with indices, which
+can be implemented as a pure, stateful computation like so:
 
 ```idris
 pairWithIndex' : a -> Stateful Nat (Nat,a)
 pairWithIndex' v index = (S index, (index,v))
 ```
 
-Note how we at the same time increment the index, returning
+Note, how we at the same time increment the index, returning
 the incremented value as the new state, while pairing
 the first argument with the original index.
 
@@ -480,7 +481,7 @@ Now, here is an important thing to note: While `Stateful` is
 a useful type alias, Idris in general does *not* resolve
 interface implementations for function types. If we want to
 write a small library of utility functions around such a type,
-it is therefore best to wrap it in single-constructor data type and
+it is therefore best to wrap it in a single-constructor data type and
 use this as our building block for writing more complex
 computations. We therefore introduce record `State` as
 a wrapper for pure, stateful computations:
@@ -545,6 +546,7 @@ Functor (State st) where
 
 Applicative (State st) where
   pure v = ST $ \s => (s,v)
+
   ST fun <*> ST val = ST $ \s =>
     let (s2, f)  = fun s
         (s3, va) = val s2
@@ -588,7 +590,8 @@ state's value but also its *type* during computations.
 
    ```idris
    rnd : Bits64 -> Bits64
-   rnd seed = (437799614237992725 * seed) `mod` 2305843009213693951
+   rnd seed = fromInteger
+            $ (437799614237992725 * cast seed) `mod` 2305843009213693951
    ```
 
    The idea here is that the next pseudo-random number gets
@@ -627,8 +630,8 @@ state's value but also its *type* during computations.
       `bits64` at the REPL:
 
       ```repl
-      Solutions.Traverse> runState 100 $ bits64
-      (2274787257952781366, 100)
+      Solutions.Traverse> runState 100 bits64
+      (2274787257952781382, 100)
       ```
 
    2. Implement `range64` for generating random values in
@@ -733,16 +736,16 @@ state's value but also its *type* during computations.
 
    ```repl
    > testGen 100 $ hlist [bool, printableAscii, interval 0 127]
-   [[True, '+', 113],
-    [True, '!', 73],
-    [False, '6', 18],
-    [False, 't', 53],
-    [True, 'Q', 117],
-    [True, 'k', 74],
-    [False, 'z', 64],
-    [False, '[', 125],
-    [False, '0', 70],
-    [False, 'o', 78]]
+   [[True, ';', 5],
+    [True, '^', 39],
+    [False, 'o', 106],
+    [True, 'k', 127],
+    [False, ' ', 11],
+    [False, '~', 76],
+    [True, 'M', 11],
+    [False, 'P', 107],
+    [True, '5', 67],
+    [False, '8', 9]]
    ```
 
    Final remarks: Pseudo-random value generators play an important role
@@ -855,7 +858,7 @@ readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)
 ```
 
 This tells Idris to use the default implementation for the
-`Traverse` constraint, and `Prelude.Applicatie.Compose` for the
+`Traversable` constraint, and `Prelude.Applicatie.Compose` for the
 `Applicative` constraint.
 While this syntax is not very nice, it doesn't come up too often, and
 if it does, we can improve things by providing custom functions
@@ -964,7 +967,7 @@ Finally, we evaluate the stateful computation with `evalState 1`.
 Honestly, I wrote all of this without verifying if it works,
 so let's give it a go at the REPL. I'll provide two
 example strings for this, a valid one without errors, and
-an invalid one. I use *raw string literals* here, about which
+an invalid one. I use *multiline string literals* here, about which
 I'll talk in more detail in a later chapter. For the moment,
 note that these allow us to conveniently enter string literals
 with line breaks:
@@ -1017,8 +1020,8 @@ container types parameterized over *two* type parameters
 such as `Either` or `Pair`: `Bifunctor`, `Bifoldable`,
 and `Bitraversable`. In the following exercises we get
 some hands-one experience working with these. You are
-supposed to look up yourself what functions they provide
-and how to implement and use them.
+supposed to look up what functions they provide
+and how to implement and use them yourself.
 
 1. Assume we'd like to not only interpret CSV content
    but also the optional comment tags in our CSV files.
@@ -1115,6 +1118,9 @@ introduced `Traversable` to Haskell, is a highly recommended read:
 The *base* library provides an extended version of the
 state monad in module `Control.Monad.State`. We will look
 at this in more detail when we talk about monad transformers.
+Please note also, that `IO` itself is implemented as a
+[simple state monad](IO.md#how-io-is-implemented)
+over an abstract, primitive state type: `%World`.
 
 Here's a short summary of what we learned in this chapter:
 
