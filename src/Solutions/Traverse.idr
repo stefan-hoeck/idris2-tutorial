@@ -5,7 +5,10 @@ import Control.Monad.Identity
 import Data.HList
 import Data.List1
 import Data.Singleton
+import Data.String
+import Data.Validated
 import Data.Vect
+import Text.CSV
 
 %default total
 
@@ -373,9 +376,9 @@ Monad (IxState s s) where
 
 -- 1
 
-data Tagged : (tag, value : Type) -> Type where
-  Tag  : tag -> value -> Tagged tag value
-  Pure : value -> Tagged tag value
+data Tagged : (tag, val : Type) -> Type where
+  Tag  : tag -> val -> Tagged tag val
+  Pure : val -> Tagged tag val
 
 Functor (Tagged tag) where
   map f (Tag x y) = Tag x (f y)
@@ -430,6 +433,8 @@ Bitraversable p => Traversable f => Traversable g =>
     bitraverse ff fg =
       map MkBiff . bitraverse (traverse ff) (traverse fg) . runBiff
 
+-- 3
+
 record Tannen (f : Type -> Type) (p : Type -> Type -> Type) (a,b : Type) where
   constructor MkTannen
   runTannen : f (p a b)
@@ -442,3 +447,65 @@ Bifoldable p => Foldable f => Bifoldable (Tannen f p) where
 
 Bitraversable p => Traversable f => Bitraversable (Tannen f p) where
   bitraverse ff fg = map MkTannen . traverse (bitraverse ff fg) . runTannen
+
+-- 4
+
+data TagError : Type where
+  CE         : CSVError -> TagError
+  InvalidTag : (line : Nat) -> (tag : String) -> TagError
+  Append     : TagError -> TagError -> TagError
+
+Semigroup TagError where (<+>) = Append
+
+pairWithIndex : a -> State Nat (Nat,a)
+pairWithIndex v = ST $ \index => (S index, (index, v))
+
+data Color = Red | Green | Blue
+
+readColor : String -> State Nat (Validated TagError Color)
+readColor s = uncurry decodeTag <$> pairWithIndex s
+  where decodeTag : Nat -> String -> Validated TagError Color
+        decodeTag k "red"   = pure Red
+        decodeTag k "green" = pure Green
+        decodeTag k "blue"  = pure Blue
+        decodeTag k s       = Invalid $ InvalidTag k s
+
+readTaggedLine : String -> Tagged String String
+readTaggedLine s = case split ('#' ==) s of
+  h ::: [t] => Tag t h
+  _         => Pure s
+
+tagAndDecodeTE :  (0 ts : List Type)
+               -> CSVLine (HList ts)
+               => String
+               -> State Nat (Validated TagError (HList ts))
+tagAndDecodeTE ts s = mapFst CE . uncurry (hdecode ts) <$> pairWithIndex s
+
+readTagged :  (0 ts : List Type)
+           -> CSVLine (HList ts)
+           => String
+           -> Validated TagError (List $ Tagged Color $ HList ts)
+readTagged ts = map runTannen
+              . evalState 1
+              . bitraverse @{%search} @{Compose} readColor (tagAndDecodeTE ts)
+              . MkTannen {f = List} {p = Tagged}
+              . map readTaggedLine
+              . lines
+
+validInput : String
+validInput = """
+  f,12,-13.01#green
+  t,100,0.0017
+  t,1,100.8#blue
+  f,255,0.0
+  f,24,1.12e17
+  """
+
+invalidInput : String
+invalidInput = """
+  o,12,-13.01#yellow
+  t,100,0.0017
+  t,1,abc
+  f,256,0.0
+  f,24,1.12e17
+  """

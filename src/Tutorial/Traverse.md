@@ -6,7 +6,7 @@ end. In order to do so, we will continue developing the
 CSV reader we started implementing in chapter
 [Functor and Friends](Functor.md). I moved some of
 the data types and interfaces from that chapter to
-their own modules, so we can reimport them here without
+their own modules, so we can import them here without
 the need to start from scratch.
 
 Note that unlike in our original CSV reader, we will use
@@ -17,7 +17,6 @@ when reading a CSV file.
 ```idris
 module Tutorial.Traverse
 
-import Data.Bits
 import Data.HList
 import Data.IORef
 import Data.List1
@@ -45,9 +44,9 @@ The next step will be to parse a whole CSV table, represented
 as a list of strings, where each string corresponds to a line
 in a CSV table.
 We will go about this stepwise as there are several aspects
-to do this properly. What we are looking for - eventually -
+about doing this properly. What we are looking for - eventually -
 is a function of the following type (we are going to
-implement several version of this function, hence the
+implement several versions of this function, hence the
 numbering):
 
 ```idris
@@ -134,7 +133,7 @@ This works very well already, but note how our error messages do
 not yet print the correct line numbers. That's not surprising,
 as we are using a dummy constant in our call to `hdecode`.
 We will look at how we can come up with the line numbers on the
-fly when we talk about stateful computations later in this chapters.
+fly when we talk about stateful computations later in this chapter.
 For now, we could just manually annotate the lines with their
 numbers and pass a list of pairs to `hreadTable`:
 
@@ -150,11 +149,11 @@ If this is the first time you came across function `uncurry`,
 make sure you have a look at its type and try to figure out why it is
 used here. There are several utility functions like this
 in the *Prelude*, such as `curry`, `uncurry`, `flip`, or even
-`id`, which can be very useful when working with higher-order
+`id`, all of which can be very useful when working with higher-order
 functions.
 
 While not perfect, this version at least allows us to verify at the REPL
-that the line numbers are passed on to the error messages correctly:
+that the line numbers are passed to the error messages correctly:
 
 ```repl
 Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,"t,1000"),(2,"1,100")]
@@ -178,7 +177,7 @@ traverseVect' fun = traverseList fun . toList
 
 Note how we lost all information about the structure of the
 original container type. What we are looking for is a function
-like `traverseVect'`, keeping this information at the type level:
+like `traverseVect'`, which keeps this type level information:
 The result should be a vector of the same length as the input.
 
 ```idris
@@ -230,7 +229,20 @@ the final section in this chapter).
 
 ### Traversable Laws
 
-TODO
+There are two laws function `traverse` must obey:
+
+* `traverse (Id . f) = Id . map f`: Traversing over
+  the `Identity` monad is just functor `map`.
+* `traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`:
+  Traversing with a composition of effects (see exercise 8 below)
+  must be the same when being done in a single traversal
+  (left hand side) or a sequence of two traversals (right
+  hand side).
+
+Since `map id = id` (functor's identity law), we can derive
+from the first law that `traverse Id = Id`. This means, that
+`traverse` must not change the size or shape of the container
+type, nor is it allowed to change the order of elements.
 
 ### Exercises part 1
 
@@ -248,7 +260,7 @@ TODO
    Hint: Remember `Control.Applicative.Const`.
 
 3. To gain some routine, implement `Traversable'` for
-   `List1`, `Either e`, and Maybe`.
+   `List1`, `Either e`, and `Maybe`.
 
 4. Implement `Traversable` for `List01 ne`:
 
@@ -581,13 +593,12 @@ state's value but also its *type* during computations.
    ```
 
    The idea here is that the next pseudo-random number gets
-   calculated from the last one. But once we think about
+   calculated from the previous one. But once we think about
    how we can use these numbers as seeds for computing
    random values of other types, we realize that these are
    just stateful computations. We can therefore write
-   down a type alias for random value generators and
-   implement a primitive generator for 64-bit unsigned
-   integers:
+   down an alias for random value generators as stateful
+   computations:
 
    ```idris
    Gen : Type -> Type
@@ -611,7 +622,10 @@ state's value but also its *type* during computations.
       bits64 : Gen Bits64
       ```
 
-      Before you continue, quickly test `bits64` at the REPL:
+      This will be our *only* primitive generator, from which
+      we will derived all the others. Therefore,
+      before you continue, quickly test your implementation of
+      `bits64` at the REPL:
 
       ```repl
       Solutions.Traverse> runState 100 $ bits64
@@ -620,8 +634,9 @@ state's value but also its *type* during computations.
 
    2. Implement `range64` for generating random values in
       the range `[0,upper]`. Hint: Use `bits64` and `mod`
-      in your implementation but note that `mod x upper` produces
-      values in the range `[0,upper)`.
+      in your implementation but make sure to deal with
+      the fact that `mod x upper` produces values in the
+      range `[0,upper)`.
 
       ```idris
       range64 : (upper : Bits64) -> Gen Bits64
@@ -649,6 +664,7 @@ state's value but also its *type* during computations.
    4. Implement a generator for `Fin n`. You'll have to think
       carefully about getting this one to typecheck and be
       accepted by the totality checker without cheating.
+      Note: Have a look at function `Data.Fin.natToFin`.
 
    5. Implement a generator for selecting a random element
       from a vector of values. Use the generator from
@@ -685,8 +701,8 @@ state's value but also its *type* during computations.
 
    9. Implement a generator for printable ASCII characters.
       These are characters with ASCII codes in the interval
-      `[32,126]`. Hint: Use function `chr` from the *Prelude*
-      in your implementation.
+      `[32,126]`. Hint: Function `chr` from the *Prelude*
+      will be useful here.
 
    10. Implement a generator for strings. Hint: Function `pack`
        from the *Prelude* might be useful for this.
@@ -698,8 +714,9 @@ state's value but also its *type* during computations.
    11. We shouldn't forget about our ability to encode interesting
        things in the types in Idris, so, for a challenge and without
        further ado, implement `hlist` (note the distinction between
-       `HListF` and `HList`; yes, if you are rather new to dependent types,
-       this might take a moment to digest):
+       `HListF` and `HList`). If you are rather new to dependent types,
+       this might take a moment to digest, so don't forget to
+       use holes.
 
        ```idris
        data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where
@@ -757,9 +774,9 @@ state's value but also its *type* during computations.
    Your task is to come up with a new state type allowing for
    such changes (sometimes referred to as an *indexed* state data type).
    The goal of this exercise is to also sharpen your skills in
-   expressing things at the type level and derive function
-   types and interfaces from there. Therefore, I give only little
-   guidance how to go about this. If you get stuck, feel free to
+   expressing things at the type level including derived function
+   types and interfaces. Therefore, I will give only little
+   guidance on how to go about this. If you get stuck, feel free to
    peek at the solutions but make sure to only look at the types
    at first.
 
@@ -798,7 +815,7 @@ state's value but also its *type* during computations.
    Indexed state types can be useful when we want to make sure that
    stateful computations are combined in the correct sequence, or
    that scarce resources get cleaned up properly. We might get back
-   to these in later examples.
+   to such use cases in later examples.
 
 ## The Power of Composition
 
@@ -864,7 +881,7 @@ readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)
 Note, how this allows us to combine two computational effects
 (mutable state and error accumulation) in a single list traversal.
 
-But I am not done yet demonstrating the power of composition. As you showed
+But I am not yet done demonstrating the power of composition. As you showed
 in one of the exercises, `Traversable` is also closed under composition,
 so a nesting of traversables is again a traversable. Consider the following
 use case: When reading a CSV file, we'd like to allow lines to be
@@ -874,12 +891,13 @@ custom data tags might be feasible.
 Annotations are supposed to be separated from the rest of the
 content by a single hash character (`#`).
 We want to keep track of these optional annotations
-so we come up with a custom data type encapsulating this distinction:
+so we come up with a custom data type encapsulating
+this distinction:
 
 ```idris
 data Line : Type -> Type where
   Annotated : String -> a -> Line a
-  Content   : a -> Line a
+  Clean     : a -> Line a
 ```
 
 This is just another container type and we can
@@ -889,15 +907,15 @@ a quick exercise):
 ```idris
 Functor Line where
   map f (Annotated s x) = Annotated s $ f x
-  map f (Content x)     = Content $ f x
+  map f (Clean x)       = Clean $ f x
 
 Foldable Line where
   foldr f acc (Annotated _ x) = f x acc
-  foldr f acc (Content x)     = f x acc
+  foldr f acc (Clean x)       = f x acc
 
 Traversable Line where
   traverse f (Annotated s x) = Annotated s <$> f x
-  traverse f (Content x)     = Content <$> f x
+  traverse f (Clean x)       = Clean <$> f x
 ```
 
 Below is a function for parsing a line and putting it in its
@@ -910,7 +928,7 @@ CSV content.
 readLine : String -> Line String
 readLine s = case split ('#' ==) s of
   h ::: [t] => Annotated t h
-  _         => Content s
+  _         => Clean s
 ```
 
 We are now going to implement a function for reading whole
@@ -931,16 +949,17 @@ Let's digest this monstrosity. This is written in point-free
 style, so we have to read it from end to beginning. First, we
 split the whole string at line breaks, getting a list of strings
 (function `Data.String.lines`). Next, we analyze each line,
-keeping track of the presence of annotations (`map readLine`).
+keeping track of optional annotations (`map readLine`).
 This gives us a value of type `List (Line String)`. Since
 this is a nesting of traversables, we invoke `traverse`
 with a named instance from the *Prelude*: `Prelude.Traversable.Compose`.
 Idris can disambiguate this based on the types, so we can
 drop the namespace prefix. But the effectful computation
 we run over the list of lines results in a composition
-of applicative functors, so we also need a named implementation for
-the second constraint (again without need of an explicit
-prefix, which would be `Prelude.Applicative` in this case).
+of applicative functors, so we also need the named implementation
+for compositions of applicatives in the second
+constraint (again without need of an explicit
+prefix, which would be `Prelude.Applicative` here).
 Finally, we evaluate the stateful computation with `evalState 1`.
 
 Honestly, I wrote all of this without verifying if it works,
@@ -948,7 +967,7 @@ so let's give it a go at the REPL. I'll provide two
 example strings for this, a valid one without errors, and
 an invalid one. I use *raw string literals* here, about which
 I'll talk in more detail in a later chapter. For the moment,
-note that these allow us to conveniently enter strings literals
+note that these allow us to conveniently enter string literals
 with line breaks:
 
 ```idris
@@ -976,27 +995,35 @@ And here's how it goes at the REPL:
 ```repl
 Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput
 Valid [Annotated "this is a comment" [False, 12, -13.01],
-       Content [True, 100, 0.0017],
+       Clean [True, 100, 0.0017],
        Annotated "color: red" [True, 1, 100.8],
-       Content [False, 255, 0.0],
-       Content [False, 24, 1.12e17]]
+       Clean [False, 255, 0.0],
+       Clean [False, 24, 1.12e17]]
 
 Tutorial.Traverse> readCSV [Bool,Bits8,Double] invalidInput
 Invalid (Append (FieldError 1 1 "o")
   (Append (FieldError 3 3 "abc") (FieldError 4 2 "256")))
 ```
 
+It is pretty amazing, how we wrote dozens of lines of
+code, always being guided by the type- and totality
+checkers, arriving eventually at function for parsing
+properly typed CSV tables with automatic line numbering and
+error accumulation, all of which just worked on first try.
+
 ### Exercises part 3
 
 The *Prelude* provides three additional interfaces for
-container types parameterized over two type parameters
+container types parameterized over *two* type parameters
 such as `Either` or `Pair`: `Bifunctor`, `Bifoldable`,
 and `Bitraversable`. In the following exercises we get
-some hands-one experience working with these.
+some hands-one experience working with these. You are
+supposed to look up yourself what functions they provide
+and how to implement and use them.
 
 1. Assume we'd like to not only interpret CSV content
    but also the optional comment tags in our CSV files.
-   For this, we might use a data type such as `Tagged`:
+   For this, we could use a data type such as `Tagged`:
 
    ```idris
    data Tagged : (tag, value : Type) -> Type where
@@ -1010,16 +1037,64 @@ some hands-one experience working with these.
 
 2. Show that the composition of a bifunctor with two functors
    such as `Either (List a) (Maybe b)` is again a bifunctor
-   by defining a dedicated data type for such compositions
+   by defining a dedicated wrapper type for such compositions
    and writing a corresponding implementation of `Bifunctor`.
    Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/`Traversable`.
-   And yes, you will drown in type annotations...
 
 3. Show that the composition of a functor with a bifunctor
    such as `List (Either a b)` is again a bifunctor
-   by defining a dedicated data type for such compositions
+   by defining a dedicated wrapper type for such compositions
    and writing a corresponding implementation of `Bifunctor`.
    Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/`Traversable`.
+
+4. We are now going to adjust `readCSV` in such a way that it
+   decodes comment tags and CSV content in a single traversal.
+   We need a new error type to include invalid tags for this:
+
+   ```idris
+   data TagError : Type where
+     CE         : CSVError -> TagError
+     InvalidTag : (line : Nat) -> (tag : String) -> TagError
+     Append     : TagError -> TagError -> TagError
+
+   Semigroup TagError where (<+>) = Append
+   ```
+
+   For testing, we also define a simple data type for color tags:
+
+   ```idris
+   data Color = Red | Green | Blue
+   ```
+
+   You should now implement the following functions:
+
+   ```idris
+   readColor : String -> State Nat (Validated TagError Color)
+
+   readTaggedLine : String -> Tagged String String
+
+   tagAndDecodeTE :  (0 ts : List Type)
+                  -> CSVLine (HList ts)
+                  => String
+                  -> State Nat (Validated TagError (HList ts))
+   ```
+
+   Finally, implement `readTagged` by using the wrapper type
+   from exercise 3 as well as `readColor` and `tagAndDecodeTE`
+   in a call to `bitraverse`.
+   The implementation will look very similar to `readCSV` but
+   with some additional wrapping and unwrapping at the right
+   places.
+
+   ```idris
+   readTagged :  (0 ts : List Type)
+              -> CSVLine (HList ts)
+              => String
+              -> Validated TagError (List $ Tagged Color $ HList ts)
+   ```
+
+   Test your implementation with some example strings at the REPL.
+
 
 You can find more examples for functor/bifunctor compositions
 in Haskell's [bifunctors](https://hackage.haskell.org/package/bifunctors)
@@ -1030,9 +1105,21 @@ package.
 Interface `Traversable` and its main function `traverse` are incredibly
 powerful forms of abstraction - even more so, because both `Applicative`
 and `Traversable` are closed under composition. If you are interested
-in additional use cases, I can highly recommend the publication, which
-introduced `Traversable` to Haskell:
+in additional use cases, the publication, which
+introduced `Traversable` to Haskell, is a highly recommended read:
 [The Essence of the Iterator Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
+
+* Function `traverse` is used to run effectful computations
+  over container types without affecting their size or shape.
+* We can use `IORef` as mutable references in stateful
+  computations running in `IO`.
+* For referentially transparent computations with "mutable"
+  state, the `State` monad is extremely useful.
+* Applicative functors are closed under composition,
+  so we can run several effectful computations in a single
+  traversal.
+* Traversables are also closed under composition, so we can
+  use `traverse` to operate on a nesting of containers.
 
 For now, this concludes our introduction of the *Prelude*'s
 higher-kinded interfaces, which started with the introduction of
