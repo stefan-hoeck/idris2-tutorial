@@ -81,6 +81,7 @@ stuff will already be familiar to you.
     1. [Reading CSV Tables](src/Tutorial/Traverse.md#reading-csv-tables)
     2. [Programming with State](src/Tutorial/Traverse.md#programming-with-state)
     3. [The Power of Composition](src/Tutorial/Traverse.md#the-power-of-composition)
+11. [Relations](src/Tutorial/Relations.md)
 
 ## Prerequisites
 

@@ -16,6 +16,7 @@ modules = Data.HList
         , Solutions.Functor
         , Solutions.IO
         , Solutions.Interfaces
+        , Solutions.Relations
         , Solutions.Traverse
 
         , Text.CSV
@@ -29,4 +30,5 @@ modules = Data.HList
         , Tutorial.IO
         , Tutorial.Interfaces
         , Tutorial.Intro
+        , Tutorial.Relations
         , Tutorial.Traverse
