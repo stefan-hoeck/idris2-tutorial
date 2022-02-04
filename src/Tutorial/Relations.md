@@ -1,17 +1,17 @@
 # Relations
 
 In the last couple of chapters, we looked at how to abstract over
-recurring patterns in pure, strongly typed, functional programming
+recurring patterns in pure, strongly typed functional programming
 languages. We learned how to describe and run computations with
 side effects, how to sequence effectful computations to create
-more complex effectful computations, and how to describe folds
+more complex programs, and how to describe folds
 and traversals over immutable data structures in a flexible and
 reusable way.
-
 For programmers coming from languages like Haskell, OCaml, or
 Scala, most of these things are already well known. What sets
 Idris apart from these languages, is its support for first class
-types. We will therefore spend some time looking at how we can
+types: The ability to calculate types from values.
+We will therefore spend some time looking at how we can
 use dependent types to describe properties of and relations
 (or contracts) between *values*, and how we can use values of
 these dependent types as proofs that our functions behave
@@ -29,9 +29,9 @@ import Data.String
 ## Dependent Pairs
 
 We've already seen several examples of how useful the length
-index of `Vect` is to describe more precisely in the types what
+index of a vector is to describe more precisely in the types what
 a function can and can't do. For instance, `map` or `traverse`
-operating on a vector will result in a vector of exactly
+operating on a vector will return a vector of exactly
 the same length. The types guarantee that this is true, therefore
 the following function is perfectly safe and provably total:
 
@@ -41,25 +41,25 @@ parseAndDrop = map (drop 3) . traverse parsePositive
 ```
 
 Since the argument of `traverse parsePositive`
-is of type `Vect (3 + n) String`, the result will be of
+is of type `Vect (3 + n) String`, its result will be of
 type `Maybe (Vect (3 + n) Nat)`. It is therefore
 safe to use this in a call to `drop 3`. Note, how all of this
 is known at compile time: We encoded the prerequisite
 that the first argument is a vector of at least three elements
-in the length index, and could derive from there the length
-of the result.
+in the length index and could derive the length
+of the result from this.
 
 ### Vectors of Unknown Length
 
 However, this is not always possible. Consider the following function,
-define on `List`:
+defined on `List` and exported by `Data.List`:
 
 ```repl
 Tutorial.Relations> :t takeWhile
 Data.List.takeWhile : (a -> Bool) -> List a -> List a
 ```
 
-This will take the longest prefix of the list argument for which
+This will take the longest prefix of the list argument, for which
 the given predicate returns `True`. In this case, it depends on
 the list elements and the predicate, how long this prefix will be.
 Can we write such a function for vectors? Let's give it a try:
@@ -69,30 +69,39 @@ takeWhile' : (a -> Bool) -> Vect n a -> Vect m a
 ```
 
 Go ahead, and try to implement this. Don't try too long, as you will not
-be able to do so in a provably total way. The question is: what is the
+be able to do so in a provably total way. The question is: What is the
 problem here?
-
-In order to understand this, we have to realize what this function's type
-promises: "For any predicate operating on values on type `a`, and for
-an vector holding values of this type, and for any length `m`, I
-give you a vector of length `m` holding values of type `a`". We say, that
-all three arguments are *universally quantified*: The caller of our
-function is free to choose the predicate, the input vector, the type
-of values the vector holds, and *the length of the output vector*. Don't
-believe me? Here you go:
+In order to understand this, we have to realize what the type of `takeWhile'`
+promises: "For all predicates operating on values on type `a`, and for
+all vectors holding values of this type, and for all lengths `m`, I
+give you a vector of length `m` holding values of type `a`".
+All three arguments are said to be
+[*universally quantified*](https://en.wikipedia.org/wiki/Universal_quantification):
+The caller of our function is free to choose the predicate,
+the input vector, the type of values the vector holds,
+and *the length of the output vector*. Don't believe me? See here:
 
 ```idris
+-- This looks like trouble: We got a non-empty vector of `Void`...
+voids : Vect 7 Void
+voids = takeWhile' (const True) []
+
+-- ...from which immediately follows a proof of `Void`
 proofOfVoid : Void
-proofOfVoid = head $ takeWhile' (const True) [] {m = 1}
+proofOfVoid = head voids
 ```
 
-See, how I could freely decide on the value of `m` when invoking `takeWhile'`.
-Although I passed it an empty vector, the function's type promises me
-to return a non-empty vector holding values of type `Void`, from which
-I freely extracted the first one.
+See how I could freely decide on the value of `m` when invoking `takeWhile'`?
+Although I passed `takeWhile'` an empty vector (the only existing vector
+holding values of type `Void`), the function's type promises me
+to return a possibly non-empty vector holding values of the same
+type, from which I freely extracted the first one.
 
-Luckily, Idris doesn't allow this. But there is still the question, what the
-return type should be? The answer to this is: A *dependent pair*. A vector
+Luckily, Idris doesn't allow this: We won't be able to
+implement `takeWhile'` without cheating (for instance, by
+turning totality checking off and looping forever).
+So, the question remains, how to express the result of `takeWhile'`
+in a type. The answer to this is: "Use a *dependent pair*". A vector
 paired with a value corresponding to its length:
 
 ```idris
@@ -102,10 +111,14 @@ record AnyVect a where
   vect   : Vect length a
 ```
 
-Note, how the length of the vector is no longer visible in the type of
-`AnyVect a`, but we can still inspect it and learn something about it,
-since it is wrapped up together with the actual vector. We can now
-implement `takeWhile` in such a way that it returns a value of type `AnyVect a`:
+This corresponds to [*existential quantification*](https://en.wikipedia.org/wiki/Existential_quantification)
+in predicate logic: There is a natural number, which corresponds to
+the length of the vector I have here. Note, how from the outside
+of `AnyVect a`, the length of the wrapped vector is no longer
+visible at the type level but we can still inspect it and learn
+something about it at runtime, since it is wrapped up together
+with the actual vector. We can implement `takeWhile` in such
+a way that it returns a value of type `AnyVect a`:
 
 ```idris
 takeWhile : (a -> Bool) -> Vect n a -> AnyVect a
@@ -115,10 +128,13 @@ takeWhile f (x :: xs) = case f x of
   True  => let MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)
 ```
 
-In the implementation of `takeWhile`, the type checker verifies that we
-make no mistake when pairing the length of the current vector. In fact,
-the length can be calculated automatically by Idris, so we can replace
-it with underscore, if we so desire:
+This works in a provably total way, because callers of this function
+can no longer choose the length of the resulting vector themselves. Our
+function, `takeWhile`, decides on this length and returns it together
+with the vector, and the type checker verifies that we
+make no mistakes when pairing the two values. In fact,
+the length can be inferred automatically by Idris, so we can replace
+it with underscores, if we so desire:
 
 ```idris
 takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a
@@ -127,6 +143,40 @@ takeWhile2 f (x :: xs) = case f x of
   False => MkAnyVect 0 []
   True  => let MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)
 ```
+
+To summarize: Parameters in generic function types are
+universally quantified, and their values can be decided on at the
+call site of such functions. Dependent record types allow us
+to describe existentially quantify values. Callers can not choose
+such values freely: They are returned as part of a function's result.
+
+Note, that Idris allows us to be explicit about universal quantification.
+The type of `takeWhile'` can also be written like so:
+
+```idris
+takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a
+```
+
+Universally quantified arguments are desugared to implicit
+erased arguments by Idris. The above is a less verbose version
+of the following function type, the likes of which we have seen
+before:
+
+```idris
+takeWhile''' :  {0 a : _}
+             -> {0 n : _}
+             -> {0 m : _}
+             -> (a -> Bool)
+             -> Vect n a
+             -> Vect m a
+```
+
+In Idris, we are free to choose whether we want to be explicit
+about universal quantification. Sometimes it can help understanding
+what's going on at the type level. Other languages - for instance
+[PureScript](https://www.purescript.org/) - are more strict about
+this: There, explicit annotations on universally quantified parameters
+are [mandatory](https://github.com/purescript/documentation/blob/master/language/Differences-from-Haskell.md#explicit-forall).
 
 ### The Essence of Dependent Pairs
 
