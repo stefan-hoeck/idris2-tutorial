@@ -101,8 +101,8 @@ Luckily, Idris doesn't allow this: We won't be able to
 implement `takeWhile'` without cheating (for instance, by
 turning totality checking off and looping forever).
 So, the question remains, how to express the result of `takeWhile'`
-in a type. The answer to this is: "Use a *dependent pair*". A vector
-paired with a value corresponding to its length:
+in a type. The answer to this is: "Use a *dependent pair*", a vector
+paired with a value corresponding to its length.
 
 ```idris
 record AnyVect a where
@@ -147,7 +147,7 @@ takeWhile2 f (x :: xs) = case f x of
 To summarize: Parameters in generic function types are
 universally quantified, and their values can be decided on at the
 call site of such functions. Dependent record types allow us
-to describe existentially quantify values. Callers can not choose
+to describe existentially quantified values. Callers cannot choose
 such values freely: They are returned as part of a function's result.
 
 Note, that Idris allows us to be explicit about universal quantification.
@@ -182,12 +182,11 @@ are [mandatory](https://github.com/purescript/documentation/blob/master/language
 
 It can take some time and experience to understand what's going on here. At
 least in my case, it took many sessions programming in Idris, before I figured
-out what dependent pairs are about: They pair a *value* of some type with a
-a value of another type, which was calculated from the first value.
+out what dependent pairs are about: They pair a *value* of some type with
+a second value of a type calculated from the first value.
 For instance, a natural number `n` (the value)
 paired with a vector of length `n` (the second value, who's type *depends*
 on the first value).
-
 This is such a fundamental concept of programming with dependent types, that
 a general dependent pair type is provided by the *Prelude*. Here is its
 implementation (primed for disambiguation):
@@ -203,7 +202,6 @@ It is essential to understand what's going on here. There are two
 parameters: A type `a`, and a function `p`, calculating a *type*
 from a *value* of type `a`. Such a value (`fst`) is then used
 to calculate the *type* of the second value (`snd`).
-
 For instance, here is `AnyVect a` represented as a `DPair`:
 
 ```idris
@@ -214,7 +212,7 @@ AnyVect' a = DPair Nat (\n => Vect n a)
 Note, how `\x => Vect x a` is a function from `Nat` to `Type`.
 Idris provides special syntax for describing dependent pairs, as
 they are important building blocks for programming in languages
-with first class type:
+with first class types:
 
 ```idris
 AnyVect'' : (a : Type) -> Type
