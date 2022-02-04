@@ -20,6 +20,7 @@ correctly.
 ```idris
 module Tutorial.Relations
 
+import Data.Either
 import Data.Vect
 import Data.String
 
@@ -253,7 +254,7 @@ takeWhile3 f (x :: xs) = case f x of
 
 ### Use Case: Nucleic Acids
 
-We'd like to come up with a small library for running computations
+We'd like to come up with a small, simplified library for running computations
 on nucleic acids: RNA and DNA. These are built from five types of
 nucleobases, three of which are used in both types of nucleic
 acids and two bases specific for each type of acid. We'd like
@@ -275,6 +276,15 @@ RNA = List (Nucleobase RNABase)
 
 DNA : Type
 DNA = List (Nucleobase DNABase)
+
+encode : List (Nucleobase b) -> String
+encode = pack . map encodeBase
+  where encodeBase : Nucleobase c -> Char
+        encodeBase Adenine  = 'A'
+        encodeBase Cytosine = 'C'
+        encodeBase Guanine  = 'G'
+        encodeBase Thymine  = 'T'
+        encodeBase Uracile  = 'U'
 ```
 
 It is a type error to use `Uracile` in a strand of DNA:
@@ -416,7 +426,7 @@ data Result : Type where
   GotRNA          : RNA -> Result
 ```
 
-This has all possible outcomes are encoded in a single data type.
+This has all possible outcomes encoded in a single data type.
 However, it is lacking in terms of flexibility. If we want to handle
 errors early on and just extract a strand of RNA or DNA, we need
 yet another data type:
@@ -438,23 +448,129 @@ namespace InputError
     UnknownBaseType : String -> InputError
     InvalidSequence : String -> InputError
 
+readAcid : (b : BaseType) -> String -> Either InputError (List $ Nucleobase b)
+readAcid b str =
+  let err = InvalidSequence str
+   in case b of
+        DNABase => maybeToEither err $ readDNA str
+        RNABase => maybeToEither err $ readRNA str
+
 readNucleobase : IO (Either InputError (b ** List (Nucleobase b)))
 readNucleobase = do
   baseString <- getLine
   case baseString of
-    "DNA" => do
-      strand <- getLine
-      pure $ maybe (Left $ InvalidSequence strand)
-                   (\v => Right (DNABase ** v))
-                   (readDNA strand)
-    "RNA" => do
-      strand <- getLine
-      pure $ maybe (Left $ InvalidSequence strand)
-                   (\v => Right (RNABase ** v))
-                   (readRNA strand)
-
+    "DNA" => map (MkDPair _) . readAcid DNABase <$> getLine
+    "RNA" => map (MkDPair _) . readAcid RNABase <$> getLine
     _     => pure $ Left (UnknownBaseType baseString)
 ```
+
+Note, how we paired the type of nucleobase with nucleic acid
+strand. Assume now, we implement a function for transcribing
+a strand of DNA to RNA, and we'd like to convert a sequence of
+nucleobases from user input to the corresponding RNA sequence.
+Here's how to do this:
+
+```idris
+transcribeBase : Nucleobase DNABase -> Nucleobase RNABase
+transcribeBase Adenine  = Uracile
+transcribeBase Cytosine = Guanine
+transcribeBase Guanine  = Cytosine
+transcribeBase Thymine  = Adenine
+
+transcribe : DNA -> RNA
+transcribe = map transcribeBase
+
+printRNA : RNA -> IO ()
+printRNA = putStrLn . encode
+
+transcribeProg : IO ()
+transcribeProg = do
+  Right (b ** seq) <- readNucleobase
+    | Left (InvalidSequence str) => putStrLn $ "Invalid sequence: " ++ str
+    | Left (UnknownBaseType str) => putStrLn $ "Unknown base type: " ++ str
+  case b of
+    DNABase => printRNA $ transcribe seq
+    RNABase => printRNA seq
+```
+
+By pattern matching on the first value of the dependent pair, we could
+determine, whether the second value is a list of RNA bases or
+a list of DNA bases. In the first case, we had to transcribe the
+sequence first, in the second case, we could invoke `printRNA` directly.
+
+### Dependent Records vs Sum Types
+
+Dependent records as shown for `AnyVect a` are a generalization
+of dependent pairs: We can have an arbitrary number of fields
+and use the values stored therein to calculate the types of
+other values. For very simple cases like the example with nucleobases,
+it doesn't matter too mach, whether we use a `DPair`, a custom
+dependent record, or even a sum type. In fact, the three encodings
+are equally expressive:
+
+```idris
+Nucleobase1 : Type
+Nucleobase1 = (b ** List (Nucleobase b))
+
+record Nucleobase2 where
+  constructor MkNucleobase
+  baseType : BaseType
+  sequence : List (Nucleobase baseType)
+
+data Nucleobase3 : Type where
+  SomeRNA : RNA -> Nucleobase3
+  SomeDNA : DNA -> Nucleobase3
+```
+
+It is trivial to write lossless conversions between these
+encodings, and with each encoding we can decide with a simple
+pattern match, whether we currently have a sequence of
+RNA or DNA. However, dependent types can depend on more than
+one value, as we will see in the exercises. In such cases,
+sum types and dependent pairs quickly become unwieldy, and
+you should go for an encoding as a dependent record.
+
+### Exercises
+
+Sharpen your skills in using dependent pairs and dependent
+records! In exercises 2 to 7 you have to decide yourself,
+when a function should return a dependent pair or record,
+when a function requires additional arguments, on which you
+can pattern match, and what other utility functions might be
+necessary.
+
+1. Proof that the three encodings for nucleobases are *isomorphic*
+   (meaning: of the same structure) by writing lossless conversion
+   functions from `Nucleobase1` to `Nucleobase2` and back. Likewise
+   for `Nucleobase1` and `Nucleobase3`.
+
+2. Sequences of nucleobases can be encoded in one of two directions:
+   *Sense* and *antisense*. Declare a new data type to describe
+   the sense of a sequence of nucleobases, and add this as an
+   additional parameter to type `Nucleobase` and types `DNA` and
+   `RNA`.
+
+3. Refine the types of `complement` and `transcribe`, so that they
+   reflect the changing of *sense*. In case of `transcribe`, a
+   strand of DNA is converted to a strand of RNA of opposite sense.
+
+4. Define a dependent record storing the base type and sense
+   together with a sequence of nucleobases.
+
+5. Adjust `readRNA` and `readDNA` in such a way that
+   the *sense* of a sequence is read from the input string.
+   Sense strands are encoded like so: "5´CGGTAG 3´". Antisense
+   strands are encoded like so: "3´CGGTAG 5´".
+
+6. Adjust `encode` in such a way that it includes the sense
+   in its output.
+
+7. Enhance `readNucleobase` and `transcribeProg` in such a way that
+   the sense and base type are stored together with the sequence,
+   and that `transcribeProg` always prints the antisense RNA strand
+   after transcription.
+
+8. Enjoy the fruits of your labour and test your program at the REPL.
 
 <!-- vi: filetype=idris2
 -->
