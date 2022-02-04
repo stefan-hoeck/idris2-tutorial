@@ -545,7 +545,8 @@ necessary.
    for `Nucleobase1` and `Nucleobase3`.
 
 2. Sequences of nucleobases can be encoded in one of two directions:
-   *Sense* and *antisense*. Declare a new data type to describe
+   [*Sense* and *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology))
+   Declare a new data type to describe
    the sense of a sequence of nucleobases, and add this as an
    additional parameter to type `Nucleobase` and types `DNA` and
    `RNA`.
@@ -559,8 +560,8 @@ necessary.
 
 5. Adjust `readRNA` and `readDNA` in such a way that
    the *sense* of a sequence is read from the input string.
-   Sense strands are encoded like so: "5´CGGTAG 3´". Antisense
-   strands are encoded like so: "3´CGGTAG 5´".
+   Sense strands are encoded like so: "5´-CGGTAG-3´". Antisense
+   strands are encoded like so: "3´-CGGTAG-5´".
 
 6. Adjust `encode` in such a way that it includes the sense
    in its output.
@@ -571,6 +572,14 @@ necessary.
    after transcription.
 
 8. Enjoy the fruits of your labour and test your program at the REPL.
+
+Note: Instead of using a dependent record, we could again
+have used a sum type of four constructors to encode the different
+types of sequences. However, the number of constructors
+required corresponds to the *product* of the number of values
+of each type level tag. Therefore, this number can grow quickly
+and lead to lengthy blocks of pattern matches when encoded as
+a sum type.
 
 <!-- vi: filetype=idris2
 -->
