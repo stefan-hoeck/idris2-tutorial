@@ -455,8 +455,8 @@ readAcid b str =
         DNABase => maybeToEither err $ readDNA str
         RNABase => maybeToEither err $ readRNA str
 
-readNucleobase : IO (Either InputError (b ** List (Nucleobase b)))
-readNucleobase = do
+getNucleicAcid : IO (Either InputError (b ** List (Nucleobase b)))
+getNucleicAcid = do
   baseString <- getLine
   case baseString of
     "DNA" => map (MkDPair _) . readAcid DNABase <$> getLine
@@ -485,7 +485,7 @@ printRNA = putStrLn . encode
 
 transcribeProg : IO ()
 transcribeProg = do
-  Right (b ** seq) <- readNucleobase
+  Right (b ** seq) <- getNucleicAcid
     | Left (InvalidSequence str) => putStrLn $ "Invalid sequence: " ++ str
     | Left (UnknownBaseType str) => putStrLn $ "Unknown base type: " ++ str
   case b of
@@ -553,7 +553,7 @@ necessary.
 
 3. Refine the types of `complement` and `transcribe`, so that they
    reflect the changing of *sense*. In case of `transcribe`, a
-   strand of DNA is converted to a strand of RNA of opposite sense.
+   strand of antisense DNA is converted to a strand of sense RNA.
 
 4. Define a dependent record storing the base type and sense
    together with a sequence of nucleobases.
@@ -566,7 +566,7 @@ necessary.
 6. Adjust `encode` in such a way that it includes the sense
    in its output.
 
-7. Enhance `readNucleobase` and `transcribeProg` in such a way that
+7. Enhance `getNucleicAcid` and `transcribeProg` in such a way that
    the sense and base type are stored together with the sequence,
    and that `transcribeProg` always prints the antisense RNA strand
    after transcription.
@@ -580,6 +580,128 @@ required corresponds to the *product* of the number of values
 of each type level tag. Therefore, this number can grow quickly
 and lead to lengthy blocks of pattern matches when encoded as
 a sum type.
+
+## Equality as a Type
+
+In the first section of this chapter we saw, how dependent pairs
+and records can be used to calculate *types* from values only known
+at runtime by pattern matching on these values. We will now look
+at how we can describe relations - or *contracts* - between
+values as types, and how we can use values of these types as
+proofs that the contracts hold.
+
+Imagine, we'd like to concatenate two strands of nucleobases
+of unknown source. We can't do the following without risk
+of having to drop all uracile and thymine bases in the
+second strand, as we will never convince the type checker
+that `b1` and `b2` are identical.
+
+```idris
+concatBases1 :  List (Nucleobase b1)
+             -> List (Nucleobase b2)
+             -> List (Nucleobase b1)
+```
+
+There problem with `concatBases` is, that `b1` and `b2` are erased
+implicits and we can't inspect them at runtime. We can change that
+and arrive at the following implementation:
+
+```idris
+concatBases2 :  {b1, b2 : _}
+             -> List (Nucleobase b1)
+             -> List (Nucleobase b2)
+             -> Maybe (List $ Nucleobase b1)
+concatBases2 {b1 = DNABase} {b2 = DNABase} xs ys = Just $ xs ++ ys
+concatBases2 {b1 = RNABase} {b2 = RNABase} xs ys = Just $ xs ++ ys
+concatBases2                               _  _  = Nothing
+```
+
+Once again, we could with a pattern match on unerased type
+arguments (`b1` and `b2`) learn something about the types themselves.
+It should therefore be straight forward to use `concatBases2`
+with two strands of nucleic acids, the types of which are known
+at runtime.
+
+However, if we already know the types of nucleobases involved,
+shouldn't it be possible to establish their equivalence in advance
+*before* even invoking `concatBase2`? For instance, in the
+following we and Idris know, that we're dealing with two
+DNA sequences, because thymine makes an appearance in both,
+and yet, we still get a `Maybe` as a result, which we are
+then forced to carry around in future computations.
+
+One could argue that in a case as described above, we could
+just use `(++)` directly, but `Maybe` as a return type can
+still be annoying, especially if we already established a
+proof that the `Nothing` case can't happen.
+
+### A Type for Equivalent Base Types
+
+Idris, being dependently typed, allows us to encode
+relations between values as new types and use values
+of these types as a proof that the relation holds. Here is
+a type, the values of which will serve as a proof that the
+two `BaseType` indices are identical:
+
+```idris
+data SameBT : (b1 : BaseType) -> (b2 : BaseType) -> Type where
+  Same : (b1 : BaseType) -> SameBT b1 b1
+```
+
+In order to understand what's going on here, we need to look
+at several examples. First note, that `SameBT DNABase DNABase` is
+a *type*, and we can define a constant with this type:
+
+```idris
+sameDNA : SameBT DNABase DNABase
+sameDNA = Same DNABase
+```
+
+Likewise for `RNABase`:
+
+```idris
+sameRNA : SameBT RNABase RNABase
+sameRNA = Same RNABase
+```
+
+Now, here is an interesting case: Even `SameBT RNABase DNABase` is
+a type:
+
+```repl
+Tutorial.Relations> :t SameBT RNABase DNABase
+SameBT RNABase DNABase : Type
+```
+
+But *there is no value of this type*. You will not be able to
+implement the following constant in a provably total way:
+
+```idris
+sameRNA_DNA : SameBT RNABase DNABase
+```
+
+The problem is, that `SameBT` has only one constructor, which will
+take a single `BaseType` argument and use this argument as the
+value of both its indices. But this is exactly what we want: We
+want to limit the possible pairings of base types to only those
+cases where the two values are identical.
+
+We can now use a value of type `SameBT b1 b2` as a *proof* that
+`b1` and `b2` are identical. This allows us to drop the `Maybe`
+in `concatBases`:
+
+```idris
+concatBases :  SameBT b1 b2
+            -> List (Nucleobase b1)
+            -> List (Nucleobase b2)
+            -> List (Nucleobase b1)
+concatBases (Same _) xs ys = xs ++ ys
+
+concatBases0 :  (0 _ : SameBT b1 b2)
+             -> List (Nucleobase b1)
+             -> List (Nucleobase b2)
+             -> List (Nucleobase b1)
+concatBases0 (Same _) xs ys = xs ++ ys
+```
 
 <!-- vi: filetype=idris2
 -->
