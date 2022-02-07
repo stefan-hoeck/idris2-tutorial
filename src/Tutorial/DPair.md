@@ -3,11 +3,18 @@
 ```idris
 module Tutorial.DPair
 
+import Control.Monad.State
+
 import Data.DPair
 import Data.Either
+import Data.HList
+import Data.List1
 import Data.Singleton
 import Data.String
+import Data.Validated
 import Data.Vect
+
+import Text.CSV
 
 %default total
 ```
@@ -660,6 +667,104 @@ and lead to lengthy blocks of pattern matches when encoded as
 a sum type.
 
 ## Use Case: CSV Files with a Schema
+
+In this section, we are going to look at an extended example
+based on our previous work on CSV parsers. We'd like to
+write a small command line program, where users can specify a
+schema for the CSV tables they'd like to parse.
+
+```idris
+data ColType =
+    B8
+  | B16
+  | B32
+  | B64
+  | I8
+  | I16
+  | I32
+  | I64
+  | Str
+  | Boolean
+  | Float
+
+readColType : String -> Maybe ColType
+readColType "b8"       = Just B8
+readColType "b16"      = Just B16
+readColType "b32"      = Just B32
+readColType "b64"      = Just B64
+readColType "i8"       = Just I8
+readColType "i16"      = Just I16
+readColType "i32"      = Just I32
+readColType "i64"      = Just I64
+readColType "str"      = Just Str
+readColType "boolean"  = Just Boolean
+readColType "float"    = Just Float
+readColType _          = Nothing
+
+IdrisType : ColType -> Type
+IdrisType B8      = Bits8
+IdrisType B16     = Bits16
+IdrisType B32     = Bits32
+IdrisType B64     = Bits64
+IdrisType I8      = Int8
+IdrisType I16     = Int16
+IdrisType I32     = Int32
+IdrisType I64     = Int64
+IdrisType Str     = String
+IdrisType Boolean = Bool
+IdrisType Float   = Double
+
+Row : List ColType -> Type
+Row = HList . map IdrisType
+
+pairWithIndex : a -> State Nat (Nat,a)
+pairWithIndex v = (,v) <$> get <* modify S
+
+csvField : (c : ColType) -> CSVField (IdrisType c)
+csvField B8      = %search
+csvField B16     = %search
+csvField B32     = %search
+csvField B64     = %search
+csvField I8      = %search
+csvField I16     = %search
+csvField I32     = %search
+csvField I64     = %search
+csvField Str     = %search
+csvField Boolean = %search
+csvField Float   = %search
+
+csvLine : (ts : List ColType) -> CSVLine (Row ts)
+csvLine []        = %search
+csvLine (x :: xs) =
+  let field = csvField x
+      line  = csvLine xs
+   in %search
+
+tagAndDecode :  (ts : List ColType)
+             -> String
+             -> State Nat (Validated CSVError (Row ts))
+tagAndDecode ts s =
+  let line = csvLine ts
+   in uncurry decode <$> pairWithIndex s
+```
+
+```idris
+record Table where
+  constructor MkTable
+  schema : List ColType
+  size   : Nat
+  rows   : Vect size (Row schema)
+
+prependRow : Table -> String -> Validated CSVError Table
+prependRow (MkTable _ _ rows) str =
+  (\r => MkTable _ _ $ r :: rows) <$> evalState 1 (tagAndDecode _ str)
+
+clear : Table -> Table
+clear t = MkTable t.schema _ []
+
+rowAt : (t : Table) -> Fin (size t) -> Row (schema t)
+rowAt t ix = index ix t.rows
+```
 
 <!-- vi: filetype=idris2
 -->
