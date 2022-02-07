@@ -8,6 +8,7 @@ import Control.Monad.State
 import Data.DPair
 import Data.Either
 import Data.HList
+import Data.List
 import Data.List1
 import Data.Singleton
 import Data.String
@@ -671,36 +672,78 @@ a sum type.
 In this section, we are going to look at an extended example
 based on our previous work on CSV parsers. We'd like to
 write a small command line program, where users can specify a
-schema for the CSV tables they'd like to parse.
+schema for the CSV tables they'd like to parse and load into
+memory. Before we begin, here is a REPL session running
+the final program:
+
+```repl
+Tutorial.DPair> :exec main
+Enter a command: new b8,boolean,str
+Created table. Schema: b8,boolean,str
+Enter a command: add 100,t,foo
+Row prepended.
+Enter a command: size
+Current size: 1
+Enter a command: schema
+Current schema: b8,boolean,str
+Enter a command: add 12,f,yeah
+Row prepended.
+Enter a command: get 1
+Row 1: 100,t,"foo"
+Enter a command: get 2
+Invalid index: 2
+Enter a command: get 0
+Row 0: 12,f,"yeah"
+Enter a command: size
+Current size: 2
+Enter a command: clear
+Table cleared
+Enter a command: get 0
+Invalid index: 0
+Enter a command: quit
+Goodbye.
+```
+
+We'd like to focus on several things here:
+
+* Purity 1: With exception of the main program loop, all functions
+  used in the implementation should be pure, which in this context
+  means, not running in any monad with side effects such as `IO`.
+* Fail early: With the exception of the command parser, all functions
+  updating the table should be typed and implemented in such a way
+  that they cannot fail.
+
+Since we allow users of our library to specify a schema (order and
+types of columns) for the table they work with, this information is
+not known until runtime. The same goes for the current size of the
+table. We will therefore store both values as fields in a
+dependent record.
+
+### Encoding the Schema
+
+We need to inspect the table schema at runtime. Although theoretically
+possible, it is not advisable to operate on Idris types directly here.
+We'd rather use a closed custom data type describing the types of
+columns we understand. In a first try, we only support some Idris
+primitives:
 
 ```idris
 data ColType =
-    B8
-  | B16
-  | B32
-  | B64
-  | I8
-  | I16
-  | I32
-  | I64
+    B8 | B16 | B32 | B64
+  | I8 | I16 | I32 | I64
   | Str
   | Boolean
   | Float
 
-readColType : String -> Maybe ColType
-readColType "b8"       = Just B8
-readColType "b16"      = Just B16
-readColType "b32"      = Just B32
-readColType "b64"      = Just B64
-readColType "i8"       = Just I8
-readColType "i16"      = Just I16
-readColType "i32"      = Just I32
-readColType "i64"      = Just I64
-readColType "str"      = Just Str
-readColType "boolean"  = Just Boolean
-readColType "float"    = Just Float
-readColType _          = Nothing
+Schema : Type
+Schema = List ColType
+```
 
+Next, we need a way to convert a `Schema` to a list of Idris
+types, which we will the use as the index of a heterogeneous
+list representing the rows in our table:
+
+```idris
 IdrisType : ColType -> Type
 IdrisType B8      = Bits8
 IdrisType B16     = Bits16
@@ -716,10 +759,204 @@ IdrisType Float   = Double
 
 Row : List ColType -> Type
 Row = HList . map IdrisType
+```
 
+We can now describe a table as a dependent record storing
+the table's content as a vector of rows. In order to safely
+index rows in the table and parse new rows to be added, the
+current schema and size of the table must be known at runtime:
+
+```idris
+record Table where
+  constructor MkTable
+  schema : List ColType
+  size   : Nat
+  rows   : Vect size (Row schema)
+```
+
+Finally, we define an indexed data type describing commands
+operating on the current table:
+
+```idris
+data Command : (t : Table) -> Type where
+  Clear       : Command t
+  PrintSchema : Command t
+  PrintSize   : Command t
+  New         : (newSchema : List ColType) -> Command t
+  Prepend     : Row (schema t) -> Command t
+  Get         : Fin (size t) -> Command t
+  Delete      : Fin (size t) -> Command t
+  Quit        : Command t
+```
+
+Note, how we use dependent types for `Prepend`, `Get`, and `Delete`
+to in all three cases make sure, that the resulting modification
+is type safe and without the possibility of failure.
+
+### Parsing Commands
+
+User input validation is an important topic when writing an
+application. If it happens early, you can keep larger parts
+of your application pure (which - in this context - means:
+"without the possibility of failure") and provably total.
+If done properly, this step encodes and handles most if not all
+ways in which things can go wrong in your program, presenting
+users with clear error messages, telling them exactly what caused
+the issue. As you surely have experienced yourself, there are few
+things more frustrating than a non-trivial computer program terminating
+with an unhelpful "There was an error.".
+
+So, in order to treat this important topic with all due respect,
+we are first going to implement a custom error type. This is
+not *strictly* necessary for small programs, but once your software
+gets more complex, it can be tremendously helpful in keeping track
+of what can go wrong where. In order to figure out what can possibly
+go wrong, we first need to decide on how the commands should be entered.
+Here, we use a single keyword for each command, together with an
+optional number of arguments separated from the keyword by a single
+space character. For instance: `"new i16,boolean,str,str"`,
+for initializing an empty table with a new schema. With this settled,
+here is a list of things that can go wrong, and the error we'd
+like to print:
+
+* A bogus command is entered. We repeat the input with a message that
+  we don't know the command plus a list of commands we know about.
+* An invalid schema was entered. In this case, we list the position
+  of the first unknown type, the string we found there, and a list of
+  types we know about.
+* An invalid CSV encoding of a row was entered. We list the position,
+  the string encountered there, plus the expected type. In case
+  of a too small or too large number of fields, we also print
+  a corresponding error message.
+* An index was out of bounds. This happens, when users try to access
+  or delete a row. We print the current number of rows, the value
+  entered plus a hint, that row indices start at zero.
+* A value not representing a natural number was entered as the index.
+  We print an according error message.
+
+That's a lot of stuff to do, so let's get going.
+
+```idris
+data Error : Type where
+  UnknownCommand :  String -> Error
+
+  UnknownType    :  (pos : Nat) -> String -> Error
+
+  InvalidField   :  (schema : Schema)
+                 -> (pos : Fin $ length schema)
+                 -> String
+                 -> Error
+
+  WrongNumberOfFields :  (schema : Schema)
+                      -> Nat
+                      -> String
+                      -> Error
+
+  IndexOutOfBounds : (size : Nat) -> (index : Nat) -> Error
+
+  NoNat            : String -> Error
+```
+
+In order to conveniently construct our error message, it is best
+to use Idris' string interpolation facilities: We can enclose
+arbitrary string expressions in a string literal by wrapping
+them in a section of curly braces, like so: `"foo \{myExpr a b c}"`.
+We can pair this with multiline string literals to achieve pretty
+nice formatting of error messages.
+
+```idris
+showColType : ColType -> String
+showColType B8       = "b8"
+showColType B16      = "b16"
+showColType B32      = "b32"
+showColType B64      = "b64"
+showColType I8       = "i8"
+showColType I16      = "i16"
+showColType I32      = "i32"
+showColType I64      = "i64"
+showColType Str      = "str"
+showColType Boolean  = "boolean"
+showColType Float    = "float"
+
+showSchema : Schema -> String
+showSchema = concat . intersperse "," . map showColType
+
+allTypes : String
+allTypes = concat
+         . List.intersperse ", "
+         . map showColType
+         $ [B8,B16,B32,B64,I8,I16,I32,I64,Str,Boolean,Float]
+
+showError : Error -> String
+showError (UnknownCommand x) = """
+  Unknown command: \{x}.
+  Known commands are: clear, schema, size, new, add, get, delete, quit.
+  """
+
+showError (UnknownType pos x) = """
+  Unknown type at position \{show pos}: \{x}.
+  Known types are: \{allTypes}.
+  """
+
+showError (InvalidField schema pos x) = """
+  Invalid value at position \{show pos}.
+  Expected type: \{showColType . index pos $ fromList schema}.
+  Value found: \{x}.
+  """
+
+showError (WrongNumberOfFields schema k x) = """
+  Wrong number of fields.
+  Expected: \{show $ length schema}
+  Found: \{show k}
+  Input: \{x}
+  """
+showError (IndexOutOfBounds size index) = """
+  Index out of bounds.
+  Size of table: \{show size}
+  Index: \{show index}
+  Note: Indices start at zero.
+  """
+
+showError (NoNat x) = "Not a natural number: \{x}"
+```
+
+We can now write parsers for the different commands. We need facilities
+to parse vector indices, schemata, and CSV rows.
+
+We need to read a schema from user input, so we must decide on
+a way to encode it. Since we are using a CSV format for encoding
+and decoding rows, it makes sense to also encode the schema
+as a comma-separated list of values:
+
+```idris
 pairWithIndex : a -> State Nat (Nat,a)
 pairWithIndex v = (,v) <$> get <* modify S
 
+zipWithIndex : List a -> List (Nat,a)
+zipWithIndex = evalState 1 . traverse pairWithIndex
+
+readColType : Nat -> String -> Either Error ColType
+readColType _ "b8"       = Right B8
+readColType _ "b16"      = Right B16
+readColType _ "b32"      = Right B32
+readColType _ "b64"      = Right B64
+readColType _ "i8"       = Right I8
+readColType _ "i16"      = Right I16
+readColType _ "i32"      = Right I32
+readColType _ "i64"      = Right I64
+readColType _ "str"      = Right Str
+readColType _ "boolean"  = Right Boolean
+readColType _ "float"    = Right Float
+readColType n s          = Left $ UnknownType n s
+
+readSchema : String -> Either Error Schema
+readSchema = traverse (uncurry readColType)
+           . zipWithIndex
+           . forget
+           . split (',' ==)
+```
+
+```idris
 csvField : (c : ColType) -> CSVField (IdrisType c)
 csvField B8      = %search
 csvField B16     = %search
@@ -740,30 +977,98 @@ csvLine (x :: xs) =
       line  = csvLine xs
    in %search
 
-tagAndDecode :  (ts : List ColType)
-             -> String
-             -> State Nat (Validated CSVError (Row ts))
-tagAndDecode ts s =
+decodeRow :  (ts : List ColType)
+          -> String
+          -> State Nat (Validated CSVError (Row ts))
+decodeRow ts s =
   let line = csvLine ts
    in uncurry decode <$> pairWithIndex s
+
+encodeField : (t : ColType) -> IdrisType t -> String
+encodeField B8      x     = show x
+encodeField B16     x     = show x
+encodeField B32     x     = show x
+encodeField B64     x     = show x
+encodeField I8      x     = show x
+encodeField I16     x     = show x
+encodeField I32     x     = show x
+encodeField I64     x     = show x
+encodeField Str     x     = show x
+encodeField Boolean True  = "t"
+encodeField Boolean False = "f"
+encodeField Float   x     = show x
+
+encodeRow : (ts : List ColType) -> Row ts -> String
+encodeRow ts = concat . intersperse "," . go ts
+  where go : (cs : List ColType) -> Row cs -> Vect (length cs) String
+        go []        []        = []
+        go (c :: cs) (v :: vs) = encodeField c v :: go cs vs
+
 ```
 
 ```idris
-record Table where
-  constructor MkTable
-  schema : List ColType
-  size   : Nat
-  rows   : Vect size (Row schema)
 
-prependRow : Table -> String -> Validated CSVError Table
-prependRow (MkTable _ _ rows) str =
-  (\r => MkTable _ _ $ r :: rows) <$> evalState 1 (tagAndDecode _ str)
+readCommand :  (t : Table) -> String -> Either String (Command t)
+readCommand _                "clear"   = Right Clear
+readCommand _                "schema"  = Right PrintSchema
+readCommand _                "size"    = Right PrintSize
+readCommand _                "quit"    = Right Quit
+readCommand (MkTable ts n _) s         = case forget $ split (' ' ==) s of
+  ["new", str] =>
+    map New . maybeToEither ("Invalid schema: " ++ str) $ readSchema str
 
-clear : Table -> Table
-clear t = MkTable t.schema _ []
+  ["add", str]    => case evalState 1 (decodeRow ts str) of
+    Valid   row => Right $ Prepend row
+    Invalid _   => Left $ "Parse error: " ++ str
 
-rowAt : (t : Table) -> Fin (size t) -> Row (schema t)
-rowAt t ix = index ix t.rows
+  ["get", str]    =>
+    let mix = parsePositive str >>= (`natToFin` n)
+     in map Get . maybeToEither ("Invalid index: " ++ str) $ mix
+
+  ["delete", str] =>
+    let mix = parsePositive str >>= (`natToFin` n)
+     in map Delete . maybeToEither ("Invalid index: " ++ str) $ mix
+
+  _               => Left $ "Unknown command: " ++ s
+
+applyCommand :  (t : Table) -> Command t -> Either String (Table, String)
+applyCommand (MkTable ts n rs) Clear =
+  Right (MkTable ts _ [], "Table cleared")
+
+applyCommand (MkTable ts n rs) PrintSchema =
+  Right (MkTable ts n rs, "Current schema: " ++ showSchema ts)
+
+applyCommand (MkTable ts n rs) PrintSize =
+  Right (MkTable ts n rs, "Current size: " ++ show n)
+
+applyCommand (MkTable _ _ rs) (New ts') =
+  Right (MkTable ts' _ [], "Created table. Schema: " ++ showSchema ts')
+
+applyCommand (MkTable ts n rs) (Prepend r) =
+  Right (MkTable ts _ $ r :: rs, "Row prepended.")
+
+applyCommand (MkTable ts n rs) (Get x) =
+  Right (MkTable ts n rs, "Row " ++ show x ++ ": " ++ encodeRow ts (index x rs))
+
+applyCommand (MkTable ts (S n) rs) (Delete x) =
+  Right (MkTable ts n $ deleteAt x rs, "Deleted row: " ++ show x)
+
+applyCommand (MkTable ts n rs) Quit =  Left "Goodbye."
+
+covering
+runProg : Table -> IO ()
+runProg t = do
+  putStr "Enter a command: "
+  str <- getLine
+  case readCommand t str of
+    Left err  => putStrLn err >> runProg t
+    Right cmd => case applyCommand t cmd of
+      Left msg => putStrLn msg
+      Right (t2,msg) => putStrLn msg >> runProg t2
+
+covering
+main : IO ()
+main = runProg $ MkTable [] _ []
 ```
 
 <!-- vi: filetype=idris2
