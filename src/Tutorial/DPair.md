@@ -659,5 +659,7 @@ of each type level tag. Therefore, this number can grow quickly
 and lead to lengthy blocks of pattern matches when encoded as
 a sum type.
 
+## Use Case: CSV Files with a Schema
+
 <!-- vi: filetype=idris2
 -->
