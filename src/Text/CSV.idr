@@ -2,6 +2,7 @@
 ||| and is used in later chapters as well.
 module Text.CSV
 
+import Data.Fin
 import Data.HList
 import Data.List1
 import Data.Maybe
@@ -88,6 +89,10 @@ public export
 CSVField a => CSVField (Maybe a) where
   read "" = Just Nothing
   read s  = Just <$> read s
+
+public export
+{n : Nat} -> CSVField (Fin n) where
+  read s = read s >>= (`natToFin` n)
 
 --------------------------------------------------------------------------------
 --          CSVError
