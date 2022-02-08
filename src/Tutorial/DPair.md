@@ -838,23 +838,13 @@ That's a lot of stuff to do, so let's get going.
 
 ```idris
 data Error : Type where
-  UnknownCommand :  String -> Error
-
-  UnknownType    :  (pos : Nat) -> String -> Error
-
-  InvalidField   :  (schema : Schema)
-                 -> (pos : Fin $ length schema)
-                 -> String
-                 -> Error
-
-  WrongNumberOfFields :  (schema : Schema)
-                      -> Nat
-                      -> String
-                      -> Error
-
-  IndexOutOfBounds : (size : Nat) -> (index : Nat) -> Error
-
-  NoNat            : String -> Error
+  UnknownCommand : String -> Error
+  UnknownType    : (pos : Nat) -> String -> Error
+  InvalidField   : (pos : Nat) -> ColType -> String -> Error
+  ExpectedEOI    : Nat -> String -> Error
+  UnexpectedEOI  : Nat -> String -> Error
+  OutOfBounds    : (size : Nat) -> (index : Nat) -> Error
+  NoNat          : String -> Error
 ```
 
 In order to conveniently construct our error message, it is best
@@ -898,19 +888,25 @@ showError (UnknownType pos x) = """
   Known types are: \{allTypes}.
   """
 
-showError (InvalidField schema pos x) = """
+showError (InvalidField pos tpe x) = """
   Invalid value at position \{show pos}.
-  Expected type: \{showColType . index pos $ fromList schema}.
+  Expected type: \{showColType tpe}.
   Value found: \{x}.
   """
 
-showError (WrongNumberOfFields schema k x) = """
-  Wrong number of fields.
-  Expected: \{show $ length schema}
-  Found: \{show k}
+showError (ExpectedEOI k x) = """
+  Expected end of input.
+  Position: \{show k}
   Input: \{x}
   """
-showError (IndexOutOfBounds size index) = """
+
+showError (UnexpectedEOI k x) = """
+  Unxpected end of input.
+  Position: \{show k}
+  Input: \{x}
+  """
+
+showError (OutOfBounds size index) = """
   Index out of bounds.
   Size of table: \{show size}
   Index: \{show index}
@@ -956,33 +952,32 @@ readSchema = traverse (uncurry readColType)
            . split (',' ==)
 ```
 
+We also need to encode and decode CSV content:
+
 ```idris
-csvField : (c : ColType) -> CSVField (IdrisType c)
-csvField B8      = %search
-csvField B16     = %search
-csvField B32     = %search
-csvField B64     = %search
-csvField I8      = %search
-csvField I16     = %search
-csvField I32     = %search
-csvField I64     = %search
-csvField Str     = %search
-csvField Boolean = %search
-csvField Float   = %search
+decodeField : Nat -> (c : ColType) -> String -> Either Error (IdrisType c)
+decodeField k c s =
+  let err = InvalidField k c s
+   in case c of
+        B8      => maybeToEither err $ read s
+        B16     => maybeToEither err $ read s
+        B32     => maybeToEither err $ read s
+        B64     => maybeToEither err $ read s
+        I8      => maybeToEither err $ read s
+        I16     => maybeToEither err $ read s
+        I32     => maybeToEither err $ read s
+        I64     => maybeToEither err $ read s
+        Str     => maybeToEither err $ read s
+        Boolean => maybeToEither err $ read s
+        Float   => maybeToEither err $ read s
 
-csvLine : (ts : List ColType) -> CSVLine (Row ts)
-csvLine []        = %search
-csvLine (x :: xs) =
-  let field = csvField x
-      line  = csvLine xs
-   in %search
-
-decodeRow :  (ts : List ColType)
-          -> String
-          -> State Nat (Validated CSVError (Row ts))
-decodeRow ts s =
-  let line = csvLine ts
-   in uncurry decode <$> pairWithIndex s
+decodeRow : (ts : Schema) -> String -> Either Error (Row ts)
+decodeRow ts s = go 0 ts . forget $ split (',' ==) s
+  where go : Nat -> (cs : Schema) -> List String -> Either Error (Row cs)
+        go k []       []         = Right []
+        go k []       (_ :: _)   = Left $ ExpectedEOI k s
+        go k (_ :: _) []         = Left $ UnexpectedEOI k s
+        go k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]
 
 encodeField : (t : ColType) -> IdrisType t -> String
 encodeField B8      x     = show x
@@ -1003,57 +998,52 @@ encodeRow ts = concat . intersperse "," . go ts
   where go : (cs : List ColType) -> Row cs -> Vect (length cs) String
         go []        []        = []
         go (c :: cs) (v :: vs) = encodeField c v :: go cs vs
-
 ```
 
 ```idris
+readFin : {n : _} -> String -> Either Error (Fin n)
+readFin s = do
+  k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
+  maybeToEither (OutOfBounds n k) $ natToFin k n
 
-readCommand :  (t : Table) -> String -> Either String (Command t)
+readCommand :  (t : Table) -> String -> Either Error (Command t)
 readCommand _                "clear"   = Right Clear
 readCommand _                "schema"  = Right PrintSchema
 readCommand _                "size"    = Right PrintSize
 readCommand _                "quit"    = Right Quit
 readCommand (MkTable ts n _) s         = case forget $ split (' ' ==) s of
-  ["new", str] =>
-    map New . maybeToEither ("Invalid schema: " ++ str) $ readSchema str
+  ["new",    str] => New     <$> readSchema str
+  ["add",    str] => Prepend <$> decodeRow ts str
+  ["get",    str] => Get     <$> readFin str
+  ["delete", str] => Delete  <$> readFin str
+  _               => Left $ UnknownCommand s
+```
 
-  ["add", str]    => case evalState 1 (decodeRow ts str) of
-    Valid   row => Right $ Prepend row
-    Invalid _   => Left $ "Parse error: " ++ str
+### Running the Application
 
-  ["get", str]    =>
-    let mix = parsePositive str >>= (`natToFin` n)
-     in map Get . maybeToEither ("Invalid index: " ++ str) $ mix
+```idris
+dispCommand :  (t : Table) -> Command t -> String
+dispCommand _ Clear       = "Table cleared"
+dispCommand t PrintSchema = "Current schema: \{showSchema t.schema}"
+dispCommand t PrintSize   = "Current size: \{show t.size}"
+dispCommand _ (New ts)    = "Created table. Schema: \{showSchema ts}"
+dispCommand t (Prepend r) = "Row prepended: \{encodeRow t.schema r}"
+dispCommand _ (Delete x)  = "Deleted row: \{show x}."
+dispCommand _ Quit        = "Goodbye."
+dispCommand t (Get x)     =
+  "Row \{show x}: \{encodeRow t.schema (index x t.rows)}"
 
-  ["delete", str] =>
-    let mix = parsePositive str >>= (`natToFin` n)
-     in map Delete . maybeToEither ("Invalid index: " ++ str) $ mix
-
-  _               => Left $ "Unknown command: " ++ s
-
-applyCommand :  (t : Table) -> Command t -> Either String (Table, String)
-applyCommand (MkTable ts n rs) Clear =
-  Right (MkTable ts _ [], "Table cleared")
-
-applyCommand (MkTable ts n rs) PrintSchema =
-  Right (MkTable ts n rs, "Current schema: " ++ showSchema ts)
-
-applyCommand (MkTable ts n rs) PrintSize =
-  Right (MkTable ts n rs, "Current size: " ++ show n)
-
-applyCommand (MkTable _ _ rs) (New ts') =
-  Right (MkTable ts' _ [], "Created table. Schema: " ++ showSchema ts')
-
-applyCommand (MkTable ts n rs) (Prepend r) =
-  Right (MkTable ts _ $ r :: rs, "Row prepended.")
-
-applyCommand (MkTable ts n rs) (Get x) =
-  Right (MkTable ts n rs, "Row " ++ show x ++ ": " ++ encodeRow ts (index x rs))
-
-applyCommand (MkTable ts (S n) rs) (Delete x) =
-  Right (MkTable ts n $ deleteAt x rs, "Deleted row: " ++ show x)
-
-applyCommand (MkTable ts n rs) Quit =  Left "Goodbye."
+applyCommand :  (t : Table) -> Command t -> Table
+applyCommand (MkTable ts _ _)  Clear       = MkTable ts _ []
+applyCommand t                 PrintSchema = t
+applyCommand t                 PrintSize   = t
+applyCommand _                 (New ts)    = MkTable ts _ []
+applyCommand (MkTable ts n rs) (Prepend r) = MkTable ts _ $ r :: rs
+applyCommand t                 (Get x)     = t
+applyCommand t                 Quit        =  t
+applyCommand (MkTable ts n rs) (Delete x)  = case n of
+  S k => MkTable ts k (deleteAt x rs)
+  Z   => absurd x
 
 covering
 runProg : Table -> IO ()
@@ -1061,10 +1051,10 @@ runProg t = do
   putStr "Enter a command: "
   str <- getLine
   case readCommand t str of
-    Left err  => putStrLn err >> runProg t
-    Right cmd => case applyCommand t cmd of
-      Left msg => putStrLn msg
-      Right (t2,msg) => putStrLn msg >> runProg t2
+    Left err   => putStrLn (showError err) >> runProg t
+    Right Quit => putStrLn (dispCommand t Quit)
+    Right cmd  => putStrLn (dispCommand t cmd) >>
+                  runProg (applyCommand t cmd)
 
 covering
 main : IO ()
