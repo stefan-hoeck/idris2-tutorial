@@ -70,29 +70,29 @@ RNA' = List (Nucleobase' RNABase)
 DNA' : Type
 DNA' = List (Nucleobase' DNABase)
 
-Nucleobase1 : Type
-Nucleobase1 = (b ** List (Nucleobase' b))
+Acid1 : Type
+Acid1 = (b ** List (Nucleobase' b))
 
-record Nucleobase2 where
-  constructor MkNucleobase
+record Acid2 where
+  constructor MkAcid2
   baseType : BaseType
   sequence : List (Nucleobase' baseType)
 
-data Nucleobase3 : Type where
-  SomeRNA : RNA' -> Nucleobase3
-  SomeDNA : DNA' -> Nucleobase3
+data Acid3 : Type where
+  SomeRNA : RNA' -> Acid3
+  SomeDNA : DNA' -> Acid3
 
-nb12 : Nucleobase1 -> Nucleobase2
-nb12 (fst ** snd) = MkNucleobase fst snd
+nb12 : Acid1 -> Acid2
+nb12 (fst ** snd) = MkAcid2 fst snd
 
-nb21 : Nucleobase2 -> Nucleobase1
-nb21 (MkNucleobase bt seq) = (bt ** seq)
+nb21 : Acid2 -> Acid1
+nb21 (MkAcid2 bt seq) = (bt ** seq)
 
-nb13 : Nucleobase1 -> Nucleobase3
+nb13 : Acid1 -> Acid3
 nb13 (DNABase ** snd) = SomeDNA snd
 nb13 (RNABase ** snd) = SomeRNA snd
 
-nb31 : Nucleobase3 -> Nucleobase1
+nb31 : Acid3 -> Acid1
 nb31 (SomeRNA xs) = (RNABase ** xs)
 nb31 (SomeDNA xs) = (DNABase ** xs)
 

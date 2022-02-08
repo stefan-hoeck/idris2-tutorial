@@ -9,7 +9,6 @@ the decisions made by users or the state of the surrounding world.
 For instance, if we store a file's content as a vector of lines
 of text, the length of this vector is in general unknown until
 the file has been loaded into memory.
-
 As a consequence, the types of values we work with depend on
 other values only known at runtime, and we can often only figure out
 these types by pattern matching on the values they depend on.
@@ -262,6 +261,14 @@ takeWhile3 f (x :: xs) = case f x of
   True  => let (_  ** ys) = takeWhile3 f xs in (_ ** x :: ys)
 ```
 
+Just like with regular pairs, we can use the dependent pair
+syntax to define dependent triples and larger tuples:
+
+```idris
+AnyMatrix : (a : Type) -> Type
+AnyMatrix a = (m ** n ** Vect m (Vect n a))
+```
+
 ### Erased Existentials
 
 Sometimes, it is possible to determine the value of an
@@ -281,13 +288,13 @@ takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\n => Vect n a)
 takeWhileExists f []        = Evidence _ []
 takeWhileExists f (x :: xs) = case f x of
   True  => let Evidence _ ys = takeWhileExists f xs
-           in Evidence _ (x :: ys)
+            in Evidence _ (x :: ys)
   False => takeWhileExists f xs
 ```
 
-In order to restore an erased value, data type `Data.Singleton`
-from *base* can be useful: It is parameterized by the *value*
-it stores:
+In order to restore an erased value, data type `Singleton`
+from *base* module `Data.Singleton` can be useful: It is
+parameterized by the *value* it stores:
 
 ```idris
 true : Singleton True
@@ -374,20 +381,24 @@ data Nucleobase : BaseType -> Type where
   Thymine  : Nucleobase DNABase
   Uracile  : Nucleobase RNABase
 
+NucleicAcid : BaseType -> Type
+NucleicAcid = List . Nucleobase
+
 RNA : Type
-RNA = List (Nucleobase RNABase)
+RNA = NucleicAcid RNABase
 
 DNA : Type
-DNA = List (Nucleobase DNABase)
+DNA = NucleicAcid DNABase
 
-encode : List (Nucleobase b) -> String
+encodeBase : Nucleobase b -> Char
+encodeBase Adenine  = 'A'
+encodeBase Cytosine = 'C'
+encodeBase Guanine  = 'G'
+encodeBase Thymine  = 'T'
+encodeBase Uracile  = 'U'
+
+encode : NucleicAcid b -> String
 encode = pack . map encodeBase
-  where encodeBase : Nucleobase c -> Char
-        encodeBase Adenine  = 'A'
-        encodeBase Cytosine = 'C'
-        encodeBase Guanine  = 'G'
-        encodeBase Thymine  = 'T'
-        encodeBase Uracile  = 'U'
 ```
 
 It is a type error to use `Uracile` in a strand of DNA:
@@ -399,13 +410,11 @@ Error: When unifying:
 and:
     Nucleobase DNABase
 Mismatch between: RNABase and DNABase.
-
-(Interactive):1:10--1:17
- 1 | the DNA [Uracile,Adenine]
 ```
 
 Note, how we used a variable for nucleobases `Adenine`, `Cytosine`, and
-`Guanine`: Client code is free to choose a value here. This allows us
+`Guanine`: These are again universally quantified,
+and client code is free to choose a value here. This allows us
 to use these bases in strands of DNA *and* RNA:
 
 ```idris
@@ -443,7 +452,9 @@ readDNA = traverse readDNABase . unpack
 ```
 
 Again, in case of the bases appearing in both kinds of strands,
-users of `readAnyBase` are free to choose what base type they want.
+users of the universally quantified `readAnyBase`
+are free to choose what base type they want, but they will
+never get a `Thymine` or `Uracile` value.
 
 We can now implement some simple calculation on sequences of
 nucleobases. For instance, we can come up with the complementary
@@ -481,11 +492,12 @@ complementBase' Uracile  = Adenine
 ```
 
 All goes well with the exception of the `Adenine` case. Remember:
-The *callers* of our function can decide what `b` is supposed to
+Parameter `b` is universally quantified, and the *callers* of
+our function can decide what `b` is supposed to
 be. We therefore can't just return `Thymine`: Idris will respond
 with a type error since callers might want a `Nucleobase RNABase` instead.
-One way to go about this is to take an additional (unerased) argument
-representing the base type:
+One way to go about this is to take an additional unerased argument
+(explicit or implicit) representing the base type:
 
 ```idris
 complementBase : (b : BaseType) -> Nucleobase b -> Nucleobase b
@@ -497,21 +509,21 @@ complementBase _       Thymine  = Adenine
 complementBase _       Uracile  = Adenine
 ```
 
-This is again an example of a dependent type: The input and
-output types both *depend* on the *value* of the first argument.
-We can now use this to calculate the complement of any
-nucleic acid:
+This is again an example of a dependent *function* type (also called a
+[*pi type*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A0_type)):
+The input and output types both *depend* on the *value* of the first argument.
+We can now use this to calculate the complement of any nucleic acid:
 
 ```idris
-complement : (b : BaseType) -> List (Nucleobase b) -> List (Nucleobase b)
+complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b
 complement b = map (complementBase b)
 ```
 
 Now, here is an interesting use case: We'd like to read a sequence
-of a nucleobase from user input, accepting two strings: The first
+of nucleobases from user input, accepting two strings: The first
 telling us, whether the user plans to enter a DNA or RNA sequence,
 the second being the sequence itself. What should be the type of
-such a function? Well, we're describing computations with side effect,
+such a function? Well, we're describing computations with side effects,
 so something involving `IO` seems about right. User input almost
 always needs to be validated or translated, so something might go wrong
 and we need an error type for this case. Finally, our users can
@@ -539,8 +551,8 @@ data RNAOrDNA = ItsRNA RNA | ItsDNA DNA
 ```
 
 This might be the way to go, but for results with many options, this
-can get cumbersome quickly. Also: Why come up with a new data type when
-we already have the tools to deal with this?
+can get cumbersome quickly. Also: Why come up with a custom data type when
+we already have the tools to deal with this at our hands?
 
 Here is how we can encode this with a dependent pair:
 
@@ -558,7 +570,7 @@ readAcid b str =
         DNABase => maybeToEither err $ readDNA str
         RNABase => maybeToEither err $ readRNA str
 
-getNucleicAcid : IO (Either InputError (b ** List (Nucleobase b)))
+getNucleicAcid : IO (Either InputError (b ** NucleicAcid b))
 getNucleicAcid = do
   baseString <- getLine
   case baseString of
@@ -567,7 +579,7 @@ getNucleicAcid = do
     _     => pure $ Left (UnknownBaseType baseString)
 ```
 
-Note, how we paired the type of nucleobase with nucleic acid
+Note, how we paired the type of nucleobases with nucleic acid
 strand. Assume now, we implement a function for transcribing
 a strand of DNA to RNA, and we'd like to convert a sequence of
 nucleobases from user input to the corresponding RNA sequence.
@@ -596,10 +608,19 @@ transcribeProg = do
     RNABase => printRNA seq
 ```
 
-By pattern matching on the first value of the dependent pair, we could
-determine, whether the second value is a list of RNA bases or
-a list of DNA bases. In the first case, we had to transcribe the
+By pattern matching on the first value of the dependent pair we could
+determine, whether the second value is an RNA or DNA sequence.
+In the first case, we had to transcribe the
 sequence first, in the second case, we could invoke `printRNA` directly.
+
+In a more interesting scenario, we would *translate* the RNA sequence
+to the corresponding protein sequence. Still, this example shows
+how to deal with a simplified real world scenario: Data may be
+encoded differently and coming from different sources. By using precise
+types, we are forced to first convert values to the correct
+format. Failing to do so leads to a compile time exception instead of
+an error at runtime or - even worse - the program silently running
+a bogus computation.
 
 ### Dependent Records vs Sum Types
 
@@ -607,22 +628,22 @@ Dependent records as shown for `AnyVect a` are a generalization
 of dependent pairs: We can have an arbitrary number of fields
 and use the values stored therein to calculate the types of
 other values. For very simple cases like the example with nucleobases,
-it doesn't matter too mach, whether we use a `DPair`, a custom
+it doesn't matter too much, whether we use a `DPair`, a custom
 dependent record, or even a sum type. In fact, the three encodings
 are equally expressive:
 
 ```idris
-Nucleobase1 : Type
-Nucleobase1 = (b ** List (Nucleobase b))
+Acid1 : Type
+Acid1 = (b ** NucleicAcid b)
 
-record Nucleobase2 where
-  constructor MkNucleobase
+record Acid2 where
+  constructor MkAcid2
   baseType : BaseType
-  sequence : List (Nucleobase baseType)
+  sequence : NucleicAcid baseType
 
-data Nucleobase3 : Type where
-  SomeRNA : RNA -> Nucleobase3
-  SomeDNA : DNA -> Nucleobase3
+data Acid3 : Type where
+  SomeRNA : RNA -> Acid3
+  SomeDNA : DNA -> Acid3
 ```
 
 It is trivial to write lossless conversions between these
@@ -644,8 +665,8 @@ necessary.
 
 1. Proof that the three encodings for nucleobases are *isomorphic*
    (meaning: of the same structure) by writing lossless conversion
-   functions from `Nucleobase1` to `Nucleobase2` and back. Likewise
-   for `Nucleobase1` and `Nucleobase3`.
+   functions from `Acid1` to `Acid2` and back. Likewise
+   for `Acid1` and `Acid3`.
 
 2. Sequences of nucleobases can be encoded in one of two directions:
    [*Sense* and *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology))
@@ -680,9 +701,9 @@ Note: Instead of using a dependent record, we could again
 have used a sum type of four constructors to encode the different
 types of sequences. However, the number of constructors
 required corresponds to the *product* of the number of values
-of each type level tag. Therefore, this number can grow quickly
-and lead to lengthy blocks of pattern matches when encoded as
-a sum type.
+of each type level index. Therefore, this number can grow quickly
+and sum type encodings can lead to lengthy blocks of pattern matches
+in these cases.
 
 ## Use Case: CSV Files with a Schema
 
@@ -721,14 +742,18 @@ Enter a command: quit
 Goodbye.
 ```
 
+This example was inspired by a similar program used as an example
+the [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris)
+book.
+
 We'd like to focus on several things here:
 
-* Purity 1: With exception of the main program loop, all functions
+* Purity: With exception of the main program loop, all functions
   used in the implementation should be pure, which in this context
   means, not running in any monad with side effects such as `IO`.
 * Fail early: With the exception of the command parser, all functions
-  updating the table should be typed and implemented in such a way
-  that they cannot fail.
+  updating the table and handling queries should be typed and
+  implemented in such a way that they cannot fail.
 
 Since we allow users of our library to specify a schema (order and
 types of columns) for the table they work with, this information is
