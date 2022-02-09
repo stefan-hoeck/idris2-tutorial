@@ -562,7 +562,7 @@ namespace InputError
     UnknownBaseType : String -> InputError
     InvalidSequence : String -> InputError
 
-readAcid : (b : BaseType) -> String -> Either InputError (List $ Nucleobase b)
+readAcid : (b : BaseType) -> String -> Either InputError (NucleicAcid b)
 readAcid b str =
   let err = InvalidSequence str
    in case b of
@@ -819,7 +819,7 @@ record Table where
 Finally, we define an indexed data type describing commands
 operating on the current table. Using the current table as
 the command's index allows us to make sure that indices for
-accessing and deleting rows are withing bounds and that
+accessing and deleting rows are within bounds and that
 new rows agree with the current schema. This is necessary
 to uphold our second design principle: All functions
 operating on tables must do so without the possibility of failure.
@@ -922,7 +922,7 @@ data Error : Type where
   NoNat          : String -> Error
 ```
 
-In order to conveniently construct our error message, it is best
+In order to conveniently construct our error messages, it is best
 to use Idris' string interpolation facilities: We can enclose
 arbitrary string expressions in a string literal by enclosing
 them in curly braces, the first of which must be escaped with
