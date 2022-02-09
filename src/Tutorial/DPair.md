@@ -1177,5 +1177,20 @@ mandatory.
 
    This might be a challenge, as the types get pretty interesting.
 
+6. Add support for loading and saving tables from and to disk.
+   A table should be stored in two files: One for the schema
+   and one for the CSV content.
+
+You can find an implementation of these additions in the
+solutions. A small example table can be found in folder
+`resources`.
+
+Note: There are of course tons of projects to pursue from
+here, such as writing a proper query language, calculating
+new rows from existing ones, accumulating values in a
+column, concatenating and zipping tables, and so on.
+We will stop for now, probably coming back to this in
+later examples.
+
 <!-- vi: filetype=idris2
 -->

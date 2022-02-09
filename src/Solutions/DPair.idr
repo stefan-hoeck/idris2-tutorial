@@ -256,9 +256,14 @@ transcribeProg = do
 
 -- A lot of code was copy-pasted from the chapter's text and is, therefore
 -- not very interesting. I tried to annotate the new parts with some hints
--- for better understanding.
+-- for better understanding. Also, instead of grouping code by exercise number,
+-- I organized it thematically.
 
--- 1 - 3
+
+
+--   *** Types ***
+
+
 
 -- I used an indexed type here to make sure, data
 -- constructor `Optional` takes only non-nullary types
@@ -294,17 +299,6 @@ ColType = ColType0 True
 Schema : Type
 Schema = List ColType
 
-data Error : Type where
-  UnknownCommand : String -> Error
-  UnknownType    : (pos : Nat) -> String -> Error
-  InvalidField   : (pos : Nat) -> ColType0 b -> String -> Error
-  ExpectedEOI    : (pos : Nat) -> String -> Error
-  UnexpectedEOI  : (pos : Nat) -> String -> Error
-  OutOfBounds    : (size : Nat) -> (index : Nat) -> Error
-  WriteError     : (path : String) -> FileError -> Error
-  ReadError      : (path : String) -> FileError -> Error
-  NoNat          : String -> Error
-
 -- The only interesting new parts are the last two
 -- lines. They should be pretty self-explanatory.
 IdrisType : ColType0 b -> Type
@@ -327,35 +321,115 @@ IdrisType (Optional t) = Maybe $ IdrisType t
 Row : Schema -> Type
 Row = HList . map IdrisType
 
--- We mark optional type by appending a question
--- mark after the corresponding non-nullary type.
-showColType : ColType0 b -> String
-showColType B8           = "b8"
-showColType B16          = "b16"
-showColType B32          = "b32"
-showColType B64          = "b64"
-showColType I8           = "i8"
-showColType I16          = "i16"
-showColType I32          = "i32"
-showColType I64          = "i64"
-showColType Str          = "str"
-showColType Boolean      = "boolean"
-showColType Float        = "float"
-showColType Natural      = "natural"
-showColType BigInt       = "bigint"
-showColType (Finite n)   = "fin\{show n}"
-showColType (Optional t) = showColType t ++ "?"
+record Table where
+  constructor MkTable
+  schema : Schema
+  size   : Nat
+  rows   : Vect size (Row schema)
 
-showSchema : Schema -> String
-showSchema = concat . intersperse "," . map showColType
+data Error : Type where
+  ExpectedEOI    : (pos : Nat) -> String -> Error
+  ExpectedLine   : Error
+  InvalidCell    : (row, col : Nat) -> ColType0 b -> String -> Error
+  NoNat          : String -> Error
+  OutOfBounds    : (size : Nat) -> (index : Nat) -> Error
+  ReadError      : (path : String) -> FileError -> Error
+  SizeLimit      : (path : String) -> Error
+  UnexpectedEOI  : (pos : Nat) -> String -> Error
+  UnknownCommand : String -> Error
+  UnknownType    : (pos : Nat) -> String -> Error
+  WriteError     : (path : String) -> FileError -> Error
+
+-- Oh, the type of `Query` is a nice one. :-)
+-- `PrintTable`, on the other hand, is trivial.
+-- The save and load commands are special: They will
+-- already have carried out their tasks after parsing.
+-- This allow us to keep `applyCommand` pure.
+data Command : (t : Table) -> Type where
+  PrintSchema : Command t
+  PrintSize   : Command t
+  PrintTable  : Command t
+  Load        : Table -> Command t
+  Save        : Command t
+  New         : (newSchema : Schema) -> Command t
+  Prepend     : Row (schema t) -> Command t
+  Get         : Fin (size t) -> Command t
+  Delete      : Fin (size t) -> Command t
+  Quit        : Command t
+  Query       :  (ix  : Fin (length $ schema t))
+              -> (val : IdrisType $ indexList (schema t) ix)
+              -> Command t
+
+
+
+--   *** Core Functionality ***
+
+
+
+-- Compares two values for equality.
+eq : (c : ColType0 b) -> IdrisType c -> IdrisType c -> Bool
+eq B8           x        y        = x == y
+eq B16          x        y        = x == y
+eq B32          x        y        = x == y
+eq B64          x        y        = x == y
+eq I8           x        y        = x == y
+eq I16          x        y        = x == y
+eq I32          x        y        = x == y
+eq I64          x        y        = x == y
+eq Str          x        y        = x == y
+eq Boolean      x        y        = x == y
+eq Float        x        y        = x == y
+eq Natural      x        y        = x == y
+eq BigInt       x        y        = x == y
+eq (Finite k)   x        y        = x == y
+eq (Optional z) (Just x) (Just y) = eq z x y
+eq (Optional z) Nothing  Nothing  = True
+eq (Optional z) _        _        = False
+
+-- Note: It would have been quite a bit easier to type and
+-- implement this, had we used a heterogeneous vector instead
+-- of a heterogeneous list for encoding table rows. However,
+-- I still think it's pretty cool that this type checks!
+eqAt :  (ts  : Schema)
+     -> (ix  : Fin $ length ts)
+     -> (val : IdrisType $ indexList ts ix)
+     -> (row : Row ts)
+     -> Bool
+eqAt (x :: _)  FZ     val (v :: _)  = eq x val v
+eqAt (_ :: xs) (FS y) val (_ :: vs) = eqAt xs y val vs
+eqAt []        _      _   _ impossible
+
+-- Most new commands don't change the table,
+-- so their cases are trivial. The exception is
+-- `Load`, which replaces the table completely.
+applyCommand : (t : Table) -> Command t -> Table
+applyCommand t                 PrintSchema    = t
+applyCommand t                 PrintSize      = t
+applyCommand t                 PrintTable     = t
+applyCommand t                 Save           = t
+applyCommand _                 (Load t')      = t'
+applyCommand _                 (New ts)       = MkTable ts _ []
+applyCommand (MkTable ts n rs) (Prepend r)    = MkTable ts _ $ r :: rs
+applyCommand t                 (Get x)        = t
+applyCommand t                 Quit           = t
+applyCommand t                 (Query ix val) = t
+applyCommand (MkTable ts n rs) (Delete x)  = case n of
+  S k => MkTable ts k (deleteAt x rs)
+  Z   => absurd x
+
+
+
+--   *** Parsers ***
+
+
 
 zipWithIndex : Traversable t => t a -> t (Nat, a)
 zipWithIndex = evalState 1 . traverse pairWithIndex
   where pairWithIndex : a -> State Nat (Nat,a)
         pairWithIndex v = (,v) <$> get <* modify S
 
-commaSep : String -> List String
-commaSep = forget . split (',' ==)
+fromCSV : String -> List String
+fromCSV = forget . split (',' ==)
 
 -- Reads a primitive (non-nullary) type. This is therefore
 -- universally quantified over parameter `b`.
@@ -392,7 +466,11 @@ readColType n s = case reverse (unpack s) of
   _        => readPrim n s
 
 readSchema : String -> Either Error Schema
-readSchema = traverse (uncurry readColType) . zipWithIndex . commaSep
+readSchema = traverse (uncurry readColType) . zipWithIndex . fromCSV
+
+readSchemaList : List String -> Either Error Schema
+readSchemaList [s] = readSchema s
+readSchemaList _   = Left ExpectedLine
 
 -- For all except nullary types we can just use the `CSVField`
 -- implementation for reading values.
@@ -415,16 +493,68 @@ decodeF (Finite k)   s  = read s
 decodeF (Optional y) "" = Just Nothing
 decodeF (Optional y) s  = Just <$> decodeF y s
 
-decodeField : Nat -> (c : ColType0 b) -> String -> Either Error (IdrisType c)
-decodeField k c s = maybeToEither (InvalidField k c s) $ decodeF c s
+decodeField : (row,col : Nat) -> (c : ColType0 b) -> String -> Either Error (IdrisType c)
+decodeField row k c s = maybeToEither (InvalidCell row k c s) $ decodeF c s
 
-decodeRow : {ts : _} -> String -> Either Error (Row ts)
-decodeRow s = go 1 ts $ commaSep s
+decodeRow : {ts : _} -> (row : Nat) -> String -> Either Error (Row ts)
+decodeRow row s = go 1 ts $ fromCSV s
   where go : Nat -> (cs : Schema) -> List String -> Either Error (Row cs)
         go k []       []         = Right []
         go k []       (_ :: _)   = Left $ ExpectedEOI k s
         go k (_ :: _) []         = Left $ UnexpectedEOI k s
-        go k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]
+        go k (c :: cs) (s :: ss) = [| decodeField row k c s :: go (S k) cs ss |]
+
+decodeRows : {ts : _} -> List String -> Either Error (List $ Row ts)
+decodeRows = traverse (uncurry decodeRow) . zipWithIndex
+
+readFin : {n : _} -> String -> Either Error (Fin n)
+readFin s = do
+  k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
+  maybeToEither (OutOfBounds n k) $ natToFin k n
+
+readCommand :  (t : Table) -> String -> Either Error (Command t)
+readCommand _                "schema"  = Right PrintSchema
+readCommand _                "size"    = Right PrintSize
+readCommand _                "table"   = Right PrintTable
+readCommand _                "quit"    = Right Quit
+readCommand (MkTable ts n _) s         = case words s of
+  ["new",    str]    => New     <$> readSchema str
+  "add" ::   ss      => Prepend <$> decodeRow 1 (unwords ss)
+  ["get",    str]    => Get     <$> readFin str
+  ["delete", str]    => Delete  <$> readFin str
+  "query" :: n :: ss => do
+    ix  <- readFin n
+    val <- decodeField 1 1 (indexList ts ix) (unwords ss)
+    pure $ Query ix val
+  _                  => Left $ UnknownCommand s
+
+
+
+--   *** Printers ***
+
+
+
+toCSV : List String -> String
+toCSV = concat . intersperse ","
+
+-- We mark optional type by appending a question
+-- mark after the corresponding non-nullary type.
+showColType : ColType0 b -> String
+showColType B8           = "b8"
+showColType B16          = "b16"
+showColType B32          = "b32"
+showColType B64          = "b64"
+showColType I8           = "i8"
+showColType I16          = "i16"
+showColType I32          = "i32"
+showColType I64          = "i64"
+showColType Str          = "str"
+showColType Boolean      = "boolean"
+showColType Float        = "float"
+showColType Natural      = "natural"
+showColType BigInt       = "bigint"
+showColType (Finite n)   = "fin\{show n}"
+showColType (Optional t) = showColType t ++ "?"
 
 -- Again, only nullary values are treated specially. This
 -- is another case of a dependent pattern match: We use
@@ -455,7 +585,12 @@ encodeFields : (ts : Schema) -> Row ts -> Vect (length ts) String
 encodeFields []        []        = []
 encodeFields (c :: cs) (v :: vs) = encodeField c v :: encodeFields cs vs
 
--- 4 - 5
+encodeTable : Table -> String
+encodeTable (MkTable ts _ rows) =
+  unlines . toList $ map (toCSV . toList . encodeFields ts) rows
+
+encodeSchema : Schema -> String
+encodeSchema = toCSV . map showColType
 
 -- Pretty printing a table plus header. All cells are right-padded
 -- with spaces to adjust their size to the cell with the longest
@@ -503,79 +638,6 @@ printTable cs rows =
       table   = map (encodeFields cs) rows
    in prettyTable header table
 
--- Compares two values for equality.
-eq : (c : ColType0 b) -> IdrisType c -> IdrisType c -> Bool
-eq B8           x        y        = x == y
-eq B16          x        y        = x == y
-eq B32          x        y        = x == y
-eq B64          x        y        = x == y
-eq I8           x        y        = x == y
-eq I16          x        y        = x == y
-eq I32          x        y        = x == y
-eq I64          x        y        = x == y
-eq Str          x        y        = x == y
-eq Boolean      x        y        = x == y
-eq Float        x        y        = x == y
-eq Natural      x        y        = x == y
-eq BigInt       x        y        = x == y
-eq (Finite k)   x        y        = x == y
-eq (Optional z) (Just x) (Just y) = eq z x y
-eq (Optional z) Nothing  Nothing  = True
-eq (Optional z) _        _        = False
-
--- Note: It would have been quite a bit easier to type and
--- implement this, had we used a heterogeneous vector instead
--- of a heterogeneous list for encoding table rows. However,
--- I still think it's pretty cool that this type checks!
-eqAt :  (ts  : Schema)
-     -> (ix  : Fin $ length ts)
-     -> (val : IdrisType $ indexList ts ix)
-     -> (row : Row ts)
-     -> Bool
-eqAt (x :: _)  FZ     val (v :: _)  = eq x val v
-eqAt (_ :: xs) (FS y) val (_ :: vs) = eqAt xs y val vs
-eqAt []        _      _   _ impossible
-
-record Table where
-  constructor MkTable
-  schema : Schema
-  size   : Nat
-  rows   : Vect size (Row schema)
-
--- Oh, the type of `Query` is a nice one. :-)
--- `PrintTable`, on the other hand, is trivial.
-data Command : (t : Table) -> Type where
-  PrintSchema : Command t
-  PrintSize   : Command t
-  PrintTable  : Command t
-  Load        : Table -> Command t
-  Save        : Command t
-  New         : (newSchema : Schema) -> Command t
-  Prepend     : Row (schema t) -> Command t
-  Get         : Fin (size t) -> Command t
-  Delete      : Fin (size t) -> Command t
-  Quit        : Command t
-  Query       :  (ix  : Fin (length $ schema t))
-              -> (val : IdrisType $ indexList (schema t) ix)
-              -> Command t
-
--- The two new commands don't change the table,
--- so their cases are trivial.
-applyCommand : (t : Table) -> Command t -> Table
-applyCommand t                 PrintSchema    = t
-applyCommand t                 PrintSize      = t
-applyCommand t                 PrintTable     = t
-applyCommand t                 Save           = t
-applyCommand _                 (Load t')      = t'
-applyCommand _                 (New ts)       = MkTable ts _ []
-applyCommand (MkTable ts n rs) (Prepend r)    = MkTable ts _ $ r :: rs
-applyCommand t                 (Get x)        = t
-applyCommand t                 Quit           = t
-applyCommand t                 (Query ix val) = t
-applyCommand (MkTable ts n rs) (Delete x)  = case n of
-  S k => MkTable ts k (deleteAt x rs)
-  Z   => absurd x
-
 allTypes : String
 allTypes = concat
          . List.intersperse ", "
@@ -583,6 +645,11 @@ allTypes = concat
          $ [B8,B16,B32,B64,I8,I16,I32,I64,Str,Boolean,Float]
 
 showError : Error -> String
+showError ExpectedLine = """
+  Error when reading schema.
+  Expected a single line of content.
+  """
+
 showError (UnknownCommand x) = """
   Unknown command: \{x}.
   Known commands are: clear, schema, size, table, new, add, get, delete, quit.
@@ -593,8 +660,8 @@ showError (UnknownType pos x) = """
   Known types are: \{allTypes}.
   """
 
-showError (InvalidField pos tpe x) = """
-  Invalid value at position \{show pos}.
+showError (InvalidCell row col tpe x) = """
+  Invalid value at row \{show row}, column \{show col}.
   Expected type: \{showColType tpe}.
   Value found: \{x}.
   """
@@ -628,15 +695,20 @@ showError (ReadError path err) = """
   Message: \{show err}
   """
 
+showError (SizeLimit path) = """
+  Error when reading file \{path}.
+  The size limit of 1'000'000 lines was exceeded.
+  """
+
 showError (NoNat x) = "Not a natural number: \{x}"
 
 result :  (t : Table) -> Command t -> String
-result t PrintSchema    = "Current schema: \{showSchema t.schema}"
+result t PrintSchema    = "Current schema: \{encodeSchema t.schema}"
 result t PrintSize      = "Current size: \{show t.size}"
 result t PrintTable     = "Table:\n\n\{printTable t.schema t.rows}"
 result _ Save           = "Table written to disk."
-result _ (Load t)       = "Table loaded. Schema: \{showSchema t.schema}"
-result _ (New ts)       = "Created table. Schema: \{showSchema ts}"
+result _ (Load t)       = "Table loaded. Schema: \{encodeSchema t.schema}"
+result _ (New ts)       = "Created table. Schema: \{encodeSchema ts}"
 result t (Prepend r)    = "Row prepended:\n\n\{printTable t.schema [r]}"
 result _ (Delete x)     = "Deleted row: \{show x}."
 result _ Quit           = "Goodbye."
@@ -646,36 +718,28 @@ result t (Query ix val) =
 result t (Get x)        =
   "Row \{show x}:\n\n\{printTable t.schema [index x t.rows]}"
 
-readFin : {n : _} -> String -> Either Error (Fin n)
-readFin s = do
-  k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
-  maybeToEither (OutOfBounds n k) $ natToFin k n
 
-readCommand :  (t : Table) -> String -> Either Error (Command t)
-readCommand _                "schema"  = Right PrintSchema
-readCommand _                "size"    = Right PrintSize
-readCommand _                "table"   = Right PrintTable
-readCommand _                "quit"    = Right Quit
-readCommand (MkTable ts n _) s         = case words s of
-  ["new",    str]    => New     <$> readSchema str
-  "add" ::   ss      => Prepend <$> decodeRow (unwords ss)
-  ["get",    str]    => Get     <$> readFin str
-  ["delete", str]    => Delete  <$> readFin str
-  "query" :: n :: ss => do
-    ix  <- readFin n
-    val <- decodeField 1 (indexList ts ix) (unwords ss)
-    pure $ Query ix val
-  _                  => Left $ UnknownCommand s
 
-toCSV : List String -> String
-toCSV = concat . intersperse ","
+--   *** File IO ***
 
-encodeTable : Table -> String
-encodeTable (MkTable ts _ rows) =
-  unlines . toList $ map (toCSV . toList . encodeFields ts) rows
 
-encodeSchema : Table -> String
-encodeSchema = toCSV . map showColType . schema
+
+-- We use total function `readFilePage` here. This allows us
+-- to limit the total number of lines to prevent us from blowing
+-- up our computer's memory. Note, that this might still be possible
+-- for instance, when trying to read infinie streams without line breaks
+-- like /dev/zero.
+load :  (path   : String)
+     -> (decode : List String -> Either Error a)
+     -> IO (Either Error a)
+load path decode = do
+  Right (True, ls) <- readFilePage 0 (limit 1000000) path
+    | Right (False,_) => pure $ Left (SizeLimit path)
+    | Left err        => pure $ Left (ReadError path err)
+  pure $ decode (map trim $ filter (not . null) ls)
+
+write : (path : String) -> (content : String) -> IO (Either Error ())
+write path content = mapFst (WriteError path) <$> writeFile path content
 
 namespace IOEither
   export
@@ -690,33 +754,25 @@ namespace IOEither
   pure : a -> IO (Either err a)
   pure = Prelude.pure . Right
 
-write : (path : String) -> (content : String) -> IO (Either Error ())
-write path content = mapFst (WriteError path) <$> writeFile path content
-
--- We use total function `readFilePage` here. This allows us
--- to limit the total file size, which is important when reading
--- a complete. For instance, trying to read infinie streams like
--- /dev/urandom or /dev/zero comes with the danger of quickly
--- exhausting a computer's memory.
-load :  (path   : String)
-     -> (decode : List String -> Either Error a)
-     -> IO (Either Error a)
--- load path decode = do
---  Right (True, ls) <- readFilePage 0 (limit 10000000) path
---    | Right (False,_) => ?foob
---    | Left err        => pure $ Left (ReadError path err)
---  ?foo
-
 readCommandIO : (t : Table) -> String -> IO (Either Error (Command t))
 readCommandIO t s = case words s of
   ["save", pth] => IOEither.do
-    write (pth ++ ".schema") (encodeSchema t)
+    write (pth ++ ".schema") (encodeSchema t.schema)
     write (pth ++ ".csv") (encodeTable t)
     pure Save
 
-  ["load", pth] => ?bar
+  ["load", pth] => IOEither.do
+    schema <- load (pth ++ ".schema") readSchemaList
+    rows   <- load (pth ++ ".csv") (decodeRows {ts = schema})
+    pure . Load $ MkTable schema (length rows) (fromList rows)
 
   _ => Prelude.pure $ readCommand t s
+
+
+
+--   *** Main Loop ***
+
+
 
 covering
 runProg : Table -> IO ()
