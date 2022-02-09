@@ -1,21 +1,13 @@
 # Relations
 
-In the last couple of chapters, we looked at how to abstract over
-recurring patterns in pure, strongly typed functional programming
-languages. We learned how to describe and run computations with
-side effects, how to sequence effectful computations to create
-more complex programs, and how to describe folds
-and traversals over immutable data structures in a flexible and
-reusable way.
-For programmers coming from languages like Haskell, OCaml, or
-Scala, most of these things are already well known. What sets
-Idris apart from these languages, is its support for first class
-types: The ability to calculate types from values.
-We will therefore spend some time looking at how we can
-use dependent types to describe properties of and relations
-(or contracts) between *values*, and how we can use values of
-these dependent types as proofs that our functions behave
-correctly.
+Note: This is still work in progress. Please come back later.
+
+In the [last chapter](DPair.md) we learned, how dependent pairs
+and records can be used to calculate *types* from values only known
+at runtime by pattern matching on these values. We will now look
+at how we can describe relations - or *contracts* - between
+values as types, and how we can use values of these types as
+proofs that the contracts hold.
 
 ```idris
 module Tutorial.Relations
@@ -28,13 +20,6 @@ import Data.String
 ```
 
 ## Equality as a Type
-
-In the first section of this chapter we saw, how dependent pairs
-and records can be used to calculate *types* from values only known
-at runtime by pattern matching on these values. We will now look
-at how we can describe relations - or *contracts* - between
-values as types, and how we can use values of these types as
-proofs that the contracts hold.
 
 Imagine, we'd like to concatenate two strands of nucleobases
 of unknown source. We can't do the following without risk
@@ -52,28 +37,31 @@ data Nucleobase : BaseType -> Type where
   Thymine  : Nucleobase DNABase
   Uracile  : Nucleobase RNABase
 
-concatBases1 :  List (Nucleobase b1)
-             -> List (Nucleobase b2)
-             -> List (Nucleobase b1)
+NucleicAcid : BaseType -> Type
+NucleicAcid = List . Nucleobase
+
+concatAcids1 :  NucleicAcid b1
+             -> NucleicAcid b2
+             -> NucleicAcid b1
 ```
 
-There problem with `concatBases` is, that `b1` and `b2` are erased
+There problem with `concatAcids1` is, that `b1` and `b2` are erased
 implicits and we can't inspect them at runtime. We can change that
 and arrive at the following implementation:
 
 ```idris
-concatBases2 :  {b1, b2 : _}
-             -> List (Nucleobase b1)
-             -> List (Nucleobase b2)
-             -> Maybe (List $ Nucleobase b1)
-concatBases2 {b1 = DNABase} {b2 = DNABase} xs ys = Just $ xs ++ ys
-concatBases2 {b1 = RNABase} {b2 = RNABase} xs ys = Just $ xs ++ ys
-concatBases2                               _  _  = Nothing
+concatAcids2 :  {b1, b2 : _}
+             -> NucleicAcid b1
+             -> NucleicAcid b2
+             -> Maybe (NucleicAcid b1)
+concatAcids2 {b1 = DNABase} {b2 = DNABase} xs ys = Just $ xs ++ ys
+concatAcids2 {b1 = RNABase} {b2 = RNABase} xs ys = Just $ xs ++ ys
+concatAcids2                               _  _  = Nothing
 ```
 
-Once again, we could with a pattern match on unerased type
+Once again, we can with a pattern match on unerased type
 arguments (`b1` and `b2`) learn something about the types themselves.
-It should therefore be straight forward to use `concatBases2`
+It should therefore be straight forward to use `concatAcids2`
 with two strands of nucleic acids, the types of which are known
 at runtime.
 

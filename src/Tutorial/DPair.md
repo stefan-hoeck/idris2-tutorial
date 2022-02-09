@@ -194,8 +194,8 @@ least in my case, it took many sessions programming in Idris, before I figured
 out what dependent pairs are about: They pair a *value* of some type with
 a second value of a type calculated from the first value.
 For instance, a natural number `n` (the value)
-paired with a vector of length `n` (the second value, who's type *depends*
-on the first value).
+paired with a vector of length `n` (the second value, the type
+of which *depends* on the first value).
 This is such a fundamental concept of programming with dependent types, that
 a general dependent pair type is provided by the *Prelude*. Here is its
 implementation (primed for disambiguation):
@@ -218,7 +218,7 @@ AnyVect' : (a : Type) -> Type
 AnyVect' a = DPair Nat (\n => Vect n a)
 ```
 
-Note, how `\x => Vect x a` is a function from `Nat` to `Type`.
+Note, how `\n => Vect n a` is a function from `Nat` to `Type`.
 Idris provides special syntax for describing dependent pairs, as
 they are important building blocks for programming in languages
 with first class types:
@@ -455,7 +455,7 @@ users of the universally quantified `readAnyBase`
 are free to choose what base type they want, but they will
 never get a `Thymine` or `Uracile` value.
 
-We can now implement some simple calculation on sequences of
+We can now implement some simple calculations on sequences of
 nucleobases. For instance, we can come up with the complementary
 strand:
 
@@ -578,8 +578,8 @@ getNucleicAcid = do
     _     => pure $ Left (UnknownBaseType baseString)
 ```
 
-Note, how we paired the type of nucleobases with nucleic acid
-strand. Assume now, we implement a function for transcribing
+Note, how we paired the type of nucleobases with the nucleic acid
+sequence. Assume now we implement a function for transcribing
 a strand of DNA to RNA, and we'd like to convert a sequence of
 nucleobases from user input to the corresponding RNA sequence.
 Here's how to do this:
@@ -668,7 +668,7 @@ necessary.
    for `Acid1` and `Acid3`.
 
 2. Sequences of nucleobases can be encoded in one of two directions:
-   [*Sense* and *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology))
+   [*Sense* and *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology)).
    Declare a new data type to describe
    the sense of a sequence of nucleobases, and add this as an
    additional parameter to type `Nucleobase` and types `DNA` and
@@ -691,8 +691,8 @@ necessary.
 
 7. Enhance `getNucleicAcid` and `transcribeProg` in such a way that
    the sense and base type are stored together with the sequence,
-   and that `transcribeProg` always prints the antisense RNA strand
-   after transcription.
+   and that `transcribeProg` always prints the *sense* RNA strand
+   (after transcription, if necessary).
 
 8. Enjoy the fruits of your labour and test your program at the REPL.
 
@@ -711,32 +711,42 @@ based on our previous work on CSV parsers. We'd like to
 write a small command line program, where users can specify a
 schema for the CSV tables they'd like to parse and load into
 memory. Before we begin, here is a REPL session running
-the final program:
+the final program, which you will complete in the exercises:
 
 ```repl
-Tutorial.DPair> :exec main
-Enter a command: new b8,boolean,str
-Created table. Schema: b8,boolean,str
-Enter a command: add 100,t,foo
-Row prepended.
-Enter a command: size
-Current size: 1
-Enter a command: schema
-Current schema: b8,boolean,str
-Enter a command: add 12,f,yeah
-Row prepended.
+Solutions.DPair> :exec main
+Enter a command: load resources/example
+Table loaded. Schema: str,str,fin2023,str?,boolean?
+Enter a command: get 3
+Row 3:
+
+str   | str    | fin2023 | str? | boolean?
+------------------------------------------
+Floor | Jansen | 1981    |      | t
+
+Enter a command: add Mikael,Stanne,1974,,
+Row prepended:
+
+str    | str    | fin2023 | str? | boolean?
+-------------------------------------------
+Mikael | Stanne | 1974    |      |
+
 Enter a command: get 1
-Row 1: 100,t,"foo"
-Enter a command: get 2
-Invalid index: 2
-Enter a command: get 0
-Row 0: 12,f,"yeah"
-Enter a command: size
-Current size: 2
-Enter a command: clear
-Table cleared
-Enter a command: get 0
-Invalid index: 0
+Row 1:
+
+str    | str    | fin2023 | str? | boolean?
+-------------------------------------------
+Mikael | Stanne | 1974    |      |
+
+Enter a command: delete 1
+Deleted row: 1.
+Enter a command: get 1
+Row 1:
+
+str | str     | fin2023 | str? | boolean?
+-----------------------------------------
+Rob | Halford | 1951    |      |
+
 Enter a command: quit
 Goodbye.
 ```
@@ -772,12 +782,7 @@ columns we understand. In a first try, we only support some Idris
 primitives:
 
 ```idris
-data ColType =
-    B8 | B16 | B32 | B64
-  | I8 | I16 | I32 | I64
-  | Str
-  | Boolean
-  | Float
+data ColType = I64 | Str | Boolean | Float
 
 Schema : Type
 Schema = List ColType
@@ -789,13 +794,6 @@ list representing the rows in our table:
 
 ```idris
 IdrisType : ColType -> Type
-IdrisType B8      = Bits8
-IdrisType B16     = Bits16
-IdrisType B32     = Bits32
-IdrisType B64     = Bits64
-IdrisType I8      = Int8
-IdrisType I16     = Int16
-IdrisType I32     = Int32
 IdrisType I64     = Int64
 IdrisType Str     = String
 IdrisType Boolean = Bool
@@ -849,11 +847,16 @@ applyCommand t                 PrintSize   = t
 applyCommand _                 (New ts)    = MkTable ts _ []
 applyCommand (MkTable ts n rs) (Prepend r) = MkTable ts _ $ r :: rs
 applyCommand t                 (Get x)     = t
-applyCommand t                 Quit        =  t
+applyCommand t                 Quit        = t
 applyCommand (MkTable ts n rs) (Delete x)  = case n of
   S k => MkTable ts k (deleteAt x rs)
   Z   => absurd x
 ```
+
+Please understand, that the constructors of `Command t` are typed
+in such a way that indices are always within bounds (constructors
+`Get` and `Delete`), and new rows adhere to the table's
+current schema (constructor `Prepend`).
 
 One thing you might not have seen so far is the call to `absurd`
 on the last line. This is the only function provided by the
@@ -872,7 +875,7 @@ of your application pure (which - in this context - means:
 "without the possibility of failure") and provably total.
 If done properly, this step encodes and handles most if not all
 ways in which things can go wrong in your program, allowing
-your to come up with clear error messages telling users exactly what caused
+you to come up with clear error messages telling users exactly what caused
 an issue. As you surely have experienced yourself, there are few
 things more frustrating than a non-trivial computer program terminating
 with an unhelpful "There was an error" message.
@@ -885,9 +888,9 @@ of what can go wrong where. In order to figure out what can possibly
 go wrong, we first need to decide on how the commands should be entered.
 Here, we use a single keyword for each command, together with an
 optional number of arguments separated from the keyword by a single
-space character. For instance: `"new i16,boolean,str,str"`,
+space character. For instance: `"new i64,boolean,str,str"`,
 for initializing an empty table with a new schema. With this settled,
-here is a list of things that can go wrong, and the error we'd
+here is a list of things that can go wrong, and the messages we'd
 like to print:
 
 * A bogus command is entered. We repeat the input with a message that
@@ -900,8 +903,8 @@ like to print:
   of a too small or too large number of fields, we also print
   a corresponding error message.
 * An index was out of bounds. This can happen, when users try to access
-  or delete specific row. We print the current number of rows, the value
-  entered, plus a hint explaining that row indices start at zero.
+  or delete specific rows. We print the current number of rows plus
+  the value entered.
 * A value not representing a natural number was entered as an index.
   We print an according error message.
 
@@ -929,13 +932,6 @@ nicely formatted error messages.
 
 ```idris
 showColType : ColType -> String
-showColType B8       = "b8"
-showColType B16      = "b16"
-showColType B32      = "b32"
-showColType B64      = "b64"
-showColType I8       = "i8"
-showColType I16      = "i16"
-showColType I32      = "i32"
 showColType I64      = "i64"
 showColType Str      = "str"
 showColType Boolean  = "boolean"
@@ -948,7 +944,7 @@ allTypes : String
 allTypes = concat
          . List.intersperse ", "
          . map showColType
-         $ [B8,B16,B32,B64,I8,I16,I32,I64,Str,Boolean,Float]
+         $ [I64,Str,Boolean,Float]
 
 showError : Error -> String
 showError (UnknownCommand x) = """
@@ -983,7 +979,7 @@ showError (OutOfBounds size index) = """
   Index out of bounds.
   Size of table: \{show size}
   Index: \{show index}
-  Note: Indices start at zero.
+  Note: Indices start at 1.
   """
 
 showError (NoNat x) = "Not a natural number: \{x}"
@@ -1001,17 +997,10 @@ zipWithIndex = evalState 1 . traverse pairWithIndex
   where pairWithIndex : a -> State Nat (Nat,a)
         pairWithIndex v = (,v) <$> get <* modify S
 
-commaSep : String -> List String
-commaSep = forget . split (',' ==)
+fromCSV : String -> List String
+fromCSV = forget . split (',' ==)
 
 readColType : Nat -> String -> Either Error ColType
-readColType _ "b8"       = Right B8
-readColType _ "b16"      = Right B16
-readColType _ "b32"      = Right B32
-readColType _ "b64"      = Right B64
-readColType _ "i8"       = Right I8
-readColType _ "i16"      = Right I16
-readColType _ "i32"      = Right I32
 readColType _ "i64"      = Right I64
 readColType _ "str"      = Right Str
 readColType _ "boolean"  = Right Boolean
@@ -1019,7 +1008,7 @@ readColType _ "float"    = Right Float
 readColType n s          = Left $ UnknownType n s
 
 readSchema : String -> Either Error Schema
-readSchema = traverse (uncurry readColType) . zipWithIndex . commaSep
+readSchema = traverse (uncurry readColType) . zipWithIndex . fromCSV
 ```
 
 We also need to decode CSV content based on the current schema.
@@ -1027,27 +1016,21 @@ Note, how we can do so in a type safe manner by pattern matching
 on the schema, which will not be known until runtime. Unfortunately,
 we need to reimplement CSV-parsing, because we want to add the
 expected type to the error messages (a thing that would be
-much harder to do with interface `CSVLine`).
+much harder to do with interface `CSVLine`
+and error type `CSVError`).
 
 ```idris
 decodeField : Nat -> (c : ColType) -> String -> Either Error (IdrisType c)
 decodeField k c s =
   let err = InvalidField k c s
    in case c of
-        B8      => maybeToEither err $ read s
-        B16     => maybeToEither err $ read s
-        B32     => maybeToEither err $ read s
-        B64     => maybeToEither err $ read s
-        I8      => maybeToEither err $ read s
-        I16     => maybeToEither err $ read s
-        I32     => maybeToEither err $ read s
         I64     => maybeToEither err $ read s
         Str     => maybeToEither err $ read s
         Boolean => maybeToEither err $ read s
         Float   => maybeToEither err $ read s
 
 decodeRow : {ts : _} -> String -> Either Error (Row ts)
-decodeRow s = go 1 ts $ commaSep s
+decodeRow s = go 1 ts $ fromCSV s
   where go : Nat -> (cs : Schema) -> List String -> Either Error (Row cs)
         go k []       []         = Right []
         go k []       (_ :: _)   = Left $ ExpectedEOI k s
@@ -1066,16 +1049,24 @@ implicit argument or not. Some considerations:
   be inferred by Idris most of the time.
 
 All that is missing now is a way to parse indices for accessing
-the current table's rows:
+the current table's rows. We use the conversion for indices to
+start at one instead of zero, which feels more natural for most
+non-programmers.
 
 ```idris
 readFin : {n : _} -> String -> Either Error (Fin n)
 readFin s = do
-  k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
-  maybeToEither (OutOfBounds n k) $ natToFin k n
+  S k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
+    | Z => Left $ OutOfBounds n Z
+  maybeToEither (OutOfBounds n $ S k) $ natToFin k n
 ```
 
-We are finally able to implement a parser for user commands:
+We are finally able to implement a parser for user commands.
+Function `Data.String.words` is used for splitting a string
+at space characters. In most cases, we expect the name of
+the command plus a single argument without additional spaces.
+CSV rows can have additional space characters, however, so we
+use `Data.String.unwords` on the split string.
 
 ```idris
 readCommand :  (t : Table) -> String -> Either Error (Command t)
@@ -1099,13 +1090,6 @@ is entered.
 
 ```idris
 encodeField : (t : ColType) -> IdrisType t -> String
-encodeField B8      x     = show x
-encodeField B16     x     = show x
-encodeField B32     x     = show x
-encodeField B64     x     = show x
-encodeField I8      x     = show x
-encodeField I16     x     = show x
-encodeField I32     x     = show x
 encodeField I64     x     = show x
 encodeField Str     x     = show x
 encodeField Boolean True  = "t"
@@ -1123,10 +1107,10 @@ result t PrintSchema = "Current schema: \{showSchema t.schema}"
 result t PrintSize   = "Current size: \{show t.size}"
 result _ (New ts)    = "Created table. Schema: \{showSchema ts}"
 result t (Prepend r) = "Row prepended: \{encodeRow t.schema r}"
-result _ (Delete x)  = "Deleted row: \{show x}."
+result _ (Delete x)  = "Deleted row: \{show $ FS x}."
 result _ Quit        = "Goodbye."
 result t (Get x)     =
-  "Row \{show x}: \{encodeRow t.schema (index x t.rows)}"
+  "Row \{show $ FS x}: \{encodeRow t.schema (index x t.rows)}"
 
 covering
 runProg : Table -> IO ()
@@ -1181,6 +1165,21 @@ mandatory.
    A table should be stored in two files: One for the schema
    and one for the CSV content.
 
+   Note: Doing so in a provably total way can be pretty
+   hard and will be a topic for another day. For now,
+   just use function `readFile` exported from
+   `System.File` in base for reading a file as a whole.
+   This function is partial, because
+   it will not terminate when used with an infinite input
+   stream such as `/dev/urandom` or `/dev/zero`.
+   It is important to *not* use `assert_total` here.
+   Using partial functions like `readFile` might well impose
+   a security risk in a real world application, so eventually,
+   we'd have to deal with this and allow for some way to
+   limit the size of accepted input. It is therefore best
+   to make this partiality visible and annotate all downstream
+   functions accordingly.
+
 You can find an implementation of these additions in the
 solutions. A small example table can be found in folder
 `resources`.
@@ -1191,6 +1190,21 @@ new rows from existing ones, accumulating values in a
 column, concatenating and zipping tables, and so on.
 We will stop for now, probably coming back to this in
 later examples.
+
+## Conclusion
+
+Dependent pairs and records are necessary to at runtime
+inspect the values defining the types we work with. By pattern
+matching on these values, we learn about the types and
+possible shapes of other values, allowing us to reduce
+the number of potential bugs in our programs.
+
+In the [next chapter](Relations.md) we learn about how
+to write data types, which we use as proofs that certain
+contracts between values hold. These will eventually allow
+us to define pre- and post conditions for our function
+arguments and output types.
+
 
 <!-- vi: filetype=idris2
 -->

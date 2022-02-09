@@ -275,13 +275,6 @@ transcribeProg = do
 -- data constructor, so we can use it to decode values
 -- of type `Fin n`.
 data ColType0 : (nullary : Bool) -> Type where
-  B8       : ColType0 b
-  B16      : ColType0 b
-  B32      : ColType0 b
-  B64      : ColType0 b
-  I8       : ColType0 b
-  I16      : ColType0 b
-  I32      : ColType0 b
   I64      : ColType0 b
   Str      : ColType0 b
   Boolean  : ColType0 b
@@ -302,13 +295,6 @@ Schema = List ColType
 -- The only interesting new parts are the last two
 -- lines. They should be pretty self-explanatory.
 IdrisType : ColType0 b -> Type
-IdrisType B8           = Bits8
-IdrisType B16          = Bits16
-IdrisType B32          = Bits32
-IdrisType B64          = Bits64
-IdrisType I8           = Int8
-IdrisType I16          = Int16
-IdrisType I32          = Int32
 IdrisType I64          = Int64
 IdrisType Str          = String
 IdrisType Boolean      = Bool
@@ -334,7 +320,6 @@ data Error : Type where
   NoNat          : String -> Error
   OutOfBounds    : (size : Nat) -> (index : Nat) -> Error
   ReadError      : (path : String) -> FileError -> Error
-  SizeLimit      : (path : String) -> Error
   UnexpectedEOI  : (pos : Nat) -> String -> Error
   UnknownCommand : String -> Error
   UnknownType    : (pos : Nat) -> String -> Error
@@ -368,13 +353,6 @@ data Command : (t : Table) -> Type where
 
 -- Compares two values for equality.
 eq : (c : ColType0 b) -> IdrisType c -> IdrisType c -> Bool
-eq B8           x        y        = x == y
-eq B16          x        y        = x == y
-eq B32          x        y        = x == y
-eq B64          x        y        = x == y
-eq I8           x        y        = x == y
-eq I16          x        y        = x == y
-eq I32          x        y        = x == y
 eq I64          x        y        = x == y
 eq Str          x        y        = x == y
 eq Boolean      x        y        = x == y
@@ -437,13 +415,6 @@ fromCSV = forget . split (',' ==)
 -- where we `break` the string at the occurrence of
 -- the first digit.
 readPrim : Nat -> String -> Either Error (ColType0 b)
-readPrim _ "b8"       = Right B8
-readPrim _ "b16"      = Right B16
-readPrim _ "b32"      = Right B32
-readPrim _ "b64"      = Right B64
-readPrim _ "i8"       = Right I8
-readPrim _ "i16"      = Right I16
-readPrim _ "i32"      = Right I32
 readPrim _ "i64"      = Right I64
 readPrim _ "str"      = Right Str
 readPrim _ "boolean"  = Right Boolean
@@ -476,13 +447,6 @@ readSchemaList _   = Left ExpectedLine
 -- implementation for reading values.
 -- For values of nullary types, we treat the empty string specially.
 decodeF : (c : ColType0 b) -> String -> Maybe (IdrisType c)
-decodeF B8           s  = read s
-decodeF B16          s  = read s
-decodeF B32          s  = read s
-decodeF B64          s  = read s
-decodeF I8           s  = read s
-decodeF I16          s  = read s
-decodeF I32          s  = read s
 decodeF I64          s  = read s
 decodeF Str          s  = read s
 decodeF Boolean      s  = read s
@@ -509,8 +473,9 @@ decodeRows = traverse (uncurry decodeRow) . zipWithIndex
 
 readFin : {n : _} -> String -> Either Error (Fin n)
 readFin s = do
-  k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
-  maybeToEither (OutOfBounds n k) $ natToFin k n
+  S k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s
+    | Z => Left $ OutOfBounds n Z
+  maybeToEither (OutOfBounds n $ S k) $ natToFin k n
 
 readCommand :  (t : Table) -> String -> Either Error (Command t)
 readCommand _                "schema"  = Right PrintSchema
@@ -540,13 +505,6 @@ toCSV = concat . intersperse ","
 -- We mark optional type by appending a question
 -- mark after the corresponding non-nullary type.
 showColType : ColType0 b -> String
-showColType B8           = "b8"
-showColType B16          = "b16"
-showColType B32          = "b32"
-showColType B64          = "b64"
-showColType I8           = "i8"
-showColType I16          = "i16"
-showColType I32          = "i32"
 showColType I64          = "i64"
 showColType Str          = "str"
 showColType Boolean      = "boolean"
@@ -563,13 +521,6 @@ showColType (Optional t) = showColType t ++ "?"
 -- There are few languages capable of expressing this as
 -- cleanly as Idris does.
 encodeField : (t : ColType0 b) -> IdrisType t -> String
-encodeField B8           x        = show x
-encodeField B16          x        = show x
-encodeField B32          x        = show x
-encodeField B64          x        = show x
-encodeField I8           x        = show x
-encodeField I16          x        = show x
-encodeField I32          x        = show x
 encodeField I64          x        = show x
 encodeField Str          x        = x
 encodeField Boolean      True     = "t"
@@ -595,7 +546,7 @@ encodeSchema = toCSV . map showColType
 -- Pretty printing a table plus header. All cells are right-padded
 -- with spaces to adjust their size to the cell with the longest
 -- entry for each colum.
--- Value `lengths` is a `Vect n Nat` holding these lengths.
+-- Value `ls` is a `Vect n Nat` holding these lengths.
 -- Here is an example of how the output looks like:
 --
 -- fin100 | boolean | natural | str         | bigint?
@@ -613,16 +564,13 @@ prettyTable :  {n : _}
             -> String
 prettyTable h t =
   let -- vector holding the maximal length of each column
-      lengths = foldl (zipWith maxLen) (replicate n Z) (h :: t)
+      ls  = foldl (zipWith $ \k => max k . length) (replicate n Z) (h::t)
 
       -- horizontal bar used to separate the header from the rows
-      bar     = concat . intersperse "---" $ map (`replicate` '-') lengths
-   in unlines . toList $ line lengths h :: bar :: map (line lengths) t
+      bar = concat . intersperse "---" $ map (`replicate` '-') ls
+   in unlines . toList $ line ls h :: bar :: map (line ls) t
 
-  where maxLen : Nat -> String -> Nat
-        maxLen k = max k . length
-
-        pad : Nat -> String -> String
+  where pad : Nat -> String -> String
         pad v = padRight v ' '
 
         -- given a vector of lengths, pads each string to the
@@ -642,7 +590,7 @@ allTypes : String
 allTypes = concat
          . List.intersperse ", "
          . map (showColType {b = True})
-         $ [B8,B16,B32,B64,I8,I16,I32,I64,Str,Boolean,Float]
+         $ [I64,Str,Boolean,Float]
 
 showError : Error -> String
 showError ExpectedLine = """
@@ -695,11 +643,6 @@ showError (ReadError path err) = """
   Message: \{show err}
   """
 
-showError (SizeLimit path) = """
-  Error when reading file \{path}.
-  The size limit of 1'000'000 lines was exceeded.
-  """
-
 showError (NoNat x) = "Not a natural number: \{x}"
 
 result :  (t : Table) -> Command t -> String
@@ -710,13 +653,13 @@ result _ Save           = "Table written to disk."
 result _ (Load t)       = "Table loaded. Schema: \{encodeSchema t.schema}"
 result _ (New ts)       = "Created table. Schema: \{encodeSchema ts}"
 result t (Prepend r)    = "Row prepended:\n\n\{printTable t.schema [r]}"
-result _ (Delete x)     = "Deleted row: \{show x}."
+result _ (Delete x)     = "Deleted row: \{show $ FS x}."
 result _ Quit           = "Goodbye."
 result t (Query ix val) =
   let (_ ** rs) = filter (eqAt t.schema ix val) t.rows
    in "Result:\n\n\{printTable t.schema rs}"
 result t (Get x)        =
-  "Row \{show x}:\n\n\{printTable t.schema [index x t.rows]}"
+  "Row \{show $ FS x}:\n\n\{printTable t.schema [index x t.rows]}"
 
 
 
@@ -724,19 +667,15 @@ result t (Get x)        =
 
 
 
--- We use total function `readFilePage` here. This allows us
--- to limit the total number of lines to prevent us from blowing
--- up our computer's memory. Note, that this might still be possible
--- for instance, when trying to read infinie streams without line breaks
--- like /dev/zero.
+-- We use partial function `readFile` for simplicity here.
+partial
 load :  (path   : String)
      -> (decode : List String -> Either Error a)
      -> IO (Either Error a)
 load path decode = do
-  Right (True, ls) <- readFilePage 0 (limit 1000000) path
-    | Right (False,_) => pure $ Left (SizeLimit path)
+  Right ls <- readFile path
     | Left err        => pure $ Left (ReadError path err)
-  pure $ decode (map trim $ filter (not . null) ls)
+  pure $ decode (filter (not . null) $ lines ls)
 
 write : (path : String) -> (content : String) -> IO (Either Error ())
 write path content = mapFst (WriteError path) <$> writeFile path content
@@ -754,6 +693,7 @@ namespace IOEither
   pure : a -> IO (Either err a)
   pure = Prelude.pure . Right
 
+partial
 readCommandIO : (t : Table) -> String -> IO (Either Error (Command t))
 readCommandIO t s = case words s of
   ["save", pth] => IOEither.do
@@ -774,7 +714,7 @@ readCommandIO t s = case words s of
 
 
 
-covering
+partial
 runProg : Table -> IO ()
 runProg t = do
   putStr "Enter a command: "
@@ -786,6 +726,6 @@ runProg t = do
     Right cmd  => putStrLn (result t cmd) >>
                   runProg (applyCommand t cmd)
 
-covering
+partial
 main : IO ()
 main = runProg $ MkTable [] _ []
