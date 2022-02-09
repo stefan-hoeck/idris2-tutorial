@@ -1,4 +1,4 @@
-# Dependent Pairs and Records
+# Sigma Types
 
 So far in our examples of dependently typed programming,
 type indices such as the length of vectors were known at
