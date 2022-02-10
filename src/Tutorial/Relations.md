@@ -13,6 +13,7 @@ proofs that the contracts hold.
 module Tutorial.Relations
 
 import Data.Either
+import Data.HList
 import Data.Vect
 import Data.String
 
@@ -21,196 +22,234 @@ import Data.String
 
 ## Equality as a Type
 
-Imagine, we'd like to concatenate two strands of nucleobases
-of unknown source. We can't do the following without risk
-of having to drop all uracile and thymine bases in the
-second strand, as we will never convince the type checker
-that `b1` and `b2` are identical.
+Imagine, we'd like to concatenate the contents of two CSV files,
+both of which we store as tables together with their schemata
+as shown in our discussion about dependent pairs:
 
 ```idris
-data BaseType = DNABase | RNABase
+data ColType = I64 | Str | Boolean | Float
 
-data Nucleobase : BaseType -> Type where
-  Adenine  : Nucleobase b
-  Cytosine : Nucleobase b
-  Guanine  : Nucleobase b
-  Thymine  : Nucleobase DNABase
-  Uracile  : Nucleobase RNABase
+Schema : Type
+Schema = List ColType
 
-NucleicAcid : BaseType -> Type
-NucleicAcid = List . Nucleobase
+IdrisType : ColType -> Type
+IdrisType I64     = Int64
+IdrisType Str     = String
+IdrisType Boolean = Bool
+IdrisType Float   = Double
 
-concatAcids1 :  NucleicAcid b1
-             -> NucleicAcid b2
-             -> NucleicAcid b1
+Row : Schema -> Type
+Row = HList . map IdrisType
+
+record Table where
+  constructor MkTable
+  schema : Schema
+  size   : Nat
+  rows   : Vect size (Row schema)
+
+concatTables1 : Table -> Table -> Maybe Table
 ```
 
-There problem with `concatAcids1` is, that `b1` and `b2` are erased
-implicits and we can't inspect them at runtime. We can change that
-and arrive at the following implementation:
+We will not be able to implement `concatTables` by appending the
+two row vectors, unless we can somehow verify that the two schemata
+are identical. "Well," I hear you say, "that shouldn't be a big issue!
+Just implement `Eq` for `ColType`". Let's give this a try:
 
 ```idris
-concatAcids2 :  {b1, b2 : _}
-             -> NucleicAcid b1
-             -> NucleicAcid b2
-             -> Maybe (NucleicAcid b1)
-concatAcids2 {b1 = DNABase} {b2 = DNABase} xs ys = Just $ xs ++ ys
-concatAcids2 {b1 = RNABase} {b2 = RNABase} xs ys = Just $ xs ++ ys
-concatAcids2                               _  _  = Nothing
+Eq ColType where
+  I64     == I64     = True
+  Str     == Str     = True
+  Boolean == Boolean = True
+  Float   == Float   = True
+  _       == _       = False
+
+concatTables1 (MkTable s1 m rs1) (MkTable s2 n rs2) = case s1 == s2 of
+  True  => ?what_now
+  False => Nothing
 ```
 
-Once again, we can with a pattern match on unerased type
-arguments (`b1` and `b2`) learn something about the types themselves.
-It should therefore be straight forward to use `concatAcids2`
-with two strands of nucleic acids, the types of which are known
-at runtime.
-
-However, if we already know the types of nucleobases involved,
-shouldn't it be possible to establish their equivalence in advance
-*before* even invoking `concatBase2`? For instance, in the
-following we and Idris know, that we're dealing with two
-DNA sequences, because thymine makes an appearance in both,
-and yet, we still get a `Maybe` as a result, which we are
-then forced to carry around in future computations.
-
-One could argue that in a case as described above, we could
-just use `(++)` directly, but `Maybe` as a return type can
-still be annoying, especially if we already established a
-proof that the `Nothing` case can't happen.
-
-### A Type for Equivalent Base Types
-
-Idris, being dependently typed, allows us to encode
-relations between values as new types and use values
-of these types as a proof that the relation holds. Here is
-a type, the values of which will serve as a proof that the
-two `BaseType` indices are identical:
-
-```idris
-data SameBT : (b1 : BaseType) -> (b2 : BaseType) -> Type where
-  Same : (b1 : BaseType) -> SameBT b1 b1
-```
-
-In order to understand what's going on here, we need to look
-at several examples. First note, that `SameBT DNABase DNABase` is
-a *type*, and we can define a constant with this type:
-
-```idris
-sameDNA : SameBT DNABase DNABase
-sameDNA = Same DNABase
-```
-
-Likewise for `RNABase`:
-
-```idris
-sameRNA : SameBT RNABase RNABase
-sameRNA = Same RNABase
-```
-
-Now, here is an interesting case: Even `SameBT RNABase DNABase` is
-a type:
+Somehow, this doesn't seem to work. If we inspect the context of hole
+`what_now`, Idris still thinks that `s1` and `s2` are different, and
+if we go ahead and invoke `Vect.(++)` anyway in the `True` case,
+Idris will respond with a type error.
 
 ```repl
-Tutorial.Relations> :t SameBT RNABase DNABase
-SameBT RNABase DNABase : Type
-```
-
-But *there is no value of this type*. You will not be able to
-implement the following constant in a provably total way:
-
-```idris
-sameRNA_DNA : SameBT RNABase DNABase
-```
-
-The problem is, that `SameBT` has only one constructor, which will
-take a single `BaseType` argument and use this argument as the
-value of both its indices. But this is exactly what we want: We
-want to limit the possible pairings of base types to only those
-cases where the two values are identical.
-
-We can now use a value of type `SameBT b1 b2` as a *proof* that
-`b1` and `b2` are identical. This allows us to drop the `Maybe`
-in `concatBases`:
-
-```idris
-concatBases :  SameBT b1 b2
-            -> List (Nucleobase b1)
-            -> List (Nucleobase b2)
-            -> List (Nucleobase b1)
-concatBases (Same _) xs ys = xs ++ ys
-```
-
-Actually, since we are not *really* pattern matching on the
-`SameBT` value (it has only a single constructor, and we
-are not using the wrapped value any further), we can use
-the `SameBT` proof as an erased argument:
-
-```idris
-concatBases0 :  (0 _ : SameBT b1 b2)
-             -> List (Nucleobase b1)
-             -> List (Nucleobase b2)
-             -> List (Nucleobase b1)
-concatBases0 (Same _) xs ys = xs ++ ys
-```
-
-It is important to note, that the pattern match on the
-`SameBT` proof is necessary, otherwise, `b1` and `b2`
-won't unify. We can see this, by inserting a hole and
-inspecting the types at the REPL:
-
-```idris
-concatBasesHole1 :  (0 _ : SameBT b1 b2)
-                 -> List (Nucleobase b1)
-                 -> List (Nucleobase b2)
-                 -> List (Nucleobase b1)
-concatBasesHole1 prf xs ys = ?cbh1
-```
-
-By inspecting the type of `cbh1` at the REPL, we see that
-Idris still treats `prf` as an erased value of type
-`SameBT b1 b2` without having a clue that this leads
-to the conclusion that `b1` and `b2` are identical:
-
-```repl
-Tutorial.Relations> :t cbh1
- 0 b2 : BaseType
- 0 b1 : BaseType
-   ys : List (Nucleobase b2)
-   xs : List (Nucleobase b1)
- 0 prf : SameBT b1 b2
+Tutorial.Relations> :t what_now
+   m : Nat
+   s1 : List ColType
+   rs1 : Vect m (HList (map IdrisType s1))
+   n : Nat
+   s2 : List ColType
+   rs2 : Vect n (HList (map IdrisType s2))
 ------------------------------
-cbh1 : List (Nucleobase b1)
+what_now : Maybe Table
 ```
 
-Consider now the version with an explicit pattern match
-on `prf`:
-
-```idris
-concatBasesHole2 :  (0 _ : SameBT b1 b2)
-                 -> List (Nucleobase b1)
-                 -> List (Nucleobase b2)
-                 -> List (Nucleobase b1)
-concatBasesHole2 (Same b1) xs ys = ?cbh2
-```
-
-First, note that Idris accepts this as being valid and
-provably total, because `SameBT` has only a single
-data constructor and we don't use the wrapped value `b1`
-anywhere else. Second, the type of `Same b1` is
-`SameBT b1 b1`, which follows from the definition of `Same`.
-But this means that `b1` and `b2` unify, because that's
-what was stated in the type of `concatBasesHole2`. Indeed,
-this can be seen when inspecting the context of `cbh2` at
-the REPL:
+The problem is, that there is no reason for Idris to unify the two
+values, even though `(==)` returned `True` because the result of `(==)`
+holds no other information than the type being a `Bool`. *We* think,
+if this is `True` the two values should be identical, but Idris is not
+convinced. In fact, the following implementation would be perfectly fine
+as far as the type checker is concerned:
 
 ```repl
-Tutorial.Relations> :t cbh2
- 0 b1 : BaseType
-   ys : List (Nucleobase b1)
-   xs : List (Nucleobase b1)
- 0 b2 : BaseType
+Eq ColType where
+  _       == _       = True
+```
+
+So Idris is right in not trusting us. You might expect it to inspect the
+implementation of `(==)` and figure out on its own, what the `True` result
+means, but this is not how these things work in general, because most of the
+time the number of computational paths to check would be far too large.
+
+### A Type for equal Schemata
+
+The problem described above is similar to what we saw when
+we talked about the benefit of singleton types: The types
+are not precise enough. What we are going to do now, is something we'll repeat
+time again for different use cases: We encode a contract between values in
+an indexed data type:
+
+```idris
+data SameSchema : (s1 : Schema) -> (s2 : Schema) -> Type where
+  Same : SameSchema s s
+```
+
+First, note how `SameSchema` is a family of types indexed over two
+values of type `Schema`. But note also that the constructors
+restrict the values we allow for `s1` and `s2`: The two indices
+*must* be identical.
+
+Why is this useful? Well, imagine we had a function for checking
+the equality of two schemata, which would try and return a value
+of type `SameSchema s1 s2`:
+
+```idris
+sameSchema : (s1, s2 : Schema) -> Maybe (SameSchema s1 s2)
+```
+
+We could then use this function to implement `concatTables`:
+
+```idris
+concatTables : Table -> Table -> Maybe Table
+concatTables (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of
+  Just Same => Just $ MkTable s1 _ (rs1 ++ rs2)
+  Nothing   => Nothing
+```
+
+It worked! What's going on here? Well, let's inspect the types involved:
+
+```idris
+concatTables2 : Table -> Table -> Maybe Table
+concatTables2 (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of
+  Just Same => ?almost_there
+  Nothing   => Nothing
+```
+
+At the REPL, we get the following context for `almost_there`:
+
+```repl
+Tutorial.Relations> :t almost_there
+   m : Nat
+   s2 : List ColType
+   rs1 : Vect m (HList (map IdrisType s2))
+   n : Nat
+   rs2 : Vect n (HList (map IdrisType s2))
+   s1 : List ColType
 ------------------------------
-cbh2 : List (Nucleobase b1)
+almost_there : Maybe Table
+```
+
+See, how the types of `rs1` and `rs2` unify? Value `Same`, coming as the
+result of `sameSchema s1 s2`, is a witness that `s1` and `s2` are actually
+identical, because this is what we specified in our definition of `Same`.
+
+All that remains to do is to implement `sameSchema`. For this, we will write
+another data type for specifying when two values of type `ColType` are
+identical:
+
+```idris
+data SameColType : (c1, c2 : ColType) -> Type where
+  SameCT : SameColType c1 c1
+```
+
+We can now define several utility functions. First, one for figuring out
+if two column types are identical:
+
+```idris
+sameColType : (c1, c2 : ColType) -> Maybe (SameColType c1 c2)
+sameColType I64     I64     = Just SameCT
+sameColType Str     Str     = Just SameCT
+sameColType Boolean Boolean = Just SameCT
+sameColType Float   Float   = Just SameCT
+sameColType _ _             = Nothing
+```
+
+This will convince Idris, because in each pattern match, the return
+type will be adjusted according to the values we matched on. For instance,
+on the first line, the output type is `Maybe (SameColType I64 I64)` as
+you can easily verify yourself by inserting a hole and checking its
+type at the REPL.
+
+We will need two additional utilities: Functions for creating values
+of type `SameSchema` for the nil and cons cases:
+
+```idris
+sameNil : SameSchema [] []
+sameNil = Same
+
+sameCons :  SameColType c1 c2
+         -> SameSchema s1 s2
+         -> SameSchema (c1 :: s1) (c2 :: s2)
+sameCons SameCT Same = Same
+```
+
+With these, we can finally implement `sameSchema`:
+
+```idris
+sameSchema []        []        = Just sameNil
+sameSchema (x :: xs) (y :: ys) =
+  [| sameCons (sameColType x y) (sameSchema xs ys) |]
+sameSchema (x :: xs) []        = Nothing
+sameSchema []        (x :: xs) = Nothing
+```
+
+What we described here is a far stronger form of equality
+than what is provided by interface `Eq` and the `(==)`
+operator: Equality of values that is accepted by the
+type checker when trying to unify type level indices.
+
+### Type `Equal`
+
+Type level equality is such a fundamental concept, that the *Prelude*
+exports a general data type for this already: `Equal`, with its only
+data constructor `Refl`. In addition, there is a built-in operator
+for expressing type level equality, which gets desugared to `Equal`:
+`(=)`. Here is another implementation of `concatTables`:
+
+```idris
+eqColType : (c1,c2 : ColType) -> Maybe (c1 = c2)
+eqColType I64     I64     = Just Refl
+eqColType Str     Str     = Just Refl
+eqColType Boolean Boolean = Just Refl
+eqColType Float   Float   = Just Refl
+eqColType _ _             = Nothing
+
+eqCons :  {0 c1,c2 : a}
+       -> {0 s1,s2 : List a}
+       -> c1 = c2 -> s1 = s2 ->  c1 :: s1 = c2 :: s2
+eqCons Refl Refl = Refl
+
+eqSchema : (s1,s2 : Schema) -> Maybe (s1 = s2)
+eqSchema []        []        = Just Refl
+eqSchema (x :: xs) (y :: ys) = [| eqCons (eqColType x y) (eqSchema xs ys) |]
+eqSchema (x :: xs) []        = Nothing
+eqSchema []        (x :: xs) = Nothing
+
+concatTables3 : Table -> Table -> Maybe Table
+concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of
+  Just Refl => Just $ MkTable _ _ (rs1 ++ rs2)
+  Nothing   => Nothing
 ```
 
 ## Programs as Proofs
