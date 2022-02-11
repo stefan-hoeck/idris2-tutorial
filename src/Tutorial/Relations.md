@@ -317,9 +317,9 @@ the need of writing custom functions like `appRows` and use
 A famous observation by mathematician *Haskell Curry* and
 logician *William Alvin Howard* leads to the conclusion,
 that we can view a *type* as a mathematical proposition
-and a provably total program returning a *value* if this
-type as a proof that the proposition holds. This
-is also known as the [Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
+and a total program returning a *value* of this type as a
+proof that the proposition holds. This is also known as the
+[Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
 
 For instance, here is a simple proof that one plus one
 equals two:
@@ -351,6 +351,88 @@ onePlusOneWrong : the Nat 1 + 1 = 3
 
 We will, however, have a hard time implementing this in a provably
 total way.
+
+### When Proofs replace Tests
+
+We will see several different use cases for compile time proofs. A
+very straight forward one being to show that our functions behave
+as they should by proofing some properties about them. For instance,
+here is a proposition that `map` on list does not change the number of
+elements in the list:
+
+```idris
+mapListLength : (f : a -> b) -> (as : List a) -> length as = length (map f as)
+```
+
+Read this as a universally quantified statement: For all functions `f`
+from `a` to `b` and for all lists `as` holding values of type `a`,
+the length of `map f as` is the same the as the length of the original list.
+
+We can implement `mapListLength` by pattern matching on `as`. The `Nil` case
+will be trivial: Idris solves this by unification. It knows the value of the
+input list (`Nil`), and since `map` is implemented by pattern matching on
+the input as well, it follows immediately that the result will be `Nil` as
+well:
+
+```idris
+mapListLength f []        = Refl
+```
+
+The `cons` case is more involved, and we will do this stepwise.
+First, note that we can proof that the length of a map over the
+tail will stay the same by means of recursion:
+
+
+```repl
+mapListLength f (x :: xs) = case mapListLength f xs of
+  prf => ?mll1
+```
+
+Let's inspect the types and context we have here:
+
+```repl
+ 0 b : Type
+ 0 a : Type
+   xs : List a
+   f : a -> b
+   x : a
+   prf : length xs = length (map f xs)
+------------------------------
+mll1 : S (length xs) = S (length (map f xs))
+```
+
+So, we have a proof of type `length xs = length (map f xs)`,
+and from the implementation of `map` Idris concludes that what
+we are actually looking for is a result of type
+`S (length xs) = S (length (map f xs))`. This is exactly what
+function `cong` from the *Prelude* is for. We can thus implement
+the *cons* case concisely like so:
+
+
+```idris
+mapListLength f (x :: xs) = cong S $ mapListLength f xs
+```
+
+Please take a moment to appreciate what we achieved here:
+A *proof* in the mathematical sense that our function will not
+affect the length of our list. There will be no need to verify
+this in unit tests!
+
+Before we continue, please note an important thing: In our
+case expression, we used a *variable* for the result from the
+recursive call:
+
+```repl
+mapListLength f (x :: xs) = case mapListLength f xs of
+  prf => cong S prf
+```
+
+Here, we did not want the two lengths to unify, because we
+needed the distinction in our call to `cong`. Therefore: If
+you need a proof of type `x = y` in order for two variables
+to unify, use the `Refl` data constructor in the pattern match.
+If, on the other hand, you need to run further computations on
+such a proof, use a variable for `x` and `y` to remain distinct.
 
 <!-- vi: filetype=idris2
 -->
