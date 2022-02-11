@@ -23,7 +23,7 @@ import Data.String
 ## Equality as a Type
 
 Imagine, we'd like to concatenate the contents of two CSV files,
-both of which we store as tables together with their schemata
+both of which we stored on disk as tables together with their schemata
 as shown in our discussion about dependent pairs:
 
 ```idris
@@ -89,8 +89,8 @@ The problem is, that there is no reason for Idris to unify the two
 values, even though `(==)` returned `True` because the result of `(==)`
 holds no other information than the type being a `Bool`. *We* think,
 if this is `True` the two values should be identical, but Idris is not
-convinced. In fact, the following implementation would be perfectly fine
-as far as the type checker is concerned:
+convinced. In fact, the following implementation of `Eq ColType`
+would be perfectly fine as far as the type checker is concerned:
 
 ```repl
 Eq ColType where
@@ -101,14 +101,18 @@ So Idris is right in not trusting us. You might expect it to inspect the
 implementation of `(==)` and figure out on its own, what the `True` result
 means, but this is not how these things work in general, because most of the
 time the number of computational paths to check would be far too large.
+As a consequence, Idris is able to evaluate functions during
+unification, but it will not trace back information about function
+arguments from a function's result for us. We can do so manually, however,
+as we will see later.
 
 ### A Type for equal Schemata
 
 The problem described above is similar to what we saw when
-we talked about the benefit of singleton types: The types
-are not precise enough. What we are going to do now, is something we'll repeat
-time again for different use cases: We encode a contract between values in
-an indexed data type:
+we talked about the benefit of [singleton types](DPair.md#erased-existentials):
+The types are not precise enough. What we are going to do now,
+is something we'll repeat time again for different use cases:
+We encode a contract between values in an indexed data type:
 
 ```idris
 data SameSchema : (s1 : Schema) -> (s2 : Schema) -> Type where
@@ -161,8 +165,8 @@ almost_there : Maybe Table
 ```
 
 See, how the types of `rs1` and `rs2` unify? Value `Same`, coming as the
-result of `sameSchema s1 s2`, is a witness that `s1` and `s2` are actually
-identical, because this is what we specified in our definition of `Same`.
+result of `sameSchema s1 s2`, is a *witness* that `s1` and `s2` are actually
+identical, because this is what we specified in the definition of `Same`.
 
 All that remains to do is to implement `sameSchema`. For this, we will write
 another data type for specifying when two values of type `ColType` are
@@ -192,7 +196,12 @@ you can easily verify yourself by inserting a hole and checking its
 type at the REPL.
 
 We will need two additional utilities: Functions for creating values
-of type `SameSchema` for the nil and cons cases:
+of type `SameSchema` for the nil and cons cases. Please note, how
+the implementations are trivial. Still, we often have to quickly
+write such small proofs (I'll explain in the next section, why I
+call them *proofs*), which will then be used to convince the
+type checker about some fact we already take for granted but Idris
+does not.
 
 ```idris
 sameNil : SameSchema [] []
@@ -204,6 +213,12 @@ sameCons :  SameColType c1 c2
 sameCons SameCT Same = Same
 ```
 
+As usual, it can help understanding what's going on by replacing
+the right hand side of `sameCons` with a hole an check out its
+type and context at the REPL. The presence of values `SameCT`
+and `Same` on the left hand side forces Idris to unify `c1` and `c2`
+as well as `s1` and `s2`, from which the unification of
+`c1 :: s1` and `c2 :: s2` immediately follows.
 With these, we can finally implement `sameSchema`:
 
 ```idris
@@ -252,7 +267,90 @@ concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of
   Nothing   => Nothing
 ```
 
+### Exercises part 1
+
+In the following exercises, you are going to implement
+some very basic properties of equality proofs. You'll
+have to come up with the types of the functions yourself,
+as the implementations will be incredibly simple.
+
+Note: If you can't remember what the terms "reflexive",
+"symmetric", and "transitive" means, quickly read about
+equivalence relations [here](https://en.wikipedia.org/wiki/Equivalence_relation).
+
+1. Show that `SameColType` is a reflexive relation.
+
+2. Show that `SameColType` is a symmetric relation.
+
+3. Show that `SameColType` is a transitive relation.
+
+4. Show that for any function `f` from a value
+   of type `SameColType c1 c2` follows that
+   `f c1` and `f c2` are equal.
+
+For `(=)` the above properties are available from the *Prelude*
+as functions `sym`, `trans`, and `cong`. Reflexivity is comes
+from the data constructor `Refl` itself.
+
+5. Implement a function for verifying that two natural
+   numbers are identical. Try using `cong` in your
+   implementation.
+
+6. Use the function from exercise 5 for zipping two
+   `Table`s if they have the same number of rows.
+
+   Hint: Use `Vect.zipWith`. You will need to implement
+   custom function `appRows` for this, since Idris will
+   not automatically figure out that the types unify when
+   using `HList.(++)`:
+
+   ```idris
+   appRows : {ts1 : _} -> Row ts1 -> Row ts2 -> Row (ts1 ++ ts2)
+   ```
+
+We will later learn how to use *rewrite rules* to circumvent
+the need of writing custom functions like `appRows` and use
+`(++)` in `zipWith` directly.
+
 ## Programs as Proofs
+
+A famous observation by mathematician *Haskell Curry* and
+logician *William Alvin Howard* leads to the conclusion,
+that we can view a *type* as a mathematical proposition
+and a provably total program returning a *value* if this
+type as a proof that the proposition holds. This
+is also known as the [Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
+
+For instance, here is a simple proof that one plus one
+equals two:
+
+```idris
+onePlusOne : the Nat 1 + 1 = 2
+onePlusOne = Refl
+```
+
+The above proof is trivial, as Idris solves this by unification.
+But we already stated some more interesting things in the
+exercises. For instance, the symmetry and transitivity of
+`SameColType`:
+
+```idris
+sctSymmetric : SameColType c1 c2 -> SameColType c2 c1
+sctSymmetric SameCT = SameCT
+
+sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3
+sctTransitive SameCT SameCT = SameCT
+```
+
+Note, that a type alone is not a proof. For instance, we are free
+to state that one plus one equals three:
+
+```idris
+onePlusOneWrong : the Nat 1 + 1 = 3
+```
+
+We will, however, have a hard time implementing this in a provably
+total way.
 
 <!-- vi: filetype=idris2
 -->
