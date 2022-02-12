@@ -405,8 +405,9 @@ So, we have a proof of type `length xs = length (map f xs)`,
 and from the implementation of `map` Idris concludes that what
 we are actually looking for is a result of type
 `S (length xs) = S (length (map f xs))`. This is exactly what
-function `cong` from the *Prelude* is for. We can thus implement
-the *cons* case concisely like so:
+function `cong` from the *Prelude* is for (*cong* is an abbreviation
+for *congruence*). We can thus implement the *cons* case
+concisely like so:
 
 
 ```idris
@@ -433,6 +434,246 @@ you need a proof of type `x = y` in order for two variables
 to unify, use the `Refl` data constructor in the pattern match.
 If, on the other hand, you need to run further computations on
 such a proof, use a variable for `x` and `y` to remain distinct.
+
+Here is another example from the last chapter: We want to show
+that parsing and printing column types behaves correctly.
+Writing proofs about parser can be very hard in general, but
+here it can be done with a mere pattern match:
+
+```idris
+showColType : ColType -> String
+showColType I64      = "i64"
+showColType Str      = "str"
+showColType Boolean  = "boolean"
+showColType Float    = "float"
+
+readColType : String -> Maybe ColType
+readColType "i64"      = Just I64
+readColType "str"      = Just Str
+readColType "boolean"  = Just Boolean
+readColType "float"    = Just Float
+readColType s          = Nothing
+
+showReadColType : (c : ColType) -> readColType (showColType c) = Just c
+showReadColType I64     = Refl
+showReadColType Str     = Refl
+showReadColType Boolean = Refl
+showReadColType Float   = Refl
+```
+
+Such simple proofs give us a quick but strong guarantee
+that we did not make any stupid mistakes.
+
+The examples we saw so far were very easy to implement. In general,
+this is not the case, and we will have to learn about several
+additional techniques in order to proof interesting things about
+our programs. However, when we use Idris as a general purpose
+programming language and not as a proof assistant, we are free
+to choose whether some aspect of our code needs such strong
+guarantees or not.
+
+### A Note of Caution: Lowercase Identifiers in Function Types
+
+When writing down the types of proofs as we did above, one
+has to be very careful not to fall into the following trap:
+In general, Idris will treat lowercase identifiers in
+function types as type parameters (erased implicit arguments).
+
+For instance, here is a try at proofing the identity functor
+law for `Maybe`:
+
+```idris
+mapMaybeId1 : (ma : Maybe a) -> map id ma = ma
+mapMaybeId1 Nothing  = Refl
+mapMaybeId1 (Just x) = ?mapMaybeId1_rhs
+```
+
+You will not be able to implement the `Just` case, because
+Idris treats `id` as an implicit argument as can easily be
+seen when inspecting the context of `mapMaybeId1_rhs`:
+
+```repl
+Tutorial.Relations> :t mapMaybeId1_rhs
+ 0 a : Type
+ 0 id : a -> a
+   x : a
+------------------------------
+mapMaybeId1_rhs : Just (id x) = Just x
+```
+
+As you can see, `id` is an erased argument of type `a -> a`. And in
+fact, when type-checking this module, Idris will issue a warning that
+parameter `id` is shadowing an existing function:
+
+```repl
+Warning: We are about to implicitly bind the following lowercase names.
+You may be unintentionally shadowing the associated global definitions:
+  id is shadowing Prelude.Basics.id
+```
+
+The same is not true for `map`: Since we explicitly pass arguments
+to `map`, Idris treats this as an existing function instead.
+
+You have several options here. For instance, you could use an uppercase
+identifier, as these will never be treated as implicit arguments:
+
+```idris
+Id : a -> a
+Id = id
+
+mapMaybeId2 : (ma : Maybe a) -> map Id ma = ma
+mapMaybeId2 Nothing  = Refl
+mapMaybeId2 (Just x) = Refl
+```
+
+As an alternative - and this is the preferred way to handle this case -
+you can prefix `id` with part of its namespace, which will immediately
+solve the issue:
+
+```idris
+mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma
+mapMaybeId Nothing  = Refl
+mapMaybeId (Just x) = Refl
+```
+
+Note: If you have semantic highlighting turned on in your editor
+(for instance, by using the [idris2-lsp plugin](https://github.com/idris-community/idris2-lsp)
+for your editor), you will note that `map` and `id` in `mapMaybeId1` get
+highlighted differently: `map` as a function name, `id` as a bound variable.
+
+### Exercises part 2
+
+In these exercises, you are going to proof several simple properties
+of small functions. When writing proofs, it is even more important
+to use holes to figure out what Idris expects from you next. Use
+the tools given to you, instead of trying to find your way in the
+dark!
+
+1. Proof that `map id` on a `Either e` returns the value unmodified.
+
+2. Proof that `map id` on a list returns the list unmodified.
+
+3. Proof that complementing a strand of a nucleobase
+   (see the [previous chapter](DPair.md#use-case-nucleic-acids))
+   twice leads to the original strand.
+
+   Hint: Proof this for single bases first, and use `cong2`
+   from the *Prelude* in your implementation.
+
+4. Implement function `replaceVect`:
+
+   ```idris
+   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a
+   ```
+
+   Now proof, that after replacing an element in a vector
+   using `replaceAt` accessing the same element using
+   `index` will return the value we just added.
+
+5. Implement function `insertVect`:
+
+   ```idris
+   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a
+   ```
+
+   Use a similar proof as in exercise 4 to show that this
+   behaves correctly.
+
+Note: Functions `replaceVect` and `insertVect` are available
+from `Data.Vect` as `replaceAt` and `insertAt`.
+
+## Into the Void
+
+Remember function `onePlusOneWrong` from above? This was definitely
+a wrong statement: One plus one does not equal three. Sometimes,
+we want to express exactly this: That a certain statement is false
+and does not hold. Consider for a moment what it means to proof
+a statement in Idris: Such a statement (or proposition) is a
+type, and a proof of the statement is a value or expression of
+this type. If a statement is not true, there can be no value
+of the given type. We say, the given type is *uninhabited*.
+If we still manage to get our hands on a value of an uninhabited
+type, that is a logical contradiction and from it, anything
+follows (remember
+[ex falso quodlibet](https://en.wikipedia.org/wiki/Principle_of_explosion)).
+
+So this is how to express that a proposition does not hold: We
+state that if it *would* hold, this would lead to a contradiction.
+The most natural way to express a contradiction in Idris is
+to return a value of type `Void`:
+
+```idris
+onePlusOneWrongProvably : the Nat 1 + 1 = 3 -> Void
+onePlusOneWrongProvably Refl impossible
+```
+
+We can also use contradictory statements to proof other such
+statements. For instance, here is a proof that if the lengths
+of two lists are not the same, then the two list can't be
+the same either:
+
+```idris
+notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> Void
+notSameLength1 f prf = f (cong length prf)
+```
+
+This is cumbersome to write and pretty hard to read, so there
+is function `Not` in the prelude to express the same thing
+more naturally:
+
+```idris
+notSameLength : Not (List.length as = length bs) -> Not (as = bs)
+notSameLength f prf = f (cong length prf)
+```
+
+Actually, this is just a specialized version of the contraposition of
+`cong`: If from `a = b` follows `f a = f b`, then from
+`not (f a = f b)` follows `not (a = b)`:
+
+```idris
+contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)
+contraCong fun prf = fun (cong f prf)
+```
+
+### Interface `Uninhabited`
+
+There is an interface in the *Prelude* for expressing this: `Uninhabited`,
+with its sole function `uninhabited`. Have a look at its documentation at
+the REPL. You will see, that there is already an impressive number
+of implementations available, many of which involve data type
+`Equal`.
+
+We can use `Uninhabited`, to for instance express that
+the empty schema is not equal to a non-empty schema:
+
+```idris
+Uninhabited (SameSchema [] (h :: t)) where
+  uninhabited Same impossible
+```
+
+### Exercises part 3
+
+1. Show that there can be no non-empty vector of `Void`
+   by writing a corresponding implementation of uninhabited
+
+2. Generalize exercise 1 for all uninhabited element types.
+
+3. Show that if `a = b` cannot hold, then `b = a` cannot hold
+   either.
+
+4. Show that if `a = b` holds, and `b = c` cannot hold, then
+   `a = c` cannot hold either.
+
+5. Implement `Uninhabited` for `Crud i a`. Try to be
+   as general as possible.
+
+   ```idris
+   data Crud : (i : Type) -> (a : Type) -> Type where
+     Create : (value : a) -> Crud i a
+     Update : (id : i) -> (value : a) -> Crud i a
+     Read   : (id : i) -> Crud i a
+     Delete : (id : i) -> Crud i a
+   ```
 
 <!-- vi: filetype=idris2
 -->

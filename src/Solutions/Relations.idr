@@ -70,3 +70,127 @@ zip : Table -> Table -> Maybe Table
 zip (MkTable s1 m rs1) (MkTable s2 n rs2) = case natEq m n of
   Just Refl => Just $ MkTable _ _ (zipWith appRows rs1 rs2)
   Nothing   => Nothing
+
+--------------------------------------------------------------------------------
+--          Programs as Proofs
+--------------------------------------------------------------------------------
+
+-- 1
+
+mapIdEither : (ea : Either e a) -> map Prelude.id ea = ea
+mapIdEither (Left ve)  = Refl
+mapIdEither (Right va) = Refl
+
+-- 2
+
+mapIdList : (as : List a) -> map Prelude.id as = as
+mapIdList []        = Refl
+mapIdList (x :: xs) = cong (x ::) $ mapIdList xs
+
+-- 3
+
+data BaseType = DNABase | RNABase
+
+data Nucleobase : BaseType -> Type where
+  Adenine  : Nucleobase b
+  Cytosine : Nucleobase b
+  Guanine  : Nucleobase b
+  Thymine  : Nucleobase DNABase
+  Uracile  : Nucleobase RNABase
+
+NucleicAcid : BaseType -> Type
+NucleicAcid = List . Nucleobase
+
+complementBase : (b : BaseType) -> Nucleobase b -> Nucleobase b
+complementBase DNABase Adenine  = Thymine
+complementBase RNABase Adenine  = Uracile
+complementBase _       Cytosine = Guanine
+complementBase _       Guanine  = Cytosine
+complementBase _       Thymine  = Adenine
+complementBase _       Uracile  = Adenine
+
+complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b
+complement b = map (complementBase b)
+
+complementBaseId :  (b  : BaseType)
+                 -> (nb : Nucleobase b)
+                 -> complementBase b (complementBase b nb) = nb
+complementBaseId DNABase Adenine  = Refl
+complementBaseId RNABase Adenine  = Refl
+complementBaseId DNABase Cytosine = Refl
+complementBaseId RNABase Cytosine = Refl
+complementBaseId DNABase Guanine  = Refl
+complementBaseId RNABase Guanine  = Refl
+complementBaseId DNABase Thymine  = Refl
+complementBaseId RNABase Uracile  = Refl
+
+complementId :  (b  : BaseType)
+             -> (na : NucleicAcid b)
+             -> complement b (complement b na) = na
+complementId b []        = Refl
+complementId b (x :: xs) =
+  cong2 (::) (complementBaseId b x) (complementId b xs)
+
+-- 4
+
+replaceVect : Fin n -> a -> Vect n a -> Vect n a
+replaceVect FZ     v (x :: xs) = v :: xs
+replaceVect (FS k) v (x :: xs) = x :: replaceVect k v xs
+
+indexReplace :  (ix : Fin n)
+             -> (v : a)
+             -> (as : Vect n a)
+             -> index ix (replaceVect ix v as) = v
+indexReplace FZ     v (x :: xs) = Refl
+indexReplace (FS k) v (x :: xs) = indexReplace k v xs
+
+-- 5
+
+insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a
+insertVect FZ     v xs        = v :: xs
+insertVect (FS k) v (x :: xs) = x :: insertVect k v xs
+
+indexInsert :  (ix : Fin (S n))
+             -> (v : a)
+             -> (as : Vect n a)
+             -> index ix (insertVect ix v as) = v
+indexInsert FZ     v xs        = Refl
+indexInsert (FS k) v (x :: xs) = indexInsert k v xs
+
+--------------------------------------------------------------------------------
+--          Into the Void
+--------------------------------------------------------------------------------
+
+-- 1
+
+Uninhabited (Vect (S n) Void) where
+  uninhabited (_ :: _) impossible
+
+-- 2
+
+Uninhabited a => Uninhabited (Vect (S n) a) where
+  uninhabited = uninhabited . head
+
+-- 3
+
+notSym : Not (a = b) -> Not (b = a)
+notSym f prf = f $ sym prf
+
+-- 4
+
+notTrans : a = b -> Not (b = c) -> Not (a = c)
+notTrans ab f ac = f $ trans (sym ab) ac
+
+-- 5
+
+data Crud : (i : Type) -> (a : Type) -> Type where
+  Create : (value : a) -> Crud i a
+  Update : (id : i) -> (value : a) -> Crud i a
+  Read   : (id : i) -> Crud i a
+  Delete : (id : i) -> Crud i a
+
+Uninhabited a => Uninhabited i => Uninhabited (Crud i a) where
+  uninhabited (Create value)    = uninhabited value
+  uninhabited (Update id value) = uninhabited value
+  uninhabited (Read id)         = uninhabited id
+  uninhabited (Delete id)       = uninhabited id
