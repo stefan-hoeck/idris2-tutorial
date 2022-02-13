@@ -1,4 +1,4 @@
-# Relations
+# Propositional Equality
 
 Note: This is still work in progress. Please come back later.
 
@@ -10,7 +10,7 @@ values as types, and how we can use values of these types as
 proofs that the contracts hold.
 
 ```idris
-module Tutorial.Relations
+module Tutorial.Eq
 
 import Data.Either
 import Data.HList
@@ -649,7 +649,147 @@ the empty schema is not equal to a non-empty schema:
 ```idris
 Uninhabited (SameSchema [] (h :: t)) where
   uninhabited Same impossible
+
+Uninhabited (SameSchema (h :: t) []) where
+  uninhabited Same impossible
 ```
+
+There is a related function you need to know about: `absurd`, which
+combines `uninhabited` with `void`.
+
+### Decidable Equality
+
+When we implemented `sameColType`, we got a proof that two
+column types are indeed the same, from which we can figure out,
+whether two schemata are identical. These functions guarantee
+we do not generate any false positives: If we generate a value
+of type `SameSchema s1 s2`, we have a proof that `s1` and `s2`
+are indeed identical.
+
+However, `sameColType` and thus `sameSchema` could theoretically
+still produce false negatives by returning `Nothing`
+although the two values are identical. For instance,
+we could implement `sameColType` in such a way that it
+always returns `Nothing`. This would be in agreement with
+the types, but definitely not what we want. So, here is
+what we'd like to do in order to get yet stronger guarantees:
+We'd either want to return a proof that the two schemata
+can be the same, or return a proof that the two schemata
+are not the same. (Remember that `Not a` is an alias for `a -> Void`).
+
+We call a property, which either holds or leads to a
+contradiction a *decidable property*, and the *Prelude*
+export data type `Dec prop`, which encapsulates this
+distinction.
+
+Here is a way to encode this for `ColType`:
+
+```idris
+decSameColType :  (c1,c2 : ColType) -> Dec (SameColType c1 c2)
+decSameColType I64 I64         = Yes SameCT
+decSameColType I64 Str         = No $ \case SameCT impossible
+decSameColType I64 Boolean     = No $ \case SameCT impossible
+decSameColType I64 Float       = No $ \case SameCT impossible
+
+decSameColType Str I64         = No $ \case SameCT impossible
+decSameColType Str Str         = Yes SameCT
+decSameColType Str Boolean     = No $ \case SameCT impossible
+decSameColType Str Float       = No $ \case SameCT impossible
+
+decSameColType Boolean I64     = No $ \case SameCT impossible
+decSameColType Boolean Str     = No $ \case SameCT impossible
+decSameColType Boolean Boolean = Yes SameCT
+decSameColType Boolean Float   = No $ \case SameCT impossible
+
+decSameColType Float I64       = No $ \case SameCT impossible
+decSameColType Float Str       = No $ \case SameCT impossible
+decSameColType Float Boolean   = No $ \case SameCT impossible
+decSameColType Float Float     = Yes SameCT
+```
+
+This was pretty cumbersome to implement. In order to
+convince Idris via direct pattern matching,
+there is no way around treating every possible pairing
+of constructors explicitly.
+However, we get *much* stronger guarantees out of this: We
+can no longer create falls positives *or* false negatives, and
+therefore, `decSameColType` is provably correct.
+
+Doing the same thing for schemata requires some utility functions,
+the types of which we can figure out by placing some holes:
+
+```idris
+decSameSchema' :  (s1, s2 : Schema) -> Dec (SameSchema s1 s2)
+decSameSchema' []        []        = Yes Same
+decSameSchema' []        (y :: ys) = No ?decss1
+decSameSchema' (x :: xs) []        = No ?decss2
+decSameSchema' (x :: xs) (y :: ys) = case decSameColType x y of
+  Yes SameCT => case decSameSchema' xs ys of
+    Yes Same => Yes Same
+    No  contra => No $ \prf => ?decss3
+  No  contra => No $ \prf => ?decss4
+```
+
+The first two cases are not too hard. The type of `decss1` is
+`SameSchema [] (y :: ys) -> Void`, which you can easily verify
+at the REPL. But that's just `uninhabited`, specialized to
+`SameSchema [] (y :: ys)`, and this we already implemented
+further above. The same goes for `decss2`.
+
+The other two cases are harder, so I already filled in as much stuff
+as possible. We know that we want to return a `No`, if either the
+heads or tails are provably distinct. The `No` holds a
+function, so I already added a lambda, leaving a hole only for
+the return value. Here are the type and - more important -
+context of `decss3`:
+
+```repl
+Tutorial.Relations> :t decss3
+   y : ColType
+   xs : List ColType
+   ys : List ColType
+   x : ColType
+   contra : SameSchema xs ys -> Void
+   prf : SameSchema (y :: xs) (y :: ys)
+------------------------------
+decss3 : Void
+```
+
+The types of `contra` and `prf` are what we need here:
+If `xs` and `ys` are distinct, then `y :: xs` and `y :: ys`
+must be distinct as well. This is the contraposition of the
+following statement: If `x :: xs` is the same as `y :: ys`,
+then `xs` and `ys` are the same as well. We must therefore
+implement a lemma, which proves that the *cons* constructor
+is [*injective*](https://en.wikipedia.org/wiki/Injective_function):
+
+```idris
+consInjective :  SameSchema (c1 :: cs1) (c2 :: cs2)
+              -> (SameColType c1 c2, SameSchema cs1 cs2)
+consInjective Same = (SameCT, Same)
+```
+
+We can now pass `prf` to `consInjective` to extract a value of
+type `SameSchema xs ys`, which we then pass to `contra` in
+order to get the desired value of type `Void`.
+With these observations and utilities, we can now implement
+`decSameSchema`:
+
+```idris
+decSameSchema :  (s1, s2 : Schema) -> Dec (SameSchema s1 s2)
+decSameSchema []        []        = Yes Same
+decSameSchema []        (y :: ys) = No absurd
+decSameSchema (x :: xs) []        = No absurd
+decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of
+  Yes SameCT => case decSameSchema xs ys of
+    Yes Same   => Yes Same
+    No  contra => No $ contra . snd . consInjective
+  No  contra => No $ contra . fst . consInjective
+```
+
+There is an interface called `DecEq` exported by module `Decidable.Equality`
+for types for which we can implement a decision procedure for propositional
+equality. We can implement this figure out if two values are equal or not.
 
 ### Exercises part 3
 
@@ -674,6 +814,33 @@ Uninhabited (SameSchema [] (h :: t)) where
      Read   : (id : i) -> Crud i a
      Delete : (id : i) -> Crud i a
    ```
+
+6. Implement `DecEq` for `ColType`.
+
+7. Implementations such as the one from exercise 6 are cumbersome
+   to write as they require a quadratic number of pattern matches
+   with relation to the number of data constructors. Here is a
+   trick how to make this more bearable.
+
+   1. Implement a function `ctNat`, which assigns every value
+      of type `ColType` a unique natural number.
+
+   2. Proof that `ctNat` is injective.
+      Hint: You will need to pattern match on the `ColType`
+      values, but four matches should be enough to satisfy the
+      coverage checker.
+
+   3. In your implementation of `DecEq` for `ColType`,
+      use `decEq` on the result of applying both column
+      types to `ctNat`, thus reducing it to only two lines of
+      code.
+
+   We will later talk about `with` rules: Special forms of
+   dependent pattern matches, that allow us to learn something
+   about the shape of function arguments by performing
+   computations on them. These will allow us to a similar technique
+   as shown here to implement `DecEq` requiring only `n` pattern matches
+   for arbitrary sum types with `n` data constructors.
 
 <!-- vi: filetype=idris2
 -->

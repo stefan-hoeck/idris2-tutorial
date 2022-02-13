@@ -85,7 +85,7 @@ stuff will already be familiar to you.
     1. [Dependent Pairs](src/Tutorial/DPair.md#dependent-pairs)
     2. [Use Case: Nucleic Acids](src/Tutorial/DPair.md#use-case-nucleic-acids)
     3. [Use Case: CSV Files with a Schema](src/Tutorial/DPair.md#use-case-csv-files-with-a-schema)
-12. [Relations](src/Tutorial/Relations.md)
+12. [Propositional Equality](src/Tutorial/Eq.md)
 
 ## Prerequisites
 

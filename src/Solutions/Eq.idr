@@ -1,7 +1,8 @@
-module Solutions.Relations
+module Solutions.Eq
 
 import Data.HList
 import Data.Vect
+import Decidable.Equality
 
 %default total
 
@@ -194,3 +195,46 @@ Uninhabited a => Uninhabited i => Uninhabited (Crud i a) where
   uninhabited (Update id value) = uninhabited value
   uninhabited (Read id)         = uninhabited id
   uninhabited (Delete id)       = uninhabited id
+
+-- 6
+
+namespace DecEq
+  DecEq ColType where
+    decEq I64 I64         = Yes Refl
+    decEq I64 Str         = No $ \case Refl impossible
+    decEq I64 Boolean     = No $ \case Refl impossible
+    decEq I64 Float       = No $ \case Refl impossible
+
+    decEq Str I64         = No $ \case Refl impossible
+    decEq Str Str         = Yes Refl
+    decEq Str Boolean     = No $ \case Refl impossible
+    decEq Str Float       = No $ \case Refl impossible
+
+    decEq Boolean I64     = No $ \case Refl impossible
+    decEq Boolean Str     = No $ \case Refl impossible
+    decEq Boolean Boolean = Yes Refl
+    decEq Boolean Float   = No $ \case Refl impossible
+
+    decEq Float I64       = No $ \case Refl impossible
+    decEq Float Str       = No $ \case Refl impossible
+    decEq Float Boolean   = No $ \case Refl impossible
+    decEq Float Float     = Yes Refl
+
+-- 7
+
+ctNat : ColType -> Nat
+ctNat I64     = 0
+ctNat Str     = 1
+ctNat Boolean = 2
+ctNat Float   = 3
+
+ctNatInjective : (c1,c2 : ColType) -> ctNat c1 = ctNat c2 -> c1 = c2
+ctNatInjective I64     I64     Refl = Refl
+ctNatInjective Str     Str     Refl = Refl
+ctNatInjective Boolean Boolean Refl = Refl
+ctNatInjective Float   Float   Refl = Refl
+
+DecEq ColType where
+  decEq c1 c2 = case decEq (ctNat c1) (ctNat c2) of
+    Yes prf    => Yes $ ctNatInjective c1 c2 prf
+    No  contra => No $ contra . cong ctNat
