@@ -86,6 +86,9 @@ stuff will already be familiar to you.
     2. [Use Case: Nucleic Acids](src/Tutorial/DPair.md#use-case-nucleic-acids)
     3. [Use Case: CSV Files with a Schema](src/Tutorial/DPair.md#use-case-csv-files-with-a-schema)
 12. [Propositional Equality](src/Tutorial/Eq.md)
+    1. [Equality as a Type](src/Tutorial/Eq.md#equality-as-a-type)
+    2. [Programs as Proofs](src/Tutorial/Eq.md#programs-as-proofs)
+    3. [Into the Void](src/Tutorial/Eq.md#into-the-void)
 
 ## Prerequisites
 
