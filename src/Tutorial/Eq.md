@@ -316,8 +316,9 @@ the need of writing custom functions like `appRows` and use
 
 A famous observation by mathematician *Haskell Curry* and
 logician *William Alvin Howard* leads to the conclusion,
-that we can view a *type* as a mathematical proposition
-and a total program returning a *value* of this type as a
+that we can view a *type* in a programming language with
+a sufficiently rich type system as a mathematical proposition
+and a total program calculating a *value* of this type as a
 proof that the proposition holds. This is also known as the
 [Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
 
@@ -350,7 +351,8 @@ onePlusOneWrong : the Nat 1 + 1 = 3
 ```
 
 We will, however, have a hard time implementing this in a provably
-total way.
+total way. We say: "The type `the Nat 1 + 1 = 3` is *uninhabited*",
+meaning, that there is no value of this type.
 
 ### When Proofs replace Tests
 
@@ -405,7 +407,7 @@ So, we have a proof of type `length xs = length (map f xs)`,
 and from the implementation of `map` Idris concludes that what
 we are actually looking for is a result of type
 `S (length xs) = S (length (map f xs))`. This is exactly what
-function `cong` from the *Prelude* is for (*cong* is an abbreviation
+function `cong` from the *Prelude* is for ("cong" is an abbreviation
 for *congruence*). We can thus implement the *cons* case
 concisely like so:
 
@@ -417,7 +419,7 @@ mapListLength f (x :: xs) = cong S $ mapListLength f xs
 Please take a moment to appreciate what we achieved here:
 A *proof* in the mathematical sense that our function will not
 affect the length of our list. There will be no need to verify
-this in unit tests!
+this in a kind of unit test!
 
 Before we continue, please note an important thing: In our
 case expression, we used a *variable* for the result from the
@@ -433,11 +435,12 @@ needed the distinction in our call to `cong`. Therefore: If
 you need a proof of type `x = y` in order for two variables
 to unify, use the `Refl` data constructor in the pattern match.
 If, on the other hand, you need to run further computations on
-such a proof, use a variable for `x` and `y` to remain distinct.
+such a proof, use a variable and the left and right-hand sides
+will remain distinct.
 
 Here is another example from the last chapter: We want to show
 that parsing and printing column types behaves correctly.
-Writing proofs about parser can be very hard in general, but
+Writing proofs about parsers can be very hard in general, but
 here it can be done with a mere pattern match:
 
 ```idris
@@ -461,7 +464,7 @@ showReadColType Boolean = Refl
 showReadColType Float   = Refl
 ```
 
-Such simple proofs give us a quick but strong guarantee
+Such simple proofs give us quick but strong guarantees
 that we did not make any stupid mistakes.
 
 The examples we saw so far were very easy to implement. In general,
@@ -512,7 +515,8 @@ You may be unintentionally shadowing the associated global definitions:
 ```
 
 The same is not true for `map`: Since we explicitly pass arguments
-to `map`, Idris treats this as an existing function instead.
+to `map`, Idris treats this as a function identifier, which it
+tries to find in the surrounding context.
 
 You have several options here. For instance, you could use an uppercase
 identifier, as these will never be treated as implicit arguments:
@@ -528,7 +532,7 @@ mapMaybeId2 (Just x) = Refl
 
 As an alternative - and this is the preferred way to handle this case -
 you can prefix `id` with part of its namespace, which will immediately
-solve the issue:
+resolve the issue:
 
 ```idris
 mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma
@@ -549,7 +553,7 @@ to use holes to figure out what Idris expects from you next. Use
 the tools given to you, instead of trying to find your way in the
 dark!
 
-1. Proof that `map id` on a `Either e` returns the value unmodified.
+1. Proof that `map id` on an `Either e` returns the value unmodified.
 
 2. Proof that `map id` on a list returns the list unmodified.
 
@@ -590,10 +594,11 @@ we want to express exactly this: That a certain statement is false
 and does not hold. Consider for a moment what it means to proof
 a statement in Idris: Such a statement (or proposition) is a
 type, and a proof of the statement is a value or expression of
-this type. If a statement is not true, there can be no value
+this type: The type is said to be *inhabitd*.
+If a statement is not true, there can be no value
 of the given type. We say, the given type is *uninhabited*.
 If we still manage to get our hands on a value of an uninhabited
-type, that is a logical contradiction and from it, anything
+type, that is a logical contradiction and from this, anything
 follows (remember
 [ex falso quodlibet](https://en.wikipedia.org/wiki/Principle_of_explosion)).
 
@@ -606,6 +611,12 @@ to return a value of type `Void`:
 onePlusOneWrongProvably : the Nat 1 + 1 = 3 -> Void
 onePlusOneWrongProvably Refl impossible
 ```
+
+See how this is a provably total implementation of the
+given type: A function from `1 + 1 = 3` to `Void`. We
+implement this by pattern matching, and there is only
+one constructor to match on, which leads to an impossible
+case.
 
 We can also use contradictory statements to proof other such
 statements. For instance, here is a proof that if the lengths
@@ -632,7 +643,7 @@ Actually, this is just a specialized version of the contraposition of
 
 ```idris
 contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)
-contraCong fun prf = fun (cong f prf)
+contraCong fun = fun . cong f
 ```
 
 ### Interface `Uninhabited`
@@ -655,13 +666,19 @@ Uninhabited (SameSchema (h :: t) []) where
 ```
 
 There is a related function you need to know about: `absurd`, which
-combines `uninhabited` with `void`.
+combines `uninhabited` with `void`:
+
+```repl
+Tutorial.Eq> :printdef absurd
+Prelude.absurd : Uninhabited t => t -> a
+absurd h = void (uninhabited h)
+```
 
 ### Decidable Equality
 
 When we implemented `sameColType`, we got a proof that two
 column types are indeed the same, from which we can figure out,
-whether two schemata are identical. These functions guarantee
+whether two schemata are identical. The type guarantees
 we do not generate any false positives: If we generate a value
 of type `SameSchema s1 s2`, we have a proof that `s1` and `s2`
 are indeed identical.
@@ -674,12 +691,12 @@ always returns `Nothing`. This would be in agreement with
 the types, but definitely not what we want. So, here is
 what we'd like to do in order to get yet stronger guarantees:
 We'd either want to return a proof that the two schemata
-can be the same, or return a proof that the two schemata
+are the same, or return a proof that the two schemata
 are not the same. (Remember that `Not a` is an alias for `a -> Void`).
 
 We call a property, which either holds or leads to a
 contradiction a *decidable property*, and the *Prelude*
-export data type `Dec prop`, which encapsulates this
+exports data type `Dec prop`, which encapsulates this
 distinction.
 
 Here is a way to encode this for `ColType`:
@@ -707,12 +724,20 @@ decSameColType Float Boolean   = No $ \case SameCT impossible
 decSameColType Float Float     = Yes SameCT
 ```
 
-This was pretty cumbersome to implement. In order to
-convince Idris via direct pattern matching,
+First, note how we could use a pattern match in a single
+argument lambda directly. This is sometimes called the
+*lambda case* style, named after an extension of the Haskell
+programming language. If we use the `SameCT` constructor
+in the pattern match, Idris is forced to try and unify for instance
+`Float` with `I64`. This is not possible, so the case as
+a whole is impossible.
+
+Yet, this was pretty cumbersome to implement. In order to
+convince Idris we did not miss a case,
 there is no way around treating every possible pairing
 of constructors explicitly.
 However, we get *much* stronger guarantees out of this: We
-can no longer create falls positives *or* false negatives, and
+can no longer create false positives *or* false negatives, and
 therefore, `decSameColType` is provably correct.
 
 Doing the same thing for schemata requires some utility functions,
@@ -789,7 +814,7 @@ decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of
 
 There is an interface called `DecEq` exported by module `Decidable.Equality`
 for types for which we can implement a decision procedure for propositional
-equality. We can implement this figure out if two values are equal or not.
+equality. We can implement this to figure out if two values are equal or not.
 
 ### Exercises part 3
 
@@ -838,9 +863,185 @@ equality. We can implement this figure out if two values are equal or not.
    We will later talk about `with` rules: Special forms of
    dependent pattern matches, that allow us to learn something
    about the shape of function arguments by performing
-   computations on them. These will allow us to a similar technique
-   as shown here to implement `DecEq` requiring only `n` pattern matches
+   computations on them. These will allow us to use
+   a similar technique as shown here to implement `DecEq`
+   requiring only `n` pattern matches
    for arbitrary sum types with `n` data constructors.
+
+## Rewrite Rules
+
+One of the most important use cases of propositional equality
+is to replace or *rewrite* existing types, which Idris can't
+unify automatically. For instance, the following is no problem:
+Idris know that `0 + n` equals `n`, because `plus` on
+natural numbers is implemented by pattern matching on the
+first argument. The two vector lengths therefore unify
+just fine.
+
+```idris
+leftZero :  List (Vect n Nat)
+         -> List (Vect (0 + n) Nat)
+         -> List (Vect n Nat)
+leftZero = (++)
+```
+
+However, the example below can't implemented as easily
+(try id!), because Idris can't figure out on its own
+that the two lengths unify.
+
+```idris
+rightZero' :  List (Vect n Nat)
+           -> List (Vect (n + 0) Nat)
+           -> List (Vect n Nat)
+```
+
+Probably for the first time we realize, just how little
+Idris knows about the laws of arithmetics. Idris is able
+to unify values when
+
+* all variables in a computation are known
+* one expression follows directly from the other due
+  to the pattern matches used in a function's implementation.
+
+However, we can teach Idris. If we can proof that the two
+expressions are equivalent, we can replace one expression
+for the other, so that the two unify again. Here is a proof,
+that `n + 0` equals `n`, for all natural numbers `n`.
+
+```idris
+addZeroRight : (n : Nat) -> n + 0 = n
+addZeroRight 0     = Refl
+addZeroRight (S k) = cong S $ addZeroRight k
+```
+
+Note, how the base case is trivial: Since there are no
+variables left, Idris can immediately figure out that
+`0 + 0 = 0`. In the recursive case, it can be instructive
+to replace `cong S` with a hole and look at its type
+and context to figure out how to proceed.
+
+The *Prelude* exports function `replace` for substituting one
+variable in a term by another, based on a proof of equality.
+Make sure to inspect its type first, before looking at the
+example below:
+
+```idris
+replaceVect : Vect (n + 0) a -> Vect n a
+replaceVect as = replace {p = \k => Vect k a} (addZeroRight n) as
+```
+
+As you can see, we *replace* a value of type `p x` with a value
+of type `p y`, where `p` is a function from some type `t` to
+`Type`, and `x` and `y` are values of type `t`. In our
+`replaceVect` example, `t` equals `Nat`, `x` equals `n + 0`,
+`y` equals `n`, and `p` equals `\k => Vect k a`.
+
+Using `replace` directly is not very convenient, because Idris
+can often not infer the value of `p` on its own. Indeed, we
+had to give its type explicitly. Idris therefore provides
+special syntax for such *rewrite rules*, which will get
+desugared to calls to `replace` with all the details filled
+in for us. Here is an implementation of `replaceVect` with
+a rewrite rule:
+
+```idris
+rewriteVect : Vect (n + 0) a -> Vect n a
+rewriteVect as = rewrite sym (addZeroRight n) in as
+```
+
+One source of confusion is that *rewrite* uses proofs
+of equality the other way round: Given an `y = x`
+it replaces `p x` with `p y`. Hence the call to `sym`
+in our implementation above.
+
+### Use Case: Reversing Vectors
+
+Rewrite rules are often required when we perform interesting
+type-level computations. For instance,
+we have already seen many interesting examples of functions
+operating on `Vect`, which allow us to keep track of the
+exact lengths of the vectors involved, but one key
+functionality has been missing from our discussions so far,
+and for good reason: Function `reverse`. Here is a possible
+implementation, which is how `reverse` is implemented for
+lists:
+
+
+```repl
+reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a
+reverseOnto' xs []        = xs
+reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys
+
+
+reverseVect' : Vect n a -> Vect n a
+reverseVect' = reverseOnto' []
+```
+
+As you might have guessed, this will not compile as the
+length indices in the two clauses of `reverseOnto'` do
+not unify.
+
+The *nil* case is a case we've already seen above:
+Here `n` is zero, because the second vector is empty,
+so we have to convince Idris once again that `m + 0 = m`:
+
+```idris
+reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a
+reverseOnto xs [] = rewrite addZeroRight m in xs
+```
+
+The second case is more complex. Here, Idris fails to unify
+`S (m + len)` with `m + S len`, where `len` is the length of
+`ys`, the tail of the second vector. Module `Data.Nat`
+provides many proofs about arithmetic operations on natural
+numbers, one of which is `plusSuccRightSucc`. Here's its
+type:
+
+```repl
+Tutorial.Eq> :t plusSuccRightSucc
+Data.Nat.plusSuccRightSucc :  (left : Nat)
+                           -> (right : Nat)
+                           -> S (left + right) = left + S right
+```
+
+In our case, we want to replace `S (m + len)` with `m + S len`,
+so we will need to version with arguments flipped. However, there
+is one more obstacle: We need to invoke `plusSuccRightSucc`
+with the length of `ys`, which is not given as implicit
+function argument of `reverseOnto`. We therefore need to pattern
+match on `n` (the length of the second vector), in order to
+bind the length of the tail to a variable. Remember, that we
+are allowed to pattern match on an erased argument only if
+the constructor used follows from a match on another, unerased,
+argument (`ys` in this case). Here's the implementation of the
+second case:
+
+```idris
+reverseOnto {n = S len} xs (x :: ys) =
+  rewrite sym (plusSuccRightSucc m len) in reverseOnto (x :: xs) ys
+```
+
+I know from my own experience that this can be highly confusing
+at first. If you use Idris as a general purpose programming language
+and not as a proof assistant, you probably will not have to use
+rewrite rules too often. Still, it is important to know that they
+exist, as they allow us to teach complex equivalences to Idris.
+
+### Exercises part 4
+
+1. Implement `plusSuccRightSucc` yourself.
+
+2. Proof that `minus n n` equals zero for all natural numbers `n`.
+
+3. Proof that `minus n 0` equals n for all natural numbers `n`
+
+4. Proof that `n * 1 = n` and `1 * n = n`
+   for all natural numbers `n`.
+
+5. Proof that addition of natural numbers is
+   commutative.
+
+6. Implement a tail-recursive version of `map` for vectors.
 
 <!-- vi: filetype=idris2
 -->

@@ -238,3 +238,55 @@ DecEq ColType where
   decEq c1 c2 = case decEq (ctNat c1) (ctNat c2) of
     Yes prf    => Yes $ ctNatInjective c1 c2 prf
     No  contra => No $ contra . cong ctNat
+
+--------------------------------------------------------------------------------
+--          Rewrite Rules
+--------------------------------------------------------------------------------
+
+-- 1
+
+psuccRightSucc : (m,n : Nat) -> S (m + n) = m + S n
+psuccRightSucc 0     n = Refl
+psuccRightSucc (S k) n = cong S $ psuccRightSucc k n
+
+-- 2
+
+minusSelfZero : (n : Nat) -> minus n n = 0
+minusSelfZero 0     = Refl
+minusSelfZero (S k) = minusSelfZero k
+
+-- 3
+
+minusZero : (n : Nat) -> minus n 0 = n
+minusZero 0     = Refl
+minusZero (S k) = Refl
+
+-- 4
+
+timesOneLeft : (n : Nat) -> 1 * n = n
+timesOneLeft 0     = Refl
+timesOneLeft (S k) = cong S $ timesOneLeft k
+
+timesOneRight : (n : Nat) -> n * 1 = n
+timesOneRight 0     = Refl
+timesOneRight (S k) = cong S $ timesOneRight k
+
+
+-- 5
+
+plusCommutes : (m,n : Nat) -> m + n = n + m
+plusCommutes 0     n = rewrite plusZeroRightNeutral n in Refl
+plusCommutes (S k) n =
+  rewrite sym (psuccRightSucc n k)
+  in cong S (plusCommutes k n)
+
+-- 6
+
+mapOnto : (a -> b) -> Vect k b -> Vect m a -> Vect (k + m) b
+mapOnto            _ xs []        =
+  rewrite plusZeroRightNeutral k in reverse xs
+mapOnto {m = S m'} f xs (y :: ys) =
+  rewrite sym (plusSuccRightSucc k m') in mapOnto f (f y :: xs) ys
+
+mapTR : (a -> b) -> Vect n a -> Vect n b
+mapTR f = mapOnto f Nil
