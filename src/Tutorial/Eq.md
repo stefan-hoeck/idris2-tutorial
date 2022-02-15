@@ -118,8 +118,8 @@ data SameSchema : (s1 : Schema) -> (s2 : Schema) -> Type where
 ```
 
 First, note how `SameSchema` is a family of types indexed over two
-values of type `Schema`. But note also that the constructors
-restrict the values we allow for `s1` and `s2`: The two indices
+values of type `Schema`. But note also that the sole constructor
+restricts the values we allow for `s1` and `s2`: The two indices
 *must* be identical.
 
 Why is this useful? Well, imagine we had a function for checking
@@ -231,14 +231,25 @@ What we described here is a far stronger form of equality
 than what is provided by interface `Eq` and the `(==)`
 operator: Equality of values that is accepted by the
 type checker when trying to unify type level indices.
+This is also called *propositional equality*: We will see
+below, that we can view types as mathematical *propositions*,
+and values of these types a *proofs* that these propositions
+hold.
 
 ### Type `Equal`
 
-Type level equality is such a fundamental concept, that the *Prelude*
+Propositional equality is such a fundamental concept, that the *Prelude*
 exports a general data type for this already: `Equal`, with its only
 data constructor `Refl`. In addition, there is a built-in operator
-for expressing type level equality, which gets desugared to `Equal`:
-`(=)`. Here is another implementation of `concatTables`:
+for expressing propositional equality, which gets desugared to `Equal`:
+`(=)`. This can sometimes lead to some confusion, because the equals
+symbol is also used for *definitional equality*: Describing in function
+implementations that the left-hand side and right-hand side are
+defined to be equal. If you want to disambiguate propositional from
+definitional equality, you can also use operator `(===)` for the
+former.
+
+Here is another implementation of `concatTables`:
 
 ```idris
 eqColType : (c1,c2 : ColType) -> Maybe (c1 = c2)
@@ -415,8 +426,8 @@ mapListLength f (x :: xs) = cong S $ mapListLength f xs
 
 Please take a moment to appreciate what we achieved here:
 A *proof* in the mathematical sense that our function will not
-affect the length of our list. There will be no need to verify
-this in any kind of unit or similar test!
+affect the length of our list. We no longer need a unit test
+or similar program to verify this.
 
 Before we continue, please note an important thing: In our
 case expression, we used a *variable* for the result from the
@@ -537,8 +548,8 @@ mapMaybeId (Just x) = Refl
 ```
 
 Note: If you have semantic highlighting turned on in your editor
-(for instance, by using the [idris2-lsp plugin](https://github.com/idris-community/idris2-lsp)
-for your editor), you will note that `map` and `id` in `mapMaybeId1` get
+(for instance, by using the [idris2-lsp plugin](https://github.com/idris-community/idris2-lsp)),
+you will note that `map` and `id` in `mapMaybeId1` get
 highlighted differently: `map` as a function name, `id` as a bound variable.
 
 ### Exercises part 2
@@ -558,7 +569,8 @@ dark!
    twice leads to the original strand.
 
    Hint: Proof this for single bases first, and use `cong2`
-   from the *Prelude* in your implementation.
+   from the *Prelude* in your implementation for sequences
+   of nucleic acids.
 
 4. Implement function `replaceVect`:
 
@@ -867,7 +879,8 @@ equality. We can implement this to figure out if two values are equal or not.
 
 One of the most important use cases of propositional equality
 is to replace or *rewrite* existing types, which Idris can't
-unify automatically. For instance, the following is no problem:
+unify automatically otherwise. For instance,
+the following is no problem:
 Idris know that `0 + n` equals `n`, because `plus` on
 natural numbers is implemented by pattern matching on the
 first argument. The two vector lengths therefore unify
@@ -880,7 +893,7 @@ leftZero :  List (Vect n Nat)
 leftZero = (++)
 ```
 
-However, the example below can't implemented as easily
+However, the example below can't be implemented as easily
 (try id!), because Idris can't figure out on its own
 that the two lengths unify.
 
@@ -894,14 +907,19 @@ Probably for the first time we realize, just how little
 Idris knows about the laws of arithmetics. Idris is able
 to unify values when
 
-* all variables in a computation are known
+* all values in a computation are known at compile time
 * one expression follows directly from the other due
   to the pattern matches used in a function's implementation.
 
+In expression `n + 0`,  not all values are known (`n` is a variable),
+and `(+)` is implemented by pattern matching on the first
+argument, about which we know nothing here.
+
 However, we can teach Idris. If we can proof that the two
 expressions are equivalent, we can replace one expression
-for the other, so that the two unify again. Here is a proof,
-that `n + 0` equals `n`, for all natural numbers `n`.
+for the other, so that the two unify again. Here is a lemma
+and its proof, that `n + 0` equals `n`, for all natural
+numbers `n`.
 
 ```idris
 addZeroRight : (n : Nat) -> n + 0 = n
@@ -917,7 +935,7 @@ and context to figure out how to proceed.
 
 The *Prelude* exports function `replace` for substituting one
 variable in a term by another, based on a proof of equality.
-Make sure to inspect its type first, before looking at the
+Make sure to inspect its type first before looking at the
 example below:
 
 ```idris
@@ -926,18 +944,19 @@ replaceVect as = replace {p = \k => Vect k a} (addZeroRight n) as
 ```
 
 As you can see, we *replace* a value of type `p x` with a value
-of type `p y`, where `p` is a function from some type `t` to
+of type `p y` based on a proof that `x = y`,
+where `p` is a function from some type `t` to
 `Type`, and `x` and `y` are values of type `t`. In our
 `replaceVect` example, `t` equals `Nat`, `x` equals `n + 0`,
 `y` equals `n`, and `p` equals `\k => Vect k a`.
 
 Using `replace` directly is not very convenient, because Idris
 can often not infer the value of `p` on its own. Indeed, we
-had to give its type explicitly. Idris therefore provides
-special syntax for such *rewrite rules*, which will get
-desugared to calls to `replace` with all the details filled
-in for us. Here is an implementation of `replaceVect` with
-a rewrite rule:
+had to give its type explicitly in `replaceVect`.
+Idris therefore provides special syntax for such *rewrite rules*,
+which will get desugared to calls to `replace` with all the
+details filled in for us. Here is an implementation
+of `replaceVect` with a rewrite rule:
 
 ```idris
 rewriteVect : Vect (n + 0) a -> Vect n a
@@ -946,7 +965,7 @@ rewriteVect as = rewrite sym (addZeroRight n) in as
 
 One source of confusion is that *rewrite* uses proofs
 of equality the other way round: Given an `y = x`
-it replaces `p x` with `p y`. Hence the call to `sym`
+it replaces `p x` with `p y`. Hence the need to call `sym`
 in our implementation above.
 
 ### Use Case: Reversing Vectors
@@ -954,10 +973,10 @@ in our implementation above.
 Rewrite rules are often required when we perform interesting
 type-level computations. For instance,
 we have already seen many interesting examples of functions
-operating on `Vect`, which allow us to keep track of the
+operating on `Vect`, which allowed us to keep track of the
 exact lengths of the vectors involved, but one key
 functionality has been missing from our discussions so far,
-and for good reason: Function `reverse`. Here is a possible
+and for good reasons: Function `reverse`. Here is a possible
 implementation, which is how `reverse` is implemented for
 lists:
 
@@ -1000,9 +1019,9 @@ Data.Nat.plusSuccRightSucc :  (left : Nat)
 ```
 
 In our case, we want to replace `S (m + len)` with `m + S len`,
-so we will need to version with arguments flipped. However, there
+so we will need the version with arguments flipped. However, there
 is one more obstacle: We need to invoke `plusSuccRightSucc`
-with the length of `ys`, which is not given as implicit
+with the length of `ys`, which is not given as an implicit
 function argument of `reverseOnto`. We therefore need to pattern
 match on `n` (the length of the second vector), in order to
 bind the length of the tail to a variable. Remember, that we
@@ -1022,6 +1041,22 @@ and not as a proof assistant, you probably will not have to use
 rewrite rules too often. Still, it is important to know that they
 exist, as they allow us to teach complex equivalences to Idris.
 
+### A Note on Erasure
+
+Single value data types like `Unit`, `Equal`, or `SameSchema` have
+not runtime relevance, as values of these types are always identical.
+We can therefore always use them as erased function arguments while
+still being able to pattern match on these values.
+For instance, when you look at the type of `replace`, you will see
+that the equality proof is an erased argument.
+This allows us to run arbitrarily complex computations to produce
+such values without fear of these computations slowing down
+the compiled Idris program.
+
+In the next chapter, we will learn about several more single value
+data types, which will allow us to *refine* the values of certain
+types.
+
 ### Exercises part 4
 
 1. Implement `plusSuccRightSucc` yourself.
@@ -1037,6 +1072,31 @@ exist, as they allow us to teach complex equivalences to Idris.
    commutative.
 
 6. Implement a tail-recursive version of `map` for vectors.
+
+7. Proof the following proposition:
+
+   ```idris
+   mapAppend :  (f : a -> b)
+             -> (xs : List a)
+             -> (ys : List a)
+             -> map f (xs ++ ys) = map f xs ++ map f ys
+   ```
+
+8. Use the proof from exercise 7 to implement again a function
+   for  zipping two `Table`s, this time using a rewrite rule
+   plus `Data.HList.(++)` instead of custom function `appRows`.
+
+## Conclusion
+
+The concept of *types as propositions, values as proofs* is
+a very powerful tool for writing provably correct programs. We
+will therefore spend some more time defining data types
+for describing contracts between values, and values of these
+types as proofs that the contracts hold. This will allow
+us to describe necessary pre- and postconditions for our functions,
+thus reducing the need to return a `Maybe` or other failure type,
+because due to the restricted input, our functions can no longer
+fail.
 
 <!-- vi: filetype=idris2
 -->

@@ -290,3 +290,21 @@ mapOnto {m = S m'} f xs (y :: ys) =
 
 mapTR : (a -> b) -> Vect n a -> Vect n b
 mapTR f = mapOnto f Nil
+
+-- 7
+
+mapAppend :  (f : a -> b)
+          -> (xs : List a)
+          -> (ys : List a)
+          -> map f (xs ++ ys) = map f xs ++ map f ys
+mapAppend f []        ys = Refl
+mapAppend f (x :: xs) ys = cong (f x ::) $ mapAppend f xs ys
+
+-- 8
+
+zip2 : Table -> Table -> Maybe Table
+zip2 (MkTable s1 m rs1) (MkTable s2 n rs2) = case decEq m n of
+  Yes Refl =>
+    let rs2 = zipWith (++) rs1 rs2
+     in Just $ MkTable (s1 ++ s2) _ (rewrite mapAppend IdrisType s1 s2 in rs2)
+  No  _    => Nothing
