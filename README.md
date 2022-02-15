@@ -90,6 +90,7 @@ stuff will already be familiar to you.
     2. [Programs as Proofs](src/Tutorial/Eq.md#programs-as-proofs)
     3. [Into the Void](src/Tutorial/Eq.md#into-the-void)
     4. [Rewrite Rules](src/Tutorial/Eq.md#rewrite-rules)
+13. [Predicates](src/Tutorial/Predicates.md)
 
 ## Prerequisites
 
