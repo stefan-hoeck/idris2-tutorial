@@ -89,6 +89,7 @@ stuff will already be familiar to you.
     1. [Equality as a Type](src/Tutorial/Eq.md#equality-as-a-type)
     2. [Programs as Proofs](src/Tutorial/Eq.md#programs-as-proofs)
     3. [Into the Void](src/Tutorial/Eq.md#into-the-void)
+    4. [Rewrite Rules](src/Tutorial/Eq.md#rewrite-rules)
 
 ## Prerequisites
 

@@ -1,7 +1,5 @@
 # Propositional Equality
 
-Note: This is still work in progress. Please come back later.
-
 In the [last chapter](DPair.md) we learned, how dependent pairs
 and records can be used to calculate *types* from values only known
 at runtime by pattern matching on these values. We will now look
@@ -275,7 +273,7 @@ have to come up with the types of the functions yourself,
 as the implementations will be incredibly simple.
 
 Note: If you can't remember what the terms "reflexive",
-"symmetric", and "transitive" means, quickly read about
+"symmetric", and "transitive" mean, quickly read about
 equivalence relations [here](https://en.wikipedia.org/wiki/Equivalence_relation).
 
 1. Show that `SameColType` is a reflexive relation.
@@ -284,12 +282,12 @@ equivalence relations [here](https://en.wikipedia.org/wiki/Equivalence_relation)
 
 3. Show that `SameColType` is a transitive relation.
 
-4. Show that for any function `f` from a value
-   of type `SameColType c1 c2` follows that
-   `f c1` and `f c2` are equal.
+4. Let `f` be a function of type `ColType -> a` for an
+   arbitrary type `a`. Show that from a value of type
+   `SameColType c1 c2` follows that `f c1` and `f c2` are equal.
 
 For `(=)` the above properties are available from the *Prelude*
-as functions `sym`, `trans`, and `cong`. Reflexivity is comes
+as functions `sym`, `trans`, and `cong`. Reflexivity comes
 from the data constructor `Refl` itself.
 
 5. Implement a function for verifying that two natural
@@ -356,7 +354,7 @@ meaning, that there is no value of this type.
 
 ### When Proofs replace Tests
 
-We will see several different use cases for compile time proofs. A
+We will see several different use cases for compile time proofs, a
 very straight forward one being to show that our functions behave
 as they should by proofing some properties about them. For instance,
 here is a proposition that `map` on list does not change the number of
@@ -411,7 +409,6 @@ function `cong` from the *Prelude* is for ("cong" is an abbreviation
 for *congruence*). We can thus implement the *cons* case
 concisely like so:
 
-
 ```idris
 mapListLength f (x :: xs) = cong S $ mapListLength f xs
 ```
@@ -419,7 +416,7 @@ mapListLength f (x :: xs) = cong S $ mapListLength f xs
 Please take a moment to appreciate what we achieved here:
 A *proof* in the mathematical sense that our function will not
 affect the length of our list. There will be no need to verify
-this in a kind of unit test!
+this in any kind of unit or similar test!
 
 Before we continue, please note an important thing: In our
 case expression, we used a *variable* for the result from the
@@ -481,7 +478,6 @@ When writing down the types of proofs as we did above, one
 has to be very careful not to fall into the following trap:
 In general, Idris will treat lowercase identifiers in
 function types as type parameters (erased implicit arguments).
-
 For instance, here is a try at proofing the identity functor
 law for `Maybe`:
 
@@ -515,8 +511,8 @@ You may be unintentionally shadowing the associated global definitions:
 ```
 
 The same is not true for `map`: Since we explicitly pass arguments
-to `map`, Idris treats this as a function identifier, which it
-tries to find in the surrounding context.
+to `map`, Idris treats this as a function name and not as an
+implicit argument.
 
 You have several options here. For instance, you could use an uppercase
 identifier, as these will never be treated as implicit arguments:
@@ -594,7 +590,7 @@ we want to express exactly this: That a certain statement is false
 and does not hold. Consider for a moment what it means to proof
 a statement in Idris: Such a statement (or proposition) is a
 type, and a proof of the statement is a value or expression of
-this type: The type is said to be *inhabitd*.
+this type: The type is said to be *inhabited*.
 If a statement is not true, there can be no value
 of the given type. We say, the given type is *uninhabited*.
 If we still manage to get our hands on a value of an uninhabited
@@ -648,7 +644,7 @@ contraCong fun = fun . cong f
 
 ### Interface `Uninhabited`
 
-There is an interface in the *Prelude* for expressing this: `Uninhabited`,
+There is an interface in the *Prelude* for uninhabited types: `Uninhabited`
 with its sole function `uninhabited`. Have a look at its documentation at
 the REPL. You will see, that there is already an impressive number
 of implementations available, many of which involve data type
@@ -677,12 +673,11 @@ absurd h = void (uninhabited h)
 ### Decidable Equality
 
 When we implemented `sameColType`, we got a proof that two
-column types are indeed the same, from which we can figure out,
-whether two schemata are identical. The type guarantees
+column types are indeed the same, from which we could figure out,
+whether two schemata are identical. The types guarantee
 we do not generate any false positives: If we generate a value
 of type `SameSchema s1 s2`, we have a proof that `s1` and `s2`
 are indeed identical.
-
 However, `sameColType` and thus `sameSchema` could theoretically
 still produce false negatives by returning `Nothing`
 although the two values are identical. For instance,
