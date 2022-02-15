@@ -10,6 +10,8 @@ modules = Data.HList
 
         , Solutions.DataTypes
         , Solutions.Dependent
+        , Solutions.DPair
+        , Solutions.Eq
         , Solutions.Folds
         , Solutions.Functions1
         , Solutions.Functions2
@@ -22,6 +24,8 @@ modules = Data.HList
 
         , Tutorial.DataTypes
         , Tutorial.Dependent
+        , Tutorial.DPair
+        , Tutorial.Eq
         , Tutorial.Folds
         , Tutorial.Functions1
         , Tutorial.Functions2

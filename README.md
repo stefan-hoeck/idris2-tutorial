@@ -81,6 +81,15 @@ stuff will already be familiar to you.
     1. [Reading CSV Tables](src/Tutorial/Traverse.md#reading-csv-tables)
     2. [Programming with State](src/Tutorial/Traverse.md#programming-with-state)
     3. [The Power of Composition](src/Tutorial/Traverse.md#the-power-of-composition)
+11. [Sigma Types](src/Tutorial/DPair.md)
+    1. [Dependent Pairs](src/Tutorial/DPair.md#dependent-pairs)
+    2. [Use Case: Nucleic Acids](src/Tutorial/DPair.md#use-case-nucleic-acids)
+    3. [Use Case: CSV Files with a Schema](src/Tutorial/DPair.md#use-case-csv-files-with-a-schema)
+12. [Propositional Equality](src/Tutorial/Eq.md)
+    1. [Equality as a Type](src/Tutorial/Eq.md#equality-as-a-type)
+    2. [Programs as Proofs](src/Tutorial/Eq.md#programs-as-proofs)
+    3. [Into the Void](src/Tutorial/Eq.md#into-the-void)
+    4. [Rewrite Rules](src/Tutorial/Eq.md#rewrite-rules)
 
 ## Prerequisites
 
