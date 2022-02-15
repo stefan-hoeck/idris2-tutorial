@@ -1053,10 +1053,6 @@ This allows us to run arbitrarily complex computations to produce
 such values without fear of these computations slowing down
 the compiled Idris program.
 
-In the next chapter, we will learn about several more single value
-data types, which will allow us to *refine* the values of certain
-types.
-
 ### Exercises part 4
 
 1. Implement `plusSuccRightSucc` yourself.

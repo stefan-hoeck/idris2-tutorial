@@ -708,7 +708,7 @@ in these cases.
 
 In this section, we are going to look at an extended example
 based on our previous work on CSV parsers. We'd like to
-write a small command line program, where users can specify a
+write a small command-line program, where users can specify a
 schema for the CSV tables they'd like to parse and load into
 memory. Before we begin, here is a REPL session running
 the final program, which you will complete in the exercises:
@@ -859,7 +859,7 @@ in such a way that indices are always within bounds (constructors
 current schema (constructor `Prepend`).
 
 One thing you might not have seen so far is the call to `absurd`
-on the last line. This is the only function provided by the
+on the last line. This is a derived function of the
 `Uninhabited` interface, which is used to describe types such
 as `Void` or - in the case above - `Fin 0`, of which there can
 be no value. Function `absurd` is then just another manifestation
@@ -898,7 +898,7 @@ like to print:
 * An invalid schema was entered. In this case, we list the position
   of the first unknown type, the string we found there, and a list of
   types we know about.
-* An invalid CSV encoding of a row was entered. We list the position,
+* An invalid CSV encoding of a row was entered. We list the erroneous position,
   the string encountered there, plus the expected type. In case
   of a too small or too large number of fields, we also print
   a corresponding error message.
@@ -927,7 +927,7 @@ to use Idris' string interpolation facilities: We can enclose
 arbitrary string expressions in a string literal by enclosing
 them in curly braces, the first of which must be escaped with
 a backslash. Like so: `"foo \{myExpr a b c}"`.
-We can pair this with multiline string literals to get pretty
+We can pair this with multiline string literals to get
 nicely formatted error messages.
 
 ```idris
@@ -1165,7 +1165,7 @@ mandatory.
    A table should be stored in two files: One for the schema
    and one for the CSV content.
 
-   Note: Doing so in a provably total way can be pretty
+   Note: Reading files in a provably total way can be pretty
    hard and will be a topic for another day. For now,
    just use function `readFile` exported from
    `System.File` in base for reading a file as a whole.
@@ -1199,12 +1199,11 @@ matching on these values, we learn about the types and
 possible shapes of other values, allowing us to reduce
 the number of potential bugs in our programs.
 
-In the [next chapter](Relations.md) we learn about how
+In the [next chapter](Eq.md) we start learning about how
 to write data types, which we use as proofs that certain
 contracts between values hold. These will eventually allow
 us to define pre- and post conditions for our function
 arguments and output types.
-
 
 <!-- vi: filetype=idris2
 -->
