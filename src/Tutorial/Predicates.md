@@ -283,6 +283,12 @@ available in the *base* library: `Data.List.NonEmpty`,
 `Data.Maybe.IsJust`, `Data.Either.IsLeft`, `Data.Either.IsRight`,
 and `Data.Nat.IsSucc`.
 
+## More Predicates
+
+The predicates we saw so far restricted the values of
+a single type, but it is also possible to define predicates
+describing contracts between several values.
+
 ## The Truth about Interfaces
 
 Well, here it finally is: The truth about interfaces. Internally,
