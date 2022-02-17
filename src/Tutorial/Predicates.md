@@ -14,6 +14,8 @@ returned by functions.
 module Tutorial.Predicates
 
 import Data.Vect
+import Data.HList
+import Decidable.Equality
 
 %default total
 ```
@@ -230,13 +232,13 @@ Let's see this in action:
 
 ```idris
 headEx3 : Nat
-headEx3 = head [1,2,3]
+headEx3 = Predicates.head [1,2,3]
 ```
 
 The following example fails with an error:
 
 ```repl
-Tutorial.Predicates> head []
+Tutorial.Predicates> Predicates.head []
 Error: Can't find an implementation for NonEmpty [].
 
 (Interactive):1:1--1:8
@@ -283,11 +285,366 @@ available in the *base* library: `Data.List.NonEmpty`,
 `Data.Maybe.IsJust`, `Data.Either.IsLeft`, `Data.Either.IsRight`,
 and `Data.Nat.IsSucc`.
 
-## More Predicates
+## Contracts between Values
 
 The predicates we saw so far restricted the values of
 a single type, but it is also possible to define predicates
-describing contracts between several values.
+describing contracts between several values of possibly
+distinct type.
+
+### The `Elem` Predicate
+
+Assume we'd like to extract a value of a given type from
+a heterogeneous list:
+
+```idris
+get' : (0 t : Type) -> HList ts -> t
+```
+
+This can't work in general: If we could implement this we would
+immediately have a proof of void:
+
+```idris
+voidAgain : Void
+voidAgain = get' Void []
+```
+
+The problem is obvious: The type of which we'd like to extract
+a value must be an element of the index of the heterogeneous list.
+Here is a predicate how to express this:
+
+```idris
+data Elem : (elem : a) -> (as : List a) -> Type where
+  Here  : Elem x (x :: xs)
+  There : Elem x xs -> Elem x (y :: xs)
+```
+
+This is a predicate describing a contract between two values:
+The first value is an element of the second value (which is
+a list). Note, how this is defined recursively: The case
+where the value we look for is at the head of the list is
+handled by the `Here` constructor. The case where the value
+is deeper within  the list is handled by the `There`
+constructor. Let's write down some examples to get a feel
+for these:
+
+```idris
+MyList : List Nat
+MyList = [1,3,7,8,4,12]
+
+oneElemMyList : Elem 1 MyList
+oneElemMyList = Here
+
+sevenElemMyList : Elem 7 MyList
+sevenElemMyList = There $ There Here
+```
+
+Now, `Elem` is just another way of indexing into a list
+of values. Instead of using a `Fin` index, which is limited
+by the list's length, we use proof that a value can be found
+at a certain position.
+
+We can use the `Elem` predicate to extract a value from
+the desired type of a heterogeneous list:
+
+```idris
+get : (0 t : Type) -> HList ts -> {auto prf : Elem t ts} -> t
+```
+
+It is important to note that the auto implicit must not be
+erased in this case. This is no longer a single value data type,
+and we must be able to pattern match on this value in order to
+figure out, how far within the heterogeneous list our value
+is stored:
+
+```idris
+get _ (v :: vs) {prf = Here}    = v
+get _ (v :: vs) {prf = There p} = get _ vs
+get _ [] impossible
+```
+
+Let's give this a spin at the REPL:
+
+```repl
+Tutorial.Predicates> get Nat ["foo", Just "bar", S Z]
+1
+Tutorial.Predicates> get Nat ["foo", Just "bar"]
+Error: Can't find an implementation for Elem Nat [String, Maybe String].
+
+(Interactive):1:1--1:28
+ 1 | get Nat ["foo", Just "bar"]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+With this example we start to appreciate what *proof search*
+actually means: Given a value `v` and a list of values `vs`, Idris tries
+to find a proof that `v` is an element of `vs`.
+Now, before we continue, please note that proof search is
+not a silver bullet. The search algorithm has a reasonably limited
+*search depth*, and will fail with the search if this limit
+is exceeded. For instance:
+
+```idris
+Tps : List Type
+Tps = toList (replicate 50 Nat) ++ [Maybe String]
+
+hlist : HList Tps
+hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        , Nothing ]
+```
+
+And at the REPL:
+
+```repl
+Tutorial.Predicates> get (Maybe String) hlist
+Error: Can't find an implementation for Elem (Maybe String) [Nat,...
+```
+
+As you can see, Idris fails to find a proof that `Maybe String`
+is an element of `Tps`. The search depth can be increased with
+the `%auto_implicit_depth` directive, which will hold for the
+rest of the source file or until set to a different value.
+The default value is set at 25. In general, it is not advisable
+to set this to a too large value as this can drastically increase
+compile times.
+
+```idris
+%auto_implicit_depth 100
+aMaybe : Maybe String
+aMaybe = get _ hlist
+
+%auto_implicit_depth 25
+```
+
+### Use Case: A nicer Schema
+
+In the chapter about [sigma types](DPair.md), we introduced
+a schema for CSV files. This was not very nice to use, because
+we had to use natural numbers to access a certain column.
+It would be much nicer if each column could be identified
+by a name (a string). Here is an encoding for this use case:
+
+```idris
+data ColType = I64 | Str | Boolean | Float
+
+IdrisType : ColType -> Type
+IdrisType I64     = Int64
+IdrisType Str     = String
+IdrisType Boolean = Bool
+IdrisType Float   = Double
+
+record Column where
+  constructor MkColumn
+  name : String
+  type : ColType
+
+infixr 8 :>
+
+(:>) : String -> ColType -> Column
+(:>) = MkColumn
+
+Schema : Type
+Schema = List Column
+```
+
+As you can see, a schema now pairs a column's type
+with its name. Here is an example schema for a CSV file
+holding information about employees in a company:
+
+```idris
+EmployeeSchema : Schema
+EmployeeSchema = [ "firstName"  :> Str
+                 , "lastName"   :> Str
+                 , "email"      :> Str
+                 , "age"        :> I64
+                 , "salary"     :> Float
+                 , "management" :> Boolean
+                 ]
+```
+
+Using such a schema with an `HList` directly, led to issues
+with type inference, therefore, I quickly wrote a custom
+row type: A heterogeneous list indexed over a schema:
+
+```idris
+data Row : Schema -> Type where
+  Nil  : Row []
+  (::) :  {0 name : String}
+       -> {0 type : ColType}
+       -> (v : IdrisType type)
+       -> Row ss
+       -> Row (name :> type :: ss)
+```
+
+We can now define a type alias for CSV rows
+representing employees:
+
+```idris
+0 Employee : Type
+Employee = Row EmployeeSchema
+
+hock : Employee
+hock = [ "Stefan", "Höck", "hock@foo.com", 46, 5443.2, False ]
+```
+
+Note, how I gave `Employee` a zero quantity. This means, we are
+only ever allowed to use this function at compile time
+but never at runtime. This is often a safe way to make sure
+our type-level functions and aliases do not leak into the
+executable when we build our application.
+
+We would now like to access a value in a row based on
+the name given. For this, we write a custom predicate, which
+serves as a witness that a column with the given name is
+part of our schema:
+
+```idris
+data InSchema : (name : String) -> (ss : Schema) -> Type where
+  IsHere  : InSchema n (n :> t :: ss)
+  IsThere : InSchema n ss -> InSchema n (fld :: ss)
+
+Uninhabited (InSchema n []) where
+  uninhabited IsHere impossible
+  uninhabited (IsThere _) impossible
+```
+
+This is very similar to the `Elem` predicate, but it matches
+only part of a column's fields: The type can be arbitrary.
+But this leads to an interesting problem: Since we are
+accessing an element of a heterogeneous list, we need a
+way to figure out the *type* of the value at this position,
+because this will be the return type of our function.
+We can calculate this type by pattern matching on the
+schema and the `InSchema` proof at the same time:
+
+```idris
+0 ColumnType : {ss : Schema} -> InSchema n ss -> Type
+ColumnType {ss = _ :> t :: _} IsHere      = IdrisType t
+ColumnType {ss = _      :: t} (IsThere x) = ColumnType x
+```
+
+With this, we are now ready to access the value
+at a given column:
+
+```idris
+getAt :  {0 ss   : Schema}
+      -> (name : String)
+      -> Row ss
+      -> {auto prf : InSchema name ss}
+      -> ColumnType prf
+getAt name (v :: vs) {prf = IsHere}    = v
+getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
+
+shoeck : String
+shoeck = getAt "firstName" hock ++ " " ++ getAt "lastName" hock
+```
+
+In order to at runtime specify a column name, we need a
+covering function for `InSchema`:
+
+```idris
+inSchema : (ss : Schema) -> (n : String) -> Maybe (InSchema n ss)
+inSchema []                    _ = Nothing
+inSchema (MkColumn cn t :: xs) n = case decEq cn n of
+  Yes Refl   => Just IsHere
+  No  contra => case inSchema xs n of
+    Just prf => Just $ IsThere prf
+    Nothing  => Nothing
+```
+
+We could now define a command for extracting a single
+column from a CSV table:
+
+```idris
+record Table where
+  constructor MkTable
+  schema : Schema
+  size   : Nat
+  table  : Vect size (Row schema)
+
+data Command : (t : Table) -> Type where
+  GetColumn :  (name : String)
+            -> (prf  : InSchema name t.schema)
+            -> Command t
+
+0 ResultType : (t : Table) -> (cmd : Command t) -> Type
+ResultType t (GetColumn name prf) = Vect t.size (ColumnType prf)
+
+run : (t : Table) -> (cmd : Command t) -> ResultType t cmd
+run t (GetColumn name prf) = map (\row => getAt name row) t.table
+```
+
+### Exercises part 2
+
+1. One thing missing from our covering function `inSchema` is,
+   that is does not return the column type together with
+   the `InSchema` proof. This would be handy to have at
+   runtime, for instance if we'd like to parse a query for
+   a column.
+
+   Enhance data type `InSchema` in such a way that it
+   stores the column type as a field in the `IsHere`
+   constructor and adjust functions `ColumnType`,
+   `getAt`, and `inSchema` accordingly.
+
+2. Convert `inSchema` to a decidable covering function, by
+   changing its return type to `Dec (InSchema n ss)`.
+
+3. Declare and implement a function for modifying a field
+   in a row based on the column name given.
+
+## Use Case: Flexible Error Handling
+
+```idris
+data Has : (v : a) -> (vs : List a) -> Type where
+  Z : Has v (v :: vs)
+  S : Has v vs -> Has v (w :: vs)
+
+Uninhabited (Has v []) where
+  uninhabited Z impossible
+  uninhabited (S _) impossible
+
+data Union : List Type -> Type where
+  U : {0 ts : _} -> (ix : Has t ts) -> (val : t) -> Union ts
+
+Uninhabited (Union []) where
+  uninhabited (U ix _) = uninhabited ix
+
+0 Err : List Type -> Type -> Type
+Err ts t = Either (Union ts) t
+
+extract : Err [] a -> a
+extract (Right x) = x
+extract (Left x)  = absurd x
+
+inject : (v : t) -> (prf : Has t ts) => Union ts
+inject v = U prf v
+
+fail : (err : t) -> (prf : Has t ts) => Err ts a
+fail err = Left $ inject err
+
+0 (-) : (as : List a) -> Has v as -> List a
+(-) (_ :: vs) Z     = vs
+(-) (w :: vs) (S x) = w :: (vs - x)
+
+split : (prf : Has t ts) -> Union ts -> Either t (Union (ts - prf))
+split Z     (U Z     val) = Left val
+split Z     (U (S x) val) = Right $ U x val
+split (S x) (U Z val)     = Right $ U Z val
+split (S x) (U (S y) val) = case split x (U y val) of
+  (Left z)         => Left z
+  (Right $ U ix v) => Right $ U (S ix) v
+
+handle : (prf : Has t ts) => (f : t -> a) -> Err ts a -> Err (ts - prf) a
+handle f (Left x)  = case split prf x of
+  Left v    => Right $ f v
+  Right err => Left err
+handle _ (Right x) = Right x
+```
 
 ## The Truth about Interfaces
 
@@ -391,7 +748,11 @@ defaultExample = deflt
 
 Defining interfaces this way can be an advantage, as there
 is much less magic going on, and we have more fine grained
-control over the types and values of our fields.
+control over the types and values of our fields. Note also,
+that all of the magic comes from the search hints, with
+which our "interface implementations" were annotated.
+These adds the corresponding values and functions to
+the search space used during proof search.
 
 <!-- vi: filetype=idris2
 -->
