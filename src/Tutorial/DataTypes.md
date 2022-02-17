@@ -1076,7 +1076,7 @@ signature are treated as type parameters.
    --
    -- Examples:
    -- `foldList (+) 10 [1,2,7] = 20`
-   -- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"
+   -- `foldList String.(++) "" ["Hello","World"] = "HelloWorld"`
    -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`
    total
    foldList : (acc -> el -> acc) -> acc -> List el -> acc

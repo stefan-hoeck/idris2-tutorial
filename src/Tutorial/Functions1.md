@@ -384,8 +384,8 @@ types in the *Prelude* with the exception of functions.
 * `(*)`: Multiplication
 * `(-)`: Subtraction
 * `(/)`: Division
-* `(==) : True, if two values are equal
-* `(/=) : True, if two values are not equal
+* `(==)` : True, if two values are equal
+* `(/=)` : True, if two values are not equal
 * `(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators
 * `($)`: Function application
 
