@@ -116,66 +116,54 @@ data Row : Schema -> Type where
        -> Row ss
        -> Row (name :> type :: ss)
 
--- 1
-
-data InSchema : (name : String) -> (ss : Schema) -> Type where
-  IsHere  : (t : ColType) -> InSchema n (n :> t :: ss)
-  IsThere : InSchema n ss -> InSchema n (fld :: ss)
-
-Uninhabited (InSchema n []) where
-  uninhabited (IsHere _) impossible
-  uninhabited (IsThere _) impossible
-
-0 ColumnType : InSchema n ss -> Type
-ColumnType (IsHere t)  = IdrisType t
-ColumnType (IsThere x) = ColumnType x
+data InSchema :  (name    : String)
+              -> (schema  : Schema)
+              -> (colType : ColType)
+              -> Type where
+  [search name schema]
+  IsHere  : InSchema n (n :> t :: ss) t
+  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t
 
 getAt :  {0 ss   : Schema}
       -> (name : String)
       -> Row ss
-      -> {auto prf : InSchema name ss}
-      -> ColumnType prf
-getAt name (v :: vs) {prf = IsHere t}  = v
+      -> {auto prf : InSchema name ss c}
+      -> IdrisType c
+getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
 
-inSchema' : (ss : Schema) -> (n : String) -> Maybe (InSchema n ss)
-inSchema' []                    _ = Nothing
-inSchema' (MkColumn cn t :: xs) n = case decEq cn n of
-  Yes Refl   => Just $ IsHere t
-  No  contra => case inSchema' xs n of
-    Just prf => Just $ IsThere prf
-    Nothing  => Nothing
+-- 1
+
+Uninhabited (InSchema n [] c) where
+  uninhabited IsHere impossible
+  uninhabited (IsThere _) impossible
+
+inSchema : (ss : Schema) -> (n : String) -> Dec (c ** InSchema n ss c)
+inSchema []                    _ = No $ \(_ ** prf) => uninhabited prf
+inSchema (MkColumn cn t :: xs) n = case decEq cn n of
+  Yes Refl   => Yes (t ** IsHere)
+  No  contra => case inSchema xs n of
+    Yes (t ** prf) => Yes (t ** IsThere prf)
+    No  contra2    => No $ \case (_ ** IsHere)    => contra Refl
+                                 (t ** IsThere p) => contra2 (t ** p)
 
 -- 2
 
-inSchema : (ss : Schema) -> (n : String) -> Dec (InSchema n ss)
-inSchema []                    _ = No uninhabited
-inSchema (MkColumn cn t :: xs) n = case decEq cn n of
-  Yes Refl   => Yes $ IsHere t
-  No  contra => case inSchema xs n of
-    Yes prf     => Yes $ IsThere prf
-    No  contra2 => No $ \case IsHere _  => contra Refl
-                              IsThere p => contra2 p
-
--- 3
-
 updateAt : (name : String)
          -> Row ss
-         -> {auto prf : InSchema name ss}
-         -> (f : ColumnType prf -> ColumnType prf)
+         -> {auto prf : InSchema name ss c}
+         -> (f : IdrisType c -> IdrisType c)
          -> Row ss
-updateAt name (v :: vs) {prf = IsHere _}  f = f v :: vs
+updateAt name (v :: vs) {prf = IsHere}    f = f v :: vs
 updateAt name (v :: vs) {prf = IsThere p} f = v :: updateAt name vs f
 
--- 4
+-- 3
 
 public export
 data Elems : (xs,ys : List a) -> Type where
   ENil   : Elems [] ys
   EHere  : Elems xs ys -> Elems (x :: xs) (x :: ys)
   EThere : Elems xs ys -> Elems xs (y :: ys)
-
--- 5
 
 extract :  (0 s1 : Schema)
         -> (row : Row s2)
@@ -185,33 +173,27 @@ extract []       _         {prf = ENil}     = []
 extract (_ :: t) (v :: vs) {prf = EHere x}  = v :: extract t vs
 extract s1       (v :: vs) {prf = EThere x} = extract s1 vs
 
--- 6
+-- 4
 
 namespace AllInSchema
   public export
-  data AllInSchema : List String -> Schema -> Type where
-    Nil  : AllInSchema [] s
-    (::) : InSchema n s -> AllInSchema ns s -> AllInSchema (n :: ns) s
+  data AllInSchema :  (names : List String)
+                   -> (schema : Schema)
+                   -> (result : Schema)
+                   -> Type where
+    [search names schema]
+    Nil  :  AllInSchema [] s []
+    (::) :  InSchema n s c
+         -> AllInSchema ns s res
+         -> AllInSchema (n :: ns) s (n :> c :: res)
 
-0 ColumnAt : {ss : Schema} -> InSchema n ss -> Column
-ColumnAt {ss = n :> t :: _} (IsHere t)  = n :> t
-ColumnAt {ss = _      :: _} (IsThere x) = ColumnAt x
-
-0 Columns : {ss : Schema} -> AllInSchema names ss -> Schema
-Columns []            = []
-Columns (prf :: prfs) = ColumnAt prf :: Columns prfs
-
--- getAll :  {0 ss  : Schema}
---        -> (names : List String)
---        -> Row ss
---        -> {auto prf : AllInSchema names ss}
---        -> Row (Columns prf)
--- getAll []        row {prf = []}      = []
--- getAll (n :: ns) (v :: _)  {prf = IsHere t  :: ps} = ?foo_2
--- getAll (n :: ns) (v :: vs) {prf = IsThere x :: ps} = ?foo_1
-
-
-
+getAll :  {0 ss  : Schema}
+       -> (names : List String)
+       -> Row ss
+       -> {auto prf : AllInSchema names ss res}
+       -> Row res
+getAll []        _   {prf = []}     = []
+getAll (n :: ns) row {prf = _ :: _} = getAt n row :: getAll ns row
 
 --------------------------------------------------------------------------------
 --          Tests
@@ -234,3 +216,7 @@ hock = [ "Stefan", "Höck", "hock@foo.com", 46, 5443.2, False ]
 
 shoeck : String
 shoeck = getAt "firstName" hock ++ " " ++ getAt "lastName" hock
+
+shoeck2 : String
+shoeck2 = case getAll ["firstName", "lastName", "age"] hock of
+  [fn,ln,a] => "\{fn} \{ln}: \{show a} years old."

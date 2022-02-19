@@ -522,11 +522,10 @@ data Row : Schema -> Type where
 
 In the signature of *cons*, I list the erased implicit arguments
 explicitly. This is good practice, as otherwise Idris will often
-issue shadowing warnings when using this data type in client
+issue shadowing warnings when using such data constructors in client
 code.
 
-We can now define a type alias for CSV rows
-representing employees:
+We can now define a type alias for CSV rows representing employees:
 
 ```idris
 0 Employee : Type
@@ -548,44 +547,42 @@ computations.
 We would now like to access a value in a row based on
 the name given. For this, we write a custom predicate, which
 serves as a witness that a column with the given name is
-part of our schema:
+part of the schema. Now, here is an important thing to note:
+In this predicate we include an index for the type of the
+column with the given name. We need this, because when we
+access a column by name, we need a way to figure out
+the return type. But during proof search, this type will
+have to be derived by Idris based on the column name and
+schema in question. We therefore *must* tell Idris, that
+it can't include this type in the list of search criteria,
+otherwise it will try and infer the column type from the
+context (using type inference) before running the proof
+search. This can be done by listing the indices to be used in
+the search like so: `[search name schema]`.
 
 ```idris
-data InSchema : (name : String) -> (ss : Schema) -> Type where
-  IsHere  : InSchema n (n :> t :: ss)
-  IsThere : InSchema n ss -> InSchema n (fld :: ss)
+data InSchema :  (name    : String)
+              -> (schema  : Schema)
+              -> (colType : ColType)
+              -> Type where
+  [search name schema]
+  IsHere  : InSchema n (n :> t :: ss) t
+  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t
 
-Uninhabited (InSchema n []) where
+Uninhabited (InSchema n [] c) where
   uninhabited IsHere impossible
   uninhabited (IsThere _) impossible
 ```
 
-This is very similar to the `Elem` predicate, but it matches
-only part of a column's fields: The type can be arbitrary.
-But this leads to an interesting problem: Since we are
-accessing an element of a heterogeneous list, we need a
-way to figure out the *type* of the value at this position,
-because this will be the return type of our function.
-We can calculate this type by pattern matching on the
-schema and the `InSchema` proof at the same time (this is
-again a zero quantity function, because we only plan to
-use this in function signatures):
-
-```idris
-0 ColumnType : {ss : Schema} -> InSchema n ss -> Type
-ColumnType {ss = _ :> t :: _} IsHere      = IdrisType t
-ColumnType {ss = _      :: t} (IsThere x) = ColumnType x
-```
-
 With this, we are now ready to access the value
-at a given column:
+at a given column based on the column's name:
 
 ```idris
 getAt :  {0 ss : Schema}
       -> (name : String)
       -> (row  : Row ss)
-      -> {auto prf : InSchema name ss}
-      -> ColumnType prf
+      -> {auto prf : InSchema name ss c}
+      -> IdrisType c
 getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
 ```
@@ -594,8 +591,10 @@ Below is an example how to use this at compile time. Note
 the amount of work Idris performs for us: It first comes
 up with proofs that `firstName`, `lastName`, and `age`
 are indeed valid names in the `Employee` schema. From
-these proofs it automatically compiles the return type
-of `getAt`:
+these proofs it automatically compiles the return types
+of `getAt`, and extracts the corresponding values
+from the row. All of this happens in a provably total and type
+safe way.
 
 ```idris
 shoeck : String
@@ -607,21 +606,23 @@ shoeck =  getAt "firstName" hock
        ++ " years old."
 ```
 
-In order to at runtime specify a column name, we need a
-for computing values of type `InSchema` by pattern inspecting
-the column names. Since we have to at runtime compare two string
-values for being equal, we need the `DecEq` implementation for
-`String` here (Idris provide `DecEq` implementations for all
-primitives):
+In order to at runtime specify a column name, we need a way
+for computing values of type `InSchema` by comparing
+the column names with the schema in question. Since we have
+to at runtime compare two string values for being equal,
+we use the `DecEq` implementation for `String` here (Idris provide `DecEq`
+implementations for all primitives). We extract the column type
+at the same time and pair this (as a dependent pair) with
+the `InSchema` proof:
 
 ```idris
-inSchema : (ss : Schema) -> (n : String) -> Maybe (InSchema n ss)
+inSchema : (ss : Schema) -> (n : String) -> Maybe (c ** InSchema n ss c)
 inSchema []                    _ = Nothing
 inSchema (MkColumn cn t :: xs) n = case decEq cn n of
-  Yes Refl   => Just IsHere
+  Yes Refl   => Just (t ** IsHere)
   No  contra => case inSchema xs n of
-    Just prf => Just $ IsThere prf
-    Nothing  => Nothing
+    Just (t ** prf) => Just $ (t ** IsThere prf)
+    Nothing         => Nothing
 ```
 
 We could now define a command for extracting a single
@@ -638,8 +639,9 @@ record Table where
   table  : Vect size (Row schema)
 
 data Command : (t : Table) -> Type where
-  GetColumn :  (name : String)
-            -> (prf  : InSchema name t.schema)
+  GetColumn :  (name    : String)
+            -> (colType : ColType)
+            -> (prf     : InSchema name t.schema colType)
             -> Command t
 ```
 
@@ -649,32 +651,21 @@ the command and table in question:
 
 ```idris
 0 ResultType : (t : Table) -> (cmd : Command t) -> Type
-ResultType t (GetColumn name prf) = Vect t.size (ColumnType prf)
+ResultType t (GetColumn name ct prf) = Vect t.size (IdrisType ct)
 
 run : (t : Table) -> (cmd : Command t) -> ResultType t cmd
-run t (GetColumn name prf) = map (\row => getAt name row) t.table
+run t (GetColumn name ct prf) = map (\row => getAt name row) t.table
 ```
 
 ### Exercises part 2
 
-1. One thing missing from our covering function `inSchema` is,
-   that is does not return the column type together with
-   the `InSchema` proof. This would be handy to have at
-   runtime, for instance if we'd like to parse a query for
-   a column.
+1. Convert `inSchema` to a decidable covering function, by
+   changing its return type to `Dec (c ** InSchema n ss c)`.
 
-   Enhance data type `InSchema` in such a way that it
-   stores the column type as a field in the `IsHere`
-   constructor and adjust functions `ColumnType`,
-   `getAt`, and `inSchema` accordingly.
-
-2. Convert `inSchema` to a decidable covering function, by
-   changing its return type to `Dec (InSchema n ss)`.
-
-3. Declare and implement a function for modifying a field
+2. Declare and implement a function for modifying a field
    in a row based on the column name given.
 
-4. Define a predicate to be used as a witness that one
+3. Define a predicate to be used as a witness that one
    list contains only elements in the second list in the
    same order.
 
@@ -684,12 +675,16 @@ run t (GetColumn name prf) = map (\row => getAt name row) t.table
 
    Use this predicate to extract several columns from a row at once.
 
-5. We improve the functionality from exercise 4 by defining a new
+4. We improve the functionality from exercise 3 by defining a new
    predicate, witnessing that all strings in a list correspond
-   to column names in a schema.
+   to column names in a schema (in arbitrary order).
 
    Use this to extract several columns from a row at once in
    arbitrary order.
+
+   Hint: Make sure to include the resulting schema as an index,
+   but search only based on the list of names and the input
+   schema.
 
 ## Use Case: Flexible Error Handling
 
