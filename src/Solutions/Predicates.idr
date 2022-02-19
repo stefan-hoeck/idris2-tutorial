@@ -167,6 +167,52 @@ updateAt : (name : String)
 updateAt name (v :: vs) {prf = IsHere _}  f = f v :: vs
 updateAt name (v :: vs) {prf = IsThere p} f = v :: updateAt name vs f
 
+-- 4
+
+public export
+data Elems : (xs,ys : List a) -> Type where
+  ENil   : Elems [] ys
+  EHere  : Elems xs ys -> Elems (x :: xs) (x :: ys)
+  EThere : Elems xs ys -> Elems xs (y :: ys)
+
+-- 5
+
+extract :  (0 s1 : Schema)
+        -> (row : Row s2)
+        -> {auto prf : Elems s1 s2}
+        -> Row s1
+extract []       _         {prf = ENil}     = []
+extract (_ :: t) (v :: vs) {prf = EHere x}  = v :: extract t vs
+extract s1       (v :: vs) {prf = EThere x} = extract s1 vs
+
+-- 6
+
+namespace AllInSchema
+  public export
+  data AllInSchema : List String -> Schema -> Type where
+    Nil  : AllInSchema [] s
+    (::) : InSchema n s -> AllInSchema ns s -> AllInSchema (n :: ns) s
+
+0 ColumnAt : {ss : Schema} -> InSchema n ss -> Column
+ColumnAt {ss = n :> t :: _} (IsHere t)  = n :> t
+ColumnAt {ss = _      :: _} (IsThere x) = ColumnAt x
+
+0 Columns : {ss : Schema} -> AllInSchema names ss -> Schema
+Columns []            = []
+Columns (prf :: prfs) = ColumnAt prf :: Columns prfs
+
+-- getAll :  {0 ss  : Schema}
+--        -> (names : List String)
+--        -> Row ss
+--        -> {auto prf : AllInSchema names ss}
+--        -> Row (Columns prf)
+-- getAll []        row {prf = []}      = []
+-- getAll (n :: ns) (v :: _)  {prf = IsHere t  :: ps} = ?foo_2
+-- getAll (n :: ns) (v :: vs) {prf = IsThere x :: ps} = ?foo_1
+
+
+
+
 --------------------------------------------------------------------------------
 --          Tests
 --------------------------------------------------------------------------------

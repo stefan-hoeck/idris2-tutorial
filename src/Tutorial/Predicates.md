@@ -138,13 +138,11 @@ headEx1 = head1 [1,2,3] IsNonEmpty
 It is a bit cumbersome that we have to pass the `IsNonEmpty` proof
 manually. Before we scratch that itch, we will first discuss what
 to do with lists, the values of which are not known until
-runtime. For these cases, we write what we call a *covering
-function*: A function, which tries to construct a proof of
-the desired type by pattern matching on the indexed value(s).
-In the most simple case, we can wrap the proof in a `Maybe`,
-but if we'd like to have stronger guarantees about the
-correctness of our covering function, we wrap the proof
-in a `Dec`:
+runtime. For these cases, we have to try and produce a value
+of the predicate programmatically by inspecting the runtime
+list value. In the most simple case, we can wrap the proof
+in a `Maybe`, but if we can show that our predicate is *decidable*,
+we can get even stronger guarantees when returning a `Dec`:
 
 ```idris
 Uninhabited (NonEmpty []) where
@@ -169,9 +167,9 @@ headMaybe1 as = case nonEmpty as of
 
 Having to manually pass a proof of being non-empty to
 `head1` makes this function unnecessarily cumbersome to
-use. Idris allows us to define implicit function arguments,
-the values of which it tries to assemble on its own by
-means of a technique called *proof search*. This is not
+use at compile time. Idris allows us to define implicit
+function arguments, the values of which it tries to assemble
+on its own by means of a technique called *proof search*. This is not
 to be confused with type inference, which means inferring
 values or types from the surrounding context. It's best
 to look at some examples to explain the difference.
@@ -196,6 +194,15 @@ replicateEx1 : Vect 3 Nat
 replicateEx1 = replicate' 12
 ```
 
+In the next example, the value of `n` is not known at compile time,
+but it is available as an unerased implicit, so this can again
+be passed as is to `replicate'`:
+
+```idris
+replicateEx2 : {n : _} -> Vect n Nat
+replicateEx2 = replicate' 12
+```
+
 However, in the following example, the value of `n` can't
 be inferred, as the intermediary vector is immediately converted
 to a list of unknown length. Although Idris could try and insert
@@ -204,8 +211,8 @@ sure that this is the length we want. We therefore have to pass the
 length explicitly:
 
 ```idris
-replicateEx2 : List Nat
-replicateEx2 = toList $ replicate' {n = 17} 12
+replicateEx3 : List Nat
+replicateEx3 = toList $ replicate' {n = 17} 12
 ```
 
 Note, how the *value* of `n` had to be inferable in
@@ -226,7 +233,7 @@ on its own, without it being visible in the surrounding context.
 In order to do so, Idris will try and build such a value from
 the data type's constructors. If it succeeds, this value will
 then be automatically filled in as the desired argument, otherwise,
-Idris will fail with type error.
+Idris will fail with a type error.
 
 Let's see this in action:
 
@@ -251,6 +258,27 @@ error message we get for missing interface implementations?
 That's correct, and I'll show you that interface resolution
 is just proof search at the end of this chapter.
 
+During proof search, Idris will also look for values of
+the given type in the current function context. This allows
+us to implement `headMaybe` without having to pass on
+the `NonEmpty` proof manually:
+
+```idris
+headMaybe : List a -> Maybe a
+headMaybe as = case nonEmpty as of
+  Yes prf => Just $ Predicates.head as
+  No  _   => Nothing
+```
+
+To conclude: Predicates allow us to restrict the values
+a function accepts as arguments. At runtime, we need to
+build such *witnesses* by pattern matching on the function
+arguments. These operations can typically fail. At compile
+time, we can let Idris try and build these values for us
+using a technique called *proof search*. This allows us
+to make functions safe and convenient to use at the same
+time.
+
 ### Exercises part 1
 
 In these exercises, you'll have to implement several
@@ -273,12 +301,13 @@ like `Maybe`.
    function on natural numbers.
 
 5. Define a predicate for a non-empty `Maybe` and use it to
-   safely extract the value stored in a `Just`. Implement
-   also a decidable covering function.
+   safely extract the value stored in a `Just`. Show that this
+   predicate is decidable by implementing a corresponding
+   conversion function.
 
 6. Define and implement functions for safely extracting values
    from a `Left` and a `Right` by using suitable predicates.
-   Implement also decidable covering functions.
+   Show again that these predicates are decidable.
 
 The predicates you implemented in these exercises are already
 available in the *base* library: `Data.List.NonEmpty`,
@@ -290,7 +319,7 @@ and `Data.Nat.IsSucc`.
 The predicates we saw so far restricted the values of
 a single type, but it is also possible to define predicates
 describing contracts between several values of possibly
-distinct type.
+distinct types.
 
 ### The `Elem` Predicate
 
@@ -311,7 +340,7 @@ voidAgain = get' Void []
 
 The problem is obvious: The type of which we'd like to extract
 a value must be an element of the index of the heterogeneous list.
-Here is a predicate how to express this:
+Here is a predicate, with which we can express this:
 
 ```idris
 data Elem : (elem : a) -> (as : List a) -> Type where
@@ -320,8 +349,9 @@ data Elem : (elem : a) -> (as : List a) -> Type where
 ```
 
 This is a predicate describing a contract between two values:
-The first value is an element of the second value (which is
-a list). Note, how this is defined recursively: The case
+A value of type `a` and a list of `a`s. Values of this predicate
+are witnesses that the value is an element of the list.
+Note, how this is defined recursively: The case
 where the value we look for is at the head of the list is
 handled by the `Here` constructor. The case where the value
 is deeper within  the list is handled by the `There`
@@ -358,10 +388,14 @@ figure out, how far within the heterogeneous list our value
 is stored:
 
 ```idris
-get _ (v :: vs) {prf = Here}    = v
-get _ (v :: vs) {prf = There p} = get _ vs
+get t (v :: vs) {prf = Here}    = v
+get t (v :: vs) {prf = There p} = get t vs
 get _ [] impossible
 ```
+
+It can be instructive to implement `get` yourself, using holes on
+the right hand side to see the context and types of values Idris
+infers based on the value of the `Elem` predicate.
 
 Let's give this a spin at the REPL:
 
@@ -424,9 +458,11 @@ aMaybe = get _ hlist
 
 In the chapter about [sigma types](DPair.md), we introduced
 a schema for CSV files. This was not very nice to use, because
-we had to use natural numbers to access a certain column.
-It would be much nicer if each column could be identified
-by a name (a string). Here is an encoding for this use case:
+we had to use natural numbers to access a certain column. Even
+worse, users of our small library had to do the same. There was
+no way to define a name for each column and access columns by
+name. We are going to change this. Here is an encoding
+for this use case:
 
 ```idris
 data ColType = I64 | Str | Boolean | Float
@@ -451,7 +487,7 @@ Schema : Type
 Schema = List Column
 ```
 
-As you can see, a schema now pairs a column's type
+As you can see, in a schema we now pair a column's type
 with its name. Here is an example schema for a CSV file
 holding information about employees in a company:
 
@@ -466,19 +502,28 @@ EmployeeSchema = [ "firstName"  :> Str
                  ]
 ```
 
-Using such a schema with an `HList` directly, led to issues
-with type inference, therefore, I quickly wrote a custom
+Such a schema could of course be again be read from user
+input.
+
+Using this with an `HList` directly, led to issues
+with type inference, therefore I quickly wrote a custom
 row type: A heterogeneous list indexed over a schema:
 
 ```idris
 data Row : Schema -> Type where
   Nil  : Row []
+
   (::) :  {0 name : String}
        -> {0 type : ColType}
        -> (v : IdrisType type)
        -> Row ss
        -> Row (name :> type :: ss)
 ```
+
+In the signature of *cons*, I list the erased implicit arguments
+explicitly. This is good practice, as otherwise Idris will often
+issue shadowing warnings when using this data type in client
+code.
 
 We can now define a type alias for CSV rows
 representing employees:
@@ -493,9 +538,12 @@ hock = [ "Stefan", "Höck", "hock@foo.com", 46, 5443.2, False ]
 
 Note, how I gave `Employee` a zero quantity. This means, we are
 only ever allowed to use this function at compile time
-but never at runtime. This is often a safe way to make sure
+but never at runtime. This is a safe way to make sure
 our type-level functions and aliases do not leak into the
-executable when we build our application.
+executable when we build our application. We are allowed
+to use zero-quantity functions and values in type signatures
+and when computing other erased values, but not for runtime
+computations.
 
 We would now like to access a value in a row based on
 the name given. For this, we write a custom predicate, which
@@ -519,7 +567,9 @@ accessing an element of a heterogeneous list, we need a
 way to figure out the *type* of the value at this position,
 because this will be the return type of our function.
 We can calculate this type by pattern matching on the
-schema and the `InSchema` proof at the same time:
+schema and the `InSchema` proof at the same time (this is
+again a zero quantity function, because we only plan to
+use this in function signatures):
 
 ```idris
 0 ColumnType : {ss : Schema} -> InSchema n ss -> Type
@@ -531,20 +581,38 @@ With this, we are now ready to access the value
 at a given column:
 
 ```idris
-getAt :  {0 ss   : Schema}
+getAt :  {0 ss : Schema}
       -> (name : String)
-      -> Row ss
+      -> (row  : Row ss)
       -> {auto prf : InSchema name ss}
       -> ColumnType prf
 getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
+```
 
+Below is an example how to use this at compile time. Note
+the amount of work Idris performs for us: It first comes
+up with proofs that `firstName`, `lastName`, and `age`
+are indeed valid names in the `Employee` schema. From
+these proofs it automatically compiles the return type
+of `getAt`:
+
+```idris
 shoeck : String
-shoeck = getAt "firstName" hock ++ " " ++ getAt "lastName" hock
+shoeck =  getAt "firstName" hock
+       ++ " "
+       ++ getAt "lastName" hock
+       ++ ": "
+       ++ show (getAt "age" hock)
+       ++ " years old."
 ```
 
 In order to at runtime specify a column name, we need a
-covering function for `InSchema`:
+for computing values of type `InSchema` by pattern inspecting
+the column names. Since we have to at runtime compare two string
+values for being equal, we need the `DecEq` implementation for
+`String` here (Idris provide `DecEq` implementations for all
+primitives):
 
 ```idris
 inSchema : (ss : Schema) -> (n : String) -> Maybe (InSchema n ss)
@@ -557,7 +625,10 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
 ```
 
 We could now define a command for extracting a single
-column from a CSV table:
+column from a CSV table. I just give a skeleton of an
+example here. You are free to try and embed this in the
+command-line application you implemented in earlier
+exercises.
 
 ```idris
 record Table where
@@ -570,7 +641,13 @@ data Command : (t : Table) -> Type where
   GetColumn :  (name : String)
             -> (prf  : InSchema name t.schema)
             -> Command t
+```
 
+Instead of converting the result of applying our command
+to a string directly, we calculate the result type from
+the command and table in question:
+
+```idris
 0 ResultType : (t : Table) -> (cmd : Command t) -> Type
 ResultType t (GetColumn name prf) = Vect t.size (ColumnType prf)
 
@@ -597,24 +674,37 @@ run t (GetColumn name prf) = map (\row => getAt name row) t.table
 3. Declare and implement a function for modifying a field
    in a row based on the column name given.
 
+4. Define a predicate to be used as a witness that one
+   list contains only elements in the second list in the
+   same order.
+
+   For instance, `[2,4,5]` contains elements from
+   `[1,2,3,4,5,6]` in the correct order, but `[4,2,5]`
+   does not.
+
+   Use this predicate to extract several columns from a row at once.
+
+5. We improve the functionality from exercise 4 by defining a new
+   predicate, witnessing that all strings in a list correspond
+   to column names in a schema.
+
+   Use this to extract several columns from a row at once in
+   arbitrary order.
+
 ## Use Case: Flexible Error Handling
 
 ```idris
-data Has : (v : a) -> (vs : List a) -> Type where
+data Has : (v : a) -> (vs : Vect (S n) a) -> Type where
   Z : Has v (v :: vs)
   S : Has v vs -> Has v (w :: vs)
 
-Uninhabited (Has v []) where
-  uninhabited Z impossible
-  uninhabited (S _) impossible
-
-data Union : List Type -> Type where
+data Union : Vect n Type -> Type where
   U : {0 ts : _} -> (ix : Has t ts) -> (val : t) -> Union ts
 
 Uninhabited (Union []) where
-  uninhabited (U ix _) = uninhabited ix
+  uninhabited (U ix _) impossible
 
-0 Err : List Type -> Type -> Type
+0 Err : Vect n Type -> Type -> Type
 Err ts t = Either (Union ts) t
 
 extract : Err [] a -> a
@@ -627,7 +717,7 @@ inject v = U prf v
 fail : (err : t) -> (prf : Has t ts) => Err ts a
 fail err = Left $ inject err
 
-0 (-) : (as : List a) -> Has v as -> List a
+0 (-) : (as : Vect (S n) a) -> Has v as -> Vect n a
 (-) (_ :: vs) Z     = vs
 (-) (w :: vs) (S x) = w :: (vs - x)
 
@@ -644,6 +734,34 @@ handle f (Left x)  = case split prf x of
   Left v    => Right $ f v
   Right err => Left err
 handle _ (Right x) = Right x
+
+embedHas : Has t ts -> Has t (ts ++ r)
+embedHas Z     = Z
+embedHas (S x) = S $ embedHas x
+
+embed : Union ts -> Union (ts ++ r)
+embed (U ix val) = U (embedHas ix) val
+
+weaken : Union ts -> Union (t :: ts)
+weaken (U ix val) = U (S ix) val
+
+expand :  {n : Nat}
+       -> {0 r : Vect n Type}
+       -> Union ts
+       -> Union (r ++ ts)
+expand {n = Z}   {r = []}     (U ix val) = U ix val
+expand {n = S k} {r = h :: t} u          = weaken $ expand u
+
+-- namespace Err
+--   (>>=) :  {n   : Nat}
+--         -> {0 r : Vect n Type}
+--         -> Err r a
+--         -> (a -> Err ts b)
+--         -> Err (r ++ ts) b
+--   v >>= f = Prelude.do
+--     Right va <- v | Left err => Left $ weaken err
+--     Right vb <- f va | Left err => Left $ expand err
+--     pure vb
 ```
 
 ## The Truth about Interfaces
