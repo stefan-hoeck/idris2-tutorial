@@ -13,28 +13,24 @@ data NonEmpty : (as : List a) -> Type where
 
 -- 1
 
-tail : (as : List a) -> {auto 0 _ : NonEmpty as} -> List a
+tail : (as : List a) -> (0 _ : NonEmpty as) => List a
 tail (_ :: xs) = xs
 tail [] impossible
 
 -- 2
 
-concat1 : Semigroup a => (as : List a) -> {auto 0 _ : NonEmpty as} -> a
+concat1 : Semigroup a => (as : List a) -> (0 _ : NonEmpty as) => a
 concat1 (h :: t) = foldl (<+>) h t
 
-foldMap1 :  Semigroup m
-         => (a -> m)
-         -> (as : List a)
-         -> {auto 0 _ : NonEmpty as}
-         -> m
+foldMap1 : Semigroup m => (a -> m) -> (as : List a) -> (0 _ : NonEmpty as) => m
 foldMap1 f (h :: t) = foldl (\x,y => x <+> f y) (f h) t
 
 -- 3
 
-maximum : Ord a => (as : List a) -> {auto 0 _ : NonEmpty as} -> a
+maximum : Ord a => (as : List a) -> (0 _ : NonEmpty as) => a
 maximum (x :: xs) = foldl max x xs
 
-minimum : Ord a => (as : List a) -> {auto 0 _ : NonEmpty as} -> a
+minimum : Ord a => (as : List a) -> (0 _ : NonEmpty as) => a
 minimum (x :: xs) = foldl min x xs
 
 -- 4
@@ -42,7 +38,7 @@ minimum (x :: xs) = foldl min x xs
 data Positive : Nat -> Type where
   IsPositive : Positive (S n)
 
-saveDiv : (m,n : Nat) -> {auto 0 _ : Positive n} -> Nat
+saveDiv : (m,n : Nat) -> (0 _ : Positive n) => Nat
 saveDiv m (S k) = go 0 m k
   where go : (res, rem, sub : Nat) -> Nat
         go res 0       _     = res
@@ -127,8 +123,8 @@ data InSchema :  (name    : String)
 getAt :  {0 ss   : Schema}
       -> (name : String)
       -> Row ss
-      -> {auto prf : InSchema name ss c}
-      -> IdrisType c
+      -> (prf : InSchema name ss c)
+      => IdrisType c
 getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
 
@@ -151,8 +147,8 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
 
 updateAt : (name : String)
          -> Row ss
-         -> {auto prf : InSchema name ss c}
-         -> (f : IdrisType c -> IdrisType c)
+         -> (prf : InSchema name ss c)
+         => (f : IdrisType c -> IdrisType c)
          -> Row ss
 updateAt name (v :: vs) {prf = IsHere}    f = f v :: vs
 updateAt name (v :: vs) {prf = IsThere p} f = v :: updateAt name vs f
@@ -167,8 +163,8 @@ data Elems : (xs,ys : List a) -> Type where
 
 extract :  (0 s1 : Schema)
         -> (row : Row s2)
-        -> {auto prf : Elems s1 s2}
-        -> Row s1
+        -> (prf : Elems s1 s2)
+        => Row s1
 extract []       _         {prf = ENil}     = []
 extract (_ :: t) (v :: vs) {prf = EHere x}  = v :: extract t vs
 extract s1       (v :: vs) {prf = EThere x} = extract s1 vs
@@ -190,8 +186,8 @@ namespace AllInSchema
 getAll :  {0 ss  : Schema}
        -> (names : List String)
        -> Row ss
-       -> {auto prf : AllInSchema names ss res}
-       -> Row res
+       -> (prf : AllInSchema names ss res)
+       => Row res
 getAll []        _   {prf = []}     = []
 getAll (n :: ns) row {prf = _ :: _} = getAt n row :: getAll ns row
 

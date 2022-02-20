@@ -13,9 +13,13 @@ returned by functions.
 ```idris
 module Tutorial.Predicates
 
+import Data.Either
+import Data.List1
+import Data.String
 import Data.Vect
 import Data.HList
 import Decidable.Equality
+import System.File
 
 %default total
 ```
@@ -100,8 +104,8 @@ values of the indices in the constructors. We can do
 the same thing for a predicate for non-empty lists:
 
 ```idris
-data NonEmpty : (as : List a) -> Type where
-  IsNonEmpty : NonEmpty (h :: t)
+data NotNil : (as : List a) -> Type where
+  IsNotNil : NotNil (h :: t)
 ```
 
 This is a single-value data type, so we can always use it
@@ -110,18 +114,18 @@ it. We can now use this to implement a safe and pure `head`
 function:
 
 ```idris
-head1 : (as : List a) -> (0 _ : NonEmpty as) -> a
+head1 : (as : List a) -> (0 _ : NotNil as) -> a
 head1 (h :: _) _ = h
-head1 [] IsNonEmpty impossible
+head1 [] IsNotNil impossible
 ```
 
-Note, how value `IsNonEmpty` is a *witness* that its index,
+Note, how value `IsNotNil` is a *witness* that its index,
 which corresponds to our list argument, is indeed non-empty,
 because this is what we specified in its type.
 The impossible case in the implementation of `head1` is not
 strictly necessary here. It was given above for completeness.
 
-We call `NonEmpty` a *predicate* on lists, as it restricts
+We call `NotNil` a *predicate* on lists, as it restricts
 the values allowed in the index. We can express a function's
 preconditions by adding additional (possibly erased) predicates
 to the function's list of arguments.
@@ -132,10 +136,10 @@ indeed non-empty:
 
 ```idris
 headEx1 : Nat
-headEx1 = head1 [1,2,3] IsNonEmpty
+headEx1 = head1 [1,2,3] IsNotNil
 ```
 
-It is a bit cumbersome that we have to pass the `IsNonEmpty` proof
+It is a bit cumbersome that we have to pass the `IsNotNil` proof
 manually. Before we scratch that itch, we will first discuss what
 to do with lists, the values of which are not known until
 runtime. For these cases, we have to try and produce a value
@@ -145,11 +149,11 @@ in a `Maybe`, but if we can show that our predicate is *decidable*,
 we can get even stronger guarantees when returning a `Dec`:
 
 ```idris
-Uninhabited (NonEmpty []) where
-  uninhabited IsNonEmpty impossible
+Uninhabited (NotNil []) where
+  uninhabited IsNotNil impossible
 
-nonEmpty : (as : List a) -> Dec (NonEmpty as)
-nonEmpty (x :: xs) = Yes IsNonEmpty
+nonEmpty : (as : List a) -> Dec (NotNil as)
+nonEmpty (x :: xs) = Yes IsNotNil
 nonEmpty []        = No uninhabited
 ```
 
@@ -222,7 +226,7 @@ this works differently. Here is the `head` example, this
 time with an auto implicit:
 
 ```idris
-head : (as : List a) -> {auto 0 prf : NonEmpty as} -> a
+head : (as : List a) -> {auto 0 prf : NotNil as} -> a
 head (x :: _) = x
 head [] impossible
 ```
@@ -246,7 +250,7 @@ The following example fails with an error:
 
 ```repl
 Tutorial.Predicates> Predicates.head []
-Error: Can't find an implementation for NonEmpty [].
+Error: Can't find an implementation for NotNil [].
 
 (Interactive):1:1--1:8
  1 | head []
@@ -256,16 +260,30 @@ Error: Can't find an implementation for NonEmpty [].
 Wait! "Can't find an implementation for..."? Is this not the
 error message we get for missing interface implementations?
 That's correct, and I'll show you that interface resolution
-is just proof search at the end of this chapter.
+is just proof search at the end of this chapter. What I can
+show you already, is that writing the lengthy `{auto prf : t} ->`
+all the times can be cumbersome. Idris therefore allows us
+to use the same syntax as for constrained functions instead:
+`(prf : t) =>`, or even `t =>`, if we don't need to name the
+constraint. As usual, we can then access a constraint in the
+function body by its name (if any) or by means of the `%search` pragma.
+Here is another implementation of `head`:
+
+```idris
+head' : (as : List a) -> (0 _ : NotNil as) => a
+head' (x :: _) = x
+head' [] impossible
+```
 
 During proof search, Idris will also look for values of
 the given type in the current function context. This allows
 us to implement `headMaybe` without having to pass on
-the `NonEmpty` proof manually:
+the `NotNil` proof manually:
 
 ```idris
 headMaybe : List a -> Maybe a
 headMaybe as = case nonEmpty as of
+  -- `prf` is available during proof seach
   Yes prf => Just $ Predicates.head as
   No  _   => Nothing
 ```
@@ -378,7 +396,7 @@ We can use the `Elem` predicate to extract a value from
 the desired type of a heterogeneous list:
 
 ```idris
-get : (0 t : Type) -> HList ts -> {auto prf : Elem t ts} -> t
+get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t
 ```
 
 It is important to note that the auto implicit must not be
@@ -420,7 +438,7 @@ is exceeded. For instance:
 
 ```idris
 Tps : List Type
-Tps = toList (replicate 50 Nat) ++ [Maybe String]
+Tps = List.replicate 50 Nat ++ [Maybe String]
 
 hlist : HList Tps
 hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -581,8 +599,8 @@ at a given column based on the column's name:
 getAt :  {0 ss : Schema}
       -> (name : String)
       -> (row  : Row ss)
-      -> {auto prf : InSchema name ss c}
-      -> IdrisType c
+      -> (prf : InSchema name ss c)
+      => IdrisType c
 getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
 ```
@@ -591,7 +609,7 @@ Below is an example how to use this at compile time. Note
 the amount of work Idris performs for us: It first comes
 up with proofs that `firstName`, `lastName`, and `age`
 are indeed valid names in the `Employee` schema. From
-these proofs it automatically compiles the return types
+these proofs it automatically figures out the return types
 of `getAt`, and extracts the corresponding values
 from the row. All of this happens in a provably total and type
 safe way.
@@ -609,7 +627,7 @@ shoeck =  getAt "firstName" hock
 In order to at runtime specify a column name, we need a way
 for computing values of type `InSchema` by comparing
 the column names with the schema in question. Since we have
-to at runtime compare two string values for being equal,
+to compare two string values for being propositionally equal,
 we use the `DecEq` implementation for `String` here (Idris provide `DecEq`
 implementations for all primitives). We extract the column type
 at the same time and pair this (as a dependent pair) with
@@ -688,75 +706,285 @@ run t (GetColumn name ct prf) = map (\row => getAt name row) t.table
 
 ## Use Case: Flexible Error Handling
 
+A common recurring pattern when writing larger applications is
+the combination of different parts of a program each with
+their own failure types in a larger effectful computation.
+We saw this, for instance, when implementing a command line
+tool for handling CSV files. There, we read and wrote data
+from and to files, we parsed column types and schemata,
+we parsed row and column indices and command line commands.
+All these operations came with the potential of failure and
+might be implemented in different parts of our application.
+In order to unify these different failure types, we wrote
+a custom sum type encapsulating each of them, and wrote a
+single handler for this sum type. This approach was alright
+then, but it doesn't scale well and is lacking in terms of
+flexibility. We are therefore trying a slightly different
+approach here. Before we continue, we quickly implement a
+couple of functions with the potential of failure plus
+some custom error types:
+
 ```idris
-data Has : (v : a) -> (vs : Vect (S n) a) -> Type where
+record NoInteger where
+  constructor MkNoInteger
+  str : String
+
+readInt' : String -> Either NoInteger Integer
+readInt' s = maybeToEither (MkNoInteger s) $ parseInteger s
+
+record NoNat where
+  constructor MkNoNat
+  str : String
+
+readNat' : String -> Either NoNat Nat
+readNat' s = maybeToEither (MkNoNat s) $ parsePositive s
+
+record NoColType where
+  constructor MkNoColType
+  str : String
+
+readColType' : String -> Either NoColType ColType
+readColType' "I64"     = Right I64
+readColType' "Str"     = Right Str
+readColType' "Boolean" = Right Boolean
+readColType' "Float"   = Right Float
+readColType' s         = Left $ MkNoColType s
+
+record OutOfBounds where
+  constructor MkOutOfBounds
+  size  : Nat
+  index : Nat
+```
+
+However, if we now wanted to parse a `Fin n`, there are already
+two ways how this could fail: The string in question could not
+represent a natural number (leading to a `NoNat` error), or it
+could be out of bounds (leading to an `OutOfBounds` error). So,
+already here we have to encode these two possibilities in the
+return type, for instance, by using an `Either` as there error
+type:
+
+```idris
+readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)
+readFin' s = do
+  ix <- mapFst Left (readNat' s)
+  maybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n
+```
+
+This is incredibly ugly. A custom sum type might have been slightly better,
+but we still would have to use `mapFst` when invoking `readNat'`, and
+writing custom sum types for every possible combination of errors
+will get cumbersome too.
+
+What we are looking for, is a generalized sum type: A type
+indexed by a list of types (the possible choices) holding
+a single value of exactly one of the types in question:
+
+```idris
+data Sum : List Type -> Type where
+  MkSum : (val : t) -> Sum ts
+```
+
+However, there is a crucial piece of information missing:
+We have not verified, that `t` is an element of `ts`, nor
+*which* type it actually is. In fact, this is another case
+of an erased existential, and we will have no way to at runtime
+learn something about `t`. What we need to do, is pair the value
+with a proof, that its type `t` is an element of `ts`.
+We could use `Elem` again for this, but we will later need
+something a bit more powerful. We will therefore use
+a vector instead of a list as our index:
+
+```idris
+data Has :  (v : a) -> (vs  : Vect n a) -> Type where
   Z : Has v (v :: vs)
   S : Has v vs -> Has v (w :: vs)
 
+Uninhabited (Has v []) where
+  uninhabited Z impossible
+  uninhabited (S _) impossible
+```
+
+A value of type `Has v vs` is a witness that `v` is an
+element of `vs`. With this, we can now implement an indexed
+sum type (also called an *open union*):
+
+```idris
 data Union : Vect n Type -> Type where
   U : {0 ts : _} -> (ix : Has t ts) -> (val : t) -> Union ts
 
 Uninhabited (Union []) where
-  uninhabited (U ix _) impossible
+  uninhabited (U ix _) = absurd ix
+```
 
+Now, unlike `HList`, which as a *generalized product type*
+indexed over a list of types holds one value for each type
+in its index, `Union` is a *generalized sum type*: It holds
+only a single value of a type listed in the index. With
+this we can now define a much more flexible error type:
+
+```idris
 0 Err : Vect n Type -> Type -> Type
 Err ts t = Either (Union ts) t
+```
 
-extract : Err [] a -> a
-extract (Right x) = x
-extract (Left x)  = absurd x
+We can now implement some utility functions.
 
-inject : (v : t) -> (prf : Has t ts) => Union ts
-inject v = U prf v
+```idris
+inject : Has t ts => (v : t) -> Union ts
+inject v = U %search v
 
-fail : (err : t) -> (prf : Has t ts) => Err ts a
+fail : Has t ts => (err : t) -> Err ts a
 fail err = Left $ inject err
 
-0 (-) : (as : Vect (S n) a) -> Has v as -> Vect n a
-(-) (_ :: vs) Z     = vs
-(-) (w :: vs) (S x) = w :: (vs - x)
+failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a
+failMaybe err = maybeToEither (inject err)
+```
 
-split : (prf : Has t ts) -> Union ts -> Either t (Union (ts - prf))
-split Z     (U Z     val) = Left val
-split Z     (U (S x) val) = Right $ U x val
-split (S x) (U Z val)     = Right $ U Z val
-split (S x) (U (S y) val) = case split x (U y val) of
-  (Left z)         => Left z
-  (Right $ U ix v) => Right $ U (S ix) v
+And here is a reimplementation of the parsers we wrote above:
 
-handle : (prf : Has t ts) => (f : t -> a) -> Err ts a -> Err (ts - prf) a
-handle f (Left x)  = case split prf x of
-  Left v    => Right $ f v
-  Right err => Left err
-handle _ (Right x) = Right x
+```idris
+readInt : Has NoInteger ts => String -> Err ts Integer
+readInt s = failMaybe (MkNoInteger s) $ parseInteger s
 
-embedHas : Has t ts -> Has t (ts ++ r)
-embedHas Z     = Z
-embedHas (S x) = S $ embedHas x
+readNat : Has NoNat ts => String -> Err ts Nat
+readNat s = failMaybe (MkNoNat s) $ parsePositive s
 
-embed : Union ts -> Union (ts ++ r)
-embed (U ix val) = U (embedHas ix) val
+readColType : Has NoColType ts => String -> Err ts ColType
+readColType "I64"     = Right I64
+readColType "Str"     = Right Str
+readColType "Boolean" = Right Boolean
+readColType "Float"   = Right Float
+readColType s         = fail $ MkNoColType s
+```
 
-weaken : Union ts -> Union (t :: ts)
-weaken (U ix val) = U (S ix) val
+Before we implement `readFin`, we introduce a short cut for
+specifying that several error types must be present:
 
-expand :  {n : Nat}
-       -> {0 r : Vect n Type}
-       -> Union ts
-       -> Union (r ++ ts)
-expand {n = Z}   {r = []}     (U ix val) = U ix val
-expand {n = S k} {r = h :: t} u          = weaken $ expand u
+```idris
+0 All : List Type -> Vect n Type -> Type
+All []        _  = ()
+All (x :: xs) ts = (Has x ts, All xs ts)
+```
 
--- namespace Err
---   (>>=) :  {n   : Nat}
---         -> {0 r : Vect n Type}
---         -> Err r a
---         -> (a -> Err ts b)
---         -> Err (r ++ ts) b
---   v >>= f = Prelude.do
---     Right va <- v | Left err => Left $ weaken err
---     Right vb <- f va | Left err => Left $ expand err
---     pure vb
+Function `All` returns a tuple of constraints. This can
+be used as a witness that all listed types are present
+in the vector of types: Idris will automatically extract
+the proofs from the tuple as needed.
+
+
+```idris
+readFin : {n : _} -> All [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)
+readFin s = do
+  ix <- readNat s
+  failMaybe (MkOutOfBounds n ix) $ natToFin ix n
+```
+
+As a last example, here is a parser for schemata:
+
+```idris
+record InvalidColumn where
+  constructor MkInvalidColumn
+  str : String
+
+readColumn : All [InvalidColumn, NoColType] ts => String -> Err ts Column
+readColumn s = case forget $ split (':' ==) s of
+  [n,ct] => MkColumn n <$> readColType ct
+  _      => fail $ MkInvalidColumn s
+
+readSchema : All [InvalidColumn, NoColType] ts => String -> Err ts Schema
+readSchema = traverse readColumn . forget . split (',' ==)
+```
+
+Here is an example REPL session, where I test `readSchema`. I define
+variable `ts` using the `:let` command to make this more convenient.
+Note, how the order of error types is of no importance, as long
+as types `InvalidColumn` and `NoColType` are present in the list of
+errors:
+
+```repl
+Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,InvalidColumn]
+Tutorial.Predicates> readSchema {ts} "foo:bar"
+Left (U Z (MkNoColType "bar"))
+Tutorial.Predicates> readSchema {ts} "foo:Float"
+Right [MkColumn "foo" Float]
+Tutorial.Predicates> readSchema {ts} "foo Float"
+Left (U (S (S Z)) (MkInvalidColumn "foo Float"))
+```
+
+#### Error Handling
+
+There are several techniques for handling errors, all of which
+are useful at times. For instance, we might want to handle some
+errors early on and individually, while dealing with others
+much later in our application. Or we might want to handle
+them all in one fell swoop. We look at both approaches here.
+
+First, in order to handle a single error individually, we need
+to *split* a union into one of two possibilities: A value of
+the error type in question or a new union, holding one of the
+other error types. We need a new predicate for this, which
+not only encodes the presence of a value in a vector
+but also the result of removing that value:
+
+```idris
+data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where
+  [search v vs]
+  RZ : Rem v (v :: rem) rem
+  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)
+```
+
+Once again, we want to use one of the indices (`rem`) in our
+functions' return types, so we only use the other indices during
+proof search. Here is a function for splitting off a value from
+an open union:
+
+```idris
+split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)
+split {prf = RZ}   (U Z     val) = Left val
+split {prf = RZ}   (U (S x) val) = Right (U x val)
+split {prf = RS p} (U Z     val) = Right (U Z val)
+split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of
+  Left vt        => Left vt
+  Right (U ix y) => Right $ U (S ix) y
+```
+
+And here is a handler for a single error. Error handling often
+happens in an effectful context (we might want to print a
+message to the console or write the error to a log file), so
+we use an applicative effect type to handle our error in:
+
+```idris
+handle :  Applicative f
+       => Rem t ts rem
+       => (h : t -> f a)
+       -> Err ts a
+       -> f (Err rem a)
+handle h (Left x)  = case split x of
+  Left v    => Right <$> h v
+  Right err => pure $ Left err
+handle _ (Right x) = pure $ Right x
+```
+
+For handling all errors at once, we can use a handler type
+indexed by the vector of errors, and parameterized by the
+output type:
+
+```idris
+namespace Handler
+  public export
+  data Handler : (ts : Vect n Type) -> (a : Type) -> Type where
+    Nil  : Handler [] a
+    (::) : (t -> a) -> Handler ts a -> Handler (t :: ts) a
+
+extract : Handler ts a -> Has t ts -> t -> a
+extract (f :: _)  Z     val = f val
+extract (_ :: fs) (S y) val = extract fs y val
+extract []        ix    _   = absurd ix
+
+handleAll : Applicative f => Handler ts (f a) -> Err ts a -> f a
+handleAll _ (Right v)       = pure v
+handleAll h (Left $ U ix v) = extract h ix v
 ```
 
 ## The Truth about Interfaces
