@@ -92,7 +92,9 @@ stuff will already be familiar to you.
     4. [Rewrite Rules](src/Tutorial/Eq.md#rewrite-rules)
 13. [Predicates and Proof Search](src/Tutorial/Predicates.md)
     1. [Preconditions](src/Tutorial/Predicates.md#preconditions)
-    2. [The Truth about Interfaces](src/Tutorial/Predicates.md#the-truth-about-interfaces)
+    2. [Contracts between Values](src/Tutorial/Predicates.md#contracts-between-values)
+    3. [Use Case: Flexible Error Handling](src/Tutorial/Predicates.md#use-case-flexible-error-handling)
+    4. [The Truth about Interfaces](src/Tutorial/Predicates.md#the-truth-about-interfaces)
 
 ## Prerequisites
 

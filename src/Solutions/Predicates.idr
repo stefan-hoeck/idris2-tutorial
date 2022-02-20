@@ -57,6 +57,10 @@ isJust : (m : Maybe a) -> Dec (IsJust m)
 isJust Nothing  = No uninhabited
 isJust (Just x) = Yes ItIsJust
 
+fromJust : (m : Maybe a) -> (0 _ : IsJust m) => a
+fromJust (Just x) = x
+fromJust Nothing  impossible
+
 -- 6
 
 data IsLeft : Either e a -> Type where
@@ -78,6 +82,14 @@ Uninhabited (IsRight $ Left w) where
 isRight : (v : Either e a) -> Dec (IsRight v)
 isRight (Left _)  = No uninhabited
 isRight (Right x) = Yes ItIsRight
+
+fromLeft : (v : Either e a) -> (0 _ : IsLeft v) => e
+fromLeft (Left x) = x
+fromLeft (Right x) impossible
+
+fromRight : (v : Either e a) -> (0 _ : IsRight v) => a
+fromRight (Right x) = x
+fromRight (Left x) impossible
 
 --------------------------------------------------------------------------------
 --          Contracts between Values

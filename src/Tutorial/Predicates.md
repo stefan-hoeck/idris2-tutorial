@@ -46,8 +46,8 @@ this, each with its own advantages and disadvantages:
   immediately clear that the function might not be able to
   return a result. It is a natural way to deal with unvalidated
   input from unknown sources. The drawback of this approach is
-  that results will carry the `Maybe` stain, even if we *know*
-  that the *nil* case is impossible, for instance because we
+  that results will carry the `Maybe` stain, even in situations
+  when we *know* that the *nil* case is impossible, for instance because we
   know the value of the list argument at compile-time,
   or because we already *refined* the input value in such a
   way that we can be sure it is not empty (due to an earlier
@@ -146,7 +146,7 @@ runtime. For these cases, we have to try and produce a value
 of the predicate programmatically by inspecting the runtime
 list value. In the most simple case, we can wrap the proof
 in a `Maybe`, but if we can show that our predicate is *decidable*,
-we can get even stronger guarantees when returning a `Dec`:
+we can get even stronger guarantees by returning a `Dec`:
 
 ```idris
 Uninhabited (NotNil []) where
@@ -311,7 +311,7 @@ like `Maybe`.
    should work like `concat` and `foldMap`, but taking only
    a `Semigroup` constraint on the element type.
 
-3. Implement functions for return the largest and smallest
+3. Implement functions for returning the largest and smallest
    element in a list.
 
 4. Define a predicate for strictly positive natural numbers
@@ -389,7 +389,7 @@ sevenElemMyList = There $ There Here
 
 Now, `Elem` is just another way of indexing into a list
 of values. Instead of using a `Fin` index, which is limited
-by the list's length, we use proof that a value can be found
+by the list's length, we use a proof that a value can be found
 at a certain position.
 
 We can use the `Elem` predicate to extract a value from
@@ -521,7 +521,8 @@ EmployeeSchema = [ "firstName"  :> Str
 ```
 
 Such a schema could of course be again be read from user
-input.
+input, but we will wait with implementing a parser until
+the next section.
 
 Using this with an `HList` directly, led to issues
 with type inference, therefore I quickly wrote a custom
@@ -559,19 +560,21 @@ but never at runtime. This is a safe way to make sure
 our type-level functions and aliases do not leak into the
 executable when we build our application. We are allowed
 to use zero-quantity functions and values in type signatures
-and when computing other erased values, but not for runtime
+and when computing other erased values, but not for runtime-relevant
 computations.
 
 We would now like to access a value in a row based on
 the name given. For this, we write a custom predicate, which
 serves as a witness that a column with the given name is
 part of the schema. Now, here is an important thing to note:
-In this predicate we include an index for the type of the
+In this predicate we include an index for the *type* of the
 column with the given name. We need this, because when we
 access a column by name, we need a way to figure out
 the return type. But during proof search, this type will
 have to be derived by Idris based on the column name and
-schema in question. We therefore *must* tell Idris, that
+schema in question (otherwise, the proof search will fail
+unless the return type is known in advance).
+We therefore *must* tell Idris, that
 it can't include this type in the list of search criteria,
 otherwise it will try and infer the column type from the
 context (using type inference) before running the proof
@@ -610,7 +613,7 @@ the amount of work Idris performs for us: It first comes
 up with proofs that `firstName`, `lastName`, and `age`
 are indeed valid names in the `Employee` schema. From
 these proofs it automatically figures out the return types
-of `getAt`, and extracts the corresponding values
+of the calls to `getAt` and extracts the corresponding values
 from the row. All of this happens in a provably total and type
 safe way.
 
@@ -628,7 +631,7 @@ In order to at runtime specify a column name, we need a way
 for computing values of type `InSchema` by comparing
 the column names with the schema in question. Since we have
 to compare two string values for being propositionally equal,
-we use the `DecEq` implementation for `String` here (Idris provide `DecEq`
+we use the `DecEq` implementation for `String` here (Idris provides `DecEq`
 implementations for all primitives). We extract the column type
 at the same time and pair this (as a dependent pair) with
 the `InSchema` proof:
@@ -677,7 +680,7 @@ run t (GetColumn name ct prf) = map (\row => getAt name row) t.table
 
 ### Exercises part 2
 
-1. Convert `inSchema` to a decidable covering function, by
+1. Convert `inSchema` to a decidable conversion function, by
    changing its return type to `Dec (c ** InSchema n ss c)`.
 
 2. Declare and implement a function for modifying a field
@@ -719,7 +722,7 @@ In order to unify these different failure types, we wrote
 a custom sum type encapsulating each of them, and wrote a
 single handler for this sum type. This approach was alright
 then, but it doesn't scale well and is lacking in terms of
-flexibility. We are therefore trying a slightly different
+flexibility. We are therefore trying a different
 approach here. Before we continue, we quickly implement a
 couple of functions with the potential of failure plus
 some custom error types:
@@ -761,7 +764,7 @@ two ways how this could fail: The string in question could not
 represent a natural number (leading to a `NoNat` error), or it
 could be out of bounds (leading to an `OutOfBounds` error). So,
 already here we have to encode these two possibilities in the
-return type, for instance, by using an `Either` as there error
+return type, for instance, by using an `Either` as the error
 type:
 
 ```idris
@@ -774,7 +777,7 @@ readFin' s = do
 This is incredibly ugly. A custom sum type might have been slightly better,
 but we still would have to use `mapFst` when invoking `readNat'`, and
 writing custom sum types for every possible combination of errors
-will get cumbersome too.
+will get cumbersome very quickly as well.
 
 What we are looking for, is a generalized sum type: A type
 indexed by a list of types (the possible choices) holding
