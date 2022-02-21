@@ -505,6 +505,15 @@ infixr 8 :>
 
 Schema : Type
 Schema = List Column
+
+Show ColType where
+  show I64     = "I64"
+  show Str     = "Str"
+  show Boolean = "Boolean"
+  show Float   = "Float"
+
+Show Column where
+  show (MkColumn n ct) = "\{n}:\{show ct}"
 ```
 
 As you can see, in a schema we now pair a column's type
@@ -522,11 +531,11 @@ EmployeeSchema = [ "firstName"  :> Str
                  ]
 ```
 
-Such a schema could of course be again be read from user
+Such a schema could of course again be read from user
 input, but we will wait with implementing a parser until
-the next section.
+later in this chapter.
 
-Using this with an `HList` directly, led to issues
+Using this with an `HList` directly led to issues
 with type inference, therefore I quickly wrote a custom
 row type: A heterogeneous list indexed over a schema:
 
@@ -648,9 +657,9 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
     Nothing         => Nothing
 ```
 
-In the [section about error handling](Predicates.md#use-case-flexible-error-handling)
-we will add a command for extracting a single
-column from a CSV table to our list of CSV commands.
+At the end of this chapter we will use `InSchema` in
+our CSV command line application to list all values
+in a column.
 
 ### Exercises part 2
 
@@ -683,7 +692,7 @@ column from a CSV table to our list of CSV commands.
 
 ## Use Case: Flexible Error Handling
 
-A common recurring pattern when writing larger applications is
+A recurring pattern when writing larger applications is
 the combination of different parts of a program each with
 their own failure types in a larger effectful computation.
 We saw this, for instance, when implementing a command line
@@ -702,13 +711,6 @@ couple of functions with the potential of failure plus
 some custom error types:
 
 ```idris
-record NoInteger where
-  constructor MkNoInteger
-  str : String
-
-readInt' : String -> Either NoInteger Integer
-readInt' s = maybeToEither (MkNoInteger s) $ parseInteger s
-
 record NoNat where
   constructor MkNoNat
   str : String
@@ -726,22 +728,22 @@ readColType' "Str"     = Right Str
 readColType' "Boolean" = Right Boolean
 readColType' "Float"   = Right Float
 readColType' s         = Left $ MkNoColType s
-
-record OutOfBounds where
-  constructor MkOutOfBounds
-  size  : Nat
-  index : Nat
 ```
 
-However, if we now wanted to parse a `Fin n`, there are already
+However, if we wanted to parse a `Fin n`, there'd be already
 two ways how this could fail: The string in question could not
 represent a natural number (leading to a `NoNat` error), or it
-could be out of bounds (leading to an `OutOfBounds` error). So,
-already here we have to encode these two possibilities in the
+could be out of bounds (leading to an `OutOfBounds` error).
+We have to somehow encode these two possibilities in the
 return type, for instance, by using an `Either` as the error
 type:
 
 ```idris
+record OutOfBounds where
+  constructor MkOutOfBounds
+  size  : Nat
+  index : Nat
+
 readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)
 readFin' s = do
   ix <- mapFst Left (readNat' s)
@@ -752,10 +754,10 @@ This is incredibly ugly. A custom sum type might have been slightly better,
 but we still would have to use `mapFst` when invoking `readNat'`, and
 writing custom sum types for every possible combination of errors
 will get cumbersome very quickly as well.
-
 What we are looking for, is a generalized sum type: A type
 indexed by a list of types (the possible choices) holding
-a single value of exactly one of the types in question:
+a single value of exactly one of the types in question.
+Here is a first naive try:
 
 ```idris
 data Sum : List Type -> Type where
@@ -763,14 +765,15 @@ data Sum : List Type -> Type where
 ```
 
 However, there is a crucial piece of information missing:
-We have not verified, that `t` is an element of `ts`, nor
+We have not verified that `t` is an element of `ts`, nor
 *which* type it actually is. In fact, this is another case
 of an erased existential, and we will have no way to at runtime
-learn something about `t`. What we need to do, is pair the value
+learn something about `t`. What we need to do is to pair the value
 with a proof, that its type `t` is an element of `ts`.
-We could use `Elem` again for this, but we will later need
-something a bit more powerful. We will therefore use
-a vector instead of a list as our index:
+We could use `Elem` again for this, but for some use cases
+we will require access to the number of types in the list.
+We will therefore use a vector instead of a list as our index.
+Here is a predicate similar to `Elem` but for vectors:
 
 ```idris
 data Has :  (v : a) -> (vs  : Vect n a) -> Type where
@@ -805,7 +808,7 @@ this we can now define a much more flexible error type:
 Err ts t = Either (Union ts) t
 ```
 
-We can now implement some utility functions.
+First some utility functions.
 
 ```idris
 inject : Has t ts => (v : t) -> Union ts
@@ -818,12 +821,10 @@ failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a
 failMaybe err = maybeToEither (inject err)
 ```
 
-And here is a reimplementation of the parsers we wrote above:
+Next, we can write more flexible versions of the
+parsers we wrote above:
 
 ```idris
-readInt : Has NoInteger ts => String -> Err ts Integer
-readInt s = failMaybe (MkNoInteger s) $ parseInteger s
-
 readNat : Has NoNat ts => String -> Err ts Nat
 readNat s = failMaybe (MkNoNat s) $ parsePositive s
 
@@ -853,11 +854,12 @@ the proofs from the tuple as needed.
 ```idris
 readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)
 readFin s = do
-  ix <- readNat s
-  failMaybe (MkOutOfBounds n ix) $ natToFin ix n
+  S ix <- readNat s | Z => fail (MkOutOfBounds n Z)
+  failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n
 ```
 
-As a last example, here is a parser for schemata:
+As a last example, here are parsers for schemata and
+CSV rows:
 
 ```idris
 fromCSV : String -> List String
@@ -874,9 +876,40 @@ readColumn s = case forget $ split (':' ==) s of
 
 readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema
 readSchema = traverse readColumn . fromCSV
+
+data RowError : Type where
+  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError
+  UnexpectedEOI : (row, col : Nat) -> RowError
+  ExpectedEOI   : (row, col : Nat) -> RowError
+
+decodeField :  Has RowError ts
+            => (row,col : Nat)
+            -> (c : ColType)
+            -> String
+            -> Err ts (IdrisType c)
+decodeField row col c s =
+  let err = InvalidField row col c s
+   in case c of
+        I64     => failMaybe err $ read s
+        Str     => failMaybe err $ read s
+        Boolean => failMaybe err $ read s
+        Float   => failMaybe err $ read s
+
+decodeRow :  Has RowError ts
+          => {s : _}
+          -> (row : Nat)
+          -> (str : String)
+          -> Err ts (Row s)
+decodeRow row = go 1 s . fromCSV
+  where go : Nat -> (cs : Schema) -> List String -> Err ts (Row cs)
+        go k []       []                    = Right []
+        go k []       (_ :: _)              = fail $ ExpectedEOI row k
+        go k (_ :: _) []                    = fail $ UnexpectedEOI row k
+        go k (MkColumn n c :: cs) (s :: ss) =
+          [| decodeField row k c s :: go (S k) cs ss |]
 ```
 
-Here is an example REPL session, where I test `readSchema`. I define
+Here is an example REPL session, where I test `readSchema`. I defined
 variable `ts` using the `:let` command to make this more convenient.
 Note, how the order of error types is of no importance, as long
 as types `InvalidColumn` and `NoColType` are present in the list of
@@ -929,10 +962,15 @@ split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of
   Right (U ix y) => Right $ U (S ix) y
 ```
 
-And here is a handler for a single error. Error handling often
-happens in an effectful context (we might want to print a
-message to the console or write the error to a log file), so
-we use an applicative effect type to handle our error in:
+This tries to extract a value of type `t` from a union. If it works,
+the result is wrapped in a `Left`, otherwise a new union is returned
+in a `Right`, but this one has `t` removed from its list of possible
+types.
+
+With this, we can implement a handler for single errors.
+Error handling often happens in an effectful context (we might want to
+print a message to the console or write the error to a log file), so
+we use an applicative effect type to handle errors in.
 
 ```idris
 handle :  Applicative f
@@ -967,6 +1005,10 @@ handleAll _ (Right v)       = pure v
 handleAll h (Left $ U ix v) = extract h ix v
 ```
 
+Below, we will see an additional way of handling all
+errors at once by defining a custom interface for
+error handling.
+
 ### Exercises part 3
 
 1. Implement the following utility functions for `Union`:
@@ -992,10 +1034,14 @@ handleAll h (Left $ U ix v) = extract h ix v
    so that the following is possible:
 
    ```idris
-   embedTest :  Err [NoNat,NoInteger] a
-             -> Err [FileError, NoInteger, OutOfBounds, NoNat] a
+   embedTest :  Err [NoNat,NoColType] a
+             -> Err [FileError, NoColType, OutOfBounds, NoNat] a
    embedTest = mapFst embed
    ```
+
+4. Make `handle` more powerful, by letting the handler convert
+   the error in question to an `f (Err rem a)`.
+
 ## The Truth about Interfaces
 
 Well, here it finally is: The truth about interfaces. Internally,
@@ -1003,11 +1049,11 @@ an interface is just a record data type, with its fields corresponding
 to the members of the interface. An interface implementation is
 a *value* of such a record, annotated with a `%hint` pragma (see
 below) to make the value available during proof search. Finally,
-a constrained function is just a function with an auto implicit
-argument. For instance, here is the same function for looking up
+a constrained function is just a function with one or more auto implicit
+arguments. For instance, here is the same function for looking up
 an element in a list, once with the known syntax for constrained
 functions, and once with an auto implicit argument. The code
-produced is the same in both cases:
+produced by Idris is the same in both cases:
 
 ```idris
 isElem1 : Eq a => a -> List a -> Bool
@@ -1019,8 +1065,8 @@ isElem2 v []        = False
 isElem2 v (x :: xs) = x == v || isElem2 v xs
 ```
 
-Still don't believe interfaces are mere records? Well, we can
-take them as regular arguments and dissect them with a pattern
+Being mere records, we can also take interfaces as
+regular function arguments and dissect them with a pattern
 match:
 
 ```idris
@@ -1032,7 +1078,10 @@ eq (MkEq feq fneq) = feq
 
 I'll now demonstrate how we can achieve the same behavior
 with proof search as with a regular interface definition
-plus implementations. First, an interface is just a record:
+plus implementations. Since I want to finish the CSV
+example with our new error handling tools, we are
+going to implement some error handlers.
+First, an interface is just a record:
 
 ```idris
 record Print a where
@@ -1042,7 +1091,7 @@ record Print a where
 
 In order to access the record in a constrained function,
 we use the `%search` keyword, which will try to conjure a
-value of the desired type (`Default a` in this case) by
+value of the desired type (`Print a` in this case) by
 means of a proof search:
 
 ```idris
@@ -1070,15 +1119,11 @@ All three versions of `print` behave exactly the same at runtime.
 So, whenever we write `{auto x : Foo} ->` we can just as well
 write `(x : Foo) =>` and vice versa.
 
-Interface implementations are then just values of the given
+Interface implementations are just values of the given
 record type, but in order to be available during proof search,
 these need to be annotated with a `%hint` pragma:
 
 ```idris
-%hint
-noIntPrint : Print NoInteger
-noIntPrint = MkPrint $ \e => "Not an integer: \{e.str}"
-
 %hint
 noNatPrint : Print NoNat
 noNatPrint = MkPrint $ \e => "Not a natural number: \{e.str}"
@@ -1090,6 +1135,16 @@ noColTypePrint = MkPrint $ \e => "Not a column type: \{e.str}"
 %hint
 outOfBoundsPrint : Print OutOfBounds
 outOfBoundsPrint = MkPrint $ \e => "Index is out of bounds: \{show e.index}"
+
+%hint
+rowErrorPrint : Print RowError
+rowErrorPrint = MkPrint $
+  \case InvalidField r c ct s =>
+          "Not a \{show ct} in row \{show r}, column \{show c}. \{s}"
+        UnexpectedEOI r c =>
+          "Unexpected end of input in row \{show r}, column \{show c}."
+        ExpectedEOI r c =>
+          "Expected end of input in row \{show r}, column \{show c}."
 ```
 
 We can also write an implementation of `Print` for
@@ -1126,61 +1181,12 @@ parser, using the flexible error handling approach from
 the last section. While not necessarily less verbose than
 the original parser, this approach decouples the handling
 of errors and printing of error messages from the rest
-of the application: Generators of nice error messages
-are reusable in different contexts, as are their pretty
-printers.
+of the application: Functions with a possibility of failure
+are reusable in different contexts, as are the pretty
+printers we use for the error messages.
 
-```idris
-data RowError : Type where
-  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError
-  UnexpectedEOI : (row, col : Nat) -> RowError
-  ExpectedEOI   : (row, col : Nat) -> RowError
-
-Show ColType where
-  show I64     = "I64"
-  show Str     = "Str"
-  show Boolean = "Boolean"
-  show Float   = "Float"
-
-Show Column where
-  show (MkColumn n ct) = "\{n}:\{show ct}"
-
-%hint
-rowErrorPrint : Print RowError
-rowErrorPrint = MkPrint $
-  \case InvalidField r c ct s =>
-          "Not a \{show ct} in row \{show r}, column \{show c}. \{s}"
-        UnexpectedEOI r c =>
-          "Unexpected end of input in row \{show r}, column \{show c}."
-        ExpectedEOI r c =>
-          "Expected end of input in row \{show r}, column \{show c}."
-
-decodeField :  Has RowError ts
-            => (row,col : Nat)
-            -> (c : ColType)
-            -> String
-            -> Err ts (IdrisType c)
-decodeField row col c s =
-  let err = InvalidField row col c s
-   in case c of
-        I64     => failMaybe err $ read s
-        Str     => failMaybe err $ read s
-        Boolean => failMaybe err $ read s
-        Float   => failMaybe err $ read s
-
-decodeRow :  Has RowError ts
-          => {s : _}
-          -> (row : Nat)
-          -> (str : String)
-          -> Err ts (Row s)
-decodeRow row = go 1 s . fromCSV
-  where go : Nat -> (cs : Schema) -> List String -> Err ts (Row cs)
-        go k []       []                    = Right []
-        go k []       (_ :: _)              = fail $ ExpectedEOI row k
-        go k (_ :: _) []                    = fail $ UnexpectedEOI row k
-        go k (MkColumn n c :: cs) (s :: ss) =
-          [| decodeField row k c s :: go (S k) cs ss |]
-```
+First, we repeat some stuff from earlier chapter. I sneaked
+in a new command for printing all values in a column:
 
 ```idris
 record Table where
@@ -1213,7 +1219,13 @@ applyCommand t                 (Col _ _ _) = t
 applyCommand (MkTable ts n rs) (Delete x)  = case n of
   S k => MkTable ts k (deleteAt x rs)
   Z   => absurd x
+```
 
+Next, below is the command parser reimplemented. In total,
+it can fail in seven different was, at least some of which
+might also be possible in other parts of a larger application.
+
+```idris
 record UnknownCommand where
   constructor MkUnknownCommand
   str : String
@@ -1252,7 +1264,19 @@ readCommand (MkTable ts n _) s         = case words s of
     Just (ct ** prf) => Right $ Col str ct prf
     Nothing          => fail $ MkNoColName str
   _               => fail $ MkUnknownCommand s
+```
 
+Note, how we could invoke functions like `readFin` or
+`readSchema` directly, because the necessary error types
+are part of our list of possible errors.
+
+To conclude this sections, here is the functionality
+for printing the result of a command plus the application's
+main loop. Most of this is repeated from earlier chapters,
+but note how we can handle all errors at once with a single
+call to `print`:
+
+```idris
 encodeField : (t : ColType) -> IdrisType t -> String
 encodeField I64     x     = show x
 encodeField Str     x     = show x
