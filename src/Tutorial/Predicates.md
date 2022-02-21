@@ -19,6 +19,8 @@ import Data.String
 import Data.Vect
 import Data.HList
 import Decidable.Equality
+
+import Text.CSV
 import System.File
 
 %default total
@@ -646,37 +648,9 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
     Nothing         => Nothing
 ```
 
-We could now define a command for extracting a single
-column from a CSV table. I just give a skeleton of an
-example here. You are free to try and embed this in the
-command-line application you implemented in earlier
-exercises.
-
-```idris
-record Table where
-  constructor MkTable
-  schema : Schema
-  size   : Nat
-  table  : Vect size (Row schema)
-
-data Command : (t : Table) -> Type where
-  GetColumn :  (name    : String)
-            -> (colType : ColType)
-            -> (prf     : InSchema name t.schema colType)
-            -> Command t
-```
-
-Instead of converting the result of applying our command
-to a string directly, we calculate the result type from
-the command and table in question:
-
-```idris
-0 ResultType : (t : Table) -> (cmd : Command t) -> Type
-ResultType t (GetColumn name ct prf) = Vect t.size (IdrisType ct)
-
-run : (t : Table) -> (cmd : Command t) -> ResultType t cmd
-run t (GetColumn name ct prf) = map (\row => getAt name row) t.table
-```
+In the [section about error handling](Predicates.md#use-case-flexible-error-handling)
+we will add a command for extracting a single
+column from a CSV table to our list of CSV commands.
 
 ### Exercises part 2
 
@@ -865,19 +839,19 @@ Before we implement `readFin`, we introduce a short cut for
 specifying that several error types must be present:
 
 ```idris
-0 All : List Type -> Vect n Type -> Type
-All []        _  = ()
-All (x :: xs) ts = (Has x ts, All xs ts)
+0 Errs : List Type -> Vect n Type -> Type
+Errs []        _  = ()
+Errs (x :: xs) ts = (Has x ts, Errs xs ts)
 ```
 
-Function `All` returns a tuple of constraints. This can
+Function `Errs` returns a tuple of constraints. This can
 be used as a witness that all listed types are present
 in the vector of types: Idris will automatically extract
 the proofs from the tuple as needed.
 
 
 ```idris
-readFin : {n : _} -> All [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)
+readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)
 readFin s = do
   ix <- readNat s
   failMaybe (MkOutOfBounds n ix) $ natToFin ix n
@@ -886,17 +860,20 @@ readFin s = do
 As a last example, here is a parser for schemata:
 
 ```idris
+fromCSV : String -> List String
+fromCSV = forget . split (',' ==)
+
 record InvalidColumn where
   constructor MkInvalidColumn
   str : String
 
-readColumn : All [InvalidColumn, NoColType] ts => String -> Err ts Column
+readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts Column
 readColumn s = case forget $ split (':' ==) s of
   [n,ct] => MkColumn n <$> readColType ct
   _      => fail $ MkInvalidColumn s
 
-readSchema : All [InvalidColumn, NoColType] ts => String -> Err ts Schema
-readSchema = traverse readColumn . forget . split (',' ==)
+readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema
+readSchema = traverse readColumn . fromCSV
 ```
 
 Here is an example REPL session, where I test `readSchema`. I define
@@ -990,6 +967,35 @@ handleAll _ (Right v)       = pure v
 handleAll h (Left $ U ix v) = extract h ix v
 ```
 
+### Exercises part 3
+
+1. Implement the following utility functions for `Union`:
+
+   ```idris
+   project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t
+
+   project1 : Union [t] -> t
+
+   safe : Err [] a -> a
+   ```
+2. Implement the following two functions for embedding
+   an open union in a larger set of possibilities.
+   Note the unerased implicit in `embed`!
+
+   ```idris
+   weaken : Union ts -> Union (ts ++ ss)
+
+   extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)
+   ```
+
+3. Find a general way to embed a `Union ts` in a `Union ss`,
+   so that the following is possible:
+
+   ```idris
+   embedTest :  Err [NoNat,NoInteger] a
+             -> Err [FileError, NoInteger, OutOfBounds, NoNat] a
+   embedTest = mapFst embed
+   ```
 ## The Truth about Interfaces
 
 Well, here it finally is: The truth about interfaces. Internally,
@@ -1029,10 +1035,9 @@ with proof search as with a regular interface definition
 plus implementations. First, an interface is just a record:
 
 ```idris
--- An interface for types with a default value
-record Default a where
-  constructor MkDefault
-  value : a
+record Print a where
+  constructor MkPrint
+  print' : a -> String
 ```
 
 In order to access the record in a constrained function,
@@ -1041,28 +1046,28 @@ value of the desired type (`Default a` in this case) by
 means of a proof search:
 
 ```idris
-deflt : Default a => a
-deflt = value %search
+print : Print a => a -> String
+print = print' %search
 ```
 
 As an alternative, we could use a named constraint, and access
 it directly via its name:
 
 ```idris
-deflt2 : (impl : Default a) => a
-deflt2 = value impl
+print2 : (impl : Print a) => a -> String
+print2 = print' impl
 ```
 
 As yet another alternative, we could use the syntax for auto
 implicit arguments:
 
 ```idris
-deflt3 : {auto impl : Default a} -> a
-deflt3 = value impl
+print3 : {auto impl : Print a} -> a -> String
+print3 = print' impl
 ```
 
-All three versions of `deflt` behave exactly the same at runtime.
-So, whenever we write `{auto x : Foo} ->` we could just as well
+All three versions of `print` behave exactly the same at runtime.
+So, whenever we write `{auto x : Foo} ->` we can just as well
 write `(x : Foo) =>` and vice versa.
 
 Interface implementations are then just values of the given
@@ -1071,23 +1076,39 @@ these need to be annotated with a `%hint` pragma:
 
 ```idris
 %hint
-defaultNat : Default Nat
-defaultNat = MkDefault 0
+noIntPrint : Print NoInteger
+noIntPrint = MkPrint $ \e => "Not an integer: \{e.str}"
 
 %hint
-defaultString : Default String
-defaultString = MkDefault ""
+noNatPrint : Print NoNat
+noNatPrint = MkPrint $ \e => "Not a natural number: \{e.str}"
 
 %hint
-defaultPair : Default a => Default b => Default (a,b)
-defaultPair = MkDefault (deflt, deflt)
+noColTypePrint : Print NoColType
+noColTypePrint = MkPrint $ \e => "Not a column type: \{e.str}"
+
+%hint
+outOfBoundsPrint : Print OutOfBounds
+outOfBoundsPrint = MkPrint $ \e => "Index is out of bounds: \{show e.index}"
 ```
 
-An here is to show that it works:
+We can also write an implementation of `Print` for
+a union or errors. For this, we first come up with a
+proof that all types in the union's index come with an
+implementation of `Print`:
 
 ```idris
-defaultExample : (Nat,String)
-defaultExample = deflt
+0 All : (f : a -> Type) -> Vect n a -> Type
+All f []        = ()
+All f (x :: xs) = (f x, All f xs)
+
+unionPrintImpl : All Print ts => Union ts -> String
+unionPrintImpl (U Z val)     = print val
+unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val
+
+%hint
+unionPrint : All Print ts => Print (Union ts)
+unionPrint = MkPrint unionPrintImpl
 ```
 
 Defining interfaces this way can be an advantage, as there
@@ -1097,6 +1118,190 @@ that all of the magic comes from the search hints, with
 which our "interface implementations" were annotated.
 These adds the corresponding values and functions to
 the search space used during proof search.
+
+#### Parsing CSV Commands
+
+To conclude this chapter, we reimplement our CSV command
+parser, using the flexible error handling approach from
+the last section. While not necessarily less verbose than
+the original parser, this approach decouples the handling
+of errors and printing of error messages from the rest
+of the application: Generators of nice error messages
+are reusable in different contexts, as are their pretty
+printers.
+
+```idris
+data RowError : Type where
+  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError
+  UnexpectedEOI : (row, col : Nat) -> RowError
+  ExpectedEOI   : (row, col : Nat) -> RowError
+
+Show ColType where
+  show I64     = "I64"
+  show Str     = "Str"
+  show Boolean = "Boolean"
+  show Float   = "Float"
+
+Show Column where
+  show (MkColumn n ct) = "\{n}:\{show ct}"
+
+%hint
+rowErrorPrint : Print RowError
+rowErrorPrint = MkPrint $
+  \case InvalidField r c ct s =>
+          "Not a \{show ct} in row \{show r}, column \{show c}. \{s}"
+        UnexpectedEOI r c =>
+          "Unexpected end of input in row \{show r}, column \{show c}."
+        ExpectedEOI r c =>
+          "Expected end of input in row \{show r}, column \{show c}."
+
+decodeField :  Has RowError ts
+            => (row,col : Nat)
+            -> (c : ColType)
+            -> String
+            -> Err ts (IdrisType c)
+decodeField row col c s =
+  let err = InvalidField row col c s
+   in case c of
+        I64     => failMaybe err $ read s
+        Str     => failMaybe err $ read s
+        Boolean => failMaybe err $ read s
+        Float   => failMaybe err $ read s
+
+decodeRow :  Has RowError ts
+          => {s : _}
+          -> (row : Nat)
+          -> (str : String)
+          -> Err ts (Row s)
+decodeRow row = go 1 s . fromCSV
+  where go : Nat -> (cs : Schema) -> List String -> Err ts (Row cs)
+        go k []       []                    = Right []
+        go k []       (_ :: _)              = fail $ ExpectedEOI row k
+        go k (_ :: _) []                    = fail $ UnexpectedEOI row k
+        go k (MkColumn n c :: cs) (s :: ss) =
+          [| decodeField row k c s :: go (S k) cs ss |]
+```
+
+```idris
+record Table where
+  constructor MkTable
+  schema : Schema
+  size   : Nat
+  rows   : Vect size (Row schema)
+
+data Command : (t : Table) -> Type where
+  PrintSchema :  Command t
+  PrintSize   :  Command t
+  New         :  (newSchema : Schema) -> Command t
+  Prepend     :  Row (schema t) -> Command t
+  Get         :  Fin (size t) -> Command t
+  Delete      :  Fin (size t) -> Command t
+  Col         :  (name : String)
+              -> (tpe  : ColType)
+              -> (prf  : InSchema name t.schema tpe)
+              -> Command t
+  Quit        : Command t
+
+applyCommand : (t : Table) -> Command t -> Table
+applyCommand t                 PrintSchema = t
+applyCommand t                 PrintSize   = t
+applyCommand _                 (New ts)    = MkTable ts _ []
+applyCommand (MkTable ts n rs) (Prepend r) = MkTable ts _ $ r :: rs
+applyCommand t                 (Get x)     = t
+applyCommand t                 Quit        = t
+applyCommand t                 (Col _ _ _) = t
+applyCommand (MkTable ts n rs) (Delete x)  = case n of
+  S k => MkTable ts k (deleteAt x rs)
+  Z   => absurd x
+
+record UnknownCommand where
+  constructor MkUnknownCommand
+  str : String
+
+%hint
+unknownCommandPrint : Print UnknownCommand
+unknownCommandPrint = MkPrint $ \v => "Unknown command: \{v.str}"
+
+record NoColName where
+  constructor MkNoColName
+  str : String
+
+%hint
+noColNamePrint : Print NoColName
+noColNamePrint = MkPrint $ \v => "Unknown column: \{v.str}"
+
+0 CmdErrs : Vect 7 Type
+CmdErrs = [ InvalidColumn
+          , NoColName
+          , NoColType
+          , NoNat
+          , OutOfBounds
+          , RowError
+          , UnknownCommand ]
+
+readCommand : (t : Table) -> String -> Err CmdErrs (Command t)
+readCommand _                "schema"  = Right PrintSchema
+readCommand _                "size"    = Right PrintSize
+readCommand _                "quit"    = Right Quit
+readCommand (MkTable ts n _) s         = case words s of
+  ["new",    str] => New     <$> readSchema str
+  "add" ::   ss   => Prepend <$> decodeRow 1 (unwords ss)
+  ["get",    str] => Get     <$> readFin str
+  ["delete", str] => Delete  <$> readFin str
+  ["column", str] => case inSchema ts str of
+    Just (ct ** prf) => Right $ Col str ct prf
+    Nothing          => fail $ MkNoColName str
+  _               => fail $ MkUnknownCommand s
+
+encodeField : (t : ColType) -> IdrisType t -> String
+encodeField I64     x     = show x
+encodeField Str     x     = show x
+encodeField Boolean True  = "t"
+encodeField Boolean False = "f"
+encodeField Float   x     = show x
+
+encodeRow : (s : Schema) -> Row s -> String
+encodeRow s = concat . intersperse "," . go s
+  where go : (s' : Schema) -> Row s' -> Vect (length s') String
+        go []        []        = []
+        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go cs vs
+
+encodeCol :  (name : String)
+          -> (c    : ColType)
+          -> InSchema name s c
+          => Vect n (Row s)
+          -> String
+encodeCol name c = unlines . toList . map (\r => encodeField c $ getAt name r)
+
+showSchema : Schema -> String
+showSchema = concat . intersperse "," . map show
+
+result :  (t : Table) -> Command t -> String
+result t PrintSchema   = "Current schema: \{showSchema t.schema}"
+result t PrintSize     = "Current size: \{show t.size}"
+result _ (New ts)      = "Created table. Schema: \{showSchema ts}"
+result t (Prepend r)   = "Row prepended: \{encodeRow t.schema r}"
+result _ (Delete x)    = "Deleted row: \{show $ FS x}."
+result _ Quit          = "Goodbye."
+result t (Col n c prf) = "Column \{n}: \{encodeCol n c t.rows}"
+result t (Get x)       =
+  "Row \{show $ FS x}: \{encodeRow t.schema (index x t.rows)}"
+
+covering
+runProg : Table -> IO ()
+runProg t = do
+  putStr "Enter a command: "
+  str <- getLine
+  case readCommand t str of
+    Left err   => putStrLn (print err) >> runProg t
+    Right Quit => putStrLn (result t Quit)
+    Right cmd  => putStrLn (result t cmd) >>
+                  runProg (applyCommand t cmd)
+
+covering
+main : IO ()
+main = runProg $ MkTable [] _ []
+```
 
 <!-- vi: filetype=idris2
 -->

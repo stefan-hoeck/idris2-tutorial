@@ -1,5 +1,6 @@
 module Solutions.Predicates
 
+import Data.Vect
 import Decidable.Equality
 
 %default total
@@ -47,17 +48,17 @@ saveDiv m (S k) = go 0 m k
 
 -- 5
 
-data IsJust : Maybe a -> Type where
-  ItIsJust : IsJust (Just v)
+data IJust : Maybe a -> Type where
+  ItIsJust : IJust (Just v)
 
-Uninhabited (IsJust Nothing) where
+Uninhabited (IJust Nothing) where
   uninhabited ItIsJust impossible
 
-isJust : (m : Maybe a) -> Dec (IsJust m)
+isJust : (m : Maybe a) -> Dec (IJust m)
 isJust Nothing  = No uninhabited
 isJust (Just x) = Yes ItIsJust
 
-fromJust : (m : Maybe a) -> (0 _ : IsJust m) => a
+fromJust : (m : Maybe a) -> (0 _ : IJust m) => a
 fromJust (Just x) = x
 fromJust Nothing  impossible
 
@@ -204,6 +205,72 @@ getAll []        _   {prf = []}     = []
 getAll (n :: ns) row {prf = _ :: _} = getAt n row :: getAll ns row
 
 --------------------------------------------------------------------------------
+--          Use Case: Flexible Error Handling
+--------------------------------------------------------------------------------
+
+data Has :  (v : a) -> (vs  : Vect n a) -> Type where
+  Z : Has v (v :: vs)
+  S : Has v vs -> Has v (w :: vs)
+
+Uninhabited (Has v []) where
+  uninhabited Z impossible
+  uninhabited (S _) impossible
+
+data Union : Vect n Type -> Type where
+  U : {0 ts : _} -> (ix : Has t ts) -> (val : t) -> Union ts
+
+Uninhabited (Union []) where
+  uninhabited (U ix _) = absurd ix
+
+0 Err : Vect n Type -> Type -> Type
+Err ts t = Either (Union ts) t
+
+-- 1
+
+project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t
+project t {prf = Z}   (U Z val)     = Just val
+project t {prf = S p} (U (S x) val) = project t (U x val)
+project t {prf = Z}   (U (S x) val) = Nothing
+project t {prf = S p} (U Z val)     = Nothing
+
+project1 : Union [t] -> t
+project1 (U Z val) = val
+project1 (U (S x) val) impossible
+
+safe : Err [] a -> a
+safe (Right x) = x
+safe (Left x)  = absurd x
+
+-- 2
+
+weakenHas : Has t ts -> Has t (ts ++ ss)
+weakenHas Z     = Z
+weakenHas (S x) = S (weakenHas x)
+
+weaken : Union ts -> Union (ts ++ ss)
+weaken (U ix val) = U (weakenHas ix) val
+
+extendHas : {m : _} -> {0 pre : Vect m a} -> Has t ts -> Has t (pre ++ ts)
+extendHas {m = Z}   {pre = []}     x = x
+extendHas {m = S p} {pre = _ :: _} x = S (extendHas x)
+
+extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)
+extend (U ix val) = U (extendHas ix) val
+
+-- 3
+
+0 Errs : Vect m Type -> Vect n Type -> Type
+Errs []        _  = ()
+Errs (x :: xs) ts = (Has x ts, Errs xs ts)
+
+inject : Has t ts => (v : t) -> Union ts
+inject v = U %search v
+
+embed : (prf : Errs ts ss) => Union ts -> Union ss
+embed (U Z val)     = inject val
+embed (U (S x) val) = embed (U x val)
+
+--------------------------------------------------------------------------------
 --          Tests
 --------------------------------------------------------------------------------
 
@@ -228,3 +295,7 @@ shoeck = getAt "firstName" hock ++ " " ++ getAt "lastName" hock
 shoeck2 : String
 shoeck2 = case getAll ["firstName", "lastName", "age"] hock of
   [fn,ln,a] => "\{fn} \{ln}: \{show a} years old."
+
+embedTest :  Err [Nat,Bits8] a
+          -> Err [String, Bits8, Int32, Nat] a
+embedTest = mapFst embed
