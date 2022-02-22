@@ -1368,13 +1368,5 @@ arguments, which Idris should try to construct on its own if
 it has enough information about the structure of a function's
 arguments.
 
-```idris
-record Test where
-  constructor MkTest
-  value = Nat
-
-eqTest : Test -> Test -> Bool
-```
-
 <!-- vi: filetype=idris2
 -->
