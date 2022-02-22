@@ -6,6 +6,7 @@ sourcedir  = "src"
 depends    = base         >= 0.5.1
 
 modules = Data.HList
+        , Data.Union
         , Data.Validated
 
         , Solutions.DataTypes
@@ -18,6 +19,7 @@ modules = Data.HList
         , Solutions.Functor
         , Solutions.IO
         , Solutions.Interfaces
+        , Solutions.Predicates
         , Solutions.Traverse
 
         , Text.CSV
@@ -33,4 +35,5 @@ modules = Data.HList
         , Tutorial.IO
         , Tutorial.Interfaces
         , Tutorial.Intro
+        , Tutorial.Predicates
         , Tutorial.Traverse
