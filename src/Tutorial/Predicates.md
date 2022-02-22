@@ -1335,6 +1335,29 @@ main : IO ()
 main = runProg $ MkTable [] _ []
 ```
 
+Here is an example REPL session:
+
+```repl
+Tutorial.Predicates> :exec main
+Enter a command: new name:Str,age:Int64,salary:Float
+Not a column type: Int64
+Enter a command: new name:Str,age:I64,salary:Float
+Created table. Schema: name:Str,age:I64,salary:Float
+Enter a command: add John Doe,44,3500
+Row prepended: "John Doe",44,3500.0
+Enter a command: add Jane Doe,50,4000
+Row prepended: "Jane Doe",50,4000.0
+Enter a command: get 1
+Row 1: "Jane Doe",50,4000.0
+Enter a command: column salary
+Column salary:
+4000.0
+3500.0
+
+Enter a command: quit
+Goodbye.
+```
+
 ## Conclusion
 
 Predicates allow us to describe contracts between types

@@ -6,6 +6,7 @@ sourcedir  = "src"
 depends    = base         >= 0.5.1
 
 modules = Data.HList
+        , Data.Union
         , Data.Validated
 
         , Solutions.DataTypes
