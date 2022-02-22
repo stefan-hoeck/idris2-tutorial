@@ -169,10 +169,15 @@ headMaybe1 as = case nonEmpty as of
   No  _   => Nothing
 ```
 
+Of course, for trivial functions like `headMaybe` it makes
+more sense to implement them directly by pattern matching on
+the list argument, but we will soon see examples of predicates
+the values of which are more cumbersome to create.
+
 ### Auto Implicits
 
 Having to manually pass a proof of being non-empty to
-`head1` makes this function unnecessarily cumbersome to
+`head1` makes this function unnecessarily verbose to
 use at compile time. Idris allows us to define implicit
 function arguments, the values of which it tries to assemble
 on its own by means of a technique called *proof search*. This is not
@@ -236,10 +241,11 @@ head [] impossible
 Note the `auto` keyword before the quantity of implicit argument
 `prf`. This means, we want Idris to construct this value
 on its own, without it being visible in the surrounding context.
-In order to do so, Idris will try and build such a value from
-the data type's constructors. If it succeeds, this value will
-then be automatically filled in as the desired argument, otherwise,
-Idris will fail with a type error.
+In order to do so, Idris will have to at compile time know the
+structure of the list argument `as`. It will then try and build
+such a value from the data type's constructors. If it succeeds,
+this value will then be automatically filled in as the desired argument,
+otherwise, Idris will fail with a type error.
 
 Let's see this in action:
 
@@ -268,8 +274,8 @@ all the times can be cumbersome. Idris therefore allows us
 to use the same syntax as for constrained functions instead:
 `(prf : t) =>`, or even `t =>`, if we don't need to name the
 constraint. As usual, we can then access a constraint in the
-function body by its name (if any) or by means of the `%search` pragma.
-Here is another implementation of `head`:
+function body by its name (if any). Here is another implementation
+of `head`:
 
 ```idris
 head' : (as : List a) -> (0 _ : NotNil as) => a
@@ -278,7 +284,7 @@ head' [] impossible
 ```
 
 During proof search, Idris will also look for values of
-the given type in the current function context. This allows
+the required type in the current function context. This allows
 us to implement `headMaybe` without having to pass on
 the `NotNil` proof manually:
 
@@ -373,9 +379,12 @@ A value of type `a` and a list of `a`s. Values of this predicate
 are witnesses that the value is an element of the list.
 Note, how this is defined recursively: The case
 where the value we look for is at the head of the list is
-handled by the `Here` constructor. The case where the value
+handled by the `Here` constructor, where the same variable (`x`) is used
+for the element and the head of the list. The case where the value
 is deeper within  the list is handled by the `There`
-constructor. Let's write down some examples to get a feel
+constructor. This can be read as follows: If `x` is and element
+of `xs`, then `x` is also an element of `y :: xs` for any
+value `y`. Let's write down some examples to get a feel
 for these:
 
 ```idris
@@ -514,6 +523,9 @@ Show ColType where
 
 Show Column where
   show (MkColumn n ct) = "\{n}:\{show ct}"
+
+showSchema : Schema -> String
+showSchema = concat . intersperse "," . map show
 ```
 
 As you can see, in a schema we now pair a column's type
@@ -534,10 +546,9 @@ EmployeeSchema = [ "firstName"  :> Str
 Such a schema could of course again be read from user
 input, but we will wait with implementing a parser until
 later in this chapter.
-
-Using this with an `HList` directly led to issues
+Using this new schema with an `HList` directly led to issues
 with type inference, therefore I quickly wrote a custom
-row type: A heterogeneous list indexed over a schema:
+row type: A heterogeneous list indexed over a schema.
 
 ```idris
 data Row : Schema -> Type where
@@ -613,7 +624,7 @@ at a given column based on the column's name:
 getAt :  {0 ss : Schema}
       -> (name : String)
       -> (row  : Row ss)
-      -> (prf : InSchema name ss c)
+      -> (prf  : InSchema name ss c)
       => IdrisType c
 getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
@@ -663,26 +674,24 @@ in a column.
 
 ### Exercises part 2
 
-1. Convert `inSchema` to a decidable conversion function, by
-   changing its return type to `Dec (c ** InSchema n ss c)`.
+1. Show that `InSchema` is decidable by changing the output type
+   of `inSchema` to `Dec (c ** InSchema n ss c)`.
 
 2. Declare and implement a function for modifying a field
    in a row based on the column name given.
 
 3. Define a predicate to be used as a witness that one
    list contains only elements in the second list in the
-   same order.
+   same order and use this predicate to extract several columns
+   from a row at once.
 
    For instance, `[2,4,5]` contains elements from
    `[1,2,3,4,5,6]` in the correct order, but `[4,2,5]`
    does not.
 
-   Use this predicate to extract several columns from a row at once.
-
-4. We improve the functionality from exercise 3 by defining a new
+4. Improve the functionality from exercise 3 by defining a new
    predicate, witnessing that all strings in a list correspond
    to column names in a schema (in arbitrary order).
-
    Use this to extract several columns from a row at once in
    arbitrary order.
 
@@ -704,7 +713,7 @@ might be implemented in different parts of our application.
 In order to unify these different failure types, we wrote
 a custom sum type encapsulating each of them, and wrote a
 single handler for this sum type. This approach was alright
-then, but it doesn't scale well and is lacking in terms of
+then, but it does not scale well and is lacking in terms of
 flexibility. We are therefore trying a different
 approach here. Before we continue, we quickly implement a
 couple of functions with the potential of failure plus
@@ -791,28 +800,30 @@ sum type (also called an *open union*):
 
 ```idris
 data Union : Vect n Type -> Type where
-  U : {0 ts : _} -> (ix : Has t ts) -> (val : t) -> Union ts
+  U : (ix : Has t ts) -> (val : t) -> Union ts
 
 Uninhabited (Union []) where
   uninhabited (U ix _) = absurd ix
 ```
 
-Now, unlike `HList`, which as a *generalized product type*
-indexed over a list of types holds one value for each type
-in its index, `Union` is a *generalized sum type*: It holds
-only a single value of a type listed in the index. With
-this we can now define a much more flexible error type:
+Note the difference between `HList` and `Union`. `HList` is
+a *generalized product type*: It holds a value for each type
+in its index. `Union` is a *generalized sum type*: It holds
+only a single value, which must be of a type listed in the index.
+With this we can now define a much more flexible error type:
 
 ```idris
 0 Err : Vect n Type -> Type -> Type
 Err ts t = Either (Union ts) t
 ```
 
-First some utility functions.
+A function returning an `Err ts a` describes a computation, which
+can fail with one of the errors listed in `ts`.
+We first need some utility functions.
 
 ```idris
-inject : Has t ts => (v : t) -> Union ts
-inject v = U %search v
+inject : (prf : Has t ts) => (v : t) -> Union ts
+inject v = U prf v
 
 fail : Has t ts => (err : t) -> Err ts a
 fail err = Left $ inject err
@@ -1022,7 +1033,7 @@ error handling.
    ```
 2. Implement the following two functions for embedding
    an open union in a larger set of possibilities.
-   Note the unerased implicit in `embed`!
+   Note the unerased implicit in `extend`!
 
    ```idris
    weaken : Union ts -> Union (ts ++ ss)
@@ -1171,8 +1182,8 @@ is much less magic going on, and we have more fine grained
 control over the types and values of our fields. Note also,
 that all of the magic comes from the search hints, with
 which our "interface implementations" were annotated.
-These adds the corresponding values and functions to
-the search space used during proof search.
+These made the corresponding values and functions available
+during proof search.
 
 #### Parsing CSV Commands
 
@@ -1185,7 +1196,7 @@ of the application: Functions with a possibility of failure
 are reusable in different contexts, as are the pretty
 printers we use for the error messages.
 
-First, we repeat some stuff from earlier chapter. I sneaked
+First, we repeat some stuff from earlier chapters. I sneaked
 in a new command for printing all values in a column:
 
 ```idris
@@ -1297,9 +1308,6 @@ encodeCol :  (name : String)
           -> String
 encodeCol name c = unlines . toList . map (\r => encodeField c $ getAt name r)
 
-showSchema : Schema -> String
-showSchema = concat . intersperse "," . map show
-
 result :  (t : Table) -> Command t -> String
 result t PrintSchema   = "Current schema: \{showSchema t.schema}"
 result t PrintSize     = "Current size: \{show t.size}"
@@ -1307,7 +1315,7 @@ result _ (New ts)      = "Created table. Schema: \{showSchema ts}"
 result t (Prepend r)   = "Row prepended: \{encodeRow t.schema r}"
 result _ (Delete x)    = "Deleted row: \{show $ FS x}."
 result _ Quit          = "Goodbye."
-result t (Col n c prf) = "Column \{n}: \{encodeCol n c t.rows}"
+result t (Col n c prf) = "Column \{n}:\n\{encodeCol n c t.rows}"
 result t (Get x)       =
   "Row \{show $ FS x}: \{encodeRow t.schema (index x t.rows)}"
 
@@ -1326,6 +1334,16 @@ covering
 main : IO ()
 main = runProg $ MkTable [] _ []
 ```
+
+## Conclusion
+
+Predicates allow us to describe contracts between types
+and to refine the values we accept as valid function arguments.
+They allow us to make a function safe and convenient to use
+at runtime *and* compile time by using them as auto implicit
+arguments, which Idris should try to construct on its own if
+it has enough information about the structure of a function's
+arguments.
 
 <!-- vi: filetype=idris2
 -->

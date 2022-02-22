@@ -270,6 +270,31 @@ embed : (prf : Errs ts ss) => Union ts -> Union ss
 embed (U Z val)     = inject val
 embed (U (S x) val) = embed (U x val)
 
+-- 4
+
+data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where
+  [search v vs]
+  RZ : Rem v (v :: rem) rem
+  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)
+
+split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)
+split {prf = RZ}   (U Z     val) = Left val
+split {prf = RZ}   (U (S x) val) = Right (U x val)
+split {prf = RS p} (U Z     val) = Right (U Z val)
+split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of
+  Left vt        => Left vt
+  Right (U ix y) => Right $ U (S ix) y
+
+handle :  Applicative f
+       => Rem t ts rem
+       => (h : t -> f (Err rem a))
+       -> Err ts a
+       -> f (Err rem a)
+handle h (Left x)  = case split x of
+  Left v    => h v
+  Right err => pure $ Left err
+handle _ (Right x) = pure $ Right x
+
 --------------------------------------------------------------------------------
 --          Tests
 --------------------------------------------------------------------------------
