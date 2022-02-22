@@ -669,7 +669,7 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
 ```
 
 At the end of this chapter we will use `InSchema` in
-our CSV command line application to list all values
+our CSV command-line application to list all values
 in a column.
 
 ### Exercises part 2
@@ -704,10 +704,10 @@ in a column.
 A recurring pattern when writing larger applications is
 the combination of different parts of a program each with
 their own failure types in a larger effectful computation.
-We saw this, for instance, when implementing a command line
+We saw this, for instance, when implementing a command-line
 tool for handling CSV files. There, we read and wrote data
 from and to files, we parsed column types and schemata,
-we parsed row and column indices and command line commands.
+we parsed row and column indices and command-line commands.
 All these operations came with the potential of failure and
 might be implemented in different parts of our application.
 In order to unify these different failure types, we wrote
@@ -936,7 +936,7 @@ Tutorial.Predicates> readSchema {ts} "foo Float"
 Left (U (S (S Z)) (MkInvalidColumn "foo Float"))
 ```
 
-#### Error Handling
+### Error Handling
 
 There are several techniques for handling errors, all of which
 are useful at times. For instance, we might want to handle some
