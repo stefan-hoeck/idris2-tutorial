@@ -95,6 +95,7 @@ stuff will already be familiar to you.
     2. [Contracts between Values](src/Tutorial/Predicates.md#contracts-between-values)
     3. [Use Case: Flexible Error Handling](src/Tutorial/Predicates.md#use-case-flexible-error-handling)
     4. [The Truth about Interfaces](src/Tutorial/Predicates.md#the-truth-about-interfaces)
+14. [Primitives](src/Tutorial/Prim.md)
 
 ### Part 2: Appendices
 
@@ -109,6 +110,6 @@ editing and possibly others.
 
 At the moment, this project is being actively developed and
 evolved against the main branch of the Idris 2 repository.
-It is been tested nightly on GitHub and built against
+It is being tested nightly on GitHub and built against
 the latest commit of the Idris 2 main branch as well as the
 Idris 2 commit listed in file `.idris-version`.
