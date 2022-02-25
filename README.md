@@ -96,6 +96,10 @@ stuff will already be familiar to you.
     3. [Use Case: Flexible Error Handling](src/Tutorial/Predicates.md#use-case-flexible-error-handling)
     4. [The Truth about Interfaces](src/Tutorial/Predicates.md#the-truth-about-interfaces)
 14. [Primitives](src/Tutorial/Prim.md)
+    1. [How Primitives are Implemented](src/Tutorial/Prim.md#how-primitives-are-implemented)
+    2. [Working with Strings](src/Tutorial/Prim.md#working-with-strings)
+    3. [Integers](src/Tutorial/Prim.md#integers)
+    4. [Refined Primitives](src/Tutorial/Prim.md#refined-primitives)
 
 ### Part 2: Appendices
 
