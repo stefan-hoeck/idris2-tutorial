@@ -73,6 +73,19 @@ In order to inspect a `Weekday` argument, we match on the
 different possible values and return a result for each of them.
 This is a very powerful concept, as it allows us to match
 on and extract values from deeply nested data structures.
+The different cases in a pattern match are inspected from
+top to bottom, each being compared against the current
+function argument. Once a matching pattern is found, the
+computation on the right hand side of this pattern is
+evaluated. Later patterns are then ignored.
+
+For instance, if we invoke `next` with argument `Thursday`,
+the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)
+will be checked against the argument, but they do not match.
+The fourth pattern is a match, and result `Friday` is being
+returned. Later patterns are then ignored, even if they would
+also match the input (this becomes relevant with catch-all patterns,
+which we will talk about in a moment).
 
 The function above is provably total. Idris knows about the
 possible values of type `Weekday`, and can therefore figure
@@ -104,8 +117,14 @@ isWeekend Sunday   = True
 isWeekend _        = False
 ```
 
-We can use this to implement an equality test for `Weekday`
-(we will not yet use the `==` operator for this; this will
+The final line with the catch-all pattern is only invoked,
+if the argument is not equal to `Saturday` or `Sunday`.
+Remember: Patterns in a pattern match are matched against
+the input from top to bottom and the first match decides,
+which path on the right hand side will be taken.
+
+We can use catch-all patterns to implement an equality test for
+`Weekday` (we will not yet use the `==` operator for this; this will
 have to wait until we learn about *interfaces*):
 
 ```idris
@@ -155,11 +174,11 @@ the second, `EQ` means that the two arguments are *equal*
 and `GT` means, that the first argument is *greater than*
 the second.
 
-### Case Blocks
+### Case Expressions
 
 Sometimes we need to perform a computation with one
 of the arguments and want to pattern match on the result
-of this computation. We can use *case blocks* in this
+of this computation. We can use *case expressions* in this
 situation:
 
 ```idris
@@ -171,6 +190,15 @@ maxBits8 x y =
     LT => y
     _  => x
 ```
+
+The first line of the case expression (`case compare x y of`)
+will invoke function `compare` with arguments `x` and `y`. On
+the following (indented) lines, we pattern match on the result
+of this computation. This is of type `Ordering`, so we expect
+one of the three constructors `LT`, `EQ`, or `GT` as the result.
+On the first line, we handle the `LT` case explicitly, while
+the other two cases are handled with an underscore as a catch-all
+pattern.
 
 Note, that indentation matters here: The case block as a whole
 must be indented (if it starts on a new line), and the different
@@ -235,6 +263,21 @@ a statement with possible side effects.
    -- use `fromSeconds` and `toSeconds` in your implementation
    total
    convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
+   ```
+
+3. Define a data type for representing a subset of the
+   chemical elements: Hydrogen (H), Carbon (C), Nitrogen (N),
+   Oxygen (O), and Fluorine (F).
+
+   Declare and implement function `atomicMass`, which for each element
+   returns its atomic mass in dalton:
+
+   ```repl
+   Hydrogen : 1.008
+   Carbon : 12.011
+   Nitrogen : 14.007
+   Oxygen : 15.999
+   Fluorine : 18.9984
    ```
 
 ## Sum Types
@@ -458,6 +501,21 @@ implementation will no longer type check:
 -- this will result in a type error
 greetUser : User -> String
 greetUser (MkUser n t _) = greet n t
+```
+
+In addition, for every record field, Idris creates an
+extractor function of the same name. This can either
+be used as a regular function, or it can be used in
+postfix notation by appending it to a variable of
+the record type separated by a dot. Here are two examples
+for extracting the age from a user:
+
+```idris
+getAgeFunction : User -> Bits8
+getAgeFunction u = age u
+
+getAgePostfix : User -> Bits8
+getAgePostfix u = u.age
 ```
 
 ### Syntactic Sugar for Records
@@ -892,8 +950,62 @@ intSum Nil       = 0
 intSum (n :: ns) = n + intSum ns
 ```
 
-We will have a closer look at recursion in a later chapter,
-as this one is already getting too long.
+Recursive functions can be hard to grasp at first, so I'll break
+this down a bit. If we invoke `intSum` with the empty list,
+the first pattern matches and the function returns zero immediately.
+If, however, we invoke `intSum` with a non-empty list - `[7,5,9]`
+for instance - the following happens:
+
+1. The second pattern matches and splits the list into two
+   parts: Its head (`7`) is bound to variable `n` and its tail
+   (`[5,9]`) is bound to `ns`:
+
+   ```repl
+   7 + intSum [5,9]
+   ```
+2. In a second invocation, `intSum` is called with a new list: `[5,9]`.
+   The second pattern matches and `n` is bound to `5` and `ns` is bound
+   to `[9]`:
+
+   ```repl
+   7 + (5 + intSum [9])
+   ```
+
+3. In a third invocation `intSum` is called with list `[9]`.
+   The second pattern matches and `n` is bound to `9` and `ns` is bound
+   to `[]`:
+
+   ```repl
+   7 + (5 + (9 + intSum [])
+   ```
+
+4. In a fourth invocation, `intSum` is called with list `[]` and
+   returns `0` immediately:
+
+   ```repl
+   7 + (5 + (9 + 0)
+   ```
+
+5. In the third invocation, `9` and `0` are added and `9` is
+   returned:
+
+   ```repl
+   7 + (5 + 9)
+   ```
+
+6. In the second invocation, `5` and `9` are added and `14` is
+   returned:
+
+   ```repl
+   7 + 14
+   ```
+
+7. Finally, our initial invocation of `intSum` adds `7` and `14`
+   and returns `21`.
+
+Thus, the recursive implementation of `intSum` leads to a sequence of
+nested calls to `intSum`, which terminates once the argument is the
+empty list.
 
 ### Generic Functions
 
@@ -1099,6 +1211,22 @@ signature are treated as type parameters.
    plus a value of type `Credentials` will return either a `LoginError`
    in case no valid credentials where provided, or the first `Client`
    for whom the credentials match.
+
+5. Using your data type for chemical elements from an
+   earlier exercise, implement a function for calculating
+   the molar mass of a molecular formula.
+
+   Use a list of elements each paired with its count
+   (a natural number) for representing formulae. For
+   instance:
+
+   ```idris
+   ethanol : List (Element,Nat)
+   ethanol = [(C,2),(H,6),(O,1)]
+   ```
+
+   Hint: You can use function `cast` to convert a natural
+   number to a `Double`.
 
 ## Alternative Syntax for Data Definitions
 
