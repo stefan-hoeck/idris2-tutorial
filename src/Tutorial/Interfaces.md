@@ -434,12 +434,48 @@ follows `x == y = True`.
 ### `Semigroup` and `Monoid`
 
 `Semigroup` is the pendant to our example interface `Concat`,
-with operator `(<+>)` corresponding to function `concat`.
+with operator `(<+>)` (also called *append*) corresponding
+to function `concat`.
+
 Likewise, `Monoid` corresponds to `Empty`,
-with `neutral` corresponding to `empty`. These two interface
-occur surprisingly often and are especially important when collapsing
-container types like `List` into a single value. We will see some
-use cases in the exercises.
+with `neutral` corresponding to `empty`.
+
+These are incredibly important interfaces, which can be used
+to combine two or more values of a data type into a single
+value of the same type. Examples include but are not limited
+to addition or multiplication
+of numbers, concatenation of sequences of data, or
+sequencing of computations.
+
+As an example, consider a data type for representing
+distances in a geometric application. We could just use `Double`
+for this, but that's not very type safe. It would be better
+to use a single field record wrapping a value of type `Double`,
+to give them clear semantics:
+
+```idris
+record Distance where
+  constructor MkDistance
+  meters : Double
+```
+
+There is a natural way for combining two distances: We sum up
+the values they hold. This immediately leads us to an implementation
+of `Semigroup`:
+
+```idris
+Semigroup Distance where
+  x <+> y = MkDistance $ x.meters + y.meters
+```
+
+It is also immediately clear, that zero is the neutral element of this
+operation: Adding zero to any value does not affect the value at all.
+This allows us to implement `Monoid` as well:
+
+```idris
+Monoid Distance where
+  neutral = MkDistance 0
+```
 
 #### `Semigroup` and `Monoid` Laws
 
@@ -582,9 +618,9 @@ be just as feasible.
 
 ### Exercises part 3
 
-These exercises are meant to make you confortable with
+These exercises are meant to make you comfortable with
 implementing interfaces for your own data types, as you
-will have to do so regularily when writing Idris code.
+will have to do so regularly when writing Idris code.
 
 While it is immediately clear why interfaces like
 `Eq`, `Ord`, or `Num` are useful, the usability of
@@ -729,11 +765,24 @@ different instances for these.
     natural numbers, or 0 and 255 for `Bits8`), these can even
     be extended to `Monoid`.
 
+12. In an earlier exercise, you implemented a data type representing
+    chemical elements and wrote a function for calculating their
+    atomic masses. Define a new single field record type for
+    representing atomic masses, and implement interfaces
+    `Eq`, `Ord`, `Show`, `FromDouble`, `Semigroup`, and `Monoid` for this.
+
+13. Use the new data type from exercise 12 to calculate the atomic
+    mass of an element and comput the molecular mass
+    of a molecule given by its formula.
+
+    Hint: With a suitable utility function, you can use `foldMap`
+    once again for this.
+
 Final notes: If you are new to functional programming, make sure
 to give your implementations of exercises 6 to 10 a try at the REPL.
 Note, how we can implement all of these functions with a minimal amount
 of code and how, as shown in exercise 11, these behaviors can be
-combined in a single list traveral.
+combined in a single list traversal.
 
 ## Conclusion
 

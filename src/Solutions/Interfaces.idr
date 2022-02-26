@@ -297,3 +297,43 @@ sumList = value . foldMap MkSum
 
 productList : Num a => List a -> a
 productList = value . foldMap MkProduct
+
+-- 12
+
+data Element = H | C | N | O | F
+
+record Mass where
+  constructor MkMass
+  value : Double
+
+FromDouble Mass
+  where fromDouble = MkMass
+
+Eq Mass where
+  (==) = (==) `on` value
+
+Ord Mass where
+  compare = compare `on` value
+
+Show Mass where
+  show = show . value
+
+Semigroup Mass where
+  x <+> y = MkMass $ x.value + y.value
+
+Monoid Mass where
+  neutral = 0.0
+
+-- 13
+
+atomicMass : Element -> Mass
+atomicMass H = 1.008
+atomicMass C = 12.011
+atomicMass N = 14.007
+atomicMass O = 15.999
+atomicMass F = 18.9984
+
+formulaMass : List (Element,Nat) -> Mass
+formulaMass = foldMap pairMass
+  where pairMass : (Element,Nat) -> Mass
+        pairMass (e, n) = MkMass $ value (atomicMass e) * cast n
