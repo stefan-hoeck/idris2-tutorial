@@ -938,28 +938,57 @@ intSum (n :: ns) = n + intSum ns
 Recursive functions can be hard to grasp at first, so I'll break
 this down a bit. If we invoke `intSum` with the empty list,
 the first pattern matches and the function returns zero immediately.
-If, however, we invoke `intSum` with a non-empty list - `[7,5]`
+If, however, we invoke `intSum` with a non-empty list - `[7,5,9]`
 for instance - the following happens:
 
 1. The second pattern matches and splits the list into two
-   parts: Its head (`7`) and its tail (`[5]`).
-   The head is bound to variable `n`, and the tail to `ns`.
-   These two variables are then used in the expression on the right hand side,
-   where the value of the head is added to the result of invoking
-   `intSum` with the tail.
-2. In a second invocation, `intSum` is called with a new list: `[5]`.
-   The second pattern matches and `n` is bound to `5` and `ns` is bound
-   to `[]`.
-3. In a third invocation `intSum` is called with list `[]`
-   and returns 0 immediately because the first pattern matches.
-4. The result of the third invocation (`0`) is added to the value bound
-   to `n` in the second invocation (`5`) and the result `5` is
-   returned.
-5. The result of the second invocation (`5`) is added to the value
-   bound to `n` in the first invocation (`7`) and the result `12`
-   is returned.
+   parts: Its head (`7`) is bound to variable `n` and its tail
+   (`[5,9]`) is bound to `ns`:
 
-The recursive implementation of `intSum` leads to a sequence of
+   ```repl
+   7 + intSum [5,9]
+   ```
+2. In a second invocation, `intSum` is called with a new list: `[5,9]`.
+   The second pattern matches and `n` is bound to `5` and `ns` is bound
+   to `[9]`:
+
+   ```repl
+   7 + (5 + intSum [9])
+   ```
+
+3. In a third invocation `intSum` is called with list `[9]`.
+   The second pattern matches and `n` is bound to `9` and `ns` is bound
+   to `[]`:
+
+   ```repl
+   7 + (5 + (9 + intSum [])
+   ```
+
+4. In a fourth invocation, `intSum` is called with list `[]` and
+   returns `0` immediately:
+
+   ```repl
+   7 + (5 + (9 + 0)
+   ```
+
+5. In the third invocation, `9` and `0` are added and `9` is
+   returned:
+
+   ```repl
+   7 + (5 + 9)
+   ```
+
+6. In the second invocation, `5` and `9` are added and `14` is
+   returned:
+
+   ```repl
+   7 + 14
+   ```
+
+7. Finally, our initial invocation of `intSum` adds `7` and `14`
+   and returns `21`.
+
+Thus, the recursive implementation of `intSum` leads to a sequence of
 nested calls to `intSum`, which terminates once the argument is the
 empty list.
 
