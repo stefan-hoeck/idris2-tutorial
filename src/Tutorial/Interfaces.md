@@ -772,7 +772,7 @@ different instances for these.
     `Eq`, `Ord`, `Show`, `FromDouble`, `Semigroup`, and `Monoid` for this.
 
 13. Use the new data type from exercise 12 to calculate the atomic
-    mass of an element and comput the molecular mass
+    mass of an element and compute the molecular mass
     of a molecule given by its formula.
 
     Hint: With a suitable utility function, you can use `foldMap`
