@@ -444,14 +444,14 @@ These are incredibly important interfaces, which can be used
 to combine two or more values of a data type into a single
 value of the same type. Examples include but are not limited
 to addition or multiplication
-of numbers, concatenation of sequences of data, or
+of numeric types, concatenation of sequences of data, or
 sequencing of computations.
 
 As an example, consider a data type for representing
 distances in a geometric application. We could just use `Double`
 for this, but that's not very type safe. It would be better
-to use a single field record wrapping a value of type `Double`,
-to give them clear semantics:
+to use a single field record wrapping values type `Double`,
+to give such values clear semantics:
 
 ```idris
 record Distance where
@@ -460,7 +460,7 @@ record Distance where
 ```
 
 There is a natural way for combining two distances: We sum up
-the values they hold. This immediately leads us to an implementation
+the values they hold. This immediately leads to an implementation
 of `Semigroup`:
 
 ```idris
