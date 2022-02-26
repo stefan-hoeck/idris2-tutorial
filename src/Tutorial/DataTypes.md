@@ -265,6 +265,21 @@ a statement with possible side effects.
    convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
    ```
 
+3. Define a data type for representing a subset of the
+   chemical elements: Hydrogen (H), Carbon (C), Nitrogen (N),
+   Oxygen (O), and Fluorine (F).
+
+   Declare and implement function `atomicMass`, which for each element
+   returns its atomic mass in dalton:
+
+   ```repl
+   Hydrogen : 1.008
+   Carbon : 12.011
+   Nitrogen : 14.007
+   Oxygen : 15.999
+   Fluorine : 18.9984
+   ```
+
 ## Sum Types
 
 Assume we'd like to write some web form, where users of our
@@ -1196,6 +1211,22 @@ signature are treated as type parameters.
    plus a value of type `Credentials` will return either a `LoginError`
    in case no valid credentials where provided, or the first `Client`
    for whom the credentials match.
+
+5. Using your data type for chemical elements from an
+   earlier exercise, implement a function for calculating
+   the molar mass of a molecular formula.
+
+   Use a list of elements each paired with its count
+   (a natural number) for representing formulae. For
+   instance:
+
+   ```idris
+   ethanol : List (Element,Nat)
+   ethanol = [(C,2),(H,6),(O,1)]
+   ```
+
+   Hint: You can use function `cast` to convert a natural
+   number to a `Double`.
 
 ## Alternative Syntax for Data Definitions
 

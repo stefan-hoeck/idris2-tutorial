@@ -35,6 +35,18 @@ fromSeconds u s = s `div` toSeconds u 1
 convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
 convert u1 n u2 = fromSeconds u2 (toSeconds u1 n)
 
+--3
+
+data Element = H | C | N | O | F
+
+atomicMass : Element -> Double
+atomicMass H = 1.008
+atomicMass C = 12.011
+atomicMass N = 14.007
+atomicMass O = 15.999
+atomicMass F = 18.9984
+
+
 --------------------------------------------------------------------------------
 --          Sum Types
 --------------------------------------------------------------------------------
@@ -228,3 +240,11 @@ login (x :: xs) cs             = case login1 x cs of
   Right c               => Right c
   Left  InvalidPassword => Left InvalidPassword
   Left _                => login xs cs
+
+--5
+
+formulaMass : List (Element,Nat) -> Double
+formulaMass []             = 0
+formulaMass ((e, n) :: xs) = atomicMass e * cast n + formulaMass xs
+
+
