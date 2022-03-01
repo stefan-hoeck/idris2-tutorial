@@ -1,6 +1,3 @@
-" The global <leader>
-let mapleader = '='
-
 " The buffer local <localleader>
 let maplocalleader = ','
 
