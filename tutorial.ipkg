@@ -5,7 +5,9 @@ version    = 0.1.0
 sourcedir  = "src"
 depends    = base         >= 0.5.1
 
-modules = Data.HList
+modules = Appendices.Neovim
+
+        , Data.HList
         , Data.Union
         , Data.Validated
 

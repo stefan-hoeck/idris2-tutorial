@@ -96,6 +96,15 @@ stuff will already be familiar to you.
     3. [Use Case: Flexible Error Handling](src/Tutorial/Predicates.md#use-case-flexible-error-handling)
     4. [The Truth about Interfaces](src/Tutorial/Predicates.md#the-truth-about-interfaces)
 
+### Part 2: Appendices
+
+The appendices can be used as references for the topics at
+hand. I plan to eventually have a concise reference on Idris
+syntax, typical error messages, the module system, interactive
+editing and possibly others.
+
+1. [Interactive Editing in Neovim](src/Appendices/Neovim.md)
+
 ## Prerequisites
 
 At the moment, this project is being actively developed and
