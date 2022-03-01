@@ -1,3 +1,12 @@
+" This is a small but complete init.vim file for getting
+" started with programming Idris in Neovim.
+"
+" It comes with a few opinionated defaults plus the plugins
+" necessary to interact with the idris2-lsp executable.
+"
+" Follow the tutorial at `src/Appendices/Neovim.md` for an
+" introduction to interactive Idris editing in Neovim.
+
 " The buffer local <localleader>
 let maplocalleader = ','
 
