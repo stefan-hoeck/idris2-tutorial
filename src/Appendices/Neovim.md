@@ -63,17 +63,18 @@ When you first use the `init.vim` from the `resources` folder,
 you need to make sure to install all necessary plugins. From
 within Neovim, run command `:PlugUpdate` when in normal mode.
 Note also: If you make changes to your `init.vim` file, you have to
-restart Neovim, or resource the file from a running Neovim
+restart Neovim, or re-source the file from a running Neovim
 instance by running `source $MYVIMRC` when in normal mode.
 
 ## A Typical Workflow
 
 In order to checkout the interactive editing features
 available to us, we will reimplement some small utilities
-from the *Prelude*. In order to follow along, you should have
+from the *Prelude*. To follow along, you should have
 already worked through the [Introduction](../Tutorial/Intro.md),
 [Functions Part 1](../Tutorial/Functions1.md), and at least
-parts of [Algebraic Data Types](../Tutorial/DataTypes.md).
+parts of [Algebraic Data Types](../Tutorial/DataTypes.md), otherwise
+it will be hard to understand what's going on here.
 
 Let's start with negation of a boolean value:
 
@@ -95,9 +96,9 @@ so we probably should ask it for guidance instead of trying
 to do everything on our own.
 
 So, in order to proceed, we ask Idris for a skeleton function
-body: In normal mode, move your cursor on the line where
+body: In normal editor mode, move your cursor on the line where
 `negate1` is declared and enter `<LocalLeader>a` in quick
-succession. `<LocalLeader>` is a special key that can specified
+succession. `<LocalLeader>` is a special key that can be specified
 in the `init.vim` file. If you
 use the `init.vim` from the `resources` folder, it is set to
 the comma key, in which case the above command consists of a
@@ -117,13 +118,12 @@ Note, that on the left hand side a new variable with name
 added a *metavariable* (also called a *hole*). This is an
 identifier prefixed with a question mark. It signals to Idris,
 that we will implement this part of the function later.
-The cool thing about holes is, that we can *hover* on them
+The cool thing about holes is, that we can *hover* over them
 and inspect their types and the types of values in the
 surrounding context. You can do so by placing the cursor
-on an identifier and entering `K` (an uppercase letter) in
+on the identifier of a hole and entering `K` (an uppercase letter) in
 normal mode. This will open a popup displaying the type of
-the variable under the cursor plus the types and quantities of
-the variables
+the variable under the cursor plus the types and quantities of the variables
 in the surrounding context. You can also have this information
 displayed in a separate window: Enter `<LocalLeader>so` to
 open this window and repeat the hovering. The information will
@@ -133,10 +133,10 @@ this window again. Go ahead and checkout the type and
 context of `?negate2_rhs`.
 
 Most functions in Idris are implemented by pattern matching
-on one or more of the variables on the right hand side. Idris,
+on one or more of the arguments. Idris,
 knowing the data constructors of all non-primitive data types
 can write such pattern matches for us (a process also called
-*case splitting*). To give this a try, move the cursor on the `x`
+*case splitting*). To give this a try, move the cursor onto the `x`
 in the skeleton implementation of `negate2`, and enter
 `<LocalLeader>c` in normal mode. The result will look as
 follows:
@@ -148,8 +148,8 @@ negate3 True = ?negate3_rhs_1
 ```
 
 As you can see, Idris inserted a hole for each of the cases on the
-right hand side. We can inspect the types of these holes
-and replace them with a proper implementation.
+right hand side. We can again inspect their types or
+replace them with a proper implementation directly.
 
 This concludes the introduction of the (in my opinion) core
 features of interactive editing: Hovering on metavariables,
@@ -159,8 +159,8 @@ matches). You should start using these all the time *now*!
 
 ## Expression Search
 
-Sometimes, Idris knows enough about the types involved, that
-it can come up with an implementation on its own. For instance,
+Sometimes, Idris knows enough about the types involved to
+come up with a function implementation on its own. For instance,
 let us implement function `either` from the *Prelude*.
 After giving its type, creating a skeleton implementation,
 and case splitting on the `Either` argument, we arrive at
@@ -189,16 +189,16 @@ maybe2 x f Nothing = x
 maybe2 x f (Just y) = ?maybe2_rhs_1
 ```
 
-Idris is also capable of coming up with a complete function
+Idris is also sometimes capable of coming up with complete function
 implementation based on a functions type. For this to work well
 in practice, the number of possible implementations satisfying
 the type checker must be pretty small. As an example, here is
-function `zipWith` for vectors. You might not yet have heard
-about vectors: They will be introduced in the chapter about
+function `zipWith` for vectors. You might not have heard
+about vectors yet: They will be introduced in the chapter about
 [dependent types](../Tutorial/Dependent.md). You can still give
-this a go. Just move the cursor on the line declaring `zipWithV`,
-enter `<LocalLeader>gd` and select the first option. This will
-automatically generate the whole function body including
+this a go to check out its effect. Just move the cursor on the
+line declaring `zipWithV`, enter `<LocalLeader>gd` and select the first option.
+This will automatically generate the whole function body including
 case splits and implementations.
 
 ```idris
@@ -213,8 +213,8 @@ function declaration.
 
 ## More Code Actions
 
-There are other shortcuts for generating part of your code
-available, two of which I'll explain here.
+There are other shortcuts available for generating part of your code,
+two of which I'll explain here.
 
 First, it is possible to add a new case block by entering
 `<LocalLeader>mc` in normal mode when on a metavariable.
@@ -249,10 +249,10 @@ filterList2 f (x :: xs) = case f x of
 ```
 
 Sometimes, we want to extract a utility function from
-an implementation we are working on. This is also often
-necessary when we write proofs about our code
+an implementation we are working on. For instance, this is often
+useful or even necessary when we write proofs about our code
 (see chapters [Propositional Equality](../Tutorial/Eq.md)
-and [Predicates](../Tutorial/Predicates.md) for instance).
+and [Predicates](../Tutorial/Predicates.md), for instance).
 In order to do so, we can move the cursor on a metavariable,
 and enter `<LocalLeader>ml`. Give this a try with
 `?whatNow` in the following example (this will work better
@@ -266,29 +266,34 @@ traverseEither f (x :: xs) = ?whatNow x xs f (f x) (traverseEither f xs)
 ```
 
 Idris will create a new function declaration with the
-type and name of `?whatNow` and replace the hole in
-`traverseEither` with a call to this new function:
+type and name of `?whatNow`, which takes as arguments
+all variables currently in scope. It also replaces the hole in
+`traverseEither` with a call to this new function. Typically,
+you will have to manually remove unnecessary arguments
+afterwards. This led me to the following version:
 
 ```idris
-whatNow2 : a -> List a -> (a -> Either e b) -> Either e b -> Either e (List b) -> Either e (List b)
+whatNow2 : Either e b -> Either e (List b) -> Either e (List b)
 
 traverseEither2 : (a -> Either e b) -> List a -> Either e (List b)
 traverseEither2 f [] = Right []
-traverseEither2 f (x :: xs) = whatNow2 x xs f (f x) (traverseEither f xs)
+traverseEither2 f (x :: xs) = whatNow2 (f x) (traverseEither f xs)
 ```
 
 ## Getting Information
 
-The `idris2-lsp` executable and through it, the `idris2-nvim` plugin
+The `idris2-lsp` executable and through it, the `idris2-nvim` plugin,
 not only supports the code actions described above. Here is a
-non-comprehensive list of other possibilities. I suggest you try
+non-comprehensive list of other capabilities. I suggest you try
 out each of them from within this source file.
 
-* Typing `K` on an identifier in normal mode shows its type
-  and namespace (if any). In case of a metavariable, variables and
-  types and quantities in the current context are displayed as well.
-  Entering `<LocalLeader>so` opens a new window where this information
-  is displayed and semantically highlighted.
+* Typing `K` when on an identifier in normal mode shows its type
+  and namespace (if any). In case of a metavariable, variables
+  in the current context are displayed as well together with their
+  types and quantities (quantities will be explained in
+  [Functions Part 2](../Tutorial/Functions2.md)).
+  If you don't like popups, enter `<LocalLeader>so` to open a new window where
+  this information is displayed and semantically highlighted instead.
 * Typing `gd` on a function, operator, data constructor or type
   constructor in normal mode jumps to the function's definition.
   For external modules, this works only if the

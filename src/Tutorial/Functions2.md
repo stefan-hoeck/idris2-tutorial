@@ -721,7 +721,7 @@ traverseEither fun as = ?impl
 ```
 
 When you now go to the REPL and reload the file using command `:r`,
-you can enter `:m` to list all the *meta variables*:
+you can enter `:m` to list all the *metavariables*:
 
 ```repl
 Tutorial.Functions2> :m
@@ -902,6 +902,24 @@ Right [Cytosine, Guanine, Thymine, Thymine, Adenine]
 Tutorial.Functions2> readDNA "CGFTAQ"
 Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'"]
 ```
+
+### Interactive Editing
+
+There are plugins available for several editors and
+programming environments, which facilitate interacting
+with the Idris compiler when implementing your functions.
+One editor, which is well supported in the Idris
+community, is Neovim. Since I am a Neovim user myself,
+I added some examples of what's possible to the
+[appendix](../Appendices/Neovim.md). Now would be a good
+time to start using the utilities discussed there.
+
+If you use a different editor, probably with less support
+for the Idris programming language, you should at the very
+least have a REPL session open all the time, where the
+source file you are currently working on is loaded. This
+allows you to introduce new metavariables and inspect their
+types and context as you develop your code.
 
 ## Conclusion
 
