@@ -44,17 +44,16 @@ Neovim, at least the following tools need to be installed:
 
 * A recent version of Neovim (version 0.5 or later).
 * A recent version of the Idris compiler (at least version 0.5.1).
-  Personally, I suggest you install Idris 2 from source, in order
-  to get better control of the version to use, using the version
-  specified in file `.idris-version` in this project.
-* The Idris compiler API. This can be installed with command
-  `make install-with-src-api` from the Idris project's root folder after
-  installing the language itself. You might need to clean the project
-  (`make clean`) before installing the API.
+* The Idris compiler API.
 * The [idris2-lsp](https://github.com/idris-community/idris2-lsp) package.
 * The following Neovim plugins:
   * [idris2-nvim](https://github.com/ShinKage/idris2-nvim)
   * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+
+The `idris2-lsp` project gives detailed instructions about how
+to install Idris 2 together with its standard libraries and compiler
+API. Make sure to follow these instructions so that your compiler
+and `idris2-lsp` executable are in sync.
 
 If you are new to Neovim, you might want to use the `init.vim`
 file provided in the `resources` folder. In that case, the
@@ -92,7 +91,7 @@ Typically, when writing Idris code we follow the mantra
 "types first". Although you might already have an idea about
 how to implement a certain piece of functionality, you still
 need to provide an accurate type before you can start writing
-your implementation. This means, when programming in Idris we have
+your implementation. This means, when programming in Idris, we have
 to mentally keep track of the implementation of an algorithm
 and the types involved at the same time, both of which can
 become arbitrarily complex. Or do we? Remember that Idris knows
@@ -196,7 +195,7 @@ maybe2 x f (Just y) = ?maybe2_rhs_1
 ```
 
 Idris is also sometimes capable of coming up with complete function
-implementation based on a function's type. For this to work well
+implementations based on a function's type. For this to work well
 in practice, the number of possible implementations satisfying
 the type checker must be pretty small. As an example, here is
 function `zipWith` for vectors. You might not have heard
@@ -337,7 +336,7 @@ When you ask Idris for a skeleton implementation with `<LocalLeader>a`
 or a case split with `<LocalLeader>c`,
 it has to decide on what names to use for the new variables it introduces.
 If these variables already have predefined names (from the function's
-signature, record fields, or name data constructor arguments),
+signature, record fields, or named data constructor arguments),
 those names will be used, but
 otherwise Idris will as a default use names `x`, `y`, and `z`, followed
 by other letters. You can change this default behavior by
@@ -369,7 +368,7 @@ Neovim, together with the `idris2-lsp` executable and the
 interactive editing when programming in Idris. Similar functionality
 is available for some other editors, so feel free to ask what's
 available for your editor of choice, for instance on the
-Idris 2 discord channel.
+[Idris 2 Discord channel](https://discord.gg/UX68fDs2jc).
 
 <!-- vi: filetype=idris2
 -->
