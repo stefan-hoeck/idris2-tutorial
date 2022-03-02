@@ -362,7 +362,7 @@ Equals Bool where
    ```idris
    data Tree : Type -> Type where
      Leaf : a -> Tree a
-     Node : Tree a -> Tree a
+     Node : Tree a -> Tree a -> Tree a
    ```
 
 ## Interfaces in the *Prelude*
