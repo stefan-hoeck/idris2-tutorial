@@ -345,7 +345,7 @@ having to convert them to strings first:
 data Element = H | He | C | N | O | F | Ne
 
 Formula : Type
-Formula = List (Element,Integer)
+Formula = List (Element,Nat)
 
 Interpolation Element where
   interpolate H  = "H"
@@ -356,7 +356,7 @@ Interpolation Element where
   interpolate F  = "F"
   interpolate Ne = "Ne"
 
-Interpolation (Element,Integer) where
+Interpolation (Element,Nat) where
   interpolate (_, 0) = ""
   interpolate (x, 1) = "\{x}"
   interpolate (x, k) = "\{x}\{show k}"
@@ -365,7 +365,7 @@ Interpolation Formula where
   interpolate = foldMap interpolate
 
 ethanol : String
-ethanol = "The formulat of ethanol is: \{[(C,2),(H,6),(O,1)]}"
+ethanol = "The formulat of ethanol is: \{[(C,2),(H,6),(O, the Nat 1)]}"
 ```
 
 ### Raw and Multiline String Literals
@@ -428,6 +428,10 @@ multiline2 = #"""
   """#
 ```
 
+Make sure to look at the example strings at the
+REPL to see the effect of interpolation and raw string
+literals and compare it with the syntax we used.
+
 ### Exercises part 2
 
 In these exercises, you are supposed to implement a bunch
@@ -449,6 +453,10 @@ supposed to come up with those yourself.
    should again be a string.
 
 ## Integers
+
+As listed at the beginning of this chapter, Idris provides different
+fixed-precision signed and unsigned integer types as well as `Integer`,
+an arbitrary precision signed integer type.
 
 ### Numeric Operations
 
