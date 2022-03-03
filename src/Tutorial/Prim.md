@@ -493,7 +493,7 @@ arbitrary value of the same primitive integral type):
 * `x * 1 = x`: One is the neutral element of multiplication.
 * `x * 0 = 0`: Multiplication with zero equals zero.
 * `x * (y + z) = x * y + x * z`: The distributive law holds.
-* `y * (x `div` y) + (x `mod` y) = x` (for `y /= 0`).
+* ``y * (x `div` y) + (x `mod` y) = x`` (for `y /= 0`).
 
 Please note, that the officially supported backends use
 *Euclidian modulus* for calculating `mod`:
