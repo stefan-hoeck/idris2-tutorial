@@ -497,7 +497,7 @@ arbitrary value of the same primitive integral type):
 
 Please note, that the officially supported backends use
 *Euclidian modulus* for calculating `mod`:
-For `y /= 0`, `x `mod` y` is always a non-negative value
+For `y /= 0`, ``x `mod` y`` is always a non-negative value
 strictly smaller than `abs y`, so that the law given above
 does hold. If `x` or `y` are negative numbers, this is different
 to what many other languages do but for good reasons as explained
@@ -511,7 +511,7 @@ integral interfaces (`Num`, `Neg`, and `Integral`) and
 the two interfaces for bitwise operations (`Bits` and `FiniteBits`).
 All functions with the exception of `div` and `mod` are
 total. Overflows are handled by calculating the remainder
-module `2^bitsize`. For instance, for `Bits8`, all operations
+modulo `2^bitsize`. For instance, for `Bits8`, all operations
 calculate their results modulo 256:
 
 ```repl
@@ -532,7 +532,7 @@ integer types (`Int8`, `Int16`, `Int32`, and `Int64`) come with
 implementations of all integral interfaces and
 the two interfaces for bitwise operations (`Bits` and `FiniteBits`).
 Overflows are handled by calculating the remainder
-module `2^bitsize` and adding the lower bound (a negative number)
+modulo `2^bitsize` and adding the lower bound (a negative number)
 if the result is still out of range. For instance, for `Int8`, all operations
 calculate their results modulo 256, subtracting 128 if the
 result is still out of bounds:
@@ -594,13 +594,28 @@ There are also operators `(.&.)` (bitwise *and*) and `(.|.)`
 (bitwise *or*) as well as function `xor` (bitwise *exclusive or*)
 for performing boolean operations on integral values.
 For instance `x .&. y` has exactly those bits set, which both `x`
-and `y` have set:
+and `y` have set, while `x .|. y` has all bits set that are either
+set in `x` or `y` (or both), and ``x `xor` y`` has those bits
+set that are set in exactly one of the two values:
+
+```repl
+23 in binary:          0  0  0  1    0  1  1  1
+11 in binary:          0  0  0  0    1  0  1  1
+
+23 .&. 11 in binary:   0  0  0  0    0  0  1  1
+23 .|. 11 in binary:   0  0  0  1    1  1  1  1
+23 `xor` 11 in binary: 0  0  0  1    1  1  0  0
+```
+
+And here are the examples at the REPL:
 
 ```repl
 Tutorial.Prim> the Bits8 23 .&. 11
 3
-Tutorial.Prim> the Bits8 23 .&. 15
-7
+Tutorial.Prim> the Bits8 23 .|. 11
+31
+Tutorial.Prim> the Bits8 23 `xor` 11
+28
 ```
 
 Finally, it is possible to shift all bits to the right or left
@@ -611,11 +626,23 @@ power of two, while a right shift can be seen as a division
 by power of two:
 
 ```repl
+22 in binary:            0  0  0  1    0  1  1  0
+
+22 `shiftL` 2 in binary: 0  1  0  1    1  0  0  0
+22 `shiftR` 1 in binary: 0  0  0  0    1  0  1  1
+```
+
+And at the REPL:
+
+```repl
 Tutorial.Prim> the Bits8 22 `shiftL` 2
 88
 Tutorial.Prim> the Bits8 22 `shiftR` 1
 11
 ```
+
+Bitwise operations are often used in specialized code or
+certain high-performance applications.
 
 ### Integer Literals
 
