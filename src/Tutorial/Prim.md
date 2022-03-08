@@ -725,7 +725,7 @@ Tutorial.Prim> 0xffa2
 
 5. Convert a value of type `Bits64` to a string in hexadecimal representation.
 
-   Hint: Use `shiftR` and `(.|. 15)` to access subsequent packages of
+   Hint: Use `shiftR` and `(.&. 15)` to access subsequent packages of
    four bits.
 
 ## Refined Primitives
