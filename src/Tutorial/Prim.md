@@ -402,7 +402,7 @@ rawExample2 = ##"A quote: ". A blackslash: \"##
 ```
 
 With raw string literals, it is still possible to use string
-interpolation, but the opening curly brace as to be prefixed
+interpolation, but the opening curly brace has to be prefixed
 with a backslash and the same number of hashes as are being used
 for opening and closing the string literal:
 
@@ -737,7 +737,7 @@ too general most of the time. Therefore, it is usually advisable
 to rule out invalid values early on, by pairing a value with
 an erased proof of validity.
 
-While we have learned how we can write elegant predicates, with
+We have learned how we can write elegant predicates, with
 which we can proof our functions to be total, and from which we
 can - in the ideal case - derive other, related predicates. However,
 when we define predicates on primitives they are to a certain degree
@@ -881,9 +881,10 @@ text fields, which will then be included in the page's HTML structure
 and executed when it is being displayed to other users.
 
 We want to make sure, that this cannot happen on our own web page.
-In order to protect us from this attack, we can either disallow
-certain characters like `'<'` or `'>'` completely, but if our chat service
-is targeted at programmers, this might be overly restrictive. An alternative
+In order to protect us from this attack, we could for instance disallow
+certain characters like `'<'` or `'>'` completely (although this might not
+be enough!), but if our chat service is targeted at programmers,
+this will be overly restrictive. An alternative
 is to escape certain characters before rendering them on the page.
 
 ```idris
