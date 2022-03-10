@@ -129,6 +129,13 @@ data Dec0 : (prop : Type) -> Type where
   Yes0 : (0 prf : prop) -> Dec0 prop
   No0  : (0 contra : prop -> Void) -> Dec0 prop
 
+data IsYes0 : (d : Dec0 prop) -> Type where
+  ItIsYes0 : IsYes0 (Yes0 prf)
+
+0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop
+fromYes0 (Yes0 x) = x
+fromYes0 (No0 contra) impossible
+
 interface Decidable (0 a : Type) (0 p : a -> Type) | p where
   decide : (v : a) -> Dec0 (p v)
 
@@ -144,6 +151,13 @@ unsafeDecideOn p v = case decideOn p v of
   Yes0 prf => prf
   No0  _   =>
     assert_total $ idris_crash "Unexpected refinement failure in `unsafeRefineOn`"
+
+0 safeDecideOn :  (0 p : a -> Type)
+               -> Decidable a p
+               => (v : a)
+               -> (0 prf : IsYes0 (decideOn p v))
+               => p v
+safeDecideOn p v = fromYes0 $ decideOn p v
 
 -- 1
 
@@ -349,6 +363,14 @@ digits x (MkBase b $ Both p1 p2) = go [] x
 
 -- 11
 
+data CharOrd : (p : Nat -> Type) -> Char -> Type where
+  IsCharOrd : {0 p : Nat -> Type} -> (prf : p (cast c)) -> CharOrd p c
+
+Decidable Nat p => Decidable Char (CharOrd p) where
+  decide c = case decideOn p (cast c) of
+    Yes0 prf   => Yes0 $ IsCharOrd prf
+    No0 contra => No0 $ \(IsCharOrd prf) => contra prf
+
 IsAscii : Char -> Type
 IsAscii c = cast c < 128
 
@@ -356,180 +378,146 @@ IsLatin : Char -> Type
 IsLatin c = cast c < 255
 
 IsUpper : Char -> Type
-IsUpper c = FromTo (cast 'A') (cast 'Z') (cast c)
+IsUpper c = FromTo 65 90 (cast c)
 
 IsLower : Char -> Type
-IsLower c = FromTo (cast 'a') (cast 'z') (cast c)
+IsLower c = FromTo 97 122 (cast c)
 
 IsAlpha : Char -> Type
 IsAlpha = IsUpper || IsLower
 
 IsDigit : Char -> Type
-IsDigit c = FromTo (cast '0') (cast '9') (cast c)
+IsDigit c = FromTo 48 57 (cast c)
 
 IsAlphaNum : Char -> Type
 IsAlphaNum = IsAlpha || IsDigit
 
-IsIdentChar : Char -> Type
+IsControl : Char -> Type
+IsControl c = (FromTo 0 31 || FromTo 127 159) (cast c)
+
+IsPlainAscii : Char -> Type
+IsPlainAscii = IsAscii && Neg IsControl
+
+IsPlainLatin : Char -> Type
+IsPlainLatin = IsLatin && Neg IsControl
+
+-- 12
+
+-- 0 plainToAscii : IsPlainAscii c -> IsAscii c
+-- plainToAscii (Both prf1 _) = prf1
+--
+-- 0 digitToAlphaNum : IsDigit c -> IsAlphaNum c
+-- digitToAlphaNum = R
+--
+-- 0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c
+-- alphaToAlphaNum = L
+--
+-- 0 lowerToAlpha : IsLower c -> IsAlpha c
+-- lowerToAlpha = R
+--
+-- 0 upperToAlpha : IsUpper c -> IsAlpha c
+-- upperToAlpha = L
+--
+-- 0 lowerToAlphaNum : IsLower c -> IsAlphaNum c
+-- lowerToAlphaNum = L . R
+--
+-- 0 upperToAlphaNum : IsUpper c -> IsAlphaNum c
+-- upperToAlphaNum = L . L
+--
+-- 0 asciiToLatin : IsAscii c -> IsLatin c
+-- asciiToLatin x = trans x (safeDecideOn _ _)
+--
+-- 0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c
+-- plainAsciiToPlainLatin (Both x y) = Both (asciiToLatin x) y
+
+-- 13
+
+data Head : (p : a -> Type) -> List a -> Type where
+  AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)
+
+Uninhabited (Head p []) where
+  uninhabited (AtHead _) impossible
+
+Decidable a p => Decidable (List a) (Head p) where
+  decide []        = No0 $ \prf => absurd prf
+  decide (x :: xs) = case decide {p} x of
+    Yes0 prf    => Yes0 $ AtHead prf
+    No0  contra => No0 $ \(AtHead prf) => contra prf
+
+-- 14
+
+data Length : (p : Nat -> Type) -> List a -> Type where
+  HasLength :  {0 p : Nat -> Type}
+            -> (0 prf : p (List.length vs))
+            -> Length p vs
+
+Decidable Nat p => Decidable (List a) (Length p) where
+  decide vs = case decideOn p (length vs) of
+    Yes0 prf   => Yes0 $ HasLength prf
+    No0 contra => No0 $ \(HasLength prf) => contra prf
+
+-- 15
+
+data All : (p : a -> Type) -> (as : List a) -> Type where
+  Nil  : All p []
+  (::) :  {0 p : a -> Type}
+       -> (0 h : p v)
+       -> (0 t : All p vs)
+       -> All p (v :: vs)
+
+data AllSnoc : (p : a -> Type) -> (as : SnocList a) -> Type where
+  Lin  : AllSnoc p [<]
+  (:<) :  {0 p : a -> Type}
+       -> (0 i : AllSnoc p vs)
+       -> (0 l : p v)
+       -> AllSnoc p (vs :< v)
+
+0 head : All p (x :: xs) -> p x
+head (h :: _) = h
+
+0 (<>>) : AllSnoc p sx -> All p xs -> All p (sx <>> xs)
+(<>>) [<]      y = y
+(<>>) (i :< l) y = i <>> l :: y
+
+0 suffix : (sx : SnocList a) -> All p (sx <>> xs) -> All p xs
+suffix [<]       x = x
+suffix (sx :< y) x = let (_ :: t) = suffix {xs = y :: xs} sx x in t
+
+0 notInner :  {0 p : a -> Type}
+           -> (sx : SnocList a)
+           -> (0 contra : (prf : p x) -> Void)
+           -> (0 prfs : All p (sx <>> x :: xs))
+           -> Void
+notInner sx contra prfs = let prfs2 = suffix sx prfs in contra (head prfs2)
+
+allTR : {0 p : a -> Type} -> Decidable a p => (as : List a) -> Dec0 (All p as)
+allTR as = go Lin as
+  where go : (0 sp : AllSnoc p sx) -> (xs : List a) -> Dec0 (All p (sx <>> xs))
+        go sp []        = Yes0 $ sp <>> Nil
+        go sp (x :: xs) = case decide {p} x of
+          Yes0 prf    => go (sp :< prf) xs
+          No0  contra => No0 $ \prf => notInner sx contra prf
+
+Decidable a p => Decidable (List a) (All p) where decide = allTR
+
+-- 16
+
+0 IsIdentChar : Char -> Type
 IsIdentChar = IsAlphaNum || Equal '_'
 
--- isAscii : Char -> Bool
--- isAscii c = ord c <= 127
---
--- data IsAscii : (v : Char) -> Type where
---   ItIsAscii : (0 prf : isAscii c === True) -> IsAscii c
---
--- Decidable IsAscii where
---   decide v = case test (isAscii v) of
---     Yes0 prf    => Yes0 $ ItIsAscii prf
---     No0  contra => No0 $ \(ItIsAscii prf) => contra prf
---
--- -- 5
---
--- data Head : (p : a -> Type) -> List a -> Type where
---   AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)
---
--- Uninhabited (Head p []) where
---   uninhabited (AtHead _) impossible
---
--- Decidable p => Decidable (Head p) where
---   decide []        = No0 $ \prf => absurd prf
---   decide (x :: xs) = case decide {p} x of
---     Yes0 prf    => Yes0 $ AtHead prf
---     No0  contra => No0 $ \(AtHead prf) => contra prf
---
--- -- 6
---
--- data MaxLength : (n : Nat) -> List a -> Type where
---   IsMaxLength : (0 prf : LTE (length vs) n) -> MaxLength n vs
---
--- data MinLength : (n : Nat) -> List a -> Type where
---   IsMinLength : (0 prf : LTE n (length vs)) -> MinLength n vs
---
--- {n : Nat} -> Decidable (MaxLength n) where
---   decide vs = case test (length vs <= n) of
---     Yes0 prf   => Yes0 $ IsMaxLength (fromLessThan (length vs) n prf)
---     No0 contra => No0  $ \(IsMaxLength prf) =>
---       contra $ toLessThan (length vs) n prf
---
--- {n : Nat} -> Decidable (MinLength n) where
---   decide vs = case test (n <= length vs) of
---     Yes0 prf   => Yes0 $ IsMinLength (fromLessThan n (length vs) prf)
---     No0 contra => No0  $ \(IsMinLength prf) =>
---       contra $ toLessThan n (length vs) prf
---
--- -- 7
---
--- data IsAlpha : (v : Char) -> Type where
---   ItIsAlpha : (0 prf : isAlpha c === True) -> IsAlpha c
---
--- Decidable IsAlpha where
---   decide v = case test (isAlpha v) of
---     Yes0 prf    => Yes0 $ ItIsAlpha prf
---     No0  contra => No0 $ \(ItIsAlpha prf) => contra prf
---
--- isIdentChar : Char -> Bool
--- isIdentChar '_' = True
--- isIdentChar c   = isAlphaNum c
---
--- data IsIdentChar : (v : Char) -> Type where
---   ItIsIdentChar : (0 prf : isIdentChar c === True) -> IsIdentChar c
---
--- Decidable IsIdentChar where
---   decide v = case test (isIdentChar v) of
---     Yes0 prf    => Yes0 $ ItIsIdentChar prf
---     No0  contra => No0 $ \(ItIsIdentChar prf) => contra prf
---
--- -- 8
---
--- data All : (p : a -> Type) -> (as : List a) -> Type where
---   Nil  : All p []
---   (::) :  {0 p : a -> Type}
---        -> (0 h : p v)
---        -> (0 t : All p vs)
---        -> All p (v :: vs)
---
--- data AllSnoc : (p : a -> Type) -> (as : SnocList a) -> Type where
---   Lin  : AllSnoc p [<]
---   (:<) :  {0 p : a -> Type}
---        -> (0 i : AllSnoc p vs)
---        -> (0 l : p v)
---        -> AllSnoc p (vs :< v)
---
--- 0 head : All p (x :: xs) -> p x
--- head (h :: _) = h
---
--- 0 (<>>) : AllSnoc p sx -> All p xs -> All p (sx <>> xs)
--- (<>>) [<]      y = y
--- (<>>) (i :< l) y = i <>> l :: y
---
--- 0 suffix : (sx : SnocList a) -> All p (sx <>> xs) -> All p xs
--- suffix [<]       x = x
--- suffix (sx :< y) x = let (_ :: t) = suffix {xs = y :: xs} sx x in t
---
--- 0 notInner :  {0 p : a -> Type}
---            -> (sx : SnocList a)
---            -> (0 contra : (0 prf : p x) -> Void)
---            -> (0 prfs : All p (sx <>> x :: xs))
---            -> Void
--- notInner sx contra prfs = let prfs2 = suffix sx prfs in contra (head prfs2)
---
--- allTR : {0 p : a -> Type} -> Decidable p => (as : List a) -> Dec0 (All p as)
--- allTR as = go Lin as
---   where go : (0 sp : AllSnoc p sx) -> (xs : List a) -> Dec0 (All p (sx <>> xs))
---         go sp []        = Yes0 $ sp <>> Nil
---         go sp (x :: xs) = case decide {p} x of
---           Yes0 prf    => go (sp :< prf) xs
---           No0  contra => No0 $ \prf => notInner sx contra prf
---
--- Decidable p => Decidable (All p) where decide = allTR
---
--- -- 9
---
--- 0 IdentChars : List Char -> Type
--- IdentChars = MaxLength 100 && Head IsAlpha && All IsIdentChar
---
--- record Identifier where
---   constructor MkIdentifier
---   value : String
---   0 prf : IdentChars (unpack value)
---
--- identifier : String -> Maybe Identifier
--- identifier s = case decide {p = IdentChars} (unpack s) of
---   Yes0 prf => Just $ MkIdentifier s prf
---   No0  _   => Nothing
---
--- namespace Identifier
---   public export
---   fromString : (s : String) -> {auto 0 _ : IsJust (identifier s)} -> Identifier
---   fromString s = fromJust $ identifier s
---
--- test_Ident123 : Identifier
--- test_Ident123 = "test_Ident123"
---
--- -- 10
---
--- 0 mapAll :  {0 p,q : a -> Type}
---          -> (forall a . p a -> q a)
---          -> All p as
---          -> All q as
--- mapAll f []       = []
--- mapAll f (h :: t) = f h :: mapAll f t
---
--- 0 identCharToAscii : IsIdentChar c -> IsAscii c
--- identCharToAscii (ItIsIdentChar p) = ItIsAscii $ believe_me p
---
--- record Ascii where
---   constructor MkAscii
---   value : String
---   0 prf : All IsAscii (unpack value)
---
--- 0 toAsciiPrf : IdentChars cs -> All IsAscii cs
--- toAsciiPrf (Both _ (Both _ prf)) = mapAll identCharToAscii prf
---
--- identToAscii : Identifier -> Ascii
--- identToAscii (MkIdentifier value prf) = MkAscii value $ toAsciiPrf prf
---
+0 IdentChars : List Char -> Type
+IdentChars = Length (<= 100) && All (Equal '_') -- Head IsAlpha -- && All IsIdentChar
+
+record Identifier where
+  constructor MkIdentifier
+  value : String
+  0 prf : IdentChars (unpack value)
+
+identifier : String -> Maybe Identifier
+identifier s = case decideOn IdentChars (unpack s) of
+  Yes0 prf => Just $ MkIdentifier s prf
+  No0  _   => Nothing
+
 -- main : IO ()
 -- main = do
 --   str <- getLine

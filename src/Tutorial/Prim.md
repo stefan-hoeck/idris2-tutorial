@@ -1011,6 +1011,28 @@ test0 True  = Yes0 Refl
 test0 False = No0 absurd
 ```
 
+We also want to run decidable computations at compile time. This
+is often much more efficient than running a direct proof search on
+an inductive type. We therefore come up with a predicate witnessing
+that a `Dec0` value is actually a `Yes0` together with two
+utility functions:
+
+```idris
+data IsYes0 : (d : Dec0 prop) -> Type where
+  ItIsYes0 : IsYes0 (Yes0 prf)
+
+0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop
+fromYes0 (Yes0 x) = x
+fromYes0 (No0 contra) impossible
+
+0 safeDecideOn :  (0 p : a -> Type)
+               -> Decidable a p
+               => (v : a)
+               -> (0 prf : IsYes0 (decideOn p v))
+               => p v
+safeDecideOn p v = fromYes0 $ decideOn p v
+```
+
 Finally, as we are planning to refine mostly primitives, we will
 at times require some sledge hammer to convince Idris that
 we know what we are doing:
@@ -1264,6 +1286,84 @@ these topics here.
     IsPlainLatin : Char -> Type
     ```
 
+12. The advantage of this more modular approach to predicates
+    on primitives is that we can safely run calculations on
+    our predicates and get the strong guarantees from the existing
+    proofs on inductive types like `Nat` and `List`. Here are
+    some examples of such calculations and conversions, all of which
+    can be implemented without cheating:
+
+    ```idris
+    0 plainToAscii : IsPlainAscii c -> IsAscii c
+
+    0 digitToAlphaNum : IsDigit c -> IsAlphaNum c
+
+    0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c
+
+    0 lowerToAlpha : IsLower c -> IsAlpha c
+
+    0 upperToAlpha : IsUpper c -> IsAlpha c
+
+    0 lowerToAlphaNum : IsLower c -> IsAlphaNum c
+
+    0 upperToAlphaNum : IsUpper c -> IsAlphaNum c
+    ```
+
+    The following (`asciiToLatin`) is trickier. Remember that
+    `(<=)` is transitive. However, in your invocation of the proof
+    of transitivity, you will not be able to apply direct proof search using
+    `%search` because the search depth is too small. You could
+    increase the search depth, but it is much more efficient
+    to use `safeDecideOn` instead.
+
+    ```idris
+    0 asciiToLatin : IsAscii c -> IsLatin c
+
+    0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c
+    ```
+
+Before we turn our full attention to predicates on strings,
+we have to cover lists first, because we will often treat
+strings as lists of characters.
+
+13. Implement `Decidable` for `Head`:
+
+    ```idris
+    data Head : (p : a -> Type) -> List a -> Type where
+      AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)
+    ```
+
+14. Implement `Decidable` for `Length`:
+
+    ```idris
+    data Length : (p : Nat -> Type) -> List a -> Type where
+      HasLength :  {0 p : Nat -> Type}
+                -> (0 prf : p (List.length vs))
+                -> Length p vs
+    ```
+
+15. The following predicate is a proof that all values in a list
+    of values fulfill the given predicate. We will use this to limit
+    the valid set of characters in a string.
+
+    ```idris
+    data All : (p : a -> Type) -> (as : List a) -> Type where
+      Nil  : All p []
+      (::) :  {0 p : a -> Type}
+           -> (0 h : p v)
+           -> (0 t : All p vs)
+           -> All p (v :: vs)
+    ```
+
+    Implement `Decidable` for `All`.
+
+    For a real challenge, try to make your implementation of
+    `decide` tail recursive. This will be important for real world
+    applications on the JavaScript backends, where we might want to
+    refine strings of thousands of characters without overflowing the
+    stack at runtime. In order to come up with a tail recursive implementation,
+    you will need an additional data type `AllSnoc` witnessing that a predicate
+    holds for all elements in `SnocList`.
 
 <!-- vi: filetype=idris2
 -->
