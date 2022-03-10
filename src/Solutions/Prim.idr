@@ -1,6 +1,7 @@
 module Solutions.Prim
 
 import Data.Bits
+import Data.DPair
 import Data.List
 import Data.Maybe
 import Data.SnocList
@@ -138,6 +139,12 @@ test0 : (b : Bool) -> Dec0 (b === True)
 test0 True  = Yes0 Refl
 test0 False = No0 absurd
 
+0 unsafeDecideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> p v
+unsafeDecideOn p v = case decideOn p v of
+  Yes0 prf => prf
+  No0  _   =>
+    assert_total $ idris_crash "Unexpected refinement failure in `unsafeRefineOn`"
+
 -- 1
 
 {x : a} -> DecEq a => Decidable a (Equal x) where
@@ -220,6 +227,24 @@ m < n = S m <= n
 (>) : (m,n : Nat) -> Type
 m > n = n < m
 
+LessThan : (m,n : Nat) -> Type
+LessThan m = (< m)
+
+To : (m,n : Nat) -> Type
+To m = (<= m)
+
+GreaterThan : (m,n : Nat) -> Type
+GreaterThan m = (> m)
+
+From : (m,n : Nat) -> Type
+From m = (>= m)
+
+FromTo : (lower,upper : Nat) -> Nat -> Type
+FromTo l u = From l && To u
+
+Between : (lower,upper : Nat) -> Nat -> Type
+Between l u = GreaterThan l && LessThan u
+
 Uninhabited (S n <= 0) where
   uninhabited ZLTE impossible
   uninhabited (SLTE _) impossible
@@ -240,51 +265,113 @@ toLTE (S k) 0     x        = absurd x
     Yes0 prf   => Yes0 $ fromLTE m n prf
     No0 contra => No0 $ contra . toLTE m n
 
-0 reflexive : {n : Nat} -> n <= n
-reflexive {n = 0}   = ZLTE
-reflexive {n = S _} = SLTE reflexive
+{m : Nat} -> Decidable Nat (m <=) where
+  decide n = case test0 (m <= n) of
+    Yes0 prf   => Yes0 $ fromLTE m n prf
+    No0 contra => No0 $ contra . toLTE m n
 
-0 transitive : {l,m,n : Nat} -> l <= m -> m <= n -> l <= n
-transitive {l = 0}   _        _        = ZLTE
-transitive {l = S _} (SLTE x) (SLTE y) = SLTE $ transitive x y
+-- 7
+
+0 refl : {n : Nat} -> n <= n
+refl {n = 0}   = ZLTE
+refl {n = S _} = SLTE refl
+
+0 trans : {l,m,n : Nat} -> l <= m -> m <= n -> l <= n
+trans {l = 0}   _        _        = ZLTE
+trans {l = S _} (SLTE x) (SLTE y) = SLTE $ trans x y
+
+0 (>>) : {l,m,n : Nat} -> l <= m -> m <= n -> l <= n
+(>>) = trans
+
+-- 8
+
+0 toIsSucc : {n : Nat} -> n > 0 -> IsSucc n
+toIsSucc {n = S _} (SLTE _) = ItIsSucc
+
+0 fromIsSucc : {n : Nat} -> IsSucc n -> n > 0
+fromIsSucc {n = S _} ItIsSucc = SLTE ZLTE
 
 -- 9
 
-record Percentage where
-  constructor MkPercentage
-  value : Bits8
-  0 prf : cast value <= 100
+safeDiv : (x,y : Bits64) -> (0 prf : cast y > 0) => Bits64
+safeDiv x y = x `div` y
 
-percentage : Bits8 -> Maybe Percentage
-percentage v = case decideOn (<= 100) (cast v) of
-  Yes0 prf => Just $ MkPercentage v prf
-  No0  _   => Nothing
-
-namespace Percentage
-  public export
-  fromInteger :  (n : Integer)
-              -> {auto 0 _ : IsJust (percentage (cast n))}
-              -> Percentage
-  fromInteger n = fromJust $ percentage (cast n)
+safeMod :  (x,y : Bits64)
+        -> (0 prf : cast y > 0)
+        => Subset Bits64 (\v => cast v < cast y)
+safeMod x y = Element (x `mod` y) (unsafeDecideOn (<= cast y) _)
 
 -- 10
 
-InRange : (m,n : Nat) -> Nat -> Type
-InRange m n = (>= m) && (<= n)
+digit : (v : Bits64) -> (0 prf : cast v < 16) => Char
+digit 0  = '0'
+digit 1  = '1'
+digit 2  = '2'
+digit 3  = '3'
+digit 4  = '4'
+digit 5  = '5'
+digit 6  = '6'
+digit 7  = '7'
+digit 8  = '8'
+digit 9  = '9'
+digit 10 = 'a'
+digit 11 = 'b'
+digit 12 = 'c'
+digit 13 = 'd'
+digit 14 = 'e'
+digit 15 = 'f'
+digit x  = assert_total $ idris_crash "IMPOSSIBLE: Invalid digit (\{show x})"
 
-record Something where
-  constructor MkSomething
-  value : Bits8
-  0 prf : InRange 20 30 (cast value)
+record Base where
+  constructor MkBase
+  value : Bits64
+  0 prf : FromTo 2 16 (cast value)
 
-toPerc : Something -> Percentage
-toPerc (MkSomething v (Both _ p)) = MkPercentage v (transitive p %search)
+base : Bits64 -> Maybe Base
+base v = case decideOn (FromTo 2 16) (cast v) of
+  Yes0 prf => Just $ MkBase v prf
+  No0  _   => Nothing
 
--- fst : (p && q) v -> p v
--- fst (Both prf1 prf2) = prf1
---
--- snd : (p && q) v -> q v
--- snd (Both prf1 prf2) = prf2
+namespace Base
+  public export
+  fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base
+  fromInteger v = fromJust $ base (cast v)
+
+digits : Bits64 -> Base -> String
+digits 0 _ = "0"
+digits x (MkBase b $ Both p1 p2) = go [] x
+  where go : List Char -> Bits64 -> String
+        go cs 0 = pack cs
+        go cs v =
+          let Element d p = (v `safeMod` b) {prf = %search >> p1}
+              v2          = (v `safeDiv` b) {prf = %search >> p1}
+           in go (digit d {prf = p >> p2} :: cs) (assert_smaller v v2)
+
+-- 11
+
+IsAscii : Char -> Type
+IsAscii c = cast c < 128
+
+IsLatin : Char -> Type
+IsLatin c = cast c < 255
+
+IsUpper : Char -> Type
+IsUpper c = FromTo (cast 'A') (cast 'Z') (cast c)
+
+IsLower : Char -> Type
+IsLower c = FromTo (cast 'a') (cast 'z') (cast c)
+
+IsAlpha : Char -> Type
+IsAlpha = IsUpper || IsLower
+
+IsDigit : Char -> Type
+IsDigit c = FromTo (cast '0') (cast '9') (cast c)
+
+IsAlphaNum : Char -> Type
+IsAlphaNum = IsAlpha || IsDigit
+
+IsIdentChar : Char -> Type
+IsIdentChar = IsAlphaNum || Equal '_'
 
 -- isAscii : Char -> Bool
 -- isAscii c = ord c <= 127

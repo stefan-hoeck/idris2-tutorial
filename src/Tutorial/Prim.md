@@ -958,8 +958,21 @@ Unsigned integers will be converted to `Nat` using `cast`,
 and strings will be converted to `List Char` using `unpack`.
 This allows us to work with proofs on `Nat` and `List` most
 of the time, and such proofs can be implemented without
-resorting to `believe_me` or other cheats.
+resorting to `believe_me` or other cheats. However, the one
+advantage of primitive types over algebraic data types is
+that they often perform much better. This is especially
+critical when comparing integral types with `Nat`: Operations
+on natural numbers often run with `O(n)` time complexity,
+where `n` is the size of one of the natural numbers involved,
+while with `Bits64`, for instance, many operations run in fast constant
+time (`O(1)`). Luckily, the Idris compiler optimizes many
+functions on natural number to use the corresponding `Integer`
+operations at runtime. This has the advantage that we can
+still use proper induction to proof stuff about natural
+numbers at compile time, while getting the benefit of fast
+integer operations at runtime.
 
+Enough talk, let's begin!
 To start with, you are given the following utilities:
 
 ```idris
@@ -996,6 +1009,20 @@ decideOn _ = decide
 test0 : (b : Bool) -> Dec0 (b === True)
 test0 True  = Yes0 Refl
 test0 False = No0 absurd
+```
+
+Finally, as we are planning to refine mostly primitives, we will
+at times require some sledge hammer to convince Idris that
+we know what we are doing:
+
+```idris
+-- only use this if you are sure that `decideOn p v`
+-- will return a `Yes0`!
+0 unsafeDecideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> p v
+unsafeDecideOn p v = case decideOn p v of
+  Yes0 prf => prf
+  No0  _   =>
+    assert_total $ idris_crash "Unexpected refinement failure in `unsafeRefineOn`"
 ```
 
 1. We start with equality proofs. Implement `Decidable` for
@@ -1054,63 +1081,189 @@ test0 False = No0 absurd
    erased (implicit) arguments, because `negAnd` itself can only be
    used in an erased context.
 
-As a first use case, we will focus on limiting the valid range
-of natural numbers. For this, we use the following data type:
+So far, we implemented the tools to algebraically describe
+and combine several predicate. It is now time to come up
+with some examples. As a first use case, we will focus on
+limiting the valid range of natural numbers. For this,
+we use the following data type:
 
 ```idris
--- Proof that n <= m
-data IsLTE : (m,n : Nat) -> Type where
-  ZeroLTE : IsLTE n 0
-  SuccLTE : IsLTE m n -> IsLTE (S m) (S n)
+-- Proof that m <= n
+data (<=) : (m,n : Nat) -> Type where
+  ZLTE : 0 <= n
+  SLTE : m <= n -> S m <= S n
 ```
 
-This is very similar to `Data.Nat.LTE` but the indices are used
-the other way round, because we want to be able to write
-`LTE 100` as a predicate, which hold for values less than or
-equal to 100.
+This is similar to `Data.Nat.LTE` but I find operator
+notation often to be clearer.
+We also can define and use the following aliases:
 
-We can define the following aliases:
+```repl
+(>=) : (m,n : Nat) -> Type
+m >= n = n <= m
 
-```idris
--- Proof that `m` is strictly smaller than `n`
--- LT : (m,n : Nat) -> Type
--- LT m n = Prim.LTE (S m) n
---
--- GTE : (m,n : Nat) -> Type
--- GTE m n = Prim.LTE n m
---
--- GT : (m,n : Nat) -> Type
--- GT m n = Prim.LT n m
+(<) : (m,n : Nat) -> Type
+m < n = S m <= n
+
+(>) : (m,n : Nat) -> Type
+m > n = n < m
+
+LessThan : (m,n : Nat) -> Type
+LessThan m = (< m)
+
+To : (m,n : Nat) -> Type
+To m = (<= m)
+
+GreaterThan : (m,n : Nat) -> Type
+GreaterThan m = (> m)
+
+From : (m,n : Nat) -> Type
+From m = (>= m)
+
+FromTo : (lower,upper : Nat) -> Nat -> Type
+FromTo l u = From l && To u
+
+Between : (lower,upper : Nat) -> Nat -> Type
+Between l u = GreaterThan l && LessThan u
 ```
 
-6. Coming up with a value of type `LTE m n` by pattern
+6. Coming up with a value of type `m <= n` by pattern
    matching on `m` and `n` is highly inefficient for
    large values of `m`, as it will require `m` iterations
    to do so. However, while in an erased context, we don't
-   need to hold a value of type `LTE m n`. We only need to
+   need to hold a value of type `m <= n`. We only need to
    show, that such a value follows from a more efficient
    computation. Such a computation is `compare` for natural
    numbers: Although this is implemented in the *Prelude* with
    a pattern match on its arguments, it is optimized
    by the compiler to a comparison of integers which runs
-   in constant time even for very large integers.
-   Since `(<=)` for natural numbers is implemented in terms of
+   in constant time even for very large numbers.
+   Since `Prelude.(<=)` for natural numbers is implemented in terms of
    `compare`, it runs just as efficiently.
 
-   We therefore need to proof the following two lemmas:
+   We therefore need to proof the following two lemmas (make
+   sure to not confuse `Prelude.(<=)` with `Prim.(<=)` in
+   these declarations):
 
    ```idris
-   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> LTE n1 n2
+   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2
 
-   0 toLTE : (n1,n2 : Nat) -> LTE n1 n2 -> (n1 <= n2) === True
+   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True
    ```
 
    They come with a quantity of 0, because they are just as inefficient
    as the other computations we discussed above. We therefore want
    to make absolutely sure that they will never be used at runtime!
 
-   Now, implement `Decidable Nat (LTE n)`, making use of `test0`,
-   `fromLTE`, and `toLTE` (`n` must be available at runtime).
+   Now, implement `Decidable Nat (<= n)`, making use of `test0`,
+   `fromLTE`, and `toLTE`.
+   Likewise, implement `Decidable Nat (m <=)`, because we require
+   both kinds of predicates.
+
+   Note: You should by know figure out yourself that `n` must be
+   available at runtime and how to make sure that this is the case.
+
+7. Proof that `(<=)` is reflexive and transitive by declaring and
+   implementing corresponding propositions. As we might require
+   the proof of transitivity to chain several values of type `(<=)`,
+   it makes sense to also define a short operator alias for this.
+
+8. Proof that from `n > 0` follows `IsSucc n` and vise versa.
+
+9. Declare and implement safe division and modulo functions
+   for `Bits64`, by requesting an erased proof that
+   the denominator is strictly positive when cast to a natural
+   number. In case of the modulo function, return a refined
+   value carrying an erased proof that the result is strictly
+   smaller than the modulus:
+
+   ```idris
+   safeMod :  (x,y : Bits64)
+           -> (0 prf : cast y > 0)
+           => Subset Bits64 (\v => cast v < cast y)
+   ```
+
+10. We will use the predicates and utilities we defined so
+    far to convert a value of type `Bits64` to a string
+    of digits in base `b` with `2 <= b && b <= 16`.
+    To do so, implement the following skeleton definitions:
+
+    ```idris
+    -- this will require some help from `assert_total`
+    -- and `idris_crash`.
+    digit : (v : Bits64) -> (0 prf : cast v < 16) => Char
+
+    record Base where
+      constructor MkBase
+      value : Bits64
+      0 prf : FromTo 2 16 (cast value)
+
+    base : Bits64 -> Maybe Base
+
+    namespace Base
+      public export
+      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base
+    ```
+
+    Finally, implement `digits`, using `safeDiv` and `safeMod`
+    in your implementation. This might be challenging, as you will
+    have to manually transform some proofs to satisfy the type
+    checker. You might also require `assert_smaller` in the
+    recursive step.
+
+    ```idris
+    digits : Bits64 -> Base -> String
+    ```
+
+We will now turn our focus on strings. Two of the most
+obvious ways in which we can restrict the strings we
+accept are by limiting the set of characters and
+limiting their lengths. More advanced refinements might
+require strings to match a certain pattern or regular
+expression. In such cases, we might either go for a
+boolean check or use a custom data type representing the
+different parts of the pattern, but we will not cover
+these topics here.
+
+11. Implement the following aliases for useful predicates on
+    characters.
+
+    Hint: Use case to convert characters to natural numbers,
+    use `(<=)` and `InRange` to specify regions of characters,
+    and use `(||)` to combine regions of characters.
+
+    ```idris
+    -- Characters <= 127
+    IsAscii : Char -> Type
+
+    -- Characters <= 255
+    IsLatin : Char -> Type
+
+    -- Characters in the interval ['A','Z']
+    IsUpper : Char -> Type
+
+    -- Characters in the interval ['a','z']
+    IsLower : Char -> Type
+
+    -- Lower or upper case characters
+    IsAlpha : Char -> Type
+
+    -- Characters in the range ['0','9']
+    IsDigit : Char -> Type
+
+    -- Digits or characters from the alphabet
+    IsAlphaNum : Char -> Type
+
+    -- Characters in the ranges [0,31] or [127,159]
+    IsControl : Char -> Type
+
+    -- An ASCII character that is not a control character
+    IsPlainAscii : Char -> Type
+
+    -- A latin character that is not a control character
+    IsPlainLatin : Char -> Type
+    ```
+
 
 <!-- vi: filetype=idris2
 -->
