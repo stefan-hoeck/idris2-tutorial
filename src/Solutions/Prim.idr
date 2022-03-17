@@ -371,29 +371,31 @@ Decidable Nat p => Decidable Char (CharOrd p) where
     Yes0 prf   => Yes0 $ IsCharOrd prf
     No0 contra => No0 $ \(IsCharOrd prf) => contra prf
 
+-- 12
+
 IsAscii : Char -> Type
-IsAscii c = cast c < 128
+IsAscii = CharOrd (< 128)
 
 IsLatin : Char -> Type
-IsLatin c = cast c < 255
+IsLatin = CharOrd (< 255)
 
 IsUpper : Char -> Type
-IsUpper c = FromTo 65 90 (cast c)
+IsUpper = CharOrd (FromTo (cast 'A') (cast 'Z'))
 
 IsLower : Char -> Type
-IsLower c = FromTo 97 122 (cast c)
+IsLower = CharOrd (FromTo (cast 'a') (cast 'z'))
 
 IsAlpha : Char -> Type
 IsAlpha = IsUpper || IsLower
 
 IsDigit : Char -> Type
-IsDigit c = FromTo 48 57 (cast c)
+IsDigit = CharOrd (FromTo (cast '0') (cast '9'))
 
 IsAlphaNum : Char -> Type
 IsAlphaNum = IsAlpha || IsDigit
 
 IsControl : Char -> Type
-IsControl c = (FromTo 0 31 || FromTo 127 159) (cast c)
+IsControl = CharOrd (FromTo 0 31 || FromTo 127 159)
 
 IsPlainAscii : Char -> Type
 IsPlainAscii = IsAscii && Neg IsControl
@@ -403,32 +405,32 @@ IsPlainLatin = IsLatin && Neg IsControl
 
 -- 12
 
--- 0 plainToAscii : IsPlainAscii c -> IsAscii c
--- plainToAscii (Both prf1 _) = prf1
---
--- 0 digitToAlphaNum : IsDigit c -> IsAlphaNum c
--- digitToAlphaNum = R
---
--- 0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c
--- alphaToAlphaNum = L
---
--- 0 lowerToAlpha : IsLower c -> IsAlpha c
--- lowerToAlpha = R
---
--- 0 upperToAlpha : IsUpper c -> IsAlpha c
--- upperToAlpha = L
---
--- 0 lowerToAlphaNum : IsLower c -> IsAlphaNum c
--- lowerToAlphaNum = L . R
---
--- 0 upperToAlphaNum : IsUpper c -> IsAlphaNum c
--- upperToAlphaNum = L . L
---
--- 0 asciiToLatin : IsAscii c -> IsLatin c
--- asciiToLatin x = trans x (safeDecideOn _ _)
---
--- 0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c
--- plainAsciiToPlainLatin (Both x y) = Both (asciiToLatin x) y
+0 plainToAscii : IsPlainAscii c -> IsAscii c
+plainToAscii (Both prf1 _) = prf1
+
+0 digitToAlphaNum : IsDigit c -> IsAlphaNum c
+digitToAlphaNum = R
+
+0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c
+alphaToAlphaNum = L
+
+0 lowerToAlpha : IsLower c -> IsAlpha c
+lowerToAlpha = R
+
+0 upperToAlpha : IsUpper c -> IsAlpha c
+upperToAlpha = L
+
+0 lowerToAlphaNum : IsLower c -> IsAlphaNum c
+lowerToAlphaNum = L . R
+
+0 upperToAlphaNum : IsUpper c -> IsAlphaNum c
+upperToAlphaNum = L . L
+
+0 asciiToLatin : IsAscii c -> IsLatin c
+asciiToLatin (IsCharOrd x) = IsCharOrd (trans x $ safeDecideOn _ _)
+
+0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c
+plainAsciiToPlainLatin (Both x y) = Both (asciiToLatin x) y
 
 -- 13
 
@@ -506,7 +508,7 @@ Decidable a p => Decidable (List a) (All p) where decide = allTR
 IsIdentChar = IsAlphaNum || Equal '_'
 
 0 IdentChars : List Char -> Type
-IdentChars = Length (<= 100) && All (Equal '_') -- Head IsAlpha -- && All IsIdentChar
+IdentChars = Length (<= 100) && Head IsAlpha && All IsIdentChar
 
 record Identifier where
   constructor MkIdentifier
@@ -518,9 +520,19 @@ identifier s = case decideOn IdentChars (unpack s) of
   Yes0 prf => Just $ MkIdentifier s prf
   No0  _   => Nothing
 
--- main : IO ()
--- main = do
---   str <- getLine
---   case identifier str of
---     Just _  => putStrLn "This is a valid identifier: \{str}"
---     Nothing => putStrLn "This is not a valid identifier: \{str}"
+namespace Identifier
+  public export
+  fromString :  (s : String)
+             -> (0 _ : IsYes0 (decideOn IdentChars (unpack s)))
+             => Identifier
+  fromString s = MkIdentifier s (fromYes0 $ decide (unpack s))
+
+testIdent : Identifier
+testIdent = "fooBar_123"
+
+main : IO ()
+main = do
+  str <- getLine
+  case identifier str of
+    Just _  => putStrLn "This is a valid identifier: \{str}"
+    Nothing => putStrLn "This is not a valid identifier: \{str}"
