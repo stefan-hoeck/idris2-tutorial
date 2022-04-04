@@ -140,11 +140,12 @@ If you have [Node.js](https://nodejs.org/en/) installed on your system,
 you might try the following experiment. Compile and run this
 module using the *Node.js* backend of Idris instead of the default
 *Chez Scheme* backend and run the resulting JavaScript source file
-with the Node.js binary:
+with the Node.js binary (remember to run terminal programs without
+the dollar prefix):
 
 ```sh
-$> idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
-$> node build/exec/test.js
+$ idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
+$ node build/exec/test.js
 ```
 
 Node.js will fail with the following error message and a lengthy
@@ -237,7 +238,7 @@ we use slightly different syntax to execute a function other than
 `main`:
 
 ```sh
-$> idris2 --cg node --exec main1 --find-ipkg src/Tutorial/Folds.md
+$ idris2 --cg node --exec main1 --find-ipkg src/Tutorial/Folds.md
 10000
 ```
 
@@ -322,7 +323,7 @@ main2 =  printLn (even 100000)
 ```
 
 ```sh
-$> idris2 --cg node --exec main2 --find-ipkg src/Tutorial/Folds.md
+$ idris2 --cg node --exec main2 --find-ipkg src/Tutorial/Folds.md
 True
 False
 ```
@@ -578,7 +579,7 @@ While things could have been much worse, it can still be quite
 time consuming and annoying to localize the source of such an error.
 
 ```sh
-$> idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
+$ idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
 ERROR: No clauses
 ```
 
