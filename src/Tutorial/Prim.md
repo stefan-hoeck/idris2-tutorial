@@ -46,7 +46,7 @@ argument is given in parentheses):
 * Racket Scheme (`racket`): This is a different flavour of the scheme
   programming language, which can be useful to use when Chez Scheme
   is not available on your operating system.
-* NodeJS (`node`): This converts an Idris program to JavaScript.
+* Node.js (`node`): This converts an Idris program to JavaScript.
 * Browser (`javascript`): Another JavaScript backend which allows you to
   write web applications which run in the browser in Idris.
 * RefC (`refc`): A backend compiling Idris to C code, which is then
@@ -233,7 +233,9 @@ lemma in a safe way:
 0 concatLenStr : (a,b : String) -> length a + length b = length (a ++ b)
 ```
 
+<!-- markdownlint-disable MD026 -->
 ### Believe Me!
+<!-- markdownlint-enable MD026 -->
 
 In order to implement `concatLenStr`, we have to abandon all
 safety and use the ten ton wrecking ball of type coercion:
@@ -417,7 +419,7 @@ strings. These can be pre- and postfixed with hashes if we want
 raw multiline string literals, and they also can be combined with
 string interpolation. Multiline literals are opened and closed with
 triple quote characters. Indenting the closing triple quotes
-allows us to indent the whole multiline literal. White space used
+allows us to indent the whole multiline literal. Whitespace used
 for indentation will not appear in the resulting string. For instance:
 
 ```idris
@@ -937,19 +939,19 @@ In this massive set of exercises, you are going to build
 a small library for working with predicates on primitives.
 We want to keep the following goals in mind:
 
-  * We want to use the usual operations of propositional logic to
-    combine predicates: Negation, conjuction (logical *and*),
-    and disjunction (logical *or*).
-  * All predicates should be erased at runtime. If we proof
-    something about a primitive number, we want to make sure
-    not to carry around a huge proof of validity.
-  * Calculations on predicates should make no appearance
-    at runtime (with the exception of `decide`; see below).
-  * Recursive calculations on predicates should be tail recursive if
-    they are used in implementations of `decide`. This might be tough
-    to achieve. If you can't find a tail recursive
-    solution for a given problem, use what feels most natural
-    instead.
+* We want to use the usual operations of propositional logic to
+  combine predicates: Negation, conjuction (logical *and*),
+  and disjunction (logical *or*).
+* All predicates should be erased at runtime. If we proof
+  something about a primitive number, we want to make sure
+  not to carry around a huge proof of validity.
+* Calculations on predicates should make no appearance
+  at runtime (with the exception of `decide`; see below).
+* Recursive calculations on predicates should be tail recursive if
+  they are used in implementations of `decide`. This might be tough
+  to achieve. If you can't find a tail recursive
+  solution for a given problem, use what feels most natural
+  instead.
 
 A note on efficiency: In order to be able to run
 computations on our predicates, we try to convert primitive

@@ -164,7 +164,7 @@ the stack size increases by one with every recursive function
 call. In case of our `main` function, we create and consume
 a list of length 10'000, so the call stack will hold
 at least 10'000 function calls before they are being invoked
-and the stack's size is reduced again. This exceeds NodeJS's
+and the stack's size is reduced again. This exceeds Node.js's
 stack size limit by far, hence the overflow error.
 
 Now, before we look at a solution how to circumvent this issue,
