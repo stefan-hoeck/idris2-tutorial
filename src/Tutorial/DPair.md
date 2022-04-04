@@ -402,13 +402,10 @@ encode = pack . map encodeBase
 
 It is a type error to use `Uracile` in a strand of DNA:
 
-```repl
-Tutorial.Relations> the DNA [Uracile,Adenine]
-Error: When unifying:
-    Nucleobase RNABase
-and:
-    Nucleobase DNABase
-Mismatch between: RNABase and DNABase.
+```idris
+failing "Mismatch between: RNABase and DNABase."
+  errDNA : DNA
+  errDNA = [Uracile, Adenine]
 ```
 
 Note, how we used a variable for nucleobases `Adenine`, `Cytosine`, and

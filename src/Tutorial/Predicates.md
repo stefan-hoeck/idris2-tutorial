@@ -256,13 +256,10 @@ headEx3 = Predicates.head [1,2,3]
 
 The following example fails with an error:
 
-```repl
-Tutorial.Predicates> Predicates.head []
-Error: Can't find an implementation for NotNil [].
-
-(Interactive):1:1--1:8
- 1 | head []
-     ^^^^^^^
+```idris
+failing "Can't find an implementation\nfor NotNil []."
+  errHead : Nat
+  errHead = Predicates.head []
 ```
 
 Wait! "Can't find an implementation for..."? Is this not the

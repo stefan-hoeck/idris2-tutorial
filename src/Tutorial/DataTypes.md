@@ -530,12 +530,23 @@ pattern.
 
 Note, how Idris will prevent us from making
 a common mistake: If we confuse the order of arguments, the
-implementation will no longer type check:
+implementation will no longer type check. We can verify this
+by putting the erroneous code in a `failing` block: This
+is an indented code block, which will lead to an error
+during elaboration (type checking). We can give part
+of the expected error message as an optional string argument to
+a failing block. If this does not match part of
+the error message (or the whole code block does not fail
+to type check) the `failing` block itself fails to type
+check. This is a useful tool to demonstrate that type
+safety works in two directions: We can show that valid
+code type checks but also that invalid code is rejected
+by the Idris elaborator:
 
-```repl
--- this will result in a type error
-greetUser : User -> String
-greetUser (MkUser n t _) = greet n t
+```idris
+failing "Mismatch between: String and Title"
+  greetUser' : User -> String
+  greetUser' (MkUser n t _) = greet n t
 ```
 
 In addition, for every record field, Idris creates an

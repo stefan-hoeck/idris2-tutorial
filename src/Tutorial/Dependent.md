@@ -67,9 +67,10 @@ ex1 = Nil
 The following, on the other hand, leads to a type error (a pretty complicated
 one, actually):
 
-```repl
-ex2 : Vect 0 Integer
-ex2 = [12]
+```idris
+failing "Mismatch between: S ?n and 0."
+  ex2 : Vect 0 Integer
+  ex2 = [12]
 ```
 
 The problem: `[12]` gets desugared to `12 :: Nil`, but this has the wrong
@@ -385,14 +386,15 @@ case the length was the successor of another natural number.
 This is not possible when we want to create a new vector:
 
 ```idris
-fill : a -> Vect n a
+failing "Mismatch between: S ?n and n."
+  fill : a -> Vect n a
 ```
 
 You will have a hard time implementing `fill`. The following,
 for instance, leads to a type error:
 
-```repl
-fill va = [va,va]
+```idris
+  fill va = [va,va]
 ```
 
 The problem is, that *the callers of our function decide about
@@ -743,10 +745,11 @@ is possible for Idris to unify `0 + n` with `n` in the
 Here is a simple example, where Idris will not longer
 be convinced without some help from us:
 
-```repl
-reverse : Vect n a -> Vect n a
-reverse []        = []
-reverse (x :: xs) = reverse xs ++ [x]
+```idris
+failing "Can't solve constraint"
+  reverse : Vect n a -> Vect n a
+  reverse []        = []
+  reverse (x :: xs) = reverse xs ++ [x]
 ```
 
 When we type-check the above,
