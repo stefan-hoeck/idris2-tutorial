@@ -592,6 +592,11 @@ functions each provides:
   * `(/)` : Division
   * `recip` : Calculates the reciprocal of a value
 
+As you can see: We need to implement interface `Num` to
+use integer literals for a given type. In order to use
+negative integer literals like `-12`, we also have to
+implement interface `Neg`.
+
 ### `Cast`
 
 The last interface we will quickly discuss in this section is `Cast`. It
@@ -787,20 +792,23 @@ combined in a single list traversal.
 ## Conclusion
 
 * Interfaces allow us to implement the same function with different
-behavior for different types.
-
+  behavior for different types.
 * Functions taking one or more interface implementations as
-arguments are called *constrained functions*.
-
+  arguments are called *constrained functions*.
 * Interfaces can be organized hierarchically by *extending*
-other interfaces.
-
+  other interfaces.
 * Interfaces implementations can themselves be *constrained*
-requiring other implementations to be available.
-
+  requiring other implementations to be available.
 * Interface functions can be given a *default implementation*,
-which can be overridden by implementers, for instance for reasons
-of efficiency.
+  which can be overridden by implementers, for instance for reasons
+  of efficiency.
+* Certain interfaces allow us to use literal values such as
+  string or integer literals for our own data types.
+
+Note, that I did not yet tell the whole story about literal values
+in this section. More details for using literals with types that
+accept only a restricted set of values can be found in the
+chapter about [primitives](Prim.md).
 
 ### What's next
 

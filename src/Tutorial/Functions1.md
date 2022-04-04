@@ -342,6 +342,44 @@ and `(10 <)`. The first tests, whether its argument is
 less than 10, the second, whether 10 is less than its
 argument.
 
+On exception where operator sections will not work is
+with the *minus* operator `(-)`. Here is an example to
+demonstrate this:
+
+```idris
+applyToTen : (Integer -> Integer) -> Integer
+applyToTen f = f 10
+```
+
+This is just a higher-order function applying the number ten
+to its function argument. This works very well in the following
+example:
+
+```repl
+Tutorial.Functions1> applyToThen (* 2)
+20
+```
+
+However, if we want to subtract five from ten, the following
+will fail:
+
+```repl
+Tutorial.Functions1> applyToTen (- 5)
+Error: Can't find an implementation for Num (Integer -> Integer).
+
+(Interactive):1:12--1:17
+ 1 | applyToTen (- 5)
+```
+
+The problem here is, that Idris treats `- 5` as an integer literal
+instead of an operator section. In this special case, we therefore
+have to use an anonymous function instead:
+
+```repl
+Tutorial.Functions1> applyToTen (\x => x - 5)
+5
+```
+
 ### Infix Notation for Non-Operators
 
 In Idris, it is possible to use infix notation for
