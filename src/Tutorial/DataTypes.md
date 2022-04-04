@@ -223,6 +223,41 @@ and therefore, the `else` branch cannot be dropped. This is different
 from the behavior in typical imperative languages, where `if` is
 a statement with possible side effects.
 
+### Naming Conventions: Identifiers
+
+While we are free to use lower-case and upper-case identifiers for
+function names, type- and data constructors must be given upper-case
+identifiers in order not to confuse Idris (operators are also fine).
+For instance, the following data definition is not valid, and Idris
+will complain that it expected upper-case identifiers:
+
+```repl
+data foo = bar | baz
+```
+
+The same goes for similar data definitions like records and sum types
+(both will be explained below):
+
+```repl
+-- not valid Idris
+record Foo where
+  constructor mkfoo
+```
+
+On the other hand, we typically use lower-case identifiers for function
+names, unless we plan to use them mostly during type checking (more on this
+later). This is not enforced by Idris, however, so if you are working in
+a domain where upper-case identifiers are preferable, feel free to use
+those:
+
+```idris
+foo : Bits32 -> Bits32
+foo = (* 2)
+
+Bar : Bits32 -> Bits32
+Bar = foo
+```
+
 ### Exercises part 1
 
 1. Use pattern matching to implement your own
