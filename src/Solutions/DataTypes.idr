@@ -110,8 +110,8 @@ compareUnit = compare `on` (\x => toSeconds x 1)
 
 minUnit : UnitOfTime -> UnitOfTime -> UnitOfTime
 minUnit x y = case compareUnit x y of
-  LT => y
-  _  => x
+  LT => x
+  _  => y
 
 addTimeSpan : TimeSpan -> TimeSpan -> TimeSpan
 addTimeSpan (MkTimeSpan u1 v1) (MkTimeSpan u2 v2) =
