@@ -195,16 +195,15 @@ main = putStrLn "Hello World!"
 
 We will inspect the code above in some detail in a moment,
 but first we'd like to compile and run it. From this project's
-root directory, run the following (without the dollar prefix; this
-is just used to show that here you will run a terminal program
-as a regular user):
-
+root directory, run the following:
 ```sh
-$ idris2 --find-ipkg -o hello src/Tutorial/Intro.md
+idris2 --find-ipkg -o hello src/Tutorial/Intro.md
 ```
 
 This will create executable `hello` in directory `build/exec`,
-which can be invoked from the command-line like so:
+which can be invoked from the command-line like so (without the
+dollar prefix; this is used here to distinguish the terminal command
+from its output):
 
 ```sh
 $ build/exec/hello
@@ -222,7 +221,7 @@ As an alternative, you can also load this source file in a REPL
 session and invoke function `main` from there:
 
 ```sh
-$ rlwrap idris2 --find-ipkg src/Tutorial/Intro.md
+rlwrap idris2 --find-ipkg src/Tutorial/Intro.md
 ```
 
 ```repl

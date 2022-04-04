@@ -36,7 +36,7 @@ backends available. You can specify the backend to use with the `--cg` command
 line argument (`cg` stands for *code generator*). For instance:
 
 ```sh
-$ idris2 --cg racket
+idris2 --cg racket
 ```
 
 Here is a non-comprehensive list of the backends available with a
