@@ -529,10 +529,3 @@ namespace Identifier
 
 testIdent : Identifier
 testIdent = "fooBar_123"
-
-main : IO ()
-main = do
-  str <- getLine
-  case identifier str of
-    Just _  => putStrLn "This is a valid identifier: \{str}"
-    Nothing => putStrLn "This is not a valid identifier: \{str}"

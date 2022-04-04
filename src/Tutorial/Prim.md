@@ -153,7 +153,8 @@ sources. We will look at most of these in the following sections.
 ### Consequences of being Primitive
 
 Primitive functions and types are opaque to the compiler
-in most regards: The compiler does not know about the internal
+in most regards: They have to be defined and implemented by each
+backend individually, therefore, the compiler knows nothing about the inner
 structure of a primitive value nor about the inner workings
 of primitive functions. For instance, in the following recursive
 function, *we* know that the argument in the recursive call
@@ -499,7 +500,6 @@ arbitrary value of the same primitive integral type):
 * `x * y = y * x`: Multiplication is commutative.
 * `x * (y * z) = (x * y) * z`: Multiplication is associative.
 * `x * 1 = x`: One is the neutral element of multiplication.
-* `x * 0 = 0`: Multiplication with zero equals zero.
 * `x * (y + z) = x * y + x * z`: The distributive law holds.
 * ``y * (x `div` y) + (x `mod` y) = x`` (for `y /= 0`).
 
@@ -970,7 +970,11 @@ functions on natural number to use the corresponding `Integer`
 operations at runtime. This has the advantage that we can
 still use proper induction to proof stuff about natural
 numbers at compile time, while getting the benefit of fast
-integer operations at runtime.
+integer operations at runtime. However, operations on `Nat` do
+run with `O(n)` time complexity and *compile time*. Proofs
+working on large natural number will therefore drastically
+slow down the compiler. A way out of this is discussed at
+the end of this section of exercises.
 
 Enough talk, let's begin!
 To start with, you are given the following utilities:
@@ -1250,7 +1254,7 @@ these topics here.
 11. Implement the following aliases for useful predicates on
     characters.
 
-    Hint: Use case to convert characters to natural numbers,
+    Hint: Use `cast` to convert characters to natural numbers,
     use `(<=)` and `InRange` to specify regions of characters,
     and use `(||)` to combine regions of characters.
 
@@ -1363,7 +1367,43 @@ strings as lists of characters.
     refine strings of thousands of characters without overflowing the
     stack at runtime. In order to come up with a tail recursive implementation,
     you will need an additional data type `AllSnoc` witnessing that a predicate
-    holds for all elements in `SnocList`.
+    holds for all elements in a `SnocList`.
+
+16. It's time to come to an end here. An identifier in Idris is a sequence
+    of alphanumeric characters, possibly separated by underscore characters
+    (`_`). In addition, all identifiers must start with a letter.
+    Given this specification, implement predicate `IdentChar`, from
+    which we can define a new wrapper type for identifiers:
+
+    ```idris
+    0 IdentChars : List Char -> Type
+
+    record Identifier where
+      constructor MkIdentifier
+      value : String
+      0 prf : IdentChars (unpack value)
+    ```
+
+    Implement a factory method `identifier` for converting strings
+    of unknown source at runtime:
+
+    ```idris
+    identifier : String -> Maybe Identifier
+    ```
+
+    In addition, implement `fromString` for `Identifier` and verify,
+    that the following is a valid identifier:
+
+    ```idris
+    testIdent : Identifier
+    testIdent = "fooBar_123"
+    ```
+
+Final remarks: Proofing stuff about the primitives can be challenging,
+both when deciding on what axioms to use and when trying to make
+things perform well at runtime and compile time. I'm experimenting
+with a library, which deals with these issues. It is not yet finished,
+but you can have a look at it [here](https://github.com/stefan-hoeck/idris2-prim).
 
 <!-- vi: filetype=idris2
 -->
