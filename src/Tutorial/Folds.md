@@ -143,8 +143,8 @@ module using the *Node.js* backend of Idris instead of the default
 with the Node.js binary:
 
 ```sh
-$> idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
-$> node build/exec/test.js
+idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
+node build/exec/test.js
 ```
 
 Node.js will fail with the following error message and a lengthy
@@ -234,10 +234,12 @@ main1 = printLn . lenTR $ replicateListTR 10000 10
 
 We can again run `main1` using the *Node.js* backend. This time,
 we use slightly different syntax to execute a function other than
-`main`:
+`main` (Remember: The dollar prefix is only there to distinghish
+a terminal command from its output. It is not part of the
+command you enter in a terminal sesssion.):
 
 ```sh
-$> idris2 --cg node --exec main1 --find-ipkg src/Tutorial/Folds.md
+$ idris2 --cg node --exec main1 --find-ipkg src/Tutorial/Folds.md
 10000
 ```
 
@@ -322,7 +324,7 @@ main2 =  printLn (even 100000)
 ```
 
 ```sh
-$> idris2 --cg node --exec main2 --find-ipkg src/Tutorial/Folds.md
+$ idris2 --cg node --exec main2 --find-ipkg src/Tutorial/Folds.md
 True
 False
 ```
@@ -578,7 +580,7 @@ While things could have been much worse, it can still be quite
 time consuming and annoying to localize the source of such an error.
 
 ```sh
-$> idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
+$ idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md
 ERROR: No clauses
 ```
 
