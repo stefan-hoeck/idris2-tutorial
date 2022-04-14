@@ -21,7 +21,7 @@ module Tutorial.Functions2
 
 ## Let Bindings and Local Definitions
 
-The functions we looked at so far where simple enough
+The functions we looked at so far were simple enough
 to be implemented directly via pattern matching
 without the need of additional auxiliary functions or
 variables. This is not always the case, and there are two
