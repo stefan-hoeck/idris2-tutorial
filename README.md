@@ -109,6 +109,7 @@ syntax, typical error messages, the module system, interactive
 editing and possibly others.
 
 1. [Interactive Editing in Neovim](src/Appendices/Neovim.md)
+2. [Structuring Idris Projects](src/Appendices/Projects.md)
 
 ## Prerequisites
 
