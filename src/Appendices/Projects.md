@@ -128,7 +128,7 @@ vectSum = sum $ V.fromList [1..10]
 ```
 
 Finally, on the fifth line we publicly import a module and give it
-a new name. This name will then be the one seen we transitively
+a new name. This name will then be the one seen when we transitively
 import `Data.List1` via `Appendices.Projects`. To see this, start
 a REPL session without loading a source file from this project's
 root folder:
@@ -137,7 +137,7 @@ root folder:
 idris2 --find-ipkg
 ```
 
-Now load module `Appendices.Projects` a checkout the type
+Now load module `Appendices.Projects` and checkout the type
 of `singleton`:
 
 ```repl
@@ -317,11 +317,11 @@ natOrString = Left "bar"
 
 ### Visibility of Data Types
 
-Visibility of data types behaves slightly different. If it set to
-`private` (the default), neither the *type* nor the *data constructors*
-are visible outside of the namespace they where defined in. If they
-are annotated with `export`, the type (constructor) is exported
-but not the data constructors:
+Visibility of data types behaves slightly differently. If set to
+`private` (the default), neither the *type constructor* nor
+the *data constructors* are visible outside of the namespace
+they where defined in. If annotated with `export`,
+the type constructor is exported but not the data constructors:
 
 ```idris
 namespace Export
@@ -340,7 +340,7 @@ foo1 = mkFoo1 "foo"
 
 As you can see, we can use the type `Foo` as well as
 function `mkFoo1` outside of namespace `Export`. However,
-we cannot use the `MkFoo` constructor to create a value
+we cannot use the `Foo1` constructor to create a value
 of type `Foo` directly:
 
 ```idris
@@ -389,6 +389,11 @@ namespace EI
   interface Empty a where
     empty : a -> Bool
 
+  export
+  Empty (List a) where
+    empty [] = True
+    empty _  = False
+
 failing
   Empty Nat where
     empty Z = True
@@ -397,6 +402,30 @@ failing
 nonEmpty : Empty a => a -> Bool
 nonEmpty = not . empty
 ```
+
+### Child Namespaces
+
+Sometimes, it is necessary to access a private function
+in another module or namespace. This is possible from within child namespaces
+(for want of a better name): Modules and namespaces sharing the
+parent module's or namespace's prefix. For instance:
+
+```idris
+namespace Inner
+  testEmpty : Bool
+  testEmpty = nonEmpty (the (List Nat) [12])
+```
+
+As you can see, we can access function `nonEmpty` from
+within namespace `Appendices.Projects.Inner`, although it is a
+private function of module `Appendices.Projects`. This is
+even possible for modules: If you were to write a module
+`Data.List.Magic`, you'd have access to private utility functions
+defined in module `Data.List` in *base*. Actually, I did just that
+and added module `Data.List.Magic` demonstrating this quirk
+of the Idris module system (go have a look!).
+Typically, this is a rather hacky way to work around visibility
+constraints, but it can be useful at times.
 
 <!-- vi: filetype=idris2
 -->
