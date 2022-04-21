@@ -5,6 +5,23 @@ larger Idris 2 projects. We will have a look at Idris packages,
 the module system, visibility of types and functions, and writing
 comments and doc strings.
 
+This tutorial can be useful for all readers who have already
+written a bit of Idris code. We will not do any fancy type level
+wizardry in here, but I'll demonstrate several concepts using
+`failing` code blocks. This rather new addition to the language
+allows us to show code that is expected to fail during elaboration
+(type checking). For instance:
+
+```repl
+failing "Can't find an implementation for FromString Bits8."
+  ohno : Bits8
+  ohno = "Oh no!"
+```
+
+As part of a failing block, we can give a substring of the compiler's
+error message for documentation purposes and to make sure the block
+fails with the expected error.
+
 ## Modules
 
 Every Idris source file defines a *module*, typically starting with a
@@ -14,7 +31,7 @@ module header like the one below:
 module Appendices.Projects
 ```
 
-A module's name consists of several upper case identifier separated
+A module's name consists of several upper case identifiers separated
 by dots, which must reflect the path of the `.idr` file where the
 module is stored. For instance, this module is stored in file
 `Appendices/Projects.md`, so the module's name is `Appendices.Projects`.
@@ -143,10 +160,76 @@ Main> L.singleton 12
 12 ::: []
 ```
 
+### Namespaces
+
+Sometimes we want to define several functions or data types
+with the same name in a single module. Idris does not allow this,
+because every name must be unique in its *namespace*, and the
+namespace of a module is just the fully qualified module name.
+
+However, it is possible to define additional namespaces within
+a module by using the `namespace` keyword followed by the name
+of the namespace. All functions, which should belong to this
+namespace must be indented by the same amount of whitespace.
+
+Here's an example:
+
+```idris
+data HList : List Type -> Type where
+  Nil  : HList []
+  (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)
+
+head : HList (t :: ts) -> t
+head (v :: _) = v
+
+tail : HList (t :: ts) -> HList ts
+tail (_ :: vs) = vs
+
+namespace HVect
+  public export
+  data HVect : Vect n Type -> Type where
+    Nil  : HVect []
+    (::) : (v : t) -> (vs : HVect ts) -> HVect (t :: ts)
+
+  public export
+  head : HVect (t :: ts) -> t
+  head (v :: _) = v
+
+  public export
+  tail : HVect (t :: ts) -> HVect ts
+  tail (_ :: vs) = vs
+```
+
+Function names `HVect.head` and `HVect.tail` as well as constructors
+`HVect.Nil` and `HVect.(::)` would clash with functions and constructors
+of the same names from the outer namespace (`Appendices.Projects`), so
+we had to put them in their own namespace. In order to be able to use
+them from outside their namespace, they need to be exported (see the
+section on visibility below). In case we need to disambiguate between
+these names, we can prefix them with part of their namespace. For instance,
+the following fails with a disambiguation error:
+
+```idris
+failing "Ambiguous elaboration."
+  whatHead : Nat
+  whatHead = head [12,"foo"]
+```
+
+By prefixing `head` with part of its namespace, we can resolve the
+ambiguity:
+
+```idris
+thisHead : Nat
+thisHead = HVect.head [12,"foo"]
+```
+
+In the following subsection I'll make use of namespaces to demonstrate
+the principles of visibility.
+
 ### Visibility
 
 In order to use functions and data types outside of the module
-(or namespace) where they were define, we need to change
+or namespace they were defined in, we need to change
 their *visibility*. The default visibility is `private`:
 Such a function or data type is not visible from outside
 its module or namespace:
@@ -160,9 +243,6 @@ failing "Name Appendices.Projects.Foo.foo is private."
   bar : Nat
   bar = 2 * foo
 ```
-
-In the example above, I used a `failing` block to demonstrate
-that `bar` will fail to elaborate.
 
 To make a function visible, annotate it with the `export`
 keyword:
@@ -178,8 +258,8 @@ This will allow us to invoke function `square` from within
 other modules or namespaces (after importing `Appendices.Projects`):
 
 ```idris
-oneHundred : Bits8
-oneHundred = square 10
+OneHundred : Bits8
+OneHundred = square 10
 ```
 
 However, the *implementation* of `square` will not be exported,
@@ -187,7 +267,7 @@ so `square` will not reduce during elaboration:
 
 ```idris
 failing "Can't solve constraint between: 100 and square 10."
-  checkOneHundred : Projects.oneHundred === 100
+  checkOneHundred : OneHundred === 100
   checkOneHundred = Refl
 ```
 
@@ -199,28 +279,28 @@ namespace SquarePub
   squarePub : Num a => a -> a
   squarePub v = v * v
 
-oneHundredAgain : Bits8
-oneHundredAgain = squarePub 10
+OneHundredAgain : Bits8
+OneHundredAgain = squarePub 10
 
-checkOneHundredAgain : Projects.oneHundredAgain === 100
+checkOneHundredAgain : OneHundredAgain === 100
 checkOneHundredAgain = Refl
 ```
 
-Therefore, if you expect to require a function during elaboration
+Therefore, if you need a function to reduce during elaboration
 (type checking), annotate it with `public export` instead of `export`.
 This is especially important if you use a function to compute
-a type. Such function's must reduce during elaboration, otherwise they
+a type. Such function's *must* reduce during elaboration, otherwise they
 are completely useless:
 
 ```idris
 namespace Stupid
   export
-  0 Foo : Type
-  Foo = Either String Nat
+  0 NatOrString : Type
+  NatOrString = Either String Nat
 
-failing "Can't solve constraint between: Either String ?b and Foo."
-  foo : Foo
-  foo = Left "foo"
+failing "Can't solve constraint between: Either String ?b and NatOrString."
+  natOrString : NatOrString
+  natOrString = Left "foo"
 ```
 
 If we publicly export our type alias, everything type checks fine:
@@ -228,18 +308,18 @@ If we publicly export our type alias, everything type checks fine:
 ```idris
 namespace Better
   public export
-  0 Bar : Type
-  Bar = Either String Nat
+  0 NatOrString : Type
+  NatOrString = Either String Nat
 
-bar : Bar
-bar = Left "bar"
+natOrString : Better.NatOrString
+natOrString = Left "bar"
 ```
 
 ### Visibility of Data Types
 
-Visibility of data types behaves slightly different. If they are
-`private`, neither the *type* nor the *data constructors* are visible
-outside of the namespace they where defined in. If they
+Visibility of data types behaves slightly different. If it set to
+`private` (the default), neither the *type* nor the *data constructors*
+are visible outside of the namespace they where defined in. If they
 are annotated with `export`, the type (constructor) is exported
 but not the data constructors:
 
@@ -267,6 +347,55 @@ of type `Foo` directly:
 failing "Export.Foo1 is private."
   foo : Export.Foo
   foo = Foo1 "foo"
+```
+
+This changes when we publicly export the data type:
+
+```idris
+namespace PublicExport
+  public export
+  data Foo : Type where
+    Foo1 : String -> PublicExport.Foo
+    Foo2 : Nat -> PublicExport.Foo
+
+foo2 : PublicExport.Foo
+foo2 = Foo2 12
+```
+
+The same goes for interfaces: If they are publicly exported, the
+interface (a type constructor) plus all its functions are exported
+and you can write implementations outside the namespace where
+they where defined:
+
+```idris
+namespace PEI
+  public export
+  interface Sized a where
+    size : a -> Nat
+
+Sized Nat where size = id
+
+sumSizes : Foldable t => Sized a => t a -> Nat
+sumSizes = foldl (\n,e => n + size e) 0
+```
+
+If they are not publicly exported, you will not be able to write
+implementations outside the namespace they were defined in
+(but you can still use the type and its functions in your code):
+
+```idris
+namespace EI
+  export
+  interface Empty a where
+    empty : a -> Bool
+
+failing
+  Empty Nat where
+    empty Z = True
+    empty (S _) = False
+
+nonEmpty : Empty a => a -> Bool
+nonEmpty = not . empty
 ```
 
 <!-- vi: filetype=idris2
