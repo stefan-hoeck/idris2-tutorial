@@ -96,8 +96,8 @@ import public Data.List1 as L
 ```
 
 The first line imports a module from another *package* (we will learn
-about packages below): The *base* package, which will be installed
-as part of your Idris installation.
+about packages below): `Data.List` from the *base* package, which
+will be installed as part of your Idris installation.
 
 The second line imports module `Text.CSV` from within our own source
 directory. It is always possible to import modules, which are part
@@ -113,9 +113,10 @@ of an additional `import` statement. This is useful when
 we split some complex functionality across different modules and
 want to import the lot via a single catch-all module
 (for an example, see module `Control.Monad.State` in *base*). It also
-often happens that in order to make use of functions from a module
-`A` we also require utilities from a module `B`, so `A` should
-re-export `B`. For instance, `Data.Vect` in *base* re-exports `Data.Fin`.
+often happens that in order to make use of functions from some module
+`A` we also require utilities from another module `B`, so `A` should
+re-export `B`. For instance, `Data.Vect` in *base* re-exports `Data.Fin`,
+because the latter is often required when working with vectors.
 
 The fourth line imports module `Data.Vect`, giving it a new name `V`, to
 be used as a shorter prefix. If you often need to disambiguate identifiers
@@ -162,7 +163,7 @@ Main> L.singleton 12
 
 ### Namespaces
 
-Sometimes we want to define several functions or data types
+Sometimes, we want to define several functions or data types
 with the same name in a single module. Idris does not allow this,
 because every name must be unique in its *namespace*, and the
 namespace of a module is just the fully qualified module name.
@@ -207,7 +208,10 @@ we had to put them in their own namespace. In order to be able to use
 them from outside their namespace, they need to be exported (see the
 section on visibility below). In case we need to disambiguate between
 these names, we can prefix them with part of their namespace. For instance,
-the following fails with a disambiguation error:
+the following fails with a disambiguation error, because there
+are several functions called `head` in scope and it is not clear
+from `head`'s argument (some data type supporting list syntax,
+of which again several are in scope), which version we want:
 
 ```idris
 failing "Ambiguous elaboration."
@@ -215,8 +219,9 @@ failing "Ambiguous elaboration."
   whatHead = head [12,"foo"]
 ```
 
-By prefixing `head` with part of its namespace, we can resolve the
-ambiguity:
+By prefixing `head` with part of its namespace, we can resolve both
+ambiguities. It is now immediately clear, that `[12,"foo"]` must be
+an `HVect`, because that's the type of `HVect.head`'s argument:
 
 ```idris
 thisHead : Nat
@@ -426,6 +431,156 @@ and added module `Data.List.Magic` demonstrating this quirk
 of the Idris module system (go have a look!).
 Typically, this is a rather hacky way to work around visibility
 constraints, but it can be useful at times.
+
+## Packages
+
+Idris packages allow us to assemble several modules into
+a logical unit and make them available to other Idris projects
+by *installing* the package. In this section we will learn
+about the structure of an Idris package and how to depend on
+other packages.
+
+### The `.ipkg` File
+
+At the heart of an Idris package lies the package's `.ipkg` file,
+which is usually stored at the project's root directory.
+For instance, for this Idris tutorial, there is file
+`tutorial.ipkg` in the root directory. An `.ipkg` file consists
+of several key-value pairs (most of them optional), the
+most important of which I'll describe here. By far the easiest
+way to setup a new Idris package is by letting Idris itself
+do it for you. Just create a new empty directory to be used
+as your package's root directory and execute `idris --init`
+from within this directory. Idris will ask you a few basic
+questions about the new package and will then setup an
+annotated `.ipkg` file you can modify to your liking.
+
+### Dependencies
+
+One of the most important fields in an `.ipkg` file is
+the `depends` fields, where dependencies on other
+packages are specified. Here is an example from the
+[*hedgehog* package](https://github.com/stefan-hoeck/idris2-hedgehog)
+a framework for writing property tests in Idris:
+
+```ipkg
+depends    = base         >= 0.5.1
+           , contrib      >= 0.5.1
+           , elab-util    >= 0.5.0
+           , pretty-show  >= 0.5.0
+           , sop          >= 0.5.0
+```
+
+As you can see, *hedgehog* depends on *base* and *contrib*,
+both of which are part of every Idris installation, but
+also on
+[*elab-util*](https://github.com/stefan-hoeck/idris2-elab-util),
+a library of utilities for writing elaborator scripts (a
+powerful technique for creating Idris declarations by
+writing Idris code; it comes with its own lengthy tutorial
+if you are interested),
+[*sop*](https://github.com/stefan-hoeck/idris2-sop), a library
+for generically deriving interface implementations via a
+*sum of products* representation (this is a useful thing
+you might want to check out some day), and
+[*pretty-show*](https://github.com/stefan-hoeck/idris2-pretty-show),
+a library for pretty printing Idris values (*hedgehog* makes
+use of this in case a test fails).
+
+So, before you actually can use *hedgehog* to write some
+property tests for your own project, you will need to
+install the packages it depends on before installing
+*hedgehog* itself. Here is how to do this for *elab-util*:
+
+First, download the package sources by cloning the GitHub
+repository:
+
+```sh
+git clone git@github.com:stefan-hoeck/idris2-elab-util.git
+```
+
+Now, move to the freshly created `idris2-elab-util` directory
+and build and install the package with `idris2 --install`:
+
+```sh
+idris2 --install elab-util.ipkg
+```
+
+If your editor is set up to jump to the definition of an
+Idris identifier (for instance, if you setup up
+*Neovim* as describe [here](Neovim.md)), consider installing
+packages together with their source files to make them
+available for this editor feature:
+
+```sh
+idris2 --install-with-src elab-util.ipkg
+```
+
+#### Dependency Versions
+
+You might want to specify a certain version (or a range)
+Idris should use for your dependencies. This might be useful
+if you have several versions of the same package installed
+and not all of them are compatible with your project.
+Here are several examples:
+
+```ipkg
+depends    = base         == 0.5.1
+           , contrib      == 0.5.1
+           , elab-util    >= 0.5.0
+           , pretty-show
+           , sop          >= 0.5.0 && < 0.6.0
+```
+
+This will look for packages *base* and *contrib* of
+exactly the given version, package *elab-util* of a version
+greater than or equal to `0.5.0`, package *pretty-show* of
+any version, and package *sop* of a version in the given
+range. In all cases, if several installed versions of a
+package match the specified range, the latest version will
+be used.
+
+In order to make use of this for your own packages, every
+`.ipkg` file should give the package's name and current
+version:
+
+```ipkg
+package tutorial
+
+version    = 0.1.0
+```
+
+### Library Modules
+
+Many if not most Idris packages available on GitHub are
+programming *libraries*: They implement some piece of
+functionality and make it available to all projects importing
+the given package. This is unlike Idris *applications*, which
+are supposed to be compiled to an executable, which can then
+be run on your computer. The Idris project itself provides
+both: The Idris compiler application, which we use to
+type check and build other Idris libraries and applications,
+and several libraries like *prelude*, *base*, and *contrib*,
+which provide basic data types and functions useful in
+most Idris projects.
+
+In order to type check and install the modules you wrote in a
+library, you must list them in the `modules` field. Here is
+an excerpt from the *sop* package:
+
+```ipkg
+modules = Data.Lazy
+        , Data.SOP
+        , Data.SOP.Interfaces
+        , Data.SOP.NP
+        , Data.SOP.NS
+        , Data.SOP.POP
+        , Data.SOP.SOP
+        , Data.SOP.Utils
+```
+
+Modules missing from this list will *not* be installed when
+running `idris2 --install`.
 
 <!-- vi: filetype=idris2
 -->
