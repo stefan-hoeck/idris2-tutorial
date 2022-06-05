@@ -120,7 +120,7 @@ Seems to work, so let's digest this step by step.
 We introduce several new local variables
 (`len`, `mean`, and `variance`),
 which all will be used more than once in the remainder
-of the implementation. To do so, we us a `let` binding. This
+of the implementation. To do so, we use a `let` binding. This
 consists of the `let` keyword, followed by one or more
 variable assignments, followed by the final expression,
 which has to be prefixed by `in`. Note, that whitespace
@@ -348,7 +348,7 @@ is a specialized version of the more general `traverse`,
 one of the most powerful and versatile functions
 available in the *Prelude* (check out its type!).
 
-1. Module `Data.List` in *base* exports functions `find` and `elemBy`.
+1. Module `Data.List` in *base* exports functions `find` and `elem`.
    Inspect their types and use these in the implementation of
    `handleRequest`. This should allow you to completely get rid
    of the `where` block.
@@ -796,7 +796,7 @@ Tutorial.Functions2> :t impl_1
 impl_1 : Either e (List b)
 ```
 
-Since `x` is of type `a`, we can either us it as an argument
+Since `x` is of type `a`, we can either use it as an argument
 to `fun` or drop and ignore it. `xs`, on the other hand, is
 the remainder of the list of type `List a`. We could again
 drop it or process it further by invoking `traverseEither`

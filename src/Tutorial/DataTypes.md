@@ -367,7 +367,7 @@ showTitle (Other x) = x
 Note, how in the last pattern match, the string value stored
 in the `Other` data constructor is *bound* to local variable `x`.
 Also, the `Other x` pattern has to be wrapped in parentheses,
-as other wise Idris would think `Other` and `x` were to
+as otherwise Idris would think `Other` and `x` were to
 distinct function arguments.
 
 This is a very common way to extract the values from
