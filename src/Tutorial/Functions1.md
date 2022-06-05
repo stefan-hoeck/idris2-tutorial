@@ -18,7 +18,7 @@ so we will continue from what we learned there.
 module Tutorial.Functions1
 ```
 
-## Functions with more that one Argument
+## Functions with more than one Argument
 
 Let's implement a function, which checks if its three
 `Integer` arguments form a
@@ -147,7 +147,7 @@ True
 
 Take your time to understand what's going on here. We pass
 function `isEven` as an argument to `testSquare`. The
-second argument is an integers, which will first be squared
+second argument is an integer, which will first be squared
 and then passed to `isEven`. While this is not very interesting,
 we will see lots of use cases for passing functions as
 arguments to other functions.
@@ -342,7 +342,7 @@ and `(10 <)`. The first tests, whether its argument is
 less than 10, the second, whether 10 is less than its
 argument.
 
-On exception where operator sections will not work is
+One exception where operator sections will not work is
 with the *minus* operator `(-)`. Here is an example to
 demonstrate this:
 
