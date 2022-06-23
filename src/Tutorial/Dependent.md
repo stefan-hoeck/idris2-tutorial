@@ -464,6 +464,7 @@ this, which constructor(s) of the type family to use.
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
+   ```
 
 4. Declare and implement a function `foldSemi`
    for accumulating the values stored
