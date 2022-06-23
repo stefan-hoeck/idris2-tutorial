@@ -37,7 +37,7 @@ foldSemi (x :: xs) = Just . maybe x (x <+>) $ foldSemi xs
 -- the `Nil` case is impossible here, so unlike in Exercise 4,
 -- we don't need to wrap the result in a `Maybe`.
 -- However, we need to pattern match on the tail of the Vect to
--- decide whether to invoke `foldSemiVect` recursively ore not
+-- decide whether to invoke `foldSemiVect` recursively or not
 foldSemiVect : Semigroup a => Vect (S n) a -> a
 foldSemiVect (x :: [])         = x
 foldSemiVect (x :: t@(_ :: _)) = x <+> foldSemiVect t
