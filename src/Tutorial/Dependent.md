@@ -423,7 +423,7 @@ replicate : (n : Nat) -> a -> Vect n a
 ```
 
 Now, `replicate` is a *dependent function type*: The output type
-*depends* on the value of one the arguments. It is straight forward
+*depends* on the value of one of the arguments. It is straight forward
 to implement `replicate` by pattern matching on `n`:
 
 ```idris
