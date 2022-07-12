@@ -79,7 +79,7 @@ Before we begin, note that the commands and actions shown in this
 tutorial might not work correctly after you edited a source file
 but did not write your changes to disk. Therefore, the first thing
 you should try if the things described here do not work, is to
-quickly safe the current file (`:w`).
+quickly save the current file (`:w`).
 
 Let's start with negation of a boolean value:
 
