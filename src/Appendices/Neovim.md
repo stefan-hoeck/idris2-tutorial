@@ -323,7 +323,7 @@ out each of them from within this source file.
 * Typing `<LocalLeader><LocalLeader>e` will display the error message
   from the current line in a popup window. This can be highly useful,
   if error messages are too long to fit on a single line. Likewise,
-  `<LocalLeader>el` will list all error messages from the current
+  `<LocalLeader><LocalLeader>el` will list all error messages from the current
   buffer in a new window. You can then select an error message and
   jump to its origin by pressing `<Enter>`.
 
