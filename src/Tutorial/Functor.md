@@ -249,7 +249,7 @@ want to keep the underlying structure.
 
 ### Functors with more than one Type Parameter
 
-The type constructors we looked at so far where all
+The type constructors we looked at so far were all
 of type `Type -> Type`. However, we can also implement `Functor`
 for other type constructors. The only prerequisite is that
 the type parameter we'd like to change with function `map` must
