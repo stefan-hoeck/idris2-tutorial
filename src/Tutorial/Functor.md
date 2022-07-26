@@ -1210,7 +1210,7 @@ Without further ado, here are the laws for `Monad`:
   These two laws state that `pure` should behave
   neutrally w.r.t. *bind*.
 
-* (m >>= f) >>= g = m >>= (f >=> g)
+* `(m >>= f) >>= g = m >>= (f >=> g)`.
   This is the law of associativity for monad.
   You might not have seen the second operator `(>=>)`.
   It can be used to sequence effectful computations
