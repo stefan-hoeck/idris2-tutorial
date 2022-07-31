@@ -1366,7 +1366,7 @@ must behave the same as the implementation in terms of `(>>=)`:
 
       ```idris
       record Prog' env err a where
-        constructor MkProg
+        constructor MkProg'
         runProg' : env -> IO (Either err a)
       ```
 
