@@ -7,13 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:19+0800\n"
-"PO-Revision-Date: 2022-08-02 13:19+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
+"projects/idris2-tutorial/eq/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
@@ -22,8 +25,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
 #: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
 #: ../src/Tutorial/Traverse.md:248
+#, fuzzy
 msgid "### Exercises part 1"
-msgstr ""
+msgstr "### 练习第 1 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
@@ -32,8 +36,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
 #: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
 #: ../src/Tutorial/Traverse.md:575
+#, fuzzy
 msgid "### Exercises part 2"
-msgstr ""
+msgstr "### 练习第 2 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
@@ -42,13 +47,15 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
 #: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
 #: ../src/Tutorial/Traverse.md:1017
+#, fuzzy
 msgid "### Exercises part 3"
-msgstr ""
+msgstr "### 练习第 3 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1128 ../src/Tutorial/Eq.md:1057
+#, fuzzy
 msgid "### Exercises part 4"
-msgstr ""
+msgstr "### 练习第 4 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
@@ -57,8 +64,9 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
 #: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
 #: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+#, fuzzy
 msgid "## Conclusion"
-msgstr ""
+msgstr "＃＃ 结论"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -68,8 +76,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
+#, fuzzy
 msgid "<!-- vi: filetype=idris2 -->"
-msgstr ""
+msgstr "<!-- vi: filetype=idris2 -->"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
@@ -77,18 +86,20 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
 #: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
 #: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+#, fuzzy
 msgid "%default total ```"
-msgstr ""
+msgstr "%默认总数```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
 #: ../src/Tutorial/Predicates.md:495
+#, fuzzy
 msgid "```idris data ColType = I64 | Str | Boolean | Float"
-msgstr ""
+msgstr "```idris 数据 ColType = I64 |字符串 |布尔值 |漂浮"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:936 ../src/Tutorial/Eq.md:460
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "showColType : ColType -> String\n"
@@ -97,14 +108,22 @@ msgid ""
 "showColType Boolean  = \"boolean\"\n"
 "showColType Float    = \"float\"\n"
 msgstr ""
+"```伊德里斯\n"
+"showColType : ColType -> 字符串\n"
+"showColType I64 = \"i64\"\n"
+"showColType Str = \"str\"\n"
+"showColType Boolean = \"布尔\"\n"
+"showColType Float = \"浮动\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:2
+#, fuzzy
 msgid "# Propositional Equality"
-msgstr ""
+msgstr "# 命题平等"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:9
+#, fuzzy
 msgid ""
 "In the [last chapter](DPair.md) we learned, how dependent pairs and records "
 "can be used to calculate *types* from values only known at runtime by "
@@ -112,39 +131,49 @@ msgid ""
 "relations - or *contracts* - between values as types, and how we can use "
 "values of these types as proofs that the contracts hold."
 msgstr ""
+"在 [最后一章](DPair.md) 中，我们了解了如何使用依赖对和记录来计算 * 类型 "
+"*，这些值仅在运行时通过对这些值进行模式匹配而已知。现在，"
+"我们将研究如何将值之间的关系或 *contracts* "
+"描述为类型，以及如何使用这些类型的值作为合约持有的证明。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:12
+#, fuzzy
 msgid "```idris module Tutorial.Eq"
-msgstr ""
+msgstr "```idris 模块 Tutorial.Eq"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:17
+#, fuzzy
 msgid ""
 "import Data.Either import Data.HList import Data.Vect import Data.String"
-msgstr ""
+msgstr "导入 Data.Either 导入 Data.HList 导入 Data.Vect 导入 Data.String"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:22
+#, fuzzy
 msgid "## Equality as a Type"
-msgstr ""
+msgstr "## 平等作为一种类型"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:26
+#, fuzzy
 msgid ""
 "Imagine, we'd like to concatenate the contents of two CSV files, both of "
 "which we stored on disk as tables together with their schemata as shown in "
 "our discussion about dependent pairs:"
-msgstr ""
+msgstr "想象一下，我们想要连接两个 CSV 文件的内容，我们将这两个文件作为表连同它们的模"
+"式一起存储在磁盘上，如我们关于依赖对的讨论中所示："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:32
+#, fuzzy
 msgid "Schema : Type Schema = List ColType"
-msgstr ""
+msgstr "架构：类型架构 = 列表 ColType"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:38 ../src/Tutorial/Predicates.md:501
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "IdrisType : ColType -> Type\n"
 "IdrisType I64     = Int64\n"
@@ -152,15 +181,21 @@ msgid ""
 "IdrisType Boolean = Bool\n"
 "IdrisType Float   = Double\n"
 msgstr ""
+"IdrisType : ColType -> 类型\n"
+"IdrisType I64 = Int64\n"
+"IdrisType Str = 字符串\n"
+"IdrisType 布尔值 = 布尔值\n"
+"IdrisType Float = 双\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:41
+#, fuzzy
 msgid "Row : Schema -> Type Row = HList . map IdrisType"
-msgstr ""
+msgstr "行：架构 -> 类型行 = HList。地图 IdrisType"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:47
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record Table where\n"
 "  constructor MkTable\n"
@@ -168,24 +203,35 @@ msgid ""
 "  size   : Nat\n"
 "  rows   : Vect size (Row schema)\n"
 msgstr ""
+"记录表在哪里\n"
+"  构造函数 MkTable\n"
+"  架构：架构\n"
+"  尺寸：自然\n"
+"  rows : Vect 大小（行模式）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:50
+#, fuzzy
 msgid "concatTables1 : Table -> Table -> Maybe Table ```"
-msgstr ""
+msgstr "concatTables1：表->表->可能表```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:55
+#, fuzzy
 msgid ""
 "We will not be able to implement `concatTables` by appending the two row "
 "vectors, unless we can somehow verify that the two schemata are identical. "
 "\"Well,\" I hear you say, \"that shouldn't be a big issue! Just implement "
 "`Eq` for `ColType`\". Let's give this a try:"
 msgstr ""
+"我们将无法通过附加两个行向量来实现 "
+"`concatTables`，除非我们能够以某种方式验证两个模式是否相同。 "
+"“好吧，”我听到你说，“这应该不是什么大问题！只需为 `ColType` 实现 "
+"`Eq`”。让我们试一试："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:63
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Eq ColType where\n"
@@ -195,29 +241,44 @@ msgid ""
 "  Float   == Float   = True\n"
 "  _       == _       = False\n"
 msgstr ""
+"```伊德里斯\n"
+"等式 ColType 其中\n"
+"  I64 == I64 = 真\n"
+"  力量 == 力量 = 真\n"
+"  布尔 == 布尔 = 真\n"
+"  浮动 == 浮动 = 真\n"
+"  _ == _ = 假\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:68
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "concatTables1 (MkTable s1 m rs1) (MkTable s2 n rs2) = case s1 == s2 of\n"
 "  True  => ?what_now\n"
 "  False => Nothing\n"
 "```\n"
 msgstr ""
+"concatTables1 (MkTable s1 m rs1) (MkTable s2 n rs2) = case s1 == s2 of\n"
+"  真 => ?what_now\n"
+"  错误 => 没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:73
+#, fuzzy
 msgid ""
 "Somehow, this doesn't seem to work. If we inspect the context of hole "
 "`what_now`, Idris still thinks that `s1` and `s2` are different, and if we "
 "go ahead and invoke `Vect.(++)` anyway in the `True` case, Idris will "
 "respond with a type error."
 msgstr ""
+"不知何故，这似乎不起作用。如果我们检查洞 `what_now` 的上下文，Idris 仍然认为 "
+"`s1` 和 `s2` 是不同的，如果我们继续调用 `Vect。（ ++)` 无论如何，在 `True` "
+"的情况下，Idris 将响应类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:82
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Tutorial.Relations> :t what_now\n"
@@ -229,14 +290,25 @@ msgid ""
 "   rs2 : Vect n (HList (map IdrisType s2))\n"
 "------------------------------\n"
 msgstr ""
+"```回复\n"
+"Tutorial.Relations> :t what_now\n"
+"   米：自然\n"
+"   s1 : 列出 ColType\n"
+"   rs1 : Vect m (HList (map IdrisType s1))\n"
+"   n : 纳特\n"
+"   s2 : 列出 ColType\n"
+"   rs2 : Vect n (HList (map IdrisType s2))\n"
+"------------------------------\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:85
+#, fuzzy
 msgid "what_now : Maybe Table ```"
-msgstr ""
+msgstr "what_now : 也许是表```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:92
+#, fuzzy
 msgid ""
 "The problem is, that there is no reason for Idris to unify the two values, "
 "even though `(==)` returned `True` because the result of `(==)` holds no "
@@ -245,19 +317,28 @@ msgid ""
 "fact, the following implementation of `Eq ColType` would be perfectly fine "
 "as far as the type checker is concerned:"
 msgstr ""
+"问题是，Idris 没有理由统一这两个值，即使 `(==)` 返回 `True` 因为 `(==)` "
+"的结果] 除了类型为 `Bool` 之外没有其他信息。 *我们* 认为，如果这是 `True` "
+"两个值应该是相同的，但 Idris 不相信。事实上，就类型检查器而言，以下 `Eq "
+"ColType` 的实现会非常好："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:97
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Eq ColType where\n"
 "  _       == _       = True\n"
 "```\n"
 msgstr ""
+"```repl\n"
+"等式 ColType 其中\n"
+"  _ == _ = 真\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:106
+#, fuzzy
 msgid ""
 "So Idris is right in not trusting us. You might expect it to inspect the "
 "implementation of `(==)` and figure out on its own, what the `True` result "
@@ -268,14 +349,21 @@ msgid ""
 "function's result for us. We can do so manually, however, as we will see "
 "later."
 msgstr ""
+"所以伊德里斯不信任我们是对的。您可能希望它检查 `(==)` 的实现并自行弄清楚 "
+"`True` 结果的含义，但这并不是这些事情通常的工作方式，因为大多数时候，要检查的"
+"计算路径的数量会太大。因此，Idris 能够在统一期间评估函数，但它不会为我们从函"
+"数结果中追溯有关函数参数的信息。但是，我们可以手动执行此操作，稍后我们将看到"
+"。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:108
+#, fuzzy
 msgid "### A Type for equal Schemata"
-msgstr ""
+msgstr "### 相等模式的类型"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:114
+#, fuzzy
 msgid ""
 "The problem described above is similar to what we saw when we talked about "
 "the benefit of [singleton types](DPair.md#erased-existentials): The types "
@@ -283,47 +371,62 @@ msgid ""
 "repeat time again for different use cases: We encode a contract between "
 "values in an indexed data type:"
 msgstr ""
+"上面描述的问题类似于我们在谈到[singleton types](DPair.md#erased-existentials)"
+"的好处时看到的：类型不够精确。我们现在要做的是，我们将针对不同的用例再次重复"
+"：我们对索引数据类型中的值之间的合约进行编码："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:119
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data SameSchema : (s1 : Schema) -> (s2 : Schema) -> Type where\n"
 "  Same : SameSchema s s\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"数据 SameSchema : (s1: Schema) -> (s2: Schema) -> Type where\n"
+"  相同：SameSchema s\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:124
+#, fuzzy
 msgid ""
 "First, note how `SameSchema` is a family of types indexed over two values of "
 "type `Schema`. But note also that the sole constructor restricts the values "
 "we allow for `s1` and `s2`: The two indices *must* be identical."
 msgstr ""
+"首先，请注意 `SameSchema` 是如何通过两个 `Schema` "
+"类型的值索引的类型族。但还要注意，唯一的构造函数限制了我们允许 `s1` 和 `s2` "
+"的值：两个索引 * 必须* 相同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:128
+#, fuzzy
 msgid ""
 "Why is this useful? Well, imagine we had a function for checking the "
 "equality of two schemata, which would try and return a value of type "
 "`SameSchema s1 s2`:"
-msgstr ""
+msgstr "为什么这很有用？好吧，假设我们有一个检查两个模式是否相等的函数，"
+"它会尝试返回一个类型为 `SameSchema s1 s2` 的值："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:132
+#, fuzzy
 msgid ""
 "```idris sameSchema : (s1, s2 : Schema) -> Maybe (SameSchema s1 s2)  ```"
-msgstr ""
+msgstr "```idris sameSchema : (s1, s2 : Schema) -> Maybe (SameSchema s1 s2) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:134
+#, fuzzy
 msgid "We could then use this function to implement `concatTables`:"
-msgstr ""
+msgstr "然后我们可以使用这个函数来实现 `concatTables`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:141
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "concatTables : Table -> Table -> Maybe Table\n"
@@ -332,16 +435,24 @@ msgid ""
 "  Nothing   => Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"concatTables : 表 -> 表 -> 可能表\n"
+"concatTables (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 "
+"of\n"
+"  一样 => 只是 $ MkTable s1 _ (rs1 ++ rs2)\n"
+"  没有=>没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:143
+#, fuzzy
 msgid ""
 "It worked! What's going on here? Well, let's inspect the types involved:"
-msgstr ""
+msgstr "有效！这里发生了什么？好吧，让我们检查一下所涉及的类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:150
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "concatTables2 : Table -> Table -> Maybe Table\n"
@@ -350,15 +461,23 @@ msgid ""
 "  Nothing   => Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"concatTables2 : 表 -> 表 -> 可能表\n"
+"concatTables2 (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 "
+"of\n"
+"  一样 => ?almost_there\n"
+"  没有=>没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:152
+#, fuzzy
 msgid "At the REPL, we get the following context for `almost_there`:"
-msgstr ""
+msgstr "在 REPL 中，我们得到 `almost_there` 的以下上下文："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:161
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Tutorial.Relations> :t almost_there\n"
@@ -370,48 +489,69 @@ msgid ""
 "   s1 : List ColType\n"
 "------------------------------\n"
 msgstr ""
+"```回复\n"
+"Tutorial.Relations> :t about_there\n"
+"   米：自然\n"
+"   s2 : 列出 ColType\n"
+"   rs1 : Vect m (HList (map IdrisType s2))\n"
+"   n : 纳特\n"
+"   rs2 : Vect n (HList (map IdrisType s2))\n"
+"   s1 : 列出 ColType\n"
+"------------------------------\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:164
+#, fuzzy
 msgid "almost_there : Maybe Table ```"
-msgstr ""
+msgstr "几乎_那里：也许是表```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:168
+#, fuzzy
 msgid ""
 "See, how the types of `rs1` and `rs2` unify? Value `Same`, coming as the "
 "result of `sameSchema s1 s2`, is a *witness* that `s1` and `s2` are actually "
 "identical, because this is what we specified in the definition of `Same`."
 msgstr ""
+"看看，`rs1` 和 `rs2` 的类型是怎么统一的？值 `Same`，作为 `sameSchema s1 s2` "
+"的结果，是 * 见证 * `s1` 和 `s2` 是实际上相同，因为这是我们在 `Same` "
+"的定义中指定的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:172
+#, fuzzy
 msgid ""
 "All that remains to do is to implement `sameSchema`. For this, we will write "
 "another data type for specifying when two values of type `ColType` are "
 "identical:"
-msgstr ""
+msgstr "剩下要做的就是实现`sameSchema`。为此，我们将编写另一种数据类型，用于指定 "
+"`ColType` 类型的两个值何时相同："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:177
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data SameColType : (c1, c2 : ColType) -> Type where\n"
 "  SameCT : SameColType c1 c1\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"数据 SameColType : (c1, c2 : ColType) -> 输入位置\n"
+"  SameCT : SameColType c1 c1\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:180
+#, fuzzy
 msgid ""
 "We can now define several utility functions. First, one for figuring out if "
 "two column types are identical:"
-msgstr ""
+msgstr "我们现在可以定义几个实用函数。首先，用于确定两个列类型是否相同："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:189
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "sameColType : (c1, c2 : ColType) -> Maybe (SameColType c1 c2)\n"
@@ -422,18 +562,31 @@ msgid ""
 "sameColType _ _             = Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"sameColType : (c1, c2 : ColType) -> 也许 (SameColType c1 c2)\n"
+"sameColType I64 I64 = 只是 SameCT\n"
+"sameColType Str Str = 只是 SameCT\n"
+"sameColType Boolean Boolean = 只是 SameCT\n"
+"sameColType Float Float = 只是 SameCT\n"
+"sameColType _ _ = 无\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:195
+#, fuzzy
 msgid ""
 "This will convince Idris, because in each pattern match, the return type "
 "will be adjusted according to the values we matched on. For instance, on the "
 "first line, the output type is `Maybe (SameColType I64 I64)` as you can "
 "easily verify yourself by inserting a hole and checking its type at the REPL."
 msgstr ""
+"这将说服 Idris，因为在每个模式匹配中，返回类型将根据我们匹配的值进行调整。例"
+"如，在第一行，输出类型是 `Maybe (SameColType I64 I64)`，"
+"因为您可以通过插入一个孔并在 REPL 中检查其类型来轻松验证自己。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:203
+#, fuzzy
 msgid ""
 "We will need two additional utilities: Functions for creating values of type "
 "`SameSchema` for the nil and cons cases. Please note, how the "
@@ -442,15 +595,20 @@ msgid ""
 "which will then be used to convince the type checker about some fact we "
 "already take for granted but Idris does not."
 msgstr ""
+"我们将需要两个额外的实用程序： 用于为 nil 和 cons 情况创建 `SameSchema` 类型"
+"值的函数。请注意，实现是多么微不足道。尽管如此，我们还是经常不得不快速写出这"
+"么小的证明（我将在下一节解释，为什么我称它们为 *proofs*），然后用来让类型检查"
+"器相信我们已经采取的一些事实理所当然，但伊德里斯没有。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:207
+#, fuzzy
 msgid "```idris sameNil : SameSchema [] [] sameNil = Same"
-msgstr ""
+msgstr "```idris sameNil : SameSchema [] [] sameNil = Same"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:213
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "sameCons :  SameColType c1 c2\n"
 "         -> SameSchema s1 s2\n"
@@ -458,9 +616,15 @@ msgid ""
 "sameCons SameCT Same = Same\n"
 "```\n"
 msgstr ""
+"sameCons : SameColType c1 c2\n"
+"         -> SameSchema s1 s2\n"
+"         -> SameSchema (c1 :: s1) (c2 :: s2)\n"
+"sameCons SameCT 相同 = 相同\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:221
+#, fuzzy
 msgid ""
 "As usual, it can help understanding what's going on by replacing the right "
 "hand side of `sameCons` with a hole an check out its type and context at the "
@@ -469,10 +633,14 @@ msgid ""
 "unification of `c1 :: s1` and `c2 :: s2` immediately follows.  With these, "
 "we can finally implement `sameSchema`:"
 msgstr ""
+"像往常一样，它可以通过将 `sameCons` 的右侧替换为一个孔并在 REPL "
+"中检查其类型和上下文来帮助理解发生了什么。左侧存在值 `SameCT` 和 `Same` 迫使 "
+"Idris 统一 `c1` 和 `c2` 以及 `s1 ` 和 `s2`，紧接着是 `c1 :: s1` 和 `c2 :: s2`"
+" 的统一。有了这些，我们终于可以实现`sameSchema`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:229
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "sameSchema []        []        = Just sameNil\n"
@@ -482,9 +650,17 @@ msgid ""
 "sameSchema []        (x :: xs) = Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"sameSchema [] [] = 只是 sameNil\n"
+"sameSchema (x :: xs) (y :: ys) =\n"
+"  [| sameCons (sameColType x y) (sameSchema xs ys) |]\n"
+"sameSchema (x :: xs) [] = 无\n"
+"sameSchema [] (x :: xs) = 无\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:238
+#, fuzzy
 msgid ""
 "What we described here is a far stronger form of equality than what is "
 "provided by interface `Eq` and the `(==)` operator: Equality of values that "
@@ -493,14 +669,20 @@ msgid ""
 "view types as mathematical *propositions*, and values of these types a "
 "*proofs* that these propositions hold."
 msgstr ""
+"我们在这里描述的是一种比接口 `Eq` 和 `(==)` "
+"运算符提供的更强大的相等形式：类型检查器在尝试时接受的值相等统一类型级索引。"
+"这也称为 * 命题相等 *：我们将在下面看到，我们可以将类型视为数学 * 命题 *，"
+"这些类型的值是这些命题所持有的 * 证明 * ."
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:240
+#, fuzzy
 msgid "### Type `Equal`"
-msgstr ""
+msgstr "### 键入 ` 等于 `"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:251
+#, fuzzy
 msgid ""
 "Propositional equality is such a fundamental concept, that the *Prelude* "
 "exports a general data type for this already: `Equal`, with its only data "
@@ -512,15 +694,22 @@ msgid ""
 "disambiguate propositional from definitional equality, you can also use "
 "operator `(===)` for the former."
 msgstr ""
+"命题相等是一个基本概念，以至于 *Prelude* "
+"已经为此导出了一个通用数据类型：`Equal`，以及它唯一的数据构造函数 "
+"`Refl`。此外，还有一个用于表达命题相等的内置运算符，它被脱糖为 `Equal`：`(=)`"
+"。这有时会导致一些混淆，因为等号也用于*定义相等*：在函数实现中描述左侧和右侧"
+"被定义为相等。如果您想从定义相等中消除命题的歧义，您还可以使用运算符 `(===)` "
+"来表示前者。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:253
+#, fuzzy
 msgid "Here is another implementation of `concatTables`:"
-msgstr ""
+msgstr "这是 `concatTables` 的另一个实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:261
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "eqColType : (c1,c2 : ColType) -> Maybe (c1 = c2)\n"
@@ -530,20 +719,31 @@ msgid ""
 "eqColType Float   Float   = Just Refl\n"
 "eqColType _ _             = Nothing\n"
 msgstr ""
+"```伊德里斯\n"
+"eqColType : (c1,c2 : ColType) -> 也许 (c1 = c2)\n"
+"eqColType I64 I64 = 只是参考\n"
+"eqColType Str Str = 只是参考\n"
+"eqColType Boolean Boolean = Just Refl\n"
+"eqColType Float Float = Just Refl\n"
+"eqColType _ _ = 无\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:266
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "eqCons :  {0 c1,c2 : a}\n"
 "       -> {0 s1,s2 : List a}\n"
 "       -> c1 = c2 -> s1 = s2 ->  c1 :: s1 = c2 :: s2\n"
 "eqCons Refl Refl = Refl\n"
 msgstr ""
+"eqCons：{0 c1，c2：a}\n"
+"       -> {0 s1,s2 : 列出一个}\n"
+"       -> c1 = c2 -> s1 = s2 -> c1 :: s1 = c2 :: s2\n"
+"eqCons Refl Refl = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:272
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "eqSchema : (s1,s2 : Schema) -> Maybe (s1 = s2)\n"
 "eqSchema []        []        = Just Refl\n"
@@ -551,10 +751,16 @@ msgid ""
 "eqSchema (x :: xs) []        = Nothing\n"
 "eqSchema []        (x :: xs) = Nothing\n"
 msgstr ""
+"eqSchema : (s1,s2 : Schema) -> 也许 (s1 = s2)\n"
+"eqSchema [] [] = 只是参考\n"
+"eqSchema (x :: xs) (y :: ys) = [| eqCons (eqColType x y) (eqSchema xs ys) |]"
+"\n"
+"eqSchema (x :: xs) [] = 无\n"
+"eqSchema [] (x :: xs) = 无\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:278
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "concatTables3 : Table -> Table -> Maybe Table\n"
 "concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of\n"
@@ -562,101 +768,136 @@ msgid ""
 "  Nothing   => Nothing\n"
 "```\n"
 msgstr ""
+"concatTables3 : 表 -> 表 -> 可能表\n"
+"concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 "
+"of\n"
+"  Just Refl => Just $ MkTable _ _ (rs1 ++ rs2)\n"
+"  没有=>没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:285
+#, fuzzy
 msgid ""
 "In the following exercises, you are going to implement some very basic "
 "properties of equality proofs. You'll have to come up with the types of the "
 "functions yourself, as the implementations will be incredibly simple."
-msgstr ""
+msgstr "在接下来的练习中，您将实现等式证明的一些非常基本的属性。您必须自己提出函数的"
+"类型，因为实现将非常简单。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:289
+#, fuzzy
 msgid ""
 "Note: If you can't remember what the terms \"reflexive\", \"symmetric\", and "
 "\"transitive\" mean, quickly read about equivalence relations [here](https://"
 "en.wikipedia.org/wiki/Equivalence_relation)."
 msgstr ""
+"注意：如果您不记得术语“自反”、“对称”和“传递”的含义，"
+"请快速阅读关于等价关系的内容 [此处](https://en.wikipedia.org/wiki/"
+"Equivalence_relation)。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Eq.md:291
+#, fuzzy
 msgid "Show that `SameColType` is a reflexive relation."
-msgstr ""
+msgstr "证明 `SameColType` 是自反关系。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Eq.md:293
+#, fuzzy
 msgid "Show that `SameColType` is a symmetric relation."
-msgstr ""
+msgstr "证明 `SameColType` 是一个对称关系。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Eq.md:295
+#, fuzzy
 msgid "Show that `SameColType` is a transitive relation."
-msgstr ""
+msgstr "证明 `SameColType` 是传递关系。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Eq.md:299
+#, fuzzy
 msgid ""
 "Let `f` be a function of type `ColType -> a` for an arbitrary type `a`. Show "
 "that from a value of type `SameColType c1 c2` follows that `f c1` and `f c2` "
 "are equal."
 msgstr ""
+"对于任意类型 `a`，令 `f` 为 `ColType -> a` 类型的函数。证明从 `SameColType "
+"c1 c2` 类型的值得出 `f c1` 和 `f c2` 相等。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:303
+#, fuzzy
 msgid ""
 "For `(=)` the above properties are available from the *Prelude* as functions "
 "`sym`, `trans`, and `cong`. Reflexivity comes from the data constructor "
 "`Refl` itself."
 msgstr ""
+"对于 `(=)`，上述属性可从 *Prelude* 作为函数 `sym`、`trans` 和 `cong` "
+"获得.自反性来自数据构造函数 `Refl` 本身。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Eq.md:307
+#, fuzzy
 msgid ""
 "Implement a function for verifying that two natural numbers are identical. "
 "Try using `cong` in your implementation."
-msgstr ""
+msgstr "实现一个函数来验证两个自然数是否相同。尝试在您的实现中使用 `cong`。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Eq.md:310
+#, fuzzy
 msgid ""
 "Use the function from exercise 5 for zipping two `Table`s if they have the "
 "same number of rows."
-msgstr ""
+msgstr "如果两个 `Table` 的行数相同，请使用练习 5 中的函数压缩它们。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:315
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Hint: Use `Vect.zipWith`. You will need to implement\n"
 "   custom function `appRows` for this, since Idris will\n"
 "   not automatically figure out that the types unify when\n"
 "   using `HList.(++)`:\n"
 msgstr ""
+"   提示：使用 `Vect.zipWith`。您将需要实施\n"
+"   为此自定义函数 `appRows`，因为 Idris 将\n"
+"   不会自动确定类型何时统一\n"
+"   使用 `HList.(++)`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:319
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   appRows : {ts1 : _} -> Row ts1 -> Row ts2 -> Row (ts1 ++ ts2)\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   appRows : {ts1 : _} -> 行 ts1 -> 行 ts2 -> 行 (ts1 ++ ts2)\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:323
+#, fuzzy
 msgid ""
 "We will later learn how to use *rewrite rules* to circumvent the need of "
 "writing custom functions like `appRows` and use `(++)` in `zipWith` directly."
 msgstr ""
+"稍后我们将学习如何使用 * 重写规则 * 来规避编写自定义函数的需要，例如 "
+"`appRows` 并在 `zipWith` 中使用 `(++)` ] 直接地。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:325
+#, fuzzy
 msgid "## Programs as Proofs"
-msgstr ""
+msgstr "## 程序作为证明"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:333
+#, fuzzy
 msgid ""
 "A famous observation by mathematician *Haskell Curry* and logician *William "
 "Alvin Howard* leads to the conclusion, that we can view a *type* in a "
@@ -666,90 +907,124 @@ msgid ""
 "isomorphism](https://en.wikipedia.org/wiki/Curry"
 "%E2%80%93Howard_correspondence)."
 msgstr ""
+"数学家 *Haskell Curry* 和逻辑学家 *William Alvin Howard* "
+"的著名观察得出的结论是，我们可以在具有足够丰富类型的编程语言中查看 * 类型 "
+"*系统作为一个数学命题和一个计算这种类型的*值*的总程序作为命题成立的证明。"
+"这也称为 [Curry-Howard 同构](https://en.wikipedia.org/wiki/"
+"Curry%E2%80%93Howard_correspondence)。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:336
+#, fuzzy
 msgid "For instance, here is a simple proof that one plus one equals two:"
-msgstr ""
+msgstr "例如，这里有一个简单的证明，证明一加一等于二："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:341
+#, fuzzy
 msgid "```idris onePlusOne : the Nat 1 + 1 = 2 onePlusOne = Refl ```"
-msgstr ""
+msgstr "```idris onePlusOne : Nat 1 + 1 = 2 onePlusOne = Refl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:346
+#, fuzzy
 msgid ""
 "The above proof is trivial, as Idris solves this by unification.  But we "
 "already stated some more interesting things in the exercises. For instance, "
 "the symmetry and transitivity of `SameColType`:"
 msgstr ""
+"上面的证明是微不足道的，因为 Idris "
+"通过统一解决了这个问题。但是我们已经在练习中陈述了一些更有趣的事情。例如 "
+"`SameColType` 的对称性和传递性："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:350
+#, fuzzy
 msgid ""
 "```idris sctSymmetric : SameColType c1 c2 -> SameColType c2 c1 sctSymmetric "
 "SameCT = SameCT"
 msgstr ""
+"```idris sctSymmetric : SameColType c1 c2 -> SameColType c2 c1 sctSymmetric "
+"SameCT = SameCT"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:354
+#, fuzzy
 msgid ""
 "sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3 "
 "sctTransitive SameCT SameCT = SameCT ```"
 msgstr ""
+"sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3 "
+"sctTransitive SameCT SameCT = SameCT ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:357
+#, fuzzy
 msgid ""
 "Note, that a type alone is not a proof. For instance, we are free to state "
 "that one plus one equals three:"
-msgstr ""
+msgstr "请注意，单独的类型不是证明。例如，我们可以自由地说一加一等于三："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:361
+#, fuzzy
 msgid "```idris onePlusOneWrong : the Nat 1 + 1 = 3 ```"
-msgstr ""
+msgstr "```idris onePlusOneWrong : Nat 1 + 1 = 3 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:365
+#, fuzzy
 msgid ""
 "We will, however, have a hard time implementing this in a provably total "
 "way. We say: \"The type `the Nat 1 + 1 = 3` is *uninhabited*\", meaning, "
 "that there is no value of this type."
 msgstr ""
+"然而，我们将很难以可证明的整体方式实现这一点。我们说：“类型 `the Nat 1 + 1 = "
+"3` 是 *uninhabited*”，意思是这个类型没有值。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:367
+#, fuzzy
 msgid "### When Proofs replace Tests"
-msgstr ""
+msgstr "### 当证明取代测试时"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:373
+#, fuzzy
 msgid ""
 "We will see several different use cases for compile time proofs, a very "
 "straight forward one being to show that our functions behave as they should "
 "by proofing some properties about them. For instance, here is a proposition "
 "that `map` on list does not change the number of elements in the list:"
 msgstr ""
+"我们将看到几个不同的编译时证明用例，一个非常直接的用例是通过证明我们的函数的"
+"一些属性来证明我们的函数行为应该如此。例如，这里有一个命题，列表上的 `map` "
+"不会改变列表中元素的数量："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:377
+#, fuzzy
 msgid ""
 "```idris mapListLength : (f : a -> b) -> (as : List a) -> length as = length "
 "(map f as)  ```"
 msgstr ""
+"```idris mapListLength : (f : a -> b) -> (as : List a) -> length as = length "
+"(map f as) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:381
+#, fuzzy
 msgid ""
 "Read this as a universally quantified statement: For all functions `f` from "
 "`a` to `b` and for all lists `as` holding values of type `a`, the length of "
 "`map f as` is the same the as the length of the original list."
 msgstr ""
+"将此视为一个普遍量化的陈述：对于从 `a` 到 `b` 的所有函数 `f` 以及所有包含 "
+"`as` 类型值的列表 [ X133X]a`，`map f as`的长度与原始列表的长度相同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:387
+#, fuzzy
 msgid ""
 "We can implement `mapListLength` by pattern matching on `as`. The `Nil` case "
 "will be trivial: Idris solves this by unification. It knows the value of the "
@@ -757,42 +1032,56 @@ msgid ""
 "the input as well, it follows immediately that the result will be `Nil` as "
 "well:"
 msgstr ""
+"我们可以通过在 ` as` 上进行模式匹配来实现 `mapListLength`。 `Nil` "
+"的情况很简单：Idris 通过统一解决了这个问题。它知道输入列表的值 (`Nil`)，"
+"并且由于 `map` 也是通过对输入的模式匹配实现的，因此立即得出结果将为 `Nil ` "
+"以及："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:391
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "mapListLength f []        = Refl\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"mapListLength f [] = Refl\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:395
+#, fuzzy
 msgid ""
 "The `cons` case is more involved, and we will do this stepwise.  First, note "
 "that we can proof that the length of a map over the tail will stay the same "
 "by means of recursion:"
-msgstr ""
+msgstr "`cons` 的情况比较复杂，我们将逐步进行。首先，请注意，我们可以通过递归证明地图"
+"尾部的长度将保持不变："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:401
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "mapListLength f (x :: xs) = case mapListLength f xs of\n"
 "  prf => ?mll1\n"
 "```\n"
 msgstr ""
+"```repl\n"
+"mapListLength f (x :: xs) = case mapListLength f xs of\n"
+"  prf => ?mll1\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:403
+#, fuzzy
 msgid "Let's inspect the types and context we have here:"
-msgstr ""
+msgstr "让我们检查一下我们在这里拥有的类型和上下文："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:411
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 " 0 b : Type\n"
@@ -803,14 +1092,24 @@ msgid ""
 "   prf : length xs = length (map f xs)\n"
 "------------------------------\n"
 msgstr ""
+"```回复\n"
+" 0 b : 类型\n"
+" 0 a : 类型\n"
+"   xs ：列出一个\n"
+"   f : a -> b\n"
+"   x：一个\n"
+"   prf : 长度 xs = 长度（映射 f xs）\n"
+"------------------------------\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:414
+#, fuzzy
 msgid "mll1 : S (length xs) = S (length (map f xs))  ```"
-msgstr ""
+msgstr "mll1 : S (长度 xs) = S (长度 (地图 f xs)) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:422
+#, fuzzy
 msgid ""
 "So, we have a proof of type `length xs = length (map f xs)`, and from the "
 "implementation of `map` Idris concludes that what we are actually looking "
@@ -819,39 +1118,54 @@ msgid ""
 "abbreviation for *congruence*). We can thus implement the *cons* case "
 "concisely like so:"
 msgstr ""
+"所以，我们有一个类型 `length xs = length (map f xs)` 的证明，并且从 `map` "
+"的实现 Idris 得出结论，我们真正要寻找的是类型的结果`S（长度 xs）=S（长度（"
+"地图 f xs））`。这正是 *Prelude* 中的函数 `cong` 的用途（“cong”是 "
+"*congruence* 的缩写）。因此，我们可以像这样简洁地实现 *cons* 案例："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:426
+#, fuzzy
 msgid "```idris mapListLength f (x :: xs) = cong S $ mapListLength f xs ```"
-msgstr ""
+msgstr "```idris mapListLength f (x :: xs) = con S $ mapListLength f xs ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:431
+#, fuzzy
 msgid ""
 "Please take a moment to appreciate what we achieved here: A *proof* in the "
 "mathematical sense that our function will not affect the length of our list. "
 "We no longer need a unit test or similar program to verify this."
 msgstr ""
+"请花点时间欣赏一下我们在这里取得的成就：数学意义上的 *proof*，我们的函数不会"
+"影响列表的长度。我们不再需要单元测试或类似程序来验证这一点。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:435
+#, fuzzy
 msgid ""
 "Before we continue, please note an important thing: In our case expression, "
 "we used a *variable* for the result from the recursive call:"
-msgstr ""
+msgstr "在我们继续之前，请注意一件重要的事情：在我们的 case 表达式中，我们使用 * "
+"变量 * 来表示递归调用的结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:440
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "mapListLength f (x :: xs) = case mapListLength f xs of\n"
 "  prf => cong S prf\n"
 "```\n"
 msgstr ""
+"```repl\n"
+"mapListLength f (x :: xs) = case mapListLength f xs of\n"
+"  prf => 丛 S prf\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:448
+#, fuzzy
 msgid ""
 "Here, we did not want the two lengths to unify, because we needed the "
 "distinction in our call to `cong`. Therefore: If you need a proof of type `x "
@@ -860,19 +1174,26 @@ msgid ""
 "computations on such a proof, use a variable and the left and right-hand "
 "sides will remain distinct."
 msgstr ""
+"在这里，我们不希望这两个长度统一，因为我们需要在调用 `cong` "
+"时加以区分。因此：如果您需要 `x = y` 类型的证明来统一两个变量，"
+"请在模式匹配中使用 `Refl` 数据构造函数。另一方面，如果您需要对这样的证明进行"
+"进一步的计算，请使用变量，并且左侧和右侧将保持不同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:453
+#, fuzzy
 msgid ""
 "Here is another example from the last chapter: We want to show that parsing "
 "and printing column types behaves correctly.  Writing proofs about parsers "
 "can be very hard in general, but here it can be done with a mere pattern "
 "match:"
 msgstr ""
+"这是上一章的另一个例子：我们想证明解析和打印列类型的行为是正确的。一般来说，"
+"编写关于解析器的证明可能非常困难，但在这里可以仅通过模式匹配来完成："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:467
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readColType : String -> Maybe ColType\n"
 "readColType \"i64\"      = Just I64\n"
@@ -881,10 +1202,16 @@ msgid ""
 "readColType \"float\"    = Just Float\n"
 "readColType s          = Nothing\n"
 msgstr ""
+"readColType : String -> 也许 ColType\n"
+"readColType \"i64\" = 只是 I64\n"
+"readColType \"str\" = 只是 Str\n"
+"readColType \"boolean\" = 只是布尔值\n"
+"readColType \"float\" = 只是浮动\n"
+"readColType s = 无\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:474
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "showReadColType : (c : ColType) -> readColType (showColType c) = Just c\n"
 "showReadColType I64     = Refl\n"
@@ -893,16 +1220,24 @@ msgid ""
 "showReadColType Float   = Refl\n"
 "```\n"
 msgstr ""
+"showReadColType : (c : ColType) -> readColType (showColType c) = 只是 c\n"
+"showReadColType I64 = 参考\n"
+"showReadColType Str = Refl\n"
+"showReadColType Boolean = Refl\n"
+"showReadColType Float = Refl\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:477
+#, fuzzy
 msgid ""
 "Such simple proofs give us quick but strong guarantees that we did not make "
 "any stupid mistakes."
-msgstr ""
+msgstr "这样简单的证明给了我们快速但有力的保证，我们没有犯任何愚蠢的错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:485
+#, fuzzy
 msgid ""
 "The examples we saw so far were very easy to implement. In general, this is "
 "not the case, and we will have to learn about several additional techniques "
@@ -911,14 +1246,20 @@ msgid ""
 "assistant, we are free to choose whether some aspect of our code needs such "
 "strong guarantees or not."
 msgstr ""
+"到目前为止，我们看到的示例非常容易实现。一般来说，情况并非如此，我们将不得不"
+"学习一些额外的技术来证明我们程序的有趣之处。但是，当我们将 Idris 用作通用编程"
+"语言而不是用作证明助手时，我们可以自由选择代码的某些方面是否需要这种强有力的"
+"保证。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:487
+#, fuzzy
 msgid "### A Note of Caution: Lowercase Identifiers in Function Types"
-msgstr ""
+msgstr "### 注意事项：函数类型中的小写标识符"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:494
+#, fuzzy
 msgid ""
 "When writing down the types of proofs as we did above, one has to be very "
 "careful not to fall into the following trap: In general, Idris will treat "
@@ -926,25 +1267,34 @@ msgid ""
 "arguments).  For instance, here is a try at proofing the identity functor "
 "law for `Maybe`:"
 msgstr ""
+"在写下我们上面所做的证明类型时，必须非常小心不要落入以下陷阱：通常，Idris "
+"会将函数类型中的小写标识符视为类型参数（已删除的隐式参数）。例如，"
+"这里尝试证明 `Maybe` 的恒等函子定律："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:500
+#, fuzzy
 msgid ""
 "```idris mapMaybeId1 : (ma : Maybe a) -> map id ma = ma mapMaybeId1 Nothing "
 "= Refl mapMaybeId1 (Just x) = ?mapMaybeId1_rhs ```"
 msgstr ""
+"```idris mapMaybeId1 : (ma : Maybe a) -> map id ma = ma mapMaybeId1 Nothing "
+"= Refl mapMaybeId1 (Just x) = ?mapMaybeId1_rhs ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:504
+#, fuzzy
 msgid ""
 "You will not be able to implement the `Just` case, because Idris treats `id` "
 "as an implicit argument as can easily be seen when inspecting the context of "
 "`mapMaybeId1_rhs`:"
 msgstr ""
+"您将无法实现 `Just` 案例，因为 Idris 将 `id` 视为隐式参数，这在检查 "
+"`mapMaybeId1_rhs` 的上下文时很容易看出："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:510
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Tutorial.Relations> :t mapMaybeId1_rhs\n"
@@ -953,23 +1303,34 @@ msgid ""
 "   x : a\n"
 "------------------------------\n"
 msgstr ""
+"```回复\n"
+"Tutorial.Relations> :t mapMaybeId1_rhs\n"
+" 0 a : 类型\n"
+" 0 id : a -> a\n"
+"   x：一个\n"
+"------------------------------\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:513
+#, fuzzy
 msgid "mapMaybeId1_rhs : Just (id x) = Just x ```"
-msgstr ""
+msgstr "mapMaybeId1_rhs : Just (id x) = Just x ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:517
+#, fuzzy
 msgid ""
 "As you can see, `id` is an erased argument of type `a -> a`. And in fact, "
 "when type-checking this module, Idris will issue a warning that parameter "
 "`id` is shadowing an existing function:"
 msgstr ""
+"如您所见，`id` 是 `a -> a` "
+"类型的已擦除参数。事实上，在对该模块进行类型检查时，Idris 会发出警告，"
+"指出参数 `id` 正在隐藏现有函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:523
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Warning: We are about to implicitly bind the following lowercase names.\n"
@@ -977,50 +1338,69 @@ msgid ""
 "  id is shadowing Prelude.Basics.id\n"
 "```\n"
 msgstr ""
+"```repl\n"
+"警告：我们即将隐式绑定以下小写名称。\n"
+"您可能无意中隐藏了相关的全局定义：\n"
+"  id 正在影响 Prelude.Basics.id\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:527
+#, fuzzy
 msgid ""
 "The same is not true for `map`: Since we explicitly pass arguments to `map`, "
 "Idris treats this as a function name and not as an implicit argument."
-msgstr ""
+msgstr "`map` 的情况并非如此：由于我们将参数显式传递给 `map`，Idris "
+"将其视为函数名而不是隐式参数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:530
+#, fuzzy
 msgid ""
 "You have several options here. For instance, you could use an uppercase "
 "identifier, as these will never be treated as implicit arguments:"
-msgstr ""
+msgstr "您在这里有几个选择。例如，您可以使用大写标识符，因为这些标识符永远不会被视为"
+"隐式参数："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:534
+#, fuzzy
 msgid "```idris Id : a -> a Id = id"
-msgstr ""
+msgstr "```idris Id : a -> a Id = id"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:539
+#, fuzzy
 msgid ""
 "mapMaybeId2 : (ma : Maybe a) -> map Id ma = ma mapMaybeId2 Nothing = Refl "
 "mapMaybeId2 (Just x) = Refl ```"
 msgstr ""
+"mapMaybeId2 : (ma : Maybe a) -> map Id ma = ma mapMaybeId2 Nothing = Refl "
+"mapMaybeId2 (Just x) = Refl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:543
+#, fuzzy
 msgid ""
 "As an alternative - and this is the preferred way to handle this case - you "
 "can prefix `id` with part of its namespace, which will immediately resolve "
 "the issue:"
-msgstr ""
+msgstr "作为替代方案 - 这是处理这种情况的首选方式 - 您可以在 `id` "
+"前加上其命名空间的一部分，这将立即解决问题："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:549
+#, fuzzy
 msgid ""
 "```idris mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma mapMaybeId "
 "Nothing = Refl mapMaybeId (Just x) = Refl ```"
 msgstr ""
+"```idris mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma mapMaybeId "
+"Nothing = Refl mapMaybeId (Just x) = Refl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:554
+#, fuzzy
 msgid ""
 "Note: If you have semantic highlighting turned on in your editor (for "
 "instance, by using the [idris2-lsp plugin](https://github.com/idris-"
@@ -1028,101 +1408,134 @@ msgid ""
 "get highlighted differently: `map` as a function name, `id` as a bound "
 "variable."
 msgstr ""
+"注意：如果您在编辑器中打开了语义突出显示（例如，通过使用 [idris2-lsp "
+"插件](https://github.com/idris-community/idris2-lsp)），您会注意到 [X181X "
+"`mapMaybeId1` 中的 ]map` 和 `id` 以不同的方式突出显示：`map` "
+"作为函数名称，`id` 作为绑定变量。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:562
+#, fuzzy
 msgid ""
 "In these exercises, you are going to proof several simple properties of "
 "small functions. When writing proofs, it is even more important to use holes "
 "to figure out what Idris expects from you next. Use the tools given to you, "
 "instead of trying to find your way in the dark!"
 msgstr ""
+"在这些练习中，您将证明小函数的几个简单属性。在编写证明时，"
+"更重要的是利用漏洞来弄清楚 Idris "
+"下一步对你的期望。使用提供给您的工具，而不是试图在黑暗中找到自己的方式！"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Eq.md:564
+#, fuzzy
 msgid "Proof that `map id` on an `Either e` returns the value unmodified."
-msgstr ""
+msgstr "证明 ` 上的 `map id` 要么 e` 返回未修改的值。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Eq.md:566
+#, fuzzy
 msgid "Proof that `map id` on a list returns the list unmodified."
-msgstr ""
+msgstr "证明列表上的 `map id` 返回未修改的列表。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Eq.md:570
+#, fuzzy
 msgid ""
 "Proof that complementing a strand of a nucleobase (see the [previous chapter]"
 "(DPair.md#use-case-nucleic-acids))  twice leads to the original strand."
-msgstr ""
+msgstr "证明补充一条核碱基链（参见[上一章]（DPair.md#use-case-nucleic-"
+"acids））两次导致原始链。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:574
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Hint: Proof this for single bases first, and use `cong2`\n"
 "   from the *Prelude* in your implementation for sequences\n"
 "   of nucleic acids.\n"
 msgstr ""
+"   提示：首先对单碱基进行证明，然后使用 `cong2`\n"
+"   来自序列实现中的 *Prelude*\n"
+"   的核酸。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Eq.md:576
+#, fuzzy
 msgid "Implement function `replaceVect`:"
-msgstr ""
+msgstr "实现函数`replaceVect`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:580
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:584
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Now proof, that after replacing an element in a vector\n"
 "   using `replaceAt` accessing the same element using\n"
 "   `index` will return the value we just added.\n"
 msgstr ""
+"   现在证明，在替换向量中的元素之后\n"
+"   使用 `replaceAt` 访问相同的元素\n"
+"   `index` 将返回我们刚刚添加的值。\n"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Eq.md:586
+#, fuzzy
 msgid "Implement function `insertVect`:"
-msgstr ""
+msgstr "实现函数`insertVect`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:590
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:593
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Use a similar proof as in exercise 4 to show that this\n"
 "   behaves correctly.\n"
 msgstr ""
+"   使用与练习 4 中类似的证明来证明\n"
+"   行为正确。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:596
+#, fuzzy
 msgid ""
 "Note: Functions `replaceVect` and `insertVect` are available from `Data."
 "Vect` as `replaceAt` and `insertAt`."
 msgstr ""
+"注意：函数 `replaceVect` 和 `insertVect` 可从 `Data.Vect` 作为 `replaceAt` "
+"和 `insertAt` 获得。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:598
+#, fuzzy
 msgid "## Into the Void"
-msgstr ""
+msgstr "＃＃ 进入虚空"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:612
+#, fuzzy
 msgid ""
 "Remember function `onePlusOneWrong` from above? This was definitely a wrong "
 "statement: One plus one does not equal three. Sometimes, we want to express "
@@ -1136,135 +1549,187 @@ msgid ""
 "follows (remember [ex falso quodlibet](https://en.wikipedia.org/wiki/"
 "Principle_of_explosion))."
 msgstr ""
+"还记得上面的函数 `onePlusOneWrong` 吗？这绝对是一个错误的说法：一加一不等于三"
+"。有时，我们想准确地表达这一点：某个陈述是错误的并且不成立。考虑一下在 Idris "
+"中证明一个陈述意味着什么：这样一个陈述（或命题）是一种类型，并且该陈述的证明"
+"是这种类型的一个值或表达式：该类型被称为 *inhabited "
+"*。如果陈述不正确，则不能有给定类型的值。我们说，给定的类型是 *uninhabited*。"
+"如果我们仍然设法获得一个无人居住类型的值，这是一个逻辑矛盾，因此，任何事情都"
+"会随之而来（记住 [ex falso quodlibet](https://en.wikipedia.org/wiki/"
+"Principle_of_explosion)） ."
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:617
+#, fuzzy
 msgid ""
 "So this is how to express that a proposition does not hold: We state that if "
 "it *would* hold, this would lead to a contradiction.  The most natural way "
 "to express a contradiction in Idris is to return a value of type `Void`:"
 msgstr ""
+"所以这就是如何表达一个命题不成立：我们声明如果它*会*成立，这将导致矛盾。在 "
+"Idris 中表达矛盾最自然的方式是返回一个 `Void` 类型的值："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:622
+#, fuzzy
 msgid ""
 "```idris onePlusOneWrongProvably : the Nat 1 + 1 = 3 -> Void "
 "onePlusOneWrongProvably Refl impossible ```"
 msgstr ""
+"```idris onePlusOneWrongProvably : Nat 1 + 1 = 3 -> Void "
+"onePlusOneWrongProvably Refl 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:628
+#, fuzzy
 msgid ""
 "See how this is a provably total implementation of the given type: A "
 "function from `1 + 1 = 3` to `Void`. We implement this by pattern matching, "
 "and there is only one constructor to match on, which leads to an impossible "
 "case."
 msgstr ""
+"看看这是如何证明给定类型的完整实现：从 `1 + 1 = 3` 到 `Void` 的函数。我们通过"
+"模式匹配来实现这一点，并且只有一个构造函数可以匹配，这导致了一种不可能的情况"
+"。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:633
+#, fuzzy
 msgid ""
 "We can also use contradictory statements to proof other such statements. For "
 "instance, here is a proof that if the lengths of two lists are not the same, "
 "then the two list can't be the same either:"
-msgstr ""
+msgstr "我们还可以使用相互矛盾的陈述来证明其他此类陈述。例如，这是一个证明，如果两个"
+"列表的长度不同，那么这两个列表也不可能相同："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:638
+#, fuzzy
 msgid ""
 "```idris notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> "
 "Void notSameLength1 f prf = f (cong length prf)  ```"
 msgstr ""
+"```idris notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> "
+"Void notSameLength1 f prf = f (cong length prf) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:642
+#, fuzzy
 msgid ""
 "This is cumbersome to write and pretty hard to read, so there is function "
 "`Not` in the prelude to express the same thing more naturally:"
-msgstr ""
+msgstr "这写起来很麻烦，读起来也很难，所以前奏中有函数`Not`可以更自然地表达同样的事情"
+"："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:647
+#, fuzzy
 msgid ""
 "```idris notSameLength : Not (List.length as = length bs) -> Not (as = bs)  "
 "notSameLength f prf = f (cong length prf)  ```"
 msgstr ""
+"```idris notSameLength : Not (List.length as = length bs) -> NotSameLength f "
+"prf = f (cong length prf) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:651
+#, fuzzy
 msgid ""
 "Actually, this is just a specialized version of the contraposition of "
 "`cong`: If from `a = b` follows `f a = f b`, then from `not (f a = f b)` "
 "follows `not (a = b)`:"
 msgstr ""
+"实际上，这只是 `cong` 对位的一个特殊版本：如果从 `a = b` 遵循 `f a = f b`，"
+"那么从 `not (f a = f b)` 遵循 `not (a = b)`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:656
+#, fuzzy
 msgid ""
 "```idris contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)  "
 "contraCong fun = fun . cong f ```"
 msgstr ""
+"```idris contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b) contraCong "
+"fun = fun 。从 f ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:658
+#, fuzzy
 msgid "### Interface `Uninhabited`"
-msgstr ""
+msgstr "###界面`无人`"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:664
+#, fuzzy
 msgid ""
 "There is an interface in the *Prelude* for uninhabited types: `Uninhabited` "
 "with its sole function `uninhabited`. Have a look at its documentation at "
 "the REPL. You will see, that there is already an impressive number of "
 "implementations available, many of which involve data type `Equal`."
 msgstr ""
+"*Prelude*中有一个接口用于无人居住类型：`无人居住`，其唯一功能是`无人居住`。"
+"在 REPL 中查看它的文档。您会看到，已经有大量可用的实现，其中许多涉及数据类型 "
+"`Equal`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:667
+#, fuzzy
 msgid ""
 "We can use `Uninhabited`, to for instance express that the empty schema is "
 "not equal to a non-empty schema:"
-msgstr ""
+msgstr "我们可以使用 `Uninhabited`，例如表示空模式不等于非空模式："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:671
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Uninhabited (SameSchema [] (h :: t)) where\n"
 "  uninhabited Same impossible\n"
 msgstr ""
+"```伊德里斯\n"
+"无人居住 (SameSchema [] (h :: t)) 其中\n"
+"  无人居住同样不可能\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:675
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Uninhabited (SameSchema (h :: t) []) where\n"
 "  uninhabited Same impossible\n"
 "```\n"
 msgstr ""
+"无人居住 (SameSchema (h :: t) []) 其中\n"
+"  无人居住同样不可能\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:678
+#, fuzzy
 msgid ""
 "There is a related function you need to know about: `absurd`, which combines "
 "`uninhabited` with `void`:"
-msgstr ""
+msgstr "有一个相关的函数你需要知道：`absurd`，它结合了`uninhabited`和`void`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:684
+#, fuzzy
 msgid ""
 "```repl Tutorial.Eq> :printdef absurd Prelude.absurd : Uninhabited t => t -> "
 "a absurd h = void (uninhabited h)  ```"
 msgstr ""
+"```repl Tutorial.Eq> :printdef absurd Prelude.absurd : Uninhabited t => t -> "
+"a荒谬 h = void (uninhabited h) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:686
+#, fuzzy
 msgid "### Decidable Equality"
-msgstr ""
+msgstr "### 可判定的平等"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:703
+#, fuzzy
 msgid ""
 "When we implemented `sameColType`, we got a proof that two column types are "
 "indeed the same, from which we could figure out, whether two schemata are "
@@ -1280,23 +1745,35 @@ msgid ""
 "that the two schemata are not the same. (Remember that `Not a` is an alias "
 "for `a -> Void`)."
 msgstr ""
+"当我们实现 `sameColType` 时，我们得到了两个列类型确实相同的证据，由此我们可以"
+"确定两个模式是否相同。这些类型保证我们不会产生任何误报："
+"如果我们产生一个类型为 `SameSchema s1 s2` 的值，我们就有证据证明 `s1` 和 `s2`"
+" 确实是完全相同的。但是，`sameColType` 和 `sameSchema` "
+"理论上仍然可以通过返回 `Nothing` 来产生假阴性，尽管这两个值是相同的。例如，"
+"我们可以实现 `sameColType`，使其始终返回 `Nothing`。这将与类型一致，但绝对不"
+"是我们想要的。因此，为了获得更强有力的保证，我们想要做以下事情：我们要么想要"
+"返回两个模式相同的证明，要么返回两个模式不同的证明。 （记住 `Not a` 是 `a -> "
+"Void` 的别名）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:708
+#, fuzzy
 msgid ""
 "We call a property, which either holds or leads to a contradiction a "
 "*decidable property*, and the *Prelude* exports data type `Dec prop`, which "
 "encapsulates this distinction."
-msgstr ""
+msgstr "我们将持有或导致矛盾的属性称为 * 可判定属性 *，而 *Prelude* 导出数据类型 `"
+"Dec prop`，它封装了这种区别。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:710
+#, fuzzy
 msgid "Here is a way to encode this for `ColType`:"
-msgstr ""
+msgstr "这是为 `ColType` 编码的一种方法："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:717
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "decSameColType :  (c1,c2 : ColType) -> Dec (SameColType c1 c2)\n"
@@ -1305,30 +1782,44 @@ msgid ""
 "decSameColType I64 Boolean     = No $ \\case SameCT impossible\n"
 "decSameColType I64 Float       = No $ \\case SameCT impossible\n"
 msgstr ""
+"```伊德里斯\n"
+"decSameColType : (c1,c2 : ColType) -> Dec (SameColType c1 c2)\n"
+"decSameColType I64 I64 = 是 SameCT\n"
+"decSameColType I64 Str = 否 $ \\case SameCT 不可能\n"
+"decSameColType I64 Boolean = 否 $ \\case SameCT 不可能\n"
+"decSameColType I64 Float = 否 $ \\case SameCT 不可能\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:722
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "decSameColType Str I64         = No $ \\case SameCT impossible\n"
 "decSameColType Str Str         = Yes SameCT\n"
 "decSameColType Str Boolean     = No $ \\case SameCT impossible\n"
 "decSameColType Str Float       = No $ \\case SameCT impossible\n"
 msgstr ""
+"decSameColType Str I64 = 否 $ \\case SameCT 不可能\n"
+"decSameColType Str Str = 是 SameCT\n"
+"decSameColType Str Boolean = 否 $ \\case SameCT 不可能\n"
+"decSameColType Str Float = 否 $ \\case SameCT 不可能\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:727
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "decSameColType Boolean I64     = No $ \\case SameCT impossible\n"
 "decSameColType Boolean Str     = No $ \\case SameCT impossible\n"
 "decSameColType Boolean Boolean = Yes SameCT\n"
 "decSameColType Boolean Float   = No $ \\case SameCT impossible\n"
 msgstr ""
+"decSameColType Boolean I64 = 否 $ \\case SameCT 不可能\n"
+"decSameColType Boolean Str = 否 $ \\case SameCT 不可能\n"
+"decSameColType Boolean Boolean = 是 SameCT\n"
+"decSameColType Boolean Float = 否 $ \\case SameCT 不可能\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:733
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "decSameColType Float I64       = No $ \\case SameCT impossible\n"
 "decSameColType Float Str       = No $ \\case SameCT impossible\n"
@@ -1336,9 +1827,15 @@ msgid ""
 "decSameColType Float Float     = Yes SameCT\n"
 "```\n"
 msgstr ""
+"decSameColType Float I64 = 否 $ \\case SameCT 不可能\n"
+"decSameColType Float Str = 否 $ \\case SameCT 不可能\n"
+"decSameColType Float Boolean = 否 $ \\case SameCT 不可能\n"
+"decSameColType Float Float = 是 SameCT\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:741
+#, fuzzy
 msgid ""
 "First, note how we could use a pattern match in a single argument lambda "
 "directly. This is sometimes called the *lambda case* style, named after an "
@@ -1347,9 +1844,14 @@ msgid ""
 "instance `Float` with `I64`. This is not possible, so the case as a whole is "
 "impossible."
 msgstr ""
+"首先，请注意我们如何直接在单个参数 lambda 中使用模式匹配。这有时被称为 *"
+"lambda case* 风格，以 Haskell 编程语言的扩展命名。如果我们在模式匹配中使用 "
+"`SameCT` 构造函数，Idris 将被迫尝试将 `Float` 与 `I64` "
+"统一起来。这是不可能的，所以整个案子是不可能的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:749
+#, fuzzy
 msgid ""
 "Yet, this was pretty cumbersome to implement. In order to convince Idris we "
 "did not miss a case, there is no way around treating every possible pairing "
@@ -1357,17 +1859,21 @@ msgid ""
 "of this: We can no longer create false positives *or* false negatives, and "
 "therefore, `decSameColType` is provably correct."
 msgstr ""
+"然而，这实施起来相当麻烦。为了让 Idris 相信我们没有遗漏任何一个案例，没有办法"
+"明确地处理每个可能的构造函数配对。然而，我们得到 *much* 更强的保证："
+"我们不能再创建误报 * 或 * 误报，因此 `decSameColType` 可证明是正确的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:752
+#, fuzzy
 msgid ""
 "Doing the same thing for schemata requires some utility functions, the types "
 "of which we can figure out by placing some holes:"
-msgstr ""
+msgstr "对模式做同样的事情需要一些实用函数，我们可以通过放置一些洞来找出它们的类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:764
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "decSameSchema' :  (s1, s2 : Schema) -> Dec (SameSchema s1 s2)\n"
@@ -1381,18 +1887,34 @@ msgid ""
 "  No  contra => No $ \\prf => ?decss4\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"decSameSchema' : (s1, s2 : Schema) -> Dec (SameSchema s1 s2)\n"
+"decSameSchema' [] [] = 是 相同\n"
+"decSameSchema' [] (y :: ys) = 否 ?decss1\n"
+"decSameSchema' (x :: xs) [] = 否 ?decss2\n"
+"decSameSchema' (x :: xs) (y :: ys) = case decSameColType x y of\n"
+"  Yes SameCT => case decSameSchema' xs ys of\n"
+"    是相同 => 是相同\n"
+"    没有反对 => 没有 $ \\prf => ?decss3\n"
+"  没有反对 => 没有 $ \\prf => ?decss4\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:770
+#, fuzzy
 msgid ""
 "The first two cases are not too hard. The type of `decss1` is `SameSchema [] "
 "(y :: ys) -> Void`, which you can easily verify at the REPL. But that's just "
 "`uninhabited`, specialized to `SameSchema [] (y :: ys)`, and this we already "
 "implemented further above. The same goes for `decss2`."
 msgstr ""
+"前两种情况并不难。 `decss1` 的类型是 `SameSchema [] (y :: ys) -> Void`，"
+"您可以在 REPL 轻松验证。但这只是 `uninhabited`，专门用于 `SameSchema [] (y ::"
+" ys)`，我们已经在上面进一步实现了这一点。 `decss2` 也是如此。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:777
+#, fuzzy
 msgid ""
 "The other two cases are harder, so I already filled in as much stuff as "
 "possible. We know that we want to return a `No`, if either the heads or "
@@ -1400,10 +1922,14 @@ msgid ""
 "lambda, leaving a hole only for the return value. Here are the type and - "
 "more important - context of `decss3`:"
 msgstr ""
+"其他两种情况比较难，所以我已经尽可能多地填写了。我们知道我们想要返回一个 "
+"`No`，如果可以证明正面或反面是不同的。 `No` 包含一个函数，"
+"所以我已经添加了一个 lambda，只为返回值留了一个洞。以下是 `decss3` "
+"的类型和更重要的上下文："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:786
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Tutorial.Relations> :t decss3\n"
@@ -1415,14 +1941,25 @@ msgid ""
 "   prf : SameSchema (y :: xs) (y :: ys)\n"
 "------------------------------\n"
 msgstr ""
+"```回复\n"
+"Tutorial.Relations> :t decss3\n"
+"   y : ColType\n"
+"   xs : 列出 ColType\n"
+"   ys : 列出 ColType\n"
+"   x : 列类型\n"
+"   对立：SameSchema xs ys -> Void\n"
+"   prf : SameSchema (y :: xs) (y :: ys)\n"
+"------------------------------\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:789
+#, fuzzy
 msgid "decss3 : Void ```"
-msgstr ""
+msgstr "decss3：无效```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:797
+#, fuzzy
 msgid ""
 "The types of `contra` and `prf` are what we need here: If `xs` and `ys` are "
 "distinct, then `y :: xs` and `y :: ys` must be distinct as well. This is the "
@@ -1431,10 +1968,15 @@ msgid ""
 "lemma, which proves that the *cons* constructor is [*injective*](https://en."
 "wikipedia.org/wiki/Injective_function):"
 msgstr ""
+"`contra` 和 `prf` 的类型是我们这里需要的：如果 `xs` 和 `ys` 是不同的，那么 `"
+"y :: xs` 和 `y :: ys` 也必须不同。这是以下语句的对置：如果 `x :: xs` 与 `y ::"
+" ys` 相同，则 `xs` 和 `ys[X252X ] 也一样。因此，我们必须实现一个引理，证明 "
+"*cons* 构造函数是 [*injective*]（https://en.wikipedia.org/wiki/"
+"Injective_function）："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:803
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "consInjective :  SameSchema (c1 :: cs1) (c2 :: cs2)\n"
@@ -1442,19 +1984,28 @@ msgid ""
 "consInjective Same = (SameCT, Same)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"consInjective : SameSchema (c1 :: cs1) (c2 :: cs2)\n"
+"              -> (SameColType c1 c2, SameSchema cs1 cs2)\n"
+"consInjective Same = (SameCT, Same)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:809
+#, fuzzy
 msgid ""
 "We can now pass `prf` to `consInjective` to extract a value of type "
 "`SameSchema xs ys`, which we then pass to `contra` in order to get the "
 "desired value of type `Void`.  With these observations and utilities, we can "
 "now implement `decSameSchema`:"
 msgstr ""
+"我们现在可以将 `prf` 传递给 `consInjective` 以提取 `SameSchema xs ys` "
+"类型的值，然后我们将其传递给 `contra` 以便获取类型 `Void` "
+"的所需值。有了这些观察和实用程序，我们现在可以实现 `decSameSchema`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:821
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "decSameSchema :  (s1, s2 : Schema) -> Dec (SameSchema s1 s2)\n"
@@ -1468,49 +2019,68 @@ msgid ""
 "  No  contra => No $ contra . fst . consInjective\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"decSameSchema : (s1, s2 : Schema) -> Dec (SameSchema s1 s2)\n"
+"decSameSchema [] [] = 是 相同\n"
+"decSameSchema [] (y :: ys) = 不荒谬\n"
+"decSameSchema (x :: xs) [] = 不荒谬\n"
+"decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of\n"
+"  是 SameCT => case decSameSchema xs ys of\n"
+"    是相同 => 是相同\n"
+"    没有反对 => 没有 $ 反对。 snd同射的\n"
+"  没有反对 => 没有 $ 反对。 fst 。同射的\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:825
+#, fuzzy
 msgid ""
 "There is an interface called `DecEq` exported by module `Decidable.Equality` "
 "for types for which we can implement a decision procedure for propositional "
 "equality. We can implement this to figure out if two values are equal or not."
 msgstr ""
+"有一个名为 `DecEq` 的接口由模块 `Decidable.Equality` 导出，用于我们可以为命题"
+"相等性实现决策过程的类型。我们可以实现它来确定两个值是否相等。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Eq.md:830
+#, fuzzy
 msgid ""
 "Show that there can be no non-empty vector of `Void` by writing a "
 "corresponding implementation of uninhabited"
-msgstr ""
+msgstr "通过编写 uninhabited 的对应实现，证明 `Void` 不存在非空向量"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Eq.md:832
+#, fuzzy
 msgid "Generalize exercise 1 for all uninhabited element types."
-msgstr ""
+msgstr "将练习 1 推广到所有无人居住的元素类型。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Eq.md:835
+#, fuzzy
 msgid "Show that if `a = b` cannot hold, then `b = a` cannot hold either."
-msgstr ""
+msgstr "证明如果 `a = b` 不能成立，那么 `b = a` 也不能成立。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Eq.md:838
+#, fuzzy
 msgid ""
 "Show that if `a = b` holds, and `b = c` cannot hold, then `a = c` cannot "
 "hold either."
-msgstr ""
+msgstr "证明如果 `a = b` 成立，而 `b = c` 不能成立，那么 `a = c` 也不能成立。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Eq.md:841
+#, fuzzy
 msgid ""
 "Implement `Uninhabited` for `Crud i a`. Try to be as general as possible."
-msgstr ""
+msgstr "为 `Crud i a` 实现 `Uninhabited`。尽量笼统。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:849 ../src/Tutorial/Folds.md:1003
 #: ../src/Tutorial/Functor.md:424 ../src/Tutorial/Traverse.md:292
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   data Crud : (i : Type) -> (a : Type) -> Type where\n"
@@ -1520,46 +2090,62 @@ msgid ""
 "     Delete : (id : i) -> Crud i a\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     创建：（值：a）-> Crud i a\n"
+"     更新：（id：i）->（value：a）-> Crud i a\n"
+"     阅读：（id：i）-> Crud i a\n"
+"     删除 : (id : i) -> Crud i a\n"
+"   ```\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Eq.md:851
+#, fuzzy
 msgid "Implement `DecEq` for `ColType`."
-msgstr ""
+msgstr "为 `ColType` 实现 `DecEq`。"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Eq.md:856
+#, fuzzy
 msgid ""
 "Implementations such as the one from exercise 6 are cumbersome to write as "
 "they require a quadratic number of pattern matches with relation to the "
 "number of data constructors. Here is a trick how to make this more bearable."
-msgstr ""
+msgstr "练习 6 中的实现这样的实现写起来很麻烦，因为它们需要与数据构造函数的数量相关的"
+"二次模式匹配。这是一个技巧，如何使它更容易忍受。"
 
 #. type: Bullet: '   1. '
 #: ../src/Tutorial/Eq.md:859
+#, fuzzy
 msgid ""
 "Implement a function `ctNat`, which assigns every value of type `ColType` a "
 "unique natural number."
-msgstr ""
+msgstr "实现一个函数 `ctNat`，它为每个 `ColType` 类型的值分配一个唯一的自然数。"
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/Eq.md:864
+#, fuzzy
 msgid ""
 "Proof that `ctNat` is injective.  Hint: You will need to pattern match on "
 "the `ColType` values, but four matches should be enough to satisfy the "
 "coverage checker."
-msgstr ""
+msgstr "证明 `ctNat` 是单射的。提示：您将需要对 `ColType` "
+"值进行模式匹配，但四个匹配应该足以满足覆盖检查器的要求。"
 
 #. type: Bullet: '   3. '
 #: ../src/Tutorial/Eq.md:869
+#, fuzzy
 msgid ""
 "In your implementation of `DecEq` for `ColType`, use `decEq` on the result "
 "of applying both column types to `ctNat`, thus reducing it to only two lines "
 "of code."
 msgstr ""
+"在为 `ColType` 实现 `DecEq` 时，在将两种列类型应用于 `ctNat` 的结果上使用 "
+"`decEq`，从而将其减少到仅两行代码。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:877
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   We will later talk about `with` rules: Special forms of\n"
 "   dependent pattern matches, that allow us to learn something\n"
@@ -1569,14 +2155,23 @@ msgid ""
 "   requiring only `n` pattern matches\n"
 "   for arbitrary sum types with `n` data constructors.\n"
 msgstr ""
+"   我们稍后会讨论 ` 和 ` 规则：\n"
+"   依赖模式匹配，让我们学习一些东西\n"
+"   通过执行关于函数参数的形状\n"
+"   对它们进行计算。这些将允许我们使用\n"
+"   与此处所示类似的技术来实现 `DecEq`\n"
+"   只需要 `n` 模式匹配\n"
+"   对于具有 `n` 数据构造函数的任意总和类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:879
+#, fuzzy
 msgid "## Rewrite Rules"
-msgstr ""
+msgstr "## 重写规则"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:888
+#, fuzzy
 msgid ""
 "One of the most important use cases of propositional equality is to replace "
 "or *rewrite* existing types, which Idris can't unify automatically "
@@ -1585,10 +2180,14 @@ msgid ""
 "matching on the first argument. The two vector lengths therefore unify just "
 "fine."
 msgstr ""
+"命题相等的最重要用例之一是替换或 * 重写 * 现有类型，否则 Idris "
+"无法自动统一这些类型。例如，以下是没有问题的： Idris 知道 `0 + n` 等于 `n`，"
+"因为自然数上的 `plus` 是通过第一个参数的模式匹配实现的."
+"因此，这两个向量长度可以很好地统一。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:895
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "leftZero :  List (Vect n Nat)\n"
@@ -1597,17 +2196,25 @@ msgid ""
 "leftZero = (++)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"leftZero：列表（Vect n Nat）\n"
+"         -> 列表 (Vect (0 + n) Nat)\n"
+"         -> 列表（Vect n Nat）\n"
+"左零 = (++)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:899
+#, fuzzy
 msgid ""
 "However, the example below can't be implemented as easily (try id!), because "
 "Idris can't figure out on its own that the two lengths unify."
-msgstr ""
+msgstr "但是，下面的示例无法轻松实现（尝试 id！），因为 Idris "
+"无法自行确定这两个长度是否统一。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:905
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "rightZero' :  List (Vect n Nat)\n"
@@ -1615,46 +2222,61 @@ msgid ""
 "           -> List (Vect n Nat)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"rightZero'：列表（Vect n Nat）\n"
+"           -> 列表 (Vect (n + 0) Nat)\n"
+"           -> 列表（Vect n Nat）\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:909
+#, fuzzy
 msgid ""
 "Probably for the first time we realize, just how little Idris knows about "
 "the laws of arithmetics. Idris is able to unify values when"
-msgstr ""
+msgstr "可能是我们第一次意识到，伊德里斯对算术定律知之甚少。伊德里斯能够统一价值观"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Eq.md:913
+#, fuzzy
 msgid "all values in a computation are known at compile time"
-msgstr ""
+msgstr "计算中的所有值在编译时都是已知的"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Eq.md:913
+#, fuzzy
 msgid ""
 "one expression follows directly from the other due to the pattern matches "
 "used in a function's implementation."
-msgstr ""
+msgstr "由于函数实现中使用的模式匹配，一个表达式直接跟随另一个表达式。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:917
+#, fuzzy
 msgid ""
 "In expression `n + 0`, not all values are known (`n` is a variable), and "
 "`(+)` is implemented by pattern matching on the first argument, about which "
 "we know nothing here."
 msgstr ""
+"在表达式 `n + 0` 中，并非所有值都是已知的（`n` 是一个变量），并且 `(+)` "
+"是通过第一个参数的模式匹配来实现的，我们在这里一无所知。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:923
+#, fuzzy
 msgid ""
 "However, we can teach Idris. If we can proof that the two expressions are "
 "equivalent, we can replace one expression for the other, so that the two "
 "unify again. Here is a lemma and its proof, that `n + 0` equals `n`, for all "
 "natural numbers `n`."
 msgstr ""
+"但是，我们可以教伊德里斯。如果我们可以证明这两个表达式是等价的，我们可以用一"
+"个表达式替换另一个表达式，从而使两者再次统一。这是一个引理及其证明，"
+"对于所有自然数 `n`，`n + 0` 等于 `n`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:929
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "addZeroRight : (n : Nat) -> n + 0 = n\n"
@@ -1662,33 +2284,49 @@ msgid ""
 "addZeroRight (S k) = cong S $ addZeroRight k\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"addZeroRight : (n : Nat) -> n + 0 = n\n"
+"addZeroRight 0 = 参考\n"
+"addZeroRight (S k) = con S $ addZeroRight k\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:935
+#, fuzzy
 msgid ""
 "Note, how the base case is trivial: Since there are no variables left, Idris "
 "can immediately figure out that `0 + 0 = 0`. In the recursive case, it can "
 "be instructive to replace `cong S` with a hole and look at its type and "
 "context to figure out how to proceed."
 msgstr ""
+"请注意，基本情况是多么微不足道：由于没有剩余变量，Idris 可以立即计算出 `0 + "
+"0 = 0`。在递归的情况下，将 `cong S` "
+"替换为一个孔并查看其类型和上下文以确定如何进行可能是有益的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:940
+#, fuzzy
 msgid ""
 "The *Prelude* exports function `replace` for substituting one variable in a "
 "term by another, based on a proof of equality.  Make sure to inspect its "
 "type first before looking at the example below:"
 msgstr ""
+"*Prelude* 导出函数 `replace` 用于根据等式证明将一个变量中的一个变量替换为另一"
+"个变量。在查看下面的示例之前，请务必先检查其类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:945
+#, fuzzy
 msgid ""
 "```idris replaceVect : Vect (n + 0) a -> Vect n a replaceVect as = replace "
 "{p = \\k => Vect k a} (addZeroRight n) as ```"
 msgstr ""
+"```idris replaceVect : Vect (n + 0) a -> Vect n a replaceVect as = replace {"
+"p = \\k => Vect k a} (addZeroRight n) as ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:952
+#, fuzzy
 msgid ""
 "As you can see, we *replace* a value of type `p x` with a value of type `p "
 "y` based on a proof that `x = y`, where `p` is a function from some type `t` "
@@ -1696,9 +2334,14 @@ msgid ""
 "example, `t` equals `Nat`, `x` equals `n + 0`, `y` equals `n`, and `p` "
 "equals `\\k => Vect k a`."
 msgstr ""
+"如您所见，我们 * 将 `p x` 类型的值替换为 `p y` 类型的值，基于 `x = y` "
+"的证明, 其中 `p` 是从某种类型 `t` 到 `Type` 的函数，而 `x` 和 `y` 是键入 "
+"`t`。在我们的 `replaceVect` 示例中，`t` 等于 `Nat`，`x` 等于 `n + 0`，`y[ "
+"X273X] 等于 `n`，`p` 等于 `\\k => Vect k a`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:960
+#, fuzzy
 msgid ""
 "Using `replace` directly is not very convenient, because Idris can often not "
 "infer the value of `p` on its own. Indeed, we had to give its type "
@@ -1707,29 +2350,41 @@ msgid ""
 "all the details filled in for us. Here is an implementation of `replaceVect` "
 "with a rewrite rule:"
 msgstr ""
+"直接使用 `replace` 不是很方便，因为 Idris 往往无法自行推断出 `p` "
+"的值。实际上，我们必须在 `replaceVect` 中明确给出它的类型。因此，Idris "
+"为此类 * 重写规则 * 提供了特殊语法，这将减少对 `replace` "
+"的调用，并为我们填写所有详细信息。这是 `replaceVect` 的实现，带有重写规则："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:965
+#, fuzzy
 msgid ""
 "```idris rewriteVect : Vect (n + 0) a -> Vect n a rewriteVect as = rewrite "
 "sym (addZeroRight n) in as ```"
 msgstr ""
+"```idris rewriteVect : Vect (n + 0) a -> Vect n a rewriteVect as = rewrite "
+"sym (addZeroRight n) in as ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:970
+#, fuzzy
 msgid ""
 "One source of confusion is that *rewrite* uses proofs of equality the other "
 "way round: Given an `y = x` it replaces `p x` with `p y`. Hence the need to "
 "call `sym` in our implementation above."
 msgstr ""
+"混淆的一个来源是 *rewrite* 使用相反的相等性证明：给定 `y = x` 它将 `p x` "
+"替换为 `p y` .因此需要在我们上面的实现中调用 `sym`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:972
+#, fuzzy
 msgid "### Use Case: Reversing Vectors"
-msgstr ""
+msgstr "### 用例：反转向量"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:982
+#, fuzzy
 msgid ""
 "Rewrite rules are often required when we perform interesting type-level "
 "computations. For instance, we have already seen many interesting examples "
@@ -1739,56 +2394,78 @@ msgid ""
 "`reverse`. Here is a possible implementation, which is how `reverse` is "
 "implemented for lists:"
 msgstr ""
+"当我们执行有趣的类型级计算时，通常需要重写规则。例如，我们已经看到了许多在 "
+"`Vect` 上运行的函数的有趣示例，这使我们能够跟踪所涉及向量的确切长度，但是到目"
+"前为止我们的讨论中缺少一个关键功能，并且有充分的理由：功能 "
+"`reverse`。这是一个可能的实现，这就是 `reverse` 对列表的实现方式："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:988
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a\n"
 "reverseOnto' xs []        = xs\n"
 "reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys\n"
 msgstr ""
+"```回复\n"
+"reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a\n"
+"reverseOnto' xs [] = xs\n"
+"reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:993
+#, fuzzy
 msgid "reverseVect' : Vect n a -> Vect n a reverseVect' = reverseOnto' [] ```"
-msgstr ""
+msgstr "reverseVect' : Vect n a -> Vect n a reverseVect' = reverseOnto' [] ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:997
+#, fuzzy
 msgid ""
 "As you might have guessed, this will not compile as the length indices in "
 "the two clauses of `reverseOnto'` do not unify."
-msgstr ""
+msgstr "正如您可能已经猜到的那样，这不会编译，因为 `reverseOnto'` "
+"的两个子句中的长度索引不统一。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1001
+#, fuzzy
 msgid ""
 "The *nil* case is a case we've already seen above: Here `n` is zero, because "
 "the second vector is empty, so we have to convince Idris once again that `m "
 "+ 0 = m`:"
 msgstr ""
+"*nil* 情况是我们在上面已经看到的情况：这里 `n` 为零，因为第二个向量是空的，"
+"所以我们必须再次说服 Idris `m + 0 = m`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1006
+#, fuzzy
 msgid ""
 "```idris reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a reverseOnto xs "
 "[] = rewrite addZeroRight m in xs ```"
 msgstr ""
+"```idris reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a reverseOnto xs "
+"[] = rewrite addZeroRight m in xs ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1013
+#, fuzzy
 msgid ""
 "The second case is more complex. Here, Idris fails to unify `S (m + len)` "
 "with `m + S len`, where `len` is the length of `ys`, the tail of the second "
 "vector. Module `Data.Nat` provides many proofs about arithmetic operations "
 "on natural numbers, one of which is `plusSuccRightSucc`. Here's its type:"
 msgstr ""
+"第二种情况更复杂。这里，Idris 无法统一 `S (m + len)` 和 `m + S len`，其中 "
+"`len` 是 `ys` 的长度，第二个向量的尾部。模块 `Data.Nat` "
+"提供了许多关于自然数算术运算的证明，其中之一是 "
+"`plusSuccRightSucc`。这是它的类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1020
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "Tutorial.Eq> :t plusSuccRightSucc\n"
@@ -1797,9 +2474,16 @@ msgid ""
 "                           -> S (left + right) = left + S right\n"
 "```\n"
 msgstr ""
+"```repl\n"
+"Tutorial.Eq> :t plusSuccRightSucc\n"
+"Data.Nat.plusSuccRightSucc :（左：Nat）\n"
+"                           ->（右：纳特）\n"
+"                           -> S（左+右）=左+S右\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1032
+#, fuzzy
 msgid ""
 "In our case, we want to replace `S (m + len)` with `m + S len`, so we will "
 "need the version with arguments flipped. However, there is one more "
@@ -1811,19 +2495,31 @@ msgid ""
 "follows from a match on another, unerased, argument (`ys` in this case). "
 "Here's the implementation of the second case:"
 msgstr ""
+"在我们的例子中，我们想用 `m + S len` 替换 `S (m + "
+"len)`，所以我们需要参数翻转的版本。但是，还有一个障碍：我们需要调用长度为 "
+"`ys` 的 `plusSuccRightSucc`，它没有作为 `reverseOnto` "
+"的隐式函数参数给出。因此，我们需要对 `n`（第二个向量的长度）进行模式匹配，以"
+"便将尾部的长度绑定到一个变量。请记住，只有当使用的构造函数遵循另一个未擦除参"
+"数（在本例中为 "
+"`ys`）的匹配时，我们才允许对已擦除参数进行模式匹配。下面是第二种情况的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1037
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "reverseOnto {n = S len} xs (x :: ys) =\n"
 "  rewrite sym (plusSuccRightSucc m len) in reverseOnto (x :: xs) ys\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"reverseOnto {n = S len} xs (x :: ys) =\n"
+"  在 reverseOnto (x :: xs) ys 中重写 sym (plusSuccRightSucc m len)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1043
+#, fuzzy
 msgid ""
 "I know from my own experience that this can be highly confusing at first. If "
 "you use Idris as a general purpose programming language and not as a proof "
@@ -1831,14 +2527,19 @@ msgid ""
 "it is important to know that they exist, as they allow us to teach complex "
 "equivalences to Idris."
 msgstr ""
+"我从我自己的经验中知道，起初这可能会让人非常困惑。如果您将 Idris 用作通用编程"
+"语言而不是证明助手，您可能不必经常使用重写规则。尽管如此，重要的是要知道它们"
+"的存在，因为它们允许我们向 Idris 教授复杂的等价性。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1045
+#, fuzzy
 msgid "### A Note on Erasure"
-msgstr ""
+msgstr "### 关于擦除的说明"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1055
+#, fuzzy
 msgid ""
 "Single value data types like `Unit`, `Equal`, or `SameSchema` have not "
 "runtime relevance, as values of these types are always identical.  We can "
@@ -1849,45 +2550,57 @@ msgid ""
 "such values without fear of these computations slowing down the compiled "
 "Idris program."
 msgstr ""
+"`Unit`、`Equal` 或 `SameSchema` 等单值数据类型没有运行时相关性，因为这些类型"
+"的值始终相同。因此，我们始终可以将它们用作已擦除的函数参数，同时仍然能够对这"
+"些值进行模式匹配。例如，当您查看 `replace` 的类型时，您会看到等式证明是一个已"
+"删除的参数。这允许我们运行任意复杂的计算来生成这样的值，"
+"而不必担心这些计算会减慢编译的 Idris 程序。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Eq.md:1059
+#, fuzzy
 msgid "Implement `plusSuccRightSucc` yourself."
-msgstr ""
+msgstr "自己实现 `plusSuccRightSucc`。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Eq.md:1061
+#, fuzzy
 msgid "Proof that `minus n n` equals zero for all natural numbers `n`."
-msgstr ""
+msgstr "证明 ` 减去 n n` 对于所有自然数 `n` 等于 0。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Eq.md:1063
+#, fuzzy
 msgid "Proof that `minus n 0` equals n for all natural numbers `n`"
-msgstr ""
+msgstr "证明 `minus n 0` 等于 n 对于所有自然数 `n`"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Eq.md:1066
+#, fuzzy
 msgid "Proof that `n * 1 = n` and `1 * n = n` for all natural numbers `n`."
-msgstr ""
+msgstr "证明 `n * 1 = n` 和 `1 * n = n` 对于所有自然数 `n`。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Eq.md:1069
+#, fuzzy
 msgid "Proof that addition of natural numbers is commutative."
-msgstr ""
+msgstr "证明自然数的加法是可交换的。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Eq.md:1071
+#, fuzzy
 msgid "Implement a tail-recursive version of `map` for vectors."
-msgstr ""
+msgstr "为向量实现 `map` 的尾递归版本。"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Eq.md:1073
+#, fuzzy
 msgid "Proof the following proposition:"
-msgstr ""
+msgstr "证明以下命题："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1080
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   mapAppend :  (f : a -> b)\n"
@@ -1896,17 +2609,27 @@ msgid ""
 "             -> map f (xs ++ ys) = map f xs ++ map f ys\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   mapAppend : (f : a -> b)\n"
+"             -> (xs : 列出一个)\n"
+"             ->（是：列出a）\n"
+"             -> 映射 f (xs ++ ys) = 映射 f xs ++ 映射 f ys\n"
+"   ```\n"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Eq.md:1084
+#, fuzzy
 msgid ""
 "Use the proof from exercise 7 to implement again a function for zipping two "
 "`Table`s, this time using a rewrite rule plus `Data.HList.(++)` instead of "
 "custom function `appRows`."
 msgstr ""
+"使用练习 7 中的证明再次实现压缩两个 `Table` 的函数，这次使用重写规则加上 "
+"`Data.HList.(++)` 而不是自定义函数 [X167X ]appRows`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:1096
+#, fuzzy
 msgid ""
 "The concept of *types as propositions, values as proofs* is a very powerful "
 "tool for writing provably correct programs. We will therefore spend some "
@@ -1916,3 +2639,8 @@ msgid ""
 "reducing the need to return a `Maybe` or other failure type, because due to "
 "the restricted input, our functions can no longer fail."
 msgstr ""
+"* 类型作为命题，值作为证明的概念* 是编写可证明正确的程序的非常强大的工具。因"
+"此，我们将花更多时间定义数据类型来描述值之间的合约，并将这些类型的值作为合约"
+"持有的证据。这将允许我们为我们的函数描述必要的前置条件和后置条件，"
+"从而减少返回 `Maybe` "
+"或其他故障类型的需要，因为由于输入受限，我们的函数不能再失败。"

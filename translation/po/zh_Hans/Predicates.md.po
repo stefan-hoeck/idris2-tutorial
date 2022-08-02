@@ -7,13 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:19+0800\n"
-"PO-Revision-Date: 2022-08-02 13:19+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
+"projects/idris2-tutorial/predicates/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
@@ -22,8 +25,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
 #: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
 #: ../src/Tutorial/Traverse.md:248
+#, fuzzy
 msgid "### Exercises part 1"
-msgstr ""
+msgstr "### 练习第 1 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
@@ -32,8 +36,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
 #: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
 #: ../src/Tutorial/Traverse.md:575
+#, fuzzy
 msgid "### Exercises part 2"
-msgstr ""
+msgstr "### 练习第 2 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
@@ -42,8 +47,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
 #: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
 #: ../src/Tutorial/Traverse.md:1017
+#, fuzzy
 msgid "### Exercises part 3"
-msgstr ""
+msgstr "### 练习第 3 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
@@ -52,8 +58,9 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
 #: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
 #: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+#, fuzzy
 msgid "## Conclusion"
-msgstr ""
+msgstr "＃＃ 结论"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -63,8 +70,9 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
+#, fuzzy
 msgid "<!-- vi: filetype=idris2 -->"
-msgstr ""
+msgstr "<!-- vi: filetype=idris2 -->"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
@@ -72,23 +80,26 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
 #: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
 #: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+#, fuzzy
 msgid "%default total ```"
-msgstr ""
+msgstr "%默认总数```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:750 ../src/Tutorial/Predicates.md:1357
+#, fuzzy
 msgid "Enter a command: quit Goodbye.  ```"
-msgstr ""
+msgstr "输入命令：退出再见。 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
 #: ../src/Tutorial/Predicates.md:495
+#, fuzzy
 msgid "```idris data ColType = I64 | Str | Boolean | Float"
-msgstr ""
+msgstr "```idris 数据 ColType = I64 |字符串 |布尔值 |漂浮"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1095 ../src/Tutorial/Predicates.md:1294
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "encodeField : (t : ColType) -> IdrisType t -> String\n"
@@ -98,15 +109,23 @@ msgid ""
 "encodeField Boolean False = \"f\"\n"
 "encodeField Float   x     = show x\n"
 msgstr ""
+"```伊德里斯\n"
+"encodeField : (t : ColType) -> IdrisType t -> String\n"
+"编码字段 I64 x = 显示 x\n"
+"编码字段 Str x = 显示 x\n"
+"encodeField Boolean True = \"t\"\n"
+"encodeField 布尔值 False = \"f\"\n"
+"encodeField 浮点数 x = 显示 x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1127 ../src/Tutorial/Predicates.md:1334
+#, fuzzy
 msgid "covering main : IO ()  main = runProg $ MkTable [] _ [] ```"
-msgstr ""
+msgstr "覆盖 main : IO() main = runProg $MkTable [] _ [] ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:38 ../src/Tutorial/Predicates.md:501
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "IdrisType : ColType -> Type\n"
 "IdrisType I64     = Int64\n"
@@ -114,21 +133,29 @@ msgid ""
 "IdrisType Boolean = Bool\n"
 "IdrisType Float   = Double\n"
 msgstr ""
+"IdrisType : ColType -> 类型\n"
+"IdrisType I64 = Int64\n"
+"IdrisType Str = 字符串\n"
+"IdrisType 布尔值 = 布尔值\n"
+"IdrisType Float = 双\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
+#, fuzzy
 msgid "And at the REPL:"
-msgstr ""
+msgstr "在 REPL："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:2
+#, fuzzy
 msgid "# Predicates and Proof Search"
-msgstr ""
+msgstr "# 谓词和证明搜索"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:12
+#, fuzzy
 msgid ""
 "In the [last chapter](Eq.md) we learned about propositional equality, which "
 "allowed us to proof that two values are equal. Equality is a relation "
@@ -138,31 +165,42 @@ msgid ""
 "allow us to restrict the values we accept as a function's arguments or the "
 "values returned by functions."
 msgstr ""
+"在[最后一章]（Eq.md）中，我们了解了命题相等性，这使我们能够证明两个值相等。相"
+"等是值之间的关系，我们使用索引数据类型通过限制唯一数据构造函数中索引的自由度"
+"来编码这种关系。我们可以用这种方式编码其他关系和契约。这将允许我们限制我们接"
+"受作为函数参数的值或函数返回的值。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:15
+#, fuzzy
 msgid "```idris module Tutorial.Predicates"
-msgstr ""
+msgstr "```idris 模块 Tutorial.Predicates"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:22
+#, fuzzy
 msgid ""
 "import Data.Either import Data.List1 import Data.String import Data.Vect "
 "import Data.HList import Decidable.Equality"
 msgstr ""
+"导入 Data.Either 导入 Data.List1 导入 Data.String 导入 Data.Vect 导入 "
+"Data.HList 导入 Decidable.Equality"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:25
+#, fuzzy
 msgid "import Text.CSV import System.File"
-msgstr ""
+msgstr "导入 Text.CSV 导入 System.File"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:30
+#, fuzzy
 msgid "## Preconditions"
-msgstr ""
+msgstr "## 前提条件"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:38
+#, fuzzy
 msgid ""
 "Often, when we implement functions operating on values of a given type, not "
 "all values are considered to be valid arguments for the function in "
@@ -171,9 +209,14 @@ msgid ""
 "*precondition* on a function argument comes up pretty often, and there are "
 "several ways to go about this."
 msgstr ""
+"通常，当我们实现对给定类型的值进行操作的函数时，并非所有值都被认为是所讨论函"
+"数的有效参数。例如，我们通常不允许除以零，因为在一般情况下结果是未定义的。"
+"这种将 * 前置条件 * "
+"放在函数参数上的概念经常出现，并且有几种方法可以解决这个问题。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:45
+#, fuzzy
 msgid ""
 "A very common operation when working with lists or other container types is "
 "to extract the first value in the sequence.  This function, however, cannot "
@@ -181,9 +224,13 @@ msgid ""
 "the list must not be empty. Here are a couple of ways to encode and "
 "implement this, each with its own advantages and disadvantages:"
 msgstr ""
+"使用列表或其他容器类型时，一个非常常见的操作是提取序列中的第一个值。然而，这"
+"个函数不能在一般情况下工作，因为为了从列表中提取值，列表不能为空。这里有几种"
+"编码和实现它的方法，每种方法都有自己的优点和缺点："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:57
+#, fuzzy
 msgid ""
 "Wrap the result in a failure type, such as a `Maybe` or `Either e` with some "
 "custom error type `e`. This makes it immediately clear that the function "
@@ -195,9 +242,16 @@ msgid ""
 "value in such a way that we can be sure it is not empty (due to an earlier "
 "pattern match, for instance)."
 msgstr ""
+"将结果包装在故障类型中，例如带有一些自定义错误类型 `e` 的 `Maybe` 或 `e`。这"
+"立即清楚地表明该函数可能无法返回结果。这是处理来自未知来源的未经验证的输入的"
+"自然方式。这种方法的缺点是结果会带有 `Maybe` 污点，即使在我们 * 知道 * "
+"不可能 *nil* 的情况下，例如因为我们知道list 参数在编译时的值，"
+"或者因为我们已经 * 改进了 * "
+"输入值，以确保它不为空（例如，由于较早的模式匹配）。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:67
+#, fuzzy
 msgid ""
 "Define a new data type for non-empty lists and use this as the function's "
 "argument. This is the approach taken in module `Data.List1`. It allows us to "
@@ -207,9 +261,15 @@ msgid ""
 "implemented for `List`. For a very common data structure this can be a valid "
 "option, but for rare use cases it is often too cumbersome."
 msgstr ""
+"为非空列表定义一个新的数据类型并将其用作函数的参数。这是在模块 `Data.List1` "
+"中采用的方法。它允许我们返回一个纯值（这里的意思是“不包含在失败类型中”），因"
+"为函数不可能失败，但它带来了重新实现我们已经为 ` 实现的许多实用函数和接口的负"
+"担列表`。对于非常常见的数据结构，这可能是一个有效的选项，但对于罕见的用例，它"
+"通常太麻烦了。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:81
+#, fuzzy
 msgid ""
 "Use an index to keep track of the property we are interested in. This was "
 "the approach we took with type family `List01`, which we saw in several "
@@ -222,9 +282,15 @@ msgid ""
 "(for instance, dependent pairs), because the outcome of a computation is not "
 "known until runtime."
 msgstr ""
+"使用索引来跟踪我们感兴趣的属性。这是我们对类型族 `List01` 采用的方法，到目前"
+"为止，我们在本指南的几个示例和练习中看到了这种方法。这也是向量采用的方法，我"
+"们使用精确的长度作为索引，这样更有表现力。虽然这允许我们在类型级别以更高的精"
+"度实现许多函数，但它也带来了跟踪类型变化的负担，产生更复杂的函数类型并迫使我"
+"们有时返回存在量化的包装器（例如，依赖对），因为直到运行时才知道计算的结果。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:87
+#, fuzzy
 msgid ""
 "Fail with a runtime exception. This is a popular solution in many "
 "programming languages (even Haskell), but in Idris we try to avoid this, "
@@ -232,9 +298,13 @@ msgid ""
 "Luckily, we can make use of our powerful type system to avoid this situation "
 "in general."
 msgstr ""
+"失败并出现运行时异常。这是许多编程语言（甚至是 Haskell）中流行的解决方案，"
+"但在 Idris 中我们尽量避免这种情况，因为它在某种程度上破坏了整体性，这也会影响"
+"客户端代码。幸运的是，我们可以利用我们强大的类型系统来避免这种情况。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:94
+#, fuzzy
 msgid ""
 "Take an additional (possibly erased) argument of a type we can use as a "
 "witness that the input value is of the correct kind or shape. This is the "
@@ -242,85 +312,116 @@ msgid ""
 "incredibly powerful way to talk about restrictions on values without having "
 "to replicate a lot of already existing functionality."
 msgstr ""
+"取一个类型的附加（可能已删除）参数，我们可以将其用作输入值的类型或形状正确的"
+"见证。这是我们将在本章中详细讨论的解决方案。这是一种非常强大的方式来讨论对值"
+"的限制，而无需复制许多已经存在的功能。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:100
+#, fuzzy
 msgid ""
 "There is a time and place for most if not all of the solutions listed above "
 "in Idris, but we will often turn to the last one and refine function "
 "arguments with predicates (so called *preconditions*), because it makes our "
 "functions nice to use at runtime *and* compile time."
 msgstr ""
+"Idris 中列出的大多数（如果不是全部）解决方案都有时间和地点，但我们经常会转向"
+"最后一个并使用谓词（所谓的 *preconditions*）优化函数参数，"
+"因为它使我们的在运行时 * 和 * 编译时很好用的函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:102
+#, fuzzy
 msgid "### Example: Non-empty Lists"
-msgstr ""
+msgstr "### 示例：非空列表"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:107
+#, fuzzy
 msgid ""
 "Remember how we implemented an indexed data type for propositional equality: "
 "We restricted the valid values of the indices in the constructors. We can do "
 "the same thing for a predicate for non-empty lists:"
-msgstr ""
+msgstr "记住我们是如何实现命题相等的索引数据类型的：我们限制了构造函数中索引的有效值"
+"。我们可以对非空列表的谓词做同样的事情："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:112
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data NotNil : (as : List a) -> Type where\n"
 "  IsNotNil : NotNil (h :: t)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"data NotNil : (as : List a) -> Type where\n"
+"  IsNotNil : NotNil (h :: t)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:117
+#, fuzzy
 msgid ""
 "This is a single-value data type, so we can always use it as an erased "
 "function argument and still pattern match on it. We can now use this to "
 "implement a safe and pure `head` function:"
 msgstr ""
+"这是一种单值数据类型，因此我们始终可以将其用作已擦除的函数参数并仍然对其进行"
+"模式匹配。我们现在可以使用它来实现一个安全且纯粹的 `head` 函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:123
+#, fuzzy
 msgid ""
 "```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = "
 "h head1 [] IsNotNil impossible ```"
 msgstr ""
+"```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = "
+"h head1 [] IsNotNil 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:129
+#, fuzzy
 msgid ""
 "Note, how value `IsNotNil` is a *witness* that its index, which corresponds "
 "to our list argument, is indeed non-empty, because this is what we specified "
 "in its type.  The impossible case in the implementation of `head1` is not "
 "strictly necessary here. It was given above for completeness."
 msgstr ""
+"请注意，值 `IsNotNil` 是 *witness* 的值，它对应于我们的列表参数，它的索引确实"
+"是非空的，因为这是我们在它的类型中指定的。 `head1` "
+"实现中的不可能的情况在这里不是绝对必要的。上面给出的完整性。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:134
+#, fuzzy
 msgid ""
 "We call `NotNil` a *predicate* on lists, as it restricts the values allowed "
 "in the index. We can express a function's preconditions by adding additional "
 "(possibly erased) predicates to the function's list of arguments."
 msgstr ""
+"我们将 `NotNil` 称为列表上的 *predicate*，因为它限制了索引中允许的值。我们可"
+"以通过在函数的参数列表中添加额外的（可能被删除的）谓词来表达函数的前提条件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:138
+#, fuzzy
 msgid ""
 "The first really cool thing is how we can safely use `head1`, if we can at "
 "compile-time show that our list argument is indeed non-empty:"
-msgstr ""
+msgstr "第一个非常酷的事情是我们如何安全地使用 "
+"`head1`，如果我们可以在编译时显示我们的列表参数确实是非空的："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:143
+#, fuzzy
 msgid "```idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
-msgstr ""
+msgstr "``` idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:152
+#, fuzzy
 msgid ""
 "It is a bit cumbersome that we have to pass the `IsNotNil` proof manually. "
 "Before we scratch that itch, we will first discuss what to do with lists, "
@@ -330,36 +431,49 @@ msgid ""
 "`Maybe`, but if we can show that our predicate is *decidable*, we can get "
 "even stronger guarantees by returning a `Dec`:"
 msgstr ""
+"我们必须手动通过 `IsNotNil` 证明有点麻烦。在我们解决这个问题之前，我们将首先"
+"讨论如何处理列表，其值直到运行时才知道。对于这些情况，我们必须通过检查运行时"
+"列表值来尝试以编程方式生成谓词的值。在最简单的情况下，我们可以将证明包装在 "
+"`Maybe` 中，但是如果我们可以证明我们的谓词是 * 可判定的*，我们可以通过返回 ` "
+"来获得更强的保证十二月`："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:156
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Uninhabited (NotNil []) where\n"
 "  uninhabited IsNotNil impossible\n"
 msgstr ""
+"```伊德里斯\n"
+"无人居住 (NotNil []) 其中\n"
+"  无人居住 IsNotNil 不可能\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:161
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "nonEmpty : (as : List a) -> Dec (NotNil as)\n"
 "nonEmpty (x :: xs) = Yes IsNotNil\n"
 "nonEmpty []        = No uninhabited\n"
 "```\n"
 msgstr ""
+"nonEmpty : (as : List a) -> Dec (NotNil as)\n"
+"nonEmpty (x :: xs) = 是 IsNotNil\n"
+"nonEmpty [] = 没有无人居住\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:164
+#, fuzzy
 msgid ""
 "With this, we can implement function `headMaybe`, which is to be used with "
 "lists of unknown origin:"
-msgstr ""
+msgstr "有了这个，我们可以实现函数 `headMaybe`，它可以用于未知来源的列表："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:171
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "headMaybe1 : List a -> Maybe a\n"
@@ -368,23 +482,34 @@ msgid ""
 "  No  _   => Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"headMaybe1 : 列出一个 -> 也许一个\n"
+"headMaybe1 as = case nonEmpty as of\n"
+"  是的 prf => 只是 $ head1 作为 prf\n"
+"  没有 _ => 没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:176
+#, fuzzy
 msgid ""
 "Of course, for trivial functions like `headMaybe` it makes more sense to "
 "implement them directly by pattern matching on the list argument, but we "
 "will soon see examples of predicates the values of which are more cumbersome "
 "to create."
 msgstr ""
+"当然，对于像 `headMaybe` 这样的微不足道的函数，直接通过 list 参数上的模式匹配"
+"来实现它们更有意义，但是我们很快就会看到谓词的示例，其值创建起来更麻烦。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:178
+#, fuzzy
 msgid "### Auto Implicits"
-msgstr ""
+msgstr "### 自动隐式"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:187
+#, fuzzy
 msgid ""
 "Having to manually pass a proof of being non-empty to `head1` makes this "
 "function unnecessarily verbose to use at compile time. Idris allows us to "
@@ -394,17 +519,22 @@ msgid ""
 "surrounding context. It's best to look at some examples to explain the "
 "difference."
 msgstr ""
+"必须手动将非空证明传递给 `head1` 使得这个函数在编译时使用起来不必要地冗长。 "
+"Idris 允许我们定义隐式函数参数，它试图通过一种称为 * 证明搜索 * 的技术自行组"
+"装其值。这不要与类型推断混淆，类型推断意味着从周围的上下文推断值或类型。最好"
+"看一些例子来解释差异。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:190
+#, fuzzy
 msgid ""
 "Let us first have a look at the following implementation of `replicate` for "
 "vectors:"
-msgstr ""
+msgstr "让我们首先看一下向量的 `replicate` 的以下实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:196
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "replicate' : {n : _} -> a -> Vect n a\n"
@@ -412,38 +542,54 @@ msgid ""
 "replicate' {n = S _} v = v :: replicate' v\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"复制' : {n : _} -> a -> Vect n a\n"
+"复制' {n = 0} _ = []\n"
+"复制' {n = S _} v = v :: 复制' v\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:202
+#, fuzzy
 msgid ""
 "Function `replicate'` takes an unerased implicit argument.  The *value* of "
 "this argument must be derivable from the surrounding context. For instance, "
 "in the following example it is immediately clear that `n` equals three, "
 "because that is the length of the vector we want:"
 msgstr ""
+"函数 `replicate'` 采用未擦除的隐式参数。此参数的 * 值 * "
+"必须可从周围的上下文中派生。例如，在下面的示例中，很明显 `n` 等于 "
+"3，因为这是我们想要的向量的长度："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:207
+#, fuzzy
 msgid "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
-msgstr ""
+msgstr "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:211
+#, fuzzy
 msgid ""
 "In the next example, the value of `n` is not known at compile time, but it "
 "is available as an unerased implicit, so this can again be passed as is to "
 "`replicate'`:"
-msgstr ""
+msgstr "在下一个示例中，`n` 的值在编译时是未知的，但它可以作为未擦除的隐式使用，"
+"因此可以再次将其按原样传递给 `replicate'`："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:216
+#, fuzzy
 msgid ""
 "```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 "
 "```"
 msgstr ""
+"```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 "
+"```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:223
+#, fuzzy
 msgid ""
 "However, in the following example, the value of `n` can't be inferred, as "
 "the intermediary vector is immediately converted to a list of unknown "
@@ -451,32 +597,47 @@ msgid ""
 "do so, because it can't be sure that this is the length we want. We "
 "therefore have to pass the length explicitly:"
 msgstr ""
+"但是，在以下示例中，无法推断 `n` "
+"的值，因为中间向量会立即转换为未知长度的列表。尽管 Idris 可以尝试在这里为 `n`"
+" 插入任何值，但它不会这样做，因为它不能确定这是我们想要的长度。因此，我们必须"
+"明确地传递长度："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:228
+#, fuzzy
 msgid ""
 "```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} "
 "12 ```"
 msgstr ""
+"```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} "
+"12 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:234
+#, fuzzy
 msgid ""
 "Note, how the *value* of `n` had to be inferable in these examples, which "
 "means it had to make an appearance in the surrounding context. With auto "
 "implicit arguments, this works differently. Here is the `head` example, this "
 "time with an auto implicit:"
 msgstr ""
+"请注意，在这些示例中，`n` 的 * 值* 必须是可推断的，这意味着它必须出现在周围的"
+"上下文中。使用自动隐式参数，这会有所不同。这是 `head` "
+"示例，这次使用自动隐式："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:240
+#, fuzzy
 msgid ""
 "```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) "
 "= x head [] impossible ```"
 msgstr ""
+"```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) "
+"= x head [] 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:249
+#, fuzzy
 msgid ""
 "Note the `auto` keyword before the quantity of implicit argument `prf`. This "
 "means, we want Idris to construct this value on its own, without it being "
@@ -486,25 +647,33 @@ msgid ""
 "succeeds, this value will then be automatically filled in as the desired "
 "argument, otherwise, Idris will fail with a type error."
 msgstr ""
+"注意隐式参数 `prf` 的数量之前的 `auto` 关键字。这意味着，我们希望 Idris "
+"自己构造这个值，而不是在周围的上下文中可见。为此，Idris "
+"必须在编译时知道列表参数 ` 和 ` 的结构。然后它将尝试从数据类型的构造函数中构"
+"建这样的值。如果成功，该值将自动填充为所需的参数，否则，Idris "
+"将失败并出现类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:251
+#, fuzzy
 msgid "Let's see this in action:"
-msgstr ""
+msgstr "让我们看看它的实际效果："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:256
+#, fuzzy
 msgid "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
-msgstr ""
+msgstr "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:258
+#, fuzzy
 msgid "The following example fails with an error:"
-msgstr ""
+msgstr "以下示例因错误而失败："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:264
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "failing \"Can't find an implementation\\nfor NotNil [].\"\n"
@@ -512,9 +681,16 @@ msgid ""
 "  errHead = Predicates.head []\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"失败“找不到 NotNil [] 的实现\\n"
+"。”\n"
+"  错误头：Nat\n"
+"  errHead = 谓词.head []\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:276
+#, fuzzy
 msgid ""
 "Wait! \"Can't find an implementation for...\"? Is this not the error message "
 "we get for missing interface implementations? That's correct, and I'll show "
@@ -526,25 +702,37 @@ msgid ""
 "access a constraint in the function body by its name (if any). Here is "
 "another implementation of `head`:"
 msgstr ""
+"等待！ “找不到...的实现”？这不是我们因缺少接口实现而得到的错误消息吗？没错，"
+"我将在本章末尾向您展示接口解析只是证明搜索。我已经可以向您展示的是，"
+"一直编写冗长的 `{auto prf : t} ->` 可能很麻烦。因此，Idris "
+"允许我们使用与约束函数相同的语法：`(prf : t) =>`，或者甚至 `t =>`，如果我们不"
+"需要命名约束。像往常一样，我们可以通过名称（如果有的话）访问函数体中的约束。"
+"这是 `head` 的另一个实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:282
+#, fuzzy
 msgid ""
 "```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x "
 "head' [] impossible ```"
 msgstr ""
+"```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x "
+"head' [] 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:287
+#, fuzzy
 msgid ""
 "During proof search, Idris will also look for values of the required type in "
 "the current function context. This allows us to implement `headMaybe` "
 "without having to pass on the `NotNil` proof manually:"
 msgstr ""
+"在证明搜索期间，Idris 还将在当前函数上下文中查找所需类型的值。这允许我们实现 "
+"`headMaybe` 而无需手动传递 `NotNil` 证明："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:295
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "headMaybe : List a -> Maybe a\n"
@@ -554,9 +742,17 @@ msgid ""
 "  No  _   => Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"headMaybe : 列出一个 -> 也许一个\n"
+"headMaybe as = case nonEmpty as of\n"
+"  -- `prf` 在证明搜索期间可用\n"
+"  Yes prf => Just $ Predicates.head as\n"
+"  没有 _ => 没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:304
+#, fuzzy
 msgid ""
 "To conclude: Predicates allow us to restrict the values a function accepts "
 "as arguments. At runtime, we need to build such *witnesses* by pattern "
@@ -565,119 +761,151 @@ msgid ""
 "technique called *proof search*. This allows us to make functions safe and "
 "convenient to use at the same time."
 msgstr ""
+"总结：谓词允许我们限制函数接受作为参数的值。在运行时，"
+"我们需要通过函数参数的模式匹配来构建这样的 "
+"*witnesses*。这些操作通常会失败。在编译时，我们可以让 Idris 尝试使用称为 *"
+"proof search* "
+"的技术为我们构建这些值。这使我们能够同时使功能安全和方便地使用。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:312
+#, fuzzy
 msgid ""
 "In these exercises, you'll have to implement several functions making use of "
 "auto implicits, to constrain the values accepted as function arguments. The "
 "results should be *pure*, that is, not wrapped in a failure type like "
 "`Maybe`."
 msgstr ""
+"在这些练习中，您必须使用自动隐式实现几个函数，以约束作为函数参数接受的值。结"
+"果应该是*pure*，也就是说，没有包裹在像`Maybe`这样的失败类型中。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Predicates.md:314
+#, fuzzy
 msgid "Implement `tail` for lists."
-msgstr ""
+msgstr "为列表实现 `tail`。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Predicates.md:318
+#, fuzzy
 msgid ""
 "Implement `concat1` and `foldMap1` for lists. These should work like "
 "`concat` and `foldMap`, but taking only a `Semigroup` constraint on the "
 "element type."
 msgstr ""
+"为列表实现 `concat1` 和 `foldMap1`。这些应该像 `concat` 和 `foldMap` "
+"一样工作，但对元素类型仅采用 `Semigroup` 约束。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Predicates.md:321
+#, fuzzy
 msgid ""
 "Implement functions for returning the largest and smallest element in a list."
-msgstr ""
+msgstr "实现用于返回列表中最大和最小元素的函数。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Predicates.md:325
+#, fuzzy
 msgid ""
 "Define a predicate for strictly positive natural numbers and use it to "
 "implement a safe and provably total division function on natural numbers."
-msgstr ""
+msgstr "为严格的正自然数定义一个谓词，并用它来实现一个安全且可证明的自然数全除函数。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Predicates.md:330
+#, fuzzy
 msgid ""
 "Define a predicate for a non-empty `Maybe` and use it to safely extract the "
 "value stored in a `Just`. Show that this predicate is decidable by "
 "implementing a corresponding conversion function."
-msgstr ""
+msgstr "为非空 `Maybe` 定义一个谓词，并使用它安全地提取存储在 `Just` "
+"中的值。通过实现相应的转换函数来证明这个谓词是可判定的。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Predicates.md:334
+#, fuzzy
 msgid ""
 "Define and implement functions for safely extracting values from a `Left` "
 "and a `Right` by using suitable predicates.  Show again that these "
 "predicates are decidable."
-msgstr ""
+msgstr "使用合适的谓词定义和实现从 `Left` 和 `Right` "
+"安全地提取值的函数。再次证明这些谓词是可判定的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:339
+#, fuzzy
 msgid ""
 "The predicates you implemented in these exercises are already available in "
 "the *base* library: `Data.List.NonEmpty`, `Data.Maybe.IsJust`, `Data.Either."
 "IsLeft`, `Data.Either.IsRight`, and `Data.Nat.IsSucc`."
 msgstr ""
+"您在这些练习中实现的谓词已经在 *base* 库中可用：`Data.List.NonEmpty`、`Data."
+"Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat."
+"IsSucc`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:341
+#, fuzzy
 msgid "## Contracts between Values"
-msgstr ""
+msgstr "## 值之间的契约"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:346
+#, fuzzy
 msgid ""
 "The predicates we saw so far restricted the values of a single type, but it "
 "is also possible to define predicates describing contracts between several "
 "values of possibly distinct types."
-msgstr ""
+msgstr "到目前为止，我们看到的谓词限制了单一类型的值，但也可以定义谓词来描述可能不同"
+"类型的多个值之间的契约。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:348
+#, fuzzy
 msgid "### The `Elem` Predicate"
-msgstr ""
+msgstr "### `Elem` 谓词"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:351
+#, fuzzy
 msgid ""
 "Assume we'd like to extract a value of a given type from a heterogeneous "
 "list:"
-msgstr ""
+msgstr "假设我们想从异构列表中提取给定类型的值："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:355
+#, fuzzy
 msgid "```idris get' : (0 t : Type) -> HList ts -> t ```"
-msgstr ""
+msgstr "```idris get' : (0 t : Type) -> HList ts -> t ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:358
+#, fuzzy
 msgid ""
 "This can't work in general: If we could implement this we would immediately "
 "have a proof of void:"
-msgstr ""
+msgstr "这在一般情况下是行不通的：如果我们可以实现这一点，我们将立即获得无效证明："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:363
+#, fuzzy
 msgid "```idris voidAgain : Void voidAgain = get' Void [] ```"
-msgstr ""
+msgstr "```idris voidAgain : Void voidAgain = get' Void [] ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:367
+#, fuzzy
 msgid ""
 "The problem is obvious: The type of which we'd like to extract a value must "
 "be an element of the index of the heterogeneous list.  Here is a predicate, "
 "with which we can express this:"
-msgstr ""
+msgstr "问题很明显：我们要提取值的类型必须是异构列表索引的元素。这是一个谓词，我们可"
+"以用它来表达："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:373
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data Elem : (elem : a) -> (as : List a) -> Type where\n"
@@ -685,9 +913,15 @@ msgid ""
 "  There : Elem x xs -> Elem x (y :: xs)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"data Elem : (elem : a) -> (as : List a) -> 键入 where\n"
+"  这里 : Elem x (x :: xs)\n"
+"  那里 : Elem x xs -> Elem x (y :: xs)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:386
+#, fuzzy
 msgid ""
 "This is a predicate describing a contract between two values: A value of "
 "type `a` and a list of `a`s. Values of this predicate are witnesses that the "
@@ -699,55 +933,71 @@ msgid ""
 "If `x` is and element of `xs`, then `x` is also an element of `y :: xs` for "
 "any value `y`. Let's write down some examples to get a feel for these:"
 msgstr ""
+"这是一个描述两个值之间的契约的谓词：一个 `a` 类型的值和一个 `a`s "
+"的列表。该谓词的值是该值是列表元素的见证。请注意，这是如何递归定义的："
+"我们查找的值位于列表头部的情况由 `Here` 构造函数处理，其中相同的变量 (`x`) "
+"是用于元素和列表的头部。值在列表中更深的情况由 `There` "
+"构造函数处理。可以这样理解：如果 `x` 是 `xs` 的元素，那么 `x` 也是 `y :: xs` "
+"的元素对于任何值 `y`。让我们写一些例子来感受一下："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:390
+#, fuzzy
 msgid "```idris MyList : List Nat MyList = [1,3,7,8,4,12]"
-msgstr ""
+msgstr "```idris MyList : 列表 Nat MyList = [1,3,7,8,4,12]"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:393
+#, fuzzy
 msgid "oneElemMyList : Elem 1 MyList oneElemMyList = Here"
-msgstr ""
+msgstr "oneElemMyList : Elem 1 我的列表 oneElemMyList = 这里"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:397
+#, fuzzy
 msgid ""
 "sevenElemMyList : Elem 7 MyList sevenElemMyList = There $ There Here ```"
 msgstr ""
+"SevenElemMyList : Elem 7 MyList SevenElemMyList = There $ There Here ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:402
+#, fuzzy
 msgid ""
 "Now, `Elem` is just another way of indexing into a list of values. Instead "
 "of using a `Fin` index, which is limited by the list's length, we use a "
 "proof that a value can be found at a certain position."
-msgstr ""
+msgstr "现在，`Elem` 只是索引到值列表的另一种方式。我们不使用受列表长度限制的 `Fin` "
+"索引，而是使用可以在特定位置找到值的证明。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:405
+#, fuzzy
 msgid ""
 "We can use the `Elem` predicate to extract a value from the desired type of "
 "a heterogeneous list:"
-msgstr ""
+msgstr "我们可以使用 `Elem` 谓词从所需类型的异构列表中提取值："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:409
+#, fuzzy
 msgid "```idris get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t ```"
-msgstr ""
+msgstr "```idris get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:415
+#, fuzzy
 msgid ""
 "It is important to note that the auto implicit must not be erased in this "
 "case. This is no longer a single value data type, and we must be able to "
 "pattern match on this value in order to figure out, how far within the "
 "heterogeneous list our value is stored:"
-msgstr ""
+msgstr "重要的是要注意在这种情况下不能删除自动隐式。这不再是单值数据类型，我们必须能"
+"够对这个值进行模式匹配，以便弄清楚我们的值在异构列表中存储多远："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:421
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "get t (v :: vs) {prf = Here}    = v\n"
@@ -755,40 +1005,57 @@ msgid ""
 "get _ [] impossible\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"得到 t (v :: vs) {prf = Here} = v\n"
+"得到 t (v :: vs) {prf = There p} = 得到 t vs\n"
+"得到 _ [] 不可能\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:425
+#, fuzzy
 msgid ""
 "It can be instructive to implement `get` yourself, using holes on the right "
 "hand side to see the context and types of values Idris infers based on the "
 "value of the `Elem` predicate."
-msgstr ""
+msgstr "自己实现 `get` 可能很有启发性，使用右侧的孔查看 Idris 根据 `Elem` "
+"谓词的值推断的值的上下文和类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:427
+#, fuzzy
 msgid "Let's give this a spin at the REPL:"
-msgstr ""
+msgstr "让我们在 REPL 上试一试："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:433
+#, fuzzy
 msgid ""
 "```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 Tutorial."
 "Predicates> get Nat [\"foo\", Just \"bar\"] Error: Can't find an "
 "implementation for Elem Nat [String, Maybe String]."
 msgstr ""
+"```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 "
+"Tutorial.Predicates> get Nat [\"foo\", Just \"bar\"] 错误：找不到 Elem Nat "
+"的实现[字符串，也许是字符串]。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:438
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "(Interactive):1:1--1:28\n"
 " 1 | get Nat [\"foo\", Just \"bar\"]\n"
 "     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
 "```\n"
 msgstr ""
+"（互动）：1:1--1:28\n"
+" 1 |得到 Nat [\"foo\", Just \"bar\"]\n"
+"     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:446
+#, fuzzy
 msgid ""
 "With this example we start to appreciate what *proof search* actually means: "
 "Given a value `v` and a list of values `vs`, Idris tries to find a proof "
@@ -797,15 +1064,20 @@ msgid ""
 "limited *search depth*, and will fail with the search if this limit is "
 "exceeded. For instance:"
 msgstr ""
+"通过这个例子，我们开始理解 *proof search* 的实际含义：给定一个值 `v` "
+"和一个值列表 `vs`，Idris 试图找到一个 *vs` 的证明X155X]v` 是 `vs` "
+"的一个元素。现在，在我们继续之前，请注意证明搜索不是灵丹妙药。"
+"搜索算法具有合理限制的 * 搜索深度 *，如果超过此限制，搜索将失败。例如："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:450
+#, fuzzy
 msgid "```idris Tps : List Type Tps = List.replicate 50 Nat ++ [Maybe String]"
-msgstr ""
+msgstr "```idris Tps : 列表类型 Tps = List.replicate 50 Nat ++ [可能是字符串]"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:459
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "hlist : HList Tps\n"
 "hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
@@ -816,16 +1088,28 @@ msgid ""
 "        , Nothing ]\n"
 "```\n"
 msgstr ""
+"hlist : HList Tps\n"
+"hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        ， 没有什么 ]\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:466
+#, fuzzy
 msgid ""
 "```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an "
 "implementation for Elem (Maybe String) [Nat,...  ```"
 msgstr ""
+"```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an "
+"implementation for Elem (Maybe String) [Nat,... ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:474
+#, fuzzy
 msgid ""
 "As you can see, Idris fails to find a proof that `Maybe String` is an "
 "element of `Tps`. The search depth can be increased with the `"
@@ -834,25 +1118,34 @@ msgid ""
 "general, it is not advisable to set this to a too large value as this can "
 "drastically increase compile times."
 msgstr ""
+"如您所见，Idris 未能找到 `Maybe String` 是 `Tps` 的一个元素的证明。可以使用 "
+"`%auto_implicit_depth` "
+"指令增加搜索深度，该指令将保留源文件的其余部分或直到设置为不同的值。"
+"默认值设置为 25。通常，不建议将其设置为太大的值，因为这会大大增加编译时间。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:479
+#, fuzzy
 msgid ""
 "```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
 msgstr ""
+"```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:482
+#, fuzzy
 msgid "%auto_implicit_depth 25 ```"
-msgstr ""
+msgstr "%auto_implicit_depth 25 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:484
+#, fuzzy
 msgid "### Use Case: A nicer Schema"
-msgstr ""
+msgstr "### 用例：更好的模式"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:492
+#, fuzzy
 msgid ""
 "In the chapter about [sigma types](DPair.md), we introduced a schema for CSV "
 "files. This was not very nice to use, because we had to use natural numbers "
@@ -861,35 +1154,46 @@ msgid ""
 "columns by name. We are going to change this. Here is an encoding for this "
 "use case:"
 msgstr ""
+"在关于 [sigma types](DPair.md) 的章节中，我们介绍了 CSV 文件的模式。这不是很"
+"好用，因为我们必须使用自然数来访问某个列。更糟糕的是，我们小型图书馆的用户也"
+"必须这样做。无法为每个列定义名称并按名称访问列。我们将改变这一点。这是此用例"
+"的编码："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:506
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record Column where\n"
 "  constructor MkColumn\n"
 "  name : String\n"
 "  type : ColType\n"
 msgstr ""
+"记录列在哪里\n"
+"  构造函数 MkColumn\n"
+"  名称：字符串\n"
+"  类型：ColType\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:508
+#, fuzzy
 msgid "infixr 8 :>"
-msgstr ""
+msgstr "中缀 8 :>"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:511
+#, fuzzy
 msgid "(:>) : String -> ColType -> Column (:>) = MkColumn"
-msgstr ""
+msgstr "(:>) : 字符串 -> ColType -> 列 (:>) = MkColumn"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:514
+#, fuzzy
 msgid "Schema : Type Schema = List Column"
-msgstr ""
+msgstr "架构：类型架构 = 列表列"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:520
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Show ColType where\n"
 "  show I64     = \"I64\"\n"
@@ -897,33 +1201,43 @@ msgid ""
 "  show Boolean = \"Boolean\"\n"
 "  show Float   = \"Float\"\n"
 msgstr ""
+"在哪里显示 ColType\n"
+"  显示 I64 = \"I64\"\n"
+"  显示 Str = \"Str\"\n"
+"  显示布尔=“布尔”\n"
+"  显示浮动 = \"浮动\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:523
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Show Column where\n"
 "  show (MkColumn n ct) = \"\\{n}:\\{show ct}\"\n"
 msgstr ""
+"显示列在哪里\n"
+"  显示 (MkColumn n ct) = \"\\{n}:\\{show ct}\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:527
+#, fuzzy
 msgid ""
 "showSchema : Schema -> String showSchema = concat . intersperse \",\" . map "
 "show ```"
-msgstr ""
+msgstr "showSchema : 模式 -> 字符串 showSchema = concat 。穿插“，”。地图显示```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:531
+#, fuzzy
 msgid ""
 "As you can see, in a schema we now pair a column's type with its name. Here "
 "is an example schema for a CSV file holding information about employees in a "
 "company:"
-msgstr ""
+msgstr "如您所见，在模式中，我们现在将列的类型与其名称配对。以下是保存公司员工信息的 "
+"CSV 文件的示例架构："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:542
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "EmployeeSchema : Schema\n"
@@ -936,9 +1250,20 @@ msgid ""
 "                 ]\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"员工架构：架构\n"
+"EmployeeSchema = [“名字”：> Str\n"
+"                 , \"姓氏\" :> 字符串\n"
+"                 , \"电子邮件\" :> 字符串\n"
+"                 , “年龄” :> I64\n"
+"                 , “薪水” :> 浮动\n"
+"                 , “管理” :> 布尔值\n"
+"                 ]\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:549
+#, fuzzy
 msgid ""
 "Such a schema could of course again be read from user input, but we will "
 "wait with implementing a parser until later in this chapter.  Using this new "
@@ -946,19 +1271,25 @@ msgid ""
 "I quickly wrote a custom row type: A heterogeneous list indexed over a "
 "schema."
 msgstr ""
+"这样的模式当然可以再次从用户输入中读取，但我们将等到本章稍后再实现解析器。"
+"将这个新模式与 `HList` 一起使用会直接导致类型推断问题，因此我很快编写了一个自"
+"定义行类型：基于模式索引的异构列表。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:553
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data Row : Schema -> Type where\n"
 "  Nil  : Row []\n"
 msgstr ""
+"```伊德里斯\n"
+"数据行：架构 -> 键入位置\n"
+"  无：行 []\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:560
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  (::) :  {0 name : String}\n"
 "       -> {0 type : ColType}\n"
@@ -967,34 +1298,49 @@ msgid ""
 "       -> Row (name :> type :: ss)\n"
 "```\n"
 msgstr ""
+"  (::)：{0 名称：字符串}\n"
+"       -> {0 类型：ColType}\n"
+"       -> (v : IdrisType 类型)\n"
+"       -> 行 ss\n"
+"       -> 行（名称 :> 类型 :: ss）\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:565
+#, fuzzy
 msgid ""
 "In the signature of *cons*, I list the erased implicit arguments explicitly. "
 "This is good practice, as otherwise Idris will often issue shadowing "
 "warnings when using such data constructors in client code."
 msgstr ""
+"在 *cons* 的签名中，我明确列出了已删除的隐式参数。这是一种很好的做法，否则 "
+"Idris 在客户端代码中使用此类数据构造函数时会经常发出阴影警告。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:567
+#, fuzzy
 msgid "We can now define a type alias for CSV rows representing employees:"
-msgstr ""
+msgstr "我们现在可以为代表员工的 CSV 行定义一个类型别名："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:571
+#, fuzzy
 msgid "```idris 0 Employee : Type Employee = Row EmployeeSchema"
-msgstr ""
+msgstr "```idris 0 Employee：类型Employee = Row EmployeeSchema"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:575
+#, fuzzy
 msgid ""
 "hock : Employee hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, "
 "False ] ```"
 msgstr ""
+"hock : 员工 hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, "
+"False ] ``"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:584
+#, fuzzy
 msgid ""
 "Note, how I gave `Employee` a zero quantity. This means, we are only ever "
 "allowed to use this function at compile time but never at runtime. This is a "
@@ -1003,9 +1349,14 @@ msgid ""
 "quantity functions and values in type signatures and when computing other "
 "erased values, but not for runtime-relevant computations."
 msgstr ""
+"请注意，我如何给 `Employee` 一个零数量。这意味着，我们只被允许在编译时使用这"
+"个函数，但绝不允许在运行时使用。这是一种确保我们的类型级函数和别名在构建应用"
+"程序时不会泄漏到可执行文件中的安全方法。我们可以在类型签名和计算其他擦除值时"
+"使用零数量的函数和值，但不能用于与运行时相关的计算。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:602
+#, fuzzy
 msgid ""
 "We would now like to access a value in a row based on the name given. For "
 "this, we write a custom predicate, which serves as a witness that a column "
@@ -1021,10 +1372,18 @@ msgid ""
 "proof search. This can be done by listing the indices to be used in the "
 "search like so: `[search name schema]`."
 msgstr ""
+"我们现在想根据给定的名称访问一行中的值。为此，我们编写了一个自定义谓词，它可"
+"以证明具有给定名称的列是模式的一部分。现在，有一件重要的事情需要注意：在这个"
+"谓词中，我们包含一个索引，用于给定名称的列的 *type*。我们需要这个，因为当我们"
+"按名称访问列时，我们需要一种方法来确定返回类型。但是在证明搜索期间，Idris 必"
+"须根据所讨论的列名和模式派生这种类型（否则，除非事先知道返回类型，否则证明搜"
+"索将失败）。因此，我们 * 必须 * 告诉 Idris，它不能将此类型包含在搜索条件列表"
+"中，否则它会在运行证明搜索之前尝试从上下文中推断列类型（使用类型推断）。这可"
+"以通过列出要在搜索中使用的索引来完成，如下所示：`[搜索名称模式]`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:611
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data InSchema :  (name    : String)\n"
@@ -1035,27 +1394,40 @@ msgid ""
 "  IsHere  : InSchema n (n :> t :: ss) t\n"
 "  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t\n"
 msgstr ""
+"```伊德里斯\n"
+"数据 InSchema：（名称：字符串）\n"
+"              ->（架构：架构）\n"
+"              -> (colType : ColType)\n"
+"              -> 输入位置\n"
+"  [搜索名称架构]\n"
+"  IsHere : InSchema n (n :> t :: ss) t\n"
+"  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:616
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Uninhabited (InSchema n [] c) where\n"
 "  uninhabited IsHere impossible\n"
 "  uninhabited (IsThere _) impossible\n"
 "```\n"
 msgstr ""
+"无人居住 (InSchema n [] c) 其中\n"
+"  无人居住 IsHere 不可能\n"
+"  无人居住 (IsThere _) 不可能\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:619
+#, fuzzy
 msgid ""
 "With this, we are now ready to access the value at a given column based on "
 "the column's name:"
-msgstr ""
+msgstr "有了这个，我们现在可以根据列的名称访问给定列的值："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:629
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "getAt :  {0 ss : Schema}\n"
@@ -1067,9 +1439,19 @@ msgid ""
 "getAt name (_ :: vs) {prf = IsThere p} = getAt name vs\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"getAt：{0 ss：架构}\n"
+"      ->（名称：字符串）\n"
+"      ->（行：行 ss）\n"
+"      -> (prf : InSchema 名称 ss c)\n"
+"      => IdrisType c\n"
+"getAt 名称 (v :: vs) {prf = IsHere} = v\n"
+"getAt 名称 (_ :: vs) {prf = IsThere p} = getAt 名称 vs\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:638
+#, fuzzy
 msgid ""
 "Below is an example how to use this at compile time. Note the amount of work "
 "Idris performs for us: It first comes up with proofs that `firstName`, "
@@ -1078,10 +1460,14 @@ msgid ""
 "`getAt` and extracts the corresponding values from the row. All of this "
 "happens in a provably total and type safe way."
 msgstr ""
+"下面是一个如何在编译时使用它的示例。请注意 Idris 为我们执行的工作量："
+"首先证明 `firstName`、`lastName` 和 `age` 确实是 ` 中的有效名称Employee` "
+"模式。从这些证明中，它会自动计算出对 `getAt` 的调用的返回类型，并从行中提取相"
+"应的值。所有这些都以可证明的整体和类型安全的方式发生。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:648
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "shoeck : String\n"
@@ -1093,9 +1479,19 @@ msgid ""
 "       ++ \" years old.\"\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"鞋柜 : 字符串\n"
+"shoeck = getAt \"firstName\" 飞节\n"
+"       ++\"\"\n"
+"       ++ getAt \"lastName\" 飞节\n"
+"       ++“：”\n"
+"       ++ show (getAt \"age\" 飞节)\n"
+"       ++“岁。”\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:657
+#, fuzzy
 msgid ""
 "In order to at runtime specify a column name, we need a way for computing "
 "values of type `InSchema` by comparing the column names with the schema in "
@@ -1105,10 +1501,14 @@ msgid ""
 "column type at the same time and pair this (as a dependent pair) with the "
 "`InSchema` proof:"
 msgstr ""
+"为了在运行时指定列名，我们需要一种通过将列名与相关架构进行比较来计算 "
+"`InSchema` 类型值的方法。因为我们必须比较两个字符串值是否在命题上相等，"
+"所以我们在这里为 `String` 使用 `DecEq` 实现（Idris 为所有原语提供 `DecEq` "
+"实现）。我们同时提取列类型并将其（作为依赖对）与 `InSchema` 证明配对："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:667
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "inSchema : (ss : Schema) -> (n : String) -> Maybe (c ** InSchema n ss c)\n"
@@ -1120,70 +1520,98 @@ msgid ""
 "    Nothing         => Nothing\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"inSchema : (ss : Schema) -> (n: String) -> Maybe (c ** InSchema n ss c)\n"
+"inSchema [] _ = 没有\n"
+"inSchema (MkColumn cn t :: xs) n = case decEq cn n of\n"
+"  Yes Refl => Just (t ** IsHere)\n"
+"  No contra => case inSchema xs n of\n"
+"    只是 (t ** prf) => 只是 $ (t ** IsThere prf)\n"
+"    没有=>没有\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:671
+#, fuzzy
 msgid ""
 "At the end of this chapter we will use `InSchema` in our CSV command-line "
 "application to list all values in a column."
-msgstr ""
+msgstr "在本章的最后，我们将在 CSV 命令行应用程序中使用 `InSchema` "
+"来列出列中的所有值。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Predicates.md:676
+#, fuzzy
 msgid ""
 "Show that `InSchema` is decidable by changing the output type of `inSchema` "
 "to `Dec (c ** InSchema n ss c)`."
 msgstr ""
+"通过将 `inSchema` 的输出类型更改为 `Dec (c ** InSchema n ss c)` 来证明 "
+"`InSchema` 是可判定的。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Predicates.md:679
+#, fuzzy
 msgid ""
 "Declare and implement a function for modifying a field in a row based on the "
 "column name given."
-msgstr ""
+msgstr "声明并实现一个函数，用于根据给定的列名修改行中的字段。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Predicates.md:684
+#, fuzzy
 msgid ""
 "Define a predicate to be used as a witness that one list contains only "
 "elements in the second list in the same order and use this predicate to "
 "extract several columns from a row at once."
-msgstr ""
+msgstr "定义一个谓词用作见证一个列表仅包含第二个列表中相同顺序的元素，并使用此谓词一"
+"次从一行中提取几列。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:688
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   For instance, `[2,4,5]` contains elements from\n"
 "   `[1,2,3,4,5,6]` in the correct order, but `[4,2,5]`\n"
 "   does not.\n"
 msgstr ""
+"   例如，`[2,4,5]` 包含来自\n"
+"   `[1,2,3,4,5,6]` 顺序正确，但是 `[4,2,5]`\n"
+"   才不是。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Predicates.md:694
+#, fuzzy
 msgid ""
 "Improve the functionality from exercise 3 by defining a new predicate, "
 "witnessing that all strings in a list correspond to column names in a schema "
 "(in arbitrary order).  Use this to extract several columns from a row at "
 "once in arbitrary order."
 msgstr ""
+"通过定义一个新的谓词来改进练习 3 的功能，见证列表中的所有字符串都对应于模式中"
+"的列名（以任意顺序）。使用它可以以任意顺序一次从一行中提取几列。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:698
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Hint: Make sure to include the resulting schema as an index,\n"
 "   but search only based on the list of names and the input\n"
 "   schema.\n"
 msgstr ""
+"   提示：确保包含生成的模式作为索引，\n"
+"   但仅根据名称列表和输入进行搜索\n"
+"   架构。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:700
+#, fuzzy
 msgid "## Use Case: Flexible Error Handling"
-msgstr ""
+msgstr "## 用例：灵活的错误处理"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:718
+#, fuzzy
 msgid ""
 "A recurring pattern when writing larger applications is the combination of "
 "different parts of a program each with their own failure types in a larger "
@@ -1199,36 +1627,54 @@ msgid ""
 "approach here. Before we continue, we quickly implement a couple of "
 "functions with the potential of failure plus some custom error types:"
 msgstr ""
+"编写大型应用程序时反复出现的模式是在更大的有效计算中组合程序的不同部分，每个"
+"部分都有自己的故障类型。例如，我们在实现用于处理 CSV 文件的命令行工具时就看到"
+"了这一点。在那里，我们从文件读取和写入数据，我们解析列类型和模式，我们解析行"
+"和列索引以及命令行命令。所有这些操作都有失败的可能性，并且可能在我们应用程序"
+"的不同部分中实现。为了统一这些不同的失败类型，我们编写了一个自定义的 sum "
+"类型来封装它们中的每一个，并为这个 sum 类型编写了一个单独的处理程序。这种方法"
+"当时还可以，但它不能很好地扩展，并且缺乏灵活性。因此，我们在这里尝试不同的方"
+"法。在继续之前，我们快速实现了几个可能失败的函数以及一些自定义错误类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:723
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record NoNat where\n"
 "  constructor MkNoNat\n"
 "  str : String\n"
 msgstr ""
+"```伊德里斯\n"
+"在哪里记录 NoNat\n"
+"  构造函数 MkNoNat\n"
+"  str : 字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:726
+#, fuzzy
 msgid ""
 "readNat' : String -> Either NoNat Nat readNat' s = maybeToEither (MkNoNat s) "
 "$ parsePositive s"
 msgstr ""
+"readNat' : String -> Either NoNat Nat readNat' s = maybeToEither (MkNoNat s) "
+"$ parsePositive s"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:730
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record NoColType where\n"
 "  constructor MkNoColType\n"
 "  str : String\n"
 msgstr ""
+"记录 NoColType 在哪里\n"
+"  构造函数 MkNoColType\n"
+"  str : 字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:738
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readColType' : String -> Either NoColType ColType\n"
 "readColType' \"I64\"     = Right I64\n"
@@ -1238,9 +1684,17 @@ msgid ""
 "readColType' s         = Left $ MkNoColType s\n"
 "```\n"
 msgstr ""
+"readColType' : String -> 无论是 NoColType ColType\n"
+"readColType' \"I64\" = 右 I64\n"
+"readColType' \"Str\" = 右 Str\n"
+"readColType' \"Boolean\" = 右布尔值\n"
+"readColType' \"Float\" = 右浮动\n"
+"readColType's = 左 $ MkNoColType s\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:746
+#, fuzzy
 msgid ""
 "However, if we wanted to parse a `Fin n`, there'd be already two ways how "
 "this could fail: The string in question could not represent a natural number "
@@ -1248,10 +1702,15 @@ msgid ""
 "`OutOfBounds` error).  We have to somehow encode these two possibilities in "
 "the return type, for instance, by using an `Either` as the error type:"
 msgstr ""
+"但是，如果我们想解析 `Fin "
+"n`，已经有两种方法会导致失败：有问题的字符串不能表示自然数（导致 "
+"`NoNat`错误），或者它可能超出范围（导致 `OutOfBounds` "
+"错误）。我们必须以某种方式在返回类型中编码这两种可能性，例如，通过使用 "
+"`Either` 作为错误类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:752
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record OutOfBounds where\n"
@@ -1259,10 +1718,15 @@ msgid ""
 "  size  : Nat\n"
 "  index : Nat\n"
 msgstr ""
+"```伊德里斯\n"
+"记录 OutOfBounds where\n"
+"  构造函数 MkOutOfBounds\n"
+"  尺寸：自然\n"
+"  指数：自然\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:758
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)\n"
 "readFin' s = do\n"
@@ -1270,9 +1734,15 @@ msgid ""
 "  maybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n\n"
 "```\n"
 msgstr ""
+"readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)\n"
+"readFin's = 做\n"
+"  ix <- mapFst Left (readNat's)\n"
+"  MaybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:767
+#, fuzzy
 msgid ""
 "This is incredibly ugly. A custom sum type might have been slightly better, "
 "but we still would have to use `mapFst` when invoking `readNat'`, and "
@@ -1282,19 +1752,29 @@ msgid ""
 "single value of exactly one of the types in question.  Here is a first naive "
 "try:"
 msgstr ""
+"这是难以置信的丑陋。自定义 sum 类型可能会稍微好一些，但是在调用 `readNat'` "
+"时我们仍然必须使用 `mapFst`，并且为每个可能的错误组合编写自定义 sum "
+"类型会变得非常麻烦也很快。我们正在寻找的是一种广义的 sum 类型：一种由类型列表"
+"（可能的选择）索引的类型，其中包含所讨论类型之一的单个值。这是第一次天真的尝"
+"试："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:772
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data Sum : List Type -> Type where\n"
 "  MkSum : (val : t) -> Sum ts\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"数据总和：列表类型 -> 类型在哪里\n"
+"  MkSum : (val : t) -> Sum ts\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:783
+#, fuzzy
 msgid ""
 "However, there is a crucial piece of information missing: We have not "
 "verified that `t` is an element of `ts`, nor *which* type it actually is. In "
@@ -1305,54 +1785,78 @@ msgid ""
 "number of types in the list.  We will therefore use a vector instead of a "
 "list as our index.  Here is a predicate similar to `Elem` but for vectors:"
 msgstr ""
+"但是，缺少一条关键信息：我们尚未验证 `t` 是 `ts` 的元素，也没有验证 * "
+"它实际上是哪个 * 类型。事实上，这是另一种被抹去的存在，"
+"我们将无法在运行时了解 `t`。我们需要做的是将值与证明配对，证明其类型 `t` 是 "
+"`ts` 的元素。为此，我们可以再次使用 `Elem`，但对于某些用例，我们将需要访问列"
+"表中的类型数量。因此，我们将使用向量而不是列表作为索引。这是一个类似于 `Elem`"
+" 的谓词，但用于向量："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:788
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data Has :  (v : a) -> (vs  : Vect n a) -> Type where\n"
 "  Z : Has v (v :: vs)\n"
 "  S : Has v vs -> Has v (w :: vs)\n"
 msgstr ""
+"```伊德里斯\n"
+"数据有 : (v : a) -> (vs : Vect n a) -> 输入 where\n"
+"  Z : 有 v (v :: vs)\n"
+"  S : 有 v vs -> 有 v (w :: vs)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:793
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Uninhabited (Has v []) where\n"
 "  uninhabited Z impossible\n"
 "  uninhabited (S _) impossible\n"
 "```\n"
 msgstr ""
+"无人居住（有 v []）\n"
+"  无人Z不可能\n"
+"  无人居住 (S _) 不可能\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:797
+#, fuzzy
 msgid ""
 "A value of type `Has v vs` is a witness that `v` is an element of `vs`. With "
 "this, we can now implement an indexed sum type (also called an *open union*):"
 msgstr ""
+"`Has v vs` 类型的值证明 `v` 是 `vs` "
+"的一个元素。有了这个，我们现在可以实现一个索引和类型（也称为 *open union*）："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:801
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data Union : Vect n Type -> Type where\n"
 "  U : (ix : Has t ts) -> (val : t) -> Union ts\n"
 msgstr ""
+"```伊德里斯\n"
+"数据联合：Vect n Type -> Type where\n"
+"  U : (ix : Has ts) -> (val : t) -> Union ts\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:805
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Uninhabited (Union []) where\n"
 "  uninhabited (U ix _) = absurd ix\n"
 "```\n"
 msgstr ""
+"无人居住 (Union []) 其中\n"
+"  无人居住 (U ix _) = 荒谬 ix\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:811
+#, fuzzy
 msgid ""
 "Note the difference between `HList` and `Union`. `HList` is a *generalized "
 "product type*: It holds a value for each type in its index. `Union` is a "
@@ -1360,55 +1864,75 @@ msgid ""
 "type listed in the index.  With this we can now define a much more flexible "
 "error type:"
 msgstr ""
+"注意 `HList` 和 `Union` 之间的区别。 `HList` 是 * "
+"广义产品类型*：它在其索引中为每个类型保存一个值。 `Union` 是 * 广义求和类型*"
+"：它只保存一个值，该值必须是索引中列出的类型。有了这个，我们现在可以定义一个"
+"更灵活的错误类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:816
+#, fuzzy
 msgid ""
 "```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t "
 "```"
 msgstr ""
+"```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t "
+"```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:820
+#, fuzzy
 msgid ""
 "A function returning an `Err ts a` describes a computation, which can fail "
 "with one of the errors listed in `ts`.  We first need some utility functions."
-msgstr ""
+msgstr "返回 `Err ts a` 的函数描述了一个计算，该计算可能会因 `ts` "
+"中列出的错误之一而失败。我们首先需要一些实用函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:824
+#, fuzzy
 msgid ""
 "```idris inject : (prf : Has t ts) => (v : t) -> Union ts inject v = U prf v"
 msgstr ""
+"```idris injection : (prf : Has t ts) => (v : t) -> Union ts injection v = U "
+"prf v"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:827
+#, fuzzy
 msgid "fail : Has t ts => (err : t) -> Err ts a fail err = Left $ inject err"
-msgstr ""
+msgstr "fail : Has ts => (err : t) -> Err ts a fail err = Left $ injection err"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:831
+#, fuzzy
 msgid ""
 "failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a failMaybe err "
 "= maybeToEither (inject err)  ```"
 msgstr ""
+"failMaybe : Has ts => (err : Lazy t) -> Maybe a -> Err ts a failMaybe err = "
+"maybeToEither (inject err) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:834
+#, fuzzy
 msgid ""
 "Next, we can write more flexible versions of the parsers we wrote above:"
-msgstr ""
+msgstr "接下来，我们可以为上面编写的解析器编写更灵活的版本："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:838
+#, fuzzy
 msgid ""
 "```idris readNat : Has NoNat ts => String -> Err ts Nat readNat s = "
 "failMaybe (MkNoNat s) $ parsePositive s"
 msgstr ""
+"```idris readNat : Has NoNat ts => String -> Err ts Nat readNat s = "
+"failMaybe (MkNoNat s) $ parsePositive s"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:846
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readColType : Has NoColType ts => String -> Err ts ColType\n"
 "readColType \"I64\"     = Right I64\n"
@@ -1418,17 +1942,25 @@ msgid ""
 "readColType s         = fail $ MkNoColType s\n"
 "```\n"
 msgstr ""
+"readColType : 有 NoColType ts => String -> Err ts ColType\n"
+"readColType \"I64\" = 右 I64\n"
+"readColType \"Str\" = 右 Str\n"
+"readColType \"Boolean\" = 右布尔值\n"
+"readColType \"Float\" = 右浮动\n"
+"readColType s = 失败 $ MkNoColType s\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:849
+#, fuzzy
 msgid ""
 "Before we implement `readFin`, we introduce a short cut for specifying that "
 "several error types must be present:"
-msgstr ""
+msgstr "在我们实现 `readFin` 之前，我们引入一个快捷方式来指定必须存在几种错误类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:855
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "0 Errs : List Type -> Vect n Type -> Type\n"
@@ -1436,18 +1968,26 @@ msgid ""
 "Errs (x :: xs) ts = (Has x ts, Errs xs ts)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"0 错误：列表类型 -> Vect n 类型 -> 类型\n"
+"错误 [] _ = ()\n"
+"Errs (x :: xs) ts = (Has x ts, Errs xs ts)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:860
+#, fuzzy
 msgid ""
 "Function `Errs` returns a tuple of constraints. This can be used as a "
 "witness that all listed types are present in the vector of types: Idris will "
 "automatically extract the proofs from the tuple as needed."
-msgstr ""
+msgstr "函数 `Errs` "
+"返回一个约束元组。这可以用作所有列出的类型都存在于类型向量中的见证：Idris "
+"将根据需要自动从元组中提取证明。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:868
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)\n"
@@ -1456,57 +1996,80 @@ msgid ""
 "  failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)"
+"\n"
+"readFin s = 做\n"
+"  六 <- readNat s | Z => 失败 (MkOutOfBounds n Z)\n"
+"  failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:871
+#, fuzzy
 msgid "As a last example, here are parsers for schemata and CSV rows:"
-msgstr ""
+msgstr "作为最后一个示例，这里是模式和 CSV 行的解析器："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:875
+#, fuzzy
 msgid ""
 "```idris fromCSV : String -> List String fromCSV = forget . split (',' ==)"
-msgstr ""
+msgstr "```idris fromCSV: String -> List String fromCSV = forget .拆分 (',' ==)"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:879
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record InvalidColumn where\n"
 "  constructor MkInvalidColumn\n"
 "  str : String\n"
 msgstr ""
+"记录 InvalidColumn where\n"
+"  构造函数 MkInvalidColumn\n"
+"  str : 字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:884
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts Column\n"
 "readColumn s = case forget $ split (':' ==) s of\n"
 "  [n,ct] => MkColumn n <$> readColType ct\n"
 "  _      => fail $ MkInvalidColumn s\n"
 msgstr ""
+"readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts 列\n"
+"readColumn s = case forget $ split(':' ==) s of\n"
+"  [n,ct] => MkColumn n <$> readColType ct\n"
+"  _ => 失败 $ MkInvalidColumn s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:887
+#, fuzzy
 msgid ""
 "readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema "
 "readSchema = traverse readColumn . fromCSV"
 msgstr ""
+"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema "
+"readSchema = traverse readColumn 。来自CSV"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:892
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data RowError : Type where\n"
 "  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError\n"
 "  UnexpectedEOI : (row, col : Nat) -> RowError\n"
 "  ExpectedEOI   : (row, col : Nat) -> RowError\n"
 msgstr ""
+"数据 RowError : 键入 where\n"
+"  InvalidField : (row, col : Nat) -> (ct : ColType) -> String -> RowError\n"
+"  UnexpectedEOI : (row, col : Nat) -> RowError\n"
+"  ExpectedEOI : (row, col : Nat) -> RowError\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:905
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "decodeField :  Has RowError ts\n"
 "            => (row,col : Nat)\n"
@@ -1521,10 +2084,22 @@ msgid ""
 "        Boolean => failMaybe err $ read s\n"
 "        Float   => failMaybe err $ read s\n"
 msgstr ""
+"decodeField : 有 RowError ts\n"
+"            =>（行，列：Nat）\n"
+"            -> (c : ColType)\n"
+"            -> 字符串\n"
+"            -> Err ts (IdrisType c)\n"
+"decodeField 行 col c s =\n"
+"  let err = InvalidField row col c s\n"
+"   万一\n"
+"        I64 => failMaybe err $ read s\n"
+"        Str => failMaybe err $ read s\n"
+"        Boolean => failMaybe err $ read s\n"
+"        Float => failMaybe err $ read s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:919
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "decodeRow :  Has RowError ts\n"
 "          => {s : _}\n"
@@ -1540,18 +2115,36 @@ msgid ""
 "          [| decodeField row k c s :: go (S k) cs ss |]\n"
 "```\n"
 msgstr ""
+"decodeRow : 有 RowError ts\n"
+"          => {s：_}\n"
+"          ->（行：Nat）\n"
+"          ->（字符串：字符串）\n"
+"          -> Err ts（行）\n"
+"decodeRow 行 = 走 1 秒。来自CSV\n"
+"  去哪里： Nat -> (cs: Schema) -> List String -> Err ts (Row cs)\n"
+"        去 k [] [] = 右 []\n"
+"        go k [] (_ :: _) = 失败 $ ExpectedEOI 第 k 行\n"
+"        go k (_ :: _) [] = 失败 $ UnexpectedEOI 第 k 行\n"
+"        去 k (MkColumn n c :: cs) (s :: ss) =\n"
+"          [| decodeField 行 k c s :: go (S k) cs ss |]\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:925
+#, fuzzy
 msgid ""
 "Here is an example REPL session, where I test `readSchema`. I defined "
 "variable `ts` using the `:let` command to make this more convenient.  Note, "
 "how the order of error types is of no importance, as long as types "
 "`InvalidColumn` and `NoColType` are present in the list of errors:"
 msgstr ""
+"这是一个示例 REPL 会话，我在其中测试 `readSchema`。我使用 `:let` "
+"命令定义了变量 `ts` 以使其更方便。请注意，错误类型的顺序并不重要，"
+"只要错误列表中存在 `InvalidColumn` 和 `NoColType` 类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:935
+#, fuzzy
 msgid ""
 "```repl Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,"
 "InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:bar\" Left (U Z "
@@ -1559,14 +2152,22 @@ msgid ""
 "Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema {ts} \"foo "
 "Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\"))  ```"
 msgstr ""
+"```repl Tutorial.Predicates> :let ts = (Vect 3 _) "
+"[NoColType,NoNat,InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:"
+"bar\" Left (U Z (MkNoColType \"bar\")) 教程。 Predicates> readSchema {ts} "
+"\"foo:Float\" Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema "
+"{ts} \"foo Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\")) [X342X "
+"]"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:937
+#, fuzzy
 msgid "### Error Handling"
-msgstr ""
+msgstr "### 错误处理"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:943
+#, fuzzy
 msgid ""
 "There are several techniques for handling errors, all of which are useful at "
 "times. For instance, we might want to handle some errors early on and "
@@ -1574,9 +2175,13 @@ msgid ""
 "might want to handle them all in one fell swoop. We look at both approaches "
 "here."
 msgstr ""
+"有几种处理错误的技术，所有这些技术有时都很有用。例如，我们可能希望在早期单独"
+"处理一些错误，而在我们的应用程序中处理其他错误。或者我们可能想一举解决所有问"
+"题。我们在这里看看这两种方法。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:950
+#, fuzzy
 msgid ""
 "First, in order to handle a single error individually, we need to *split* a "
 "union into one of two possibilities: A value of the error type in question "
@@ -1584,10 +2189,13 @@ msgid ""
 "predicate for this, which not only encodes the presence of a value in a "
 "vector but also the result of removing that value:"
 msgstr ""
+"首先，为了单独处理单个错误，我们需要将联合 * 拆分 * 为以下两种可能性之一：所"
+"讨论的错误类型的值或新联合，包含其他错误类型之一。为此我们需要一个新的谓词，"
+"它不仅编码向量中值的存在，还编码删除该值的结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:957
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where\n"
@@ -1596,18 +2204,26 @@ msgid ""
 "  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"数据 Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> 键入 where\n"
+"  [搜索v vs]\n"
+"  RZ : 雷姆 v (v :: rem) 雷姆\n"
+"  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:962
+#, fuzzy
 msgid ""
 "Once again, we want to use one of the indices (`rem`) in our functions' "
 "return types, so we only use the other indices during proof search. Here is "
 "a function for splitting off a value from an open union:"
-msgstr ""
+msgstr "再一次，我们希望在函数的返回类型中使用其中一个索引 (`rem`)，因此我们只在证明"
+"搜索期间使用其他索引。这是一个从开放联合中分离值的函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:972
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)\n"
@@ -1619,27 +2235,43 @@ msgid ""
 "  Right (U ix y) => Right $ U (S ix) y\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)\n"
+"拆分 {prf = RZ} (U Z val) = Left val\n"
+"拆分 {prf = RZ} (U (S x) val) = 右 (U x val)\n"
+"拆分 {prf = RS p} (U Z val) = 右 (U Z val)\n"
+"split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of\n"
+"  左 vt => 左 vt\n"
+"  右 (U ix y) => 右 $ U (S ix) y\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:977
+#, fuzzy
 msgid ""
 "This tries to extract a value of type `t` from a union. If it works, the "
 "result is wrapped in a `Left`, otherwise a new union is returned in a "
 "`Right`, but this one has `t` removed from its list of possible types."
 msgstr ""
+"这试图从联合中提取 `t` 类型的值。如果有效，则将结果包装在 `Left` 中，"
+"否则将在 `Right` 中返回一个新联合，但此联合已从其列表中删除了 `t`可能的类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:982
+#, fuzzy
 msgid ""
 "With this, we can implement a handler for single errors.  Error handling "
 "often happens in an effectful context (we might want to print a message to "
 "the console or write the error to a log file), so we use an applicative "
 "effect type to handle errors in."
 msgstr ""
+"有了这个，我们可以实现单个错误的处理程序。错误处理通常发生在有效的上下文中（"
+"我们可能希望将消息打印到控制台或将错误写入日志文件），因此我们使用应用效果类"
+"型来处理错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:994
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "handle :  Applicative f\n"
@@ -1653,17 +2285,30 @@ msgid ""
 "handle _ (Right x) = pure $ Right x\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"句柄：应用 f\n"
+"       => Rem t ts rem\n"
+"       => (h : t -> f a)\n"
+"       -> 错误\n"
+"       -> f (Err rem a)\n"
+"句柄 h (Left x) = case split x of\n"
+"  左 v => 右 <$> h v\n"
+"  右错误 => 纯 $ 左错误\n"
+"句柄_（右x）=纯$右x\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:998
+#, fuzzy
 msgid ""
 "For handling all errors at once, we can use a handler type indexed by the "
 "vector of errors, and parameterized by the output type:"
-msgstr ""
+msgstr "为了一次处理所有错误，我们可以使用由错误向量索引并由输出类型参数化的处理程序"
+"类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1005
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "namespace Handler\n"
@@ -1672,56 +2317,75 @@ msgid ""
 "    Nil  : Handler [] a\n"
 "    (::) : (t -> a) -> Handler ts a -> Handler (t :: ts) a\n"
 msgstr ""
+"```伊德里斯\n"
+"命名空间处理程序\n"
+"  公共出口\n"
+"  数据处理程序：（ts：Vect n Type）->（a：Type）-> Type where\n"
+"    无：处理程序 [] a\n"
+"    (::) : (t -> a) -> 处理程序 ts a -> 处理程序 (t :: ts) a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1010
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "extract : Handler ts a -> Has t ts -> t -> a\n"
 "extract (f :: _)  Z     val = f val\n"
 "extract (_ :: fs) (S y) val = extract fs y val\n"
 "extract []        ix    _   = absurd ix\n"
 msgstr ""
+"extract : 处理程序 ts a -> Has ts -> t -> a\n"
+"提取 (f :: _) Z val = f val\n"
+"extract (_ :: fs) (S y) val = extract fs y val\n"
+"提取 [] ix _ = 荒谬 ix\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1015
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "handleAll : Applicative f => Handler ts (f a) -> Err ts a -> f a\n"
 "handleAll _ (Right v)       = pure v\n"
 "handleAll h (Left $ U ix v) = extract h ix v\n"
 "```\n"
 msgstr ""
+"handleAll : 应用 f => 处理程序 ts (f a) -> Err ts a -> f a\n"
+"handleAll _ (右 v) = 纯 v\n"
+"handleAll h (Left $U ix v) = 提取 h ix v\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1019
+#, fuzzy
 msgid ""
 "Below, we will see an additional way of handling all errors at once by "
 "defining a custom interface for error handling."
-msgstr ""
+msgstr "下面，我们将看到另一种通过定义用于错误处理的自定义接口来一次处理所有错误的方"
+"法。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Predicates.md:1023
+#, fuzzy
 msgid "Implement the following utility functions for `Union`:"
-msgstr ""
+msgstr "为 `Union` 实现以下实用函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1026
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   项目 : (0 t : Type) -> (prf : Has ts) => Union ts -> Maybe t\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1028
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "   project1 : Union [t] -> t\n"
-msgstr ""
+msgstr "   project1：联合 [t] -> t\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1034
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   safe : Err [] a -> a\n"
 "   ```\n"
@@ -1729,33 +2393,43 @@ msgid ""
 "   an open union in a larger set of possibilities.\n"
 "   Note the unerased implicit in `extend`!\n"
 msgstr ""
+"   安全：错误 [] a -> a\n"
+"   ```\n"
+"2.实现如下两个函数进行embedding\n"
+"   更多可能性中的开放联合。\n"
+"   注意 `extend 中未擦除的隐式！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1037
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   weaken : Union ts -> Union (ts ++ ss)\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   削弱：联合 ts -> 联合（ts ++ ss）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1040
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)\n"
 "   ```\n"
 msgstr ""
+"   扩展 : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)\n"
+"   ```\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Predicates.md:1043
+#, fuzzy
 msgid ""
 "Find a general way to embed a `Union ts` in a `Union ss`, so that the "
 "following is possible:"
-msgstr ""
+msgstr "找到一种将 `Union ts` 嵌入到 `Union ss` 中的通用方法，以便可以进行以下操作："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1049
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   embedTest :  Err [NoNat,NoColType] a\n"
@@ -1763,21 +2437,29 @@ msgid ""
 "   embedTest = mapFst embed\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   embedTest : 错误 [NoNat,NoColType] 一个\n"
+"             -> 错误 [FileError, NoColType, OutOfBounds, NoNat] 一个\n"
+"   embedTest = mapFst 嵌入\n"
+"   ```\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Predicates.md:1052
+#, fuzzy
 msgid ""
 "Make `handle` more powerful, by letting the handler convert the error in "
 "question to an `f (Err rem a)`."
-msgstr ""
+msgstr "通过让处理程序将有问题的错误转换为 `f (Err rem a)`，使 `handle` 更强大。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1054
+#, fuzzy
 msgid "## The Truth about Interfaces"
-msgstr ""
+msgstr "## 关于接口的真相"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1065
+#, fuzzy
 msgid ""
 "Well, here it finally is: The truth about interfaces. Internally, an "
 "interface is just a record data type, with its fields corresponding to the "
@@ -1789,56 +2471,77 @@ msgid ""
 "syntax for constrained functions, and once with an auto implicit argument. "
 "The code produced by Idris is the same in both cases:"
 msgstr ""
+"好吧，终于到了：关于接口的真相。在内部，接口只是一种记录数据类型，其字段对应"
+"于接口的成员。接口实现是此类记录的 *value*，使用 `%hint` pragma 注释（见下文"
+"）以使值在证明搜索期间可用。最后，受约束的函数只是具有一个或多个自动隐式参数"
+"的函数。例如，这里是在列表中查找元素的相同函数，一次使用已知语法的约束函数，"
+"一次使用自动隐式参数。 Idris 生成的代码在两种情况下都是相同的："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1070
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "isElem1 : Eq a => a -> List a -> Bool\n"
 "isElem1 v []        = False\n"
 "isElem1 v (x :: xs) = x == v || isElem1 v xs\n"
 msgstr ""
+"```伊德里斯\n"
+"isElem1 : Eq a => a -> List a -> Bool\n"
+"isElem1 v [] = 假\n"
+"isElem1 v (x :: xs) = x == v || isElem1 v xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1075
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "isElem2 : {auto _ : Eq a} -> a -> List a -> Bool\n"
 "isElem2 v []        = False\n"
 "isElem2 v (x :: xs) = x == v || isElem2 v xs\n"
 "```\n"
 msgstr ""
+"isElem2 : {auto _ : Eq a} -> a -> List a -> Bool\n"
+"isElem2 v [] = 假\n"
+"isElem2 v (x :: xs) = x == v || isElem2 v xs\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1079
+#, fuzzy
 msgid ""
 "Being mere records, we can also take interfaces as regular function "
 "arguments and dissect them with a pattern match:"
-msgstr ""
+msgstr "作为单纯的记录，我们还可以将接口作为常规函数参数，并使用模式匹配对其进行剖析"
+"："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1084
+#, fuzzy
 msgid "```idris eq : Eq a -> a -> a -> Bool eq (MkEq feq fneq) = feq ```"
-msgstr ""
+msgstr "```idris eq : Eq a -> a -> a -> Bool eq (MkEq feq fneq) = feq ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1086
+#, fuzzy
 msgid "### A manual Interface Definition"
-msgstr ""
+msgstr "### 手动接口定义"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1093
+#, fuzzy
 msgid ""
 "I'll now demonstrate how we can achieve the same behavior with proof search "
 "as with a regular interface definition plus implementations. Since I want to "
 "finish the CSV example with our new error handling tools, we are going to "
 "implement some error handlers.  First, an interface is just a record:"
 msgstr ""
+"我现在将演示我们如何使用证明搜索实现与使用常规接口定义和实现相同的行为。"
+"由于我想用我们的新错误处理工具完成 CSV "
+"示例，我们将实现一些错误处理程序。首先，一个接口只是一个记录："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1099
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record Print a where\n"
@@ -1846,87 +2549,118 @@ msgid ""
 "  print' : a -> String\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"记录打印哪里\n"
+"  构造函数 MkPrint\n"
+"  打印'：一个->字符串\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1104
+#, fuzzy
 msgid ""
 "In order to access the record in a constrained function, we use the `"
 "%search` keyword, which will try to conjure a value of the desired type "
 "(`Print a` in this case) by means of a proof search:"
 msgstr ""
+"为了在受约束的函数中访问记录，我们使用 `%search` "
+"关键字，它将尝试通过以下方式变出所需类型的值（在这种情况下为 `Print "
+"a`）证明搜索："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1109
+#, fuzzy
 msgid "```idris print : Print a => a -> String print = print' %search ```"
-msgstr ""
+msgstr "```idris print : Print a => a -> String print = print' %search ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1112
+#, fuzzy
 msgid ""
 "As an alternative, we could use a named constraint, and access it directly "
 "via its name:"
-msgstr ""
+msgstr "作为替代方案，我们可以使用命名约束，并通过其名称直接访问它："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1117
+#, fuzzy
 msgid ""
 "```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
 msgstr ""
+"```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1120
+#, fuzzy
 msgid ""
 "As yet another alternative, we could use the syntax for auto implicit "
 "arguments:"
-msgstr ""
+msgstr "作为另一种选择，我们可以使用自动隐式参数的语法："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1125
+#, fuzzy
 msgid ""
 "```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl "
 "```"
 msgstr ""
+"```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl "
+"```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1129
+#, fuzzy
 msgid ""
 "All three versions of `print` behave exactly the same at runtime.  So, "
 "whenever we write `{auto x : Foo} ->` we can just as well write `(x : Foo) "
 "=>` and vice versa."
 msgstr ""
+"`print` 的所有三个版本在运行时的行为完全相同。所以，每当我们写 `{auto x : "
+"Foo} ->` 时，我们也可以写成 `(x : Foo) =>` ，反之亦然。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1133
+#, fuzzy
 msgid ""
 "Interface implementations are just values of the given record type, but in "
 "order to be available during proof search, these need to be annotated with a "
 "`%hint` pragma:"
-msgstr ""
+msgstr "接口实现只是给定记录类型的值，但为了在证明搜索期间可用，这些需要用 `%hint` "
+"杂注注释："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1138
+#, fuzzy
 msgid ""
 "```idris %hint noNatPrint : Print NoNat noNatPrint = MkPrint $ \\e => \"Not "
 "a natural number: \\{e.str}\""
 msgstr ""
+"```idris %hint noNatPrint : Print NoNat noNatPrint = MkPrint $ \\e => "
+"\"不是自然数：\\{e.str}\""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1142
+#, fuzzy
 msgid ""
 "%hint noColTypePrint : Print NoColType noColTypePrint = MkPrint $ \\e => "
 "\"Not a column type: \\{e.str}\""
 msgstr ""
+"%hint noColTypePrint : Print NoColType noColTypePrint = MkPrint $ \\e => "
+"\"不是列类型：\\{e.str}\""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1146
+#, fuzzy
 msgid ""
 "%hint outOfBoundsPrint : Print OutOfBounds outOfBoundsPrint = MkPrint $ \\e "
 "=> \"Index is out of bounds: \\{show e.index}\""
 msgstr ""
+"%hint outOfBoundsPrint : Print OutOfBounds outOfBoundsPrint = MkPrint $ \\e "
+"=> \"索引超出范围：\\{show e.index}\""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1157
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "%hint\n"
 "rowErrorPrint : Print RowError\n"
@@ -1939,43 +2673,66 @@ msgid ""
 "          \"Expected end of input in row \\{show r}, column \\{show c}.\"\n"
 "```\n"
 msgstr ""
+"％暗示\n"
+"rowErrorPrint : 打印行错误\n"
+"rowErrorPrint = MkPrint $\n"
+"  \\case InvalidField r c ct s =>\n"
+"          “在行 \\{show r}、列 \\{show c} 中不是 \\{show ct}。\\{s}”\n"
+"        出乎意料的EOI r c =>\n"
+"          “行 \\{show r}、列 \\{show c} 中的输入意外结束。”\n"
+"        预期EOI r c =>\n"
+"          “行 \\{show r}、列 \\{show c} 中的预期输入结束。”\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1162
+#, fuzzy
 msgid ""
 "We can also write an implementation of `Print` for a union or errors. For "
 "this, we first come up with a proof that all types in the union's index come "
 "with an implementation of `Print`:"
-msgstr ""
+msgstr "我们还可以为联合或错误编写 `Print` 的实现。为此，"
+"我们首先要证明联合索引中的所有类型都带有 `Print` 的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1167
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "0 All : (f : a -> Type) -> Vect n a -> Type\n"
 "All f []        = ()\n"
 "All f (x :: xs) = (f x, All f xs)\n"
 msgstr ""
+"```伊德里斯\n"
+"0 全部 : (f : a -> 类型) -> Vect n a -> 类型\n"
+"所有 f [] = ()\n"
+"所有 f (x :: xs) = (f x, 所有 f xs)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1171
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "unionPrintImpl : All Print ts => Union ts -> String\n"
 "unionPrintImpl (U Z val)     = print val\n"
 "unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val\n"
 msgstr ""
+"unionPrintImpl : 所有打印 ts => 联合 ts -> 字符串\n"
+"unionPrintImpl (U Z val) = print val\n"
+"unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1176
+#, fuzzy
 msgid ""
 "%hint unionPrint : All Print ts => Print (Union ts)  unionPrint = MkPrint "
 "unionPrintImpl ```"
 msgstr ""
+"%hint unionPrint : All Print ts => Print (Union ts) unionPrint = MkPrint "
+"unionPrintImpl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1184
+#, fuzzy
 msgid ""
 "Defining interfaces this way can be an advantage, as there is much less "
 "magic going on, and we have more fine grained control over the types and "
@@ -1983,14 +2740,19 @@ msgid ""
 "hints, with which our \"interface implementations\" were annotated.  These "
 "made the corresponding values and functions available during proof search."
 msgstr ""
+"以这种方式定义接口可能是一个优势，因为发生的魔法要少得多，而且我们对字段的类"
+"型和值有更细粒度的控制。还要注意，所有的魔法都来自搜索提示，我们的“接口实现”"
+"被注释了。这些使相应的值和功能在证明搜索期间可用。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1186
+#, fuzzy
 msgid "#### Parsing CSV Commands"
-msgstr ""
+msgstr "#### 解析 CSV 命令"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1195
+#, fuzzy
 msgid ""
 "To conclude this chapter, we reimplement our CSV command parser, using the "
 "flexible error handling approach from the last section. While not "
@@ -1999,17 +2761,23 @@ msgid ""
 "application: Functions with a possibility of failure are reusable in "
 "different contexts, as are the pretty printers we use for the error messages."
 msgstr ""
+"为了结束本章，我们使用上一节中灵活的错误处理方法重新实现了 CSV 命令解析器。虽"
+"然不一定比原始解析器更冗长，但这种方法将错误处理和错误消息打印与应用程序的其"
+"余部分分离：可能失败的函数可以在不同的上下文中重用，就像我们使用的漂亮打印机"
+"一样错误信息。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1198
+#, fuzzy
 msgid ""
 "First, we repeat some stuff from earlier chapters. I sneaked in a new "
 "command for printing all values in a column:"
-msgstr ""
+msgstr "首先，我们重复前面章节中的一些内容。我偷偷输入了一个新命令来打印列中的所有值"
+"："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1205
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record Table where\n"
@@ -2018,10 +2786,16 @@ msgid ""
 "  size   : Nat\n"
 "  rows   : Vect size (Row schema)\n"
 msgstr ""
+"```伊德里斯\n"
+"记录表在哪里\n"
+"  构造函数 MkTable\n"
+"  架构：架构\n"
+"  尺寸：自然\n"
+"  rows : Vect 大小（行模式）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1218
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data Command : (t : Table) -> Type where\n"
 "  PrintSchema :  Command t\n"
@@ -2036,10 +2810,22 @@ msgid ""
 "              -> Command t\n"
 "  Quit        : Command t\n"
 msgstr ""
+"数据命令：（t：表）-> 键入 where\n"
+"  PrintSchema：命令 t\n"
+"  打印尺寸：命令 t\n"
+"  新：（newSchema：架构）-> 命令 t\n"
+"  前置：行（模式 t）-> 命令 t\n"
+"  获取：鳍（尺寸 t）-> 命令 t\n"
+"  删除：鳍（尺寸 t）-> 命令 t\n"
+"  Col：（名称：字符串）\n"
+"              ->（tpe：ColType）\n"
+"              -> (prf : InSchema 名称 t.schema tpe)\n"
+"              -> 命令 t\n"
+"  退出：命令 t\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1231
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "applyCommand : (t : Table) -> Command t -> Table\n"
 "applyCommand t                 PrintSchema = t\n"
@@ -2054,51 +2840,78 @@ msgid ""
 "  Z   => absurd x\n"
 "```\n"
 msgstr ""
+"applyCommand : (t : Table) -> Command t -> Table\n"
+"applyCommand t PrintSchema = t\n"
+"应用命令 t PrintSize = t\n"
+"applyCommand _（新 ts）= MkTable ts _ []\n"
+"applyCommand (MkTable ts n rs) (Prepend r) = MkTable ts _ $ r :: rs\n"
+"applyCommand t (获取 x) = t\n"
+"applyCommand t 退出 = t\n"
+"applyCommand t (Col _ _ _) = t\n"
+"applyCommand (MkTable ts n rs) (删除 x) = case n of\n"
+"  S k => MkTable ts k (deleteAt x rs)\n"
+"  Z => 荒谬的 x\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1235
+#, fuzzy
 msgid ""
 "Next, below is the command parser reimplemented. In total, it can fail in "
 "seven different was, at least some of which might also be possible in other "
 "parts of a larger application."
-msgstr ""
+msgstr "接下来，下面是重新实现的命令解析器。总的来说，它可能在七种不同的情况下失败，"
+"至少其中一些可能在更大应用程序的其他部分中也可能出现。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1240
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record UnknownCommand where\n"
 "  constructor MkUnknownCommand\n"
 "  str : String\n"
 msgstr ""
+"```伊德里斯\n"
+"记录 UnknownCommand where\n"
+"  构造函数 MkUnknownCommand\n"
+"  str : 字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1244
+#, fuzzy
 msgid ""
 "%hint unknownCommandPrint : Print UnknownCommand unknownCommandPrint = "
 "MkPrint $ \\v => \"Unknown command: \\{v.str}\""
 msgstr ""
+"%hint unknownCommandPrint : Print UnknownCommand unknownCommandPrint = "
+"MkPrint $ \\v => \"未知命令：\\{v.str}\""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1248
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record NoColName where\n"
 "  constructor MkNoColName\n"
 "  str : String\n"
 msgstr ""
+"在哪里记录 NoColName\n"
+"  构造函数 MkNoColName\n"
+"  str : 字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1252
+#, fuzzy
 msgid ""
 "%hint noColNamePrint : Print NoColName noColNamePrint = MkPrint $ \\v => "
 "\"Unknown column: \\{v.str}\""
 msgstr ""
+"%hint noColNamePrint : Print NoColName noColNamePrint = MkPrint $ \\v => "
+"\"未知列：\\{v.str}\""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1261
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "0 CmdErrs : Vect 7 Type\n"
 "CmdErrs = [ InvalidColumn\n"
@@ -2109,10 +2922,18 @@ msgid ""
 "          , RowError\n"
 "          , UnknownCommand ]\n"
 msgstr ""
+"0 CmdErrs : Vect 7 类型\n"
+"CmdErrs = [无效列\n"
+"          , NoColName\n"
+"          , NoColType\n"
+"          , 诺纳特\n"
+"          , 越界\n"
+"          , 行错误\n"
+"          ， 未知的命令 ]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1276
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readCommand : (t : Table) -> String -> Err CmdErrs (Command t)\n"
 "readCommand _                \"schema\"  = Right PrintSchema\n"
@@ -2129,26 +2950,45 @@ msgid ""
 "  _               => fail $ MkUnknownCommand s\n"
 "```\n"
 msgstr ""
+"readCommand : (t : Table) -> String -> Err CmdErrs (Command t)\n"
+"readCommand _ \"schema\" = 右 PrintSchema\n"
+"readCommand _ \"size\" = 右 PrintSize\n"
+"readCommand _ \"quit\" = 正确退出\n"
+"readCommand (MkTable ts n _) s = case words s of\n"
+"  [\"new\", str] => New <$> readSchema str\n"
+"  \"add\" :: ss => Prepend <$> decodeRow 1 (unwords ss)\n"
+"  [\"get\", str] => 获取 <$> readFin str\n"
+"  [\"delete\", str] => 删除 <$> readFin str\n"
+"  [\"column\", str] => case inSchema ts str of\n"
+"    只是 (ct ** prf) => 右 $ Col str ct prf\n"
+"    什么都没有 => 失败 $ MkNoColName str\n"
+"  _ => 失败 $ MkUnknownCommand s\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1280
+#, fuzzy
 msgid ""
 "Note, how we could invoke functions like `readFin` or `readSchema` directly, "
 "because the necessary error types are part of our list of possible errors."
-msgstr ""
+msgstr "请注意，我们如何直接调用像 `readFin` 或 `readSchema` "
+"这样的函数，因为必要的错误类型是我们可能的错误列表的一部分。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1286
+#, fuzzy
 msgid ""
 "To conclude this sections, here is the functionality for printing the result "
 "of a command plus the application's main loop. Most of this is repeated from "
 "earlier chapters, but note how we can handle all errors at once with a "
 "single call to `print`:"
 msgstr ""
+"总结本节，这里是打印命令结果和应用程序主循环的功能。其中大部分内容从前面的章"
+"节中重复，但请注意我们如何通过一次调用 `print` 来一次处理所有错误："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1300
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "encodeRow : (s : Schema) -> Row s -> String\n"
 "encodeRow s = concat . intersperse \",\" . go s\n"
@@ -2156,10 +2996,15 @@ msgid ""
 "        go []        []        = []\n"
 "        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
 msgstr ""
+"encodeRow : (s : Schema) -> Row s -> String\n"
+"编码行 s = concat 。穿插“，”。去吧\n"
+"  where go : (s' : Schema) -> Row s' -> Vect (length s') String\n"
+"        去 [] [] = []\n"
+"        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go c vs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1307
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "encodeCol :  (name : String)\n"
 "          -> (c    : ColType)\n"
@@ -2168,10 +3013,17 @@ msgid ""
 "          -> String\n"
 "encodeCol name c = unlines . toList . map (\\r => encodeField c $ getAt name r)\n"
 msgstr ""
+"encodeCol：（名称：字符串）\n"
+"          -> (c : ColType)\n"
+"          -> InSchema 名称 s c\n"
+"          => Vect n (Row s)\n"
+"          -> 字符串\n"
+"encodeCol 名称 c = unlines 。列表。 map (\\r => encodeField c $ getAt name r)"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1318
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "result :  (t : Table) -> Command t -> String\n"
 "result t PrintSchema   = \"Current schema: \\{showSchema t.schema}\"\n"
@@ -2184,10 +3036,21 @@ msgid ""
 "result t (Get x)       =\n"
 "  \"Row \\{show $ FS x}: \\{encodeRow t.schema (index x t.rows)}\"\n"
 msgstr ""
+"结果：（t：表）-> 命令 t-> 字符串\n"
+"结果 t PrintSchema = \"当前架构：\\{showSchema t.schema}\"\n"
+"结果 t PrintSize = \"当前尺寸：\\{show t.size}\"\n"
+"结果 _ (New ts) = \"已创建表。架构：\\{showSchema ts}\"\n"
+"结果 t (Prepend r) = \"前置行：\\{encodeRow t.schema r}\"\n"
+"结果 _ (Delete x) = \"已删除行：\\{show $ FS x}。\"\n"
+"结果_退出=“再见。”\n"
+"结果 t (Col n c prf) = \"列 \\{n}:\\n"
+"\\{encodeCol n c t.rows}\"\n"
+"结果 t (得到 x) =\n"
+"  “行\\{show $ FS x}：\\{encodeRow t.schema（索引x t.rows）}”\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1329
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "covering\n"
 "runProg : Table -> IO ()\n"
@@ -2200,14 +3063,26 @@ msgid ""
 "    Right cmd  => putStrLn (result t cmd) >>\n"
 "                  runProg (applyCommand t cmd)\n"
 msgstr ""
+"覆盖\n"
+"runProg : 表 -> IO ()\n"
+"runProg t = 做\n"
+"  putStr \"输入命令：\"\n"
+"  str <- 获取行\n"
+"  case readCommand t str of\n"
+"    Left err => putStrLn (print err) >> runProg t\n"
+"    Right Quit => putStrLn（结果 t Quit）\n"
+"    右 cmd => putStrLn (结果 t cmd) >>\n"
+"                  runProg (applyCommand t cmd)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1336
+#, fuzzy
 msgid "Here is an example REPL session:"
-msgstr ""
+msgstr "这是一个示例 REPL 会话："
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1353
+#, fuzzy
 msgid ""
 "```repl Tutorial.Predicates> :exec main Enter a command: new name:Str,age:"
 "Int64,salary:Float Not a column type: Int64 Enter a command: new name:Str,"
@@ -2217,9 +3092,17 @@ msgid ""
 "Enter a command: get 1 Row 1: \"Jane Doe\",50,4000.0 Enter a command: column "
 "salary Column salary: 4000.0 3500.0"
 msgstr ""
+"```repl Tutorial.Predicates> :exec main "
+"输入命令：新名称：Str,age:Int64,salary:Float 不是列类型：Int64 "
+"输入命令：新名称：Str,age:I64,salary:Float "
+"Created桌子。架构：name:Str,age:I64,salary:Float 输入命令：add John "
+"Doe,44,3500 前置行：“John Doe”,44,3500.0 输入命令：add Jane Doe,50,4000 "
+"前置行：“ Jane Doe\",50,4000.0 输入命令：获取 1 第 1 行：\"Jane Doe\""
+",50,4000.0 输入命令：列工资 列工资：4000.0 3500.0"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1367
+#, fuzzy
 msgid ""
 "Predicates allow us to describe contracts between types and to refine the "
 "values we accept as valid function arguments.  They allow us to make a "
@@ -2228,3 +3111,6 @@ msgid ""
 "own if it has enough information about the structure of a function's "
 "arguments."
 msgstr ""
+"谓词允许我们描述类型之间的契约并细化我们接受为有效函数参数的值。"
+"它们允许我们通过将它们用作自动隐式参数来使函数在运行时安全且方便地使用 * 和 *"
+" 编译时，如果 Idris 有足够的关于函数的参数。"

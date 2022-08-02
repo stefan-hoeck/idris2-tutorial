@@ -7,26 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:19+0800\n"
-"PO-Revision-Date: 2022-08-02 13:19+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
+"projects/idris2-tutorial/intro/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1421 ../src/Tutorial/Intro.md:431
+#, fuzzy
 msgid "### What's next?"
-msgstr ""
+msgstr "＃＃＃ 下一步是什么？"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:2
+#, fuzzy
 msgid "# Introduction"
-msgstr ""
+msgstr "＃ 介绍"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:15
+#, fuzzy
 msgid ""
 "Welcome to my Idris 2 tutorial. I'll try and treat as many aspects of the "
 "Idris 2 programming language as possible here.  All `.md` files in here a "
@@ -39,45 +45,62 @@ msgid ""
 "have to solve some exercises, the solutions of which can be found in the "
 "`src/Solutions` subfolder. There, I use regular `.idr` files."
 msgstr ""
+"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 "
+"编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 "
+"Markdown 组成（因此 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，"
+"可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 "
+"Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的散文比我现在所做的代码多得"
+"多，否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，"
+"这些练习可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `.idr` "
+"文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:19
+#, fuzzy
 msgid ""
 "Every Idris source file should typically start with a module name plus some "
 "necessary imports, and this document is no exception:"
-msgstr ""
+msgstr "每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:23
+#, fuzzy
 msgid "```idris module Tutorial.Intro ```"
-msgstr ""
+msgstr "```idris 模块教程.Intro ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:27
+#, fuzzy
 msgid ""
 "A module name consists of a list of identifiers separated by dots and must "
 "reflect the folder structure plus the module file's name."
-msgstr ""
+msgstr "模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名称"
+"。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:29
+#, fuzzy
 msgid "## About the Idris Programming Language"
-msgstr ""
+msgstr "## 关于 Idris 编程语言"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:33
+#, fuzzy
 msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional* programming "
 "language. I'll quickly explain each of these adjectives in this section."
-msgstr ""
+msgstr "Idris "
+"是一种*纯*、*依赖类型*、*总**功能*编程语言。我将在本节中快速解释这些形容词。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:35
+#, fuzzy
 msgid "### Functional Programming"
-msgstr ""
+msgstr "### 函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:42
+#, fuzzy
 msgid ""
 "In functional programming languages, functions are first-class constructs, "
 "meaning that they can be assigned to variables, passed as arguments to other "
@@ -85,22 +108,28 @@ msgid ""
 "object-oriented programming languages, in functional programming, functions "
 "are the main form of abstraction."
 msgstr ""
+"在函数式编程语言中，函数是一等结构，这意味着它们可以分配给变量，作为参数传递"
+"给其他函数，并作为函数的结果返回。与面向对象的编程语言不同，在函数式编程中，"
+"函数是抽象的主要形式。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:46
+#, fuzzy
 msgid ""
 "Functional programming languages are concerned with the evaluation of "
 "functions, unlike classical imperative languages, which are concerned with "
 "the execution of statements."
-msgstr ""
+msgstr "函数式编程语言关注函数的求值，不像经典的命令式语言关注语句的执行。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:48
+#, fuzzy
 msgid "### Pure Functional Programming"
-msgstr ""
+msgstr "### 纯函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:57
+#, fuzzy
 msgid ""
 "Pure functional programming languages come with an additional important "
 "guarantee: Functions don't have side effects like writing to a file or "
@@ -110,60 +139,78 @@ msgid ""
 "output.  This property is known as [referential transparency](https://en."
 "wikipedia.org/wiki/Referential_transparency)."
 msgstr ""
+"纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这"
+"样的副作用。他们只能通过调用其他纯函数*而不是其他*来从他们的参数计算结果。因"
+"此，给定相同的输入，它们将 * 总是 * 生成相同的输出。此属性称为 "
+"[参考透明度](https://en.wikipedia.org/wiki/Referential_transparency)。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:59
+#, fuzzy
 msgid "Pure functions have several advantages:"
-msgstr ""
+msgstr "纯函数有几个优点："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:62
+#, fuzzy
 msgid ""
 "They can easily be tested by specifying (possibly randomly generated)  sets "
 "of input arguments together with the expected results."
-msgstr ""
+msgstr "它们可以通过指定（可能是随机生成的）输入参数集以及预期结果来轻松测试。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:66
+#, fuzzy
 msgid ""
 "They are thread-safe, since the don't mutate global state, and as such can "
 "be freely used in several computations running in parallel."
-msgstr ""
+msgstr "它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
+"用。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:68
+#, fuzzy
 msgid "There are, of course, also some disadvantages:"
-msgstr ""
+msgstr "当然，也有一些缺点："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:71
+#, fuzzy
 msgid ""
 "Some algorithms are hard to implement efficiently using only pure functions."
-msgstr ""
+msgstr "仅使用纯函数很难有效地实现某些算法。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:75
+#, fuzzy
 msgid ""
 "Writing programs that actually *do* something (have some observable effect) "
 "is a bit trickier but certainly possible."
-msgstr ""
+msgstr "编写实际上 * 做 * "
+"某事（具有一些可观察到的效果）的程序有点棘手，但肯定是可能的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:77
+#, fuzzy
 msgid "### Dependent Types"
-msgstr ""
+msgstr "### 依赖类型"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:83
+#, fuzzy
 msgid ""
 "Idris is a strongly, statically typed programming language. This means, that "
 "ever Idris expression is given a *type* (for instance: integer, list of "
 "strings, boolean, function from integer to boolean, etc.)  and types are "
 "verified at compile time to rule out certain common programming errors."
 msgstr ""
+"Idris 是一种强静态类型的编程语言。这意味着，给 Idris 表达式一个 *type* （例如"
+"：整数、字符串列表、布尔值、从整数到布尔值的函数等），并且在编译时验证类型以"
+"排除某些常见的编程错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:89
+#, fuzzy
 msgid ""
 "For instance, if a function expects an argument of type `String` (a sequence "
 "of unicode characters, such as `\"Hello123\"`), it is a *type error* to "
@@ -171,9 +218,13 @@ msgid ""
 "compiler will refuse to generate an executable from such an ill-typed "
 "program."
 msgstr ""
+"例如，如果一个函数需要 `String` 类型的参数（Unicode 字符序列，例如 `"
+"\"Hello123\"`），则它是 * 类型错误 *使用 `Integer` 类型的参数调用此函数，"
+"Idris 编译器将拒绝从此类错误类型的程序生成可执行文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:97
+#, fuzzy
 msgid ""
 "Even more, Idris is *dependently typed*, which is one of its most "
 "characteristic properties in the landscape of programming languages. In "
@@ -182,22 +233,31 @@ msgid ""
 "can *depend* on other *values*.  What this means, and why this is incredibly "
 "useful, we'll explore in due time."
 msgstr ""
+"更重要的是，Idris 是 * 依赖类型 *，这是它在编程语言领域中最具特色的属性之一。"
+"在 Idris 中，类型是 * "
+"第一类*：类型可以作为参数传递给函数，函数可以返回类型作为结果。更重要的是，"
+"类型可以 * 依赖于 * 其他 * 值 "
+"*。这意味着什么，以及为什么这非常有用，我们将在适当的时候进行探索。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:99
+#, fuzzy
 msgid "### Total Functions"
-msgstr ""
+msgstr "### 总功能"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:104
+#, fuzzy
 msgid ""
 "A *total* function is a pure function, that is guaranteed to return a value "
 "of the expected return type for every possible input in a finite amount of "
 "time. A total function will never fail with an exception or loop infinitely."
-msgstr ""
+msgstr "*total* 函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返"
+"回类型的值。一个总函数永远不会因异常或无限循环而失败。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:113
+#, fuzzy
 msgid ""
 "Idris comes with a totality checker built in, which enables us to verify the "
 "functions we write to be provably total. Totality in Idris is opt-in, as in "
@@ -207,43 +267,61 @@ msgid ""
 "keyword, Idris will fail with a type error, if its totality checker cannot "
 "verify that the function in question is indeed total."
 msgstr ""
+"Idris "
+"内置了一个整体检查器，它使我们能够验证我们编写的函数是否是可证明的整体。 "
+"Idris 中的 Totality "
+"是可选的，因为一般来说，检查任意计算机程序的整体性是无法确定的（另请参见 ["
+"halting problem](https://en.wikipedia.org/wiki/Halting_problem)）。但是，"
+"如果我们使用 `total` 关键字注释函数，如果 Idris "
+"的总体检查器无法验证所讨论的函数确实是总体的，则 Idris 将失败并出现类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:115
+#, fuzzy
 msgid "## Using the REPL"
-msgstr ""
+msgstr "## 使用 REPL"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:121
+#, fuzzy
 msgid ""
 "Idris comes with a useful REPL (an acronym for *Read Evaluate Print Loop*), "
 "which we will use for tinkering with small ideas, and for quickly "
 "experimenting with the code we just wrote.  In order to start a REPL "
 "session, run the following command in a terminal."
 msgstr ""
+"Idris 附带了一个有用的 REPL（*Read Evaluate Print Loop* "
+"的首字母缩写词），我们将使用它来修补小想法，并快速试验我们刚刚编写的代码。"
+"要启动 REPL 会话，请在终端中运行以下命令。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:125
+#, fuzzy
 msgid "```repl rlwrap idris2 ```"
-msgstr ""
+msgstr "```repl rlwrap idris2 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:131
+#, fuzzy
 msgid ""
 "(Using command-line utility `rlwrap` is optional. It leads to a somewhat "
 "nicer user experience, as it allows us to use the up and down arrow keys to "
 "scroll through a history of commands and expressions we entered. It should "
 "be available for most Linux distributions.)"
 msgstr ""
+"（使用命令行实用程序 `rlwrap` 是可选的。它带来了更好的用户体验，因为它允许我"
+"们使用向上和向下箭头键滚动浏览我们输入的命令和表达式的历史记录。"
+"它应该适用于大多数 Linux 发行版。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:133
+#, fuzzy
 msgid "Idris should now be ready to accept you commands:"
-msgstr ""
+msgstr "Idris 现在应该准备好接受你的命令了："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:140
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```repl\n"
 "     ____    __     _         ___\n"
@@ -252,50 +330,65 @@ msgid ""
 "  _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org\n"
 " /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
 msgstr ""
+"```回复\n"
+"     ____ __ _ ___\n"
+"    / _/___/ /____(_)____ |__ \\\n"
+"    / // __ / ___/ / ___/ __/ / 版本0.5.1-3c532ea35\n"
+"  _/ // /_/ / / / (__ ) / __/ https://www.idris-lang.org\n"
+" /___/\\__,_/_/ /_/____/ /____/ 类型 :?求助\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:144
+#, fuzzy
 msgid "Welcome to Idris 2.  Enjoy yourself! Main> ```"
-msgstr ""
+msgstr "欢迎来到伊德里斯 2。尽情享受吧！主>```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:147
+#, fuzzy
 msgid ""
 "We can go ahead and enter some simple arithmetic expressions. Idris will "
 "*evaluate* these and print the result:"
-msgstr ""
+msgstr "我们可以继续输入一些简单的算术表达式。 Idris 将 * 评估 * 这些并打印结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:154
+#, fuzzy
 msgid "```repl Main> 2 * 4 8 Main> 3 * (7 + 100)  321 ```"
-msgstr ""
+msgstr "```repl Main> 2 * 4 8 Main> 3 * (7 + 100) 321 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:157
+#, fuzzy
 msgid ""
 "Since every expression in Idris has an associated *type*, we might want to "
 "inspect these as well:"
-msgstr ""
+msgstr "由于 Idris 中的每个表达式都有一个关联的 * 类型 *，我们可能还想检查这些："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:162
+#, fuzzy
 msgid "```repl Main> :t 2 2 : Integer ```"
-msgstr ""
+msgstr "```repl Main> :t 2 2 : 整数 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:166
+#, fuzzy
 msgid ""
 "Here `:t` is a command of the Idris REPL (it is not part of the Idris "
 "programming language), and it is used to inspect the type of an expression."
-msgstr ""
+msgstr "这里 `:t` 是 Idris REPL 的命令（它不是 Idris "
+"编程语言的一部分），它用于检查表达式的类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:171
+#, fuzzy
 msgid "```repl Main> :t 2 * 4 2 * 4 : Integer ```"
-msgstr ""
+msgstr "```repl Main> :t 2 * 4 2 * 4 : 整数 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:182
+#, fuzzy
 msgid ""
 "Whenever we perform calculations with integer literals without being "
 "explicit about the types we want to use, Idris will use `Integer` as a "
@@ -307,49 +400,70 @@ msgid ""
 "strings of unicode characters (`String`).  We will use many of these in due "
 "time."
 msgstr ""
+"每当我们使用整数文字执行计算而没有明确说明我们想要使用的类型时，Idris 将使用 "
+"`Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。"
+"它是语言中内置的 * 原始类型 * "
+"之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、`Bits16`、`Bits32`"
+" `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度（64 "
+"位）浮点数（`Double`）、Unicode 字符（[X502X ]Char`) 和 unicode 字符串 "
+"(`String`)。我们将在适当的时候使用其中的许多。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:184
+#, fuzzy
 msgid "## A First Idris Program"
-msgstr ""
+msgstr "## 第一个 Idris 程序"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:190
+#, fuzzy
 msgid ""
 "We will often start up a REPL for tinkering with small parts of the Idris "
 "language, for reading some documentation, or for inspecting the content of "
 "an Idris module, but now we will write a minimal Idris program to get "
 "started with the language. Here comes the mandatory *Hello World*:"
 msgstr ""
+"我们经常会启动一个 REPL 来修补 Idris 语言的一小部分，阅读一些文档，或检查 "
+"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。"
+"这是强制性的 *Hello World*："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:195
+#, fuzzy
 msgid "```idris main : IO ()  main = putStrLn \"Hello World!\" ```"
-msgstr ""
+msgstr "```idris main : IO () main = putStrLn \"Hello World!\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:202
+#, fuzzy
 msgid ""
 "We will inspect the code above in some detail in a moment, but first we'd "
 "like to compile and run it. From this project's root directory, run the "
 "following: ```sh idris2 --find-ipkg -o hello src/Tutorial/Intro.md ```"
 msgstr ""
+"稍后我们将详细检查上面的代码，但首先我们要编译并运行它。在该项目的根目录中，"
+"运行以下命令： ```sh idris2 --find-ipkg -o hello src/Tutorial/Intro.md ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:207
+#, fuzzy
 msgid ""
 "This will create executable `hello` in directory `build/exec`, which can be "
 "invoked from the command-line like so (without the dollar prefix; this is "
 "used here to distinguish the terminal command from its output):"
 msgstr ""
+"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它（"
+"没有美元前缀；这里用来区分终端命令和它的输出）："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:212
+#, fuzzy
 msgid "```sh $ build/exec/hello Hello World! ```"
-msgstr ""
+msgstr "```sh $ build/exec/hello Hello World！ ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:219
+#, fuzzy
 msgid ""
 "The `--find-ipkg` option will look for an `.ipkg` file in the current "
 "directory or one of its parent directories, from which it will get other "
@@ -357,54 +471,69 @@ msgid ""
 "option gives the name of the executable to be generated. Type `idris2 --"
 "help` for a list of available command-line options and environment variables."
 msgstr ""
+"`--find-ipkg` 选项将在当前目录或其父目录之一中查找 `.ipkg` "
+"文件，从中获取其他设置，如要使用的源目录（在我们的例子中是 `src`）。 `-o` "
+"选项给出要生成的可执行文件的名称。键入 `idris2 --help` "
+"以获取可用命令行选项和环境变量的列表。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:222
+#, fuzzy
 msgid ""
 "As an alternative, you can also load this source file in a REPL session and "
 "invoke function `main` from there:"
-msgstr ""
+msgstr "作为替代方案，您还可以在 REPL 会话中加载此源文件并从那里调用函数 `main`："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:226
+#, fuzzy
 msgid "```sh rlwrap idris2 --find-ipkg src/Tutorial/Intro.md ```"
-msgstr ""
+msgstr "```sh rlwrap idris2 --find-ipkg src/Tutorial/Intro.md ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:231
+#, fuzzy
 msgid "```repl Tutorial.Intro> :exec main Hello World! ```"
-msgstr ""
+msgstr "```repl Tutorial.Intro> :exec main Hello World！ ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:234
+#, fuzzy
 msgid ""
 "Go ahead and try both ways of building and running function `main` on your "
 "system!"
-msgstr ""
+msgstr "继续尝试在您的系统上构建和运行函数 `main` 的两种方法！"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:239
+#, fuzzy
 msgid ""
 "Note: It might be instructive to omit the `--find-ipkg` option.  You will "
 "get an error message about the module name `Tutorial.Intro` not matching the "
 "file path `src/Tutorial/Intro.md`. You can also use option `--source-dir "
 "src` to silence this error."
 msgstr ""
+"注意：省略 `--find-ipkg` 选项可能是有益的。您将收到有关模块名称 `Tutorial."
+"Intro` 与文件路径 `src/Tutorial/Intro.md` 不匹配的错误消息。您还可以使用选项 "
+"`--source-dir src` 来消除此错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:241
+#, fuzzy
 msgid "## The Shape of an Idris Definition"
-msgstr ""
+msgstr "## Idris 定义的形状"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:244
+#, fuzzy
 msgid ""
 "Now that we executed our first Idris program, we will talk a bit more about "
 "the code we had to write to define it."
-msgstr ""
+msgstr "现在我们执行了第一个 Idris 程序，我们将更多地讨论我们必须编写的代码来定义它。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:251
+#, fuzzy
 msgid ""
 "A typical top level function in Idris consists of three things: The "
 "function's name (`main` in our case), its type (`IO ()`)  plus its "
@@ -412,14 +541,20 @@ msgid ""
 "things with a couple of simple examples. Below, we define a top level "
 "constant for the largest unsigned eight bit integer:"
 msgstr ""
+"Idris 中一个典型的顶级函数由三部分组成：函数的名称（在我们的例子中是 "
+"`main`），它的类型（`IO ()`）加上它的实现（`putStrLn \"你好世界”`）。用几个简"
+"单的例子来解释这些事情会更容易。下面，我们为最大的无符号八位整数定义一个顶级"
+"常量："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:256
+#, fuzzy
 msgid "```idris maxBits8 : Bits8 maxBits8 = 255 ```"
-msgstr ""
+msgstr "```idris maxBits8 : Bits8 maxBits8 = 255 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:266
+#, fuzzy
 msgid ""
 "The first line can be read as: \"We'd like to declare (nullary)  function "
 "`maxBits8`. It is of type `Bits8`\". This is called the *function "
@@ -429,46 +564,63 @@ msgid ""
 "types than just `Integer`.) This is called the *function definition*: "
 "Function `maxBits8` should behave as described here when being evaluated."
 msgstr ""
+"第一行可以读作：“我们想声明（空）函数 `maxBits8`。它的类型是 `Bits8`”。这称为"
+"*函数声明*：我们声明，应该有一个给定名称和类型的函数。第二行显示：“调用 "
+"`maxBits8` 的结果应该是 `255`。” "
+"（如您所见，我们可以将整数文字用于其他整数类型，而不仅仅是 `Integer`。）"
+"这称为 * 函数定义 *：函数 `maxBits8` 应该表现为评估时在此处描述。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:269
+#, fuzzy
 msgid ""
 "We can inspect this at the REPL. Load this source file into an Idris REPL "
 "(as described above), and run the following tests."
-msgstr ""
+msgstr "我们可以在 REPL 进行检查。将此源文件加载到 Idris "
+"REPL（如上所述）中，然后运行以下测试。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:276
+#, fuzzy
 msgid ""
 "```repl Tutorial.Intro> maxBits8 255 Tutorial.Intro> :t maxBits8 Tutorial."
 "Intro.maxBits8 : Bits8 ```"
 msgstr ""
+"```repl Tutorial.Intro> maxBits8 255 Tutorial.Intro> :t maxBits8 "
+"Tutorial.Intro.maxBits8 : Bits8 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:278
+#, fuzzy
 msgid "We can also use `maxBits8` as part of another expression:"
-msgstr ""
+msgstr "我们也可以使用 `maxBits8` 作为另一个表达式的一部分："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:283
+#, fuzzy
 msgid "```repl Tutorial.Intro> maxBits8 - 100 155 ```"
-msgstr ""
+msgstr "```repl Tutorial.Intro> maxBits8 - 100 155 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:286
+#, fuzzy
 msgid ""
 "I called `maxBits8` a *nullary function*, which is just a fancy word for "
 "*constant*. Let's write and test our first *real* function:"
-msgstr ""
+msgstr "我将 `maxBits8` 称为 * 空函数 *，它只是 * 常量 * 的一个花哨的词。"
+"让我们编写并测试我们的第一个 *real* 函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:291
+#, fuzzy
 msgid ""
 "```idris distanceToMax : Bits8 -> Bits8 distanceToMax n = maxBits8 - n ```"
 msgstr ""
+"```idris distanceToMax : Bits8 -> Bits8 distanceToMax n = maxBits8 - n ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:299
+#, fuzzy
 msgid ""
 "This introduces some new syntax and a new kind of type: Function types. "
 "`distanceToMax : Bits8 -> Bits8` can be read as follows: \"`distanceToMax` "
@@ -477,29 +629,40 @@ msgid ""
 "identifier `n`, which is then used in the calculation on the right hand "
 "side. Again, go ahead and try this function at the REPL:"
 msgstr ""
+"这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` "
+"可以如下解读：“`distanceToMax` 是 `Bits8` 类型的一个参数的函数，它返回 ` "
+"类型的结果]Bits8`”。在实现中，参数被赋予一个本地标识符 "
+"`n`，然后在右侧的计算中使用该标识符。再次，继续在 REPL 中尝试此功能："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:308
+#, fuzzy
 msgid ""
 "```repl Tutorial.Intro> distanceToMax 12 243 Tutorial.Intro> :t "
 "distanceToMax Tutorial.Intro.distanceToMax : Bits8 -> Bits8 Tutorial.Intro> :"
 "t distanceToMax 12 distanceToMax 12 : Bits8 ```"
 msgstr ""
+"```repl Tutorial.Intro> distanceToMax 12 243 Tutorial.Intro> :t "
+"distanceToMax Tutorial.Intro.distanceToMax : Bits8 -> Bits8 Tutorial.Intro> :"
+"t distanceToMax 12 distanceToMax 12 : Bits8 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:311
+#, fuzzy
 msgid ""
 "As a final example, let's implement a function to calculate the square of an "
 "integer:"
-msgstr ""
+msgstr "作为最后一个例子，让我们实现一个计算整数平方的函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:316
+#, fuzzy
 msgid "```idris square : Integer -> Integer square n = n * n ```"
-msgstr ""
+msgstr "```idris square : Integer -> Integer square n = n * n ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:325
+#, fuzzy
 msgid ""
 "We now learn a very important aspect of programming in Idris: Idris is a "
 "*statically typed* programming language. We are not allowed to freely mix "
@@ -507,28 +670,39 @@ msgid ""
 "checker (which is part of the compilation process of Idris).  For instance, "
 "if we try the following at the REPL, we will get a type error:"
 msgstr ""
+"我们现在学习 Idris 编程的一个非常重要的方面：Idris 是一种 * 静态类型 * "
+"编程语言。我们不允许随意混合类型。这样做会导致来自类型检查器的错误消息（这是 "
+"Idris 编译过程的一部分）。例如，如果我们在 REPL "
+"中尝试以下操作，我们将收到类型错误："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:330
+#, fuzzy
 msgid "```repl Tutorial.Intro> square maxBits8 Error: ...  ```"
-msgstr ""
+msgstr "```repl Tutorial.Intro> square maxBits8 错误：... ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:336
+#, fuzzy
 msgid ""
 "The reason: `square` expects an argument of type `Integer`, but `maxBits8` "
 "is of type `Bits8`. Many primitive types are interconvertible (sometimes "
 "with the risk of loss of precision) using function `cast` (more on the "
 "details later):"
 msgstr ""
+"原因：`square` 需要 `Integer` 类型的参数，但 `maxBits8` 的类型是 `Bits8`。"
+"许多原始类型可以使用函数 `cast` "
+"相互转换（有时会有精度损失的风险）（稍后会详细介绍）："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:341
+#, fuzzy
 msgid "```repl Tutorial.Intro> square (cast maxBits8)  65025 ```"
-msgstr ""
+msgstr "```repl Tutorial.Intro> square (cast maxBits8) 65025 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:348
+#, fuzzy
 msgid ""
 "Note, that in the example above the result is much larger that `maxBits8`. "
 "The reason is, that `maxBits8` is first converted to an `Integer` of the "
@@ -536,35 +710,45 @@ msgid ""
 "`maxBits8` directly, the result would be truncated to still fit the valid "
 "range of `Bits8`:"
 msgstr ""
+"请注意，在上面的示例中，结果比 `maxBits8` 大得多。原因是，首先将 `maxBits8` "
+"转换为相同值的 `Integer`，然后对其进行平方。另一方面，如果我们直接将 "
+"`maxBits8` 平方，结果将被截断以仍然适合 `Bits8` 的有效范围："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:353
+#, fuzzy
 msgid "```repl Tutorial.Intro> maxBits8 * maxBits8 1 ```"
-msgstr ""
+msgstr "```repl Tutorial.Intro> maxBits8 * maxBits8 1 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:355
+#, fuzzy
 msgid "## Where to get Help"
-msgstr ""
+msgstr "## 从哪里获得帮助"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:359
+#, fuzzy
 msgid ""
 "There are several resources available online and in print, where you can "
 "find help and documentation about the Idris programming language. Here is a "
 "non-comprehensive list of them:"
-msgstr ""
+msgstr "有多种在线资源和印刷资源，您可以在其中找到有关 Idris "
+"编程语言的帮助和文档。以下是它们的非全面列表："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:361
+#, fuzzy
 msgid ""
 "[Type-Driven Development with Idris](https://www.manning.com/books/type-"
 "driven-development-with-idris)"
 msgstr ""
+"[使用 Idris 进行类型驱动开发](https://www.manning.com/books/type-driven-"
+"development-with-idris)"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:368
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  *The* Idris book! This describes in great detail\n"
 "  the core concepts for using Idris and dependent types\n"
@@ -573,32 +757,47 @@ msgid ""
 "  when using Idris 2. There is also a\n"
 "  [list of required updates](https://idris2.readthedocs.io/en/latest/typedd/typedd.html).\n"
 msgstr ""
+"  ** 伊德里斯的书！这描述得很详细\n"
+"  使用 Idris 和依赖类型的核心概念\n"
+"  编写健壮和简洁的代码。它使用 Idris 1 在\n"
+"  它的例子，所以它的一部分必须稍微调整\n"
+"  使用 Idris 2 时，还有一个\n"
+"  [所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd."
+"html)。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:370
+#, fuzzy
 msgid ""
 "[A Crash Course in Idris 2](https://idris2.readthedocs.io/en/latest/tutorial/"
 "index.html)"
 msgstr ""
+"[Idris 2 速成课程](https://idris2.readthedocs.io/en/latest/tutorial/index."
+"html)"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:375
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  The official Idris 2 tutorial. A comprehensive but dense explanation of\n"
 "  all features of Idris 2. I find this to be useful as a reference, and as such\n"
 "  it is highly accessible. However, it is not an introduction to functional\n"
 "  programming or type-driven development in general.\n"
 msgstr ""
+"  Idris 2 官方教程。全面而密集的解释\n"
+"  Idris 2 的所有功能。我发现这作为参考很有用，因此\n"
+"  它是高度可访问的。但是，它不是功能性的介绍\n"
+"  一般的编程或类型驱动开发。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:377
+#, fuzzy
 msgid "[The Idris 2 GitHub Repository](https://github.com/idris-lang/Idris2)"
-msgstr ""
+msgstr "[Idris 2 GitHub 存储库](https://github.com/idris-lang/Idris2)"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:384
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  Look here for detailed installation instructions and some\n"
 "  introductory material. There is also a [wiki](https://github.com/idris-lang/Idris2/wiki),\n"
@@ -607,15 +806,24 @@ msgid ""
 "  a [list of external backends](https://github.com/idris-lang/Idris2/wiki/External-backends),\n"
 "  and other useful information.\n"
 msgstr ""
+"  在这里查看详细的安装说明和一些\n"
+"  介绍材料。还有一个[wiki]（https://github.com/idris-lang/Idris2/wiki），\n"
+"  在哪里可以找到[编辑器插件列表](https://github.com/idris-lang/Idris2/wiki/"
+"The-Idris-editor-experience)，\n"
+"  [社区库列表](https://github.com/idris-lang/Idris2/wiki/Libraries),\n"
+"  [外部后端列表](https://github.com/idris-lang/Idris2/wiki/External-"
+"backends),\n"
+"  和其他有用的信息。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:386
+#, fuzzy
 msgid "[The Idris 2 Discord Channel](https://discord.gg/UX68fDs2jc)"
-msgstr ""
+msgstr "[伊德里斯 2 Discord 频道](https://discord.gg/UX68fDs2jc)"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:392
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  If you get stuck with a piece of code, want to ask about some\n"
 "  obscure language feature, want to promote your new library,\n"
@@ -623,15 +831,21 @@ msgid ""
 "  is the place to go. The discord channel is pretty active and\n"
 "  *very* friendly towards newcomers.\n"
 msgstr ""
+"  如果你被一段代码卡住了，想问一些\n"
+"  晦涩的语言功能，想推广你的新图书馆，\n"
+"  或者想和其他 Idris 程序员一起出去玩，这个\n"
+"  是去的地方。不和谐频道非常活跃\n"
+"  *对新人非常*友好。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:394
+#, fuzzy
 msgid "The Idris REPL"
-msgstr ""
+msgstr "伊德里斯 REPL"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:400
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  Finally, a lot of useful information can be provided by\n"
 "  Idris itself. I tend to have at least one REPL session open all the\n"
@@ -639,83 +853,111 @@ msgid ""
 "  to use the [language server for Idris 2](https://github.com/idris-community/idris2-lsp),\n"
 "  which is incredibly useful. In the REPL,\n"
 msgstr ""
+"  最后，可以提供很多有用的信息\n"
+"  伊德里斯本身。我倾向于至少打开一个 REPL 会话\n"
+"  在 Idris 编程的时间。我的编辑器（neovim）已设置\n"
+"  使用 [Idris 2 的语言服务器](https://github.com/idris-community/"
+"idris2-lsp)，\n"
+"  这非常有用。在 REPL 中，\n"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid ""
 "use `:t` to inspect the type of an expression or meta variable (hole): `:t "
 "foldl`,"
-msgstr ""
+msgstr "使用 `:t` 检查表达式或元变量（孔）的类型：`:t foldl`,"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid ""
 "use `:ti` to inspect the type of a function including implicit arguments: `:"
 "ti foldl`,"
-msgstr ""
+msgstr "使用 `:ti` 检查包含隐式参数的函数类型：`:ti foldl`,"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid "use `:m` to list all meta variables (holes) in scope,"
-msgstr ""
+msgstr "使用 `:m` 列出范围内的所有元变量（孔），"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid ""
 "use `:doc` to access the documentation of a top level function (`:doc the`), "
 "a data type plus all its constructors and available hints (`:doc Bool`), a "
 "language feature (`:doc case`, `:doc let`, `:doc interface`, `:doc record`, "
 "or even `:doc ?`), or an interface (`:doc Uninhabited`),"
 msgstr ""
+"使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，"
+"一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特征（`:doc case`"
+", `:doc let`, `:doc interface`, `:doc record`，甚至[X236X ]:doc "
+"?`)，或者一个接口（`:doc Uninhabited`），"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid ""
 "use `:module` to import a module from one of the available packages: `:"
 "module Data.Vect`,"
-msgstr ""
+msgstr "使用 `:module` 从可用包之一导入模块：`:module Data.Vect`,"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid ""
 "use `:browse` to list the names and types of all functions exported by a "
 "loaded module: `:browse Data.Vect`,"
-msgstr ""
+msgstr "使用 `:browse` 列出加载模块导出的所有函数的名称和类型： `:browse Data.Vect`,"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
+#, fuzzy
 msgid ""
 "use `:help` to get a list of other commands plus a short description for "
 "each."
-msgstr ""
+msgstr "使用 `:help` 获取其他命令的列表以及每个命令的简短描述。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:419
+#, fuzzy
 msgid "## Summary"
-msgstr ""
+msgstr "＃＃ 概括"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:425
+#, fuzzy
 msgid ""
 "In this introduction we learned about the most basic features of the Idris "
 "programming language. We used the REPL to tinker with our ideas and inspect "
 "the types of things in our code, and we used the Idris compiler to compile "
 "an Idris source file to an executable."
 msgstr ""
+"在本介绍中，我们了解了 Idris 编程语言的最基本功能。我们使用 REPL "
+"来修改我们的想法并检查代码中事物的类型，我们使用 Idris 编译器将 Idris "
+"源文件编译为可执行文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:429
+#, fuzzy
 msgid ""
 "We also learned about the basic shape of a top level definition in Idris, "
 "which always consists of an identifier (its name), a type, and an "
 "implementation."
-msgstr ""
+msgstr "我们还了解了 Idris "
+"中顶级定义的基本形式，它始终由标识符（其名称）、类型和实现组成。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:436
+#, fuzzy
 msgid ""
 "In the [next chapter](Functions1.md), we start programming in Idris for "
 "real. We learn how to write our own pure functions, how functions compose, "
 "and how we can treat functions just like other values and pass them around "
 "as arguments to other functions."
 msgstr ""
+"在[下一章]（Functions1.md）中，我们开始在 Idris 中进行真正的编程。我们学习如"
+"何编写我们自己的纯函数，函数如何组合，以及我们如何像对待其他值一样对待函数并"
+"将它们作为参数传递给其他函数。"
