@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:52+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/readme/zh_Hans/>\n"
@@ -20,17 +20,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:2
-#, fuzzy, no-wrap
-#| msgid "> [Chinese Translation](translation/README.md)"
+#, no-wrap
 msgid "> [Chinese Translation](translation/README.md)\n"
 msgstr " "
 
 #. type: Title #
 #: ../README.md:3
-#, fuzzy, no-wrap
-#| msgid "# Functional Programming in Idris 2"
+#, no-wrap
 msgid "Functional Programming in Idris 2"
-msgstr "# Idris 2 中的函数式编程"
+msgstr "Idris 2 中的函数式编程"
 
 #. type: Plain text
 #: ../README.md:9
@@ -69,17 +67,15 @@ msgstr ""
 
 #. type: Title ##
 #: ../README.md:23
-#, fuzzy, no-wrap
-#| msgid "## Table of Contents"
+#, no-wrap
 msgid "Table of Contents"
-msgstr "## 目录"
+msgstr "目录"
 
 #. type: Title ###
 #: ../README.md:25
-#, fuzzy, no-wrap
-#| msgid "### Part 1: Core Language Features"
+#, no-wrap
 msgid "Part 1: Core Language Features"
-msgstr "### 第 1 部分：核心语言功能"
+msgstr "第 1 部分：核心语言功能"
 
 #. type: Plain text
 #: ../README.md:31
@@ -247,10 +243,9 @@ msgstr ""
 
 #. type: Title ###
 #: ../README.md:106
-#, fuzzy, no-wrap
-#| msgid "### Part 2: Appendices"
+#, no-wrap
 msgid "Part 2: Appendices"
-msgstr "### 第 2 部分：附录"
+msgstr "第 2 部分：附录"
 
 #. type: Plain text
 #: ../README.md:112
@@ -269,10 +264,9 @@ msgstr "[Neovim 中的交互式编辑](src/Appendices/Neovim.md)"
 
 #. type: Title ##
 #: ../README.md:115
-#, fuzzy, no-wrap
-#| msgid "## Prerequisites"
+#, no-wrap
 msgid "Prerequisites"
-msgstr "## 先决条件"
+msgstr "先决条件"
 
 #. type: Plain text
 #: ../README.md:121
