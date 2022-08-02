@@ -7,18 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:07+0800\n"
-"PO-Revision-Date: 2022-08-02 13:07+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-02 07:35+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
+"projects/idris2-tutorial/readme/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
 #: ../README.md:2
 msgid "# Functional Programming in Idris 2"
-msgstr ""
+msgstr "# Idris 2 中的函数式编程"
 
 #. type: Plain text
 #: ../README.md:7
