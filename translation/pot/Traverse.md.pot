@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,44 +16,397 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-msgid "### Exercises part 2"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-msgid "## Conclusion"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, no-wrap
+msgid "Exercises part 2"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, no-wrap
+msgid "Exercises part 3"
+msgstr ""
+
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, no-wrap
+msgid "Conclusion"
 msgstr ""
 
 #. type: Plain text
@@ -64,78 +417,59 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-msgid "<!-- vi: filetype=idris2 -->"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-msgid "%default total ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Eq.md:849 ../src/Tutorial/Folds.md:1003
-#: ../src/Tutorial/Functor.md:424 ../src/Tutorial/Traverse.md:292
 #, no-wrap
 msgid ""
-"   ```idris\n"
+"<!-- vi: filetype=idris2\n"
+"-->\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Folds.md:996
+#: ../src/Tutorial/Functor.md:417 ../src/Tutorial/Traverse.md:285
+#, no-wrap
+msgid ""
 "   data Crud : (i : Type) -> (a : Type) -> Type where\n"
 "     Create : (value : a) -> Crud i a\n"
 "     Update : (id : i) -> (value : a) -> Crud i a\n"
 "     Read   : (id : i) -> Crud i a\n"
 "     Delete : (id : i) -> Crud i a\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Folds.md:1014 ../src/Tutorial/Functor.md:437
-#: ../src/Tutorial/Traverse.md:303
+#: ../src/Tutorial/Folds.md:1006 ../src/Tutorial/Functor.md:429
+#: ../src/Tutorial/Traverse.md:295
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data Response : (e, i, a : Type) -> Type where\n"
 "     Created : (id : i) -> (value : a) -> Response e i a\n"
 "     Updated : (id : i) -> (value : a) -> Response e i a\n"
 "     Found   : (values : List a) -> Response e i a\n"
 "     Deleted : (id : i) -> Response e i a\n"
 "     Error   : (err : e) -> Response e i a\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Folds.md:1024 ../src/Tutorial/IO.md:758
-#: ../src/Tutorial/Traverse.md:272
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/Traverse.md:267
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
 "     Nil  : List01 False a\n"
 "     (::) : a -> List01 False a -> List01 ne a\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Folds.md:1044 ../src/Tutorial/Traverse.md:312
+#: ../src/Tutorial/Folds.md:1040 ../src/Tutorial/Traverse.md:308
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   record Comp (f,g : Type -> Type) (a : Type) where\n"
 "     constructor MkComp\n"
 "     unComp  : f (g a)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Folds.md:1050 ../src/Tutorial/Traverse.md:318
-#, no-wrap
-msgid ""
+"\n"
 "   record Product (f,g : Type -> Type) (a : Type) where\n"
 "     constructor MkProduct\n"
 "     fst : f a\n"
 "     snd : g a\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -143,9 +477,10 @@ msgstr ""
 msgid "Let's give this a go at the REPL:"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:2
-msgid "# Effectful Traversals"
+#. type: Title #
+#: ../src/Tutorial/Traverse.md:1
+#, no-wrap
+msgid "Effectful Traversals"
 msgstr ""
 
 #. type: Plain text
@@ -168,20 +503,26 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:19
-msgid "```idris module Tutorial.Traverse"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:27
+#: ../src/Tutorial/Traverse.md:17
+#, no-wrap
 msgid ""
-"import Data.HList import Data.IORef import Data.List1 import Data.String "
-"import Data.Validated import Data.Vect import Text.CSV"
+"module Tutorial.Traverse\n"
+"\n"
+"import Data.HList\n"
+"import Data.IORef\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Validated\n"
+"import Data.Vect\n"
+"import Text.CSV\n"
+"\n"
+"%default total\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:32
-msgid "## Reading CSV Tables"
+#. type: Title ##
+#: ../src/Tutorial/Traverse.md:31
+#, no-wrap
+msgid "Reading CSV Tables"
 msgstr ""
 
 #. type: Plain text
@@ -193,10 +534,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:42
+#: ../src/Tutorial/Traverse.md:38
+#, no-wrap
 msgid ""
-"```repl Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 \"f,foo,12\" Valid "
-"[False, \"foo\", 12] ```"
+"Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 \"f,foo,12\"\n"
+"Valid [False, \"foo\", 12]\n"
 msgstr ""
 
 #. type: Plain text
@@ -211,15 +553,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:58
+#: ../src/Tutorial/Traverse.md:52
 #, no-wrap
 msgid ""
-"```idris\n"
 "hreadTable1 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
 "            => List String\n"
 "            -> Validated CSVError (List $ HList ts)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -229,13 +569,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:66
+#: ../src/Tutorial/Traverse.md:62
 #, no-wrap
 msgid ""
-"```idris\n"
 "hreadTable1 _  []        = pure []\n"
 "hreadTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -250,38 +588,33 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:81
+#, no-wrap
 msgid ""
-"The question is: Can we extract a pattern to abstract over from this "
-"observation? What we do in `hreadTable1` is running an effectful computation "
-"of type `String -> Validated CSVError (HList ts)` over a list of strings, so "
-"that the result is a list of `HList ts` wrapped in a `Validated CSVError`. "
-"The first step of abstraction should be to use type parameters for the input "
-"and output: Run a computation of type `a -> Validated CSVError b` over a "
-"list `List a`:"
+"The question is: Can we extract a pattern to abstract over\n"
+"from this observation? What we do in `hreadTable1` is running\n"
+"an effectful computation of type `String -> Validated CSVError (HList ts)`\n"
+"over a list of strings, so that the result is a list of `HList ts`\n"
+"wrapped in a `Validated CSVError`. The first step of abstraction\n"
+"should be to use type parameters for the input and output:\n"
+"Run a computation of type `a -> Validated CSVError b` over a\n"
+"list `List a`:\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:88
+#: ../src/Tutorial/Traverse.md:82
 #, no-wrap
 msgid ""
-"```idris\n"
 "traverseValidatedList :  (a -> Validated CSVError b)\n"
 "                      -> List a\n"
 "                      -> Validated CSVError (List b)\n"
 "traverseValidatedList _ []        = pure []\n"
 "traverseValidatedList f (x :: xs) = [| f x :: traverseValidatedList f xs |]\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:95
-#, no-wrap
-msgid ""
+"\n"
 "hreadTable2 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
 "            => List String\n"
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable2 ts = traverseValidatedList (hdecode ts 0)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -296,25 +629,18 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:109
+#: ../src/Tutorial/Traverse.md:105
 #, no-wrap
 msgid ""
-"```idris\n"
 "traverseList :  Applicative f => (a -> f b) -> List a -> f (List b)\n"
 "traverseList _ []        = pure []\n"
 "traverseList f (x :: xs) = [| f x :: traverseList f xs |]\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:116
-#, no-wrap
-msgid ""
+"\n"
 "hreadTable3 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
 "            => List String\n"
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable3 ts = traverseList (hdecode ts 0)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -326,13 +652,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:131
+#: ../src/Tutorial/Traverse.md:123
+#, no-wrap
 msgid ""
-"```repl Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"] Valid "
-"[[False, 12], [True, 0]] Tutorial.Traverse> hreadTable3 [Bool,Bits8] "
-"[\"f,12\",\"t,1000\"] Invalid (FieldError 0 2 \"1000\")  Tutorial.Traverse> "
-"hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"] Invalid (Append (FieldError 0 "
-"1 \"1\") (FieldError 0 2 \"1000\"))  ```"
+"Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"]\n"
+"Valid [[False, 12], [True, 0]]\n"
+"Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,1000\"]\n"
+"Invalid (FieldError 0 2 \"1000\")\n"
+"Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"]\n"
+"Invalid (Append (FieldError 0 1 \"1\") (FieldError 0 2 \"1000\"))\n"
 msgstr ""
 
 #. type: Plain text
@@ -347,16 +675,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:147
+#: ../src/Tutorial/Traverse.md:140
 #, no-wrap
 msgid ""
-"```idris\n"
 "hreadTable4 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
 "            => List (Nat, String)\n"
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -377,16 +703,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:162
+#: ../src/Tutorial/Traverse.md:158
+#, no-wrap
 msgid ""
-"```repl Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,"
-"\"1,100\")] Invalid (Append (FieldError 1 2 \"1000\") (FieldError 2 1 "
-"\"1\"))  ```"
+"Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")]\n"
+"Invalid (Append (FieldError 1 2 \"1000\") (FieldError 2 1 \"1\"))\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:164
-msgid "### Interface Traversable"
+#. type: Title ###
+#: ../src/Tutorial/Traverse.md:163
+#, no-wrap
+msgid "Interface Traversable"
 msgstr ""
 
 #. type: Plain text
@@ -401,10 +728,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:177
+#: ../src/Tutorial/Traverse.md:173
+#, no-wrap
 msgid ""
-"```idris traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List "
-"b)  traverseVect' fun = traverseList fun . toList ```"
+"traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List b)\n"
+"traverseVect' fun = traverseList fun . toList\n"
 msgstr ""
 
 #. type: Plain text
@@ -417,14 +745,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:188
+#: ../src/Tutorial/Traverse.md:183
 #, no-wrap
 msgid ""
-"```idris\n"
 "traverseVect : Applicative f => (a -> f b) -> Vect n a -> f (Vect n b)\n"
 "traverseVect _   []        = pure []\n"
 "traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -437,10 +763,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:198
+#: ../src/Tutorial/Traverse.md:194
+#, no-wrap
 msgid ""
-"```idris sequenceList : Applicative f => List (f a) -> f (List a)  "
-"sequenceList = traverseList id ```"
+"sequenceList : Applicative f => List (f a) -> f (List a)\n"
+"sequenceList = traverseList id\n"
 msgstr ""
 
 #. type: Plain text
@@ -452,13 +779,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:207
+#: ../src/Tutorial/Traverse.md:203
 #, no-wrap
 msgid ""
-"```idris\n"
 "interface Functor t => Foldable t => Traversable' t where\n"
 "  traverse' : Applicative f => (a -> f b) -> t a -> f (t b)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -487,9 +812,10 @@ msgid ""
 "composition (see the exercises and the final section in this chapter)."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:231
-msgid "### Traversable Laws"
+#. type: Title ###
+#: ../src/Tutorial/Traverse.md:230
+#, no-wrap
+msgid "Traversable Laws"
 msgstr ""
 
 #. type: Plain text
@@ -569,15 +895,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:282
+#: ../src/Tutorial/Traverse.md:276
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   record Tree a where\n"
 "     constructor Node\n"
 "     value  : a\n"
 "     forest : List (Tree a)\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '6. '
@@ -598,9 +922,10 @@ msgid ""
 "`Product`:"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:320
-msgid "## Programming with State"
+#. type: Title ##
+#: ../src/Tutorial/Traverse.md:319
+#, no-wrap
+msgid "Programming with State"
 msgstr ""
 
 #. type: Plain text
@@ -611,8 +936,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:328
-msgid "```idris zipWithIndex : List a -> List (Nat, a)  ```"
+#: ../src/Tutorial/Traverse.md:325
+#, no-wrap
+msgid "zipWithIndex : List a -> List (Nat, a)\n"
 msgstr ""
 
 #. type: Plain text
@@ -623,15 +949,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:338
+#: ../src/Tutorial/Traverse.md:332
 #, no-wrap
 msgid ""
-"```idris\n"
 "zipWithIndex = go 1\n"
 "  where go : Nat -> List a -> List (Nat,a)\n"
 "        go _ []        = []\n"
 "        go n (x :: xs) = (n,x) :: go (S n) xs\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -643,9 +967,10 @@ msgid ""
 "abstraction we can use to describe such computations."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:346
-msgid "### Mutable References in Idris"
+#. type: Title ###
+#: ../src/Tutorial/Traverse.md:345
+#, no-wrap
+msgid "Mutable References in Idris"
 msgstr ""
 
 #. type: Plain text
@@ -684,36 +1009,37 @@ msgid "Here's how I would do this:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:377
+#: ../src/Tutorial/Traverse.md:370
 #, no-wrap
 msgid ""
-"```idris\n"
 "pairWithIndexIO : IORef Nat -> a -> IO (Nat,a)\n"
 "pairWithIndexIO ref va = do\n"
 "  ix <- readIORef ref\n"
 "  writeIORef ref (S ix)\n"
 "  pure (ix,va)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:387
+#, no-wrap
 msgid ""
-"Note, that every time we *run* `pairWithIndexIO ref`, the natural number "
-"stored in `ref` is incremented by one.  Also, look at the type of "
-"`pairWithIndexIO ref`: `a -> IO (Nat,a)`.  We want to apply this effectful "
-"computation to each element in a list, which should lead to a new list "
-"wrapped in `IO`, since all of this describes a single computation with side "
-"effects. But this is *exactly* what function `traverse` does: Our input type "
-"is `a`, our output type is `(Nat,a)`, our container type is `List`, and the "
-"effect type is `IO`!"
+"Note, that every time we *run* `pairWithIndexIO ref`, the\n"
+"natural number stored in `ref` is incremented by one.\n"
+"Also, look at the type of `pairWithIndexIO ref`: `a -> IO (Nat,a)`.\n"
+"We want to apply this effectful computation to each element\n"
+"in a list, which should lead to a new list wrapped in `IO`,\n"
+"since all of this describes a single computation with side\n"
+"effects. But this is *exactly* what function `traverse` does: Our\n"
+"input type is `a`, our output type is `(Nat,a)`, our\n"
+"container type is `List`, and the effect type is `IO`!\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:392
+#: ../src/Tutorial/Traverse.md:388
+#, no-wrap
 msgid ""
-"```idris zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))  "
-"zipListWithIndexIO ref = traverse (pairWithIndexIO ref)  ```"
+"zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))\n"
+"zipListWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
 msgstr ""
 
 #. type: Plain text
@@ -725,10 +1051,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:402
+#: ../src/Tutorial/Traverse.md:398
+#, no-wrap
 msgid ""
-"```idris zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,"
-"a))  zipWithIndexIO ref = traverse (pairWithIndexIO ref)  ```"
+"zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
+"zipWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
 msgstr ""
 
 #. type: Plain text
@@ -739,10 +1066,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:410
+#: ../src/Tutorial/Traverse.md:406
+#, no-wrap
 msgid ""
-"```idris zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,"
-"a))  zipWithIndexIO' = traverse . pairWithIndexIO ```"
+"zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
+"zipWithIndexIO' = traverse . pairWithIndexIO\n"
 msgstr ""
 
 #. type: Plain text
@@ -753,10 +1081,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:418
+#: ../src/Tutorial/Traverse.md:414
+#, no-wrap
 msgid ""
-"```idris zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))  "
-"zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)  ```"
+"zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))\n"
+"zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)\n"
 msgstr ""
 
 #. type: Plain text
@@ -765,12 +1094,15 @@ msgid "Quickly, let's give this a go at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:429
+#: ../src/Tutorial/Traverse.md:421
+#, no-wrap
 msgid ""
-"```repl > :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn "
-"[(0, \"hello\"), (1, \"world\")] > :exec zipFromZeroIO (Just 12) >>= printLn "
-"Just (0, 12)  > :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= "
-"printLn [(0, \"hello\"), (1, \"world\")] ```"
+"> :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn\n"
+"[(0, \"hello\"), (1, \"world\")]\n"
+"> :exec zipFromZeroIO (Just 12) >>= printLn\n"
+"Just (0, 12)\n"
+"> :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= printLn\n"
+"[(0, \"hello\"), (1, \"world\")]\n"
 msgstr ""
 
 #. type: Plain text
@@ -780,9 +1112,10 @@ msgid ""
 "for all for all traversable container types."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:434
-msgid "### The State Monad"
+#. type: Title ###
+#: ../src/Tutorial/Traverse.md:433
+#, no-wrap
+msgid "The State Monad"
 msgstr ""
 
 #. type: Plain text
@@ -830,10 +1163,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:467
+#: ../src/Tutorial/Traverse.md:463
+#, no-wrap
 msgid ""
-"```idris Stateful : (st : Type) -> (a : Type) -> Type Stateful st a = st -> "
-"(st, a)  ```"
+"Stateful : (st : Type) -> (a : Type) -> Type\n"
+"Stateful st a = st -> (st, a)\n"
 msgstr ""
 
 #. type: Plain text
@@ -844,10 +1178,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:475
+#: ../src/Tutorial/Traverse.md:471
+#, no-wrap
 msgid ""
-"```idris pairWithIndex' : a -> Stateful Nat (Nat,a)  pairWithIndex' v index "
-"= (S index, (index,v))  ```"
+"pairWithIndex' : a -> Stateful Nat (Nat,a)\n"
+"pairWithIndex' v index = (S index, (index,v))\n"
 msgstr ""
 
 #. type: Plain text
@@ -871,14 +1206,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:494
+#: ../src/Tutorial/Traverse.md:489
 #, no-wrap
 msgid ""
-"```idris\n"
 "record State st a where\n"
 "  constructor ST\n"
 "  runST : st -> (st,a)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -887,10 +1220,11 @@ msgid "We can now implement `pairWithIndex` in terms of `State` like so:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:501
+#: ../src/Tutorial/Traverse.md:497
+#, no-wrap
 msgid ""
-"```idris pairWithIndex : a -> State Nat (Nat,a)  pairWithIndex v = ST $ "
-"\\index => (S index, (index, v))  ```"
+"pairWithIndex : a -> State Nat (Nat,a)\n"
+"pairWithIndex v = ST $ \\index => (S index, (index, v))\n"
 msgstr ""
 
 #. type: Plain text
@@ -902,8 +1236,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:510
-msgid "```idris get : State st st get = ST $ \\s => (s,s)  ```"
+#: ../src/Tutorial/Traverse.md:506
+#, no-wrap
+msgid ""
+"get : State st st\n"
+"get = ST $ \\s => (s,s)\n"
 msgstr ""
 
 #. type: Plain text
@@ -914,14 +1251,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:517
-msgid "```idris put : st -> State st ()  put v = ST $ \\_ => (v,())"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:521
+#: ../src/Tutorial/Traverse.md:514
+#, no-wrap
 msgid ""
-"modify : (st -> st) -> State st ()  modify f = ST $ \\v => (f v,())  ```"
+"put : st -> State st ()\n"
+"put v = ST $ \\_ => (v,())\n"
+"\n"
+"modify : (st -> st) -> State st ()\n"
+"modify f = ST $ \\v => (f v,())\n"
 msgstr ""
 
 #. type: Plain text
@@ -932,18 +1269,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:528
-msgid "```idris runState : st -> State st a -> (st, a)  runState = flip runST"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:531
-msgid "evalState : st -> State st a -> a evalState s = snd . runState s"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:535
-msgid "execState : st -> State st a -> st execState s = fst . runState s ```"
+#: ../src/Tutorial/Traverse.md:525
+#, no-wrap
+msgid ""
+"runState : st -> State st a -> (st, a)\n"
+"runState = flip runST\n"
+"\n"
+"evalState : st -> State st a -> a\n"
+"evalState s = snd . runState s\n"
+"\n"
+"execState : st -> State st a -> st\n"
+"execState s = fst . runState s\n"
 msgstr ""
 
 #. type: Plain text
@@ -957,41 +1293,24 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:546
+#: ../src/Tutorial/Traverse.md:543
 #, no-wrap
 msgid ""
-"```idris\n"
 "Functor (State st) where\n"
 "  map f (ST run) = ST $ \\s => let (s2,va) = run s in (s2, f va)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:549
-#, no-wrap
-msgid ""
+"\n"
 "Applicative (State st) where\n"
 "  pure v = ST $ \\s => (s,v)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:554
-#, no-wrap
-msgid ""
+"\n"
 "  ST fun <*> ST val = ST $ \\s =>\n"
 "    let (s2, f)  = fun s\n"
 "        (s3, va) = val s2\n"
 "     in (s3, f va)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:560
-#, no-wrap
-msgid ""
+"\n"
 "Monad (State st) where\n"
 "  ST val >>= f = ST $ \\s =>\n"
 "    let (s2, va) = val s\n"
 "     in runST (f va) s2\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1031,14 +1350,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:596
+#: ../src/Tutorial/Traverse.md:591
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   rnd : Bits64 -> Bits64\n"
 "   rnd seed = fromInteger\n"
 "            $ (437799614237992725 * cast seed) `mod` 2305843009213693951\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1055,13 +1372,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:609
+#: ../src/Tutorial/Traverse.md:605
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   Gen : Type -> Type\n"
 "   Gen = State Bits64\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1328,10 +1643,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:750
+#: ../src/Tutorial/Traverse.md:737
 #, no-wrap
 msgid ""
-"   ```repl\n"
 "   > testGen 100 $ hlist [bool, printableAscii, interval 0 127]\n"
 "   [[True, ';', 5],\n"
 "    [True, '^', 39],\n"
@@ -1343,7 +1657,6 @@ msgid ""
 "    [False, 'P', 107],\n"
 "    [True, '5', 67],\n"
 "    [False, '8', 9]]\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1375,13 +1688,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:775
+#: ../src/Tutorial/Traverse.md:771
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   uncons : Vect (S n) a -> (Vect n a, a)\n"
 "   uncons (x :: xs) = (xs, x)\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1468,9 +1779,10 @@ msgid ""
 "   to such use cases in later examples.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:823
-msgid "## The Power of Composition"
+#. type: Title ##
+#: ../src/Tutorial/Traverse.md:822
+#, no-wrap
+msgid "The Power of Composition"
 msgstr ""
 
 #. type: Plain text
@@ -1485,16 +1797,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:838
+#: ../src/Tutorial/Traverse.md:831
 #, no-wrap
 msgid ""
-"```idris\n"
 "tagAndDecode :  (0 ts : List Type)\n"
 "             -> CSVLine (HList ts)\n"
 "             => String\n"
 "             -> State Nat (Validated CSVError (HList ts))\n"
 "tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1513,16 +1823,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:859
+#: ../src/Tutorial/Traverse.md:852
 #, no-wrap
 msgid ""
-"```idris\n"
 "readTable :  (0 ts : List Type)\n"
 "          -> CSVLine (HList ts)\n"
 "          => List String\n"
 "          -> Validated CSVError (List $ HList ts)\n"
 "readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1536,10 +1844,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:875
+#: ../src/Tutorial/Traverse.md:867
 #, no-wrap
 msgid ""
-"```idris\n"
 "traverseComp : Traversable t\n"
 "             => Applicative f\n"
 "             => Applicative g\n"
@@ -1547,18 +1854,12 @@ msgid ""
 "             -> t a\n"
 "             -> f (g (t b))\n"
 "traverseComp = traverse @{%search} @{Compose}\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:882
-#, no-wrap
-msgid ""
+"\n"
 "readTable' :  (0 ts : List Type)\n"
 "           -> CSVLine (HList ts)\n"
 "           => List String\n"
 "           -> Validated CSVError (List $ HList ts)\n"
 "readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1584,14 +1885,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:904
+#: ../src/Tutorial/Traverse.md:899
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Line : Type -> Type where\n"
 "  Annotated : String -> a -> Line a\n"
 "  Clean     : a -> Line a\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1602,32 +1901,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:913
+#: ../src/Tutorial/Traverse.md:909
 #, no-wrap
 msgid ""
-"```idris\n"
 "Functor Line where\n"
 "  map f (Annotated s x) = Annotated s $ f x\n"
 "  map f (Clean x)       = Clean $ f x\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:917
-#, no-wrap
-msgid ""
+"\n"
 "Foldable Line where\n"
 "  foldr f acc (Annotated _ x) = f x acc\n"
 "  foldr f acc (Clean x)       = f x acc\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:922
-#, no-wrap
-msgid ""
+"\n"
 "Traversable Line where\n"
 "  traverse f (Annotated s x) = Annotated s <$> f x\n"
 "  traverse f (Clean x)       = Clean <$> f x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1640,15 +1927,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:935
+#: ../src/Tutorial/Traverse.md:929
 #, no-wrap
 msgid ""
-"```idris\n"
 "readLine : String -> Line String\n"
 "readLine s = case split ('#' ==) s of\n"
 "  h ::: [t] => Annotated t h\n"
 "  _         => Clean s\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1659,10 +1944,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:949
+#: ../src/Tutorial/Traverse.md:939
 #, no-wrap
 msgid ""
-"```idris\n"
 "readCSV :  (0 ts : List Type)\n"
 "        -> CSVLine (HList ts)\n"
 "        => String\n"
@@ -1671,7 +1955,6 @@ msgid ""
 "           . traverse @{Compose} @{Compose} (tagAndDecode ts)\n"
 "           . map readLine\n"
 "           . lines\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1704,10 +1987,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:984
+#: ../src/Tutorial/Traverse.md:975
 #, no-wrap
 msgid ""
-"```idris\n"
 "validInput : String\n"
 "validInput = \"\"\"\n"
 "  f,12,-13.01#this is a comment\n"
@@ -1716,12 +1998,7 @@ msgid ""
 "  f,255,0.0\n"
 "  f,24,1.12e17\n"
 "  \"\"\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:994
-#, no-wrap
-msgid ""
+"\n"
 "invalidInput : String\n"
 "invalidInput = \"\"\"\n"
 "  o,12,-13.01#another comment\n"
@@ -1730,7 +2007,6 @@ msgid ""
 "  f,256,0.0\n"
 "  f,24,1.12e17\n"
 "  \"\"\"\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1739,26 +2015,19 @@ msgid "And here's how it goes at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:1004
+#: ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput\n"
 "Valid [Annotated \"this is a comment\" [False, 12, -13.01],\n"
 "       Clean [True, 100, 0.0017],\n"
 "       Annotated \"color: red\" [True, 1, 100.8],\n"
 "       Clean [False, 255, 0.0],\n"
 "       Clean [False, 24, 1.12e17]]\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:1009
-#, no-wrap
-msgid ""
+"\n"
 "Tutorial.Traverse> readCSV [Bool,Bits8,Double] invalidInput\n"
 "Invalid (Append (FieldError 1 1 \"o\")\n"
 "  (Append (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1790,14 +2059,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:1035
+#: ../src/Tutorial/Traverse.md:1030
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data Tagged : (tag, value : Type) -> Type where\n"
 "     Tag  : tag -> value -> Tagged tag value\n"
 "     Pure : value -> Tagged tag value\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1838,22 +2105,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:1061
+#: ../src/Tutorial/Traverse.md:1056
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data TagError : Type where\n"
 "     CE         : CSVError -> TagError\n"
 "     InvalidTag : (line : Nat) -> (tag : String) -> TagError\n"
 "     Append     : TagError -> TagError -> TagError\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:1064
-#, no-wrap
-msgid ""
+"\n"
 "   Semigroup TagError where (<+>) = Append\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1863,12 +2123,9 @@ msgid "   For testing, we also define a simple data type for color tags:\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:1070
+#: ../src/Tutorial/Traverse.md:1067
 #, no-wrap
-msgid ""
-"   ```idris\n"
-"   data Color = Red | Green | Blue\n"
-"   ```\n"
+msgid "   data Color = Red | Green | Blue\n"
 msgstr ""
 
 #. type: Plain text
@@ -1883,28 +2140,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:1079
+#: ../src/Tutorial/Traverse.md:1077
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   readColor : String -> State Nat (Validated TagError Color)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:1081
-#, no-wrap
-msgid "   readTaggedLine : String -> Tagged String String\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Traverse.md:1087
-#, no-wrap
-msgid ""
+"\n"
+"   readTaggedLine : String -> Tagged String String\n"
+"\n"
 "   tagAndDecodeTE :  (0 ts : List Type)\n"
 "                  -> CSVLine (HList ts)\n"
 "                  => String\n"
 "                  -> State Nat (Validated TagError (HList ts))\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1920,15 +2166,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Traverse.md:1101
+#: ../src/Tutorial/Traverse.md:1095
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   readTagged :  (0 ts : List Type)\n"
 "              -> CSVLine (HList ts)\n"
 "              => String\n"
 "              -> Validated TagError (List $ Tagged Color $ HList ts)\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text

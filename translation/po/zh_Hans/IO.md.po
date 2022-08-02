@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 14:52+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -18,15 +18,364 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-#, fuzzy
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
+msgstr ""
+
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, fuzzy, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 1 部分\n"
@@ -46,15 +395,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-#, fuzzy
-msgid "### Exercises part 2"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, fuzzy, no-wrap
+msgid "Exercises part 2"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 2 部分\n"
@@ -74,15 +423,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-#, fuzzy
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, fuzzy, no-wrap
+msgid "Exercises part 3"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 3 部分\n"
@@ -102,15 +451,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-#, fuzzy
-msgid "## Conclusion"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, fuzzy, no-wrap
+msgid "Conclusion"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -128,6 +477,20 @@ msgstr ""
 "#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "＃＃ 结论\n"
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
+#: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
+#: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
+#, fuzzy, no-wrap
+msgid "What's next"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃＃ 下一步是什么\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
@@ -138,8 +501,10 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy
-msgid "<!-- vi: filetype=idris2 -->"
+#, fuzzy, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -162,55 +527,13 @@ msgstr ""
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-#, fuzzy
-msgid "%default total ```"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```"
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:904 ../src/Tutorial/Functions1.md:576
-#: ../src/Tutorial/Functions2.md:955 ../src/Tutorial/Interfaces.md:814
-#: ../src/Tutorial/IO.md:1119
-#, fuzzy
-msgid "### What's next"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃＃ 下一步是什么\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Folds.md:1024 ../src/Tutorial/IO.md:758
-#: ../src/Tutorial/Traverse.md:272
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/Traverse.md:267
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
 "     Nil  : List01 False a\n"
 "     (::) : a -> List01 False a -> List01 ne a\n"
-"   ```\n"
 msgstr ""
 "#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "   ```伊德里斯\n"
@@ -221,19 +544,10 @@ msgstr ""
 "#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Functor.md:24 ../src/Tutorial/IO.md:14
-#, fuzzy
-msgid "import Data.List1 import Data.String import Data.Vect"
-msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"导入 Data.List1 导入 Data.String 导入 Data.Vect\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:2
-#, fuzzy
-msgid "# IO: Programming with Side Effects"
+#. type: Title #
+#: ../src/Tutorial/IO.md:1
+#, fuzzy, no-wrap
+msgid "IO: Programming with Side Effects"
 msgstr "# IO：有副作用的编程"
 
 #. type: Plain text
@@ -250,21 +564,24 @@ msgstr ""
 "效的程序了。"
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:10
-#, fuzzy
-msgid "```idris module Tutorial.IO"
-msgstr "```idris 模块教程.IO"
+#: ../src/Tutorial/IO.md:8
+#, fuzzy, no-wrap
+msgid ""
+"module Tutorial.IO\n"
+"\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"\n"
+"import System.File\n"
+"\n"
+"%default total\n"
+msgstr "导入 Data.Either 导入 Data.List1 导入 Data.String 导入 Data.Vect 导入 Data.HList 导入 Decidable.Equality"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:16
-#, fuzzy
-msgid "import System.File"
-msgstr "导入 System.File"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:21
-#, fuzzy
-msgid "## Pure Side Effects?"
+#. type: Title ##
+#: ../src/Tutorial/IO.md:20
+#, fuzzy, no-wrap
+msgid "Pure Side Effects?"
 msgstr "## 纯副作用？"
 
 #. type: Plain text
@@ -278,9 +595,11 @@ msgstr ""
 "类型和实现："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:29
-#, fuzzy
-msgid "```idris hello : IO ()  hello = putStrLn \"Hello World!\" ```"
+#: ../src/Tutorial/IO.md:25
+#, fuzzy, no-wrap
+msgid ""
+"hello : IO ()\n"
+"hello = putStrLn \"Hello World!\"\n"
 msgstr "```idris hello : IO () hello = putStrLn \"Hello World!\" ```"
 
 #. type: Plain text
@@ -292,9 +611,11 @@ msgid ""
 msgstr "如果您在 REPL 会话中加载此模块并评估 `hello`，您将获得以下信息："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:37
-#, fuzzy
-msgid "```repl Tutorial.IO> hello MkIO (prim__putStr \"Hello World!\")  ```"
+#: ../src/Tutorial/IO.md:33
+#, fuzzy, no-wrap
+msgid ""
+"Tutorial.IO> hello\n"
+"MkIO (prim__putStr \"Hello World!\")\n"
 msgstr "```repl Tutorial.IO> hello MkIO (prim__putStr \"Hello World!\") ```"
 
 #. type: Plain text
@@ -331,79 +652,63 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:61
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"It is important to understand that values of type `IO a` *describe* a "
-"program, which, when being *executed*, will return a value of type `a`, "
-"after performing arbitrary side effects along the way. For instance, "
-"`putStrLn` has type `String -> IO ()`. Read this as: \"`putStrLn` is a "
-"function, which, when given a `String` argument, will return a description "
-"of an effectful program with an output type of `()`\".  (`()` is syntactic "
-"sugar for type `Unit`, the empty tuple defined at the *Prelude*, which has "
-"only one value called `MkUnit`, for which we can also use `()` in our code.)"
-msgstr ""
-"重要的是要理解 `IO a` * 类型的值描述 * 一个程序，当 * 执行 * 时，将返回 "
-"`a[ 类型的值X139X]，在一路执行任意副作用之后。例如，`putStrLn` 的类型为 "
-"`String -> IO ()`。将其读作：“`putStrLn` 是一个函数，当给定一个 `String` 参数"
-"时，它将返回一个输出类型为 `()` 的有效程序的描述]”。 (`()` 是 `Unit` 类型的语"
-"法糖，在 *Prelude* 中定义的空元组，它只有一个值称为 `MkUnit`，我们也可以在我"
-"们的代码中使用 `()`。）"
+"It is important to understand that values of type `IO a` *describe*\n"
+"a program, which, when being *executed*, will return a value of type `a`,\n"
+"after performing arbitrary side effects along the way. For instance,\n"
+"`putStrLn` has type `String -> IO ()`. Read this as: \"`putStrLn` is a function,\n"
+"which, when given a `String` argument, will return a description of\n"
+"an effectful program with an output type of `()`\".\n"
+"(`()` is syntactic sugar for type `Unit`, the\n"
+"empty tuple defined at the *Prelude*, which has only one value called `MkUnit`,\n"
+"for which we can also use `()` in our code.)\n"
+msgstr "重要的是要理解 `IO a` * 类型的值描述 * 一个程序，当 * 执行 * 时，将返回 `a[ 类型的值X139X]，在一路执行任意副作用之后。例如，`putStrLn` 的类型为 `String -> IO ()`。将其读作：“`putStrLn` 是一个函数，当给定一个 `String` 参数时，它将返回一个输出类型为 `()` 的有效程序的描述]”。 (`()` 是 `Unit` 类型的语法糖，在 *Prelude* 中定义的空元组，它只有一个值称为 `MkUnit`，我们也可以在我们的代码中使用 `()`。）"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:72
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Since values of type `IO a` are mere descriptions of effectful computations, "
-"functions returning such values or taking such values as arguments are still "
-"*pure* and thus referentially transparent.  It is, however, not possible to "
-"extract a value of type `a` from a value of type `IO a`, that is, there is "
-"no generic function `IO a -> a`, as such a function would inadvertently "
-"execute the side effects when extracting the result from its argument, thus "
-"breaking referential transparency.  (Actually, there *is* such a function "
-"called `unsafePerformIO`.  Do not ever use it in your code unless you know "
-"what you are doing.)"
-msgstr ""
-"由于 `IO a` 类型的值仅仅是对有效计算的描述，因此返回此类值或将此类值作为参数"
-"的函数仍然是 * 纯 * 并且因此是引用透明的。但是，不可能从 `IO a` 类型的值中提"
-"取 `a` 类型的值，也就是说，没有通用函数 `IO a -> a `，因为这样的函数在从其参"
-"数中提取结果时会无意中执行副作用，从而破坏引用透明度。 （实际上，有 * 是 * 这"
-"样一个名为 `unsafePerformIO` 的函数。除非您知道自己在做什么，否则不要在代码中"
-"使用它。）"
+"Since values of type `IO a` are mere descriptions of effectful computations,\n"
+"functions returning such values or taking such values as\n"
+"arguments are still *pure* and thus referentially transparent.\n"
+"It is, however, not possible to extract a value of type `a` from\n"
+"a value of type `IO a`, that is, there is no generic function `IO a -> a`,\n"
+"as such a function would inadvertently execute the side\n"
+"effects when extracting the result from its argument,\n"
+"thus breaking referential transparency.\n"
+"(Actually, there *is* such a function called `unsafePerformIO`.\n"
+"Do not ever use it in your code unless you know what you are doing.)\n"
+msgstr "由于 `IO a` 类型的值仅仅是对有效计算的描述，因此返回此类值或将此类值作为参数的函数仍然是 * 纯 * 并且因此是引用透明的。但是，不可能从 `IO a` 类型的值中提取 `a` 类型的值，也就是说，没有通用函数 `IO a -> a `，因为这样的函数在从其参数中提取结果时会无意中执行副作用，从而破坏引用透明度。 （实际上，有 * 是 * 这样一个名为 `unsafePerformIO` 的函数。除非您知道自己在做什么，否则不要在代码中使用它。）"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:74
-#, fuzzy
-msgid "### Do Blocks"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:73
+#, fuzzy, no-wrap
+msgid "Do Blocks"
 msgstr "### 做积木"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:83
-#, fuzzy
-msgid ""
-"If you are new to pure functional programming, you might now - rightfully - "
-"mumble something about how useless it is to have descriptions of effectful "
-"programs without being able to run them.  So please, hear me out. While we "
-"are not able to run values of type `IO a` when writing programs, that is, "
-"there is no function of type `IO a -> a`, we are able to chain such "
-"computations and describe more complex programs. Idris provides special "
-"syntax for this: *Do blocks*.  Here's an example:"
-msgstr ""
-"如果您是纯函数式编程的新手，那么您现在可能会——理所当然地——咕哝一些关于如果无"
-"法运行有效程序的描述是多么无用的话。所以，请听我说完。虽然我们在编写程序时无"
-"法运行 `IO a` 类型的值，也就是说，没有 `IO a -> a` 类型的函数，但我们能够链接"
-"这样的计算并描述更复杂的程序。 Idris 为此提供了特殊语法：*Do blocks*。这是一"
-"个例子："
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:90
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
+"If you are new to pure functional programming, you might now - rightfully -\n"
+"mumble something about how useless it is to\n"
+"have descriptions of effectful programs without being able to run them.\n"
+"So please, hear me out. While we are not able to run values of type\n"
+"`IO a` when writing programs, that is, there is no function of\n"
+"type `IO a -> a`, we are able to chain such computations and describe more\n"
+"complex programs. Idris provides special syntax for this: *Do blocks*.\n"
+"Here's an example:\n"
+msgstr "如果您是纯函数式编程的新手，那么您现在可能会——理所当然地——咕哝一些关于如果无法运行有效程序的描述是多么无用的话。所以，请听我说完。虽然我们在编写程序时无法运行 `IO a` 类型的值，也就是说，没有 `IO a -> a` 类型的函数，但我们能够链接这样的计算并描述更复杂的程序。 Idris 为此提供了特殊语法：*Do blocks*。这是一个例子："
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:84
+#, fuzzy, no-wrap
+msgid ""
 "readHello : IO ()\n"
 "readHello = do\n"
 "  name <- getLine\n"
 "  putStrLn $ \"Hello \" ++ name ++ \"!\"\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "读你好：IO（）\n"
@@ -420,9 +725,12 @@ msgid ""
 msgstr "在我们谈论这里发生的事情之前，让我们在 REPL 上试一试："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:99
-#, fuzzy
-msgid "```repl Tutorial.IO> :exec readHello Stefan Hello Stefan! ```"
+#: ../src/Tutorial/IO.md:94
+#, fuzzy, no-wrap
+msgid ""
+"Tutorial.IO> :exec readHello\n"
+"Stefan\n"
+"Hello Stefan!\n"
 msgstr "```repl Tutorial.IO> :exec readHello Stefan 你好 Stefan！ ```"
 
 #. type: Plain text
@@ -438,27 +746,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:114
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note the `do` keyword at the beginning of the implementation of `readHello`: "
-"It starts a *do block*, where we can chain `IO` computations and bind "
-"intermediary results to variables using arrows pointing to the left (`<-`), "
-"which can then be used in later `IO` actions. This concept is powerful "
-"enough to let us encapsulate arbitrary programs with side effects in a "
-"single value of type `IO`. Such a description can then be returned by "
-"function `main`, the main entry point to an Idris program, which is being "
-"executed when we run a compiled Idris binary."
-msgstr ""
-"注意 `readHello` 实现开始时的 `do` 关键字：它启动了一个 *do 块*，我们可以在其"
-"中链接 `IO` 计算和使用指向左侧的箭头 (`<-`) 将中间结果绑定到变量，然后可以在"
-"以后的 `IO` 操作中使用。这个概念足够强大，可以让我们将具有副作用的任意程序封"
-"装在 `IO` 类型的单个值中。然后可以通过函数 `main` 返回这样的描述，这是 Idris "
-"程序的主入口点，当我们运行已编译的 Idris 二进制文件时，该程序正在执行。"
+"Note the `do` keyword at the beginning of the implementation of `readHello`:\n"
+"It starts a *do block*, where we can chain `IO` computations and bind\n"
+"intermediary results to variables using arrows pointing\n"
+"to the left (`<-`), which can then be used in later\n"
+"`IO` actions. This concept is powerful enough to let us encapsulate arbitrary\n"
+"programs with side effects in a single value of type `IO`. Such a\n"
+"description can then be returned by function `main`, the main entry point\n"
+"to an Idris program, which is being executed when we run a compiled\n"
+"Idris binary.\n"
+msgstr "注意 `readHello` 实现开始时的 `do` 关键字：它启动了一个 *do 块*，我们可以在其中链接 `IO` 计算和使用指向左侧的箭头 (`<-`) 将中间结果绑定到变量，然后可以在以后的 `IO` 操作中使用。这个概念足够强大，可以让我们将具有副作用的任意程序封装在 `IO` 类型的单个值中。然后可以通过函数 `main` 返回这样的描述，这是 Idris 程序的主入口点，当我们运行已编译的 Idris 二进制文件时，该程序正在执行。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:116
-#, fuzzy
-msgid "### The Difference between Program Description and Execution"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:115
+#, fuzzy, no-wrap
+msgid "The Difference between Program Description and Execution"
 msgstr "### 程序描述和执行的区别"
 
 #. type: Plain text
@@ -472,42 +776,20 @@ msgstr ""
 "为了更好地理解*描述*有效计算和*执行*或*运行*之间的区别，这里有一个小程序："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:124
-#, fuzzy
+#: ../src/Tutorial/IO.md:121
+#, no-wrap
 msgid ""
-"```idris launchMissiles : IO ()  launchMissiles = putStrLn \"Boom! You're "
-"dead.\""
-msgstr ""
-"```idris launchMissiles : IO () launchMissiles = putStrLn “轰！你死定了。”"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:129
-#, fuzzy, no-wrap
-msgid ""
+"launchMissiles : IO ()\n"
+"launchMissiles = putStrLn \"Boom! You're dead.\"\n"
+"\n"
 "friendlyReadHello : IO ()\n"
 "friendlyReadHello = do\n"
 "  _ <- putStrLn \"Please enter your name.\"\n"
 "  readHello\n"
-msgstr ""
-"友好读你好：IO（）\n"
-"友好读你好 = 做\n"
-"  _ <- putStrLn \"请输入您的姓名。\"\n"
-"  读你好\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:132
-#, fuzzy
-msgid ""
-"actions : Vect 3 (IO ())  actions = [launchMissiles, friendlyReadHello, "
-"friendlyReadHello]"
-msgstr ""
-"动作：Vect 3 (IO ()) 动作 = [launchMissiles,friendlyReadHello,"
-"friendlyReadHello]"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:140
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"actions : Vect 3 (IO ())\n"
+"actions = [launchMissiles, friendlyReadHello, friendlyReadHello]\n"
+"\n"
 "runActions : Vect (S n) (IO ()) -> IO ()\n"
 "runActions (_ :: xs) = go xs\n"
 "  where go : Vect k (IO ()) -> IO ()\n"
@@ -515,38 +797,24 @@ msgid ""
 "        go (y :: ys) = do\n"
 "          _ <- y\n"
 "          go ys\n"
+"\n"
+"readHellos : IO ()\n"
+"readHellos = runActions actions\n"
 msgstr ""
-"runActions : Vect (S n) (IO ()) -> IO ()\n"
-"runActions (_ :: xs) = 去 xs\n"
-"  去哪里： Vect k (IO ()) -> IO ()\n"
-"        去 [] = 纯 ()\n"
-"        去（y :: ys）=做\n"
-"          _ <- 是\n"
-"          去吧\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:144
-#, fuzzy
-msgid "readHellos : IO ()  readHellos = runActions actions ```"
-msgstr "readHellos : IO () readHellos = runActions 动作```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:153
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Before I explain what the code above does, please note function `pure` used "
-"in the implementation of `runActions`. It is a constrained function, about "
-"which we will learn in the next chapter. Specialized to `IO`, it has generic "
-"type `a -> IO a`: It allows us to wrap a value in an `IO` action. The "
-"resulting `IO` program will just return the wrapped value without performing "
-"any side effects. We can now look at the big picture of what's going on in "
-"`readHellos`."
-msgstr ""
-"在我解释上面代码的作用之前，请注意 `runActions` 的实现中使用的函数 `pure`。它"
-"是一个受约束的函数，我们将在下一章中学习。专门用于 `IO`，它具有通用类型 `a -"
-"> IO a`：它允许我们将值包装在 `IO` 动作中。生成的 `IO` 程序将只返回包装后的"
-"值，而不会执行任何副作用。我们现在可以看一下 `readHellos` 中发生的事情的总体"
-"情况。"
+"Before I explain what the code above does, please note function\n"
+"`pure` used in the implementation of `runActions`. It is\n"
+"a constrained function, about which we will learn in the next\n"
+"chapter. Specialized to `IO`, it has generic type `a -> IO a`:\n"
+"It allows us to wrap a value in an `IO` action. The resulting\n"
+"`IO` program will just return the wrapped value without performing\n"
+"any side effects. We can now look at the big picture of what's\n"
+"going on in `readHellos`.\n"
+msgstr "在我解释上面代码的作用之前，请注意 `runActions` 的实现中使用的函数 `pure`。它是一个受约束的函数，我们将在下一章中学习。专门用于 `IO`，它具有通用类型 `a -> IO a`：它允许我们将值包装在 `IO` 动作中。生成的 `IO` 程序将只返回包装后的值，而不会执行任何副作用。我们现在可以看一下 `readHellos` 中发生的事情的总体情况。"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:160
@@ -652,10 +920,10 @@ msgstr ""
 "永远不可能跳出 `IO` 上下文：没有 `IO a -> a` 类型的函数，因为这样的函数需要执"
 "行它的参数才能提取最终结果，这将破坏参考透明度。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:198
-#, fuzzy
-msgid "### Combining Pure Code with `IO` Actions"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:197
+#, fuzzy, no-wrap
+msgid "Combining Pure Code with `IO` Actions"
 msgstr "### 结合纯代码和 `IO` 动作"
 
 #. type: Plain text
@@ -699,30 +967,18 @@ msgstr ""
 "自定义求和类型是一种好习惯。"
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:222
+#: ../src/Tutorial/IO.md:217
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Error : Type where\n"
 "  NotAnInteger    : (value : String) -> Error\n"
 "  UnknownOperator : (value : String) -> Error\n"
 "  ParseError      : (input : String) -> Error\n"
-msgstr ""
-"```伊德里斯\n"
-"数据错误：在哪里键入\n"
-"  NotAnInteger：（值：字符串）-> 错误\n"
-"  UnknownOperator：（值：字符串）-> 错误\n"
-"  ParseError：（输入：字符串）-> 错误\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:228
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "dispError : Error -> String\n"
 "dispError (NotAnInteger v)    = \"Not an integer: \" ++ v ++ \".\"\n"
 "dispError (UnknownOperator v) = \"Unknown operator: \" ++ v ++ \".\"\n"
 "dispError (ParseError v)      = \"Invalid expression: \" ++ v ++ \".\"\n"
-"```\n"
 msgstr ""
 "dispError : 错误 -> 字符串\n"
 "dispError (NotAnInteger v) = \"不是整数：\" ++ v ++ \"。\"\n"
@@ -739,14 +995,12 @@ msgid ""
 msgstr "为了解析整数文字，我们使用来自 `Data.String` 的函数 `parseInteger`："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:236
-#, fuzzy
+#: ../src/Tutorial/IO.md:232
+#, fuzzy, no-wrap
 msgid ""
-"```idris readInteger : String -> Either Error Integer readInteger s = maybe "
-"(Left $ NotAnInteger s) Right $ parseInteger s ```"
-msgstr ""
-"```idris readInteger : String -> Either Error Integer readInteger s = maybe "
-"(Left $ NotAnInteger s) Right $ parseInteger s ```"
+"readInteger : String -> Either Error Integer\n"
+"readInteger s = maybe (Left $ NotAnInteger s) Right $ parseInteger s\n"
+msgstr "```idris readInteger : String -> Either Error Integer readInteger s = maybe (Left $ NotAnInteger s) Right $ parseInteger s ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:239
@@ -757,15 +1011,13 @@ msgid ""
 msgstr "同样，我们声明并实现了一个解析算术运算符的函数："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:246
+#: ../src/Tutorial/IO.md:240
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "readOperator : String -> Either Error (Integer -> Integer -> Integer)\n"
 "readOperator \"+\" = Right (+)\n"
 "readOperator \"*\" = Right (*)\n"
 "readOperator s   = Left (UnknownOperator s)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "readOperator : 字符串 -> 任一错误（整数 -> 整数 -> 整数）\n"
@@ -791,10 +1043,9 @@ msgstr ""
 "定中的模式匹配。这是代码："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:264
+#: ../src/Tutorial/IO.md:255
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "eval : String -> Either Error Integer\n"
 "eval s =\n"
 "  let [x,y,z]  := forget $ split isSpace s | _ => Left (ParseError s)\n"
@@ -802,7 +1053,6 @@ msgid ""
 "      Right op := readOperator y | Left e => Left e\n"
 "      Right v2 := readInteger z  | Left e => Left e\n"
 "   in Right $ op v1 v2\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "eval : String -> 任一错误整数\n"
@@ -877,10 +1127,9 @@ msgstr ""
 "算算术表达式："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:309
+#: ../src/Tutorial/IO.md:299
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "exprProg : IO ()\n"
 "exprProg = do\n"
 "  s <- getLine\n"
@@ -889,7 +1138,6 @@ msgid ""
 "      putStrLn \"An error occured:\"\n"
 "      putStrLn (dispError err)\n"
 "    Right res => putStrLn (s ++ \" = \" ++ show res)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "exprProg : IO ()\n"
@@ -946,15 +1194,13 @@ msgstr ""
 "印到标准输出："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:337
+#: ../src/Tutorial/IO.md:334
 #, fuzzy, no-wrap
-msgid ""
-"   ```idris\n"
-"   rep : (String -> String) -> IO ()\n"
-"   ```\n"
+msgid "   rep : (String -> String) -> IO ()\n"
 msgstr ""
 "   ```伊德里斯\n"
-"   代表：（字符串->字符串）-> IO（）\n"
+"   覆盖\n"
+"   复制：（字符串->字符串）-> IO（）\n"
 "   ```\n"
 
 #. type: Bullet: '2. '
@@ -967,13 +1213,11 @@ msgstr ""
 "实现函数 `repl`，其行为类似于 `rep`，但会永远重复（或直到被强制终止）："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:346
+#: ../src/Tutorial/IO.md:342
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   covering\n"
 "   repl : (String -> String) -> IO ()\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   覆盖\n"
@@ -994,13 +1238,11 @@ msgstr ""
 "然后停止。"
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:356
+#: ../src/Tutorial/IO.md:352
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   covering\n"
 "   replTill : (String -> Either String String) -> IO ()\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   覆盖\n"
@@ -1038,17 +1280,15 @@ msgstr ""
 "用 `dispResult` 打印最终消息："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:382
+#: ../src/Tutorial/IO.md:374
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   covering\n"
 "   replWith :  (state      : s)\n"
 "            -> (next       : s -> String -> Either res s)\n"
 "            -> (dispState  : s -> String)\n"
 "            -> (dispResult : res -> s -> String)\n"
 "            -> IO ()\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   覆盖\n"
@@ -1071,10 +1311,10 @@ msgstr ""
 "使用练习 5 中的 `replWith` 编写一个程序，用于从标准输入读取自然数并打印这些数"
 "字的累加和。如果输入无效并且用户输入“完成”，程序应该终止。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:390
-#, fuzzy
-msgid "## Do Blocks, Desugared"
+#. type: Title ##
+#: ../src/Tutorial/IO.md:389
+#, fuzzy, no-wrap
+msgid "Do Blocks, Desugared"
 msgstr "## 做块，脱糖"
 
 #. type: Plain text
@@ -1105,17 +1345,15 @@ msgid "Consider the following example program:"
 msgstr "考虑以下示例程序："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:413
+#: ../src/Tutorial/IO.md:405
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "sugared1 : IO ()\n"
 "sugared1 = do\n"
 "  str1 <- getLine\n"
 "  str2 <- getLine\n"
 "  str3 <- getLine\n"
 "  putStrLn (str1 ++ str2 ++ str3)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "加糖1：IO（）\n"
@@ -1135,10 +1373,9 @@ msgid ""
 msgstr "在消除函数名称歧义和类型检查 * 之前，编译器会将其转换为以下程序 *："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:428
+#: ../src/Tutorial/IO.md:417
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "desugared1 : IO ()\n"
 "desugared1 =\n"
 "  getLine >>= (\\str1 =>\n"
@@ -1148,7 +1385,6 @@ msgid ""
 "      )\n"
 "    )\n"
 "  )\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "脱糖1：IO（）\n"
@@ -1164,21 +1400,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:432
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"There is a new operator (`(>>=)`) called *bind* in the implementation of "
-"`desugared1`. If you look at its type at the REPL, you'll see the following:"
-msgstr ""
-"在 `desugared1` 的实现中有一个称为 *bind* 的新运算符 (`(>>=)`)。如果您在 "
-"REPL 中查看它的类型，您将看到以下内容："
+"There is a new operator (`(>>=)`) called *bind* in the\n"
+"implementation of `desugared1`. If you look at its type\n"
+"at the REPL, you'll see the following:\n"
+msgstr "在 `desugared1` 的实现中有一个称为 *bind* 的新运算符 (`(>>=)`)。如果您在 REPL 中查看它的类型，您将看到以下内容："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:437
-#, fuzzy
+#: ../src/Tutorial/IO.md:433
+#, fuzzy, no-wrap
 msgid ""
-"```repl Main> :t (>>=)  Prelude.>>= : Monad m => m a -> (a -> m b) -> m b ```"
-msgstr ""
-"```repl Main> :t (>>=) Prelude.>>= : Monad m => m a -> (a -> m b) -> m b ```"
+"Main> :t (>>=)\n"
+"Prelude.>>= : Monad m => m a -> (a -> m b) -> m b\n"
+msgstr "```repl Main> :t (>>=) Prelude.>>= : Monad m => m a -> (a -> m b) -> m b ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:441
@@ -1192,9 +1427,11 @@ msgstr ""
 "`Monad` 和它的一些朋友。专门针对`IO`，*bind*有以下类型："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:446
-#, fuzzy
-msgid "```repl Main> :t (>>=) {m = IO} >>= : IO a -> (a -> IO b) -> IO b ```"
+#: ../src/Tutorial/IO.md:442
+#, fuzzy, no-wrap
+msgid ""
+"Main> :t (>>=) {m = IO}\n"
+">>= : IO a -> (a -> IO b) -> IO b\n"
 msgstr "```repl Main> :t (>>=) {m = IO} >>= : IO a -> (a -> IO b) -> IO b ```"
 
 #. type: Plain text
@@ -1245,10 +1482,9 @@ msgstr ""
 "何一元计算。例如，我们可以使用 *do 块 * 重写函数 `eval`，如下所示："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:482
+#: ../src/Tutorial/IO.md:472
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "evalDo : String -> Either Error Integer\n"
 "evalDo s = case forget $ split isSpace s of\n"
 "  [x,y,z] => do\n"
@@ -1257,7 +1493,6 @@ msgid ""
 "    v2 <- readInteger z\n"
 "    Right $ op v1 v2\n"
 "  _       => Left (ParseError s)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "evalDo : String -> 任一错误整数\n"
@@ -1283,10 +1518,10 @@ msgstr ""
 "要记住的重要一点是 *do 块 * 总是如何转换为 *bind* 运算符的序列，如 "
 "`desugared1` 所示。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:490
-#, fuzzy
-msgid "### Binding Unit"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:489
+#, fuzzy, no-wrap
+msgid "Binding Unit"
 msgstr "### 绑定单元"
 
 #. type: Plain text
@@ -1296,22 +1531,18 @@ msgid "Remember our implementation of `friendlyReadHello`? Here it is again:"
 msgstr "还记得我们对 `friendlyReadHello` 的实现吗？这里又是："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:499
+#: ../src/Tutorial/IO.md:493
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "friendlyReadHello' : IO ()\n"
 "friendlyReadHello' = do\n"
 "  _ <- putStrLn \"Please enter your name.\"\n"
 "  readHello\n"
-"```\n"
 msgstr ""
-"```伊德里斯\n"
-"友好读你好' : IO ()\n"
-"friendlyReadHello' = 做\n"
+"友好读你好：IO（）\n"
+"友好读你好 = 做\n"
 "  _ <- putStrLn \"请输入您的姓名。\"\n"
 "  读你好\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:505
@@ -1327,16 +1558,14 @@ msgstr ""
 "`friendlyReadHello` 三次，如下所示："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:513
+#: ../src/Tutorial/IO.md:506
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "friendly3 : IO ()\n"
 "friendly3 = do\n"
 "  _ <- friendlyReadHello\n"
 "  _ <- friendlyReadHello\n"
 "  friendlyReadHello\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "友好3：IO（）\n"
@@ -1355,17 +1584,15 @@ msgid ""
 msgstr "这是很常见的事情，Idris 允许我们完全放弃绑定的下划线："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:525
+#: ../src/Tutorial/IO.md:517
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "friendly4 : IO ()\n"
 "friendly4 = do\n"
 "  friendlyReadHello\n"
 "  friendlyReadHello\n"
 "  friendlyReadHello\n"
 "  friendlyReadHello\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "友好4：IO（）\n"
@@ -1383,17 +1610,15 @@ msgid "Note, however, that the above gets desugared slightly differently:"
 msgstr "但是请注意，上述内容的脱糖略有不同："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:536
+#: ../src/Tutorial/IO.md:528
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "friendly4Desugared : IO ()\n"
 "friendly4Desugared =\n"
 "  friendlyReadHello >>\n"
 "  friendlyReadHello >>\n"
 "  friendlyReadHello >>\n"
 "  friendlyReadHello\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "友好4Desugared : IO ()\n"
@@ -1406,17 +1631,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:538
-#, fuzzy
-msgid "Operator `(>>)` has the following type:"
+#, fuzzy, no-wrap
+msgid "Operator `(>>)` has the following type:\n"
 msgstr "运算符 `(>>)` 具有以下类型："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:543
-#, fuzzy
+#: ../src/Tutorial/IO.md:539
+#, fuzzy, no-wrap
 msgid ""
-"```repl Main> :t (>>)  Prelude.>> : Monad m => m () -> Lazy (m b) -> m b ```"
-msgstr ""
-"```repl Main> :t (>>) Prelude.>> : Monad m => m () -> Lazy (m b) -> m b ```"
+"Main> :t (>>)\n"
+"Prelude.>> : Monad m => m () -> Lazy (m b) -> m b\n"
+msgstr "```repl Main> :t (>>) Prelude.>> : Monad m => m () -> Lazy (m b) -> m b ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:550
@@ -1432,37 +1657,37 @@ msgstr ""
 "多场合都是有道理的。例如，如果所讨论的 `Monad` 是 `Maybe` 如果第一个参数是 "
 "`Nothing`，那么结果将是 `Nothing`，在这种情况下甚至不需要评估第二个参数。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:552
-#, fuzzy
-msgid "### Do, Overloaded"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:551
+#, fuzzy, no-wrap
+msgid "Do, Overloaded"
 msgstr "### 做，重载"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:562
-#, fuzzy
-msgid ""
-"Because Idris supports function and operator overloading, we can write "
-"custom *bind* operators, which allows us to use *do notation* for types "
-"without an implementation of `Monad`. For instance, here is a custom "
-"implementation of `(>>=)` for sequencing computations returning vectors.  "
-"Every value in the first vector (of length `m`)  will be converted to a "
-"vector of length `n`, and the results will be concatenated leading to a "
-"vector of length `m * n`:"
-msgstr ""
-"因为 Idris 支持函数和运算符重载，我们可以编写自定义的 *bind* 运算符，这允许我"
-"们对没有实现 `Monad` 的类型使用 *do notation*。例如，这是 `(>>=)` 的自定义实"
-"现，用于对返回向量的计算进行排序。第一个向量（长度为 `m`）中的每个值都将转换"
-"为长度为 `n` 的向量，结果将被连接到长度为 `m * 的向量n`："
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:567
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
+"Because Idris supports function and operator overloading, we\n"
+"can write custom *bind* operators, which allows us to\n"
+"use *do notation* for types without an implementation\n"
+"of `Monad`. For instance, here is a custom implementation of\n"
+"`(>>=)` for sequencing computations returning vectors.\n"
+"Every value in the first vector (of length `m`)\n"
+"will be converted to a vector of length `n`, and\n"
+"the results will be concatenated leading to\n"
+"a vector of length `m * n`:\n"
+msgstr "因为 Idris 支持函数和运算符重载，我们可以编写自定义的 *bind* 运算符，这允许我们对没有实现 `Monad` 的类型使用 *do notation*。例如，这是 `(>>=)` 的自定义实现，用于对返回向量的计算进行排序。第一个向量（长度为 `m`）中的每个值都将转换为长度为 `n` 的向量，结果将被连接到长度为 `m * 的向量n`："
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:563
+#, fuzzy, no-wrap
+msgid ""
 "flatten : Vect m (Vect n a) -> Vect (m * n) a\n"
 "flatten []        = []\n"
 "flatten (x :: xs) = x ++ flatten xs\n"
+"\n"
+"(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
+"as >>= f = flatten (map f as)\n"
 msgstr ""
 "```伊德里斯\n"
 "展平：Vect m (Vect n a) -> Vect (m * n) a\n"
@@ -1470,51 +1695,31 @@ msgstr ""
 "展平 (x :: xs) = x ++ 展平 xs\n"
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:571
-#, fuzzy
-msgid ""
-"(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b as >>= f = flatten "
-"(map f as)  ```"
-msgstr ""
-"(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b as >>= f = flatten "
-"(map f as) ```"
-
-#. type: Plain text
 #: ../src/Tutorial/IO.md:580
-#, fuzzy
-msgid ""
-"It is not possible to write an implementation of `Monad`, which encapsulates "
-"this behavior, as the types wouldn't match: Monadic *bind* specialized to "
-"`Vect` has type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you see, the "
-"sizes of all three occurrences of `Vect` have to be the same, which is not "
-"what we expressed in our custom version of *bind*. Here is an example to see "
-"this in action:"
-msgstr ""
-"无法编写封装此行为的 `Monad` 的实现，因为类型不匹配：专用于 `Vect` 的 "
-"Monadic *bind* 具有类型 [ X167X]Vect k a -> (a -> Vect k b) -> Vect k b`。如"
-"您所见，所有三个 `Vect` 的大小必须相同，这不是我们在自定义版本的 *bind* 中表"
-"达的。下面是一个例子，可以看到这一点："
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:584
-#, fuzzy
-msgid ""
-"```idris modString : String -> Vect 4 String modString s = [s, reverse s, "
-"toUpper s, toLower s]"
-msgstr ""
-"```idris modString : String -> Vect 4 String modString s = [s, reverse s, "
-"toUpper s, toLower s]"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:591
 #, fuzzy, no-wrap
 msgid ""
+"It is not possible to write an implementation of `Monad`,\n"
+"which encapsulates this behavior, as the types wouldn't\n"
+"match: Monadic *bind* specialized to `Vect` has\n"
+"type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you\n"
+"see, the sizes of all three occurrences of `Vect`\n"
+"have to be the same, which is not what we expressed\n"
+"in our custom version of *bind*. Here is an example to\n"
+"see this in action:\n"
+msgstr "无法编写封装此行为的 `Monad` 的实现，因为类型不匹配：专用于 `Vect` 的 Monadic *bind* 具有类型 [ X167X]Vect k a -> (a -> Vect k b) -> Vect k b`。如您所见，所有三个 `Vect` 的大小必须相同，这不是我们在自定义版本的 *bind* 中表达的。下面是一个例子，可以看到这一点："
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:581
+#, fuzzy, no-wrap
+msgid ""
+"modString : String -> Vect 4 String\n"
+"modString s = [s, reverse s, toUpper s, toLower s]\n"
+"\n"
 "testDo : Vect 24 String\n"
 "testDo = IO.do\n"
 "  s1 <- [\"Hello\", \"World\"]\n"
 "  s2 <- [1, 2, 3]\n"
 "  modString (s1 ++ show s2)\n"
-"```\n"
 msgstr ""
 "testDo : Vect 24 字符串\n"
 "testDo = IO.do\n"
@@ -1543,18 +1748,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:605
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Of course, we can (and should!) overload `(>>)` in the same manner as "
-"`(>>=)`, if we want to overload the behavior of *do blocks*."
-msgstr ""
-"当然，如果我们想重载 * 的行为，我们可以（并且应该！）重载 `(>>)` 和 `(>>=)` "
-"一样块*。"
+"Of course, we can (and should!) overload `(>>)` in the\n"
+"same manner as `(>>=)`, if we want to overload the\n"
+"behavior of *do blocks*.\n"
+msgstr "当然，如果我们想重载 * 的行为，我们可以（并且应该！）重载 `(>>)` 和 `(>>=)` 一样块*。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:607
-#, fuzzy
-msgid "#### Modules and Namespaces"
+#. type: Title ####
+#: ../src/Tutorial/IO.md:606
+#, fuzzy, no-wrap
+msgid "Modules and Namespaces"
 msgstr "#### 模块和命名空间"
 
 #. type: Plain text
@@ -1587,41 +1791,35 @@ msgstr ""
 "演示一下："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:626
-#, fuzzy
+#: ../src/Tutorial/IO.md:621
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.IO> :t (>>=)  Prelude.>>= : Monad m => m a -> (a -> m b) -> "
-"m b Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
-msgstr ""
-"```repl Tutorial.IO> :t (>>=) Prelude.>>= : Monad m => m a -> (a -> m b) -> "
-"m b Tutorial.IO.>>= : Vect m a -> ( a -> Vect n b) -> Vect (m * n) b ```"
+"Tutorial.IO> :t (>>=)\n"
+"Prelude.>>= : Monad m => m a -> (a -> m b) -> m b\n"
+"Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
+msgstr "```repl Tutorial.IO> :t (>>=) Prelude.>>= : Monad m => m a -> (a -> m b) -> m b Tutorial.IO.>>= : Vect m a -> ( a -> Vect n b) -> Vect (m * n) b ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:633
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"As you can see, if we load this module in a REPL session and inspect the "
-"type of `(>>=)`, we get two results as two operators with this name are in "
-"scope. If we only want the REPL to print the type of our custom *bind* "
-"operator, is is sufficient to prefix it with `IO`, although we could also "
-"prefix it with its full namespace:"
-msgstr ""
-"如您所见，如果我们在 REPL 会话中加载此模块并检查 `(>>=)` 的类型，我们会得到两"
-"个结果，因为具有此名称的两个运算符都在范围内。如果我们只希望 REPL 打印我们自"
-"定义的 *bind* 运算符的类型，那么在它前面加上 `IO` 就足够了，尽管我们也可以在"
-"它前面加上完整的命名空间："
+"As you can see, if we load this module in a REPL session and\n"
+"inspect the type of `(>>=)`, we get two results as two\n"
+"operators with this name are in scope. If we only want\n"
+"the REPL to print the type of our custom *bind* operator,\n"
+"is is sufficient to prefix it with `IO`, although we could\n"
+"also prefix it with its full namespace:\n"
+msgstr "如您所见，如果我们在 REPL 会话中加载此模块并检查 `(>>=)` 的类型，我们会得到两个结果，因为具有此名称的两个运算符都在范围内。如果我们只希望 REPL 打印我们自定义的 *bind* 运算符的类型，那么在它前面加上 `IO` 就足够了，尽管我们也可以在它前面加上完整的命名空间："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:640
-#, fuzzy
+#: ../src/Tutorial/IO.md:634
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.IO> :t IO.(>>=)  Tutorial.IO.>>= : Vect m a -> (a -> Vect n "
-"b) -> Vect (m * n) b Tutorial.IO> :t Tutorial.IO.(>>=)  Tutorial.IO.>>= : "
-"Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
-msgstr ""
-"```repl Tutorial.IO> :t IO.(>>=) Tutorial.IO.>>= : Vect m a -> (a -> Vect n "
-"b) -> Vect (m * n) b Tutorial.IO> : t Tutorial.IO.(>>=) Tutorial.IO.>>= : "
-"Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
+"Tutorial.IO> :t IO.(>>=)\n"
+"Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
+"Tutorial.IO> :t Tutorial.IO.(>>=)\n"
+"Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
+msgstr "```repl Tutorial.IO> :t IO.(>>=) Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b Tutorial.IO> : t Tutorial.IO.(>>=) Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:649
@@ -1640,30 +1838,18 @@ msgstr ""
 "名空间中的所有定义必须缩进相同数量的空格）："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:655
+#: ../src/Tutorial/IO.md:650
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "namespace Foo\n"
 "  export\n"
 "  eval : Nat -> Nat -> Nat\n"
 "  eval = (*)\n"
-msgstr ""
-"```伊德里斯\n"
-"命名空间 Foo\n"
-"  出口\n"
-"  评估 : Nat -> Nat -> Nat\n"
-"  评估 = (*)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:660
-#, fuzzy
-msgid ""
-"-- prefixing `eval` with its namespace is not strictly necessary here "
-"testFooEval : Nat testFooEval = Foo.eval 12 100 ```"
-msgstr ""
-"-- 在 `eval` 前加上它的命名空间并不是绝对必要的 testFooEval : Nat "
-"testFooEval = Foo.eval 12 100 ```"
+"\n"
+"-- prefixing `eval` with its namespace is not strictly necessary here\n"
+"testFooEval : Nat\n"
+"testFooEval = Foo.eval 12 100\n"
+msgstr "-- 在 `eval` 前加上它的命名空间并不是绝对必要的 testFooEval : Nat testFooEval = Foo.eval 12 100 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:665
@@ -1707,10 +1893,10 @@ msgstr ""
 "在模式匹配中解构它们。同样，除非您打算在编译时计算中使用您的函数，否则请使用 "
 "`export` 注释它们。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:682
-#, fuzzy
-msgid "### Bind, with a Bang"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:681
+#, fuzzy, no-wrap
+msgid "Bind, with a Bang"
 msgstr "### 绑定，砰的一声"
 
 #. type: Plain text
@@ -1727,14 +1913,12 @@ msgstr ""
 "中），同时保持纯表达式不变："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:693
-#, fuzzy
+#: ../src/Tutorial/IO.md:689
+#, fuzzy, no-wrap
 msgid ""
-"```idris getHello : IO ()  getHello = putStrLn $ \"Hello \" ++ !getLine ++ "
-"\"!\" ```"
-msgstr ""
-"```idris getHello : IO () getHello = putStrLn $ \"Hello\" ++ !getLine ++ \"!"
-"\" ```"
+"getHello : IO ()\n"
+"getHello = putStrLn $ \"Hello \" ++ !getLine ++ \"!\"\n"
+msgstr "```idris getHello : IO () getHello = putStrLn $ \"Hello\" ++ !getLine ++ \"!\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:695
@@ -1743,15 +1927,13 @@ msgid "The above gets desugared to the following *do block*:"
 msgstr "上面的内容被分解为以下 *do 块*："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:702
+#: ../src/Tutorial/IO.md:696
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "getHello' : IO ()\n"
 "getHello' = do\n"
 "  s <- getLine\n"
 "  putStrLn $ \"Hello \" ++ s ++ \"!\"\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "getHello' : IO ()\n"
@@ -1767,14 +1949,12 @@ msgid "Here is another example:"
 msgstr "这是另一个例子："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:710
+#: ../src/Tutorial/IO.md:705
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "bangExpr : String -> String -> String -> Maybe Integer\n"
 "bangExpr s1 s2 s3 =\n"
 "  Just $ !(parseInteger s1) + !(parseInteger s2) * !(parseInteger s3)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "bangExpr : 字符串 -> 字符串 -> 字符串 -> 也许整数\n"
@@ -1789,17 +1969,15 @@ msgid "And here is the desugared *do block*:"
 msgstr "这是脱糖的 *do 块*："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:721
+#: ../src/Tutorial/IO.md:713
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "bangExpr' : String -> String -> String -> Maybe Integer\n"
 "bangExpr' s1 s2 s3 = do\n"
 "  x1 <- parseInteger s1\n"
 "  x2 <- parseInteger s2\n"
 "  x3 <- parseInteger s3\n"
 "  Just $ x1 + x2 * x3\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "bangExpr' : 字符串 -> 字符串 -> 字符串 -> 可能整数\n"
@@ -1834,42 +2012,30 @@ msgstr ""
 "式编写它们："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:741
+#: ../src/Tutorial/IO.md:734
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   ex1a : IO String\n"
 "   ex1a = do\n"
 "     s1 <- getLine\n"
 "     s2 <- getLine\n"
 "     s3 <- getLine\n"
 "     pure $ s1 ++ reverse s2 ++ s3\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   ex1a : IO 字符串\n"
-"   ex1a = 做\n"
-"     s1 <- 获取线\n"
-"     s2 <- 获取线\n"
-"     s3 <- 获取线\n"
-"     纯 $ s1 ++ 反向 s2 ++ s3\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:748
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "   ex1b : Maybe Integer\n"
 "   ex1b = do\n"
 "     n1 <- parseInteger \"12\"\n"
 "     n2 <- parseInteger \"300\"\n"
 "     Just $ n1 + n2 * 100\n"
-"   ```\n"
 msgstr ""
-"   ex1b : 也许是整数\n"
-"   ex1b = 做\n"
-"     n1 <- parseInteger \"12\"\n"
-"     n2 <- parseInteger \"300\"\n"
-"     只需 $ n1 + n2 * 100\n"
-"   ```\n"
+"```伊德里斯\n"
+"加糖1：IO（）\n"
+"加糖1 = 做\n"
+"  str1 <- 获取线\n"
+"  str2 <- 获取线\n"
+"  str3 <- 获取线\n"
+"  putStrLn (str1 ++ str2 ++ str3)\n"
+"```\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/IO.md:752
@@ -2147,10 +2313,10 @@ msgstr ""
 "符的歧义以及填充隐式参数。因此，使用任意约束或隐式参数定义 *bind* 运算符是非"
 "常好的，如上所示。 Idris 将处理所有细节，* 在 * 脱糖 *do 块* 之后。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:866
-#, fuzzy
-msgid "## Working with Files"
+#. type: Title ##
+#: ../src/Tutorial/IO.md:865
+#, fuzzy, no-wrap
+msgid "Working with Files"
 msgstr "## 使用文件"
 
 #. type: Plain text
@@ -2175,10 +2341,9 @@ msgid "Here is a program for counting all empty lines in a Unix/Linux-file:"
 msgstr "这是一个计算 Unix/Linux 文件中所有空行的程序："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:887
+#: ../src/Tutorial/IO.md:875
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "covering\n"
 "countEmpty : (path : String) -> IO (Either FileError Nat)\n"
 "countEmpty path = openFile path Read >>= either (pure . Left) (go 0)\n"
@@ -2189,7 +2354,6 @@ msgid ""
 "            | Right _  => go k file\n"
 "            | Left err => closeFile file $> Left err\n"
 "          go (k + 1) file\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "覆盖\n"
@@ -2206,19 +2370,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:894
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In the example above, I invoked `(>>=)` without starting a *do block*.  Make "
-"sure you understand what's going on here. Reading concise functional code is "
-"important in order to understand other people's code.  Have a look at "
-"function `either` at the REPL, try figuring out what `(pure . Left)` does, "
-"and note how we use a curried version of `go` as the second argument to "
-"`either`."
-msgstr ""
-"在上面的示例中，我调用了 `(>>=)` 而不启动 *do 块*。确保你了解这里发生了什么。"
-"阅读简洁的功能代码对于理解其他人的代码很重要。查看 REPL 中的函数 `either`，尝"
-"试弄清楚 `(pure . Left)` 做了什么，并注意我们如何使用 `go` 的柯里化版本"
-"`either` 的第二个参数。"
+"In the example above, I invoked `(>>=)` without starting a *do block*.\n"
+"Make sure you understand what's going on here. Reading concise functional\n"
+"code is important in order to understand other people's code.\n"
+"Have a look at function `either` at the REPL, try figuring out what\n"
+"`(pure . Left)` does, and note how we use a curried version of `go`\n"
+"as the second argument to `either`.\n"
+msgstr "在上面的示例中，我调用了 `(>>=)` 而不启动 *do 块*。确保你了解这里发生了什么。阅读简洁的功能代码对于理解其他人的代码很重要。查看 REPL 中的函数 `either`，尝试弄清楚 `(pure . Left)` 做了什么，并注意我们如何使用 `go` 的柯里化版本`either` 的第二个参数。"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:905
@@ -2253,10 +2413,10 @@ msgstr ""
 "这样的文件提供了无限的数据流，所以当使用这样的文件路径调用时，`countEmpty` 永"
 "远不会终止。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:912
-#, fuzzy
-msgid "### Safe Resource Handling"
+#. type: Title ###
+#: ../src/Tutorial/IO.md:911
+#, fuzzy, no-wrap
+msgid "Safe Resource Handling"
 msgstr "### 安全资源处理"
 
 #. type: Plain text
@@ -2274,10 +2434,9 @@ msgstr ""
 "的函数：`withFile`，处理打开，为我们关闭和处理文件错误。"
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:932
+#: ../src/Tutorial/IO.md:920
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "covering\n"
 "countEmpty' : (path : String) -> IO (Either FileError Nat)\n"
 "countEmpty' path = withFile path Read pure (go 0)\n"
@@ -2288,7 +2447,6 @@ msgid ""
 "            | Right _  => go k file\n"
 "            | Left err => pure (Left err)\n"
 "          go (k + 1) file\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "覆盖\n"
@@ -2315,10 +2473,10 @@ msgstr ""
 "来吧，看看 `withFile` 的类型，然后看看我们如何使用它来简化 `countEmpty'` 的实"
 "现。在学习 Idris 编程时，阅读和理解稍微复杂的函数类型很重要。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:939
-#, fuzzy
-msgid "#### Interface `HasIO`"
+#. type: Title ####
+#: ../src/Tutorial/IO.md:938
+#, fuzzy, no-wrap
+msgid "Interface `HasIO`"
 msgstr "####接口`HasIO`"
 
 #. type: Plain text
@@ -2356,48 +2514,21 @@ msgstr ""
 "理 `countEmpty'` 的实现："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:962
-#, fuzzy, no-wrap
+#: ../src/Tutorial/IO.md:960
+#, no-wrap
 msgid ""
-"   ```idris\n"
 "   pure : a -> IO (Either e a)\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   纯：a -> IO（要么 e a）\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:964
-#, fuzzy, no-wrap
-msgid "   fail : e -> IO (Either e a)\n"
-msgstr "   失败：e -> IO（要么 e a）\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:966
-#, fuzzy, no-wrap
-msgid "   lift : IO a -> IO (Either e a)\n"
-msgstr "   电梯：IO a -> IO（要么 e a）\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:968
-#, fuzzy, no-wrap
-msgid "   catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)\n"
-msgstr "   抓住：IO（e1 a）->（e1-> IO（e2 a））-> IO（e2 a）\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:970
-#, fuzzy, no-wrap
-msgid "   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)\n"
-msgstr "   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/IO.md:973
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"   fail : e -> IO (Either e a)\n"
+"\n"
+"   lift : IO a -> IO (Either e a)\n"
+"\n"
+"   catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)\n"
+"\n"
+"   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)\n"
+"\n"
 "   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)\n"
-"   ```\n"
 msgstr ""
-"   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)\n"
-"   ```\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/IO.md:977
@@ -2424,16 +2555,14 @@ msgstr ""
 "`countEmpty` 和 `countWords`："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:991
+#: ../src/Tutorial/IO.md:984
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   covering\n"
 "   withLines :  (path : String)\n"
 "             -> (accum : s -> String -> s)\n"
 "             -> (initialState : s)\n"
 "             -> IO (Either FileError s)\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   覆盖\n"
@@ -2455,16 +2584,14 @@ msgstr ""
 "用 `withLines` 根据下面给出的类型实现 `foldLines`："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:1004
+#: ../src/Tutorial/IO.md:997
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   covering\n"
 "   foldLines :  Monoid s\n"
 "             => (path : String)\n"
 "             -> (f    : String -> s)\n"
 "             -> IO (Either FileError s)\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   覆盖\n"
@@ -2487,10 +2614,10 @@ msgstr ""
 "类型以及 `Monoid` 的实现，用于存储和累积这些值，并在 `wordCount` 的实现中使"
 "用 `foldLines`。"
 
-#. type: Plain text
-#: ../src/Tutorial/IO.md:1014
-#, fuzzy
-msgid "## How `IO` is Implemented"
+#. type: Title ##
+#: ../src/Tutorial/IO.md:1013
+#, fuzzy, no-wrap
+msgid "How `IO` is Implemented"
 msgstr "## `IO` 是如何实现的"
 
 #. type: Plain text
@@ -2507,10 +2634,9 @@ msgstr ""
 "中了解它："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:1031
+#: ../src/Tutorial/IO.md:1020
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.IO> :doc IO\n"
 "data PrimIO.IO : Type -> Type\n"
 "  Totality: total\n"
@@ -2520,7 +2646,6 @@ msgid ""
 "    Functor IO\n"
 "    HasLinearIO IO\n"
 "    Monad IO\n"
-"```\n"
 msgstr ""
 "```repl\n"
 "教程.IO> :doc IO\n"
@@ -2554,14 +2679,13 @@ msgid "Now, `PrimIO a` is a type alias for the following function:"
 msgstr "现在，`PrimIO a` 是以下函数的类型别名："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:1045
-#, fuzzy
+#: ../src/Tutorial/IO.md:1040
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.IO> :printdef PrimIO PrimIO.PrimIO : Type -> Type PrimIO a "
-"= (1 _ : %World) -> IORes a ```"
-msgstr ""
-"```repl Tutorial.IO> :printdef PrimIO PrimIO.PrimIO : Type -> Type PrimIO a "
-"= (1 _ : %World) -> IORes a ```"
+"Tutorial.IO> :printdef PrimIO\n"
+"PrimIO.PrimIO : Type -> Type\n"
+"PrimIO a = (1 _ : %World) -> IORes a\n"
+msgstr "```repl Tutorial.IO> :printdef PrimIO PrimIO.PrimIO : Type -> Type PrimIO a = (1 _ : %World) -> IORes a ```"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1049
@@ -2573,15 +2697,13 @@ msgstr ""
 "再次，不要介意数量。只缺少一块拼图：`IORes a`，这是一种公开导出的记录类型："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:1056
+#: ../src/Tutorial/IO.md:1050
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Solutions.IO> :doc IORes\n"
 "data PrimIO.IORes : Type -> Type\n"
 "  Totality: total\n"
 "  Constructor: MkIORes : a -> (1 _ : %World) -> IORes a\n"
-"```\n"
 msgstr ""
 "```repl\n"
 "Solutions.IO> :doc IORes\n"
@@ -2599,9 +2721,9 @@ msgid ""
 msgstr "所以，总而言之，`IO` 是一个类似于以下函数类型的包装器："
 
 #. type: Plain text
-#: ../src/Tutorial/IO.md:1063
-#, fuzzy
-msgid "```repl %World -> (a, %World)  ```"
+#: ../src/Tutorial/IO.md:1060
+#, fuzzy, no-wrap
+msgid "%World -> (a, %World)\n"
 msgstr "```repl %World -> (a, %World) ```"
 
 #. type: Plain text

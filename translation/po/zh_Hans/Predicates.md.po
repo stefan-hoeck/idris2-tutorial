@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 12:48+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -18,15 +18,364 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-#, fuzzy
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
+msgstr ""
+
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, fuzzy, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 1 部分\n"
@@ -46,15 +395,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-#, fuzzy
-msgid "### Exercises part 2"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, fuzzy, no-wrap
+msgid "Exercises part 2"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 2 部分\n"
@@ -74,15 +423,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-#, fuzzy
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, fuzzy, no-wrap
+msgid "Exercises part 3"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 3 部分\n"
@@ -102,15 +451,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-#, fuzzy
-msgid "## Conclusion"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, fuzzy, no-wrap
+msgid "Conclusion"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -138,8 +487,10 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy
-msgid "<!-- vi: filetype=idris2 -->"
+#, fuzzy, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -162,87 +513,6 @@ msgstr ""
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-#, fuzzy
-msgid "%default total ```"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:750 ../src/Tutorial/Predicates.md:1357
-#, fuzzy
-msgid "Enter a command: quit Goodbye.  ```"
-msgstr "输入命令：退出再见。 ```"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
-#: ../src/Tutorial/Predicates.md:495
-#, fuzzy
-msgid "```idris data ColType = I64 | Str | Boolean | Float"
-msgstr "```idris 数据 ColType = I64 |字符串 |布尔值 |漂浮"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1095 ../src/Tutorial/Predicates.md:1294
-#, fuzzy, no-wrap
-msgid ""
-"```idris\n"
-"encodeField : (t : ColType) -> IdrisType t -> String\n"
-"encodeField I64     x     = show x\n"
-"encodeField Str     x     = show x\n"
-"encodeField Boolean True  = \"t\"\n"
-"encodeField Boolean False = \"f\"\n"
-"encodeField Float   x     = show x\n"
-msgstr ""
-"```伊德里斯\n"
-"encodeField : (t : ColType) -> IdrisType t -> String\n"
-"编码字段 I64 x = 显示 x\n"
-"编码字段 Str x = 显示 x\n"
-"encodeField Boolean True = \"t\"\n"
-"encodeField 布尔值 False = \"f\"\n"
-"encodeField 浮点数 x = 显示 x\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1127 ../src/Tutorial/Predicates.md:1334
-#, fuzzy
-msgid "covering main : IO ()  main = runProg $ MkTable [] _ [] ```"
-msgstr "覆盖 main : IO() main = runProg $MkTable [] _ [] ```"
-
-#. type: Plain text
-#: ../src/Tutorial/Eq.md:38 ../src/Tutorial/Predicates.md:501
-#, fuzzy, no-wrap
-msgid ""
-"IdrisType : ColType -> Type\n"
-"IdrisType I64     = Int64\n"
-"IdrisType Str     = String\n"
-"IdrisType Boolean = Bool\n"
-"IdrisType Float   = Double\n"
-msgstr ""
-"IdrisType : ColType -> 类型\n"
-"IdrisType I64 = Int64\n"
-"IdrisType Str = 字符串\n"
-"IdrisType 布尔值 = 布尔值\n"
-"IdrisType Float = 双\n"
-
-#. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
@@ -256,10 +526,10 @@ msgstr ""
 "在 REPL：\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:2
-#, fuzzy
-msgid "# Predicates and Proof Search"
+#. type: Title #
+#: ../src/Tutorial/Predicates.md:1
+#, fuzzy, no-wrap
+msgid "Predicates and Proof Search"
 msgstr "# 谓词和证明搜索"
 
 #. type: Plain text
@@ -280,31 +550,28 @@ msgstr ""
 "受作为函数参数的值或函数返回的值。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:15
-#, fuzzy
-msgid "```idris module Tutorial.Predicates"
-msgstr "```idris 模块 Tutorial.Predicates"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:22
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:13
+#, fuzzy, no-wrap
 msgid ""
-"import Data.Either import Data.List1 import Data.String import Data.Vect "
-"import Data.HList import Decidable.Equality"
-msgstr ""
-"导入 Data.Either 导入 Data.List1 导入 Data.String 导入 Data.Vect 导入 Data."
-"HList 导入 Decidable.Equality"
+"module Tutorial.Predicates\n"
+"\n"
+"import Data.Either\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"import Data.HList\n"
+"import Decidable.Equality\n"
+"\n"
+"import Text.CSV\n"
+"import System.File\n"
+"\n"
+"%default total\n"
+msgstr "导入 Data.Either 导入 Data.List1 导入 Data.String 导入 Data.Vect 导入 Data.HList 导入 Decidable.Equality"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:25
-#, fuzzy
-msgid "import Text.CSV import System.File"
-msgstr "导入 Text.CSV 导入 System.File"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:30
-#, fuzzy
-msgid "## Preconditions"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:29
+#, fuzzy, no-wrap
+msgid "Preconditions"
 msgstr "## 前提条件"
 
 #. type: Plain text
@@ -437,10 +704,10 @@ msgstr ""
 "最后一个并使用谓词（所谓的 *preconditions*）优化函数参数，因为它使我们的在运"
 "行时 * 和 * 编译时很好用的函数。"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:102
-#, fuzzy
-msgid "### Example: Non-empty Lists"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:101
+#, fuzzy, no-wrap
+msgid "Example: Non-empty Lists"
 msgstr "### 示例：非空列表"
 
 #. type: Plain text
@@ -455,13 +722,11 @@ msgstr ""
 "值。我们可以对非空列表的谓词做同样的事情："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:112
+#: ../src/Tutorial/Predicates.md:108
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data NotNil : (as : List a) -> Type where\n"
 "  IsNotNil : NotNil (h :: t)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "data NotNil : (as : List a) -> Type where\n"
@@ -480,14 +745,13 @@ msgstr ""
 "模式匹配。我们现在可以使用它来实现一个安全且纯粹的 `head` 函数："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:123
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:118
+#, fuzzy, no-wrap
 msgid ""
-"```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = "
-"h head1 [] IsNotNil impossible ```"
-msgstr ""
-"```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = "
-"h head1 [] IsNotNil 不可能 ```"
+"head1 : (as : List a) -> (0 _ : NotNil as) -> a\n"
+"head1 (h :: _) _ = h\n"
+"head1 [] IsNotNil impossible\n"
+msgstr "```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = h head1 [] IsNotNil 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:129
@@ -524,9 +788,11 @@ msgstr ""
 "的列表参数确实是非空的："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:143
-#, fuzzy
-msgid "```idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
+#: ../src/Tutorial/Predicates.md:139
+#, fuzzy, no-wrap
+msgid ""
+"headEx1 : Nat\n"
+"headEx1 = head1 [1,2,3] IsNotNil\n"
 msgstr "``` idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
 
 #. type: Plain text
@@ -548,25 +814,15 @@ msgstr ""
 "来获得更强的保证十二月`："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:156
+#: ../src/Tutorial/Predicates.md:153
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "Uninhabited (NotNil []) where\n"
 "  uninhabited IsNotNil impossible\n"
-msgstr ""
-"```伊德里斯\n"
-"无人居住 (NotNil []) 其中\n"
-"  无人居住 IsNotNil 不可能\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:161
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "nonEmpty : (as : List a) -> Dec (NotNil as)\n"
 "nonEmpty (x :: xs) = Yes IsNotNil\n"
 "nonEmpty []        = No uninhabited\n"
-"```\n"
 msgstr ""
 "nonEmpty : (as : List a) -> Dec (NotNil as)\n"
 "nonEmpty (x :: xs) = 是 IsNotNil\n"
@@ -582,15 +838,13 @@ msgid ""
 msgstr "有了这个，我们可以实现函数 `headMaybe`，它可以用于未知来源的列表："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:171
+#: ../src/Tutorial/Predicates.md:165
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "headMaybe1 : List a -> Maybe a\n"
 "headMaybe1 as = case nonEmpty as of\n"
 "  Yes prf => Just $ head1 as prf\n"
 "  No  _   => Nothing\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "headMaybe1 : 列出一个 -> 也许一个\n"
@@ -611,10 +865,10 @@ msgstr ""
 "当然，对于像 `headMaybe` 这样的微不足道的函数，直接通过 list 参数上的模式匹配"
 "来实现它们更有意义，但是我们很快就会看到谓词的示例，其值创建起来更麻烦。"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:178
-#, fuzzy
-msgid "### Auto Implicits"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:177
+#, fuzzy, no-wrap
+msgid "Auto Implicits"
 msgstr "### 自动隐式"
 
 #. type: Plain text
@@ -643,14 +897,12 @@ msgid ""
 msgstr "让我们首先看一下向量的 `replicate` 的以下实现："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:196
+#: ../src/Tutorial/Predicates.md:191
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "replicate' : {n : _} -> a -> Vect n a\n"
 "replicate' {n = 0}   _ = []\n"
 "replicate' {n = S _} v = v :: replicate' v\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "复制' : {n : _} -> a -> Vect n a\n"
@@ -672,9 +924,11 @@ msgstr ""
 "度："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:207
-#, fuzzy
-msgid "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
+#: ../src/Tutorial/Predicates.md:203
+#, fuzzy, no-wrap
+msgid ""
+"replicateEx1 : Vect 3 Nat\n"
+"replicateEx1 = replicate' 12\n"
 msgstr "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
 
 #. type: Plain text
@@ -689,14 +943,12 @@ msgstr ""
 "可以再次将其按原样传递给 `replicate'`："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:216
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:212
+#, fuzzy, no-wrap
 msgid ""
-"```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 "
-"```"
-msgstr ""
-"```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 "
-"```"
+"replicateEx2 : {n : _} -> Vect n Nat\n"
+"replicateEx2 = replicate' 12\n"
+msgstr "```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:223
@@ -713,14 +965,12 @@ msgstr ""
 "定这是我们想要的长度。因此，我们必须明确地传递长度："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:228
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:224
+#, fuzzy, no-wrap
 msgid ""
-"```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} "
-"12 ```"
-msgstr ""
-"```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} "
-"12 ```"
+"replicateEx3 : List Nat\n"
+"replicateEx3 = toList $ replicate' {n = 17} 12\n"
+msgstr "```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} 12 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:234
@@ -736,14 +986,13 @@ msgstr ""
 "式："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:240
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:235
+#, fuzzy, no-wrap
 msgid ""
-"```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) "
-"= x head [] impossible ```"
-msgstr ""
-"```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) "
-"= x head [] 不可能 ```"
+"head : (as : List a) -> {auto 0 prf : NotNil as} -> a\n"
+"head (x :: _) = x\n"
+"head [] impossible\n"
+msgstr "```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) = x head [] 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:249
@@ -769,9 +1018,11 @@ msgid "Let's see this in action:"
 msgstr "让我们看看它的实际效果："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:256
-#, fuzzy
-msgid "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
+#: ../src/Tutorial/Predicates.md:252
+#, fuzzy, no-wrap
+msgid ""
+"headEx3 : Nat\n"
+"headEx3 = Predicates.head [1,2,3]\n"
 msgstr "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
 
 #. type: Plain text
@@ -781,14 +1032,12 @@ msgid "The following example fails with an error:"
 msgstr "以下示例因错误而失败："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:264
+#: ../src/Tutorial/Predicates.md:259
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Can't find an implementation\\nfor NotNil [].\"\n"
 "  errHead : Nat\n"
 "  errHead = Predicates.head []\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "失败“找不到 NotNil [] 的实现\\n。”\n"
@@ -798,33 +1047,29 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:276
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Wait! \"Can't find an implementation for...\"? Is this not the error message "
-"we get for missing interface implementations? That's correct, and I'll show "
-"you that interface resolution is just proof search at the end of this "
-"chapter. What I can show you already, is that writing the lengthy `{auto "
-"prf : t} ->` all the times can be cumbersome. Idris therefore allows us to "
-"use the same syntax as for constrained functions instead: `(prf : t) =>`, or "
-"even `t =>`, if we don't need to name the constraint. As usual, we can then "
-"access a constraint in the function body by its name (if any). Here is "
-"another implementation of `head`:"
-msgstr ""
-"等待！ “找不到...的实现”？这不是我们因缺少接口实现而得到的错误消息吗？没错，"
-"我将在本章末尾向您展示接口解析只是证明搜索。我已经可以向您展示的是，一直编写"
-"冗长的 `{auto prf : t} ->` 可能很麻烦。因此，Idris 允许我们使用与约束函数相同"
-"的语法：`(prf : t) =>`，或者甚至 `t =>`，如果我们不需要命名约束。像往常一样，"
-"我们可以通过名称（如果有的话）访问函数体中的约束。这是 `head` 的另一个实现："
+"Wait! \"Can't find an implementation for...\"? Is this not the\n"
+"error message we get for missing interface implementations?\n"
+"That's correct, and I'll show you that interface resolution\n"
+"is just proof search at the end of this chapter. What I can\n"
+"show you already, is that writing the lengthy `{auto prf : t} ->`\n"
+"all the times can be cumbersome. Idris therefore allows us\n"
+"to use the same syntax as for constrained functions instead:\n"
+"`(prf : t) =>`, or even `t =>`, if we don't need to name the\n"
+"constraint. As usual, we can then access a constraint in the\n"
+"function body by its name (if any). Here is another implementation\n"
+"of `head`:\n"
+msgstr "等待！ “找不到...的实现”？这不是我们因缺少接口实现而得到的错误消息吗？没错，我将在本章末尾向您展示接口解析只是证明搜索。我已经可以向您展示的是，一直编写冗长的 `{auto prf : t} ->` 可能很麻烦。因此，Idris 允许我们使用与约束函数相同的语法：`(prf : t) =>`，或者甚至 `t =>`，如果我们不需要命名约束。像往常一样，我们可以通过名称（如果有的话）访问函数体中的约束。这是 `head` 的另一个实现："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:282
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:277
+#, fuzzy, no-wrap
 msgid ""
-"```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x "
-"head' [] impossible ```"
-msgstr ""
-"```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x "
-"head' [] 不可能 ```"
+"head' : (as : List a) -> (0 _ : NotNil as) => a\n"
+"head' (x :: _) = x\n"
+"head' [] impossible\n"
+msgstr "```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x head' [] 不可能 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:287
@@ -838,16 +1083,14 @@ msgstr ""
 "`headMaybe` 而无需手动传递 `NotNil` 证明："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:295
+#: ../src/Tutorial/Predicates.md:288
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "headMaybe : List a -> Maybe a\n"
 "headMaybe as = case nonEmpty as of\n"
 "  -- `prf` is available during proof seach\n"
 "  Yes prf => Just $ Predicates.head as\n"
 "  No  _   => Nothing\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "headMaybe : 列出一个 -> 也许一个\n"
@@ -952,10 +1195,10 @@ msgstr ""
 "Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat."
 "IsSucc`。"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:341
-#, fuzzy
-msgid "## Contracts between Values"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:340
+#, fuzzy, no-wrap
+msgid "Contracts between Values"
 msgstr "## 值之间的契约"
 
 #. type: Plain text
@@ -969,10 +1212,10 @@ msgstr ""
 "到目前为止，我们看到的谓词限制了单一类型的值，但也可以定义谓词来描述可能不同"
 "类型的多个值之间的契约。"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:348
-#, fuzzy
-msgid "### The `Elem` Predicate"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:347
+#, fuzzy, no-wrap
+msgid "The `Elem` Predicate"
 msgstr "### `Elem` 谓词"
 
 #. type: Plain text
@@ -984,9 +1227,9 @@ msgid ""
 msgstr "假设我们想从异构列表中提取给定类型的值："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:355
-#, fuzzy
-msgid "```idris get' : (0 t : Type) -> HList ts -> t ```"
+#: ../src/Tutorial/Predicates.md:352
+#, fuzzy, no-wrap
+msgid "get' : (0 t : Type) -> HList ts -> t\n"
 msgstr "```idris get' : (0 t : Type) -> HList ts -> t ```"
 
 #. type: Plain text
@@ -999,9 +1242,11 @@ msgstr ""
 "这在一般情况下是行不通的：如果我们可以实现这一点，我们将立即获得无效证明："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:363
-#, fuzzy
-msgid "```idris voidAgain : Void voidAgain = get' Void [] ```"
+#: ../src/Tutorial/Predicates.md:359
+#, fuzzy, no-wrap
+msgid ""
+"voidAgain : Void\n"
+"voidAgain = get' Void []\n"
 msgstr "```idris voidAgain : Void voidAgain = get' Void [] ```"
 
 #. type: Plain text
@@ -1016,14 +1261,12 @@ msgstr ""
 "以用它来表达："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:373
+#: ../src/Tutorial/Predicates.md:368
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Elem : (elem : a) -> (as : List a) -> Type where\n"
 "  Here  : Elem x (x :: xs)\n"
 "  There : Elem x xs -> Elem x (y :: xs)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "data Elem : (elem : a) -> (as : List a) -> 键入 where\n"
@@ -1053,24 +1296,18 @@ msgstr ""
 "感受一下："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:390
-#, fuzzy
-msgid "```idris MyList : List Nat MyList = [1,3,7,8,4,12]"
-msgstr "```idris MyList : 列表 Nat MyList = [1,3,7,8,4,12]"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:393
-#, fuzzy
-msgid "oneElemMyList : Elem 1 MyList oneElemMyList = Here"
-msgstr "oneElemMyList : Elem 1 我的列表 oneElemMyList = 这里"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:397
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:387
+#, no-wrap
 msgid ""
-"sevenElemMyList : Elem 7 MyList sevenElemMyList = There $ There Here ```"
+"MyList : List Nat\n"
+"MyList = [1,3,7,8,4,12]\n"
+"\n"
+"oneElemMyList : Elem 1 MyList\n"
+"oneElemMyList = Here\n"
+"\n"
+"sevenElemMyList : Elem 7 MyList\n"
+"sevenElemMyList = There $ There Here\n"
 msgstr ""
-"SevenElemMyList : Elem 7 MyList SevenElemMyList = There $ There Here ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:402
@@ -1092,9 +1329,9 @@ msgid ""
 msgstr "我们可以使用 `Elem` 谓词从所需类型的异构列表中提取值："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:409
-#, fuzzy
-msgid "```idris get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t ```"
+#: ../src/Tutorial/Predicates.md:406
+#, fuzzy, no-wrap
+msgid "get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t\n"
 msgstr "```idris get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t ```"
 
 #. type: Plain text
@@ -1110,14 +1347,12 @@ msgstr ""
 "够对这个值进行模式匹配，以便弄清楚我们的值在异构列表中存储多远："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:421
+#: ../src/Tutorial/Predicates.md:416
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "get t (v :: vs) {prf = Here}    = v\n"
 "get t (v :: vs) {prf = There p} = get t vs\n"
 "get _ [] impossible\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "得到 t (v :: vs) {prf = Here} = v\n"
@@ -1143,30 +1378,18 @@ msgid "Let's give this a spin at the REPL:"
 msgstr "让我们在 REPL 上试一试："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:433
-#, fuzzy
-msgid ""
-"```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 Tutorial."
-"Predicates> get Nat [\"foo\", Just \"bar\"] Error: Can't find an "
-"implementation for Elem Nat [String, Maybe String]."
-msgstr ""
-"```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 Tutorial."
-"Predicates> get Nat [\"foo\", Just \"bar\"] 错误：找不到 Elem Nat 的实现[字符"
-"串，也许是字符串]。"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:438
+#: ../src/Tutorial/Predicates.md:428
 #, fuzzy, no-wrap
 msgid ""
+"Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z]\n"
+"1\n"
+"Tutorial.Predicates> get Nat [\"foo\", Just \"bar\"]\n"
+"Error: Can't find an implementation for Elem Nat [String, Maybe String].\n"
+"\n"
 "(Interactive):1:1--1:28\n"
 " 1 | get Nat [\"foo\", Just \"bar\"]\n"
 "     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
-"```\n"
-msgstr ""
-"（互动）：1:1--1:28\n"
-" 1 |得到 Nat [\"foo\", Just \"bar\"]\n"
-"     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
-"```\n"
+msgstr "```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 Tutorial.Predicates> get Nat [\"foo\", Just \"bar\"] 错误：找不到 Elem Nat 的实现[字符串，也许是字符串]。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:446
@@ -1185,15 +1408,12 @@ msgstr ""
 "度 *，如果超过此限制，搜索将失败。例如："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:450
-#, fuzzy
-msgid "```idris Tps : List Type Tps = List.replicate 50 Nat ++ [Maybe String]"
-msgstr "```idris Tps : 列表类型 Tps = List.replicate 50 Nat ++ [可能是字符串]"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:459
+#: ../src/Tutorial/Predicates.md:447
 #, fuzzy, no-wrap
 msgid ""
+"Tps : List Type\n"
+"Tps = List.replicate 50 Nat ++ [Maybe String]\n"
+"\n"
 "hlist : HList Tps\n"
 "hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
 "        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
@@ -1201,7 +1421,6 @@ msgid ""
 "        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
 "        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
 "        , Nothing ]\n"
-"```\n"
 msgstr ""
 "hlist : HList Tps\n"
 "hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
@@ -1213,14 +1432,12 @@ msgstr ""
 "```\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:466
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:462
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an "
-"implementation for Elem (Maybe String) [Nat,...  ```"
-msgstr ""
-"```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an "
-"implementation for Elem (Maybe String) [Nat,... ```"
+"Tutorial.Predicates> get (Maybe String) hlist\n"
+"Error: Can't find an implementation for Elem (Maybe String) [Nat,...\n"
+msgstr "```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an implementation for Elem (Maybe String) [Nat,... ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:474
@@ -1239,23 +1456,20 @@ msgstr ""
 "加编译时间。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:479
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:475
+#, fuzzy, no-wrap
 msgid ""
-"```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
-msgstr ""
-"```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
+"%auto_implicit_depth 100\n"
+"aMaybe : Maybe String\n"
+"aMaybe = get _ hlist\n"
+"\n"
+"%auto_implicit_depth 25\n"
+msgstr "```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:482
-#, fuzzy
-msgid "%auto_implicit_depth 25 ```"
-msgstr "%auto_implicit_depth 25 ```"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:484
-#, fuzzy
-msgid "### Use Case: A nicer Schema"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:483
+#, fuzzy, no-wrap
+msgid "Use Case: A nicer Schema"
 msgstr "### 用例：更好的模式"
 
 #. type: Plain text
@@ -1275,71 +1489,42 @@ msgstr ""
 "的编码："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:506
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Predicates.md:493
+#, no-wrap
 msgid ""
+"data ColType = I64 | Str | Boolean | Float\n"
+"\n"
+"IdrisType : ColType -> Type\n"
+"IdrisType I64     = Int64\n"
+"IdrisType Str     = String\n"
+"IdrisType Boolean = Bool\n"
+"IdrisType Float   = Double\n"
+"\n"
 "record Column where\n"
 "  constructor MkColumn\n"
 "  name : String\n"
 "  type : ColType\n"
-msgstr ""
-"记录列在哪里\n"
-"  构造函数 MkColumn\n"
-"  名称：字符串\n"
-"  类型：ColType\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:508
-#, fuzzy
-msgid "infixr 8 :>"
-msgstr "中缀 8 :>"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:511
-#, fuzzy
-msgid "(:>) : String -> ColType -> Column (:>) = MkColumn"
-msgstr "(:>) : 字符串 -> ColType -> 列 (:>) = MkColumn"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:514
-#, fuzzy
-msgid "Schema : Type Schema = List Column"
-msgstr "架构：类型架构 = 列表列"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:520
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"infixr 8 :>\n"
+"\n"
+"(:>) : String -> ColType -> Column\n"
+"(:>) = MkColumn\n"
+"\n"
+"Schema : Type\n"
+"Schema = List Column\n"
+"\n"
 "Show ColType where\n"
 "  show I64     = \"I64\"\n"
 "  show Str     = \"Str\"\n"
 "  show Boolean = \"Boolean\"\n"
 "  show Float   = \"Float\"\n"
-msgstr ""
-"在哪里显示 ColType\n"
-"  显示 I64 = \"I64\"\n"
-"  显示 Str = \"Str\"\n"
-"  显示布尔=“布尔”\n"
-"  显示浮动 = \"浮动\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:523
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "Show Column where\n"
 "  show (MkColumn n ct) = \"\\{n}:\\{show ct}\"\n"
+"\n"
+"showSchema : Schema -> String\n"
+"showSchema = concat . intersperse \",\" . map show\n"
 msgstr ""
-"显示列在哪里\n"
-"  显示 (MkColumn n ct) = \"\\{n}:\\{show ct}\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:527
-#, fuzzy
-msgid ""
-"showSchema : Schema -> String showSchema = concat . intersperse \",\" . map "
-"show ```"
-msgstr ""
-"showSchema : 模式 -> 字符串 showSchema = concat 。穿插“，”。地图显示```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:531
@@ -1353,10 +1538,9 @@ msgstr ""
 "CSV 文件的示例架构："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:542
+#: ../src/Tutorial/Predicates.md:532
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "EmployeeSchema : Schema\n"
 "EmployeeSchema = [ \"firstName\"  :> Str\n"
 "                 , \"lastName\"   :> Str\n"
@@ -1365,7 +1549,6 @@ msgid ""
 "                 , \"salary\"     :> Float\n"
 "                 , \"management\" :> Boolean\n"
 "                 ]\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "员工架构：架构\n"
@@ -1393,27 +1576,17 @@ msgstr ""
 "义行类型：基于模式索引的异构列表。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:553
+#: ../src/Tutorial/Predicates.md:550
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Row : Schema -> Type where\n"
 "  Nil  : Row []\n"
-msgstr ""
-"```伊德里斯\n"
-"数据行：架构 -> 键入位置\n"
-"  无：行 []\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:560
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "  (::) :  {0 name : String}\n"
 "       -> {0 type : ColType}\n"
 "       -> (v : IdrisType type)\n"
 "       -> Row ss\n"
 "       -> Row (name :> type :: ss)\n"
-"```\n"
 msgstr ""
 "  (::)：{0 名称：字符串}\n"
 "       -> {0 类型：ColType}\n"
@@ -1440,20 +1613,15 @@ msgid "We can now define a type alias for CSV rows representing employees:"
 msgstr "我们现在可以为代表员工的 CSV 行定义一个类型别名："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:571
-#, fuzzy
-msgid "```idris 0 Employee : Type Employee = Row EmployeeSchema"
-msgstr "```idris 0 Employee：类型Employee = Row EmployeeSchema"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:575
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:568
+#, fuzzy, no-wrap
 msgid ""
-"hock : Employee hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, "
-"False ] ```"
-msgstr ""
-"hock : 员工 hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, "
-"False ] ``"
+"0 Employee : Type\n"
+"Employee = Row EmployeeSchema\n"
+"\n"
+"hock : Employee\n"
+"hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, False ]\n"
+msgstr "hock : 员工 hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, False ] ``"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:584
@@ -1499,10 +1667,9 @@ msgstr ""
 "以通过列出要在搜索中使用的索引来完成，如下所示：`[搜索名称模式]`。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:611
+#: ../src/Tutorial/Predicates.md:603
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data InSchema :  (name    : String)\n"
 "              -> (schema  : Schema)\n"
 "              -> (colType : ColType)\n"
@@ -1510,6 +1677,10 @@ msgid ""
 "  [search name schema]\n"
 "  IsHere  : InSchema n (n :> t :: ss) t\n"
 "  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t\n"
+"\n"
+"Uninhabited (InSchema n [] c) where\n"
+"  uninhabited IsHere impossible\n"
+"  uninhabited (IsThere _) impossible\n"
 msgstr ""
 "```伊德里斯\n"
 "数据 InSchema：（名称：字符串）\n"
@@ -1521,20 +1692,6 @@ msgstr ""
 "  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:616
-#, fuzzy, no-wrap
-msgid ""
-"Uninhabited (InSchema n [] c) where\n"
-"  uninhabited IsHere impossible\n"
-"  uninhabited (IsThere _) impossible\n"
-"```\n"
-msgstr ""
-"无人居住 (InSchema n [] c) 其中\n"
-"  无人居住 IsHere 不可能\n"
-"  无人居住 (IsThere _) 不可能\n"
-"```\n"
-
-#. type: Plain text
 #: ../src/Tutorial/Predicates.md:619
 #, fuzzy
 msgid ""
@@ -1543,10 +1700,9 @@ msgid ""
 msgstr "有了这个，我们现在可以根据列的名称访问给定列的值："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:629
+#: ../src/Tutorial/Predicates.md:620
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "getAt :  {0 ss : Schema}\n"
 "      -> (name : String)\n"
 "      -> (row  : Row ss)\n"
@@ -1554,7 +1710,6 @@ msgid ""
 "      => IdrisType c\n"
 "getAt name (v :: vs) {prf = IsHere}    = v\n"
 "getAt name (_ :: vs) {prf = IsThere p} = getAt name vs\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "getAt：{0 ss：架构}\n"
@@ -1583,10 +1738,9 @@ msgstr ""
 "有这些都以可证明的整体和类型安全的方式发生。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:648
+#: ../src/Tutorial/Predicates.md:639
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "shoeck : String\n"
 "shoeck =  getAt \"firstName\" hock\n"
 "       ++ \" \"\n"
@@ -1594,7 +1748,6 @@ msgid ""
 "       ++ \": \"\n"
 "       ++ show (getAt \"age\" hock)\n"
 "       ++ \" years old.\"\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "鞋柜 : 字符串\n"
@@ -1624,10 +1777,9 @@ msgstr ""
 "我们同时提取列类型并将其（作为依赖对）与 `InSchema` 证明配对："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:667
+#: ../src/Tutorial/Predicates.md:658
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "inSchema : (ss : Schema) -> (n : String) -> Maybe (c ** InSchema n ss c)\n"
 "inSchema []                    _ = Nothing\n"
 "inSchema (MkColumn cn t :: xs) n = case decEq cn n of\n"
@@ -1635,7 +1787,6 @@ msgid ""
 "  No  contra => case inSchema xs n of\n"
 "    Just (t ** prf) => Just $ (t ** IsThere prf)\n"
 "    Nothing         => Nothing\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "inSchema : (ss : Schema) -> (n: String) -> Maybe (c ** InSchema n ss c)\n"
@@ -1722,10 +1873,10 @@ msgstr ""
 "   但仅根据名称列表和输入进行搜索\n"
 "   架构。\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:700
-#, fuzzy
-msgid "## Use Case: Flexible Error Handling"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:699
+#, fuzzy, no-wrap
+msgid "Use Case: Flexible Error Handling"
 msgstr "## 用例：灵活的错误处理"
 
 #. type: Plain text
@@ -1756,59 +1907,33 @@ msgstr ""
 "在继续之前，我们快速实现了几个可能失败的函数以及一些自定义错误类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:723
+#: ../src/Tutorial/Predicates.md:719
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record NoNat where\n"
 "  constructor MkNoNat\n"
 "  str : String\n"
-msgstr ""
-"```伊德里斯\n"
-"在哪里记录 NoNat\n"
-"  构造函数 MkNoNat\n"
-"  str : 字符串\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:726
-#, fuzzy
-msgid ""
-"readNat' : String -> Either NoNat Nat readNat' s = maybeToEither (MkNoNat s) "
-"$ parsePositive s"
-msgstr ""
-"readNat' : String -> Either NoNat Nat readNat' s = maybeToEither (MkNoNat s) "
-"$ parsePositive s"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:730
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"readNat' : String -> Either NoNat Nat\n"
+"readNat' s = maybeToEither (MkNoNat s) $ parsePositive s\n"
+"\n"
 "record NoColType where\n"
 "  constructor MkNoColType\n"
 "  str : String\n"
-msgstr ""
-"记录 NoColType 在哪里\n"
-"  构造函数 MkNoColType\n"
-"  str : 字符串\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:738
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readColType' : String -> Either NoColType ColType\n"
 "readColType' \"I64\"     = Right I64\n"
 "readColType' \"Str\"     = Right Str\n"
 "readColType' \"Boolean\" = Right Boolean\n"
 "readColType' \"Float\"   = Right Float\n"
 "readColType' s         = Left $ MkNoColType s\n"
-"```\n"
 msgstr ""
-"readColType' : String -> 无论是 NoColType ColType\n"
-"readColType' \"I64\" = 右 I64\n"
-"readColType' \"Str\" = 右 Str\n"
-"readColType' \"Boolean\" = 右布尔值\n"
-"readColType' \"Float\" = 右浮动\n"
-"readColType's = 左 $ MkNoColType s\n"
+"readColType : 有 NoColType ts => String -> Err ts ColType\n"
+"readColType \"I64\" = 右 I64\n"
+"readColType \"Str\" = 右 Str\n"
+"readColType \"Boolean\" = 右布尔值\n"
+"readColType \"Float\" = 右浮动\n"
+"readColType s = 失败 $ MkNoColType s\n"
 "```\n"
 
 #. type: Plain text
@@ -1827,30 +1952,18 @@ msgstr ""
 "错误类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:752
+#: ../src/Tutorial/Predicates.md:747
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record OutOfBounds where\n"
 "  constructor MkOutOfBounds\n"
 "  size  : Nat\n"
 "  index : Nat\n"
-msgstr ""
-"```伊德里斯\n"
-"记录 OutOfBounds where\n"
-"  构造函数 MkOutOfBounds\n"
-"  尺寸：自然\n"
-"  指数：自然\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:758
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)\n"
 "readFin' s = do\n"
 "  ix <- mapFst Left (readNat' s)\n"
 "  maybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n\n"
-"```\n"
 msgstr ""
 "readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)\n"
 "readFin's = 做\n"
@@ -1876,13 +1989,11 @@ msgstr ""
 "择）索引的类型，其中包含所讨论类型之一的单个值。这是第一次天真的尝试："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:772
+#: ../src/Tutorial/Predicates.md:768
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Sum : List Type -> Type where\n"
 "  MkSum : (val : t) -> Sum ts\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "数据总和：列表类型 -> 类型在哪里\n"
@@ -1909,32 +2020,21 @@ msgstr ""
 "用向量而不是列表作为索引。这是一个类似于 `Elem` 的谓词，但用于向量："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:788
+#: ../src/Tutorial/Predicates.md:784
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Has :  (v : a) -> (vs  : Vect n a) -> Type where\n"
 "  Z : Has v (v :: vs)\n"
 "  S : Has v vs -> Has v (w :: vs)\n"
+"\n"
+"Uninhabited (Has v []) where\n"
+"  uninhabited Z impossible\n"
+"  uninhabited (S _) impossible\n"
 msgstr ""
 "```伊德里斯\n"
 "数据有 : (v : a) -> (vs : Vect n a) -> 输入 where\n"
 "  Z : 有 v (v :: vs)\n"
 "  S : 有 v vs -> 有 v (w :: vs)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:793
-#, fuzzy, no-wrap
-msgid ""
-"Uninhabited (Has v []) where\n"
-"  uninhabited Z impossible\n"
-"  uninhabited (S _) impossible\n"
-"```\n"
-msgstr ""
-"无人居住（有 v []）\n"
-"  无人Z不可能\n"
-"  无人居住 (S _) 不可能\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:797
@@ -1947,28 +2047,18 @@ msgstr ""
 "个索引和类型（也称为 *open union*）："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:801
+#: ../src/Tutorial/Predicates.md:798
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Union : Vect n Type -> Type where\n"
 "  U : (ix : Has t ts) -> (val : t) -> Union ts\n"
+"\n"
+"Uninhabited (Union []) where\n"
+"  uninhabited (U ix _) = absurd ix\n"
 msgstr ""
 "```伊德里斯\n"
 "数据联合：Vect n Type -> Type where\n"
 "  U : (ix : Has ts) -> (val : t) -> Union ts\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:805
-#, fuzzy, no-wrap
-msgid ""
-"Uninhabited (Union []) where\n"
-"  uninhabited (U ix _) = absurd ix\n"
-"```\n"
-msgstr ""
-"无人居住 (Union []) 其中\n"
-"  无人居住 (U ix _) = 荒谬 ix\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:811
@@ -1985,14 +2075,12 @@ msgstr ""
 "索引中列出的类型。有了这个，我们现在可以定义一个更灵活的错误类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:816
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:812
+#, fuzzy, no-wrap
 msgid ""
-"```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t "
-"```"
-msgstr ""
-"```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t "
-"```"
+"0 Err : Vect n Type -> Type -> Type\n"
+"Err ts t = Either (Union ts) t\n"
+msgstr "```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:820
@@ -2005,29 +2093,18 @@ msgstr ""
 "失败。我们首先需要一些实用函数。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:824
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:821
+#, no-wrap
 msgid ""
-"```idris inject : (prf : Has t ts) => (v : t) -> Union ts inject v = U prf v"
+"inject : (prf : Has t ts) => (v : t) -> Union ts\n"
+"inject v = U prf v\n"
+"\n"
+"fail : Has t ts => (err : t) -> Err ts a\n"
+"fail err = Left $ inject err\n"
+"\n"
+"failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a\n"
+"failMaybe err = maybeToEither (inject err)\n"
 msgstr ""
-"```idris injection : (prf : Has t ts) => (v : t) -> Union ts injection v = U "
-"prf v"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:827
-#, fuzzy
-msgid "fail : Has t ts => (err : t) -> Err ts a fail err = Left $ inject err"
-msgstr "fail : Has ts => (err : t) -> Err ts a fail err = Left $ injection err"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:831
-#, fuzzy
-msgid ""
-"failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a failMaybe err "
-"= maybeToEither (inject err)  ```"
-msgstr ""
-"failMaybe : Has ts => (err : Lazy t) -> Maybe a -> Err ts a failMaybe err = "
-"maybeToEither (inject err) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:834
@@ -2037,26 +2114,18 @@ msgid ""
 msgstr "接下来，我们可以为上面编写的解析器编写更灵活的版本："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:838
-#, fuzzy
-msgid ""
-"```idris readNat : Has NoNat ts => String -> Err ts Nat readNat s = "
-"failMaybe (MkNoNat s) $ parsePositive s"
-msgstr ""
-"```idris readNat : Has NoNat ts => String -> Err ts Nat readNat s = "
-"failMaybe (MkNoNat s) $ parsePositive s"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:846
+#: ../src/Tutorial/Predicates.md:835
 #, fuzzy, no-wrap
 msgid ""
+"readNat : Has NoNat ts => String -> Err ts Nat\n"
+"readNat s = failMaybe (MkNoNat s) $ parsePositive s\n"
+"\n"
 "readColType : Has NoColType ts => String -> Err ts ColType\n"
 "readColType \"I64\"     = Right I64\n"
 "readColType \"Str\"     = Right Str\n"
 "readColType \"Boolean\" = Right Boolean\n"
 "readColType \"Float\"   = Right Float\n"
 "readColType s         = fail $ MkNoColType s\n"
-"```\n"
 msgstr ""
 "readColType : 有 NoColType ts => String -> Err ts ColType\n"
 "readColType \"I64\" = 右 I64\n"
@@ -2076,14 +2145,12 @@ msgstr ""
 "在我们实现 `readFin` 之前，我们引入一个快捷方式来指定必须存在几种错误类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:855
+#: ../src/Tutorial/Predicates.md:850
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "0 Errs : List Type -> Vect n Type -> Type\n"
 "Errs []        _  = ()\n"
 "Errs (x :: xs) ts = (Has x ts, Errs xs ts)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "0 错误：列表类型 -> Vect n 类型 -> 类型\n"
@@ -2103,15 +2170,13 @@ msgstr ""
 "证：Idris 将根据需要自动从元组中提取证明。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:868
+#: ../src/Tutorial/Predicates.md:862
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)\n"
 "readFin s = do\n"
 "  S ix <- readNat s | Z => fail (MkOutOfBounds n Z)\n"
 "  failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)\n"
@@ -2127,67 +2192,29 @@ msgid "As a last example, here are parsers for schemata and CSV rows:"
 msgstr "作为最后一个示例，这里是模式和 CSV 行的解析器："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:875
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:872
+#, no-wrap
 msgid ""
-"```idris fromCSV : String -> List String fromCSV = forget . split (',' ==)"
-msgstr ""
-"```idris fromCSV: String -> List String fromCSV = forget .拆分 (',' ==)"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:879
-#, fuzzy, no-wrap
-msgid ""
+"fromCSV : String -> List String\n"
+"fromCSV = forget . split (',' ==)\n"
+"\n"
 "record InvalidColumn where\n"
 "  constructor MkInvalidColumn\n"
 "  str : String\n"
-msgstr ""
-"记录 InvalidColumn where\n"
-"  构造函数 MkInvalidColumn\n"
-"  str : 字符串\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:884
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts Column\n"
 "readColumn s = case forget $ split (':' ==) s of\n"
 "  [n,ct] => MkColumn n <$> readColType ct\n"
 "  _      => fail $ MkInvalidColumn s\n"
-msgstr ""
-"readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts 列\n"
-"readColumn s = case forget $ split(':' ==) s of\n"
-"  [n,ct] => MkColumn n <$> readColType ct\n"
-"  _ => 失败 $ MkInvalidColumn s\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:887
-#, fuzzy
-msgid ""
-"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema "
-"readSchema = traverse readColumn . fromCSV"
-msgstr ""
-"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema "
-"readSchema = traverse readColumn 。来自CSV"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:892
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema\n"
+"readSchema = traverse readColumn . fromCSV\n"
+"\n"
 "data RowError : Type where\n"
 "  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError\n"
 "  UnexpectedEOI : (row, col : Nat) -> RowError\n"
 "  ExpectedEOI   : (row, col : Nat) -> RowError\n"
-msgstr ""
-"数据 RowError : 键入 where\n"
-"  InvalidField : (row, col : Nat) -> (ct : ColType) -> String -> RowError\n"
-"  UnexpectedEOI : (row, col : Nat) -> RowError\n"
-"  ExpectedEOI : (row, col : Nat) -> RowError\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:905
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "decodeField :  Has RowError ts\n"
 "            => (row,col : Nat)\n"
 "            -> (c : ColType)\n"
@@ -2200,24 +2227,7 @@ msgid ""
 "        Str     => failMaybe err $ read s\n"
 "        Boolean => failMaybe err $ read s\n"
 "        Float   => failMaybe err $ read s\n"
-msgstr ""
-"decodeField : 有 RowError ts\n"
-"            =>（行，列：Nat）\n"
-"            -> (c : ColType)\n"
-"            -> 字符串\n"
-"            -> Err ts (IdrisType c)\n"
-"decodeField 行 col c s =\n"
-"  let err = InvalidField row col c s\n"
-"   万一\n"
-"        I64 => failMaybe err $ read s\n"
-"        Str => failMaybe err $ read s\n"
-"        Boolean => failMaybe err $ read s\n"
-"        Float => failMaybe err $ read s\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:919
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "decodeRow :  Has RowError ts\n"
 "          => {s : _}\n"
 "          -> (row : Nat)\n"
@@ -2230,21 +2240,7 @@ msgid ""
 "        go k (_ :: _) []                    = fail $ UnexpectedEOI row k\n"
 "        go k (MkColumn n c :: cs) (s :: ss) =\n"
 "          [| decodeField row k c s :: go (S k) cs ss |]\n"
-"```\n"
 msgstr ""
-"decodeRow : 有 RowError ts\n"
-"          => {s：_}\n"
-"          ->（行：Nat）\n"
-"          ->（字符串：字符串）\n"
-"          -> Err ts（行）\n"
-"decodeRow 行 = 走 1 秒。来自CSV\n"
-"  去哪里： Nat -> (cs: Schema) -> List String -> Err ts (Row cs)\n"
-"        去 k [] [] = 右 []\n"
-"        go k [] (_ :: _) = 失败 $ ExpectedEOI 第 k 行\n"
-"        go k (_ :: _) [] = 失败 $ UnexpectedEOI 第 k 行\n"
-"        去 k (MkColumn n c :: cs) (s :: ss) =\n"
-"          [| decodeField 行 k c s :: go (S k) cs ss |]\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:925
@@ -2260,25 +2256,22 @@ msgstr ""
 "`InvalidColumn` 和 `NoColType` 类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:935
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:926
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,"
-"InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:bar\" Left (U Z "
-"(MkNoColType \"bar\"))  Tutorial.Predicates> readSchema {ts} \"foo:Float\" "
-"Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema {ts} \"foo "
-"Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\"))  ```"
-msgstr ""
-"```repl Tutorial.Predicates> :let ts = (Vect 3 _) [NoColType,NoNat,"
-"InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:bar\" Left (U Z "
-"(MkNoColType \"bar\")) 教程。 Predicates> readSchema {ts} \"foo:Float\" "
-"Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema {ts} \"foo "
-"Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\")) [X342X ]"
+"Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,InvalidColumn]\n"
+"Tutorial.Predicates> readSchema {ts} \"foo:bar\"\n"
+"Left (U Z (MkNoColType \"bar\"))\n"
+"Tutorial.Predicates> readSchema {ts} \"foo:Float\"\n"
+"Right [MkColumn \"foo\" Float]\n"
+"Tutorial.Predicates> readSchema {ts} \"foo Float\"\n"
+"Left (U (S (S Z)) (MkInvalidColumn \"foo Float\"))\n"
+msgstr "```repl Tutorial.Predicates> :let ts = (Vect 3 _) [NoColType,NoNat,InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:bar\" Left (U Z (MkNoColType \"bar\")) 教程。 Predicates> readSchema {ts} \"foo:Float\" Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema {ts} \"foo Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\")) [X342X ]"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:937
-#, fuzzy
-msgid "### Error Handling"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:936
+#, fuzzy, no-wrap
+msgid "Error Handling"
 msgstr "### 错误处理"
 
 #. type: Plain text
@@ -2310,15 +2303,13 @@ msgstr ""
 "它不仅编码向量中值的存在，还编码删除该值的结果："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:957
+#: ../src/Tutorial/Predicates.md:951
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where\n"
 "  [search v vs]\n"
 "  RZ : Rem v (v :: rem) rem\n"
 "  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "数据 Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> 键入 where\n"
@@ -2339,10 +2330,9 @@ msgstr ""
 "搜索期间使用其他索引。这是一个从开放联合中分离值的函数："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:972
+#: ../src/Tutorial/Predicates.md:963
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)\n"
 "split {prf = RZ}   (U Z     val) = Left val\n"
 "split {prf = RZ}   (U (S x) val) = Right (U x val)\n"
@@ -2350,7 +2340,6 @@ msgid ""
 "split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of\n"
 "  Left vt        => Left vt\n"
 "  Right (U ix y) => Right $ U (S ix) y\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)\n"
@@ -2387,10 +2376,9 @@ msgstr ""
 "类型来处理错误。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:994
+#: ../src/Tutorial/Predicates.md:983
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "handle :  Applicative f\n"
 "       => Rem t ts rem\n"
 "       => (h : t -> f a)\n"
@@ -2400,7 +2388,6 @@ msgid ""
 "  Left v    => Right <$> h v\n"
 "  Right err => pure $ Left err\n"
 "handle _ (Right x) = pure $ Right x\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "句柄：应用 f\n"
@@ -2425,50 +2412,24 @@ msgstr ""
 "类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1005
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Predicates.md:999
+#, no-wrap
 msgid ""
-"```idris\n"
 "namespace Handler\n"
 "  public export\n"
 "  data Handler : (ts : Vect n Type) -> (a : Type) -> Type where\n"
 "    Nil  : Handler [] a\n"
 "    (::) : (t -> a) -> Handler ts a -> Handler (t :: ts) a\n"
-msgstr ""
-"```伊德里斯\n"
-"命名空间处理程序\n"
-"  公共出口\n"
-"  数据处理程序：（ts：Vect n Type）->（a：Type）-> Type where\n"
-"    无：处理程序 [] a\n"
-"    (::) : (t -> a) -> 处理程序 ts a -> 处理程序 (t :: ts) a\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1010
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "extract : Handler ts a -> Has t ts -> t -> a\n"
 "extract (f :: _)  Z     val = f val\n"
 "extract (_ :: fs) (S y) val = extract fs y val\n"
 "extract []        ix    _   = absurd ix\n"
-msgstr ""
-"extract : 处理程序 ts a -> Has ts -> t -> a\n"
-"提取 (f :: _) Z val = f val\n"
-"extract (_ :: fs) (S y) val = extract fs y val\n"
-"提取 [] ix _ = 荒谬 ix\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1015
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "handleAll : Applicative f => Handler ts (f a) -> Err ts a -> f a\n"
 "handleAll _ (Right v)       = pure v\n"
 "handleAll h (Left $ U ix v) = extract h ix v\n"
-"```\n"
 msgstr ""
-"handleAll : 应用 f => 处理程序 ts (f a) -> Err ts a -> f a\n"
-"handleAll _ (右 v) = 纯 v\n"
-"handleAll h (Left $U ix v) = 提取 h ix v\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1019
@@ -2487,30 +2448,24 @@ msgid "Implement the following utility functions for `Union`:"
 msgstr "为 `Union` 实现以下实用函数："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1026
+#: ../src/Tutorial/Predicates.md:1024
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t\n"
+"\n"
+"   project1 : Union [t] -> t\n"
+"\n"
+"   safe : Err [] a -> a\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   项目 : (0 t : Type) -> (prf : Has ts) => Union ts -> Maybe t\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1028
-#, fuzzy, no-wrap
-msgid "   project1 : Union [t] -> t\n"
-msgstr "   project1：联合 [t] -> t\n"
-
-#. type: Plain text
+#. type: Bullet: '2. '
 #: ../src/Tutorial/Predicates.md:1034
-#, fuzzy, no-wrap
+#, fuzzy
 msgid ""
-"   safe : Err [] a -> a\n"
-"   ```\n"
-"2. Implement the following two functions for embedding\n"
-"   an open union in a larger set of possibilities.\n"
-"   Note the unerased implicit in `extend`!\n"
+"Implement the following two functions for embedding an open union in a "
+"larger set of possibilities.  Note the unerased implicit in `extend`!"
 msgstr ""
 "   安全：错误 [] a -> a\n"
 "   ```\n"
@@ -2519,21 +2474,12 @@ msgstr ""
 "   注意 `extend 中未擦除的隐式！\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1037
+#: ../src/Tutorial/Predicates.md:1035
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   weaken : Union ts -> Union (ts ++ ss)\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   削弱：联合 ts -> 联合（ts ++ ss）\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1040
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "   extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)\n"
-"   ```\n"
 msgstr ""
 "   扩展 : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)\n"
 "   ```\n"
@@ -2548,14 +2494,12 @@ msgstr ""
 "找到一种将 `Union ts` 嵌入到 `Union ss` 中的通用方法，以便可以进行以下操作："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1049
+#: ../src/Tutorial/Predicates.md:1044
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   embedTest :  Err [NoNat,NoColType] a\n"
 "             -> Err [FileError, NoColType, OutOfBounds, NoNat] a\n"
 "   embedTest = mapFst embed\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   embedTest : 错误 [NoNat,NoColType] 一个\n"
@@ -2572,10 +2516,10 @@ msgid ""
 msgstr ""
 "通过让处理程序将有问题的错误转换为 `f (Err rem a)`，使 `handle` 更强大。"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1054
-#, fuzzy
-msgid "## The Truth about Interfaces"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:1053
+#, fuzzy, no-wrap
+msgid "The Truth about Interfaces"
 msgstr "## 关于接口的真相"
 
 #. type: Plain text
@@ -2599,27 +2543,16 @@ msgstr ""
 "数，一次使用自动隐式参数。 Idris 生成的代码在两种情况下都是相同的："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1070
+#: ../src/Tutorial/Predicates.md:1066
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "isElem1 : Eq a => a -> List a -> Bool\n"
 "isElem1 v []        = False\n"
 "isElem1 v (x :: xs) = x == v || isElem1 v xs\n"
-msgstr ""
-"```伊德里斯\n"
-"isElem1 : Eq a => a -> List a -> Bool\n"
-"isElem1 v [] = 假\n"
-"isElem1 v (x :: xs) = x == v || isElem1 v xs\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1075
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "isElem2 : {auto _ : Eq a} -> a -> List a -> Bool\n"
 "isElem2 v []        = False\n"
 "isElem2 v (x :: xs) = x == v || isElem2 v xs\n"
-"```\n"
 msgstr ""
 "isElem2 : {auto _ : Eq a} -> a -> List a -> Bool\n"
 "isElem2 v [] = 假\n"
@@ -2637,15 +2570,17 @@ msgstr ""
 "析："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1084
-#, fuzzy
-msgid "```idris eq : Eq a -> a -> a -> Bool eq (MkEq feq fneq) = feq ```"
+#: ../src/Tutorial/Predicates.md:1080
+#, fuzzy, no-wrap
+msgid ""
+"eq : Eq a -> a -> a -> Bool\n"
+"eq (MkEq feq fneq) = feq\n"
 msgstr "```idris eq : Eq a -> a -> a -> Bool eq (MkEq feq fneq) = feq ```"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1086
-#, fuzzy
-msgid "### A manual Interface Definition"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:1085
+#, fuzzy, no-wrap
+msgid "A manual Interface Definition"
 msgstr "### 手动接口定义"
 
 #. type: Plain text
@@ -2662,14 +2597,12 @@ msgstr ""
 "个接口只是一个记录："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1099
+#: ../src/Tutorial/Predicates.md:1094
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Print a where\n"
 "  constructor MkPrint\n"
 "  print' : a -> String\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "记录打印哪里\n"
@@ -2689,9 +2622,11 @@ msgstr ""
 "变出所需类型的值（在这种情况下为 `Print a`）证明搜索："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1109
-#, fuzzy
-msgid "```idris print : Print a => a -> String print = print' %search ```"
+#: ../src/Tutorial/Predicates.md:1105
+#, fuzzy, no-wrap
+msgid ""
+"print : Print a => a -> String\n"
+"print = print' %search\n"
 msgstr "```idris print : Print a => a -> String print = print' %search ```"
 
 #. type: Plain text
@@ -2703,12 +2638,12 @@ msgid ""
 msgstr "作为替代方案，我们可以使用命名约束，并通过其名称直接访问它："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1117
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:1113
+#, fuzzy, no-wrap
 msgid ""
-"```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
-msgstr ""
-"```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
+"print2 : (impl : Print a) => a -> String\n"
+"print2 = print' impl\n"
+msgstr "```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1120
@@ -2719,25 +2654,21 @@ msgid ""
 msgstr "作为另一种选择，我们可以使用自动隐式参数的语法："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1125
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:1121
+#, fuzzy, no-wrap
 msgid ""
-"```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl "
-"```"
-msgstr ""
-"```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl "
-"```"
+"print3 : {auto impl : Print a} -> a -> String\n"
+"print3 = print' impl\n"
+msgstr "```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1129
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"All three versions of `print` behave exactly the same at runtime.  So, "
-"whenever we write `{auto x : Foo} ->` we can just as well write `(x : Foo) "
-"=>` and vice versa."
-msgstr ""
-"`print` 的所有三个版本在运行时的行为完全相同。所以，每当我们写 `{auto x : "
-"Foo} ->` 时，我们也可以写成 `(x : Foo) =>` ，反之亦然。"
+"All three versions of `print` behave exactly the same at runtime.\n"
+"So, whenever we write `{auto x : Foo} ->` we can just as well\n"
+"write `(x : Foo) =>` and vice versa.\n"
+msgstr "`print` 的所有三个版本在运行时的行为完全相同。所以，每当我们写 `{auto x : Foo} ->` 时，我们也可以写成 `(x : Foo) =>` ，反之亦然。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1133
@@ -2751,39 +2682,21 @@ msgstr ""
 "注注释："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1138
-#, fuzzy
-msgid ""
-"```idris %hint noNatPrint : Print NoNat noNatPrint = MkPrint $ \\e => \"Not "
-"a natural number: \\{e.str}\""
-msgstr ""
-"```idris %hint noNatPrint : Print NoNat noNatPrint = MkPrint $ \\e => \"不是"
-"自然数：\\{e.str}\""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1142
-#, fuzzy
-msgid ""
-"%hint noColTypePrint : Print NoColType noColTypePrint = MkPrint $ \\e => "
-"\"Not a column type: \\{e.str}\""
-msgstr ""
-"%hint noColTypePrint : Print NoColType noColTypePrint = MkPrint $ \\e => \"不"
-"是列类型：\\{e.str}\""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1146
-#, fuzzy
-msgid ""
-"%hint outOfBoundsPrint : Print OutOfBounds outOfBoundsPrint = MkPrint $ \\e "
-"=> \"Index is out of bounds: \\{show e.index}\""
-msgstr ""
-"%hint outOfBoundsPrint : Print OutOfBounds outOfBoundsPrint = MkPrint $ \\e "
-"=> \"索引超出范围：\\{show e.index}\""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1157
+#: ../src/Tutorial/Predicates.md:1134
 #, fuzzy, no-wrap
 msgid ""
+"%hint\n"
+"noNatPrint : Print NoNat\n"
+"noNatPrint = MkPrint $ \\e => \"Not a natural number: \\{e.str}\"\n"
+"\n"
+"%hint\n"
+"noColTypePrint : Print NoColType\n"
+"noColTypePrint = MkPrint $ \\e => \"Not a column type: \\{e.str}\"\n"
+"\n"
+"%hint\n"
+"outOfBoundsPrint : Print OutOfBounds\n"
+"outOfBoundsPrint = MkPrint $ \\e => \"Index is out of bounds: \\{show e.index}\"\n"
+"\n"
 "%hint\n"
 "rowErrorPrint : Print RowError\n"
 "rowErrorPrint = MkPrint $\n"
@@ -2793,7 +2706,6 @@ msgid ""
 "          \"Unexpected end of input in row \\{show r}, column \\{show c}.\"\n"
 "        ExpectedEOI r c =>\n"
 "          \"Expected end of input in row \\{show r}, column \\{show c}.\"\n"
-"```\n"
 msgstr ""
 "％暗示\n"
 "rowErrorPrint : 打印行错误\n"
@@ -2818,40 +2730,24 @@ msgstr ""
 "有类型都带有 `Print` 的实现："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1167
+#: ../src/Tutorial/Predicates.md:1163
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "0 All : (f : a -> Type) -> Vect n a -> Type\n"
 "All f []        = ()\n"
 "All f (x :: xs) = (f x, All f xs)\n"
-msgstr ""
-"```伊德里斯\n"
-"0 全部 : (f : a -> 类型) -> Vect n a -> 类型\n"
-"所有 f [] = ()\n"
-"所有 f (x :: xs) = (f x, 所有 f xs)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1171
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "unionPrintImpl : All Print ts => Union ts -> String\n"
 "unionPrintImpl (U Z val)     = print val\n"
 "unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val\n"
+"\n"
+"%hint\n"
+"unionPrint : All Print ts => Print (Union ts)\n"
+"unionPrint = MkPrint unionPrintImpl\n"
 msgstr ""
 "unionPrintImpl : 所有打印 ts => 联合 ts -> 字符串\n"
 "unionPrintImpl (U Z val) = print val\n"
 "unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1176
-#, fuzzy
-msgid ""
-"%hint unionPrint : All Print ts => Print (Union ts)  unionPrint = MkPrint "
-"unionPrintImpl ```"
-msgstr ""
-"%hint unionPrint : All Print ts => Print (Union ts) unionPrint = MkPrint "
-"unionPrintImpl ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1184
@@ -2867,10 +2763,10 @@ msgstr ""
 "型和值有更细粒度的控制。还要注意，所有的魔法都来自搜索提示，我们的“接口实"
 "现”被注释了。这些使相应的值和功能在证明搜索期间可用。"
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1186
-#, fuzzy
-msgid "#### Parsing CSV Commands"
+#. type: Title ####
+#: ../src/Tutorial/Predicates.md:1185
+#, fuzzy, no-wrap
+msgid "Parsing CSV Commands"
 msgstr "#### 解析 CSV 命令"
 
 #. type: Plain text
@@ -2900,27 +2796,15 @@ msgstr ""
 "值："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1205
+#: ../src/Tutorial/Predicates.md:1199
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Table where\n"
 "  constructor MkTable\n"
 "  schema : Schema\n"
 "  size   : Nat\n"
 "  rows   : Vect size (Row schema)\n"
-msgstr ""
-"```伊德里斯\n"
-"记录表在哪里\n"
-"  构造函数 MkTable\n"
-"  架构：架构\n"
-"  尺寸：自然\n"
-"  rows : Vect 大小（行模式）\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1218
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "data Command : (t : Table) -> Type where\n"
 "  PrintSchema :  Command t\n"
 "  PrintSize   :  Command t\n"
@@ -2933,24 +2817,7 @@ msgid ""
 "              -> (prf  : InSchema name t.schema tpe)\n"
 "              -> Command t\n"
 "  Quit        : Command t\n"
-msgstr ""
-"数据命令：（t：表）-> 键入 where\n"
-"  PrintSchema：命令 t\n"
-"  打印尺寸：命令 t\n"
-"  新：（newSchema：架构）-> 命令 t\n"
-"  前置：行（模式 t）-> 命令 t\n"
-"  获取：鳍（尺寸 t）-> 命令 t\n"
-"  删除：鳍（尺寸 t）-> 命令 t\n"
-"  Col：（名称：字符串）\n"
-"              ->（tpe：ColType）\n"
-"              -> (prf : InSchema 名称 t.schema tpe)\n"
-"              -> 命令 t\n"
-"  退出：命令 t\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1231
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "applyCommand : (t : Table) -> Command t -> Table\n"
 "applyCommand t                 PrintSchema = t\n"
 "applyCommand t                 PrintSize   = t\n"
@@ -2962,16 +2829,15 @@ msgid ""
 "applyCommand (MkTable ts n rs) (Delete x)  = case n of\n"
 "  S k => MkTable ts k (deleteAt x rs)\n"
 "  Z   => absurd x\n"
-"```\n"
 msgstr ""
+"```伊德里斯\n"
 "applyCommand : (t : Table) -> Command t -> Table\n"
 "applyCommand t PrintSchema = t\n"
 "应用命令 t PrintSize = t\n"
-"applyCommand _（新 ts）= MkTable ts _ []\n"
+"applyCommand _ (New ts) = MkTable ts _ []\n"
 "applyCommand (MkTable ts n rs) (Prepend r) = MkTable ts _ $ r :: rs\n"
 "applyCommand t (获取 x) = t\n"
 "applyCommand t 退出 = t\n"
-"applyCommand t (Col _ _ _) = t\n"
 "applyCommand (MkTable ts n rs) (删除 x) = case n of\n"
 "  S k => MkTable ts k (deleteAt x rs)\n"
 "  Z => 荒谬的 x\n"
@@ -2989,55 +2855,25 @@ msgstr ""
 "至少其中一些可能在更大应用程序的其他部分中也可能出现。"
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1240
+#: ../src/Tutorial/Predicates.md:1236
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record UnknownCommand where\n"
 "  constructor MkUnknownCommand\n"
 "  str : String\n"
-msgstr ""
-"```伊德里斯\n"
-"记录 UnknownCommand where\n"
-"  构造函数 MkUnknownCommand\n"
-"  str : 字符串\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1244
-#, fuzzy
-msgid ""
-"%hint unknownCommandPrint : Print UnknownCommand unknownCommandPrint = "
-"MkPrint $ \\v => \"Unknown command: \\{v.str}\""
-msgstr ""
-"%hint unknownCommandPrint : Print UnknownCommand unknownCommandPrint = "
-"MkPrint $ \\v => \"未知命令：\\{v.str}\""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1248
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"%hint\n"
+"unknownCommandPrint : Print UnknownCommand\n"
+"unknownCommandPrint = MkPrint $ \\v => \"Unknown command: \\{v.str}\"\n"
+"\n"
 "record NoColName where\n"
 "  constructor MkNoColName\n"
 "  str : String\n"
-msgstr ""
-"在哪里记录 NoColName\n"
-"  构造函数 MkNoColName\n"
-"  str : 字符串\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1252
-#, fuzzy
-msgid ""
-"%hint noColNamePrint : Print NoColName noColNamePrint = MkPrint $ \\v => "
-"\"Unknown column: \\{v.str}\""
-msgstr ""
-"%hint noColNamePrint : Print NoColName noColNamePrint = MkPrint $ \\v => \"未"
-"知列：\\{v.str}\""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1261
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"%hint\n"
+"noColNamePrint : Print NoColName\n"
+"noColNamePrint = MkPrint $ \\v => \"Unknown column: \\{v.str}\"\n"
+"\n"
 "0 CmdErrs : Vect 7 Type\n"
 "CmdErrs = [ InvalidColumn\n"
 "          , NoColName\n"
@@ -3046,20 +2882,7 @@ msgid ""
 "          , OutOfBounds\n"
 "          , RowError\n"
 "          , UnknownCommand ]\n"
-msgstr ""
-"0 CmdErrs : Vect 7 类型\n"
-"CmdErrs = [无效列\n"
-"          , NoColName\n"
-"          , NoColType\n"
-"          , 诺纳特\n"
-"          , 越界\n"
-"          , 行错误\n"
-"          ， 未知的命令 ]\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1276
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readCommand : (t : Table) -> String -> Err CmdErrs (Command t)\n"
 "readCommand _                \"schema\"  = Right PrintSchema\n"
 "readCommand _                \"size\"    = Right PrintSize\n"
@@ -3073,21 +2896,18 @@ msgid ""
 "    Just (ct ** prf) => Right $ Col str ct prf\n"
 "    Nothing          => fail $ MkNoColName str\n"
 "  _               => fail $ MkUnknownCommand s\n"
-"```\n"
 msgstr ""
-"readCommand : (t : Table) -> String -> Err CmdErrs (Command t)\n"
+"```伊德里斯\n"
+"readCommand : (t : Table) -> String -> 任一错误（Command t）\n"
 "readCommand _ \"schema\" = 右 PrintSchema\n"
 "readCommand _ \"size\" = 右 PrintSize\n"
 "readCommand _ \"quit\" = 正确退出\n"
 "readCommand (MkTable ts n _) s = case words s of\n"
 "  [\"new\", str] => New <$> readSchema str\n"
-"  \"add\" :: ss => Prepend <$> decodeRow 1 (unwords ss)\n"
+"  \"add\" :: ss => Prepend <$> decodeRow (unwords ss)\n"
 "  [\"get\", str] => 获取 <$> readFin str\n"
 "  [\"delete\", str] => 删除 <$> readFin str\n"
-"  [\"column\", str] => case inSchema ts str of\n"
-"    只是 (ct ** prf) => 右 $ Col str ct prf\n"
-"    什么都没有 => 失败 $ MkNoColName str\n"
-"  _ => 失败 $ MkUnknownCommand s\n"
+"  _ => 左 $ UnknownCommand s\n"
 "```\n"
 
 #. type: Plain text
@@ -3113,43 +2933,29 @@ msgstr ""
 "节中重复，但请注意我们如何通过一次调用 `print` 来一次处理所有错误："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1300
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Predicates.md:1287
+#, no-wrap
 msgid ""
+"encodeField : (t : ColType) -> IdrisType t -> String\n"
+"encodeField I64     x     = show x\n"
+"encodeField Str     x     = show x\n"
+"encodeField Boolean True  = \"t\"\n"
+"encodeField Boolean False = \"f\"\n"
+"encodeField Float   x     = show x\n"
+"\n"
 "encodeRow : (s : Schema) -> Row s -> String\n"
 "encodeRow s = concat . intersperse \",\" . go s\n"
 "  where go : (s' : Schema) -> Row s' -> Vect (length s') String\n"
 "        go []        []        = []\n"
 "        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
-msgstr ""
-"encodeRow : (s : Schema) -> Row s -> String\n"
-"编码行 s = concat 。穿插“，”。去吧\n"
-"  where go : (s' : Schema) -> Row s' -> Vect (length s') String\n"
-"        去 [] [] = []\n"
-"        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go c vs\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1307
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "encodeCol :  (name : String)\n"
 "          -> (c    : ColType)\n"
 "          -> InSchema name s c\n"
 "          => Vect n (Row s)\n"
 "          -> String\n"
 "encodeCol name c = unlines . toList . map (\\r => encodeField c $ getAt name r)\n"
-msgstr ""
-"encodeCol：（名称：字符串）\n"
-"          -> (c : ColType)\n"
-"          -> InSchema 名称 s c\n"
-"          => Vect n (Row s)\n"
-"          -> 字符串\n"
-"encodeCol 名称 c = unlines 。列表。 map (\\r => encodeField c $ getAt name r)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1318
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "result :  (t : Table) -> Command t -> String\n"
 "result t PrintSchema   = \"Current schema: \\{showSchema t.schema}\"\n"
 "result t PrintSize     = \"Current size: \\{show t.size}\"\n"
@@ -3160,22 +2966,7 @@ msgid ""
 "result t (Col n c prf) = \"Column \\{n}:\\n\\{encodeCol n c t.rows}\"\n"
 "result t (Get x)       =\n"
 "  \"Row \\{show $ FS x}: \\{encodeRow t.schema (index x t.rows)}\"\n"
-msgstr ""
-"结果：（t：表）-> 命令 t-> 字符串\n"
-"结果 t PrintSchema = \"当前架构：\\{showSchema t.schema}\"\n"
-"结果 t PrintSize = \"当前尺寸：\\{show t.size}\"\n"
-"结果 _ (New ts) = \"已创建表。架构：\\{showSchema ts}\"\n"
-"结果 t (Prepend r) = \"前置行：\\{encodeRow t.schema r}\"\n"
-"结果 _ (Delete x) = \"已删除行：\\{show $ FS x}。\"\n"
-"结果_退出=“再见。”\n"
-"结果 t (Col n c prf) = \"列 \\{n}:\\n\\{encodeCol n c t.rows}\"\n"
-"结果 t (得到 x) =\n"
-"  “行\\{show $ FS x}：\\{encodeRow t.schema（索引x t.rows）}”\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1329
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "covering\n"
 "runProg : Table -> IO ()\n"
 "runProg t = do\n"
@@ -3186,17 +2977,11 @@ msgid ""
 "    Right Quit => putStrLn (result t Quit)\n"
 "    Right cmd  => putStrLn (result t cmd) >>\n"
 "                  runProg (applyCommand t cmd)\n"
+"\n"
+"covering\n"
+"main : IO ()\n"
+"main = runProg $ MkTable [] _ []\n"
 msgstr ""
-"覆盖\n"
-"runProg : 表 -> IO ()\n"
-"runProg t = 做\n"
-"  putStr \"输入命令：\"\n"
-"  str <- 获取行\n"
-"  case readCommand t str of\n"
-"    Left err => putStrLn (print err) >> runProg t\n"
-"    Right Quit => putStrLn（结果 t Quit）\n"
-"    右 cmd => putStrLn (结果 t cmd) >>\n"
-"                  runProg (applyCommand t cmd)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1336
@@ -3205,23 +2990,28 @@ msgid "Here is an example REPL session:"
 msgstr "这是一个示例 REPL 会话："
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1353
-#, fuzzy
+#: ../src/Tutorial/Predicates.md:1337
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Predicates> :exec main Enter a command: new name:Str,age:"
-"Int64,salary:Float Not a column type: Int64 Enter a command: new name:Str,"
-"age:I64,salary:Float Created table. Schema: name:Str,age:I64,salary:Float "
-"Enter a command: add John Doe,44,3500 Row prepended: \"John Doe\",44,3500.0 "
-"Enter a command: add Jane Doe,50,4000 Row prepended: \"Jane Doe\",50,4000.0 "
-"Enter a command: get 1 Row 1: \"Jane Doe\",50,4000.0 Enter a command: column "
-"salary Column salary: 4000.0 3500.0"
-msgstr ""
-"```repl Tutorial.Predicates> :exec main 输入命令：新名称：Str,age:Int64,"
-"salary:Float 不是列类型：Int64 输入命令：新名称：Str,age:I64,salary:Float "
-"Created桌子。架构：name:Str,age:I64,salary:Float 输入命令：add John "
-"Doe,44,3500 前置行：“John Doe”,44,3500.0 输入命令：add Jane Doe,50,4000 前置"
-"行：“ Jane Doe\",50,4000.0 输入命令：获取 1 第 1 行：\"Jane Doe\",50,4000.0 "
-"输入命令：列工资 列工资：4000.0 3500.0"
+"Tutorial.Predicates> :exec main\n"
+"Enter a command: new name:Str,age:Int64,salary:Float\n"
+"Not a column type: Int64\n"
+"Enter a command: new name:Str,age:I64,salary:Float\n"
+"Created table. Schema: name:Str,age:I64,salary:Float\n"
+"Enter a command: add John Doe,44,3500\n"
+"Row prepended: \"John Doe\",44,3500.0\n"
+"Enter a command: add Jane Doe,50,4000\n"
+"Row prepended: \"Jane Doe\",50,4000.0\n"
+"Enter a command: get 1\n"
+"Row 1: \"Jane Doe\",50,4000.0\n"
+"Enter a command: column salary\n"
+"Column salary:\n"
+"4000.0\n"
+"3500.0\n"
+"\n"
+"Enter a command: quit\n"
+"Goodbye.\n"
+msgstr "```repl Tutorial.Predicates> :exec main 输入命令：新名称：Str,age:Int64,salary:Float 不是列类型：Int64 输入命令：新名称：Str,age:I64,salary:Float Created桌子。架构：name:Str,age:I64,salary:Float 输入命令：add John Doe,44,3500 前置行：“John Doe”,44,3500.0 输入命令：add Jane Doe,50,4000 前置行：“ Jane Doe\",50,4000.0 输入命令：获取 1 第 1 行：\"Jane Doe\",50,4000.0 输入命令：列工资 列工资：4000.0 3500.0"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1367

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,44 +16,397 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-msgid "### Exercises part 2"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-msgid "## Conclusion"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, no-wrap
+msgid "Exercises part 2"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, no-wrap
+msgid "Exercises part 3"
+msgstr ""
+
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, no-wrap
+msgid "Conclusion"
 msgstr ""
 
 #. type: Plain text
@@ -64,56 +417,10 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-msgid "<!-- vi: filetype=idris2 -->"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-msgid "%default total ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:750 ../src/Tutorial/Predicates.md:1357
-msgid "Enter a command: quit Goodbye.  ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
-#: ../src/Tutorial/Predicates.md:495
-msgid "```idris data ColType = I64 | Str | Boolean | Float"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1095 ../src/Tutorial/Predicates.md:1294
 #, no-wrap
 msgid ""
-"```idris\n"
-"encodeField : (t : ColType) -> IdrisType t -> String\n"
-"encodeField I64     x     = show x\n"
-"encodeField Str     x     = show x\n"
-"encodeField Boolean True  = \"t\"\n"
-"encodeField Boolean False = \"f\"\n"
-"encodeField Float   x     = show x\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1127 ../src/Tutorial/Predicates.md:1334
-msgid "covering main : IO ()  main = runProg $ MkTable [] _ [] ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Eq.md:38 ../src/Tutorial/Predicates.md:501
-#, no-wrap
-msgid ""
-"IdrisType : ColType -> Type\n"
-"IdrisType I64     = Int64\n"
-"IdrisType Str     = String\n"
-"IdrisType Boolean = Bool\n"
-"IdrisType Float   = Double\n"
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 
 #. type: Plain text
@@ -123,9 +430,10 @@ msgstr ""
 msgid "And at the REPL:"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:2
-msgid "# Predicates and Proof Search"
+#. type: Title #
+#: ../src/Tutorial/Predicates.md:1
+#, no-wrap
+msgid "Predicates and Proof Search"
 msgstr ""
 
 #. type: Plain text
@@ -141,25 +449,28 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:15
-msgid "```idris module Tutorial.Predicates"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:22
+#: ../src/Tutorial/Predicates.md:13
+#, no-wrap
 msgid ""
-"import Data.Either import Data.List1 import Data.String import Data.Vect "
-"import Data.HList import Decidable.Equality"
+"module Tutorial.Predicates\n"
+"\n"
+"import Data.Either\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"import Data.HList\n"
+"import Decidable.Equality\n"
+"\n"
+"import Text.CSV\n"
+"import System.File\n"
+"\n"
+"%default total\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:25
-msgid "import Text.CSV import System.File"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:30
-msgid "## Preconditions"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:29
+#, no-wrap
+msgid "Preconditions"
 msgstr ""
 
 #. type: Plain text
@@ -253,9 +564,10 @@ msgid ""
 "functions nice to use at runtime *and* compile time."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:102
-msgid "### Example: Non-empty Lists"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:101
+#, no-wrap
+msgid "Example: Non-empty Lists"
 msgstr ""
 
 #. type: Plain text
@@ -267,13 +579,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:112
+#: ../src/Tutorial/Predicates.md:108
 #, no-wrap
 msgid ""
-"```idris\n"
 "data NotNil : (as : List a) -> Type where\n"
 "  IsNotNil : NotNil (h :: t)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -285,10 +595,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:123
+#: ../src/Tutorial/Predicates.md:118
+#, no-wrap
 msgid ""
-"```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = "
-"h head1 [] IsNotNil impossible ```"
+"head1 : (as : List a) -> (0 _ : NotNil as) -> a\n"
+"head1 (h :: _) _ = h\n"
+"head1 [] IsNotNil impossible\n"
 msgstr ""
 
 #. type: Plain text
@@ -316,8 +628,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:143
-msgid "```idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
+#: ../src/Tutorial/Predicates.md:139
+#, no-wrap
+msgid ""
+"headEx1 : Nat\n"
+"headEx1 = head1 [1,2,3] IsNotNil\n"
 msgstr ""
 
 #. type: Plain text
@@ -333,22 +648,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:156
+#: ../src/Tutorial/Predicates.md:153
 #, no-wrap
 msgid ""
-"```idris\n"
 "Uninhabited (NotNil []) where\n"
 "  uninhabited IsNotNil impossible\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:161
-#, no-wrap
-msgid ""
+"\n"
 "nonEmpty : (as : List a) -> Dec (NotNil as)\n"
 "nonEmpty (x :: xs) = Yes IsNotNil\n"
 "nonEmpty []        = No uninhabited\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -359,15 +667,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:171
+#: ../src/Tutorial/Predicates.md:165
 #, no-wrap
 msgid ""
-"```idris\n"
 "headMaybe1 : List a -> Maybe a\n"
 "headMaybe1 as = case nonEmpty as of\n"
 "  Yes prf => Just $ head1 as prf\n"
 "  No  _   => Nothing\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -379,9 +685,10 @@ msgid ""
 "to create."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:178
-msgid "### Auto Implicits"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:177
+#, no-wrap
+msgid "Auto Implicits"
 msgstr ""
 
 #. type: Plain text
@@ -404,14 +711,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:196
+#: ../src/Tutorial/Predicates.md:191
 #, no-wrap
 msgid ""
-"```idris\n"
 "replicate' : {n : _} -> a -> Vect n a\n"
 "replicate' {n = 0}   _ = []\n"
 "replicate' {n = S _} v = v :: replicate' v\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -424,8 +729,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:207
-msgid "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
+#: ../src/Tutorial/Predicates.md:203
+#, no-wrap
+msgid ""
+"replicateEx1 : Vect 3 Nat\n"
+"replicateEx1 = replicate' 12\n"
 msgstr ""
 
 #. type: Plain text
@@ -437,10 +745,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:216
+#: ../src/Tutorial/Predicates.md:212
+#, no-wrap
 msgid ""
-"```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 "
-"```"
+"replicateEx2 : {n : _} -> Vect n Nat\n"
+"replicateEx2 = replicate' 12\n"
 msgstr ""
 
 #. type: Plain text
@@ -454,10 +763,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:228
+#: ../src/Tutorial/Predicates.md:224
+#, no-wrap
 msgid ""
-"```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} "
-"12 ```"
+"replicateEx3 : List Nat\n"
+"replicateEx3 = toList $ replicate' {n = 17} 12\n"
 msgstr ""
 
 #. type: Plain text
@@ -470,10 +780,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:240
+#: ../src/Tutorial/Predicates.md:235
+#, no-wrap
 msgid ""
-"```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) "
-"= x head [] impossible ```"
+"head : (as : List a) -> {auto 0 prf : NotNil as} -> a\n"
+"head (x :: _) = x\n"
+"head [] impossible\n"
 msgstr ""
 
 #. type: Plain text
@@ -494,8 +806,11 @@ msgid "Let's see this in action:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:256
-msgid "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
+#: ../src/Tutorial/Predicates.md:252
+#, no-wrap
+msgid ""
+"headEx3 : Nat\n"
+"headEx3 = Predicates.head [1,2,3]\n"
 msgstr ""
 
 #. type: Plain text
@@ -504,35 +819,38 @@ msgid "The following example fails with an error:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:264
+#: ../src/Tutorial/Predicates.md:259
 #, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Can't find an implementation\\nfor NotNil [].\"\n"
 "  errHead : Nat\n"
 "  errHead = Predicates.head []\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:276
+#, no-wrap
 msgid ""
-"Wait! \"Can't find an implementation for...\"? Is this not the error message "
-"we get for missing interface implementations? That's correct, and I'll show "
-"you that interface resolution is just proof search at the end of this "
-"chapter. What I can show you already, is that writing the lengthy `{auto "
-"prf : t} ->` all the times can be cumbersome. Idris therefore allows us to "
-"use the same syntax as for constrained functions instead: `(prf : t) =>`, or "
-"even `t =>`, if we don't need to name the constraint. As usual, we can then "
-"access a constraint in the function body by its name (if any). Here is "
-"another implementation of `head`:"
+"Wait! \"Can't find an implementation for...\"? Is this not the\n"
+"error message we get for missing interface implementations?\n"
+"That's correct, and I'll show you that interface resolution\n"
+"is just proof search at the end of this chapter. What I can\n"
+"show you already, is that writing the lengthy `{auto prf : t} ->`\n"
+"all the times can be cumbersome. Idris therefore allows us\n"
+"to use the same syntax as for constrained functions instead:\n"
+"`(prf : t) =>`, or even `t =>`, if we don't need to name the\n"
+"constraint. As usual, we can then access a constraint in the\n"
+"function body by its name (if any). Here is another implementation\n"
+"of `head`:\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:282
+#: ../src/Tutorial/Predicates.md:277
+#, no-wrap
 msgid ""
-"```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x "
-"head' [] impossible ```"
+"head' : (as : List a) -> (0 _ : NotNil as) => a\n"
+"head' (x :: _) = x\n"
+"head' [] impossible\n"
 msgstr ""
 
 #. type: Plain text
@@ -544,16 +862,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:295
+#: ../src/Tutorial/Predicates.md:288
 #, no-wrap
 msgid ""
-"```idris\n"
 "headMaybe : List a -> Maybe a\n"
 "headMaybe as = case nonEmpty as of\n"
 "  -- `prf` is available during proof seach\n"
 "  Yes prf => Just $ Predicates.head as\n"
 "  No  _   => Nothing\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -626,9 +942,10 @@ msgid ""
 "IsLeft`, `Data.Either.IsRight`, and `Data.Nat.IsSucc`."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:341
-msgid "## Contracts between Values"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:340
+#, no-wrap
+msgid "Contracts between Values"
 msgstr ""
 
 #. type: Plain text
@@ -639,9 +956,10 @@ msgid ""
 "values of possibly distinct types."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:348
-msgid "### The `Elem` Predicate"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:347
+#, no-wrap
+msgid "The `Elem` Predicate"
 msgstr ""
 
 #. type: Plain text
@@ -652,8 +970,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:355
-msgid "```idris get' : (0 t : Type) -> HList ts -> t ```"
+#: ../src/Tutorial/Predicates.md:352
+#, no-wrap
+msgid "get' : (0 t : Type) -> HList ts -> t\n"
 msgstr ""
 
 #. type: Plain text
@@ -664,8 +983,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:363
-msgid "```idris voidAgain : Void voidAgain = get' Void [] ```"
+#: ../src/Tutorial/Predicates.md:359
+#, no-wrap
+msgid ""
+"voidAgain : Void\n"
+"voidAgain = get' Void []\n"
 msgstr ""
 
 #. type: Plain text
@@ -677,14 +999,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:373
+#: ../src/Tutorial/Predicates.md:368
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Elem : (elem : a) -> (as : List a) -> Type where\n"
 "  Here  : Elem x (x :: xs)\n"
 "  There : Elem x xs -> Elem x (y :: xs)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -702,19 +1022,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:390
-msgid "```idris MyList : List Nat MyList = [1,3,7,8,4,12]"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:393
-msgid "oneElemMyList : Elem 1 MyList oneElemMyList = Here"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:397
+#: ../src/Tutorial/Predicates.md:387
+#, no-wrap
 msgid ""
-"sevenElemMyList : Elem 7 MyList sevenElemMyList = There $ There Here ```"
+"MyList : List Nat\n"
+"MyList = [1,3,7,8,4,12]\n"
+"\n"
+"oneElemMyList : Elem 1 MyList\n"
+"oneElemMyList = Here\n"
+"\n"
+"sevenElemMyList : Elem 7 MyList\n"
+"sevenElemMyList = There $ There Here\n"
 msgstr ""
 
 #. type: Plain text
@@ -733,8 +1051,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:409
-msgid "```idris get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t ```"
+#: ../src/Tutorial/Predicates.md:406
+#, no-wrap
+msgid "get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t\n"
 msgstr ""
 
 #. type: Plain text
@@ -747,14 +1066,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:421
+#: ../src/Tutorial/Predicates.md:416
 #, no-wrap
 msgid ""
-"```idris\n"
 "get t (v :: vs) {prf = Here}    = v\n"
 "get t (v :: vs) {prf = There p} = get t vs\n"
 "get _ [] impossible\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -771,21 +1088,17 @@ msgid "Let's give this a spin at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:433
-msgid ""
-"```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 Tutorial."
-"Predicates> get Nat [\"foo\", Just \"bar\"] Error: Can't find an "
-"implementation for Elem Nat [String, Maybe String]."
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:438
+#: ../src/Tutorial/Predicates.md:428
 #, no-wrap
 msgid ""
+"Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z]\n"
+"1\n"
+"Tutorial.Predicates> get Nat [\"foo\", Just \"bar\"]\n"
+"Error: Can't find an implementation for Elem Nat [String, Maybe String].\n"
+"\n"
 "(Interactive):1:1--1:28\n"
 " 1 | get Nat [\"foo\", Just \"bar\"]\n"
 "     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -800,14 +1113,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:450
-msgid "```idris Tps : List Type Tps = List.replicate 50 Nat ++ [Maybe String]"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:459
+#: ../src/Tutorial/Predicates.md:447
 #, no-wrap
 msgid ""
+"Tps : List Type\n"
+"Tps = List.replicate 50 Nat ++ [Maybe String]\n"
+"\n"
 "hlist : HList Tps\n"
 "hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
 "        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
@@ -815,14 +1126,14 @@ msgid ""
 "        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
 "        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
 "        , Nothing ]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:466
+#: ../src/Tutorial/Predicates.md:462
+#, no-wrap
 msgid ""
-"```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an "
-"implementation for Elem (Maybe String) [Nat,...  ```"
+"Tutorial.Predicates> get (Maybe String) hlist\n"
+"Error: Can't find an implementation for Elem (Maybe String) [Nat,...\n"
 msgstr ""
 
 #. type: Plain text
@@ -837,19 +1148,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:479
+#: ../src/Tutorial/Predicates.md:475
+#, no-wrap
 msgid ""
-"```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
+"%auto_implicit_depth 100\n"
+"aMaybe : Maybe String\n"
+"aMaybe = get _ hlist\n"
+"\n"
+"%auto_implicit_depth 25\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:482
-msgid "%auto_implicit_depth 25 ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:484
-msgid "### Use Case: A nicer Schema"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:483
+#, no-wrap
+msgid "Use Case: A nicer Schema"
 msgstr ""
 
 #. type: Plain text
@@ -864,54 +1176,41 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:506
+#: ../src/Tutorial/Predicates.md:493
 #, no-wrap
 msgid ""
+"data ColType = I64 | Str | Boolean | Float\n"
+"\n"
+"IdrisType : ColType -> Type\n"
+"IdrisType I64     = Int64\n"
+"IdrisType Str     = String\n"
+"IdrisType Boolean = Bool\n"
+"IdrisType Float   = Double\n"
+"\n"
 "record Column where\n"
 "  constructor MkColumn\n"
 "  name : String\n"
 "  type : ColType\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:508
-msgid "infixr 8 :>"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:511
-msgid "(:>) : String -> ColType -> Column (:>) = MkColumn"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:514
-msgid "Schema : Type Schema = List Column"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:520
-#, no-wrap
-msgid ""
+"\n"
+"infixr 8 :>\n"
+"\n"
+"(:>) : String -> ColType -> Column\n"
+"(:>) = MkColumn\n"
+"\n"
+"Schema : Type\n"
+"Schema = List Column\n"
+"\n"
 "Show ColType where\n"
 "  show I64     = \"I64\"\n"
 "  show Str     = \"Str\"\n"
 "  show Boolean = \"Boolean\"\n"
 "  show Float   = \"Float\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:523
-#, no-wrap
-msgid ""
+"\n"
 "Show Column where\n"
 "  show (MkColumn n ct) = \"\\{n}:\\{show ct}\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:527
-msgid ""
-"showSchema : Schema -> String showSchema = concat . intersperse \",\" . map "
-"show ```"
+"\n"
+"showSchema : Schema -> String\n"
+"showSchema = concat . intersperse \",\" . map show\n"
 msgstr ""
 
 #. type: Plain text
@@ -923,10 +1222,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:542
+#: ../src/Tutorial/Predicates.md:532
 #, no-wrap
 msgid ""
-"```idris\n"
 "EmployeeSchema : Schema\n"
 "EmployeeSchema = [ \"firstName\"  :> Str\n"
 "                 , \"lastName\"   :> Str\n"
@@ -935,7 +1233,6 @@ msgid ""
 "                 , \"salary\"     :> Float\n"
 "                 , \"management\" :> Boolean\n"
 "                 ]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -949,24 +1246,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:553
+#: ../src/Tutorial/Predicates.md:550
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Row : Schema -> Type where\n"
 "  Nil  : Row []\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:560
-#, no-wrap
-msgid ""
+"\n"
 "  (::) :  {0 name : String}\n"
 "       -> {0 type : ColType}\n"
 "       -> (v : IdrisType type)\n"
 "       -> Row ss\n"
 "       -> Row (name :> type :: ss)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -983,15 +1273,14 @@ msgid "We can now define a type alias for CSV rows representing employees:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:571
-msgid "```idris 0 Employee : Type Employee = Row EmployeeSchema"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:575
+#: ../src/Tutorial/Predicates.md:568
+#, no-wrap
 msgid ""
-"hock : Employee hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, "
-"False ] ```"
+"0 Employee : Type\n"
+"Employee = Row EmployeeSchema\n"
+"\n"
+"hock : Employee\n"
+"hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, False ]\n"
 msgstr ""
 
 #. type: Plain text
@@ -1024,10 +1313,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:611
+#: ../src/Tutorial/Predicates.md:603
 #, no-wrap
 msgid ""
-"```idris\n"
 "data InSchema :  (name    : String)\n"
 "              -> (schema  : Schema)\n"
 "              -> (colType : ColType)\n"
@@ -1035,16 +1323,10 @@ msgid ""
 "  [search name schema]\n"
 "  IsHere  : InSchema n (n :> t :: ss) t\n"
 "  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:616
-#, no-wrap
-msgid ""
+"\n"
 "Uninhabited (InSchema n [] c) where\n"
 "  uninhabited IsHere impossible\n"
 "  uninhabited (IsThere _) impossible\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1055,10 +1337,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:629
+#: ../src/Tutorial/Predicates.md:620
 #, no-wrap
 msgid ""
-"```idris\n"
 "getAt :  {0 ss : Schema}\n"
 "      -> (name : String)\n"
 "      -> (row  : Row ss)\n"
@@ -1066,7 +1347,6 @@ msgid ""
 "      => IdrisType c\n"
 "getAt name (v :: vs) {prf = IsHere}    = v\n"
 "getAt name (_ :: vs) {prf = IsThere p} = getAt name vs\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1081,10 +1361,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:648
+#: ../src/Tutorial/Predicates.md:639
 #, no-wrap
 msgid ""
-"```idris\n"
 "shoeck : String\n"
 "shoeck =  getAt \"firstName\" hock\n"
 "       ++ \" \"\n"
@@ -1092,7 +1371,6 @@ msgid ""
 "       ++ \": \"\n"
 "       ++ show (getAt \"age\" hock)\n"
 "       ++ \" years old.\"\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1108,10 +1386,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:667
+#: ../src/Tutorial/Predicates.md:658
 #, no-wrap
 msgid ""
-"```idris\n"
 "inSchema : (ss : Schema) -> (n : String) -> Maybe (c ** InSchema n ss c)\n"
 "inSchema []                    _ = Nothing\n"
 "inSchema (MkColumn cn t :: xs) n = case decEq cn n of\n"
@@ -1119,7 +1396,6 @@ msgid ""
 "  No  contra => case inSchema xs n of\n"
 "    Just (t ** prf) => Just $ (t ** IsThere prf)\n"
 "    Nothing         => Nothing\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1178,9 +1454,10 @@ msgid ""
 "   schema.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:700
-msgid "## Use Case: Flexible Error Handling"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:699
+#, no-wrap
+msgid "Use Case: Flexible Error Handling"
 msgstr ""
 
 #. type: Plain text
@@ -1202,42 +1479,26 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:723
+#: ../src/Tutorial/Predicates.md:719
 #, no-wrap
 msgid ""
-"```idris\n"
 "record NoNat where\n"
 "  constructor MkNoNat\n"
 "  str : String\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:726
-msgid ""
-"readNat' : String -> Either NoNat Nat readNat' s = maybeToEither (MkNoNat s) "
-"$ parsePositive s"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:730
-#, no-wrap
-msgid ""
+"\n"
+"readNat' : String -> Either NoNat Nat\n"
+"readNat' s = maybeToEither (MkNoNat s) $ parsePositive s\n"
+"\n"
 "record NoColType where\n"
 "  constructor MkNoColType\n"
 "  str : String\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:738
-#, no-wrap
-msgid ""
+"\n"
 "readColType' : String -> Either NoColType ColType\n"
 "readColType' \"I64\"     = Right I64\n"
 "readColType' \"Str\"     = Right Str\n"
 "readColType' \"Boolean\" = Right Boolean\n"
 "readColType' \"Float\"   = Right Float\n"
 "readColType' s         = Left $ MkNoColType s\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1251,25 +1512,18 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:752
+#: ../src/Tutorial/Predicates.md:747
 #, no-wrap
 msgid ""
-"```idris\n"
 "record OutOfBounds where\n"
 "  constructor MkOutOfBounds\n"
 "  size  : Nat\n"
 "  index : Nat\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:758
-#, no-wrap
-msgid ""
+"\n"
 "readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)\n"
 "readFin' s = do\n"
 "  ix <- mapFst Left (readNat' s)\n"
 "  maybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1285,13 +1539,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:772
+#: ../src/Tutorial/Predicates.md:768
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Sum : List Type -> Type where\n"
 "  MkSum : (val : t) -> Sum ts\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1308,23 +1560,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:788
+#: ../src/Tutorial/Predicates.md:784
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Has :  (v : a) -> (vs  : Vect n a) -> Type where\n"
 "  Z : Has v (v :: vs)\n"
 "  S : Has v vs -> Has v (w :: vs)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:793
-#, no-wrap
-msgid ""
+"\n"
 "Uninhabited (Has v []) where\n"
 "  uninhabited Z impossible\n"
 "  uninhabited (S _) impossible\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1335,21 +1580,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:801
+#: ../src/Tutorial/Predicates.md:798
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Union : Vect n Type -> Type where\n"
 "  U : (ix : Has t ts) -> (val : t) -> Union ts\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:805
-#, no-wrap
-msgid ""
+"\n"
 "Uninhabited (Union []) where\n"
 "  uninhabited (U ix _) = absurd ix\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1363,10 +1601,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:816
+#: ../src/Tutorial/Predicates.md:812
+#, no-wrap
 msgid ""
-"```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t "
-"```"
+"0 Err : Vect n Type -> Type -> Type\n"
+"Err ts t = Either (Union ts) t\n"
 msgstr ""
 
 #. type: Plain text
@@ -1377,21 +1616,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:824
+#: ../src/Tutorial/Predicates.md:821
+#, no-wrap
 msgid ""
-"```idris inject : (prf : Has t ts) => (v : t) -> Union ts inject v = U prf v"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:827
-msgid "fail : Has t ts => (err : t) -> Err ts a fail err = Left $ inject err"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:831
-msgid ""
-"failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a failMaybe err "
-"= maybeToEither (inject err)  ```"
+"inject : (prf : Has t ts) => (v : t) -> Union ts\n"
+"inject v = U prf v\n"
+"\n"
+"fail : Has t ts => (err : t) -> Err ts a\n"
+"fail err = Left $ inject err\n"
+"\n"
+"failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a\n"
+"failMaybe err = maybeToEither (inject err)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1401,23 +1636,18 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:838
-msgid ""
-"```idris readNat : Has NoNat ts => String -> Err ts Nat readNat s = "
-"failMaybe (MkNoNat s) $ parsePositive s"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:846
+#: ../src/Tutorial/Predicates.md:835
 #, no-wrap
 msgid ""
+"readNat : Has NoNat ts => String -> Err ts Nat\n"
+"readNat s = failMaybe (MkNoNat s) $ parsePositive s\n"
+"\n"
 "readColType : Has NoColType ts => String -> Err ts ColType\n"
 "readColType \"I64\"     = Right I64\n"
 "readColType \"Str\"     = Right Str\n"
 "readColType \"Boolean\" = Right Boolean\n"
 "readColType \"Float\"   = Right Float\n"
 "readColType s         = fail $ MkNoColType s\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1428,14 +1658,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:855
+#: ../src/Tutorial/Predicates.md:850
 #, no-wrap
 msgid ""
-"```idris\n"
 "0 Errs : List Type -> Vect n Type -> Type\n"
 "Errs []        _  = ()\n"
 "Errs (x :: xs) ts = (Has x ts, Errs xs ts)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1447,15 +1675,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:868
+#: ../src/Tutorial/Predicates.md:862
 #, no-wrap
 msgid ""
-"```idris\n"
 "readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)\n"
 "readFin s = do\n"
 "  S ix <- readNat s | Z => fail (MkOutOfBounds n Z)\n"
 "  failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1464,51 +1690,29 @@ msgid "As a last example, here are parsers for schemata and CSV rows:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:875
-msgid ""
-"```idris fromCSV : String -> List String fromCSV = forget . split (',' ==)"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:879
+#: ../src/Tutorial/Predicates.md:872
 #, no-wrap
 msgid ""
+"fromCSV : String -> List String\n"
+"fromCSV = forget . split (',' ==)\n"
+"\n"
 "record InvalidColumn where\n"
 "  constructor MkInvalidColumn\n"
 "  str : String\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:884
-#, no-wrap
-msgid ""
+"\n"
 "readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts Column\n"
 "readColumn s = case forget $ split (':' ==) s of\n"
 "  [n,ct] => MkColumn n <$> readColType ct\n"
 "  _      => fail $ MkInvalidColumn s\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:887
-msgid ""
-"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema "
-"readSchema = traverse readColumn . fromCSV"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:892
-#, no-wrap
-msgid ""
+"\n"
+"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema\n"
+"readSchema = traverse readColumn . fromCSV\n"
+"\n"
 "data RowError : Type where\n"
 "  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError\n"
 "  UnexpectedEOI : (row, col : Nat) -> RowError\n"
 "  ExpectedEOI   : (row, col : Nat) -> RowError\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:905
-#, no-wrap
-msgid ""
+"\n"
 "decodeField :  Has RowError ts\n"
 "            => (row,col : Nat)\n"
 "            -> (c : ColType)\n"
@@ -1521,12 +1725,7 @@ msgid ""
 "        Str     => failMaybe err $ read s\n"
 "        Boolean => failMaybe err $ read s\n"
 "        Float   => failMaybe err $ read s\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:919
-#, no-wrap
-msgid ""
+"\n"
 "decodeRow :  Has RowError ts\n"
 "          => {s : _}\n"
 "          -> (row : Nat)\n"
@@ -1539,7 +1738,6 @@ msgid ""
 "        go k (_ :: _) []                    = fail $ UnexpectedEOI row k\n"
 "        go k (MkColumn n c :: cs) (s :: ss) =\n"
 "          [| decodeField row k c s :: go (S k) cs ss |]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1552,18 +1750,22 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:935
+#: ../src/Tutorial/Predicates.md:926
+#, no-wrap
 msgid ""
-"```repl Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,"
-"InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:bar\" Left (U Z "
-"(MkNoColType \"bar\"))  Tutorial.Predicates> readSchema {ts} \"foo:Float\" "
-"Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema {ts} \"foo "
-"Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\"))  ```"
+"Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,InvalidColumn]\n"
+"Tutorial.Predicates> readSchema {ts} \"foo:bar\"\n"
+"Left (U Z (MkNoColType \"bar\"))\n"
+"Tutorial.Predicates> readSchema {ts} \"foo:Float\"\n"
+"Right [MkColumn \"foo\" Float]\n"
+"Tutorial.Predicates> readSchema {ts} \"foo Float\"\n"
+"Left (U (S (S Z)) (MkInvalidColumn \"foo Float\"))\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:937
-msgid "### Error Handling"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:936
+#, no-wrap
+msgid "Error Handling"
 msgstr ""
 
 #. type: Plain text
@@ -1587,15 +1789,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:957
+#: ../src/Tutorial/Predicates.md:951
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where\n"
 "  [search v vs]\n"
 "  RZ : Rem v (v :: rem) rem\n"
 "  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1607,10 +1807,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:972
+#: ../src/Tutorial/Predicates.md:963
 #, no-wrap
 msgid ""
-"```idris\n"
 "split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)\n"
 "split {prf = RZ}   (U Z     val) = Left val\n"
 "split {prf = RZ}   (U (S x) val) = Right (U x val)\n"
@@ -1618,7 +1817,6 @@ msgid ""
 "split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of\n"
 "  Left vt        => Left vt\n"
 "  Right (U ix y) => Right $ U (S ix) y\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1639,10 +1837,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:994
+#: ../src/Tutorial/Predicates.md:983
 #, no-wrap
 msgid ""
-"```idris\n"
 "handle :  Applicative f\n"
 "       => Rem t ts rem\n"
 "       => (h : t -> f a)\n"
@@ -1652,7 +1849,6 @@ msgid ""
 "  Left v    => Right <$> h v\n"
 "  Right err => pure $ Left err\n"
 "handle _ (Right x) = pure $ Right x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1663,35 +1859,23 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1005
+#: ../src/Tutorial/Predicates.md:999
 #, no-wrap
 msgid ""
-"```idris\n"
 "namespace Handler\n"
 "  public export\n"
 "  data Handler : (ts : Vect n Type) -> (a : Type) -> Type where\n"
 "    Nil  : Handler [] a\n"
 "    (::) : (t -> a) -> Handler ts a -> Handler (t :: ts) a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1010
-#, no-wrap
-msgid ""
+"\n"
 "extract : Handler ts a -> Has t ts -> t -> a\n"
 "extract (f :: _)  Z     val = f val\n"
 "extract (_ :: fs) (S y) val = extract fs y val\n"
 "extract []        ix    _   = absurd ix\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1015
-#, no-wrap
-msgid ""
+"\n"
 "handleAll : Applicative f => Handler ts (f a) -> Err ts a -> f a\n"
 "handleAll _ (Right v)       = pure v\n"
 "handleAll h (Left $ U ix v) = extract h ix v\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1707,44 +1891,30 @@ msgid "Implement the following utility functions for `Union`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1026
+#: ../src/Tutorial/Predicates.md:1024
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1028
-#, no-wrap
-msgid "   project1 : Union [t] -> t\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1034
-#, no-wrap
-msgid ""
+"\n"
+"   project1 : Union [t] -> t\n"
+"\n"
 "   safe : Err [] a -> a\n"
-"   ```\n"
-"2. Implement the following two functions for embedding\n"
-"   an open union in a larger set of possibilities.\n"
-"   Note the unerased implicit in `extend`!\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Predicates.md:1034
+msgid ""
+"Implement the following two functions for embedding an open union in a "
+"larger set of possibilities.  Note the unerased implicit in `extend`!"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1037
+#: ../src/Tutorial/Predicates.md:1035
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   weaken : Union ts -> Union (ts ++ ss)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1040
-#, no-wrap
-msgid ""
+"\n"
 "   extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '3. '
@@ -1755,14 +1925,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1049
+#: ../src/Tutorial/Predicates.md:1044
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   embedTest :  Err [NoNat,NoColType] a\n"
 "             -> Err [FileError, NoColType, OutOfBounds, NoNat] a\n"
 "   embedTest = mapFst embed\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '4. '
@@ -1772,9 +1940,10 @@ msgid ""
 "question to an `f (Err rem a)`."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1054
-msgid "## The Truth about Interfaces"
+#. type: Title ##
+#: ../src/Tutorial/Predicates.md:1053
+#, no-wrap
+msgid "The Truth about Interfaces"
 msgstr ""
 
 #. type: Plain text
@@ -1792,23 +1961,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1070
+#: ../src/Tutorial/Predicates.md:1066
 #, no-wrap
 msgid ""
-"```idris\n"
 "isElem1 : Eq a => a -> List a -> Bool\n"
 "isElem1 v []        = False\n"
 "isElem1 v (x :: xs) = x == v || isElem1 v xs\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1075
-#, no-wrap
-msgid ""
+"\n"
 "isElem2 : {auto _ : Eq a} -> a -> List a -> Bool\n"
 "isElem2 v []        = False\n"
 "isElem2 v (x :: xs) = x == v || isElem2 v xs\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1819,13 +1981,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1084
-msgid "```idris eq : Eq a -> a -> a -> Bool eq (MkEq feq fneq) = feq ```"
+#: ../src/Tutorial/Predicates.md:1080
+#, no-wrap
+msgid ""
+"eq : Eq a -> a -> a -> Bool\n"
+"eq (MkEq feq fneq) = feq\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1086
-msgid "### A manual Interface Definition"
+#. type: Title ###
+#: ../src/Tutorial/Predicates.md:1085
+#, no-wrap
+msgid "A manual Interface Definition"
 msgstr ""
 
 #. type: Plain text
@@ -1838,14 +2004,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1099
+#: ../src/Tutorial/Predicates.md:1094
 #, no-wrap
 msgid ""
-"```idris\n"
 "record Print a where\n"
 "  constructor MkPrint\n"
 "  print' : a -> String\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1857,8 +2021,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1109
-msgid "```idris print : Print a => a -> String print = print' %search ```"
+#: ../src/Tutorial/Predicates.md:1105
+#, no-wrap
+msgid ""
+"print : Print a => a -> String\n"
+"print = print' %search\n"
 msgstr ""
 
 #. type: Plain text
@@ -1869,9 +2036,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1117
+#: ../src/Tutorial/Predicates.md:1113
+#, no-wrap
 msgid ""
-"```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
+"print2 : (impl : Print a) => a -> String\n"
+"print2 = print' impl\n"
 msgstr ""
 
 #. type: Plain text
@@ -1882,18 +2051,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1125
+#: ../src/Tutorial/Predicates.md:1121
+#, no-wrap
 msgid ""
-"```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl "
-"```"
+"print3 : {auto impl : Print a} -> a -> String\n"
+"print3 = print' impl\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1129
+#, no-wrap
 msgid ""
-"All three versions of `print` behave exactly the same at runtime.  So, "
-"whenever we write `{auto x : Foo} ->` we can just as well write `(x : Foo) "
-"=>` and vice versa."
+"All three versions of `print` behave exactly the same at runtime.\n"
+"So, whenever we write `{auto x : Foo} ->` we can just as well\n"
+"write `(x : Foo) =>` and vice versa.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1905,30 +2076,21 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1138
-msgid ""
-"```idris %hint noNatPrint : Print NoNat noNatPrint = MkPrint $ \\e => \"Not "
-"a natural number: \\{e.str}\""
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1142
-msgid ""
-"%hint noColTypePrint : Print NoColType noColTypePrint = MkPrint $ \\e => "
-"\"Not a column type: \\{e.str}\""
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1146
-msgid ""
-"%hint outOfBoundsPrint : Print OutOfBounds outOfBoundsPrint = MkPrint $ \\e "
-"=> \"Index is out of bounds: \\{show e.index}\""
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1157
+#: ../src/Tutorial/Predicates.md:1134
 #, no-wrap
 msgid ""
+"%hint\n"
+"noNatPrint : Print NoNat\n"
+"noNatPrint = MkPrint $ \\e => \"Not a natural number: \\{e.str}\"\n"
+"\n"
+"%hint\n"
+"noColTypePrint : Print NoColType\n"
+"noColTypePrint = MkPrint $ \\e => \"Not a column type: \\{e.str}\"\n"
+"\n"
+"%hint\n"
+"outOfBoundsPrint : Print OutOfBounds\n"
+"outOfBoundsPrint = MkPrint $ \\e => \"Index is out of bounds: \\{show e.index}\"\n"
+"\n"
 "%hint\n"
 "rowErrorPrint : Print RowError\n"
 "rowErrorPrint = MkPrint $\n"
@@ -1938,7 +2100,6 @@ msgid ""
 "          \"Unexpected end of input in row \\{show r}, column \\{show c}.\"\n"
 "        ExpectedEOI r c =>\n"
 "          \"Expected end of input in row \\{show r}, column \\{show c}.\"\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1950,29 +2111,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1167
+#: ../src/Tutorial/Predicates.md:1163
 #, no-wrap
 msgid ""
-"```idris\n"
 "0 All : (f : a -> Type) -> Vect n a -> Type\n"
 "All f []        = ()\n"
 "All f (x :: xs) = (f x, All f xs)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1171
-#, no-wrap
-msgid ""
+"\n"
 "unionPrintImpl : All Print ts => Union ts -> String\n"
 "unionPrintImpl (U Z val)     = print val\n"
 "unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1176
-msgid ""
-"%hint unionPrint : All Print ts => Print (Union ts)  unionPrint = MkPrint "
-"unionPrintImpl ```"
+"\n"
+"%hint\n"
+"unionPrint : All Print ts => Print (Union ts)\n"
+"unionPrint = MkPrint unionPrintImpl\n"
 msgstr ""
 
 #. type: Plain text
@@ -1985,9 +2137,10 @@ msgid ""
 "made the corresponding values and functions available during proof search."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1186
-msgid "#### Parsing CSV Commands"
+#. type: Title ####
+#: ../src/Tutorial/Predicates.md:1185
+#, no-wrap
+msgid "Parsing CSV Commands"
 msgstr ""
 
 #. type: Plain text
@@ -2009,21 +2162,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1205
+#: ../src/Tutorial/Predicates.md:1199
 #, no-wrap
 msgid ""
-"```idris\n"
 "record Table where\n"
 "  constructor MkTable\n"
 "  schema : Schema\n"
 "  size   : Nat\n"
 "  rows   : Vect size (Row schema)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1218
-#, no-wrap
-msgid ""
+"\n"
 "data Command : (t : Table) -> Type where\n"
 "  PrintSchema :  Command t\n"
 "  PrintSize   :  Command t\n"
@@ -2036,12 +2183,7 @@ msgid ""
 "              -> (prf  : InSchema name t.schema tpe)\n"
 "              -> Command t\n"
 "  Quit        : Command t\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1231
-#, no-wrap
-msgid ""
+"\n"
 "applyCommand : (t : Table) -> Command t -> Table\n"
 "applyCommand t                 PrintSchema = t\n"
 "applyCommand t                 PrintSize   = t\n"
@@ -2053,7 +2195,6 @@ msgid ""
 "applyCommand (MkTable ts n rs) (Delete x)  = case n of\n"
 "  S k => MkTable ts k (deleteAt x rs)\n"
 "  Z   => absurd x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -2065,42 +2206,25 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1240
+#: ../src/Tutorial/Predicates.md:1236
 #, no-wrap
 msgid ""
-"```idris\n"
 "record UnknownCommand where\n"
 "  constructor MkUnknownCommand\n"
 "  str : String\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1244
-msgid ""
-"%hint unknownCommandPrint : Print UnknownCommand unknownCommandPrint = "
-"MkPrint $ \\v => \"Unknown command: \\{v.str}\""
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1248
-#, no-wrap
-msgid ""
+"\n"
+"%hint\n"
+"unknownCommandPrint : Print UnknownCommand\n"
+"unknownCommandPrint = MkPrint $ \\v => \"Unknown command: \\{v.str}\"\n"
+"\n"
 "record NoColName where\n"
 "  constructor MkNoColName\n"
 "  str : String\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1252
-msgid ""
-"%hint noColNamePrint : Print NoColName noColNamePrint = MkPrint $ \\v => "
-"\"Unknown column: \\{v.str}\""
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1261
-#, no-wrap
-msgid ""
+"\n"
+"%hint\n"
+"noColNamePrint : Print NoColName\n"
+"noColNamePrint = MkPrint $ \\v => \"Unknown column: \\{v.str}\"\n"
+"\n"
 "0 CmdErrs : Vect 7 Type\n"
 "CmdErrs = [ InvalidColumn\n"
 "          , NoColName\n"
@@ -2109,12 +2233,7 @@ msgid ""
 "          , OutOfBounds\n"
 "          , RowError\n"
 "          , UnknownCommand ]\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1276
-#, no-wrap
-msgid ""
+"\n"
 "readCommand : (t : Table) -> String -> Err CmdErrs (Command t)\n"
 "readCommand _                \"schema\"  = Right PrintSchema\n"
 "readCommand _                \"size\"    = Right PrintSize\n"
@@ -2128,7 +2247,6 @@ msgid ""
 "    Just (ct ** prf) => Right $ Col str ct prf\n"
 "    Nothing          => fail $ MkNoColName str\n"
 "  _               => fail $ MkUnknownCommand s\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -2148,32 +2266,29 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1300
+#: ../src/Tutorial/Predicates.md:1287
 #, no-wrap
 msgid ""
+"encodeField : (t : ColType) -> IdrisType t -> String\n"
+"encodeField I64     x     = show x\n"
+"encodeField Str     x     = show x\n"
+"encodeField Boolean True  = \"t\"\n"
+"encodeField Boolean False = \"f\"\n"
+"encodeField Float   x     = show x\n"
+"\n"
 "encodeRow : (s : Schema) -> Row s -> String\n"
 "encodeRow s = concat . intersperse \",\" . go s\n"
 "  where go : (s' : Schema) -> Row s' -> Vect (length s') String\n"
 "        go []        []        = []\n"
 "        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1307
-#, no-wrap
-msgid ""
+"\n"
 "encodeCol :  (name : String)\n"
 "          -> (c    : ColType)\n"
 "          -> InSchema name s c\n"
 "          => Vect n (Row s)\n"
 "          -> String\n"
 "encodeCol name c = unlines . toList . map (\\r => encodeField c $ getAt name r)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1318
-#, no-wrap
-msgid ""
+"\n"
 "result :  (t : Table) -> Command t -> String\n"
 "result t PrintSchema   = \"Current schema: \\{showSchema t.schema}\"\n"
 "result t PrintSize     = \"Current size: \\{show t.size}\"\n"
@@ -2184,12 +2299,7 @@ msgid ""
 "result t (Col n c prf) = \"Column \\{n}:\\n\\{encodeCol n c t.rows}\"\n"
 "result t (Get x)       =\n"
 "  \"Row \\{show $ FS x}: \\{encodeRow t.schema (index x t.rows)}\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Predicates.md:1329
-#, no-wrap
-msgid ""
+"\n"
 "covering\n"
 "runProg : Table -> IO ()\n"
 "runProg t = do\n"
@@ -2200,6 +2310,10 @@ msgid ""
 "    Right Quit => putStrLn (result t Quit)\n"
 "    Right cmd  => putStrLn (result t cmd) >>\n"
 "                  runProg (applyCommand t cmd)\n"
+"\n"
+"covering\n"
+"main : IO ()\n"
+"main = runProg $ MkTable [] _ []\n"
 msgstr ""
 
 #. type: Plain text
@@ -2208,15 +2322,27 @@ msgid "Here is an example REPL session:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Predicates.md:1353
+#: ../src/Tutorial/Predicates.md:1337
+#, no-wrap
 msgid ""
-"```repl Tutorial.Predicates> :exec main Enter a command: new name:Str,age:"
-"Int64,salary:Float Not a column type: Int64 Enter a command: new name:Str,"
-"age:I64,salary:Float Created table. Schema: name:Str,age:I64,salary:Float "
-"Enter a command: add John Doe,44,3500 Row prepended: \"John Doe\",44,3500.0 "
-"Enter a command: add Jane Doe,50,4000 Row prepended: \"Jane Doe\",50,4000.0 "
-"Enter a command: get 1 Row 1: \"Jane Doe\",50,4000.0 Enter a command: column "
-"salary Column salary: 4000.0 3500.0"
+"Tutorial.Predicates> :exec main\n"
+"Enter a command: new name:Str,age:Int64,salary:Float\n"
+"Not a column type: Int64\n"
+"Enter a command: new name:Str,age:I64,salary:Float\n"
+"Created table. Schema: name:Str,age:I64,salary:Float\n"
+"Enter a command: add John Doe,44,3500\n"
+"Row prepended: \"John Doe\",44,3500.0\n"
+"Enter a command: add Jane Doe,50,4000\n"
+"Row prepended: \"Jane Doe\",50,4000.0\n"
+"Enter a command: get 1\n"
+"Row 1: \"Jane Doe\",50,4000.0\n"
+"Enter a command: column salary\n"
+"Column salary:\n"
+"4000.0\n"
+"3500.0\n"
+"\n"
+"Enter a command: quit\n"
+"Goodbye.\n"
 msgstr ""
 
 #. type: Plain text

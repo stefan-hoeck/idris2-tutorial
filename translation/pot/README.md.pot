@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 22:34+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:2
-msgid "> [Chinese Translation](translation/README.md)"
+#, no-wrap
+msgid "> [Chinese Translation](translation/README.md)\n"
 msgstr ""
 
-#. type: Plain text
-#: ../README.md:4
-msgid "# Functional Programming in Idris 2"
+#. type: Title #
+#: ../README.md:3
+#, no-wrap
+msgid "Functional Programming in Idris 2"
 msgstr ""
 
 #. type: Plain text
@@ -53,14 +55,16 @@ msgid ""
 "some of which are completely new to functional programming."
 msgstr ""
 
-#. type: Plain text
-#: ../README.md:24
-msgid "## Table of Contents"
+#. type: Title ##
+#: ../README.md:23
+#, no-wrap
+msgid "Table of Contents"
 msgstr ""
 
-#. type: Plain text
-#: ../README.md:26
-msgid "### Part 1: Core Language Features"
+#. type: Title ###
+#: ../README.md:25
+#, no-wrap
+msgid "Part 1: Core Language Features"
 msgstr ""
 
 #. type: Plain text
@@ -154,9 +158,10 @@ msgid ""
 "    4. [Refined Primitives](src/Tutorial/Prim.md#refined-primitives)\n"
 msgstr ""
 
-#. type: Plain text
-#: ../README.md:107
-msgid "### Part 2: Appendices"
+#. type: Title ###
+#: ../README.md:106
+#, no-wrap
+msgid "Part 2: Appendices"
 msgstr ""
 
 #. type: Plain text
@@ -172,9 +177,10 @@ msgstr ""
 msgid "[Interactive Editing in Neovim](src/Appendices/Neovim.md)"
 msgstr ""
 
-#. type: Plain text
-#: ../README.md:116
-msgid "## Prerequisites"
+#. type: Title ##
+#: ../README.md:115
+#, no-wrap
+msgid "Prerequisites"
 msgstr ""
 
 #. type: Plain text

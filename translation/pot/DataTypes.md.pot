@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:2
-msgid "# Algebraic Data Types"
+#. type: Title #
+#: ../src/Tutorial/DataTypes.md:1
+#, no-wrap
+msgid "Algebraic Data Types"
 msgstr ""
 
 #. type: Plain text
@@ -40,14 +41,290 @@ msgid ""
 "found [here](../Solutions/DataTypes.idr)."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:19
-msgid "```idris module Tutorial.DataTypes ```"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:21
-msgid "## Enumerations"
+#: ../src/Tutorial/DataTypes.md:16
+#, no-wrap
+msgid "module Tutorial.DataTypes\n"
+msgstr ""
+
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:20
+#, no-wrap
+msgid "Enumerations"
 msgstr ""
 
 #. type: Plain text
@@ -56,10 +333,9 @@ msgid "Let's start with a data type for the days of the week as an example."
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:34
+#: ../src/Tutorial/DataTypes.md:25
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Weekday = Monday\n"
 "             | Tuesday\n"
 "             | Wednesday\n"
@@ -67,7 +343,6 @@ msgid ""
 "             | Friday\n"
 "             | Saturday\n"
 "             | Sunday\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -78,11 +353,89 @@ msgid ""
 "at the REPL:"
 msgstr ""
 
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
+msgstr ""
+
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:45
+#: ../src/Tutorial/DataTypes.md:39
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> :t Monday Tutorial.DataTypes.Monday : Weekday "
-"Tutorial.DataTypes> :t Weekday Tutorial.DataTypes.Weekday : Type ```"
+"Tutorial.DataTypes> :t Monday\n"
+"Tutorial.DataTypes.Monday : Weekday\n"
+"Tutorial.DataTypes> :t Weekday\n"
+"Tutorial.DataTypes.Weekday : Type\n"
 msgstr ""
 
 #. type: Plain text
@@ -99,9 +452,10 @@ msgid ""
 "a `Weekday` is expected."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:54
-msgid "### Pattern Matching"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:53
+#, no-wrap
+msgid "Pattern Matching"
 msgstr ""
 
 #. type: Plain text
@@ -114,10 +468,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:71
+#: ../src/Tutorial/DataTypes.md:60
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "next : Weekday -> Weekday\n"
 "next Monday    = Tuesday\n"
@@ -127,7 +480,6 @@ msgid ""
 "next Friday    = Saturday\n"
 "next Saturday  = Sunday\n"
 "next Sunday    = Monday\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -175,9 +527,10 @@ msgid ""
 "functions, stack space)."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:107
-msgid "### Catch-all Patterns"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:106
+#, no-wrap
+msgid "Catch-all Patterns"
 msgstr ""
 
 #. type: Plain text
@@ -188,16 +541,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:119
+#: ../src/Tutorial/DataTypes.md:112
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "isWeekend : Weekday -> Bool\n"
 "isWeekend Saturday = True\n"
 "isWeekend Sunday   = True\n"
 "isWeekend _        = False\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -218,10 +569,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:142
+#: ../src/Tutorial/DataTypes.md:130
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "eqWeekday : Weekday -> Weekday -> Bool\n"
 "eqWeekday Monday Monday        = True\n"
@@ -232,12 +582,12 @@ msgid ""
 "eqWeekday Saturday Saturday    = True\n"
 "eqWeekday Sunday Sunday        = True\n"
 "eqWeekday _ _                  = False\n"
-"```\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:144
-msgid "### Enumeration Types in the Prelude"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:143
+#, no-wrap
+msgid "Enumeration Types in the Prelude"
 msgstr ""
 
 #. type: Plain text
@@ -250,10 +600,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:159
+#: ../src/Tutorial/DataTypes.md:152
+#, no-wrap
 msgid ""
-"```idris -- this is how `not` is implemented in the *Prelude* total negate : "
-"Bool -> Bool negate False = True negate True = False ```"
+"-- this is how `not` is implemented in the *Prelude*\n"
+"total\n"
+"negate : Bool -> Bool\n"
+"negate False = True\n"
+"negate True  = False\n"
 msgstr ""
 
 #. type: Plain text
@@ -264,17 +618,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:171
+#: ../src/Tutorial/DataTypes.md:163
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "compareBool : Bool -> Bool -> Ordering\n"
 "compareBool False False = EQ\n"
 "compareBool False True  = LT\n"
 "compareBool True True   = EQ\n"
 "compareBool True False  = GT\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -285,9 +637,10 @@ msgid ""
 "argument is *greater than* the second."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:178
-msgid "### Case Expressions"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:177
+#, no-wrap
+msgid "Case Expressions"
 msgstr ""
 
 #. type: Plain text
@@ -299,10 +652,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:193
+#: ../src/Tutorial/DataTypes.md:184
 #, no-wrap
 msgid ""
-"```idris\n"
 "-- returns the larger of the two arguments\n"
 "total\n"
 "maxBits8 : Bits8 -> Bits8 -> Bits8\n"
@@ -310,7 +662,6 @@ msgid ""
 "  case compare x y of\n"
 "    LT => y\n"
 "    _  => x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -339,9 +690,10 @@ msgid ""
 "works when we talk about interfaces."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:211
-msgid "#### If Then Else"
+#. type: Title ####
+#: ../src/Tutorial/DataTypes.md:210
+#, no-wrap
+msgid "If Then Else"
 msgstr ""
 
 #. type: Plain text
@@ -352,10 +704,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:220
+#: ../src/Tutorial/DataTypes.md:215
+#, no-wrap
 msgid ""
-"```idris total maxBits8' : Bits8 -> Bits8 -> Bits8 maxBits8' x y = if "
-"compare x y == LT then y else x ```"
+"total\n"
+"maxBits8' : Bits8 -> Bits8 -> Bits8\n"
+"maxBits8' x y = if compare x y == LT then y else x\n"
 msgstr ""
 
 #. type: Plain text
@@ -367,9 +721,10 @@ msgid ""
 "possible side effects."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:227
-msgid "### Naming Conventions: Identifiers"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:226
+#, no-wrap
+msgid "Naming Conventions: Identifiers"
 msgstr ""
 
 #. type: Plain text
@@ -383,8 +738,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:237
-msgid "```repl data foo = bar | baz ```"
+#: ../src/Tutorial/DataTypes.md:234
+#, no-wrap
+msgid "data foo = bar | baz\n"
 msgstr ""
 
 #. type: Plain text
@@ -395,14 +751,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:246
+#: ../src/Tutorial/DataTypes.md:241
 #, no-wrap
 msgid ""
-"```repl\n"
 "-- not valid Idris\n"
 "record Foo where\n"
 "  constructor mkfoo\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -415,23 +769,25 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:256
-msgid "```idris foo : Bits32 -> Bits32 foo = (* 2)"
+#: ../src/Tutorial/DataTypes.md:253
+#, no-wrap
+msgid ""
+"foo : Bits32 -> Bits32\n"
+"foo = (* 2)\n"
+"\n"
+"Bar : Bits32 -> Bits32\n"
+"Bar = foo\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:260
-msgid "Bar : Bits32 -> Bits32 Bar = foo ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-msgid "### Exercises part 1"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -463,43 +819,26 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:285
+#: ../src/Tutorial/DataTypes.md:283
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data UnitOfTime = Second -- add additional values\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:290
-#, no-wrap
-msgid ""
+"\n"
 "   -- calculate the number of seconds from a\n"
 "   -- number of steps in the given unit of time\n"
 "   total\n"
 "   toSeconds : UnitOfTime -> Integer -> Integer\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:295
-#, no-wrap
-msgid ""
+"\n"
 "   -- Given a number of seconds, calculate the\n"
 "   -- number of steps in the given unit of time\n"
 "   total\n"
 "   fromSeconds : UnitOfTime -> Integer -> Integer\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:302
-#, no-wrap
-msgid ""
+"\n"
 "   -- convert the number of steps in a given unit of time\n"
 "   -- to the number of steps in another unit of time.\n"
 "   -- use `fromSeconds` and `toSeconds` in your implementation\n"
 "   total\n"
 "   convert : UnitOfTime -> Integer -> UnitOfTime -> Integer\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '3. '
@@ -518,21 +857,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:317
+#: ../src/Tutorial/DataTypes.md:310
 #, no-wrap
 msgid ""
-"   ```repl\n"
 "   Hydrogen : 1.008\n"
 "   Carbon : 12.011\n"
 "   Nitrogen : 14.007\n"
 "   Oxygen : 15.999\n"
 "   Fluorine : 18.9984\n"
-"   ```\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:319
-msgid "## Sum Types"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:318
+#, no-wrap
+msgid "Sum Types"
 msgstr ""
 
 #. type: Plain text
@@ -546,8 +884,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:330
-msgid "```idris data Title = Mr | Mrs | Other String ```"
+#: ../src/Tutorial/DataTypes.md:327
+#, no-wrap
+msgid "data Title = Mr | Mrs | Other String\n"
 msgstr ""
 
 #. type: Plain text
@@ -560,10 +899,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:343
+#: ../src/Tutorial/DataTypes.md:337
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> :t Mr Tutorial.DataTypes.Mr : Title Tutorial."
-"DataTypes> :t Other Tutorial.DataTypes.Other : String -> Title ```"
+"Tutorial.DataTypes> :t Mr\n"
+"Tutorial.DataTypes.Mr : Title\n"
+"Tutorial.DataTypes> :t Other\n"
+"Tutorial.DataTypes.Other : String -> Title\n"
 msgstr ""
 
 #. type: Plain text
@@ -574,8 +916,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:353
-msgid "```idris total dr : Title dr = Other \"Dr.\" ```"
+#: ../src/Tutorial/DataTypes.md:348
+#, no-wrap
+msgid ""
+"total\n"
+"dr : Title\n"
+"dr = Other \"Dr.\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -587,16 +933,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:366
+#: ../src/Tutorial/DataTypes.md:359
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "showTitle : Title -> String\n"
 "showTitle Mr        = \"Mr.\"\n"
 "showTitle Mrs       = \"Mrs.\"\n"
 "showTitle (Other x) = x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -617,10 +961,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:383
+#: ../src/Tutorial/DataTypes.md:378
+#, no-wrap
 msgid ""
-"```idris total greet : Title -> String -> String greet t name = \"Hello, \" +"
-"+ showTitle t ++ \" \" ++ name ++ \"!\" ```"
+"total\n"
+"greet : Title -> String -> String\n"
+"greet t name = \"Hello, \" ++ showTitle t ++ \" \" ++ name ++ \"!\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -636,10 +982,13 @@ msgid "At the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:396
+#: ../src/Tutorial/DataTypes.md:390
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> greet dr \"Hck\" \"Hello, Dr. Hck!\" Tutorial."
-"DataTypes> greet Mrs \"Smith\" \"Hello, Mrs. Smith!\" ```"
+"Tutorial.DataTypes> greet dr \"Hck\"\n"
+"\"Hello, Dr. Hck!\"\n"
+"Tutorial.DataTypes> greet Mrs \"Smith\"\n"
+"\"Hello, Mrs. Smith!\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -661,9 +1010,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:411
-msgid ""
-"```idris data Credentials = Password String Bits64 | Key String String ```"
+#: ../src/Tutorial/DataTypes.md:408
+#, no-wrap
+msgid "data Credentials = Password String Bits64 | Key String String\n"
 msgstr ""
 
 #. type: Plain text
@@ -674,16 +1023,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:422
+#: ../src/Tutorial/DataTypes.md:415
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "login : Credentials -> String\n"
 "login (Password \"Anderson\" 6665443) = greet Mr \"Anderson\"\n"
 "login (Key \"Y\" \"xyz\")               = greet (Other \"Agent\") \"Y\"\n"
 "login _                             = \"Access denied!\"\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -695,22 +1042,26 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:435
+#: ../src/Tutorial/DataTypes.md:427
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> login (Password \"Anderson\" 6665443)  \"Hello, "
-"Mr. Anderson!\" Tutorial.DataTypes> login (Key \"Y\" \"xyz\")  \"Hello, "
-"Agent Y!\" Tutorial.DataTypes> login (Key \"Y\" \"foo\")  \"Access denied!\" "
-"```"
+"Tutorial.DataTypes> login (Password \"Anderson\" 6665443)\n"
+"\"Hello, Mr. Anderson!\"\n"
+"Tutorial.DataTypes> login (Key \"Y\" \"xyz\")\n"
+"\"Hello, Agent Y!\"\n"
+"Tutorial.DataTypes> login (Key \"Y\" \"foo\")\n"
+"\"Access denied!\"\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-msgid "### Exercises part 2"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, no-wrap
+msgid "Exercises part 2"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -721,13 +1072,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:445
+#: ../src/Tutorial/DataTypes.md:441
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   total\n"
 "   eqTitle : Title -> Title -> Bool\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '2. '
@@ -738,13 +1087,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:453
+#: ../src/Tutorial/DataTypes.md:449
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   total\n"
 "   isOther : Title -> Bool\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '3. '
@@ -788,9 +1135,10 @@ msgid ""
 "our web application."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:473
-msgid "## Records"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:472
+#, no-wrap
+msgid "Records"
 msgstr ""
 
 #. type: Plain text
@@ -804,16 +1152,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:489
+#: ../src/Tutorial/DataTypes.md:482
 #, no-wrap
 msgid ""
-"```idris\n"
 "record User where\n"
 "  constructor MkUser\n"
 "  name  : String\n"
 "  title : Title\n"
 "  age   : Bits8\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -825,11 +1171,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:500
+#: ../src/Tutorial/DataTypes.md:494
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> :t User Tutorial.DataTypes.User : Type Tutorial."
-"DataTypes> :t MkUser Tutorial.DataTypes.MkUser : String -> Title -> Bits8 -> "
-"User ```"
+"Tutorial.DataTypes> :t User\n"
+"Tutorial.DataTypes.User : Type\n"
+"Tutorial.DataTypes> :t MkUser\n"
+"Tutorial.DataTypes.MkUser : String -> Title -> Bits8 -> User\n"
 msgstr ""
 
 #. type: Plain text
@@ -840,13 +1188,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:509
-msgid "```idris total agentY : User agentY = MkUser \"Y\" (Other \"Agent\") 51"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:514
-msgid "total drNo : User drNo = MkUser \"No\" dr 73 ```"
+#: ../src/Tutorial/DataTypes.md:505
+#, no-wrap
+msgid ""
+"total\n"
+"agentY : User\n"
+"agentY = MkUser \"Y\" (Other \"Agent\") 51\n"
+"\n"
+"total\n"
+"drNo : User\n"
+"drNo = MkUser \"No\" dr 73\n"
 msgstr ""
 
 #. type: Plain text
@@ -857,10 +1208,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:523
+#: ../src/Tutorial/DataTypes.md:518
+#, no-wrap
 msgid ""
-"```idris total greetUser : User -> String greetUser (MkUser n t _) = greet t "
-"n ```"
+"total\n"
+"greetUser : User -> String\n"
+"greetUser (MkUser n t _) = greet t n\n"
 msgstr ""
 
 #. type: Plain text
@@ -889,14 +1242,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:551
+#: ../src/Tutorial/DataTypes.md:546
 #, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Mismatch between: String and Title\"\n"
 "  greetUser' : User -> String\n"
 "  greetUser' (MkUser n t _) = greet n t\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -909,18 +1260,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:562
-msgid "```idris getAgeFunction : User -> Bits8 getAgeFunction u = age u"
+#: ../src/Tutorial/DataTypes.md:559
+#, no-wrap
+msgid ""
+"getAgeFunction : User -> Bits8\n"
+"getAgeFunction u = age u\n"
+"\n"
+"getAgePostfix : User -> Bits8\n"
+"getAgePostfix u = u.age\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:566
-msgid "getAgePostfix : User -> Bits8 getAgePostfix u = u.age ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:568
-msgid "### Syntactic Sugar for Records"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:567
+#, no-wrap
+msgid "Syntactic Sugar for Records"
 msgstr ""
 
 #. type: Plain text
@@ -946,10 +1299,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:592
+#: ../src/Tutorial/DataTypes.md:587
+#, no-wrap
 msgid ""
-"```idris total incAge : User -> User incAge (MkUser name title age) = MkUser "
-"name title (age + 1)  ```"
+"total\n"
+"incAge : User -> User\n"
+"incAge (MkUser name title age) = MkUser name title (age + 1)\n"
 msgstr ""
 
 #. type: Plain text
@@ -961,9 +1316,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:603
+#: ../src/Tutorial/DataTypes.md:598
+#, no-wrap
 msgid ""
-"```idris total incAge2 : User -> User incAge2 u = { age := u.age + 1 } u ```"
+"total\n"
+"incAge2 : User -> User\n"
+"incAge2 u = { age := u.age + 1 } u\n"
 msgstr ""
 
 #. type: Plain text
@@ -991,9 +1349,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:622
+#: ../src/Tutorial/DataTypes.md:617
+#, no-wrap
 msgid ""
-"```idris total incAge3 : User -> User incAge3 u = { age $= (+ 1) } u ```"
+"total\n"
+"incAge3 : User -> User\n"
+"incAge3 u = { age $= (+ 1) } u\n"
 msgstr ""
 
 #. type: Plain text
@@ -1005,10 +1366,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:633
+#: ../src/Tutorial/DataTypes.md:628
+#, no-wrap
 msgid ""
-"```idris total incAge4 : User -> User incAge4 u = { age $= \\x => x + 1 } u "
-"```"
+"total\n"
+"incAge4 : User -> User\n"
+"incAge4 u = { age $= \\x => x + 1 } u\n"
 msgstr ""
 
 #. type: Plain text
@@ -1019,8 +1382,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:643
-msgid "```idris total incAge5 : User -> User incAge5 = { age $= (+ 1) } ```"
+#: ../src/Tutorial/DataTypes.md:638
+#, no-wrap
+msgid ""
+"total\n"
+"incAge5 : User -> User\n"
+"incAge5 = { age $= (+ 1) }\n"
 msgstr ""
 
 #. type: Plain text
@@ -1029,9 +1396,11 @@ msgid "As usual, we should have a look at the result at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:650
+#: ../src/Tutorial/DataTypes.md:646
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> incAge5 drNo MkUser \"No\" (Other \"Dr.\") 74 ```"
+"Tutorial.DataTypes> incAge5 drNo\n"
+"MkUser \"No\" (Other \"Dr.\") 74\n"
 msgstr ""
 
 #. type: Plain text
@@ -1042,15 +1411,18 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:659
+#: ../src/Tutorial/DataTypes.md:654
+#, no-wrap
 msgid ""
-"```idris total drNoJunior : User drNoJunior = { name $= (++ \" Jr.\"), "
-"title := Mr, age := 17 } drNo ```"
+"total\n"
+"drNoJunior : User\n"
+"drNoJunior = { name $= (++ \" Jr.\"), title := Mr, age := 17 } drNo\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:661
-msgid "### Tuples"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:660
+#, no-wrap
+msgid "Tuples"
 msgstr ""
 
 #. type: Plain text
@@ -1062,15 +1434,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:673
+#: ../src/Tutorial/DataTypes.md:667
 #, no-wrap
 msgid ""
-"```idris\n"
 "record Foo where\n"
 "  constructor MkFoo\n"
 "  wd   : Weekday\n"
 "  bool : Bool\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1090,10 +1460,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:686
+#: ../src/Tutorial/DataTypes.md:681
+#, no-wrap
 msgid ""
-"```idris total weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool "
-"weekdayAndBool wd b = MkPair wd b ```"
+"total\n"
+"weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool\n"
+"weekdayAndBool wd b = MkPair wd b\n"
 msgstr ""
 
 #. type: Plain text
@@ -1107,10 +1479,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:698
+#: ../src/Tutorial/DataTypes.md:693
+#, no-wrap
 msgid ""
-"```idris total weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)  "
-"weekdayAndBool2 wd b = (wd, b)  ```"
+"total\n"
+"weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)\n"
+"weekdayAndBool2 wd b = (wd, b)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1119,17 +1493,16 @@ msgid "This works also for nested tuples:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:705
+#: ../src/Tutorial/DataTypes.md:701
+#, no-wrap
 msgid ""
-"```idris total triple : Pair Bool (Pair Weekday String)  triple = MkPair "
-"False (Friday, \"foo\")"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:710
-msgid ""
-"total triple2 : (Bool, Weekday, String)  triple2 = (False, Friday, \"foo\")  "
-"```"
+"total\n"
+"triple : Pair Bool (Pair Weekday String)\n"
+"triple = MkPair False (Friday, \"foo\")\n"
+"\n"
+"total\n"
+"triple2 : (Bool, Weekday, String)\n"
+"triple2 = (False, Friday, \"foo\")\n"
 msgstr ""
 
 #. type: Plain text
@@ -1145,20 +1518,19 @@ msgid "We can even use tuple syntax in pattern matches:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:722
+#: ../src/Tutorial/DataTypes.md:716
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "bar : Bool\n"
 "bar = case triple of\n"
 "  (b,wd,_) => b && isWeekend wd\n"
-"```\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:724
-msgid "### As Patterns"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:723
+#, no-wrap
+msgid "As Patterns"
 msgstr ""
 
 #. type: Plain text
@@ -1169,10 +1541,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:734
+#: ../src/Tutorial/DataTypes.md:729
+#, no-wrap
 msgid ""
-"```idris total baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)  baz "
-"t@(_,_,s) = (length s, t)  ```"
+"total\n"
+"baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)\n"
+"baz t@(_,_,s) = (length s, t)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1185,14 +1559,15 @@ msgid ""
 "implementation above is correct as is confirmed by the type checker."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, no-wrap
+msgid "Exercises part 3"
 msgstr ""
 
 #. type: Plain text
@@ -1233,9 +1608,10 @@ msgid ""
 "unit of time to ensure a lossless conversion.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:763
-msgid "## Generic Data Types"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:762
+#, no-wrap
+msgid "Generic Data Types"
 msgstr ""
 
 #. type: Plain text
@@ -1249,9 +1625,10 @@ msgid ""
 "values it stores. This section explains how to define and use generic types."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:774
-msgid "### Maybe"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:773
+#, no-wrap
+msgid "Maybe"
 msgstr ""
 
 #. type: Plain text
@@ -1289,14 +1666,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:806
-msgid "```idris data MaybeWeekday = WD Weekday | NoWeekday"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:818
+#: ../src/Tutorial/DataTypes.md:804
 #, no-wrap
 msgid ""
+"data MaybeWeekday = WD Weekday | NoWeekday\n"
+"\n"
 "total\n"
 "readWeekday : String -> MaybeWeekday\n"
 "readWeekday \"Monday\"    = WD Monday\n"
@@ -1307,7 +1681,6 @@ msgid ""
 "readWeekday \"Saturday\"  = WD Saturday\n"
 "readWeekday \"Sunday\"    = WD Sunday\n"
 "readWeekday _           = NoWeekday\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1326,20 +1699,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:830
-msgid "```idris data Option a = Some a | None"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:837
+#: ../src/Tutorial/DataTypes.md:828
 #, no-wrap
 msgid ""
+"data Option a = Some a | None\n"
+"\n"
 "total\n"
 "readBool : String -> Option Bool\n"
 "readBool \"True\"    = Some True\n"
 "readBool \"False\"   = Some False\n"
 "readBool _         = None\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1348,11 +1717,15 @@ msgid "It is important to go to the REPL and look at the types:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:848
+#: ../src/Tutorial/DataTypes.md:840
+#, no-wrap
 msgid ""
-"```repl Tutorial.DataTypes> :t Some Tutorial.DataTypes.Some : a -> Option a "
-"Tutorial.DataTypes> :t None Tutorial.DataTypes.None : Optin a Tutorial."
-"DataTypes> :t Option Tutorial.DataTypes.Option : Type -> Type ```"
+"Tutorial.DataTypes> :t Some\n"
+"Tutorial.DataTypes.Some : a -> Option a\n"
+"Tutorial.DataTypes> :t None\n"
+"Tutorial.DataTypes.None : Optin a\n"
+"Tutorial.DataTypes> :t Option\n"
+"Tutorial.DataTypes.Option : Type -> Type\n"
 msgstr ""
 
 #. type: Plain text
@@ -1375,10 +1748,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:867
+#: ../src/Tutorial/DataTypes.md:861
+#, no-wrap
 msgid ""
-"```idris total safeDiv : Integer -> Integer -> Option Integer safeDiv n 0 = "
-"None safeDiv n k = Some (n `div` k)  ```"
+"total\n"
+"safeDiv : Integer -> Integer -> Option Integer\n"
+"safeDiv n 0 = None\n"
+"safeDiv n k = Some (n `div` k)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1402,9 +1778,10 @@ msgid ""
 "leading to unexpected and sometimes hard to debug runtime exceptions."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:886
-msgid "### Either"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:885
+#, no-wrap
+msgid "Either"
 msgstr ""
 
 #. type: Plain text
@@ -1420,8 +1797,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:900
-msgid "```idris data Validated e a = Invalid e | Valid a ```"
+#: ../src/Tutorial/DataTypes.md:897
+#, no-wrap
+msgid "data Validated e a = Invalid e | Valid a\n"
 msgstr ""
 
 #. type: Plain text
@@ -1434,10 +1812,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:920
+#: ../src/Tutorial/DataTypes.md:908
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "readWeekdayV : String -> Validated String Weekday\n"
 "readWeekdayV \"Monday\"    = Valid Monday\n"
@@ -1448,7 +1825,6 @@ msgid ""
 "readWeekdayV \"Saturday\"  = Valid Saturday\n"
 "readWeekdayV \"Sunday\"    = Valid Sunday\n"
 "readWeekdayV s           = Invalid (\"Not a weekday: \" ++ s)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1472,9 +1848,10 @@ msgid ""
 "with the corresponding data constructor."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:936
-msgid "### List"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:935
+#, no-wrap
+msgid "List"
 msgstr ""
 
 #. type: Plain text
@@ -1487,8 +1864,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:945
-msgid "```idris data Seq a = Nil | (::) a (Seq a)  ```"
+#: ../src/Tutorial/DataTypes.md:942
+#, no-wrap
+msgid "data Seq a = Nil | (::) a (Seq a)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1511,8 +1889,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:962
-msgid "```idris total ints : List Int64 ints = 1 :: 2 :: -3 :: Nil ```"
+#: ../src/Tutorial/DataTypes.md:957
+#, no-wrap
+msgid ""
+"total\n"
+"ints : List Int64\n"
+"ints = 1 :: 2 :: -3 :: Nil\n"
 msgstr ""
 
 #. type: Plain text
@@ -1524,13 +1906,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:971
-msgid "```idris total ints2 : List Int64 ints2 = [1, 2, -3]"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:976
-msgid "total ints3 : List Int64 ints3 = [] ```"
+#: ../src/Tutorial/DataTypes.md:967
+#, no-wrap
+msgid ""
+"total\n"
+"ints2 : List Int64\n"
+"ints2 = [1, 2, -3]\n"
+"\n"
+"total\n"
+"ints3 : List Int64\n"
+"ints3 = []\n"
 msgstr ""
 
 #. type: Plain text
@@ -1554,15 +1939,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:998
+#: ../src/Tutorial/DataTypes.md:992
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "intSum : List Integer -> Integer\n"
 "intSum Nil       = 0\n"
 "intSum (n :: ns) = n + intSum ns\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1582,24 +1965,22 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1015
+#: ../src/Tutorial/DataTypes.md:1009
 #, no-wrap
+msgid "   7 + intSum [5,9]\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/DataTypes.md:1015
 msgid ""
-"   ```repl\n"
-"   7 + intSum [5,9]\n"
-"   ```\n"
-"2. In a second invocation, `intSum` is called with a new list: `[5,9]`.\n"
-"   The second pattern matches and `n` is bound to `5` and `ns` is bound\n"
-"   to `[9]`:\n"
+"In a second invocation, `intSum` is called with a new list: `[5,9]`.  The "
+"second pattern matches and `n` is bound to `5` and `ns` is bound to `[9]`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1019
+#: ../src/Tutorial/DataTypes.md:1016
 #, no-wrap
-msgid ""
-"   ```repl\n"
-"   7 + (5 + intSum [9])\n"
-"   ```\n"
+msgid "   7 + (5 + intSum [9])\n"
 msgstr ""
 
 #. type: Bullet: '3. '
@@ -1610,12 +1991,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1027
+#: ../src/Tutorial/DataTypes.md:1024
 #, no-wrap
-msgid ""
-"   ```repl\n"
-"   7 + (5 + (9 + intSum [])\n"
-"   ```\n"
+msgid "   7 + (5 + (9 + intSum [])\n"
 msgstr ""
 
 #. type: Bullet: '4. '
@@ -1626,12 +2004,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1034
+#: ../src/Tutorial/DataTypes.md:1031
 #, no-wrap
-msgid ""
-"   ```repl\n"
-"   7 + (5 + (9 + 0)\n"
-"   ```\n"
+msgid "   7 + (5 + (9 + 0)\n"
 msgstr ""
 
 #. type: Bullet: '5. '
@@ -1640,12 +2015,9 @@ msgid "In the third invocation, `9` and `0` are added and `9` is returned:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1041
+#: ../src/Tutorial/DataTypes.md:1038
 #, no-wrap
-msgid ""
-"   ```repl\n"
-"   7 + (5 + 9)\n"
-"   ```\n"
+msgid "   7 + (5 + 9)\n"
 msgstr ""
 
 #. type: Bullet: '6. '
@@ -1654,12 +2026,9 @@ msgid "In the second invocation, `5` and `9` are added and `14` is returned:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1048
+#: ../src/Tutorial/DataTypes.md:1045
 #, no-wrap
-msgid ""
-"   ```repl\n"
-"   7 + 14\n"
-"   ```\n"
+msgid "   7 + 14\n"
 msgstr ""
 
 #. type: Bullet: '7. '
@@ -1676,9 +2045,10 @@ msgid ""
 "calls to `intSum`, which terminates once the argument is the empty list."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1057
-msgid "### Generic Functions"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:1056
+#, no-wrap
+msgid "Generic Functions"
 msgstr ""
 
 #. type: Plain text
@@ -1699,15 +2069,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1075
+#: ../src/Tutorial/DataTypes.md:1069
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "integerFromOption : Integer -> Option Integer -> Integer\n"
 "integerFromOption _ (Some y) = y\n"
 "integerFromOption x None     = x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1719,15 +2087,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1087
+#: ../src/Tutorial/DataTypes.md:1081
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "fromOption : a -> Option a -> a\n"
 "fromOption _ (Some y) = y\n"
 "fromOption x None     = x\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1758,30 +2124,28 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1110
+#: ../src/Tutorial/DataTypes.md:1105
 #, no-wrap
 msgid ""
-"```idris\n"
 "total\n"
 "option : b -> (a -> b) -> Option a -> b\n"
 "option _ f (Some y) = f y\n"
 "option x _ None     = x\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1115
-msgid ""
-"total handleBool : Option Bool -> String handleBool = option \"Not a boolean "
-"value.\" show ```"
+"\n"
+"total\n"
+"handleBool : Option Bool -> String\n"
+"handleBool = option \"Not a boolean value.\" show\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1121
+#, no-wrap
 msgid ""
-"Function `option` is parameterized over *two* type parameters: `a` "
-"represents the type of values stored in the `Option`, while `b` is the "
-"return type. In case of a `Just`, we need a way to convert the stored `a` to "
-"a `b`, an that's done using the function argument of type `a -> b`."
+"Function `option` is parameterized over *two* type parameters:\n"
+"`a` represents the type of values stored in the `Option`,\n"
+"while `b` is the return type. In case of a `Just`, we need\n"
+"a way to convert the stored `a` to a `b`, an that's done\n"
+"using the function argument of type `a -> b`.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1792,9 +2156,10 @@ msgid ""
 "constructors that must be in scope."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1128 ../src/Tutorial/Eq.md:1057
-msgid "### Exercises part 4"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:1127 ../src/Tutorial/Eq.md:1056
+#, no-wrap
+msgid "Exercises part 4"
 msgstr ""
 
 #. type: Plain text
@@ -1820,71 +2185,39 @@ msgid "Implement the following generic functions for `Maybe`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1147
+#: ../src/Tutorial/DataTypes.md:1143
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   -- make sure to map a `Just` to a `Just`.\n"
 "   total\n"
 "   mapMaybe : (a -> b) -> Maybe a -> Maybe b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1151
-#, no-wrap
-msgid ""
+"\n"
 "   -- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`\n"
 "   total\n"
 "   appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1155
-#, no-wrap
-msgid ""
+"\n"
 "   -- Example: `bindMaybe (Just 12) Just = Just 12`\n"
 "   total\n"
 "   bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1159
-#, no-wrap
-msgid ""
+"\n"
 "   -- keep the value in a `Just` only if the given predicate holds\n"
 "   total\n"
 "   filterMaybe : (a -> Bool) -> Maybe a -> Maybe a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1163
-#, no-wrap
-msgid ""
+"\n"
 "   -- keep the first value that is not a `Nothing` (if any)\n"
 "   total\n"
 "   first : Maybe a -> Maybe a -> Maybe a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1167
-#, no-wrap
-msgid ""
+"\n"
 "   -- keep the last value that is not a `Nothing` (if any)\n"
 "   total\n"
 "   last : Maybe a -> Maybe a -> Maybe a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1175
-#, no-wrap
-msgid ""
+"\n"
 "   -- this is another general way to extract a value from a `Maybe`.\n"
 "   -- Make sure the following holds:\n"
 "   -- `foldMaybe (+) 5 Nothing = 5`\n"
 "   -- `foldMaybe (+) 5 (Just 12) = 17`\n"
 "   total\n"
 "   foldMaybe : (acc -> el -> acc) -> acc -> Maybe el -> acc\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '2. '
@@ -1893,61 +2226,34 @@ msgid "Implement the following generic functions for `Either`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1181
+#: ../src/Tutorial/DataTypes.md:1178
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   total\n"
 "   mapEither : (a -> b) -> Either e a -> Either e b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1186
-#, no-wrap
-msgid ""
+"\n"
 "   -- In case of both `Either`s being `Left`s, keep the\n"
 "   -- value stored in the first `Left`.\n"
 "   total\n"
 "   appEither : Either e (a -> b) -> Either e a -> Either e b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1189
-#, no-wrap
-msgid ""
+"\n"
 "   total\n"
 "   bindEither : Either e a -> (a -> Either e b) -> Either e b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1195
-#, no-wrap
-msgid ""
+"\n"
 "   -- Keep the first value that is not a `Left`\n"
 "   -- If both `Either`s are `Left`s, use the given accumulator\n"
 "   -- for the error values\n"
 "   total\n"
 "   firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1201
-#, no-wrap
-msgid ""
+"\n"
 "   -- Keep the last value that is not a `Left`\n"
 "   -- If both `Either`s are `Left`s, use the given accumulator\n"
 "   -- for the error values\n"
 "   total\n"
 "   lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1205
-#, no-wrap
-msgid ""
+"\n"
 "   total\n"
 "   fromEither : (e -> c) -> (a -> c) -> Either e a -> c\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '3. '
@@ -1956,63 +2262,32 @@ msgid "Implement the following generic functions for `List`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1211
+#: ../src/Tutorial/DataTypes.md:1208
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   total\n"
 "   mapList : (a -> b) -> List a -> List b\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1214
-#, no-wrap
-msgid ""
+"\n"
 "   total\n"
 "   filterList : (a -> Bool) -> List a -> List a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1218
-#, no-wrap
-msgid ""
+"\n"
 "   -- return the first value of a list, if it is non-empty\n"
 "   total\n"
 "   headMaybe : List a -> Maybe a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1222
-#, no-wrap
-msgid ""
+"\n"
 "   -- return everything but the first value of a list, if it is non-empty\n"
 "   total\n"
 "   tailMaybe : List a -> Maybe (List a)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1226
-#, no-wrap
-msgid ""
+"\n"
 "   -- return the last value of a list, if it is non-empty\n"
 "   total\n"
 "   lastMaybe : List a -> Maybe a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1231
-#, no-wrap
-msgid ""
+"\n"
 "   -- return everything but the last value of a list,\n"
 "   -- if it is non-empty\n"
 "   total\n"
 "   initMaybe : List a -> Maybe (List a)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1242
-#, no-wrap
-msgid ""
+"\n"
 "   -- accumulate the values in a list using the given\n"
 "   -- accumulator function and initial value\n"
 "   --\n"
@@ -2022,7 +2297,6 @@ msgid ""
 "   -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`\n"
 "   total\n"
 "   foldList : (acc -> el -> acc) -> acc -> List el -> acc\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '4. '
@@ -2032,17 +2306,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1254
+#: ../src/Tutorial/DataTypes.md:1246
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   record Client where\n"
 "     constructor MkClient\n"
 "     name          : String\n"
 "     title         : Title\n"
 "     age           : Bits8\n"
 "     passwordOrKey : Either Bits64 String\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -2073,13 +2345,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1273
+#: ../src/Tutorial/DataTypes.md:1269
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   ethanol : List (Element,Nat)\n"
 "   ethanol = [(C,2),(H,6),(O,1)]\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -2090,9 +2360,10 @@ msgid ""
 "   number to a `Double`.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1278
-msgid "## Alternative Syntax for Data Definitions"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1277
+#, no-wrap
+msgid "Alternative Syntax for Data Definitions"
 msgstr ""
 
 #. type: Plain text
@@ -2114,57 +2385,50 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1297
+#: ../src/Tutorial/DataTypes.md:1291
 #, no-wrap
 msgid ""
-"```idris\n"
 "-- GADT is an acronym for \"generalized algebraic data type\"\n"
 "namespace GADT\n"
 "  data Option : Type -> Type where\n"
 "    Some : a -> Option a\n"
 "    None : Option a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1301
-#, no-wrap
-msgid ""
+"\n"
 "  data Validated : Type -> Type -> Type where\n"
 "    Invalid : e -> Validated e a\n"
 "    Valid   : a -> Validated e a\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1306
-#, no-wrap
-msgid ""
+"\n"
 "  data Seq : Type -> Type where\n"
 "    Nil  : Seq a\n"
 "    (::) : a -> GADT.Seq a -> Seq a\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1318
+#, no-wrap
 msgid ""
-"Here, `Option` is clearly declared as a type constructor (a function of type "
-"`Type -> Type`), while `Some` is a generic function of type `a -> Option a` "
-"(where `a` is a *type parameter*)  and `None` is a nullary generic function "
-"of type `Option a` (`a` again being a type parameter).  Likewise for "
-"`Validated` and `Seq`. Note, that in case of `Seq` we had to disambiguate "
-"between the different `Seq` definitions in the recursive case. Since we will "
-"usually not define several data types with the same name in a source file, "
-"this is not necessary most of the time."
+"Here, `Option` is clearly declared as a type constructor\n"
+"(a function of type `Type -> Type`), while `Some`\n"
+"is a generic function of type `a -> Option a` (where `a` is\n"
+"a *type parameter*)\n"
+"and `None` is a nullary generic function of type `Option a`\n"
+"(`a` again being a type parameter).\n"
+"Likewise for `Validated` and `Seq`. Note, that in case\n"
+"of `Seq` we had to disambiguate between the different\n"
+"`Seq` definitions in the recursive case. Since we will\n"
+"usually not define several data types with the same name in\n"
+"a source file, this is not necessary most of the time.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-msgid "## Conclusion"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, no-wrap
+msgid "Conclusion"
 msgstr ""
 
 #. type: Plain text
@@ -2257,9 +2521,12 @@ msgid ""
 "already provided by the *Prelude*.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1363
-msgid "## What's next"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
+#: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
+#: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
+#, no-wrap
+msgid "What's next"
 msgstr ""
 
 #. type: Plain text
@@ -2277,5 +2544,8 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-msgid "<!-- vi: filetype=idris2 -->"
+#, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""

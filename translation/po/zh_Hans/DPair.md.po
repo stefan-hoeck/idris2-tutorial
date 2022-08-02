@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 12:48+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -18,15 +18,364 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-#, fuzzy
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
+msgstr ""
+
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, fuzzy, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 1 部分\n"
@@ -46,15 +395,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-#, fuzzy
-msgid "### Exercises part 2"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, fuzzy, no-wrap
+msgid "Exercises part 2"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 2 部分\n"
@@ -74,15 +423,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-#, fuzzy
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, fuzzy, no-wrap
+msgid "Exercises part 3"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 3 部分\n"
@@ -102,15 +451,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-#, fuzzy
-msgid "## Conclusion"
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, fuzzy, no-wrap
+msgid "Conclusion"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -138,8 +487,10 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy
-msgid "<!-- vi: filetype=idris2 -->"
+#, fuzzy, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -161,36 +512,10 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-#, fuzzy
-msgid "%default total ```"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:2
-#, fuzzy
-msgid "# Sigma Types"
+#. type: Title #
+#: ../src/Tutorial/DPair.md:1
+#, fuzzy, no-wrap
+msgid "Sigma Types"
 msgstr "# 西格玛类型"
 
 #. type: Plain text
@@ -221,37 +546,31 @@ msgstr ""
 "%A3_type)：依赖对及其泛化，依赖记录。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:21
-#, fuzzy
-msgid "```idris module Tutorial.DPair"
-msgstr "```idris 模块教程.DPair"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:23
-#, fuzzy
-msgid "import Control.Monad.State"
-msgstr "导入 Control.Monad.State"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:32
-#, fuzzy
+#: ../src/Tutorial/DPair.md:19
+#, fuzzy, no-wrap
 msgid ""
-"import Data.DPair import Data.Either import Data.HList import Data.List "
-"import Data.List1 import Data.Singleton import Data.String import Data.Vect"
-msgstr ""
-"导入 Data.DPair 导入 Data.Either 导入 Data.HList 导入 Data.List 导入 Data."
-"List1 导入 Data.Singleton 导入 Data.String 导入 Data.Vect"
+"module Tutorial.DPair\n"
+"\n"
+"import Control.Monad.State\n"
+"\n"
+"import Data.DPair\n"
+"import Data.Either\n"
+"import Data.HList\n"
+"import Data.List\n"
+"import Data.List1\n"
+"import Data.Singleton\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"\n"
+"import Text.CSV\n"
+"\n"
+"%default total\n"
+msgstr "导入 Data.DPair 导入 Data.Either 导入 Data.HList 导入 Data.List 导入 Data.List1 导入 Data.Singleton 导入 Data.String 导入 Data.Vect"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:34
-#, fuzzy
-msgid "import Text.CSV"
-msgstr "导入文本.CSV"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:39
-#, fuzzy
-msgid "## Dependent Pairs"
+#. type: Title ##
+#: ../src/Tutorial/DPair.md:38
+#, fuzzy, no-wrap
+msgid "Dependent Pairs"
 msgstr "## 依赖对"
 
 #. type: Plain text
@@ -270,14 +589,12 @@ msgstr ""
 "是完全的："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:51
-#, fuzzy
+#: ../src/Tutorial/DPair.md:47
+#, fuzzy, no-wrap
 msgid ""
-"```idris parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat)  "
-"parseAndDrop = map (drop 3) . traverse parsePositive ```"
-msgstr ""
-"```idris parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat) "
-"parseAndDrop = map (drop 3) 。遍历 parsePositive ```"
+"parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat)\n"
+"parseAndDrop = map (drop 3) . traverse parsePositive\n"
+msgstr "```idris parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat) parseAndDrop = map (drop 3) 。遍历 parsePositive ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:60
@@ -295,10 +612,10 @@ msgstr ""
 "注意，所有这些在编译时是如何知道的：我们编码的先决条件是第一个参数是长度索引"
 "中至少三个元素的向量，并且可以从中得出结果的长度。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:62
-#, fuzzy
-msgid "### Vectors of Unknown Length"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:61
+#, fuzzy, no-wrap
+msgid "Vectors of Unknown Length"
 msgstr "### 未知长度的向量"
 
 #. type: Plain text
@@ -311,14 +628,12 @@ msgstr ""
 "然而，这并不总是可能的。考虑以下函数，在 `List` 上定义并由 `Data.List` 导出："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:70
-#, fuzzy
+#: ../src/Tutorial/DPair.md:66
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Relations> :t takeWhile Data.List.takeWhile : (a -> Bool) -"
-"> List a -> List a ```"
-msgstr ""
-"```repl Tutorial.Relations> :t takeWhile Data.List.takeWhile : (a -> Bool) -"
-"> List a -> List a ```"
+"Tutorial.Relations> :t takeWhile\n"
+"Data.List.takeWhile : (a -> Bool) -> List a -> List a\n"
+msgstr "```repl Tutorial.Relations> :t takeWhile Data.List.takeWhile : (a -> Bool) -> List a -> List a ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:75
@@ -333,9 +648,9 @@ msgstr ""
 "表元素和谓词，这个前缀有多长。我们可以为向量编写这样的函数吗？试一试吧："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:79
-#, fuzzy
-msgid "```idris takeWhile' : (a -> Bool) -> Vect n a -> Vect m a ```"
+#: ../src/Tutorial/DPair.md:76
+#, fuzzy, no-wrap
+msgid "takeWhile' : (a -> Bool) -> Vect n a -> Vect m a\n"
 msgstr "```idris takeWhile' : (a -> Bool) -> Vect n a -> Vect m a ```"
 
 #. type: Plain text
@@ -362,23 +677,17 @@ msgstr ""
 "向量持有的值的类型，以及 * 输出向量的长度 *。不相信我？看这里："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:97
-#, fuzzy
+#: ../src/Tutorial/DPair.md:93
+#, fuzzy, no-wrap
 msgid ""
-"```idris -- This looks like trouble: We got a non-empty vector of `Void`...  "
-"voids : Vect 7 Void voids = takeWhile' (const True) []"
-msgstr ""
-"```idris -- 这看起来很麻烦：我们有一个 `Void` 的非空向量... voids : Vect 7 "
-"Void voids = takeWhile' (const True) []"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:102
-#, fuzzy
-msgid ""
-"-- ...from which immediately follows a proof of `Void` proofOfVoid : Void "
-"proofOfVoid = head voids ```"
-msgstr ""
-"-- ...紧随 `Void` proofOfVoid 的证明： Void proofOfVoid = head voids ```"
+"-- This looks like trouble: We got a non-empty vector of `Void`...\n"
+"voids : Vect 7 Void\n"
+"voids = takeWhile' (const True) []\n"
+"\n"
+"-- ...from which immediately follows a proof of `Void`\n"
+"proofOfVoid : Void\n"
+"proofOfVoid = head voids\n"
+msgstr "```idris -- 这看起来很麻烦：我们有一个 `Void` 的非空向量... voids : Vect 7 Void voids = takeWhile' (const True) []"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:108
@@ -410,15 +719,13 @@ msgstr ""
 "的值配对。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:122
+#: ../src/Tutorial/DPair.md:116
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record AnyVect a where\n"
 "  constructor MkAnyVect\n"
 "  length : Nat\n"
 "  vect   : Vect length a\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "在哪里记录 AnyVect\n"
@@ -447,16 +754,14 @@ msgstr ""
 "其返回 `AnyVect a` 类型的值："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:139
+#: ../src/Tutorial/DPair.md:132
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "takeWhile : (a -> Bool) -> Vect n a -> AnyVect a\n"
 "takeWhile f []        = MkAnyVect 0 []\n"
 "takeWhile f (x :: xs) = case f x of\n"
 "  False => MkAnyVect 0 []\n"
 "  True  => let MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "takeWhile : (a -> Bool) -> Vect n a -> AnyVect a\n"
@@ -483,16 +788,14 @@ msgstr ""
 "可以用下划线替换它："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:155
+#: ../src/Tutorial/DPair.md:148
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a\n"
 "takeWhile2 f []        = MkAnyVect _ []\n"
 "takeWhile2 f (x :: xs) = case f x of\n"
 "  False => MkAnyVect 0 []\n"
 "  True  => let MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a\n"
@@ -526,14 +829,10 @@ msgstr ""
 "请注意，Idris 允许我们明确地进行全称量化。 `takeWhile'` 的类型也可以这样写："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:168
-#, fuzzy
-msgid ""
-"```idris takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a "
-"```"
-msgstr ""
-"```idris takeWhile'' : forall a, n, m 。 (a -> Bool) -> Vect n a -> Vect m a "
-"```"
+#: ../src/Tutorial/DPair.md:165
+#, fuzzy, no-wrap
+msgid "takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a\n"
+msgstr "```idris takeWhile'' : forall a, n, m 。 (a -> Bool) -> Vect n a -> Vect m a ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:173
@@ -547,17 +846,15 @@ msgstr ""
 "长的版本，我们之前已经看到过类似的函数类型："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:182
+#: ../src/Tutorial/DPair.md:174
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "takeWhile''' :  {0 a : _}\n"
 "             -> {0 n : _}\n"
 "             -> {0 m : _}\n"
 "             -> (a -> Bool)\n"
 "             -> Vect n a\n"
 "             -> Vect m a\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "takeWhile''' : {0 a : _}\n"
@@ -586,10 +883,10 @@ msgstr ""
 "purescript/文档/blob/master/language/Differences-from-Haskell.md#explicit-"
 "forall）。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:191
-#, fuzzy
-msgid "### The Essence of Dependent Pairs"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:190
+#, fuzzy, no-wrap
+msgid "The Essence of Dependent Pairs"
 msgstr "### 依赖对的本质"
 
 #. type: Plain text
@@ -613,15 +910,13 @@ msgstr ""
 "*Prelude* 提供了一个通用的依赖对类型。这是它的实现（准备消除歧义）："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:209
+#: ../src/Tutorial/DPair.md:203
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record DPair' (a : Type) (p : a -> Type) where\n"
 "  constructor MkDPair'\n"
 "  fst : a\n"
 "  snd : p fst\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "记录 DPair' (a : Type) (p : a -> Type) 其中\n"
@@ -645,36 +940,30 @@ msgstr ""
 "如，这里是 `AnyVect a` 表示为 `DPair`："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:220
-#, fuzzy
+#: ../src/Tutorial/DPair.md:216
+#, fuzzy, no-wrap
 msgid ""
-"```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n => Vect n "
-"a)  ```"
-msgstr ""
-"```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n => Vect n "
-"a) ```"
+"AnyVect' : (a : Type) -> Type\n"
+"AnyVect' a = DPair Nat (\\n => Vect n a)\n"
+msgstr "```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n => Vect n a) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:225
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note, how `\\n => Vect n a` is a function from `Nat` to `Type`.  Idris "
-"provides special syntax for describing dependent pairs, as they are "
-"important building blocks for programming in languages with first class "
-"types:"
-msgstr ""
-"请注意，`\\n => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于"
-"描述依赖对的特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块："
+"Note, how `\\n => Vect n a` is a function from `Nat` to `Type`.\n"
+"Idris provides special syntax for describing dependent pairs, as\n"
+"they are important building blocks for programming in languages\n"
+"with first class types:\n"
+msgstr "请注意，`\\n => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于描述依赖对的特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:230
-#, fuzzy
+#: ../src/Tutorial/DPair.md:226
+#, fuzzy, no-wrap
 msgid ""
-"```idris AnyVect'' : (a : Type) -> Type AnyVect'' a = (n : Nat ** Vect n a)  "
-"```"
-msgstr ""
-"```idris AnyVect'' : (a : Type) -> Type AnyVect'' a = (n : Nat ** Vect n a) "
-"```"
+"AnyVect'' : (a : Type) -> Type\n"
+"AnyVect'' a = (n : Nat ** Vect n a)\n"
+msgstr "```idris AnyVect'' : (a : Type) -> Type AnyVect'' a = (n : Nat ** Vect n a) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:233
@@ -685,14 +974,12 @@ msgid ""
 msgstr "我们可以在 REPL 中检查，`AnyVect''` 的右侧被脱糖到 `AnyVect'` 的右侧："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:238
-#, fuzzy
+#: ../src/Tutorial/DPair.md:234
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Relations> (n : Nat ** Vect n Int)  DPair Nat (\\n => Vect "
-"n Int)  ```"
-msgstr ""
-"```repl Tutorial.Relations> (n : Nat ** Vect n Int) DPair Nat (\\n => Vect n "
-"Int) ```"
+"Tutorial.Relations> (n : Nat ** Vect n Int)\n"
+"DPair Nat (\\n => Vect n Int)\n"
+msgstr "```repl Tutorial.Relations> (n : Nat ** Vect n Int) DPair Nat (\\n => Vect n Int) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:242
@@ -705,12 +992,12 @@ msgstr ""
 "要将整个表达式放在括号中。）"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:247
-#, fuzzy
+#: ../src/Tutorial/DPair.md:243
+#, fuzzy, no-wrap
 msgid ""
-"```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a)  ```"
-msgstr ""
-"```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a) ```"
+"AnyVect3 : (a : Type) -> Type\n"
+"AnyVect3 a = (n ** Vect n a)\n"
+msgstr "```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:254
@@ -728,16 +1015,14 @@ msgstr ""
 "创建和模式匹配："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:262
+#: ../src/Tutorial/DPair.md:255
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "takeWhile3 : (a -> Bool) -> Vect m a -> (n ** Vect n a)\n"
 "takeWhile3 f []        = (_ ** [])\n"
 "takeWhile3 f (x :: xs) = case f x of\n"
 "  False => (_ ** [])\n"
 "  True  => let (_  ** ys) = takeWhile3 f xs in (_ ** x :: ys)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "takeWhile3 : (a -> Bool) -> Vect m a -> (n ** Vect n a)\n"
@@ -756,19 +1041,17 @@ msgid ""
 msgstr "就像常规对一样，我们可以使用依赖对语法来定义依赖三元组和更大的元组："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:270
-#, fuzzy
+#: ../src/Tutorial/DPair.md:266
+#, fuzzy, no-wrap
 msgid ""
-"```idris AnyMatrix : (a : Type) -> Type AnyMatrix a = (m ** n ** Vect m "
-"(Vect n a))  ```"
-msgstr ""
-"```idris AnyMatrix : (a : Type) -> Type AnyMatrix a = (m ** n ** Vect m "
-"(Vect n a)) ```"
+"AnyMatrix : (a : Type) -> Type\n"
+"AnyMatrix a = (m ** n ** Vect m (Vect n a))\n"
+msgstr "```idris AnyMatrix : (a : Type) -> Type AnyMatrix a = (m ** n ** Vect m (Vect n a)) ```"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:272
-#, fuzzy
-msgid "### Erased Existentials"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:271
+#, fuzzy, no-wrap
+msgid "Erased Existentials"
 msgstr "### 已删除的存在"
 
 #. type: Plain text
@@ -797,17 +1080,15 @@ msgid ""
 msgstr "例如，下面是 `takeWhile` 的一个版本，返回一个 `Exists` 类型的值："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:293
+#: ../src/Tutorial/DPair.md:285
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n => Vect n a)\n"
 "takeWhileExists f []        = Evidence _ []\n"
 "takeWhileExists f (x :: xs) = case f x of\n"
 "  True  => let Evidence _ ys = takeWhileExists f xs\n"
 "            in Evidence _ (x :: ys)\n"
 "  False => takeWhileExists f xs\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n => Vect n a)\n"
@@ -830,9 +1111,11 @@ msgstr ""
 "可能很有用：它由 *value* 参数化] 它存储："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:302
-#, fuzzy
-msgid "```idris true : Singleton True true = Val True ```"
+#: ../src/Tutorial/DPair.md:298
+#, fuzzy, no-wrap
+msgid ""
+"true : Singleton True\n"
+"true = Val True\n"
 msgstr "```idris true : Singleton True true = Val True ```"
 
 #. type: Plain text
@@ -847,9 +1130,11 @@ msgstr ""
 "类型错误，Idris 知道这一点："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:311
-#, fuzzy
-msgid "```idris true' : Singleton True true' = Val _ ```"
+#: ../src/Tutorial/DPair.md:307
+#, fuzzy, no-wrap
+msgid ""
+"true' : Singleton True\n"
+"true' = Val _\n"
 msgstr "```idris true' : Singleton True true' = Val _ ```"
 
 #. type: Plain text
@@ -860,14 +1145,12 @@ msgid ""
 msgstr "我们可以使用它凭空变出一个向量的（擦除的！）长度："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:320
+#: ../src/Tutorial/DPair.md:315
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "vectLength : Vect n a -> Singleton n\n"
 "vectLength []        = Val 0\n"
 "vectLength (x :: xs) = let Val k = vectLength xs in Val (S k)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "vectLength : Vect n a -> Singleton n\n"
@@ -889,9 +1172,11 @@ msgstr ""
 "`length` 的类型良好的虚假实现："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:331
-#, fuzzy
-msgid "```idris bogusLength : Vect n a -> Nat bogusLength = const 0 ```"
+#: ../src/Tutorial/DPair.md:327
+#, fuzzy, no-wrap
+msgid ""
+"bogusLength : Vect n a -> Nat\n"
+"bogusLength = const 0\n"
 msgstr "```idris bogusLength : Vect n a -> Nat bogusLength = const 0 ```"
 
 #. type: Plain text
@@ -913,14 +1198,12 @@ msgstr ""
 "转换为正确的依赖对："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:343
-#, fuzzy
+#: ../src/Tutorial/DPair.md:339
+#, fuzzy, no-wrap
 msgid ""
-"```idris toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a)  toDPair "
-"(Evidence _ as) = let Val m = vectLength as in (m ** as)  ```"
-msgstr ""
-"```idris toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a) toDPair "
-"(Evidence _ as) = let Val m = vectLength as in (m ** as) ```"
+"toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a)\n"
+"toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)\n"
+msgstr "```idris toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a) toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:347
@@ -969,10 +1252,10 @@ msgid ""
 "exercise 3 in your implementation."
 msgstr "重复练习 3，但返回正确的依赖对。在您的实现中使用练习 3 中的函数。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:365
-#, fuzzy
-msgid "## Use Case: Nucleic Acids"
+#. type: Title ##
+#: ../src/Tutorial/DPair.md:364
+#, fuzzy, no-wrap
+msgid "Use Case: Nucleic Acids"
 msgstr "## 用例：核酸"
 
 #. type: Plain text
@@ -990,64 +1273,37 @@ msgstr ""
 "我们想确保只有有效的碱基存在于核酸链中。这是一种可能的编码："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:375
-#, fuzzy
-msgid "```idris data BaseType = DNABase | RNABase"
-msgstr "```idris 数据 BaseType = DNABase |核糖核酸库"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:382
-#, fuzzy, no-wrap
+#: ../src/Tutorial/DPair.md:373
+#, no-wrap
 msgid ""
+"data BaseType = DNABase | RNABase\n"
+"\n"
 "data Nucleobase : BaseType -> Type where\n"
 "  Adenine  : Nucleobase b\n"
 "  Cytosine : Nucleobase b\n"
 "  Guanine  : Nucleobase b\n"
 "  Thymine  : Nucleobase DNABase\n"
 "  Uracile  : Nucleobase RNABase\n"
+"\n"
+"NucleicAcid : BaseType -> Type\n"
+"NucleicAcid = List . Nucleobase\n"
+"\n"
+"RNA : Type\n"
+"RNA = NucleicAcid RNABase\n"
+"\n"
+"DNA : Type\n"
+"DNA = NucleicAcid DNABase\n"
+"\n"
+"encodeBase : Nucleobase b -> Char\n"
+"encodeBase Adenine  = 'A'\n"
+"encodeBase Cytosine = 'C'\n"
+"encodeBase Guanine  = 'G'\n"
+"encodeBase Thymine  = 'T'\n"
+"encodeBase Uracile  = 'U'\n"
+"\n"
+"encode : NucleicAcid b -> String\n"
+"encode = pack . map encodeBase\n"
 msgstr ""
-"数据核碱基：BaseType -> 类型在哪里\n"
-"  腺嘌呤：核碱基 b\n"
-"  胞嘧啶：核碱基 b\n"
-"  鸟嘌呤：核碱基 b\n"
-"  胸腺嘧啶：核碱基 DNABase\n"
-"  尿嘧啶 : 核碱基 RNABase\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:385
-#, fuzzy
-msgid "NucleicAcid : BaseType -> Type NucleicAcid = List . Nucleobase"
-msgstr "NucleicAcid：BaseType -> 类型 NucleicAcid = List 。核碱基"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:388
-#, fuzzy
-msgid "RNA : Type RNA = NucleicAcid RNABase"
-msgstr "RNA : 类型 RNA = NucleicAcid RNABase"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:391
-#, fuzzy
-msgid "DNA : Type DNA = NucleicAcid DNABase"
-msgstr "DNA : 类型 DNA = NucleicAcid DNABase"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:398
-#, fuzzy
-msgid ""
-"encodeBase : Nucleobase b -> Char encodeBase Adenine = 'A' encodeBase "
-"Cytosine = 'C' encodeBase Guanine = 'G' encodeBase Thymine = 'T' encodeBase "
-"Uracile = 'U'"
-msgstr ""
-"encodeBase : Nucleobase b -> Char encodeBase Adenine = 'A' encodeBase "
-"Cytosine = 'C' encodeBase Guanine = 'G' encodeBase Thymine = 'T' encodeBase "
-"Uracile = 'U'"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:402
-#, fuzzy
-msgid "encode : NucleicAcid b -> String encode = pack . map encodeBase ```"
-msgstr "编码：NucleicAcid b -> 字符串编码 = 包。地图编码基地```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:404
@@ -1056,14 +1312,12 @@ msgid "It is a type error to use `Uracile` in a strand of DNA:"
 msgstr "在 DNA 链中使用 `Uracile` 是一个类型错误："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:410
+#: ../src/Tutorial/DPair.md:405
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Mismatch between: RNABase and DNABase.\"\n"
 "  errDNA : DNA\n"
 "  errDNA = [Uracile, Adenine]\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "“不匹配：RNABase 和 DNABase”失败。\n"
@@ -1085,15 +1339,14 @@ msgstr ""
 "链中使用这些碱基："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:419
-#, fuzzy
-msgid "```idris dna1 : DNA dna1 = [Adenine, Cytosine, Guanine]"
-msgstr "```idris dna1 : DNA dna1 = [腺嘌呤、胞嘧啶、鸟嘌呤]"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:423
-#, fuzzy
-msgid "rna1 : RNA rna1 = [Adenine, Cytosine, Guanine] ```"
+#: ../src/Tutorial/DPair.md:416
+#, fuzzy, no-wrap
+msgid ""
+"dna1 : DNA\n"
+"dna1 = [Adenine, Cytosine, Guanine]\n"
+"\n"
+"rna1 : RNA\n"
+"rna1 = [Adenine, Cytosine, Guanine]\n"
 msgstr "rna1：RNA rna1 = [腺嘌呤，胞嘧啶，鸟嘌呤]```"
 
 #. type: Plain text
@@ -1108,59 +1361,29 @@ msgstr ""
 "`Uracile` 仅限用于 RNA股。让我们为 DNA 和 RNA 链编写解析器："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:434
-#, fuzzy, no-wrap
+#: ../src/Tutorial/DPair.md:428
+#, no-wrap
 msgid ""
-"```idris\n"
 "readAnyBase : Char -> Maybe (Nucleobase b)\n"
 "readAnyBase 'A' = Just Adenine\n"
 "readAnyBase 'C' = Just Cytosine\n"
 "readAnyBase 'G' = Just Guanine\n"
 "readAnyBase _   = Nothing\n"
-msgstr ""
-"```伊德里斯\n"
-"readAnyBase : Char -> Maybe (Nucleobase b)\n"
-"readAnyBase 'A' = 只是腺嘌呤\n"
-"readAnyBase 'C' = 只是胞嘧啶\n"
-"readAnyBase 'G' = 只是鸟嘌呤\n"
-"readAnyBase _ = 无\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:438
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readRNABase : Char -> Maybe (Nucleobase RNABase)\n"
 "readRNABase 'U' = Just Uracile\n"
 "readRNABase c   = readAnyBase c\n"
-msgstr ""
-"readRNABase : Char -> Maybe (Nucleobase RNABase)\n"
-"readRNABase 'U' = 只是尿嘧啶\n"
-"readRNABase c = readAnyBase c\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:442
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readDNABase : Char -> Maybe (Nucleobase DNABase)\n"
 "readDNABase 'T' = Just Thymine\n"
 "readDNABase c   = readAnyBase c\n"
+"\n"
+"readRNA : String -> Maybe RNA\n"
+"readRNA = traverse readRNABase . unpack\n"
+"\n"
+"readDNA : String -> Maybe DNA\n"
+"readDNA = traverse readDNABase . unpack\n"
 msgstr ""
-"readDNABase : Char -> Maybe (Nucleobase DNABase)\n"
-"readDNABase 'T' = 只是胸腺嘧啶\n"
-"readDNABase c = readAnyBase c\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:445
-#, fuzzy
-msgid "readRNA : String -> Maybe RNA readRNA = traverse readRNABase . unpack"
-msgstr "readRNA : String -> 也许 RNA readRNA = traverse readRNABase 。打开包装"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:449
-#, fuzzy
-msgid ""
-"readDNA : String -> Maybe DNA readDNA = traverse readDNABase . unpack ```"
-msgstr "readDNA : String -> 也许 DNA readDNA = 遍历 readDNABase 。解压```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:454
@@ -1182,10 +1405,9 @@ msgid ""
 msgstr "我们现在可以对核碱基序列进行一些简单的计算。例如，我们可以提出互补链："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:467
+#: ../src/Tutorial/DPair.md:459
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "complementRNA' : RNA -> RNA\n"
 "complementRNA' = map calc\n"
 "  where calc : Nucleobase RNABase -> Nucleobase RNABase\n"
@@ -1193,20 +1415,7 @@ msgid ""
 "        calc Cytosine = Guanine\n"
 "        calc Adenine  = Uracile\n"
 "        calc Uracile  = Adenine\n"
-msgstr ""
-"```伊德里斯\n"
-"补体RNA'：RNA -> RNA\n"
-"补体RNA' = 地图计算\n"
-"  其中 calc ：核碱基 RNABase -> 核碱基 RNABase\n"
-"        calc 鸟嘌呤 = 胞嘧啶\n"
-"        calc 胞嘧啶 = 鸟嘌呤\n"
-"        calc 腺嘌呤 = 尿嘧啶\n"
-"        计算尿嘧啶 = 腺嘌呤\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:476
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "complementDNA' : DNA -> DNA\n"
 "complementDNA' = map calc\n"
 "  where calc : Nucleobase DNABase -> Nucleobase DNABase\n"
@@ -1214,7 +1423,6 @@ msgid ""
 "        calc Cytosine = Guanine\n"
 "        calc Adenine  = Thymine\n"
 "        calc Thymine  = Adenine\n"
-"```\n"
 msgstr ""
 "补体DNA'：DNA -> DNA\n"
 "补体DNA' = 地图计算\n"
@@ -1237,17 +1445,16 @@ msgstr ""
 "们可以做得更好吗？不幸的是，以下方法不起作用："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:489
-#, fuzzy
+#: ../src/Tutorial/DPair.md:481
+#, fuzzy, no-wrap
 msgid ""
-"```idris complementBase' : Nucleobase b -> Nucleobase b complementBase' "
-"Adenine = ?what_now complementBase' Cytosine = Guanine complementBase' "
-"Guanine = Cytosine complementBase' Thymine = Adenine complementBase' Uracile "
-"= Adenine ```"
-msgstr ""
-"```idris 补体基'：核碱基 b -> 核碱基 b 补体基'腺嘌呤 = ?what_now 补体基'胞嘧"
-"啶 = 鸟嘌呤补体基'鸟嘌呤 = 胞嘧啶补体基'胸腺嘧啶 = 腺嘌呤补体基'尿嘧啶 = 腺嘌"
-"呤 ```"
+"complementBase' : Nucleobase b -> Nucleobase b\n"
+"complementBase' Adenine  = ?what_now\n"
+"complementBase' Cytosine = Guanine\n"
+"complementBase' Guanine  = Cytosine\n"
+"complementBase' Thymine  = Adenine\n"
+"complementBase' Uracile  = Adenine\n"
+msgstr "```idris 补体基'：核碱基 b -> 核碱基 b 补体基'腺嘌呤 = ?what_now 补体基'胞嘧啶 = 鸟嘌呤补体基'鸟嘌呤 = 胞嘧啶补体基'胸腺嘧啶 = 腺嘌呤补体基'尿嘧啶 = 腺嘌呤 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:497
@@ -1266,10 +1473,9 @@ msgstr ""
 "种方法是采用表示基本类型的附加未擦除参数（显式或隐式）："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:507
+#: ../src/Tutorial/DPair.md:498
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "complementBase : (b : BaseType) -> Nucleobase b -> Nucleobase b\n"
 "complementBase DNABase Adenine  = Thymine\n"
 "complementBase RNABase Adenine  = Uracile\n"
@@ -1277,7 +1483,6 @@ msgid ""
 "complementBase _       Guanine  = Cytosine\n"
 "complementBase _       Thymine  = Adenine\n"
 "complementBase _       Uracile  = Adenine\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "补充碱基：（b：碱基类型）-> 核碱基 b-> 核碱基 b\n"
@@ -1303,14 +1508,12 @@ msgstr ""
 "* 第一个参数的 * 值*。我们现在可以使用它来计算任何核酸的补体："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:517
-#, fuzzy
+#: ../src/Tutorial/DPair.md:513
+#, fuzzy, no-wrap
 msgid ""
-"```idris complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b "
-"complement b = map (complementBase b)  ```"
-msgstr ""
-"```idris 补体：（b：BaseType）-> NucleicAcid b -> NucleicAcid b 补体 b = 映射"
-"（complementBase b）```"
+"complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b\n"
+"complement b = map (complementBase b)\n"
+msgstr "```idris 补体：（b：BaseType）-> NucleicAcid b -> NucleicAcid b 补体 b = 映射（complementBase b）```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:528
@@ -1342,16 +1545,14 @@ msgid ""
 msgstr "当然，总是可以为这样的用例编写自定义 sum 类型："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:539
+#: ../src/Tutorial/DPair.md:532
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Result : Type where\n"
 "  UnknownBaseType : String -> Result\n"
 "  InvalidSequence : String -> Result\n"
 "  GotDNA          : DNA -> Result\n"
 "  GotRNA          : RNA -> Result\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "数据结果：键入 where\n"
@@ -1373,9 +1574,9 @@ msgstr ""
 "理错误并只提取一条 RNA 或 DNA，我们需要另一种数据类型："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:548
-#, fuzzy
-msgid "```idris data RNAOrDNA = ItsRNA RNA | ItsDNA DNA ```"
+#: ../src/Tutorial/DPair.md:545
+#, fuzzy, no-wrap
+msgid "data RNAOrDNA = ItsRNA RNA | ItsDNA DNA\n"
 msgstr "```idris 数据 RNAOrDNA = ItsRNA RNA |其DNA DNA ```"
 
 #. type: Plain text
@@ -1396,45 +1597,22 @@ msgid "Here is how we can encode this with a dependent pair:"
 msgstr "以下是我们如何使用依赖对对其进行编码："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:561
+#: ../src/Tutorial/DPair.md:555
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "namespace InputError\n"
 "  public export\n"
 "  data InputError : Type where\n"
 "    UnknownBaseType : String -> InputError\n"
 "    InvalidSequence : String -> InputError\n"
-msgstr ""
-"```伊德里斯\n"
-"命名空间输入错误\n"
-"  公共出口\n"
-"  数据 InputError : 键入 where\n"
-"    UnknownBaseType：字符串-> InputError\n"
-"    无效序列：字符串-> InputError\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:568
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "readAcid : (b : BaseType) -> String -> Either InputError (NucleicAcid b)\n"
 "readAcid b str =\n"
 "  let err = InvalidSequence str\n"
 "   in case b of\n"
 "        DNABase => maybeToEither err $ readDNA str\n"
 "        RNABase => maybeToEither err $ readRNA str\n"
-msgstr ""
-"readAcid : (b : BaseType) -> String -> Either InputError (NucleicAcid b)\n"
-"读酸 b str =\n"
-"  让 err = InvalidSequence str\n"
-"   如果 b 的\n"
-"        DNABase => 也许ToEither err $ readDNA str\n"
-"        RNABase => MaybeToEither err $ readRNA str\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:577
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "getNucleicAcid : IO (Either InputError (b ** NucleicAcid b))\n"
 "getNucleicAcid = do\n"
 "  baseString <- getLine\n"
@@ -1442,7 +1620,6 @@ msgid ""
 "    \"DNA\" => map (MkDPair _) . readAcid DNABase <$> getLine\n"
 "    \"RNA\" => map (MkDPair _) . readAcid RNABase <$> getLine\n"
 "    _     => pure $ Left (UnknownBaseType baseString)\n"
-"```\n"
 msgstr ""
 "getNucleicAcid：IO（输入错误（b ** NucleicAcid b））\n"
 "getNucleicAcid = 做\n"
@@ -1467,33 +1644,21 @@ msgstr ""
 "下是如何执行此操作："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:590
-#, fuzzy
-msgid ""
-"```idris transcribeBase : Nucleobase DNABase -> Nucleobase RNABase "
-"transcribeBase Adenine = Uracile transcribeBase Cytosine = Guanine "
-"transcribeBase Guanine = Cytosine transcribeBase Thymine = Adenine"
-msgstr ""
-"```idris transcribeBase : Nucleobase DNABase -> Nucleobase RNABase "
-"transcribeBase Adenine = Uracile transcribeBase Cytosine = Guanine "
-"transcribeBase Guanine = Cytosine transcribeBase Thymine = Adenine"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:593
-#, fuzzy
-msgid "transcribe : DNA -> RNA transcribe = map transcribeBase"
-msgstr "转录：DNA-> RNA转录=映射转录基"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:596
-#, fuzzy
-msgid "printRNA : RNA -> IO ()  printRNA = putStrLn . encode"
-msgstr "打印RNA：RNA->IO（）打印RNA = putStrLn。编码"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:606
+#: ../src/Tutorial/DPair.md:584
 #, fuzzy, no-wrap
 msgid ""
+"transcribeBase : Nucleobase DNABase -> Nucleobase RNABase\n"
+"transcribeBase Adenine  = Uracile\n"
+"transcribeBase Cytosine = Guanine\n"
+"transcribeBase Guanine  = Cytosine\n"
+"transcribeBase Thymine  = Adenine\n"
+"\n"
+"transcribe : DNA -> RNA\n"
+"transcribe = map transcribeBase\n"
+"\n"
+"printRNA : RNA -> IO ()\n"
+"printRNA = putStrLn . encode\n"
+"\n"
 "transcribeProg : IO ()\n"
 "transcribeProg = do\n"
 "  Right (b ** seq) <- getNucleicAcid\n"
@@ -1502,7 +1667,6 @@ msgid ""
 "  case b of\n"
 "    DNABase => printRNA $ transcribe seq\n"
 "    RNABase => printRNA seq\n"
-"```\n"
 msgstr ""
 "转录程序：IO（）\n"
 "transcribeProg = 做\n"
@@ -1545,10 +1709,10 @@ msgstr ""
 "做会导致编译时异常，而不是运行时错误，或者 - 更糟糕的是 - 程序静默运行虚假计"
 "算。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:622
-#, fuzzy
-msgid "### Dependent Records vs Sum Types"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:621
+#, fuzzy, no-wrap
+msgid "Dependent Records vs Sum Types"
 msgstr "### 依赖记录与总和类型"
 
 #. type: Plain text
@@ -1568,38 +1732,25 @@ msgstr ""
 "同样具有表现力："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:634
-#, fuzzy
-msgid "```idris Acid1 : Type Acid1 = (b ** NucleicAcid b)"
-msgstr "```idris Acid1 : Type Acid1 = (b ** NucleicAcid b)"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:639
+#: ../src/Tutorial/DPair.md:631
 #, fuzzy, no-wrap
 msgid ""
+"Acid1 : Type\n"
+"Acid1 = (b ** NucleicAcid b)\n"
+"\n"
 "record Acid2 where\n"
 "  constructor MkAcid2\n"
 "  baseType : BaseType\n"
 "  sequence : NucleicAcid baseType\n"
+"\n"
+"data Acid3 : Type where\n"
+"  SomeRNA : RNA -> Acid3\n"
+"  SomeDNA : DNA -> Acid3\n"
 msgstr ""
 "记录 Acid2 在哪里\n"
 "  构造函数 MkAcid2\n"
 "  基本类型：基本类型\n"
 "  序列：核酸碱基类型\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:644
-#, fuzzy, no-wrap
-msgid ""
-"data Acid3 : Type where\n"
-"  SomeRNA : RNA -> Acid3\n"
-"  SomeDNA : DNA -> Acid3\n"
-"```\n"
-msgstr ""
-"数据 Acid3 ：输入位置\n"
-"  SomeRNA : RNA -> Acid3\n"
-"  SomeDNA : DNA -> Acid3\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:652
@@ -1727,10 +1878,10 @@ msgstr ""
 "*product*。因此，这个数字会快速增长，并且在这些情况下，总和类型编码会导致模式"
 "匹配的块很长。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:705
-#, fuzzy
-msgid "## Use Case: CSV Files with a Schema"
+#. type: Title ##
+#: ../src/Tutorial/DPair.md:704
+#, fuzzy, no-wrap
+msgid "Use Case: CSV Files with a Schema"
 msgstr "## 用例：带有架构的 CSV 文件"
 
 #. type: Plain text
@@ -1748,88 +1899,45 @@ msgstr ""
 "式。在我们开始之前，这是一个运行最终程序的 REPL 会话，您将在练习中完成它："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:719
-#, fuzzy
+#: ../src/Tutorial/DPair.md:713
+#, no-wrap
 msgid ""
-"```repl Solutions.DPair> :exec main Enter a command: load resources/example "
-"Table loaded. Schema: str,str,fin2023,str?,boolean? Enter a command: get 3 "
-"Row 3:"
-msgstr ""
-"```repl Solutions.DPair> :exec main 输入命令：load resources/example 表已加"
-"载。架构：str,str,fin2023,str?,boolean?输入命令：获取 3 第 3 行："
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:721
-#, fuzzy, no-wrap
-msgid ""
+"Solutions.DPair> :exec main\n"
+"Enter a command: load resources/example\n"
+"Table loaded. Schema: str,str,fin2023,str?,boolean?\n"
+"Enter a command: get 3\n"
+"Row 3:\n"
+"\n"
 "str   | str    | fin2023 | str? | boolean?\n"
 "------------------------------------------\n"
-msgstr ""
-"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
-"------------------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:723
-#, fuzzy, no-wrap
-msgid "Floor | Jansen | 1981    |      | t\n"
-msgstr "地板 |詹森 | 1981 | |吨\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:726
-#, fuzzy
-msgid "Enter a command: add Mikael,Stanne,1974,, Row prepended:"
-msgstr "输入命令：添加 Mikael,Stanne,1974,, 前置行："
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:728 ../src/Tutorial/DPair.md:735
-#, fuzzy, no-wrap
-msgid ""
+"Floor | Jansen | 1981    |      | t\n"
+"\n"
+"Enter a command: add Mikael,Stanne,1974,,\n"
+"Row prepended:\n"
+"\n"
 "str    | str    | fin2023 | str? | boolean?\n"
 "-------------------------------------------\n"
-msgstr ""
-"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
-"------------------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:730 ../src/Tutorial/DPair.md:737
-#, fuzzy, no-wrap
-msgid "Mikael | Stanne | 1974    |      |\n"
-msgstr "迈凯尔 |斯坦 | 1974 | |\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:733
-#, fuzzy
-msgid "Enter a command: get 1 Row 1:"
-msgstr "输入命令：获取 1 第 1 行："
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:742
-#, fuzzy
-msgid ""
-"Enter a command: delete 1 Deleted row: 1.  Enter a command: get 1 Row 1:"
-msgstr "输入命令：delete 1 删除的行：1. 输入命令：get 1 第 1 行："
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:744
-#, fuzzy, no-wrap
-msgid ""
+"Mikael | Stanne | 1974    |      |\n"
+"\n"
+"Enter a command: get 1\n"
+"Row 1:\n"
+"\n"
+"str    | str    | fin2023 | str? | boolean?\n"
+"-------------------------------------------\n"
+"Mikael | Stanne | 1974    |      |\n"
+"\n"
+"Enter a command: delete 1\n"
+"Deleted row: 1.\n"
+"Enter a command: get 1\n"
+"Row 1:\n"
+"\n"
 "str | str     | fin2023 | str? | boolean?\n"
 "-----------------------------------------\n"
+"Rob | Halford | 1951    |      |\n"
+"\n"
+"Enter a command: quit\n"
+"Goodbye.\n"
 msgstr ""
-"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
-"-----------------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:746
-#, fuzzy, no-wrap
-msgid "Rob | Halford | 1951    |      |\n"
-msgstr "抢 |哈尔福德 | 1951 | |\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:750 ../src/Tutorial/Predicates.md:1357
-#, fuzzy
-msgid "Enter a command: quit Goodbye.  ```"
-msgstr "输入命令：退出再见。 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:754
@@ -1894,10 +2002,10 @@ msgstr ""
 "行时才知道此信息。表的当前大小也是如此。因此，我们会将这两个值作为字段存储在"
 "依赖记录中。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:774
-#, fuzzy
-msgid "### Encoding the Schema"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:773
+#, fuzzy, no-wrap
+msgid "Encoding the Schema"
 msgstr "### 编码模式"
 
 #. type: Plain text
@@ -1914,17 +2022,14 @@ msgstr ""
 "中，我们只支持一些 Idris 原语："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
-#: ../src/Tutorial/Predicates.md:495
-#, fuzzy
-msgid "```idris data ColType = I64 | Str | Boolean | Float"
+#: ../src/Tutorial/DPair.md:781
+#, fuzzy, no-wrap
+msgid ""
+"data ColType = I64 | Str | Boolean | Float\n"
+"\n"
+"Schema : Type\n"
+"Schema = List ColType\n"
 msgstr "```idris 数据 ColType = I64 |字符串 |布尔值 |漂浮"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:787
-#, fuzzy
-msgid "Schema : Type Schema = List ColType ```"
-msgstr "架构：类型架构 = 列表 ColType ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:791
@@ -1938,28 +2043,23 @@ msgstr ""
 "表中行的异构列表的索引："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:798
+#: ../src/Tutorial/DPair.md:792
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "IdrisType : ColType -> Type\n"
 "IdrisType I64     = Int64\n"
 "IdrisType Str     = String\n"
 "IdrisType Boolean = Bool\n"
 "IdrisType Float   = Double\n"
+"\n"
+"Row : Schema -> Type\n"
+"Row = HList . map IdrisType\n"
 msgstr ""
-"```伊德里斯\n"
 "IdrisType : ColType -> 类型\n"
 "IdrisType I64 = Int64\n"
 "IdrisType Str = 字符串\n"
 "IdrisType 布尔值 = 布尔值\n"
 "IdrisType Float = 双\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:802
-#, fuzzy
-msgid "Row : Schema -> Type Row = HList . map IdrisType ```"
-msgstr "行：架构 -> 类型行 = HList。地图 IdrisType ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:807
@@ -1974,24 +2074,20 @@ msgstr ""
 "解析要添加的新行，必须在运行时知道表的当前模式和大小："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:815
+#: ../src/Tutorial/DPair.md:808
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Table where\n"
 "  constructor MkTable\n"
 "  schema : Schema\n"
 "  size   : Nat\n"
 "  rows   : Vect size (Row schema)\n"
-"```\n"
 msgstr ""
-"```伊德里斯\n"
 "记录表在哪里\n"
 "  构造函数 MkTable\n"
 "  架构：架构\n"
 "  尺寸：自然\n"
 "  rows : Vect 大小（行模式）\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:823
@@ -2010,10 +2106,9 @@ msgstr ""
 "没有失败的可能性。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:834
+#: ../src/Tutorial/DPair.md:824
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Command : (t : Table) -> Type where\n"
 "  PrintSchema : Command t\n"
 "  PrintSize   : Command t\n"
@@ -2022,7 +2117,6 @@ msgid ""
 "  Get         : Fin (size t) -> Command t\n"
 "  Delete      : Fin (size t) -> Command t\n"
 "  Quit        : Command t\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "数据命令：（t：表）-> 键入 where\n"
@@ -2048,10 +2142,9 @@ msgstr ""
 "`Either` 中："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:852
+#: ../src/Tutorial/DPair.md:840
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "applyCommand : (t : Table) -> Command t -> Table\n"
 "applyCommand t                 PrintSchema = t\n"
 "applyCommand t                 PrintSize   = t\n"
@@ -2062,7 +2155,6 @@ msgid ""
 "applyCommand (MkTable ts n rs) (Delete x)  = case n of\n"
 "  S k => MkTable ts k (deleteAt x rs)\n"
 "  Z   => absurd x\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "applyCommand : (t : Table) -> Command t -> Table\n"
@@ -2105,10 +2197,10 @@ msgstr ""
 "0` 等类型，其中有可以没有价值。函数`absurd`则只是爆炸原理的另一种表现。如果这"
 "还没有太大意义，请不要担心。我们将在下一章中介绍 `Void` 及其用法。"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:868
-#, fuzzy
-msgid "### Parsing Commands"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:867
+#, fuzzy, no-wrap
+msgid "Parsing Commands"
 msgstr "### 解析命令"
 
 #. type: Plain text
@@ -2214,10 +2306,9 @@ msgid ""
 msgstr "有很多东西需要跟踪，所以让我们将其编码为 sum 类型："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:921
+#: ../src/Tutorial/DPair.md:911
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data Error : Type where\n"
 "  UnknownCommand : String -> Error\n"
 "  UnknownType    : (pos : Nat) -> String -> Error\n"
@@ -2226,7 +2317,6 @@ msgid ""
 "  UnexpectedEOI  : (pos : Nat) -> String -> Error\n"
 "  OutOfBounds    : (size : Nat) -> (index : Nat) -> Error\n"
 "  NoNat          : String -> Error\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "数据错误：在哪里键入\n"
@@ -2256,149 +2346,62 @@ msgstr ""
 "得格式良好的错误消息。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:936 ../src/Tutorial/Eq.md:460
-#, fuzzy, no-wrap
+#: ../src/Tutorial/DPair.md:930
+#, no-wrap
 msgid ""
-"```idris\n"
 "showColType : ColType -> String\n"
 "showColType I64      = \"i64\"\n"
 "showColType Str      = \"str\"\n"
 "showColType Boolean  = \"boolean\"\n"
 "showColType Float    = \"float\"\n"
-msgstr ""
-"```伊德里斯\n"
-"showColType : ColType -> 字符串\n"
-"showColType I64 = \"i64\"\n"
-"showColType Str = \"str\"\n"
-"showColType Boolean = \"布尔\"\n"
-"showColType Float = \"浮动\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:939
-#, fuzzy
-msgid ""
-"showSchema : Schema -> String showSchema = concat . intersperse \",\" . map "
-"showColType"
-msgstr ""
-"showSchema : 模式 -> 字符串 showSchema = concat 。穿插“，”。地图显示ColType"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:945
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"showSchema : Schema -> String\n"
+"showSchema = concat . intersperse \",\" . map showColType\n"
+"\n"
 "allTypes : String\n"
 "allTypes = concat\n"
 "         . List.intersperse \", \"\n"
 "         . map showColType\n"
 "         $ [I64,Str,Boolean,Float]\n"
-msgstr ""
-"所有类型：字符串\n"
-"allTypes = concat\n"
-"         . List.intersperse \", \"\n"
-"         .地图显示ColType\n"
-"         $ [I64,Str,Boolean,Float]\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:951
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "showError : Error -> String\n"
 "showError (UnknownCommand x) = \"\"\"\n"
 "  Unknown command: \\{x}.\n"
 "  Known commands are: clear, schema, size, new, add, get, delete, quit.\n"
 "  \"\"\"\n"
-msgstr ""
-"showError : 错误 -> 字符串\n"
-"showError (UnknownCommand x) = \"\"\"\n"
-"  未知命令：\\{x}。\n"
-"  已知的命令有：clear、schema、size、new、add、get、delete、quit。\n"
-"  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:956
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "showError (UnknownType pos x) = \"\"\"\n"
 "  Unknown type at position \\{show pos}: \\{x}.\n"
 "  Known types are: \\{allTypes}.\n"
 "  \"\"\"\n"
-msgstr ""
-"showError (UnknownType pos x) = \"\"\"\n"
-"  位置 \\{show pos} 的未知类型：\\{x}。\n"
-"  已知类型有：\\{allTypes}。\n"
-"  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:962
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "showError (InvalidField pos tpe x) = \"\"\"\n"
 "  Invalid value at position \\{show pos}.\n"
 "  Expected type: \\{showColType tpe}.\n"
 "  Value found: \\{x}.\n"
 "  \"\"\"\n"
-msgstr ""
-"showError (InvalidField pos tpe x) = \"\"\"\n"
-"  位置 \\{show pos} 处的值无效。\n"
-"  预期类型：\\{showColType tpe}。\n"
-"  找到的值：\\{x}。\n"
-"  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:968
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "showError (ExpectedEOI k x) = \"\"\"\n"
 "  Expected end of input.\n"
 "  Position: \\{show k}\n"
 "  Input: \\{x}\n"
 "  \"\"\"\n"
-msgstr ""
-"showError (ExpectedEOI k x) = \"\"\"\n"
-"  预期的输入结束。\n"
-"  位置：\\{显示 k}\n"
-"  输入：\\{x}\n"
-"  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:974
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "showError (UnexpectedEOI k x) = \"\"\"\n"
 "  Unxpected end of input.\n"
 "  Position: \\{show k}\n"
 "  Input: \\{x}\n"
 "  \"\"\"\n"
-msgstr ""
-"showError (UnexpectedEOI k x) = \"\"\"\n"
-"  输入意外结束。\n"
-"  位置：\\{显示 k}\n"
-"  输入：\\{x}\n"
-"  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:981
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "showError (OutOfBounds size index) = \"\"\"\n"
 "  Index out of bounds.\n"
 "  Size of table: \\{show size}\n"
 "  Index: \\{show index}\n"
 "  Note: Indices start at 1.\n"
 "  \"\"\"\n"
+"\n"
+"showError (NoNat x) = \"Not a natural number: \\{x}\"\n"
 msgstr ""
-"showError (OutOfBounds 大小索引) = \"\"\"\n"
-"  索引超出范围。\n"
-"  表格大小：\\{显示大小}\n"
-"  索引：\\{显示索引}\n"
-"  注意：索引从 1 开始。\n"
-"  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:984
-#, fuzzy
-msgid "showError (NoNat x) = \"Not a natural number: \\{x}\" ```"
-msgstr "showError (NoNat x) = \"不是自然数：\\{x}\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:990
@@ -2414,54 +2417,27 @@ msgstr ""
 "值列表："
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:996
-#, fuzzy, no-wrap
+#: ../src/Tutorial/DPair.md:991
+#, no-wrap
 msgid ""
-"```idris\n"
 "zipWithIndex : Traversable t => t a -> t (Nat, a)\n"
 "zipWithIndex = evalState 1 . traverse pairWithIndex\n"
 "  where pairWithIndex : a -> State Nat (Nat,a)\n"
 "        pairWithIndex v = (,v) <$> get <* modify S\n"
-msgstr ""
-"```伊德里斯\n"
-"zipWithIndex : 可遍历 t => t a -> t (Nat, a)\n"
-"zipWithIndex = evalState 1。遍历pairWithIndex\n"
-"  其中 pairWithIndex : a -> State Nat (Nat,a)\n"
-"        pairWithIndex v = (,v) <$> get <* modify S\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:999
-#, fuzzy
-msgid "fromCSV : String -> List String fromCSV = forget . split (',' ==)"
-msgstr "fromCSV : 字符串 -> 列表字符串 fromCSV = 忘记。拆分 (',' ==)"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1006
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"fromCSV : String -> List String\n"
+"fromCSV = forget . split (',' ==)\n"
+"\n"
 "readColType : Nat -> String -> Either Error ColType\n"
 "readColType _ \"i64\"      = Right I64\n"
 "readColType _ \"str\"      = Right Str\n"
 "readColType _ \"boolean\"  = Right Boolean\n"
 "readColType _ \"float\"    = Right Float\n"
 "readColType n s          = Left $ UnknownType n s\n"
+"\n"
+"readSchema : String -> Either Error Schema\n"
+"readSchema = traverse (uncurry readColType) . zipWithIndex . fromCSV\n"
 msgstr ""
-"readColType : Nat -> String -> 任一错误 ColType\n"
-"readColType _ \"i64\" = 右 I64\n"
-"readColType _ \"str\" = 右 Str\n"
-"readColType _ \"boolean\" = 右布尔\n"
-"readColType _ \"float\" = 右浮动\n"
-"readColType n s = 左 $ UnknownType n s\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1010
-#, fuzzy
-msgid ""
-"readSchema : String -> Either Error Schema readSchema = traverse (uncurry "
-"readColType) . zipWithIndex . fromCSV ```"
-msgstr ""
-"readSchema : String -> 错误模式 readSchema = traverse (uncurry "
-"readColType) 。 zipWithIndex 。来自CSV ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1018
@@ -2480,10 +2456,9 @@ msgstr ""
 "`CSVError[X388X ]）。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:1028
+#: ../src/Tutorial/DPair.md:1019
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "decodeField : Nat -> (c : ColType) -> String -> Either Error (IdrisType c)\n"
 "decodeField k c s =\n"
 "  let err = InvalidField k c s\n"
@@ -2492,21 +2467,7 @@ msgid ""
 "        Str     => maybeToEither err $ read s\n"
 "        Boolean => maybeToEither err $ read s\n"
 "        Float   => maybeToEither err $ read s\n"
-msgstr ""
-"```伊德里斯\n"
-"decodeField : Nat -> (c : ColType) -> String -> 任一错误 (IdrisType c)\n"
-"解码字段 k c s =\n"
-"  让 err = InvalidField k c s\n"
-"   万一\n"
-"        I64 => maybeToEither err $ read s\n"
-"        Str => maybeToEither err $ read s\n"
-"        Boolean => maybeToEither err $ read s\n"
-"        Float => MaybeToEither err $ read s\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1037
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "decodeRow : {ts : _} -> String -> Either Error (Row ts)\n"
 "decodeRow s = go 1 ts $ fromCSV s\n"
 "  where go : Nat -> (cs : Schema) -> List String -> Either Error (Row cs)\n"
@@ -2514,7 +2475,6 @@ msgid ""
 "        go k []       (_ :: _)   = Left $ ExpectedEOI k s\n"
 "        go k (_ :: _) []         = Left $ UnexpectedEOI k s\n"
 "        go k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]\n"
-"```\n"
 msgstr ""
 "decodeRow : {ts : _} -> 字符串 -> 任一错误（行 ts）\n"
 "decodeRow s = go 1 ts $ fromCSV s\n"
@@ -2570,16 +2530,14 @@ msgstr ""
 "是 0 开始，这对于大多数非程序员来说感觉更自然。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:1060
+#: ../src/Tutorial/DPair.md:1053
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "readFin : {n : _} -> String -> Either Error (Fin n)\n"
 "readFin s = do\n"
 "  S k <- maybeToEither (NoNat s) $ parsePositive {a = Nat} s\n"
 "    | Z => Left $ OutOfBounds n Z\n"
 "  maybeToEither (OutOfBounds n $ S k) $ natToFin k n\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "readFin : {n : _} -> 字符串 -> 任一错误（Fin n）\n"
@@ -2605,10 +2563,9 @@ msgstr ""
 "unwords`。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:1080
+#: ../src/Tutorial/DPair.md:1068
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "readCommand :  (t : Table) -> String -> Either Error (Command t)\n"
 "readCommand _                \"schema\"  = Right PrintSchema\n"
 "readCommand _                \"size\"    = Right PrintSize\n"
@@ -2619,7 +2576,6 @@ msgid ""
 "  [\"get\",    str] => Get     <$> readFin str\n"
 "  [\"delete\", str] => Delete  <$> readFin str\n"
 "  _               => Left $ UnknownCommand s\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "readCommand : (t : Table) -> String -> 任一错误（Command t）\n"
@@ -2634,10 +2590,10 @@ msgstr ""
 "  _ => 左 $ UnknownCommand s\n"
 "```\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1082
-#, fuzzy
-msgid "### Running the Application"
+#. type: Title ###
+#: ../src/Tutorial/DPair.md:1081
+#, fuzzy, no-wrap
+msgid "Running the Application"
 msgstr "### 运行应用程序"
 
 #. type: Plain text
@@ -2652,45 +2608,22 @@ msgstr ""
 "令 `\"quit\"`。"
 
 #. type: Plain text
-#: ../src/Tutorial/DPair.md:1095 ../src/Tutorial/Predicates.md:1294
-#, fuzzy, no-wrap
+#: ../src/Tutorial/DPair.md:1088
+#, no-wrap
 msgid ""
-"```idris\n"
 "encodeField : (t : ColType) -> IdrisType t -> String\n"
 "encodeField I64     x     = show x\n"
 "encodeField Str     x     = show x\n"
 "encodeField Boolean True  = \"t\"\n"
 "encodeField Boolean False = \"f\"\n"
 "encodeField Float   x     = show x\n"
-msgstr ""
-"```伊德里斯\n"
-"encodeField : (t : ColType) -> IdrisType t -> String\n"
-"编码字段 I64 x = 显示 x\n"
-"编码字段 Str x = 显示 x\n"
-"encodeField Boolean True = \"t\"\n"
-"encodeField 布尔值 False = \"f\"\n"
-"encodeField 浮点数 x = 显示 x\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1101
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "encodeRow : (ts : List ColType) -> Row ts -> String\n"
 "encodeRow ts = concat . intersperse \",\" . go ts\n"
 "  where go : (cs : List ColType) -> Row cs -> Vect (length cs) String\n"
 "        go []        []        = []\n"
 "        go (c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
-msgstr ""
-"encodeRow : (ts : List ColType) -> Row ts -> String\n"
-"编码行 ts = concat 。穿插“，”。去 ts\n"
-"  去哪里 : (cs : List ColType) -> Row cs -> Vect (length cs) String\n"
-"        去 [] [] = []\n"
-"        go (c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1111
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "result :  (t : Table) -> Command t -> String\n"
 "result t PrintSchema = \"Current schema: \\{showSchema t.schema}\"\n"
 "result t PrintSize   = \"Current size: \\{show t.size}\"\n"
@@ -2700,21 +2633,7 @@ msgid ""
 "result _ Quit        = \"Goodbye.\"\n"
 "result t (Get x)     =\n"
 "  \"Row \\{show $ FS x}: \\{encodeRow t.schema (index x t.rows)}\"\n"
-msgstr ""
-"结果：（t：表）-> 命令 t-> 字符串\n"
-"结果 t PrintSchema = \"当前架构：\\{showSchema t.schema}\"\n"
-"结果 t PrintSize = \"当前尺寸：\\{show t.size}\"\n"
-"结果 _ (New ts) = \"已创建表。架构：\\{showSchema ts}\"\n"
-"结果 t (Prepend r) = \"前置行：\\{encodeRow t.schema r}\"\n"
-"结果 _ (Delete x) = \"删除的行：\\{show $ FS x}。\"\n"
-"结果_退出=“再见。”\n"
-"结果 t (得到 x) =\n"
-"  “行\\{show $ FS x}：\\{encodeRow t.schema（索引x t.rows）}”\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1122
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "covering\n"
 "runProg : Table -> IO ()\n"
 "runProg t = do\n"
@@ -2725,23 +2644,11 @@ msgid ""
 "    Right Quit => putStrLn (result t Quit)\n"
 "    Right cmd  => putStrLn (result t cmd) >>\n"
 "                  runProg (applyCommand t cmd)\n"
+"\n"
+"covering\n"
+"main : IO ()\n"
+"main = runProg $ MkTable [] _ []\n"
 msgstr ""
-"覆盖\n"
-"runProg : 表 -> IO ()\n"
-"runProg t = 做\n"
-"  putStr \"输入命令：\"\n"
-"  str <- 获取行\n"
-"  case readCommand t str of\n"
-"    Left err => putStrLn (showError err) >> runProg t\n"
-"    Right Quit => putStrLn（结果 t Quit）\n"
-"    右 cmd => putStrLn (结果 t cmd) >>\n"
-"                  runProg (applyCommand t cmd)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/DPair.md:1127 ../src/Tutorial/Predicates.md:1334
-#, fuzzy
-msgid "covering main : IO ()  main = runProg $ MkTable [] _ [] ```"
-msgstr "覆盖 main : IO() main = runProg $MkTable [] _ [] ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1136

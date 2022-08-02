@@ -1,6 +1,6 @@
- 
+> [Chinese Translation](translation/README.md)
 
-# Idris 2 中的函数式编程
+# Functional Programming in Idris 2
 
 这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。
 
@@ -9,9 +9,9 @@
 
 目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学生身上进行尝试，其中一些对函数式编程来说是纯萌新。
 
-## 目录
+## Table of Contents
 
-### 第 1 部分：核心语言功能
+### Part 1: Core Language Features
 
 这部分试图对 Idris 编程语言进行深入的介绍。如果您是函数式编程的新手，请确保按顺序阅读这些章节并*解决所有练习*。
 
@@ -87,13 +87,13 @@
     3. [整数](src/Tutorial/Prim.md#integers)
     4. [改进原语](src/Tutorial/Prim.md#refined-primitives)
 
-### 第 2 部分：附录
+### Part 2: Appendices
 
 附录可用作手头主题的参考。我计划最终对 Idris 语法、典型错误消息、模块系统、交互式编辑以及可能的其他内容有一个简明的参考。
 
 1. [Neovim 中的交互式编辑](src/Appendices/Neovim.md)
 
-## 先决条件
+## Prerequisites
 
 目前，该项目正在针对 Idris 2 存储库的主要分支进行积极开发和演进。它每晚在 GitHub 上进行测试，并针对 Idris 2
 主分支的最新提交以及文件 `.idris-version` 中列出的 Idris 2 提交进行构建。

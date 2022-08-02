@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,44 +16,405 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-msgid "### Exercises part 2"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-msgid "## Conclusion"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, no-wrap
+msgid "Exercises part 2"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, no-wrap
+msgid "Exercises part 3"
+msgstr ""
+
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, no-wrap
+msgid "Conclusion"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
+#: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
+#: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
+#, no-wrap
+msgid "What's next"
 msgstr ""
 
 #. type: Plain text
@@ -64,12 +425,16 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-msgid "<!-- vi: filetype=idris2 -->"
+#, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:2
-msgid "# Dependent Types"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:1 ../src/Tutorial/Intro.md:76
+#, no-wrap
+msgid "Dependent Types"
 msgstr ""
 
 #. type: Plain text
@@ -84,17 +449,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:12
-msgid "```idris module Tutorial.Dependent"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-msgid "%default total ```"
+#: ../src/Tutorial/Dependent.md:10
+#, no-wrap
+msgid ""
+"module Tutorial.Dependent\n"
+"\n"
+"%default total\n"
 msgstr ""
 
 #. type: Plain text
@@ -103,16 +463,14 @@ msgid "Consider the following functions:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:21
+#: ../src/Tutorial/Dependent.md:18
+#, no-wrap
 msgid ""
-"```idris bogusMapList : (a -> b) -> List a -> List b bogusMapList _ _ = []"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:25
-msgid ""
-"bogusZipList : (a -> b -> c) -> List a -> List b -> List c bogusZipList _ _ "
-"_ = [] ```"
+"bogusMapList : (a -> b) -> List a -> List b\n"
+"bogusMapList _ _ = []\n"
+"\n"
+"bogusZipList : (a -> b -> c) -> List a -> List b -> List c\n"
+"bogusZipList _ _ _ = []\n"
 msgstr ""
 
 #. type: Plain text
@@ -129,9 +487,10 @@ msgid ""
 "such a precondition?"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:37
-msgid "## Length-Indexed Lists"
+#. type: Title ##
+#: ../src/Tutorial/Dependent.md:36
+#, no-wrap
+msgid "Length-Indexed Lists"
 msgstr ""
 
 #. type: Plain text
@@ -143,28 +502,28 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:47
+#: ../src/Tutorial/Dependent.md:42
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Vect : (len : Nat) -> (a : Type) -> Type where\n"
 "  Nil  : Vect 0 a\n"
 "  (::) : (x : a) -> (xs : Vect n a) -> Vect (S n) a\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:58
+#, no-wrap
 msgid ""
-"Before we move on, please compare this with the implementation of `Seq` in "
-"the [section about algebraic data types](DataTypes.md). The constructors are "
-"exactly the same: `Nil` and `(::)`. But there is an important difference: "
-"`Vect`, unlike `Seq` or `List`, is not a function from `Type` to `Type`, it "
-"is a function from `Nat` to `Type` to `Type`. Go ahead! Open the REPL and "
-"verify this! The `Nat` argument (also called an *index*) represents the "
-"*length* of the vector here.  `Nil` has type `Vect 0 a`: A vector of length "
-"zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one "
-"element longer (`S n`) than its second argument, which is of length `n`."
+"Before we move on, please compare this with the implementation of `Seq` in\n"
+"the [section about algebraic data types](DataTypes.md). The constructors\n"
+"are exactly the same: `Nil` and `(::)`. But there is an important difference:\n"
+"`Vect`, unlike `Seq` or `List`, is not a function from `Type` to `Type`, it is\n"
+"a function from `Nat` to `Type` to `Type`. Go ahead! Open the REPL and\n"
+"verify this! The `Nat` argument (also called an *index*) represents\n"
+"the *length* of the vector here.\n"
+"`Nil` has type `Vect 0 a`: A vector of length\n"
+"zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one\n"
+"element longer (`S n`) than its second argument, which is of length `n`.\n"
 msgstr ""
 
 #. type: Plain text
@@ -175,8 +534,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:66
-msgid "```idris ex1 : Vect 0 Integer ex1 = Nil ```"
+#: ../src/Tutorial/Dependent.md:62
+#, no-wrap
+msgid ""
+"ex1 : Vect 0 Integer\n"
+"ex1 = Nil\n"
 msgstr ""
 
 #. type: Plain text
@@ -187,14 +549,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:75
+#: ../src/Tutorial/Dependent.md:70
 #, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Mismatch between: S ?n and 0.\"\n"
 "  ex2 : Vect 0 Integer\n"
 "  ex2 = [12]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -207,8 +567,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:85
-msgid "```idris ex3 : Vect 1 Integer ex3 = [12] ```"
+#: ../src/Tutorial/Dependent.md:81
+#, no-wrap
+msgid ""
+"ex3 : Vect 1 Integer\n"
+"ex3 = [12]\n"
 msgstr ""
 
 #. type: Plain text
@@ -222,9 +585,10 @@ msgid ""
 "But first, we need to quickly clarify some terminology."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:95
-msgid "### Type Indices versus Type Parameters"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:94
+#, no-wrap
+msgid "Type Indices versus Type Parameters"
 msgstr ""
 
 #. type: Plain text
@@ -252,15 +616,13 @@ msgid "Let's demonstrate this with a contrived example:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:117
+#: ../src/Tutorial/Dependent.md:111
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Indexed : Nat -> Type where\n"
 "  I0 : Indexed 0\n"
 "  I3 : Indexed 3\n"
 "  I4 : String -> Indexed 4\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -274,8 +636,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:128
-msgid "```idris fromIndexed : Indexed n -> a -> Vect n a ```"
+#: ../src/Tutorial/Dependent.md:125
+#, no-wrap
+msgid "fromIndexed : Indexed n -> a -> Vect n a\n"
 msgstr ""
 
 #. type: Plain text
@@ -292,14 +655,12 @@ msgid "Here is my implementation:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:141
+#: ../src/Tutorial/Dependent.md:136
 #, no-wrap
 msgid ""
-"```idris\n"
 "fromIndexed I0     va = []\n"
 "fromIndexed I3     va = [va, va, va]\n"
 "fromIndexed (I4 _) va = [va, va, va, va]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -310,9 +671,10 @@ msgid ""
 "necessary to return a `Vect` of the correct length."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:148
-msgid "### Length-Preserving `map`"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:147
+#, no-wrap
+msgid "Length-Preserving `map`"
 msgstr ""
 
 #. type: Plain text
@@ -326,21 +688,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:158
+#: ../src/Tutorial/Dependent.md:155
+#, no-wrap
 msgid ""
-"```idris map3_1 : (a -> b) -> Vect 3 a -> Vect 1 b map3_1 f [_,y,_] = [f y]"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:161
-msgid "map5_0 : (a -> b) -> Vect 5 a -> Vect 0 b map5_0 f _ = []"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:165
-msgid ""
-"map5_10 : (a -> b) -> Vect 5 a -> Vect 10 b map5_10 f [u,v,w,x,y] = [f u, f "
-"u, f v, f v, f w, f w, f x, f x, f y, f y] ```"
+"map3_1 : (a -> b) -> Vect 3 a -> Vect 1 b\n"
+"map3_1 f [_,y,_] = [f y]\n"
+"\n"
+"map5_0 : (a -> b) -> Vect 5 a -> Vect 0 b\n"
+"map5_0 f _ = []\n"
+"\n"
+"map5_10 : (a -> b) -> Vect 5 a -> Vect 10 b\n"
+"map5_10 f [u,v,w,x,y] = [f u, f u, f v, f v, f w, f w, f x, f x, f y, f y]\n"
 msgstr ""
 
 #. type: Plain text
@@ -354,8 +712,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:177
-msgid "```idris mapVect' : (a -> b) -> Vect n a -> Vect n b ```"
+#: ../src/Tutorial/Dependent.md:174
+#, no-wrap
+msgid "mapVect' : (a -> b) -> Vect n a -> Vect n b\n"
 msgstr ""
 
 #. type: Plain text
@@ -366,10 +725,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:185
-msgid ""
-"```idris mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> "
-"Vect n b ```"
+#: ../src/Tutorial/Dependent.md:182
+#, no-wrap
+msgid "mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b\n"
 msgstr ""
 
 #. type: Plain text
@@ -387,13 +745,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:201
+#: ../src/Tutorial/Dependent.md:197
 #, no-wrap
 msgid ""
-"```repl\n"
 "mapVect _ Nil       = ?impl_0\n"
 "mapVect f (x :: xs) = ?impl_1\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -402,26 +758,17 @@ msgid "At the REPL, we learn the following:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:209
+#: ../src/Tutorial/Dependent.md:204
 #, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Dependent> :t impl_0\n"
 " 0 a : Type\n"
 " 0 b : Type\n"
 " 0 n : Nat\n"
 "------------------------------\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:211
-msgid "impl_0 : Vect 0 b"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:220
-#, no-wrap
-msgid ""
+"impl_0 : Vect 0 b\n"
+"\n"
+"\n"
 "Tutorial.Dependent> :t impl_1\n"
 " 0 a : Type\n"
 " 0 b : Type\n"
@@ -430,11 +777,7 @@ msgid ""
 "   f : a -> b\n"
 " 0 n : Nat\n"
 "------------------------------\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:223
-msgid "impl_1 : Vect (S n) b ```"
+"impl_1 : Vect (S n) b\n"
 msgstr ""
 
 #. type: Plain text
@@ -445,12 +788,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:230
+#: ../src/Tutorial/Dependent.md:227
 #, no-wrap
-msgid ""
-"```idris\n"
-"mapVect _ Nil       = Nil\n"
-"```\n"
+msgid "mapVect _ Nil       = Nil\n"
 msgstr ""
 
 #. type: Plain text
@@ -465,8 +805,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:242
-msgid "```repl mapVect f (x :: xs) = f x :: ?rest ```"
+#: ../src/Tutorial/Dependent.md:239
+#, no-wrap
+msgid "mapVect f (x :: xs) = f x :: ?rest\n"
 msgstr ""
 
 #. type: Plain text
@@ -475,10 +816,9 @@ msgid "Let's inspect the new hole at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:253
+#: ../src/Tutorial/Dependent.md:245
 #, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Dependent> :t rest\n"
 " 0 a : Type\n"
 " 0 b : Type\n"
@@ -487,11 +827,7 @@ msgid ""
 "   f : a -> b\n"
 " 0 n : Nat\n"
 "------------------------------\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:256
-msgid "rest : Vect n b ```"
+"rest : Vect n b\n"
 msgstr ""
 
 #. type: Plain text
@@ -508,13 +844,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:269
-msgid "```idris mapVect f (x :: xs) = f x :: mapVect f xs ```"
+#: ../src/Tutorial/Dependent.md:266
+#, no-wrap
+msgid "mapVect f (x :: xs) = f x :: mapVect f xs\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:271
-msgid "### Zipping Vectors"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:270
+#, no-wrap
+msgid "Zipping Vectors"
 msgstr ""
 
 #. type: Plain text
@@ -528,14 +866,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:283
+#: ../src/Tutorial/Dependent.md:278
 #, no-wrap
 msgid ""
-"```idris\n"
 "zipWith : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c\n"
 "zipWith f []        []         = Nil\n"
 "zipWith f (x :: xs) (y :: ys)  = f x y :: zipWith f xs ys\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -554,10 +890,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:300
+#: ../src/Tutorial/Dependent.md:296
+#, no-wrap
 msgid ""
-"```idris zipWith _ [] (_ :: _) impossible zipWith _ (_ :: _) [] impossible "
-"```"
+"zipWith _ [] (_ :: _) impossible\n"
+"zipWith _ (_ :: _) [] impossible\n"
 msgstr ""
 
 #. type: Plain text
@@ -575,17 +912,21 @@ msgid "Let's give `zipWith` a spin at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:317
+#: ../src/Tutorial/Dependent.md:309
+#, no-wrap
 msgid ""
-"```repl Tutorial.Dependent> zipWith (*) [1,2,3] [10,20,30] [10, 40, 90] "
-"Tutorial.Dependent> zipWith (\\x,y => x ++ \": \" ++ show y) [\"The answer"
-"\"] [42] [\"The answer: 42\"] Tutorial.Dependent> zipWith (*) [1,2,3] "
-"[10,20] ... Nasty type error ...  ```"
+"Tutorial.Dependent> zipWith (*) [1,2,3] [10,20,30]\n"
+"[10, 40, 90]\n"
+"Tutorial.Dependent> zipWith (\\x,y => x ++ \": \" ++ show y) [\"The answer\"] [42]\n"
+"[\"The answer: 42\"]\n"
+"Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]\n"
+"... Nasty type error ...\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:319
-msgid "#### Simplifying Type Errors"
+#. type: Title ####
+#: ../src/Tutorial/Dependent.md:318
+#, no-wrap
+msgid "Simplifying Type Errors"
 msgstr ""
 
 #. type: Plain text
@@ -623,17 +964,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:354
+#: ../src/Tutorial/Dependent.md:346
 #, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil\n"
 "Error: When unifying:\n"
 "    Vect 0 ?c\n"
 "and:\n"
 "    Vect 1 ?c\n"
 "Mismatch between: 0 and 1.\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -654,17 +993,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:372
+#: ../src/Tutorial/Dependent.md:364
 #, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Dependent> zipWith (*) (the (Vect 3 _) [1,2,3]) (the (Vect 2 _) [10,20])\n"
 "Error: When unifying:\n"
 "    Vect 2 ?c\n"
 "and:\n"
 "    Vect 3 ?c\n"
 "Mismatch between: 0 and 1.\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -679,9 +1016,10 @@ msgid ""
 "the error message."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:381
-msgid "### Creating Vectors"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:380
+#, no-wrap
+msgid "Creating Vectors"
 msgstr ""
 
 #. type: Plain text
@@ -694,13 +1032,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:392
+#: ../src/Tutorial/Dependent.md:388
 #, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Mismatch between: S ?n and n.\"\n"
 "  fill : a -> Vect n a\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -711,12 +1047,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:399
+#: ../src/Tutorial/Dependent.md:396
 #, no-wrap
-msgid ""
-"```idris\n"
-"  fill va = [va,va]\n"
-"```\n"
+msgid "  fill va = [va,va]\n"
 msgstr ""
 
 #. type: Plain text
@@ -727,8 +1060,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:407
-msgid "```idris fill' : {0 a : Type} -> {0 n : Nat} -> a -> Vect n a ```"
+#: ../src/Tutorial/Dependent.md:404
+#, no-wrap
+msgid "fill' : {0 a : Type} -> {0 n : Nat} -> a -> Vect n a\n"
 msgstr ""
 
 #. type: Plain text
@@ -752,8 +1086,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:424
-msgid "```idris replicate : (n : Nat) -> a -> Vect n a ```"
+#: ../src/Tutorial/Dependent.md:421
+#, no-wrap
+msgid "replicate : (n : Nat) -> a -> Vect n a\n"
 msgstr ""
 
 #. type: Plain text
@@ -765,13 +1100,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:433
+#: ../src/Tutorial/Dependent.md:429
 #, no-wrap
 msgid ""
-"```idris\n"
 "replicate 0     _  = []\n"
 "replicate (S k) va = va :: replicate k va\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -792,12 +1125,9 @@ msgid "Implement function `head` for non-empty vectors:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:451
+#: ../src/Tutorial/Dependent.md:448
 #, no-wrap
-msgid ""
-"   ```idris\n"
-"   head : Vect (S n) a -> a\n"
-"   ```\n"
+msgid "   head : Vect (S n) a -> a\n"
 msgstr ""
 
 #. type: Plain text
@@ -827,79 +1157,44 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:467
+#: ../src/Tutorial/Dependent.md:465
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
-msgstr ""
-
-#. type: Bullet: '4. '
-#: ../src/Tutorial/Dependent.md:473
-msgid ""
-"Declare and implement a function `foldSemi` for accumulating the values "
-"stored in a `List` through `Semigroup`s append operator (`(<+>)`).  (Make "
-"sure to only use a `Semigroup` constraint, as opposed to a `Monoid` "
-"constraint.)"
-msgstr ""
-
-#. type: Bullet: '5. '
-#: ../src/Tutorial/Dependent.md:476
-msgid ""
-"Do the same as in Exercise 4, but for non-empty vectors. How does a vector's "
-"non-emptiness affect the output type?"
-msgstr ""
-
-#. type: Bullet: '6. '
-#: ../src/Tutorial/Dependent.md:481
-msgid ""
-"Given an initial value of type `a` and a function `a -> a`, we'd like to "
-"generate `Vect`s of `a`s, the first value of which is `a`, the second value "
-"being `f a`, the third being `f (f a)` and so on."
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:484
-#, no-wrap
-msgid ""
+"\n"
+"4. Declare and implement a function `foldSemi`\n"
+"   for accumulating the values stored\n"
+"   in a `List` through `Semigroup`s append operator (`(<+>)`).\n"
+"   (Make sure to only use a `Semigroup` constraint, as opposed to\n"
+"   a `Monoid` constraint.)\n"
+"\n"
+"5. Do the same as in Exercise 4, but for non-empty vectors. How\n"
+"   does a vector's non-emptiness affect the output type?\n"
+"\n"
+"6. Given an initial value of type `a` and a function `a -> a`,\n"
+"   we'd like to generate `Vect`s of `a`s, the first value of\n"
+"   which is `a`, the second value being `f a`, the third\n"
+"   being `f (f a)` and so on.\n"
+"\n"
 "   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like\n"
 "   to get results similar to the following: `[1,2,4,8,16,...]`.\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:488
-#, no-wrap
-msgid ""
+"\n"
 "   Declare and implement function `iterate`, which should\n"
 "   encapsulate this behavior. Get some inspiration from `replicate`\n"
 "   if you don't know where to start.\n"
-msgstr ""
-
-#. type: Bullet: '7. '
-#: ../src/Tutorial/Dependent.md:494
-msgid ""
-"Given an initial value of a state type `s` and a function `fun : s -> (s,"
-"a)`, we'd like to generate `Vect`s of `a`s. Declare and implement function "
-"`generate`, which should encapsulate this behavior. Make sure to use the "
-"updated state in every new invocation of `fun`."
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:497
-#, no-wrap
-msgid ""
+"\n"
+"7. Given an initial value of a state type `s` and\n"
+"   a function `fun : s -> (s,a)`,\n"
+"   we'd like to generate `Vect`s of `a`s. Declare and implement\n"
+"   function `generate`, which should encapsulate this behavior. Make sure to use\n"
+"   the updated state in every new invocation of `fun`.\n"
+"\n"
 "   Here's an example how this can be used to generate the first\n"
 "   `n` Fibonacci numbers:\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:502
-#, no-wrap
-msgid ""
+"\n"
 "   ```repl\n"
 "   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
 "   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '8. '
@@ -910,12 +1205,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:510
+#: ../src/Tutorial/Dependent.md:507
 #, no-wrap
-msgid ""
-"   ```idris\n"
-"   fromList : (as : List a) -> Vect (length as) a\n"
-"   ```\n"
+msgid "   fromList : (as : List a) -> Vect (length as) a\n"
 msgstr ""
 
 #. type: Plain text
@@ -933,19 +1225,12 @@ msgid "Consider the following declarations:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:519
+#: ../src/Tutorial/Dependent.md:517
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   maybeSize : Maybe a -> Nat\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:522
-#, no-wrap
-msgid ""
+"\n"
 "   fromMaybe : (m : Maybe a) -> Vect (maybeSize m) a\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -956,9 +1241,10 @@ msgid ""
 "   implement `fromMaybe` afterwards.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:527
-msgid "## `Fin`: Safe Indexing into Vectors"
+#. type: Title ##
+#: ../src/Tutorial/Dependent.md:526
+#, no-wrap
+msgid "`Fin`: Safe Indexing into Vectors"
 msgstr ""
 
 #. type: Plain text
@@ -969,15 +1255,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:537
+#: ../src/Tutorial/Dependent.md:531
 #, no-wrap
 msgid ""
-"```idris\n"
 "indexList : (pos : Nat) -> List a -> Maybe a\n"
 "indexList _     []        = Nothing\n"
 "indexList 0     (x :: _)  = Just x\n"
 "indexList (S k) (_ :: xs) = indexList k xs\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1017,14 +1301,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:569
+#: ../src/Tutorial/Dependent.md:564
 #, no-wrap
 msgid ""
-"```idris\n"
 "data Fin : (n : Nat) -> Type where\n"
 "  FZ : {0 n : Nat} -> Fin (S n)\n"
 "  FS : (k : Fin n) -> Fin (S n)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1043,23 +1325,20 @@ msgid "Let's come up with some values of type `Fin`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:582
-msgid "```idris fin0_5 : Fin 5 fin0_5 = FZ"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:585
-msgid "fin0_7 : Fin 7 fin0_7 = FZ"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:588
-msgid "fin1_3 : Fin 3 fin1_3 = FS FZ"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:592
-msgid "fin4_5 : Fin 5 fin4_5 = FS (FS (FS (FS FZ)))  ```"
+#: ../src/Tutorial/Dependent.md:579
+#, no-wrap
+msgid ""
+"fin0_5 : Fin 5\n"
+"fin0_5 = FZ\n"
+"\n"
+"fin0_7 : Fin 7\n"
+"fin0_7 = FZ\n"
+"\n"
+"fin1_3 : Fin 3\n"
+"fin1_3 = FS FZ\n"
+"\n"
+"fin4_5 : Fin 5\n"
+"fin4_5 = FS (FS (FS (FS FZ)))\n"
 msgstr ""
 
 #. type: Plain text
@@ -1076,8 +1355,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:603
-msgid "```idris index : Fin n -> Vect n a -> a ```"
+#: ../src/Tutorial/Dependent.md:600
+#, no-wrap
+msgid "index : Fin n -> Vect n a -> a\n"
 msgstr ""
 
 #. type: Plain text
@@ -1088,13 +1368,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:611
+#: ../src/Tutorial/Dependent.md:607
 #, no-wrap
 msgid ""
-"```idris\n"
 "index FZ     (x :: _) = x\n"
 "index (FS k) (_ :: xs) = index k xs\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1106,13 +1384,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:621
+#: ../src/Tutorial/Dependent.md:617
 #, no-wrap
 msgid ""
-"```idris\n"
 "index FZ     Nil impossible\n"
 "index (FS _) Nil impossible\n"
-"```\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1131,12 +1407,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:634
+#: ../src/Tutorial/Dependent.md:631
 #, no-wrap
-msgid ""
-"   ```repl\n"
-"   index k (insert k v vs) = v\n"
-"   ```\n"
+msgid "   index k (insert k v vs) = v\n"
 msgstr ""
 
 #. type: Bullet: '3. '
@@ -1220,9 +1493,10 @@ msgid ""
 "declare their types, as we will see in the next section."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:676
-msgid "## Compile-Time Computations"
+#. type: Title ##
+#: ../src/Tutorial/Dependent.md:675
+#, no-wrap
+msgid "Compile-Time Computations"
 msgstr ""
 
 #. type: Plain text
@@ -1244,14 +1518,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:695
+#: ../src/Tutorial/Dependent.md:690
 #, no-wrap
 msgid ""
-"```idris\n"
 "(++) : Vect m a -> Vect n a -> Vect (m + n) a\n"
 "(++) []        ys = ys\n"
 "(++) (x :: xs) ys = x :: (xs ++ ys)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1270,19 +1542,18 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:710
+#: ../src/Tutorial/Dependent.md:705
 #, no-wrap
 msgid ""
-"```idris\n"
 "drop' : (m : Nat) -> Vect (m + n) a -> Vect n a\n"
 "drop' 0     xs        = xs\n"
 "drop' (S k) (_ :: xs) = drop' k xs\n"
-"```\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:712
-msgid "### Limitations"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:711
+#, no-wrap
+msgid "Limitations"
 msgstr ""
 
 #. type: Plain text
@@ -1309,14 +1580,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:732
+#: ../src/Tutorial/Dependent.md:727
 #, no-wrap
 msgid ""
-"```idris\n"
 "add : Nat -> Nat -> Nat\n"
 "add Z     n = n\n"
 "add (S k) n = S $ add k n\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1340,15 +1609,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:754
+#: ../src/Tutorial/Dependent.md:748
 #, no-wrap
 msgid ""
-"```idris\n"
 "failing \"Can't solve constraint\"\n"
 "  reverse : Vect n a -> Vect n a\n"
 "  reverse []        = []\n"
 "  reverse (x :: xs) = reverse xs ++ [x]\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1377,9 +1644,10 @@ msgid ""
 "another chapter."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:781
-msgid "### Unrestricted Implicits"
+#. type: Title ###
+#: ../src/Tutorial/Dependent.md:780
+#, no-wrap
+msgid "Unrestricted Implicits"
 msgstr ""
 
 #. type: Plain text
@@ -1392,10 +1660,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:793
+#: ../src/Tutorial/Dependent.md:789
+#, no-wrap
 msgid ""
-"```idris ex4 : Vect 3 Integer ex4 = zipWith (*) (replicate 3 10) (replicate "
-"3 11)  ```"
+"ex4 : Vect 3 Integer\n"
+"ex4 = zipWith (*) (replicate 3 10) (replicate 3 11)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1406,10 +1675,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:801
+#: ../src/Tutorial/Dependent.md:797
+#, no-wrap
 msgid ""
-"```idris ex5 : Vect 3 Integer ex5 = zipWith (*) (replicate _ 10) (replicate "
-"_ 11)  ```"
+"ex5 : Vect 3 Integer\n"
+"ex5 = zipWith (*) (replicate _ 10) (replicate _ 11)\n"
 msgstr ""
 
 #. type: Plain text
@@ -1420,9 +1690,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:810
+#: ../src/Tutorial/Dependent.md:806
+#, no-wrap
 msgid ""
-"```idris replicate' : {n : _} -> a -> Vect n a replicate' = replicate n ```"
+"replicate' : {n : _} -> a -> Vect n a\n"
+"replicate' = replicate n\n"
 msgstr ""
 
 #. type: Plain text
@@ -1443,8 +1715,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:824
-msgid "```idris ex6 : Vect ? Bool ex6 = replicate' {n = 2} True ```"
+#: ../src/Tutorial/Dependent.md:820
+#, no-wrap
+msgid ""
+"ex6 : Vect ? Bool\n"
+"ex6 = replicate' {n = 2} True\n"
 msgstr ""
 
 #. type: Plain text
@@ -1455,9 +1730,10 @@ msgid ""
 "us to specify `n` explicitly on the right hand side of `ex6`."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:830
-msgid "#### Pattern Matching on Implicits"
+#. type: Title ####
+#: ../src/Tutorial/Dependent.md:829
+#, no-wrap
+msgid "Pattern Matching on Implicits"
 msgstr ""
 
 #. type: Plain text
@@ -1469,14 +1745,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:841
+#: ../src/Tutorial/Dependent.md:836
 #, no-wrap
 msgid ""
-"```idris\n"
 "replicate'' : {n : _} -> a -> Vect n a\n"
 "replicate'' {n = Z}   _ = Nil\n"
 "replicate'' {n = S _} v = v :: replicate'' v\n"
-"```\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1485,12 +1759,9 @@ msgid "Here is a function declaration for flattening a `List` of `List`s:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:849
+#: ../src/Tutorial/Dependent.md:846
 #, no-wrap
-msgid ""
-"   ```idris\n"
-"   flattenList : List (List a) -> List a\n"
-"   ```\n"
+msgid "   flattenList : List (List a) -> List a\n"
 msgstr ""
 
 #. type: Plain text
@@ -1530,13 +1801,11 @@ msgid "   Here is an example how this should work in action:\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:870
+#: ../src/Tutorial/Dependent.md:866
 #, no-wrap
 msgid ""
-"   ```repl\n"
 "   Solutions.Dependent> transpose [[1,2,3],[4,5,6]]\n"
 "   [[1, 4], [2, 5], [3, 6]]\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -1593,13 +1862,6 @@ msgid ""
 "Note, that data type `Vect` together with many of the functions we "
 "implemented here is available from module `Data.Vect` from the *base* "
 "library. Likewise, `Fin` is available from `Data.Fin` from *base*."
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:904 ../src/Tutorial/Functions1.md:576
-#: ../src/Tutorial/Functions2.md:955 ../src/Tutorial/Interfaces.md:814
-#: ../src/Tutorial/IO.md:1119
-msgid "### What's next"
 msgstr ""
 
 #. type: Plain text

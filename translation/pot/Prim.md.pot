@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,34 +16,386 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-msgid "### Exercises part 2"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, no-wrap
+msgid "Exercises part 1"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, no-wrap
+msgid "Exercises part 2"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, no-wrap
+msgid "Exercises part 3"
 msgstr ""
 
 #. type: Plain text
@@ -54,16 +406,19 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-msgid "<!-- vi: filetype=idris2 -->"
+#, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-msgid "%default total ```"
+#. type: Code fence info string
+#: ../src/Tutorial/Folds.md:145 ../src/Tutorial/Folds.md:241
+#: ../src/Tutorial/Folds.md:326 ../src/Tutorial/Folds.md:582
+#: ../src/Tutorial/Intro.md:199 ../src/Tutorial/Intro.md:208
+#: ../src/Tutorial/Intro.md:223 ../src/Tutorial/Prim.md:38
+#, no-wrap
+msgid "sh"
 msgstr ""
 
 #. type: Plain text
@@ -73,9 +428,10 @@ msgstr ""
 msgid "And at the REPL:"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:2
-msgid "# Primitives"
+#. type: Title #
+#: ../src/Tutorial/Prim.md:1
+#, no-wrap
+msgid "Primitives"
 msgstr ""
 
 #. type: Plain text
@@ -88,23 +444,27 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:10
-msgid "```idris module Tutorial.Prim"
+#: ../src/Tutorial/Prim.md:8
+#, no-wrap
+msgid ""
+"module Tutorial.Prim\n"
+"\n"
+"import Data.Bits\n"
+"import Data.String\n"
+"\n"
+"%default total\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:13
-msgid "import Data.Bits import Data.String"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:17
+#, no-wrap
+msgid "How Primitives are Implemented"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:18
-msgid "## How Primitives are Implemented"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:20
-msgid "### A Short Note on Backends"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:19
+#, no-wrap
+msgid "A Short Note on Backends"
 msgstr ""
 
 #. type: Plain text
@@ -131,8 +491,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:41
-msgid "```sh idris2 --cg racket ```"
+#: ../src/Tutorial/Prim.md:38
+#, no-wrap
+msgid "idris2 --cg racket\n"
 msgstr ""
 
 #. type: Plain text
@@ -187,9 +548,10 @@ msgid ""
 "backends)."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:64
-msgid "### The Idris Primitives"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:63
+#, no-wrap
+msgid "The Idris Primitives"
 msgstr ""
 
 #. type: Plain text
@@ -248,9 +610,10 @@ msgid ""
 "Constant`."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:106
-msgid "### Primitive Functions"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:105
+#, no-wrap
+msgid "Primitive Functions"
 msgstr ""
 
 #. type: Plain text
@@ -282,10 +645,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:130
+#: ../src/Tutorial/Prim.md:124
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> :t prim__add_Bits8 prim__add_Bits8 : Bits8 -> Bits8 -"
-"> Bits8 Tutorial.Prim> prim__add_Bits8 12 100 112 ```"
+"Tutorial.Prim> :t prim__add_Bits8\n"
+"prim__add_Bits8 : Bits8 -> Bits8 -> Bits8\n"
+"Tutorial.Prim> prim__add_Bits8 12 100\n"
+"112\n"
 msgstr ""
 
 #. type: Plain text
@@ -314,9 +680,10 @@ msgid ""
 "most of these in the following sections."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:154
-msgid "### Consequences of being Primitive"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:153
+#, no-wrap
+msgid "Consequences of being Primitive"
 msgstr ""
 
 #. type: Plain text
@@ -332,10 +699,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:170
+#: ../src/Tutorial/Prim.md:164
+#, no-wrap
 msgid ""
-"```idris covering replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ "
-"= [] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
+"covering\n"
+"replicateBits8' : Bits8 -> a -> List a\n"
+"replicateBits8' 0 _ = []\n"
+"replicateBits8' n v = v :: replicateBits8' (n - 1) v\n"
 msgstr ""
 
 #. type: Plain text
@@ -347,10 +717,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:180
+#: ../src/Tutorial/Prim.md:175
+#, no-wrap
 msgid ""
-"```idris replicateBits8 : Bits8 -> a -> List a replicateBits8 0 _ = [] "
-"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v ```"
+"replicateBits8 : Bits8 -> a -> List a\n"
+"replicateBits8 0 _ = []\n"
+"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v\n"
 msgstr ""
 
 #. type: Plain text
@@ -371,8 +743,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:194
-msgid "```idris zeroBits8 : the Bits8 0 = 255 + 1 zeroBits8 = Refl ```"
+#: ../src/Tutorial/Prim.md:190
+#, no-wrap
+msgid ""
+"zeroBits8 : the Bits8 0 = 255 + 1\n"
+"zeroBits8 = Refl\n"
 msgstr ""
 
 #. type: Plain text
@@ -386,13 +761,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:205
+#: ../src/Tutorial/Prim.md:201
 #, no-wrap
 msgid ""
-"```idris\n"
 "data LenList : (n : Nat) -> Type -> Type where\n"
 "  MkLenList : (as : List a) -> LenList (length as) a\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -404,14 +777,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:215
+#: ../src/Tutorial/Prim.md:210
 #, no-wrap
 msgid ""
-"```idris\n"
 "0 concatLen : (xs,ys : List a) -> length xs + length ys = length (xs ++ ys)\n"
 "concatLen []        ys = Refl\n"
 "concatLen (x :: xs) ys = cong S $ concatLen xs ys\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -420,14 +791,12 @@ msgid "With the above lemma, we can implement concatenation of `LenList`:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:223
+#: ../src/Tutorial/Prim.md:218
 #, no-wrap
 msgid ""
-"```idris\n"
 "(++) : LenList m a -> LenList n a -> LenList (m + n) a\n"
 "MkLenList xs ++ MkLenList ys =\n"
 "  rewrite concatLen xs ys in MkLenList (xs ++ ys)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -442,17 +811,27 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:235
-msgid ""
-"```idris 0 concatLenStr : (a,b : String) -> length a + length b = length (a +"
-"+ b)  ```"
+#: ../src/Tutorial/Prim.md:232
+#, no-wrap
+msgid "0 concatLenStr : (a,b : String) -> length a + length b = length (a ++ b)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:237
+#, no-wrap
+msgid "<!-- markdownlint-disable MD026 -->\n"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:237
+#, no-wrap
+msgid "Believe Me!"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:239
-msgid ""
-"<!-- markdownlint-disable MD026 --> ### Believe Me! <!-- markdownlint-enable "
-"MD026 -->"
+#, no-wrap
+msgid "<!-- markdownlint-enable MD026 -->\n"
 msgstr ""
 
 #. type: Plain text
@@ -466,9 +845,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:249
-msgid ""
-"```idris concatLenStr a b = believe_me $ Refl {x = length a + length b} ```"
+#: ../src/Tutorial/Prim.md:246
+#, no-wrap
+msgid "concatLenStr a b = believe_me $ Refl {x = length a + length b}\n"
 msgstr ""
 
 #. type: Plain text
@@ -491,10 +870,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:267
+#: ../src/Tutorial/Prim.md:263
+#, no-wrap
 msgid ""
-"```idris 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z "
-"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)} ```"
+"0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z\n"
+"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)}\n"
 msgstr ""
 
 #. type: Plain text
@@ -504,23 +884,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:274
-msgid "```idris Tiny : Double Tiny = 0.0000000000000001"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:277
-msgid "One : Double One = 1.0"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:280
-msgid "wrong : (0 _ : 1.0000000000000002 = 1.0) -> Void wrong Refl impossible"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:284
-msgid "boom : Void boom = wrong (doubleAddAssoc One Tiny Tiny)  ```"
+#: ../src/Tutorial/Prim.md:271
+#, no-wrap
+msgid ""
+"Tiny : Double\n"
+"Tiny = 0.0000000000000001\n"
+"\n"
+"One : Double\n"
+"One = 1.0\n"
+"\n"
+"wrong : (0 _ : 1.0000000000000002 = 1.0) -> Void\n"
+"wrong Refl impossible\n"
+"\n"
+"boom : Void\n"
+"boom = wrong (doubleAddAssoc One Tiny Tiny)\n"
 msgstr ""
 
 #. type: Plain text
@@ -533,9 +910,10 @@ msgid ""
 "because it is of the correct type, and from this follows a proof of `Void`."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:293
-msgid "## Working with Strings"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:292
+#, no-wrap
+msgid "Working with Strings"
 msgstr ""
 
 #. type: Plain text
@@ -593,11 +971,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:318
+#: ../src/Tutorial/Prim.md:312
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> prim__strTail \"\" prim__strTail \"\" Tutorial.Prim> :"
-"exec putStrLn (prim__strTail \"\")  Exception in substring: 1 and 0 are not "
-"valid start/end indices for \"\" ```"
+"Tutorial.Prim> prim__strTail \"\"\n"
+"prim__strTail \"\"\n"
+"Tutorial.Prim> :exec putStrLn (prim__strTail \"\")\n"
+"Exception in substring: 1 and 0 are not valid start/end indices for \"\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -609,14 +989,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:328
+#: ../src/Tutorial/Prim.md:324
+#, no-wrap
 msgid ""
-"```idris tailExample : prim__strTail \"foo\" = \"oo\" tailExample = Refl ```"
+"tailExample : prim__strTail \"foo\" = \"oo\"\n"
+"tailExample = Refl\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:330
-msgid "### Pack and Unpack"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:329
+#, no-wrap
+msgid "Pack and Unpack"
 msgstr ""
 
 #. type: Plain text
@@ -630,9 +1013,10 @@ msgid ""
 "of text, they work and perform reasonably well."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:341
-msgid "### String Interpolation"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:340
+#, no-wrap
+msgid "String Interpolation"
 msgstr ""
 
 #. type: Plain text
@@ -644,10 +1028,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:350
+#: ../src/Tutorial/Prim.md:346
+#, no-wrap
 msgid ""
-"```idris interpEx1 : Bits64 -> Bits64 -> String interpEx1 x y = \"\\{show x} "
-"+ \\{show y} = \\{show $ x + y}\" ```"
+"interpEx1 : Bits64 -> Bits64 -> String\n"
+"interpEx1 x y = \"\\{show x} + \\{show y} = \\{show $ x + y}\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -660,19 +1045,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:359
-msgid "```idris data Element = H | He | C | N | O | F | Ne"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:362
-msgid "Formula : Type Formula = List (Element,Nat)"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:371
+#: ../src/Tutorial/Prim.md:357
 #, no-wrap
 msgid ""
+"data Element = H | He | C | N | O | F | Ne\n"
+"\n"
+"Formula : Type\n"
+"Formula = List (Element,Nat)\n"
+"\n"
 "Interpolation Element where\n"
 "  interpolate H  = \"H\"\n"
 "  interpolate He = \"He\"\n"
@@ -681,36 +1061,23 @@ msgid ""
 "  interpolate O  = \"O\"\n"
 "  interpolate F  = \"F\"\n"
 "  interpolate Ne = \"Ne\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:376
-#, no-wrap
-msgid ""
+"\n"
 "Interpolation (Element,Nat) where\n"
 "  interpolate (_, 0) = \"\"\n"
 "  interpolate (x, 1) = \"\\{x}\"\n"
 "  interpolate (x, k) = \"\\{x}\\{show k}\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:379
-#, no-wrap
-msgid ""
+"\n"
 "Interpolation Formula where\n"
 "  interpolate = foldMap interpolate\n"
+"\n"
+"ethanol : String\n"
+"ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:383
-msgid ""
-"ethanol : String ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, "
-"the Nat 1)]}\" ```"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:385
-msgid "### Raw and Multiline String Literals"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:384
+#, no-wrap
+msgid "Raw and Multiline String Literals"
 msgstr ""
 
 #. type: Plain text
@@ -721,10 +1088,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:393
+#: ../src/Tutorial/Prim.md:389
+#, no-wrap
 msgid ""
-"```idris escapeExample : String escapeExample = \"A quote: \\\". \\nThis is "
-"on a new line.\\nA backslash: \\\\\" ```"
+"escapeExample : String\n"
+"escapeExample = \"A quote: \\\". \\nThis is on a new line.\\nA backslash: \\\\\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -736,15 +1104,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:402
+#: ../src/Tutorial/Prim.md:399
+#, no-wrap
 msgid ""
-"```idris rawExample : String rawExample = #\"A quote: \". A blackslash: \\\"#"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:406
-msgid ""
-"rawExample2 : String rawExample2 = ##\"A quote: \". A blackslash: \\\"## ```"
+"rawExample : String\n"
+"rawExample = #\"A quote: \". A blackslash: \\\"#\n"
+"\n"
+"rawExample2 : String\n"
+"rawExample2 = ##\"A quote: \". A blackslash: \\\"##\n"
 msgstr ""
 
 #. type: Plain text
@@ -757,10 +1124,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:416
+#: ../src/Tutorial/Prim.md:412
+#, no-wrap
 msgid ""
-"```idris rawInterpolExample : String rawInterpolExample = ##\"An "
-"interpolated \"string\": \\##{rawExample}\"## ```"
+"rawInterpolExample : String\n"
+"rawInterpolExample = ##\"An interpolated \"string\": \\##{rawExample}\"##\n"
 msgstr ""
 
 #. type: Plain text
@@ -776,10 +1144,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:435
+#: ../src/Tutorial/Prim.md:425
 #, no-wrap
 msgid ""
-"```idris\n"
 "multiline1 : String\n"
 "multiline1 = \"\"\"\n"
 "  And I raise my head and stare\n"
@@ -789,19 +1156,13 @@ msgid ""
 "  From the eyes of a stranger\n"
 "  Afraid to see what hides behind the stare\n"
 "  \"\"\"\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:443
-#, no-wrap
-msgid ""
+"\n"
 "multiline2 : String\n"
 "multiline2 = #\"\"\"\n"
 "  An example for a simple expression:\n"
 "  \"foo\" ++ \"bar\".\n"
 "  This is reduced to \"\\#{\"foo\" ++ \"bar\"}\".\n"
 "  \"\"\"#\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -845,9 +1206,10 @@ msgid ""
 "string."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:469
-msgid "## Integers"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:468
+#, no-wrap
+msgid "Integers"
 msgstr ""
 
 #. type: Plain text
@@ -984,9 +1346,10 @@ msgid ""
 "for-computer-scientists/)."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:517
-msgid "### Unsigned Integers"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:516
+#, no-wrap
+msgid "Unsigned Integers"
 msgstr ""
 
 #. type: Plain text
@@ -1002,15 +1365,23 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:537
+#: ../src/Tutorial/Prim.md:527
+#, no-wrap
 msgid ""
-"```repl Main> the Bits8 255 + 1 0 Main> the Bits8 255 + 255 254 Main> the "
-"Bits8 128 * 2 + 7 7 Main> the Bits8 12 - 13 255 ```"
+"Main> the Bits8 255 + 1\n"
+"0\n"
+"Main> the Bits8 255 + 255\n"
+"254\n"
+"Main> the Bits8 128 * 2 + 7\n"
+"7\n"
+"Main> the Bits8 12 - 13\n"
+"255\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:539
-msgid "### Signed Integers"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:538
+#, no-wrap
+msgid "Signed Integers"
 msgstr ""
 
 #. type: Plain text
@@ -1027,13 +1398,19 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:556
-msgid "```repl Main> the Int8 2 * 127 -2 Main> the Int8 3 * 127 125 ```"
+#: ../src/Tutorial/Prim.md:550
+#, no-wrap
+msgid ""
+"Main> the Int8 2 * 127\n"
+"-2\n"
+"Main> the Int8 3 * 127\n"
+"125\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:558
-msgid "### Bitwise Operations"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:557
+#, no-wrap
+msgid "Bitwise Operations"
 msgstr ""
 
 #. type: Plain text
@@ -1059,20 +1436,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:576
+#: ../src/Tutorial/Prim.md:574
 #, no-wrap
 msgid ""
-"```repl\n"
 "23 in binary:    0  0  0  1    0  1  1  1\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:580
-#, no-wrap
-msgid ""
+"\n"
 "Bit number:      7  6  5  4    3  2  1  0\n"
 "Decimal value: 128 64 32 16    8  4  2  1\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1083,10 +1453,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:592
+#: ../src/Tutorial/Prim.md:584
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> testBit (the Bits8 23) 0 True Tutorial.Prim> testBit "
-"(the Bits8 23) 1 True Tutorial.Prim> testBit (the Bits8 23) 3 False ```"
+"Tutorial.Prim> testBit (the Bits8 23) 0\n"
+"True\n"
+"Tutorial.Prim> testBit (the Bits8 23) 1\n"
+"True\n"
+"Tutorial.Prim> testBit (the Bits8 23) 3\n"
+"False\n"
 msgstr ""
 
 #. type: Plain text
@@ -1097,10 +1472,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:602
+#: ../src/Tutorial/Prim.md:596
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> setBit (the Bits8 23) 3 31 Tutorial.Prim> clearBit "
-"(the Bits8 23) 2 19 ```"
+"Tutorial.Prim> setBit (the Bits8 23) 3\n"
+"31\n"
+"Tutorial.Prim> clearBit (the Bits8 23) 2\n"
+"19\n"
 msgstr ""
 
 #. type: Plain text
@@ -1115,22 +1493,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:614
+#: ../src/Tutorial/Prim.md:611
 #, no-wrap
 msgid ""
-"```repl\n"
 "23 in binary:          0  0  0  1    0  1  1  1\n"
 "11 in binary:          0  0  0  0    1  0  1  1\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:619
-#, no-wrap
-msgid ""
+"\n"
 "23 .&. 11 in binary:   0  0  0  0    0  0  1  1\n"
 "23 .|. 11 in binary:   0  0  0  1    1  1  1  1\n"
 "23 `xor` 11 in binary: 0  0  0  1    1  1  0  0\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1139,10 +1510,15 @@ msgid "And here are the examples at the REPL:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:630
+#: ../src/Tutorial/Prim.md:622
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> the Bits8 23 .&. 11 3 Tutorial.Prim> the Bits8 23 .|. "
-"11 31 Tutorial.Prim> the Bits8 23 `xor` 11 28 ```"
+"Tutorial.Prim> the Bits8 23 .&. 11\n"
+"3\n"
+"Tutorial.Prim> the Bits8 23 .|. 11\n"
+"31\n"
+"Tutorial.Prim> the Bits8 23 `xor` 11\n"
+"28\n"
 msgstr ""
 
 #. type: Plain text
@@ -1156,27 +1532,23 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:640
+#: ../src/Tutorial/Prim.md:638
 #, no-wrap
 msgid ""
-"```repl\n"
 "22 in binary:            0  0  0  1    0  1  1  0\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:644
-#, no-wrap
-msgid ""
+"\n"
 "22 `shiftL` 2 in binary: 0  1  0  1    1  0  0  0\n"
 "22 `shiftR` 1 in binary: 0  0  0  0    1  0  1  1\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:653
+#: ../src/Tutorial/Prim.md:647
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> the Bits8 22 `shiftL` 2 88 Tutorial.Prim> the Bits8 "
-"22 `shiftR` 1 11 ```"
+"Tutorial.Prim> the Bits8 22 `shiftL` 2\n"
+"88\n"
+"Tutorial.Prim> the Bits8 22 `shiftR` 1\n"
+"11\n"
 msgstr ""
 
 #. type: Plain text
@@ -1187,9 +1559,10 @@ msgid ""
 "they work."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:659
-msgid "### Integer Literals"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:658
+#, no-wrap
+msgid "Integer Literals"
 msgstr ""
 
 #. type: Plain text
@@ -1211,14 +1584,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:677
+#: ../src/Tutorial/Prim.md:672
 #, no-wrap
 msgid ""
-"```idris\n"
 "record Charge where\n"
 "  constructor MkCharge\n"
 "  value : Integer\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1231,30 +1602,23 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:687
-msgid "```idris fromInteger : Integer -> Charge fromInteger = MkCharge"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:690
+#: ../src/Tutorial/Prim.md:684
 #, no-wrap
 msgid ""
+"fromInteger : Integer -> Charge\n"
+"fromInteger = MkCharge\n"
+"\n"
 "Semigroup Charge where\n"
 "  x <+> y = MkCharge $ x.value + y.value\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:694
-#, no-wrap
-msgid ""
+"\n"
 "Monoid Charge where\n"
 "  neutral = 0\n"
-"```\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:696
-msgid "#### Alternative Bases"
+#. type: Title ####
+#: ../src/Tutorial/Prim.md:695
+#, no-wrap
+msgid "Alternative Bases"
 msgstr ""
 
 #. type: Plain text
@@ -1267,10 +1631,15 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:711
+#: ../src/Tutorial/Prim.md:703
+#, no-wrap
 msgid ""
-"```repl Tutorial.Prim> 0b1101 13 Tutorial.Prim> 0o773 507 Tutorial.Prim> "
-"0xffa2 65442 ```"
+"Tutorial.Prim> 0b1101\n"
+"13\n"
+"Tutorial.Prim> 0o773\n"
+"507\n"
+"Tutorial.Prim> 0xffa2\n"
+"65442\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1321,9 +1690,10 @@ msgid ""
 "   four bits.\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:734
-msgid "## Refined Primitives"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:733
+#, no-wrap
+msgid "Refined Primitives"
 msgstr ""
 
 #. type: Plain text
@@ -1347,9 +1717,10 @@ msgid ""
 "`believe_me`), with which we can manipulate our predicates."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:751
-msgid "### Use Case: ASCII Strings"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:750
+#, no-wrap
+msgid "Use Case: ASCII Strings"
 msgstr ""
 
 #. type: Plain text
@@ -1362,14 +1733,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:760
-msgid "```idris isAsciiChar : Char -> Bool isAsciiChar c = ord c <= 127"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:764
+#: ../src/Tutorial/Prim.md:757
+#, no-wrap
 msgid ""
-"isAsciiString : String -> Bool isAsciiString = all isAsciiChar . unpack ```"
+"isAsciiChar : Char -> Bool\n"
+"isAsciiChar c = ord c <= 127\n"
+"\n"
+"isAsciiString : String -> Bool\n"
+"isAsciiString = all isAsciiChar . unpack\n"
 msgstr ""
 
 #. type: Plain text
@@ -1380,15 +1751,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:774
+#: ../src/Tutorial/Prim.md:768
 #, no-wrap
 msgid ""
-"```idris\n"
 "record Ascii where\n"
 "  constructor MkAscii\n"
 "  value : String\n"
 "  0 prf : isAsciiString value === True\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1401,8 +1770,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:784
-msgid "```idris hello : Ascii hello = MkAscii \"Hello World!\" Refl ```"
+#: ../src/Tutorial/Prim.md:780
+#, no-wrap
+msgid ""
+"hello : Ascii\n"
+"hello = MkAscii \"Hello World!\" Refl\n"
 msgstr ""
 
 #. type: Plain text
@@ -1424,10 +1796,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:805
+#: ../src/Tutorial/Prim.md:801
+#, no-wrap
 msgid ""
-"```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === "
-"True} -> Ascii fromString s = MkAscii s prf ```"
+"fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii\n"
+"fromString s = MkAscii s prf\n"
 msgstr ""
 
 #. type: Plain text
@@ -1438,8 +1811,11 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:813
-msgid "```idris hello2 : Ascii hello2 = \"Hello World!\" ```"
+#: ../src/Tutorial/Prim.md:809
+#, no-wrap
+msgid ""
+"hello2 : Ascii\n"
+"hello2 = \"Hello World!\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -1451,26 +1827,23 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:822
-msgid ""
-"```idris test : (b : Bool) -> Dec (b === True)  test True = Yes Refl test "
-"False = No absurd"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:828
+#: ../src/Tutorial/Prim.md:818
 #, no-wrap
 msgid ""
+"test : (b : Bool) -> Dec (b === True)\n"
+"test True  = Yes Refl\n"
+"test False = No absurd\n"
+"\n"
 "ascii : String -> Maybe Ascii\n"
 "ascii x = case test (isAsciiString x) of\n"
 "  Yes prf   => Just $ MkAscii x prf\n"
 "  No contra => Nothing\n"
-"```\n"
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:830
-msgid "#### Disadvantages of Boolean Proofs"
+#. type: Title ####
+#: ../src/Tutorial/Prim.md:829
+#, no-wrap
+msgid "Disadvantages of Boolean Proofs"
 msgstr ""
 
 #. type: Plain text
@@ -1491,28 +1864,21 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:847
+#: ../src/Tutorial/Prim.md:840
 #, no-wrap
 msgid ""
-"```idris\n"
 "0 allAppend :  (f : Char -> Bool)\n"
 "            -> (s1,s2 : String)\n"
 "            -> (p1 : all f (unpack s1) === True)\n"
 "            -> (p2 : all f (unpack s2) === True)\n"
 "            -> all f (unpack (s1 ++ s2)) === True\n"
 "allAppend f s1 s2 p1 p2 = believe_me $ Refl {x = True}\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:854
-#, no-wrap
-msgid ""
+"\n"
 "namespace Ascii\n"
 "  export\n"
 "  (++) : Ascii -> Ascii -> Ascii\n"
 "  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
 "    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1525,9 +1891,10 @@ msgid ""
 "very much depends on the use case at hand."
 msgstr ""
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:863
-msgid "### Use Case: Sanitized HTML"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:862
+#, no-wrap
+msgid "Use Case: Sanitized HTML"
 msgstr ""
 
 #. type: Plain text
@@ -1544,9 +1911,16 @@ msgstr ""
 msgid "Assume now a user decides to enter the following text:"
 msgstr ""
 
+#. type: Code fence info string
+#: ../src/Tutorial/Prim.md:872
+#, no-wrap
+msgid "html"
+msgstr ""
+
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:875
-msgid "```html <script>alert(\"Hello World!\")</script> ```"
+#: ../src/Tutorial/Prim.md:872
+#, no-wrap
+msgid "<script>alert(\"Hello World!\")</script>\n"
 msgstr ""
 
 #. type: Plain text
@@ -1564,20 +1938,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:891
+#, no-wrap
 msgid ""
-"We want to make sure, that this cannot happen on our own web page.  In order "
-"to protect us from this attack, we could for instance disallow certain "
-"characters like `'<'` or `'>'` completely (although this might not be "
-"enough!), but if our chat service is targeted at programmers, this will be "
-"overly restrictive. An alternative is to escape certain characters before "
-"rendering them on the page."
+"We want to make sure, that this cannot happen on our own web page.\n"
+"In order to protect us from this attack, we could for instance disallow\n"
+"certain characters like `'<'` or `'>'` completely (although this might not\n"
+"be enough!), but if our chat service is targeted at programmers,\n"
+"this will be overly restrictive. An alternative\n"
+"is to escape certain characters before rendering them on the page.\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:903
+#: ../src/Tutorial/Prim.md:892
 #, no-wrap
 msgid ""
-"```idris\n"
 "escape : String -> String\n"
 "escape = concat . map esc . unpack\n"
 "  where esc : Char -> String\n"
@@ -1587,7 +1961,6 @@ msgid ""
 "        esc '&'  = \"&amp;\"\n"
 "        esc '\\'' = \"&apos;\"\n"
 "        esc c    = singleton c\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1601,16 +1974,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:918
+#: ../src/Tutorial/Prim.md:911
 #, no-wrap
 msgid ""
-"```idris\n"
 "record Escaped where\n"
 "  constructor MkEscaped\n"
 "  value    : String\n"
 "  0 origin : String\n"
 "  0 prf    : escape origin === value\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1624,19 +1995,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:931
+#: ../src/Tutorial/Prim.md:926
 #, no-wrap
 msgid ""
-"```idris\n"
 "namespace Escaped\n"
 "  export\n"
 "  fromString : (s : String) -> {auto 0 prf : escape s === s} -> Escaped\n"
 "  fromString s = MkEscaped s s prf\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:935
-msgid "escaped : Escaped escaped = \"Hello World!\" ```"
+"\n"
+"escaped : Escaped\n"
+"escaped = \"Hello World!\"\n"
 msgstr ""
 
 #. type: Plain text
@@ -1712,22 +2080,16 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:991
+#: ../src/Tutorial/Prim.md:984
 #, no-wrap
 msgid ""
-"```idris\n"
 "-- Like `Dec` but with erased proofs. Constructors `Yes0`\n"
 "-- and `No0` will be converted to constants `0` and `1` by\n"
 "-- the compiler!\n"
 "data Dec0 : (prop : Type) -> Type where\n"
 "  Yes0 : (0 prf : prop) -> Dec0 prop\n"
 "  No0  : (0 contra : prop -> Void) -> Dec0 prop\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1005
-#, no-wrap
-msgid ""
+"\n"
 "-- For interfaces with more than one parameter (`a` and `p`\n"
 "-- in this example) sometimes one parameter can be determined\n"
 "-- by knowing the other. For instance, if we know what `p` is,\n"
@@ -1741,24 +2103,19 @@ msgid ""
 "-- drastically help with type inference.\n"
 "interface Decidable (0 a : Type) (0 p : a -> Type) | p where\n"
 "  decide : (v : a) -> Dec0 (p v)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1011
-msgid ""
-"-- We often have to pass `p` explicitly in order to help Idris with -- type "
-"inference. In such cases, it is more convenient to use -- `decideOn pred` "
-"instead of `decide {p = pred}`.  decideOn : (0 p : a -> Type) -> Decidable a "
-"p => (v : a) -> Dec0 (p v)  decideOn _ = decide"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1019
-msgid ""
-"-- Some primitive predicates can only be reasonably implemented -- using "
-"boolean functions. This utility helps with decidability -- on such proofs.  "
-"test0 : (b : Bool) -> Dec0 (b === True)  test0 True = Yes0 Refl test0 False "
-"= No0 absurd ```"
+"\n"
+"-- We often have to pass `p` explicitly in order to help Idris with\n"
+"-- type inference. In such cases, it is more convenient to use\n"
+"-- `decideOn pred` instead of `decide {p = pred}`.\n"
+"decideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> Dec0 (p v)\n"
+"decideOn _ = decide\n"
+"\n"
+"-- Some primitive predicates can only be reasonably implemented\n"
+"-- using boolean functions. This utility helps with decidability\n"
+"-- on such proofs.\n"
+"test0 : (b : Bool) -> Dec0 (b === True)\n"
+"test0 True  = Yes0 Refl\n"
+"test0 False = No0 absurd\n"
 msgstr ""
 
 #. type: Plain text
@@ -1771,32 +2128,22 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1029
+#: ../src/Tutorial/Prim.md:1026
 #, no-wrap
 msgid ""
-"```idris\n"
 "data IsYes0 : (d : Dec0 prop) -> Type where\n"
 "  ItIsYes0 : IsYes0 (Yes0 prf)\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1033
-msgid ""
-"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop fromYes0 (Yes0 x) "
-"= x fromYes0 (No0 contra) impossible"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1041
-#, no-wrap
-msgid ""
+"\n"
+"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop\n"
+"fromYes0 (Yes0 x) = x\n"
+"fromYes0 (No0 contra) impossible\n"
+"\n"
 "0 safeDecideOn :  (0 p : a -> Type)\n"
 "               -> Decidable a p\n"
 "               => (v : a)\n"
 "               -> (0 prf : IsYes0 (decideOn p v))\n"
 "               => p v\n"
 "safeDecideOn p v = fromYes0 $ decideOn p v\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1807,10 +2154,9 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1055
+#: ../src/Tutorial/Prim.md:1046
 #, no-wrap
 msgid ""
-"```idris\n"
 "-- only use this if you are sure that `decideOn p v`\n"
 "-- will return a `Yes0`!\n"
 "0 unsafeDecideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> p v\n"
@@ -1818,7 +2164,6 @@ msgid ""
 "  Yes0 prf => prf\n"
 "  No0  _   =>\n"
 "    assert_total $ idris_crash \"Unexpected refinement failure in `unsafeRefineOn`\"\n"
-"```\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1840,13 +2185,11 @@ msgid "We want to be able to negate a predicate:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1068
+#: ../src/Tutorial/Prim.md:1064
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data Neg : (p : a -> Type) -> a -> Type where\n"
 "     IsNot : {0 p : a -> Type} -> (contra : p v -> Void) -> Neg p v\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1861,13 +2204,11 @@ msgid "We want to describe the conjunction of two predicates:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1077
+#: ../src/Tutorial/Prim.md:1073
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   data (&&) : (p,q : a -> Type) -> a -> Type where\n"
 "     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1891,25 +2232,14 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1089
+#: ../src/Tutorial/Prim.md:1087
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   negOr : Neg (p || q) v -> (Neg p && Neg q) v\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1091
-#, no-wrap
-msgid "   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1094
-#, no-wrap
-msgid ""
+"\n"
+"   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
+"\n"
 "   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1924,15 +2254,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1107
+#: ../src/Tutorial/Prim.md:1101
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   0 negAnd :  Decidable a p\n"
 "            => Decidable a q\n"
 "            => Neg (p && q) v\n"
 "            -> (Neg p || Neg q) v\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1954,15 +2282,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1124
+#: ../src/Tutorial/Prim.md:1118
 #, no-wrap
 msgid ""
-"```idris\n"
 "-- Proof that m <= n\n"
 "data (<=) : (m,n : Nat) -> Type where\n"
 "  ZLTE : 0 <= n\n"
 "  SLTE : m <= n -> S m <= S n\n"
-"```\n"
 msgstr ""
 
 #. type: Plain text
@@ -1973,50 +2299,35 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1132
-msgid "```repl (>=) : (m,n : Nat) -> Type m >= n = n <= m"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1135
-msgid "(<) : (m,n : Nat) -> Type m < n = S m <= n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1138
-msgid "(>) : (m,n : Nat) -> Type m > n = n < m"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1141
-msgid "LessThan : (m,n : Nat) -> Type LessThan m = (< m)"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1144
-msgid "To : (m,n : Nat) -> Type To m = (<= m)"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1147
-msgid "GreaterThan : (m,n : Nat) -> Type GreaterThan m = (> m)"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1150
-msgid "From : (m,n : Nat) -> Type From m = (>= m)"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1153
-msgid "FromTo : (lower,upper : Nat) -> Nat -> Type FromTo l u = From l && To u"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1157
+#: ../src/Tutorial/Prim.md:1129
+#, no-wrap
 msgid ""
-"Between : (lower,upper : Nat) -> Nat -> Type Between l u = GreaterThan l && "
-"LessThan u ```"
+"(>=) : (m,n : Nat) -> Type\n"
+"m >= n = n <= m\n"
+"\n"
+"(<) : (m,n : Nat) -> Type\n"
+"m < n = S m <= n\n"
+"\n"
+"(>) : (m,n : Nat) -> Type\n"
+"m > n = n < m\n"
+"\n"
+"LessThan : (m,n : Nat) -> Type\n"
+"LessThan m = (< m)\n"
+"\n"
+"To : (m,n : Nat) -> Type\n"
+"To m = (<= m)\n"
+"\n"
+"GreaterThan : (m,n : Nat) -> Type\n"
+"GreaterThan m = (> m)\n"
+"\n"
+"From : (m,n : Nat) -> Type\n"
+"From m = (>= m)\n"
+"\n"
+"FromTo : (lower,upper : Nat) -> Nat -> Type\n"
+"FromTo l u = From l && To u\n"
+"\n"
+"Between : (lower,upper : Nat) -> Nat -> Type\n"
+"Between l u = GreaterThan l && LessThan u\n"
 msgstr ""
 
 #. type: Bullet: '6. '
@@ -2044,19 +2355,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1178
+#: ../src/Tutorial/Prim.md:1176
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2\n"
-msgstr ""
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1181
-#, no-wrap
-msgid ""
+"\n"
 "   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True\n"
-"   ```\n"
 msgstr ""
 
 #. type: Plain text
@@ -2111,14 +2415,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1213
+#: ../src/Tutorial/Prim.md:1208
 #, no-wrap
 msgid ""
-"   ```idris\n"
 "   safeMod :  (x,y : Bits64)\n"
 "           -> (0 prf : cast y > 0)\n"
 "           => Subset Bits64 (\\v => cast v < cast y)\n"
-"   ```\n"
 msgstr ""
 
 #. type: Bullet: '10. '

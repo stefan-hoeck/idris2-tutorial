@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 12:48+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -18,15 +18,364 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
-#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
-#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
-#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
-#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
-#: ../src/Tutorial/Traverse.md:248
-#, fuzzy
-msgid "### Exercises part 1"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
+msgstr ""
+
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
+msgstr ""
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
+#: ../src/Tutorial/DPair.md:348 ../src/Tutorial/Eq.md:279
+#: ../src/Tutorial/Folds.md:373 ../src/Tutorial/Functor.md:381
+#: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
+#: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
+#: ../src/Tutorial/Traverse.md:247
+#, fuzzy, no-wrap
+msgid "Exercises part 1"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 1 部分\n"
@@ -46,15 +395,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
-#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
-#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
-#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
-#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
-#: ../src/Tutorial/Traverse.md:575
-#, fuzzy
-msgid "### Exercises part 2"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
+#: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
+#: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
+#: ../src/Tutorial/Predicates.md:672 ../src/Tutorial/Prim.md:712
+#: ../src/Tutorial/Traverse.md:574
+#, fuzzy, no-wrap
+msgid "Exercises part 2"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 2 部分\n"
@@ -74,15 +423,15 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
-#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
-#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
-#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
-#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
-#: ../src/Tutorial/Traverse.md:1017
-#, fuzzy
-msgid "### Exercises part 3"
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
+#: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
+#: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
+#: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
+#: ../src/Tutorial/Traverse.md:1016
+#, fuzzy, no-wrap
+msgid "Exercises part 3"
 msgstr ""
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "### 练习第 3 部分\n"
@@ -110,8 +459,10 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy
-msgid "<!-- vi: filetype=idris2 -->"
+#, fuzzy, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -133,31 +484,14 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-#, fuzzy
-msgid "%default total ```"
+#. type: Code fence info string
+#: ../src/Tutorial/Folds.md:145 ../src/Tutorial/Folds.md:241
+#: ../src/Tutorial/Folds.md:326 ../src/Tutorial/Folds.md:582
+#: ../src/Tutorial/Intro.md:199 ../src/Tutorial/Intro.md:208
+#: ../src/Tutorial/Intro.md:223 ../src/Tutorial/Prim.md:38
+#, no-wrap
+msgid "sh"
 msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
@@ -173,10 +507,10 @@ msgstr ""
 "在 REPL：\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:2
-#, fuzzy
-msgid "# Primitives"
+#. type: Title #
+#: ../src/Tutorial/Prim.md:1
+#, fuzzy, no-wrap
+msgid "Primitives"
 msgstr "# 原语"
 
 #. type: Plain text
@@ -193,27 +527,27 @@ msgstr ""
 "们来自哪里，我也没有详细说明我们可以用它们做什么和不能做什么。"
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:10
-#, fuzzy
-msgid "```idris module Tutorial.Prim"
-msgstr "```idris 模块 Tutorial.Prim"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:13
-#, fuzzy
-msgid "import Data.Bits import Data.String"
+#: ../src/Tutorial/Prim.md:8
+#, fuzzy, no-wrap
+msgid ""
+"module Tutorial.Prim\n"
+"\n"
+"import Data.Bits\n"
+"import Data.String\n"
+"\n"
+"%default total\n"
 msgstr "导入 Data.Bits 导入 Data.String"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:18
-#, fuzzy
-msgid "## How Primitives are Implemented"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:17
+#, fuzzy, no-wrap
+msgid "How Primitives are Implemented"
 msgstr "## 基元是如何实现的"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:20
-#, fuzzy
-msgid "### A Short Note on Backends"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:19
+#, fuzzy, no-wrap
+msgid "A Short Note on Backends"
 msgstr "### 关于后端的简短说明"
 
 #. type: Plain text
@@ -251,9 +585,9 @@ msgstr ""
 "代表 * 代码生成器 *）。例如："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:41
-#, fuzzy
-msgid "```sh idris2 --cg racket ```"
+#: ../src/Tutorial/Prim.md:38
+#, fuzzy, no-wrap
+msgid "idris2 --cg racket\n"
 msgstr "```sh idris2 --cg 球拍 ```"
 
 #. type: Plain text
@@ -326,10 +660,10 @@ msgstr ""
 "Python 的后端。您可以在 [Idris Wiki](https://github.com/idris-lang/Idris2/"
 "wiki/1-%5BLanguage%5D-External-backends) 上找到外部后端列表。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:64
-#, fuzzy
-msgid "### The Idris Primitives"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:63
+#, fuzzy, no-wrap
+msgid "The Idris Primitives"
 msgstr "### 伊德里斯原语"
 
 #. type: Plain text
@@ -423,10 +757,10 @@ msgstr ""
 "[Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，原"
 "始类型是数据类型 ` 的常量构造函数Core.TT.Constant`。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:106
-#, fuzzy
-msgid "### Primitive Functions"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:105
+#, fuzzy, no-wrap
+msgid "Primitive Functions"
 msgstr "### 原始函数"
 
 #. type: Plain text
@@ -468,14 +802,14 @@ msgstr ""
 "中检查其类型和行为："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:130
-#, fuzzy
+#: ../src/Tutorial/Prim.md:124
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> :t prim__add_Bits8 prim__add_Bits8 : Bits8 -> Bits8 -"
-"> Bits8 Tutorial.Prim> prim__add_Bits8 12 100 112 ```"
-msgstr ""
-"```repl Tutorial.Prim> :t prim__add_Bits8 prim__add_Bits8 : Bits8 -> Bits8 -"
-"> Bits8 Tutorial.Prim> prim__add_Bits8 12 100 112 ```"
+"Tutorial.Prim> :t prim__add_Bits8\n"
+"prim__add_Bits8 : Bits8 -> Bits8 -> Bits8\n"
+"Tutorial.Prim> prim__add_Bits8 12 100\n"
+"112\n"
+msgstr "```repl Tutorial.Prim> :t prim__add_Bits8 prim__add_Bits8 : Bits8 -> Bits8 -> Bits8 Tutorial.Prim> prim__add_Bits8 12 100 112 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:148
@@ -515,10 +849,10 @@ msgstr ""
 "与原始类型一样，原始函数在编译器源代码中被列为数据类型 (`Core.TT.PrimFn`) 中"
 "的构造函数。我们将在以下部分中介绍其中的大部分内容。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:154
-#, fuzzy
-msgid "### Consequences of being Primitive"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:153
+#, fuzzy, no-wrap
+msgid "Consequences of being Primitive"
 msgstr "### 原始的后果"
 
 #. type: Plain text
@@ -539,14 +873,14 @@ msgstr ""
 "后端存在错误），但编译器不知道："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:170
-#, fuzzy
+#: ../src/Tutorial/Prim.md:164
+#, fuzzy, no-wrap
 msgid ""
-"```idris covering replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ "
-"= [] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
-msgstr ""
-"```idris 覆盖 replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ = "
-"[] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
+"covering\n"
+"replicateBits8' : Bits8 -> a -> List a\n"
+"replicateBits8' 0 _ = []\n"
+"replicateBits8' n v = v :: replicateBits8' (n - 1) v\n"
+msgstr "```idris 覆盖 replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ = [] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:174
@@ -560,14 +894,13 @@ msgstr ""
 "说服整体检查器（首选方式）："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:180
-#, fuzzy
+#: ../src/Tutorial/Prim.md:175
+#, fuzzy, no-wrap
 msgid ""
-"```idris replicateBits8 : Bits8 -> a -> List a replicateBits8 0 _ = [] "
-"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v ```"
-msgstr ""
-"```idris replicateBits8 : Bits8 -> a -> List a replicateBits8 0 _ = [] "
-"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v ```"
+"replicateBits8 : Bits8 -> a -> List a\n"
+"replicateBits8 0 _ = []\n"
+"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v\n"
+msgstr "```idris replicateBits8 : Bits8 -> a -> List a replicateBits8 0 _ = [] replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:184
@@ -594,9 +927,11 @@ msgstr ""
 "`Bits8`，以下等式成立："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:194
-#, fuzzy
-msgid "```idris zeroBits8 : the Bits8 0 = 255 + 1 zeroBits8 = Refl ```"
+#: ../src/Tutorial/Prim.md:190
+#, fuzzy, no-wrap
+msgid ""
+"zeroBits8 : the Bits8 0 = 255 + 1\n"
+"zeroBits8 = Refl\n"
 msgstr "```idris zeroBits8 : Bits8 0 = 255 + 1 zeroBits8 = Refl ```"
 
 #. type: Plain text
@@ -614,13 +949,11 @@ msgstr ""
 "个由列表长度索引的数据类型中："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:205
+#: ../src/Tutorial/Prim.md:201
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data LenList : (n : Nat) -> Type -> Type where\n"
 "  MkLenList : (as : List a) -> LenList (length as) a\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "数据 LenList : (n : Nat) -> 类型 -> 类型\n"
@@ -639,14 +972,12 @@ msgstr ""
 "式。我们可以安全地告诉伊德里斯这是真的："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:215
+#: ../src/Tutorial/Prim.md:210
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "0 concatLen : (xs,ys : List a) -> length xs + length ys = length (xs ++ ys)\n"
 "concatLen []        ys = Refl\n"
 "concatLen (x :: xs) ys = cong S $ concatLen xs ys\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "0 concatLen : (xs,ys : 列表 a) -> 长度 xs + 长度 ys = 长度 (xs ++ ys)\n"
@@ -661,14 +992,12 @@ msgid "With the above lemma, we can implement concatenation of `LenList`:"
 msgstr "通过上述引理，我们可以实现 `LenList` 的串联："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:223
+#: ../src/Tutorial/Prim.md:218
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "(++) : LenList m a -> LenList n a -> LenList (m + n) a\n"
 "MkLenList xs ++ MkLenList ys =\n"
 "  rewrite concatLen xs ys in MkLenList (xs ++ ys)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "(++) : LenList m a -> LenList n a -> LenList (m + n) a\n"
@@ -692,24 +1021,28 @@ msgstr ""
 "法帮助我们正确处理这些事情。没有办法以安全的方式实现并证明以下引理："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:235
-#, fuzzy
-msgid ""
-"```idris 0 concatLenStr : (a,b : String) -> length a + length b = length (a +"
-"+ b)  ```"
+#: ../src/Tutorial/Prim.md:232
+#, fuzzy, no-wrap
+msgid "0 concatLenStr : (a,b : String) -> length a + length b = length (a ++ b)\n"
+msgstr "```idris 0 concatLenStr : (a,b : String) -> 长度 a + 长度 b = 长度 (a ++ b) ```"
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:237
+#, no-wrap
+msgid "<!-- markdownlint-disable MD026 -->\n"
 msgstr ""
-"```idris 0 concatLenStr : (a,b : String) -> 长度 a + 长度 b = 长度 (a ++ b) "
-"```"
+
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:237
+#, no-wrap
+msgid "Believe Me!"
+msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:239
-#, fuzzy
-msgid ""
-"<!-- markdownlint-disable MD026 --> ### Believe Me! <!-- markdownlint-enable "
-"MD026 -->"
+#, no-wrap
+msgid "<!-- markdownlint-enable MD026 -->\n"
 msgstr ""
-"<!-- markdownlint-disable MD026 --> ### 相信我！ <!-- markdownlint-enable "
-"MD026 -->"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:245
@@ -726,12 +1059,10 @@ msgstr ""
 "的值。不用说，只有当我们 * 真的 * 知道我们在做什么时，这才是安全的："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:249
-#, fuzzy
-msgid ""
-"```idris concatLenStr a b = believe_me $ Refl {x = length a + length b} ```"
-msgstr ""
-"```idris concatLenStr a b = believe_me $ Refl {x = 长度 a + 长度 b} ```"
+#: ../src/Tutorial/Prim.md:246
+#, fuzzy, no-wrap
+msgid "concatLenStr a b = believe_me $ Refl {x = length a + length b}\n"
+msgstr "```idris concatLenStr a b = believe_me $ Refl {x = 长度 a + 长度 b} ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:257
@@ -761,14 +1092,12 @@ msgstr ""
 "以为浮点加法是关联的："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:267
-#, fuzzy
+#: ../src/Tutorial/Prim.md:263
+#, fuzzy, no-wrap
 msgid ""
-"```idris 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z "
-"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)} ```"
-msgstr ""
-"```idris 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z "
-"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)} ```"
+"0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z\n"
+"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)}\n"
+msgstr "```idris 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)} ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:270
@@ -778,28 +1107,21 @@ msgid ""
 msgstr "好吧，你猜怎么着：那是个谎言。谎言将我们直接带入 `Void`："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:274
-#, fuzzy
-msgid "```idris Tiny : Double Tiny = 0.0000000000000001"
-msgstr "```伊德里斯小：双小= 0.0000000000000001"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:277
-#, fuzzy
-msgid "One : Double One = 1.0"
-msgstr "一：双一 = 1.0"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:280
-#, fuzzy
-msgid "wrong : (0 _ : 1.0000000000000002 = 1.0) -> Void wrong Refl impossible"
-msgstr "错误 : (0 _ : 1.0000000000000002 = 1.0) -> 无效错误 Refl 不可能"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:284
-#, fuzzy
-msgid "boom : Void boom = wrong (doubleAddAssoc One Tiny Tiny)  ```"
-msgstr "繁荣：无效繁荣=错误（doubleAddAssoc One Tiny Tiny）```"
+#: ../src/Tutorial/Prim.md:271
+#, no-wrap
+msgid ""
+"Tiny : Double\n"
+"Tiny = 0.0000000000000001\n"
+"\n"
+"One : Double\n"
+"One = 1.0\n"
+"\n"
+"wrong : (0 _ : 1.0000000000000002 = 1.0) -> Void\n"
+"wrong Refl impossible\n"
+"\n"
+"boom : Void\n"
+"boom = wrong (doubleAddAssoc One Tiny Tiny)\n"
+msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:291
@@ -817,10 +1139,10 @@ msgstr ""
 "以将我们的（错误的）证明传递给 `wrong`，因为它是正确的类型，并由此得出 "
 "`Void` 的证明。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:293
-#, fuzzy
-msgid "## Working with Strings"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:292
+#, fuzzy, no-wrap
+msgid "Working with Strings"
 msgstr "## 使用字符串"
 
 #. type: Plain text
@@ -892,16 +1214,14 @@ msgstr ""
 "原始函数求值，则该程序将崩溃并出现错误："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:318
-#, fuzzy
+#: ../src/Tutorial/Prim.md:312
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> prim__strTail \"\" prim__strTail \"\" Tutorial.Prim> :"
-"exec putStrLn (prim__strTail \"\")  Exception in substring: 1 and 0 are not "
-"valid start/end indices for \"\" ```"
-msgstr ""
-"```repl Tutorial.Prim> prim__strTail \"\" prim__strTail \"\" Tutorial.Prim> :"
-"exec putStrLn (prim__strTail \"\") 子字符串中的异常：1 和 0 不是“”的有效开始/"
-"结束索引 ```"
+"Tutorial.Prim> prim__strTail \"\"\n"
+"prim__strTail \"\"\n"
+"Tutorial.Prim> :exec putStrLn (prim__strTail \"\")\n"
+"Exception in substring: 1 and 0 are not valid start/end indices for \"\"\n"
+msgstr "```repl Tutorial.Prim> prim__strTail \"\" prim__strTail \"\" Tutorial.Prim> :exec putStrLn (prim__strTail \"\") 子字符串中的异常：1 和 0 不是“”的有效开始/结束索引 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:323
@@ -916,17 +1236,17 @@ msgstr ""
 "但是："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:328
-#, fuzzy
+#: ../src/Tutorial/Prim.md:324
+#, fuzzy, no-wrap
 msgid ""
-"```idris tailExample : prim__strTail \"foo\" = \"oo\" tailExample = Refl ```"
-msgstr ""
-"```idris tailExample : prim__strTail \"foo\" = \"oo\" tailExample = Refl ```"
+"tailExample : prim__strTail \"foo\" = \"oo\"\n"
+"tailExample = Refl\n"
+msgstr "```idris tailExample : prim__strTail \"foo\" = \"oo\" tailExample = Refl ```"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:330
-#, fuzzy
-msgid "### Pack and Unpack"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:329
+#, fuzzy, no-wrap
+msgid "Pack and Unpack"
 msgstr "### 打包和解包"
 
 #. type: Plain text
@@ -945,10 +1265,10 @@ msgstr ""
 "可能并不总是最有效的做法，但除非您计划处理大量文本，否则它们的工作和性能相当"
 "不错。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:341
-#, fuzzy
-msgid "### String Interpolation"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:340
+#, fuzzy, no-wrap
+msgid "String Interpolation"
 msgstr "### 字符串插值"
 
 #. type: Plain text
@@ -963,14 +1283,12 @@ msgstr ""
 "中，第一个必须用反斜杠转义。例如："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:350
-#, fuzzy
+#: ../src/Tutorial/Prim.md:346
+#, fuzzy, no-wrap
 msgid ""
-"```idris interpEx1 : Bits64 -> Bits64 -> String interpEx1 x y = \"\\{show x} "
-"+ \\{show y} = \\{show $ x + y}\" ```"
-msgstr ""
-"```idris interpEx1 : Bits64 -> Bits64 -> 字符串 interpEx1 x y = \"\\{show x} "
-"+ \\{show y} = \\{show $ x + y}\" ```"
+"interpEx1 : Bits64 -> Bits64 -> String\n"
+"interpEx1 x y = \"\\{show x} + \\{show y} = \\{show $ x + y}\"\n"
+msgstr "```idris interpEx1 : Bits64 -> Bits64 -> 字符串 interpEx1 x y = \"\\{show x} + \\{show y} = \\{show $ x + y}\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:356
@@ -985,21 +1303,14 @@ msgstr ""
 "`Interpolation`，它允许我们在插值字符串中使用值，而不必先将它们转换为字符串："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:359
-#, fuzzy
-msgid "```idris data Element = H | He | C | N | O | F | Ne"
-msgstr "```idris 数据元素 = H |他 | C | N | ○ | F |氖"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:362
-#, fuzzy
-msgid "Formula : Type Formula = List (Element,Nat)"
-msgstr "公式：类型公式 = 列表（元素，Nat）"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:371
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Prim.md:357
+#, no-wrap
 msgid ""
+"data Element = H | He | C | N | O | F | Ne\n"
+"\n"
+"Formula : Type\n"
+"Formula = List (Element,Nat)\n"
+"\n"
 "Interpolation Element where\n"
 "  interpolate H  = \"H\"\n"
 "  interpolate He = \"He\"\n"
@@ -1008,54 +1319,23 @@ msgid ""
 "  interpolate O  = \"O\"\n"
 "  interpolate F  = \"F\"\n"
 "  interpolate Ne = \"Ne\"\n"
-msgstr ""
-"插值元素 where\n"
-"  插值 H = \"H\"\n"
-"  插值 He = \"He\"\n"
-"  插值 C = \"C\"\n"
-"  插值 N = \"N\"\n"
-"  插值 O = \"O\"\n"
-"  插值 F = \"F\"\n"
-"  插值 Ne = \"Ne\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:376
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "Interpolation (Element,Nat) where\n"
 "  interpolate (_, 0) = \"\"\n"
 "  interpolate (x, 1) = \"\\{x}\"\n"
 "  interpolate (x, k) = \"\\{x}\\{show k}\"\n"
-msgstr ""
-"插值 (Element,Nat) 其中\n"
-"  插值 (_, 0) = \"\"\n"
-"  插值 (x, 1) = \"\\{x}\"\n"
-"  插值 (x, k) = \"\\{x}\\{显示 k}\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:379
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "Interpolation Formula where\n"
 "  interpolate = foldMap interpolate\n"
+"\n"
+"ethanol : String\n"
+"ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
 msgstr ""
-"插值公式\n"
-"  插值 = foldMap 插值\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:383
-#, fuzzy
-msgid ""
-"ethanol : String ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, "
-"the Nat 1)]}\" ```"
-msgstr ""
-"乙醇 : String ethanol = \"乙醇的公式是：\\{[(C,2),(H,6),(O, the Nat 1)]}\" "
-"```"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:385
-#, fuzzy
-msgid "### Raw and Multiline String Literals"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:384
+#, fuzzy, no-wrap
+msgid "Raw and Multiline String Literals"
 msgstr "### 原始和多行字符串文字"
 
 #. type: Plain text
@@ -1067,14 +1347,12 @@ msgid ""
 msgstr "在字符串文字中，我们必须转义某些字符，如引号、反斜杠或换行符。例如："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:393
-#, fuzzy
+#: ../src/Tutorial/Prim.md:389
+#, fuzzy, no-wrap
 msgid ""
-"```idris escapeExample : String escapeExample = \"A quote: \\\". \\nThis is "
-"on a new line.\\nA backslash: \\\\\" ```"
-msgstr ""
-"```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n这是一个"
-"新行。\\n反斜杠：\\\\\" ```"
+"escapeExample : String\n"
+"escapeExample = \"A quote: \\\". \\nThis is on a new line.\\nA backslash: \\\\\"\n"
+msgstr "```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n这是一个新行。\\n反斜杠：\\\\\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:398
@@ -1088,19 +1366,15 @@ msgstr ""
 "散列字符前后加环绕引号字符。例如："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:402
-#, fuzzy
+#: ../src/Tutorial/Prim.md:399
+#, fuzzy, no-wrap
 msgid ""
-"```idris rawExample : String rawExample = #\"A quote: \". A blackslash: \\\"#"
-msgstr ""
-"```idris rawExample : String rawExample = #\"A quote: \"。黑斜线：\\\"#"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:406
-#, fuzzy
-msgid ""
-"rawExample2 : String rawExample2 = ##\"A quote: \". A blackslash: \\\"## ```"
-msgstr "rawExample2 : String rawExample2 = ##\"引用：\"。黑斜线：\\\"## ```"
+"rawExample : String\n"
+"rawExample = #\"A quote: \". A blackslash: \\\"#\n"
+"\n"
+"rawExample2 : String\n"
+"rawExample2 = ##\"A quote: \". A blackslash: \\\"##\n"
+msgstr "```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n这是一个新行。\\n反斜杠：\\\\\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:411
@@ -1115,14 +1389,12 @@ msgstr ""
 "缀，并且散列数与用于打开和关闭字符串文字的哈希数相同："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:416
-#, fuzzy
+#: ../src/Tutorial/Prim.md:412
+#, fuzzy, no-wrap
 msgid ""
-"```idris rawInterpolExample : String rawInterpolExample = ##\"An "
-"interpolated \"string\": \\##{rawExample}\"## ```"
-msgstr ""
-"```idris rawInterpolExample : String rawInterpolExample = ##\"一个内插的“字符"
-"串”：\\##{rawExample}\"## ```"
+"rawInterpolExample : String\n"
+"rawInterpolExample = ##\"An interpolated \"string\": \\##{rawExample}\"##\n"
+msgstr "```idris rawInterpolExample : String rawInterpolExample = ##\"一个内插的“字符串”：\\##{rawExample}\"## ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:424
@@ -1142,10 +1414,9 @@ msgstr ""
 "会出现在结果字符串中。例如："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:435
+#: ../src/Tutorial/Prim.md:425
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "multiline1 : String\n"
 "multiline1 = \"\"\"\n"
 "  And I raise my head and stare\n"
@@ -1155,6 +1426,13 @@ msgid ""
 "  From the eyes of a stranger\n"
 "  Afraid to see what hides behind the stare\n"
 "  \"\"\"\n"
+"\n"
+"multiline2 : String\n"
+"multiline2 = #\"\"\"\n"
+"  An example for a simple expression:\n"
+"  \"foo\" ++ \"bar\".\n"
+"  This is reduced to \"\\#{\"foo\" ++ \"bar\"}\".\n"
+"  \"\"\"#\n"
 msgstr ""
 "```伊德里斯\n"
 "多行1：字符串\n"
@@ -1166,26 +1444,6 @@ msgstr ""
 "  从陌生人的眼中\n"
 "  害怕看到凝视背后隐藏的东西\n"
 "  \"\"\"\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:443
-#, fuzzy, no-wrap
-msgid ""
-"multiline2 : String\n"
-"multiline2 = #\"\"\"\n"
-"  An example for a simple expression:\n"
-"  \"foo\" ++ \"bar\".\n"
-"  This is reduced to \"\\#{\"foo\" ++ \"bar\"}\".\n"
-"  \"\"\"#\n"
-"```\n"
-msgstr ""
-"多行2：字符串\n"
-"多行2 = #\"\"\"\n"
-"  一个简单表达式的示例：\n"
-"  “富”++“酒吧”。\n"
-"  这被简化为 \"\\#{\"foo\" ++ \"bar\"}\"。\n"
-"  \"\"\"#\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:447
@@ -1240,10 +1498,10 @@ msgid ""
 "string."
 msgstr "为字符串实现绑定运算符。输出类型应该再次是字符串。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:469
-#, fuzzy
-msgid "## Integers"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:468
+#, fuzzy, no-wrap
+msgid "Integers"
 msgstr "## 整数"
 
 #. type: Plain text
@@ -1416,10 +1674,10 @@ msgstr ""
 "microsoft. com/en-us/research/publication/division-and-modulus-for-computer-"
 "scientists/）。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:517
-#, fuzzy
-msgid "### Unsigned Integers"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:516
+#, fuzzy, no-wrap
+msgid "Unsigned Integers"
 msgstr "### 无符号整数"
 
 #. type: Plain text
@@ -1441,19 +1699,23 @@ msgstr ""
 "模计算其结果："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:537
-#, fuzzy
+#: ../src/Tutorial/Prim.md:527
+#, fuzzy, no-wrap
 msgid ""
-"```repl Main> the Bits8 255 + 1 0 Main> the Bits8 255 + 255 254 Main> the "
-"Bits8 128 * 2 + 7 7 Main> the Bits8 12 - 13 255 ```"
-msgstr ""
-"```repl Main> Bits8 255 + 1 0 Main> Bits8 255 + 255 254 Main> Bits8 128 * 2 "
-"+ 7 7 Main> Bits8 12 - 13 255 ```"
+"Main> the Bits8 255 + 1\n"
+"0\n"
+"Main> the Bits8 255 + 255\n"
+"254\n"
+"Main> the Bits8 128 * 2 + 7\n"
+"7\n"
+"Main> the Bits8 12 - 13\n"
+"255\n"
+msgstr "```repl Main> Bits8 255 + 1 0 Main> Bits8 255 + 255 254 Main> Bits8 128 * 2 + 7 7 Main> Bits8 12 - 13 255 ```"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:539
-#, fuzzy
-msgid "### Signed Integers"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:538
+#, fuzzy, no-wrap
+msgid "Signed Integers"
 msgstr "### 有符号整数"
 
 #. type: Plain text
@@ -1476,15 +1738,19 @@ msgstr ""
 "果仍然超出范围，则减去 128："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:556
-#, fuzzy
-msgid "```repl Main> the Int8 2 * 127 -2 Main> the Int8 3 * 127 125 ```"
+#: ../src/Tutorial/Prim.md:550
+#, fuzzy, no-wrap
+msgid ""
+"Main> the Int8 2 * 127\n"
+"-2\n"
+"Main> the Int8 3 * 127\n"
+"125\n"
 msgstr "```repl Main> Int8 2 * 127 -2 Main> Int8 3 * 127 125 ```"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:558
-#, fuzzy
-msgid "### Bitwise Operations"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:557
+#, fuzzy, no-wrap
+msgid "Bitwise Operations"
 msgstr "### 位运算"
 
 #. type: Plain text
@@ -1519,22 +1785,13 @@ msgstr ""
 "幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:576
+#: ../src/Tutorial/Prim.md:574
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "23 in binary:    0  0  0  1    0  1  1  1\n"
-msgstr ""
-"```回复\n"
-"23 二进制：0 0 0 1 0 1 1 1\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:580
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "Bit number:      7  6  5  4    3  2  1  0\n"
 "Decimal value: 128 64 32 16    8  4  2  1\n"
-"```\n"
 msgstr ""
 "位数：7 6 5 4 3 2 1 0\n"
 "十进制值：128 64 32 16 8 4 2 1\n"
@@ -1549,14 +1806,16 @@ msgid ""
 msgstr "我们可以使用函数 `testBit` 来检查给定位置的位是否已设置："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:592
-#, fuzzy
+#: ../src/Tutorial/Prim.md:584
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> testBit (the Bits8 23) 0 True Tutorial.Prim> testBit "
-"(the Bits8 23) 1 True Tutorial.Prim> testBit (the Bits8 23) 3 False ```"
-msgstr ""
-"```repl Tutorial.Prim> testBit(Bits8 23) 0 True Tutorial.Prim> testBit(Bits8 "
-"23) 1 True Tutorial.Prim> testBit(Bits8 23) 3 False ```"
+"Tutorial.Prim> testBit (the Bits8 23) 0\n"
+"True\n"
+"Tutorial.Prim> testBit (the Bits8 23) 1\n"
+"True\n"
+"Tutorial.Prim> testBit (the Bits8 23) 3\n"
+"False\n"
+msgstr "```repl Tutorial.Prim> testBit(Bits8 23) 0 True Tutorial.Prim> testBit(Bits8 23) 1 True Tutorial.Prim> testBit(Bits8 23) 3 False ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:595
@@ -1568,14 +1827,14 @@ msgstr ""
 "同样，我们可以使用函数 `setBit` 和 `clearBit` 在某个位置设置或取消设置位："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:602
-#, fuzzy
+#: ../src/Tutorial/Prim.md:596
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> setBit (the Bits8 23) 3 31 Tutorial.Prim> clearBit "
-"(the Bits8 23) 2 19 ```"
-msgstr ""
-"```repl Tutorial.Prim>setBit(Bits8 23) 3 31 Tutorial.Prim>clearBit(Bits8 "
-"23)2 19 ```"
+"Tutorial.Prim> setBit (the Bits8 23) 3\n"
+"31\n"
+"Tutorial.Prim> clearBit (the Bits8 23) 2\n"
+"19\n"
+msgstr "```repl Tutorial.Prim>setBit(Bits8 23) 3 31 Tutorial.Prim>clearBit(Bits8 23)2 19 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:610
@@ -1594,29 +1853,18 @@ msgstr ""
 "位，并且 ``x `xor` y`` 设置了那些位设置为以下两个值之一："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:614
+#: ../src/Tutorial/Prim.md:611
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "23 in binary:          0  0  0  1    0  1  1  1\n"
 "11 in binary:          0  0  0  0    1  0  1  1\n"
-msgstr ""
-"```回复\n"
-"23 二进制：0 0 0 1 0 1 1 1\n"
-"11 二进制：0 0 0 0 1 0 1 1\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:619
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "23 .&. 11 in binary:   0  0  0  0    0  0  1  1\n"
 "23 .|. 11 in binary:   0  0  0  1    1  1  1  1\n"
 "23 `xor` 11 in binary: 0  0  0  1    1  1  0  0\n"
-"```\n"
 msgstr ""
-"23.&. 11 二进制：0 0 0 0 0 0 1 1\n"
-"23 .|。 11 二进制：0 0 0 1 1 1 1 1\n"
-"23 `xor` 11 二进制：0 0 0 1 1 1 0 0\n"
+"22 `shiftL` 2 二进制：0 1 0 1 1 0 0 0\n"
+"22 `shiftR` 1 二进制：0 0 0 0 1 0 1 1\n"
 "```\n"
 
 #. type: Plain text
@@ -1626,14 +1874,16 @@ msgid "And here are the examples at the REPL:"
 msgstr "以下是 REPL 上的示例："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:630
-#, fuzzy
+#: ../src/Tutorial/Prim.md:622
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> the Bits8 23 .&. 11 3 Tutorial.Prim> the Bits8 23 .|. "
-"11 31 Tutorial.Prim> the Bits8 23 `xor` 11 28 ```"
-msgstr ""
-"```repl Tutorial.Prim> Bits8 23 .&. 11 3 Tutorial.Prim> Bits8 23 .|. 11 31 "
-"Tutorial.Prim> Bits8 23 `xor` 11 28 ```"
+"Tutorial.Prim> the Bits8 23 .&. 11\n"
+"3\n"
+"Tutorial.Prim> the Bits8 23 .|. 11\n"
+"31\n"
+"Tutorial.Prim> the Bits8 23 `xor` 11\n"
+"28\n"
+msgstr "```repl Tutorial.Prim> Bits8 23 .&. 11 3 Tutorial.Prim> Bits8 23 .|. 11 31 Tutorial.Prim> Bits8 23 `xor` 11 28 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:637
@@ -1650,36 +1900,27 @@ msgstr ""
 "2 的幂："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:640
+#: ../src/Tutorial/Prim.md:638
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "22 in binary:            0  0  0  1    0  1  1  0\n"
-msgstr ""
-"```回复\n"
-"22 二进制：0 0 0 1 0 1 1 0\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:644
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "22 `shiftL` 2 in binary: 0  1  0  1    1  0  0  0\n"
 "22 `shiftR` 1 in binary: 0  0  0  0    1  0  1  1\n"
-"```\n"
 msgstr ""
 "22 `shiftL` 2 二进制：0 1 0 1 1 0 0 0\n"
 "22 `shiftR` 1 二进制：0 0 0 0 1 0 1 1\n"
 "```\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:653
-#, fuzzy
+#: ../src/Tutorial/Prim.md:647
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> the Bits8 22 `shiftL` 2 88 Tutorial.Prim> the Bits8 "
-"22 `shiftR` 1 11 ```"
-msgstr ""
-"```repl Tutorial.Prim> Bits8 22 `shiftL` 2 88 Tutorial.Prim> Bits8 22 "
-"`shiftR` 1 11 ```"
+"Tutorial.Prim> the Bits8 22 `shiftL` 2\n"
+"88\n"
+"Tutorial.Prim> the Bits8 22 `shiftR` 1\n"
+"11\n"
+msgstr "```repl Tutorial.Prim> Bits8 22 `shiftL` 2 88 Tutorial.Prim> Bits8 22 `shiftR` 1 11 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:657
@@ -1692,10 +1933,10 @@ msgstr ""
 "按位运算通常用于专用代码或某些高性能应用程序中。作为程序员，我们必须知道它们"
 "的存在以及它们是如何工作的。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:659
-#, fuzzy
-msgid "### Integer Literals"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:658
+#, fuzzy, no-wrap
+msgid "Integer Literals"
 msgstr "### 整数字面量"
 
 #. type: Plain text
@@ -1724,14 +1965,12 @@ msgstr ""
 "值，并且（理论上）几乎是任意大小："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:677
+#: ../src/Tutorial/Prim.md:672
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Charge where\n"
 "  constructor MkCharge\n"
 "  value : Integer\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "记录充电地点\n"
@@ -1753,37 +1992,23 @@ msgstr ""
 "地使用整数文字。以下是如何执行此操作："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:687
-#, fuzzy
-msgid "```idris fromInteger : Integer -> Charge fromInteger = MkCharge"
-msgstr "```idris fromInteger : Integer -> Charge fromInteger = MkCharge"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:690
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Prim.md:684
+#, no-wrap
 msgid ""
+"fromInteger : Integer -> Charge\n"
+"fromInteger = MkCharge\n"
+"\n"
 "Semigroup Charge where\n"
 "  x <+> y = MkCharge $ x.value + y.value\n"
-msgstr ""
-"半群电荷在哪里\n"
-"  x <+> y = MkCharge $ x.value + y.value\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:694
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "Monoid Charge where\n"
 "  neutral = 0\n"
-"```\n"
 msgstr ""
-"Monoid Charge 在哪里\n"
-"  中性 = 0\n"
-"```\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:696
-#, fuzzy
-msgid "#### Alternative Bases"
+#. type: Title ####
+#: ../src/Tutorial/Prim.md:695
+#, fuzzy, no-wrap
+msgid "Alternative Bases"
 msgstr "#### 替代基地"
 
 #. type: Plain text
@@ -1799,14 +2024,16 @@ msgstr ""
 "字。对于二进制、八进制和十六进制，它们必须以零为前缀，后跟 `b`、`o` 或 `x`："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:711
-#, fuzzy
+#: ../src/Tutorial/Prim.md:703
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Prim> 0b1101 13 Tutorial.Prim> 0o773 507 Tutorial.Prim> "
-"0xffa2 65442 ```"
-msgstr ""
-"```repl Tutorial.Prim> 0b1101 13 Tutorial.Prim> 0o773 507 Tutorial.Prim> "
-"0xffa2 65442 ```"
+"Tutorial.Prim> 0b1101\n"
+"13\n"
+"Tutorial.Prim> 0o773\n"
+"507\n"
+"Tutorial.Prim> 0xffa2\n"
+"65442\n"
+msgstr "```repl Tutorial.Prim> 0b1101 13 Tutorial.Prim> 0o773 507 Tutorial.Prim> 0xffa2 65442 ```"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Prim.md:716
@@ -1866,10 +2093,10 @@ msgstr ""
 "   提示：使用 `shiftR` 和 `(.&. 15)` 访问后续包\n"
 "   四位。\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:734
-#, fuzzy
-msgid "## Refined Primitives"
+#. type: Title ##
+#: ../src/Tutorial/Prim.md:733
+#, fuzzy, no-wrap
+msgid "Refined Primitives"
 msgstr "## 精炼的基元"
 
 #. type: Plain text
@@ -1902,10 +2129,10 @@ msgstr ""
 "时，它们在某种程度上注定要孤立存在，除非我们提出一组原语公理（最有可能使用 "
 "`believe_me` 实现），我们可以用它来操纵我们的谓词。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:751
-#, fuzzy
-msgid "### Use Case: ASCII Strings"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:750
+#, fuzzy, no-wrap
+msgid "Use Case: ASCII Strings"
 msgstr "### 用例：ASCII 字符串"
 
 #. type: Plain text
@@ -1922,18 +2149,15 @@ msgstr ""
 "符："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:760
-#, fuzzy
-msgid "```idris isAsciiChar : Char -> Bool isAsciiChar c = ord c <= 127"
-msgstr "```idris isAsciiChar : Char -> Bool isAsciiChar c = ord c <= 127"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:764
-#, fuzzy
+#: ../src/Tutorial/Prim.md:757
+#, fuzzy, no-wrap
 msgid ""
-"isAsciiString : String -> Bool isAsciiString = all isAsciiChar . unpack ```"
-msgstr ""
-"isAsciiString : String -> Bool isAsciiString = all isAsciiChar 。解压```"
+"isAsciiChar : Char -> Bool\n"
+"isAsciiChar c = ord c <= 127\n"
+"\n"
+"isAsciiString : String -> Bool\n"
+"isAsciiString = all isAsciiChar . unpack\n"
+msgstr "isAsciiString : String -> Bool isAsciiString = all isAsciiChar 。解压```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:767
@@ -1945,15 +2169,13 @@ msgstr ""
 "我们现在可以 * 细化 * 一个字符串值，方法是将其与已擦除的有效性证明配对："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:774
+#: ../src/Tutorial/Prim.md:768
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Ascii where\n"
 "  constructor MkAscii\n"
 "  value : String\n"
 "  0 prf : isAsciiString value === True\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "在哪里记录 Ascii\n"
@@ -1975,9 +2197,11 @@ msgstr ""
 "符串。有了这个，在编译时将字符串安全地包装成 `Ascii` 类型的值已经很容易了："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:784
-#, fuzzy
-msgid "```idris hello : Ascii hello = MkAscii \"Hello World!\" Refl ```"
+#: ../src/Tutorial/Prim.md:780
+#, fuzzy, no-wrap
+msgid ""
+"hello : Ascii\n"
+"hello = MkAscii \"Hello World!\" Refl\n"
 msgstr "```idris hello : Ascii hello = MkAscii \"Hello World!\"反射 ```"
 
 #. type: Plain text
@@ -2008,14 +2232,12 @@ msgstr ""
 "隐式参数定义自定义 `fromString` 函数作为有效性证明是非常好的："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:805
-#, fuzzy
+#: ../src/Tutorial/Prim.md:801
+#, fuzzy, no-wrap
 msgid ""
-"```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === "
-"True} -> Ascii fromString s = MkAscii s prf ```"
-msgstr ""
-"```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === "
-"True} -> Ascii fromString s = MkAscii s prf ```"
+"fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii\n"
+"fromString s = MkAscii s prf\n"
+msgstr "```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii fromString s = MkAscii s prf ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:808
@@ -2026,9 +2248,11 @@ msgid ""
 msgstr "有了这个，我们可以使用（有效的）字符串文字直接得出 `Ascii` 类型的值："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:813
-#, fuzzy
-msgid "```idris hello2 : Ascii hello2 = \"Hello World!\" ```"
+#: ../src/Tutorial/Prim.md:809
+#, fuzzy, no-wrap
+msgid ""
+"hello2 : Ascii\n"
+"hello2 = \"Hello World!\"\n"
 msgstr "```idris hello2 : Ascii hello2 = \"Hello World!\" ```"
 
 #. type: Plain text
@@ -2043,24 +2267,17 @@ msgstr ""
 "障类型的细化函数："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:822
-#, fuzzy
-msgid ""
-"```idris test : (b : Bool) -> Dec (b === True)  test True = Yes Refl test "
-"False = No absurd"
-msgstr ""
-"```idris 测试 : (b : Bool) -> Dec (b === True) 测试 True = 是 Refl 测试 "
-"False = 不荒谬"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:828
+#: ../src/Tutorial/Prim.md:818
 #, fuzzy, no-wrap
 msgid ""
+"test : (b : Bool) -> Dec (b === True)\n"
+"test True  = Yes Refl\n"
+"test False = No absurd\n"
+"\n"
 "ascii : String -> Maybe Ascii\n"
 "ascii x = case test (isAsciiString x) of\n"
 "  Yes prf   => Just $ MkAscii x prf\n"
 "  No contra => Nothing\n"
-"```\n"
 msgstr ""
 "ascii : 字符串 -> 也许是 Ascii\n"
 "ascii x = case test (isAsciiString x) of\n"
@@ -2068,10 +2285,10 @@ msgstr ""
 "  没有反对 => 没有\n"
 "```\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:830
-#, fuzzy
-msgid "#### Disadvantages of Boolean Proofs"
+#. type: Title ####
+#: ../src/Tutorial/Prim.md:829
+#, fuzzy, no-wrap
+msgid "Disadvantages of Boolean Proofs"
 msgstr "#### 布尔证明的缺点"
 
 #. type: Plain text
@@ -2098,16 +2315,21 @@ msgstr ""
 "们必须使用 `believe_me`，否则我们将无法证明以下引理："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:847
+#: ../src/Tutorial/Prim.md:840
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "0 allAppend :  (f : Char -> Bool)\n"
 "            -> (s1,s2 : String)\n"
 "            -> (p1 : all f (unpack s1) === True)\n"
 "            -> (p2 : all f (unpack s2) === True)\n"
 "            -> all f (unpack (s1 ++ s2)) === True\n"
 "allAppend f s1 s2 p1 p2 = believe_me $ Refl {x = True}\n"
+"\n"
+"namespace Ascii\n"
+"  export\n"
+"  (++) : Ascii -> Ascii -> Ascii\n"
+"  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
+"    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
 msgstr ""
 "```伊德里斯\n"
 "0 allAppend : (f : Char -> Bool)\n"
@@ -2116,24 +2338,6 @@ msgstr ""
 "            -> (p2 : all f (unpack s2) === True)\n"
 "            ->所有f（解包（s1 ++ s2））===真\n"
 "allAppend f s1 s2 p1 p2 = believe_me $ Refl {x = True}\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:854
-#, fuzzy, no-wrap
-msgid ""
-"namespace Ascii\n"
-"  export\n"
-"  (++) : Ascii -> Ascii -> Ascii\n"
-"  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
-"    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
-"```\n"
-msgstr ""
-"命名空间ASCII\n"
-"  出口\n"
-"  (++) : Ascii -> Ascii -> Ascii\n"
-"  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
-"    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:861
@@ -2149,10 +2353,10 @@ msgstr ""
 "现相应的规则。因此，找到一组合理的公理来方便地处理精炼的原语有时可能具有挑战"
 "性，而且是否需要这样的公理在很大程度上取决于手头的用例。"
 
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:863
-#, fuzzy
-msgid "### Use Case: Sanitized HTML"
+#. type: Title ###
+#: ../src/Tutorial/Prim.md:862
+#, fuzzy, no-wrap
+msgid "Use Case: Sanitized HTML"
 msgstr "### 用例：净化的 HTML"
 
 #. type: Plain text
@@ -2174,10 +2378,16 @@ msgstr ""
 msgid "Assume now a user decides to enter the following text:"
 msgstr "假设现在用户决定输入以下文本："
 
+#. type: Code fence info string
+#: ../src/Tutorial/Prim.md:872
+#, no-wrap
+msgid "html"
+msgstr ""
+
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:875
-#, fuzzy
-msgid "```html <script>alert(\"Hello World!\")</script> ```"
+#: ../src/Tutorial/Prim.md:872
+#, fuzzy, no-wrap
+msgid "<script>alert(\"Hello World!\")</script>\n"
 msgstr "```html <script>alert(\"Hello World!\")</script> ```"
 
 #. type: Plain text
@@ -2202,25 +2412,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:891
-#, fuzzy
-msgid ""
-"We want to make sure, that this cannot happen on our own web page.  In order "
-"to protect us from this attack, we could for instance disallow certain "
-"characters like `'<'` or `'>'` completely (although this might not be "
-"enough!), but if our chat service is targeted at programmers, this will be "
-"overly restrictive. An alternative is to escape certain characters before "
-"rendering them on the page."
-msgstr ""
-"我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例"
-"如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的"
-"聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上"
-"之前对其进行转义。"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:903
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
+"We want to make sure, that this cannot happen on our own web page.\n"
+"In order to protect us from this attack, we could for instance disallow\n"
+"certain characters like `'<'` or `'>'` completely (although this might not\n"
+"be enough!), but if our chat service is targeted at programmers,\n"
+"this will be overly restrictive. An alternative\n"
+"is to escape certain characters before rendering them on the page.\n"
+msgstr "我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上之前对其进行转义。"
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:892
+#, fuzzy, no-wrap
+msgid ""
 "escape : String -> String\n"
 "escape = concat . map esc . unpack\n"
 "  where esc : Char -> String\n"
@@ -2230,7 +2435,6 @@ msgid ""
 "        esc '&'  = \"&amp;\"\n"
 "        esc '\\'' = \"&apos;\"\n"
 "        esc c    = singleton c\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "转义：字符串->字符串\n"
@@ -2259,16 +2463,14 @@ msgstr ""
 "现在拥有的字符串”。以下是如何对此进行编码："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:918
+#: ../src/Tutorial/Prim.md:911
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Escaped where\n"
 "  constructor MkEscaped\n"
 "  value    : String\n"
 "  0 origin : String\n"
 "  0 prf    : escape origin === value\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "记录逃到哪里\n"
@@ -2293,26 +2495,22 @@ msgstr ""
 "是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义它们："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:931
+#: ../src/Tutorial/Prim.md:926
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "namespace Escaped\n"
 "  export\n"
 "  fromString : (s : String) -> {auto 0 prf : escape s === s} -> Escaped\n"
 "  fromString s = MkEscaped s s prf\n"
+"\n"
+"escaped : Escaped\n"
+"escaped = \"Hello World!\"\n"
 msgstr ""
 "```伊德里斯\n"
 "命名空间转义\n"
 "  出口\n"
 "  fromString : (s : String) -> {auto 0 prf : 转义 s === s} -> 转义\n"
 "  fromString s = MkEscaped s s prf\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:935
-#, fuzzy
-msgid "escaped : Escaped escaped = \"Hello World!\" ```"
-msgstr "转义：转义转义=“Hello World！” ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:941
@@ -2414,29 +2612,16 @@ msgid ""
 msgstr "废话不多说，开始吧！首先，您将获得以下实用程序："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:991
+#: ../src/Tutorial/Prim.md:984
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "-- Like `Dec` but with erased proofs. Constructors `Yes0`\n"
 "-- and `No0` will be converted to constants `0` and `1` by\n"
 "-- the compiler!\n"
 "data Dec0 : (prop : Type) -> Type where\n"
 "  Yes0 : (0 prf : prop) -> Dec0 prop\n"
 "  No0  : (0 contra : prop -> Void) -> Dec0 prop\n"
-msgstr ""
-"```伊德里斯\n"
-"-- 与 `Dec` 类似，但带有擦除的证明。构造函数 `Yes0`\n"
-"-- 和 `No0` 将通过以下方式转换为常量 `0` 和 `1`\n"
-"——编译器！\n"
-"数据 Dec0 : (prop : Type) -> Type where\n"
-"  Yes0 : (0 prf : prop) -> Dec0 prop\n"
-"  No0 : (0 contra : prop -> Void) -> Dec0 prop\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1005
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "-- For interfaces with more than one parameter (`a` and `p`\n"
 "-- in this example) sometimes one parameter can be determined\n"
 "-- by knowing the other. For instance, if we know what `p` is,\n"
@@ -2450,6 +2635,19 @@ msgid ""
 "-- drastically help with type inference.\n"
 "interface Decidable (0 a : Type) (0 p : a -> Type) | p where\n"
 "  decide : (v : a) -> Dec0 (p v)\n"
+"\n"
+"-- We often have to pass `p` explicitly in order to help Idris with\n"
+"-- type inference. In such cases, it is more convenient to use\n"
+"-- `decideOn pred` instead of `decide {p = pred}`.\n"
+"decideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> Dec0 (p v)\n"
+"decideOn _ = decide\n"
+"\n"
+"-- Some primitive predicates can only be reasonably implemented\n"
+"-- using boolean functions. This utility helps with decidability\n"
+"-- on such proofs.\n"
+"test0 : (b : Bool) -> Dec0 (b === True)\n"
+"test0 True  = Yes0 Refl\n"
+"test0 False = No0 absurd\n"
 msgstr ""
 "-- 对于具有多个参数的接口（`a` 和 `p`\n"
 "-- 在本例中）有时可以确定一个参数\n"
@@ -2466,32 +2664,6 @@ msgstr ""
 "  决定 : (v : a) -> Dec0 (p v)\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1011
-#, fuzzy
-msgid ""
-"-- We often have to pass `p` explicitly in order to help Idris with -- type "
-"inference. In such cases, it is more convenient to use -- `decideOn pred` "
-"instead of `decide {p = pred}`.  decideOn : (0 p : a -> Type) -> Decidable a "
-"p => (v : a) -> Dec0 (p v)  decideOn _ = decide"
-msgstr ""
-"-- 我们经常必须显式传递 `p` 以帮助 Idris 进行 -- 类型推断。在这种情况下，使"
-"用 `decideOn pred` 代替 `decide {p = pred}` 更方便。决定：（0 p：a->类型）->"
-"可判定a p =>（v：a）->Dec0（p v）decisionOn _ =决定"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1019
-#, fuzzy
-msgid ""
-"-- Some primitive predicates can only be reasonably implemented -- using "
-"boolean functions. This utility helps with decidability -- on such proofs.  "
-"test0 : (b : Bool) -> Dec0 (b === True)  test0 True = Yes0 Refl test0 False "
-"= No0 absurd ```"
-msgstr ""
-"-- 一些原始谓词只能合理地实现 -- 使用布尔函数。这个实用程序有助于可判定性——在"
-"这样的证明上。 test0 : (b : Bool) -> Dec0 (b === True) test0 True = Yes0 "
-"Refl test0 False = No0 荒谬```"
-
-#. type: Plain text
 #: ../src/Tutorial/Prim.md:1025
 #, fuzzy
 msgid ""
@@ -2505,38 +2677,22 @@ msgstr ""
 "数："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1029
+#: ../src/Tutorial/Prim.md:1026
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "data IsYes0 : (d : Dec0 prop) -> Type where\n"
 "  ItIsYes0 : IsYes0 (Yes0 prf)\n"
-msgstr ""
-"```伊德里斯\n"
-"数据 IsYes0 : (d : Dec0 prop) -> 键入 where\n"
-"  ItIsYes0 : IsYes0 (Yes0 prf)\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1033
-#, fuzzy
-msgid ""
-"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop fromYes0 (Yes0 x) "
-"= x fromYes0 (No0 contra) impossible"
-msgstr ""
-"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop fromYes0 (Yes0 x) "
-"= x fromYes0 (No0 contra) 不可能"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1041
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop\n"
+"fromYes0 (Yes0 x) = x\n"
+"fromYes0 (No0 contra) impossible\n"
+"\n"
 "0 safeDecideOn :  (0 p : a -> Type)\n"
 "               -> Decidable a p\n"
 "               => (v : a)\n"
 "               -> (0 prf : IsYes0 (decideOn p v))\n"
 "               => p v\n"
 "safeDecideOn p v = fromYes0 $ decideOn p v\n"
-"```\n"
 msgstr ""
 "0 safeDecideOn : (0 p : a -> 类型)\n"
 "               -> 可判定的 p\n"
@@ -2557,10 +2713,9 @@ msgstr ""
 "在做什么："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1055
+#: ../src/Tutorial/Prim.md:1046
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "-- only use this if you are sure that `decideOn p v`\n"
 "-- will return a `Yes0`!\n"
 "0 unsafeDecideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> p v\n"
@@ -2568,7 +2723,6 @@ msgid ""
 "  Yes0 prf => prf\n"
 "  No0  _   =>\n"
 "    assert_total $ idris_crash \"Unexpected refinement failure in `unsafeRefineOn`\"\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "-- 仅当您确定 `decideOn p v` 时才使用它\n"
@@ -2603,13 +2757,11 @@ msgid "We want to be able to negate a predicate:"
 msgstr "我们希望能够否定一个谓词："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1068
+#: ../src/Tutorial/Prim.md:1064
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   data Neg : (p : a -> Type) -> a -> Type where\n"
 "     IsNot : {0 p : a -> Type} -> (contra : p v -> Void) -> Neg p v\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   数据 Neg : (p : a -> Type) -> a -> Type where\n"
@@ -2629,13 +2781,11 @@ msgid "We want to describe the conjunction of two predicates:"
 msgstr "我们要描述两个谓词的合取："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1077
+#: ../src/Tutorial/Prim.md:1073
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   data (&&) : (p,q : a -> Type) -> a -> Type where\n"
 "     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   数据 (&&) : (p,q : a -> Type) -> a -> Type where\n"
@@ -2669,30 +2819,15 @@ msgstr ""
 "%27s_laws)："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1089
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Prim.md:1087
+#, no-wrap
 msgid ""
-"   ```idris\n"
 "   negOr : Neg (p || q) v -> (Neg p && Neg q) v\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   negOr : 否定 (p || q) v -> (否定 p && 否定 q) v\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1091
-#, fuzzy, no-wrap
-msgid "   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
-msgstr "   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1094
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
+"\n"
 "   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
-"   ```\n"
 msgstr ""
-"   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1100
@@ -2711,15 +2846,13 @@ msgstr ""
 "   对立）：\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1107
+#: ../src/Tutorial/Prim.md:1101
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   0 negAnd :  Decidable a p\n"
 "            => Decidable a q\n"
 "            => Neg (p && q) v\n"
 "            -> (Neg p || Neg q) v\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   0 negAnd : 可判定的 p\n"
@@ -2754,15 +2887,13 @@ msgstr ""
 "类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1124
+#: ../src/Tutorial/Prim.md:1118
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "-- Proof that m <= n\n"
 "data (<=) : (m,n : Nat) -> Type where\n"
 "  ZLTE : 0 <= n\n"
 "  SLTE : m <= n -> S m <= S n\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "-- 证明 m <= n\n"
@@ -2782,63 +2913,36 @@ msgstr ""
 "下别名："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1132
-#, fuzzy
-msgid "```repl (>=) : (m,n : Nat) -> Type m >= n = n <= m"
-msgstr "```repl (>=) : (m,n : Nat) -> 键入 m >= n = n <= m"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1135
-#, fuzzy
-msgid "(<) : (m,n : Nat) -> Type m < n = S m <= n"
-msgstr "(<) : (m,n : Nat) -> 键入 m < n = S m <= n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1138
-#, fuzzy
-msgid "(>) : (m,n : Nat) -> Type m > n = n < m"
-msgstr "(>) : (m,n : Nat) -> 键入 m > n = n < m"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1141
-#, fuzzy
-msgid "LessThan : (m,n : Nat) -> Type LessThan m = (< m)"
-msgstr "小于 : (m,n : Nat) -> 键入小于 m = (< m)"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1144
-#, fuzzy
-msgid "To : (m,n : Nat) -> Type To m = (<= m)"
-msgstr "To : (m,n : Nat) -> Type To m = (<= m)"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1147
-#, fuzzy
-msgid "GreaterThan : (m,n : Nat) -> Type GreaterThan m = (> m)"
-msgstr "GreaterThan : (m,n : Nat) -> 输入 GreaterThan m = (> m)"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1150
-#, fuzzy
-msgid "From : (m,n : Nat) -> Type From m = (>= m)"
-msgstr "从 : (m,n : Nat) -> 从 m = (>= m) 输入"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1153
-#, fuzzy
-msgid "FromTo : (lower,upper : Nat) -> Nat -> Type FromTo l u = From l && To u"
-msgstr ""
-"FromTo : (lower,upper : Nat) -> Nat -> 输入 FromTo l u = From l && To u"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1157
-#, fuzzy
+#: ../src/Tutorial/Prim.md:1129
+#, no-wrap
 msgid ""
-"Between : (lower,upper : Nat) -> Nat -> Type Between l u = GreaterThan l && "
-"LessThan u ```"
+"(>=) : (m,n : Nat) -> Type\n"
+"m >= n = n <= m\n"
+"\n"
+"(<) : (m,n : Nat) -> Type\n"
+"m < n = S m <= n\n"
+"\n"
+"(>) : (m,n : Nat) -> Type\n"
+"m > n = n < m\n"
+"\n"
+"LessThan : (m,n : Nat) -> Type\n"
+"LessThan m = (< m)\n"
+"\n"
+"To : (m,n : Nat) -> Type\n"
+"To m = (<= m)\n"
+"\n"
+"GreaterThan : (m,n : Nat) -> Type\n"
+"GreaterThan m = (> m)\n"
+"\n"
+"From : (m,n : Nat) -> Type\n"
+"From m = (>= m)\n"
+"\n"
+"FromTo : (lower,upper : Nat) -> Nat -> Type\n"
+"FromTo l u = From l && To u\n"
+"\n"
+"Between : (lower,upper : Nat) -> Nat -> Type\n"
+"Between l u = GreaterThan l && LessThan u\n"
 msgstr ""
-"之间 : (lower,upper : Nat) -> Nat -> Type Between l u = GreaterThan l && "
-"LessThan u ```"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Prim.md:1171
@@ -2875,21 +2979,12 @@ msgstr ""
 "   这些声明）：\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1178
+#: ../src/Tutorial/Prim.md:1176
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   0 来自LTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Prim.md:1181
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True\n"
-"   ```\n"
 msgstr ""
 "   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True\n"
 "   ```\n"
@@ -2963,14 +3058,12 @@ msgstr ""
 "明结果严格小于模数："
 
 #. type: Plain text
-#: ../src/Tutorial/Prim.md:1213
+#: ../src/Tutorial/Prim.md:1208
 #, fuzzy, no-wrap
 msgid ""
-"   ```idris\n"
 "   safeMod :  (x,y : Bits64)\n"
 "           -> (0 prf : cast y > 0)\n"
 "           => Subset Bits64 (\\v => cast v < cast y)\n"
-"   ```\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   safeMod : (x,y : Bits64)\n"

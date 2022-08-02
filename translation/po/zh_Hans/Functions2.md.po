@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 14:36+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -18,15 +18,364 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.13.1\n"
 
-#. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
-#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
-#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
-#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
-#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
-#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
-#, fuzzy
-msgid "## Conclusion"
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
+#: ../src/Tutorial/DataTypes.md:60 ../src/Tutorial/DataTypes.md:112
+#: ../src/Tutorial/DataTypes.md:130 ../src/Tutorial/DataTypes.md:152
+#: ../src/Tutorial/DataTypes.md:163 ../src/Tutorial/DataTypes.md:184
+#: ../src/Tutorial/DataTypes.md:215 ../src/Tutorial/DataTypes.md:253
+#: ../src/Tutorial/DataTypes.md:283 ../src/Tutorial/DataTypes.md:327
+#: ../src/Tutorial/DataTypes.md:348 ../src/Tutorial/DataTypes.md:359
+#: ../src/Tutorial/DataTypes.md:378 ../src/Tutorial/DataTypes.md:408
+#: ../src/Tutorial/DataTypes.md:415 ../src/Tutorial/DataTypes.md:441
+#: ../src/Tutorial/DataTypes.md:449 ../src/Tutorial/DataTypes.md:482
+#: ../src/Tutorial/DataTypes.md:505 ../src/Tutorial/DataTypes.md:518
+#: ../src/Tutorial/DataTypes.md:546 ../src/Tutorial/DataTypes.md:559
+#: ../src/Tutorial/DataTypes.md:587 ../src/Tutorial/DataTypes.md:598
+#: ../src/Tutorial/DataTypes.md:617 ../src/Tutorial/DataTypes.md:628
+#: ../src/Tutorial/DataTypes.md:638 ../src/Tutorial/DataTypes.md:654
+#: ../src/Tutorial/DataTypes.md:667 ../src/Tutorial/DataTypes.md:681
+#: ../src/Tutorial/DataTypes.md:693 ../src/Tutorial/DataTypes.md:701
+#: ../src/Tutorial/DataTypes.md:716 ../src/Tutorial/DataTypes.md:729
+#: ../src/Tutorial/DataTypes.md:804 ../src/Tutorial/DataTypes.md:828
+#: ../src/Tutorial/DataTypes.md:861 ../src/Tutorial/DataTypes.md:897
+#: ../src/Tutorial/DataTypes.md:908 ../src/Tutorial/DataTypes.md:942
+#: ../src/Tutorial/DataTypes.md:957 ../src/Tutorial/DataTypes.md:967
+#: ../src/Tutorial/DataTypes.md:992 ../src/Tutorial/DataTypes.md:1069
+#: ../src/Tutorial/DataTypes.md:1081 ../src/Tutorial/DataTypes.md:1105
+#: ../src/Tutorial/DataTypes.md:1143 ../src/Tutorial/DataTypes.md:1178
+#: ../src/Tutorial/DataTypes.md:1208 ../src/Tutorial/DataTypes.md:1246
+#: ../src/Tutorial/DataTypes.md:1269 ../src/Tutorial/DataTypes.md:1291
+#: ../src/Tutorial/Dependent.md:10 ../src/Tutorial/Dependent.md:18
+#: ../src/Tutorial/Dependent.md:42 ../src/Tutorial/Dependent.md:62
+#: ../src/Tutorial/Dependent.md:70 ../src/Tutorial/Dependent.md:81
+#: ../src/Tutorial/Dependent.md:111 ../src/Tutorial/Dependent.md:125
+#: ../src/Tutorial/Dependent.md:136 ../src/Tutorial/Dependent.md:155
+#: ../src/Tutorial/Dependent.md:174 ../src/Tutorial/Dependent.md:182
+#: ../src/Tutorial/Dependent.md:227 ../src/Tutorial/Dependent.md:266
+#: ../src/Tutorial/Dependent.md:278 ../src/Tutorial/Dependent.md:296
+#: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
+#: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
+#: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
+#: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
+#: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
+#: ../src/Tutorial/DPair.md:165 ../src/Tutorial/DPair.md:174
+#: ../src/Tutorial/DPair.md:203 ../src/Tutorial/DPair.md:216
+#: ../src/Tutorial/DPair.md:226 ../src/Tutorial/DPair.md:243
+#: ../src/Tutorial/DPair.md:255 ../src/Tutorial/DPair.md:266
+#: ../src/Tutorial/DPair.md:285 ../src/Tutorial/DPair.md:298
+#: ../src/Tutorial/DPair.md:307 ../src/Tutorial/DPair.md:315
+#: ../src/Tutorial/DPair.md:327 ../src/Tutorial/DPair.md:339
+#: ../src/Tutorial/DPair.md:373 ../src/Tutorial/DPair.md:405
+#: ../src/Tutorial/DPair.md:416 ../src/Tutorial/DPair.md:428
+#: ../src/Tutorial/DPair.md:459 ../src/Tutorial/DPair.md:481
+#: ../src/Tutorial/DPair.md:498 ../src/Tutorial/DPair.md:513
+#: ../src/Tutorial/DPair.md:532 ../src/Tutorial/DPair.md:545
+#: ../src/Tutorial/DPair.md:555 ../src/Tutorial/DPair.md:584
+#: ../src/Tutorial/DPair.md:631 ../src/Tutorial/DPair.md:781
+#: ../src/Tutorial/DPair.md:792 ../src/Tutorial/DPair.md:808
+#: ../src/Tutorial/DPair.md:824 ../src/Tutorial/DPair.md:840
+#: ../src/Tutorial/DPair.md:911 ../src/Tutorial/DPair.md:930
+#: ../src/Tutorial/DPair.md:991 ../src/Tutorial/DPair.md:1019
+#: ../src/Tutorial/DPair.md:1053 ../src/Tutorial/DPair.md:1068
+#: ../src/Tutorial/DPair.md:1088 ../src/Tutorial/Eq.md:10
+#: ../src/Tutorial/Eq.md:27 ../src/Tutorial/Eq.md:56 ../src/Tutorial/Eq.md:115
+#: ../src/Tutorial/Eq.md:129 ../src/Tutorial/Eq.md:135
+#: ../src/Tutorial/Eq.md:144 ../src/Tutorial/Eq.md:173
+#: ../src/Tutorial/Eq.md:181 ../src/Tutorial/Eq.md:204
+#: ../src/Tutorial/Eq.md:222 ../src/Tutorial/Eq.md:254
+#: ../src/Tutorial/Eq.md:316 ../src/Tutorial/Eq.md:337
+#: ../src/Tutorial/Eq.md:347 ../src/Tutorial/Eq.md:358
+#: ../src/Tutorial/Eq.md:374 ../src/Tutorial/Eq.md:388
+#: ../src/Tutorial/Eq.md:423 ../src/Tutorial/Eq.md:454
+#: ../src/Tutorial/Eq.md:495 ../src/Tutorial/Eq.md:531
+#: ../src/Tutorial/Eq.md:544 ../src/Tutorial/Eq.md:577
+#: ../src/Tutorial/Eq.md:587 ../src/Tutorial/Eq.md:618
+#: ../src/Tutorial/Eq.md:634 ../src/Tutorial/Eq.md:643
+#: ../src/Tutorial/Eq.md:652 ../src/Tutorial/Eq.md:668
+#: ../src/Tutorial/Eq.md:711 ../src/Tutorial/Eq.md:753
+#: ../src/Tutorial/Eq.md:798 ../src/Tutorial/Eq.md:810
+#: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Eq.md:889
+#: ../src/Tutorial/Eq.md:900 ../src/Tutorial/Eq.md:924
+#: ../src/Tutorial/Eq.md:941 ../src/Tutorial/Eq.md:961
+#: ../src/Tutorial/Eq.md:1002 ../src/Tutorial/Eq.md:1033
+#: ../src/Tutorial/Eq.md:1074 ../src/Tutorial/Folds.md:23
+#: ../src/Tutorial/Folds.md:51 ../src/Tutorial/Folds.md:64
+#: ../src/Tutorial/Folds.md:74 ../src/Tutorial/Folds.md:89
+#: ../src/Tutorial/Folds.md:104 ../src/Tutorial/Folds.md:118
+#: ../src/Tutorial/Folds.md:134 ../src/Tutorial/Folds.md:188
+#: ../src/Tutorial/Folds.md:205 ../src/Tutorial/Folds.md:216
+#: ../src/Tutorial/Folds.md:230 ../src/Tutorial/Folds.md:254
+#: ../src/Tutorial/Folds.md:282 ../src/Tutorial/Folds.md:303
+#: ../src/Tutorial/Folds.md:320 ../src/Tutorial/Folds.md:384
+#: ../src/Tutorial/Folds.md:393 ../src/Tutorial/Folds.md:400
+#: ../src/Tutorial/Folds.md:406 ../src/Tutorial/Folds.md:429
+#: ../src/Tutorial/Folds.md:438 ../src/Tutorial/Folds.md:446
+#: ../src/Tutorial/Folds.md:452 ../src/Tutorial/Folds.md:458
+#: ../src/Tutorial/Folds.md:465 ../src/Tutorial/Folds.md:495
+#: ../src/Tutorial/Folds.md:521 ../src/Tutorial/Folds.md:544
+#: ../src/Tutorial/Folds.md:609 ../src/Tutorial/Folds.md:621
+#: ../src/Tutorial/Folds.md:638 ../src/Tutorial/Folds.md:656
+#: ../src/Tutorial/Folds.md:720 ../src/Tutorial/Folds.md:737
+#: ../src/Tutorial/Folds.md:766 ../src/Tutorial/Folds.md:847
+#: ../src/Tutorial/Folds.md:869 ../src/Tutorial/Folds.md:892
+#: ../src/Tutorial/Folds.md:935 ../src/Tutorial/Folds.md:951
+#: ../src/Tutorial/Folds.md:996 ../src/Tutorial/Folds.md:1006
+#: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/Folds.md:1040
+#: ../src/Tutorial/Functions1.md:17 ../src/Tutorial/Functions1.md:29
+#: ../src/Tutorial/Functions1.md:80 ../src/Tutorial/Functions1.md:96
+#: ../src/Tutorial/Functions1.md:109 ../src/Tutorial/Functions1.md:127
+#: ../src/Tutorial/Functions1.md:158 ../src/Tutorial/Functions1.md:178
+#: ../src/Tutorial/Functions1.md:221 ../src/Tutorial/Functions1.md:246
+#: ../src/Tutorial/Functions1.md:292 ../src/Tutorial/Functions1.md:349
+#: ../src/Tutorial/Functions1.md:391 ../src/Tutorial/Functions1.md:472
+#: ../src/Tutorial/Functions1.md:505 ../src/Tutorial/Functions2.md:16
+#: ../src/Tutorial/Functions2.md:94 ../src/Tutorial/Functions2.md:164
+#: ../src/Tutorial/Functions2.md:203 ../src/Tutorial/Functions2.md:220
+#: ../src/Tutorial/Functions2.md:249 ../src/Tutorial/Functions2.md:277
+#: ../src/Tutorial/Functions2.md:319 ../src/Tutorial/Functions2.md:372
+#: ../src/Tutorial/Functions2.md:391 ../src/Tutorial/Functions2.md:408
+#: ../src/Tutorial/Functions2.md:426 ../src/Tutorial/Functions2.md:440
+#: ../src/Tutorial/Functions2.md:447 ../src/Tutorial/Functions2.md:455
+#: ../src/Tutorial/Functions2.md:472 ../src/Tutorial/Functions2.md:510
+#: ../src/Tutorial/Functions2.md:624 ../src/Tutorial/Functions2.md:634
+#: ../src/Tutorial/Functions2.md:646 ../src/Tutorial/Functions2.md:659
+#: ../src/Tutorial/Functions2.md:670 ../src/Tutorial/Functions2.md:707
+#: ../src/Tutorial/Functions2.md:780 ../src/Tutorial/Functions2.md:869
+#: ../src/Tutorial/Functions2.md:880 ../src/Tutorial/Functor.md:18
+#: ../src/Tutorial/Functor.md:54 ../src/Tutorial/Functor.md:63
+#: ../src/Tutorial/Functor.md:73 ../src/Tutorial/Functor.md:84
+#: ../src/Tutorial/Functor.md:95 ../src/Tutorial/Functor.md:111
+#: ../src/Tutorial/Functor.md:126 ../src/Tutorial/Functor.md:139
+#: ../src/Tutorial/Functor.md:167 ../src/Tutorial/Functor.md:236
+#: ../src/Tutorial/Functor.md:260 ../src/Tutorial/Functor.md:270
+#: ../src/Tutorial/Functor.md:285 ../src/Tutorial/Functor.md:298
+#: ../src/Tutorial/Functor.md:314 ../src/Tutorial/Functor.md:340
+#: ../src/Tutorial/Functor.md:351 ../src/Tutorial/Functor.md:392
+#: ../src/Tutorial/Functor.md:408 ../src/Tutorial/Functor.md:417
+#: ../src/Tutorial/Functor.md:429 ../src/Tutorial/Functor.md:442
+#: ../src/Tutorial/Functor.md:456 ../src/Tutorial/Functor.md:479
+#: ../src/Tutorial/Functor.md:494 ../src/Tutorial/Functor.md:512
+#: ../src/Tutorial/Functor.md:531 ../src/Tutorial/Functor.md:551
+#: ../src/Tutorial/Functor.md:576 ../src/Tutorial/Functor.md:622
+#: ../src/Tutorial/Functor.md:651 ../src/Tutorial/Functor.md:660
+#: ../src/Tutorial/Functor.md:676 ../src/Tutorial/Functor.md:693
+#: ../src/Tutorial/Functor.md:704 ../src/Tutorial/Functor.md:750
+#: ../src/Tutorial/Functor.md:761 ../src/Tutorial/Functor.md:773
+#: ../src/Tutorial/Functor.md:784 ../src/Tutorial/Functor.md:828
+#: ../src/Tutorial/Functor.md:842 ../src/Tutorial/Functor.md:860
+#: ../src/Tutorial/Functor.md:872 ../src/Tutorial/Functor.md:888
+#: ../src/Tutorial/Functor.md:926 ../src/Tutorial/Functor.md:945
+#: ../src/Tutorial/Functor.md:971 ../src/Tutorial/Functor.md:1082
+#: ../src/Tutorial/Functor.md:1122 ../src/Tutorial/Functor.md:1135
+#: ../src/Tutorial/Functor.md:1199 ../src/Tutorial/Functor.md:1257
+#: ../src/Tutorial/Functor.md:1268 ../src/Tutorial/Functor.md:1278
+#: ../src/Tutorial/Functor.md:1285 ../src/Tutorial/Interfaces.md:10
+#: ../src/Tutorial/Interfaces.md:43 ../src/Tutorial/Interfaces.md:62
+#: ../src/Tutorial/Interfaces.md:71 ../src/Tutorial/Interfaces.md:100
+#: ../src/Tutorial/Interfaces.md:117 ../src/Tutorial/Interfaces.md:159
+#: ../src/Tutorial/Interfaces.md:234 ../src/Tutorial/Interfaces.md:255
+#: ../src/Tutorial/Interfaces.md:274 ../src/Tutorial/Interfaces.md:296
+#: ../src/Tutorial/Interfaces.md:321 ../src/Tutorial/Interfaces.md:333
+#: ../src/Tutorial/Interfaces.md:341 ../src/Tutorial/Interfaces.md:362
+#: ../src/Tutorial/Interfaces.md:456 ../src/Tutorial/Interfaces.md:466
+#: ../src/Tutorial/Interfaces.md:475 ../src/Tutorial/Interfaces.md:498
+#: ../src/Tutorial/Interfaces.md:534 ../src/Tutorial/Interfaces.md:552
+#: ../src/Tutorial/Interfaces.md:561 ../src/Tutorial/Interfaces.md:650
+#: ../src/Tutorial/Interfaces.md:661 ../src/Tutorial/Interfaces.md:677
+#: ../src/Tutorial/Interfaces.md:695 ../src/Tutorial/Interfaces.md:716
+#: ../src/Tutorial/Interfaces.md:727 ../src/Tutorial/Intro.md:20
+#: ../src/Tutorial/Intro.md:191 ../src/Tutorial/Intro.md:252
+#: ../src/Tutorial/Intro.md:287 ../src/Tutorial/Intro.md:312
+#: ../src/Tutorial/IO.md:8 ../src/Tutorial/IO.md:25 ../src/Tutorial/IO.md:84
+#: ../src/Tutorial/IO.md:121 ../src/Tutorial/IO.md:217
+#: ../src/Tutorial/IO.md:232 ../src/Tutorial/IO.md:240
+#: ../src/Tutorial/IO.md:255 ../src/Tutorial/IO.md:299
+#: ../src/Tutorial/IO.md:334 ../src/Tutorial/IO.md:342
+#: ../src/Tutorial/IO.md:352 ../src/Tutorial/IO.md:374
+#: ../src/Tutorial/IO.md:405 ../src/Tutorial/IO.md:417
+#: ../src/Tutorial/IO.md:472 ../src/Tutorial/IO.md:493
+#: ../src/Tutorial/IO.md:506 ../src/Tutorial/IO.md:517
+#: ../src/Tutorial/IO.md:528 ../src/Tutorial/IO.md:563
+#: ../src/Tutorial/IO.md:581 ../src/Tutorial/IO.md:650
+#: ../src/Tutorial/IO.md:689 ../src/Tutorial/IO.md:696
+#: ../src/Tutorial/IO.md:705 ../src/Tutorial/IO.md:713
+#: ../src/Tutorial/IO.md:734 ../src/Tutorial/IO.md:753
+#: ../src/Tutorial/IO.md:875 ../src/Tutorial/IO.md:920
+#: ../src/Tutorial/IO.md:960 ../src/Tutorial/IO.md:984
+#: ../src/Tutorial/IO.md:997 ../src/Tutorial/Predicates.md:13
+#: ../src/Tutorial/Predicates.md:108 ../src/Tutorial/Predicates.md:118
+#: ../src/Tutorial/Predicates.md:139 ../src/Tutorial/Predicates.md:153
+#: ../src/Tutorial/Predicates.md:165 ../src/Tutorial/Predicates.md:191
+#: ../src/Tutorial/Predicates.md:203 ../src/Tutorial/Predicates.md:212
+#: ../src/Tutorial/Predicates.md:224 ../src/Tutorial/Predicates.md:235
+#: ../src/Tutorial/Predicates.md:252 ../src/Tutorial/Predicates.md:259
+#: ../src/Tutorial/Predicates.md:277 ../src/Tutorial/Predicates.md:288
+#: ../src/Tutorial/Predicates.md:352 ../src/Tutorial/Predicates.md:359
+#: ../src/Tutorial/Predicates.md:368 ../src/Tutorial/Predicates.md:387
+#: ../src/Tutorial/Predicates.md:406 ../src/Tutorial/Predicates.md:416
+#: ../src/Tutorial/Predicates.md:447 ../src/Tutorial/Predicates.md:475
+#: ../src/Tutorial/Predicates.md:493 ../src/Tutorial/Predicates.md:532
+#: ../src/Tutorial/Predicates.md:550 ../src/Tutorial/Predicates.md:568
+#: ../src/Tutorial/Predicates.md:603 ../src/Tutorial/Predicates.md:620
+#: ../src/Tutorial/Predicates.md:639 ../src/Tutorial/Predicates.md:658
+#: ../src/Tutorial/Predicates.md:719 ../src/Tutorial/Predicates.md:747
+#: ../src/Tutorial/Predicates.md:768 ../src/Tutorial/Predicates.md:784
+#: ../src/Tutorial/Predicates.md:798 ../src/Tutorial/Predicates.md:812
+#: ../src/Tutorial/Predicates.md:821 ../src/Tutorial/Predicates.md:835
+#: ../src/Tutorial/Predicates.md:850 ../src/Tutorial/Predicates.md:862
+#: ../src/Tutorial/Predicates.md:872 ../src/Tutorial/Predicates.md:951
+#: ../src/Tutorial/Predicates.md:963 ../src/Tutorial/Predicates.md:983
+#: ../src/Tutorial/Predicates.md:999 ../src/Tutorial/Predicates.md:1024
+#: ../src/Tutorial/Predicates.md:1035 ../src/Tutorial/Predicates.md:1044
+#: ../src/Tutorial/Predicates.md:1066 ../src/Tutorial/Predicates.md:1080
+#: ../src/Tutorial/Predicates.md:1094 ../src/Tutorial/Predicates.md:1105
+#: ../src/Tutorial/Predicates.md:1113 ../src/Tutorial/Predicates.md:1121
+#: ../src/Tutorial/Predicates.md:1134 ../src/Tutorial/Predicates.md:1163
+#: ../src/Tutorial/Predicates.md:1199 ../src/Tutorial/Predicates.md:1236
+#: ../src/Tutorial/Predicates.md:1287 ../src/Tutorial/Prim.md:8
+#: ../src/Tutorial/Prim.md:164 ../src/Tutorial/Prim.md:175
+#: ../src/Tutorial/Prim.md:190 ../src/Tutorial/Prim.md:201
+#: ../src/Tutorial/Prim.md:210 ../src/Tutorial/Prim.md:218
+#: ../src/Tutorial/Prim.md:232 ../src/Tutorial/Prim.md:246
+#: ../src/Tutorial/Prim.md:263 ../src/Tutorial/Prim.md:271
+#: ../src/Tutorial/Prim.md:324 ../src/Tutorial/Prim.md:346
+#: ../src/Tutorial/Prim.md:357 ../src/Tutorial/Prim.md:389
+#: ../src/Tutorial/Prim.md:399 ../src/Tutorial/Prim.md:412
+#: ../src/Tutorial/Prim.md:425 ../src/Tutorial/Prim.md:672
+#: ../src/Tutorial/Prim.md:684 ../src/Tutorial/Prim.md:757
+#: ../src/Tutorial/Prim.md:768 ../src/Tutorial/Prim.md:780
+#: ../src/Tutorial/Prim.md:801 ../src/Tutorial/Prim.md:809
+#: ../src/Tutorial/Prim.md:818 ../src/Tutorial/Prim.md:840
+#: ../src/Tutorial/Prim.md:892 ../src/Tutorial/Prim.md:911
+#: ../src/Tutorial/Prim.md:926 ../src/Tutorial/Prim.md:984
+#: ../src/Tutorial/Prim.md:1026 ../src/Tutorial/Prim.md:1046
+#: ../src/Tutorial/Prim.md:1064 ../src/Tutorial/Prim.md:1073
+#: ../src/Tutorial/Prim.md:1087 ../src/Tutorial/Prim.md:1101
+#: ../src/Tutorial/Prim.md:1118 ../src/Tutorial/Prim.md:1176
+#: ../src/Tutorial/Prim.md:1208 ../src/Tutorial/Traverse.md:17
+#: ../src/Tutorial/Traverse.md:52 ../src/Tutorial/Traverse.md:62
+#: ../src/Tutorial/Traverse.md:82 ../src/Tutorial/Traverse.md:105
+#: ../src/Tutorial/Traverse.md:140 ../src/Tutorial/Traverse.md:173
+#: ../src/Tutorial/Traverse.md:183 ../src/Tutorial/Traverse.md:194
+#: ../src/Tutorial/Traverse.md:203 ../src/Tutorial/Traverse.md:267
+#: ../src/Tutorial/Traverse.md:276 ../src/Tutorial/Traverse.md:285
+#: ../src/Tutorial/Traverse.md:295 ../src/Tutorial/Traverse.md:308
+#: ../src/Tutorial/Traverse.md:325 ../src/Tutorial/Traverse.md:332
+#: ../src/Tutorial/Traverse.md:370 ../src/Tutorial/Traverse.md:388
+#: ../src/Tutorial/Traverse.md:398 ../src/Tutorial/Traverse.md:406
+#: ../src/Tutorial/Traverse.md:414 ../src/Tutorial/Traverse.md:463
+#: ../src/Tutorial/Traverse.md:471 ../src/Tutorial/Traverse.md:489
+#: ../src/Tutorial/Traverse.md:497 ../src/Tutorial/Traverse.md:506
+#: ../src/Tutorial/Traverse.md:514 ../src/Tutorial/Traverse.md:525
+#: ../src/Tutorial/Traverse.md:543 ../src/Tutorial/Traverse.md:591
+#: ../src/Tutorial/Traverse.md:605 ../src/Tutorial/Traverse.md:771
+#: ../src/Tutorial/Traverse.md:831 ../src/Tutorial/Traverse.md:852
+#: ../src/Tutorial/Traverse.md:867 ../src/Tutorial/Traverse.md:899
+#: ../src/Tutorial/Traverse.md:909 ../src/Tutorial/Traverse.md:929
+#: ../src/Tutorial/Traverse.md:939 ../src/Tutorial/Traverse.md:975
+#: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
+#: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
+#: ../src/Tutorial/Traverse.md:1095
+#, no-wrap
+msgid "idris"
+msgstr ""
+
+#. type: Code fence info string
+#: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
+#: ../src/Tutorial/DataTypes.md:241 ../src/Tutorial/DataTypes.md:310
+#: ../src/Tutorial/DataTypes.md:337 ../src/Tutorial/DataTypes.md:390
+#: ../src/Tutorial/DataTypes.md:427 ../src/Tutorial/DataTypes.md:494
+#: ../src/Tutorial/DataTypes.md:646 ../src/Tutorial/DataTypes.md:840
+#: ../src/Tutorial/DataTypes.md:1009 ../src/Tutorial/DataTypes.md:1016
+#: ../src/Tutorial/DataTypes.md:1024 ../src/Tutorial/DataTypes.md:1031
+#: ../src/Tutorial/DataTypes.md:1038 ../src/Tutorial/DataTypes.md:1045
+#: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
+#: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
+#: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
+#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
+#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
+#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
+#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
+#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
+#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
+#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
+#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
+#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
+#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
+#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
+#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
+#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
+#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
+#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
+#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
+#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
+#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
+#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
+#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
+#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
+#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
+#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
+#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
+#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
+#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
+#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
+#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
+#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
+#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
+#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
+#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
+#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
+#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
+#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
+#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
+#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
+#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
+#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
+#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
+#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
+#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
+#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
+#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
+#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
+#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
+#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
+#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
+#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
+#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
+#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
+#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
+#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
+#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
+#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
+#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
+#: ../src/Tutorial/Traverse.md:997
+#, no-wrap
+msgid "repl"
+msgstr ""
+
+#. type: Title ##
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
+#: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
+#: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
+#: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
+#: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
+#, fuzzy, no-wrap
+msgid "Conclusion"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -44,6 +393,20 @@ msgstr ""
 "#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "＃＃ 结论\n"
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+
+#. type: Title ###
+#: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
+#: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
+#: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
+#, fuzzy, no-wrap
+msgid "What's next"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃＃ 下一步是什么\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
@@ -54,8 +417,10 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy
-msgid "<!-- vi: filetype=idris2 -->"
+#, fuzzy, no-wrap
+msgid ""
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 msgstr ""
 "#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
@@ -77,50 +442,16 @@ msgstr ""
 "#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
-#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
-#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
-#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
-#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
-#, fuzzy
-msgid "%default total ```"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"%默认总数```"
+#. type: Title ###
+#: ../src/Tutorial/Functions1.md:441 ../src/Tutorial/Functions2.md:339
+#, fuzzy, no-wrap
+msgid "Exercises"
+msgstr "## 练习"
 
-#. type: Plain text
-#: ../src/Tutorial/Dependent.md:904 ../src/Tutorial/Functions1.md:576
-#: ../src/Tutorial/Functions2.md:955 ../src/Tutorial/Interfaces.md:814
-#: ../src/Tutorial/IO.md:1119
-#, fuzzy
-msgid "### What's next"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃＃ 下一步是什么\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:2
-#, fuzzy
-msgid "# Functions Part 2"
+#. type: Title #
+#: ../src/Tutorial/Functions2.md:1
+#, fuzzy, no-wrap
+msgid "Functions Part 2"
 msgstr "# 函数第 2 部分"
 
 #. type: Plain text
@@ -152,15 +483,18 @@ msgstr ""
 "过于复杂而无法在一行代码中放置的函数。让我们开始吧！"
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:18
-#, fuzzy
-msgid "```idris module Tutorial.Functions2"
+#: ../src/Tutorial/Functions2.md:16
+#, fuzzy, no-wrap
+msgid ""
+"module Tutorial.Functions2\n"
+"\n"
+"%default total\n"
 msgstr "```idris 模块 Tutorial.Functions2"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:23
-#, fuzzy
-msgid "## Let Bindings and Local Definitions"
+#. type: Title ##
+#: ../src/Tutorial/Functions2.md:22
+#, fuzzy, no-wrap
+msgid "Let Bindings and Local Definitions"
 msgstr "## 让绑定和局部定义"
 
 #. type: Plain text
@@ -177,10 +511,10 @@ msgstr ""
 "辅助函数或变量。情况并非总是如此，并且有两个重要的语言结构用于引入和重用新的"
 "局部变量和函数。我们将在两个案例研究中研究这些。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:33
-#, fuzzy
-msgid "### Use Case 1: Arithmetic Mean and Standard Deviation"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:32
+#, fuzzy, no-wrap
+msgid "Use Case 1: Arithmetic Mean and Standard Deviation"
 msgstr "### 用例 1：算术平均值和标准差"
 
 #. type: Plain text
@@ -203,9 +537,11 @@ msgstr ""
 "首先，我们需要一个函数来计算数值列表的总和。 *Prelude* 为此导出函数 `sum`："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:46
-#, fuzzy
-msgid "```repl Main> :t sum Prelude.sum : Num a => Foldable t => t a -> a ```"
+#: ../src/Tutorial/Functions2.md:42
+#, fuzzy, no-wrap
+msgid ""
+"Main> :t sum\n"
+"Prelude.sum : Num a => Foldable t => t a -> a\n"
 msgstr "```repl Main> :t sum Prelude.sum : Num a => Foldable t => t a -> a ```"
 
 #. type: Plain text
@@ -239,12 +575,12 @@ msgstr ""
 "e`。这是它的类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:67
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:63
+#, fuzzy, no-wrap
 msgid ""
-"```repl Main> :t map Prelude.map : Functor f => (a -> b) -> f a -> f b ```"
-msgstr ""
-"```repl Main> :t map Prelude.map : Functor f => (a -> b) -> f a -> f b ```"
+"Main> :t map\n"
+"Prelude.map : Functor f => (a -> b) -> f a -> f b\n"
+msgstr "```repl Main> :t map Prelude.map : Functor f => (a -> b) -> f a -> f b ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:70
@@ -261,28 +597,26 @@ msgid ""
 msgstr "最后，我们需要一种计算值列表长度的方法。我们为此使用函数 `length`："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:78
-#, fuzzy
-msgid "```repl Main> :t List.length Prelude.List.length : List a -> Nat ```"
+#: ../src/Tutorial/Functions2.md:74
+#, fuzzy, no-wrap
+msgid ""
+"Main> :t List.length\n"
+"Prelude.List.length : List a -> Nat\n"
 msgstr "```repl Main> :t List.length Prelude.List.length : List a -> Nat ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:87
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Here, `Nat` is the type of natural numbers (unbounded, unsigned integers). "
-"`Nat` is actually not a primitive data type but a sum type defined in the "
-"*Prelude* with data constructors `Z : Nat` (for zero)  and `S : Nat -> Nat` "
-"(for successor). It might seem highly inefficient to define natural numbers "
-"this way, but the Idris compiler treats these and several other *number-"
-"like* types specially, and replaces them with primitive integers during code "
-"generation."
-msgstr ""
-"这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` 实际上不是原始数据类"
-"型，而是在 *Prelude* 中使用数据构造函数 `Z 定义的求和类型： Nat` （为零）和 "
-"`S ： Nat -> Nat`（后继）。以这种方式定义自然数似乎效率极低，但 Idris 编译器"
-"会特别处理这些类型和其他几个 * 类数字 * 类型，并在代码生成期间将它们替换为原"
-"始整数。"
+"Here, `Nat` is the type of natural numbers\n"
+"(unbounded, unsigned integers). `Nat` is actually not a primitive data\n"
+"type but a sum type defined in the *Prelude* with\n"
+"data constructors `Z : Nat` (for zero)\n"
+"and `S : Nat -> Nat` (for successor). It might seem highly inefficient\n"
+"to define natural numbers this way, but the Idris compiler\n"
+"treats these and several other *number-like* types specially, and\n"
+"replaces them with primitive integers during code generation.\n"
+msgstr "这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` 实际上不是原始数据类型，而是在 *Prelude* 中使用数据构造函数 `Z 定义的求和类型： Nat` （为零）和 `S ： Nat -> Nat`（后继）。以这种方式定义自然数似乎效率极低，但 Idris 编译器会特别处理这些类型和其他几个 * 类数字 * 类型，并在代码生成期间将它们替换为原始整数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:93
@@ -298,38 +632,24 @@ msgstr ""
 "哪个浮点数对应哪个统计实体："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:97
-#, fuzzy
-msgid "```idris square : Double -> Double square n = n * n"
-msgstr "```idris square : Double -> Double square n = n * n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:103
+#: ../src/Tutorial/Functions2.md:94
 #, fuzzy, no-wrap
 msgid ""
+"square : Double -> Double\n"
+"square n = n * n\n"
+"\n"
 "record Stats where\n"
 "  constructor MkStats\n"
 "  mean      : Double\n"
 "  variance  : Double\n"
 "  deviation : Double\n"
-msgstr ""
-"记录 Stats where\n"
-"  构造函数 MkStats\n"
-"  意思是：双\n"
-"  方差：双\n"
-"  偏差 : 双\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:111
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "stats : List Double -> Stats\n"
 "stats xs =\n"
 "  let len      := cast (length xs)\n"
 "      mean     := sum xs / len\n"
 "      variance := sum (map (\\x => square (x - mean)) xs) / len\n"
 "   in MkStats mean variance (sqrt variance)\n"
-"```\n"
 msgstr ""
 "stats : 双列表 -> 统计\n"
 "统计 xs =\n"
@@ -346,12 +666,12 @@ msgid "As usual, we first try this at the REPL:"
 msgstr "像往常一样，我们首先在 REPL 上尝试一下："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:118
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:114
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> stats [2,4,4,4,5,5,7,9] MkStats 5.0 4.0 2.0 ```"
-msgstr ""
-"```repl Tutorial.Functions2> stats [2,4,4,4,5,5,7,9] MkStats 5.0 4.0 2.0 ```"
+"Tutorial.Functions2> stats [2,4,4,4,5,5,7,9]\n"
+"MkStats 5.0 4.0 2.0\n"
+msgstr "```repl Tutorial.Functions2> stats [2,4,4,4,5,5,7,9] MkStats 5.0 4.0 2.0 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:133
@@ -399,10 +719,10 @@ msgstr ""
 "函数将列表中的每个项目映射到一个新值，以减去均值并平方结果。然后我们将新项相"
 "加并再次除以值的数量。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:151
-#, fuzzy
-msgid "### Use Case 2: Simulating a Simple Web Server"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:150
+#, fuzzy, no-wrap
+msgid "Use Case 2: Simulating a Simple Web Server"
 msgstr "### 用例 2：模拟一个简单的 Web 服务器"
 
 #. type: Plain text
@@ -434,82 +754,33 @@ msgid "We first define a bunch of record types:"
 msgstr "我们首先定义了一堆记录类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:168
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Functions2.md:164
+#, no-wrap
 msgid ""
-"```idris\n"
 "record Artist where\n"
 "  constructor MkArtist\n"
 "  name : String\n"
-msgstr ""
-"```伊德里斯\n"
-"记录艺术家在哪里\n"
-"  构造函数 MkArtist\n"
-"  名称：字符串\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:173
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "record Album where\n"
 "  constructor MkAlbum\n"
 "  name   : String\n"
 "  artist : Artist\n"
-msgstr ""
-"记录专辑在哪里\n"
-"  构造函数 MkAlbum\n"
-"  名称：字符串\n"
-"  艺术家：艺术家\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:177 ../src/Tutorial/Functor.md:632
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "record Email where\n"
 "  constructor MkEmail\n"
 "  value : String\n"
-msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"记录电子邮件在哪里\n"
-"  构造函数 MkEmail\n"
-"  值：字符串\n"
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:181 ../src/Tutorial/Functor.md:636
-#: ../src/Tutorial/Interfaces.md:542
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "record Password where\n"
 "  constructor MkPassword\n"
 "  value : String\n"
-msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"记录密码在哪里\n"
-"  构造函数 MkPassword\n"
-"  值：字符串\n"
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:189
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "record User where\n"
 "  constructor MkUser\n"
 "  name     : String\n"
 "  email    : Email\n"
 "  password : Password\n"
 "  albums   : List Album\n"
-"```\n"
 msgstr ""
-"记录用户在哪里\n"
-"  构造函数 MkUser\n"
-"  名称：字符串\n"
-"  电子邮件：电子邮件\n"
-"  密码：密码\n"
-"  专辑：列出专辑\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:202
@@ -535,28 +806,17 @@ msgstr ""
 "么。"
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:205
-#, fuzzy
-msgid "```idris Eq Artist where (==) = (==) `on` name"
-msgstr "```idris Eq Artist where (==) = (==) `on` name"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:207
-#, fuzzy
-msgid "Eq Email where (==) = (==) `on` value"
-msgstr "Eq 电子邮件，其中 (==) = (==) `on` 值"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:209
-#, fuzzy
-msgid "Eq Password where (==) = (==) `on` value"
-msgstr "Eq 密码 where (==) = (==) `on` 值"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:212
-#, fuzzy
-msgid "Eq Album where (==) = (==) `on` \\a => (a.name, a.artist)  ```"
-msgstr "Eq 专辑 where (==) = (==) `on` \\a => (a.name, a.artist) ```"
+#: ../src/Tutorial/Functions2.md:203
+#, no-wrap
+msgid ""
+"Eq Artist where (==) = (==) `on` name\n"
+"\n"
+"Eq Email where (==) = (==) `on` value\n"
+"\n"
+"Eq Password where (==) = (==) `on` value\n"
+"\n"
+"Eq Album where (==) = (==) `on` \\a => (a.name, a.artist)\n"
+msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:216
@@ -578,45 +838,24 @@ msgid ""
 msgstr "接下来，我们必须定义代表服务器请求和响应的数据类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:225
+#: ../src/Tutorial/Functions2.md:220
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Credentials where\n"
 "  constructor MkCredentials\n"
 "  email    : Email\n"
 "  password : Password\n"
-msgstr ""
-"```伊德里斯\n"
-"在哪里记录凭证\n"
-"  构造函数 MkCredentials\n"
-"  电子邮件：电子邮件\n"
-"  密码：密码\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:230
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "record Request where\n"
 "  constructor MkRequest\n"
 "  credentials : Credentials\n"
 "  album       : Album\n"
-msgstr ""
-"记录请求在哪里\n"
-"  构造函数 MkRequest\n"
-"  凭据：凭据\n"
-"  专辑：专辑\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:237
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "data Response : Type where\n"
 "  UnknownUser     : Email -> Response\n"
 "  InvalidPassword : Response\n"
 "  AccessDenied    : Email -> Album -> Response\n"
 "  Success         : Album -> Response\n"
-"```\n"
 msgstr ""
 "数据响应：键入 where\n"
 "  UnknownUser : 电子邮件 -> 回复\n"
@@ -650,15 +889,13 @@ msgstr ""
 "单的用户列表就可以了。这是我们要实现的函数的类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:252
-#, fuzzy
-msgid "```idris DB : Type DB = List User"
-msgstr "```idris DB：类型 DB = 列出用户"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:255
-#, fuzzy
-msgid "handleRequest : DB -> Request -> Response ```"
+#: ../src/Tutorial/Functions2.md:249
+#, fuzzy, no-wrap
+msgid ""
+"DB : Type\n"
+"DB = List User\n"
+"\n"
+"handleRequest : DB -> Request -> Response\n"
 msgstr "处理请求：数据库->请求->响应```"
 
 #. type: Plain text
@@ -704,56 +941,26 @@ msgid "Here's a possible implementation:"
 msgstr "这是一个可能的实现："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:282
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Functions2.md:277
+#, no-wrap
 msgid ""
-"```idris\n"
 "handleRequest db (MkRequest (MkCredentials email pw) album) =\n"
 "  case lookupUser db of\n"
 "    Just (MkUser _ _ password albums)  =>\n"
 "      if password == pw then lookupAlbum albums else InvalidPassword\n"
-msgstr ""
-"```伊德里斯\n"
-"handleRequest db (MkRequest (MkCredentials email pw) 相册) =\n"
-"  案例查找用户数据库\n"
-"    Just (MkUser _ _ 密码相册) =>\n"
-"      if password == pw then lookupAlbum albums else InvalidPassword\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:284
-#, fuzzy, no-wrap
-msgid "    Nothing => UnknownUser email\n"
-msgstr "    什么都没有 => 未知用户电子邮件\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:289
-#, fuzzy, no-wrap
-msgid ""
+"\n"
+"    Nothing => UnknownUser email\n"
+"\n"
 "  where lookupUser : List User -> Maybe User\n"
 "        lookupUser []        = Nothing\n"
 "        lookupUser (x :: xs) =\n"
 "          if x.email == email then Just x else lookupUser xs\n"
-msgstr ""
-"  其中lookupUser：列出用户->也许用户\n"
-"        lookupUser [] = 无\n"
-"        查找用户 (x :: xs) =\n"
-"          if x.email == email then Just x else lookupUser xs\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:295
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "        lookupAlbum : List Album -> Response\n"
 "        lookupAlbum []        = AccessDenied email album\n"
 "        lookupAlbum (x :: xs) =\n"
 "          if x == album then Success album else lookupAlbum xs\n"
-"```\n"
 msgstr ""
-"        lookupAlbum : 列出专辑 -> 响应\n"
-"        lookupAlbum [] = AccessDenied 电子邮件相册\n"
-"        查找相册 (x :: xs) =\n"
-"          if x == album then Success 相册 else lookupAlbum xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:305
@@ -802,66 +1009,27 @@ msgstr ""
 "义都必须正确输入和缩进："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:326
-#, fuzzy, no-wrap
+#: ../src/Tutorial/Functions2.md:319
+#, no-wrap
 msgid ""
-"```idris\n"
 "handleRequest' : DB -> Request -> Response\n"
 "handleRequest' db (MkRequest (MkCredentials email pw) album) =\n"
 "  let lookupUser : List User -> Maybe User\n"
 "      lookupUser []        = Nothing\n"
 "      lookupUser (x :: xs) =\n"
 "        if x.email == email then Just x else lookupUser xs\n"
-msgstr ""
-"```伊德里斯\n"
-"handleRequest' : 数据库 -> 请求 -> 响应\n"
-"handleRequest' db (MkRequest (MkCredentials email pw) 相册) =\n"
-"  让 lookupUser : 列出用户 -> 可能用户\n"
-"      lookupUser [] = 无\n"
-"      查找用户 (x :: xs) =\n"
-"        if x.email == email then Just x else lookupUser xs\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:331
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "      lookupAlbum : List Album -> Response\n"
 "      lookupAlbum []        = AccessDenied email album\n"
 "      lookupAlbum (x :: xs) =\n"
 "        if x == album then Success album else lookupAlbum xs\n"
-msgstr ""
-"      lookupAlbum : 列出专辑 -> 响应\n"
-"      lookupAlbum [] = AccessDenied 电子邮件相册\n"
-"      查找相册 (x :: xs) =\n"
-"        if x == album then Success 相册 else lookupAlbum xs\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:335
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "   in case lookupUser db of\n"
 "        Just (MkUser _ _ password albums)  =>\n"
 "          if password == pw then lookupAlbum albums else InvalidPassword\n"
-msgstr ""
-"   万一 lookupUser db 的\n"
-"        Just (MkUser _ _ 密码相册) =>\n"
-"          if password == pw then lookupAlbum albums else InvalidPassword\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:338
-#, fuzzy, no-wrap
-msgid ""
+"\n"
 "        Nothing => UnknownUser email\n"
-"```\n"
 msgstr ""
-"        什么都没有 => 未知用户电子邮件\n"
-"```\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:340
-#, fuzzy
-msgid "### Exercises"
-msgstr "### 练习"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:345
@@ -925,12 +1093,9 @@ msgstr ""
 "`Just` 以未修改的顺序保存转换值的列表，当且仅当每次转换都成功时。"
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:375
+#: ../src/Tutorial/Functions2.md:372
 #, fuzzy, no-wrap
-msgid ""
-"   ```idris\n"
-"   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)\n"
-"   ```\n"
+msgid "   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)\n"
 msgstr ""
 "   ```伊德里斯\n"
 "   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)\n"
@@ -965,10 +1130,10 @@ msgid ""
 "a strand of DNA."
 msgstr "实现函数 `complement : DNA -> DNA` 来计算一条 DNA 链的补码。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:387
-#, fuzzy
-msgid "## The Truth about Function Arguments"
+#. type: Title ##
+#: ../src/Tutorial/Functions2.md:386
+#, fuzzy, no-wrap
+msgid "The Truth about Function Arguments"
 msgstr "## 关于函数参数的真相"
 
 #. type: Plain text
@@ -980,15 +1145,13 @@ msgid ""
 msgstr "到目前为止，当我们定义一个顶级函数时，它看起来像下面这样："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:397
+#: ../src/Tutorial/Functions2.md:391
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "zipEitherWith : (a -> b -> c) -> Either e a -> Either e b -> Either e c\n"
 "zipEitherWith f (Right va) (Right vb) = Right (f va vb)\n"
 "zipEitherWith f (Left e)   _          = Left e\n"
 "zipEitherWith f _          (Left e)   = Left e\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "zipEitherWith : (a -> b -> c) -> 任意 e a -> 任意 e b -> 任意 e c\n"
@@ -1023,10 +1186,9 @@ msgstr ""
 "一个类似这样的类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:418
+#: ../src/Tutorial/Functions2.md:408
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "zipEitherWith' :  {0 a : Type}\n"
 "               -> {0 b : Type}\n"
 "               -> {0 c : Type}\n"
@@ -1035,7 +1197,6 @@ msgid ""
 "               -> Either e a\n"
 "               -> Either e b\n"
 "               -> Either e c\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "zipEitherWith'：{0 a：类型}\n"
@@ -1056,10 +1217,10 @@ msgid ""
 "named arguments, implicit arguments, and quantities."
 msgstr "为了理解这里发生了什么，我们将不得不讨论命名参数、隐式参数和数量。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:423
-#, fuzzy
-msgid "### Named Arguments"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:422
+#, fuzzy, no-wrap
+msgid "Named Arguments"
 msgstr "### 命名参数"
 
 #. type: Plain text
@@ -1069,14 +1230,12 @@ msgid "In a function type, we can give each argument a name. Like so:"
 msgstr "在函数类型中，我们可以给每个参数一个名称。像这样："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:431
+#: ../src/Tutorial/Functions2.md:426
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "fromMaybe : (deflt : a) -> (ma : Maybe a) -> a\n"
 "fromMaybe deflt Nothing = deflt\n"
 "fromMaybe _    (Just x) = x\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "fromMaybe : (deflt : a) -> (ma : Maybe a) -> a\n"
@@ -1101,14 +1260,12 @@ msgstr ""
 "用以下语法时以任意顺序将参数传递给函数："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:444
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:440
+#, fuzzy, no-wrap
 msgid ""
-"```idris extractBool : Maybe Bool -> Bool extractBool v = fromMaybe { ma = "
-"v, deflt = False } ```"
-msgstr ""
-"```idris extractBool : Maybe Bool -> Bool extractBool v = fromMaybe { ma = "
-"v, deflt = False } ```"
+"extractBool : Maybe Bool -> Bool\n"
+"extractBool v = fromMaybe { ma = v, deflt = False }\n"
+msgstr "```idris extractBool : Maybe Bool -> Bool extractBool v = fromMaybe { ma = v, deflt = False } ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:446
@@ -1117,14 +1274,12 @@ msgid "Or even :"
 msgstr "甚至 ："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:451
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:447
+#, fuzzy, no-wrap
 msgid ""
-"```idris extractBool2 : Maybe Bool -> Bool extractBool2 = fromMaybe { deflt "
-"= False } ```"
-msgstr ""
-"```idris extractBool2 : Maybe Bool -> Bool extractBool2 = fromMaybe { deflt "
-"= False } ```"
+"extractBool2 : Maybe Bool -> Bool\n"
+"extractBool2 = fromMaybe { deflt = False }\n"
+msgstr "```idris extractBool2 : Maybe Bool -> Bool extractBool2 = fromMaybe { deflt = False } ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:454
@@ -1135,15 +1290,17 @@ msgid ""
 msgstr "记录构造函数中的参数根据字段名称自动命名："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:461
+#: ../src/Tutorial/Functions2.md:455
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "record Dragon where\n"
 "  constructor MkDragon\n"
 "  name      : String\n"
 "  strength  : Nat\n"
 "  hitPoints : Int16\n"
+"\n"
+"gorgar : Dragon\n"
+"gorgar = MkDragon { strength = 150, name = \"Gorgar\", hitPoints = 10000 }\n"
 msgstr ""
 "```伊德里斯\n"
 "记录龙在哪里\n"
@@ -1151,16 +1308,6 @@ msgstr ""
 "  名称：字符串\n"
 "  力量：自然\n"
 "  命中点：Int16\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:465
-#, fuzzy
-msgid ""
-"gorgar : Dragon gorgar = MkDragon { strength = 150, name = \"Gorgar\", "
-"hitPoints = 10000 } ```"
-msgstr ""
-"gorgar : Dragon gorgar = MkDragon { 力量 = 150, name = \"Gorgar\", hitPoints "
-"= 10000 } ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:471
@@ -1177,24 +1324,17 @@ msgstr ""
 "* 取决于 * 其参数之一的 * 值 *。这是一个人为的例子："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:476
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:472
+#, fuzzy, no-wrap
 msgid ""
-"```idris IntOrString : Bool -> Type IntOrString True = Integer IntOrString "
-"False = String"
-msgstr ""
-"```idris IntOrString : Bool -> Type IntOrString True = Integer IntOrString "
-"False = String"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:481
-#, fuzzy
-msgid ""
-"intOrString : (v : Bool) -> IntOrString v intOrString False = \"I'm a String"
-"\" intOrString True = 1000 ```"
-msgstr ""
-"intOrString : (v : Bool) -> IntOrString v intOrString False = \"我是字符串\" "
-"intOrString True = 1000 ```"
+"IntOrString : Bool -> Type\n"
+"IntOrString True  = Integer\n"
+"IntOrString False = String\n"
+"\n"
+"intOrString : (v : Bool) -> IntOrString v\n"
+"intOrString False = \"I'm a String\"\n"
+"intOrString True  = 1000\n"
+msgstr "intOrString : (v : Bool) -> IntOrString v intOrString False = \"我是字符串\" intOrString True = 1000 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:489
@@ -1241,10 +1381,10 @@ msgstr ""
 "赖函数类型，我们至少需要命名函数的一些参数，并在其他参数的类型中通过名称引用"
 "它们。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:502
-#, fuzzy
-msgid "### Implicit Arguments"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:501
+#, fuzzy, no-wrap
+msgid "Implicit Arguments"
 msgstr "### 隐式参数"
 
 #. type: Plain text
@@ -1262,26 +1402,19 @@ msgstr ""
 "量；我将在下一小节）："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:514
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:510
+#, fuzzy, no-wrap
 msgid ""
-"```idris maybeToEither : {0 a : Type} -> Maybe a -> Either String a "
-"maybeToEither Nothing = Left \"Nope\" maybeToEither (Just x) = Right x"
-msgstr ""
-"```idris maybeToEither : {0 a : Type} -> Maybe a -> Either String a "
-"maybeToEither Nothing = Left \"Nope\" maybeToEither (Just x) = Right x"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:521
-#, fuzzy
-msgid ""
-"-- Please remember, that the above is -- equivalent to the following: "
-"maybeToEither' : Maybe a -> Either String a maybeToEither' Nothing = Left "
-"\"Nope\" maybeToEither' (Just x) = Right x ```"
-msgstr ""
-"-- 请记住，上面是 -- 等价于以下内容： MaybeToEither' : Maybe a -> Either "
-"String a maybeToEither' Nothing = Left \"Nope\" maybeToEither' (Just x) = "
-"Right x ```"
+"maybeToEither : {0 a : Type} -> Maybe a -> Either String a\n"
+"maybeToEither Nothing  = Left \"Nope\"\n"
+"maybeToEither (Just x) = Right x\n"
+"\n"
+"-- Please remember, that the above is\n"
+"-- equivalent to the following:\n"
+"maybeToEither' : Maybe a -> Either String a\n"
+"maybeToEither' Nothing  = Left \"Nope\"\n"
+"maybeToEither' (Just x) = Right x\n"
+msgstr "-- 请记住，上面是 -- 等价于以下内容： MaybeToEither' : Maybe a -> Either String a maybeToEither' Nothing = Left \"Nope\" maybeToEither' (Just x) = Right x ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:527
@@ -1297,14 +1430,12 @@ msgstr ""
 "败并出现错误："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:532
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:528
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> show (maybeToEither Nothing)  Error: Can't find "
-"an implementation for Show (Either String ?a).  ```"
-msgstr ""
-"```repl Tutorial.Functions2> show (maybeToEither Nothing) 错误：找不到 Show "
-"(Either String ?a) 的实现。 ```"
+"Tutorial.Functions2> show (maybeToEither Nothing)\n"
+"Error: Can't find an implementation for Show (Either String ?a).\n"
+msgstr "```repl Tutorial.Functions2> show (maybeToEither Nothing) 错误：找不到 Show (Either String ?a) 的实现。 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:540
@@ -1321,14 +1452,12 @@ msgstr ""
 "查器。例如，我们可以为隐式参数显式传递一个值。这是执行此操作的语法："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:545
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:541
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing)  \"Left "
-"\"Nope\"\" ```"
-msgstr ""
-"```repl Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing) \"Left "
-"\"Nope\"\" ```"
+"Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing)\n"
+"\"Left \"Nope\"\"\n"
+msgstr "```repl Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing) \"Left \"Nope\"\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:549
@@ -1349,14 +1478,12 @@ msgid ""
 msgstr "我们还可以使用 *Prelude* 中的实用函数 `the` 指定整个表达式的类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:557
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:553
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> show (the (Either String Int8) (maybeToEither "
-"Nothing))  \"Left \"Nope\"\" ```"
-msgstr ""
-"```repl Tutorial.Functions2> show (the (Either String Int8) (maybeToEither "
-"Nothing)) \"Left \"Nope\"\" ```"
+"Tutorial.Functions2> show (the (Either String Int8) (maybeToEither Nothing))\n"
+"\"Left \"Nope\"\"\n"
+msgstr "```repl Tutorial.Functions2> show (the (Either String Int8) (maybeToEither Nothing)) \"Left \"Nope\"\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:559
@@ -1365,12 +1492,12 @@ msgid "It is instructive to have a look at the type of `the`:"
 msgstr "查看 ` 和 ` 的类型很有启发性："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:564
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:560
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> :ti the Prelude.the : (0 a : Type) -> a -> a ```"
-msgstr ""
-"```repl Tutorial.Functions2> :ti the Prelude.the : (0 a : Type) -> a -> a ```"
+"Tutorial.Functions2> :ti the\n"
+"Prelude.the : (0 a : Type) -> a -> a\n"
+msgstr "```repl Tutorial.Functions2> :ti the Prelude.the : (0 a : Type) -> a -> a ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:566
@@ -1379,12 +1506,12 @@ msgid "Compare this with the identity function `id`:"
 msgstr "将此与恒等函数 `id` 进行比较："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:571
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:567
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> :ti id Prelude.id : {0 a : Type} -> a -> a ```"
-msgstr ""
-"```repl Tutorial.Functions2> :ti id Prelude.id : {0 a : Type} -> a -> a ```"
+"Tutorial.Functions2> :ti id\n"
+"Prelude.id : {0 a : Type} -> a -> a\n"
+msgstr "```repl Tutorial.Functions2> :ti id Prelude.id : {0 a : Type} -> a -> a ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:581
@@ -1413,10 +1540,10 @@ msgid ""
 msgstr ""
 "上面显示的两种改进类型推断的方法都经常使用，并且 Idris 程序员必须理解。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:587
-#, fuzzy
-msgid "### Multiplicities"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:586
+#, fuzzy, no-wrap
+msgid "Multiplicities"
 msgstr "### 多重性"
 
 #. type: Plain text
@@ -1491,10 +1618,10 @@ msgstr ""
 "也可以用多重性注释显式参数，在这种情况下，参数必须再次放在括号中。例如，再次"
 "查看 `the` 的类型签名。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:615
-#, fuzzy
-msgid "### Underscores"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:614
+#, fuzzy, no-wrap
+msgid "Underscores"
 msgstr "### 下划线"
 
 #. type: Plain text
@@ -1514,14 +1641,12 @@ msgstr ""
 "作为一个占位符："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:629
+#: ../src/Tutorial/Functions2.md:624
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "isRight : Either a b -> Bool\n"
 "isRight (Right _) = True\n"
 "isRight _         = False\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "isRight : a b -> Bool\n"
@@ -1541,14 +1666,12 @@ msgstr ""
 "用一次，因此并不重要.让我们摆脱它们："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:639
+#: ../src/Tutorial/Functions2.md:634
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "isRight' : Either _ _ -> Bool\n"
 "isRight' (Right _) = True\n"
 "isRight' _         = False\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "isRight' : _ _ -> Bool\n"
@@ -1558,22 +1681,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:645
-#, fuzzy
-msgid ""
-"In the detailed type signature of `zipEitherWith`, it should be obvious for "
-"Idris that the implicit arguments are of type `Type`.  After all, all of "
-"them are later on applied to the `Either` type constructor, which is of type "
-"`Type -> Type -> Type`. Let's get rid of them:"
-msgstr ""
-"在 `zipEitherWith` 的详细类型签名中，Idris 应该很明显隐式参数的类型是 "
-"`Type`。毕竟，它们后来都应用于 `Either` 类型构造函数，它的类型为 `Type -> "
-"Type -> Type`。让我们摆脱它们："
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:656
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
+"In the detailed type signature of `zipEitherWith`, it should\n"
+"be obvious for Idris that the implicit arguments are of type `Type`.\n"
+"After all, all of them are later on applied to the `Either` type\n"
+"constructor, which is of type `Type -> Type -> Type`. Let's get rid\n"
+"of them:\n"
+msgstr "在 `zipEitherWith` 的详细类型签名中，Idris 应该很明显隐式参数的类型是 `Type`。毕竟，它们后来都应用于 `Either` 类型构造函数，它的类型为 `Type -> Type -> Type`。让我们摆脱它们："
+
+#. type: Plain text
+#: ../src/Tutorial/Functions2.md:646
+#, fuzzy, no-wrap
+msgid ""
 "zipEitherWith'' :  {0 a : _}\n"
 "                -> {0 b : _}\n"
 "                -> {0 c : _}\n"
@@ -1582,7 +1702,6 @@ msgid ""
 "                -> Either e a\n"
 "                -> Either e b\n"
 "                -> Either e c\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "zipEitherWith''：{0 a：_}\n"
@@ -1602,14 +1721,12 @@ msgid "Consider the following contrived example:"
 msgstr "考虑以下人为设计的示例："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:663
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:659
+#, fuzzy, no-wrap
 msgid ""
-"```idris foo : Integer -> String foo n = show (the (Either String Integer) "
-"(Right n))  ```"
-msgstr ""
-"```idris foo : Integer -> String foo n = show (the (Either String Integer) "
-"(Right n)) ```"
+"foo : Integer -> String\n"
+"foo n = show (the (Either String Integer) (Right n))\n"
+msgstr "```idris foo : Integer -> String foo n = show (the (Either String Integer) (Right n)) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:669
@@ -1625,14 +1742,12 @@ msgstr ""
 "`Either` 本身就很明显了！让我们摆脱不必要的噪音："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:674
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:670
+#, fuzzy, no-wrap
 msgid ""
-"```idris foo' : Integer -> String foo' n = show (the (_ String _) (Right "
-"n))  ```"
-msgstr ""
-"```idris foo' : Integer -> String foo' n = show (the (_ String _) (Right n)) "
-"```"
+"foo' : Integer -> String\n"
+"foo' n = show (the (_ String _) (Right n))\n"
+msgstr "```idris foo' : Integer -> String foo' n = show (the (_ String _) (Right n)) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:680
@@ -1646,10 +1761,10 @@ msgstr ""
 "请注意，在 `foo'` 中使用下划线并不总是可取的，因为它会极大地混淆编写的代码。"
 "始终使用方便的语法来使代码更具可读性，而不是向人们展示你有多聪明。"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:682
-#, fuzzy
-msgid "## Programming with Holes"
+#. type: Title ##
+#: ../src/Tutorial/Functions2.md:681
+#, fuzzy, no-wrap
+msgid "Programming with Holes"
 msgstr "## 孔编程"
 
 #. type: Plain text
@@ -1701,15 +1816,13 @@ msgid "Here's the type of the function:"
 msgstr "这是函数的类型："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:713
+#: ../src/Tutorial/Functions2.md:707
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "traverseEither :  Semigroup e\n"
 "               => (a -> Either e b)\n"
 "               -> List a\n"
 "               -> Either e (List b)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "traverseEither : 半群 e\n"
@@ -1732,9 +1845,9 @@ msgstr ""
 "现："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:722
-#, fuzzy
-msgid "```repl traverseEither fun as = ?impl ```"
+#: ../src/Tutorial/Functions2.md:719
+#, fuzzy, no-wrap
+msgid "traverseEither fun as = ?impl\n"
 msgstr "```repl traverseEither fun as = ?impl ```"
 
 #. type: Plain text
@@ -1748,14 +1861,12 @@ msgstr ""
 "* 元变量*："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:731
+#: ../src/Tutorial/Functions2.md:726
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Functions2> :m\n"
 "1 hole:\n"
 "  Tutorial.Functions2.impl : Either e (List b)\n"
-"```\n"
 msgstr ""
 "```repl\n"
 "Tutorial.Functions2> :m\n"
@@ -1772,10 +1883,9 @@ msgid ""
 msgstr "接下来，我们要显示洞的类型（包括周围上下文中的所有变量及其类型）："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:742
+#: ../src/Tutorial/Functions2.md:735
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Functions2> :t impl\n"
 " 0 b : Type\n"
 " 0 a : Type\n"
@@ -1783,6 +1893,7 @@ msgid ""
 "   as : List a\n"
 "   fun : a -> Either e b\n"
 "------------------------------\n"
+"impl : Either e (List b)\n"
 msgstr ""
 "```回复\n"
 "Tutorial.Functions2> :t impl\n"
@@ -1792,12 +1903,6 @@ msgstr ""
 "   如：列出一个\n"
 "   有趣：a -> 要么 e b\n"
 "------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:745
-#, fuzzy
-msgid "impl : Either e (List b)  ```"
-msgstr "impl : e (List b) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:750
@@ -1823,13 +1928,11 @@ msgstr ""
 "有意义。因此，我们应该从列表中的模式匹配开始："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:759
+#: ../src/Tutorial/Functions2.md:755
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "traverseEither fun []        = ?impl_0\n"
 "traverseEither fun (x :: xs) = ?impl_1\n"
-"```\n"
 msgstr ""
 "```repl\n"
 "traverseEither fun [] = ?impl_0\n"
@@ -1847,16 +1950,16 @@ msgstr ""
 "果："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:769
+#: ../src/Tutorial/Functions2.md:763
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Functions2> :t impl_0\n"
 " 0 b : Type\n"
 " 0 a : Type\n"
 " 0 e : Type\n"
 "   fun : a -> Either e b\n"
 "------------------------------\n"
+"impl_0 : Either e (List b)\n"
 msgstr ""
 "```回复\n"
 "Tutorial.Functions2> :t impl_0\n"
@@ -1865,12 +1968,6 @@ msgstr ""
 " 0 e : 类型\n"
 "   有趣：a -> 要么 e b\n"
 "------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:772
-#, fuzzy
-msgid "impl_0 : Either e (List b)  ```"
-msgstr "impl_0 : e (List b) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:779
@@ -1889,12 +1986,9 @@ msgstr ""
 "*only* 选项是将 `impl_0` 替换为包含在 `Right` 中的空列表："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:783
+#: ../src/Tutorial/Functions2.md:780
 #, fuzzy, no-wrap
-msgid ""
-"```idris\n"
-"traverseEither fun []        = Right []\n"
-"```\n"
+msgid "traverseEither fun []        = Right []\n"
 msgstr ""
 "```伊德里斯\n"
 "traverseEither fun [] = Right []\n"
@@ -1909,10 +2003,9 @@ msgid ""
 msgstr "非空的情况当然稍微多一些。这是 `?impl_1` 的上下文："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:795
+#: ../src/Tutorial/Functions2.md:787
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Functions2> :t impl_1\n"
 " 0 b : Type\n"
 " 0 a : Type\n"
@@ -1921,6 +2014,7 @@ msgid ""
 "   xs : List a\n"
 "   fun : a -> Either e b\n"
 "------------------------------\n"
+"impl_1 : Either e (List b)\n"
 msgstr ""
 "```回复\n"
 "Tutorial.Functions2> :t impl_1\n"
@@ -1931,12 +2025,6 @@ msgstr ""
 "   xs ：列出一个\n"
 "   有趣：a -> 要么 e b\n"
 "------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:798
-#, fuzzy
-msgid "impl_1 : Either e (List b)  ```"
-msgstr "impl_1 : e (List b) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:810
@@ -1960,14 +2048,12 @@ msgstr ""
 "行这两项操作，并通过将两者包装在 `Pair` 中来分析单个模式匹配中的结果："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:816
+#: ../src/Tutorial/Functions2.md:811
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "traverseEither fun (x :: xs) =\n"
 "  case (fun x, traverseEither fun xs) of\n"
 "   p => ?impl_2\n"
-"```\n"
 msgstr ""
 "```repl\n"
 "traverseEither fun (x :: xs) =\n"
@@ -1982,10 +2068,9 @@ msgid "Once again, we inspect the context:"
 msgstr "我们再次检查上下文："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:828
+#: ../src/Tutorial/Functions2.md:819
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Functions2> :t impl_2\n"
 " 0 b : Type\n"
 " 0 a : Type\n"
@@ -1995,6 +2080,7 @@ msgid ""
 "   x : a\n"
 "   p : (Either e b, Either e (List b))\n"
 "------------------------------\n"
+"impl_2 : Either e (List b)\n"
 msgstr ""
 "```回复\n"
 "Tutorial.Functions2> :t impl_2\n"
@@ -2008,12 +2094,6 @@ msgstr ""
 "------------------------------\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:831
-#, fuzzy
-msgid "impl_2 : Either e (List b)  ```"
-msgstr "impl_2 : e (List b) ```"
-
-#. type: Plain text
 #: ../src/Tutorial/Functions2.md:834
 #, fuzzy
 msgid ""
@@ -2022,17 +2102,15 @@ msgid ""
 msgstr "我们肯定需要在对 `p` 上进行模式匹配，以确定两个计算中的哪一个成功："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:843
+#: ../src/Tutorial/Functions2.md:835
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "traverseEither fun (x :: xs) =\n"
 "  case (fun x, traverseEither fun xs) of\n"
 "    (Left y, Left z)   => ?impl_6\n"
 "    (Left y, Right _)  => ?impl_7\n"
 "    (Right _, Left z)  => ?impl_8\n"
 "    (Right y, Right z) => ?impl_9\n"
-"```\n"
 msgstr ""
 "```repl\n"
 "traverseEither fun (x :: xs) =\n"
@@ -2055,10 +2133,9 @@ msgstr ""
 "发生），所以我们将快速检查我们的目标是什么："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:858
+#: ../src/Tutorial/Functions2.md:848
 #, fuzzy, no-wrap
 msgid ""
-"```repl\n"
 "Tutorial.Functions2> :t impl_6\n"
 " 0 b : Type\n"
 " 0 a : Type\n"
@@ -2069,6 +2146,7 @@ msgid ""
 "   y : e\n"
 "   z : e\n"
 "------------------------------\n"
+"impl_6 : Either e (List b)\n"
 msgstr ""
 "```回复\n"
 "Tutorial.Functions2> :t impl_6\n"
@@ -2081,12 +2159,6 @@ msgstr ""
 "   是：e\n"
 "   z : e\n"
 "------------------------------\n"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:861
-#, fuzzy
-msgid "impl_6 : Either e (List b)  ```"
-msgstr "impl_6 : e (List b) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:868
@@ -2103,17 +2175,15 @@ msgstr ""
 "以类似的方式处理其他情况，记住我们应该返回 `Right`，当且仅当所有转换都成功："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:877
+#: ../src/Tutorial/Functions2.md:869
 #, fuzzy, no-wrap
 msgid ""
-"```idris\n"
 "traverseEither fun (x :: xs) =\n"
 "  case (fun x, traverseEither fun xs) of\n"
 "    (Left y, Left z)   => Left (y <+> z)\n"
 "    (Left y, Right _)  => Left y\n"
 "    (Right _, Left z)  => Left z\n"
 "    (Right y, Right z) => Right (y :: z)\n"
-"```\n"
 msgstr ""
 "```伊德里斯\n"
 "traverseEither fun (x :: xs) =\n"
@@ -2131,21 +2201,23 @@ msgid "To reap the fruits of our labour, let's show off with a small example:"
 msgstr "为了收获我们的劳动成果，让我们用一个小例子来炫耀一下："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:882
-#, fuzzy
-msgid "```idris data Nucleobase = Adenine | Cytosine | Guanine | Thymine"
-msgstr "```idris 数据 核碱基 = 腺嘌呤 |胞嘧啶 |鸟嘌呤 |胸腺嘧啶"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:889
+#: ../src/Tutorial/Functions2.md:880
 #, fuzzy, no-wrap
 msgid ""
+"data Nucleobase = Adenine | Cytosine | Guanine | Thymine\n"
+"\n"
 "readNucleobase : Char -> Either (List String) Nucleobase\n"
 "readNucleobase 'A' = Right Adenine\n"
 "readNucleobase 'C' = Right Cytosine\n"
 "readNucleobase 'G' = Right Guanine\n"
 "readNucleobase 'T' = Right Thymine\n"
 "readNucleobase c   = Left [\"Unknown nucleobase: \" ++ show c]\n"
+"\n"
+"DNA : Type\n"
+"DNA = List Nucleobase\n"
+"\n"
+"readDNA : String -> Either (List String) DNA\n"
+"readDNA = traverseEither readNucleobase . unpack\n"
 msgstr ""
 "readNucleobase : Char -> Either (List String) Nucleobase\n"
 "readNucleobase 'A' = 右腺嘌呤\n"
@@ -2155,43 +2227,25 @@ msgstr ""
 "readNucleobase c = Left [\"未知核碱基：\" ++ show c]\n"
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:892
-#, fuzzy
-msgid "DNA : Type DNA = List Nucleobase"
-msgstr "DNA：类型 DNA = 列出核碱基"
-
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:896
-#, fuzzy
-msgid ""
-"readDNA : String -> Either (List String) DNA readDNA = traverseEither "
-"readNucleobase . unpack ```"
-msgstr ""
-"readDNA : String -> Either (List String) DNA readDNA = traverseEither "
-"readNucleobase 。解压```"
-
-#. type: Plain text
 #: ../src/Tutorial/Functions2.md:898
 #, fuzzy
 msgid "Let's try this at the REPL:"
 msgstr "让我们在 REPL 上试试这个："
 
 #. type: Plain text
-#: ../src/Tutorial/Functions2.md:905
-#, fuzzy
+#: ../src/Tutorial/Functions2.md:899
+#, fuzzy, no-wrap
 msgid ""
-"```repl Tutorial.Functions2> readDNA \"CGTTA\" Right [Cytosine, Guanine, "
-"Thymine, Thymine, Adenine] Tutorial.Functions2> readDNA \"CGFTAQ\" Left "
-"[\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q'\"] ```"
-msgstr ""
-"```repl Tutorial.Functions2> readDNA \"CGTTA\" Right [Cytosine, Guanine, "
-"Thymine, Thymine, Adenine] Tutorial.Functions2> readDNA \"CGFTAQ\" Left "
-"[\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q' \"] ```"
+"Tutorial.Functions2> readDNA \"CGTTA\"\n"
+"Right [Cytosine, Guanine, Thymine, Thymine, Adenine]\n"
+"Tutorial.Functions2> readDNA \"CGFTAQ\"\n"
+"Left [\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q'\"]\n"
+msgstr "```repl Tutorial.Functions2> readDNA \"CGTTA\" Right [Cytosine, Guanine, Thymine, Thymine, Adenine] Tutorial.Functions2> readDNA \"CGFTAQ\" Left [\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q' \"] ```"
 
-#. type: Plain text
-#: ../src/Tutorial/Functions2.md:907
-#, fuzzy
-msgid "### Interactive Editing"
+#. type: Title ###
+#: ../src/Tutorial/Functions2.md:906
+#, fuzzy, no-wrap
+msgid "Interactive Editing"
 msgstr "### 交互式编辑"
 
 #. type: Plain text

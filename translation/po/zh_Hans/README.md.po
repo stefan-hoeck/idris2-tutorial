@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 22:34+0800\n"
+"POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 14:52+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -20,12 +20,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:2
-msgid "> [Chinese Translation](translation/README.md)"
+#, fuzzy, no-wrap
+#| msgid "> [Chinese Translation](translation/README.md)"
+msgid "> [Chinese Translation](translation/README.md)\n"
 msgstr " "
 
-#. type: Plain text
-#: ../README.md:4
-msgid "# Functional Programming in Idris 2"
+#. type: Title #
+#: ../README.md:3
+#, fuzzy, no-wrap
+#| msgid "# Functional Programming in Idris 2"
+msgid "Functional Programming in Idris 2"
 msgstr "# Idris 2 中的函数式编程"
 
 #. type: Plain text
@@ -63,14 +67,18 @@ msgstr ""
 "目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学"
 "生身上进行尝试，其中一些对函数式编程来说是纯萌新。"
 
-#. type: Plain text
-#: ../README.md:24
-msgid "## Table of Contents"
+#. type: Title ##
+#: ../README.md:23
+#, fuzzy, no-wrap
+#| msgid "## Table of Contents"
+msgid "Table of Contents"
 msgstr "## 目录"
 
-#. type: Plain text
-#: ../README.md:26
-msgid "### Part 1: Core Language Features"
+#. type: Title ###
+#: ../README.md:25
+#, fuzzy, no-wrap
+#| msgid "### Part 1: Core Language Features"
+msgid "Part 1: Core Language Features"
 msgstr "### 第 1 部分：核心语言功能"
 
 #. type: Plain text
@@ -237,9 +245,11 @@ msgstr ""
 "    3. [整数](src/Tutorial/Prim.md#integers)\n"
 "    4. [改进原语](src/Tutorial/Prim.md#refined-primitives)\n"
 
-#. type: Plain text
-#: ../README.md:107
-msgid "### Part 2: Appendices"
+#. type: Title ###
+#: ../README.md:106
+#, fuzzy, no-wrap
+#| msgid "### Part 2: Appendices"
+msgid "Part 2: Appendices"
 msgstr "### 第 2 部分：附录"
 
 #. type: Plain text
@@ -257,9 +267,11 @@ msgstr ""
 msgid "[Interactive Editing in Neovim](src/Appendices/Neovim.md)"
 msgstr "[Neovim 中的交互式编辑](src/Appendices/Neovim.md)"
 
-#. type: Plain text
-#: ../README.md:116
-msgid "## Prerequisites"
+#. type: Title ##
+#: ../README.md:115
+#, fuzzy, no-wrap
+#| msgid "## Prerequisites"
+msgid "Prerequisites"
 msgstr "## 先决条件"
 
 #. type: Plain text
