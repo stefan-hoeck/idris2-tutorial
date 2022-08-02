@@ -1,4 +1,4 @@
->  [《Idris 2 中的函数式编程》中文版](translation/README.md
+> [Chinese Translation](translation/README.md)
 
 # Functional Programming in Idris 2
 
