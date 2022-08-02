@@ -133,9 +133,9 @@ msgid ""
 "matching, parametric polymorphism (generic types and functions), and ad hoc "
 "polymorphism (interfaces and constrained functions)."
 msgstr ""
-"到目前为止，我们了解了 Idris 语言的核心特性，它与其他几种纯的强类型编程语言（"
-"如 Haskell）有共同之处：（高阶）函数、代数数据类型、模式匹配、参数多态性（泛"
-"型类型和函数）和临时多态性（接口和约束函数）。"
+"到目前为止，我们了解了 Idris 语言的核心特性，它与其他几种纯的强类型编程语言"
+"（如 Haskell）有共同之处：（高阶）函数、代数数据类型、模式匹配、参数多态性"
+"（泛型类型和函数）和临时多态性（接口和约束函数）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:15
@@ -147,10 +147,9 @@ msgid ""
 "which help us implement functions too complex to fit on a single line of "
 "code. Let's get started!"
 msgstr ""
-"在本章中，我们开始真正剖析 Idris "
-"函数及其类型。我们了解隐式参数、命名参数以及擦除和数量。但首先，我们将看看 "
-"`let` 绑定和 `where` "
-"块，它们可以帮助我们实现过于复杂而无法在一行代码中放置的函数。让我们开始吧！"
+"在本章中，我们开始真正剖析 Idris 函数及其类型。我们了解隐式参数、命名参数以及"
+"擦除和数量。但首先，我们将看看 `let` 绑定和 `where` 块，它们可以帮助我们实现"
+"过于复杂而无法在一行代码中放置的函数。让我们开始吧！"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:18
@@ -191,7 +190,8 @@ msgid ""
 "In this example, we'd like to calculate the arithmetic mean and the standard "
 "deviation of a list of floating point values.  There are several things we "
 "need to consider."
-msgstr "在此示例中，我们要计算浮点值列表的算术平均值和标准差。我们需要考虑几件事。"
+msgstr ""
+"在此示例中，我们要计算浮点值列表的算术平均值和标准差。我们需要考虑几件事。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:41
@@ -199,7 +199,8 @@ msgstr "在此示例中，我们要计算浮点值列表的算术平均值和标
 msgid ""
 "First, we need a function for calculating the sum of a list of numeric "
 "values. The *Prelude* exports function `sum` for this:"
-msgstr "首先，我们需要一个函数来计算数值列表的总和。 *Prelude* 为此导出函数 `sum`："
+msgstr ""
+"首先，我们需要一个函数来计算数值列表的总和。 *Prelude* 为此导出函数 `sum`："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:46
@@ -216,9 +217,8 @@ msgid ""
 "`Foldable` implementation. We will learn about interface `Foldable` in a "
 "later section."
 msgstr ""
-"这 - 当然 - 类似于 [最后一节](Interfaces.md) 的练习 10 中的 `sumList`，"
-"但推广到具有 `Foldable` 实现的所有容器类型。我们将在后面的部分了解接口 "
-"`Foldable`。"
+"这 - 当然 - 类似于 [最后一节](Interfaces.md) 的练习 10 中的 `sumList`，但推广"
+"到具有 `Foldable` 实现的所有容器类型。我们将在后面的部分了解接口 `Foldable`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:62
@@ -234,9 +234,9 @@ msgid ""
 msgstr ""
 "为了也计算方差，我们需要将列表中的每个值转换为一个新值，因为我们必须从列表中"
 "的每个值中减去平均值并将结果平方。在上一节的练习中，我们为此定义了函数 "
-"`mapList`。 *Prelude* - 当然 - 已经导出了一个名为 `map` 的类似函数，"
-"它再次更通用并且也像我们的 `mapMaybe` 用于 `Maybe[X411X ] 和 `mapEither` "
-"用于 ` 或 e`。这是它的类型："
+"`mapList`。 *Prelude* - 当然 - 已经导出了一个名为 `map` 的类似函数，它再次更"
+"通用并且也像我们的 `mapMaybe` 用于 `Maybe[X411X ] 和 `mapEither` 用于 ` 或 "
+"e`。这是它的类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:67
@@ -278,12 +278,11 @@ msgid ""
 "like* types specially, and replaces them with primitive integers during code "
 "generation."
 msgstr ""
-"这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` "
-"实际上不是原始数据类型，而是在 *Prelude* 中使用数据构造函数 `Z "
-"定义的求和类型： Nat` （为零）和 `S ： Nat -> "
-"Nat`（后继）。以这种方式定义自然数似乎效率极低，但 Idris "
-"编译器会特别处理这些类型和其他几个 * 类数字 * "
-"类型，并在代码生成期间将它们替换为原始整数。"
+"这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` 实际上不是原始数据类"
+"型，而是在 *Prelude* 中使用数据构造函数 `Z 定义的求和类型： Nat` （为零）和 "
+"`S ： Nat -> Nat`（后继）。以这种方式定义自然数似乎效率极低，但 Idris 编译器"
+"会特别处理这些类型和其他几个 * 类数字 * 类型，并在代码生成期间将它们替换为原"
+"始整数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:93
@@ -294,9 +293,9 @@ msgid ""
 "record type instead of just returning a tuple of `Double`s. This makes it "
 "clearer, which floating point number corresponds to which statistic entity:"
 msgstr ""
-"我们现在已经准备好执行 `mean` 了。由于这是 "
-"Idris，并且我们关心清晰的语义，我们将快速定义自定义记录类型，而不是仅仅返回 "
-"`Double`s 的元组。这样就更清楚了，哪个浮点数对应哪个统计实体："
+"我们现在已经准备好执行 `mean` 了。由于这是 Idris，并且我们关心清晰的语义，我"
+"们将快速定义自定义记录类型，而不是仅仅返回 `Double`s 的元组。这样就更清楚了，"
+"哪个浮点数对应哪个统计实体："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:97
@@ -369,13 +368,12 @@ msgid ""
 "alignment of assignment operators `:=` is optional. I do this, since I "
 "thinks it helps readability."
 msgstr ""
-"似乎有效，所以让我们一步一步消化这个。我们引入了几个新的局部变量（`len`、`mea"
-"n` 和 `variance`），它们都将在余下的实现中多次使用。为此，我们使用 `let` "
-"绑定。这包括 `let` 关键字，后跟一个或多个变量赋值，然后是最终表达式，"
-"它必须以 `in` "
-"为前缀。请注意，空格再次很重要：我们需要正确对齐三个变量名。继续，"
-"试试如果删除 `mean` 或 `variance` 前面的空格会发生什么。另请注意，赋值运算符 "
-"`:=` 的对齐方式是可选的。我这样做是因为我认为它有助于提高可读性。"
+"似乎有效，所以让我们一步一步消化这个。我们引入了几个新的局部变量（`len`、"
+"`mean` 和 `variance`），它们都将在余下的实现中多次使用。为此，我们使用 `let` "
+"绑定。这包括 `let` 关键字，后跟一个或多个变量赋值，然后是最终表达式，它必须"
+"以 `in` 为前缀。请注意，空格再次很重要：我们需要正确对齐三个变量名。继续，试"
+"试如果删除 `mean` 或 `variance` 前面的空格会发生什么。另请注意，赋值运算符 `:"
+"=` 的对齐方式是可选的。我这样做是因为我认为它有助于提高可读性。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:149
@@ -393,13 +391,13 @@ msgid ""
 "the result. We then sum up the new terms and divide again by the number of "
 "values."
 msgstr ""
-"让我们快速看看不同的变量及其类型。 `len` 是转换为 `Double` "
-"的列表的长度，因为这是稍后需要的，我们将 `Double` 类型的其他值除以长度。 "
-"Idris 对此非常严格：我们不允许在没有显式转换的情况下混合数字类型。请注意，在"
-"这种情况下，Idris 能够从周围的上下文 * 推断 * `len` 的类型。 `mean` 很简单："
-"我们 `sum` 将存储在列表中的值相加并除以列表的长度。 `variance` 是三个中涉及最"
-"多的一个：我们使用匿名函数将列表中的每个项目映射到一个新值，以减去均值并平方"
-"结果。然后我们将新项相加并再次除以值的数量。"
+"让我们快速看看不同的变量及其类型。 `len` 是转换为 `Double` 的列表的长度，因为"
+"这是稍后需要的，我们将 `Double` 类型的其他值除以长度。 Idris 对此非常严格：我"
+"们不允许在没有显式转换的情况下混合数字类型。请注意，在这种情况下，Idris 能够"
+"从周围的上下文 * 推断 * `len` 的类型。 `mean` 很简单：我们 `sum` 将存储在列表"
+"中的值相加并除以列表的长度。 `variance` 是三个中涉及最多的一个：我们使用匿名"
+"函数将列表中的每个项目映射到一个新值，以减去均值并平方结果。然后我们将新项相"
+"加并再次除以值的数量。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:151
@@ -414,7 +412,8 @@ msgid ""
 "In the second use case, we are going to write a slightly larger application. "
 "This should give you an idea about how to design data types and functions "
 "around some business logic you'd like to implement."
-msgstr "在第二个用例中，我们将编写一个稍大的应用程序。这应该让您了解如何围绕您想要实"
+msgstr ""
+"在第二个用例中，我们将编写一个稍大的应用程序。这应该让您了解如何围绕您想要实"
 "现的某些业务逻辑设计数据类型和功能。"
 
 #. type: Plain text
@@ -424,7 +423,8 @@ msgid ""
 "Assume we run a music streaming web server, where users can buy whole albums "
 "and listen to them online. We'd like to simulate a user connecting to the "
 "server and getting access to one of the albums they bought."
-msgstr "假设我们运行一个音乐流网络服务器，用户可以在其中购买整张专辑并在线收听。我们"
+msgstr ""
+"假设我们运行一个音乐流网络服务器，用户可以在其中购买整张专辑并在线收听。我们"
 "想模拟一个用户连接到服务器并访问他们购买的一张专辑。"
 
 #. type: Plain text
@@ -526,12 +526,13 @@ msgid ""
 "very useful for this. Don't forget to inspect its type at the REPL, and try "
 "to understand what's going on here."
 msgstr ""
-"其中大部分应该是不言自明的。但是请注意，在某些情况下（`Email`、`Artist`、`Pas"
-"sword`）我们将单个值包装在新的记录类型中。当然，我们 * 可以 * 使用未包装的 "
-"`String` 类型，但我们最终会得到许多 `String` 字段，这很难消除歧义。为了不将电"
-"子邮件字符串与密码字符串混淆，因此将它们都包装在新的记录类型中会有所帮助，以"
-"大大提高类型安全性，但代价是必须重新实现某些接口。 *Prelude* 中的实用函数 "
-"`on` 对此非常有用。不要忘记在 REPL 中检查它的类型，并尝试了解这里发生了什么。"
+"其中大部分应该是不言自明的。但是请注意，在某些情况下（`Email`、`Artist`、"
+"`Password`）我们将单个值包装在新的记录类型中。当然，我们 * 可以 * 使用未包装"
+"的 `String` 类型，但我们最终会得到许多 `String` 字段，这很难消除歧义。为了不"
+"将电子邮件字符串与密码字符串混淆，因此将它们都包装在新的记录类型中会有所帮"
+"助，以大大提高类型安全性，但代价是必须重新实现某些接口。 *Prelude* 中的实用函"
+"数 `on` 对此非常有用。不要忘记在 REPL 中检查它的类型，并尝试了解这里发生了什"
+"么。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:205
@@ -633,9 +634,9 @@ msgid ""
 "some kind of connection to start the actual album stream, but we just wrap "
 "up the album we found to simulate this behavior."
 msgstr ""
-"对于服务器响应，我们使用自定义 sum "
-"类型来编码客户端请求的可能结果。在实践中，`Success` 案例会返回某种连接来启动"
-"实际的专辑流，但我们只是包装我们找到的专辑来模拟这种行为。"
+"对于服务器响应，我们使用自定义 sum 类型来编码客户端请求的可能结果。在实践中，"
+"`Success` 案例会返回某种连接来启动实际的专辑流，但我们只是包装我们找到的专辑"
+"来模拟这种行为。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:248
@@ -644,7 +645,8 @@ msgid ""
 "We can now go ahead and simulate the handling of a request at the server. To "
 "emulate our user data base, a simple list of users will do. Here's the type "
 "of the function we'd like to implement:"
-msgstr "我们现在可以继续模拟在服务器上对请求的处理。为了模拟我们的用户数据库，一个简"
+msgstr ""
+"我们现在可以继续模拟在服务器上对请求的处理。为了模拟我们的用户数据库，一个简"
 "单的用户列表就可以了。这是我们要实现的函数的类型："
 
 #. type: Plain text
@@ -673,11 +675,10 @@ msgid ""
 "single-field records."
 msgstr ""
 "请注意，我们如何为 `List User` 定义一个称为 `DB` 的短别名。这通常有助于使冗长"
-"的类型签名更具可读性并在给定的上下文中传达类型的含义。但是，这将 *not* "
-"引入新类型，也不会增加类型安全性：`DB` is *identical* to `List "
-"User`，并且作为这样，类型为 `DB` 的值可以在需要 `List User` 的任何地方使用，"
-"反之亦然。因此，在更复杂的程序中，通常最好通过将值包装在单字段记录中来定义新"
-"类型。"
+"的类型签名更具可读性并在给定的上下文中传达类型的含义。但是，这将 *not* 引入新"
+"类型，也不会增加类型安全性：`DB` is *identical* to `List User`，并且作为这"
+"样，类型为 `DB` 的值可以在需要 `List User` 的任何地方使用，反之亦然。因此，在"
+"更复杂的程序中，通常最好通过将值包装在单字段记录中来定义新类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:274
@@ -691,10 +692,10 @@ msgid ""
 "`Success`. If any of the steps fails, the result will describe exactly what "
 "went wrong."
 msgstr ""
-"实现将按如下进行：它将首先尝试在数据库中通过电子邮件地址查找 `User`。如果成功"
-"，它会将提供的密码与用户的实际密码进行比较。如果两者匹配，它将在用户的专辑列"
-"表中查找请求的专辑。如果所有这些步骤都成功，结果将是 `Album` 包裹在 `Success`"
-" 中。如果任何步骤失败，结果将准确描述问题所在。"
+"实现将按如下进行：它将首先尝试在数据库中通过电子邮件地址查找 `User`。如果成"
+"功，它会将提供的密码与用户的实际密码进行比较。如果两者匹配，它将在用户的专辑"
+"列表中查找请求的专辑。如果所有这些步骤都成功，结果将是 `Album` 包裹在 "
+"`Success` 中。如果任何步骤失败，结果将准确描述问题所在。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:276
@@ -768,8 +769,8 @@ msgid ""
 msgstr ""
 "我想在这个例子中指出几件事。首先，请注意我们如何在单个模式匹配中从嵌套记录中"
 "提取值。其次，我们在 `where` 块中定义了两个 *local* 函数：`lookupUser` 和 "
-"`lookupAlbum`。这两者都可以访问周围范围内的所有变量。例如，`lookupUser` "
-"在实现的第一行中使用来自模式匹配的 `album` 变量。同样，`lookupAlbum` 使用 "
+"`lookupAlbum`。这两者都可以访问周围范围内的所有变量。例如，`lookupUser` 在实"
+"现的第一行中使用来自模式匹配的 `album` 变量。同样，`lookupAlbum` 使用 "
 "`album` 变量。"
 
 #. type: Plain text
@@ -781,8 +782,8 @@ msgid ""
 "block. These need to be explicitly typed and indented by the same amount of "
 "whitespace."
 msgstr ""
-"`where` 块引入了新的局部定义，只能从周围范围和稍后在同一 `where` "
-"块中定义的其他函数访问。这些需要以相同数量的空格显式键入和缩进。"
+"`where` 块引入了新的局部定义，只能从周围范围和稍后在同一 `where` 块中定义的其"
+"他函数访问。这些需要以相同数量的空格显式键入和缩进。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:318
@@ -795,11 +796,10 @@ msgid ""
 "`handleRequest` with local definitions introduced by the `let` keyword. "
 "Again, all definitions have to be properly typed and indented:"
 msgstr ""
-"局部定义也可以通过使用 `let` 关键字在 * 函数实现之前引入 *。 `let` "
-"的这种用法不要与上面描述的 *let bindings* "
-"混淆，后者用于绑定和重用中间计算的结果。下面是我们如何使用 `let` "
-"关键字引入的本地定义来实现 "
-"`handleRequest`。同样，所有定义都必须正确输入和缩进："
+"局部定义也可以通过使用 `let` 关键字在 * 函数实现之前引入 *。 `let` 的这种用法"
+"不要与上面描述的 *let bindings* 混淆，后者用于绑定和重用中间计算的结果。下面"
+"是我们如何使用 `let` 关键字引入的本地定义来实现 `handleRequest`。同样，所有定"
+"义都必须正确输入和缩进："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:326
@@ -870,8 +870,9 @@ msgid ""
 "The exercises in this section are supposed to increase you experience in "
 "writing purely functional code. In some cases it might be useful to use "
 "`let` expressions or `where` blocks, but this will not always be required."
-msgstr "本节中的练习旨在增加您编写纯函数式代码的经验。在某些情况下，使用 `let` "
-"表达式或 `where` 块可能很有用，但这并不总是必需的。"
+msgstr ""
+"本节中的练习旨在增加您编写纯函数式代码的经验。在某些情况下，使用 `let` 表达式"
+"或 `where` 块可能很有用，但这并不总是必需的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:350
@@ -907,9 +908,9 @@ msgid ""
 "Note, that this function might fail, so adjust the result type accordingly."
 msgstr ""
 "定义枚举类型，列出 DNA 链中出现的四个 [核碱基](https://en.wikipedia.org/wiki/"
-"Nucleobase)。还为核碱基列表定义类型别名 `DNA`。声明并实现函数 `readBase` "
-"用于将单个字符（类型 `Char`）转换为核碱基。您可以在实现中使用字符文字，如下所"
-"示：`'A'`、`'a'`。请注意，此功能可能会失败，因此请相应地调整结果类型。"
+"Nucleobase)。还为核碱基列表定义类型别名 `DNA`。声明并实现函数 `readBase` 用于"
+"将单个字符（类型 `Char`）转换为核碱基。您可以在实现中使用字符文字，如下所示："
+"`'A'`、`'a'`。请注意，此功能可能会失败，因此请相应地调整结果类型。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Functions2.md:371
@@ -1004,8 +1005,8 @@ msgid ""
 "values stored in two `Either`s via a binary function. If either of the "
 "`Either` arguments is a `Left`, the result is also a `Left`."
 msgstr ""
-"函数 `zipEitherWith` 是一个通用的高阶函数，通过二进制函数将两个 `Either` "
-"中存储的值组合在一起。如果任一 `Either` 参数是 `Left`，则结果也是 `Left`。"
+"函数 `zipEitherWith` 是一个通用的高阶函数，通过二进制函数将两个 `Either` 中存"
+"储的值组合在一起。如果任一 `Either` 参数是 `Left`，则结果也是 `Left`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:407
@@ -1016,10 +1017,10 @@ msgid ""
 "in the REPL when entering `:ti zipEitherWith` (the `i` here tells Idris to "
 "include `implicit` arguments). You will get a type similar to this:"
 msgstr ""
-"这是一个 * 泛型函数 *，带有 * 类型参数 * `a`、`b`、`c` 和 `e[ "
-"X73X]。但是，`zipEitherWith` 有一个更详细的类型，当输入 ` 时，它在 REPL "
-"中可见：ti zipEitherWith`（这里的 `i` 告诉 Idris 包含 [X236X ]implicit` "
-"参数）。你会得到一个类似这样的类型："
+"这是一个 * 泛型函数 *，带有 * 类型参数 * `a`、`b`、`c` 和 `e[ X73X]。但是，"
+"`zipEitherWith` 有一个更详细的类型，当输入 ` 时，它在 REPL 中可见：ti "
+"zipEitherWith`（这里的 `i` 告诉 Idris 包含 [X236X ]implicit` 参数）。你会得到"
+"一个类似这样的类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:418
@@ -1094,10 +1095,10 @@ msgid ""
 "arguments: It can serve as documentation, but it also allows us to pass the "
 "arguments to a function in arbitrary order when using the following syntax:"
 msgstr ""
-"这里，第一个参数的名称是 `deflt`，第二个参数是 "
-"`ma`。这些名称可以在函数的实现中重复使用，就像 `deflt` 所做的那样，但这不是强"
-"制性的：我们可以在实现中自由使用不同的名称。我们选择命名参数有几个原因：它可"
-"以用作文档，但它也允许我们在使用以下语法时以任意顺序将参数传递给函数："
+"这里，第一个参数的名称是 `deflt`，第二个参数是 `ma`。这些名称可以在函数的实现"
+"中重复使用，就像 `deflt` 所做的那样，但这不是强制性的：我们可以在实现中自由使"
+"用不同的名称。我们选择命名参数有几个原因：它可以用作文档，但它也允许我们在使"
+"用以下语法时以任意顺序将参数传递给函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:444
@@ -1171,9 +1172,9 @@ msgid ""
 "the *result type* of a function can *depend* on the *value* of one of its "
 "arguments. Here's a contrived example:"
 msgstr ""
-"对于上述用例，命名参数只是一种方便且完全可选的。但是，Idris 是一种 * "
-"依赖类型 * 编程语言：类型可以根据值计算并取决于值。例如，函数的 * 结果类型 * "
-"可以 * 取决于 * 其参数之一的 * 值 *。这是一个人为的例子："
+"对于上述用例，命名参数只是一种方便且完全可选的。但是，Idris 是一种 * 依赖类"
+"型 * 编程语言：类型可以根据值计算并取决于值。例如，函数的 * 结果类型 * 可以 "
+"* 取决于 * 其参数之一的 * 值 *。这是一个人为的例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:476
@@ -1209,10 +1210,9 @@ msgid ""
 msgstr ""
 "如果您第一次看到这样的事情，可能很难理解这里发生了什么。首先，函数 "
 "`IntOrString` 从 `Bool` 值计算 `Type`：如果参数是 `True`，则返回类型 "
-"`Integer[ X215X]，如果参数为 `False`，则返回 `String`。"
-"我们使用它来根据其布尔参数 `v` 计算函数 `intOrString` 的返回类型： 如果 `v` "
-"为 `True`，则返回类型为（根据`IntOrString True = "
-"Integer`）`Integer`，否则为`String`。"
+"`Integer[ X215X]，如果参数为 `False`，则返回 `String`。我们使用它来根据其布尔"
+"参数 `v` 计算函数 `intOrString` 的返回类型： 如果 `v` 为 `True`，则返回类型为"
+"（根据`IntOrString True = Integer`）`Integer`，否则为`String`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:493
@@ -1257,9 +1257,9 @@ msgid ""
 "parameter `a` automatically from the types of the other arguments (ignore "
 "the 0 quantity for the moment; I'll explain it in the next subsection):"
 msgstr ""
-"隐式参数是参数，编译器应该自动为我们推断和填充其值。例如，在下面的函数签名中"
-"，我们希望编译器从其他参数的类型中自动推断类型参数 `a` 的值（暂时忽略 0 "
-"数量；我将在下一小节）："
+"隐式参数是参数，编译器应该自动为我们推断和填充其值。例如，在下面的函数签名"
+"中，我们希望编译器从其他参数的类型中自动推断类型参数 `a` 的值（暂时忽略 0 数"
+"量；我将在下一小节）："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:514
@@ -1293,8 +1293,8 @@ msgid ""
 "enter the following at the REPL, Idris will fail with an error:"
 msgstr ""
 "如您所见，隐式参数包含在花括号中，与显式命名参数不同，后者包含在括号中。推断"
-"隐含参数的值并不总是可能的。例如，如果我们在 REPL 中输入以下内容，Idris "
-"将失败并出现错误："
+"隐含参数的值并不总是可能的。例如，如果我们在 REPL 中输入以下内容，Idris 将失"
+"败并出现错误："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:532
@@ -1303,8 +1303,8 @@ msgid ""
 "```repl Tutorial.Functions2> show (maybeToEither Nothing)  Error: Can't find "
 "an implementation for Show (Either String ?a).  ```"
 msgstr ""
-"```repl Tutorial.Functions2> show (maybeToEither Nothing) 错误：找不到 Show ("
-"Either String ?a) 的实现。 ```"
+"```repl Tutorial.Functions2> show (maybeToEither Nothing) 错误：找不到 Show "
+"(Either String ?a) 的实现。 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:540
@@ -1336,7 +1336,8 @@ msgstr ""
 msgid ""
 "As you can see, we use the same syntax as shown above for explicit named "
 "arguments and the two forms of argument passing can be mixed."
-msgstr "如您所见，我们对显式命名参数使用与上面所示相同的语法，并且可以混合使用两种形"
+msgstr ""
+"如您所见，我们对显式命名参数使用与上面所示相同的语法，并且可以混合使用两种形"
 "式的参数传递。"
 
 #. type: Plain text
@@ -1400,8 +1401,8 @@ msgstr ""
 "两者之间的唯一区别：在 `the` 的情况下，类型参数 `a` 是 *explicit* 参数，而在 "
 "`id` 的情况下，它是一个 *implicit* 参数。尽管这两个函数具有几乎相同的类型（和"
 "实现！），但它们的用途却截然不同：`the` 用于帮助类型推断，而 `id` 用于我们想"
-"要的任何时候返回一个参数而不修改它（在高阶函数存在的情况下，这种情况经常发生"
-"）。"
+"要的任何时候返回一个参数而不修改它（在高阶函数存在的情况下，这种情况经常发"
+"生）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:585
@@ -1409,7 +1410,8 @@ msgstr ""
 msgid ""
 "Both ways to improve type inference shown above are used quite often, and "
 "must be understood by Idris programmers."
-msgstr "上面显示的两种改进类型推断的方法都经常使用，并且 Idris 程序员必须理解。"
+msgstr ""
+"上面显示的两种改进类型推断的方法都经常使用，并且 Idris 程序员必须理解。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:587
@@ -1428,8 +1430,8 @@ msgid ""
 "possible multiplicities:"
 msgstr ""
 "最后，我们需要谈谈在本节的几个类型签名中出现的零多重性。 Idris 2 与其前身 "
-"Idris 1 不同，它基于称为 * 定量类型理论 * (QTT) 的核心语言：Idris 2 "
-"中的每个变量都与三种可能的多重性之一相关联："
+"Idris 1 不同，它基于称为 * 定量类型理论 * (QTT) 的核心语言：Idris 2 中的每个"
+"变量都与三种可能的多重性之一相关联："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions2.md:598
@@ -1463,9 +1465,9 @@ msgid ""
 "any appearance at runtime, and the computation of such a variable will never "
 "affect a program's runtime performance."
 msgstr ""
-"我们不会在这里讨论三者中最复杂的，多重性 `1`。然而，我们经常对多重性 `0` "
-"感兴趣：具有多重性 `0` 的变量仅在 * 编译时 * 相关。它不会在运行时出现，并且这"
-"样一个变量的计算永远不会影响程序的运行时性能。"
+"我们不会在这里讨论三者中最复杂的，多重性 `1`。然而，我们经常对多重性 `0` 感兴"
+"趣：具有多重性 `0` 的变量仅在 * 编译时 * 相关。它不会在运行时出现，并且这样一"
+"个变量的计算永远不会影响程序的运行时性能。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:609
@@ -1475,9 +1477,8 @@ msgid ""
 "multiplicity `0`, and will therefore be erased and is only relevant at "
 "compile time, while the `Maybe a` argument has *unrestricted* multiplicity."
 msgstr ""
-"在 `maybeToEither` 的类型签名中，我们看到类型参数 `a` 具有多重性 "
-"`0`，因此将被擦除并且仅在编译时相关，而 [ X171X]也许 ` 参数具有 * 无限制 * "
-"多重性。"
+"在 `maybeToEither` 的类型签名中，我们看到类型参数 `a` 具有多重性 `0`，因此将"
+"被擦除并且仅在编译时相关，而 [ X171X]也许 ` 参数具有 * 无限制 * 多重性。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:613
@@ -1486,8 +1487,9 @@ msgid ""
 "It is also possible to annotate explicit arguments with multiplicities, in "
 "which case the argument must again be put in parentheses. For an example, "
 "look again at the type signature of `the`."
-msgstr "也可以用多重性注释显式参数，在这种情况下，参数必须再次放在括号中。例如，"
-"再次查看 `the` 的类型签名。"
+msgstr ""
+"也可以用多重性注释显式参数，在这种情况下，参数必须再次放在括号中。例如，再次"
+"查看 `the` 的类型签名。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:615
@@ -1506,10 +1508,10 @@ msgid ""
 "Idris, which of several arguments we were planning to drop, but we can use "
 "an underscore as a placeholder instead:"
 msgstr ""
-"通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情况"
-"：包罗万象的模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，"
-"因为这会使 Idris 无法使用，我们计划删除几个参数中的哪一个，但我们可以使用下划"
-"线作为一个占位符："
+"通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情"
+"况：包罗万象的模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，因"
+"为这会使 Idris 无法使用，我们计划删除几个参数中的哪一个，但我们可以使用下划线"
+"作为一个占位符："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:629
@@ -1534,8 +1536,9 @@ msgid ""
 "But when we look at the type signature of `isRight`, we will note that type "
 "parameters `a` and `b` are also only used once, and are therefore of no "
 "importance. Let's get rid of them:"
-msgstr "但是当我们查看 `isRight` 的类型签名时，我们会注意到类型参数 `a` 和 `b` "
-"也只使用一次，因此并不重要.让我们摆脱它们："
+msgstr ""
+"但是当我们查看 `isRight` 的类型签名时，我们会注意到类型参数 `a` 和 `b` 也只使"
+"用一次，因此并不重要.让我们摆脱它们："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:639
@@ -1605,8 +1608,8 @@ msgid ""
 "```idris foo : Integer -> String foo n = show (the (Either String Integer) "
 "(Right n))  ```"
 msgstr ""
-"```idris foo : Integer -> String foo n = show (the (Either String Integer) ("
-"Right n)) ```"
+"```idris foo : Integer -> String foo n = show (the (Either String Integer) "
+"(Right n)) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:669
@@ -1617,9 +1620,9 @@ msgid ""
 "can't be inferred by Idris. Even better, the `Either` itself is obvious! "
 "Let's get rid of the unnecessary noise:"
 msgstr ""
-"由于我们将 `Integer` 包装在 `Right` 中，很明显 `Either String Integer` "
-"中的第二个参数是 `Integer`。 Idris 无法推断出只有 `String` "
-"参数。更妙的是，`Either` 本身就很明显了！让我们摆脱不必要的噪音："
+"由于我们将 `Integer` 包装在 `Right` 中，很明显 `Either String Integer` 中的第"
+"二个参数是 `Integer`。 Idris 无法推断出只有 `String` 参数。更妙的是，"
+"`Either` 本身就很明显了！让我们摆脱不必要的噪音："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:674
@@ -1670,9 +1673,9 @@ msgstr ""
 "气？是时候改变这一点了。 Idris 带有几个非常有用的交互式编辑功能。有时，编译器"
 "能够为我们实现完整的功能（如果类型足够具体）。即使这不可能，也有一个非常有用"
 "且重要的功能，当类型变得过于复杂时，它可以帮助我们：孔。孔是变量，其名称以问"
-"号为前缀。每当我们计划在以后实现某个功能时，我们都可以将它们用作占位符。此外"
-"，它们的类型以及范围内所有其他变量的类型和数量可以在 REPL（或在您的编辑器中，"
-"如果您设置了必要的插件）进行检查。让我们看看他们的行动漏洞。"
+"号为前缀。每当我们计划在以后实现某个功能时，我们都可以将它们用作占位符。此"
+"外，它们的类型以及范围内所有其他变量的类型和数量可以在 REPL（或在您的编辑器"
+"中，如果您设置了必要的插件）进行检查。让我们看看他们的行动漏洞。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:704
@@ -1687,9 +1690,9 @@ msgid ""
 "meet along the way."
 msgstr ""
 "还记得本节前面练习中的 `traverseList` 示例吗？如果这是您第一次遇到应用程序列"
-"表遍历，那么这可能是一项令人讨厌的工作。好吧，让我们让它变得更难一点。"
-"我们希望为返回 `Either e` 的函数实现相同的功能，其中 `e` 是具有 `Semigroup` "
-"实现的类型，我们希望累积我们沿途遇到的所有 `Left` 中的值。"
+"表遍历，那么这可能是一项令人讨厌的工作。好吧，让我们让它变得更难一点。我们希"
+"望为返回 `Either e` 的函数实现相同的功能，其中 `e` 是具有 `Semigroup` 实现的"
+"类型，我们希望累积我们沿途遇到的所有 `Left` 中的值。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:706
@@ -1725,8 +1728,8 @@ msgid ""
 "right hand side:"
 msgstr ""
 "现在，为了继续进行，您可能想要启动自己的 Idris 源文件，将其加载到 REPL 会话中"
-"并按照此处所述调整代码。我们要做的第一件事是编写一个在右侧有一个洞的骨架实现"
-"："
+"并按照此处所述调整代码。我们要做的第一件事是编写一个在右侧有一个洞的骨架实"
+"现："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:722
@@ -1740,7 +1743,8 @@ msgstr "```repl traverseEither fun as = ?impl ```"
 msgid ""
 "When you now go to the REPL and reload the file using command `:r`, you can "
 "enter `:m` to list all the *metavariables*:"
-msgstr "当您现在转到 REPL 并使用命令 `:r` 重新加载文件时，您可以输入 `:m` 以列出所有 "
+msgstr ""
+"当您现在转到 REPL 并使用命令 `:r` 重新加载文件时，您可以输入 `:m` 以列出所有 "
 "* 元变量*："
 
 #. type: Plain text
@@ -1803,9 +1807,9 @@ msgid ""
 "`List a` called `as`, and a function from `a` to `Either e b` called `fun`. "
 "Our goal is to come up with a value of type `Either a (List b)`."
 msgstr ""
-"因此，我们有一些已擦除的类型参数（`a`、`b` 和 `e`），类型为 `List a` "
-"的值称为 [X93X ]as`，以及从 `a` 到 ` 的函数，或者 b`，称为 `fun`。"
-"我们的目标是提出一个类型为 ` 的值，要么是 (List b)`。"
+"因此，我们有一些已擦除的类型参数（`a`、`b` 和 `e`），类型为 `List a` 的值称"
+"为 [X93X ]as`，以及从 `a` 到 ` 的函数，或者 b`，称为 `fun`。我们的目标是提出"
+"一个类型为 ` 的值，要么是 (List b)`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:754
@@ -1814,7 +1818,8 @@ msgid ""
 "We *could* just return a `Right []`, but that only make sense if our input "
 "list is indeed the empty list. We therefore should start with a pattern "
 "match on the list:"
-msgstr "我们 * 可以 * 只返回一个 `Right []`，但这只有在我们的输入列表确实是空列表时才"
+msgstr ""
+"我们 * 可以 * 只返回一个 `Right []`，但这只有在我们的输入列表确实是空列表时才"
 "有意义。因此，我们应该从列表中的模式匹配开始："
 
 #. type: Plain text
@@ -1837,8 +1842,9 @@ msgstr ""
 msgid ""
 "The result is two holes, which must be given distinct names. When inspecting "
 "`impl_0`, we get the following result:"
-msgstr "结果是两个孔，它们必须被赋予不同的名称。在检查 `impl_0` "
-"时，我们得到以下结果："
+msgstr ""
+"结果是两个孔，它们必须被赋予不同的名称。在检查 `impl_0` 时，我们得到以下结"
+"果："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:769
@@ -1877,10 +1883,10 @@ msgid ""
 "values of these either. The *only* option we have is to replace `impl_0` "
 "with an empty list wrapped in a `Right`:"
 msgstr ""
-"现在，这是一个有趣的情况。我们应该想出一个类型为 `Either e (List b)` "
-"的值，而没有任何东西可以使用。我们对 `a` 一无所知，因此我们无法提供调用 `fun`"
-" 的参数。同样，我们对 `e` 或 `b` 也一无所知，因此我们也无法生成这些值。"
-"我们拥有的 *only* 选项是将 `impl_0` 替换为包含在 `Right` 中的空列表："
+"现在，这是一个有趣的情况。我们应该想出一个类型为 `Either e (List b)` 的值，而"
+"没有任何东西可以使用。我们对 `a` 一无所知，因此我们无法提供调用 `fun` 的参"
+"数。同样，我们对 `e` 或 `b` 也一无所知，因此我们也无法生成这些值。我们拥有的 "
+"*only* 选项是将 `impl_0` 替换为包含在 `Right` 中的空列表："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:783
@@ -1946,13 +1952,12 @@ msgid ""
 "do both at the same time and analyze the results in a single pattern match "
 "by wrapping both in a `Pair`:"
 msgstr ""
-"由于 `x` 是 `a` 类型，我们可以将其用作 `fun` "
-"的参数，也可以放弃并忽略它。另一方面，`xs` 是 `List a` 类型列表的其余部分。"
-"我们可以通过递归调用 `traverseEither` 再次删除它或进一步处理它。"
-"由于目标是尝试转换 *all* 值，我们都不应该放弃。因为在两个 `Left` "
-"的情况下，我们应该累积值，我们最终还是需要运行这两个计算（调用 `fun`，"
-"并递归调用 `traverseEither`） .因此，我们可以同时进行这两项操作，"
-"并通过将两者包装在 `Pair` 中来分析单个模式匹配中的结果："
+"由于 `x` 是 `a` 类型，我们可以将其用作 `fun` 的参数，也可以放弃并忽略它。另一"
+"方面，`xs` 是 `List a` 类型列表的其余部分。我们可以通过递归调用 "
+"`traverseEither` 再次删除它或进一步处理它。由于目标是尝试转换 *all* 值，我们"
+"都不应该放弃。因为在两个 `Left` 的情况下，我们应该累积值，我们最终还是需要运"
+"行这两个计算（调用 `fun`，并递归调用 `traverseEither`） .因此，我们可以同时进"
+"行这两项操作，并通过将两者包装在 `Pair` 中来分析单个模式匹配中的结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:816
@@ -2045,7 +2050,8 @@ msgid ""
 "At this point we might have forgotten what we actually wanted to do (at "
 "least to me, this happens annoyingly often), so we'll just quickly check "
 "what our goal is:"
-msgstr "在这一点上，我们可能已经忘记了我们真正想要做什么（至少对我来说，这种情况经常"
+msgstr ""
+"在这一点上，我们可能已经忘记了我们真正想要做什么（至少对我来说，这种情况经常"
 "发生），所以我们将快速检查我们的目标是什么："
 
 #. type: Plain text
@@ -2092,10 +2098,9 @@ msgid ""
 "the other cases in a similar manner, remembering that we should return a "
 "`Right`, if and only if all conversions where successful:"
 msgstr ""
-"因此，我们仍在寻找类型为 `Either e (List b)` 的值，"
-"并且我们在范围内有两个类型为 `e` 的值。根据规范，我们希望使用 `e`s "
-"`Semigroup` 实现来累积这些。我们可以以类似的方式处理其他情况，"
-"记住我们应该返回 `Right`，当且仅当所有转换都成功："
+"因此，我们仍在寻找类型为 `Either e (List b)` 的值，并且我们在范围内有两个类型"
+"为 `e` 的值。根据规范，我们希望使用 `e`s `Semigroup` 实现来累积这些。我们可以"
+"以类似的方式处理其他情况，记住我们应该返回 `Right`，当且仅当所有转换都成功："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:877
@@ -2180,8 +2185,8 @@ msgid ""
 "[\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q'\"] ```"
 msgstr ""
 "```repl Tutorial.Functions2> readDNA \"CGTTA\" Right [Cytosine, Guanine, "
-"Thymine, Thymine, Adenine] Tutorial.Functions2> readDNA \"CGFTAQ\" Left ["
-"\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q' \"] ```"
+"Thymine, Thymine, Adenine] Tutorial.Functions2> readDNA \"CGFTAQ\" Left "
+"[\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q' \"] ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:907
@@ -2200,10 +2205,10 @@ msgid ""
 "examples of what's possible to the [appendix](../Appendices/Neovim.md). Now "
 "would be a good time to start using the utilities discussed there."
 msgstr ""
-"有一些可用于多个编辑器和编程环境的插件，它们有助于在实现您的功能时与 Idris "
-"编译器进行交互。一位深受 Idris 社区支持的编辑器是 Neovim。由于我自己是 "
-"Neovim 用户，因此我在 [附录](../Appendices/Neovim.md) "
-"中添加了一些可能的示例。现在是开始使用那里讨论的实用程序的好时机。"
+"有一些可用于多个编辑器和编程环境的插件，它们有助于在实现您的功能时与 Idris 编"
+"译器进行交互。一位深受 Idris 社区支持的编辑器是 Neovim。由于我自己是 Neovim "
+"用户，因此我在 [附录](../Appendices/Neovim.md) 中添加了一些可能的示例。现在是"
+"开始使用那里讨论的实用程序的好时机。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:923
@@ -2215,9 +2220,9 @@ msgid ""
 "This allows you to introduce new metavariables and inspect their types and "
 "context as you develop your code."
 msgstr ""
-"如果您使用不同的编辑器，可能对 Idris 编程语言的支持较少，"
-"您至少应该始终打开一个 REPL 会话，您当前正在处理的源文件被加载到该会话中。这"
-"允许您在开发代码时引入新的元变量并检查它们的类型和上下文。"
+"如果您使用不同的编辑器，可能对 Idris 编程语言的支持较少，您至少应该始终打开一"
+"个 REPL 会话，您当前正在处理的源文件被加载到该会话中。这允许您在开发代码时引"
+"入新的元变量并检查它们的类型和上下文。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:929
@@ -2226,7 +2231,8 @@ msgid ""
 "We again covered a lot of ground in this section. I can't stress enough that "
 "you should get yourselves accustomed to programming with holes and let the "
 "type checker help you figure out what to do next."
-msgstr "在本节中，我们再次涵盖了很多内容。我怎么强调都不过分，你应该让自己习惯于使用"
+msgstr ""
+"在本节中，我们再次涵盖了很多内容。我怎么强调都不过分，你应该让自己习惯于使用"
 "孔进行编程，并让类型检查器帮助你弄清楚下一步该做什么。"
 
 #. type: Plain text
@@ -2313,7 +2319,6 @@ msgid ""
 "you feel lost, add one or more holes and inspect their context to decide "
 "what to do next."
 msgstr ""
-"在[下一章]（Dependent."
-"md）中，我们将开始使用依赖类型来帮助我们编写可证明正确的代码。"
-"很好地理解如何阅读 Idris 的类型签名将是至关重要的。每当您感到迷茫时，添加一个"
-"或多个漏洞并检查其上下文以决定下一步该做什么。"
+"在[下一章]（Dependent.md）中，我们将开始使用依赖类型来帮助我们编写可证明正确"
+"的代码。很好地理解如何阅读 Idris 的类型签名将是至关重要的。每当您感到迷茫时，"
+"添加一个或多个漏洞并检查其上下文以决定下一步该做什么。"

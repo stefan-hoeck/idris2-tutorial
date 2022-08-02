@@ -222,9 +222,9 @@ msgid ""
 "Idris will try to disambiguate between these based on the types involved. "
 "Here is an example:"
 msgstr ""
-"函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris "
-"原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris "
-"将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子："
+"函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris 原生支"
+"持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris 将尝试根"
+"据所涉及的类型消除它们之间的歧义。这是一个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:12
@@ -327,8 +327,8 @@ msgid ""
 "functions, since `xs` is of type `List Integer`, which unifies only with "
 "`List a`, the argument type of `List.size`."
 msgstr ""
-"如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` "
-"类型，它仅与 `List a[ X148X]，`List.size`的参数类型。"
+"如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` 类"
+"型，它仅与 `List a[ X148X]，`List.size`的参数类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:53
@@ -343,7 +343,8 @@ msgid ""
 "While function overloading as described above works well, there are use "
 "cases, where this form of overloaded functions leads to a lot of code "
 "duplication."
-msgstr "虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量"
+msgstr ""
+"虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量"
 "代码重复。"
 
 #. type: Plain text
@@ -353,8 +354,9 @@ msgid ""
 "As an example, consider a function `cmp` (short for *compare*, which is "
 "already exported by the *Prelude*), for describing an ordering for the "
 "values of type `String`:"
-msgstr "例如，考虑一个函数 `cmp`（*compare* 的缩写，已由 *Prelude* 导出），"
-"用于描述类型 [ X158X]字符串`："
+msgstr ""
+"例如，考虑一个函数 `cmp`（*compare* 的缩写，已由 *Prelude* 导出），用于描述类"
+"型 [ X158X]字符串`："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:65
@@ -372,8 +374,8 @@ msgid ""
 "`greaterThan'`, `lessThan'`, `minimum'`, `maximum'`, and many others:"
 msgstr ""
 "我们还希望为许多其他数据类型提供类似的功能。函数重载允许我们这样做，但 `cmp` "
-"不是一个孤立的功能。从中，我们可以推导出 "
-"`greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数："
+"不是一个孤立的功能。从中，我们可以推导出 `greaterThan'`、`lessThan'`、"
+"`minimum'`、`maximum'` 等函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:74
@@ -433,7 +435,8 @@ msgid ""
 "We'd need to implement all of these again for the other types with a `cmp` "
 "function, and most if not all of these implementations would be identical to "
 "the ones written above. That's a lot of code repetition."
-msgstr "我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）"
+msgstr ""
+"我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）"
 "这些实现将与上面编写的相同。这是很多代码重复。"
 
 #. type: Plain text
@@ -444,8 +447,8 @@ msgid ""
 "could define function `minimumBy`, which takes a comparison function as its "
 "first argument and returns the smaller of the two remaining arguments:"
 msgstr ""
-"解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 "
-"`minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个："
+"解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 `minimumBy`，它"
+"将比较函数作为其第一个参数并返回剩余两个参数中较小的一个："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:107
@@ -528,9 +531,9 @@ msgid ""
 "*implementations* of this interface for types `Bits8` and `Bits16`. Note, "
 "that the `implementation` keyword is optional."
 msgstr ""
-"上面的代码定义了 *interface* `Comp` 提供函数 `comp` 用于计算类型为 `a` "
-"的两个值的排序，然后是两个 [X143X ]`Bits8` 和 `Bits16` "
-"类型接口的实现*。请注意，`implementation` 关键字是可选的。"
+"上面的代码定义了 *interface* `Comp` 提供函数 `comp` 用于计算类型为 `a` 的两个"
+"值的排序，然后是两个 [X143X ]`Bits8` 和 `Bits16` 类型接口的实现*。请注意，"
+"`implementation` 关键字是可选的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:137
@@ -540,8 +543,8 @@ msgid ""
 "`compare`, which is part of a similar interface from the *Prelude* called "
 "`Ord`."
 msgstr ""
-"`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude[ "
-"中类似接口的一部分X135X] 称为 `Ord`。"
+"`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude[ 中类似"
+"接口的一部分X135X] 称为 `Ord`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:139
@@ -571,11 +574,11 @@ msgid ""
 "come up with a value of type `Comp a` on its own, hence the new `=>` arrow.  "
 "If Idris fails to do so, it will answer with a type error."
 msgstr ""
-"`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` "
-"是类型参数 `a` 上的 *constraint*。该签名可以读作：“对于任何类型 `a`，给定 `a`"
-" 的接口 `Comp` 的实现，我们可以比较 ` 类型的两个值a` 并为这些返回一个 "
-"`Ordering`。”每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` "
-"类型的值，因此新的 `=>` 箭头。如果 Idris 没有这样做，它将返回类型错误。"
+"`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` 是类型参"
+"数 `a` 上的 *constraint*。该签名可以读作：“对于任何类型 `a`，给定 `a` 的接口 "
+"`Comp` 的实现，我们可以比较 ` 类型的两个值a` 并为这些返回一个 `Ordering`。”每"
+"当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` 类型的值，因此新"
+"的 `=>` 箭头。如果 Idris 没有这样做，它将返回类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:158
@@ -584,8 +587,9 @@ msgid ""
 "We can now use `comp` in the implementations of related functions.  All we "
 "have to do is to also prefix these derived functions with a `Comp` "
 "constraint:"
-msgstr "我们现在可以在相关函数的实现中使用`comp`。"
-"我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束："
+msgstr ""
+"我们现在可以在相关函数的实现中使用`comp`。我们所要做的就是在这些派生函数前面"
+"加上一个 `Comp` 约束："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:162
@@ -658,7 +662,8 @@ msgstr ""
 msgid ""
 "Thus, we have defined all these utility functions once and for all for every "
 "type with an implementation of interface `Comp`."
-msgstr "因此，我们用接口 `Comp` 的实现为每种类型一劳永逸地定义了所有这些实用函数。"
+msgstr ""
+"因此，我们用接口 `Comp` 的实现为每种类型一劳永逸地定义了所有这些实用函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:195
@@ -764,10 +769,9 @@ msgid ""
 "concatenation.  In such a case, we make an implementation of `Concat` a "
 "prerequisite for implementing `Empty`:"
 msgstr ""
-"一些接口形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，"
-"可能有一个名为 `Empty` "
-"的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 "
-"`Concat` 的实现作为实现 `Empty` 的先决条件："
+"一些接口形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，可能有一个"
+"名为 `Empty` 的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，"
+"我们将 `Concat` 的实现作为实现 `Empty` 的先决条件："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:237
@@ -823,9 +827,9 @@ msgid ""
 "interface `Empty`, we *must* also have an implementation of `Concat` and can "
 "invoke the corresponding functions:"
 msgstr ""
-"`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 * 先决条件 *，"
-"因为存在为 `a` 实现 `Empty`。”但这也意味着，只要我们有接口 `Empty` 的实现，"
-"我们 * 必须* 也有 `Concat` 的实现，并且可以调用相应的函数："
+"`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 * 先决条件 *，因为"
+"存在为 `a` 实现 `Empty`。”但这也意味着，只要我们有接口 `Empty` 的实现，我们 "
+"* 必须* 也有 `Concat` 的实现，并且可以调用相应的函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:260
@@ -851,8 +855,8 @@ msgid ""
 "and how in the implementation we were still able to invoke both `empty` and "
 "`concat`."
 msgstr ""
-"请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，"
-"以及在实现中我们如何仍然能够调用 `empty` 和 `连接`。"
+"请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，以及在实现中"
+"我们如何仍然能够调用 `empty` 和 `连接`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:266
@@ -870,9 +874,9 @@ msgid ""
 "itself implements `Comp`. We can constrain interface implementations with "
 "the same syntax we use for constrained functions:"
 msgstr ""
-"有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 ` "
-"实现接口 `Comp`Maybe a` 只有当类型 `a` 本身实现 `Comp` "
-"时才有意义。我们可以使用与约束函数相同的语法来约束接口实现："
+"有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 ` 实现接"
+"口 `Comp`Maybe a` 只有当类型 `a` 本身实现 `Comp` 时才有意义。我们可以使用与约"
+"束函数相同的语法来约束接口实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:281
@@ -906,11 +910,10 @@ msgid ""
 "`Comp a` constraint from the above implementation. Learning to read and "
 "understand Idris' type errors is important for fixing them."
 msgstr ""
-"这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * "
-"而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` "
-"中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，"
-"从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris "
-"的类型错误对于修复它们很重要。"
+"这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * 而不"
+"是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` 中的值。"
+"这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，从上述实现中删除 `Comp "
+"a` 约束。学习阅读和理解 Idris 的类型错误对于修复它们很重要。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:295
@@ -934,9 +937,9 @@ msgid ""
 "replace `Bits8` in the type of `maxTest` with `Bits64`, and have a look at "
 "the error message Idris produces."
 msgstr ""
-"在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8`"
-" 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris "
-"产生的错误消息。"
+"在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp "
+"Bits8` 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 "
+"Idris 产生的错误消息。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:307
@@ -959,11 +962,11 @@ msgid ""
 "of `Equals`:"
 msgstr ""
 "有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现"
-"每个函数，尽管它们 * 可以* 相互实现。例如，考虑一个接口 `Equals` "
-"用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` 和 "
-"`neq`如果不是，则返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，"
-"所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 "
-"`Equals` 的定义中给出 `neq` 的实现："
+"每个函数，尽管它们 * 可以* 相互实现。例如，考虑一个接口 `Equals` 用于比较两个"
+"值是否相等，如果两个值相等，则函数 `eq` 返回 `True` 和 `neq`如果不是，则返回 "
+"`True`。当然，我们可以用 `eq` 来实现 `neq`，所以大多数时候在实现 `Equals` "
+"时，我们只会实现后者。在这种情况下，我们可以在 `Equals` 的定义中给出 `neq` 的"
+"实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:324
@@ -995,8 +998,9 @@ msgstr ""
 msgid ""
 "If in an implementation of `Equals` we only implement `eq`, Idris will use "
 "the default implementation for `neq` as shown above:"
-msgstr "如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` "
-"的默认实现，如上所示："
+msgstr ""
+"如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` 的默认实现，如上"
+"所示："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:337
@@ -1101,7 +1105,8 @@ msgid ""
 "The Idris *Prelude* provides several interfaces plus implementations that "
 "are useful in almost every non-trivial program. I'll introduce the basic "
 "ones here. The more advanced ones will be discussed in later chapters."
-msgstr "Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我"
+msgstr ""
+"Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我"
 "将在这里介绍基本的。更高级的将在后面的章节中讨论。"
 
 #. type: Plain text
@@ -1111,7 +1116,8 @@ msgid ""
 "Most of these interfaces come with associated mathematical laws, and "
 "implementations are assumed to adhere to these laws. These laws will be "
 "given here as well."
-msgstr "这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也"
+msgstr ""
+"这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也"
 "将在这里给出。"
 
 #. type: Plain text
@@ -1132,10 +1138,10 @@ msgid ""
 "define their own data types, `Eq` is typically one of the first interfaces "
 "they implement."
 msgstr ""
-"可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 "
-"`neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 "
-"*Prelude* 中定义的大多数数据类型都带有 `Eq` "
-"的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。"
+"可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 `neq`，"
+"`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 "
+"*Prelude* 中定义的大多数数据类型都带有 `Eq` 的实现，每当程序员定义自己的数据"
+"类型时，`Eq` 通常是第一个他们实现的接口。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:391
@@ -1197,9 +1203,8 @@ msgid ""
 "non-primitive types. However, out of pragmatism this is not required when "
 "implementing `Eq`, since writing such proofs can be quite involved."
 msgstr ""
-"理论上，Idris "
-"有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 "
-"`Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。"
+"理论上，Idris 有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义"
+"考虑，在实现 `Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:412
@@ -1218,8 +1223,8 @@ msgid ""
 "`Ord` constraint, we also have access to operators `(==)` and `(/=)` and "
 "related functions."
 msgstr ""
-"*Prelude*中`Comp`的挂件是接口`Ord`。除了 `compare`，它与我们自己的 `comp` "
-"相同，它提供了比较运算符 `(>=)`、`(>)`、[ X170X](<=)` 和 `(<)`，以及效用函数 "
+"*Prelude*中`Comp`的挂件是接口`Ord`。除了 `compare`，它与我们自己的 `comp` 相"
+"同，它提供了比较运算符 `(>=)`、`(>)`、[ X170X](<=)` 和 `(<)`，以及效用函数 "
 "`max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，"
 "我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。"
 
@@ -1295,7 +1300,8 @@ msgid ""
 "or more values of a data type into a single value of the same type. Examples "
 "include but are not limited to addition or multiplication of numeric types, "
 "concatenation of sequences of data, or sequencing of computations."
-msgstr "这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。"
+msgstr ""
+"这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。"
 "示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的排序。"
 
 #. type: Plain text
@@ -1307,9 +1313,9 @@ msgid ""
 "very type safe. It would be better to use a single field record wrapping "
 "values type `Double`, to give such values clear semantics:"
 msgstr ""
-"例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` "
-"，但这不是很安全的类型。最好使用单个字段记录包装值类型 "
-"`Double`，以便为这些值提供清晰的语义："
+"例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` ，但"
+"这不是很安全的类型。最好使用单个字段记录包装值类型 `Double`，以便为这些值提供"
+"清晰的语义："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:461
@@ -1333,7 +1339,8 @@ msgstr ""
 msgid ""
 "There is a natural way for combining two distances: We sum up the values "
 "they hold. This immediately leads to an implementation of `Semigroup`:"
-msgstr "有一种结合两个距离的自然方法：我们将它们持有的值相加。这立即导致 `Semigroup` "
+msgstr ""
+"有一种结合两个距离的自然方法：我们将它们持有的值相加。这立即导致 `Semigroup` "
 "的实现："
 
 #. type: Plain text
@@ -1357,8 +1364,9 @@ msgid ""
 "It is also immediately clear, that zero is the neutral element of this "
 "operation: Adding zero to any value does not affect the value at all.  This "
 "allows us to implement `Monoid` as well:"
-msgstr "也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。"
-"这也允许我们实现 `Monoid` ："
+msgstr ""
+"也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。这也允许我们"
+"实现 `Monoid` ："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:479
@@ -1405,8 +1413,8 @@ msgid ""
 "`neutral` is the *neutral element* with relation to `(<+>)`: `neutral <+> x "
 "= x <+> neutral = x`, for all `x`."
 msgstr ""
-"`neutral` 是 *neutral element* 与 `(<+>)` 的关系： `neutral <+> x = x <+"
-">neutral = x[X95X ]，适用于所有 `x`。"
+"`neutral` 是 *neutral element* 与 `(<+>)` 的关系： `neutral <+> x = x <"
+"+>neutral = x[X95X ]，适用于所有 `x`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:491
@@ -1424,10 +1432,9 @@ msgid ""
 "of arguments in parentheses where necessary. For instance, experiment with "
 "the output of the following function at the REPL:"
 msgstr ""
-"`Show` 接口主要用于调试目的，并且应该将给定类型的值显示为字符串，"
-"通常非常类似于用于创建值的 Idris "
-"代码。这包括在必要时将参数正确包装在括号中。例如，在 REPL "
-"中试验以下函数的输出："
+"`Show` 接口主要用于调试目的，并且应该将给定类型的值显示为字符串，通常非常类似"
+"于用于创建值的 Idris 代码。这包括在必要时将参数正确包装在括号中。例如，在 "
+"REPL 中试验以下函数的输出："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:502
@@ -1475,13 +1482,12 @@ msgid ""
 "using floating point literals).  The case of integer literals is special, "
 "and will be discussed in the next section."
 msgstr ""
-"Idris 中的文字值，例如整数文字 (`12001`)、字符串文字 (`\"foo bar\"`)、"
-"浮点文字 (`12.112`) 和字符文字(`'$'`) 可以重载。这意味着，"
-"我们可以仅从字符串文字创建 `String` "
-"以外的类型的值。其具体工作原理必须等待另一部分，但对于许多常见情况，"
-"一个值足以实现接口 "
-"`FromString`（用于使用字符串文字）、`FromChar`（用于使用字符文字）或 "
-"`FromDouble` （用于使用浮点文字）。整数文字的情况很特殊，将在下一节中讨论。"
+"Idris 中的文字值，例如整数文字 (`12001`)、字符串文字 (`\"foo bar\"`)、浮点文"
+"字 (`12.112`) 和字符文字(`'$'`) 可以重载。这意味着，我们可以仅从字符串文字创"
+"建 `String` 以外的类型的值。其具体工作原理必须等待另一部分，但对于许多常见情"
+"况，一个值足以实现接口 `FromString`（用于使用字符串文字）、`FromChar`（用于使"
+"用字符文字）或 `FromDouble` （用于使用浮点文字）。整数文字的情况很特殊，将在"
+"下一节中讨论。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:531
@@ -1541,8 +1547,9 @@ msgstr ""
 msgid ""
 "In order to create a value of type `User`, even for testing, we'd have to "
 "wrap all strings using the given constructors:"
-msgstr "为了创建 `User` "
-"类型的值，即使是为了测试，我们也必须使用给定的构造函数包装所有字符串："
+msgstr ""
+"为了创建 `User` 类型的值，即使是为了测试，我们也必须使用给定的构造函数包装所"
+"有字符串："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:556
@@ -1606,7 +1613,8 @@ msgid ""
 "The *Prelude* also exports several interfaces providing the usual arithmetic "
 "operations. Below is a comprehensive list of the interfaces and the "
 "functions each provides:"
-msgstr "*Prelude* 还导出了几个提供常用算术运算的接口。下面是一个完整的接口列表和每个"
+msgstr ""
+"*Prelude* 还导出了几个提供常用算术运算的接口。下面是一个完整的接口列表和每个"
 "提供的功能："
 
 #. type: Plain text
@@ -1666,7 +1674,8 @@ msgid ""
 "As you can see: We need to implement interface `Num` to use integer literals "
 "for a given type. In order to use negative integer literals like `-12`, we "
 "also have to implement interface `Neg`."
-msgstr "如您所见：我们需要实现接口 `Num` 以对给定类型使用整数文字。为了使用像 `-12` "
+msgstr ""
+"如您所见：我们需要实现接口 `Num` 以对给定类型使用整数文字。为了使用像 `-12` "
 "这样的负整数字面量，我们还必须实现接口 `Neg`。"
 
 #. type: Plain text
@@ -1685,9 +1694,9 @@ msgid ""
 "unlike the other interfaces we looked at so far, with only one type "
 "parameter."
 msgstr ""
-"我们将在本节中快速讨论的最后一个接口是 `Cast`。它用于通过函数 `cast` "
-"将一种类型的值转换为另一种类型的值。 `Cast` 是特殊的，因为它是通过 * 两个* "
-"类型参数参数化的，这与我们目前看到的其他接口不同，只有一个类型参数。"
+"我们将在本节中快速讨论的最后一个接口是 `Cast`。它用于通过函数 `cast` 将一种类"
+"型的值转换为另一种类型的值。 `Cast` 是特殊的，因为它是通过 * 两个* 类型参数参"
+"数化的，这与我们目前看到的其他接口不同，只有一个类型参数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:614
@@ -1699,9 +1708,9 @@ msgid ""
 "Cast` at the REPL), you'll see that there are dozens of implementations for "
 "most pairings of primitive types."
 msgstr ""
-"到目前为止，`Cast`主要用于标准库中基本类型之间的相互转换，尤其是数值类型。"
-"当您查看从 *Prelude* 导出的实现时（例如，通过在 REPL 中调用 `:doc "
-"Cast`），您会看到对于大多数配对有几十个实现原始类型。"
+"到目前为止，`Cast`主要用于标准库中基本类型之间的相互转换，尤其是数值类型。当"
+"您查看从 *Prelude* 导出的实现时（例如，通过在 REPL 中调用 `:doc Cast`），您会"
+"看到对于大多数配对有几十个实现原始类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:623
@@ -1714,10 +1723,10 @@ msgid ""
 "`List` and vice versa, but not for going from `Vect n` to `List`, or for "
 "going from `List1` to `List`, although these would be just as feasible."
 msgstr ""
-"尽管 `Cast` 也可用于其他转换（用于从 `Maybe` 到 `List` 或从 `e` 到 "
-"`例如，Maybe`），*Prelude* 和 *base* 似乎没有一致地引入这些。例如，从 "
-"`SnocList` 到 `List` 有 `Cast` 实现，反之亦然，但从 `Vect n` 到 [ "
-"X351X]List`，或者从 `List1` 到 `List`，尽管这些都是可行的。"
+"尽管 `Cast` 也可用于其他转换（用于从 `Maybe` 到 `List` 或从 `e` 到 `例如，"
+"Maybe`），*Prelude* 和 *base* 似乎没有一致地引入这些。例如，从 `SnocList` 到 "
+"`List` 有 `Cast` 实现，反之亦然，但从 `Vect n` 到 [ X351X]List`，或者从 "
+"`List1` 到 `List`，尽管这些都是可行的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:629
@@ -1726,8 +1735,9 @@ msgid ""
 "These exercises are meant to make you comfortable with implementing "
 "interfaces for your own data types, as you will have to do so regularly when "
 "writing Idris code."
-msgstr "这些练习旨在让您熟悉为自己的数据类型实现接口，因为您在编写 Idris "
-"代码时必须定期这样做。"
+msgstr ""
+"这些练习旨在让您熟悉为自己的数据类型实现接口，因为您在编写 Idris 代码时必须定"
+"期这样做。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:635
@@ -1738,9 +1748,9 @@ msgid ""
 "appreciate at first.  Therefore, there are several exercises where you'll "
 "implement different instances for these."
 msgstr ""
-"虽然很清楚为什么像 `Eq`、`Ord` 或 `Num` 这样的接口很有用，但 `Semigroup` 和 `"
-"Monoid 的可用性` "
-"一开始可能更难欣赏。因此，有几个练习可以为这些练习实现不同的实例。"
+"虽然很清楚为什么像 `Eq`、`Ord` 或 `Num` 这样的接口很有用，但 `Semigroup` 和 "
+"`Monoid 的可用性` 一开始可能更难欣赏。因此，有几个练习可以为这些练习实现不同"
+"的实例。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Interfaces.md:639
@@ -1750,8 +1760,8 @@ msgid ""
 "type `Double`.  Implement interfaces `Eq`, `Num`, `Neg`, and `Fractional` "
 "for `Complex`."
 msgstr ""
-"通过配对 `Double` 类型的两个值，为复数定义记录类型 `Complex`。为 `Complex` "
-"实现接口 `Eq`、`Num`、`Neg` 和 `Fractional`。"
+"通过配对 `Double` 类型的两个值，为复数定义记录类型 `Complex`。为 `Complex` 实"
+"现接口 `Eq`、`Num`、`Neg` 和 `Fractional`。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Interfaces.md:643
@@ -1761,8 +1771,8 @@ msgid ""
 "and function `showPrec` and how these are used in the *Prelude* to implement "
 "instances for `Either` and `Maybe`."
 msgstr ""
-"为 `Complex` 实现接口 `Show`。查看数据类型 `Prec` 和函数 `showPrec` "
-"以及如何在 *Prelude* 中使用它们来实现 `Either` 和 ` 的实例]也许`。"
+"为 `Complex` 实现接口 `Show`。查看数据类型 `Prec` 和函数 `showPrec` 以及如何"
+"在 *Prelude* 中使用它们来实现 `Either` 和 ` 的实例]也许`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:647
@@ -1847,9 +1857,8 @@ msgid ""
 "corresponding neutral element. There must be no constraints on type "
 "parameter `a` in these implementations."
 msgstr ""
-"为 `First a` 实现接口 `Semigroup` 和 `Monoid`，使 `(<+>)` "
-"将返回第一个非空参数和 `neutral` 是相应的中性元素。在这些实现中，类型参数 `a`"
-" 必须没有约束。"
+"为 `First a` 实现接口 `Semigroup` 和 `Monoid`，使 `(<+>)` 将返回第一个非空参"
+"数和 `neutral` 是相应的中性元素。在这些实现中，类型参数 `a` 必须没有约束。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Interfaces.md:676
@@ -1857,7 +1866,8 @@ msgstr ""
 msgid ""
 "Repeat exercises 3 and 4 for record `Last`. The `Semigroup` implementation "
 "should return the last non-nothing value."
-msgstr "对记录 `Last` 重复练习 3 和 4。 `Semigroup` 实现应该返回最后一个非空值。"
+msgstr ""
+"对记录 `Last` 重复练习 3 和 4。 `Semigroup` 实现应该返回最后一个非空值。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:682
@@ -1884,9 +1894,9 @@ msgid ""
 "This is a very powerful way to accumulate the values stored in a list.  Use "
 "`foldMap` and `Last` to extract the last element (if any) from a list."
 msgstr ""
-"函数 `foldMap` 允许我们将返回 `Monoid` 的函数映射到值列表上，并同时使用 "
-"`(<+>)` 累加结果。这是累积存储在列表中的值的一种非常有效的方法。使用 "
-"`foldMap` 和 `Last` 从列表中提取最后一个元素（如果有）。"
+"函数 `foldMap` 允许我们将返回 `Monoid` 的函数映射到值列表上，并同时使用 `(<"
+"+>)` 累加结果。这是累积存储在列表中的值的一种非常有效的方法。使用 `foldMap` "
+"和 `Last` 从列表中提取最后一个元素（如果有）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:692
@@ -1966,7 +1976,8 @@ msgstr ""
 msgid ""
 "Implement functions `anyElem` and `allElems` using `foldMap` and `Any` or "
 "`All`, respectively:"
-msgstr "分别使用 `foldMap` 和 `Any` 或 `All` 实现函数 `anyElem` 和 `allElems`："
+msgstr ""
+"分别使用 `foldMap` 和 `Any` 或 `All` 实现函数 `anyElem` 和 `allElems`："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:719
@@ -2063,7 +2074,8 @@ msgstr ""
 msgid ""
 "Implement `sumList` and `productList` by using `foldMap` together with the "
 "wrappers from Exercise 9:"
-msgstr "通过使用 `foldMap` 和练习 9 中的包装器来实现 `sumList` 和 `productList`："
+msgstr ""
+"通过使用 `foldMap` 和练习 9 中的包装器来实现 `sumList` 和 `productList`："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:751
@@ -2096,8 +2108,8 @@ msgid ""
 "product of all values."
 msgstr ""
 "要了解 `foldMap` 的强大功能和多功能性，在解决练习 6 到 10 之后（或通过在 "
-"REPL 会话中加载 `Solutions.Inderfaces`），在 REPL 中运行以下命令，这将 "
-"-在单个列表遍历中！ - 计算列表的第一个和最后一个元素以及所有值的总和和乘积。"
+"REPL 会话中加载 `Solutions.Inderfaces`），在 REPL 中运行以下命令，这将 -在单"
+"个列表遍历中！ - 计算列表的第一个和最后一个元素以及所有值的总和和乘积。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:765
@@ -2109,8 +2121,7 @@ msgid ""
 "    ```\n"
 msgstr ""
 "    ```repl\n"
-"    > foldMap (\\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) "
-"[3,7,4,12]\n"
+"    > foldMap (\\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]\n"
 "    （MkFirst（仅 3），（MkLast（仅 12），（MkSum 26，MkProduct 1008）））\n"
 "    ```\n"
 
@@ -2143,8 +2154,8 @@ msgid ""
 "this."
 msgstr ""
 "在之前的练习中，您实现了一个表示化学元素的数据类型并编写了一个用于计算其原子"
-"质量的函数。定义一个新的单字段记录类型来表示原子质量，并实现接口 `Eq`, `Ord`"
-", `Show`, `FromDouble`, ` Semigroup` 和 `Monoid` 为此。"
+"质量的函数。定义一个新的单字段记录类型来表示原子质量，并实现接口 `Eq`, "
+"`Ord`, `Show`, `FromDouble`, ` Semigroup` 和 `Monoid` 为此。"
 
 #. type: Bullet: '13. '
 #: ../src/Tutorial/Interfaces.md:782
@@ -2152,8 +2163,9 @@ msgstr ""
 msgid ""
 "Use the new data type from exercise 12 to calculate the atomic mass of an "
 "element and compute the molecular mass of a molecule given by its formula."
-msgstr "使用练习 12 "
-"中的新数据类型来计算元素的原子质量并计算由其公式给出的分子的分子质量。"
+msgstr ""
+"使用练习 12 中的新数据类型来计算元素的原子质量并计算由其公式给出的分子的分子"
+"质量。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:785
@@ -2176,8 +2188,8 @@ msgid ""
 "traversal."
 msgstr ""
 "最后注意事项：如果您是函数式编程的新手，请确保在 REPL 中尝试您的练习 6 到 10 "
-"的实现。请注意，我们如何用最少的代码实现所有这些功能，以及如练习 11 "
-"所示，如何将这些行为组合在一个列表遍历中。"
+"的实现。请注意，我们如何用最少的代码实现所有这些功能，以及如练习 11 所示，如"
+"何将这些行为组合在一个列表遍历中。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
@@ -2216,7 +2228,8 @@ msgstr "接口实现本身可以是*约束*，需要其他实现可用。"
 msgid ""
 "Interface functions can be given a *default implementation*, which can be "
 "overridden by implementers, for instance for reasons of efficiency."
-msgstr "接口函数可以被赋予一个*默认实现*，它可以被实现者覆盖，例如出于效率的原因。"
+msgstr ""
+"接口函数可以被赋予一个*默认实现*，它可以被实现者覆盖，例如出于效率的原因。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
@@ -2235,9 +2248,8 @@ msgid ""
 "restricted set of values can be found in the chapter about [primitives](Prim."
 "md)."
 msgstr ""
-"请注意，我还没有在本节中讲述有关文字值的全部故事。"
-"关于使用只接受一组受限值的类型的文字的更多细节可以在关于 [primitives](Prim."
-"md) 的章节中找到。"
+"请注意，我还没有在本节中讲述有关文字值的全部故事。关于使用只接受一组受限值的"
+"类型的文字的更多细节可以在关于 [primitives](Prim.md) 的章节中找到。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:819
@@ -2248,5 +2260,5 @@ msgid ""
 "erased arguments as well as some constructors for implementing more complex "
 "functions."
 msgstr ""
-"在 [下一章](Functions2.md) 中，我们将仔细研究函数及其类型。我们将学习命名参数"
-"、隐式参数和擦除参数以及一些用于实现更复杂函数的构造函数。"
+"在 [下一章](Functions2.md) 中，我们将仔细研究函数及其类型。我们将学习命名参"
+"数、隐式参数和擦除参数以及一些用于实现更复杂函数的构造函数。"

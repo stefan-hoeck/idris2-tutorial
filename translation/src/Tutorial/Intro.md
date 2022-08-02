@@ -50,36 +50,26 @@ Idris 是一种强静态类型的编程语言。这意味着，给 Idris
 更重要的是，Idris 具有*依赖类型*，这是它在编程语言领域中最具特色的属性之一。在 Idris 中，类型是*
 一等*的：类型可以作为参数传递给函数，函数可以返回类型作为结果。更重要的是，类型可以*依赖于*其他*值*。这意味着什么，以及为什么这非常有用，我们将在适当的时候进行探索。
 
-### Total Functions
+### 完全函数
 
-A *total* function is a pure function, that is guaranteed to return a value
-of the expected return type for every possible input in a finite amount of
-time. A total function will never fail with an exception or loop infinitely.
+*完全*函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返回类型的值。一个完全函数永远不会因异常或无限循环而失败。
 
-Idris comes with a totality checker built in, which enables us to verify the
-functions we write to be provably total. Totality in Idris is opt-in, as in
-general, checking the totality of an arbitrary computer program is
-undecidable (see also the [halting
-problem](https://en.wikipedia.org/wiki/Halting_problem)).  However, if we
-annotate a function with the `total` keyword, Idris will fail with a type
-error, if its totality checker cannot verify that the function in question
-is indeed total.
+Idris 内置了一个完全性检查器，它使我们能够验证我们编写的函数是否是可证明的完全性。 Idris
+中的完全性是可选的，因为一般来说，检查任意计算机程序的完全性是无法确定的（另请参见
+[停机问题](https://en.wikipedia.org/wiki/Halting_problem)）。但是，如果我们使用 `total`
+关键字注释函数，如果 Idris 的完全性检查器无法验证所讨论的函数确实是完全的，则 Idris 将失败并出现类型错误。
 
-## Using the REPL
+## 使用 REPL
 
-Idris comes with a useful REPL (an acronym for *Read Evaluate Print Loop*),
-which we will use for tinkering with small ideas, and for quickly
-experimenting with the code we just wrote.  In order to start a REPL
-session, run the following command in a terminal.
+Idris 附带了一个有用的 REPL（*Read Evaluate Print Loop*
+的首字母缩写词），我们将使用它来修补小想法，并快速试验我们刚刚编写的代码。要启动 REPL 会话，请在终端中运行以下命令。
 
 ```repl rlwrap idris2 ```
 
-(Using command-line utility `rlwrap` is optional. It leads to a somewhat
-nicer user experience, as it allows us to use the up and down arrow keys to
-scroll through a history of commands and expressions we entered. It should
-be available for most Linux distributions.)
+（使用命令行实用程序 `rlwrap`
+是可选的。它带来了更好的用户体验，因为它允许我们使用向上和向下箭头键滚动浏览我们输入的命令和表达式的历史记录。它应该适用于大多数 Linux 发行版。）
 
-Idris should now be ready to accept you commands:
+Idris 现在应该准备好接受你的命令了：
 
 ```repl
      ____    __     _         ___
@@ -90,30 +80,22 @@ Idris should now be ready to accept you commands:
 
 Welcome to Idris 2.  Enjoy yourself! Main> ```
 
-We can go ahead and enter some simple arithmetic expressions. Idris will
-*evaluate* these and print the result:
+我们可以继续输入一些简单的算术表达式。 Idris 将进行*求值*并打印结果：
 
 ```repl Main> 2 * 4 8 Main> 3 * (7 + 100)  321 ```
 
-Since every expression in Idris has an associated *type*, we might want to
-inspect these as well:
+由于 Idris 中的每个表达式都有一个关联的* 类型 *，我们可能还想检查这些：
 
 ```repl Main> :t 2 2 : Integer ```
 
-Here `:t` is a command of the Idris REPL (it is not part of the Idris
-programming language), and it is used to inspect the type of an expression.
+这里的 `:t` 是 Idris REPL 的命令（它不是 Idris 编程语言的一部分），它用于检查表达式的类型。
 
 ```repl Main> :t 2 * 4 2 * 4 : Integer ```
 
-Whenever we perform calculations with integer literals without being
-explicit about the types we want to use, Idris will use `Integer` as a
-default. `Integer` is an arbitrary precision signed integer type. It is one
-of the *primitive types* built into the language. Other primitives include
-fixed precision signed and unsigned integral types (`Bits8`, `Bits16`,
-`Bits32` `Bits64`, `Int8`, `Int16`, `Int32`, and `Int64`), double precision
-(64 bit) floating point numbers (`Double`), unicode characters (`Char`) and
-strings of unicode characters (`String`).  We will use many of these in due
-time.
+每当我们使用整数字面量执行计算而没有明确说明我们想要使用的类型时，Idris 将使用 `Integer` 作为默认值。 `Integer`
+是任意精度的有符号整数类型。它是语言中内置的*原语类型*之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、`Bits16`、`Bits32`
+`Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度（64 位）浮点数（`Double`）、Unicode
+字符（`Char`) 和 unicode 字符串 (`String`)。我们将在适当的时候使用其中的大多数。
 
 ## A First Idris Program
 

@@ -1,6 +1,6 @@
-> [Chinese Translation](translation/README.md)
+ 
 
-# Functional Programming in Idris 2
+# Idris 2 中的函数式编程
 
 这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。
 
