@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 00:18+0800\n"
 "PO-Revision-Date: 2022-08-02 16:04+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -426,9 +426,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:20
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid "module Tutorial.Intro"
 msgid "module Tutorial.Intro\n"
-msgstr "idris module Tutorial.Intro\n"
+msgstr "idris module Tutorial.Intro"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:27
@@ -637,9 +638,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:122
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid "rlwrap idris2"
 msgid "rlwrap idris2\n"
-msgstr "rlwrap idris2\n"
+msgstr "rlwrap idris2"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:131
@@ -660,7 +662,16 @@ msgstr "Idris 现在应该准备好接受你的命令了："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:134
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "     ____    __     _         ___\n"
+#| "    /  _/___/ /____(_)____   |__ \\\n"
+#| "    / // __  / ___/ / ___/   __/ /     Version 0.5.1-3c532ea35\n"
+#| "  _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org\n"
+#| " /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
+#| "\n"
+#| "Welcome to Idris 2.  Enjoy yourself!\n"
+#| "Main>"
 msgid ""
 "     ____    __     _         ___\n"
 "    /  _/___/ /____(_)____   |__ \\\n"
@@ -678,7 +689,7 @@ msgstr ""
 " /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
 "\n"
 "Welcome to Idris 2.  Enjoy yourself!\n"
-"Main>\n"
+"Main>"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:147
@@ -689,7 +700,12 @@ msgstr "我们可以继续输入一些简单的算术表达式。 Idris 将进�
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:148
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Main> 2 * 4\n"
+#| "8\n"
+#| "Main> 3 * (7 + 100)\n"
+#| "321"
 msgid ""
 "Main> 2 * 4\n"
 "8\n"
@@ -699,7 +715,7 @@ msgstr ""
 "Main> 2 * 4\n"
 "8\n"
 "Main> 3 * (7 + 100)\n"
-"321\n"
+"321"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:157
@@ -711,13 +727,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:158
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Main> :t 2\n"
+#| "2 : Integer"
 msgid ""
 "Main> :t 2\n"
 "2 : Integer\n"
 msgstr ""
 "Main> :t 2\n"
-"2 : Integer\n"
+"2 : Integer"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:166
@@ -730,13 +749,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:167
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Main> :t 2 * 4\n"
+#| "2 * 4 : Integer"
 msgid ""
 "Main> :t 2 * 4\n"
 "2 * 4 : Integer\n"
 msgstr ""
 "Main> :t 2 * 4\n"
-"2 * 4 : Integer\n"
+"2 * 4 : Integer"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:182
@@ -773,18 +795,21 @@ msgid ""
 "started with the language. Here comes the mandatory *Hello World*:"
 msgstr ""
 "我们经常会启动一个 REPL 来修补 Idris 语言的一小部分，阅读一些文档，或检查 "
-"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。"
-"这是强制性的 *Hello World*："
+"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。这是"
+"强制性的 *Hello World*："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:191
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "main : IO ()\n"
+#| "main = putStrLn \"Hello World!\""
 msgid ""
 "main : IO ()\n"
 "main = putStrLn \"Hello World!\"\n"
 msgstr ""
 "main : IO ()\n"
-"main = putStrLn \"Hello World!\"\n"
+"main = putStrLn \"Hello World!\""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:199
@@ -792,14 +817,16 @@ msgid ""
 "We will inspect the code above in some detail in a moment, but first we'd "
 "like to compile and run it. From this project's root directory, run the "
 "following:"
-msgstr "稍后我们将详细检查上面的代码，但首先我们要编译并运行它。在此项目的根目录中，"
+msgstr ""
+"稍后我们将详细检查上面的代码，但首先我们要编译并运行它。在此项目的根目录中，"
 "运行以下命令："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:199
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid "idris2 --find-ipkg -o hello src/Tutorial/Intro.md"
 msgid "idris2 --find-ipkg -o hello src/Tutorial/Intro.md\n"
-msgstr "idris2 --find-ipkg -o hello src/Tutorial/Intro.md\n"
+msgstr "idris2 --find-ipkg -o hello src/Tutorial/Intro.md"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:207
@@ -808,18 +835,21 @@ msgid ""
 "invoked from the command-line like so (without the dollar prefix; this is "
 "used here to distinguish the terminal command from its output):"
 msgstr ""
-"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它（"
-"没有美元前缀；这里用来区分终端命令和它的输出）："
+"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它"
+"（没有美元前缀；这里用来区分终端命令和它的输出）："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:208
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "$ build/exec/hello\n"
+#| "Hello World!"
 msgid ""
 "$ build/exec/hello\n"
 "Hello World!\n"
 msgstr ""
 "$ build/exec/hello\n"
-"Hello World!\n"
+"Hello World!"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:219
@@ -848,7 +878,7 @@ msgstr ""
 #: ../src/Tutorial/Intro.md:223
 #, fuzzy, no-wrap
 msgid "rlwrap idris2 --find-ipkg src/Tutorial/Intro.md\n"
-msgstr "rlwrap idris2 --find-ipkg src/Tutorial/Intro.md\n"
+msgstr "rlwrap idris2 --find-ipkg src/Tutorial/Intro.md"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:227
@@ -858,7 +888,7 @@ msgid ""
 "Hello World!\n"
 msgstr ""
 "Tutorial.Intro> :exec main\n"
-"你好世界！\n"
+"你好世界！"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:234
@@ -919,7 +949,7 @@ msgid ""
 "maxBits8 = 255\n"
 msgstr ""
 "最大位8：位8\n"
-"最大位8 = 255\n"
+"最大位8 = 255"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:266
@@ -961,7 +991,7 @@ msgstr ""
 "Tutorial.Intro> maxBits8\n"
 "255\n"
 "Tutorial.Intro> :t maxBits8\n"
-"Tutorial.Intro.maxBits8 : Bits8\n"
+"Tutorial.Intro.maxBits8 : Bits8"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:278
@@ -977,7 +1007,7 @@ msgid ""
 "155\n"
 msgstr ""
 "Tutorial.Intro> maxBits8 - 100\n"
-"155\n"
+"155"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:286
@@ -997,7 +1027,7 @@ msgid ""
 "distanceToMax n = maxBits8 - n\n"
 msgstr ""
 "distanceToMax：Bits8 -> Bits8\n"
-"distanceToMax n = maxBits8 - n\n"
+"distanceToMax n = maxBits8 - n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:299
@@ -1017,7 +1047,7 @@ msgstr ""
 "返回 `Bits8`\" 类型的结果。在实现中，参数\n"
 "给定一个本地标识符 `n`，然后在\n"
 "右侧计算。再次，继续尝试这个\n"
-"REPL 的功能：\n"
+"REPL 的功能："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:300
@@ -1035,7 +1065,7 @@ msgstr ""
 "Tutorial.Intro> :t distanceToMax\n"
 "Tutorial.Intro.distanceToMax：Bits8 -> Bits8\n"
 "Tutorial.Intro> :t distanceToMax 12\n"
-"distanceToMax 12：位8\n"
+"distanceToMax 12：位8"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:311
@@ -1053,7 +1083,7 @@ msgid ""
 "square n = n * n\n"
 msgstr ""
 "正方形：整数 -> 整数\n"
-"平方 n = n * n\n"
+"平方 n = n * n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:325
@@ -1078,7 +1108,7 @@ msgid ""
 "Error: ...\n"
 msgstr ""
 "Tutorial.Intro> square maxBits8\n"
-"错误： ...\n"
+"错误： ..."
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:336
@@ -1101,7 +1131,7 @@ msgid ""
 "65025\n"
 msgstr ""
 "Tutorial.Intro> square (cast maxBits8)\n"
-"65025\n"
+"65025"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:348
@@ -1125,7 +1155,7 @@ msgid ""
 "1\n"
 msgstr ""
 "Tutorial.Intro> maxBits8 * maxBits8\n"
-"1\n"
+"1"
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:354
@@ -1170,7 +1200,7 @@ msgstr ""
 "  编写健壮和简洁的代码。它使用 Idris 1 在\n"
 "  它的例子，所以它的一部分必须稍微调整\n"
 "  使用 Idris 2 时，还有一个\n"
-"  [所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。\n"
+"  [所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:370
@@ -1194,7 +1224,7 @@ msgstr ""
 "  Idris 2 官方教程。全面而密集的解释\n"
 "  Idris 2 的所有功能。我发现这作为参考很有用，因此\n"
 "  它是高度可访问的。但是，它不是功能性的介绍\n"
-"  一般的编程或类型驱动开发。\n"
+"  一般的编程或类型驱动开发。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:377
@@ -1218,7 +1248,7 @@ msgstr ""
 "  在哪里可以找到[编辑器插件列表](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience)，\n"
 "  [社区库列表](https://github.com/idris-lang/Idris2/wiki/Libraries),\n"
 "  [外部后端列表](https://github.com/idris-lang/Idris2/wiki/External-backends),\n"
-"  和其他有用的信息。\n"
+"  和其他有用的信息。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:386
@@ -1240,7 +1270,7 @@ msgstr ""
 "  晦涩的语言功能，想推广你的新图书馆，\n"
 "  或者想和其他 Idris 程序员一起出去玩，这个\n"
 "  是去的地方。不和谐频道非常活跃\n"
-"  *对新人非常*友好。\n"
+"  *对新人非常*友好。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:394
@@ -1262,7 +1292,7 @@ msgstr ""
 "  伊德里斯本身。我倾向于至少打开一个 REPL 会话\n"
 "  在 Idris 编程的时间。我的编辑器（neovim）已设置\n"
 "  使用 [Idris 2 的语言服务器](https://github.com/idris-community/idris2-lsp)，\n"
-"  这非常有用。在 REPL 中，\n"
+"  这非常有用。在 REPL 中，"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
