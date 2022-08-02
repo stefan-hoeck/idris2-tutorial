@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:52+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/interfaces/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -563,7 +563,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:10
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "module Tutorial.Interfaces\n"
 "\n"
@@ -585,6 +585,25 @@ msgid ""
 "  size : List a -> Integer\n"
 "  size = cast . length\n"
 msgstr ""
+"模块 Tutorial.Interfaces\n"
+"\n"
+"%默认总计\n"
+"\n"
+"命名空间布尔\n"
+"  出口\n"
+"  大小：布尔 -> 整数\n"
+"  大小真 = 1\n"
+"  大小错误 = 0\n"
+"\n"
+"命名空间整数\n"
+"  出口\n"
+"  大小：整数 -> 整数\n"
+"  大小 = id\n"
+"\n"
+"命名空间列表\n"
+"  出口\n"
+"  大小：列出一个 -> 整数\n"
+"  大小 = 演员表。长度\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:35
@@ -679,7 +698,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:71
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "lessThan' : String -> String -> Bool\n"
 "lessThan' s1 s2 = LT == cmp s1 s2\n"
@@ -699,6 +718,23 @@ msgid ""
 "    GT => s1\n"
 "    _  => s2\n"
 msgstr ""
+"lessThan' : 字符串 -> 字符串 -> 布尔\n"
+"小于 s1 s2 = LT == cmp s1 s2\n"
+"\n"
+"大于'：字符串->字符串->布尔\n"
+"大于 s1 s2 = GT == cmp s1 s2\n"
+"\n"
+"最小'：字符串->字符串->字符串\n"
+"最小值' s1 s2 =\n"
+"  案例 cmp s1 s2 的\n"
+"    LT => s1\n"
+"    _ => s2\n"
+"\n"
+"最大'：字符串->字符串->字符串\n"
+"最大值' s1 s2 =\n"
+"  案例 cmp s1 s2 的\n"
+"    GT => s1\n"
+"    _ => s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:94
@@ -760,7 +796,7 @@ msgstr "接口正好解决了这个问题。这是一个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:117
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "interface Comp a where\n"
 "  comp : a -> a -> Ordering\n"
@@ -771,6 +807,14 @@ msgid ""
 "implementation Comp Bits16 where\n"
 "  comp = compare\n"
 msgstr ""
+"接口 Comp a where\n"
+"  comp : a -> a -> 排序\n"
+"\n"
+"实现 Comp Bits8 其中\n"
+"  比较=比较\n"
+"\n"
+"实现 Comp Bits16 其中\n"
+"  比较=比较\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:133
@@ -838,7 +882,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:159
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "lessThan : Comp a => a -> a -> Bool\n"
 "lessThan s1 s2 = LT == comp s1 s2\n"
@@ -858,6 +902,23 @@ msgid ""
 "    GT => s1\n"
 "    _  => s2\n"
 msgstr ""
+"lessThan : Comp a => a -> a -> Bool\n"
+"小于 s1 s2 = LT == 比较 s1 s2\n"
+"\n"
+"大于 : Comp a => a -> a -> Bool\n"
+"大于 s1 s2 = GT == comp s1 s2\n"
+"\n"
+"最小值：比较 a => a -> a -> a\n"
+"最小 s1 s2 =\n"
+"  case comp s1 s2 的\n"
+"    LT => s1\n"
+"    _ => s2\n"
+"\n"
+"最大值：Comp a => a -> a -> a\n"
+"最大 s1 s2 =\n"
+"  case comp s1 s2 的\n"
+"    GT => s1\n"
+"    _ => s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:185
@@ -992,7 +1053,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:234
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "interface Concat a where\n"
 "  concat : a -> a -> a\n"
@@ -1006,6 +1067,17 @@ msgid ""
 "implementation Empty String where\n"
 "  empty = \"\"\n"
 msgstr ""
+"接口 Concat a where\n"
+"  连接：一个->一个->一个\n"
+"\n"
+"实现 Concat String where\n"
+"  连接 = (++)\n"
+"\n"
+"interface Concat a => Empty a where\n"
+"  空：一个\n"
+"\n"
+"实现空字符串 where\n"
+"  空=“”\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:254
@@ -1658,7 +1730,7 @@ msgstr "以下是执行此操作的三种示例记录类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:534
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record UserName where\n"
 "  constructor MkUserName\n"
@@ -1673,6 +1745,18 @@ msgid ""
 "  name     : UserName\n"
 "  password : Password\n"
 msgstr ""
+"在哪里记录用户名\n"
+"  构造函数 MkUserName\n"
+"  名称：字符串\n"
+"\n"
+"记录密码在哪里\n"
+"  构造函数 MkPassword\n"
+"  值：字符串\n"
+"\n"
+"记录用户在哪里\n"
+"  构造函数 MkUser\n"
+"  名称：用户名\n"
+"  密码：密码\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:551
@@ -1705,7 +1789,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:561
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "FromString UserName where\n"
 "  fromString = MkUserName\n"
@@ -1716,6 +1800,14 @@ msgid ""
 "hock2 : User\n"
 "hock2 = MkUser \"hock\" \"not telling\"\n"
 msgstr ""
+"FromString 用户名 where\n"
+"  fromString = MkUserName\n"
+"\n"
+"FromString 密码 where\n"
+"  fromString = MkPassword\n"
+"\n"
+"hoc2 : 用户\n"
+"hock2 = MkUser \"hock\" \"不告诉\"\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:572
