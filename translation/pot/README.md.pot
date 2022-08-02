@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 22:20+0800\n"
+"POT-Creation-Date: 2022-08-02 22:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:2
-msgid "> [Idris 2 ](translation/README.md"
+msgid "> [Chinese Translation](translation/README.md)"
 msgstr ""
 
 #. type: Plain text

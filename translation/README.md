@@ -1,4 +1,4 @@
-> [ãIdris 2 ä¸­çå½æ°å¼ç¼ç¨ãä¸­æç](translation/README.md
+> [Chinese Translation](translation/README.md)
 
 # Functional Programming in Idris 2
 

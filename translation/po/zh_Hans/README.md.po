@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 22:20+0800\n"
+"POT-Creation-Date: 2022-08-02 22:34+0800\n"
 "PO-Revision-Date: 2022-08-02 14:09+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -23,7 +23,7 @@ msgstr ""
 #, fuzzy
 #| msgid ""
 #| "> [Idris 2 ](translation/README.md)  # Functional Programming in Idris 2"
-msgid "> [Idris 2 ](translation/README.md"
+msgid "> [Chinese Translation](translation/README.md)"
 msgstr "# Idris 2 中的函数式编程"
 
 #. type: Plain text
