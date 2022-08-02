@@ -22,8 +22,26 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
 #: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
 #: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+#, fuzzy
 msgid "## Conclusion"
 msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -33,15 +51,42 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
+#, fuzzy
 msgid "<!-- vi: filetype=idris2 -->"
 msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:904 ../src/Tutorial/Functions1.md:576
 #: ../src/Tutorial/Functions2.md:955 ../src/Tutorial/Interfaces.md:814
 #: ../src/Tutorial/IO.md:1119
+#, fuzzy
 msgid "### What's next"
 msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃＃ 下一步是什么\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:2
@@ -294,8 +339,15 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
+#, fuzzy
 msgid "And at the REPL:"
 msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"在 REPL：\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"在 REPL：\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:173

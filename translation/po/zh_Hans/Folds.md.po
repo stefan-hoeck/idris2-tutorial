@@ -22,8 +22,26 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
 #: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
 #: ../src/Tutorial/Traverse.md:248
+#, fuzzy
 msgid "### Exercises part 1"
 msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
@@ -32,8 +50,26 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
 #: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
 #: ../src/Tutorial/Traverse.md:575
+#, fuzzy
 msgid "### Exercises part 2"
 msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
@@ -42,8 +78,26 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
 #: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
 #: ../src/Tutorial/Traverse.md:1017
+#, fuzzy
 msgid "### Exercises part 3"
 msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
@@ -52,8 +106,26 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
 #: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
 #: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+#, fuzzy
 msgid "## Conclusion"
 msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -63,8 +135,28 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
+#, fuzzy
 msgid "<!-- vi: filetype=idris2 -->"
 msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
@@ -72,13 +164,30 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
 #: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
 #: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+#, fuzzy
 msgid "%default total ```"
 msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:849 ../src/Tutorial/Folds.md:1003
 #: ../src/Tutorial/Functor.md:424 ../src/Tutorial/Traverse.md:292
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   data Crud : (i : Type) -> (a : Type) -> Type where\n"
@@ -88,6 +197,24 @@ msgid ""
 "     Delete : (id : i) -> Crud i a\n"
 "   ```\n"
 msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   ```伊德里斯\n"
+"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     创建：（值：a）-> Crud i a\n"
+"     更新：（id：i）->（value：a）-> Crud i a\n"
+"     阅读：（id：i）-> Crud i a\n"
+"     删除 : (id : i) -> Crud i a\n"
+"   ```\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   ```伊德里斯\n"
+"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     创建：（值：a）-> Crud i a\n"
+"     更新：（id：i）->（value：a）-> Crud i a\n"
+"     阅读：（id：i）-> Crud i a\n"
+"     删除 : (id : i) -> Crud i a\n"
+"   ```\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:2
@@ -1721,7 +1848,7 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1014 ../src/Tutorial/Functor.md:437
 #: ../src/Tutorial/Traverse.md:303
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   data Response : (e, i, a : Type) -> Type where\n"
@@ -1732,6 +1859,17 @@ msgid ""
 "     Error   : (err : e) -> Response e i a\n"
 "   ```\n"
 msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   ```伊德里斯\n"
+"   数据响应：（e，i，a：Type）-> Type where\n"
+"     创建 : (id : i) -> (value : a) -> 响应 e i a\n"
+"     更新：（id：i）->（值：a）->响应 e i a\n"
+"     找到：（值：列表 a）-> 响应 e i a\n"
+"     已删除 : (id : i) -> 响应 e i a\n"
+"     错误 : (err : e) -> 响应 e i a\n"
+"   ```\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Folds.md:1018
@@ -1743,7 +1881,7 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1024 ../src/Tutorial/IO.md:758
 #: ../src/Tutorial/Traverse.md:272
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
@@ -1751,6 +1889,14 @@ msgid ""
 "     (::) : a -> List01 False a -> List01 ne a\n"
 "   ```\n"
 msgstr ""
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   ```伊德里斯\n"
+"   数据 List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"     无：List01 False a\n"
+"     (::) : a -> List01 False a -> List01 ne a\n"
+"   ```\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Folds.md:1030
@@ -1780,17 +1926,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1044 ../src/Tutorial/Traverse.md:312
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   record Comp (f,g : Type -> Type) (a : Type) where\n"
 "     constructor MkComp\n"
 "     unComp  : f (g a)\n"
 msgstr ""
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   ```伊德里斯\n"
+"   记录 Comp (f,g : Type -> Type) (a : Type) 其中\n"
+"     构造函数 MkComp\n"
+"     unComp : f (g a)\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1050 ../src/Tutorial/Traverse.md:318
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   record Product (f,g : Type -> Type) (a : Type) where\n"
 "     constructor MkProduct\n"
@@ -1798,6 +1950,13 @@ msgid ""
 "     snd : g a\n"
 "   ```\n"
 msgstr ""
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   记录产品 (f,g : Type -> Type) (a : Type) 其中\n"
+"     构造函数 MkProduct\n"
+"     fst : f\n"
+"     snd : g 一个\n"
+"   ```\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1058

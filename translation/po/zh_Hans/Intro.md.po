@@ -22,7 +22,10 @@ msgstr ""
 #: ../src/Tutorial/Functor.md:1421 ../src/Tutorial/Intro.md:431
 #, fuzzy
 msgid "### What's next?"
-msgstr "＃＃＃ 下一步是什么？"
+msgstr ""
+"#-#-#-#-#  Intro.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃＃ 下一步是什么？\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:2
@@ -45,14 +48,13 @@ msgid ""
 "have to solve some exercises, the solutions of which can be found in the "
 "`src/Solutions` subfolder. There, I use regular `.idr` files."
 msgstr ""
-"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 "
-"编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 "
-"Markdown 组成（因此 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，"
-"可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 "
-"Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的散文比我现在所做的代码多得"
-"多，否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，"
-"这些练习可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `.idr` "
-"文件。"
+"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 编程语言的各个方"
+"面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 Markdown 组成（因"
+"此 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，可以由 Idris 编译器进"
+"行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 Idris 源文件使用 `."
+"idr` 结尾，并且除非您最终编写的散文比我现在所做的代码多得多，否则您将使用该文"
+"件类型。在本教程的后面，您将需要解决一些练习，这些练习可以在 `src/Solutions` "
+"子文件夹中找到。在那里，我使用常规的 `.idr` 文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:19
@@ -60,7 +62,8 @@ msgstr ""
 msgid ""
 "Every Idris source file should typically start with a module name plus some "
 "necessary imports, and this document is no exception:"
-msgstr "每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
+msgstr ""
+"每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:23
@@ -74,8 +77,9 @@ msgstr "```idris 模块教程.Intro ```"
 msgid ""
 "A module name consists of a list of identifiers separated by dots and must "
 "reflect the folder structure plus the module file's name."
-msgstr "模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名称"
-"。"
+msgstr ""
+"模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名"
+"称。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:29
@@ -89,8 +93,9 @@ msgstr "## 关于 Idris 编程语言"
 msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional* programming "
 "language. I'll quickly explain each of these adjectives in this section."
-msgstr "Idris "
-"是一种*纯*、*依赖类型*、*总**功能*编程语言。我将在本节中快速解释这些形容词。"
+msgstr ""
+"Idris 是一种*纯*、*依赖类型*、*总**功能*编程语言。我将在本节中快速解释这些形"
+"容词。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:35
@@ -141,8 +146,8 @@ msgid ""
 msgstr ""
 "纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这"
 "样的副作用。他们只能通过调用其他纯函数*而不是其他*来从他们的参数计算结果。因"
-"此，给定相同的输入，它们将 * 总是 * 生成相同的输出。此属性称为 "
-"[参考透明度](https://en.wikipedia.org/wiki/Referential_transparency)。"
+"此，给定相同的输入，它们将 * 总是 * 生成相同的输出。此属性称为 [参考透明度]"
+"(https://en.wikipedia.org/wiki/Referential_transparency)。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:59
@@ -164,7 +169,8 @@ msgstr "它们可以通过指定（可能是随机生成的）输入参数集以
 msgid ""
 "They are thread-safe, since the don't mutate global state, and as such can "
 "be freely used in several computations running in parallel."
-msgstr "它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
+msgstr ""
+"它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
 "用。"
 
 #. type: Plain text
@@ -186,8 +192,9 @@ msgstr "仅使用纯函数很难有效地实现某些算法。"
 msgid ""
 "Writing programs that actually *do* something (have some observable effect) "
 "is a bit trickier but certainly possible."
-msgstr "编写实际上 * 做 * "
-"某事（具有一些可观察到的效果）的程序有点棘手，但肯定是可能的。"
+msgstr ""
+"编写实际上 * 做 * 某事（具有一些可观察到的效果）的程序有点棘手，但肯定是可能"
+"的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:77
@@ -204,9 +211,9 @@ msgid ""
 "strings, boolean, function from integer to boolean, etc.)  and types are "
 "verified at compile time to rule out certain common programming errors."
 msgstr ""
-"Idris 是一种强静态类型的编程语言。这意味着，给 Idris 表达式一个 *type* （例如"
-"：整数、字符串列表、布尔值、从整数到布尔值的函数等），并且在编译时验证类型以"
-"排除某些常见的编程错误。"
+"Idris 是一种强静态类型的编程语言。这意味着，给 Idris 表达式一个 *type* （例"
+"如：整数、字符串列表、布尔值、从整数到布尔值的函数等），并且在编译时验证类型"
+"以排除某些常见的编程错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:89
@@ -234,10 +241,9 @@ msgid ""
 "useful, we'll explore in due time."
 msgstr ""
 "更重要的是，Idris 是 * 依赖类型 *，这是它在编程语言领域中最具特色的属性之一。"
-"在 Idris 中，类型是 * "
-"第一类*：类型可以作为参数传递给函数，函数可以返回类型作为结果。更重要的是，"
-"类型可以 * 依赖于 * 其他 * 值 "
-"*。这意味着什么，以及为什么这非常有用，我们将在适当的时候进行探索。"
+"在 Idris 中，类型是 * 第一类*：类型可以作为参数传递给函数，函数可以返回类型作"
+"为结果。更重要的是，类型可以 * 依赖于 * 其他 * 值 *。这意味着什么，以及为什么"
+"这非常有用，我们将在适当的时候进行探索。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:99
@@ -252,7 +258,8 @@ msgid ""
 "A *total* function is a pure function, that is guaranteed to return a value "
 "of the expected return type for every possible input in a finite amount of "
 "time. A total function will never fail with an exception or loop infinitely."
-msgstr "*total* 函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返"
+msgstr ""
+"*total* 函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返"
 "回类型的值。一个总函数永远不会因异常或无限循环而失败。"
 
 #. type: Plain text
@@ -267,13 +274,11 @@ msgid ""
 "keyword, Idris will fail with a type error, if its totality checker cannot "
 "verify that the function in question is indeed total."
 msgstr ""
-"Idris "
-"内置了一个整体检查器，它使我们能够验证我们编写的函数是否是可证明的整体。 "
-"Idris 中的 Totality "
-"是可选的，因为一般来说，检查任意计算机程序的整体性是无法确定的（另请参见 ["
-"halting problem](https://en.wikipedia.org/wiki/Halting_problem)）。但是，"
-"如果我们使用 `total` 关键字注释函数，如果 Idris "
-"的总体检查器无法验证所讨论的函数确实是总体的，则 Idris 将失败并出现类型错误。"
+"Idris 内置了一个整体检查器，它使我们能够验证我们编写的函数是否是可证明的整"
+"体。 Idris 中的 Totality 是可选的，因为一般来说，检查任意计算机程序的整体性是"
+"无法确定的（另请参见 [halting problem](https://en.wikipedia.org/wiki/"
+"Halting_problem)）。但是，如果我们使用 `total` 关键字注释函数，如果 Idris 的"
+"总体检查器无法验证所讨论的函数确实是总体的，则 Idris 将失败并出现类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:115
@@ -290,9 +295,9 @@ msgid ""
 "experimenting with the code we just wrote.  In order to start a REPL "
 "session, run the following command in a terminal."
 msgstr ""
-"Idris 附带了一个有用的 REPL（*Read Evaluate Print Loop* "
-"的首字母缩写词），我们将使用它来修补小想法，并快速试验我们刚刚编写的代码。"
-"要启动 REPL 会话，请在终端中运行以下命令。"
+"Idris 附带了一个有用的 REPL（*Read Evaluate Print Loop* 的首字母缩写词），我"
+"们将使用它来修补小想法，并快速试验我们刚刚编写的代码。要启动 REPL 会话，请在"
+"终端中运行以下命令。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:125
@@ -310,8 +315,8 @@ msgid ""
 "be available for most Linux distributions.)"
 msgstr ""
 "（使用命令行实用程序 `rlwrap` 是可选的。它带来了更好的用户体验，因为它允许我"
-"们使用向上和向下箭头键滚动浏览我们输入的命令和表达式的历史记录。"
-"它应该适用于大多数 Linux 发行版。）"
+"们使用向上和向下箭头键滚动浏览我们输入的命令和表达式的历史记录。它应该适用于"
+"大多数 Linux 发行版。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:133
@@ -349,7 +354,8 @@ msgstr "欢迎来到伊德里斯 2。尽情享受吧！主>```"
 msgid ""
 "We can go ahead and enter some simple arithmetic expressions. Idris will "
 "*evaluate* these and print the result:"
-msgstr "我们可以继续输入一些简单的算术表达式。 Idris 将 * 评估 * 这些并打印结果："
+msgstr ""
+"我们可以继续输入一些简单的算术表达式。 Idris 将 * 评估 * 这些并打印结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:154
@@ -363,7 +369,8 @@ msgstr "```repl Main> 2 * 4 8 Main> 3 * (7 + 100) 321 ```"
 msgid ""
 "Since every expression in Idris has an associated *type*, we might want to "
 "inspect these as well:"
-msgstr "由于 Idris 中的每个表达式都有一个关联的 * 类型 *，我们可能还想检查这些："
+msgstr ""
+"由于 Idris 中的每个表达式都有一个关联的 * 类型 *，我们可能还想检查这些："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:162
@@ -377,8 +384,9 @@ msgstr "```repl Main> :t 2 2 : 整数 ```"
 msgid ""
 "Here `:t` is a command of the Idris REPL (it is not part of the Idris "
 "programming language), and it is used to inspect the type of an expression."
-msgstr "这里 `:t` 是 Idris REPL 的命令（它不是 Idris "
-"编程语言的一部分），它用于检查表达式的类型。"
+msgstr ""
+"这里 `:t` 是 Idris REPL 的命令（它不是 Idris 编程语言的一部分），它用于检查表"
+"达式的类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:171
@@ -401,11 +409,10 @@ msgid ""
 "time."
 msgstr ""
 "每当我们使用整数文字执行计算而没有明确说明我们想要使用的类型时，Idris 将使用 "
-"`Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。"
-"它是语言中内置的 * 原始类型 * "
-"之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、`Bits16`、`Bits32`"
-" `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度（64 "
-"位）浮点数（`Double`）、Unicode 字符（[X502X ]Char`) 和 unicode 字符串 "
+"`Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。它是语言中内置"
+"的 * 原始类型 * 之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、"
+"`Bits16`、`Bits32` `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度"
+"（64 位）浮点数（`Double`）、Unicode 字符（[X502X ]Char`) 和 unicode 字符串 "
 "(`String`)。我们将在适当的时候使用其中的许多。"
 
 #. type: Plain text
@@ -424,8 +431,8 @@ msgid ""
 "started with the language. Here comes the mandatory *Hello World*:"
 msgstr ""
 "我们经常会启动一个 REPL 来修补 Idris 语言的一小部分，阅读一些文档，或检查 "
-"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。"
-"这是强制性的 *Hello World*："
+"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。这是"
+"强制性的 *Hello World*："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:195
@@ -452,8 +459,8 @@ msgid ""
 "invoked from the command-line like so (without the dollar prefix; this is "
 "used here to distinguish the terminal command from its output):"
 msgstr ""
-"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它（"
-"没有美元前缀；这里用来区分终端命令和它的输出）："
+"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它"
+"（没有美元前缀；这里用来区分终端命令和它的输出）："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:212
@@ -471,10 +478,9 @@ msgid ""
 "option gives the name of the executable to be generated. Type `idris2 --"
 "help` for a list of available command-line options and environment variables."
 msgstr ""
-"`--find-ipkg` 选项将在当前目录或其父目录之一中查找 `.ipkg` "
-"文件，从中获取其他设置，如要使用的源目录（在我们的例子中是 `src`）。 `-o` "
-"选项给出要生成的可执行文件的名称。键入 `idris2 --help` "
-"以获取可用命令行选项和环境变量的列表。"
+"`--find-ipkg` 选项将在当前目录或其父目录之一中查找 `.ipkg` 文件，从中获取其他"
+"设置，如要使用的源目录（在我们的例子中是 `src`）。 `-o` 选项给出要生成的可执"
+"行文件的名称。键入 `idris2 --help` 以获取可用命令行选项和环境变量的列表。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:222
@@ -482,7 +488,8 @@ msgstr ""
 msgid ""
 "As an alternative, you can also load this source file in a REPL session and "
 "invoke function `main` from there:"
-msgstr "作为替代方案，您还可以在 REPL 会话中加载此源文件并从那里调用函数 `main`："
+msgstr ""
+"作为替代方案，您还可以在 REPL 会话中加载此源文件并从那里调用函数 `main`："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:226
@@ -529,7 +536,8 @@ msgstr "## Idris 定义的形状"
 msgid ""
 "Now that we executed our first Idris program, we will talk a bit more about "
 "the code we had to write to define it."
-msgstr "现在我们执行了第一个 Idris 程序，我们将更多地讨论我们必须编写的代码来定义它。"
+msgstr ""
+"现在我们执行了第一个 Idris 程序，我们将更多地讨论我们必须编写的代码来定义它。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:251
@@ -566,9 +574,9 @@ msgid ""
 msgstr ""
 "第一行可以读作：“我们想声明（空）函数 `maxBits8`。它的类型是 `Bits8`”。这称为"
 "*函数声明*：我们声明，应该有一个给定名称和类型的函数。第二行显示：“调用 "
-"`maxBits8` 的结果应该是 `255`。” "
-"（如您所见，我们可以将整数文字用于其他整数类型，而不仅仅是 `Integer`。）"
-"这称为 * 函数定义 *：函数 `maxBits8` 应该表现为评估时在此处描述。"
+"`maxBits8` 的结果应该是 `255`。” （如您所见，我们可以将整数文字用于其他整数类"
+"型，而不仅仅是 `Integer`。）这称为 * 函数定义 *：函数 `maxBits8` 应该表现为评"
+"估时在此处描述。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:269
@@ -576,8 +584,9 @@ msgstr ""
 msgid ""
 "We can inspect this at the REPL. Load this source file into an Idris REPL "
 "(as described above), and run the following tests."
-msgstr "我们可以在 REPL 进行检查。将此源文件加载到 Idris "
-"REPL（如上所述）中，然后运行以下测试。"
+msgstr ""
+"我们可以在 REPL 进行检查。将此源文件加载到 Idris REPL（如上所述）中，然后运行"
+"以下测试。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:276
@@ -586,8 +595,8 @@ msgid ""
 "```repl Tutorial.Intro> maxBits8 255 Tutorial.Intro> :t maxBits8 Tutorial."
 "Intro.maxBits8 : Bits8 ```"
 msgstr ""
-"```repl Tutorial.Intro> maxBits8 255 Tutorial.Intro> :t maxBits8 "
-"Tutorial.Intro.maxBits8 : Bits8 ```"
+"```repl Tutorial.Intro> maxBits8 255 Tutorial.Intro> :t maxBits8 Tutorial."
+"Intro.maxBits8 : Bits8 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:278
@@ -607,8 +616,9 @@ msgstr "```repl Tutorial.Intro> maxBits8 - 100 155 ```"
 msgid ""
 "I called `maxBits8` a *nullary function*, which is just a fancy word for "
 "*constant*. Let's write and test our first *real* function:"
-msgstr "我将 `maxBits8` 称为 * 空函数 *，它只是 * 常量 * 的一个花哨的词。"
-"让我们编写并测试我们的第一个 *real* 函数："
+msgstr ""
+"我将 `maxBits8` 称为 * 空函数 *，它只是 * 常量 * 的一个花哨的词。让我们编写并"
+"测试我们的第一个 *real* 函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:291
@@ -630,9 +640,9 @@ msgid ""
 "side. Again, go ahead and try this function at the REPL:"
 msgstr ""
 "这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` "
-"可以如下解读：“`distanceToMax` 是 `Bits8` 类型的一个参数的函数，它返回 ` "
-"类型的结果]Bits8`”。在实现中，参数被赋予一个本地标识符 "
-"`n`，然后在右侧的计算中使用该标识符。再次，继续在 REPL 中尝试此功能："
+"可以如下解读：“`distanceToMax` 是 `Bits8` 类型的一个参数的函数，它返回 ` 类型"
+"的结果]Bits8`”。在实现中，参数被赋予一个本地标识符 `n`，然后在右侧的计算中使"
+"用该标识符。再次，继续在 REPL 中尝试此功能："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:308
@@ -670,10 +680,10 @@ msgid ""
 "checker (which is part of the compilation process of Idris).  For instance, "
 "if we try the following at the REPL, we will get a type error:"
 msgstr ""
-"我们现在学习 Idris 编程的一个非常重要的方面：Idris 是一种 * 静态类型 * "
-"编程语言。我们不允许随意混合类型。这样做会导致来自类型检查器的错误消息（这是 "
-"Idris 编译过程的一部分）。例如，如果我们在 REPL "
-"中尝试以下操作，我们将收到类型错误："
+"我们现在学习 Idris 编程的一个非常重要的方面：Idris 是一种 * 静态类型 * 编程语"
+"言。我们不允许随意混合类型。这样做会导致来自类型检查器的错误消息（这是 Idris "
+"编译过程的一部分）。例如，如果我们在 REPL 中尝试以下操作，我们将收到类型错"
+"误："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:330
@@ -690,9 +700,9 @@ msgid ""
 "with the risk of loss of precision) using function `cast` (more on the "
 "details later):"
 msgstr ""
-"原因：`square` 需要 `Integer` 类型的参数，但 `maxBits8` 的类型是 `Bits8`。"
-"许多原始类型可以使用函数 `cast` "
-"相互转换（有时会有精度损失的风险）（稍后会详细介绍）："
+"原因：`square` 需要 `Integer` 类型的参数，但 `maxBits8` 的类型是 `Bits8`。许"
+"多原始类型可以使用函数 `cast` 相互转换（有时会有精度损失的风险）（稍后会详细"
+"介绍）："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:341
@@ -733,8 +743,9 @@ msgid ""
 "There are several resources available online and in print, where you can "
 "find help and documentation about the Idris programming language. Here is a "
 "non-comprehensive list of them:"
-msgstr "有多种在线资源和印刷资源，您可以在其中找到有关 Idris "
-"编程语言的帮助和文档。以下是它们的非全面列表："
+msgstr ""
+"有多种在线资源和印刷资源，您可以在其中找到有关 Idris 编程语言的帮助和文档。以"
+"下是它们的非全面列表："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:361
@@ -762,8 +773,7 @@ msgstr ""
 "  编写健壮和简洁的代码。它使用 Idris 1 在\n"
 "  它的例子，所以它的一部分必须稍微调整\n"
 "  使用 Idris 2 时，还有一个\n"
-"  [所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd."
-"html)。\n"
+"  [所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:370
@@ -808,11 +818,9 @@ msgid ""
 msgstr ""
 "  在这里查看详细的安装说明和一些\n"
 "  介绍材料。还有一个[wiki]（https://github.com/idris-lang/Idris2/wiki），\n"
-"  在哪里可以找到[编辑器插件列表](https://github.com/idris-lang/Idris2/wiki/"
-"The-Idris-editor-experience)，\n"
+"  在哪里可以找到[编辑器插件列表](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience)，\n"
 "  [社区库列表](https://github.com/idris-lang/Idris2/wiki/Libraries),\n"
-"  [外部后端列表](https://github.com/idris-lang/Idris2/wiki/External-"
-"backends),\n"
+"  [外部后端列表](https://github.com/idris-lang/Idris2/wiki/External-backends),\n"
 "  和其他有用的信息。\n"
 
 #. type: Bullet: '* '
@@ -856,8 +864,7 @@ msgstr ""
 "  最后，可以提供很多有用的信息\n"
 "  伊德里斯本身。我倾向于至少打开一个 REPL 会话\n"
 "  在 Idris 编程的时间。我的编辑器（neovim）已设置\n"
-"  使用 [Idris 2 的语言服务器](https://github.com/idris-community/"
-"idris2-lsp)，\n"
+"  使用 [Idris 2 的语言服务器](https://github.com/idris-community/idris2-lsp)，\n"
 "  这非常有用。在 REPL 中，\n"
 
 #. type: Bullet: '  * '
@@ -891,10 +898,10 @@ msgid ""
 "language feature (`:doc case`, `:doc let`, `:doc interface`, `:doc record`, "
 "or even `:doc ?`), or an interface (`:doc Uninhabited`),"
 msgstr ""
-"使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，"
-"一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特征（`:doc case`"
-", `:doc let`, `:doc interface`, `:doc record`，甚至[X236X ]:doc "
-"?`)，或者一个接口（`:doc Uninhabited`），"
+"使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，一种数据类型及其所有构造函数和"
+"可用提示 (`:doc Bool` )，语言特征（`:doc case`, `:doc let`, `:doc "
+"interface`, `:doc record`，甚至[X236X ]:doc ?`)，或者一个接口（`:doc "
+"Uninhabited`），"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
@@ -910,7 +917,8 @@ msgstr "使用 `:module` 从可用包之一导入模块：`:module Data.Vect`,"
 msgid ""
 "use `:browse` to list the names and types of all functions exported by a "
 "loaded module: `:browse Data.Vect`,"
-msgstr "使用 `:browse` 列出加载模块导出的所有函数的名称和类型： `:browse Data.Vect`,"
+msgstr ""
+"使用 `:browse` 列出加载模块导出的所有函数的名称和类型： `:browse Data.Vect`,"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
@@ -935,9 +943,9 @@ msgid ""
 "the types of things in our code, and we used the Idris compiler to compile "
 "an Idris source file to an executable."
 msgstr ""
-"在本介绍中，我们了解了 Idris 编程语言的最基本功能。我们使用 REPL "
-"来修改我们的想法并检查代码中事物的类型，我们使用 Idris 编译器将 Idris "
-"源文件编译为可执行文件。"
+"在本介绍中，我们了解了 Idris 编程语言的最基本功能。我们使用 REPL 来修改我们的"
+"想法并检查代码中事物的类型，我们使用 Idris 编译器将 Idris 源文件编译为可执行"
+"文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:429
@@ -946,8 +954,9 @@ msgid ""
 "We also learned about the basic shape of a top level definition in Idris, "
 "which always consists of an identifier (its name), a type, and an "
 "implementation."
-msgstr "我们还了解了 Idris "
-"中顶级定义的基本形式，它始终由标识符（其名称）、类型和实现组成。"
+msgstr ""
+"我们还了解了 Idris 中顶级定义的基本形式，它始终由标识符（其名称）、类型和实现"
+"组成。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:436

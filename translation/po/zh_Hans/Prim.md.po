@@ -27,7 +27,24 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:248
 #, fuzzy
 msgid "### Exercises part 1"
-msgstr "### 练习第 1 部分"
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
@@ -38,7 +55,24 @@ msgstr "### 练习第 1 部分"
 #: ../src/Tutorial/Traverse.md:575
 #, fuzzy
 msgid "### Exercises part 2"
-msgstr "### 练习第 2 部分"
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
@@ -49,7 +83,24 @@ msgstr "### 练习第 2 部分"
 #: ../src/Tutorial/Traverse.md:1017
 #, fuzzy
 msgid "### Exercises part 3"
-msgstr "### 练习第 3 部分"
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -61,7 +112,26 @@ msgstr "### 练习第 3 部分"
 #: ../src/Tutorial/Traverse.md:1148
 #, fuzzy
 msgid "<!-- vi: filetype=idris2 -->"
-msgstr "<!-- vi: filetype=idris2 -->"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
@@ -71,7 +141,23 @@ msgstr "<!-- vi: filetype=idris2 -->"
 #: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
 #, fuzzy
 msgid "%default total ```"
-msgstr "%默认总数```"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
@@ -79,7 +165,13 @@ msgstr "%默认总数```"
 #: ../src/Tutorial/Prim.md:646
 #, fuzzy
 msgid "And at the REPL:"
-msgstr "在 REPL："
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"在 REPL：\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"在 REPL：\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:2
@@ -138,9 +230,9 @@ msgid ""
 msgstr ""
 "根据 [Wikipedia]（https://en.wikipedia.org/wiki/Compiler），编译器是“一种计算"
 "机程序，它将以一种编程语言（源语言）编写的计算机代码翻译成另一种语言（目标语"
-"言） ”。 Idris 编译器就是这样：一个将 Idris 编写的程序翻译成 Chez Scheme "
-"编写的程序的程序。然后这个方案代码由 Chez Scheme 解释器解析和解释，"
-"它必须安装在我们用来运行已编译 Idris 程序的计算机上。"
+"言） ”。 Idris 编译器就是这样：一个将 Idris 编写的程序翻译成 Chez Scheme 编写"
+"的程序的程序。然后这个方案代码由 Chez Scheme 解释器解析和解释，它必须安装在我"
+"们用来运行已编译 Idris 程序的计算机上。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:37
@@ -153,10 +245,10 @@ msgid ""
 "specify the backend to use with the `--cg` command line argument (`cg` "
 "stands for *code generator*). For instance:"
 msgstr ""
-"但这只是故事的一部分。 Idris 2 从一开始就设计为支持不同的代码生成器（所谓的 *"
-" 后端 *），这允许我们编写 Idris 代码以针对不同的平台，并且您的 Idris "
-"安装附带了几个可用的附加后端。您可以指定要与 `--cg` "
-"命令行参数一起使用的后端（`cg` 代表 * 代码生成器 *）。例如："
+"但这只是故事的一部分。 Idris 2 从一开始就设计为支持不同的代码生成器（所谓的 "
+"* 后端 *），这允许我们编写 Idris 代码以针对不同的平台，并且您的 Idris 安装附"
+"带了几个可用的附加后端。您可以指定要与 `--cg` 命令行参数一起使用的后端（`cg` "
+"代表 * 代码生成器 *）。例如："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:41
@@ -171,8 +263,9 @@ msgid ""
 "Here is a non-comprehensive list of the backends available with a standard "
 "Idris installation (the name to be used in the command line argument is "
 "given in parentheses):"
-msgstr "以下是标准 Idris "
-"安装可用的后端的非全面列表（在括号中给出命令行参数中使用的名称）："
+msgstr ""
+"以下是标准 Idris 安装可用的后端的非全面列表（在括号中给出命令行参数中使用的名"
+"称）："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
@@ -182,8 +275,8 @@ msgid ""
 "programming language, which can be useful to use when Chez Scheme is not "
 "available on your operating system."
 msgstr ""
-"Racket Scheme (`racket`)：这是方案编程语言的另一种风格，当 Chez Scheme "
-"在您的操作系统上不可用时，它很有用。"
+"Racket Scheme (`racket`)：这是方案编程语言的另一种风格，当 Chez Scheme 在您的"
+"操作系统上不可用时，它很有用。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
@@ -197,8 +290,9 @@ msgstr "Node.js (`node`)：这会将 Idris 程序转换为 JavaScript。"
 msgid ""
 "Browser (`javascript`): Another JavaScript backend which allows you to write "
 "web applications which run in the browser in Idris."
-msgstr "浏览器 (`javascript`)：另一个 JavaScript 后端，允许您编写在 Idris "
-"的浏览器中运行的 Web 应用程序。"
+msgstr ""
+"浏览器 (`javascript`)：另一个 JavaScript 后端，允许您编写在 Idris 的浏览器中"
+"运行的 Web 应用程序。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
@@ -214,8 +308,9 @@ msgstr "RefC (`refc`)：后端将 Idris 编译为 C 代码，然后由 C 编译�
 msgid ""
 "I plan to at least cover the JavaScript backends in some more detail in "
 "another part of this Idris guide, as I use them pretty often myself."
-msgstr "我计划至少在本 Idris 指南的另一部分中更详细地介绍 JavaScript "
-"后端，因为我自己也经常使用它们。"
+msgstr ""
+"我计划至少在本 Idris 指南的另一部分中更详细地介绍 JavaScript 后端，因为我自己"
+"也经常使用它们。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:62
@@ -246,9 +341,9 @@ msgid ""
 "calculations on the primitives. You will therefore not find a definition of "
 "a primitive type or function in the source code of the *Prelude*."
 msgstr ""
-"* 原始数据类型* 是与一组 * 原始函数* 一起内置到 Idris "
-"编译器中的类型，这些函数用于对原始数据执行计算。因此，您不会在 *Prelude* "
-"的源代码中找到原始类型或函数的定义。"
+"* 原始数据类型* 是与一组 * 原始函数* 一起内置到 Idris 编译器中的类型，这些函"
+"数用于对原始数据执行计算。因此，您不会在 *Prelude* 的源代码中找到原始类型或函"
+"数的定义。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:71
@@ -325,8 +420,8 @@ msgid ""
 "Constant`."
 msgstr ""
 "学习在编译器源代码中定义原始类型和函数的位置可能具有指导意义。此源代码可以在 "
-"[Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，"
-"原始类型是数据类型 ` 的常量构造函数Core.TT.Constant`。"
+"[Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，原"
+"始类型是数据类型 ` 的常量构造函数Core.TT.Constant`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:106
@@ -342,7 +437,8 @@ msgid ""
 "functions: The ones built into the compiler (see below) and the ones defined "
 "by programmers via the foreign function interface (FFI), about which I'll "
 "talk in another chapter."
-msgstr "所有对原语进行的计算都基于两种原语函数：编译器内置的（见下文）和程序员通过外"
+msgstr ""
+"所有对原语进行的计算都基于两种原语函数：编译器内置的（见下文）和程序员通过外"
 "部函数接口（FFI）定义的函数，我将在另一章中讨论。"
 
 #. type: Plain text
@@ -357,8 +453,8 @@ msgid ""
 "library."
 msgstr ""
 "内置原始函数是编译器已知的函数，其定义在 *Prelude* 中找不到。它们定义了可用于"
-"原始类型的核心功能。通常，您不会直接调用它们（尽管在大多数情况下这样做非常好"
-"），而是通过 *Prelude* 或 *base* 库导出的函数和接口。"
+"原始类型的核心功能。通常，您不会直接调用它们（尽管在大多数情况下这样做非常"
+"好），而是通过 *Prelude* 或 *base* 库导出的函数和接口。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:123
@@ -367,7 +463,8 @@ msgid ""
 "For instance, the primitive function for adding two eight bit unsigned "
 "integers is `prim__add_Bits8`. You can inspect its type and behavior at the "
 "REPL:"
-msgstr "例如，将两个八位无符号整数相加的原始函数是 `prim__add_Bits8`。您可以在 REPL "
+msgstr ""
+"例如，将两个八位无符号整数相加的原始函数是 `prim__add_Bits8`。您可以在 REPL "
 "中检查其类型和行为："
 
 #. type: Plain text
@@ -399,14 +496,13 @@ msgid ""
 "profiling)."
 msgstr ""
 "如果查看 `Bits8` 的实现接口 `Num` 的源代码，您会看到加号运算符只是在内部调用 "
-"`prim__add_Bits8`。原始接口实现中的大多数其他功能也是如此。例如，除了 "
-"`%World` 之外的每个原始类型都带有原始比较函数。对于 `Bits8`，它们是：`prim__e"
-"q_Bits8`、`prim__gt_Bits8`、`prim__lt_Bits8`、`prim__gte_Bits8` 和 `"
-"prim__lte_Bits8 X466X]。请注意，这些函数不返回 `Bool`（在 Idris 中 * 不是 * "
-"原始类型），而是 `Int`。因此，它们不像接口 `Eq` 和 `Comp` "
-"中的相应运算符实现那样安全或方便。另一方面，它们不会通过转换为 `Bool` 并且因"
-"此在性能关键代码中的性能可能会稍好一些（您只能在经过一些认真的分析后才能识别"
-"）。"
+"`prim__add_Bits8`。原始接口实现中的大多数其他功能也是如此。例如，除了 `"
+"%World` 之外的每个原始类型都带有原始比较函数。对于 `Bits8`，它们是："
+"`prim__eq_Bits8`、`prim__gt_Bits8`、`prim__lt_Bits8`、`prim__gte_Bits8` 和 "
+"`prim__lte_Bits8 X466X]。请注意，这些函数不返回 `Bool`（在 Idris 中 * 不是 * "
+"原始类型），而是 `Int`。因此，它们不像接口 `Eq` 和 `Comp` 中的相应运算符实现"
+"那样安全或方便。另一方面，它们不会通过转换为 `Bool` 并且因此在性能关键代码中"
+"的性能可能会稍好一些（您只能在经过一些认真的分析后才能识别）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:152
@@ -416,8 +512,8 @@ msgid ""
 "in a data type (`Core.TT.PrimFn`) in the compiler sources. We will look at "
 "most of these in the following sections."
 msgstr ""
-"与原始类型一样，原始函数在编译器源代码中被列为数据类型 (`Core.TT.PrimFn`) "
-"中的构造函数。我们将在以下部分中介绍其中的大部分内容。"
+"与原始类型一样，原始函数在编译器源代码中被列为数据类型 (`Core.TT.PrimFn`) 中"
+"的构造函数。我们将在以下部分中介绍其中的大部分内容。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:154
@@ -449,8 +545,8 @@ msgid ""
 "```idris covering replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ "
 "= [] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
 msgstr ""
-"```idris 覆盖 replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ = []"
-" replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
+"```idris 覆盖 replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ = "
+"[] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:174
@@ -459,8 +555,9 @@ msgid ""
 "In these cases, we either must be content with just a *covering* function, "
 "or we use `assert_smaller` to convince the totality checker (the preferred "
 "way):"
-msgstr "在这些情况下，我们要么只满足于 *covering* 函数，要么使用 `assert_smaller` "
-"来说服整体检查器（首选方式）："
+msgstr ""
+"在这些情况下，我们要么只满足于 *covering* 函数，要么使用 `assert_smaller` 来"
+"说服整体检查器（首选方式）："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:180
@@ -479,8 +576,9 @@ msgid ""
 "I have shown you the risks of using `assert_smaller` before, so we must be "
 "extra careful in making sure that the new function argument is indeed "
 "smaller with relation to the base case."
-msgstr "我之前已经向您展示了使用 `assert_smaller` "
-"的风险，因此我们必须格外小心，以确保新函数参数相对于基本情况确实更小。"
+msgstr ""
+"我之前已经向您展示了使用 `assert_smaller` 的风险，因此我们必须格外小心，以确"
+"保新函数参数相对于基本情况确实更小。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:189
@@ -511,9 +609,9 @@ msgid ""
 "demonstrate this. Assume we'd like to wrap a list in a data type indexed by "
 "the list's length:"
 msgstr ""
-"由于不了解原始的内部结构或原始函数的实现，Idris "
-"无法帮助我们证明此类函数和值的任何 *general* 属性。这是一个例子来证明这一点。"
-"假设我们想将一个列表包装在一个由列表长度索引的数据类型中："
+"由于不了解原始的内部结构或原始函数的实现，Idris 无法帮助我们证明此类函数和值"
+"的任何 *general* 属性。这是一个例子来证明这一点。假设我们想将一个列表包装在一"
+"个由列表长度索引的数据类型中："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:205
@@ -536,7 +634,8 @@ msgid ""
 "When we concatenate two `LenList`s, the length indices should be added. "
 "That's how list concatenation affects the length of lists. We can safely "
 "teach Idris that this is true:"
-msgstr "当我们连接两个 `LenList` 时，应该添加长度索引。这就是列表连接影响列表长度的方"
+msgstr ""
+"当我们连接两个 `LenList` 时，应该添加长度索引。这就是列表连接影响列表长度的方"
 "式。我们可以安全地告诉伊德里斯这是真的："
 
 #. type: Plain text
@@ -589,8 +688,8 @@ msgid ""
 "following lemma in a safe way:"
 msgstr ""
 "字符串也是不可能的。在某些应用程序中，将字符串与其长度配对会很有用（例如，如"
-"果我们想确保字符串在解析过程中严格缩短，因此最终会被完全消耗掉），但 Idris "
-"无法帮助我们正确处理这些事情。没有办法以安全的方式实现并证明以下引理："
+"果我们想确保字符串在解析过程中严格缩短，因此最终会被完全消耗掉），但 Idris 无"
+"法帮助我们正确处理这些事情。没有办法以安全的方式实现并证明以下引理："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:235
@@ -622,16 +721,17 @@ msgid ""
 "other type.  Needless to say, this is only safe if we *really* know what we "
 "are doing:"
 msgstr ""
-"为了实现`concatLenStr`，我们必须放弃所有安全，使用强制类型的十吨破坏球：`beli"
-"eve_me`。这个原始函数允许我们自由地将任何类型的值强制转换为任何其他类型的值。"
-"不用说，只有当我们 * 真的 * 知道我们在做什么时，这才是安全的："
+"为了实现`concatLenStr`，我们必须放弃所有安全，使用强制类型的十吨破坏球："
+"`believe_me`。这个原始函数允许我们自由地将任何类型的值强制转换为任何其他类型"
+"的值。不用说，只有当我们 * 真的 * 知道我们在做什么时，这才是安全的："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:249
 #, fuzzy
 msgid ""
 "```idris concatLenStr a b = believe_me $ Refl {x = length a + length b} ```"
-msgstr "```idris concatLenStr a b = believe_me $ Refl {x = 长度 a + 长度 b} ```"
+msgstr ""
+"```idris concatLenStr a b = believe_me $ Refl {x = 长度 a + 长度 b} ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:257
@@ -645,9 +745,9 @@ msgid ""
 "the two sides of the equality to make our intention clear."
 msgstr ""
 "在 `{x = 长度 a + 长度 b}` 中显式分配变量 `x` 是必要的，否则 Idris 会抱怨 * "
-"未解决的孔 *：它可以' t 在 `Refl` 构造函数中推断参数 `x` 的类型。"
-"我们可以在这里为 `x` 分配任何类型，因为无论如何我们都将结果传递给 "
-"`believe_me`，但我认为将等式的两侧之一分配给明确我们的意图。"
+"未解决的孔 *：它可以' t 在 `Refl` 构造函数中推断参数 `x` 的类型。我们可以在这"
+"里为 `x` 分配任何类型，因为无论如何我们都将结果传递给 `believe_me`，但我认为"
+"将等式的两侧之一分配给明确我们的意图。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:262
@@ -656,7 +756,8 @@ msgid ""
 "The higher the complexity of a primitive type, the riskier it is to assume "
 "even the most basic properties for it to hold.  For instance, we might act "
 "under the delusion that floating point addition is associative:"
-msgstr "原始类型的复杂性越高，假设它拥有最基本的属性的风险就越大。例如，我们可能会误"
+msgstr ""
+"原始类型的复杂性越高，假设它拥有最基本的属性的风险就越大。例如，我们可能会误"
 "以为浮点加法是关联的："
 
 #. type: Plain text
@@ -710,11 +811,11 @@ msgid ""
 "Tiny` equals `1.0`.  We can therefore pass our (wrong) proof to `wrong`, "
 "because it is of the correct type, and from this follows a proof of `Void`."
 msgstr ""
-"下面是上面代码中发生的情况：对 `doubleAddAssoc` 的调用返回一个证明 `One + ("
-"Tiny + Tiny)` 等于 `(One + Tiny) + Tiny[X143X ]。但是 `One + (Tiny + Tiny)` "
-"等于 `1.0000000000000002`，而 `(One + Tiny) + Tiny` 等于 `1."
-"0`。因此，我们可以将我们的（错误的）证明传递给 `wrong`，因为它是正确的类型，"
-"并由此得出 `Void` 的证明。"
+"下面是上面代码中发生的情况：对 `doubleAddAssoc` 的调用返回一个证明 `One + "
+"(Tiny + Tiny)` 等于 `(One + Tiny) + Tiny[X143X ]。但是 `One + (Tiny + Tiny)` "
+"等于 `1.0000000000000002`，而 `(One + Tiny) + Tiny` 等于 `1.0`。因此，我们可"
+"以将我们的（错误的）证明传递给 `wrong`，因为它是正确的类型，并由此得出 "
+"`Void` 的证明。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:293
@@ -729,8 +830,9 @@ msgid ""
 "Module `Data.String` in *base* offers a rich set of functions for working "
 "with strings. All these are based on the following primitive operations "
 "built into the compiler:"
-msgstr "*base* 中的模块 `Data.String` "
-"提供了一组丰富的函数来处理字符串。所有这些都基于编译器内置的以下原始操作："
+msgstr ""
+"*base* 中的模块 `Data.String` 提供了一组丰富的函数来处理字符串。所有这些都基"
+"于编译器内置的以下原始操作："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
@@ -809,9 +911,9 @@ msgid ""
 "expression leads to a runtime exception if we compile and execute the "
 "program. Valid calls to `prim__strTail` are reduced just fine, however:"
 msgstr ""
-"请注意，`prim__strTail \"\"` 如何在 REPL "
-"中没有减少，以及如果我们编译和执行程序，相同的表达式如何导致运行时异常。对 "
-"`prim__strTail` 的有效调用减少得很好，但是："
+"请注意，`prim__strTail \"\"` 如何在 REPL 中没有减少，以及如果我们编译和执行程"
+"序，相同的表达式如何导致运行时异常。对 `prim__strTail` 的有效调用减少得很好，"
+"但是："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:328
@@ -838,10 +940,10 @@ msgid ""
 "most efficient thing to do, but unless you plan to handle very large amounts "
 "of text, they work and perform reasonably well."
 msgstr ""
-"处理字符串的两个最重要的函数是 `unpack` 和 `pack`，它们将字符串转换为字符列表"
-"，反之亦然。这允许我们通过迭代或折叠字符列表来方便地实现许多字符串操作。这可"
-"能并不总是最有效的做法，但除非您计划处理大量文本，否则它们的工作和性能相当不"
-"错。"
+"处理字符串的两个最重要的函数是 `unpack` 和 `pack`，它们将字符串转换为字符列"
+"表，反之亦然。这允许我们通过迭代或折叠字符列表来方便地实现许多字符串操作。这"
+"可能并不总是最有效的做法，但除非您计划处理大量文本，否则它们的工作和性能相当"
+"不错。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:341
@@ -856,7 +958,8 @@ msgid ""
 "Idris allows us to include arbitrary string expressions in a string literal "
 "by wrapping them in curly braces, the first of which has to be escaped with "
 "a backslash. For instance:"
-msgstr "Idris 允许我们将任意字符串表达式包含在字符串文字中，方法是将它们包裹在花括号"
+msgstr ""
+"Idris 允许我们将任意字符串表达式包含在字符串文字中，方法是将它们包裹在花括号"
 "中，第一个必须用反斜杠转义。例如："
 
 #. type: Plain text
@@ -878,8 +981,8 @@ msgid ""
 "allows us to use values in interpolated strings without having to convert "
 "them to strings first:"
 msgstr ""
-"这是从不同类型的值组装复杂字符串的一种非常方便的方法。此外，还有接口`Interpol"
-"ation`，它允许我们在插值字符串中使用值，而不必先将它们转换为字符串："
+"这是从不同类型的值组装复杂字符串的一种非常方便的方法。此外，还有接口"
+"`Interpolation`，它允许我们在插值字符串中使用值，而不必先将它们转换为字符串："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:359
@@ -945,7 +1048,8 @@ msgstr ""
 msgid ""
 "ethanol : String ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, "
 "the Nat 1)]}\" ```"
-msgstr "乙醇 : String ethanol = \"乙醇的公式是：\\{[(C,2),(H,6),(O, the Nat 1)]}\" "
+msgstr ""
+"乙醇 : String ethanol = \"乙醇的公式是：\\{[(C,2),(H,6),(O, the Nat 1)]}\" "
 "```"
 
 #. type: Plain text
@@ -969,9 +1073,8 @@ msgid ""
 "```idris escapeExample : String escapeExample = \"A quote: \\\". \\nThis is "
 "on a new line.\\nA backslash: \\\\\" ```"
 msgstr ""
-"```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n"
-"这是一个新行。\\n"
-"反斜杠：\\\\\" ```"
+"```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n这是一个"
+"新行。\\n反斜杠：\\\\\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:398
@@ -980,7 +1083,8 @@ msgid ""
 "Idris allows us to enter raw string literals, where there is no need to "
 "escape quotes and backslashes, by pre- and postfixing the wrapping quote "
 "characters with the same number of hash characters. For instance:"
-msgstr "Idris 允许我们输入原始字符串文字，无需转义引号和反斜杠，方法是使用相同数量的"
+msgstr ""
+"Idris 允许我们输入原始字符串文字，无需转义引号和反斜杠，方法是使用相同数量的"
 "散列字符前后加环绕引号字符。例如："
 
 #. type: Plain text
@@ -988,7 +1092,8 @@ msgstr "Idris 允许我们输入原始字符串文字，无需转义引号和反
 #, fuzzy
 msgid ""
 "```idris rawExample : String rawExample = #\"A quote: \". A blackslash: \\\"#"
-msgstr "```idris rawExample : String rawExample = #\"A quote: \"。黑斜线：\\\"#"
+msgstr ""
+"```idris rawExample : String rawExample = #\"A quote: \"。黑斜线：\\\"#"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:406
@@ -1005,8 +1110,9 @@ msgid ""
 "but the opening curly brace has to be prefixed with a backslash and the same "
 "number of hashes as are being used for opening and closing the string "
 "literal:"
-msgstr "对于原始字符串文字，仍然可以使用字符串插值，但开始的花括号必须以反斜杠为前缀"
-"，并且散列数与用于打开和关闭字符串文字的哈希数相同："
+msgstr ""
+"对于原始字符串文字，仍然可以使用字符串插值，但开始的花括号必须以反斜杠为前"
+"缀，并且散列数与用于打开和关闭字符串文字的哈希数相同："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:416
@@ -1015,8 +1121,8 @@ msgid ""
 "```idris rawInterpolExample : String rawInterpolExample = ##\"An "
 "interpolated \"string\": \\##{rawExample}\"## ```"
 msgstr ""
-"```idris rawInterpolExample : String rawInterpolExample = ##\"一个内插的"
-"“字符串”：\\##{rawExample}\"## ```"
+"```idris rawInterpolExample : String rawInterpolExample = ##\"一个内插的“字符"
+"串”：\\##{rawExample}\"## ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:424
@@ -1030,10 +1136,10 @@ msgid ""
 "Whitespace used for indentation will not appear in the resulting string. For "
 "instance:"
 msgstr ""
-"最后，Idris 还允许我们方便地编写多行字符串。如果我们想要原始的多行字符串文字"
-"，这些可以用哈希前缀和后缀，它们也可以与字符串插值结合使用。多行文字用三引号"
-"字符打开和关闭。缩进结束的三引号允许我们缩进整个多行文字。用于缩进的空格不会"
-"出现在结果字符串中。例如："
+"最后，Idris 还允许我们方便地编写多行字符串。如果我们想要原始的多行字符串文"
+"字，这些可以用哈希前缀和后缀，它们也可以与字符串插值结合使用。多行文字用三引"
+"号字符打开和关闭。缩进结束的三引号允许我们缩进整个多行文字。用于缩进的空格不"
+"会出现在结果字符串中。例如："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:435
@@ -1087,7 +1193,8 @@ msgstr ""
 msgid ""
 "Make sure to look at the example strings at the REPL to see the effect of "
 "interpolation and raw string literals and compare it with the syntax we used."
-msgstr "请务必查看 REPL 中的示例字符串，以了解插值和原始字符串文字的效果，并将其与我"
+msgstr ""
+"请务必查看 REPL 中的示例字符串，以了解插值和原始字符串文字的效果，并将其与我"
 "们使用的语法进行比较。"
 
 #. type: Plain text
@@ -1097,7 +1204,8 @@ msgid ""
 "In these exercises, you are supposed to implement a bunch of utility "
 "functions for consuming and converting strings.  I don't give the expected "
 "types here, because you are supposed to come up with those yourself."
-msgstr "在这些练习中，你应该实现一堆用于消费和转换字符串的实用函数。我在这里没有给出"
+msgstr ""
+"在这些练习中，你应该实现一堆用于消费和转换字符串的实用函数。我在这里没有给出"
 "预期的类型，因为你应该自己想出那些。"
 
 #. type: Bullet: '1. '
@@ -1106,8 +1214,9 @@ msgstr "在这些练习中，你应该实现一堆用于消费和转换字符串
 msgid ""
 "Implement functions similar to `map`, `filter`, and `mapMaybe` for strings. "
 "The output type of these should always be a string."
-msgstr "为字符串实现类似于 `map`、`filter` 和 `mapMaybe` "
-"的函数。这些的输出类型应该始终是一个字符串。"
+msgstr ""
+"为字符串实现类似于 `map`、`filter` 和 `mapMaybe` 的函数。这些的输出类型应该始"
+"终是一个字符串。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Prim.md:461
@@ -1220,9 +1329,9 @@ msgid ""
 "interface `Integral`.  The bitwise operations are available through "
 "interfaces `Data.Bits.Bits` and `Data.Bits.FiniteBits`."
 msgstr ""
-"通常，您可以通过接口 `Num` 中的运算符使用加法和乘法函数，通过接口 `Neg` "
-"使用减法函数，以及除法函数 (`div`和 `mod`) 通过接口 `Integral`。"
-"位运算可通过接口 `Data.Bits.Bits` 和 `Data.Bits.FiniteBits` 获得。"
+"通常，您可以通过接口 `Num` 中的运算符使用加法和乘法函数，通过接口 `Neg` 使用"
+"减法函数，以及除法函数 (`div`和 `mod`) 通过接口 `Integral`。位运算可通过接口 "
+"`Data.Bits.Bits` 和 `Data.Bits.FiniteBits` 获得。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:497
@@ -1231,8 +1340,9 @@ msgid ""
 "For all integral types, the following laws are assumed to hold for numeric "
 "operations (`x`, `y`, and `z` are arbitrary value of the same primitive "
 "integral type):"
-msgstr "对于所有整数类型，假设以下定律适用于数值运算（`x`、`y` 和 `z` "
-"是相同原始整数类型的任意值） ："
+msgstr ""
+"对于所有整数类型，假设以下定律适用于数值运算（`x`、`y` 和 `z` 是相同原始整数"
+"类型的任意值） ："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
@@ -1302,9 +1412,9 @@ msgid ""
 msgstr ""
 "请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x "
 "`mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 "
-"`x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下[文章](https://"
-"www.microsoft. com/en-us/research/publication/"
-"division-and-modulus-for-computer-scientists/）。"
+"`x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下[文章](https://www."
+"microsoft. com/en-us/research/publication/division-and-modulus-for-computer-"
+"scientists/）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:517
@@ -1324,11 +1434,11 @@ msgid ""
 "`2^bitsize`. For instance, for `Bits8`, all operations calculate their "
 "results modulo 256:"
 msgstr ""
-"无符号固定精度整数类型（`Bits8`、`Bits16`、`Bits32` 和 "
-"`Bits64`）带有所有积分接口的实现（[X141X ]Num`、`Neg` 和 "
-"`Integral`）以及用于按位运算的两个接口（`Bits` 和 `FiniteBits`）。除了 `div` "
-"和 `mod` 之外的所有函数都是总计的。通过计算余数模 `2^bitsize` "
-"来处理溢出。例如，对于 `Bits8`，所有操作都以 256 为模计算其结果："
+"无符号固定精度整数类型（`Bits8`、`Bits16`、`Bits32` 和 `Bits64`）带有所有积分"
+"接口的实现（[X141X ]Num`、`Neg` 和 `Integral`）以及用于按位运算的两个接口"
+"（`Bits` 和 `FiniteBits`）。除了 `div` 和 `mod` 之外的所有函数都是总计的。通"
+"过计算余数模 `2^bitsize` 来处理溢出。例如，对于 `Bits8`，所有操作都以 256 为"
+"模计算其结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:537
@@ -1337,8 +1447,8 @@ msgid ""
 "```repl Main> the Bits8 255 + 1 0 Main> the Bits8 255 + 255 254 Main> the "
 "Bits8 128 * 2 + 7 7 Main> the Bits8 12 - 13 255 ```"
 msgstr ""
-"```repl Main> Bits8 255 + 1 0 Main> Bits8 255 + 255 254 Main> Bits8 128 * 2 +"
-" 7 7 Main> Bits8 12 - 13 255 ```"
+"```repl Main> Bits8 255 + 1 0 Main> Bits8 255 + 255 254 Main> Bits8 128 * 2 "
+"+ 7 7 Main> Bits8 12 - 13 255 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:539
@@ -1361,9 +1471,9 @@ msgid ""
 msgstr ""
 "与无符号整数类型一样，有符号固定精度整数类型（`Int8`、`Int16`、`Int32` 和 "
 "`Int64`）具有以下实现所有积分接口和用于按位运算的两个接口（`Bits` 和 "
-"`FiniteBits`）。如果结果仍然超出范围，则通过计算余数模 `2^bitsize` "
-"并添加下限（负数）来处理溢出。例如，对于 `Int8`，所有操作都以 256 "
-"为模计算结果，如果结果仍然超出范围，则减去 128："
+"`FiniteBits`）。如果结果仍然超出范围，则通过计算余数模 `2^bitsize` 并添加下限"
+"（负数）来处理溢出。例如，对于 `Int8`，所有操作都以 256 为模计算结果，如果结"
+"果仍然超出范围，则减去 128："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:556
@@ -1391,12 +1501,11 @@ msgid ""
 "wikipedia.org/wiki/Two%27s_complement), about which I will not go into the "
 "details here."
 msgstr ""
-"模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。"
-"我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解"
-"释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。"
-"那些必须在其位模式中包含有关数字的 * 符号 * 的信息，并且假设 Idris "
-"中的有符号整数使用 [二进制补码表示]（https://en.wikipedia.org/wiki/ "
-"2%27s_complement)，这里不再赘述。"
+"模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。我将展示几个关于无符"
+"号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解释这个概念。请注意，"
+"对于无符号整数类型，这比有符号版本更容易掌握。那些必须在其位模式中包含有关数"
+"字的 * 符号 * 的信息，并且假设 Idris 中的有符号整数使用 [二进制补码表示]"
+"（https://en.wikipedia.org/wiki/ 2%27s_complement)，这里不再赘述。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:573
@@ -1406,8 +1515,8 @@ msgid ""
 "eight bits (with values 0 or 1), each of which corresponds to a power of 2. "
 "For instance, the number 23 (= 16 + 4 + 2 + 1) is represented as `0001 0111`:"
 msgstr ""
-"无符号 8 位二进制数在内部表示为 8 位序列（值为 0 或 1），每个位对应于 2 "
-"的幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`："
+"无符号 8 位二进制数在内部表示为 8 位序列（值为 0 或 1），每个位对应于 2 的"
+"幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:576
@@ -1455,7 +1564,8 @@ msgstr ""
 msgid ""
 "Likewise, we can use functions `setBit` and `clearBit` to set or unset a bit "
 "at a certain position:"
-msgstr "同样，我们可以使用函数 `setBit` 和 `clearBit` 在某个位置设置或取消设置位："
+msgstr ""
+"同样，我们可以使用函数 `setBit` 和 `clearBit` 在某个位置设置或取消设置位："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:602
@@ -1464,8 +1574,8 @@ msgid ""
 "```repl Tutorial.Prim> setBit (the Bits8 23) 3 31 Tutorial.Prim> clearBit "
 "(the Bits8 23) 2 19 ```"
 msgstr ""
-"```repl Tutorial.Prim>setBit(Bits8 23) 3 31 Tutorial.Prim>clearBit(Bits8 23)"
-"2 19 ```"
+"```repl Tutorial.Prim>setBit(Bits8 23) 3 31 Tutorial.Prim>clearBit(Bits8 "
+"23)2 19 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:610
@@ -1478,11 +1588,10 @@ msgid ""
 "that are either set in `x` or `y` (or both), and ``x `xor` y`` has those "
 "bits set that are set in exactly one of the two values:"
 msgstr ""
-"还有运算符 `(.&.)`（按位 * 和 *）和 `(.|.)`（按位 * 或 *）"
-"以及用于对整数值执行布尔运算的函数 `xor`（按位 * 互斥或 *）。例如 `x .&。 y` "
-"正好设置了那些位，`x` 和 `y` 都设置了，而 `x .|。 y` 设置了在 `x` 或 "
-"`y`（或两者）中设置的所有位，并且 ``x `xor` y`` "
-"设置了那些位设置为以下两个值之一："
+"还有运算符 `(.&.)`（按位 * 和 *）和 `(.|.)`（按位 * 或 *）以及用于对整数值执"
+"行布尔运算的函数 `xor`（按位 * 互斥或 *）。例如 `x .&。 y` 正好设置了那些位，"
+"`x` 和 `y` 都设置了，而 `x .|。 y` 设置了在 `x` 或 `y`（或两者）中设置的所有"
+"位，并且 ``x `xor` y`` 设置了那些位设置为以下两个值之一："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:614
@@ -1536,9 +1645,9 @@ msgid ""
 "viewed as a multiplication by a power of two, while a right shift can be "
 "seen as a division by a power of two:"
 msgstr ""
-"最后，可以分别使用函数 `shiftR` 和 `shiftL` "
-"将所有位向右或向左移动一定步数（溢出的位将被丢弃）。因此，左移可以看作是乘以 "
-"2 的幂，而右移可以看作是除以 2 的幂："
+"最后，可以分别使用函数 `shiftR` 和 `shiftL` 将所有位向右或向左移动一定步数"
+"（溢出的位将被丢弃）。因此，左移可以看作是乘以 2 的幂，而右移可以看作是除以 "
+"2 的幂："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:640
@@ -1579,7 +1688,8 @@ msgid ""
 "Bitwise operations are often used in specialized code or certain high-"
 "performance applications. As programmers, we have to know they exist and how "
 "they work."
-msgstr "按位运算通常用于专用代码或某些高性能应用程序中。作为程序员，我们必须知道它们"
+msgstr ""
+"按位运算通常用于专用代码或某些高性能应用程序中。作为程序员，我们必须知道它们"
 "的存在以及它们是如何工作的。"
 
 #. type: Plain text
@@ -1609,7 +1719,8 @@ msgid ""
 "For instance, assume we'd like to define a data type for representing the "
 "charge of a chemical molecule. Such a value can be positive or negative and "
 "(theoretically) of almost arbitrary magnitude:"
-msgstr "例如，假设我们想定义一个数据类型来表示化学分子的电荷。这样的值可以是正值或负"
+msgstr ""
+"例如，假设我们想定义一个数据类型来表示化学分子的电荷。这样的值可以是正值或负"
 "值，并且（理论上）几乎是任意大小："
 
 #. type: Plain text
@@ -1637,9 +1748,9 @@ msgid ""
 "we'd like to have the convenience of integer literals when using constant "
 "charges at compile time. Here's how to do this:"
 msgstr ""
-"能够对费用求和是有意义的，但不能将它们相乘。因此，它们应该有 `Monoid` "
-"的实现，而不是 `Num` 的实现。尽管如此，我们还是希望在编译时使用常量费用时能够"
-"方便地使用整数文字。以下是如何执行此操作："
+"能够对费用求和是有意义的，但不能将它们相乘。因此，它们应该有 `Monoid` 的实"
+"现，而不是 `Num` 的实现。尽管如此，我们还是希望在编译时使用常量费用时能够方便"
+"地使用整数文字。以下是如何执行此操作："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:687
@@ -1684,8 +1795,8 @@ msgid ""
 "to be prefixed with a zero following by a `b`, `o`, or `x` for binary, "
 "octal, and hexadecimal, respectively:"
 msgstr ""
-"除了众所周知的十进制文字外，还可以使用二进制、八进制或十六进制表示的整数文字"
-"。对于二进制、八进制和十六进制，它们必须以零为前缀，后跟 `b`、`o` 或 `x`："
+"除了众所周知的十进制文字外，还可以使用二进制、八进制或十六进制表示的整数文"
+"字。对于二进制、八进制和十六进制，它们必须以零为前缀，后跟 `b`、`o` 或 `x`："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:711
@@ -1729,7 +1840,8 @@ msgstr "定义整数值的包装记录并实现 `Monoid` 以便 `(<+>)` 对应�
 msgid ""
 "Use bitwise operations to implement a function, which tests if a given value "
 "of type `Bits64` is even or not."
-msgstr "使用按位运算来实现一个函数，该函数测试 `Bits64` 类型的给定值是否为偶数。"
+msgstr ""
+"使用按位运算来实现一个函数，该函数测试 `Bits64` 类型的给定值是否为偶数。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Prim.md:727
@@ -1806,8 +1918,8 @@ msgid ""
 "only consist of ASCII characters:"
 msgstr ""
 "字符串编码是一个困难的话题，因此在许多低级例程中，从一开始就排除大多数字符是"
-"有意义的。因此，假设我们希望确保我们在应用程序中接受的字符串仅包含 ASCII "
-"字符："
+"有意义的。因此，假设我们希望确保我们在应用程序中接受的字符串仅包含 ASCII 字"
+"符："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:760
@@ -1820,7 +1932,8 @@ msgstr "```idris isAsciiChar : Char -> Bool isAsciiChar c = ord c <= 127"
 #, fuzzy
 msgid ""
 "isAsciiString : String -> Bool isAsciiString = all isAsciiChar . unpack ```"
-msgstr "isAsciiString : String -> Bool isAsciiString = all isAsciiChar 。解压```"
+msgstr ""
+"isAsciiString : String -> Bool isAsciiString = all isAsciiChar 。解压```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:767
@@ -1828,7 +1941,8 @@ msgstr "isAsciiString : String -> Bool isAsciiString = all isAsciiChar 。解压
 msgid ""
 "We can now *refine* a string value by pairing it with an erased proof of "
 "validity:"
-msgstr "我们现在可以 * 细化 * 一个字符串值，方法是将其与已擦除的有效性证明配对："
+msgstr ""
+"我们现在可以 * 细化 * 一个字符串值，方法是将其与已擦除的有效性证明配对："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:774
@@ -1857,9 +1971,8 @@ msgid ""
 "already pretty easy to safely wrap strings at compile time in a value of "
 "type `Ascii`:"
 msgstr ""
-"现在 * 不可能 * 在运行时或编译时创建 `Ascii` "
-"类型的值，而无需首先验证包装的字符串。有了这个，在编译时将字符串安全地包装成 "
-"`Ascii` 类型的值已经很容易了："
+"现在 * 不可能 * 在运行时或编译时创建 `Ascii` 类型的值，而无需首先验证包装的字"
+"符串。有了这个，在编译时将字符串安全地包装成 `Ascii` 类型的值已经很容易了："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:784
@@ -1885,16 +1998,14 @@ msgid ""
 "define a custom `fromString` function with an erased auto implicit argument "
 "as a proof of validity:"
 msgstr ""
-"然而，为此仍然使用字符串文字会更方便，而不必牺牲安全的舒适性。为此，"
-"我们不能使用接口 `FromString`，因为它的函数 `fromString` 会强制我们转换 *any*"
-" 字符串，即使是无效字符串。但是，我们实际上不需要实现 `FromString` "
-"来支持字符串文字，就像我们不需要实现 `Num` 来支持整数文字一样。"
-"我们真正需要的是一个名为 `fromString` 的函数。现在，当字符串文字被脱糖时，"
-"它们被转换为以给定字符串值作为参数的 `fromString` 的调用。例如，文字 `\"Hello"
-"\"` 被脱糖为 `fromString \"Hello\""
-"`。这发生在类型检查和填充（自动）隐式值之前。因此，"
-"使用已擦除的自动隐式参数定义自定义 `fromString` "
-"函数作为有效性证明是非常好的："
+"然而，为此仍然使用字符串文字会更方便，而不必牺牲安全的舒适性。为此，我们不能"
+"使用接口 `FromString`，因为它的函数 `fromString` 会强制我们转换 *any* 字符"
+"串，即使是无效字符串。但是，我们实际上不需要实现 `FromString` 来支持字符串文"
+"字，就像我们不需要实现 `Num` 来支持整数文字一样。我们真正需要的是一个名为 "
+"`fromString` 的函数。现在，当字符串文字被脱糖时，它们被转换为以给定字符串值作"
+"为参数的 `fromString` 的调用。例如，文字 `\"Hello\"` 被脱糖为 `fromString "
+"\"Hello\"`。这发生在类型检查和填充（自动）隐式值之前。因此，使用已擦除的自动"
+"隐式参数定义自定义 `fromString` 函数作为有效性证明是非常好的："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:805
@@ -1903,8 +2014,8 @@ msgid ""
 "```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === "
 "True} -> Ascii fromString s = MkAscii s prf ```"
 msgstr ""
-"```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === True}"
-" -> Ascii fromString s = MkAscii s prf ```"
+"```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === "
+"True} -> Ascii fromString s = MkAscii s prf ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:808
@@ -1927,8 +2038,9 @@ msgid ""
 "In order to at runtime create values of type `Ascii` from strings of an "
 "unknown source, we can use a refinement function returning some kind of "
 "failure type:"
-msgstr "为了在运行时从未知来源的字符串中创建 `Ascii` "
-"类型的值，我们可以使用返回某种故障类型的细化函数："
+msgstr ""
+"为了在运行时从未知来源的字符串中创建 `Ascii` 类型的值，我们可以使用返回某种故"
+"障类型的细化函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:822
@@ -1969,7 +2081,8 @@ msgid ""
 "For many use cases, what we described above for ASCII strings can take us "
 "very far. However, one drawback of this approach is that we can't safely "
 "perform any computations with the proofs at hand."
-msgstr "对于许多用例，我们上面描述的 ASCII 字符串可以让我们走得很远。然而，这种方法的"
+msgstr ""
+"对于许多用例，我们上面描述的 ASCII 字符串可以让我们走得很远。然而，这种方法的"
 "一个缺点是我们不能使用手头的证明安全地执行任何计算。"
 
 #. type: Plain text
@@ -1981,8 +2094,8 @@ msgid ""
 "`believe_me`, because we will not be able to proof the following lemma "
 "otherwise:"
 msgstr ""
-"例如，我们知道连接两个 ASCII 字符串会非常好，但是为了让 Idris 相信这一点，"
-"我们必须使用 `believe_me`，否则我们将无法证明以下引理："
+"例如，我们知道连接两个 ASCII 字符串会非常好，但是为了让 Idris 相信这一点，我"
+"们必须使用 `believe_me`，否则我们将无法证明以下引理："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:847
@@ -2080,12 +2193,12 @@ msgid ""
 "in the page's HTML structure and executed when it is being displayed to "
 "other users."
 msgstr ""
-"好吧，它本来可以（很多）更糟。尽管如此，除非我们采取措施防止这种情况发生，"
-"否则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript "
-"程序！我在这里描述的是一个众所周知的安全漏洞，称为 [cross-site "
-"scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)。"
-"它允许网页用户在文本字段中输入恶意 JavaScript 代码，"
-"然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时执行。"
+"好吧，它本来可以（很多）更糟。尽管如此，除非我们采取措施防止这种情况发生，否"
+"则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript 程序！我在这里描述"
+"的是一个众所周知的安全漏洞，称为 [cross-site scripting](https://en.wikipedia."
+"org/wiki/Cross-site_scripting)。它允许网页用户在文本字段中输入恶意 "
+"JavaScript 代码，然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时"
+"执行。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:891
@@ -2141,9 +2254,9 @@ msgid ""
 "to `escape` and arrived at the string we have now\". Here's how to encode "
 "this:"
 msgstr ""
-"我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形式：“"
-"这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` "
-"并到达我们现在拥有的字符串”。以下是如何对此进行编码："
+"我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形"
+"式：“这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` 并到达我们"
+"现在拥有的字符串”。以下是如何对此进行编码："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:918
@@ -2175,10 +2288,9 @@ msgid ""
 "also possible to safely embed string literals known at compile time without "
 "the need to escape them first:"
 msgstr ""
-"每当我们现在在我们的网页中嵌入一个未知来源的字符串时，"
-"我们都可以请求一个类型为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨"
-"站点脚本攻击。更好的是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义"
-"它们："
+"每当我们现在在我们的网页中嵌入一个未知来源的字符串时，我们都可以请求一个类型"
+"为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨站点脚本攻击。更好的"
+"是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义它们："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:931
@@ -2209,7 +2321,8 @@ msgid ""
 "In this massive set of exercises, you are going to build a small library for "
 "working with predicates on primitives.  We want to keep the following goals "
 "in mind:"
-msgstr "在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下"
+msgstr ""
+"在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下"
 "目标："
 
 #. type: Bullet: '* '
@@ -2219,8 +2332,9 @@ msgid ""
 "We want to use the usual operations of propositional logic to combine "
 "predicates: Negation, conjuction (logical *and*), and disjunction (logical "
 "*or*)."
-msgstr "我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 * 和 *）和析取（"
-"逻辑 * 或 *）。"
+msgstr ""
+"我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 * 和 *）和析取（逻"
+"辑 * 或 *）。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
@@ -2229,7 +2343,8 @@ msgid ""
 "All predicates should be erased at runtime. If we proof something about a "
 "primitive number, we want to make sure not to carry around a huge proof of "
 "validity."
-msgstr "所有谓词都应在运行时擦除。如果我们证明一些关于原始数字的东西，我们要确保不携"
+msgstr ""
+"所有谓词都应在运行时擦除。如果我们证明一些关于原始数字的东西，我们要确保不携"
 "带大量的有效性证明。"
 
 #. type: Bullet: '* '
@@ -2249,8 +2364,8 @@ msgid ""
 "can't find a tail recursive solution for a given problem, use what feels "
 "most natural instead."
 msgstr ""
-"如果谓词用于 `decide` 的实现，则谓词的递归计算应该是尾递归的。这可能很难实现"
-"。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。"
+"如果谓词用于 `decide` 的实现，则谓词的递归计算应该是尾递归的。这可能很难实"
+"现。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:980
@@ -2279,17 +2394,16 @@ msgid ""
 msgstr ""
 "关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原始值转换为代"
 "数数据类型：无符号整数将转换为 `Nat` 使用 [ X225X]cast`，字符串将使用 "
-"`unpack` 转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` "
-"上使用证明，并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明"
-"。然而，原始类型相对于代数数据类型的一个优势是它们通常执行得更好。"
-"在将整数类型与 `Nat` 进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` "
-"时间复杂度运行，其中 `n` 是 1 的大小所涉及的自然数，而对于 "
-"`Bits64`，例如，许多操作在快速常数时间内运行（`O(1)`）。幸运的是，Idris "
-"编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好"
-"处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获"
-"得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度和 * "
-"编译时间* 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练"
-"习的末尾讨论了解决此问题的方法。"
+"`unpack` 转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使"
+"用证明，并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然"
+"而，原始类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 "
+"`Nat` 进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运"
+"行，其中 `n` 是 1 的大小所涉及的自然数，而对于 `Bits64`，例如，许多操作在快速"
+"常数时间内运行（`O(1)`）。幸运的是，Idris 编译器优化了许多自然数函数，以便在"
+"运行时使用相应的 `Integer` 操作。这样做的好处是我们仍然可以在编译时使用适当的"
+"归纳来证明关于自然数的东西，同时在运行时获得快速整数运算的好处。但是，`Nat` "
+"上的操作确实以 `O(n)` 时间复杂度和 * 编译时间* 运行。因此，在大自然数上工作的"
+"证明将大大减慢编译器的速度。在本节练习的末尾讨论了解决此问题的方法。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:983
@@ -2360,9 +2474,9 @@ msgid ""
 "instead of `decide {p = pred}`.  decideOn : (0 p : a -> Type) -> Decidable a "
 "p => (v : a) -> Dec0 (p v)  decideOn _ = decide"
 msgstr ""
-"-- 我们经常必须显式传递 `p` 以帮助 Idris 进行 -- 类型推断。在这种情况下，"
-"使用 `decideOn pred` 代替 `decide {p = pred}` 更方便。决定：（0 p：a->类型）-"
-">可判定a p =>（v：a）->Dec0（p v）decisionOn _ =决定"
+"-- 我们经常必须显式传递 `p` 以帮助 Idris 进行 -- 类型推断。在这种情况下，使"
+"用 `decideOn pred` 代替 `decide {p = pred}` 更方便。决定：（0 p：a->类型）->"
+"可判定a p =>（v：a）->Dec0（p v）decisionOn _ =决定"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1019
@@ -2373,9 +2487,9 @@ msgid ""
 "test0 : (b : Bool) -> Dec0 (b === True)  test0 True = Yes0 Refl test0 False "
 "= No0 absurd ```"
 msgstr ""
-"-- 一些原始谓词只能合理地实现 -- "
-"使用布尔函数。这个实用程序有助于可判定性——在这样的证明上。 test0 : (b : Bool)"
-" -> Dec0 (b === True) test0 True = Yes0 Refl test0 False = No0 荒谬```"
+"-- 一些原始谓词只能合理地实现 -- 使用布尔函数。这个实用程序有助于可判定性——在"
+"这样的证明上。 test0 : (b : Bool) -> Dec0 (b === True) test0 True = Yes0 "
+"Refl test0 False = No0 荒谬```"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1025
@@ -2387,8 +2501,8 @@ msgid ""
 "actually a `Yes0` together with two utility functions:"
 msgstr ""
 "我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有"
-"效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` "
-"以及两个实用函数："
+"效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` 以及两个实用函"
+"数："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1029
@@ -2438,8 +2552,9 @@ msgstr ""
 msgid ""
 "Finally, as we are planning to refine mostly primitives, we will at times "
 "require some sledge hammer to convince Idris that we know what we are doing:"
-msgstr "最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris "
-"我们知道我们在做什么："
+msgstr ""
+"最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris 我们知道我们"
+"在做什么："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1055
@@ -2524,8 +2639,7 @@ msgid ""
 msgstr ""
 "   ```伊德里斯\n"
 "   数据 (&&) : (p,q : a -> Type) -> a -> Type where\n"
-"     两者：{0 p,q : a -> 类型} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q "
-"v\n"
+"     两者：{0 p,q : a -> 类型} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
 "   ```\n"
 
 #. type: Plain text
@@ -2540,8 +2654,9 @@ msgstr "   使用合适的约束为 `(p && q)` 实现 `Decidable`。\n"
 msgid ""
 "Come up with a data type called `(||)` for the disjunction (logical *or*) of "
 "two predicates and implement `Decidable` using suitable constraints."
-msgstr "提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 * 或 *），"
-"并使用合适的约束实现 `Decidable`。"
+msgstr ""
+"提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 * 或 *），并使用合适"
+"的约束实现 `Decidable`。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Prim.md:1086
@@ -2549,7 +2664,8 @@ msgstr "提出一个名为 `(||)` 的数据类型，用于两个谓词的析取�
 msgid ""
 "Proof [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)  "
 "by implementing the following propositions:"
-msgstr "通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan"
+msgstr ""
+"通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan"
 "%27s_laws)："
 
 #. type: Plain text
@@ -2661,8 +2777,9 @@ msgstr ""
 msgid ""
 "This is similar to `Data.Nat.LTE` but I find operator notation often to be "
 "clearer.  We also can define and use the following aliases:"
-msgstr "这类似于 `Data.Nat.LTE` "
-"但我发现运算符符号通常更清晰。我们还可以定义和使用以下别名："
+msgstr ""
+"这类似于 `Data.Nat.LTE` 但我发现运算符符号通常更清晰。我们还可以定义和使用以"
+"下别名："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1132
@@ -2710,7 +2827,8 @@ msgstr "从 : (m,n : Nat) -> 从 m = (>= m) 输入"
 #: ../src/Tutorial/Prim.md:1153
 #, fuzzy
 msgid "FromTo : (lower,upper : Nat) -> Nat -> Type FromTo l u = From l && To u"
-msgstr "FromTo : (lower,upper : Nat) -> Nat -> 输入 FromTo l u = From l && To u"
+msgstr ""
+"FromTo : (lower,upper : Nat) -> Nat -> 输入 FromTo l u = From l && To u"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1157
@@ -2737,12 +2855,12 @@ msgid ""
 "numbers.  Since `Prelude.(<=)` for natural numbers is implemented in terms "
 "of `compare`, it runs just as efficiently."
 msgstr ""
-"通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` "
-"值非常低效，因为这样做需要 `m` 次迭代。但是，在擦除上下文中，我们不需要保存 `"
-"m <= n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，"
-"这样的计算是 `compare`：尽管这是在 *Prelude* 中实现的，其参数的模式匹配，但编"
-"译器将其优化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 "
-"`Prelude.(<=)` 是根据 `compare` 实现的，因此它的运行效率同样高。"
+"通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` 值非常"
+"低效，因为这样做需要 `m` 次迭代。但是，在擦除上下文中，我们不需要保存 `m <= "
+"n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，这样的计算"
+"是 `compare`：尽管这是在 *Prelude* 中实现的，其参数的模式匹配，但编译器将其优"
+"化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 `Prelude.(<=)` 是"
+"根据 `compare` 实现的，因此它的运行效率同样高。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1175
@@ -2821,9 +2939,8 @@ msgid ""
 "chain several values of type `(<=)`, it makes sense to also define a short "
 "operator alias for this."
 msgstr ""
-"通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。"
-"由于我们可能需要传递性证明来链接多个类型为 `(<=)` "
-"的值，因此也可以为此定义一个简短的运算符别名。"
+"通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。由于我们可能需要传递性证"
+"明来链接多个类型为 `(<=)` 的值，因此也可以为此定义一个简短的运算符别名。"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Prim.md:1200
@@ -2869,8 +2986,8 @@ msgid ""
 "value of type `Bits64` to a string of digits in base `b` with `2 <= b && b "
 "<= 16`.  To do so, implement the following skeleton definitions:"
 msgstr ""
-"我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` "
-"中的数字字符串，其中 `2 <= b && b <= 16`。为此，请实现以下骨架定义："
+"我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` 中"
+"的数字字符串，其中 `2 <= b && b <= 16`。为此，请实现以下骨架定义："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1223
@@ -2917,8 +3034,7 @@ msgid ""
 msgstr ""
 "    命名空间基础\n"
 "      公共出口\n"
-"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> "
-"Base\n"
+"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base\n"
 "    ```\n"
 
 #. type: Plain text
@@ -3195,7 +3311,8 @@ msgstr ""
 msgid ""
 "Before we turn our full attention to predicates on strings, we have to cover "
 "lists first, because we will often treat strings as lists of characters."
-msgstr "在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符"
+msgstr ""
+"在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符"
 "串视为字符列表。"
 
 #. type: Bullet: '13. '
@@ -3249,7 +3366,8 @@ msgid ""
 "The following predicate is a proof that all values in a list of values "
 "fulfill the given predicate. We will use this to limit the valid set of "
 "characters in a string."
-msgstr "以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效"
+msgstr ""
+"以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效"
 "字符集。"
 
 #. type: Plain text
@@ -3397,5 +3515,5 @@ msgid ""
 "it [here](https://github.com/stefan-hoeck/idris2-prim)."
 msgstr ""
 "最后的评论：在决定使用什么公理以及试图使事情在运行时和编译时表现良好时，证明"
-"关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，"
-"但您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。"
+"关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，但"
+"您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。"

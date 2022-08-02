@@ -27,7 +27,24 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:248
 #, fuzzy
 msgid "### Exercises part 1"
-msgstr "### 练习第 1 部分"
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 1 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
@@ -38,7 +55,24 @@ msgstr "### 练习第 1 部分"
 #: ../src/Tutorial/Traverse.md:575
 #, fuzzy
 msgid "### Exercises part 2"
-msgstr "### 练习第 2 部分"
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 2 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
@@ -49,7 +83,24 @@ msgstr "### 练习第 2 部分"
 #: ../src/Tutorial/Traverse.md:1017
 #, fuzzy
 msgid "### Exercises part 3"
-msgstr "### 练习第 3 部分"
+msgstr ""
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"### 练习第 3 部分\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
@@ -60,7 +111,24 @@ msgstr "### 练习第 3 部分"
 #: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
 #, fuzzy
 msgid "## Conclusion"
-msgstr "＃＃ 结论"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"＃＃ 结论\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -72,7 +140,26 @@ msgstr "＃＃ 结论"
 #: ../src/Tutorial/Traverse.md:1148
 #, fuzzy
 msgid "<!-- vi: filetype=idris2 -->"
-msgstr "<!-- vi: filetype=idris2 -->"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2 -->\n"
+"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
@@ -82,7 +169,23 @@ msgstr "<!-- vi: filetype=idris2 -->"
 #: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
 #, fuzzy
 msgid "%default total ```"
-msgstr "%默认总数```"
+msgstr ""
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```\n"
+"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"%默认总数```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:2
@@ -113,9 +216,9 @@ msgstr ""
 "在运行时才可用，其中值取决于用户做出的决定或周围世界的状态。例如，如果我们将"
 "文件的内容存储为文本行向量，则该向量的长度通常在文件加载到内存之前是未知的。"
 "因此，我们使用的值的类型依赖于仅在运行时才知道的其他值，并且我们通常只能通过"
-"对它们所依赖的值进行模式匹配来找出这些类型。为了表达这些依赖关系，"
-"我们需要所谓的 [*sigma types*](https://en.wikipedia.org/wiki/"
-"Dependent_type#%CE%A3_type)：依赖对及其泛化，依赖记录。"
+"对它们所依赖的值进行模式匹配来找出这些类型。为了表达这些依赖关系，我们需要所"
+"谓的 [*sigma types*](https://en.wikipedia.org/wiki/Dependent_type#%CE"
+"%A3_type)：依赖对及其泛化，依赖记录。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:21
@@ -136,8 +239,8 @@ msgid ""
 "import Data.DPair import Data.Either import Data.HList import Data.List "
 "import Data.List1 import Data.Singleton import Data.String import Data.Vect"
 msgstr ""
-"导入 Data.DPair 导入 Data.Either 导入 Data.HList 导入 Data.List 导入 "
-"Data.List1 导入 Data.Singleton 导入 Data.String 导入 Data.Vect"
+"导入 Data.DPair 导入 Data.Either 导入 Data.HList 导入 Data.List 导入 Data."
+"List1 导入 Data.Singleton 导入 Data.String 导入 Data.Vect"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:34
@@ -187,10 +290,10 @@ msgid ""
 "is a vector of at least three elements in the length index and could derive "
 "the length of the result from this."
 msgstr ""
-"由于 `traverse parsePositive` 的参数是 `Vect (3 + n) String` 类型，"
-"其结果将是 `Maybe (Vect (3 + n) Nat)` 类型]。因此在调用 `drop 3` 时使用它是安"
-"全的。请注意，所有这些在编译时是如何知道的：我们编码的先决条件是第一个参数是"
-"长度索引中至少三个元素的向量，并且可以从中得出结果的长度。"
+"由于 `traverse parsePositive` 的参数是 `Vect (3 + n) String` 类型，其结果将"
+"是 `Maybe (Vect (3 + n) Nat)` 类型]。因此在调用 `drop 3` 时使用它是安全的。请"
+"注意，所有这些在编译时是如何知道的：我们编码的先决条件是第一个参数是长度索引"
+"中至少三个元素的向量，并且可以从中得出结果的长度。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:62
@@ -204,7 +307,8 @@ msgstr "### 未知长度的向量"
 msgid ""
 "However, this is not always possible. Consider the following function, "
 "defined on `List` and exported by `Data.List`:"
-msgstr "然而，这并不总是可能的。考虑以下函数，在 `List` 上定义并由 `Data.List` 导出："
+msgstr ""
+"然而，这并不总是可能的。考虑以下函数，在 `List` 上定义并由 `Data.List` 导出："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:70
@@ -250,13 +354,12 @@ msgid ""
 "*the length of the output vector*. Don't believe me? See here:"
 msgstr ""
 "继续，并尝试实现这一点。不要尝试太久，因为您将无法以可证明的整体方式这样做。"
-"问题是：这里有什么问题？为了理解这一点，我们必须了解 `takeWhile'` "
-"的类型所承诺的内容：“对于所有对 `a` "
-"类型的值进行操作的谓词，以及所有包含此类型值的向量，对于所有长度 `m`，"
-"我给你一个长度为 `m` 的向量，其中包含 `a`\" 类型的值。所有三个参数都被称为 [*"
-"universally quantified*]（https://en.wikipedia.org/wiki/Universal_quantificat"
-"ion）：我们函数的调用者可以自由选择谓词、输入向量、向量持有的值的类型，以及 *"
-" 输出向量的长度 *。不相信我？看这里："
+"问题是：这里有什么问题？为了理解这一点，我们必须了解 `takeWhile'` 的类型所承"
+"诺的内容：“对于所有对 `a` 类型的值进行操作的谓词，以及所有包含此类型值的向"
+"量，对于所有长度 `m`，我给你一个长度为 `m` 的向量，其中包含 `a`\" 类型的值。"
+"所有三个参数都被称为 [*universally quantified*]（https://en.wikipedia.org/"
+"wiki/Universal_quantification）：我们函数的调用者可以自由选择谓词、输入向量、"
+"向量持有的值的类型，以及 * 输出向量的长度 *。不相信我？看这里："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:97
@@ -274,7 +377,8 @@ msgstr ""
 msgid ""
 "-- ...from which immediately follows a proof of `Void` proofOfVoid : Void "
 "proofOfVoid = head voids ```"
-msgstr "-- ...紧随 `Void` proofOfVoid 的证明： Void proofOfVoid = head voids ```"
+msgstr ""
+"-- ...紧随 `Void` proofOfVoid 的证明： Void proofOfVoid = head voids ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:108
@@ -286,9 +390,9 @@ msgid ""
 "me to return a possibly non-empty vector holding values of the same type, "
 "from which I freely extracted the first one."
 msgstr ""
-"看看我在调用 `takeWhile'` 时如何自由决定 `m` 的值？尽管我将 `takeWhile'` "
-"传递给了一个空向量（唯一的现有向量包含 `Void` 类型的值），但该函数的类型保证"
-"我返回一个可能非空的向量，该向量包含相同的值type，我从中自由地提取了第一个。"
+"看看我在调用 `takeWhile'` 时如何自由决定 `m` 的值？尽管我将 `takeWhile'` 传递"
+"给了一个空向量（唯一的现有向量包含 `Void` 类型的值），但该函数的类型保证我返"
+"回一个可能非空的向量，该向量包含相同的值type，我从中自由地提取了第一个。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:115
@@ -300,10 +404,10 @@ msgid ""
 "result of `takeWhile'` in a type. The answer to this is: \"Use a *dependent "
 "pair*\", a vector paired with a value corresponding to its length."
 msgstr ""
-"幸运的是，Idris 不允许这样做：我们将无法在不作弊的情况下实现 "
-"`takeWhile'`（例如，通过关闭整体检查并永远循环）。所以，问题仍然存在，"
-"如何在一个类型中表达 `takeWhile'` 的结果。对此的答案是：“使用 * 依赖对 "
-"*”，一个向量与与其长度对应的值配对。"
+"幸运的是，Idris 不允许这样做：我们将无法在不作弊的情况下实现 `takeWhile'`（例"
+"如，通过关闭整体检查并永远循环）。所以，问题仍然存在，如何在一个类型中表达 "
+"`takeWhile'` 的结果。对此的答案是：“使用 * 依赖对 *”，一个向量与与其长度对应"
+"的值配对。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:122
@@ -339,8 +443,8 @@ msgstr ""
 "这对应于谓词逻辑中的[*存在量化*](https://en.wikipedia.org/wiki/"
 "Existential_quantification)：有一个自然数，对应于我这里的向量的长度。请注意，"
 "从 `AnyVect a` 的外部，包装矢量的长度在类型级别不再可见，但我们仍然可以检查它"
-"并在运行时了解它，因为它被包装在一起与实际向量。我们可以实现 `takeWhile`，"
-"使其返回 `AnyVect a` 类型的值："
+"并在运行时了解它，因为它被包装在一起与实际向量。我们可以实现 `takeWhile`，使"
+"其返回 `AnyVect a` 类型的值："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:139
@@ -373,10 +477,10 @@ msgid ""
 "values. In fact, the length can be inferred automatically by Idris, so we "
 "can replace it with underscores, if we so desire:"
 msgstr ""
-"这可以证明是完全可行的，因为这个函数的调用者不能再自己选择结果向量的长度。"
-"我们的函数 `takeWhile` 决定这个长度并将它与向量一起返回，类型检查器验证我们在"
-"配对两个值时没有错误。事实上，长度可以由 Idris "
-"自动推断，所以如果我们愿意，我们可以用下划线替换它："
+"这可以证明是完全可行的，因为这个函数的调用者不能再自己选择结果向量的长度。我"
+"们的函数 `takeWhile` 决定这个长度并将它与向量一起返回，类型检查器验证我们在配"
+"对两个值时没有错误。事实上，长度可以由 Idris 自动推断，所以如果我们愿意，我们"
+"可以用下划线替换它："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:155
@@ -418,7 +522,8 @@ msgstr ""
 msgid ""
 "Note, that Idris allows us to be explicit about universal quantification.  "
 "The type of `takeWhile'` can also be written like so:"
-msgstr "请注意，Idris 允许我们明确地进行全称量化。 `takeWhile'` 的类型也可以这样写："
+msgstr ""
+"请注意，Idris 允许我们明确地进行全称量化。 `takeWhile'` 的类型也可以这样写："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:168
@@ -437,7 +542,8 @@ msgid ""
 "Universally quantified arguments are desugared to implicit erased arguments "
 "by Idris. The above is a less verbose version of the following function "
 "type, the likes of which we have seen before:"
-msgstr "普遍量化的论点被 Idris 简化为隐含的擦除论点。上面是以下函数类型的一个不那么冗"
+msgstr ""
+"普遍量化的论点被 Idris 简化为隐含的擦除论点。上面是以下函数类型的一个不那么冗"
 "长的版本，我们之前已经看到过类似的函数类型："
 
 #. type: Plain text
@@ -475,8 +581,8 @@ msgid ""
 "Haskell.md#explicit-forall)."
 msgstr ""
 "在 Idris 中，我们可以自由选择是否要明确全称量化。有时它可以帮助理解在类型级别"
-"上发生了什么。其他语言 - 例如 [PureScript](https://www.purescript.org/) - "
-"对此更为严格：在那里，对普遍量化参数的显式注释是 [强制性](https://github.com/"
+"上发生了什么。其他语言 - 例如 [PureScript](https://www.purescript.org/) - 对"
+"此更为严格：在那里，对普遍量化参数的显式注释是 [强制性](https://github.com/"
 "purescript/文档/blob/master/language/Differences-from-Haskell.md#explicit-"
 "forall）。"
 
@@ -500,12 +606,11 @@ msgid ""
 "a general dependent pair type is provided by the *Prelude*. Here is its "
 "implementation (primed for disambiguation):"
 msgstr ""
-"了解这里发生的事情可能需要一些时间和经验。至少在我的情况下，在 Idris "
-"中进行了许多会话编程，然后我才弄清楚依赖对的含义：它们将某种类型的 *value* "
-"与从第一个值计算的类型的第二个值配对。例如，自然数 `n`（值）与长度为 `n` "
-"的向量配对（第二个值，其类型 * 取决于 * "
-"第一个值）。这是使用依赖类型进行编程的基本概念，*Prelude* "
-"提供了一个通用的依赖对类型。这是它的实现（准备消除歧义）："
+"了解这里发生的事情可能需要一些时间和经验。至少在我的情况下，在 Idris 中进行了"
+"许多会话编程，然后我才弄清楚依赖对的含义：它们将某种类型的 *value* 与从第一个"
+"值计算的类型的第二个值配对。例如，自然数 `n`（值）与长度为 `n` 的向量配对（第"
+"二个值，其类型 * 取决于 * 第一个值）。这是使用依赖类型进行编程的基本概念，"
+"*Prelude* 提供了一个通用的依赖对类型。这是它的实现（准备消除歧义）："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:209
@@ -535,9 +640,9 @@ msgid ""
 "*type* of the second value (`snd`).  For instance, here is `AnyVect a` "
 "represented as a `DPair`:"
 msgstr ""
-"必须了解这里发生了什么。有两个参数：类型 `a` 和函数 `p`，从 * 值 * 类型 `a "
-"计算 *type* `。然后使用这样的值 (`fst`) 来计算第二个值 (`snd`) 的 "
-"*type*。例如，这里是 `AnyVect a` 表示为 `DPair`："
+"必须了解这里发生了什么。有两个参数：类型 `a` 和函数 `p`，从 * 值 * 类型 `a 计"
+"算 *type* `。然后使用这样的值 (`fst`) 来计算第二个值 (`snd`) 的 *type*。例"
+"如，这里是 `AnyVect a` 表示为 `DPair`："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:220
@@ -546,8 +651,8 @@ msgid ""
 "```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n => Vect n "
 "a)  ```"
 msgstr ""
-"```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n"
-" => Vect n a) ```"
+"```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n => Vect n "
+"a) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:225
@@ -558,9 +663,8 @@ msgid ""
 "important building blocks for programming in languages with first class "
 "types:"
 msgstr ""
-"请注意，`\\n"
-" => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于描述依赖对的"
-"特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块："
+"请注意，`\\n => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于"
+"描述依赖对的特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:230
@@ -587,8 +691,8 @@ msgid ""
 "```repl Tutorial.Relations> (n : Nat ** Vect n Int)  DPair Nat (\\n => Vect "
 "n Int)  ```"
 msgstr ""
-"```repl Tutorial.Relations> (n : Nat ** Vect n Int) DPair Nat (\\n"
-" => Vect n Int) ```"
+"```repl Tutorial.Relations> (n : Nat ** Vect n Int) DPair Nat (\\n => Vect n "
+"Int) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:242
@@ -596,15 +700,17 @@ msgstr ""
 msgid ""
 "Idris can infer, that `n` must be of type `Nat`, so we can drop this "
 "information. (We still need to put the whole expression in parentheses.)"
-msgstr "Idris 可以推断，`n` 必须是 `Nat` 类型，因此我们可以删除此信息。 "
-"（我们仍然需要将整个表达式放在括号中。）"
+msgstr ""
+"Idris 可以推断，`n` 必须是 `Nat` 类型，因此我们可以删除此信息。 （我们仍然需"
+"要将整个表达式放在括号中。）"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:247
 #, fuzzy
 msgid ""
 "```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a)  ```"
-msgstr "```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a) ```"
+msgstr ""
+"```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:254
@@ -616,10 +722,10 @@ msgid ""
 "that like with regular pairs, we can use the same syntax `(x ** y)` for "
 "creating and pattern matching on dependent pairs:"
 msgstr ""
-"这允许我们将自然数 `n` 与长度为 `n` 的向量配对，这正是我们对 `AnyVect` "
-"所做的。因此，我们可以重写 `takeWhile` 以返回 `DPair` 而不是我们的自定义类型 "
-"`AnyVect`。请注意，与常规对一样，我们可以使用相同的语法 `(x ** y)` "
-"在依赖对上创建和模式匹配："
+"这允许我们将自然数 `n` 与长度为 `n` 的向量配对，这正是我们对 `AnyVect` 所做"
+"的。因此，我们可以重写 `takeWhile` 以返回 `DPair` 而不是我们的自定义类型 "
+"`AnyVect`。请注意，与常规对一样，我们可以使用相同的语法 `(x ** y)` 在依赖对上"
+"创建和模式匹配："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:262
@@ -656,8 +762,8 @@ msgid ""
 "```idris AnyMatrix : (a : Type) -> Type AnyMatrix a = (m ** n ** Vect m "
 "(Vect n a))  ```"
 msgstr ""
-"```idris AnyMatrix : (a : Type) -> Type AnyMatrix a = (m ** n ** Vect m ("
-"Vect n a)) ```"
+"```idris AnyMatrix : (a : Type) -> Type AnyMatrix a = (m ** n ** Vect m "
+"(Vect n a)) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:272
@@ -704,8 +810,7 @@ msgid ""
 "```\n"
 msgstr ""
 "```伊德里斯\n"
-"takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n"
-" => Vect n a)\n"
+"takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n => Vect n a)\n"
 "takeWhileExists f [] = 证据 _ []\n"
 "takeWhileExists f (x :: xs) = case f x of\n"
 "  True => 让 Evidence _ ys = takeWhileExists f xs\n"
@@ -737,8 +842,9 @@ msgid ""
 "This is called a *singleton* type: A type corresponding to exactly one "
 "value. It is a type error to return any other value for constant `true`, and "
 "Idris knows this:"
-msgstr "这称为 *singleton* 类型：与一个值对应的类型。返回常量 `true` "
-"的任何其他值都是类型错误，Idris 知道这一点："
+msgstr ""
+"这称为 *singleton* 类型：与一个值对应的类型。返回常量 `true` 的任何其他值都是"
+"类型错误，Idris 知道这一点："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:311
@@ -802,8 +908,9 @@ msgstr "这不会被接受为 `vectLength` 的有效实现，因为您可以快�
 msgid ""
 "With the help of `vectLength` (but not with `Data.Vect.length`)  we can "
 "convert an erased existential to a proper dependent pair:"
-msgstr "在 `vectLength` 的帮助下（但不是 `Data.Vect."
-"length`），我们可以将已擦除的存在转换为正确的依赖对："
+msgstr ""
+"在 `vectLength` 的帮助下（但不是 `Data.Vect.length`），我们可以将已擦除的存在"
+"转换为正确的依赖对："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:343
@@ -812,9 +919,8 @@ msgid ""
 "```idris toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a)  toDPair "
 "(Evidence _ as) = let Val m = vectLength as in (m ** as)  ```"
 msgstr ""
-"```idris toDPair : Exists (\\n"
-" => Vect n a) -> (m ** Vect m a) toDPair (Evidence _ as) = let Val m = "
-"vectLength as in (m ** as) ```"
+"```idris toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a) toDPair "
+"(Evidence _ as) = let Val m = vectLength as in (m ** as) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:347
@@ -824,8 +930,8 @@ msgid ""
 "and note how Idris will fail to unify the result of `length` with the actual "
 "length of the vector."
 msgstr ""
-"同样，作为一个快速练习，尝试根据 `length` 实现 `toDPair`，并注意 Idris "
-"如何无法将 `length` 的结果与实际长度向量。"
+"同样，作为一个快速练习，尝试根据 `length` 实现 `toDPair`，并注意 Idris 如何无"
+"法将 `length` 的结果与实际长度向量。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/DPair.md:352
@@ -841,8 +947,9 @@ msgstr "声明并实现一个过滤向量的函数，类似于 `Data.List.filter
 msgid ""
 "Declare and implement a function for mapping a partial function over the "
 "values of a vector similar to `Data.List.mapMaybe`."
-msgstr "声明并实现一个函数，用于将偏函数映射到类似于 `Data.List.mapMaybe` "
-"的向量的值上。"
+msgstr ""
+"声明并实现一个函数，用于将偏函数映射到类似于 `Data.List.mapMaybe` 的向量的值"
+"上。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/DPair.md:360
@@ -850,8 +957,9 @@ msgstr "声明并实现一个函数，用于将偏函数映射到类似于 `Data
 msgid ""
 "Declare and implement a function similar to `Data.List.dropWhile` for "
 "vectors. Use `Data.DPair.Exists` as your return type."
-msgstr "为向量声明并实现类似于 `Data.List.dropWhile` 的函数。使用 `Data.DPair.Exists`"
-" 作为您的返回类型。"
+msgstr ""
+"为向量声明并实现类似于 `Data.List.dropWhile` 的函数。使用 `Data.DPair."
+"Exists` 作为您的返回类型。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/DPair.md:363
@@ -972,9 +1080,8 @@ msgid ""
 "to choose a value here. This allows us to use these bases in strands of DNA "
 "*and* RNA:"
 msgstr ""
-"请注意，我们如何为核碱基 `Adenine`、`Cytosine` 和 `Guanine` "
-"使用变量：这些又是普遍量化的，"
-"客户代码可以在这里自由选择一个值.这使我们能够在 DNA * 和 * RNA "
+"请注意，我们如何为核碱基 `Adenine`、`Cytosine` 和 `Guanine` 使用变量：这些又"
+"是普遍量化的，客户代码可以在这里自由选择一个值.这使我们能够在 DNA * 和 * RNA "
 "链中使用这些碱基："
 
 #. type: Plain text
@@ -1063,9 +1170,8 @@ msgid ""
 "universally quantified `readAnyBase` are free to choose what base type they "
 "want, but they will never get a `Thymine` or `Uracile` value."
 msgstr ""
-"同样，如果碱基出现在两种链中，通用量化的 `readAnyBase` "
-"的用户可以自由选择他们想要的碱基类型，但他们永远不会得到 `Thymine` "
-"或`尿素`值。"
+"同样，如果碱基出现在两种链中，通用量化的 `readAnyBase` 的用户可以自由选择他们"
+"想要的碱基类型，但他们永远不会得到 `Thymine` 或`尿素`值。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:458
@@ -1126,7 +1232,8 @@ msgid ""
 "Ugh, code repetition! Not too bad here, but imagine there were dozens of "
 "bases with only few specialized ones. Surely, we can do better? "
 "Unfortunately, the following won't work:"
-msgstr "呃，代码重复！这里还不错，但想象一下有几十个基地，只有几个专业基地。当然，我"
+msgstr ""
+"呃，代码重复！这里还不错，但想象一下有几十个基地，只有几个专业基地。当然，我"
 "们可以做得更好吗？不幸的是，以下方法不起作用："
 
 #. type: Plain text
@@ -1138,9 +1245,9 @@ msgid ""
 "Guanine = Cytosine complementBase' Thymine = Adenine complementBase' Uracile "
 "= Adenine ```"
 msgstr ""
-"```idris 补体基'：核碱基 b -> 核碱基 b 补体基'腺嘌呤 = ?what_now "
-"补体基'胞嘧啶 = 鸟嘌呤补体基'鸟嘌呤 = 胞嘧啶补体基'胸腺嘧啶 = "
-"腺嘌呤补体基'尿嘧啶 = 腺嘌呤 ```"
+"```idris 补体基'：核碱基 b -> 核碱基 b 补体基'腺嘌呤 = ?what_now 补体基'胞嘧"
+"啶 = 鸟嘌呤补体基'鸟嘌呤 = 胞嘧啶补体基'胸腺嘧啶 = 腺嘌呤补体基'尿嘧啶 = 腺嘌"
+"呤 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:497
@@ -1153,10 +1260,10 @@ msgid ""
 "RNABase` instead.  One way to go about this is to take an additional "
 "unerased argument (explicit or implicit) representing the base type:"
 msgstr ""
-"除了 `Adenine` 情况外，一切都很顺利。请记住：参数 `b` 是通用量化的，"
-"我们函数的 *callers* 可以决定 `b` 应该是什么。因此，我们不能只返回 "
-"`Thymine`：Idris 将响应类型错误，因为调用者可能需要 `Nucleobase RNABase` "
-"代替。解决此问题的一种方法是采用表示基本类型的附加未擦除参数（显式或隐式）："
+"除了 `Adenine` 情况外，一切都很顺利。请记住：参数 `b` 是通用量化的，我们函数"
+"的 *callers* 可以决定 `b` 应该是什么。因此，我们不能只返回 `Thymine`：Idris "
+"将响应类型错误，因为调用者可能需要 `Nucleobase RNABase` 代替。解决此问题的一"
+"种方法是采用表示基本类型的附加未擦除参数（显式或隐式）："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:507
@@ -1202,8 +1309,8 @@ msgid ""
 "```idris complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b "
 "complement b = map (complementBase b)  ```"
 msgstr ""
-"```idris 补体：（b：BaseType）-> NucleicAcid b -> NucleicAcid b 补体 b = "
-"映射（complementBase b）```"
+"```idris 补体：（b：BaseType）-> NucleicAcid b -> NucleicAcid b 补体 b = 映射"
+"（complementBase b）```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:528
@@ -1220,11 +1327,11 @@ msgid ""
 "DNA, so this distinction should be encoded as well."
 msgstr ""
 "现在，这是一个有趣的用例：我们想从用户输入中读取一个核碱基序列，接受两个字符"
-"串：第一个告诉我们，用户打算输入 DNA 还是 RNA 序列，第二个是序列本身."
-"这种函数的类型应该是什么？好吧，我们正在描述具有副作用的计算，因此涉及 `IO` "
-"的东西似乎是正确的。用户输入几乎总是需要验证或翻译，因此可能会出现问题，我们"
-"需要针对这种情况的错误类型。最后，我们的用户可以决定是否要输入一条 RNA 或 "
-"DNA，因此也应该对这种区别进行编码。"
+"串：第一个告诉我们，用户打算输入 DNA 还是 RNA 序列，第二个是序列本身.这种函数"
+"的类型应该是什么？好吧，我们正在描述具有副作用的计算，因此涉及 `IO` 的东西似"
+"乎是正确的。用户输入几乎总是需要验证或翻译，因此可能会出现问题，我们需要针对"
+"这种情况的错误类型。最后，我们的用户可以决定是否要输入一条 RNA 或 DNA，因此也"
+"应该对这种区别进行编码。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:531
@@ -1261,8 +1368,9 @@ msgid ""
 "This has all possible outcomes encoded in a single data type.  However, it "
 "is lacking in terms of flexibility. If we want to handle errors early on and "
 "just extract a strand of RNA or DNA, we need yet another data type:"
-msgstr "这具有以单一数据类型编码的所有可能结果。但是，它缺乏灵活性。"
-"如果我们想及早处理错误并只提取一条 RNA 或 DNA，我们需要另一种数据类型："
+msgstr ""
+"这具有以单一数据类型编码的所有可能结果。但是，它缺乏灵活性。如果我们想及早处"
+"理错误并只提取一条 RNA 或 DNA，我们需要另一种数据类型："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:548
@@ -1277,7 +1385,8 @@ msgid ""
 "This might be the way to go, but for results with many options, this can get "
 "cumbersome quickly. Also: Why come up with a custom data type when we "
 "already have the tools to deal with this at our hands?"
-msgstr "这可能是要走的路，但对于有很多选项的结果，这很快就会变得很麻烦。另外：当我们"
+msgstr ""
+"这可能是要走的路，但对于有很多选项的结果，这很快就会变得很麻烦。另外：当我们"
 "已经拥有处理这个问题的工具时，为什么还要提出自定义数据类型？"
 
 #. type: Plain text
@@ -1353,9 +1462,9 @@ msgid ""
 "and we'd like to convert a sequence of nucleobases from user input to the "
 "corresponding RNA sequence.  Here's how to do this:"
 msgstr ""
-"请注意，我们如何将核碱基类型与核酸序列配对。假设现在我们实现了一个将 DNA "
-"链转录为 RNA 的函数，并且我们希望将用户输入的核碱基序列转换为相应的 RNA "
-"序列。以下是如何执行此操作："
+"请注意，我们如何将核碱基类型与核酸序列配对。假设现在我们实现了一个将 DNA 链转"
+"录为 RNA 的函数，并且我们希望将用户输入的核碱基序列转换为相应的 RNA 序列。以"
+"下是如何执行此操作："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:590
@@ -1414,8 +1523,8 @@ msgid ""
 "case, we had to transcribe the sequence first, in the second case, we could "
 "invoke `printRNA` directly."
 msgstr ""
-"通过对依赖对的第一个值的模式匹配，我们可以确定第二个值是 RNA 还是 DNA "
-"序列。在第一种情况下，我们必须先转录序列，在第二种情况下，我们可以直接调用 "
+"通过对依赖对的第一个值的模式匹配，我们可以确定第二个值是 RNA 还是 DNA 序列。"
+"在第一种情况下，我们必须先转录序列，在第二种情况下，我们可以直接调用 "
 "`printRNA`。"
 
 #. type: Plain text
@@ -1430,11 +1539,11 @@ msgid ""
 "time exception instead of an error at runtime or - even worse - the program "
 "silently running a bogus computation."
 msgstr ""
-"在一个更有趣的场景中，我们将 * 将 RNA 序列 * 翻译成相应的蛋白质序列。尽管如此"
-"，这个例子展示了如何处理一个简化的现实世界场景：数据可能以不同的方式编码并且"
-"来自不同的来源。通过使用精确类型，我们被迫首先将值转换为正确的格式。不这样做"
-"会导致编译时异常，而不是运行时错误，或者 - 更糟糕的是 - "
-"程序静默运行虚假计算。"
+"在一个更有趣的场景中，我们将 * 将 RNA 序列 * 翻译成相应的蛋白质序列。尽管如"
+"此，这个例子展示了如何处理一个简化的现实世界场景：数据可能以不同的方式编码并"
+"且来自不同的来源。通过使用精确类型，我们被迫首先将值转换为正确的格式。不这样"
+"做会导致编译时异常，而不是运行时错误，或者 - 更糟糕的是 - 程序静默运行虚假计"
+"算。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:622
@@ -1454,9 +1563,9 @@ msgid ""
 "encodings are equally expressive:"
 msgstr ""
 "`AnyVect a` 所示的依赖记录是依赖对的概括：我们可以有任意数量的字段并使用其中"
-"存储的值来计算其他值的类型。对于非常简单的情况，例如带有核碱基的示例，"
-"无论我们使用 `DPair`、自定义相关记录还是总和类型都没有太大关系。事实上，这三"
-"种编码同样具有表现力："
+"存储的值来计算其他值的类型。对于非常简单的情况，例如带有核碱基的示例，无论我"
+"们使用 `DPair`、自定义相关记录还是总和类型都没有太大关系。事实上，这三种编码"
+"同样具有表现力："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:634
@@ -1503,10 +1612,10 @@ msgid ""
 "types and dependent pairs quickly become unwieldy, and you should go for an "
 "encoding as a dependent record."
 msgstr ""
-"在这些编码之间编写无损转换是微不足道的，并且对于每种编码，"
-"我们可以通过简单的模式匹配来决定我们当前是否具有 RNA 或 DNA 序列。然而，依赖"
-"类型可以依赖多个值，正如我们将在练习中看到的那样。在这种情况下，求和类型和依"
-"赖对很快就会变得笨拙，您应该将编码作为依赖记录。"
+"在这些编码之间编写无损转换是微不足道的，并且对于每种编码，我们可以通过简单的"
+"模式匹配来决定我们当前是否具有 RNA 或 DNA 序列。然而，依赖类型可以依赖多个"
+"值，正如我们将在练习中看到的那样。在这种情况下，求和类型和依赖对很快就会变得"
+"笨拙，您应该将编码作为依赖记录。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:661
@@ -1544,9 +1653,9 @@ msgid ""
 "and `RNA`."
 msgstr ""
 "核碱基序列可以在以下两个方向之一编码：[*Sense* 和 *antisense*](https://en."
-"wikipedia.org/wiki/"
-"Sense_(molecular_biology))。声明一个新的数据类型来描述核碱基序列的意义，"
-"并将其作为附加参数添加到类型 `Nucleobase` 和类型 `DNA` 和 `RNA`。"
+"wikipedia.org/wiki/Sense_(molecular_biology))。声明一个新的数据类型来描述核碱"
+"基序列的意义，并将其作为附加参数添加到类型 `Nucleobase` 和类型 `DNA` 和 "
+"`RNA`。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/DPair.md:677
@@ -1575,8 +1684,8 @@ msgid ""
 "is read from the input string.  Sense strands are encoded like so: \"5-"
 "CGGTAG-3\". Antisense strands are encoded like so: \"3-CGGTAG-5\"."
 msgstr ""
-"调整 `readRNA` 和 `readDNA` 使得从输入字符串中读取序列的 "
-"*sense*。有义链编码如下：“5-CGGTAG-3”。反义链编码如下：“3-CGGTAG-5”。"
+"调整 `readRNA` 和 `readDNA` 使得从输入字符串中读取序列的 *sense*。有义链编码"
+"如下：“5-CGGTAG-3”。反义链编码如下：“3-CGGTAG-5”。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/DPair.md:688
@@ -1614,9 +1723,9 @@ msgid ""
 "matches in these cases."
 msgstr ""
 "注意：我们可以再次使用四个构造函数的总和类型来编码不同类型的序列，而不是使用"
-"依赖记录。但是，所需的构造函数数量对应于每个类型级别索引的值数量的 *product*"
-"。因此，这个数字会快速增长，并且在这些情况下，总和类型编码会导致模式匹配的块"
-"很长。"
+"依赖记录。但是，所需的构造函数数量对应于每个类型级别索引的值数量的 "
+"*product*。因此，这个数字会快速增长，并且在这些情况下，总和类型编码会导致模式"
+"匹配的块很长。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:705
@@ -1634,10 +1743,9 @@ msgid ""
 "parse and load into memory. Before we begin, here is a REPL session running "
 "the final program, which you will complete in the exercises:"
 msgstr ""
-"在本节中，我们将看一个基于我们之前在 CSV "
-"解析器上的工作的扩展示例。我们想编写一个小型命令行程序，"
-"用户可以在其中为他们想要解析并加载到内存中的 CSV 表指定模式。在我们开始之前，"
-"这是一个运行最终程序的 REPL 会话，您将在练习中完成它："
+"在本节中，我们将看一个基于我们之前在 CSV 解析器上的工作的扩展示例。我们想编写"
+"一个小型命令行程序，用户可以在其中为他们想要解析并加载到内存中的 CSV 表指定模"
+"式。在我们开始之前，这是一个运行最终程序的 REPL 会话，您将在练习中完成它："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:719
@@ -1647,8 +1755,8 @@ msgid ""
 "Table loaded. Schema: str,str,fin2023,str?,boolean? Enter a command: get 3 "
 "Row 3:"
 msgstr ""
-"```repl Solutions.DPair> :exec main 输入命令：load resources/example "
-"表已加载。架构：str,str,fin2023,str?,boolean?输入命令：获取 3 第 3 行："
+"```repl Solutions.DPair> :exec main 输入命令：load resources/example 表已加"
+"载。架构：str,str,fin2023,str?,boolean?输入命令：获取 3 第 3 行："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:721
@@ -1731,8 +1839,9 @@ msgid ""
 "[Type-Driven Development with Idris](https://www.manning.com/books/type-"
 "driven-development-with-idris)  book."
 msgstr ""
-"这个例子的灵感来自于 [Type-Driven Development with Idris](https://www.manning"
-".com/books/type-driven-development-with-idris) 一书中用作示例的类似程序。"
+"这个例子的灵感来自于 [Type-Driven Development with Idris](https://www."
+"manning.com/books/type-driven-development-with-idris) 一书中用作示例的类似程"
+"序。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:756
@@ -1748,8 +1857,8 @@ msgid ""
 "the implementation should be pure, which in this context means \"not running "
 "in any monad with side effects such as `IO`\"."
 msgstr ""
-"Purity：除了主程序循环之外，实现中使用的所有函数都应该是纯函数，在这种情况下"
-"，这意味着“不在任何具有副作用的 monad 中运行，例如 `IO`”。"
+"Purity：除了主程序循环之外，实现中使用的所有函数都应该是纯函数，在这种情况"
+"下，这意味着“不在任何具有副作用的 monad 中运行，例如 `IO`”。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/DPair.md:763
@@ -1758,7 +1867,8 @@ msgid ""
 "Fail early: With the exception of the command parser, all functions updating "
 "the table and handling queries should be typed and implemented in such a way "
 "that they cannot fail."
-msgstr "尽早失败：除了命令解析器之外，所有更新表和处理查询的函数都应该以不会失败的方"
+msgstr ""
+"尽早失败：除了命令解析器之外，所有更新表和处理查询的函数都应该以不会失败的方"
 "式输入和实现。"
 
 #. type: Plain text
@@ -1767,8 +1877,9 @@ msgstr "尽早失败：除了命令解析器之外，所有更新表和处理查
 msgid ""
 "We are often well advised to adhere to these two guidelines, as they can "
 "make the majority of our functions easier to implement and test."
-msgstr "我们经常被建议遵守这两个准则，因为它们可以使我们的大多数功能更容易实现和测试"
-"。"
+msgstr ""
+"我们经常被建议遵守这两个准则，因为它们可以使我们的大多数功能更容易实现和测"
+"试。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:772
@@ -1822,8 +1933,9 @@ msgid ""
 "Next, we need a way to convert a `Schema` to a list of Idris types, which we "
 "will then use as the index of a heterogeneous list representing the rows in "
 "our table:"
-msgstr "接下来，我们需要一种将 `Schema` 转换为 Idris "
-"类型列表的方法，然后将其用作表示表中行的异构列表的索引："
+msgstr ""
+"接下来，我们需要一种将 `Schema` 转换为 Idris 类型列表的方法，然后将其用作表示"
+"表中行的异构列表的索引："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:798
@@ -1857,7 +1969,8 @@ msgid ""
 "content as a vector of rows. In order to safely index rows of the table and "
 "parse new rows to be added, the current schema and size of the table must be "
 "known at runtime:"
-msgstr "我们现在可以将表描述为将表内容存储为行向量的依赖记录。为了安全地索引表的行并"
+msgstr ""
+"我们现在可以将表描述为将表内容存储为行向量的依赖记录。为了安全地索引表的行并"
 "解析要添加的新行，必须在运行时知道表的当前模式和大小："
 
 #. type: Plain text
@@ -1930,9 +2043,9 @@ msgid ""
 "affect the application's current state. As promised, this comes without the "
 "risk of failure, so we don't have to wrap the return type in an `Either`:"
 msgstr ""
-"我们现在可以实现主要的应用程序逻辑：用户输入的命令如何影响应用程序的当前状态"
-"。正如所承诺的那样，这没有失败的风险，因此我们不必将返回类型包装在 `Either` "
-"中："
+"我们现在可以实现主要的应用程序逻辑：用户输入的命令如何影响应用程序的当前状"
+"态。正如所承诺的那样，这没有失败的风险，因此我们不必将返回类型包装在 "
+"`Either` 中："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:852
@@ -1988,9 +2101,9 @@ msgid ""
 "chapter."
 msgstr ""
 "到目前为止你可能没有看到的一件事是最后一行对 `absurd` 的调用。这是 "
-"`Uninhabited` 接口的派生函数，用于描述诸如 `Void` 或 - 在上述情况下 - `Fin 0`"
-" 等类型，其中有可以没有价值。函数`absurd`则只是爆炸原理的另一种表现。如果这还"
-"没有太大意义，请不要担心。我们将在下一章中介绍 `Void` 及其用法。"
+"`Uninhabited` 接口的派生函数，用于描述诸如 `Void` 或 - 在上述情况下 - `Fin "
+"0` 等类型，其中有可以没有价值。函数`absurd`则只是爆炸原理的另一种表现。如果这"
+"还没有太大意义，请不要担心。我们将在下一章中介绍 `Void` 及其用法。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:868
@@ -2048,7 +2161,8 @@ msgstr ""
 msgid ""
 "A bogus command is entered. We repeat the input with a message that we don't "
 "know the command plus a list of commands we know about."
-msgstr "输入了虚假命令。我们使用我们不知道命令的消息以及我们知道的命令列表重复输入。"
+msgstr ""
+"输入了虚假命令。我们使用我们不知道命令的消息以及我们知道的命令列表重复输入。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/DPair.md:907
@@ -2057,7 +2171,8 @@ msgid ""
 "An invalid schema was entered. In this case, we list the position of the "
 "first unknown type, the string we found there, and a list of types we know "
 "about."
-msgstr "输入了无效的架构。在这种情况下，我们列出了第一个未知类型的位置、我们在那里找"
+msgstr ""
+"输入了无效的架构。在这种情况下，我们列出了第一个未知类型的位置、我们在那里找"
 "到的字符串以及我们知道的类型列表。"
 
 #. type: Bullet: '* '
@@ -2068,7 +2183,8 @@ msgid ""
 "position, the string encountered there, plus the expected type. In case of a "
 "too small or too large number of fields, we also print a corresponding error "
 "message."
-msgstr "输入的行的 CSV 编码无效。我们列出了错误的位置、在那里遇到的字符串以及预期的类"
+msgstr ""
+"输入的行的 CSV 编码无效。我们列出了错误的位置、在那里遇到的字符串以及预期的类"
 "型。如果字段数量过少或过多，我们也会打印相应的错误消息。"
 
 #. type: Bullet: '* '
@@ -2078,7 +2194,8 @@ msgid ""
 "An index was out of bounds. This can happen, when users try to access or "
 "delete specific rows. We print the current number of rows plus the value "
 "entered."
-msgstr "索引超出范围。当用户尝试访问或删除特定行时，可能会发生这种情况。我们打印当前"
+msgstr ""
+"索引超出范围。当用户尝试访问或删除特定行时，可能会发生这种情况。我们打印当前"
 "行数加上输入的值。"
 
 #. type: Bullet: '* '
@@ -2134,9 +2251,9 @@ msgid ""
 "formatted error messages."
 msgstr ""
 "为了方便地构造我们的错误消息，最好使用 Idris 的字符串插值工具：我们可以通过将"
-"任意字符串表达式括在花括号中，将它们括在字符串文字中，第一个必须用反斜杠转义"
-"。像这样：`\"foo \\{myExpr a b c}\""
-"`。我们可以将它与多行字符串文字配对以获得格式良好的错误消息。"
+"任意字符串表达式括在花括号中，将它们括在字符串文字中，第一个必须用反斜杠转"
+"义。像这样：`\"foo \\{myExpr a b c}\"`。我们可以将它与多行字符串文字配对以获"
+"得格式良好的错误消息。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:936 ../src/Tutorial/Eq.md:460
@@ -2162,7 +2279,8 @@ msgstr ""
 msgid ""
 "showSchema : Schema -> String showSchema = concat . intersperse \",\" . map "
 "showColType"
-msgstr "showSchema : 模式 -> 字符串 showSchema = concat 。穿插“，”。地图显示ColType"
+msgstr ""
+"showSchema : 模式 -> 字符串 showSchema = concat 。穿插“，”。地图显示ColType"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:945
@@ -2292,8 +2410,8 @@ msgid ""
 "schema as a comma-separated list of values:"
 msgstr ""
 "我们现在可以为不同的命令编写解析器。我们需要工具来解析向量索引、模式和 CSV "
-"行。由于我们使用 CSV "
-"格式对行进行编码和解码，因此也可以将模式编码为逗号分隔的值列表："
+"行。由于我们使用 CSV 格式对行进行编码和解码，因此也可以将模式编码为逗号分隔的"
+"值列表："
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:996
@@ -2342,8 +2460,8 @@ msgid ""
 "readSchema : String -> Either Error Schema readSchema = traverse (uncurry "
 "readColType) . zipWithIndex . fromCSV ```"
 msgstr ""
-"readSchema : String -> 错误模式 readSchema = traverse (uncurry readColType) "
-"。 zipWithIndex 。来自CSV ```"
+"readSchema : String -> 错误模式 readSchema = traverse (uncurry "
+"readColType) 。 zipWithIndex 。来自CSV ```"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1018
@@ -2357,8 +2475,8 @@ msgid ""
 "type `CSVError`)."
 msgstr ""
 "我们还需要根据当前架构解码 CSV 内容。请注意，我们如何通过模式上的模式匹配以类"
-"型安全的方式做到这一点，直到运行时才知道。不幸的是，我们需要重新实现 CSV "
-"解析，因为我们想将预期的类型添加到错误消息中（使用接口 `CSVLine` 和错误类型 "
+"型安全的方式做到这一点，直到运行时才知道。不幸的是，我们需要重新实现 CSV 解"
+"析，因为我们想将预期的类型添加到错误消息中（使用接口 `CSVLine` 和错误类型 "
 "`CSVError[X388X ]）。"
 
 #. type: Plain text
@@ -2404,8 +2522,7 @@ msgstr ""
 "        去 k [] [] = 右 []\n"
 "        go k [] (_ :: _) = Left $ ExpectedEOI k s\n"
 "        go k (_ :: _) [] = Left $ UnexpectedEOI k s\n"
-"        去 k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]"
-"\n"
+"        去 k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]\n"
 "```\n"
 
 #. type: Plain text
@@ -2429,7 +2546,8 @@ msgstr "显式参数的模式匹配具有较少的语法开销。"
 msgid ""
 "If an argument can be inferred from the context most of the time, consider "
 "passing it as an implicit to make your function nicer to use in client code."
-msgstr "如果大多数时候可以从上下文中推断出参数，请考虑将其作为隐式传递，以使您的函数"
+msgstr ""
+"如果大多数时候可以从上下文中推断出参数，请考虑将其作为隐式传递，以使您的函数"
 "更好地在客户端代码中使用。"
 
 #. type: Bullet: '* '
@@ -2447,8 +2565,9 @@ msgid ""
 "All that is missing now is a way to parse indices for accessing the current "
 "table's rows. We use the conversion for indices to start at one instead of "
 "zero, which feels more natural for most non-programmers."
-msgstr "现在缺少的只是一种解析索引以访问当前表行的方法。我们使用索引的转换从 1 "
-"而不是 0 开始，这对于大多数非程序员来说感觉更自然。"
+msgstr ""
+"现在缺少的只是一种解析索引以访问当前表行的方法。我们使用索引的转换从 1 而不"
+"是 0 开始，这对于大多数非程序员来说感觉更自然。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1060
@@ -2481,8 +2600,8 @@ msgid ""
 "so we use `Data.String.unwords` on the split string."
 msgstr ""
 "我们终于能够为用户命令实现解析器。函数 `Data.String.words` 用于在空格字符处分"
-"割字符串。在大多数情况下，我们期望命令的名称加上一个没有额外空格的参数。但是"
-"，CSV 行可以有额外的空格字符，因此我们在拆分字符串上使用 `Data.String."
+"割字符串。在大多数情况下，我们期望命令的名称加上一个没有额外空格的参数。但"
+"是，CSV 行可以有额外的空格字符，因此我们在拆分字符串上使用 `Data.String."
 "unwords`。"
 
 #. type: Plain text
@@ -2528,8 +2647,9 @@ msgid ""
 "All that's left to do is to write functions for printing the results of "
 "commands to users and run the application in a loop until command `\"quit\"` "
 "is entered."
-msgstr "剩下要做的就是编写用于向用户打印命令结果的函数并循环运行应用程序，"
-"直到输入命令 `\"quit\"`。"
+msgstr ""
+"剩下要做的就是编写用于向用户打印命令结果的函数并循环运行应用程序，直到输入命"
+"令 `\"quit\"`。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1095 ../src/Tutorial/Predicates.md:1294
@@ -2649,7 +2769,8 @@ msgstr "添加对在 CSV 列中存储 Idris 类型 `Integer` 和 `Nat` 的支持
 msgid ""
 "Add support for `Fin n` to CSV columns. Note: We need runtime access to `n` "
 "in order for this to work."
-msgstr "添加对 `Fin n` 到 CSV 列的支持。注意：我们需要运行时访问 `n` 才能使其工作。"
+msgstr ""
+"添加对 `Fin n` 到 CSV 列的支持。注意：我们需要运行时访问 `n` 才能使其工作。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/DPair.md:1148
@@ -2661,8 +2782,8 @@ msgid ""
 "(Maybe Nat)` should not."
 msgstr ""
 "向 CSV 列添加对可选类型的支持。由于缺失值应该由空字符串编码，因此允许嵌套可选"
-"类型没有意义，这意味着应该允许 `Maybe Nat` 等类型，而 `Maybe (Maybe Nat)` "
-"不应该."
+"类型没有意义，这意味着应该允许 `Maybe Nat` 等类型，而 `Maybe (Maybe Nat)` 不"
+"应该."
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1151
@@ -2702,7 +2823,8 @@ msgstr "   这可能是一个挑战，因为类型变得非常有趣。\n"
 msgid ""
 "Add support for loading and saving tables from and to disk.  A table should "
 "be stored in two files: One for the schema and one for the CSV content."
-msgstr "添加对从磁盘加载和保存表的支持。表应存储在两个文件中：一个用于架构，一个用于 "
+msgstr ""
+"添加对从磁盘加载和保存表的支持。表应存储在两个文件中：一个用于架构，一个用于 "
 "CSV 内容。"
 
 #. type: Plain text
@@ -2745,8 +2867,9 @@ msgstr ""
 msgid ""
 "You can find an implementation of these additions in the solutions. A small "
 "example table can be found in folder `resources`."
-msgstr "您可以在解决方案中找到这些添加的实现。可以在文件夹 ` 资源 ` "
-"中找到一个小示例表。"
+msgstr ""
+"您可以在解决方案中找到这些添加的实现。可以在文件夹 ` 资源 ` 中找到一个小示例"
+"表。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1190
@@ -2771,8 +2894,8 @@ msgid ""
 "reduce the number of potential bugs in our programs."
 msgstr ""
 "依赖对和记录对于在运行时检查定义我们使用的类型的值是必要的。通过对这些值进行"
-"模式匹配，我们可以了解其他值的类型和可能的形状，从而减少程序中潜在错误的数量"
-"。"
+"模式匹配，我们可以了解其他值的类型和可能的形状，从而减少程序中潜在错误的数"
+"量。"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1204
