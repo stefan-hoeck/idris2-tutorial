@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 16:03+0000\n"
+"PO-Revision-Date: 2022-08-02 16:04+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/intro/zh_Hans/>\n"
@@ -848,7 +848,7 @@ msgstr ""
 #: ../src/Tutorial/Intro.md:223
 #, fuzzy, no-wrap
 msgid "rlwrap idris2 --find-ipkg src/Tutorial/Intro.md\n"
-msgstr "```sh rlwrap idris2 --find-ipkg src/Tutorial/Intro.md ```"
+msgstr "rlwrap idris2 --find-ipkg src/Tutorial/Intro.md\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:227
@@ -856,7 +856,9 @@ msgstr "```sh rlwrap idris2 --find-ipkg src/Tutorial/Intro.md ```"
 msgid ""
 "Tutorial.Intro> :exec main\n"
 "Hello World!\n"
-msgstr "```repl Tutorial.Intro> :exec main Hello World！ ```"
+msgstr ""
+"Tutorial.Intro> :exec main\n"
+"你好世界！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:234
@@ -883,7 +885,7 @@ msgstr ""
 #: ../src/Tutorial/Intro.md:240
 #, fuzzy, no-wrap
 msgid "The Shape of an Idris Definition"
-msgstr "## Idris 定义的形状"
+msgstr "Idris 定义的形状"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:244
@@ -915,7 +917,9 @@ msgstr ""
 msgid ""
 "maxBits8 : Bits8\n"
 "maxBits8 = 255\n"
-msgstr "```idris maxBits8 : Bits8 maxBits8 = 255 ```"
+msgstr ""
+"最大位8：位8\n"
+"最大位8 = 255\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:266
@@ -953,7 +957,11 @@ msgid ""
 "255\n"
 "Tutorial.Intro> :t maxBits8\n"
 "Tutorial.Intro.maxBits8 : Bits8\n"
-msgstr "```repl Tutorial.Intro> maxBits8 255 Tutorial.Intro> :t maxBits8 Tutorial.Intro.maxBits8 : Bits8 ```"
+msgstr ""
+"Tutorial.Intro> maxBits8\n"
+"255\n"
+"Tutorial.Intro> :t maxBits8\n"
+"Tutorial.Intro.maxBits8 : Bits8\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:278
@@ -967,7 +975,9 @@ msgstr "我们也可以使用 `maxBits8` 作为另一个表达式的一部分：
 msgid ""
 "Tutorial.Intro> maxBits8 - 100\n"
 "155\n"
-msgstr "```repl Tutorial.Intro> maxBits8 - 100 155 ```"
+msgstr ""
+"Tutorial.Intro> maxBits8 - 100\n"
+"155\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:286
@@ -985,7 +995,9 @@ msgstr ""
 msgid ""
 "distanceToMax : Bits8 -> Bits8\n"
 "distanceToMax n = maxBits8 - n\n"
-msgstr "```idris distanceToMax : Bits8 -> Bits8 distanceToMax n = maxBits8 - n ```"
+msgstr ""
+"distanceToMax：Bits8 -> Bits8\n"
+"distanceToMax n = maxBits8 - n\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:299
@@ -998,7 +1010,14 @@ msgid ""
 "is given a local identifier `n`, which is then used in the\n"
 "calculation on the right hand side. Again, go ahead and try this\n"
 "function at the REPL:\n"
-msgstr "这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以如下解读：“`distanceToMax` 是 `Bits8` 类型的一个参数的函数，它返回 ` 类型的结果]Bits8`”。在实现中，参数被赋予一个本地标识符 `n`，然后在右侧的计算中使用该标识符。再次，继续在 REPL 中尝试此功能："
+msgstr ""
+"这引入了一些新语法和一种新类型：函数\n"
+"类型。 `distanceToMax : Bits8 -> Bits8` 可以读取如下：\n"
+"“`distanceToMax` 是 `Bits8` 类型的一个参数的函数，它\n"
+"返回 `Bits8`\" 类型的结果。在实现中，参数\n"
+"给定一个本地标识符 `n`，然后在\n"
+"右侧计算。再次，继续尝试这个\n"
+"REPL 的功能：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:300
@@ -1010,7 +1029,13 @@ msgid ""
 "Tutorial.Intro.distanceToMax : Bits8 -> Bits8\n"
 "Tutorial.Intro> :t distanceToMax 12\n"
 "distanceToMax 12 : Bits8\n"
-msgstr "```repl Tutorial.Intro> distanceToMax 12 243 Tutorial.Intro> :t distanceToMax Tutorial.Intro.distanceToMax : Bits8 -> Bits8 Tutorial.Intro> :t distanceToMax 12 distanceToMax 12 : Bits8 ```"
+msgstr ""
+"Tutorial.Intro> distanceToMax 12\n"
+"243\n"
+"Tutorial.Intro> :t distanceToMax\n"
+"Tutorial.Intro.distanceToMax：Bits8 -> Bits8\n"
+"Tutorial.Intro> :t distanceToMax 12\n"
+"distanceToMax 12：位8\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:311
@@ -1026,7 +1051,9 @@ msgstr "作为最后一个例子，让我们实现一个计算整数平方的函
 msgid ""
 "square : Integer -> Integer\n"
 "square n = n * n\n"
-msgstr "```idris square : 整数 -> 整数平方 n = n * n"
+msgstr ""
+"正方形：整数 -> 整数\n"
+"平方 n = n * n\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:325
@@ -1049,7 +1076,9 @@ msgstr ""
 msgid ""
 "Tutorial.Intro> square maxBits8\n"
 "Error: ...\n"
-msgstr "```repl Tutorial.Intro> square maxBits8 错误：... ```"
+msgstr ""
+"Tutorial.Intro> square maxBits8\n"
+"错误： ...\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:336
@@ -1070,7 +1099,9 @@ msgstr ""
 msgid ""
 "Tutorial.Intro> square (cast maxBits8)\n"
 "65025\n"
-msgstr "```repl Tutorial.Intro> square (cast maxBits8) 65025 ```"
+msgstr ""
+"Tutorial.Intro> square (cast maxBits8)\n"
+"65025\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:348
@@ -1092,13 +1123,15 @@ msgstr ""
 msgid ""
 "Tutorial.Intro> maxBits8 * maxBits8\n"
 "1\n"
-msgstr "```repl Tutorial.Intro> maxBits8 * maxBits8 1 ```"
+msgstr ""
+"Tutorial.Intro> maxBits8 * maxBits8\n"
+"1\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:354
 #, fuzzy, no-wrap
 msgid "Where to get Help"
-msgstr "## 从哪里获得帮助"
+msgstr "在哪里获得帮助"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:359
@@ -1296,7 +1329,7 @@ msgstr "使用 `:help` 获取其他命令的列表以及每个命令的简短描
 #: ../src/Tutorial/Intro.md:418
 #, fuzzy, no-wrap
 msgid "Summary"
-msgstr "＃＃ 概括"
+msgstr "概括"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:425
