@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/prim/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -489,9 +489,9 @@ msgstr ""
 #: ../src/Tutorial/Folds.md:326 ../src/Tutorial/Folds.md:582
 #: ../src/Tutorial/Intro.md:199 ../src/Tutorial/Intro.md:208
 #: ../src/Tutorial/Intro.md:223 ../src/Tutorial/Prim.md:38
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "sh"
-msgstr ""
+msgstr "嘘"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
@@ -1028,21 +1028,21 @@ msgstr "```idris 0 concatLenStr : (a,b : String) -> 长度 a + 长度 b = 长度
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:237
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "<!-- markdownlint-disable MD026 -->\n"
-msgstr ""
+msgstr "<!-- markdownlint-disable MD026 -->\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:237
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "Believe Me!"
-msgstr ""
+msgstr "相信我！"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:239
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "<!-- markdownlint-enable MD026 -->\n"
-msgstr ""
+msgstr "<!-- markdownlint-disable MD026 -->\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:245
@@ -1108,7 +1108,7 @@ msgstr "好吧，你猜怎么着：那是个谎言。谎言将我们直接带入
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:271
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Tiny : Double\n"
 "Tiny = 0.0000000000000001\n"
@@ -1122,6 +1122,17 @@ msgid ""
 "boom : Void\n"
 "boom = wrong (doubleAddAssoc One Tiny Tiny)\n"
 msgstr ""
+"小：双\n"
+"微小 = 0.0000000000000001\n"
+"\n"
+"一：双人间\n"
+"一 = 1.0\n"
+"\n"
+"错误：（0 _：1.0000000000000002 = 1.0）-> 无效\n"
+"错误的 Refl 不可能\n"
+"\n"
+"繁荣：无效\n"
+"繁荣 = 错误（doubleAddAssoc One Tiny Tiny）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:291
@@ -1304,7 +1315,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:357
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data Element = H | He | C | N | O | F | Ne\n"
 "\n"
@@ -1331,6 +1342,30 @@ msgid ""
 "ethanol : String\n"
 "ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
 msgstr ""
+"数据元素 = H |他 | C | N | ○ | F |氖\n"
+"\n"
+"公式：类型\n"
+"公式 = 列表（元素，Nat）\n"
+"\n"
+"插值元素 where\n"
+"  插值 H = \"H\"\n"
+"  插值 He = \"He\"\n"
+"  插值 C = \"C\"\n"
+"  插值 N = \"N\"\n"
+"  插值 O = \"O\"\n"
+"  插值 F = \"F\"\n"
+"  插值 Ne = \"Ne\"\n"
+"\n"
+"插值 (Element,Nat) 其中\n"
+"  插值 (_, 0) = \"\"\n"
+"  插值 (x, 1) = \"\\{x}\"\n"
+"  插值 (x, k) = \"\\{x}\\{显示 k}\"\n"
+"\n"
+"插值公式\n"
+"  插值 = foldMap 插值\n"
+"\n"
+"乙醇：字符串\n"
+"乙醇 = \"乙醇的公式为：\\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:384
@@ -1993,7 +2028,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:684
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "fromInteger : Integer -> Charge\n"
 "fromInteger = MkCharge\n"
@@ -2004,6 +2039,14 @@ msgid ""
 "Monoid Charge where\n"
 "  neutral = 0\n"
 msgstr ""
+"fromInteger : 整数 -> 电荷\n"
+"fromInteger = MkCharge\n"
+"\n"
+"半群电荷在哪里\n"
+"  x <+> y = MkCharge $ x.value + y.value\n"
+"\n"
+"Monoid Charge 在哪里\n"
+"  中性 = 0\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Prim.md:695
@@ -2380,9 +2423,9 @@ msgstr "假设现在用户决定输入以下文本："
 
 #. type: Code fence info string
 #: ../src/Tutorial/Prim.md:872
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "html"
-msgstr ""
+msgstr "html"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:872
@@ -2820,7 +2863,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1087
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   negOr : Neg (p || q) v -> (Neg p && Neg q) v\n"
 "\n"
@@ -2828,6 +2871,11 @@ msgid ""
 "\n"
 "   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
 msgstr ""
+"   negOr : 否定 (p || q) v -> (否定 p && 否定 q) v\n"
+"\n"
+"   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
+"\n"
+"   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1100
@@ -2914,7 +2962,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1129
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "(>=) : (m,n : Nat) -> Type\n"
 "m >= n = n <= m\n"
@@ -2943,6 +2991,32 @@ msgid ""
 "Between : (lower,upper : Nat) -> Nat -> Type\n"
 "Between l u = GreaterThan l && LessThan u\n"
 msgstr ""
+"(>=) : (m,n : Nat) -> 类型\n"
+"m >= n = n <= m\n"
+"\n"
+"(<) : (m,n : Nat) -> 类型\n"
+"m < n = S m <= n\n"
+"\n"
+"(>) : (m,n : Nat) -> 类型\n"
+"m > n = n < m\n"
+"\n"
+"小于 : (m,n : Nat) -> 类型\n"
+"小于 m = (< m)\n"
+"\n"
+"To : (m,n : Nat) -> 输入\n"
+"至 m = (<= m)\n"
+"\n"
+"大于 : (m,n : Nat) -> 类型\n"
+"大于 m = (> m)\n"
+"\n"
+"从 : (m,n : Nat) -> 类型\n"
+"从 m = (>= m)\n"
+"\n"
+"FromTo : (lower,upper : Nat) -> Nat -> 类型\n"
+"FromTo l u = 从 l && 到你\n"
+"\n"
+"之间 : (lower,upper : Nat) -> Nat -> 类型\n"
+"介于 l u = 大于 l && 小于 u\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Prim.md:1171
