@@ -189,12 +189,18 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:181 ../src/Tutorial/Functor.md:636
 #: ../src/Tutorial/Interfaces.md:542
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record Password where\n"
 "  constructor MkPassword\n"
 "  value : String\n"
 msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"记录密码在哪里\n"
+"  构造函数 MkPassword\n"
+"  值：字符串\n"
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:2

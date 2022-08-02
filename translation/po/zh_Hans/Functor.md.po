@@ -253,9 +253,11 @@ msgid ""
 "  constructor MkEmail\n"
 "  value : String\n"
 msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "记录电子邮件在哪里\n"
 "  构造函数 MkEmail\n"
 "  值：字符串\n"
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:181 ../src/Tutorial/Functor.md:636
@@ -266,9 +268,12 @@ msgid ""
 "  constructor MkPassword\n"
 "  value : String\n"
 msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 "记录密码在哪里\n"
 "  构造函数 MkPassword\n"
 "  值：字符串\n"
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:2
@@ -282,7 +287,8 @@ msgstr "# 函子和朋友"
 msgid ""
 "Programming, like mathematics, is about abstraction. We try to model parts "
 "of the real world, reusing recurring patterns by abstracting over them."
-msgstr "编程，就像数学一样，是关于抽象的。我们尝试对现实世界的某些部分进行建模，通过"
+msgstr ""
+"编程，就像数学一样，是关于抽象的。我们尝试对现实世界的某些部分进行建模，通过"
 "对它们进行抽象来重用重复出现的模式。"
 
 #. type: Plain text
@@ -314,7 +320,10 @@ msgstr "```idris 模块 Tutorial.Functor"
 #: ../src/Tutorial/Functor.md:24 ../src/Tutorial/IO.md:14
 #, fuzzy
 msgid "import Data.List1 import Data.String import Data.Vect"
-msgstr "导入 Data.List1 导入 Data.String 导入 Data.Vect"
+msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"导入 Data.List1 导入 Data.String 导入 Data.Vect\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:29
@@ -336,13 +345,12 @@ msgid ""
 "there are, but the possibilities are much smaller: Zero or one. With `IO`, "
 "the context is a different one: Arbitrary side effects."
 msgstr ""
-"`List`、`List1`、`Maybe` 或 `IO` 等类型构造函数有什么共同点？首先，"
-"它们都是类型 `Type -> Type`。其次，它们都将给定类型的值放在某个 * 上下文 * "
-"中。对于 `List`，*context* 是 *non-determinism*：我们知道有零个或多个值，但在"
-"开始之前我们不知道确切的数字通过对其进行模式匹配将列表分开。对于 `List1` "
-"也是如此，尽管我们确定至少有一个值。对于 "
-"`Maybe`，我们仍然不确定有多少个值，但可能性要小得多：零或一。使用 "
-"`IO`，上下文是不同的：任意副作用。"
+"`List`、`List1`、`Maybe` 或 `IO` 等类型构造函数有什么共同点？首先，它们都是类"
+"型 `Type -> Type`。其次，它们都将给定类型的值放在某个 * 上下文 * 中。对于 "
+"`List`，*context* 是 *non-determinism*：我们知道有零个或多个值，但在开始之前"
+"我们不知道确切的数字通过对其进行模式匹配将列表分开。对于 `List1` 也是如此，尽"
+"管我们确定至少有一个值。对于 `Maybe`，我们仍然不确定有多少个值，但可能性要小"
+"得多：零或一。使用 `IO`，上下文是不同的：任意副作用。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:49
@@ -364,8 +372,9 @@ msgstr ""
 msgid ""
 "For instance, given a list of numbers, we'd like to multiply each number by "
 "two, without changing their order or removing any values:"
-msgstr "例如，给定一个数字列表，我们希望将每个数字乘以 "
-"2，而不更改它们的顺序或删除任何值："
+msgstr ""
+"例如，给定一个数字列表，我们希望将每个数字乘以 2，而不更改它们的顺序或删除任"
+"何值："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:59
@@ -413,7 +422,8 @@ msgstr ""
 msgid ""
 "Sometimes, the type of the stored value changes. In the next example, we "
 "calculate the lengths of the strings stored in a list:"
-msgstr "有时，存储值的类型会发生变化。在下一个示例中，我们计算存储在列表中的字符串的"
+msgstr ""
+"有时，存储值的类型会发生变化。在下一个示例中，我们计算存储在列表中的字符串的"
 "长度："
 
 #. type: Plain text
@@ -439,7 +449,8 @@ msgid ""
 "I'd like you to appreciate, just how boring these functions are. They are "
 "almost identical, with the only interesting part being the function we apply "
 "to each element. Surely, there must be a pattern to abstract over:"
-msgstr "我希望你能体会到，这些功能是多么无聊。它们几乎相同，唯一有趣的部分是我们应用"
+msgstr ""
+"我希望你能体会到，这些功能是多么无聊。它们几乎相同，唯一有趣的部分是我们应用"
 "于每个元素的函数。当然，必须有一个抽象的模式："
 
 #. type: Plain text
@@ -465,8 +476,9 @@ msgid ""
 "This is often the first step of abstraction in functional programming: Write "
 "a (possibly generic) higher-order function.  We can now concisely implement "
 "all examples shown above in terms of `mapList`:"
-msgstr "这通常是函数式编程中抽象的第一步：编写一个（可能是通用的）高阶函数。"
-"我们现在可以根据 `mapList` 简洁地实现上面显示的所有示例："
+msgstr ""
+"这通常是函数式编程中抽象的第一步：编写一个（可能是通用的）高阶函数。我们现在"
+"可以根据 `mapList` 简洁地实现上面显示的所有示例："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:98
@@ -490,7 +502,8 @@ msgstr "toUpperList' : 列表字符串 -> 列表字符串 toUpperList' = mapList
 #, fuzzy
 msgid ""
 "toLengthList' : List String -> List Nat toLengthList' = mapList length ```"
-msgstr "toLengthList' : 列表字符串 -> 列表 Nat toLengthList' = mapList 长度 ```"
+msgstr ""
+"toLengthList' : 列表字符串 -> 列表 Nat toLengthList' = mapList 长度 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:110
@@ -500,8 +513,8 @@ msgid ""
 "After all, they are just container types like `List`, the only difference "
 "being some detail about the number of values they can or can't hold:"
 msgstr ""
-"但我们肯定想对 `List1` 和 `Maybe` 做同样的事情！毕竟，它们只是像 `List` "
-"这样的容器类型，唯一的区别是关于它们可以或不可以保存的值的数量的一些细节："
+"但我们肯定想对 `List1` 和 `Maybe` 做同样的事情！毕竟，它们只是像 `List` 这样"
+"的容器类型，唯一的区别是关于它们可以或不可以保存的值的数量的一些细节："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:116
@@ -526,9 +539,9 @@ msgid ""
 "freely dissect:"
 msgstr ""
 "即使使用 `IO`，我们也希望能够将纯函数映射到有效的计算上。由于数据构造函数的嵌"
-"套层，实现有点复杂，但如果有疑问，类型肯定会指导我们。但是请注意，`IO` "
-"不是公开导出的，因此我们无法使用它的数据构造函数。我们可以使用函数 `toPrim` "
-"和 `fromPrim`，但是，将 `IO` 与 `PrimIO` 相互转换，我们可以自由剖析："
+"套层，实现有点复杂，但如果有疑问，类型肯定会指导我们。但是请注意，`IO` 不是公"
+"开导出的，因此我们无法使用它的数据构造函数。我们可以使用函数 `toPrim` 和 "
+"`fromPrim`，但是，将 `IO` 与 `PrimIO` 相互转换，我们可以自由剖析："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:134
@@ -559,8 +572,9 @@ msgid ""
 "From the concept of *mapping a pure function over values in a context* "
 "follow some derived functions, which are often useful. Here are some of them "
 "for `IO`:"
-msgstr "从 * 将纯函数映射到上下文中的值的概念 * "
-"遵循一些派生函数，这些函数通常很有用。以下是 `IO` 中的一些："
+msgstr ""
+"从 * 将纯函数映射到上下文中的值的概念 * 遵循一些派生函数，这些函数通常很有"
+"用。以下是 `IO` 中的一些："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:142
@@ -599,10 +613,10 @@ msgid ""
 "something else than a `Type`."
 msgstr ""
 "当我们遇到具有几个有用的派生函数的重复函数类时，我们应该考虑定义一个接口。但"
-"是我们应该怎么做呢？当您查看 `mapList`、`mapMaybe` 和 `mapIO` 的类型时，"
-"您会发现它是 `List`、`我们需要去掉 List1` 和 `IO` 类型。这些不是 `Type` "
-"类型，而是 `Type -> Type` 类型。幸运的是，除了 `Type` "
-"之外，没有什么能阻止我们对接口进行参数化。"
+"是我们应该怎么做呢？当您查看 `mapList`、`mapMaybe` 和 `mapIO` 的类型时，您会"
+"发现它是 `List`、`我们需要去掉 List1` 和 `IO` 类型。这些不是 `Type` 类型，而"
+"是 `Type -> Type` 类型。幸运的是，除了 `Type` 之外，没有什么能阻止我们对接口"
+"进行参数化。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:166
@@ -649,7 +663,8 @@ msgid ""
 "Note, that we had to give the type of parameter `f` explicitly, and in that "
 "case it needs to be annotated with quantity zero if you want it to be erased "
 "at runtime (which you almost always want)."
-msgstr "请注意，我们必须明确给出参数 `f` 的类型，在这种情况下，如果您希望它在运行时被"
+msgstr ""
+"请注意，我们必须明确给出参数 `f` 的类型，在这种情况下，如果您希望它在运行时被"
 "擦除（您几乎总是想要），则需要用数量零进行注释。"
 
 #. type: Plain text
@@ -663,8 +678,8 @@ msgid ""
 "the REPL (I formatted the output to make it more readable):"
 msgstr ""
 "现在，读取仅包含类型参数（如 `map'` 之一）的类型签名可能需要一些时间来适应，"
-"尤其是当某些类型参数应用于其他参数时，例如 `f a` .检查这些签名以及 REPL "
-"中的所有隐式参数会非常有帮助（我对输出进行了格式化以使其更具可读性）："
+"尤其是当某些类型参数应用于其他参数时，例如 `f a` .检查这些签名以及 REPL 中的"
+"所有隐式参数会非常有帮助（我对输出进行了格式化以使其更具可读性）："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:197
@@ -717,7 +732,8 @@ msgid ""
 "Remember, being able to interpret type signatures is paramount to "
 "understanding what's going on in an Idris declaration. You *must* practice "
 "this and make use of the tools and utilities given to you."
-msgstr "请记住，能够解释类型签名对于理解 Idris 声明中发生的事情至关重要。您 * 必须* "
+msgstr ""
+"请记住，能够解释类型签名对于理解 Idris 声明中发生的事情至关重要。您 * 必须* "
 "练习这一点，并利用提供给您的工具和实用程序。"
 
 #. type: Plain text
@@ -733,7 +749,8 @@ msgid ""
 "There are several functions and operators directly derivable from interface "
 "`Functor`. Eventually, you should know and remember all of them as they are "
 "highly useful. Here they are together with their types:"
-msgstr "有几个函数和运算符可以直接从接口 `Functor` 派生。最终，您应该知道并记住所有这"
+msgstr ""
+"有几个函数和运算符可以直接从接口 `Functor` 派生。最终，您应该知道并记住所有这"
 "些，因为它们非常有用。在这里，它们与它们的类型一起："
 
 #. type: Plain text
@@ -771,7 +788,8 @@ msgstr "Tutorial.Functor> :t (<$) Prelude.<$ : Functor f => b -> f a -> f b"
 #, fuzzy
 msgid ""
 "Tutorial.Functor> :t ignore Prelude.ignore : Functor f => f a -> f ()  ```"
-msgstr "Tutorial.Functor> :t 忽略 Prelude.ignore : Functor f => f a -> f () ```"
+msgstr ""
+"Tutorial.Functor> :t 忽略 Prelude.ignore : Functor f => f a -> f () ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:235
@@ -831,10 +849,10 @@ msgid ""
 "the `Functor` implementation for `Either e` (note, that `Either e` has of "
 "course type `Type -> Type` as required):"
 msgstr ""
-"到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，"
-"我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 "
-"`map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 "
-"`Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必需的）："
+"到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，我们也可以为其他"
+"类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 `map` 更改的类型参"
+"数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 `Functor` 实现（注"
+"意， `Either e` 当然有类型 `Type -> Type` 为必需的）："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:265
@@ -860,8 +878,8 @@ msgid ""
 "Type -> Type` (you might remember this from the exercises in the [last "
 "chapter](IO.md)):"
 msgstr ""
-"这是另一个例子，这次是一个类型为 `Bool -> Type -> Type` 的类型构造函数（"
-"你可能还记得 [上一章](IO.md) 的练习中的这个）："
+"这是另一个例子，这次是一个类型为 `Bool -> Type -> Type` 的类型构造函数（你可"
+"能还记得 [上一章](IO.md) 的练习中的这个）："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:274
@@ -939,8 +957,9 @@ msgstr ""
 msgid ""
 "The above allows us to conveniently map over a pair of functors. Note, "
 "however, that Idris needs some help with inferring the types involved:"
-msgstr "以上允许我们方便地映射一对函子。但是请注意，Idris "
-"需要一些帮助来推断所涉及的类型："
+msgstr ""
+"以上允许我们方便地映射一对函子。但是请注意，Idris 需要一些帮助来推断所涉及的"
+"类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:301
@@ -949,8 +968,8 @@ msgid ""
 "```idris toPair : Product f g a -> (f a, g a)  toPair (MkProduct fst snd) = "
 "(fst, snd)"
 msgstr ""
-"```idris toPair : Product f g a -> (f a, g a) toPair (MkProduct fst snd) = ("
-"fst, snd)"
+"```idris toPair : Product f g a -> (f a, g a) toPair (MkProduct fst snd) = "
+"(fst, snd)"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:304
@@ -1033,8 +1052,8 @@ msgid ""
 "mapping over several layers of values."
 msgstr ""
 "有时，有更多方法可以为给定类型实现接口。例如，对于数字类型，我们可以有一个 "
-"`Monoid` 代表加法和一个代表乘法。同样，对于嵌套函子，`map` "
-"可以解释为仅对第一层值的映射，或对若干层值的映射。"
+"`Monoid` 代表加法和一个代表乘法。同样，对于嵌套函子，`map` 可以解释为仅对第一"
+"层值的映射，或对若干层值的映射。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:339
@@ -1070,9 +1089,9 @@ msgid ""
 "However, it is possible to explicitly choose to use this implementation by "
 "passing it as an explicit argument to `map`, prefixed with an `@`:"
 msgstr ""
-"请注意，这定义了 `Functor` 的新实现，在隐式解析期间将考虑 *not* "
-"以避免歧义。但是，可以通过将其作为显式参数传递给 `map` 来显式选择使用此实现，"
-"并以 `@` 为前缀："
+"请注意，这定义了 `Functor` 的新实现，在隐式解析期间将考虑 *not* 以避免歧义。"
+"但是，可以通过将其作为显式参数传递给 `map` 来显式选择使用此实现，并以 `@` 为"
+"前缀："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:355
@@ -1081,8 +1100,8 @@ msgid ""
 "```idris compExample2 : Show a => List (Either e a) -> List (Either e "
 "String)  compExample2 = map @{Compose} show ```"
 msgstr ""
-"```idris compExample2 : Show a => List (Either e a) -> List (Either e String)"
-" compExample2 = map @{Compose} show ```"
+"```idris compExample2 : Show a => List (Either e a) -> List (Either e "
+"String) compExample2 = map @{Compose} show ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:358
@@ -1090,7 +1109,8 @@ msgstr ""
 msgid ""
 "In the example above, we used `Compose` instead of `Compose'`, since the "
 "former is already exported by the *Prelude*."
-msgstr "在上面的示例中，我们使用 `Compose` 代替 `Compose'`，因为前者已经由 *Prelude* "
+msgstr ""
+"在上面的示例中，我们使用 `Compose` 代替 `Compose'`，因为前者已经由 *Prelude* "
 "导出。"
 
 #. type: Plain text
@@ -1107,8 +1127,8 @@ msgid ""
 "like implementations of `Eq` or `Ord`. Again, these laws are not verified by "
 "Idris, although it would be possible (and often cumbersome) to do so."
 msgstr ""
-"`Functor` 的实现应该遵守某些规律，就像 `Eq` 或 `Ord` 的实现一样。同样，"
-"这些法律并未得到 Idris 的验证，尽管这样做是可能的（而且通常很麻烦）。"
+"`Functor` 的实现应该遵守某些规律，就像 `Eq` 或 `Ord` 的实现一样。同样，这些法"
+"律并未得到 Idris 的验证，尽管这样做是可能的（而且通常很麻烦）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:370
@@ -1130,8 +1150,9 @@ msgstr ""
 msgid ""
 "`map (f . g) = map f . map g`: Sequencing two mappings must be identical to "
 "a single mapping using the composition of the two functions."
-msgstr "`map (f . g) = 映射 f . map "
-"g`：使用两个函数的组合对两个映射进行排序必须与单个映射相同。"
+msgstr ""
+"`map (f . g) = 映射 f . map g`：使用两个函数的组合对两个映射进行排序必须与单"
+"个映射相同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:380
@@ -1143,10 +1164,10 @@ msgid ""
 "wrapped value, nor - in case of `List` - change their order. With `IO`, this "
 "can best be described as `map` not performing additional side effects."
 msgstr ""
-"这两条定律都要求 `map` 保留值的 *structure*。使用 `List`、`Maybe` 或 `Ei` "
-"等容器类型更容易理解，其中不允许添加或删除 `map`任何包装的值，也不 - 在 "
-"`List` 的情况下 - 更改它们的顺序。使用 `IO`，这可以最好地描述为 `map` "
-"没有执行额外的副作用。"
+"这两条定律都要求 `map` 保留值的 *structure*。使用 `List`、`Maybe` 或 `Ei` 等"
+"容器类型更容易理解，其中不允许添加或删除 `map`任何包装的值，也不 - 在 `List` "
+"的情况下 - 更改它们的顺序。使用 `IO`，这可以最好地描述为 `map` 没有执行额外的"
+"副作用。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Functor.md:385
@@ -1154,7 +1175,8 @@ msgstr ""
 msgid ""
 "Write your own implementations of `Functor'` for `Maybe`, `List`, `List1`, "
 "`Vect n`, `Either e`, and `Pair a`."
-msgstr "为 `Maybe`、`List`、`List1`、`Vect n`、` 编写自己的 `Functor'` 实现e` 和 ` "
+msgstr ""
+"为 `Maybe`、`List`、`List1`、`Vect n`、` 编写自己的 `Functor'` 实现e` 和 ` "
 "对 a`。"
 
 #. type: Bullet: '2. '
@@ -1239,7 +1261,8 @@ msgstr ""
 msgid ""
 "Here is a sum type for describing CRUD operations (Create, Read, Update, and "
 "Delete) in a data store:"
-msgstr "这是用于描述数据存储中的 CRUD 操作（创建、读取、更新和删除）的求和类型："
+msgstr ""
+"这是用于描述数据存储中的 CRUD 操作（创建、读取、更新和删除）的求和类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:426
@@ -1294,7 +1317,8 @@ msgid ""
 "While `Functor` allows us to map a pure, unary function over a value in a "
 "context, it doesn't allow us to combine n such values under an n-ary "
 "function."
-msgstr "虽然 `Functor` 允许我们将纯一元函数映射到上下文中的值上，但它不允许我们在 n "
+msgstr ""
+"虽然 `Functor` 允许我们将纯一元函数映射到上下文中的值上，但它不允许我们在 n "
 "元函数下组合 n 个这样的值。"
 
 #. type: Plain text
@@ -1390,8 +1414,9 @@ msgid ""
 "And it won't stop here. We might just as well want to have `liftMaybe3` for "
 "ternary functions and three `Maybe` arguments and so on, for arbitrary "
 "numbers of arguments."
-msgstr "它不会止步于此。对于三元函数，我们可能还希望有 `liftMaybe3` 和三个 `Maybe` "
-"参数等等，对于任意数量的参数。"
+msgstr ""
+"它不会止步于此。对于三元函数，我们可能还希望有 `liftMaybe3` 和三个 `Maybe` 参"
+"数等等，对于任意数量的参数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:493
@@ -1399,7 +1424,8 @@ msgstr "它不会止步于此。对于三元函数，我们可能还希望有 `l
 msgid ""
 "But there is more: We'd also like to lift pure values into the context in "
 "question. With this, we could do the following:"
-msgstr "但还有更多：我们还想将纯粹的价值观提升到所讨论的背景中。有了这个，我们可以做"
+msgstr ""
+"但还有更多：我们还想将纯粹的价值观提升到所讨论的背景中。有了这个，我们可以做"
 "以下事情："
 
 #. type: Plain text
@@ -1445,7 +1471,8 @@ msgid ""
 "As you'll of course already know, I am now going to present a new interface "
 "to encapsulate this behavior. It's called `Applicative`.  Here is its "
 "definition and an example implementation:"
-msgstr "正如您当然已经知道的那样，我现在将提供一个新接口来封装这种行为。它被称为 "
+msgstr ""
+"正如您当然已经知道的那样，我现在将提供一个新接口来封装这种行为。它被称为 "
 "`Applicative`。这是它的定义和示例实现："
 
 #. type: Plain text
@@ -1492,8 +1519,8 @@ msgid ""
 "There, function `app` is an operator sometimes called *app* or *apply*: "
 "`(<*>)`."
 msgstr ""
-"接口 `Applicative` 当然已经由 *Prelude* 导出。在那里，函数 `app` "
-"是一个有时称为 *app* 或 *apply* 的运算符：`(<*>)`。"
+"接口 `Applicative` 当然已经由 *Prelude* 导出。在那里，函数 `app` 是一个有时称"
+"为 *app* 或 *apply* 的运算符：`(<*>)`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:530
@@ -1501,8 +1528,9 @@ msgstr ""
 msgid ""
 "You may wonder, how functions like `liftMaybe2` or `liftIO3` are related to "
 "operator *apply*. Let me demonstrate this:"
-msgstr "您可能想知道，像 `liftMaybe2` 或 `liftIO3` 这样的函数如何与运算符 *apply* "
-"相关联。让我演示一下："
+msgstr ""
+"您可能想知道，像 `liftMaybe2` 或 `liftIO3` 这样的函数如何与运算符 *apply* 相"
+"关联。让我演示一下："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:534
@@ -1536,8 +1564,8 @@ msgid ""
 msgstr ""
 "了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 "
 "`liftA2` 专门用于 `Maybe` 用于 `f`，则 `pure fun` 的类型为 `Maybe (a -> b -> "
-"c)`。同样，`pure fun <*> fa` 是 ` 类型的可能 (b -> c)`，因为 `(<*>)` "
-"将应用存储在 [ X288X]fa` 到存储在 `pure fun` 中的函数（柯里化！）。"
+"c)`。同样，`pure fun <*> fa` 是 ` 类型的可能 (b -> c)`，因为 `(<*>)` 将应用存"
+"储在 [ X288X]fa` 到存储在 `pure fun` 中的函数（柯里化！）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:550
@@ -1548,9 +1576,9 @@ msgid ""
 "sometimes also see the following, which allows us to drop the initial call "
 "to `pure`, and use the operator version of `map` instead:"
 msgstr ""
-"你会经常看到 *apply* 这样的应用链，*applies* "
-"的数量对应于我们提升的函数的数量。您有时还会看到以下内容，这使我们可以放弃对 "
-"`pure` 的初始调用，并改用 `map` 的运算符版本："
+"你会经常看到 *apply* 这样的应用链，*applies* 的数量对应于我们提升的函数的数"
+"量。您有时还会看到以下内容，这使我们可以放弃对 `pure` 的初始调用，并改用 "
+"`map` 的运算符版本："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:554
@@ -1609,7 +1637,8 @@ msgid ""
 "In Idris, there is an alternative to using such chains of operator "
 "applications: Idiom brackets. Here's another reimplementation of `liftA2` "
 "and `liftA3`:"
-msgstr "在 Idris 中，有一个替代使用这种运算符应用程序链的方法：成语方括号。这是 "
+msgstr ""
+"在 Idris 中，有一个替代使用这种运算符应用程序链的方法：成语方括号。这是 "
 "`liftA2` 和 `liftA3` 的另一个重新实现："
 
 #. type: Plain text
@@ -1665,11 +1694,11 @@ msgid ""
 "lines in a CSV file and store the result in custom records, where each "
 "record field corresponds to a column in the table."
 msgstr ""
-"为了理解应用函子的强大功能和多功能性，我们将看一个稍微扩展的示例。"
-"我们将编写一些实用程序来解析和解码 CSV 文件中的内容。这些文件的每一行都包含一"
-"个由逗号（或其他分隔符）分隔的值列表。通常，它们用于存储表格数据，例如来自电"
-"子表格应用程序的数据。我们想要做的是转换 CSV "
-"文件中的行并将结果存储在自定义记录中，其中每个记录字段对应于表中的一列。"
+"为了理解应用函子的强大功能和多功能性，我们将看一个稍微扩展的示例。我们将编写"
+"一些实用程序来解析和解码 CSV 文件中的内容。这些文件的每一行都包含一个由逗号"
+"（或其他分隔符）分隔的值列表。通常，它们用于存储表格数据，例如来自电子表格应"
+"用程序的数据。我们想要做的是转换 CSV 文件中的行并将结果存储在自定义记录中，其"
+"中每个记录字段对应于表中的一列。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:609
@@ -1678,8 +1707,9 @@ msgid ""
 "For instance, here is a simple example file, containing tabular user "
 "information from a web store: First name, last name, age (optional), email "
 "address, gender, and password."
-msgstr "例如，这是一个简单的示例文件，其中包含来自网络商店的表格用户信息：名字、姓氏"
-"、年龄（可选）、电子邮件地址、性别和密码。"
+msgstr ""
+"例如，这是一个简单的示例文件，其中包含来自网络商店的表格用户信息：名字、姓"
+"氏、年龄（可选）、电子邮件地址、性别和密码。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:615
@@ -1688,8 +1718,8 @@ msgid ""
 "```repl Jon,Doe,42,jon@doe.ch,m,weijr332sdk Jane,Doe,,jane@doe.ch,f,"
 "aa433sd112 Stefan,Hoeck,,nope@goaway.ch,m,password123 ```"
 msgstr ""
-"```repl Jon,Doe,42,jon@doe.ch,m,weijr332sdk Jane,Doe,,jane@"
-"doe.ch,f,aa433sd112 Stefan,Hoeck,,nope@goaway.ch,m,password123 ```"
+"```repl Jon,Doe,42,jon@doe.ch,m,weijr332sdk Jane,Doe,,jane@doe.ch,f,"
+"aa433sd112 Stefan,Hoeck,,nope@goaway.ch,m,password123 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:621
@@ -1701,8 +1731,8 @@ msgid ""
 "valid input:"
 msgstr ""
 "以下是在运行时保存此信息所必需的 Idris 数据类型。我们再次使用自定义字符串包装"
-"器来提高类型安全性，因为它允许我们为每种数据类型定义我们认为是有效输入的内容"
-"："
+"器来提高类型安全性，因为它允许我们为每种数据类型定义我们认为是有效输入的内"
+"容："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:624
@@ -1752,8 +1782,9 @@ msgstr ""
 msgid ""
 "We start by defining an interface for reading fields in a CSV file and "
 "writing implementations for the data types we'd like to read:"
-msgstr "我们首先定义一个用于读取 CSV "
-"文件中的字段的接口，并为我们想要读取的数据类型编写实现："
+msgstr ""
+"我们首先定义一个用于读取 CSV 文件中的字段的接口，并为我们想要读取的数据类型编"
+"写实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:655
@@ -1775,8 +1806,9 @@ msgstr ""
 msgid ""
 "Below are implementations for `Gender` and `Bool`. I decided to in these "
 "cases encode each value with a single lower case character:"
-msgstr "下面是 `Gender` 和 `Bool` "
-"的实现。在这些情况下，我决定使用单个小写字符对每个值进行编码："
+msgstr ""
+"下面是 `Gender` 和 `Bool` 的实现。在这些情况下，我决定使用单个小写字符对每个"
+"值进行编码："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:666
@@ -1862,8 +1894,8 @@ msgid ""
 "(Remember that `(<$>)` is an alias for `map`.)"
 msgstr ""
 "对于可选值，存储的类型本身必须带有 `CSVField` 的实例。然后我们可以将空字符串 "
-"`\"\"` 视为 `Nothing`，而将非空字符串传递给封装类型的字段读取器。 （记住 "
-"`(<$>)` 是 `map` 的别名。）"
+"`\"\"` 视为 `Nothing`，而将非空字符串传递给封装类型的字段读取器。 （记住 `(<"
+"$>)` 是 `map` 的别名。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:698
@@ -1888,7 +1920,8 @@ msgid ""
 "Finally, for our string wrappers, we need to decide what we consider to be "
 "valid values. For simplicity, I decided to limit the length of allowed "
 "strings and the set of valid characters."
-msgstr "最后，对于我们的字符串包装器，我们需要决定我们认为什么是有效值。为简单起见，"
+msgstr ""
+"最后，对于我们的字符串包装器，我们需要决定我们认为什么是有效值。为简单起见，"
 "我决定限制允许的字符串长度和有效字符集。"
 
 #. type: Plain text
@@ -2007,7 +2040,8 @@ msgstr ""
 msgid ""
 "In a later chapter, we will learn about refinement types and how to store an "
 "erased proof of validity together with a validated value."
-msgstr "在后面的章节中，我们将学习细化类型以及如何将已擦除的有效性证明与验证值一起存"
+msgstr ""
+"在后面的章节中，我们将学习细化类型以及如何将已擦除的有效性证明与验证值一起存"
 "储。"
 
 #. type: Plain text
@@ -2016,7 +2050,8 @@ msgstr "在后面的章节中，我们将学习细化类型以及如何将已擦
 msgid ""
 "We can now start to decode whole lines in a CSV file.  In order to do so, we "
 "first introduce a custom error type encapsulating how things can go wrong:"
-msgstr "我们现在可以开始解码 CSV 文件中的整行。为了做到这一点，我们首先引入一个自定义"
+msgstr ""
+"我们现在可以开始解码 CSV 文件中的整行。为了做到这一点，我们首先引入一个自定义"
 "错误类型来封装事情是如何出错的："
 
 #. type: Plain text
@@ -2043,8 +2078,9 @@ msgstr ""
 msgid ""
 "We can now use `CSVField` to read a single field at a given line and "
 "position in a CSV file, and return a `FieldError` in case of a failure."
-msgstr "我们现在可以使用 `CSVField` 读取 CSV 文件中给定行和位置的单个字段，"
-"并在失败的情况下返回 `FieldError`。"
+msgstr ""
+"我们现在可以使用 `CSVField` 读取 CSV 文件中给定行和位置的单个字段，并在失败的"
+"情况下返回 `FieldError`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:766
@@ -2057,8 +2093,7 @@ msgid ""
 "```\n"
 msgstr ""
 "```伊德里斯\n"
-"readField : CSVField a => (line, column : Nat) -> String -> Either CSVError "
-"a\n"
+"readField : CSVField a => (line, column : Nat) -> String -> Either CSVError a\n"
 "readField 行 col str =\n"
 "  可能（左 $ FieldError line col str）右（读取 str）\n"
 "```\n"
@@ -2089,8 +2124,7 @@ msgid ""
 "```\n"
 msgstr ""
 "```伊德里斯\n"
-"toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n "
-"a)\n"
+"toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n a)\n"
 "toVect 0 线 _ [] = 右 []\n"
 "toVect 0 line col _ = Left (ExpectedEndOfInput line col)\n"
 "toVect (S k) line col [] = Left (UnexpectedEndOfInput line col)\n"
@@ -2103,8 +2137,9 @@ msgstr ""
 msgid ""
 "Finally, we can implement function `readUser` to try and convert a single "
 "line in a CSV-file to a value of type `User`:"
-msgstr "最后，我们可以实现函数 `readUser` 来尝试将 CSV 文件中的一行转换为 `User` "
-"类型的值："
+msgstr ""
+"最后，我们可以实现函数 `readUser` 来尝试将 CSV 文件中的一行转换为 `User` 类型"
+"的值："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:794
@@ -2182,10 +2217,10 @@ msgid ""
 "in much less readable code to implement `readUser'` with a succession of six "
 "nested pattern matches."
 msgstr ""
-"请注意，在 `readUser'` 的实现中，我们如何使用惯用括号将六个参数 (`MkUser`) "
-"的函数映射到 ` 或 CSVError` "
-"类型的六个值上。当且仅当所有解析都成功时，这将自动成功。众所周知，"
-"使用连续六个嵌套模式匹配来实现 `readUser'` 的代码的可读性会大大降低。"
+"请注意，在 `readUser'` 的实现中，我们如何使用惯用括号将六个参数 (`MkUser`) 的"
+"函数映射到 ` 或 CSVError` 类型的六个值上。当且仅当所有解析都成功时，这将自动"
+"成功。众所周知，使用连续六个嵌套模式匹配来实现 `readUser'` 的代码的可读性会大"
+"大降低。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:819
@@ -2209,7 +2244,8 @@ msgid ""
 "representation for record types, and which will allow us to represent and "
 "read rows in heterogeneous tables with a minimal amount of code: "
 "Heterogeneous lists."
-msgstr "是时候学习一组类型了，它们可以用作记录类型的通用表示，并且允许我们用最少的代"
+msgstr ""
+"是时候学习一组类型了，它们可以用作记录类型的通用表示，并且允许我们用最少的代"
 "码表示和读取异构表中的行：异构列表。"
 
 #. type: Plain text
@@ -2242,8 +2278,8 @@ msgid ""
 "values of types `Bool`, `Nat`, and `Maybe String` (in that order):"
 msgstr ""
 "异构列表是在类型 * 的 * 列表上索引的列表类型。这允许我们在每个位置将类型的值"
-"存储在列表索引中的相同位置。例如，这里有一个变体，它存储了 `Bool`、`Nat` 和 `"
-"Maybe String` 类型的三个值（按此顺序）："
+"存储在列表索引中的相同位置。例如，这里有一个变体，它存储了 `Bool`、`Nat` 和 "
+"`Maybe String` 类型的三个值（按此顺序）："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:846
@@ -2266,8 +2302,8 @@ msgid ""
 "keep track of the types stored in the result at the same time."
 msgstr ""
 "您可能会争辩说，异构列表只是存储给定类型值的元组。没错，当然，但是，因为您将"
-"在练习中学习困难的方法，我们可以使用列表索引对 `HList` "
-"执行编译时计算，例如连接两个这样的列表以保持同时跟踪结果中存储的类型。"
+"在练习中学习困难的方法，我们可以使用列表索引对 `HList` 执行编译时计算，例如连"
+"接两个这样的列表以保持同时跟踪结果中存储的类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:859
@@ -2276,7 +2312,8 @@ msgid ""
 "But first, we'll make use of `HList` as a means to concisely parse CSV-"
 "lines. In order to do that, we need to introduce a new interface for types "
 "corresponding to whole lines in a CSV-file:"
-msgstr "但首先，我们将使用 `HList` 作为简洁解析 CSV 行的方法。为此，我们需要为对应于 "
+msgstr ""
+"但首先，我们将使用 `HList` 作为简洁解析 CSV 行的方法。为此，我们需要为对应于 "
 "CSV 文件中整行的类型引入一个新接口："
 
 #. type: Plain text
@@ -2303,9 +2340,9 @@ msgid ""
 "from the head of the list and the remainder from its tail. We use again an "
 "idiom bracket to concatenate the results:"
 msgstr ""
-"现在，我们将为 `HList` 编写 `CSVLine` 的两个实现：一个针对 `Nil` 的情况，"
-"当且仅当当前字符串列表为空时才会成功.另一个用于 *cons* 的情况，它将尝试从列表"
-"的头部读取单个字段，并从其尾部读取剩余部分。我们再次使用惯用括号来连接结果："
+"现在，我们将为 `HList` 编写 `CSVLine` 的两个实现：一个针对 `Nil` 的情况，当且"
+"仅当当前字符串列表为空时才会成功.另一个用于 *cons* 的情况，它将尝试从列表的头"
+"部读取单个字段，并从其尾部读取剩余部分。我们再次使用惯用括号来连接结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:876
@@ -2393,9 +2430,9 @@ msgid ""
 "[False, 100, 12.123] Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris,,"
 "f\" Left (FieldError 3 2 \"\")  ```"
 msgstr ""
-"```repl Tutorial.Functor> hdecode [Bool,Nat,Double] 1 \"f,100,12.123\" 对 ["
-"False, 100, 12.123] Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris"
-",,f \" 左 (FieldError 3 2 \"\") ```"
+"```repl Tutorial.Functor> hdecode [Bool,Nat,Double] 1 \"f,100,12.123\" 对 "
+"[False, 100, 12.123] Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris,,"
+"f \" 左 (FieldError 3 2 \"\") ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:911
@@ -2425,8 +2462,9 @@ msgid ""
 "`[| f . g |] <*> v = f <*> (g <*> v)`: I must not matter, whether we compose "
 "our functions first and then apply them, or whether we apply our functions "
 "first and then compose them."
-msgstr "`[| F 。 g |] <*> v = f <*> (g <*> "
-"v)`：不管是先组合函数然后应用它们，还是先应用函数然后组合它们."
+msgstr ""
+"`[| F 。 g |] <*> v = f <*> (g <*> v)`：不管是先组合函数然后应用它们，还是先"
+"应用函数然后组合它们."
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:925
@@ -2478,7 +2516,8 @@ msgstr ""
 msgid ""
 "`pure f <*> pure x = pure (f x)`. This is also called the *homomorphism* "
 "law. It should be pretty self-explaining."
-msgstr "`纯 f <*> 纯 x = 纯 (f x)`。这也称为 * 同态 * 定律。这应该是不言自明的。"
+msgstr ""
+"`纯 f <*> 纯 x = 纯 (f x)`。这也称为 * 同态 * 定律。这应该是不言自明的。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:942
@@ -2557,8 +2596,8 @@ msgid ""
 "the length must be known at runtime.  This can be done by passing it as an "
 "unerased implicit to the interface implementation:"
 msgstr ""
-"为 `Vect n` 实现 `Applicative'`。注意：为了实现 `pure`，必须在运行时知道长度"
-"。这可以通过将其作为未擦除的隐式传递给接口实现来完成："
+"为 `Vect n` 实现 `Applicative'`。注意：为了实现 `pure`，必须在运行时知道长"
+"度。这可以通过将其作为未擦除的隐式传递给接口实现来完成："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:974
@@ -2594,8 +2633,8 @@ msgid ""
 "constraint. This will allow us to use `(<+>)` to accumulate errors in case "
 "of two `Invalid` values in the implementation of *apply*."
 msgstr ""
-"为 `Validated e` 实现 `Applicative`，其中 `e` 具有 `Semigroup` 约束。"
-"这将允许我们在 *apply* 的实现中使用 `(<+>)` 来累积两个 `Invalid` 值的错误。"
+"为 `Validated e` 实现 `Applicative`，其中 `e` 具有 `Semigroup` 约束。这将允许"
+"我们在 *apply* 的实现中使用 `(<+>)` 来累积两个 `Invalid` 值的错误。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Functor.md:990
@@ -2604,8 +2643,8 @@ msgid ""
 "Add an additional data constructor of type `CSVError -> CSVError -> "
 "CSVError` to `CSVError` and use this to implement `Semigroup` for `CSVError`."
 msgstr ""
-"添加一个 `CSVError -> CSVError -> CSVError` 到 `CSVError` "
-"类型的附加数据构造函数，并使用它为 `CSVError` 实现 `Semigroup`。"
+"添加一个 `CSVError -> CSVError -> CSVError` 到 `CSVError` 类型的附加数据构造"
+"函数，并使用它为 `CSVError` 实现 `Semigroup`。"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Functor.md:994
@@ -2728,8 +2767,8 @@ msgid ""
 "Go back and look how we implemented `indexList` in an [earlier exercise]"
 "(Dependent.md) and start from there."
 msgstr ""
-"为 `HList` 实现 `index`。这可能比其他三个更难。回过头来看看我们如何在 "
-"[早期练习](Dependent.md) 中实现 `indexList` 并从那里开始。"
+"为 `HList` 实现 `index`。这可能比其他三个更难。回过头来看看我们如何在 [早期练"
+"习](Dependent.md) 中实现 `indexList` 并从那里开始。"
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/Functor.md:1043
@@ -2741,9 +2780,9 @@ msgid ""
 "list of types. This makes it easier to express certain operations at the "
 "type level."
 msgstr ""
-"包 *contrib* 是 Idris 项目的一部分，它提供了 `Data.HVect."
-"HVect`，一种异构向量的数据类型。与我们自己的 `HList` 的唯一区别是，`HVect` 是"
-"通过类型向量而不是类型列表来索引的。这使得在类型级别表达某些操作变得更容易。"
+"包 *contrib* 是 Idris 项目的一部分，它提供了 `Data.HVect.HVect`，一种异构向量"
+"的数据类型。与我们自己的 `HList` 的唯一区别是，`HVect` 是通过类型向量而不是类"
+"型列表来索引的。这使得在类型级别表达某些操作变得更容易。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1046
@@ -2762,8 +2801,9 @@ msgid ""
 "For a real challenge, try implementing a function for transposing a `Vect m "
 "(HVect ts)`. You'll first have to be creative about how to even express this "
 "in the types."
-msgstr "对于真正的挑战，尝试实现一个函数来转置 `Vect m (HVect "
-"ts)`。您首先必须对如何在类型中表达这一点有创意。"
+msgstr ""
+"对于真正的挑战，尝试实现一个函数来转置 `Vect m (HVect ts)`。您首先必须对如何"
+"在类型中表达这一点有创意。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1057
@@ -2813,8 +2853,9 @@ msgstr ""
 msgid ""
 "Show, that the composition of two applicative functors is again an "
 "applicative functor by implementing `Applicative` for `Comp f g`."
-msgstr "通过为 `Comp f g` 实现 `Applicative` "
-"来证明两个应用函子的组合再次是一个应用函子。"
+msgstr ""
+"通过为 `Comp f g` 实现 `Applicative` 来证明两个应用函子的组合再次是一个应用函"
+"子。"
 
 #. type: Bullet: '10. '
 #: ../src/Tutorial/Functor.md:1073
@@ -2822,8 +2863,9 @@ msgstr "通过为 `Comp f g` 实现 `Applicative` "
 msgid ""
 "Show, that the product of two applicative functors is again an applicative "
 "functor by implementing `Applicative` for `Prod f g`."
-msgstr "通过为 `Prod f g` 实现 `Applicative` "
-"证明两个应用函子的乘积再次是一个应用函子。"
+msgstr ""
+"通过为 `Prod f g` 实现 `Applicative` 证明两个应用函子的乘积再次是一个应用函"
+"子。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1075
@@ -2870,8 +2912,8 @@ msgid ""
 "`join` or both. You will show in an exercise, how `join` can be implemented "
 "in terms of *bind* and vice versa."
 msgstr ""
-"`Monad` 的实现者可以自由选择实现 `(>>=)` 或 `join` 或两者。"
-"您将在练习中展示如何根据 *bind* 来实现 `join`，反之亦然。"
+"`Monad` 的实现者可以自由选择实现 `(>>=)` 或 `join` 或两者。您将在练习中展示如"
+"何根据 *bind* 来实现 `join`，反之亦然。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1099
@@ -2884,10 +2926,10 @@ msgid ""
 "(reading some user input) will affect, which `IO` action to run next.  This "
 "is not possible with the *apply* operator:"
 msgstr ""
-"`Monad` 和 `Applicative` 之间的最大区别在于，前者允许计算依赖于早期计算的结果"
-"。例如，我们可以根据从标准输入中读取的字符串来决定是删除文件还是播放歌曲。"
-"第一个 `IO` 动作（读取一些用户输入）的结果将影响下一个要运行的 `IO` 动作。"
-"这对于 *apply* 运算符是不可能的："
+"`Monad` 和 `Applicative` 之间的最大区别在于，前者允许计算依赖于早期计算的结"
+"果。例如，我们可以根据从标准输入中读取的字符串来决定是删除文件还是播放歌曲。"
+"第一个 `IO` 动作（读取一些用户输入）的结果将影响下一个要运行的 `IO` 动作。这"
+"对于 *apply* 运算符是不可能的："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1103
@@ -2909,12 +2951,11 @@ msgid ""
 "in general. If the functor in question was `Maybe`, `List`, or `Vector`, no "
 "such thing would be possible.)"
 msgstr ""
-"两个 `IO` 动作在作为参数传递给 `(<*>)` "
-"时已经确定。在一般情况下，第一个结果不能影响在第二个中运行哪个计算。 "
-"（实际上，使用 `IO` 理论上可以通过副作用实现：第一个操作可以将某些命令写入文"
-"件或覆盖某些可变状态，而第二个操作可以从该文件或状态读取，从而决定接下来要做"
-"的事情。但这是 `IO` 的特长，而不是一般的应用函子。如果有问题的函子是 "
-"`Maybe`，`List`，或 `Vector`，这是不可能的。）"
+"两个 `IO` 动作在作为参数传递给 `(<*>)` 时已经确定。在一般情况下，第一个结果不"
+"能影响在第二个中运行哪个计算。 （实际上，使用 `IO` 理论上可以通过副作用实现："
+"第一个操作可以将某些命令写入文件或覆盖某些可变状态，而第二个操作可以从该文件"
+"或状态读取，从而决定接下来要做的事情。但这是 `IO` 的特长，而不是一般的应用函"
+"子。如果有问题的函子是 `Maybe`，`List`，或 `Vector`，这是不可能的。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1121
@@ -2925,9 +2966,8 @@ msgid ""
 "type. For instance, we'd like to decode CRUD requests from the lines of a "
 "CSV-file:"
 msgstr ""
-"让我们用一个例子来演示一下区别。假设我们想增强我们的 CSV 阅读器，"
-"使其能够将一行标记解码为 sum 类型。例如，我们想从 CSV 文件的行中解码 CRUD "
-"请求："
+"让我们用一个例子来演示一下区别。假设我们想增强我们的 CSV 阅读器，使其能够将一"
+"行标记解码为 sum 类型。例如，我们想从 CSV 文件的行中解码 CRUD 请求："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1129
@@ -3019,9 +3059,9 @@ msgid ""
 "on the result of the first parsing function to decide on the data "
 "constructor and thus the next parsing function to use."
 msgstr ""
-"我添加了两个实用函数来帮助进行类型推断并获得更好的语法。需要注意的重要一点是"
-"，我们如何对第一个解析函数的结果进行模式匹配，以决定数据构造函数，从而决定下"
-"一个要使用的解析函数。"
+"我添加了两个实用函数来帮助进行类型推断并获得更好的语法。需要注意的重要一点"
+"是，我们如何对第一个解析函数的结果进行模式匹配，以决定数据构造函数，从而决定"
+"下一个要使用的解析函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1166
@@ -3039,11 +3079,11 @@ msgid ""
 "12 (MkEmail \"jane@doe.ch\"))  Tutorial.Functor> decodeCRUD {i = Nat} {a = "
 "Email} 1 \"Delete,jon@doe.ch\" Left (FieldError 1 2 \"jon@doe.ch\")  ```"
 msgstr ""
-"```repl Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Create,jon@doe"
-".ch\" Right (Create (MkEmail \"jon@doe.ch\")) Tutorial.Functor> decodeCRUD {"
-"i = Nat} {a = Email} 1 \"Update,12,jane@doe.ch\" Right (Update 12 (MkEmail "
-"\"jane@doe.ch\")) Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} "
-"1“删除，jon@doe.ch”左（FieldError 1 2“jon@doe.ch”）```"
+"```repl Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Create,"
+"jon@doe.ch\" Right (Create (MkEmail \"jon@doe.ch\")) Tutorial.Functor> "
+"decodeCRUD {i = Nat} {a = Email} 1 \"Update,12,jane@doe.ch\" Right (Update "
+"12 (MkEmail \"jane@doe.ch\")) Tutorial.Functor> decodeCRUD {i = Nat} {a = "
+"Email} 1“删除，jon@doe.ch”左（FieldError 1 2“jon@doe.ch”）```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1184
@@ -3056,12 +3096,10 @@ msgid ""
 "sufficient. If, however, you want to decide based on the result of an "
 "effectful computation what computation to run next, you need a `Monad`."
 msgstr ""
-"总而言之，`Monad` 与 `Applicative` "
-"不同，它允许我们按顺序链接计算，其中中间结果会影响后续计算的行为。因此，"
-"如果您有 n 个不相关的有效计算并希望将它们组合在一个纯 n "
-"元函数下，`Applicative` "
-"就足够了。但是，如果您想根据有效计算的结果来决定接下来要运行什么计算，则需要 "
-"`Monad`。"
+"总而言之，`Monad` 与 `Applicative` 不同，它允许我们按顺序链接计算，其中中间结"
+"果会影响后续计算的行为。因此，如果您有 n 个不相关的有效计算并希望将它们组合在"
+"一个纯 n 元函数下，`Applicative` 就足够了。但是，如果您想根据有效计算的结果来"
+"决定接下来要运行什么计算，则需要 `Monad`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1190
@@ -3072,8 +3110,8 @@ msgid ""
 "`Monad` instance for `Either e . IO`.  We will later learn about monad "
 "transformers, which can be composed with other monads."
 msgstr ""
-"但是请注意，与 `Applicative` 相比，`Monad` 有一个重要的缺点：通常，monad "
-"不会组合。例如， `Either e 没有 `Monad` 实例。 IO`。稍后我们将了解可以与其他 "
+"但是请注意，与 `Applicative` 相比，`Monad` 有一个重要的缺点：通常，monad 不会"
+"组合。例如， `Either e 没有 `Monad` 实例。 IO`。稍后我们将了解可以与其他 "
 "monad 组合的 monad 转换器。"
 
 #. type: Plain text
@@ -3094,8 +3132,9 @@ msgstr "事不宜迟，以下是 `Monad` 的定律："
 msgid ""
 "`ma >>= pure = ma` and `pure v >>= f = f v`.  These are monad's identity "
 "laws. Here they are as concrete examples:"
-msgstr "`ma >>= pure = ma` 和 `pure v >>= f = f v`。这些是 monad "
-"的恒等律。下面是具体的例子："
+msgstr ""
+"`ma >>= pure = ma` 和 `pure v >>= f = f v`。这些是 monad 的恒等律。下面是具体"
+"的例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1202
@@ -3149,9 +3188,8 @@ msgid ""
 "monad.  You might not have seen the second operator `(>=>)`.  It can be used "
 "to sequence effectful computations and has the following type:"
 msgstr ""
-"(m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。"
-"您可能没有见过第二个运算符 "
-"`(>=>)`。它可用于对有效计算进行排序，并具有以下类型："
+"(m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。您可能没有见过第二个运"
+"算符 `(>=>)`。它可用于对有效计算进行排序，并具有以下类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1223
@@ -3177,8 +3215,8 @@ msgid ""
 "of `(<*>)` must behave the same as the implementation in terms of `(>>=)`:"
 msgstr ""
 "以上是 * 官方的* monad 法则。但是，我们需要考虑第三个，因为在 Idris（和 "
-"Haskell）中，`Monad` extends `Applicative`: As `(<*>)` 可以在就 `(>>=)` "
-"而言，`(<*>)` 的实际实现必须与 `(>>=)` 的实现表现相同："
+"Haskell）中，`Monad` extends `Applicative`: As `(<*>)` 可以在就 `(>>=)` 而"
+"言，`(<*>)` 的实际实现必须与 `(>>=)` 的实现表现相同："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1231
@@ -3193,8 +3231,8 @@ msgid ""
 "`Applicative` extends `Functor`, because every `Applicative` is also a "
 "`Functor`. Proof this by implementing `map` in terms of `pure` and `(<*>)`."
 msgstr ""
-"`Applicative` 扩展了 `Functor`，因为每个 `Applicative` 也是一个 `Functor`。"
-"通过根据 `pure` 和 `(<*>)` 实现 `map` 来证明这一点。"
+"`Applicative` 扩展了 `Functor`，因为每个 `Applicative` 也是一个 `Functor`。通"
+"过根据 `pure` 和 `(<*>)` 实现 `map` 来证明这一点。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functor.md:1241
@@ -3204,8 +3242,8 @@ msgid ""
 "`Applicative`. Proof this by implementing `(<*>)` in terms of `(>>=)` and "
 "`pure`."
 msgstr ""
-"`Monad` 扩展了 `Applicative`，因为每个 `Monad` 也是一个 `Applicative`。"
-"通过根据 `(>>=)` 和 `pure` 实现 `(<*>)` 来证明这一点。"
+"`Monad` 扩展了 `Applicative`，因为每个 `Monad` 也是一个 `Applicative`。通过根"
+"据 `(>>=)` 和 `pure` 实现 `(<*>)` 来证明这一点。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Functor.md:1244
@@ -3238,10 +3276,9 @@ msgid ""
 "from the *base* library)  holding a list of `User`s paired with a unique ID "
 "of type `Nat` as our user data base:"
 msgstr ""
-"在这个稍微扩展的练习中，我们将在数据存储上模拟 CRUD "
-"操作。我们将使用一个可变引用（从 *base* 库中的 `Data.IORef` 导入），"
-"其中包含一个 `User` 列表和一个 [X238X 类型的唯一 ID ]Nat` "
-"作为我们的用户数据库："
+"在这个稍微扩展的练习中，我们将在数据存储上模拟 CRUD 操作。我们将使用一个可变"
+"引用（从 *base* 库中的 `Data.IORef` 导入），其中包含一个 `User` 列表和一个 "
+"[X238X 类型的唯一 ID ]Nat` 作为我们的用户数据库："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1261
@@ -3357,7 +3394,8 @@ msgstr ""
 msgid ""
 "Email addresses in the DB must be unique. (Consider implementing `Eq Email` "
 "to verify this)."
-msgstr "数据库中的电子邮件地址必须是唯一的。 （考虑实现 `Eq Email` 来验证这一点）。"
+msgstr ""
+"数据库中的电子邮件地址必须是唯一的。 （考虑实现 `Eq Email` 来验证这一点）。"
 
 #. type: Bullet: '   * '
 #: ../src/Tutorial/Functor.md:1299
@@ -3371,7 +3409,8 @@ msgstr "不得超过 1000 个条目的大小限制。"
 msgid ""
 "Operations trying to lookup a user by their ID must fail with `UserNotFound` "
 "in case no entry was found in the DB."
-msgstr "如果在 DB 中找不到条目，则尝试通过 ID 查找用户的操作必须失败并显示 "
+msgstr ""
+"如果在 DB 中找不到条目，则尝试通过 ID 查找用户的操作必须失败并显示 "
 "`UserNotFound`。"
 
 #. type: Plain text
@@ -3450,8 +3489,9 @@ msgstr ""
 msgid ""
 "Implement function `lookupUser`. This should fail with an appropriate error, "
 "if a user with the given ID cannot be found."
-msgstr "实现函数`lookupUser`。如果找不到具有给定 ID "
-"的用户，这应该会失败并出现适当的错误。"
+msgstr ""
+"实现函数`lookupUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的"
+"错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1334
@@ -3472,8 +3512,9 @@ msgid ""
 "Implement function `deleteUser`. This should fail with an appropriate error, "
 "if a user with the given ID cannot be found. Make use of `lookupUser` in "
 "your implementation."
-msgstr "实现函数`deleteUser`。如果找不到具有给定 ID "
-"的用户，这应该会失败并出现适当的错误。在您的实现中使用 `lookupUser`。"
+msgstr ""
+"实现函数`deleteUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的"
+"错误。在您的实现中使用 `lookupUser`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1343
@@ -3496,9 +3537,9 @@ msgid ""
 "exceeded.  In addition, this should create and return a unique ID for the "
 "new user entry."
 msgstr ""
-"实现函数`addUser`。如果具有给定 `Email` 的用户已经存在，或者超过了 1000 "
-"个条目的数据库大小限制，这应该会失败。此外，"
-"这应该为新用户条目创建并返回一个唯一 ID。"
+"实现函数`addUser`。如果具有给定 `Email` 的用户已经存在，或者超过了 1000 个条"
+"目的数据库大小限制，这应该会失败。此外，这应该为新用户条目创建并返回一个唯一 "
+"ID。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1353
@@ -3519,8 +3560,9 @@ msgid ""
 "Implement function `updateUser`. This should fail, if the user in question "
 "cannot be found or a user with the updated user's `Email` already exists.  "
 "The returned value should be the updated user."
-msgstr "实现函数`updateUser`。如果找不到相关用户或更新用户的 `Email` "
-"的用户已经存在，这应该会失败。返回的值应该是更新的用户。"
+msgstr ""
+"实现函数`updateUser`。如果找不到相关用户或更新用户的 `Email` 的用户已经存在，"
+"这应该会失败。返回的值应该是更新的用户。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1362
@@ -3594,9 +3636,9 @@ msgid ""
 msgstr ""
 "*functor* 和 *monad* 等概念起源于数学分支 * 范畴论*。这也是他们的法律的来源。"
 "范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度"
-"抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski] "
-"(https://bartoszmilewski.com/2014/10/28/"
-"category-theory-for-programmers-the-preface/ ）。"
+"抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski] (https://"
+"bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-"
+"preface/ ）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1394
@@ -3608,10 +3650,10 @@ msgid ""
 "with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html), "
 "which is freely available online and a highly recommended read."
 msgstr ""
-"应用函子作为函子和单子之间的中间地带的有用性是在单子已经在 Haskell "
-"中使用几年之后才发现的。它们在文章 [*Applicative Programming with "
-"Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html) "
-"中进行了介绍，该文章可在线免费获得，并且强烈推荐阅读。"
+"应用函子作为函子和单子之间的中间地带的有用性是在单子已经在 Haskell 中使用几年"
+"之后才发现的。它们在文章 [*Applicative Programming with Effects*](https://"
+"www.staff.city.ac.uk/~ross/papers/Applicative.html) 中进行了介绍，该文章可在"
+"线免费获得，并且强烈推荐阅读。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1401
@@ -3622,9 +3664,9 @@ msgid ""
 "Type`. Such data types are also referred to as *values in a context*, or "
 "*effectful computations*."
 msgstr ""
-"接口 `Functor`、`Applicative` 和 `Monad` 抽象了使用 `Type -> Type` "
-"类型的类型构造函数时出现的编程模式。此类数据类型也称为上下文中的 * 值 *，或 *"
-" 有效计算 *。"
+"接口 `Functor`、`Applicative` 和 `Monad` 抽象了使用 `Type -> Type` 类型的类型"
+"构造函数时出现的编程模式。此类数据类型也称为上下文中的 * 值 *，或 * 有效计算 "
+"*。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1404
@@ -3640,8 +3682,9 @@ msgstr "`Functor` 允许我们在上下文中的值上 *map* 而不影响上下�
 msgid ""
 "`Applicative` allows us to apply n-ary functions to n effectful computations "
 "and to lift pure values into a context."
-msgstr "`Applicative` 允许我们将 n 元函数应用于 n "
-"个有效计算，并将纯值提升到上下文中。"
+msgstr ""
+"`Applicative` 允许我们将 n 元函数应用于 n 个有效计算，并将纯值提升到上下文"
+"中。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1411
@@ -3649,8 +3692,9 @@ msgstr "`Applicative` 允许我们将 n 元函数应用于 n "
 msgid ""
 "`Monad` allows us to chain effectful computations, where the intermediary "
 "results can affect, which computation to run further down the chain."
-msgstr "`Monad` "
-"允许我们链接有效的计算，其中中间结果可能会影响，哪些计算在链中运行得更远。"
+msgstr ""
+"`Monad` 允许我们链接有效的计算，其中中间结果可能会影响，哪些计算在链中运行得"
+"更远。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1415
@@ -3659,8 +3703,9 @@ msgid ""
 "Unlike `Monad`, `Functor` and `Applicative` compose: The product and "
 "composition of two functors or applicatives are again functors or "
 "applicatives, respectively."
-msgstr "与 `Monad` 不同，`Functor` 和 `Applicative` "
-"组合：两个函子或应用程序的乘积和组合再次分别是函子或应用程序。"
+msgstr ""
+"与 `Monad` 不同，`Functor` 和 `Applicative` 组合：两个函子或应用程序的乘积和"
+"组合再次分别是函子或应用程序。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1419
@@ -3670,8 +3715,8 @@ msgid ""
 "presented here: Idiom brackets for `Applicative`, *do blocks* and the bang "
 "operator for `Monad`."
 msgstr ""
-"Idris 为使用此处介绍的一些接口提供了语法糖：`Applicative`、*do blocks* "
-"的成语方括号和 `Monad` 的 bang 运算符。"
+"Idris 为使用此处介绍的一些接口提供了语法糖：`Applicative`、*do blocks* 的成语"
+"方括号和 `Monad` 的 bang 运算符。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1421 ../src/Tutorial/Intro.md:431
@@ -3685,5 +3730,6 @@ msgid ""
 "In the [next chapter](Folds.md) we get to learn more about recursion, "
 "totality checking, and an interface for collapsing container types: "
 "`Foldable`."
-msgstr "在[下一章]（Folds."
-"md）中，我们将了解更多关于递归、总体检查和折叠容器类型的接口：`Foldable`。"
+msgstr ""
+"在[下一章]（Folds.md）中，我们将了解更多关于递归、总体检查和折叠容器类型的接"
+"口：`Foldable`。"

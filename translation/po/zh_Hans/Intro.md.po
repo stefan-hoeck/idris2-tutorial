@@ -42,21 +42,21 @@ msgid ""
 "have to solve some exercises, the solutions of which can be found in the "
 "`src/Solutions` subfolder. There, I use regular `.idr` files."
 msgstr ""
-"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 "
-"编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 "
-"Markdown 组成（因此以 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，"
-"可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 "
-"Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的代码比我现在所做的更啰嗦，"
-"否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，"
-"这些练习的答案可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `."
-"idr` 文件。"
+"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 编程语言的各个方"
+"面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 Markdown 组成（因"
+"此以 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，可以由 Idris 编译器"
+"进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 Idris 源文件使用 `."
+"idr` 结尾，并且除非您最终编写的代码比我现在所做的更啰嗦，否则您将使用该文件类"
+"型。在本教程的后面，您将需要解决一些练习，这些练习的答案可以在 `src/"
+"Solutions` 子文件夹中找到。在那里，我使用常规的 `.idr` 文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:19
 msgid ""
 "Every Idris source file should typically start with a module name plus some "
 "necessary imports, and this document is no exception:"
-msgstr "每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
+msgstr ""
+"每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:23
@@ -68,8 +68,9 @@ msgstr "```idris module Tutorial.Intro ```"
 msgid ""
 "A module name consists of a list of identifiers separated by dots and must "
 "reflect the folder structure plus the module file's name."
-msgstr "模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名称"
-"。"
+msgstr ""
+"模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名"
+"称。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:29
@@ -81,8 +82,9 @@ msgstr "## 关于 Idris 编程语言"
 msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional* programming "
 "language. I'll quickly explain each of these adjectives in this section."
-msgstr "Idris 是一种*纯的*、*依赖类型*、具有*完全**函数* "
-"的编程语言。我将在本节中快速解释这些形容词。"
+msgstr ""
+"Idris 是一种*纯的*、*依赖类型*、具有*完全**函数* 的编程语言。我将在本节中快速"
+"解释这些形容词。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:35
@@ -148,7 +150,8 @@ msgstr "它们可以通过指定（可能是随机生成的）输入参数集以
 msgid ""
 "They are thread-safe, since the don't mutate global state, and as such can "
 "be freely used in several computations running in parallel."
-msgstr "它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
+msgstr ""
+"它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
 "用。"
 
 #. type: Plain text
@@ -167,7 +170,8 @@ msgstr "仅使用纯函数很难有效地实现某些算法。"
 msgid ""
 "Writing programs that actually *do* something (have some observable effect) "
 "is a bit trickier but certainly possible."
-msgstr "编写实际上*做*某些事情（具有一些可观察到的效果）的程序有点棘手，但肯定是可能"
+msgstr ""
+"编写实际上*做*某些事情（具有一些可观察到的效果）的程序有点棘手，但肯定是可能"
 "的。"
 
 #. type: Plain text

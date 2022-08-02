@@ -109,11 +109,11 @@ msgid ""
 "functions are *first class*: Functions can take other functions as arguments "
 "and can return functions as their results."
 msgstr ""
-"Idris 是一种 * 函数式* 编程语言。这意味着，函数是它的主要抽象形式（与 Java "
-"等面向对象的语言不同，其中 *objects* 和 *classes* 是抽象的主要形式）。"
-"这也意味着我们希望 Idris "
-"能够让我们非常轻松地组合和组合函数以创建新函数。实际上，在 Idris 中，函数是 *"
-" 的第一类*：函数可以将其他函数作为参数，并且可以将函数作为结果返回。"
+"Idris 是一种 * 函数式* 编程语言。这意味着，函数是它的主要抽象形式（与 Java 等"
+"面向对象的语言不同，其中 *objects* 和 *classes* 是抽象的主要形式）。这也意味"
+"着我们希望 Idris 能够让我们非常轻松地组合和组合函数以创建新函数。实际上，在 "
+"Idris 中，函数是 * 的第一类*：函数可以将其他函数作为参数，并且可以将函数作为"
+"结果返回。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:16
@@ -122,8 +122,9 @@ msgid ""
 "We already learned about the basic shape of top level function declarations "
 "in Idris in the [introduction](Intro.md), so we will continue from what we "
 "learned there."
-msgstr "我们已经在 [introduction](Intro.md) 中了解了 Idris "
-"中顶级函数声明的基本形式，因此我们将从那里学到的内容继续。"
+msgstr ""
+"我们已经在 [introduction](Intro.md) 中了解了 Idris 中顶级函数声明的基本形式，"
+"因此我们将从那里学到的内容继续。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:20
@@ -147,8 +148,8 @@ msgid ""
 "equality operator."
 msgstr ""
 "让我们实现一个函数，它检查它的三个 `Integer` 参数是否形成一个 [Pythagorean "
-"Triple](https://en.wikipedia.org/wiki/"
-"Pythagorean_triple)。我们为此使用一个新的运算符：`==`，相等运算符。"
+"Triple](https://en.wikipedia.org/wiki/Pythagorean_triple)。我们为此使用一个新"
+"的运算符：`==`，相等运算符。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:33
@@ -206,8 +207,8 @@ msgstr ""
 "该实现看起来有点像一个数学方程：我们在 `=` 的左侧列出参数，并在右侧描述要使用"
 "它们执行的计算。与命令式语言中的实现相比，函数式编程语言中的函数实现通常具有"
 "更多的数学外观，命令式语言通常不是描述*要计算什么*，而是通过将算法描述为*如何"
-"*来计算它命令式语句的序列。我们稍后会看到这种命令式风格在 Idris "
-"中也可用，但只要有可能，我们更喜欢声明式风格。"
+"*来计算它命令式语句的序列。我们稍后会看到这种命令式风格在 Idris 中也可用，但"
+"只要有可能，我们更喜欢声明式风格。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:68
@@ -232,9 +233,9 @@ msgid ""
 "have written yourself. We will learn more about declaring new data types in "
 "the next chapter."
 msgstr ""
-"请注意，与 `Integer` 或 `Bits8` 不同，`Bool` 不是 Idris "
-"语言中内置的原始数据类型，而只是您可以自己编写的自定义数据类型."
-"我们将在下一章了解更多关于声明新数据类型的内容。"
+"请注意，与 `Integer` 或 `Bits8` 不同，`Bool` 不是 Idris 语言中内置的原始数据"
+"类型，而只是您可以自己编写的自定义数据类型.我们将在下一章了解更多关于声明新数"
+"据类型的内容。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:76
@@ -300,9 +301,7 @@ msgid ""
 "(square n)` and not `\\n => square (times2 n)`."
 msgstr ""
 "需要注意的是，由点运算符链接的函数是从右到左调用的： `times2 。 square` 与 `"
-"\\n"
-" => times2 (square n)` 相同，而不是 `\\n"
-" => square (times2 n)`。"
+"\\n => times2 (square n)` 相同，而不是 `\\n => square (times2 n)`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:108
@@ -318,8 +317,9 @@ msgstr "我们可以方便地使用点运算符链接多个函数来编写更复
 msgid ""
 "```idris dotChain : Integer -> String dotChain = reverse . show . square . "
 "square . times2 . times2 ```"
-msgstr "```idris dotChain：整数 -> 字符串 dotChain = reverse 。节目 。正方形 。"
-"正方形 。次2。次2 ```"
+msgstr ""
+"```idris dotChain：整数 -> 字符串 dotChain = reverse 。节目 。正方形 。正方"
+"形 。次2。次2 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:119
@@ -330,9 +330,9 @@ msgid ""
 "(functions `show` and `reverse` are part of the Idris *Prelude* and as such "
 "are available in every Idris program)."
 msgstr ""
-"这将首先将参数乘以四，然后将其平方两次，然后将其转换为字符串 (`show`) "
-"并反转结果 `String`（函数 `show` 和 [ X169X]reverse` 是 Idris *Prelude* "
-"的一部分，因此在每个 Idris 程序中都可用）。"
+"这将首先将参数乘以四，然后将其平方两次，然后将其转换为字符串 (`show`) 并反转"
+"结果 `String`（函数 `show` 和 [ X169X]reverse` 是 Idris *Prelude* 的一部分，"
+"因此在每个 Idris 程序中都可用）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:121
@@ -347,8 +347,9 @@ msgid ""
 "Functions can take other functions as arguments. This is an incredibly "
 "powerful concept and we can go crazy with this very easily. But for sanity's "
 "sake, we'll start slowly:"
-msgstr "函数可以将其他函数作为参数。这是一个非常强大的概念，我们可以很容易地为此发疯"
-"。但为了理智起见，我们将慢慢开始："
+msgstr ""
+"函数可以将其他函数作为参数。这是一个非常强大的概念，我们可以很容易地为此发"
+"疯。但为了理智起见，我们将慢慢开始："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:130
@@ -363,8 +364,8 @@ msgid ""
 "testSquare : (Integer -> Bool) -> Integer -> Bool testSquare fun n = fun "
 "(square n)  ```"
 msgstr ""
-"testSquare : (Integer -> Bool) -> Integer -> Bool testSquare fun n = fun ("
-"square n) ```"
+"testSquare : (Integer -> Bool) -> Integer -> Bool testSquare fun n = fun "
+"(square n) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:142
@@ -378,8 +379,8 @@ msgid ""
 msgstr ""
 "首先 `isEven` 使用 `mod` 函数来检查一个整数是否可以被 2 整除。但有趣的函数是 "
 "`testSquare`。它有两个参数：第一个参数是 * 类型的函数，从 `Integer` 到 "
-"`Bool`*，第二个参数是 `Integer` "
-"类型。在传递给第一个参数之前，第二个参数是平方的。再一次，在 REPL 上试一试："
+"`Bool`*，第二个参数是 `Integer` 类型。在传递给第一个参数之前，第二个参数是平"
+"方的。再一次，在 REPL 上试一试："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:147
@@ -397,9 +398,9 @@ msgid ""
 "interesting, we will see lots of use cases for passing functions as "
 "arguments to other functions."
 msgstr ""
-"花点时间了解这里发生了什么。我们将函数 `isEven` 作为参数传递给 "
-"`testSquare`。第二个参数是一个整数，它首先会被平方，然后传递给 `isEven`。虽然"
-"这不是很有趣，但我们会看到很多将函数作为参数传递给其他函数的用例。"
+"花点时间了解这里发生了什么。我们将函数 `isEven` 作为参数传递给 `testSquare`。"
+"第二个参数是一个整数，它首先会被平方，然后传递给 `isEven`。虽然这不是很有趣，"
+"但我们会看到很多将函数作为参数传递给其他函数的用例。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:157
@@ -439,9 +440,9 @@ msgid ""
 "twice) square 2 65536 Tutorial.Functions1> (twice . twice . twice . twice) "
 "square 2 *** huge number *** ```"
 msgstr ""
-"```repl Tutorial.Functions1> two square 2 16 Tutorial.Functions1> (two . two)"
-" square 2 65536 Tutorial.Functions1> (twice . two . two . two) square 2 *** "
-"巨大的数字 *** ```"
+"```repl Tutorial.Functions1> two square 2 16 Tutorial.Functions1> (two . "
+"two) square 2 65536 Tutorial.Functions1> (twice . two . two . two) square 2 "
+"*** 巨大的数字 *** ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:177
@@ -449,7 +450,8 @@ msgstr ""
 msgid ""
 "You might be surprised about this behavior, so we'll try and break it down. "
 "The following two expressions are identical in their behavior:"
-msgstr "您可能会对这种行为感到惊讶，因此我们将尝试对其进行分解。以下两个表达式的行为"
+msgstr ""
+"您可能会对这种行为感到惊讶，因此我们将尝试对其进行分解。以下两个表达式的行为"
 "相同："
 
 #. type: Plain text
@@ -477,11 +479,10 @@ msgid ""
 "succession), and so on, until `twice (twice (twice (twice square)))` raises "
 "it to its 65536th power resulting in an impressively huge result."
 msgstr ""
-"因此，`square` 将其参数提升到 2 次方，` 两次 square` 将其提升到 4 次方（"
-"通过连续调用 `square` 两次），` 两次(twice square)` 将其提升到其 16 次方（"
-"通过连续调用 `twice square` 两次），依此类推，直到 `twice (twice (twice ("
-"twice square))))[X292X ] 将其提高到 65536 "
-"次方，从而产生了令人印象深刻的巨大结果。"
+"因此，`square` 将其参数提升到 2 次方，` 两次 square` 将其提升到 4 次方（通过"
+"连续调用 `square` 两次），` 两次(twice square)` 将其提升到其 16 次方（通过连"
+"续调用 `twice square` 两次），依此类推，直到 `twice (twice (twice (twice "
+"square))))[X292X ] 将其提高到 65536 次方，从而产生了令人印象深刻的巨大结果。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:196
@@ -496,7 +497,8 @@ msgid ""
 "Once we start using higher-order functions, the concept of partial function "
 "application (also called *currying* after mathematician and logician Haskell "
 "Curry) becomes very important."
-msgstr "一旦我们开始使用高阶函数，偏函数应用的概念（在数学家和逻辑学家 Haskell Curry "
+msgstr ""
+"一旦我们开始使用高阶函数，偏函数应用的概念（在数学家和逻辑学家 Haskell Curry "
 "之后也称为 *currying*）变得非常重要。"
 
 #. type: Plain text
@@ -516,8 +518,8 @@ msgid ""
 msgstr ""
 "```repl Tutorial.Functions1> :t testSquare isEven testSquare isEven : "
 "Integer -> Bool Tutorial.Functions1> :t isTriple 1 isTriple 1 : Integer -> "
-"Integer -> Bool Tutorial.Functions1> :t isTriple 1 2 isTriple 1 2 :整数 -> "
-"布尔 ```"
+"Integer -> Bool Tutorial.Functions1> :t isTriple 1 2 isTriple 1 2 :整数 -> 布"
+"尔 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:220
@@ -529,11 +531,10 @@ msgid ""
 "function of type `Integer -> Integer -> Bool`. We can even use the result of "
 "such a partially applied function in a new top level definition:"
 msgstr ""
-"请注意，在 Idris "
-"中，我们如何可以部分应用具有多个参数的函数，从而返回一个新函数。例如， `"
-"isTriple 1` 将参数 `1` 应用于函数 `isTriple` 并返回一个类型为 `Integer -> "
-"Integer -> Bool[ "
-"的新函数X267X]。我们甚至可以在新的顶级定义中使用这种部分应用函数的结果："
+"请注意，在 Idris 中，我们如何可以部分应用具有多个参数的函数，从而返回一个新函"
+"数。例如， `isTriple 1` 将参数 `1` 应用于函数 `isTriple` 并返回一个类型为 "
+"`Integer -> Integer -> Bool[ 的新函数X267X]。我们甚至可以在新的顶级定义中使用"
+"这种部分应用函数的结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:225
@@ -555,8 +556,9 @@ msgstr "```repl Tutorial.Functions1> partialExample 5 True ```"
 msgid ""
 "We already used partial function application in our `twice` examples above "
 "to get some impressive results with very little code."
-msgstr "我们已经在上面的 `twice` "
-"示例中使用了偏函数应用程序，只需很少的代码即可获得一些令人印象深刻的结果。"
+msgstr ""
+"我们已经在上面的 `twice` 示例中使用了偏函数应用程序，只需很少的代码即可获得一"
+"些令人印象深刻的结果。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:238
@@ -575,8 +577,8 @@ msgid ""
 "function `testSquare`:"
 msgstr ""
 "有时我们想将一个小的自定义函数传递给一个高阶函数，而无需编写顶层定义。例如，"
-"在下面的示例中，函数 `someTest` 非常具体，一般来说可能不是很有用，"
-"但我们仍然希望将它传递给高阶函数 `testSquare`："
+"在下面的示例中，函数 `someTest` 非常具体，一般来说可能不是很有用，但我们仍然"
+"希望将它传递给高阶函数 `testSquare`："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:250
@@ -610,8 +612,8 @@ msgid ""
 "```repl Tutorial.Functions1> testSquare (\\n => n >= 3 || n <= 10) 100 True "
 "```"
 msgstr ""
-"```repl Tutorial.Functions1> testSquare (\\n"
-" => n >= 3 || n <= 10) 100 True ```"
+"```repl Tutorial.Functions1> testSquare (\\n => n >= 3 || n <= 10) 100 True "
+"```"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:277
@@ -629,12 +631,11 @@ msgid ""
 "about this)."
 msgstr ""
 "匿名函数有时也称为 *lambdas*（来自 [lambda calculus](https://en.wikipedia."
-"org/wiki/Lambda_calculus)），选择反斜杠是因为它类似于希腊字母 * λ*。 `\\n"
-" =>` 语法引入了一个名为 `n` "
-"的新匿名函数，其实现位于函数箭头的右侧。与其他顶级函数一样，lambda "
-"可以有多个参数，以逗号分隔：`\\x,y => x * x + y`。当我们将 lambdas "
-"作为参数传递给高阶函数时，它们通常需要用括号括起来或用美元运算符 `($)` "
-"分隔（请参阅下一节）。"
+"org/wiki/Lambda_calculus)），选择反斜杠是因为它类似于希腊字母 * λ*。 `\\n "
+"=>` 语法引入了一个名为 `n` 的新匿名函数，其实现位于函数箭头的右侧。与其他顶级"
+"函数一样，lambda 可以有多个参数，以逗号分隔：`\\x,y => x * x + y`。当我们将 "
+"lambdas 作为参数传递给高阶函数时，它们通常需要用括号括起来或用美元运算符 "
+"`($)` 分隔（请参阅下一节）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:280
@@ -642,8 +643,9 @@ msgstr ""
 msgid ""
 "Note that, in a lambda, arguments are not annotated with types, so Idris has "
 "to be able to infer them from the current context."
-msgstr "请注意，在 lambda 中，参数未使用类型进行注释，因此 Idris "
-"必须能够从当前上下文中推断出它们。"
+msgstr ""
+"请注意，在 lambda 中，参数未使用类型进行注释，因此 Idris 必须能够从当前上下文"
+"中推断出它们。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:282
@@ -710,9 +712,9 @@ msgid ""
 "h)`)  with a priority of `4`. You can also have a look at the fixity of "
 "operators exported by the *Prelude* in the REPL:"
 msgstr ""
-"除了声明和定义运算符本身之外，我们还必须指定它的固定性：`infixr 4 >>>` "
-"表示，`(>>>)` 关联到右边（意思是， `f >>> g >>> h` 将被解释为 `f >>> (g >>> "
-"h)`)，优先级为 `4` .您还可以查看 REPL 中 *Prelude* 导出的运算符的固定性："
+"除了声明和定义运算符本身之外，我们还必须指定它的固定性：`infixr 4 >>>` 表示，"
+"`(>>>)` 关联到右边（意思是， `f >>> g >>> h` 将被解释为 `f >>> (g >>> h)`)，"
+"优先级为 `4` .您还可以查看 REPL 中 *Prelude* 导出的运算符的固定性："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:319
@@ -743,9 +745,9 @@ msgid ""
 "8, while `(*)` is left associated with a priority of 9. Hence, `a * b + c` "
 "is the same as `(a * b) + c` instead of `a * (b + c)`."
 msgstr ""
-"当您在表达式中混合中缀运算符时，具有较高优先级的运算符绑定得更紧密。例如，`(+"
-")` 与优先级 8 关联，而 `(*)` 与优先级 9 关联。因此，`a * b + c ` 与 `(a * b) "
-"+ c` 相同，而不是 `a * (b + c)`。"
+"当您在表达式中混合中缀运算符时，具有较高优先级的运算符绑定得更紧密。例如，"
+"`(+)` 与优先级 8 关联，而 `(*)` 与优先级 9 关联。因此，`a * b + c ` 与 `(a * "
+"b) + c` 相同，而不是 `a * (b + c)`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:327
@@ -760,8 +762,9 @@ msgid ""
 "Operators can be partially applied just like regular functions. In this "
 "case, the whole expression has to be wrapped in parentheses and is called an "
 "*operator section*. Here are two examples:"
-msgstr "运算符可以像常规函数一样被部分应用。在这种情况下，整个表达式必须用括号括起来"
-"，称为 * 运算符部分 *。这里有两个例子："
+msgstr ""
+"运算符可以像常规函数一样被部分应用。在这种情况下，整个表达式必须用括号括起"
+"来，称为 * 运算符部分 *。这里有两个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:339
@@ -780,7 +783,8 @@ msgid ""
 "As you can see, there is a difference between `(< 10)` and `(10 <)`. The "
 "first tests, whether its argument is less than 10, the second, whether 10 is "
 "less than its argument."
-msgstr "如您所见，`(< 10)` 和 `(10 <)` 之间存在差异。第一个测试它的参数是否小于 10，"
+msgstr ""
+"如您所见，`(< 10)` 和 `(10 <)` 之间存在差异。第一个测试它的参数是否小于 10，"
 "第二个测试 10 是否小于它的参数。"
 
 #. type: Plain text
@@ -789,8 +793,9 @@ msgstr "如您所见，`(< 10)` 和 `(10 <)` 之间存在差异。第一个测�
 msgid ""
 "One exception where operator sections will not work is with the *minus* "
 "operator `(-)`. Here is an example to demonstrate this:"
-msgstr "运算符部分不起作用的一个例外是使用 *minus* 运算符 "
-"`(-)`。下面是一个例子来证明这一点："
+msgstr ""
+"运算符部分不起作用的一个例外是使用 *minus* 运算符 `(-)`。下面是一个例子来证明"
+"这一点："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:353
@@ -806,7 +811,8 @@ msgstr ""
 msgid ""
 "This is just a higher-order function applying the number ten to its function "
 "argument. This works very well in the following example:"
-msgstr "这只是一个将数字 10 应用于其函数参数的高阶函数。这在以下示例中非常有效："
+msgstr ""
+"这只是一个将数字 10 应用于其函数参数的高阶函数。这在以下示例中非常有效："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:362
@@ -826,7 +832,8 @@ msgstr "但是，如果我们想从 10 中减去 5，以下将失败："
 msgid ""
 "```repl Tutorial.Functions1> applyToTen (- 5)  Error: Can't find an "
 "implementation for Num (Integer -> Integer)."
-msgstr "```repl Tutorial.Functions1> applyToTen (- 5) 错误：找不到 Num 的实现（整数 -"
+msgstr ""
+"```repl Tutorial.Functions1> applyToTen (- 5) 错误：找不到 Num 的实现（整数 -"
 "> 整数）。"
 
 #. type: Plain text
@@ -848,8 +855,9 @@ msgid ""
 "The problem here is, that Idris treats `- 5` as an integer literal instead "
 "of an operator section. In this special case, we therefore have to use an "
 "anonymous function instead:"
-msgstr "这里的问题是，Idris 将 `- 5` "
-"视为整数文字而不是运算符部分。在这种特殊情况下，我们因此必须使用匿名函数："
+msgstr ""
+"这里的问题是，Idris 将 `- 5` 视为整数文字而不是运算符部分。在这种特殊情况下，"
+"我们因此必须使用匿名函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:382
@@ -930,10 +938,10 @@ msgid ""
 "types, comparison operators work for almost all types in the *Prelude* with "
 "the exception of functions."
 msgstr ""
-"以下是 *Prelude* 导出的重要运算符列表。其中大多数是 * 约束 *，"
-"也就是说它们仅适用于实现某个 * 接口 * 的类型。现在不要担心这个。我们将在适当"
-"的时候了解接口，操作员会按照直觉行事。例如，加法和乘法适用于所有数字类型，"
-"比较运算符适用于 *Prelude* 中的几乎所有类型，但函数除外。"
+"以下是 *Prelude* 导出的重要运算符列表。其中大多数是 * 约束 *，也就是说它们仅"
+"适用于实现某个 * 接口 * 的类型。现在不要担心这个。我们将在适当的时候了解接"
+"口，操作员会按照直觉行事。例如，加法和乘法适用于所有数字类型，比较运算符适用"
+"于 *Prelude* 中的几乎所有类型，但函数除外。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions1.md:429
@@ -1001,11 +1009,11 @@ msgid ""
 "helps readability, sometimes, it doesn't. The important thing to remember is "
 "that `fun $ x y` is just the same as `fun (x y)`."
 msgstr ""
-"上面最特别的是最后一个。它的优先级为 0，因此所有其他运算符绑定得更紧密。此外"
-"，函数应用程序绑定更紧密，因此可以使用它来减少所需的括号数量。例如，不写 `"
-"isTriple 3 4 (2 + 3 * 1)` 我们可以写成 `isTriple 3 4 $ 2 + 3 * "
-"1`，这完全一样。有时，这有助于提高可读性，有时却没有。要记住的重要一点是 `"
-"fun $ x y` 与 `fun (x y)` 相同。"
+"上面最特别的是最后一个。它的优先级为 0，因此所有其他运算符绑定得更紧密。此"
+"外，函数应用程序绑定更紧密，因此可以使用它来减少所需的括号数量。例如，不写 "
+"`isTriple 3 4 (2 + 3 * 1)` 我们可以写成 `isTriple 3 4 $ 2 + 3 * 1`，这完全一"
+"样。有时，这有助于提高可读性，有时却没有。要记住的重要一点是 `fun $ x y` 与 "
+"`fun (x y)` 相同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:442
@@ -1025,9 +1033,8 @@ msgid ""
 "functions."
 msgstr ""
 "通过使用点运算符并删除第二个参数重新实现函数 `testSquare` 和 `twice`（查看 "
-"`squareTimes2` 的实现以了解这应该导致你）。"
-"这种编写函数实现的高度简洁的方式有时被称为 * 无点样式 "
-"*，并且通常是编写小型实用函数的首选方式。"
+"`squareTimes2` 的实现以了解这应该导致你）。这种编写函数实现的高度简洁的方式有"
+"时被称为 * 无点样式 *，并且通常是编写小型实用函数的首选方式。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functions1.md:453
@@ -1035,7 +1042,8 @@ msgstr ""
 msgid ""
 "Declare and implement function `isOdd` by combining functions `isEven` from "
 "above and `not` (from the Idris *Prelude*). Use point-free style."
-msgstr "通过组合上面的函数 `isEven` 和 `not`（来自 Idris *Prelude*）来声明和实现函数 "
+msgstr ""
+"通过组合上面的函数 `isEven` 和 `not`（来自 Idris *Prelude*）来声明和实现函数 "
 "`isOdd`。使用无点样式。"
 
 #. type: Bullet: '3. '
@@ -1044,8 +1052,9 @@ msgstr "通过组合上面的函数 `isEven` 和 `not`（来自 Idris *Prelude*�
 msgid ""
 "Declare and implement function `isSquareOf`, which checks whether its first "
 "`Integer` argument is the square of the second argument."
-msgstr "声明并实现函数 `isSquareOf`，它检查它的第一个 `Integer` "
-"参数是否是第二个参数的平方。"
+msgstr ""
+"声明并实现函数 `isSquareOf`，它检查它的第一个 `Integer` 参数是否是第二个参数"
+"的平方。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Functions1.md:460
@@ -1055,8 +1064,8 @@ msgid ""
 "argument is less than or equal to 100. Use one of the comparison operators "
 "`<=` or `>=` in your implementation."
 msgstr ""
-"声明并实现函数 `isSmall`，它检查其 `Integer` 参数是否小于或等于 100。"
-"使用比较运算符 `<=` 或 ` 之一>=` 在您的实现中。"
+"声明并实现函数 `isSmall`，它检查其 `Integer` 参数是否小于或等于 100。使用比较"
+"运算符 `<=` 或 ` 之一>=` 在您的实现中。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Functions1.md:465
@@ -1155,9 +1164,9 @@ msgid ""
 "implementations.  Idris will make use of the types to distinguish between "
 "equally named operators and functions."
 msgstr ""
-"如上所述，Idris 允许我们定义自己的中缀运算符。更好的是，Idris "
-"支持函数名的*重载*，即两个函数或运算符可以有相同的名称，但类型和实现不同。 "
-"Idris 将使用类型来区分同名的运算符和函数。"
+"如上所述，Idris 允许我们定义自己的中缀运算符。更好的是，Idris 支持函数名的*重"
+"载*，即两个函数或运算符可以有相同的名称，但类型和实现不同。 Idris 将使用类型"
+"来区分同名的运算符和函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:504
@@ -1341,8 +1350,8 @@ msgid ""
 "functions to use, we can help name resolution by prefixing a function with "
 "(a part of) its *namespace*:"
 msgstr ""
-"请注意，模块中的函数和运算符名称必须是唯一的。为了定义两个具有相同名称的函数"
-"，它们必须在不同的模块中声明。如果 Idris 无法决定使用这两个函数中的哪一个，"
+"请注意，模块中的函数和运算符名称必须是唯一的。为了定义两个具有相同名称的函"
+"数，它们必须在不同的模块中声明。如果 Idris 无法决定使用这两个函数中的哪一个，"
 "我们可以通过在函数前面加上其 * 命名空间 * 的（部分）前缀来帮助名称解析："
 
 #. type: Plain text

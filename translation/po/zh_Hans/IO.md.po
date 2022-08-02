@@ -220,8 +220,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:24 ../src/Tutorial/IO.md:14
+#, fuzzy
 msgid "import Data.List1 import Data.String import Data.Vect"
 msgstr ""
+"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"导入 Data.List1 导入 Data.String 导入 Data.Vect\n"
+"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:2

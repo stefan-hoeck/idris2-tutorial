@@ -20,6 +20,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:3
+#, fuzzy
+#| msgid ""
+#| "> [Idris 2 ](translation/README.md)  # Functional Programming in Idris 2"
 msgid ""
 "> [Idris 2 ](translation/README.md)  # Functional Programming in Idris 2"
 msgstr "# Idris 2 中的函数式编程"
