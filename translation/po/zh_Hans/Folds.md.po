@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:09+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/folds/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -848,9 +848,9 @@ msgstr ""
 #: ../src/Tutorial/Folds.md:326 ../src/Tutorial/Folds.md:582
 #: ../src/Tutorial/Intro.md:199 ../src/Tutorial/Intro.md:208
 #: ../src/Tutorial/Intro.md:223 ../src/Tutorial/Prim.md:38
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "sh"
-msgstr ""
+msgstr "嘘"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:145
@@ -1675,7 +1675,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:544
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "-- In order to proof `Void`, we just loop forever, using\n"
 "-- `assert_smaller` to silence the totality checker.\n"
@@ -1702,6 +1702,30 @@ msgid ""
 "pain : IO ()\n"
 "pain = putStrLn $ coerce 0\n"
 msgstr ""
+"-- 为了证明 `Void`，我们只是永远循环，使用\n"
+"-- `assert_smaller` 使整体检查器静音。\n"
+"proofOfVoid : Bits8 -> Void\n"
+"proofOfVoid n = proofOfVoid (assert_smaller n n)\n"
+"\n"
+"-- 从 `Void` 类型的值开始，任何东西都会出现！\n"
+"-- 这个功能是安全和全面的，因为没有\n"
+"-- `Void` 类型的值！\n"
+"exFalsoQuodlibet : 无效 -> 一个\n"
+"exFalsoQuodlibet _ 不可能\n"
+"\n"
+"-- 通过将我们的无效证明传递给 `exFalsoQuodlibet`\n"
+"--（由*Prelude*以`void`的名义导出），我们\n"
+"-- 可以将任何值强制转换为任何其他类型的值。\n"
+"-- 这使得类型检查完全没用，因为\n"
+"-- 我们可以在不同的值之间自由转换\n"
+"——类型。\n"
+"强制：a -> b\n"
+"强制 _ = exFalsoQuodlibet (proofOfVoid 0)\n"
+"\n"
+"-- 最后，我们用一个数字调用 `putStrLn`\n"
+"-- 一个字符串。 `coerce` 允许我们这样做。\n"
+"痛苦：IO（）\n"
+"疼痛 = putStrLn $ 强制 0\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:576
