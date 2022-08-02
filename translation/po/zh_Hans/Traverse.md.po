@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/traverse/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -1625,7 +1625,7 @@ msgstr "最后，除了 `runST` 之外，我们还可以定义三个函数来运
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:525
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "runState : st -> State st a -> (st, a)\n"
 "runState = flip runST\n"
@@ -1636,6 +1636,14 @@ msgid ""
 "execState : st -> State st a -> st\n"
 "execState s = fst . runState s\n"
 msgstr ""
+"runState : st -> 状态 st a -> (st, a)\n"
+"runState = 翻转 runST\n"
+"\n"
+"evalState : st -> 状态 st a -> a\n"
+"evalState s = snd 。运行状态\n"
+"\n"
+"execState : st -> 状态 st a -> st\n"
+"执行状态 s = fst 。运行状态\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:542
@@ -1653,7 +1661,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:543
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Functor (State st) where\n"
 "  map f (ST run) = ST $ \\s => let (s2,va) = run s in (s2, f va)\n"
@@ -1671,6 +1679,21 @@ msgid ""
 "    let (s2, va) = val s\n"
 "     in runST (f va) s2\n"
 msgstr ""
+"函子（State st）\n"
+"  map f (ST run) = ST $ \\s => let (s2,va) = run s in (s2, f va)\n"
+"\n"
+"适用（State st）\n"
+"  纯 v = ST $ \\s => (s,v)\n"
+"\n"
+"  ST 乐趣 <*> ST val = ST $ \\s =>\n"
+"    让 (s2, f) = 乐趣 s\n"
+"        (s3, va) = val s2\n"
+"     在 (s3, f va)\n"
+"\n"
+"Monad (State st) 在哪里\n"
+"  ST val >>= f = ST $ \\s =>\n"
+"    让 (s2, va) = val s\n"
+"     在 runST (f va) s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:573
@@ -2501,7 +2524,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:909
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Functor Line where\n"
 "  map f (Annotated s x) = Annotated s $ f x\n"
@@ -2515,6 +2538,17 @@ msgid ""
 "  traverse f (Annotated s x) = Annotated s <$> f x\n"
 "  traverse f (Clean x)       = Clean <$> f x\n"
 msgstr ""
+"函子线在哪里\n"
+"  映射 f(带注释的 s x) = 带注释的 s $ f x\n"
+"  地图 f (清洁 x) = 清洁 $ f x\n"
+"\n"
+"可折叠线在哪里\n"
+"  foldr f acc (注释 _ x) = f x acc\n"
+"  foldr f acc (清洁 x) = f x acc\n"
+"\n"
+"可遍历的线\n"
+"  遍历 f(Annotated s x) = Annotated s <$> f x\n"
+"  遍历 f (Clean x) = Clean <$> f x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:928
