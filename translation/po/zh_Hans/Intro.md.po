@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:19+0800\n"
-"PO-Revision-Date: 2022-08-02 12:48+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-02 14:09+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/intro/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -20,22 +20,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1421 ../src/Tutorial/Intro.md:431
-#, fuzzy
 msgid "### What's next?"
-msgstr ""
-"#-#-#-#-#  Intro.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃＃ 下一步是什么？\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "### 下一步是什么？"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:2
-#, fuzzy
 msgid "# Introduction"
-msgstr "＃ 介绍"
+msgstr "# 介绍"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:15
-#, fuzzy
 msgid ""
 "Welcome to my Idris 2 tutorial. I'll try and treat as many aspects of the "
 "Idris 2 programming language as possible here.  All `.md` files in here a "
@@ -48,64 +42,55 @@ msgid ""
 "have to solve some exercises, the solutions of which can be found in the "
 "`src/Solutions` subfolder. There, I use regular `.idr` files."
 msgstr ""
-"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 编程语言的各个方"
-"面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 Markdown 组成（因"
-"此 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，可以由 Idris 编译器进"
-"行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 Idris 源文件使用 `."
-"idr` 结尾，并且除非您最终编写的散文比我现在所做的代码多得多，否则您将使用该文"
-"件类型。在本教程的后面，您将需要解决一些练习，这些练习可以在 `src/Solutions` "
-"子文件夹中找到。在那里，我使用常规的 `.idr` 文件。"
+"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 "
+"编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 "
+"Markdown 组成（因此以 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，"
+"可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 "
+"Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的代码比我现在所做的更啰嗦，"
+"否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，"
+"这些练习的答案可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `."
+"idr` 文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:19
-#, fuzzy
 msgid ""
 "Every Idris source file should typically start with a module name plus some "
 "necessary imports, and this document is no exception:"
-msgstr ""
-"每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
+msgstr "每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:23
-#, fuzzy
 msgid "```idris module Tutorial.Intro ```"
-msgstr "```idris 模块教程.Intro ```"
+msgstr "```idris module Tutorial.Intro ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:27
-#, fuzzy
 msgid ""
 "A module name consists of a list of identifiers separated by dots and must "
 "reflect the folder structure plus the module file's name."
-msgstr ""
-"模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名"
-"称。"
+msgstr "模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名称"
+"。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:29
-#, fuzzy
 msgid "## About the Idris Programming Language"
 msgstr "## 关于 Idris 编程语言"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:33
-#, fuzzy
 msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional* programming "
 "language. I'll quickly explain each of these adjectives in this section."
-msgstr ""
-"Idris 是一种*纯*、*依赖类型*、*总**功能*编程语言。我将在本节中快速解释这些形"
-"容词。"
+msgstr "Idris 是一种*纯的*、*依赖类型*、具有*完全**函数* "
+"的编程语言。我将在本节中快速解释这些形容词。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:35
-#, fuzzy
 msgid "### Functional Programming"
 msgstr "### 函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:42
-#, fuzzy
 msgid ""
 "In functional programming languages, functions are first-class constructs, "
 "meaning that they can be assigned to variables, passed as arguments to other "
@@ -119,7 +104,6 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:46
-#, fuzzy
 msgid ""
 "Functional programming languages are concerned with the evaluation of "
 "functions, unlike classical imperative languages, which are concerned with "
@@ -128,13 +112,11 @@ msgstr "函数式编程语言关注函数的求值，不像经典的命令式语
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:48
-#, fuzzy
 msgid "### Pure Functional Programming"
 msgstr "### 纯函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:57
-#, fuzzy
 msgid ""
 "Pure functional programming languages come with an additional important "
 "guarantee: Functions don't have side effects like writing to a file or "
@@ -145,19 +127,17 @@ msgid ""
 "wikipedia.org/wiki/Referential_transparency)."
 msgstr ""
 "纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这"
-"样的副作用。他们只能通过调用其他纯函数*而不是其他*来从他们的参数计算结果。因"
-"此，给定相同的输入，它们将 * 总是 * 生成相同的输出。此属性称为 [参考透明度]"
-"(https://en.wikipedia.org/wiki/Referential_transparency)。"
+"样的副作用。他们只能通过调用其他纯函数，给定参数来获取计算结果，*而没有其他获"
+"取数据的途径*。因此，给定相同的输入，它们将*总是*生成相同的输出。此属性称为 "
+"[引用透明](https://en.wikipedia.org/wiki/Referential_transparency)。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:59
-#, fuzzy
 msgid "Pure functions have several advantages:"
 msgstr "纯函数有几个优点："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:62
-#, fuzzy
 msgid ""
 "They can easily be tested by specifying (possibly randomly generated)  sets "
 "of input arguments together with the expected results."
@@ -165,59 +145,50 @@ msgstr "它们可以通过指定（可能是随机生成的）输入参数集以
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:66
-#, fuzzy
 msgid ""
 "They are thread-safe, since the don't mutate global state, and as such can "
 "be freely used in several computations running in parallel."
-msgstr ""
-"它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
+msgstr "它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使"
 "用。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:68
-#, fuzzy
 msgid "There are, of course, also some disadvantages:"
 msgstr "当然，也有一些缺点："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:71
-#, fuzzy
 msgid ""
 "Some algorithms are hard to implement efficiently using only pure functions."
 msgstr "仅使用纯函数很难有效地实现某些算法。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:75
-#, fuzzy
 msgid ""
 "Writing programs that actually *do* something (have some observable effect) "
 "is a bit trickier but certainly possible."
-msgstr ""
-"编写实际上 * 做 * 某事（具有一些可观察到的效果）的程序有点棘手，但肯定是可能"
+msgstr "编写实际上*做*某些事情（具有一些可观察到的效果）的程序有点棘手，但肯定是可能"
 "的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:77
-#, fuzzy
 msgid "### Dependent Types"
 msgstr "### 依赖类型"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:83
-#, fuzzy
 msgid ""
 "Idris is a strongly, statically typed programming language. This means, that "
 "ever Idris expression is given a *type* (for instance: integer, list of "
 "strings, boolean, function from integer to boolean, etc.)  and types are "
 "verified at compile time to rule out certain common programming errors."
 msgstr ""
-"Idris 是一种强静态类型的编程语言。这意味着，给 Idris 表达式一个 *type* （例"
-"如：整数、字符串列表、布尔值、从整数到布尔值的函数等），并且在编译时验证类型"
-"以排除某些常见的编程错误。"
+"Idris 是一种强静态类型的编程语言。这意味着，给 Idris 表达式一个*类型*（例如："
+"整数、字符串列表、布尔值、从整数到布尔值的函数等），并且在编译时验证类型以排"
+"除某些常见的编程错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:89
-#, fuzzy
 msgid ""
 "For instance, if a function expects an argument of type `String` (a sequence "
 "of unicode characters, such as `\"Hello123\"`), it is a *type error* to "
@@ -226,12 +197,11 @@ msgid ""
 "program."
 msgstr ""
 "例如，如果一个函数需要 `String` 类型的参数（Unicode 字符序列，例如 `"
-"\"Hello123\"`），则它是 * 类型错误 *使用 `Integer` 类型的参数调用此函数，"
+"\"Hello123\"`），使用 `Integer` 类型的参数调用此函数则它是*类型错误*的，"
 "Idris 编译器将拒绝从此类错误类型的程序生成可执行文件。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:97
-#, fuzzy
 msgid ""
 "Even more, Idris is *dependently typed*, which is one of its most "
 "characteristic properties in the landscape of programming languages. In "
@@ -240,10 +210,10 @@ msgid ""
 "can *depend* on other *values*.  What this means, and why this is incredibly "
 "useful, we'll explore in due time."
 msgstr ""
-"更重要的是，Idris 是 * 依赖类型 *，这是它在编程语言领域中最具特色的属性之一。"
-"在 Idris 中，类型是 * 第一类*：类型可以作为参数传递给函数，函数可以返回类型作"
-"为结果。更重要的是，类型可以 * 依赖于 * 其他 * 值 *。这意味着什么，以及为什么"
-"这非常有用，我们将在适当的时候进行探索。"
+"更重要的是，Idris 具有*依赖类型*，这是它在编程语言领域中最具特色的属性之一。"
+"在 Idris 中，类型是* 一等*的：类型可以作为参数传递给函数，函数可以返回类型作"
+"为结果。更重要的是，类型可以*依赖于*其他*值*。这意味着什么，以及为什么这非常"
+"有用，我们将在适当的时候进行探索。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:99
