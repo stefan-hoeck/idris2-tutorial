@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/eq/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -574,7 +574,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:27
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data ColType = I64 | Str | Boolean | Float\n"
 "\n"
@@ -598,6 +598,27 @@ msgid ""
 "\n"
 "concatTables1 : Table -> Table -> Maybe Table\n"
 msgstr ""
+"数据 ColType = I64 |字符串 |布尔值 |漂浮\n"
+"\n"
+"架构：类型\n"
+"架构 = 列表 ColType\n"
+"\n"
+"IdrisType : ColType -> 类型\n"
+"IdrisType I64 = Int64\n"
+"IdrisType Str = 字符串\n"
+"IdrisType 布尔值 = 布尔值\n"
+"IdrisType Float = 双\n"
+"\n"
+"行：架构 -> 类型\n"
+"行 = HList 。地图 IdrisType\n"
+"\n"
+"记录表在哪里\n"
+"  构造函数 MkTable\n"
+"  架构：架构\n"
+"  尺寸：自然\n"
+"  rows : Vect 大小（行模式）\n"
+"\n"
+"concatTables1 : 表 -> 表 -> 可能表\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:55
@@ -1049,7 +1070,7 @@ msgstr "这是 `concatTables` 的另一个实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:254
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "eqColType : (c1,c2 : ColType) -> Maybe (c1 = c2)\n"
 "eqColType I64     I64     = Just Refl\n"
@@ -1074,6 +1095,30 @@ msgid ""
 "  Just Refl => Just $ MkTable _ _ (rs1 ++ rs2)\n"
 "  Nothing   => Nothing\n"
 msgstr ""
+"eqColType : (c1,c2 : ColType) -> 也许 (c1 = c2)\n"
+"eqColType I64 I64 = 只是参考\n"
+"eqColType Str Str = 只是参考\n"
+"eqColType Boolean Boolean = Just Refl\n"
+"eqColType Float Float = Just Refl\n"
+"eqColType _ _ = 无\n"
+"\n"
+"eqCons：{0 c1，c2：a}\n"
+"       -> {0 s1,s2 : 列出一个}\n"
+"       -> c1 = c2 -> s1 = s2 -> c1 :: s1 = c2 :: s2\n"
+"eqCons Refl Refl = Refl\n"
+"\n"
+"eqSchema : (s1,s2 : Schema) -> 也许 (s1 = s2)\n"
+"eqSchema [] [] = 只是参考\n"
+"eqSchema (x :: xs) (y :: ys) = [| eqCons (eqColType x y) (eqSchema xs ys) |]"
+"\n"
+"eqSchema (x :: xs) [] = 无\n"
+"eqSchema [] (x :: xs) = 无\n"
+"\n"
+"concatTables3 : 表 -> 表 -> 可能表\n"
+"concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 "
+"of\n"
+"  Just Refl => Just $ MkTable _ _ (rs1 ++ rs2)\n"
+"  没有=>没有\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:285
@@ -1465,7 +1510,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:454
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "showColType : ColType -> String\n"
 "showColType I64      = \"i64\"\n"
@@ -1486,6 +1531,24 @@ msgid ""
 "showReadColType Boolean = Refl\n"
 "showReadColType Float   = Refl\n"
 msgstr ""
+"showColType : ColType -> 字符串\n"
+"showColType I64 = \"i64\"\n"
+"showColType Str = \"str\"\n"
+"showColType Boolean = \"布尔\"\n"
+"showColType Float = \"浮动\"\n"
+"\n"
+"readColType : String -> 也许 ColType\n"
+"readColType \"i64\" = 只是 I64\n"
+"readColType \"str\" = 只是 Str\n"
+"readColType \"boolean\" = 只是布尔值\n"
+"readColType \"float\" = 只是浮动\n"
+"readColType s = 无\n"
+"\n"
+"showReadColType : (c : ColType) -> readColType (showColType c) = 只是 c\n"
+"showReadColType I64 = 参考\n"
+"showReadColType Str = Refl\n"
+"showReadColType Boolean = Refl\n"
+"showReadColType Float = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:477
@@ -1993,7 +2056,7 @@ msgstr "这是为 `ColType` 编码的一种方法："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:711
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "decSameColType :  (c1,c2 : ColType) -> Dec (SameColType c1 c2)\n"
 "decSameColType I64 I64         = Yes SameCT\n"
@@ -2016,6 +2079,26 @@ msgid ""
 "decSameColType Float Boolean   = No $ \\case SameCT impossible\n"
 "decSameColType Float Float     = Yes SameCT\n"
 msgstr ""
+"decSameColType : (c1,c2 : ColType) -> Dec (SameColType c1 c2)\n"
+"decSameColType I64 I64 = 是 SameCT\n"
+"decSameColType I64 Str = 否 $ \\case SameCT 不可能\n"
+"decSameColType I64 Boolean = 否 $ \\case SameCT 不可能\n"
+"decSameColType I64 Float = 否 $ \\case SameCT 不可能\n"
+"\n"
+"decSameColType Str I64 = 否 $ \\case SameCT 不可能\n"
+"decSameColType Str Str = 是 SameCT\n"
+"decSameColType Str Boolean = 否 $ \\case SameCT 不可能\n"
+"decSameColType Str Float = 否 $ \\case SameCT 不可能\n"
+"\n"
+"decSameColType Boolean I64 = 否 $ \\case SameCT 不可能\n"
+"decSameColType Boolean Str = 否 $ \\case SameCT 不可能\n"
+"decSameColType Boolean Boolean = 是 SameCT\n"
+"decSameColType Boolean Float = 否 $ \\case SameCT 不可能\n"
+"\n"
+"decSameColType Float I64 = 否 $ \\case SameCT 不可能\n"
+"decSameColType Float Str = 否 $ \\case SameCT 不可能\n"
+"decSameColType Float Boolean = 否 $ \\case SameCT 不可能\n"
+"decSameColType Float Float = 是 SameCT\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:741
