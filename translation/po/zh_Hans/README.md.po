@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:07+0800\n"
-"PO-Revision-Date: 2022-08-02 07:35+0000\n"
+"PO-Revision-Date: 2022-08-02 11:55+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/readme/zh_Hans/>\n"
@@ -29,7 +29,8 @@ msgid ""
 "The goal of this project is quickly explained: To become a more or less "
 "comprehensive guide to the Idris programming language, with a lot of "
 "introductory material targeted at newcomers to functional programming."
-msgstr ""
+msgstr "这个项目的目标是：要成为 Idris "
+"编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。"
 
 #. type: Plain text
 #: ../README.md:15
@@ -41,6 +42,10 @@ msgid ""
 "Most chapters come with (sometimes lots of) exercises, with solutions "
 "available in directory `src/Solutions`."
 msgstr ""
+"内容将分为几个部分，其中关于核心语言特性的部分是 Idris "
+"函数式编程主要指南。每个部分都由几个章节组成，每个章节都试图深入介绍 Idris "
+"编程语言及其核心库的某个方面。大多数章节都附带（有时很多）练习，在目录 `src/"
+"Solutions` 中提供了解决方案。"
 
 #. type: Plain text
 #: ../README.md:20
