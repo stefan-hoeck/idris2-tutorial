@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 15:40+0000\n"
+"PO-Revision-Date: 2022-08-02 16:03+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/intro/zh_Hans/>\n"
@@ -290,7 +290,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1095
 #, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "idris"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -365,7 +365,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "repl"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:1 ../src/Tutorial/Intro.md:76
@@ -380,20 +380,19 @@ msgstr "依赖类型"
 #: ../src/Tutorial/Intro.md:223 ../src/Tutorial/Prim.md:38
 #, no-wrap
 msgid "sh"
-msgstr ""
+msgstr "sh"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:1420 ../src/Tutorial/Intro.md:430
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "What's next?"
-msgstr "### 下一步是什么？"
+msgstr "下一步是什么？"
 
 #. type: Title #
 #: ../src/Tutorial/Intro.md:1
-#, fuzzy, no-wrap
-#| msgid "# Introduction"
+#, no-wrap
 msgid "Introduction"
-msgstr "# 介绍"
+msgstr "介绍"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:15
@@ -427,10 +426,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:20
-#, fuzzy, no-wrap
-#| msgid "```idris module Tutorial.Intro ```"
+#, no-wrap
 msgid "module Tutorial.Intro\n"
-msgstr "```idris module Tutorial.Intro ```"
+msgstr "idris module Tutorial.Intro\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:27
@@ -443,10 +441,9 @@ msgstr ""
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:28
-#, fuzzy, no-wrap
-#| msgid "## About the Idris Programming Language"
+#, no-wrap
 msgid "About the Idris Programming Language"
-msgstr "## 关于 Idris 编程语言"
+msgstr "关于 Idris 编程语言"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:33
@@ -459,10 +456,9 @@ msgstr ""
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:34
-#, fuzzy, no-wrap
-#| msgid "### Functional Programming"
+#, no-wrap
 msgid "Functional Programming"
-msgstr "### 函数式编程"
+msgstr "函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:42
@@ -487,10 +483,9 @@ msgstr "函数式编程语言关注函数的求值，不像经典的命令式语
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:47
-#, fuzzy, no-wrap
-#| msgid "### Pure Functional Programming"
+#, no-wrap
 msgid "Pure Functional Programming"
-msgstr "### 纯函数式编程"
+msgstr "纯函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:57
@@ -591,10 +586,9 @@ msgstr ""
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:98
-#, fuzzy, no-wrap
-#| msgid "### Total Functions"
+#, no-wrap
 msgid "Total Functions"
-msgstr "### 完全函数"
+msgstr "完全函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:104
@@ -625,10 +619,9 @@ msgstr ""
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:114
-#, fuzzy, no-wrap
-#| msgid "## Using the REPL"
+#, no-wrap
 msgid "Using the REPL"
-msgstr "## 使用 REPL"
+msgstr "使用 REPL"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:121
@@ -644,10 +637,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:122
-#, fuzzy, no-wrap
-#| msgid "```repl rlwrap idris2 ```"
+#, no-wrap
 msgid "rlwrap idris2\n"
-msgstr "```repl rlwrap idris2 ```"
+msgstr "rlwrap idris2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:131
@@ -668,14 +660,7 @@ msgstr "Idris 现在应该准备好接受你的命令了："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:134
-#, fuzzy, no-wrap
-#| msgid ""
-#| "```repl\n"
-#| "     ____    __     _         ___\n"
-#| "    /  _/___/ /____(_)____   |__ \\\n"
-#| "    / // __  / ___/ / ___/   __/ /     Version 0.5.1-3c532ea35\n"
-#| "  _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org\n"
-#| " /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
+#, no-wrap
 msgid ""
 "     ____    __     _         ___\n"
 "    /  _/___/ /____(_)____   |__ \\\n"
@@ -686,12 +671,14 @@ msgid ""
 "Welcome to Idris 2.  Enjoy yourself!\n"
 "Main>\n"
 msgstr ""
-"```repl\n"
 "     ____    __     _         ___\n"
 "    /  _/___/ /____(_)____   |__ \\\n"
 "    / // __  / ___/ / ___/   __/ /     Version 0.5.1-3c532ea35\n"
 "  _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org\n"
 " /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
+"\n"
+"Welcome to Idris 2.  Enjoy yourself!\n"
+"Main>\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:147
@@ -702,13 +689,17 @@ msgstr "我们可以继续输入一些简单的算术表达式。 Idris 将进�
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:148
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> 2 * 4\n"
 "8\n"
 "Main> 3 * (7 + 100)\n"
 "321\n"
-msgstr "```repl Main> 2 * 4 8 Main> 3 * (7 + 100)  321 ```"
+msgstr ""
+"Main> 2 * 4\n"
+"8\n"
+"Main> 3 * (7 + 100)\n"
+"321\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:157
@@ -720,12 +711,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:158
-#, fuzzy, no-wrap
-#| msgid "```repl Main> :t 2 2 : Integer ```"
+#, no-wrap
 msgid ""
 "Main> :t 2\n"
 "2 : Integer\n"
-msgstr "```repl Main> :t 2 2 : Integer ```"
+msgstr ""
+"Main> :t 2\n"
+"2 : Integer\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:166
@@ -738,12 +730,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:167
-#, fuzzy, no-wrap
-#| msgid "```repl Main> :t 2 * 4 2 * 4 : Integer ```"
+#, no-wrap
 msgid ""
 "Main> :t 2 * 4\n"
 "2 * 4 : Integer\n"
-msgstr "```repl Main> :t 2 * 4 2 * 4 : Integer ```"
+msgstr ""
+"Main> :t 2 * 4\n"
+"2 * 4 : Integer\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:182
@@ -767,13 +760,12 @@ msgstr ""
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:183
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "A First Idris Program"
-msgstr "## 第一个 Idris 程序"
+msgstr "第一个 Idris 程序"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:190
-#, fuzzy
 msgid ""
 "We will often start up a REPL for tinkering with small parts of the Idris "
 "language, for reading some documentation, or for inspecting the content of "
@@ -781,52 +773,53 @@ msgid ""
 "started with the language. Here comes the mandatory *Hello World*:"
 msgstr ""
 "我们经常会启动一个 REPL 来修补 Idris 语言的一小部分，阅读一些文档，或检查 "
-"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。这是"
-"强制性的 *Hello World*："
+"Idris 模块的内容，但现在我们将编写一个最小的 Idris 程序来开始使用该语言。"
+"这是强制性的 *Hello World*："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:191
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "main : IO ()\n"
 "main = putStrLn \"Hello World!\"\n"
-msgstr "```idris main : IO () main = putStrLn \"Hello World!\" ```"
+msgstr ""
+"main : IO ()\n"
+"main = putStrLn \"Hello World!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:199
-#, fuzzy
 msgid ""
 "We will inspect the code above in some detail in a moment, but first we'd "
 "like to compile and run it. From this project's root directory, run the "
 "following:"
-msgstr ""
-"稍后我们将详细检查上面的代码，但首先我们要编译并运行它。在该项目的根目录中，"
-"运行以下命令： ```sh idris2 --find-ipkg -o hello src/Tutorial/Intro.md ```"
+msgstr "稍后我们将详细检查上面的代码，但首先我们要编译并运行它。在此项目的根目录中，"
+"运行以下命令："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:199
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "idris2 --find-ipkg -o hello src/Tutorial/Intro.md\n"
-msgstr "```sh rlwrap idris2 --find-ipkg src/Tutorial/Intro.md ```"
+msgstr "idris2 --find-ipkg -o hello src/Tutorial/Intro.md\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:207
-#, fuzzy
 msgid ""
 "This will create executable `hello` in directory `build/exec`, which can be "
 "invoked from the command-line like so (without the dollar prefix; this is "
 "used here to distinguish the terminal command from its output):"
 msgstr ""
-"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它"
-"（没有美元前缀；这里用来区分终端命令和它的输出）："
+"这将在目录 `build/exec` 中创建可执行文件 `hello`，可以像这样从命令行调用它（"
+"没有美元前缀；这里用来区分终端命令和它的输出）："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:208
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "$ build/exec/hello\n"
 "Hello World!\n"
-msgstr "```sh $ build/exec/hello Hello World！ ```"
+msgstr ""
+"$ build/exec/hello\n"
+"Hello World!\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:219

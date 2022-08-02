@@ -7,13 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 13:19+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-02 16:03+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
+"projects/idris2-tutorial/datatypes/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #. type: Title #
 #: ../src/Tutorial/DataTypes.md:1
@@ -312,7 +315,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1095
 #, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "idris"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:16
@@ -425,7 +428,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "repl"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:39

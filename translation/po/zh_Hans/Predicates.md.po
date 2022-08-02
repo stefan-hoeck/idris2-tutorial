@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 12:48+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-02 16:03+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/predicates/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -290,7 +290,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1095
 #, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "idris"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -365,7 +365,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "repl"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
