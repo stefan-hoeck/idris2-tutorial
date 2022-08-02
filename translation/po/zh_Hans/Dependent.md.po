@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
 "PO-Revision-Date: 2022-08-02 15:39+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dependent/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -1495,7 +1495,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:465
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
 "\n"
@@ -1533,6 +1533,42 @@ msgid ""
 "   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
 "   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
 msgstr ""
+"   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect "
+"n d\n"
+"\n"
+"4. 声明并实现一个函数`foldSemi`\n"
+"   用于累积存储的值\n"
+"   在 `List` 到 `Semigroup` 的附加运算符 (`(<+>)`) 中。\n"
+"   （确保只使用 `Semigroup` 约束，而不是\n"
+"   `Monoid` 约束。）\n"
+"\n"
+"5. 做与练习 4 相同的操作，但对于非空向量。如何\n"
+"   向量的非空性会影响输出类型吗？\n"
+"\n"
+"6. 给定一个 `a` 类型的初始值和一个函数 `a -> a`，\n"
+"   我们想生成 `a`s 的 `Vect`s，第一个值\n"
+"   即 `a`，第二个值为 `f a`，第三个\n"
+"   是 `f (f a)` 等等。\n"
+"\n"
+"   例如，如果 `a` 是 1 并且 `f` 是 `(* 2)`，我们希望\n"
+"   获得类似于以下的结果：`[1,2,4,8,16,...]`。\n"
+"\n"
+"   声明并实现函数 `iterate`，它应该\n"
+"   封装这种行为。从 `replicate` 中获得一些灵感\n"
+"   如果你不知道从哪里开始。\n"
+"\n"
+"7. 给定状态类型 `s` 的初始值和\n"
+"   一个函数 `fun : s -> (s,a)`,\n"
+"   我们想生成 `a`s 的 `Vect`s。宣布并实施\n"
+"   函数 `generate`，它应该封装这个行为。确保使用\n"
+"   每次新调用 `fun` 时的更新状态。\n"
+"\n"
+"   这是一个示例如何使用它来生成第一个\n"
+"   `n` 斐波那契数：\n"
+"\n"
+"   ```回复\n"
+"   生成 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
+"   [1、2、3、5、8、13、21、34、55、89]\n"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Dependent.md:506
@@ -1711,7 +1747,7 @@ msgstr "让我们想出一些 `Fin` 类型的值："
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:579
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "fin0_5 : Fin 5\n"
 "fin0_5 = FZ\n"
@@ -1725,6 +1761,17 @@ msgid ""
 "fin4_5 : Fin 5\n"
 "fin4_5 = FS (FS (FS (FS FZ)))\n"
 msgstr ""
+"fin0_5 : 鳍 5\n"
+"fin0_5 = FZ\n"
+"\n"
+"fin0_7 : 鳍 7\n"
+"fin0_7 = FZ\n"
+"\n"
+"fin1_3 : 鳍 3\n"
+"fin1_3 = FS FZ\n"
+"\n"
+"fin4_5 : 鳍 5\n"
+"fin4_5 = FS（FS（FS（FS FZ）））\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:596
