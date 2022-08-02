@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:09+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions1/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
@@ -601,7 +601,7 @@ msgstr "函数可以通过多种方式组合，最直接的可能是点运算符
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:80
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "square : Integer -> Integer\n"
 "square n = n * n\n"
@@ -612,6 +612,14 @@ msgid ""
 "squareTimes2 : Integer -> Integer\n"
 "squareTimes2 = times2 . square\n"
 msgstr ""
+"正方形：整数 -> 整数\n"
+"平方 n = n * n\n"
+"\n"
+"times2 : 整数 -> 整数\n"
+"次2 n = 2 * n\n"
+"\n"
+"squareTimes2 : 整数 -> 整数\n"
+"平方时间 2 = 时间 2 。正方形\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:92
@@ -1004,7 +1012,7 @@ msgstr "例如，让我们为 `Bits8 -> Bits8` 类型的排序函数定义一个
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:292
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "infixr 4 >>>\n"
 "\n"
@@ -1017,6 +1025,16 @@ msgid ""
 "test : Bits8 -> Bits8\n"
 "test = foo >>> foo >>> foo >>> foo\n"
 msgstr ""
+"中缀 4 >>>\n"
+"\n"
+"(>>>) : (Bits8 -> Bits8) -> (Bits8 -> Bits8) -> Bits8 -> Bits8\n"
+"f1 >>> f2 = f2 。 f1\n"
+"\n"
+"foo : Bits8 -> Bits8\n"
+"富 n = 2 * n + 3\n"
+"\n"
+"测试：Bits8 -> Bits8\n"
+"测试 = 富 >>> 富 >>> 富 >>> 富\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:311
@@ -1190,7 +1208,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:391
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "infixl 8 `plus`\n"
 "\n"
@@ -1208,6 +1226,21 @@ msgid ""
 "arithTest' : Integer\n"
 "arithTest' = 5 + 10 * 12\n"
 msgstr ""
+"中缀 8 `plus`\n"
+"\n"
+"中缀 9 `mult`\n"
+"\n"
+"加：整数 -> 整数 -> 整数\n"
+"加号 = (+)\n"
+"\n"
+"mult ：整数 -> 整数 -> 整数\n"
+"mult = (*)\n"
+"\n"
+"arithTest : 整数\n"
+"arithTest = 5 `plus` 10 `mult` 12\n"
+"\n"
+"arithTest'：整数\n"
+"arithTest' = 5 + 10 * 12\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions1.md:409
@@ -1383,7 +1416,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:472
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   -- return true, if and only if both predicates hold\n"
 "   and : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
@@ -1394,6 +1427,14 @@ msgid ""
 "   -- return true, if the predicate does not hold\n"
 "   negate : (Integer -> Bool) -> Integer -> Bool\n"
 msgstr ""
+"   -- 返回真，当且仅当两个谓词都成立\n"
+"   和 : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
+"\n"
+"   -- 返回真，当且仅当至少一个谓词成立\n"
+"   或 : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
+"\n"
+"   -- 如果谓词不成立，则返回真\n"
+"   否定：（整数->布尔）->整数->布尔\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:487
@@ -1449,7 +1490,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:505
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   -- return true, if and only if both predicates hold\n"
 "   (&&) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
@@ -1461,6 +1502,15 @@ msgid ""
 "   -- return true, if the predicate does not hold\n"
 "   not : (Integer -> Bool) -> Integer -> Bool\n"
 msgstr ""
+"   -- 返回真，当且仅当两个谓词都成立\n"
+"   (&&) : (整数 -> 布尔) -> (整数 -> 布尔) -> 整数 -> 布尔\n"
+"   x && y = 和 x y\n"
+"\n"
+"   -- 返回真，当且仅当至少一个谓词成立\n"
+"   (||) : (整数 -> 布尔) -> (整数 -> 布尔) -> 整数 -> 布尔\n"
+"\n"
+"   -- 如果谓词不成立，则返回真\n"
+"   不是：（整数->布尔）->整数->布尔\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:518
