@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 12:48+0000\n"
+"PO-Revision-Date: 2022-08-02 15:28+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dpair/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -1274,7 +1274,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:373
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data BaseType = DNABase | RNABase\n"
 "\n"
@@ -1304,6 +1304,33 @@ msgid ""
 "encode : NucleicAcid b -> String\n"
 "encode = pack . map encodeBase\n"
 msgstr ""
+"数据 BaseType = DNABase |核糖核酸库\n"
+"\n"
+"数据核碱基：BaseType -> 类型在哪里\n"
+"  腺嘌呤：核碱基 b\n"
+"  胞嘧啶：核碱基 b\n"
+"  鸟嘌呤：核碱基 b\n"
+"  胸腺嘧啶：核碱基 DNABase\n"
+"  尿嘧啶 : 核碱基 RNABase\n"
+"\n"
+"核酸：BaseType -> 类型\n"
+"核酸=列表。核碱基\n"
+"\n"
+"RNA : 类型\n"
+"RNA = 核酸 RNABase\n"
+"\n"
+"DNA : 类型\n"
+"DNA = 核酸 DNA 碱基\n"
+"\n"
+"encodeBase : 核碱基 b -> 字符\n"
+"encodeBase 腺嘌呤 = 'A'\n"
+"encodeBase 胞嘧啶 = 'C'\n"
+"encodeBase 鸟嘌呤 = 'G'\n"
+"encodeBase 胸腺嘧啶 = 'T'\n"
+"encodeBase Uracile = 'U'\n"
+"\n"
+"编码：核酸 b -> 字符串\n"
+"编码=包装。地图编码基础\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:404
@@ -1362,7 +1389,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:428
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readAnyBase : Char -> Maybe (Nucleobase b)\n"
 "readAnyBase 'A' = Just Adenine\n"
@@ -1384,6 +1411,25 @@ msgid ""
 "readDNA : String -> Maybe DNA\n"
 "readDNA = traverse readDNABase . unpack\n"
 msgstr ""
+"readAnyBase : Char -> Maybe (Nucleobase b)\n"
+"readAnyBase 'A' = 只是腺嘌呤\n"
+"readAnyBase 'C' = 只是胞嘧啶\n"
+"readAnyBase 'G' = 只是鸟嘌呤\n"
+"readAnyBase _ = 无\n"
+"\n"
+"readRNABase : Char -> Maybe (Nucleobase RNABase)\n"
+"readRNABase 'U' = 只是尿嘧啶\n"
+"readRNABase c = readAnyBase c\n"
+"\n"
+"readDNABase : Char -> Maybe (Nucleobase DNABase)\n"
+"readDNABase 'T' = 只是胸腺嘧啶\n"
+"readDNABase c = readAnyBase c\n"
+"\n"
+"readRNA : 字符串 -> 也许是 RNA\n"
+"readRNA = 遍历 readRNABase 。打开包装\n"
+"\n"
+"readDNA : 字符串 -> 也许是 DNA\n"
+"readDNA = 遍历 readDNABase 。打开包装\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:454
@@ -1900,7 +1946,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:713
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Solutions.DPair> :exec main\n"
 "Enter a command: load resources/example\n"
@@ -1938,6 +1984,41 @@ msgid ""
 "Enter a command: quit\n"
 "Goodbye.\n"
 msgstr ""
+"Solutions.DPair> :exec main\n"
+"输入命令：加载资源/示例\n"
+"表已加载。架构：str,str,fin2023,str?,boolean?\n"
+"输入命令：获取 3\n"
+"第 3 行：\n"
+"\n"
+"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
+"------------------------------------------\n"
+"地板 |詹森 | 1981 | |吨\n"
+"\n"
+"输入命令：add Mikael,Stanne,1974,,\n"
+"前置行：\n"
+"\n"
+"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
+"------------------------------------------\n"
+"迈凯尔 |斯坦 | 1974 | |\n"
+"\n"
+"输入命令：获取 1\n"
+"第 1 行：\n"
+"\n"
+"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
+"------------------------------------------\n"
+"迈凯尔 |斯坦 | 1974 | |\n"
+"\n"
+"输入命令：删除1\n"
+"删除的行：1。\n"
+"输入命令：获取 1\n"
+"第 1 行：\n"
+"\n"
+"字符串 |字符串 | fin2023 |字符串？ |布尔值？\n"
+"-----------------------------------------\n"
+"抢 |哈尔福德 | 1951 | |\n"
+"\n"
+"输入命令：退出\n"
+"再见。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:754
@@ -2347,7 +2428,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:930
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "showColType : ColType -> String\n"
 "showColType I64      = \"i64\"\n"
@@ -2402,6 +2483,58 @@ msgid ""
 "\n"
 "showError (NoNat x) = \"Not a natural number: \\{x}\"\n"
 msgstr ""
+"showColType : ColType -> 字符串\n"
+"showColType I64 = \"i64\"\n"
+"showColType Str = \"str\"\n"
+"showColType Boolean = \"布尔\"\n"
+"showColType Float = \"浮动\"\n"
+"\n"
+"showSchema : 模式 -> 字符串\n"
+"显示架构 = 连接。穿插“，”。地图显示ColType\n"
+"\n"
+"所有类型：字符串\n"
+"allTypes = concat\n"
+"         . List.intersperse \", \"\n"
+"         .地图显示ColType\n"
+"         $ [I64,Str,Boolean,Float]\n"
+"\n"
+"showError : 错误 -> 字符串\n"
+"showError (UnknownCommand x) = \"\"\"\n"
+"  未知命令：\\{x}。\n"
+"  已知的命令有：clear、schema、size、new、add、get、delete、quit。\n"
+"  \"\"\"\n"
+"\n"
+"showError (UnknownType pos x) = \"\"\"\n"
+"  位置 \\{show pos} 的未知类型：\\{x}。\n"
+"  已知类型有：\\{allTypes}。\n"
+"  \"\"\"\n"
+"\n"
+"showError (InvalidField pos tpe x) = \"\"\"\n"
+"  位置 \\{show pos} 处的值无效。\n"
+"  预期类型：\\{showColType tpe}。\n"
+"  找到的值：\\{x}。\n"
+"  \"\"\"\n"
+"\n"
+"showError (ExpectedEOI k x) = \"\"\"\n"
+"  预期的输入结束。\n"
+"  位置：\\{显示 k}\n"
+"  输入：\\{x}\n"
+"  \"\"\"\n"
+"\n"
+"showError (UnexpectedEOI k x) = \"\"\"\n"
+"  输入意外结束。\n"
+"  位置：\\{显示 k}\n"
+"  输入：\\{x}\n"
+"  \"\"\"\n"
+"\n"
+"showError (OutOfBounds 大小索引) = \"\"\"\n"
+"  索引超出范围。\n"
+"  表格大小：\\{显示大小}\n"
+"  索引：\\{显示索引}\n"
+"  注意：索引从 1 开始。\n"
+"  \"\"\"\n"
+"\n"
+"showError (NoNat x) = \"不是自然数：\\{x}\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:990
@@ -2418,7 +2551,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:991
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "zipWithIndex : Traversable t => t a -> t (Nat, a)\n"
 "zipWithIndex = evalState 1 . traverse pairWithIndex\n"
@@ -2438,6 +2571,23 @@ msgid ""
 "readSchema : String -> Either Error Schema\n"
 "readSchema = traverse (uncurry readColType) . zipWithIndex . fromCSV\n"
 msgstr ""
+"zipWithIndex : 可遍历 t => t a -> t (Nat, a)\n"
+"zipWithIndex = evalState 1。遍历pairWithIndex\n"
+"  其中 pairWithIndex : a -> State Nat (Nat,a)\n"
+"        pairWithIndex v = (,v) <$> get <* modify S\n"
+"\n"
+"fromCSV : 字符串 -> 列表字符串\n"
+"fromCSV = 忘记。拆分 (',' ==)\n"
+"\n"
+"readColType : Nat -> String -> 任一错误 ColType\n"
+"readColType _ \"i64\" = 右 I64\n"
+"readColType _ \"str\" = 右 Str\n"
+"readColType _ \"boolean\" = 右布尔值\n"
+"readColType _ \"float\" = 右浮动\n"
+"readColType n s = 左 $ UnknownType n s\n"
+"\n"
+"readSchema : String -> 任一错误模式\n"
+"readSchema = traverse (uncurry readColType) 。 zipWithIndex 。来自CSV\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1018
@@ -2609,7 +2759,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1088
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "encodeField : (t : ColType) -> IdrisType t -> String\n"
 "encodeField I64     x     = show x\n"
@@ -2649,6 +2799,43 @@ msgid ""
 "main : IO ()\n"
 "main = runProg $ MkTable [] _ []\n"
 msgstr ""
+"encodeField : (t : ColType) -> IdrisType t -> String\n"
+"编码字段 I64 x = 显示 x\n"
+"编码字段 Str x = 显示 x\n"
+"encodeField Boolean True = \"t\"\n"
+"encodeField 布尔值 False = \"f\"\n"
+"encodeField 浮点数 x = 显示 x\n"
+"\n"
+"encodeRow : (ts : List ColType) -> Row ts -> String\n"
+"编码行 ts = concat 。穿插“，”。去 ts\n"
+"  去哪里 : (cs : List ColType) -> Row cs -> Vect (length cs) String\n"
+"        去 [] [] = []\n"
+"        go (c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
+"\n"
+"结果：（t：表）-> 命令 t-> 字符串\n"
+"结果 t PrintSchema = \"当前架构：\\{showSchema t.schema}\"\n"
+"结果 t PrintSize = \"当前尺寸：\\{show t.size}\"\n"
+"结果 _ (New ts) = \"已创建表。架构：\\{showSchema ts}\"\n"
+"结果 t (Prepend r) = \"前置行：\\{encodeRow t.schema r}\"\n"
+"结果 _ (Delete x) = \"删除的行：\\{show $ FS x}。\"\n"
+"结果 _ 退出 = “再见。”\n"
+"结果 t (得到 x) =\n"
+"  “行\\{show $ FS x}：\\{encodeRow t.schema（索引x t.rows）}”\n"
+"\n"
+"覆盖\n"
+"runProg : 表 -> IO ()\n"
+"runProg t = 做\n"
+"  putStr \"输入命令：\"\n"
+"  str <- 获取行\n"
+"  case readCommand t str of\n"
+"    Left err => putStrLn (showError err) >> runProg t\n"
+"    Right Quit => putStrLn（结果 t Quit）\n"
+"    右 cmd => putStrLn (结果 t cmd) >>\n"
+"                  runProg (applyCommand t cmd)\n"
+"\n"
+"覆盖\n"
+"主要：IO（）\n"
+"main = runProg $ MkTable [] _ []\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:1136
