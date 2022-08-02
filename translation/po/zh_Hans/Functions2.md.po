@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:36+0000\n"
+"PO-Revision-Date: 2022-08-02 15:28+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions2/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
@@ -755,7 +755,7 @@ msgstr "我们首先定义了一堆记录类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:164
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record Artist where\n"
 "  constructor MkArtist\n"
@@ -781,6 +781,29 @@ msgid ""
 "  password : Password\n"
 "  albums   : List Album\n"
 msgstr ""
+"记录艺术家在哪里\n"
+"  构造函数 MkArtist\n"
+"  名称：字符串\n"
+"\n"
+"记录专辑在哪里\n"
+"  构造函数 MkAlbum\n"
+"  名称：字符串\n"
+"  艺术家：艺术家\n"
+"\n"
+"记录电子邮件在哪里\n"
+"  构造函数 MkEmail\n"
+"  值：字符串\n"
+"\n"
+"记录密码在哪里\n"
+"  构造函数 MkPassword\n"
+"  值：字符串\n"
+"\n"
+"记录用户在哪里\n"
+"  构造函数 MkUser\n"
+"  名称：字符串\n"
+"  电子邮件：电子邮件\n"
+"  密码：密码\n"
+"  专辑：列出专辑\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:202
@@ -807,7 +830,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:203
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Eq Artist where (==) = (==) `on` name\n"
 "\n"
@@ -817,6 +840,13 @@ msgid ""
 "\n"
 "Eq Album where (==) = (==) `on` \\a => (a.name, a.artist)\n"
 msgstr ""
+"Eq Artist where (==) = (==) `on` 名称\n"
+"\n"
+"Eq 电子邮件，其中 (==) = (==) `on` 值\n"
+"\n"
+"Eq 密码 where (==) = (==) `on` 值\n"
+"\n"
+"Eq 专辑 where (==) = (==) `on` \\a => (a.name, a.artist)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:216
@@ -942,7 +972,7 @@ msgstr "这是一个可能的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:277
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "handleRequest db (MkRequest (MkCredentials email pw) album) =\n"
 "  case lookupUser db of\n"
@@ -961,6 +991,22 @@ msgid ""
 "        lookupAlbum (x :: xs) =\n"
 "          if x == album then Success album else lookupAlbum xs\n"
 msgstr ""
+"handleRequest db (MkRequest (MkCredentials email pw) 相册) =\n"
+"  案例查找用户数据库\n"
+"    Just (MkUser _ _ 密码相册) =>\n"
+"      if password == pw then lookupAlbum albums else InvalidPassword\n"
+"\n"
+"    什么都没有 => 未知用户电子邮件\n"
+"\n"
+"  其中lookupUser：列出用户->也许用户\n"
+"        lookupUser [] = 无\n"
+"        查找用户 (x :: xs) =\n"
+"          if x.email == email then Just x else lookupUser xs\n"
+"\n"
+"        lookupAlbum : 列出专辑 -> 响应\n"
+"        lookupAlbum [] = AccessDenied 电子邮件相册\n"
+"        查找相册 (x :: xs) =\n"
+"          if x == album then Success 相册 else lookupAlbum xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:305
@@ -1010,7 +1056,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:319
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "handleRequest' : DB -> Request -> Response\n"
 "handleRequest' db (MkRequest (MkCredentials email pw) album) =\n"
@@ -1030,6 +1076,23 @@ msgid ""
 "\n"
 "        Nothing => UnknownUser email\n"
 msgstr ""
+"handleRequest' : 数据库 -> 请求 -> 响应\n"
+"handleRequest' db (MkRequest (MkCredentials email pw) 相册) =\n"
+"  让 lookupUser : 列出用户 -> 可能用户\n"
+"      lookupUser [] = 无\n"
+"      查找用户 (x :: xs) =\n"
+"        if x.email == email then Just x else lookupUser xs\n"
+"\n"
+"      lookupAlbum : 列出专辑 -> 响应\n"
+"      lookupAlbum [] = AccessDenied 电子邮件相册\n"
+"      查找相册 (x :: xs) =\n"
+"        if x == album then Success 相册 else lookupAlbum xs\n"
+"\n"
+"   万一 lookupUser db 的\n"
+"        Just (MkUser _ _ 密码相册) =>\n"
+"          if password == pw then lookupAlbum albums else InvalidPassword\n"
+"\n"
+"        什么都没有 => 未知用户电子邮件\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:345
