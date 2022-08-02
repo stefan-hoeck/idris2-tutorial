@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 20:50+0800\n"
+"POT-Creation-Date: 2022-08-02 22:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. type: Plain text
-#: ../README.md:3
-msgid ""
-"> [Idris 2 ](translation/README.md)  # Functional Programming in Idris 2"
+#: ../README.md:2
+msgid "> [Idris 2 ](translation/README.md"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:8
+#: ../README.md:4
+msgid "# Functional Programming in Idris 2"
+msgstr ""
+
+#. type: Plain text
+#: ../README.md:9
 msgid ""
 "The goal of this project is quickly explained: To become a more or less "
 "comprehensive guide to the Idris programming language, with a lot of "
@@ -31,7 +35,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:16
+#: ../README.md:17
 msgid ""
 "The content will be organized in several parts, with the part about the core "
 "language features being the main guide to functional programming in Idris. "
@@ -42,7 +46,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:21
+#: ../README.md:22
 msgid ""
 "Right now, even the part about core language features is not yet finished, "
 "but is being actively developed and tried on several of my own students, "
@@ -50,17 +54,17 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:23
+#: ../README.md:24
 msgid "## Table of Contents"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:25
+#: ../README.md:26
 msgid "### Part 1: Core Language Features"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:30
+#: ../README.md:31
 msgid ""
 "This part tries to give a solid introduction to the Idris programming "
 "language. If you are new to functional programming, make sure to follow "
@@ -68,7 +72,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:35
+#: ../README.md:36
 msgid ""
 "If you already used other pure functional programming languages like "
 "Haskell, you might go through the introductory material (Functions Part 1, "
@@ -77,7 +81,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:104
+#: ../README.md:105
 #, no-wrap
 msgid ""
 "1. [Introduction](src/Tutorial/Intro.md)\n"
@@ -151,12 +155,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:106
+#: ../README.md:107
 msgid "### Part 2: Appendices"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:111
+#: ../README.md:112
 msgid ""
 "The appendices can be used as references for the topics at hand. I plan to "
 "eventually have a concise reference on Idris syntax, typical error messages, "
@@ -164,17 +168,17 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../README.md:113
+#: ../README.md:114
 msgid "[Interactive Editing in Neovim](src/Appendices/Neovim.md)"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:115
+#: ../README.md:116
 msgid "## Prerequisites"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:120
+#: ../README.md:121
 msgid ""
 "At the moment, this project is being actively developed and evolved against "
 "the main branch of the Idris 2 repository.  It is being tested nightly on "

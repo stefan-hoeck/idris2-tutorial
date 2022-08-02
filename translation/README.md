@@ -1,5 +1,6 @@
-> [ãIdris 2 ä¸­çå½æ°å¼ç¼ç¨ãä¸­æç](translation/README.md)  #
-Functional Programming in Idris 2
+> [ãIdris 2 ä¸­çå½æ°å¼ç¼ç¨ãä¸­æç](translation/README.md
+
+# Functional Programming in Idris 2
 
 这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。
 

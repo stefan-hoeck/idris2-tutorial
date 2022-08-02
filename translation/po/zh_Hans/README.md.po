@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 20:50+0800\n"
+"POT-Creation-Date: 2022-08-02 22:20+0800\n"
 "PO-Revision-Date: 2022-08-02 14:09+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -19,16 +19,22 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
-#: ../README.md:3
+#: ../README.md:2
 #, fuzzy
 #| msgid ""
 #| "> [Idris 2 ](translation/README.md)  # Functional Programming in Idris 2"
-msgid ""
-"> [Idris 2 ](translation/README.md)  # Functional Programming in Idris 2"
+msgid "> [Idris 2 ](translation/README.md"
 msgstr "# Idris 2 中的函数式编程"
 
 #. type: Plain text
-#: ../README.md:8
+#: ../README.md:4
+#, fuzzy
+#| msgid "### Functional Programming"
+msgid "# Functional Programming in Idris 2"
+msgstr "### 函数式编程"
+
+#. type: Plain text
+#: ../README.md:9
 msgid ""
 "The goal of this project is quickly explained: To become a more or less "
 "comprehensive guide to the Idris programming language, with a lot of "
@@ -38,7 +44,7 @@ msgstr ""
 "新手的介绍性材料。"
 
 #. type: Plain text
-#: ../README.md:16
+#: ../README.md:17
 msgid ""
 "The content will be organized in several parts, with the part about the core "
 "language features being the main guide to functional programming in Idris. "
@@ -53,7 +59,7 @@ msgstr ""
 "案。"
 
 #. type: Plain text
-#: ../README.md:21
+#: ../README.md:22
 msgid ""
 "Right now, even the part about core language features is not yet finished, "
 "but is being actively developed and tried on several of my own students, "
@@ -63,17 +69,17 @@ msgstr ""
 "生身上进行尝试，其中一些对函数式编程来说是纯萌新。"
 
 #. type: Plain text
-#: ../README.md:23
+#: ../README.md:24
 msgid "## Table of Contents"
 msgstr "## 目录"
 
 #. type: Plain text
-#: ../README.md:25
+#: ../README.md:26
 msgid "### Part 1: Core Language Features"
 msgstr "### 第 1 部分：核心语言功能"
 
 #. type: Plain text
-#: ../README.md:30
+#: ../README.md:31
 msgid ""
 "This part tries to give a solid introduction to the Idris programming "
 "language. If you are new to functional programming, make sure to follow "
@@ -83,7 +89,7 @@ msgstr ""
 "顺序阅读这些章节并*解决所有练习*。"
 
 #. type: Plain text
-#: ../README.md:35
+#: ../README.md:36
 msgid ""
 "If you already used other pure functional programming languages like "
 "Haskell, you might go through the introductory material (Functions Part 1, "
@@ -95,7 +101,7 @@ msgstr ""
 "很熟悉了。"
 
 #. type: Plain text
-#: ../README.md:104
+#: ../README.md:105
 #, no-wrap
 msgid ""
 "1. [Introduction](src/Tutorial/Intro.md)\n"
@@ -237,12 +243,12 @@ msgstr ""
 "    4. [改进原语](src/Tutorial/Prim.md#refined-primitives)\n"
 
 #. type: Plain text
-#: ../README.md:106
+#: ../README.md:107
 msgid "### Part 2: Appendices"
 msgstr "### 第 2 部分：附录"
 
 #. type: Plain text
-#: ../README.md:111
+#: ../README.md:112
 msgid ""
 "The appendices can be used as references for the topics at hand. I plan to "
 "eventually have a concise reference on Idris syntax, typical error messages, "
@@ -252,17 +258,17 @@ msgstr ""
 "互式编辑以及可能的其他内容有一个简明的参考。"
 
 #. type: Bullet: '1. '
-#: ../README.md:113
+#: ../README.md:114
 msgid "[Interactive Editing in Neovim](src/Appendices/Neovim.md)"
 msgstr "[Neovim 中的交互式编辑](src/Appendices/Neovim.md)"
 
 #. type: Plain text
-#: ../README.md:115
+#: ../README.md:116
 msgid "## Prerequisites"
 msgstr "## 先决条件"
 
 #. type: Plain text
-#: ../README.md:120
+#: ../README.md:121
 msgid ""
 "At the moment, this project is being actively developed and evolved against "
 "the main branch of the Idris 2 repository.  It is being tested nightly on "
