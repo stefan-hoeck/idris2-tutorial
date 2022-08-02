@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:52+0000\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/io/zh_Hans/>\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -777,7 +777,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:121
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "launchMissiles : IO ()\n"
 "launchMissiles = putStrLn \"Boom! You're dead.\"\n"
@@ -801,6 +801,27 @@ msgid ""
 "readHellos : IO ()\n"
 "readHellos = runActions actions\n"
 msgstr ""
+"发射导弹：IO（）\n"
+"\" launchMissiles = putStrLn \"轰！你死了。\"\n"
+"\n"
+"友好读你好：IO（）\n"
+"友好读你好 = 做\n"
+"  _ <- putStrLn \"请输入您的姓名。\"\n"
+"  读你好\n"
+"\n"
+"行动：Vect 3 (IO ())\n"
+"动作 = [launchMissiles，friendlyReadHello，friendlyReadHello]\n"
+"\n"
+"runActions : Vect (S n) (IO ()) -> IO ()\n"
+"runActions (_ :: xs) = 去 xs\n"
+"  去哪里： Vect k (IO ()) -> IO ()\n"
+"        去 [] = 纯 ()\n"
+"        去（y :: ys）=做\n"
+"          _ <- 是\n"
+"          去吧\n"
+"\n"
+"读你好：IO（）\n"
+"readHellos = runActions 动作\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:153
@@ -2515,7 +2536,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:960
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   pure : a -> IO (Either e a)\n"
 "\n"
@@ -2529,6 +2550,17 @@ msgid ""
 "\n"
 "   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)\n"
 msgstr ""
+"   纯：a -> IO（要么 e a）\n"
+"\n"
+"   失败：e -> IO（要么 e a）\n"
+"\n"
+"   电梯：IO a -> IO（要么 e a）\n"
+"\n"
+"   抓住：IO（e1 a）->（e1-> IO（e2 a））-> IO（e2 a）\n"
+"\n"
+"   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)\n"
+"\n"
+"   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/IO.md:977
