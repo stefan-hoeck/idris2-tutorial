@@ -1,0 +1,2281 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:2
+msgid "# Algebraic Data Types"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:8
+msgid ""
+"In the [previous chapter](Functions1.md), we learned how to write our own "
+"functions and combine them to create more complex functionality. Of equal "
+"importance is the ability to define our own data types and use them as "
+"arguments and results in functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:15
+msgid ""
+"This is a lengthy chapter, densely packed with information.  If you are new "
+"to Idris and functional programming, make sure to follow along slowly, "
+"experimenting with the examples, and possibly coming up with your own. Make "
+"sure to try and solve *all* exercises. The solutions to the exercises can be "
+"found [here](../Solutions/DataTypes.idr)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:19
+msgid "```idris module Tutorial.DataTypes ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:21
+msgid "## Enumerations"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:24
+msgid "Let's start with a data type for the days of the week as an example."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:34
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Weekday = Monday\n"
+"             | Tuesday\n"
+"             | Wednesday\n"
+"             | Thursday\n"
+"             | Friday\n"
+"             | Saturday\n"
+"             | Sunday\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:38
+msgid ""
+"The declaration above defines a new *type* (`Weekday`) and several new "
+"*values* (`Monday` to `Sunday`) of the given type. Go ahead, and verify this "
+"at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:45
+msgid ""
+"```repl Tutorial.DataTypes> :t Monday Tutorial.DataTypes.Monday : Weekday "
+"Tutorial.DataTypes> :t Weekday Tutorial.DataTypes.Weekday : Type ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:48
+msgid ""
+"So, `Monday` is of type `Weekday`, while `Weekday` itself is of type `Type`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:52
+msgid ""
+"It is important to note, that a value of type `Weekday` can only ever be one "
+"of the values listed above. It is a *type error* to use anything else where "
+"a `Weekday` is expected."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:54
+msgid "### Pattern Matching"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:59
+msgid ""
+"In order to use our new data type as a function argument, we need to learn "
+"about an important concept in functional programming languages: Pattern "
+"matching. Let's implement a function, which calculates the successor of a "
+"weekday:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:71
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"next : Weekday -> Weekday\n"
+"next Monday    = Tuesday\n"
+"next Tuesday   = Wednesday\n"
+"next Wednesday = Thursday\n"
+"next Thursday  = Friday\n"
+"next Friday    = Saturday\n"
+"next Saturday  = Sunday\n"
+"next Sunday    = Monday\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:81
+msgid ""
+"In order to inspect a `Weekday` argument, we match on the different possible "
+"values and return a result for each of them.  This is a very powerful "
+"concept, as it allows us to match on and extract values from deeply nested "
+"data structures.  The different cases in a pattern match are inspected from "
+"top to bottom, each being compared against the current function argument. "
+"Once a matching pattern is found, the computation on the right hand side of "
+"this pattern is evaluated. Later patterns are then ignored."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:89
+msgid ""
+"For instance, if we invoke `next` with argument `Thursday`, the first three "
+"patterns (`Monaday`, `Tuesday`, and `Wednesday`)  will be checked against "
+"the argument, but they do not match.  The fourth pattern is a match, and "
+"result `Friday` is being returned. Later patterns are then ignored, even if "
+"they would also match the input (this becomes relevant with catch-all "
+"patterns, which we will talk about in a moment)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:98
+msgid ""
+"The function above is provably total. Idris knows about the possible values "
+"of type `Weekday`, and can therefore figure out that our pattern match "
+"covers all possible cases. We can therefore annotate the function with the "
+"`total` keyword, and Idris will answer with a type error, if it can't verify "
+"the function's totality. (Go ahead, and try removing one of the clauses in "
+"`next` to get an idea about how an error message from the coverage checker "
+"looks like.)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:105
+msgid ""
+"Please remember, that these are very strong guarantees from the type "
+"checker: Given enough resources, a provably total function will *always* "
+"return a result of the given type in a finite amount of time (*resources* "
+"here meaning computational resources like memory or, in case of recursive "
+"functions, stack space)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:107
+msgid "### Catch-all Patterns"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:111
+msgid ""
+"Sometimes, it is convenient to only match on a subset of the possible values "
+"and collect the remaining possibilities in a catch-all clause:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:119
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"isWeekend : Weekday -> Bool\n"
+"isWeekend Saturday = True\n"
+"isWeekend Sunday   = True\n"
+"isWeekend _        = False\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:125
+msgid ""
+"The final line with the catch-all pattern is only invoked, if the argument "
+"is not equal to `Saturday` or `Sunday`.  Remember: Patterns in a pattern "
+"match are matched against the input from top to bottom and the first match "
+"decides, which path on the right hand side will be taken."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:129
+msgid ""
+"We can use catch-all patterns to implement an equality test for `Weekday` "
+"(we will not yet use the `==` operator for this; this will have to wait "
+"until we learn about *interfaces*):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:142
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"eqWeekday : Weekday -> Weekday -> Bool\n"
+"eqWeekday Monday Monday        = True\n"
+"eqWeekday Tuesday Tuesday      = True\n"
+"eqWeekday Wednesday Wednesday  = True\n"
+"eqWeekday Thursday Thursday    = True\n"
+"eqWeekday Friday Friday        = True\n"
+"eqWeekday Saturday Saturday    = True\n"
+"eqWeekday Sunday Sunday        = True\n"
+"eqWeekday _ _                  = False\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:144
+msgid "### Enumeration Types in the Prelude"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:151
+msgid ""
+"Data types like `Weekday` consisting of a finite set of values are sometimes "
+"called *enumerations*. The Idris *Prelude* defines some common enumerations "
+"for us, for instance `Bool` and `Ordering`. As with `Weekday`, we can use "
+"pattern matching when implementing functions on these types:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:159
+msgid ""
+"```idris -- this is how `not` is implemented in the *Prelude* total negate : "
+"Bool -> Bool negate False = True negate True = False ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:162
+msgid ""
+"The `Ordering` data type describes an ordering relation between two values. "
+"For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:171
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"compareBool : Bool -> Bool -> Ordering\n"
+"compareBool False False = EQ\n"
+"compareBool False True  = LT\n"
+"compareBool True True   = EQ\n"
+"compareBool True False  = GT\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:176
+msgid ""
+"Here, `LT` means that the first argument is *less than* the second, `EQ` "
+"means that the two arguments are *equal* and `GT` means, that the first "
+"argument is *greater than* the second."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:178
+msgid "### Case Expressions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:183
+msgid ""
+"Sometimes we need to perform a computation with one of the arguments and "
+"want to pattern match on the result of this computation. We can use *case "
+"expressions* in this situation:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:193
+#, no-wrap
+msgid ""
+"```idris\n"
+"-- returns the larger of the two arguments\n"
+"total\n"
+"maxBits8 : Bits8 -> Bits8 -> Bits8\n"
+"maxBits8 x y =\n"
+"  case compare x y of\n"
+"    LT => y\n"
+"    _  => x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:202
+msgid ""
+"The first line of the case expression (`case compare x y of`)  will invoke "
+"function `compare` with arguments `x` and `y`. On the following (indented) "
+"lines, we pattern match on the result of this computation. This is of type "
+"`Ordering`, so we expect one of the three constructors `LT`, `EQ`, or `GT` "
+"as the result.  On the first line, we handle the `LT` case explicitly, while "
+"the other two cases are handled with an underscore as a catch-all pattern."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:206
+msgid ""
+"Note, that indentation matters here: The case block as a whole must be "
+"indented (if it starts on a new line), and the different cases must also be "
+"indented by the same amount of whitespace."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:209
+msgid ""
+"Function `compare` is overloaded for many data types. We will learn how this "
+"works when we talk about interfaces."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:211
+msgid "#### If Then Else"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:214
+msgid ""
+"When working with `Bool`, there is an alternative to pattern matching common "
+"to most programming languages:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:220
+msgid ""
+"```idris total maxBits8' : Bits8 -> Bits8 -> Bits8 maxBits8' x y = if "
+"compare x y == LT then y else x ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:225
+msgid ""
+"Note, that the `if then else` expression always returns a value and "
+"therefore, the `else` branch cannot be dropped. This is different from the "
+"behavior in typical imperative languages, where `if` is a statement with "
+"possible side effects."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:227
+msgid "### Naming Conventions: Identifiers"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:233
+msgid ""
+"While we are free to use lower-case and upper-case identifiers for function "
+"names, type- and data constructors must be given upper-case identifiers in "
+"order not to confuse Idris (operators are also fine).  For instance, the "
+"following data definition is not valid, and Idris will complain that it "
+"expected upper-case identifiers:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:237
+msgid "```repl data foo = bar | baz ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:240
+msgid ""
+"The same goes for similar data definitions like records and sum types (both "
+"will be explained below):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:246
+#, no-wrap
+msgid ""
+"```repl\n"
+"-- not valid Idris\n"
+"record Foo where\n"
+"  constructor mkfoo\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:252
+msgid ""
+"On the other hand, we typically use lower-case identifiers for function "
+"names, unless we plan to use them mostly during type checking (more on this "
+"later). This is not enforced by Idris, however, so if you are working in a "
+"domain where upper-case identifiers are preferable, feel free to use those:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:256
+msgid "```idris foo : Bits32 -> Bits32 foo = (* 2)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:260
+msgid "Bar : Bits32 -> Bits32 Bar = foo ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/DataTypes.md:267
+msgid ""
+"Use pattern matching to implement your own versions of boolean operators "
+"`(&&)` and `(||)` calling them `and` and `or` respectively."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:274
+#, no-wrap
+msgid ""
+"   Note: One way to go about this is to enumerate\n"
+"   all four possible combinations of two boolean\n"
+"   values and give the result for each. However, there\n"
+"   is a shorter, more clever way,\n"
+"   requiring only two pattern matches for each of the\n"
+"   two functions.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/DataTypes.md:282
+msgid ""
+"Define your own data type representing different units of time (seconds, "
+"minutes, hours, days, weeks), and implement the following functions for "
+"converting between time spans using different units. Hint: Use integer "
+"division (`div`)  when going from seconds to some larger unit like hours)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:285
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data UnitOfTime = Second -- add additional values\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:290
+#, no-wrap
+msgid ""
+"   -- calculate the number of seconds from a\n"
+"   -- number of steps in the given unit of time\n"
+"   total\n"
+"   toSeconds : UnitOfTime -> Integer -> Integer\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:295
+#, no-wrap
+msgid ""
+"   -- Given a number of seconds, calculate the\n"
+"   -- number of steps in the given unit of time\n"
+"   total\n"
+"   fromSeconds : UnitOfTime -> Integer -> Integer\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:302
+#, no-wrap
+msgid ""
+"   -- convert the number of steps in a given unit of time\n"
+"   -- to the number of steps in another unit of time.\n"
+"   -- use `fromSeconds` and `toSeconds` in your implementation\n"
+"   total\n"
+"   convert : UnitOfTime -> Integer -> UnitOfTime -> Integer\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/DataTypes.md:306
+msgid ""
+"Define a data type for representing a subset of the chemical elements: "
+"Hydrogen (H), Carbon (C), Nitrogen (N), Oxygen (O), and Fluorine (F)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:309
+#, no-wrap
+msgid ""
+"   Declare and implement function `atomicMass`, which for each element\n"
+"   returns its atomic mass in dalton:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:317
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   Hydrogen : 1.008\n"
+"   Carbon : 12.011\n"
+"   Nitrogen : 14.007\n"
+"   Oxygen : 15.999\n"
+"   Fluorine : 18.9984\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:319
+msgid "## Sum Types"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:326
+msgid ""
+"Assume we'd like to write some web form, where users of our web application "
+"can decide how they like to be addressed.  We give them a choice between two "
+"common predefined forms of address (Mr and Mrs), but also allow them to "
+"decide on a customized form. The possible choices can be encapsulated in an "
+"Idris data type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:330
+msgid "```idris data Title = Mr | Mrs | Other String ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:336
+msgid ""
+"This looks almost like an enumeration type, with the exception that there is "
+"a new thing, called a *data constructor*, which accepts a `String` argument "
+"(actually, the values in an enumeration are also called (nullary) data "
+"constructors).  If we inspect the types at the REPL, we learn the following:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:343
+msgid ""
+"```repl Tutorial.DataTypes> :t Mr Tutorial.DataTypes.Mr : Title Tutorial."
+"DataTypes> :t Other Tutorial.DataTypes.Other : String -> Title ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:347
+msgid ""
+"So, `Other` is a *function* from `String` to `Title`. This means, that we "
+"can pass `Other` a `String` argument and get a `Title` as the result:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:353
+msgid "```idris total dr : Title dr = Other \"Dr.\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:358
+msgid ""
+"Again, a value of type `Title` can only consist of one of the three choices "
+"listed above, and again, we can use pattern matching to implement functions "
+"on the `Title` data type in a provably total way:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:366
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"showTitle : Title -> String\n"
+"showTitle Mr        = \"Mr.\"\n"
+"showTitle Mrs       = \"Mrs.\"\n"
+"showTitle (Other x) = x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:372
+msgid ""
+"Note, how in the last pattern match, the string value stored in the `Other` "
+"data constructor is *bound* to local variable `x`.  Also, the `Other x` "
+"pattern has to be wrapped in parentheses, as otherwise Idris would think "
+"`Other` and `x` were to distinct function arguments."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:377
+msgid ""
+"This is a very common way to extract the values from data constructors.  We "
+"can use `showTitle` to implement a function for creating a courteous "
+"greeting:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:383
+msgid ""
+"```idris total greet : Title -> String -> String greet t name = \"Hello, \" +"
+"+ showTitle t ++ \" \" ++ name ++ \"!\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:387
+msgid ""
+"In the implementation of `greet`, we use string literals and the string "
+"concatenation operator `(++)` to assemble the greeting from its parts."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:389
+msgid "At the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:396
+msgid ""
+"```repl Tutorial.DataTypes> greet dr \"Hck\" \"Hello, Dr. Hck!\" Tutorial."
+"DataTypes> greet Mrs \"Smith\" \"Hello, Mrs. Smith!\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:400
+msgid ""
+"Data types like `Title` are called *sum types* as they consist of the sum of "
+"their different parts: A value of type `Title` is either a `Mr`, a `Mrs`, or "
+"a `String` wrapped up in `Other`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:407
+msgid ""
+"Here's another (drastically simplified) example of a sum type.  Assume we "
+"allow two forms of authentication in our web application: Either by entering "
+"a username plus a password (for which we'll use an unsigned 64 bit integer "
+"here), or by providing user name plus a (very complex) secret key.  Here's a "
+"data type to encapsulate this use case:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:411
+msgid ""
+"```idris data Credentials = Password String Bits64 | Key String String ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:414
+msgid ""
+"As an example of a very primitive login function, we can hard-code some "
+"known credentials:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:422
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"login : Credentials -> String\n"
+"login (Password \"Anderson\" 6665443) = greet Mr \"Anderson\"\n"
+"login (Key \"Y\" \"xyz\")               = greet (Other \"Agent\") \"Y\"\n"
+"login _                             = \"Access denied!\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:426
+msgid ""
+"As can be seen in the example above, we can also pattern match against "
+"primitive values by using integer and string literals. Give `login` a go at "
+"the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:435
+msgid ""
+"```repl Tutorial.DataTypes> login (Password \"Anderson\" 6665443)  \"Hello, "
+"Mr. Anderson!\" Tutorial.DataTypes> login (Key \"Y\" \"xyz\")  \"Hello, "
+"Agent Y!\" Tutorial.DataTypes> login (Key \"Y\" \"foo\")  \"Access denied!\" "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/DataTypes.md:440
+msgid ""
+"Implement an equality test for `Title` (you can use the equality operator "
+"`(==)` for comparing two `String`s):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:445
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   total\n"
+"   eqTitle : Title -> Title -> Bool\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/DataTypes.md:448
+msgid ""
+"For `Title`, implement a simple test to check, whether a custom title is "
+"being used:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:453
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   total\n"
+"   isOther : Title -> Bool\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/DataTypes.md:456
+msgid ""
+"Given our simple `Credentials` type, there are three ways for authentication "
+"to fail:"
+msgstr ""
+
+#. type: Bullet: '   * '
+#: ../src/Tutorial/DataTypes.md:461
+msgid "An unknown username was used."
+msgstr ""
+
+#. type: Bullet: '   * '
+#: ../src/Tutorial/DataTypes.md:461
+msgid "The password given does not match the one associated with the username."
+msgstr ""
+
+#. type: Bullet: '   * '
+#: ../src/Tutorial/DataTypes.md:461
+msgid "An invalid key was used."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:467
+#, no-wrap
+msgid ""
+"   Encapsulate these three possibilities in a sum type\n"
+"   called `LoginError`,\n"
+"   but make sure not to disclose any confidential information:\n"
+"   An invalid username should be stored in the corresponding\n"
+"   error value, but an invalid password or key should not.\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/DataTypes.md:471
+msgid ""
+"Implement function `showError : LoginError -> String`, which can be used to "
+"display an error message to the user who unsuccessfully tried to login into "
+"our web application."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:473
+msgid "## Records"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:481
+msgid ""
+"It is often useful to group together several values as a logical unit. For "
+"instance, in our web application we might want to group information about a "
+"user in a single data type. Such data types are often called *product types* "
+"(see below for an explanation).  The most common and convenient way to "
+"define them is the `record` construct:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:489
+#, no-wrap
+msgid ""
+"```idris\n"
+"record User where\n"
+"  constructor MkUser\n"
+"  name  : String\n"
+"  title : Title\n"
+"  age   : Bits8\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:493
+msgid ""
+"The declaration above creates a new *type* called `User`, and a new *data "
+"constructor* called `MkUser`. As usual, have a look at their types in the "
+"REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:500
+msgid ""
+"```repl Tutorial.DataTypes> :t User Tutorial.DataTypes.User : Type Tutorial."
+"DataTypes> :t MkUser Tutorial.DataTypes.MkUser : String -> Title -> Bits8 -> "
+"User ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:504
+msgid ""
+"We can use `MkUser` (which is a function from `String` to `Title` to `Bits8` "
+"to `User`)  to create values of type `User`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:509
+msgid "```idris total agentY : User agentY = MkUser \"Y\" (Other \"Agent\") 51"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:514
+msgid "total drNo : User drNo = MkUser \"No\" dr 73 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:517
+msgid ""
+"We can also use pattern matching to extract the fields from a `User` value "
+"(they can again be bound to local variables):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:523
+msgid ""
+"```idris total greetUser : User -> String greetUser (MkUser n t _) = greet t "
+"n ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:530
+msgid ""
+"In the example above, the `name` and `title` field are bound to two new "
+"local variables (`n` and `t` respectively), which can then be used on the "
+"right hand side of `greetUser`'s implementation. For the `age` field, which "
+"is not used on the right hand side, we can use an underscore as a catch-all "
+"pattern."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:545
+msgid ""
+"Note, how Idris will prevent us from making a common mistake: If we confuse "
+"the order of arguments, the implementation will no longer type check. We can "
+"verify this by putting the erroneous code in a `failing` block: This is an "
+"indented code block, which will lead to an error during elaboration (type "
+"checking). We can give part of the expected error message as an optional "
+"string argument to a failing block. If this does not match part of the error "
+"message (or the whole code block does not fail to type check) the `failing` "
+"block itself fails to type check. This is a useful tool to demonstrate that "
+"type safety works in two directions: We can show that valid code type checks "
+"but also that invalid code is rejected by the Idris elaborator:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:551
+#, no-wrap
+msgid ""
+"```idris\n"
+"failing \"Mismatch between: String and Title\"\n"
+"  greetUser' : User -> String\n"
+"  greetUser' (MkUser n t _) = greet n t\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:558
+msgid ""
+"In addition, for every record field, Idris creates an extractor function of "
+"the same name. This can either be used as a regular function, or it can be "
+"used in postfix notation by appending it to a variable of the record type "
+"separated by a dot. Here are two examples for extracting the age from a user:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:562
+msgid "```idris getAgeFunction : User -> Bits8 getAgeFunction u = age u"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:566
+msgid "getAgePostfix : User -> Bits8 getAgePostfix u = u.age ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:568
+msgid "### Syntactic Sugar for Records"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:581
+msgid ""
+"As was already mentioned in the [intro](Intro.md), Idris is a *pure* "
+"functional programming language. In pure functions, we are not allowed to "
+"modify global mutable state. As such, if we want to modify a record value, "
+"we will always create a *new* value with the original value remaining "
+"unchanged: Records and other Idris values are *immutable*.  While this *can* "
+"have a slight impact on performance, it has the benefit that we can freely "
+"pass a record value to different functions, without fear of the functions "
+"modifying the value by in-place mutation. These are, again, very strong "
+"guarantees, which makes it drastically easier to reason about our code."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:586
+msgid ""
+"There are several ways to modify a record, the most general being to pattern "
+"match on the record and adjust each field as desired. If, for instance, we'd "
+"like to increase the age of a `User` by one, we could do the following:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:592
+msgid ""
+"```idris total incAge : User -> User incAge (MkUser name title age) = MkUser "
+"name title (age + 1)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:597
+msgid ""
+"That's a lot of code for such a simple thing, so Idris offers several "
+"syntactic conveniences for this. For instance, using *record* syntax, we can "
+"just access and update the `age` field of a value:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:603
+msgid ""
+"```idris total incAge2 : User -> User incAge2 u = { age := u.age + 1 } u ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:607
+msgid ""
+"Assignment operator `:=` assigns a new value to the `age` field in `u`. "
+"Remember, that this will create a new `User` value. The original value `u` "
+"remains unaffected by this."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:613
+msgid ""
+"We can access a record field, either by using the field name as a projection "
+"function (`age u`; also have a look at `:t age` in the REPL), or by using "
+"dot syntax: `u.age`. This is special syntax and *not* related to the dot "
+"operator for function composition (`(.)`)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:616
+msgid ""
+"The use case of modifying a record field is so common that Idris provides "
+"special syntax for this as well:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:622
+msgid ""
+"```idris total incAge3 : User -> User incAge3 u = { age $= (+ 1) } u ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:627
+msgid ""
+"Here, I used an *operator section* (`(+ 1)`) to make the code more concise.  "
+"As an alternative to an operator section, we could have used an anonymous "
+"function like so:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:633
+msgid ""
+"```idris total incAge4 : User -> User incAge4 u = { age $= \\x => x + 1 } u "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:637
+msgid ""
+"Finally, since our function's argument `u` is only used once at the very "
+"end, we can drop it altogether, to get the following, highly concise version:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:643
+msgid "```idris total incAge5 : User -> User incAge5 = { age $= (+ 1) } ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:645
+msgid "As usual, we should have a look at the result at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:650
+msgid ""
+"```repl Tutorial.DataTypes> incAge5 drNo MkUser \"No\" (Other \"Dr.\") 74 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:653
+msgid ""
+"It is possible to use this syntax to set and/or update several record fields "
+"at once:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:659
+msgid ""
+"```idris total drNoJunior : User drNoJunior = { name $= (++ \" Jr.\"), "
+"title := Mr, age := 17 } drNo ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:661
+msgid "### Tuples"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:666
+msgid ""
+"I wrote above that a record is also called a *product type*.  This is quite "
+"obvious when we consider the number of possible values inhabiting a given "
+"type. For instance, consider the following custom record:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:673
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Foo where\n"
+"  constructor MkFoo\n"
+"  wd   : Weekday\n"
+"  bool : Bool\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:678
+msgid ""
+"How many possible values of type `Foo` are there? The answer is `7 * 2 = "
+"14`, as we can pair every possible `Weekday` (seven in total) with every "
+"possible `Bool` (two in total). So, the number of possible values of a "
+"record type is the *product* of the number of possible values for each field."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:680
+msgid ""
+"The canonical product type is the `Pair`, which is available from the "
+"*Prelude*:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:686
+msgid ""
+"```idris total weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool "
+"weekdayAndBool wd b = MkPair wd b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:692
+msgid ""
+"Since it is quite common to return several values from a function wrapped in "
+"a `Pair` or larger tuple, Idris provides some syntactic sugar for working "
+"with these. Instead of `Pair Weekday Bool`, we can just write `(Weekday, "
+"Bool)`. Likewise, instead of `MkPair wd b`, we can just write `(wd, b)` (the "
+"space is optional):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:698
+msgid ""
+"```idris total weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)  "
+"weekdayAndBool2 wd b = (wd, b)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:700
+msgid "This works also for nested tuples:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:705
+msgid ""
+"```idris total triple : Pair Bool (Pair Weekday String)  triple = MkPair "
+"False (Friday, \"foo\")"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:710
+msgid ""
+"total triple2 : (Bool, Weekday, String)  triple2 = (False, Friday, \"foo\")  "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:713
+msgid ""
+"In the example above, `triple2` is converted to the form used in `triple` by "
+"the Idris compiler."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:715
+msgid "We can even use tuple syntax in pattern matches:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:722
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"bar : Bool\n"
+"bar = case triple of\n"
+"  (b,wd,_) => b && isWeekend wd\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:724
+msgid "### As Patterns"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:728
+msgid ""
+"Sometimes, we'd like to take apart a value by pattern matching on it but "
+"still retain the value as a whole for using it in further computations:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:734
+msgid ""
+"```idris total baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)  baz "
+"t@(_,_,s) = (length s, t)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:741
+msgid ""
+"In `baz`, variable `t` is *bound* to the triple as a whole, which is then "
+"reused to construct the resulting quadruple. Remember, that `(Nat,Bool,"
+"Weekday,String)` is just sugar for `Pair Nat (Bool,Weekday,String)`, and "
+"`(length s, t)` is just sugar for `MkPair (length s) t`. Hence, the "
+"implementation above is correct as is confirmed by the type checker."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:748
+#, no-wrap
+msgid ""
+"1. Define a record type for time spans by pairing a `UnitOfTime`\n"
+"with an integer representing the duration of the time span in\n"
+"the given unit of time. Define also a function for converting\n"
+"a time span to an `Integer` representing the duration in seconds.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:752
+#, no-wrap
+msgid ""
+"2. Implement an equality check for time spans: Two time spans\n"
+"should be considered equal, if and only if they correspond to\n"
+"the same number of seconds.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:757
+#, no-wrap
+msgid ""
+"3. Implement a function for pretty printing time spans:\n"
+"The resulting string should display the time span in its\n"
+"given unit, plus show the number of seconds in parentheses,\n"
+"if the unit is not already seconds.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:761
+#, no-wrap
+msgid ""
+"4. Implement a function for adding two time spans. If the\n"
+"two time spans use different units of time, use the smaller\n"
+"unit of time to ensure a lossless conversion.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:763
+msgid "## Generic Data Types"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:772
+msgid ""
+"Sometimes, a concept is general enough that we'd like to apply it not only "
+"to a single type, but to all kinds of types. For instance, we might not want "
+"to define data types for lists of integers, lists of strings, and lists of "
+"booleans, as this would lead to a lot of code duplication.  Instead, we'd "
+"like to have a single generic list type *parameterized* by the type of "
+"values it stores. This section explains how to define and use generic types."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:774
+msgid "### Maybe"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:786
+msgid ""
+"Consider the case of parsing a `Weekday` from user input. Surely, such a "
+"function should return `Saturday`, if the string input was `\"Saturday\"`, "
+"but what if the input was `\"sdfkl332\"`? We have several options here.  For "
+"instance, we could just return a default result (`Sunday` perhaps?). But is "
+"this the behavior programmers expect when using our library? Maybe not. To "
+"silently continue with a default value in the face of invalid user input is "
+"hardly ever the best choice and may lead to a lot of confusion."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:792
+msgid ""
+"In an imperative language, our function would probably throw an exception. "
+"We could do this in Idris as well (there is function `idris_crash` in the "
+"*Prelude* for this), but doing so, we would abandon totality! A high price "
+"to pay for such a common thing as a parsing error."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:803
+msgid ""
+"In languages like Java, our function might also return some kind of `null` "
+"value (leading to the dreaded `NullPointerException`s if not handled "
+"properly in client code). Our solution will be similar, but instead of "
+"silently returning `null`, we will make the possibility of failure visible "
+"in the types! We define a custom data type, which encapsulates the "
+"possibility of failure. Defining new data types in Idris is very cheap (in "
+"terms of the amount of code needed), therefore this is often the way to go "
+"in order to increase type safety.  Here's an example how to do this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:806
+msgid "```idris data MaybeWeekday = WD Weekday | NoWeekday"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:818
+#, no-wrap
+msgid ""
+"total\n"
+"readWeekday : String -> MaybeWeekday\n"
+"readWeekday \"Monday\"    = WD Monday\n"
+"readWeekday \"Tuesday\"   = WD Tuesday\n"
+"readWeekday \"Wednesday\" = WD Wednesday\n"
+"readWeekday \"Thursday\"  = WD Thursday\n"
+"readWeekday \"Friday\"    = WD Friday\n"
+"readWeekday \"Saturday\"  = WD Saturday\n"
+"readWeekday \"Sunday\"    = WD Sunday\n"
+"readWeekday _           = NoWeekday\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:823
+msgid ""
+"But assume now, we'd also like to read `Bool` values from user input. We'd "
+"now have to write a custom data type `MaybeBool` and so on for all types "
+"we'd like to read from `String`, and the conversion of which might fail."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:827
+msgid ""
+"Idris, like many other programming languages, allows us to generalize this "
+"behavior by using *generic data types*. Here's an example:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:830
+msgid "```idris data Option a = Some a | None"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:837
+#, no-wrap
+msgid ""
+"total\n"
+"readBool : String -> Option Bool\n"
+"readBool \"True\"    = Some True\n"
+"readBool \"False\"   = Some False\n"
+"readBool _         = None\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:839
+msgid "It is important to go to the REPL and look at the types:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:848
+msgid ""
+"```repl Tutorial.DataTypes> :t Some Tutorial.DataTypes.Some : a -> Option a "
+"Tutorial.DataTypes> :t None Tutorial.DataTypes.None : Optin a Tutorial."
+"DataTypes> :t Option Tutorial.DataTypes.Option : Type -> Type ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:857
+msgid ""
+"We need to introduce some jargon here. `Option` is what we call a *type "
+"constructor*. It is not yet a saturated type: It is a function from `Type` "
+"to `Type`.  However, `Option Bool` is a type, as is `Option Weekday`.  Even "
+"`Option (Option Bool)` is a valid type. `Option` is a type constructor "
+"*parameterized* over a *parameter* of type `Type`.  `Some` and `None` are "
+"`Option`s *data constructors*: The functions used to create values of type "
+"`Option a` for a type `a`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:860
+msgid ""
+"Let's see some other use cases for `Option`. Below is a safe division "
+"operation:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:867
+msgid ""
+"```idris total safeDiv : Integer -> Integer -> Option Integer safeDiv n 0 = "
+"None safeDiv n k = Some (n `div` k)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:872
+msgid ""
+"The possibility of returning some kind of *null* value in the face of "
+"invalid input is so common, that there is a data type like `Option` already "
+"in the *Prelude*: `Maybe`, with data constructors `Just` and `Nothing`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:884
+msgid ""
+"It is important to understand the difference between returning `Maybe "
+"Integer` in a function, which might fail, and returning `null` in languages "
+"like Java: In the former case, the possibility of failure is visible in the "
+"types. The type checker will force us to treat `Maybe Integer` differently "
+"than `Integer`: Idris will *not* allow us to forget to eventually handle the "
+"failure case.  Not so, if `null` is silently returned without adjusting the "
+"types. Programmers may (and often *will*) forget to handle the `null` case, "
+"leading to unexpected and sometimes hard to debug runtime exceptions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:886
+msgid "### Either"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:896
+msgid ""
+"While `Maybe` is very useful to quickly provide a default value to signal "
+"some kind of failure, this value (`Nothing`) is not very informative. It "
+"will not tell us *what exactly* went wrong. For instance, in case of our "
+"`Weekday` reading function, it might be interesting later on to know the "
+"value of the invalid input string. And just like with `Maybe` and `Option` "
+"above, this concept is general enough that we might encounter other types of "
+"invalid values.  Here's a data type to encapsulate this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:900
+msgid "```idris data Validated e a = Invalid e | Valid a ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:907
+msgid ""
+"`Validated` is a type constructor parameterized over two type parameters `e` "
+"and `a`. It's data constructors are `Invalid` and `Valid`, the former "
+"holding a value describing some error condition, the latter the result in "
+"case of a successful computation.  Let's see this in action:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:920
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"readWeekdayV : String -> Validated String Weekday\n"
+"readWeekdayV \"Monday\"    = Valid Monday\n"
+"readWeekdayV \"Tuesday\"   = Valid Tuesday\n"
+"readWeekdayV \"Wednesday\" = Valid Wednesday\n"
+"readWeekdayV \"Thursday\"  = Valid Thursday\n"
+"readWeekdayV \"Friday\"    = Valid Friday\n"
+"readWeekdayV \"Saturday\"  = Valid Saturday\n"
+"readWeekdayV \"Sunday\"    = Valid Sunday\n"
+"readWeekdayV s           = Invalid (\"Not a weekday: \" ++ s)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:929
+msgid ""
+"Again, this is such a general concept that a data type similar to "
+"`Validated` is already available from the *Prelude*: `Either` with data "
+"constructors `Left` and `Right`.  It is very common for functions to "
+"encapsulate the possibility of failure by returning an `Either err val`, "
+"where `err` is the error type and `val` is the desired return type. This is "
+"the type safe (and total!) alternative to throwing a catchable exception in "
+"an imperative language."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:934
+msgid ""
+"Note, however, that the semantics of `Either` are not always \"`Left` is an "
+"error and `Right` a success\". A function returning an `Either` just means "
+"that it can have to different types of results, each of which are *tagged* "
+"with the corresponding data constructor."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:936
+msgid "### List"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:941
+msgid ""
+"One of the most important data structures in pure functional programming is "
+"the singly linked list. Here is its definition (called `Seq` in order for it "
+"not to collide with `List`, which is of course already available from the "
+"Prelude):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:945
+msgid "```idris data Seq a = Nil | (::) a (Seq a)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:953
+msgid ""
+"This calls for some explanations. `Seq` consists of two *data constructors*: "
+"`Nil` (representing an empty sequence of values) and `(::)` (also called the "
+"*cons operator*), which prepends a new value of type `a` to an already "
+"existing list of values of the same type. As you can see, we can also use "
+"operators as data constructors, but please do not overuse this. Use clear "
+"names for your functions and data constructors and only introduce new "
+"operators when it truly helps readability!"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:956
+msgid ""
+"Here is an example of how to use the `List` constructors (I use `List` here, "
+"as this is what you should use in your own code):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:962
+msgid "```idris total ints : List Int64 ints = 1 :: 2 :: -3 :: Nil ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:966
+msgid ""
+"However, there is a more concise way of writing the above. Idris accepts "
+"special syntax for constructing data types consisting exactly of the two "
+"constructors `Nil` and `(::)`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:971
+msgid "```idris total ints2 : List Int64 ints2 = [1, 2, -3]"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:976
+msgid "total ints3 : List Int64 ints3 = [] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:980
+msgid ""
+"The two definitions `ints` and `ints2` are treated identically by the "
+"compiler.  Note, that list syntax can also be used in pattern matches."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:991
+msgid ""
+"There is another thing that's special about `Seq` and `List`: Each of them "
+"is defined in terms of itself (the cons operator accepts a value and another "
+"`Seq` as arguments). We call such data types *recursive* data types, and "
+"their recursive nature means, that in order to decompose or consume them, we "
+"typically require recursive functions. In an imperative language, we might "
+"use a for loop or similar construct to iterate over the values of a `List` "
+"or a `Seq`, but these things do not exist in a language without in-place "
+"mutation. Here's how to sum a list of integers:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:998
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"intSum : List Integer -> Integer\n"
+"intSum Nil       = 0\n"
+"intSum (n :: ns) = n + intSum ns\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1004
+msgid ""
+"Recursive functions can be hard to grasp at first, so I'll break this down a "
+"bit. If we invoke `intSum` with the empty list, the first pattern matches "
+"and the function returns zero immediately.  If, however, we invoke `intSum` "
+"with a non-empty list - `[7,5,9]` for instance - the following happens:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/DataTypes.md:1008
+msgid ""
+"The second pattern matches and splits the list into two parts: Its head "
+"(`7`) is bound to variable `n` and its tail (`[5,9]`) is bound to `ns`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1015
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   7 + intSum [5,9]\n"
+"   ```\n"
+"2. In a second invocation, `intSum` is called with a new list: `[5,9]`.\n"
+"   The second pattern matches and `n` is bound to `5` and `ns` is bound\n"
+"   to `[9]`:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1019
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   7 + (5 + intSum [9])\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/DataTypes.md:1023
+msgid ""
+"In a third invocation `intSum` is called with list `[9]`.  The second "
+"pattern matches and `n` is bound to `9` and `ns` is bound to `[]`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1027
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   7 + (5 + (9 + intSum [])\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/DataTypes.md:1030
+msgid ""
+"In a fourth invocation, `intSum` is called with list `[]` and returns `0` "
+"immediately:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1034
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   7 + (5 + (9 + 0)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/DataTypes.md:1037
+msgid "In the third invocation, `9` and `0` are added and `9` is returned:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1041
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   7 + (5 + 9)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/DataTypes.md:1044
+msgid "In the second invocation, `5` and `9` are added and `14` is returned:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1048
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   7 + 14\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/DataTypes.md:1051
+msgid ""
+"Finally, our initial invocation of `intSum` adds `7` and `14` and returns "
+"`21`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1055
+msgid ""
+"Thus, the recursive implementation of `intSum` leads to a sequence of nested "
+"calls to `intSum`, which terminates once the argument is the empty list."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1057
+msgid "### Generic Functions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1062
+msgid ""
+"In order to fully appreciate the versatility that comes with generic data "
+"types, we also need to talk about generic functions.  Like generic types, "
+"these are parameterized over one or more type parameters."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1068
+msgid ""
+"Consider for instance the case of breaking out of the `Option` data type. In "
+"case of a `Some`, we'd like to return the stored value, while for the `None` "
+"case we provide a default value. Here's how to do this, specialized to "
+"`Integer`s:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1075
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"integerFromOption : Integer -> Option Integer -> Integer\n"
+"integerFromOption _ (Some y) = y\n"
+"integerFromOption x None     = x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1080
+msgid ""
+"It's pretty obvious that this, again, is not general enough.  Surely, we'd "
+"also like to break out of `Option Bool` or `Option String` in a similar "
+"fashion. That's exactly what the generic function `fromOption` does:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1087
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"fromOption : a -> Option a -> a\n"
+"fromOption _ (Some y) = y\n"
+"fromOption x None     = x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1095
+msgid ""
+"The lower-case `a` is again a *type parameter*. You can read the type "
+"signature as follows: \"For any type `a`, given a *value* of type `a`, and "
+"an `Option a`, we can return a value of type `a`.\" Note, that `fromOption` "
+"knows nothing else about `a`, other than it being a type. It is therefore "
+"not possible, to conjure a value of type `a` out of thin air. We *must* have "
+"a value available to deal with the `None` case."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1098
+msgid ""
+"The pendant to `fromOption` for `Maybe` is called `fromMaybe` and is "
+"available from module `Data.Maybe` from the *base* library."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1104
+msgid ""
+"Sometimes, `fromOption` is not general enough. Assume we'd like to print the "
+"value of a freshly parsed `Bool`, giving some generic error message in case "
+"of a `None`. We can't use `fromOption` for this, as we have an `Option Bool` "
+"and we'd like to return a `String`. Here's how to do this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1110
+#, no-wrap
+msgid ""
+"```idris\n"
+"total\n"
+"option : b -> (a -> b) -> Option a -> b\n"
+"option _ f (Some y) = f y\n"
+"option x _ None     = x\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1115
+msgid ""
+"total handleBool : Option Bool -> String handleBool = option \"Not a boolean "
+"value.\" show ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1121
+msgid ""
+"Function `option` is parameterized over *two* type parameters: `a` "
+"represents the type of values stored in the `Option`, while `b` is the "
+"return type. In case of a `Just`, we need a way to convert the stored `a` to "
+"a `b`, an that's done using the function argument of type `a -> b`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1126
+msgid ""
+"In Idris, lower-case identifiers in function types are treated as *type "
+"parameters*, while upper-case identifiers are treated as types or type "
+"constructors that must be in scope."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1128 ../src/Tutorial/Eq.md:1057
+msgid "### Exercises part 4"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1137
+msgid ""
+"If this is your first time programming in a purely functional language, the "
+"exercises below are *very* important. Do not skip any of them! Take your "
+"time and work through them all. In most cases, the types should be enough to "
+"explain what's going on, even though they might appear cryptic in the "
+"beginning. Otherwise, have a look at the comments (if any)  of each exercise."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1140
+msgid ""
+"Remember, that lower-case identifiers in a function signature are treated as "
+"type parameters."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/DataTypes.md:1142
+msgid "Implement the following generic functions for `Maybe`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1147
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   -- make sure to map a `Just` to a `Just`.\n"
+"   total\n"
+"   mapMaybe : (a -> b) -> Maybe a -> Maybe b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1151
+#, no-wrap
+msgid ""
+"   -- Example: `appMaybe (Just (+2)) (Just 20) = Just 22`\n"
+"   total\n"
+"   appMaybe : Maybe (a -> b) -> Maybe a -> Maybe b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1155
+#, no-wrap
+msgid ""
+"   -- Example: `bindMaybe (Just 12) Just = Just 12`\n"
+"   total\n"
+"   bindMaybe : Maybe a -> (a -> Maybe b) -> Maybe b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1159
+#, no-wrap
+msgid ""
+"   -- keep the value in a `Just` only if the given predicate holds\n"
+"   total\n"
+"   filterMaybe : (a -> Bool) -> Maybe a -> Maybe a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1163
+#, no-wrap
+msgid ""
+"   -- keep the first value that is not a `Nothing` (if any)\n"
+"   total\n"
+"   first : Maybe a -> Maybe a -> Maybe a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1167
+#, no-wrap
+msgid ""
+"   -- keep the last value that is not a `Nothing` (if any)\n"
+"   total\n"
+"   last : Maybe a -> Maybe a -> Maybe a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1175
+#, no-wrap
+msgid ""
+"   -- this is another general way to extract a value from a `Maybe`.\n"
+"   -- Make sure the following holds:\n"
+"   -- `foldMaybe (+) 5 Nothing = 5`\n"
+"   -- `foldMaybe (+) 5 (Just 12) = 17`\n"
+"   total\n"
+"   foldMaybe : (acc -> el -> acc) -> acc -> Maybe el -> acc\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/DataTypes.md:1177
+msgid "Implement the following generic functions for `Either`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1181
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   total\n"
+"   mapEither : (a -> b) -> Either e a -> Either e b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1186
+#, no-wrap
+msgid ""
+"   -- In case of both `Either`s being `Left`s, keep the\n"
+"   -- value stored in the first `Left`.\n"
+"   total\n"
+"   appEither : Either e (a -> b) -> Either e a -> Either e b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1189
+#, no-wrap
+msgid ""
+"   total\n"
+"   bindEither : Either e a -> (a -> Either e b) -> Either e b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1195
+#, no-wrap
+msgid ""
+"   -- Keep the first value that is not a `Left`\n"
+"   -- If both `Either`s are `Left`s, use the given accumulator\n"
+"   -- for the error values\n"
+"   total\n"
+"   firstEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1201
+#, no-wrap
+msgid ""
+"   -- Keep the last value that is not a `Left`\n"
+"   -- If both `Either`s are `Left`s, use the given accumulator\n"
+"   -- for the error values\n"
+"   total\n"
+"   lastEither : (e -> e -> e) -> Either e a -> Either e a -> Either e a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1205
+#, no-wrap
+msgid ""
+"   total\n"
+"   fromEither : (e -> c) -> (a -> c) -> Either e a -> c\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/DataTypes.md:1207
+msgid "Implement the following generic functions for `List`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1211
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   total\n"
+"   mapList : (a -> b) -> List a -> List b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1214
+#, no-wrap
+msgid ""
+"   total\n"
+"   filterList : (a -> Bool) -> List a -> List a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1218
+#, no-wrap
+msgid ""
+"   -- return the first value of a list, if it is non-empty\n"
+"   total\n"
+"   headMaybe : List a -> Maybe a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1222
+#, no-wrap
+msgid ""
+"   -- return everything but the first value of a list, if it is non-empty\n"
+"   total\n"
+"   tailMaybe : List a -> Maybe (List a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1226
+#, no-wrap
+msgid ""
+"   -- return the last value of a list, if it is non-empty\n"
+"   total\n"
+"   lastMaybe : List a -> Maybe a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1231
+#, no-wrap
+msgid ""
+"   -- return everything but the last value of a list,\n"
+"   -- if it is non-empty\n"
+"   total\n"
+"   initMaybe : List a -> Maybe (List a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1242
+#, no-wrap
+msgid ""
+"   -- accumulate the values in a list using the given\n"
+"   -- accumulator function and initial value\n"
+"   --\n"
+"   -- Examples:\n"
+"   -- `foldList (+) 10 [1,2,7] = 20`\n"
+"   -- `foldList String.(++) \"\" [\"Hello\",\"World\"] = \"HelloWorld\"`\n"
+"   -- `foldList last Nothing (mapList Just [1,2,3]) = Just 3`\n"
+"   total\n"
+"   foldList : (acc -> el -> acc) -> acc -> List el -> acc\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/DataTypes.md:1245
+msgid ""
+"Assume we store user data for our web application in the following record:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1254
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   record Client where\n"
+"     constructor MkClient\n"
+"     name          : String\n"
+"     title         : Title\n"
+"     age           : Bits8\n"
+"     passwordOrKey : Either Bits64 String\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1260
+#, no-wrap
+msgid ""
+"   Using `LoginError` from an earlier exercise,\n"
+"   implement function `login`, which, given a list of `Client`s\n"
+"   plus a value of type `Credentials` will return either a `LoginError`\n"
+"   in case no valid credentials where provided, or the first `Client`\n"
+"   for whom the credentials match.\n"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/DataTypes.md:1264
+msgid ""
+"Using your data type for chemical elements from an earlier exercise, "
+"implement a function for calculating the molar mass of a molecular formula."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1268
+#, no-wrap
+msgid ""
+"   Use a list of elements each paired with its count\n"
+"   (a natural number) for representing formulae. For\n"
+"   instance:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1273
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   ethanol : List (Element,Nat)\n"
+"   ethanol = [(C,2),(H,6),(O,1)]\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1276
+#, no-wrap
+msgid ""
+"   Hint: You can use function `cast` to convert a natural\n"
+"   number to a `Double`.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1278
+msgid "## Alternative Syntax for Data Definitions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1285
+msgid ""
+"While the examples in the section about parameterized data types are short "
+"and concise, there is a slightly more verbose but much more general form for "
+"writing such definitions, which makes it much clearer what's going on.  In "
+"my opinion, this more general form should be preferred in all but the most "
+"simple data definitions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1290
+msgid ""
+"Here are the definitions of `Option`, `Validated`, and `Seq` again, using "
+"this more general form (I put them in their own *namespace*, so Idris will "
+"not complain about identical names in the same source file):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1297
+#, no-wrap
+msgid ""
+"```idris\n"
+"-- GADT is an acronym for \"generalized algebraic data type\"\n"
+"namespace GADT\n"
+"  data Option : Type -> Type where\n"
+"    Some : a -> Option a\n"
+"    None : Option a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1301
+#, no-wrap
+msgid ""
+"  data Validated : Type -> Type -> Type where\n"
+"    Invalid : e -> Validated e a\n"
+"    Valid   : a -> Validated e a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1306
+#, no-wrap
+msgid ""
+"  data Seq : Type -> Type where\n"
+"    Nil  : Seq a\n"
+"    (::) : a -> GADT.Seq a -> Seq a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1318
+msgid ""
+"Here, `Option` is clearly declared as a type constructor (a function of type "
+"`Type -> Type`), while `Some` is a generic function of type `a -> Option a` "
+"(where `a` is a *type parameter*)  and `None` is a nullary generic function "
+"of type `Option a` (`a` again being a type parameter).  Likewise for "
+"`Validated` and `Seq`. Note, that in case of `Seq` we had to disambiguate "
+"between the different `Seq` definitions in the recursive case. Since we will "
+"usually not define several data types with the same name in a source file, "
+"this is not necessary most of the time."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1323
+msgid ""
+"We covered a lot of ground in this chapter, so I'll summarize the most "
+"important points below:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1326
+#, no-wrap
+msgid ""
+"* Enumerations are data types consisting of a finite\n"
+"number of possible *values*.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1330
+#, no-wrap
+msgid ""
+"* Sum types are data types with more than one data\n"
+"constructor, where each constructor describes a\n"
+"*choice* that can be made.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1333
+#, no-wrap
+msgid ""
+"* Product types are data types with a single constructor\n"
+"used to group several values of possibly different types.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1337
+#, no-wrap
+msgid ""
+"* We use pattern matching to deconstruct immutable\n"
+"values in Idris. The possible patterns correspond to\n"
+"a data type's data constructors.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1341
+#, no-wrap
+msgid ""
+"* We can *bind* variables to values in a pattern or\n"
+"use an underscore as a placeholder for a value that's\n"
+"not needed on the right hand side of an implementation.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1344
+#, no-wrap
+msgid ""
+"* We can pattern match on an intermediary result by introducing\n"
+"a *case block*.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1349
+#, no-wrap
+msgid ""
+"* The preferred way to define new product types is\n"
+"to define them as *records*, since these come with\n"
+"additional syntactic conveniences for setting and\n"
+"modifying individual *record fields*.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1354
+#, no-wrap
+msgid ""
+"* Generic types and functions allow us generalize\n"
+"certain concepts and make them available for many\n"
+"types by using *type parameters* instead of\n"
+"concrete types in function and type signatures.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1361
+#, no-wrap
+msgid ""
+"* Common concepts like *nullary values* (`Maybe`),\n"
+"computations that might fail with some error\n"
+"condition (`Either`), and handling collections\n"
+"of values of the same type at once (`List`) are\n"
+"example use cases of generic types and functions\n"
+"already provided by the *Prelude*.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1363
+msgid "## What's next"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1366
+msgid ""
+"In the [next section](Interfaces.md), we will introduce *interfaces*, "
+"another approach to *function overloading*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""

@@ -1,0 +1,2231 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
+#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
+#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
+#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
+#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+msgid "%default total ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DPair.md:750 ../src/Tutorial/Predicates.md:1357
+msgid "Enter a command: quit Goodbye.  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
+#: ../src/Tutorial/Predicates.md:495
+msgid "```idris data ColType = I64 | Str | Boolean | Float"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DPair.md:1095 ../src/Tutorial/Predicates.md:1294
+#, no-wrap
+msgid ""
+"```idris\n"
+"encodeField : (t : ColType) -> IdrisType t -> String\n"
+"encodeField I64     x     = show x\n"
+"encodeField Str     x     = show x\n"
+"encodeField Boolean True  = \"t\"\n"
+"encodeField Boolean False = \"f\"\n"
+"encodeField Float   x     = show x\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DPair.md:1127 ../src/Tutorial/Predicates.md:1334
+msgid "covering main : IO ()  main = runProg $ MkTable [] _ [] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:38 ../src/Tutorial/Predicates.md:501
+#, no-wrap
+msgid ""
+"IdrisType : ColType -> Type\n"
+"IdrisType I64     = Int64\n"
+"IdrisType Str     = String\n"
+"IdrisType Boolean = Bool\n"
+"IdrisType Float   = Double\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
+#: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
+#: ../src/Tutorial/Prim.md:646
+msgid "And at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:2
+msgid "# Predicates and Proof Search"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:12
+msgid ""
+"In the [last chapter](Eq.md) we learned about propositional equality, which "
+"allowed us to proof that two values are equal. Equality is a relation "
+"between values, and we used an indexed data type to encode this relation by "
+"limiting the degrees of freedom of the indices in the sole data constructor. "
+"There are other relations and contracts we can encode this way. This will "
+"allow us to restrict the values we accept as a function's arguments or the "
+"values returned by functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:15
+msgid "```idris module Tutorial.Predicates"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:22
+msgid ""
+"import Data.Either import Data.List1 import Data.String import Data.Vect "
+"import Data.HList import Decidable.Equality"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:25
+msgid "import Text.CSV import System.File"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:30
+msgid "## Preconditions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:38
+msgid ""
+"Often, when we implement functions operating on values of a given type, not "
+"all values are considered to be valid arguments for the function in "
+"question. For instance, we typically do not allow division by zero, as the "
+"result is undefined in the general case. This concept of putting a "
+"*precondition* on a function argument comes up pretty often, and there are "
+"several ways to go about this."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:45
+msgid ""
+"A very common operation when working with lists or other container types is "
+"to extract the first value in the sequence.  This function, however, cannot "
+"work in the general case, because in order to extract a value from a list, "
+"the list must not be empty. Here are a couple of ways to encode and "
+"implement this, each with its own advantages and disadvantages:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Predicates.md:57
+msgid ""
+"Wrap the result in a failure type, such as a `Maybe` or `Either e` with some "
+"custom error type `e`. This makes it immediately clear that the function "
+"might not be able to return a result. It is a natural way to deal with "
+"unvalidated input from unknown sources. The drawback of this approach is "
+"that results will carry the `Maybe` stain, even in situations when we *know* "
+"that the *nil* case is impossible, for instance because we know the value of "
+"the list argument at compile-time, or because we already *refined* the input "
+"value in such a way that we can be sure it is not empty (due to an earlier "
+"pattern match, for instance)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Predicates.md:67
+msgid ""
+"Define a new data type for non-empty lists and use this as the function's "
+"argument. This is the approach taken in module `Data.List1`. It allows us to "
+"return a pure value (meaning \"not wrapped in a failure type\" here), "
+"because the function cannot possibly fail, but it comes with the burden of "
+"reimplementing many of the utility functions and interfaces we already "
+"implemented for `List`. For a very common data structure this can be a valid "
+"option, but for rare use cases it is often too cumbersome."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Predicates.md:81
+msgid ""
+"Use an index to keep track of the property we are interested in. This was "
+"the approach we took with type family `List01`, which we saw in several "
+"examples and exercises in this guide so far. This is also the approach taken "
+"with vectors, where we use the exact length as our index, which is even more "
+"expressive. While this allows us to implement many functions only once and "
+"with greater precision at the type level, it also comes with the burden of "
+"keeping track of changes in the types, making for more complex function "
+"types and forcing us to at times return existentially quantified wrappers "
+"(for instance, dependent pairs), because the outcome of a computation is not "
+"known until runtime."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Predicates.md:87
+msgid ""
+"Fail with a runtime exception. This is a popular solution in many "
+"programming languages (even Haskell), but in Idris we try to avoid this, "
+"because it breaks totality in a way, which also affects client code. "
+"Luckily, we can make use of our powerful type system to avoid this situation "
+"in general."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Predicates.md:94
+msgid ""
+"Take an additional (possibly erased) argument of a type we can use as a "
+"witness that the input value is of the correct kind or shape. This is the "
+"solution we will discuss in this chapter in great detail. It is an "
+"incredibly powerful way to talk about restrictions on values without having "
+"to replicate a lot of already existing functionality."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:100
+msgid ""
+"There is a time and place for most if not all of the solutions listed above "
+"in Idris, but we will often turn to the last one and refine function "
+"arguments with predicates (so called *preconditions*), because it makes our "
+"functions nice to use at runtime *and* compile time."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:102
+msgid "### Example: Non-empty Lists"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:107
+msgid ""
+"Remember how we implemented an indexed data type for propositional equality: "
+"We restricted the valid values of the indices in the constructors. We can do "
+"the same thing for a predicate for non-empty lists:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:112
+#, no-wrap
+msgid ""
+"```idris\n"
+"data NotNil : (as : List a) -> Type where\n"
+"  IsNotNil : NotNil (h :: t)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:117
+msgid ""
+"This is a single-value data type, so we can always use it as an erased "
+"function argument and still pattern match on it. We can now use this to "
+"implement a safe and pure `head` function:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:123
+msgid ""
+"```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = "
+"h head1 [] IsNotNil impossible ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:129
+msgid ""
+"Note, how value `IsNotNil` is a *witness* that its index, which corresponds "
+"to our list argument, is indeed non-empty, because this is what we specified "
+"in its type.  The impossible case in the implementation of `head1` is not "
+"strictly necessary here. It was given above for completeness."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:134
+msgid ""
+"We call `NotNil` a *predicate* on lists, as it restricts the values allowed "
+"in the index. We can express a function's preconditions by adding additional "
+"(possibly erased) predicates to the function's list of arguments."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:138
+msgid ""
+"The first really cool thing is how we can safely use `head1`, if we can at "
+"compile-time show that our list argument is indeed non-empty:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:143
+msgid "```idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:152
+msgid ""
+"It is a bit cumbersome that we have to pass the `IsNotNil` proof manually. "
+"Before we scratch that itch, we will first discuss what to do with lists, "
+"the values of which are not known until runtime. For these cases, we have to "
+"try and produce a value of the predicate programmatically by inspecting the "
+"runtime list value. In the most simple case, we can wrap the proof in a "
+"`Maybe`, but if we can show that our predicate is *decidable*, we can get "
+"even stronger guarantees by returning a `Dec`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:156
+#, no-wrap
+msgid ""
+"```idris\n"
+"Uninhabited (NotNil []) where\n"
+"  uninhabited IsNotNil impossible\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:161
+#, no-wrap
+msgid ""
+"nonEmpty : (as : List a) -> Dec (NotNil as)\n"
+"nonEmpty (x :: xs) = Yes IsNotNil\n"
+"nonEmpty []        = No uninhabited\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:164
+msgid ""
+"With this, we can implement function `headMaybe`, which is to be used with "
+"lists of unknown origin:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:171
+#, no-wrap
+msgid ""
+"```idris\n"
+"headMaybe1 : List a -> Maybe a\n"
+"headMaybe1 as = case nonEmpty as of\n"
+"  Yes prf => Just $ head1 as prf\n"
+"  No  _   => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:176
+msgid ""
+"Of course, for trivial functions like `headMaybe` it makes more sense to "
+"implement them directly by pattern matching on the list argument, but we "
+"will soon see examples of predicates the values of which are more cumbersome "
+"to create."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:178
+msgid "### Auto Implicits"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:187
+msgid ""
+"Having to manually pass a proof of being non-empty to `head1` makes this "
+"function unnecessarily verbose to use at compile time. Idris allows us to "
+"define implicit function arguments, the values of which it tries to assemble "
+"on its own by means of a technique called *proof search*. This is not to be "
+"confused with type inference, which means inferring values or types from the "
+"surrounding context. It's best to look at some examples to explain the "
+"difference."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:190
+msgid ""
+"Let us first have a look at the following implementation of `replicate` for "
+"vectors:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:196
+#, no-wrap
+msgid ""
+"```idris\n"
+"replicate' : {n : _} -> a -> Vect n a\n"
+"replicate' {n = 0}   _ = []\n"
+"replicate' {n = S _} v = v :: replicate' v\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:202
+msgid ""
+"Function `replicate'` takes an unerased implicit argument.  The *value* of "
+"this argument must be derivable from the surrounding context. For instance, "
+"in the following example it is immediately clear that `n` equals three, "
+"because that is the length of the vector we want:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:207
+msgid "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:211
+msgid ""
+"In the next example, the value of `n` is not known at compile time, but it "
+"is available as an unerased implicit, so this can again be passed as is to "
+"`replicate'`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:216
+msgid ""
+"```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:223
+msgid ""
+"However, in the following example, the value of `n` can't be inferred, as "
+"the intermediary vector is immediately converted to a list of unknown "
+"length. Although Idris could try and insert any value for `n` here, it won't "
+"do so, because it can't be sure that this is the length we want. We "
+"therefore have to pass the length explicitly:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:228
+msgid ""
+"```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} "
+"12 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:234
+msgid ""
+"Note, how the *value* of `n` had to be inferable in these examples, which "
+"means it had to make an appearance in the surrounding context. With auto "
+"implicit arguments, this works differently. Here is the `head` example, this "
+"time with an auto implicit:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:240
+msgid ""
+"```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) "
+"= x head [] impossible ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:249
+msgid ""
+"Note the `auto` keyword before the quantity of implicit argument `prf`. This "
+"means, we want Idris to construct this value on its own, without it being "
+"visible in the surrounding context.  In order to do so, Idris will have to "
+"at compile time know the structure of the list argument `as`. It will then "
+"try and build such a value from the data type's constructors. If it "
+"succeeds, this value will then be automatically filled in as the desired "
+"argument, otherwise, Idris will fail with a type error."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:251
+msgid "Let's see this in action:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:256
+msgid "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:258
+msgid "The following example fails with an error:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:264
+#, no-wrap
+msgid ""
+"```idris\n"
+"failing \"Can't find an implementation\\nfor NotNil [].\"\n"
+"  errHead : Nat\n"
+"  errHead = Predicates.head []\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:276
+msgid ""
+"Wait! \"Can't find an implementation for...\"? Is this not the error message "
+"we get for missing interface implementations? That's correct, and I'll show "
+"you that interface resolution is just proof search at the end of this "
+"chapter. What I can show you already, is that writing the lengthy `{auto "
+"prf : t} ->` all the times can be cumbersome. Idris therefore allows us to "
+"use the same syntax as for constrained functions instead: `(prf : t) =>`, or "
+"even `t =>`, if we don't need to name the constraint. As usual, we can then "
+"access a constraint in the function body by its name (if any). Here is "
+"another implementation of `head`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:282
+msgid ""
+"```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x "
+"head' [] impossible ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:287
+msgid ""
+"During proof search, Idris will also look for values of the required type in "
+"the current function context. This allows us to implement `headMaybe` "
+"without having to pass on the `NotNil` proof manually:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:295
+#, no-wrap
+msgid ""
+"```idris\n"
+"headMaybe : List a -> Maybe a\n"
+"headMaybe as = case nonEmpty as of\n"
+"  -- `prf` is available during proof seach\n"
+"  Yes prf => Just $ Predicates.head as\n"
+"  No  _   => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:304
+msgid ""
+"To conclude: Predicates allow us to restrict the values a function accepts "
+"as arguments. At runtime, we need to build such *witnesses* by pattern "
+"matching on the function arguments. These operations can typically fail. At "
+"compile time, we can let Idris try and build these values for us using a "
+"technique called *proof search*. This allows us to make functions safe and "
+"convenient to use at the same time."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:312
+msgid ""
+"In these exercises, you'll have to implement several functions making use of "
+"auto implicits, to constrain the values accepted as function arguments. The "
+"results should be *pure*, that is, not wrapped in a failure type like "
+"`Maybe`."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Predicates.md:314
+msgid "Implement `tail` for lists."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Predicates.md:318
+msgid ""
+"Implement `concat1` and `foldMap1` for lists. These should work like "
+"`concat` and `foldMap`, but taking only a `Semigroup` constraint on the "
+"element type."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Predicates.md:321
+msgid ""
+"Implement functions for returning the largest and smallest element in a list."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Predicates.md:325
+msgid ""
+"Define a predicate for strictly positive natural numbers and use it to "
+"implement a safe and provably total division function on natural numbers."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Predicates.md:330
+msgid ""
+"Define a predicate for a non-empty `Maybe` and use it to safely extract the "
+"value stored in a `Just`. Show that this predicate is decidable by "
+"implementing a corresponding conversion function."
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Predicates.md:334
+msgid ""
+"Define and implement functions for safely extracting values from a `Left` "
+"and a `Right` by using suitable predicates.  Show again that these "
+"predicates are decidable."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:339
+msgid ""
+"The predicates you implemented in these exercises are already available in "
+"the *base* library: `Data.List.NonEmpty`, `Data.Maybe.IsJust`, `Data.Either."
+"IsLeft`, `Data.Either.IsRight`, and `Data.Nat.IsSucc`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:341
+msgid "## Contracts between Values"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:346
+msgid ""
+"The predicates we saw so far restricted the values of a single type, but it "
+"is also possible to define predicates describing contracts between several "
+"values of possibly distinct types."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:348
+msgid "### The `Elem` Predicate"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:351
+msgid ""
+"Assume we'd like to extract a value of a given type from a heterogeneous "
+"list:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:355
+msgid "```idris get' : (0 t : Type) -> HList ts -> t ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:358
+msgid ""
+"This can't work in general: If we could implement this we would immediately "
+"have a proof of void:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:363
+msgid "```idris voidAgain : Void voidAgain = get' Void [] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:367
+msgid ""
+"The problem is obvious: The type of which we'd like to extract a value must "
+"be an element of the index of the heterogeneous list.  Here is a predicate, "
+"with which we can express this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:373
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Elem : (elem : a) -> (as : List a) -> Type where\n"
+"  Here  : Elem x (x :: xs)\n"
+"  There : Elem x xs -> Elem x (y :: xs)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:386
+msgid ""
+"This is a predicate describing a contract between two values: A value of "
+"type `a` and a list of `a`s. Values of this predicate are witnesses that the "
+"value is an element of the list.  Note, how this is defined recursively: The "
+"case where the value we look for is at the head of the list is handled by "
+"the `Here` constructor, where the same variable (`x`) is used for the "
+"element and the head of the list. The case where the value is deeper within "
+"the list is handled by the `There` constructor. This can be read as follows: "
+"If `x` is and element of `xs`, then `x` is also an element of `y :: xs` for "
+"any value `y`. Let's write down some examples to get a feel for these:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:390
+msgid "```idris MyList : List Nat MyList = [1,3,7,8,4,12]"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:393
+msgid "oneElemMyList : Elem 1 MyList oneElemMyList = Here"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:397
+msgid ""
+"sevenElemMyList : Elem 7 MyList sevenElemMyList = There $ There Here ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:402
+msgid ""
+"Now, `Elem` is just another way of indexing into a list of values. Instead "
+"of using a `Fin` index, which is limited by the list's length, we use a "
+"proof that a value can be found at a certain position."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:405
+msgid ""
+"We can use the `Elem` predicate to extract a value from the desired type of "
+"a heterogeneous list:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:409
+msgid "```idris get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:415
+msgid ""
+"It is important to note that the auto implicit must not be erased in this "
+"case. This is no longer a single value data type, and we must be able to "
+"pattern match on this value in order to figure out, how far within the "
+"heterogeneous list our value is stored:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:421
+#, no-wrap
+msgid ""
+"```idris\n"
+"get t (v :: vs) {prf = Here}    = v\n"
+"get t (v :: vs) {prf = There p} = get t vs\n"
+"get _ [] impossible\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:425
+msgid ""
+"It can be instructive to implement `get` yourself, using holes on the right "
+"hand side to see the context and types of values Idris infers based on the "
+"value of the `Elem` predicate."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:427
+msgid "Let's give this a spin at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:433
+msgid ""
+"```repl Tutorial.Predicates> get Nat [\"foo\", Just \"bar\", S Z] 1 Tutorial."
+"Predicates> get Nat [\"foo\", Just \"bar\"] Error: Can't find an "
+"implementation for Elem Nat [String, Maybe String]."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:438
+#, no-wrap
+msgid ""
+"(Interactive):1:1--1:28\n"
+" 1 | get Nat [\"foo\", Just \"bar\"]\n"
+"     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:446
+msgid ""
+"With this example we start to appreciate what *proof search* actually means: "
+"Given a value `v` and a list of values `vs`, Idris tries to find a proof "
+"that `v` is an element of `vs`.  Now, before we continue, please note that "
+"proof search is not a silver bullet. The search algorithm has a reasonably "
+"limited *search depth*, and will fail with the search if this limit is "
+"exceeded. For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:450
+msgid "```idris Tps : List Type Tps = List.replicate 50 Nat ++ [Maybe String]"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:459
+#, no-wrap
+msgid ""
+"hlist : HList Tps\n"
+"hlist = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\n"
+"        , Nothing ]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:466
+msgid ""
+"```repl Tutorial.Predicates> get (Maybe String) hlist Error: Can't find an "
+"implementation for Elem (Maybe String) [Nat,...  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:474
+msgid ""
+"As you can see, Idris fails to find a proof that `Maybe String` is an "
+"element of `Tps`. The search depth can be increased with the `"
+"%auto_implicit_depth` directive, which will hold for the rest of the source "
+"file or until set to a different value.  The default value is set at 25. In "
+"general, it is not advisable to set this to a too large value as this can "
+"drastically increase compile times."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:479
+msgid ""
+"```idris %auto_implicit_depth 100 aMaybe : Maybe String aMaybe = get _ hlist"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:482
+msgid "%auto_implicit_depth 25 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:484
+msgid "### Use Case: A nicer Schema"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:492
+msgid ""
+"In the chapter about [sigma types](DPair.md), we introduced a schema for CSV "
+"files. This was not very nice to use, because we had to use natural numbers "
+"to access a certain column. Even worse, users of our small library had to do "
+"the same. There was no way to define a name for each column and access "
+"columns by name. We are going to change this. Here is an encoding for this "
+"use case:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:506
+#, no-wrap
+msgid ""
+"record Column where\n"
+"  constructor MkColumn\n"
+"  name : String\n"
+"  type : ColType\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:508
+msgid "infixr 8 :>"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:511
+msgid "(:>) : String -> ColType -> Column (:>) = MkColumn"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:514
+msgid "Schema : Type Schema = List Column"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:520
+#, no-wrap
+msgid ""
+"Show ColType where\n"
+"  show I64     = \"I64\"\n"
+"  show Str     = \"Str\"\n"
+"  show Boolean = \"Boolean\"\n"
+"  show Float   = \"Float\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:523
+#, no-wrap
+msgid ""
+"Show Column where\n"
+"  show (MkColumn n ct) = \"\\{n}:\\{show ct}\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:527
+msgid ""
+"showSchema : Schema -> String showSchema = concat . intersperse \",\" . map "
+"show ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:531
+msgid ""
+"As you can see, in a schema we now pair a column's type with its name. Here "
+"is an example schema for a CSV file holding information about employees in a "
+"company:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:542
+#, no-wrap
+msgid ""
+"```idris\n"
+"EmployeeSchema : Schema\n"
+"EmployeeSchema = [ \"firstName\"  :> Str\n"
+"                 , \"lastName\"   :> Str\n"
+"                 , \"email\"      :> Str\n"
+"                 , \"age\"        :> I64\n"
+"                 , \"salary\"     :> Float\n"
+"                 , \"management\" :> Boolean\n"
+"                 ]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:549
+msgid ""
+"Such a schema could of course again be read from user input, but we will "
+"wait with implementing a parser until later in this chapter.  Using this new "
+"schema with an `HList` directly led to issues with type inference, therefore "
+"I quickly wrote a custom row type: A heterogeneous list indexed over a "
+"schema."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:553
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Row : Schema -> Type where\n"
+"  Nil  : Row []\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:560
+#, no-wrap
+msgid ""
+"  (::) :  {0 name : String}\n"
+"       -> {0 type : ColType}\n"
+"       -> (v : IdrisType type)\n"
+"       -> Row ss\n"
+"       -> Row (name :> type :: ss)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:565
+msgid ""
+"In the signature of *cons*, I list the erased implicit arguments explicitly. "
+"This is good practice, as otherwise Idris will often issue shadowing "
+"warnings when using such data constructors in client code."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:567
+msgid "We can now define a type alias for CSV rows representing employees:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:571
+msgid "```idris 0 Employee : Type Employee = Row EmployeeSchema"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:575
+msgid ""
+"hock : Employee hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, "
+"False ] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:584
+msgid ""
+"Note, how I gave `Employee` a zero quantity. This means, we are only ever "
+"allowed to use this function at compile time but never at runtime. This is a "
+"safe way to make sure our type-level functions and aliases do not leak into "
+"the executable when we build our application. We are allowed to use zero-"
+"quantity functions and values in type signatures and when computing other "
+"erased values, but not for runtime-relevant computations."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:602
+msgid ""
+"We would now like to access a value in a row based on the name given. For "
+"this, we write a custom predicate, which serves as a witness that a column "
+"with the given name is part of the schema. Now, here is an important thing "
+"to note: In this predicate we include an index for the *type* of the column "
+"with the given name. We need this, because when we access a column by name, "
+"we need a way to figure out the return type. But during proof search, this "
+"type will have to be derived by Idris based on the column name and schema in "
+"question (otherwise, the proof search will fail unless the return type is "
+"known in advance).  We therefore *must* tell Idris, that it can't include "
+"this type in the list of search criteria, otherwise it will try and infer "
+"the column type from the context (using type inference) before running the "
+"proof search. This can be done by listing the indices to be used in the "
+"search like so: `[search name schema]`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:611
+#, no-wrap
+msgid ""
+"```idris\n"
+"data InSchema :  (name    : String)\n"
+"              -> (schema  : Schema)\n"
+"              -> (colType : ColType)\n"
+"              -> Type where\n"
+"  [search name schema]\n"
+"  IsHere  : InSchema n (n :> t :: ss) t\n"
+"  IsThere : InSchema n ss t -> InSchema n (fld :: ss) t\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:616
+#, no-wrap
+msgid ""
+"Uninhabited (InSchema n [] c) where\n"
+"  uninhabited IsHere impossible\n"
+"  uninhabited (IsThere _) impossible\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:619
+msgid ""
+"With this, we are now ready to access the value at a given column based on "
+"the column's name:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:629
+#, no-wrap
+msgid ""
+"```idris\n"
+"getAt :  {0 ss : Schema}\n"
+"      -> (name : String)\n"
+"      -> (row  : Row ss)\n"
+"      -> (prf  : InSchema name ss c)\n"
+"      => IdrisType c\n"
+"getAt name (v :: vs) {prf = IsHere}    = v\n"
+"getAt name (_ :: vs) {prf = IsThere p} = getAt name vs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:638
+msgid ""
+"Below is an example how to use this at compile time. Note the amount of work "
+"Idris performs for us: It first comes up with proofs that `firstName`, "
+"`lastName`, and `age` are indeed valid names in the `Employee` schema. From "
+"these proofs it automatically figures out the return types of the calls to "
+"`getAt` and extracts the corresponding values from the row. All of this "
+"happens in a provably total and type safe way."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:648
+#, no-wrap
+msgid ""
+"```idris\n"
+"shoeck : String\n"
+"shoeck =  getAt \"firstName\" hock\n"
+"       ++ \" \"\n"
+"       ++ getAt \"lastName\" hock\n"
+"       ++ \": \"\n"
+"       ++ show (getAt \"age\" hock)\n"
+"       ++ \" years old.\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:657
+msgid ""
+"In order to at runtime specify a column name, we need a way for computing "
+"values of type `InSchema` by comparing the column names with the schema in "
+"question. Since we have to compare two string values for being "
+"propositionally equal, we use the `DecEq` implementation for `String` here "
+"(Idris provides `DecEq` implementations for all primitives). We extract the "
+"column type at the same time and pair this (as a dependent pair) with the "
+"`InSchema` proof:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:667
+#, no-wrap
+msgid ""
+"```idris\n"
+"inSchema : (ss : Schema) -> (n : String) -> Maybe (c ** InSchema n ss c)\n"
+"inSchema []                    _ = Nothing\n"
+"inSchema (MkColumn cn t :: xs) n = case decEq cn n of\n"
+"  Yes Refl   => Just (t ** IsHere)\n"
+"  No  contra => case inSchema xs n of\n"
+"    Just (t ** prf) => Just $ (t ** IsThere prf)\n"
+"    Nothing         => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:671
+msgid ""
+"At the end of this chapter we will use `InSchema` in our CSV command-line "
+"application to list all values in a column."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Predicates.md:676
+msgid ""
+"Show that `InSchema` is decidable by changing the output type of `inSchema` "
+"to `Dec (c ** InSchema n ss c)`."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Predicates.md:679
+msgid ""
+"Declare and implement a function for modifying a field in a row based on the "
+"column name given."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Predicates.md:684
+msgid ""
+"Define a predicate to be used as a witness that one list contains only "
+"elements in the second list in the same order and use this predicate to "
+"extract several columns from a row at once."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:688
+#, no-wrap
+msgid ""
+"   For instance, `[2,4,5]` contains elements from\n"
+"   `[1,2,3,4,5,6]` in the correct order, but `[4,2,5]`\n"
+"   does not.\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Predicates.md:694
+msgid ""
+"Improve the functionality from exercise 3 by defining a new predicate, "
+"witnessing that all strings in a list correspond to column names in a schema "
+"(in arbitrary order).  Use this to extract several columns from a row at "
+"once in arbitrary order."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:698
+#, no-wrap
+msgid ""
+"   Hint: Make sure to include the resulting schema as an index,\n"
+"   but search only based on the list of names and the input\n"
+"   schema.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:700
+msgid "## Use Case: Flexible Error Handling"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:718
+msgid ""
+"A recurring pattern when writing larger applications is the combination of "
+"different parts of a program each with their own failure types in a larger "
+"effectful computation.  We saw this, for instance, when implementing a "
+"command-line tool for handling CSV files. There, we read and wrote data from "
+"and to files, we parsed column types and schemata, we parsed row and column "
+"indices and command-line commands.  All these operations came with the "
+"potential of failure and might be implemented in different parts of our "
+"application.  In order to unify these different failure types, we wrote a "
+"custom sum type encapsulating each of them, and wrote a single handler for "
+"this sum type. This approach was alright then, but it does not scale well "
+"and is lacking in terms of flexibility. We are therefore trying a different "
+"approach here. Before we continue, we quickly implement a couple of "
+"functions with the potential of failure plus some custom error types:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:723
+#, no-wrap
+msgid ""
+"```idris\n"
+"record NoNat where\n"
+"  constructor MkNoNat\n"
+"  str : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:726
+msgid ""
+"readNat' : String -> Either NoNat Nat readNat' s = maybeToEither (MkNoNat s) "
+"$ parsePositive s"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:730
+#, no-wrap
+msgid ""
+"record NoColType where\n"
+"  constructor MkNoColType\n"
+"  str : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:738
+#, no-wrap
+msgid ""
+"readColType' : String -> Either NoColType ColType\n"
+"readColType' \"I64\"     = Right I64\n"
+"readColType' \"Str\"     = Right Str\n"
+"readColType' \"Boolean\" = Right Boolean\n"
+"readColType' \"Float\"   = Right Float\n"
+"readColType' s         = Left $ MkNoColType s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:746
+msgid ""
+"However, if we wanted to parse a `Fin n`, there'd be already two ways how "
+"this could fail: The string in question could not represent a natural number "
+"(leading to a `NoNat` error), or it could be out of bounds (leading to an "
+"`OutOfBounds` error).  We have to somehow encode these two possibilities in "
+"the return type, for instance, by using an `Either` as the error type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:752
+#, no-wrap
+msgid ""
+"```idris\n"
+"record OutOfBounds where\n"
+"  constructor MkOutOfBounds\n"
+"  size  : Nat\n"
+"  index : Nat\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:758
+#, no-wrap
+msgid ""
+"readFin' : {n : _} -> String -> Either (Either NoNat OutOfBounds) (Fin n)\n"
+"readFin' s = do\n"
+"  ix <- mapFst Left (readNat' s)\n"
+"  maybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:767
+msgid ""
+"This is incredibly ugly. A custom sum type might have been slightly better, "
+"but we still would have to use `mapFst` when invoking `readNat'`, and "
+"writing custom sum types for every possible combination of errors will get "
+"cumbersome very quickly as well.  What we are looking for, is a generalized "
+"sum type: A type indexed by a list of types (the possible choices) holding a "
+"single value of exactly one of the types in question.  Here is a first naive "
+"try:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:772
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Sum : List Type -> Type where\n"
+"  MkSum : (val : t) -> Sum ts\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:783
+msgid ""
+"However, there is a crucial piece of information missing: We have not "
+"verified that `t` is an element of `ts`, nor *which* type it actually is. In "
+"fact, this is another case of an erased existential, and we will have no way "
+"to at runtime learn something about `t`. What we need to do is to pair the "
+"value with a proof, that its type `t` is an element of `ts`.  We could use "
+"`Elem` again for this, but for some use cases we will require access to the "
+"number of types in the list.  We will therefore use a vector instead of a "
+"list as our index.  Here is a predicate similar to `Elem` but for vectors:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:788
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Has :  (v : a) -> (vs  : Vect n a) -> Type where\n"
+"  Z : Has v (v :: vs)\n"
+"  S : Has v vs -> Has v (w :: vs)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:793
+#, no-wrap
+msgid ""
+"Uninhabited (Has v []) where\n"
+"  uninhabited Z impossible\n"
+"  uninhabited (S _) impossible\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:797
+msgid ""
+"A value of type `Has v vs` is a witness that `v` is an element of `vs`. With "
+"this, we can now implement an indexed sum type (also called an *open union*):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:801
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Union : Vect n Type -> Type where\n"
+"  U : (ix : Has t ts) -> (val : t) -> Union ts\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:805
+#, no-wrap
+msgid ""
+"Uninhabited (Union []) where\n"
+"  uninhabited (U ix _) = absurd ix\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:811
+msgid ""
+"Note the difference between `HList` and `Union`. `HList` is a *generalized "
+"product type*: It holds a value for each type in its index. `Union` is a "
+"*generalized sum type*: It holds only a single value, which must be of a "
+"type listed in the index.  With this we can now define a much more flexible "
+"error type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:816
+msgid ""
+"```idris 0 Err : Vect n Type -> Type -> Type Err ts t = Either (Union ts) t "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:820
+msgid ""
+"A function returning an `Err ts a` describes a computation, which can fail "
+"with one of the errors listed in `ts`.  We first need some utility functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:824
+msgid ""
+"```idris inject : (prf : Has t ts) => (v : t) -> Union ts inject v = U prf v"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:827
+msgid "fail : Has t ts => (err : t) -> Err ts a fail err = Left $ inject err"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:831
+msgid ""
+"failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a failMaybe err "
+"= maybeToEither (inject err)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:834
+msgid ""
+"Next, we can write more flexible versions of the parsers we wrote above:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:838
+msgid ""
+"```idris readNat : Has NoNat ts => String -> Err ts Nat readNat s = "
+"failMaybe (MkNoNat s) $ parsePositive s"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:846
+#, no-wrap
+msgid ""
+"readColType : Has NoColType ts => String -> Err ts ColType\n"
+"readColType \"I64\"     = Right I64\n"
+"readColType \"Str\"     = Right Str\n"
+"readColType \"Boolean\" = Right Boolean\n"
+"readColType \"Float\"   = Right Float\n"
+"readColType s         = fail $ MkNoColType s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:849
+msgid ""
+"Before we implement `readFin`, we introduce a short cut for specifying that "
+"several error types must be present:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:855
+#, no-wrap
+msgid ""
+"```idris\n"
+"0 Errs : List Type -> Vect n Type -> Type\n"
+"Errs []        _  = ()\n"
+"Errs (x :: xs) ts = (Has x ts, Errs xs ts)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:860
+msgid ""
+"Function `Errs` returns a tuple of constraints. This can be used as a "
+"witness that all listed types are present in the vector of types: Idris will "
+"automatically extract the proofs from the tuple as needed."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:868
+#, no-wrap
+msgid ""
+"```idris\n"
+"readFin : {n : _} -> Errs [NoNat, OutOfBounds] ts => String -> Err ts (Fin n)\n"
+"readFin s = do\n"
+"  S ix <- readNat s | Z => fail (MkOutOfBounds n Z)\n"
+"  failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:871
+msgid "As a last example, here are parsers for schemata and CSV rows:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:875
+msgid ""
+"```idris fromCSV : String -> List String fromCSV = forget . split (',' ==)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:879
+#, no-wrap
+msgid ""
+"record InvalidColumn where\n"
+"  constructor MkInvalidColumn\n"
+"  str : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:884
+#, no-wrap
+msgid ""
+"readColumn : Errs [InvalidColumn, NoColType] ts => String -> Err ts Column\n"
+"readColumn s = case forget $ split (':' ==) s of\n"
+"  [n,ct] => MkColumn n <$> readColType ct\n"
+"  _      => fail $ MkInvalidColumn s\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:887
+msgid ""
+"readSchema : Errs [InvalidColumn, NoColType] ts => String -> Err ts Schema "
+"readSchema = traverse readColumn . fromCSV"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:892
+#, no-wrap
+msgid ""
+"data RowError : Type where\n"
+"  InvalidField  : (row, col : Nat) -> (ct : ColType) -> String -> RowError\n"
+"  UnexpectedEOI : (row, col : Nat) -> RowError\n"
+"  ExpectedEOI   : (row, col : Nat) -> RowError\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:905
+#, no-wrap
+msgid ""
+"decodeField :  Has RowError ts\n"
+"            => (row,col : Nat)\n"
+"            -> (c : ColType)\n"
+"            -> String\n"
+"            -> Err ts (IdrisType c)\n"
+"decodeField row col c s =\n"
+"  let err = InvalidField row col c s\n"
+"   in case c of\n"
+"        I64     => failMaybe err $ read s\n"
+"        Str     => failMaybe err $ read s\n"
+"        Boolean => failMaybe err $ read s\n"
+"        Float   => failMaybe err $ read s\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:919
+#, no-wrap
+msgid ""
+"decodeRow :  Has RowError ts\n"
+"          => {s : _}\n"
+"          -> (row : Nat)\n"
+"          -> (str : String)\n"
+"          -> Err ts (Row s)\n"
+"decodeRow row = go 1 s . fromCSV\n"
+"  where go : Nat -> (cs : Schema) -> List String -> Err ts (Row cs)\n"
+"        go k []       []                    = Right []\n"
+"        go k []       (_ :: _)              = fail $ ExpectedEOI row k\n"
+"        go k (_ :: _) []                    = fail $ UnexpectedEOI row k\n"
+"        go k (MkColumn n c :: cs) (s :: ss) =\n"
+"          [| decodeField row k c s :: go (S k) cs ss |]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:925
+msgid ""
+"Here is an example REPL session, where I test `readSchema`. I defined "
+"variable `ts` using the `:let` command to make this more convenient.  Note, "
+"how the order of error types is of no importance, as long as types "
+"`InvalidColumn` and `NoColType` are present in the list of errors:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:935
+msgid ""
+"```repl Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,"
+"InvalidColumn] Tutorial.Predicates> readSchema {ts} \"foo:bar\" Left (U Z "
+"(MkNoColType \"bar\"))  Tutorial.Predicates> readSchema {ts} \"foo:Float\" "
+"Right [MkColumn \"foo\" Float] Tutorial.Predicates> readSchema {ts} \"foo "
+"Float\" Left (U (S (S Z)) (MkInvalidColumn \"foo Float\"))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:937
+msgid "### Error Handling"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:943
+msgid ""
+"There are several techniques for handling errors, all of which are useful at "
+"times. For instance, we might want to handle some errors early on and "
+"individually, while dealing with others much later in our application. Or we "
+"might want to handle them all in one fell swoop. We look at both approaches "
+"here."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:950
+msgid ""
+"First, in order to handle a single error individually, we need to *split* a "
+"union into one of two possibilities: A value of the error type in question "
+"or a new union, holding one of the other error types. We need a new "
+"predicate for this, which not only encodes the presence of a value in a "
+"vector but also the result of removing that value:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:957
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where\n"
+"  [search v vs]\n"
+"  RZ : Rem v (v :: rem) rem\n"
+"  RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:962
+msgid ""
+"Once again, we want to use one of the indices (`rem`) in our functions' "
+"return types, so we only use the other indices during proof search. Here is "
+"a function for splitting off a value from an open union:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:972
+#, no-wrap
+msgid ""
+"```idris\n"
+"split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)\n"
+"split {prf = RZ}   (U Z     val) = Left val\n"
+"split {prf = RZ}   (U (S x) val) = Right (U x val)\n"
+"split {prf = RS p} (U Z     val) = Right (U Z val)\n"
+"split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of\n"
+"  Left vt        => Left vt\n"
+"  Right (U ix y) => Right $ U (S ix) y\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:977
+msgid ""
+"This tries to extract a value of type `t` from a union. If it works, the "
+"result is wrapped in a `Left`, otherwise a new union is returned in a "
+"`Right`, but this one has `t` removed from its list of possible types."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:982
+msgid ""
+"With this, we can implement a handler for single errors.  Error handling "
+"often happens in an effectful context (we might want to print a message to "
+"the console or write the error to a log file), so we use an applicative "
+"effect type to handle errors in."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:994
+#, no-wrap
+msgid ""
+"```idris\n"
+"handle :  Applicative f\n"
+"       => Rem t ts rem\n"
+"       => (h : t -> f a)\n"
+"       -> Err ts a\n"
+"       -> f (Err rem a)\n"
+"handle h (Left x)  = case split x of\n"
+"  Left v    => Right <$> h v\n"
+"  Right err => pure $ Left err\n"
+"handle _ (Right x) = pure $ Right x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:998
+msgid ""
+"For handling all errors at once, we can use a handler type indexed by the "
+"vector of errors, and parameterized by the output type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1005
+#, no-wrap
+msgid ""
+"```idris\n"
+"namespace Handler\n"
+"  public export\n"
+"  data Handler : (ts : Vect n Type) -> (a : Type) -> Type where\n"
+"    Nil  : Handler [] a\n"
+"    (::) : (t -> a) -> Handler ts a -> Handler (t :: ts) a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1010
+#, no-wrap
+msgid ""
+"extract : Handler ts a -> Has t ts -> t -> a\n"
+"extract (f :: _)  Z     val = f val\n"
+"extract (_ :: fs) (S y) val = extract fs y val\n"
+"extract []        ix    _   = absurd ix\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1015
+#, no-wrap
+msgid ""
+"handleAll : Applicative f => Handler ts (f a) -> Err ts a -> f a\n"
+"handleAll _ (Right v)       = pure v\n"
+"handleAll h (Left $ U ix v) = extract h ix v\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1019
+msgid ""
+"Below, we will see an additional way of handling all errors at once by "
+"defining a custom interface for error handling."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Predicates.md:1023
+msgid "Implement the following utility functions for `Union`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1026
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1028
+#, no-wrap
+msgid "   project1 : Union [t] -> t\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1034
+#, no-wrap
+msgid ""
+"   safe : Err [] a -> a\n"
+"   ```\n"
+"2. Implement the following two functions for embedding\n"
+"   an open union in a larger set of possibilities.\n"
+"   Note the unerased implicit in `extend`!\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1037
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   weaken : Union ts -> Union (ts ++ ss)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1040
+#, no-wrap
+msgid ""
+"   extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Predicates.md:1043
+msgid ""
+"Find a general way to embed a `Union ts` in a `Union ss`, so that the "
+"following is possible:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1049
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   embedTest :  Err [NoNat,NoColType] a\n"
+"             -> Err [FileError, NoColType, OutOfBounds, NoNat] a\n"
+"   embedTest = mapFst embed\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Predicates.md:1052
+msgid ""
+"Make `handle` more powerful, by letting the handler convert the error in "
+"question to an `f (Err rem a)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1054
+msgid "## The Truth about Interfaces"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1065
+msgid ""
+"Well, here it finally is: The truth about interfaces. Internally, an "
+"interface is just a record data type, with its fields corresponding to the "
+"members of the interface. An interface implementation is a *value* of such a "
+"record, annotated with a `%hint` pragma (see below) to make the value "
+"available during proof search. Finally, a constrained function is just a "
+"function with one or more auto implicit arguments. For instance, here is the "
+"same function for looking up an element in a list, once with the known "
+"syntax for constrained functions, and once with an auto implicit argument. "
+"The code produced by Idris is the same in both cases:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1070
+#, no-wrap
+msgid ""
+"```idris\n"
+"isElem1 : Eq a => a -> List a -> Bool\n"
+"isElem1 v []        = False\n"
+"isElem1 v (x :: xs) = x == v || isElem1 v xs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1075
+#, no-wrap
+msgid ""
+"isElem2 : {auto _ : Eq a} -> a -> List a -> Bool\n"
+"isElem2 v []        = False\n"
+"isElem2 v (x :: xs) = x == v || isElem2 v xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1079
+msgid ""
+"Being mere records, we can also take interfaces as regular function "
+"arguments and dissect them with a pattern match:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1084
+msgid "```idris eq : Eq a -> a -> a -> Bool eq (MkEq feq fneq) = feq ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1086
+msgid "### A manual Interface Definition"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1093
+msgid ""
+"I'll now demonstrate how we can achieve the same behavior with proof search "
+"as with a regular interface definition plus implementations. Since I want to "
+"finish the CSV example with our new error handling tools, we are going to "
+"implement some error handlers.  First, an interface is just a record:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1099
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Print a where\n"
+"  constructor MkPrint\n"
+"  print' : a -> String\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1104
+msgid ""
+"In order to access the record in a constrained function, we use the `"
+"%search` keyword, which will try to conjure a value of the desired type "
+"(`Print a` in this case) by means of a proof search:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1109
+msgid "```idris print : Print a => a -> String print = print' %search ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1112
+msgid ""
+"As an alternative, we could use a named constraint, and access it directly "
+"via its name:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1117
+msgid ""
+"```idris print2 : (impl : Print a) => a -> String print2 = print' impl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1120
+msgid ""
+"As yet another alternative, we could use the syntax for auto implicit "
+"arguments:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1125
+msgid ""
+"```idris print3 : {auto impl : Print a} -> a -> String print3 = print' impl "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1129
+msgid ""
+"All three versions of `print` behave exactly the same at runtime.  So, "
+"whenever we write `{auto x : Foo} ->` we can just as well write `(x : Foo) "
+"=>` and vice versa."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1133
+msgid ""
+"Interface implementations are just values of the given record type, but in "
+"order to be available during proof search, these need to be annotated with a "
+"`%hint` pragma:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1138
+msgid ""
+"```idris %hint noNatPrint : Print NoNat noNatPrint = MkPrint $ \\e => \"Not "
+"a natural number: \\{e.str}\""
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1142
+msgid ""
+"%hint noColTypePrint : Print NoColType noColTypePrint = MkPrint $ \\e => "
+"\"Not a column type: \\{e.str}\""
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1146
+msgid ""
+"%hint outOfBoundsPrint : Print OutOfBounds outOfBoundsPrint = MkPrint $ \\e "
+"=> \"Index is out of bounds: \\{show e.index}\""
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1157
+#, no-wrap
+msgid ""
+"%hint\n"
+"rowErrorPrint : Print RowError\n"
+"rowErrorPrint = MkPrint $\n"
+"  \\case InvalidField r c ct s =>\n"
+"          \"Not a \\{show ct} in row \\{show r}, column \\{show c}. \\{s}\"\n"
+"        UnexpectedEOI r c =>\n"
+"          \"Unexpected end of input in row \\{show r}, column \\{show c}.\"\n"
+"        ExpectedEOI r c =>\n"
+"          \"Expected end of input in row \\{show r}, column \\{show c}.\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1162
+msgid ""
+"We can also write an implementation of `Print` for a union or errors. For "
+"this, we first come up with a proof that all types in the union's index come "
+"with an implementation of `Print`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1167
+#, no-wrap
+msgid ""
+"```idris\n"
+"0 All : (f : a -> Type) -> Vect n a -> Type\n"
+"All f []        = ()\n"
+"All f (x :: xs) = (f x, All f xs)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1171
+#, no-wrap
+msgid ""
+"unionPrintImpl : All Print ts => Union ts -> String\n"
+"unionPrintImpl (U Z val)     = print val\n"
+"unionPrintImpl (U (S x) val) = unionPrintImpl $ U x val\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1176
+msgid ""
+"%hint unionPrint : All Print ts => Print (Union ts)  unionPrint = MkPrint "
+"unionPrintImpl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1184
+msgid ""
+"Defining interfaces this way can be an advantage, as there is much less "
+"magic going on, and we have more fine grained control over the types and "
+"values of our fields. Note also, that all of the magic comes from the search "
+"hints, with which our \"interface implementations\" were annotated.  These "
+"made the corresponding values and functions available during proof search."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1186
+msgid "#### Parsing CSV Commands"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1195
+msgid ""
+"To conclude this chapter, we reimplement our CSV command parser, using the "
+"flexible error handling approach from the last section. While not "
+"necessarily less verbose than the original parser, this approach decouples "
+"the handling of errors and printing of error messages from the rest of the "
+"application: Functions with a possibility of failure are reusable in "
+"different contexts, as are the pretty printers we use for the error messages."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1198
+msgid ""
+"First, we repeat some stuff from earlier chapters. I sneaked in a new "
+"command for printing all values in a column:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1205
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Table where\n"
+"  constructor MkTable\n"
+"  schema : Schema\n"
+"  size   : Nat\n"
+"  rows   : Vect size (Row schema)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1218
+#, no-wrap
+msgid ""
+"data Command : (t : Table) -> Type where\n"
+"  PrintSchema :  Command t\n"
+"  PrintSize   :  Command t\n"
+"  New         :  (newSchema : Schema) -> Command t\n"
+"  Prepend     :  Row (schema t) -> Command t\n"
+"  Get         :  Fin (size t) -> Command t\n"
+"  Delete      :  Fin (size t) -> Command t\n"
+"  Col         :  (name : String)\n"
+"              -> (tpe  : ColType)\n"
+"              -> (prf  : InSchema name t.schema tpe)\n"
+"              -> Command t\n"
+"  Quit        : Command t\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1231
+#, no-wrap
+msgid ""
+"applyCommand : (t : Table) -> Command t -> Table\n"
+"applyCommand t                 PrintSchema = t\n"
+"applyCommand t                 PrintSize   = t\n"
+"applyCommand _                 (New ts)    = MkTable ts _ []\n"
+"applyCommand (MkTable ts n rs) (Prepend r) = MkTable ts _ $ r :: rs\n"
+"applyCommand t                 (Get x)     = t\n"
+"applyCommand t                 Quit        = t\n"
+"applyCommand t                 (Col _ _ _) = t\n"
+"applyCommand (MkTable ts n rs) (Delete x)  = case n of\n"
+"  S k => MkTable ts k (deleteAt x rs)\n"
+"  Z   => absurd x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1235
+msgid ""
+"Next, below is the command parser reimplemented. In total, it can fail in "
+"seven different was, at least some of which might also be possible in other "
+"parts of a larger application."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1240
+#, no-wrap
+msgid ""
+"```idris\n"
+"record UnknownCommand where\n"
+"  constructor MkUnknownCommand\n"
+"  str : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1244
+msgid ""
+"%hint unknownCommandPrint : Print UnknownCommand unknownCommandPrint = "
+"MkPrint $ \\v => \"Unknown command: \\{v.str}\""
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1248
+#, no-wrap
+msgid ""
+"record NoColName where\n"
+"  constructor MkNoColName\n"
+"  str : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1252
+msgid ""
+"%hint noColNamePrint : Print NoColName noColNamePrint = MkPrint $ \\v => "
+"\"Unknown column: \\{v.str}\""
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1261
+#, no-wrap
+msgid ""
+"0 CmdErrs : Vect 7 Type\n"
+"CmdErrs = [ InvalidColumn\n"
+"          , NoColName\n"
+"          , NoColType\n"
+"          , NoNat\n"
+"          , OutOfBounds\n"
+"          , RowError\n"
+"          , UnknownCommand ]\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1276
+#, no-wrap
+msgid ""
+"readCommand : (t : Table) -> String -> Err CmdErrs (Command t)\n"
+"readCommand _                \"schema\"  = Right PrintSchema\n"
+"readCommand _                \"size\"    = Right PrintSize\n"
+"readCommand _                \"quit\"    = Right Quit\n"
+"readCommand (MkTable ts n _) s         = case words s of\n"
+"  [\"new\",    str] => New     <$> readSchema str\n"
+"  \"add\" ::   ss   => Prepend <$> decodeRow 1 (unwords ss)\n"
+"  [\"get\",    str] => Get     <$> readFin str\n"
+"  [\"delete\", str] => Delete  <$> readFin str\n"
+"  [\"column\", str] => case inSchema ts str of\n"
+"    Just (ct ** prf) => Right $ Col str ct prf\n"
+"    Nothing          => fail $ MkNoColName str\n"
+"  _               => fail $ MkUnknownCommand s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1280
+msgid ""
+"Note, how we could invoke functions like `readFin` or `readSchema` directly, "
+"because the necessary error types are part of our list of possible errors."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1286
+msgid ""
+"To conclude this sections, here is the functionality for printing the result "
+"of a command plus the application's main loop. Most of this is repeated from "
+"earlier chapters, but note how we can handle all errors at once with a "
+"single call to `print`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1300
+#, no-wrap
+msgid ""
+"encodeRow : (s : Schema) -> Row s -> String\n"
+"encodeRow s = concat . intersperse \",\" . go s\n"
+"  where go : (s' : Schema) -> Row s' -> Vect (length s') String\n"
+"        go []        []        = []\n"
+"        go (MkColumn _ c :: cs) (v :: vs) = encodeField c v :: go cs vs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1307
+#, no-wrap
+msgid ""
+"encodeCol :  (name : String)\n"
+"          -> (c    : ColType)\n"
+"          -> InSchema name s c\n"
+"          => Vect n (Row s)\n"
+"          -> String\n"
+"encodeCol name c = unlines . toList . map (\\r => encodeField c $ getAt name r)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1318
+#, no-wrap
+msgid ""
+"result :  (t : Table) -> Command t -> String\n"
+"result t PrintSchema   = \"Current schema: \\{showSchema t.schema}\"\n"
+"result t PrintSize     = \"Current size: \\{show t.size}\"\n"
+"result _ (New ts)      = \"Created table. Schema: \\{showSchema ts}\"\n"
+"result t (Prepend r)   = \"Row prepended: \\{encodeRow t.schema r}\"\n"
+"result _ (Delete x)    = \"Deleted row: \\{show $ FS x}.\"\n"
+"result _ Quit          = \"Goodbye.\"\n"
+"result t (Col n c prf) = \"Column \\{n}:\\n\\{encodeCol n c t.rows}\"\n"
+"result t (Get x)       =\n"
+"  \"Row \\{show $ FS x}: \\{encodeRow t.schema (index x t.rows)}\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1329
+#, no-wrap
+msgid ""
+"covering\n"
+"runProg : Table -> IO ()\n"
+"runProg t = do\n"
+"  putStr \"Enter a command: \"\n"
+"  str <- getLine\n"
+"  case readCommand t str of\n"
+"    Left err   => putStrLn (print err) >> runProg t\n"
+"    Right Quit => putStrLn (result t Quit)\n"
+"    Right cmd  => putStrLn (result t cmd) >>\n"
+"                  runProg (applyCommand t cmd)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1336
+msgid "Here is an example REPL session:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1353
+msgid ""
+"```repl Tutorial.Predicates> :exec main Enter a command: new name:Str,age:"
+"Int64,salary:Float Not a column type: Int64 Enter a command: new name:Str,"
+"age:I64,salary:Float Created table. Schema: name:Str,age:I64,salary:Float "
+"Enter a command: add John Doe,44,3500 Row prepended: \"John Doe\",44,3500.0 "
+"Enter a command: add Jane Doe,50,4000 Row prepended: \"Jane Doe\",50,4000.0 "
+"Enter a command: get 1 Row 1: \"Jane Doe\",50,4000.0 Enter a command: column "
+"salary Column salary: 4000.0 3500.0"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Predicates.md:1367
+msgid ""
+"Predicates allow us to describe contracts between types and to refine the "
+"values we accept as valid function arguments.  They allow us to make a "
+"function safe and convenient to use at runtime *and* compile time by using "
+"them as auto implicit arguments, which Idris should try to construct on its "
+"own if it has enough information about the structure of a function's "
+"arguments."
+msgstr ""

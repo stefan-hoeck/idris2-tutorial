@@ -1,0 +1,1865 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
+#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
+#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
+#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
+#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+msgid "%default total ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:904 ../src/Tutorial/Functions1.md:576
+#: ../src/Tutorial/Functions2.md:955 ../src/Tutorial/Interfaces.md:814
+#: ../src/Tutorial/IO.md:1119
+msgid "### What's next"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Folds.md:1024 ../src/Tutorial/IO.md:758
+#: ../src/Tutorial/Traverse.md:272
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"     Nil  : List01 False a\n"
+"     (::) : a -> List01 False a -> List01 ne a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:24 ../src/Tutorial/IO.md:14
+msgid "import Data.List1 import Data.String import Data.Vect"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:2
+msgid "# IO: Programming with Side Effects"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:7
+msgid ""
+"So far, all our examples and exercises dealt with pure, total functions.  We "
+"didn't read or write content from or to files, nor did we write any messages "
+"to the standard output. It is time to change that and learn, how we can "
+"write effectful programs in Idris."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:10
+msgid "```idris module Tutorial.IO"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:16
+msgid "import System.File"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:21
+msgid "## Pure Side Effects?"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:24
+msgid ""
+"If we once again look at the *hello world* example from the [introduction]"
+"(Intro.md), it had the following type and implementation:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:29
+msgid "```idris hello : IO ()  hello = putStrLn \"Hello World!\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:32
+msgid ""
+"If you load this module in a REPL session and evaluate `hello`, you'll get "
+"the following:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:37
+msgid "```repl Tutorial.IO> hello MkIO (prim__putStr \"Hello World!\")  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:41
+msgid ""
+"This might not be what you expected, given that we'd actually wanted the "
+"program to just print \"Hello World!\". In order to explain what's going on "
+"here, we need to quickly look at how evaluation at the REPL works."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:51
+msgid ""
+"When we evaluate some expression at the REPL, Idris tries to reduce it to a "
+"value until it gets stuck somewhere. In the above case, Idris gets stuck at "
+"function `prim__putStr`. This is a *foreign function* defined in the "
+"*Prelude*, which has to be implemented by each backend in order to be "
+"available there. At compile time (and at the REPL), Idris knows nothing "
+"about the implementations of foreign functions and therefore can't reduce "
+"foreign function calls, unless they are built into the compiler itself. But "
+"even then, values of type `IO a` (`a` being a type parameter) are typically "
+"not reduced."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:61
+msgid ""
+"It is important to understand that values of type `IO a` *describe* a "
+"program, which, when being *executed*, will return a value of type `a`, "
+"after performing arbitrary side effects along the way. For instance, "
+"`putStrLn` has type `String -> IO ()`. Read this as: \"`putStrLn` is a "
+"function, which, when given a `String` argument, will return a description "
+"of an effectful program with an output type of `()`\".  (`()` is syntactic "
+"sugar for type `Unit`, the empty tuple defined at the *Prelude*, which has "
+"only one value called `MkUnit`, for which we can also use `()` in our code.)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:72
+msgid ""
+"Since values of type `IO a` are mere descriptions of effectful computations, "
+"functions returning such values or taking such values as arguments are still "
+"*pure* and thus referentially transparent.  It is, however, not possible to "
+"extract a value of type `a` from a value of type `IO a`, that is, there is "
+"no generic function `IO a -> a`, as such a function would inadvertently "
+"execute the side effects when extracting the result from its argument, thus "
+"breaking referential transparency.  (Actually, there *is* such a function "
+"called `unsafePerformIO`.  Do not ever use it in your code unless you know "
+"what you are doing.)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:74
+msgid "### Do Blocks"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:83
+msgid ""
+"If you are new to pure functional programming, you might now - rightfully - "
+"mumble something about how useless it is to have descriptions of effectful "
+"programs without being able to run them.  So please, hear me out. While we "
+"are not able to run values of type `IO a` when writing programs, that is, "
+"there is no function of type `IO a -> a`, we are able to chain such "
+"computations and describe more complex programs. Idris provides special "
+"syntax for this: *Do blocks*.  Here's an example:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:90
+#, no-wrap
+msgid ""
+"```idris\n"
+"readHello : IO ()\n"
+"readHello = do\n"
+"  name <- getLine\n"
+"  putStrLn $ \"Hello \" ++ name ++ \"!\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:93
+msgid ""
+"Before we talk about what's going on here, let's give this a go at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:99
+msgid "```repl Tutorial.IO> :exec readHello Stefan Hello Stefan! ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:104
+msgid ""
+"This is an interactive program, which will read a line from standard input "
+"(`getLine`), assign the result to variable `name`, and then use `name` to "
+"create a friendly greeting and write it to standard output."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:114
+msgid ""
+"Note the `do` keyword at the beginning of the implementation of `readHello`: "
+"It starts a *do block*, where we can chain `IO` computations and bind "
+"intermediary results to variables using arrows pointing to the left (`<-`), "
+"which can then be used in later `IO` actions. This concept is powerful "
+"enough to let us encapsulate arbitrary programs with side effects in a "
+"single value of type `IO`. Such a description can then be returned by "
+"function `main`, the main entry point to an Idris program, which is being "
+"executed when we run a compiled Idris binary."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:116
+msgid "### The Difference between Program Description and Execution"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:120
+msgid ""
+"In order to better understand the difference between *describing* an "
+"effectful computation and *executing* or *running* it, here is a small "
+"program:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:124
+msgid ""
+"```idris launchMissiles : IO ()  launchMissiles = putStrLn \"Boom! You're "
+"dead.\""
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:129
+#, no-wrap
+msgid ""
+"friendlyReadHello : IO ()\n"
+"friendlyReadHello = do\n"
+"  _ <- putStrLn \"Please enter your name.\"\n"
+"  readHello\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:132
+msgid ""
+"actions : Vect 3 (IO ())  actions = [launchMissiles, friendlyReadHello, "
+"friendlyReadHello]"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:140
+#, no-wrap
+msgid ""
+"runActions : Vect (S n) (IO ()) -> IO ()\n"
+"runActions (_ :: xs) = go xs\n"
+"  where go : Vect k (IO ()) -> IO ()\n"
+"        go []        = pure ()\n"
+"        go (y :: ys) = do\n"
+"          _ <- y\n"
+"          go ys\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:144
+msgid "readHellos : IO ()  readHellos = runActions actions ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:153
+msgid ""
+"Before I explain what the code above does, please note function `pure` used "
+"in the implementation of `runActions`. It is a constrained function, about "
+"which we will learn in the next chapter. Specialized to `IO`, it has generic "
+"type `a -> IO a`: It allows us to wrap a value in an `IO` action. The "
+"resulting `IO` program will just return the wrapped value without performing "
+"any side effects. We can now look at the big picture of what's going on in "
+"`readHellos`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:160
+msgid ""
+"First, we define a friendlier version of `readHello`: When executed, this "
+"will ask about our name explicitly. Since we will not use the result of "
+"`putStrLn` any further, we can use an underscore as a catch-all pattern "
+"here. Afterwards, `readHello` is invoked. We also define `launchMissiles`, "
+"which, when being executed, will lead to the destruction of planet earth."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:169
+msgid ""
+"Now, `runActions` is the function we use to demonstrate that *describing* an "
+"`IO` action is not the same as *running* it. It will drop the first action "
+"from the non-empty vector it takes as its argument and return a new `IO` "
+"action, which describes the execution of the remaining `IO` actions in "
+"sequence. If this behaves as expected, the first `IO` action passed to "
+"`runActions` should be silently dropped together with all its potential side "
+"effects."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:174
+msgid ""
+"When we execute `readHellos` at the REPL, we will be asked for our name "
+"twice, although `actions` also contains `launchMissiles` at the beginning. "
+"Luckily, although we described how to destroy the planet, the action was not "
+"executed, and we are (probably) still here."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:176
+msgid "From this example we learn several things:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:180
+msgid ""
+"Values of type `IO a` are *pure descriptions* of programs, which, when being "
+"*executed*, perform arbitrary side effects before returning a value of type "
+"`a`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:184
+msgid ""
+"Values of type `IO a` can be safely returned from functions and passed "
+"around as arguments or in data structures, without the risk of them being "
+"executed."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:187
+msgid ""
+"Values of type `IO a` can be safely combined in *do blocks* to *describe* "
+"new `IO` actions."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:191
+msgid ""
+"An `IO` action will only ever get executed when it's passed to `:exec` at "
+"the REPL, or when it is the `main` function of a compiled Idris program that "
+"is being executed."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:196
+msgid ""
+"It is not possible to ever break out of the `IO` context: There is no "
+"function of type `IO a -> a`, as such a function would need to execute its "
+"argument in order to extract the final result, and this would break "
+"referential transparency."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:198
+msgid "### Combining Pure Code with `IO` Actions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:202
+msgid ""
+"The title of this subsection is somewhat misleading. `IO` actions *are* pure "
+"values, but what is typically meant here, is that we combine non-`IO` "
+"functions with effectful computations."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:208
+msgid ""
+"As a demonstration, in this section we are going to write a small program "
+"for evaluating arithmetic expressions. We are going to keep things simple "
+"and allow only expressions with a single operator and two arguments, both of "
+"which must be integers, for instance `12 + 13`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:216
+msgid ""
+"We are going to use function `split` from `Data.String` in *base* to "
+"tokenize arithmetic expressions. We are then trying to parse the two integer "
+"values and the operator. These operations might fail, since user input can "
+"be invalid, so we also need an error type. We could actually just use "
+"`String`, but I consider it to be good practice to use custom sum types for "
+"erroneous conditions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:222
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Error : Type where\n"
+"  NotAnInteger    : (value : String) -> Error\n"
+"  UnknownOperator : (value : String) -> Error\n"
+"  ParseError      : (input : String) -> Error\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:228
+#, no-wrap
+msgid ""
+"dispError : Error -> String\n"
+"dispError (NotAnInteger v)    = \"Not an integer: \" ++ v ++ \".\"\n"
+"dispError (UnknownOperator v) = \"Unknown operator: \" ++ v ++ \".\"\n"
+"dispError (ParseError v)      = \"Invalid expression: \" ++ v ++ \".\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:231
+msgid ""
+"In order to parse integer literals, we use function `parseInteger` from "
+"`Data.String`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:236
+msgid ""
+"```idris readInteger : String -> Either Error Integer readInteger s = maybe "
+"(Left $ NotAnInteger s) Right $ parseInteger s ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:239
+msgid ""
+"Likewise, we declare and implement a function for parsing arithmetic "
+"operators:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:246
+#, no-wrap
+msgid ""
+"```idris\n"
+"readOperator : String -> Either Error (Integer -> Integer -> Integer)\n"
+"readOperator \"+\" = Right (+)\n"
+"readOperator \"*\" = Right (*)\n"
+"readOperator s   = Left (UnknownOperator s)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:254
+msgid ""
+"We are now ready to parse and evaluate simple arithmetic expressions. This "
+"consists of several steps (splitting the input string, parsing each "
+"literal), each of which can fail.  Later, when we learn about monads, we "
+"will see that do blocks can be used in such occasions just as well. However, "
+"in this case we can use an alternative syntactic convenience: Pattern "
+"matching in let bindings. Here is the code:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:264
+#, no-wrap
+msgid ""
+"```idris\n"
+"eval : String -> Either Error Integer\n"
+"eval s =\n"
+"  let [x,y,z]  := forget $ split isSpace s | _ => Left (ParseError s)\n"
+"      Right v1 := readInteger x  | Left e => Left e\n"
+"      Right op := readOperator y | Left e => Left e\n"
+"      Right v2 := readInteger z  | Left e => Left e\n"
+"   in Right $ op v1 v2\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:280
+msgid ""
+"Let's break this down a bit. On the first line, we split the input string at "
+"all whitespace occurrences. Since `split` returns a `List1` (a type for non-"
+"empty lists exported from `Data.List1` in *base*) but pattern matching on "
+"`List` is more convenient, we convert the result using `Data.List1.forget`. "
+"Note, how we use a pattern match on the left hand side of the assignment "
+"operator `:=`.  This is a partial pattern match (*partial* meaning, that it "
+"doesn't cover all possible cases), therefore we have to deal with the other "
+"possibilities as well, which is done after the vertical line. This can be "
+"read as follows: \"If the pattern match on the left hand side is successful, "
+"and we get a list of exactly three tokens, continue with the `let` "
+"expression, otherwise return a `ParseError` in a `Left` immediately\"."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:286
+msgid ""
+"The other three lines behave exactly the same: Each has a partial pattern "
+"match on the left hand side with instructions what to return in case of "
+"invalid input after the vertical bar. We will later see, that this syntax is "
+"also available in *do blocks*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:294
+msgid ""
+"Note, how all of the functionality implemented so far is *pure*, that is, it "
+"does not describe computations with side effects. (One could argue that "
+"already the possibility of failure is an observable *effect*, but even then, "
+"the code above is still referentially transparent, can be easily tested at "
+"the REPL, and evaluated at compile time, which is the important thing here.)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:298
+msgid ""
+"Finally, we can wrap this functionality in an `IO` action, which reads a "
+"string from standard input and tries to evaluate the arithmetic expression:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:309
+#, no-wrap
+msgid ""
+"```idris\n"
+"exprProg : IO ()\n"
+"exprProg = do\n"
+"  s <- getLine\n"
+"  case eval s of\n"
+"    Left err  => do\n"
+"      putStrLn \"An error occured:\"\n"
+"      putStrLn (dispError err)\n"
+"    Right res => putStrLn (s ++ \" = \" ++ show res)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:316
+msgid ""
+"Note, how in `exprProg` we were forced to deal with the possibility of "
+"failure and handle both constructors of `Either` differently in order to "
+"print a result.  Note also, that *do blocks* are ordinary expressions, and "
+"we can, for instance, start a new *do block* on the right hand side of a "
+"case expression."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:329
+msgid ""
+"In these exercises, you are going to implement some small command-line "
+"applications. Some of these will potentially run forever, as they will only "
+"stop when the user enters a keyword for quitting the application. Such "
+"programs are no longer provably total. If you added the `%default total` "
+"pragma at the top of your source file, you'll need to annotate these "
+"functions with `covering`, meaning that you covered all cases in all pattern "
+"matches but your program might still loop due to unrestricted recursion."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/IO.md:333
+msgid ""
+"Implement function `rep`, which will read a line of input from the terminal, "
+"evaluate it using the given function, and print the result to standard "
+"output:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:337
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   rep : (String -> String) -> IO ()\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/IO.md:341
+msgid ""
+"Implement function `repl`, which behaves just like `rep` but will repeat "
+"itself forever (or until being forcefully terminated):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:346
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   covering\n"
+"   repl : (String -> String) -> IO ()\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/IO.md:351
+msgid ""
+"Implement function `replTill`, which behaves just like `repl` but will only "
+"continue looping if the given function returns a `Right`. If it returns a "
+"`Left`, `replTill` should print the final message wrapped in the `Left` and "
+"then stop."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:356
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   covering\n"
+"   replTill : (String -> Either String String) -> IO ()\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/IO.md:364
+msgid ""
+"Write a program, which reads arithmetic expressions from standard input, "
+"evaluates them using `eval`, and prints the result to standard output. The "
+"program should loop until users stops it by entering \"done\", in which case "
+"the program should terminate with a friendly greeting.  Use `replTill` in "
+"your implementation."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/IO.md:373
+msgid ""
+"Implement function `replWith`, which behaves just like `repl` but uses some "
+"internal state to accumulate values.  At each iteration (including the very "
+"first one!), the current state should be printed to standard output using "
+"function `dispState`, and the next state should be computed using function "
+"`next`.  The loop should terminate in case of a `Left` and print a final "
+"message using `dispResult`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:382
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   covering\n"
+"   replWith :  (state      : s)\n"
+"            -> (next       : s -> String -> Either res s)\n"
+"            -> (dispState  : s -> String)\n"
+"            -> (dispResult : res -> s -> String)\n"
+"            -> IO ()\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/IO.md:388
+msgid ""
+"Use `replWith` from Exercise 5 to write a program for reading natural "
+"numbers from standard input and printing the accumulated sum of these "
+"numbers.  The program should terminate in case of invalid input and if a "
+"user enters \"done\"."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:390
+msgid "## Do Blocks, Desugared"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:402
+msgid ""
+"Here's an important piece of information: There is nothing special about *do "
+"blocks*. They are just syntactic sugar, which is converted to a sequence of "
+"operator applications.  With [syntactic sugar](https://en.wikipedia.org/wiki/"
+"Syntactic_sugar), we mean syntax in a programming language that makes it "
+"easier to express certain things in that language without making the "
+"language itself any more powerful or expressive.  Here, it means you could "
+"write all the `IO` programs without using `do` notation, but the code you'll "
+"write will sometimes be harder to read, so *do blocks* provide nicer syntax "
+"for these occasions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:404
+msgid "Consider the following example program:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:413
+#, no-wrap
+msgid ""
+"```idris\n"
+"sugared1 : IO ()\n"
+"sugared1 = do\n"
+"  str1 <- getLine\n"
+"  str2 <- getLine\n"
+"  str3 <- getLine\n"
+"  putStrLn (str1 ++ str2 ++ str3)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:416
+msgid ""
+"The compiler will convert this to the following program *before "
+"disambiguating function names and type checking*:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:428
+#, no-wrap
+msgid ""
+"```idris\n"
+"desugared1 : IO ()\n"
+"desugared1 =\n"
+"  getLine >>= (\\str1 =>\n"
+"    getLine >>= (\\str2 =>\n"
+"      getLine >>= (\\str3 =>\n"
+"        putStrLn (str1 ++ str2 ++ str3)\n"
+"      )\n"
+"    )\n"
+"  )\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:432
+msgid ""
+"There is a new operator (`(>>=)`) called *bind* in the implementation of "
+"`desugared1`. If you look at its type at the REPL, you'll see the following:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:437
+msgid ""
+"```repl Main> :t (>>=)  Prelude.>>= : Monad m => m a -> (a -> m b) -> m b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:441
+msgid ""
+"This is a constrained function requiring an interface called `Monad`.  We "
+"will talk about `Monad` and some of its friends in the next chapter. "
+"Specialized to `IO`, *bind* has the following type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:446
+msgid "```repl Main> :t (>>=) {m = IO} >>= : IO a -> (a -> IO b) -> IO b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:451
+msgid ""
+"This describes a sequencing of `IO` actions. Upon execution, the first `IO` "
+"action is being run and its result is being passed as an argument to the "
+"function generating the second `IO` action, which is then also being "
+"executed."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:466
+msgid ""
+"You might remember, that you already implemented something similar in an "
+"earlier exercise: In [Algebraic Data Types](DataTypes.md), you implemented "
+"*bind* for `Maybe` and `Either e`. We will learn in the next chapter, that "
+"`Maybe` and `Either e` too come with an implementation of `Monad`. For now, "
+"suffice to say that `Monad` allows us to run computations with some kind of "
+"effect in sequence by passing the *result* of the first computation to the "
+"function returning the second computation. In `desugared1` you can see, how "
+"we first perform an `IO` action and use its result to compute the next `IO` "
+"action and so on. The code is somewhat hard to read, since we use several "
+"layers of nested anonymous function, that's why in such cases, *do blocks* "
+"are a nice alternative to express the same functionality."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:471
+msgid ""
+"Since *do block* are always desugared to sequences of applied *bind* "
+"operators, we can use them to chain any monadic computation. For instance, "
+"we can rewrite function `eval` by using a *do block* like so:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:482
+#, no-wrap
+msgid ""
+"```idris\n"
+"evalDo : String -> Either Error Integer\n"
+"evalDo s = case forget $ split isSpace s of\n"
+"  [x,y,z] => do\n"
+"    v1 <- readInteger x\n"
+"    op <- readOperator y\n"
+"    v2 <- readInteger z\n"
+"    Right $ op v1 v2\n"
+"  _       => Left (ParseError s)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:488
+msgid ""
+"Don't worry, if this doesn't make too much sense yet. We will see many more "
+"examples, and you'll get the hang of this soon enough. The important thing "
+"to remember is how *do blocks* are always converted to sequences of *bind* "
+"operators as shown in `desugared1`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:490
+msgid "### Binding Unit"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:492
+msgid "Remember our implementation of `friendlyReadHello`? Here it is again:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:499
+#, no-wrap
+msgid ""
+"```idris\n"
+"friendlyReadHello' : IO ()\n"
+"friendlyReadHello' = do\n"
+"  _ <- putStrLn \"Please enter your name.\"\n"
+"  readHello\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:505
+msgid ""
+"The underscore in there is a bit ugly and unnecessary. In fact, a common use "
+"case is to just chain effectful computations with result type `Unit` (`()`), "
+"merely for the side effects they perform. For instance, we could repeat "
+"`friendlyReadHello` three times, like so:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:513
+#, no-wrap
+msgid ""
+"```idris\n"
+"friendly3 : IO ()\n"
+"friendly3 = do\n"
+"  _ <- friendlyReadHello\n"
+"  _ <- friendlyReadHello\n"
+"  friendlyReadHello\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:516
+msgid ""
+"This is such a common thing to do, that Idris allows us to drop the bound "
+"underscores altogether:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:525
+#, no-wrap
+msgid ""
+"```idris\n"
+"friendly4 : IO ()\n"
+"friendly4 = do\n"
+"  friendlyReadHello\n"
+"  friendlyReadHello\n"
+"  friendlyReadHello\n"
+"  friendlyReadHello\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:527
+msgid "Note, however, that the above gets desugared slightly differently:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:536
+#, no-wrap
+msgid ""
+"```idris\n"
+"friendly4Desugared : IO ()\n"
+"friendly4Desugared =\n"
+"  friendlyReadHello >>\n"
+"  friendlyReadHello >>\n"
+"  friendlyReadHello >>\n"
+"  friendlyReadHello\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:538
+msgid "Operator `(>>)` has the following type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:543
+msgid ""
+"```repl Main> :t (>>)  Prelude.>> : Monad m => m () -> Lazy (m b) -> m b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:550
+msgid ""
+"Note the `Lazy` keyword in the type signature. This means, that the wrapped "
+"argument will be *lazily evaluated*. This makes sense in many occasions. For "
+"instance, if the `Monad` in question is `Maybe` the result will be `Nothing` "
+"if the first argument is `Nothing`, in which case there is no need to even "
+"evaluate the second argument."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:552
+msgid "### Do, Overloaded"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:562
+msgid ""
+"Because Idris supports function and operator overloading, we can write "
+"custom *bind* operators, which allows us to use *do notation* for types "
+"without an implementation of `Monad`. For instance, here is a custom "
+"implementation of `(>>=)` for sequencing computations returning vectors.  "
+"Every value in the first vector (of length `m`)  will be converted to a "
+"vector of length `n`, and the results will be concatenated leading to a "
+"vector of length `m * n`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:567
+#, no-wrap
+msgid ""
+"```idris\n"
+"flatten : Vect m (Vect n a) -> Vect (m * n) a\n"
+"flatten []        = []\n"
+"flatten (x :: xs) = x ++ flatten xs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:571
+msgid ""
+"(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b as >>= f = flatten "
+"(map f as)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:580
+msgid ""
+"It is not possible to write an implementation of `Monad`, which encapsulates "
+"this behavior, as the types wouldn't match: Monadic *bind* specialized to "
+"`Vect` has type `Vect k a -> (a -> Vect k b) -> Vect k b`. As you see, the "
+"sizes of all three occurrences of `Vect` have to be the same, which is not "
+"what we expressed in our custom version of *bind*. Here is an example to see "
+"this in action:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:584
+msgid ""
+"```idris modString : String -> Vect 4 String modString s = [s, reverse s, "
+"toUpper s, toLower s]"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:591
+#, no-wrap
+msgid ""
+"testDo : Vect 24 String\n"
+"testDo = IO.do\n"
+"  s1 <- [\"Hello\", \"World\"]\n"
+"  s2 <- [1, 2, 3]\n"
+"  modString (s1 ++ show s2)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:601
+msgid ""
+"Try to figure out how `testDo` works by desugaring it manually and then "
+"comparing its result with what you expected at the REPL. Note, how we helped "
+"Idris disambiguate, which version of the *bind* operator to use by prefixing "
+"the `do` keyword with part of the operator's namespace.  In this case, this "
+"wasn't strictly necessary, although `Vect k` does have an implementation of "
+"`Monad`, but it is still good to know that it is possible to help the "
+"compiler with disambiguating do blocks."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:605
+msgid ""
+"Of course, we can (and should!) overload `(>>)` in the same manner as "
+"`(>>=)`, if we want to overload the behavior of *do blocks*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:607
+msgid "#### Modules and Namespaces"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:614
+msgid ""
+"Every data type, function, or operator can be unambiguously identified by "
+"prefixing it with its *namespace*. A function's namespace typically is the "
+"same as the module where it was defined.  For instance, the fully qualified "
+"name of function `eval` would be `Tutorial.IO.eval`. Function and operator "
+"names must be unique in their namespace."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:620
+msgid ""
+"As we already learned, Idris can often disambiguate between functions with "
+"the same name but defined in different namespaces based on the types "
+"involved. If this is not possible, we can help the compiler by *prefixing* "
+"the function or operator name with a *suffix* of the full namespace. Let's "
+"demonstrate this at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:626
+msgid ""
+"```repl Tutorial.IO> :t (>>=)  Prelude.>>= : Monad m => m a -> (a -> m b) -> "
+"m b Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:633
+msgid ""
+"As you can see, if we load this module in a REPL session and inspect the "
+"type of `(>>=)`, we get two results as two operators with this name are in "
+"scope. If we only want the REPL to print the type of our custom *bind* "
+"operator, is is sufficient to prefix it with `IO`, although we could also "
+"prefix it with its full namespace:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:640
+msgid ""
+"```repl Tutorial.IO> :t IO.(>>=)  Tutorial.IO.>>= : Vect m a -> (a -> Vect n "
+"b) -> Vect (m * n) b Tutorial.IO> :t Tutorial.IO.(>>=)  Tutorial.IO.>>= : "
+"Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:649
+msgid ""
+"Since function names must be unique in their namespace and we still may want "
+"to define two overloaded versions of a function in an Idris module, Idris "
+"makes it possible to add additional namespaces to modules. For instance, in "
+"order to define another function called `eval`, we need to add it to its own "
+"namespace (note, that all definitions in a namespace must be indented by the "
+"same amount of white space):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:655
+#, no-wrap
+msgid ""
+"```idris\n"
+"namespace Foo\n"
+"  export\n"
+"  eval : Nat -> Nat -> Nat\n"
+"  eval = (*)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:660
+msgid ""
+"-- prefixing `eval` with its namespace is not strictly necessary here "
+"testFooEval : Nat testFooEval = Foo.eval 12 100 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:665
+msgid ""
+"Now, here is an important thing: For functions and data types to be "
+"accessible from outside their namespace or module, they need to be "
+"*exported* by annotating them with the `export` or `public export` keywords."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:674
+msgid ""
+"The difference between `export` and `public export` is the following: A "
+"function annotated with `export` exports its type and can be called from "
+"other namespaces. A data type annotated with `export` exports its type "
+"constructor but not its data constructors.  A function annotated with "
+"`public export` also exports its implementation. This is necessary to use "
+"the function in compile-time computations. A data type annotated with "
+"`public export` exports its data constructors as well."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:680
+msgid ""
+"In general, consider annotating data types with `public export`, since "
+"otherwise you will not be able to create values of these types or "
+"deconstruct them in pattern matches. Likewise, unless you plan to use your "
+"functions in compile-time computations, annotate them with `export`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:682
+msgid "### Bind, with a Bang"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:688
+msgid ""
+"Sometimes, even *do blocks* are too noisy to express a combination of "
+"effectful computations. In this case, we can prefix the effectful parts with "
+"an exclamation mark (wrapping them in parentheses if they contain additional "
+"white space), while leaving pure expressions unmodified:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:693
+msgid ""
+"```idris getHello : IO ()  getHello = putStrLn $ \"Hello \" ++ !getLine ++ "
+"\"!\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:695
+msgid "The above gets desugared to the following *do block*:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:702
+#, no-wrap
+msgid ""
+"```idris\n"
+"getHello' : IO ()\n"
+"getHello' = do\n"
+"  s <- getLine\n"
+"  putStrLn $ \"Hello \" ++ s ++ \"!\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:704
+msgid "Here is another example:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:710
+#, no-wrap
+msgid ""
+"```idris\n"
+"bangExpr : String -> String -> String -> Maybe Integer\n"
+"bangExpr s1 s2 s3 =\n"
+"  Just $ !(parseInteger s1) + !(parseInteger s2) * !(parseInteger s3)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:712
+msgid "And here is the desugared *do block*:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:721
+#, no-wrap
+msgid ""
+"```idris\n"
+"bangExpr' : String -> String -> String -> Maybe Integer\n"
+"bangExpr' s1 s2 s3 = do\n"
+"  x1 <- parseInteger s1\n"
+"  x2 <- parseInteger s2\n"
+"  x3 <- parseInteger s3\n"
+"  Just $ x1 + x2 * x3\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:727
+msgid ""
+"Please remember the following: Syntactic sugar has been introduced to make "
+"code more readable or more convenient to write. If it is abused just to show "
+"how clever you are, you make things harder for other people (including your "
+"future self!)  reading and trying to understand your code."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/IO.md:733
+msgid ""
+"Reimplement the following *do blocks*, once by using *bang notation*, and "
+"once by writing them in their desugared form with nested *bind*s:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:741
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   ex1a : IO String\n"
+"   ex1a = do\n"
+"     s1 <- getLine\n"
+"     s2 <- getLine\n"
+"     s3 <- getLine\n"
+"     pure $ s1 ++ reverse s2 ++ s3\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:748
+#, no-wrap
+msgid ""
+"   ex1b : Maybe Integer\n"
+"   ex1b = do\n"
+"     n1 <- parseInteger \"12\"\n"
+"     n2 <- parseInteger \"300\"\n"
+"     Just $ n1 + n2 * 100\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/IO.md:752
+msgid ""
+"Below is the definition of an indexed family of types, the index of which "
+"keeps track of whether the value in question is possibly empty or provably "
+"non-empty:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:766
+#, no-wrap
+msgid ""
+"   Please note, that the `Nil` case *must* have the `nonEmpty`\n"
+"   tag set to `False`, while with the *cons* case, this is\n"
+"   optional. So, a `List01 False a` can be empty or non-empty,\n"
+"   and we'll only find out, which is the case, by pattern\n"
+"   matching on it. A `List01 True a` on the other hand *must*\n"
+"   be a *cons*, as for the `Nil` case the `nonEmpty` tag is\n"
+"   always set to `False`.\n"
+msgstr ""
+
+#. type: Bullet: '   1. '
+#: ../src/Tutorial/IO.md:768
+msgid "Declare and implement function `head` for non-empty lists:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:772
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      head : List01 True a -> a\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   2. '
+#: ../src/Tutorial/IO.md:776
+msgid ""
+"Declare and implement function `weaken` for converting any `List01 ne a` to "
+"a `List01 False a` of the same length and order of values."
+msgstr ""
+
+#. type: Bullet: '   3. '
+#: ../src/Tutorial/IO.md:779
+msgid ""
+"Declare and implement function `tail` for extracting the possibly empty tail "
+"from a non-empty list."
+msgstr ""
+
+#. type: Bullet: '   4. '
+#: ../src/Tutorial/IO.md:784
+msgid ""
+"Implement function `(++)` for concatenating two values of type `List01`. "
+"Note, how we use a type-level computation to make sure the result is non-"
+"empty if and only if at least one of the two arguments is non-empty:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:788
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   5. '
+#: ../src/Tutorial/IO.md:794
+msgid ""
+"Implement utility function `concat'` and use it in the implementation of "
+"`concat`. Note, that in `concat` the two boolean tags are passed as "
+"unrestricted implicits, since you will need to pattern match on these to "
+"determine whether the result is provably non-empty or not:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:797
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      concat' : List01 ne1 (List01 ne2 a) -> List01 False a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:802
+#, no-wrap
+msgid ""
+"      concat :  {ne1, ne2 : _}\n"
+"             -> List01 ne1 (List01 ne2 a)\n"
+"             -> List01 (ne1 && ne2) a\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   6. '
+#: ../src/Tutorial/IO.md:804
+msgid "Implement `map01`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:808
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      map01 : (a -> b) -> List01 ne a -> List01 ne b\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   7. '
+#: ../src/Tutorial/IO.md:811
+msgid ""
+"Implement a custom *bind* operator in namespace `List01` for sequencing "
+"computations returning `List01`s."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:814
+#, no-wrap
+msgid ""
+"      Hint: Use `map01` and `concat` in your implementation and\n"
+"      make sure to use unrestricted implicits where necessary.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:817
+#, no-wrap
+msgid ""
+"      You can use the following examples to test your\n"
+"      custom *bind* operator:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:823
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      -- this and lf are necessary to make sure, which tag to use\n"
+"      -- when using list literals\n"
+"      lt : List01 True a -> List01 True a\n"
+"      lt = id\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:826
+#, no-wrap
+msgid ""
+"      lf : List01 False a -> List01 False a\n"
+"      lf = id\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:833
+#, no-wrap
+msgid ""
+"      test : List01 True Integer\n"
+"      test = List01.do\n"
+"        x  <- lt [1,2,3]\n"
+"        y  <- lt [4,5,6,7]\n"
+"        op <- lt [(*), (+), (-)]\n"
+"        [op x y]\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:841
+#, no-wrap
+msgid ""
+"      test2 : List01 False Integer\n"
+"      test2 = List01.do\n"
+"        x  <- lt [1,2,3]\n"
+"        y  <- Nil {a = Integer}\n"
+"        op <- lt [(*), (+), (-)]\n"
+"        lt [op x y]\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:857
+msgid ""
+"Some notes on Exercise 2: Here, we combined the capabilities of `List` and "
+"`Data.List1` in a single indexed type family.  This allowed us to treat list "
+"concatenation correctly: If at least one of the arguments is provably non-"
+"empty, the result is also non-empty. To tackle this correctly with `List` "
+"and `List1`, a total of four concatenation functions would have to be "
+"written. So, while it is often possible to define distinct data types "
+"instead of indexed families, the latter allow us to perform type-level "
+"computations to be more precise about the pre- and postconditions of the "
+"functions we write, at the cost of more-complex type signatures.  In "
+"addition, sometimes it's not possible to derive the values of the indices "
+"from pattern matching on the data values alone, so they have to be passed as "
+"unerased (possibly implicit) arguments."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:864
+msgid ""
+"Please remember, that *do blocks* are first desugared, before type-checking, "
+"disambiguating which *bind* operator to use, and filling in implicit "
+"arguments. It is therefore perfectly fine to define *bind* operators with "
+"arbitrary constraints or implicit arguments as was shown above. Idris will "
+"handle all the details, *after* desugaring the *do blocks*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:866
+msgid "## Working with Files"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:872
+msgid ""
+"Module `System.File` from the *base* library exports utilities necessary to "
+"work with file handles and read and write from and to files. When you have a "
+"file path (for instance \"/home/hock/idris/tutorial/tutorial.ipkg\"), the "
+"first thing we will typically do is to try and create a file handle (of type "
+"`System.File.File` by calling `fileOpen`)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:874
+msgid "Here is a program for counting all empty lines in a Unix/Linux-file:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:887
+#, no-wrap
+msgid ""
+"```idris\n"
+"covering\n"
+"countEmpty : (path : String) -> IO (Either FileError Nat)\n"
+"countEmpty path = openFile path Read >>= either (pure . Left) (go 0)\n"
+"  where covering go : Nat -> File -> IO (Either FileError Nat)\n"
+"        go k file = do\n"
+"          False <- fEOF file | True => closeFile file $> Right k\n"
+"          Right \"\\n\" <- fGetLine file\n"
+"            | Right _  => go k file\n"
+"            | Left err => closeFile file $> Left err\n"
+"          go (k + 1) file\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:894
+msgid ""
+"In the example above, I invoked `(>>=)` without starting a *do block*.  Make "
+"sure you understand what's going on here. Reading concise functional code is "
+"important in order to understand other people's code.  Have a look at "
+"function `either` at the REPL, try figuring out what `(pure . Left)` does, "
+"and note how we use a curried version of `go` as the second argument to "
+"`either`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:905
+msgid ""
+"Function `go` calls for some additional explanations. First, note how we "
+"used the same syntax for pattern matching intermediary results as we also "
+"saw for `let` bindings. As you can see, we can use several vertical bars to "
+"handle more than one additional pattern. In order to read a single line from "
+"a file, we use function `fGetLine`. As with most operations working with the "
+"file system, this function might fail with a `FileError`, which we have to "
+"handle correctly. Note also, that `fGetLine` will return the line including "
+"its trailing newline character `'\\n'`, so in order to check for empty "
+"lines, we have to match against `\"\\n\"` instead of the empty string `\"\"`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:910
+msgid ""
+"Finally, `go` is not provably total and rightfully so.  Files like `/dev/"
+"urandom` or `/dev/zero` provide infinite streams of data, so `countEmpty` "
+"will never terminate when invoked with such a file path."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:912
+msgid "### Safe Resource Handling"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:919
+msgid ""
+"Note, how we had to manually open and close the file handle in `countEmpty`. "
+"This is error-prone and tedious. Resource handling is a big topic, and we "
+"definitely won't be going into the details here, but there is a convenient "
+"function exported from `System.File`: `withFile`, which handles the opening, "
+"closing and handling of file errors for us."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:932
+#, no-wrap
+msgid ""
+"```idris\n"
+"covering\n"
+"countEmpty' : (path : String) -> IO (Either FileError Nat)\n"
+"countEmpty' path = withFile path Read pure (go 0)\n"
+"  where covering go : Nat -> File -> IO (Either FileError Nat)\n"
+"        go k file = do\n"
+"          False <- fEOF file | True => pure (Right k)\n"
+"          Right \"\\n\" <- fGetLine file\n"
+"            | Right _  => go k file\n"
+"            | Left err => pure (Left err)\n"
+"          go (k + 1) file\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:937
+msgid ""
+"Go ahead, and have a look at the type of `withFile`, then have a look how we "
+"use it to simplify the implementation of `countEmpty'`. Reading and "
+"understanding slightly more complex function types is important when "
+"learning to program in Idris."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:939
+msgid "#### Interface `HasIO`"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:948
+msgid ""
+"When you look at the `IO` functions we used so far, you'll notice that most "
+"if not all of them actually don't work with `IO` itself but with a type "
+"parameter `io` with a constraint of `HasIO`. This interface allows us to "
+"*lift* a value of type `IO a` into another context. We will see use cases "
+"for this in later chapters, especially when we talk about monad "
+"transformers. For now, you can treat these `io` parameters as being "
+"specialized to `IO`."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/IO.md:959
+msgid ""
+"As we have seen in the examples above, `IO` actions working with file "
+"handles often come with the risk of failure. We can therefore simplify "
+"things by writing some utility functions and a custom *bind* operator to "
+"work with these nested effects. In a new namespace `IOErr`, implement the "
+"following utility functions and use these to further cleanup the "
+"implementation of `countEmpty'`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:962
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   pure : a -> IO (Either e a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:964
+#, no-wrap
+msgid "   fail : e -> IO (Either e a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:966
+#, no-wrap
+msgid "   lift : IO a -> IO (Either e a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:968
+#, no-wrap
+msgid "   catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:970
+#, no-wrap
+msgid "   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:973
+#, no-wrap
+msgid ""
+"   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/IO.md:977
+msgid ""
+"Write a function `countWords` for counting the words in a file.  Consider "
+"using `Data.String.words` and the utilities from exercise 1 in your "
+"implementation."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/IO.md:983
+msgid ""
+"We can generalize the functionality used in `countEmpty` and `countWords`, "
+"by implementing a helper function for iterating over the lines in a file and "
+"accumulating some state along the way. Implement `withLines` and use it to "
+"reimplement `countEmpty` and `countWords`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:991
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   covering\n"
+"   withLines :  (path : String)\n"
+"             -> (accum : s -> String -> s)\n"
+"             -> (initialState : s)\n"
+"             -> IO (Either FileError s)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/IO.md:996
+msgid ""
+"We often use a `Monoid` for accumulating values.  It is therefore convenient "
+"to specialize `withLines` for this case. Use `withLines` to implement "
+"`foldLines` according to the type given below:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1004
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   covering\n"
+"   foldLines :  Monoid s\n"
+"             => (path : String)\n"
+"             -> (f    : String -> s)\n"
+"             -> IO (Either FileError s)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/IO.md:1012
+msgid ""
+"Implement function `wordCount` for counting the number of lines, words, and "
+"characters in a text document. Define a custom record type together with an "
+"implementation of `Monoid` for storing and accumulating these values and use "
+"`foldLines` in your implementation of `wordCount`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1014
+msgid "## How `IO` is Implemented"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1019
+msgid ""
+"In this final section of an already lengthy chapter, we will risk a glance "
+"at how `IO` is implemented in Idris. It is interesting to note, that `IO` is "
+"not a built-in type but a regular data type with only one minor speciality. "
+"Let's learn about it at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1031
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.IO> :doc IO\n"
+"data PrimIO.IO : Type -> Type\n"
+"  Totality: total\n"
+"  Constructor: MkIO : (1 _ : PrimIO a) -> IO a\n"
+"  Hints:\n"
+"    Applicative IO\n"
+"    Functor IO\n"
+"    HasLinearIO IO\n"
+"    Monad IO\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1037
+msgid ""
+"Here, we learn that `IO` has a single data constructor called `MkIO`, which "
+"takes a single argument of type `PrimIO a` with quantity *1*. We are not "
+"going to talk about the quantities here, as in fact they are not important "
+"to understand how `IO` works."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1039
+msgid "Now, `PrimIO a` is a type alias for the following function:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1045
+msgid ""
+"```repl Tutorial.IO> :printdef PrimIO PrimIO.PrimIO : Type -> Type PrimIO a "
+"= (1 _ : %World) -> IORes a ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1049
+msgid ""
+"Again, don't mind the quantities. There is only one piece of the puzzle "
+"missing: `IORes a`, which is a publicly exported record type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1056
+#, no-wrap
+msgid ""
+"```repl\n"
+"Solutions.IO> :doc IORes\n"
+"data PrimIO.IORes : Type -> Type\n"
+"  Totality: total\n"
+"  Constructor: MkIORes : a -> (1 _ : %World) -> IORes a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1059
+msgid ""
+"So, to put this all together, `IO` is a wrapper around something similar to "
+"the following function type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1063
+msgid "```repl %World -> (a, %World)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1072
+msgid ""
+"You can think of type `%World` as a placeholder for the state of the outside "
+"world of a program (file system, memory, network connections, and so on). "
+"Conceptually, to execute an `IO a` action, we pass it the current state of "
+"the world, and in return get an updated world state plus a result of type "
+"`a`. The world state being updated represents all the side effects "
+"describable in a computer program."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1088
+msgid ""
+"Now, it is important to understand that there is no such thing as the *state "
+"of the world*. The `%World` type is just a placeholder, which is converted "
+"to some kind of constant that's passed around and never inspected at "
+"runtime. So, if we had a value of type `%World`, we could pass it to an `IO "
+"a` action and execute it, and this is exactly what happens at runtime: A "
+"single value of type `%World` (an uninteresting placeholder like `null`, "
+"`0`, or - in case of the JavaScript backends - `undefined`)  is passed to "
+"the `main` function, thus setting the whole program in motion. However, it "
+"is impossible to programmatically create a value of type `%World` (it is an "
+"abstract, primitive type), and therefore we cannot ever extract a value of "
+"type `a` from an `IO a` action (modulo `unsafePerformIO`)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1094
+msgid ""
+"Once we will talk about monad transformers and the state monad, you will see "
+"that `IO` is nothing else but a state monad in disguise but with an abstract "
+"state type, which makes it impossible for us to run the stateful computation."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:1099
+msgid ""
+"Values of type `IO a` describe programs with side effects, which will "
+"eventually result in a value of type `a`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:1104
+msgid ""
+"While we cannot safely extract a value of type `a` from an `IO a`, we can "
+"use several combinators and syntactic constructs to combine `IO` actions and "
+"build more-complex programs."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:1107
+msgid ""
+"*Do blocks* offer a convenient way to run and combine `IO` actions "
+"sequentially."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:1110
+msgid ""
+"*Do blocks* are desugared to nested applications of *bind* operators "
+"(`(>>=)`)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:1114
+msgid ""
+"*Bind* operators, and thus *do blocks*, can be overloaded to achieve custom "
+"behavior instead of the default (monadic) *bind*."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/IO.md:1117
+msgid ""
+"Under the hood, `IO` actions are stateful computations operating on a "
+"symbolic `%World` state."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/IO.md:1123
+msgid ""
+"Now, that we had a glimpse at *monads* and the *bind* operator, it is time "
+"to in the [next chapter](Functor.md) introduce `Monad` and some related "
+"interfaces for real."
+msgstr ""

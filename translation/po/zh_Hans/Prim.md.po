@@ -1,0 +1,2530 @@
+# Chinese translations for idris package
+# Copyright (C) 2022 Free Software Foundation, Inc.
+# This file is distributed under the same license as the idris package.
+# Automatically generated, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: idris 2-tutorial\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: 2022-08-02 13:19+0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
+#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
+#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
+#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
+#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+msgid "%default total ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
+#: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
+#: ../src/Tutorial/Prim.md:646
+msgid "And at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:2
+msgid "# Primitives"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:7
+msgid ""
+"In the topics we covered so far, we hardly ever talked about primitive types "
+"in Idris. They where around and we used them in some computations, but I "
+"never really explained how they work and where they come from, nor did I "
+"show in detail what we can and can't do with them."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:10
+msgid "```idris module Tutorial.Prim"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:13
+msgid "import Data.Bits import Data.String"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:18
+msgid "## How Primitives are Implemented"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:20
+msgid "### A Short Note on Backends"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:30
+msgid ""
+"According to [Wikipedia](https://en.wikipedia.org/wiki/Compiler), a compiler "
+"is \"a computer program that translates computer code written in one "
+"programming language (the source language) into another language (the target "
+"language)\". The Idris compiler is exactly that: A program translating "
+"programs written in Idris into programs written in Chez Scheme. This scheme "
+"code is then parsed and interpreted by a Chez Scheme interpreter, which must "
+"be installed on the computers we use to run compiled Idris programs."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:37
+msgid ""
+"But that's only part of the story. Idris 2 was from the beginning designed "
+"to support different code generators (so called *backends*), which allows us "
+"to write Idris code to target different platforms, and your Idris "
+"installation comes with several additional backends available. You can "
+"specify the backend to use with the `--cg` command line argument (`cg` "
+"stands for *code generator*). For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:41
+msgid "```sh idris2 --cg racket ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:45
+msgid ""
+"Here is a non-comprehensive list of the backends available with a standard "
+"Idris installation (the name to be used in the command line argument is "
+"given in parentheses):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:54
+msgid ""
+"Racket Scheme (`racket`): This is a different flavour of the scheme "
+"programming language, which can be useful to use when Chez Scheme is not "
+"available on your operating system."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:54
+msgid "Node.js (`node`): This converts an Idris program to JavaScript."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:54
+msgid ""
+"Browser (`javascript`): Another JavaScript backend which allows you to write "
+"web applications which run in the browser in Idris."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:54
+msgid ""
+"RefC (`refc`): A backend compiling Idris to C code, which is then further "
+"compiled by a C compiler."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:57
+msgid ""
+"I plan to at least cover the JavaScript backends in some more detail in "
+"another part of this Idris guide, as I use them pretty often myself."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:62
+msgid ""
+"There are also several external backends not officially supported by the "
+"Idris project, amongst which are backends for compiling Idris code to Java "
+"and Python. You can find a list of external backends on the [Idris Wiki]"
+"(https://github.com/idris-lang/Idris2/wiki/1-%5BLanguage%5D-External-"
+"backends)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:64
+msgid "### The Idris Primitives"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:69
+msgid ""
+"A *primitive data type* is a type that is built into the Idris compiler "
+"together with a set of *primitive functions*, which are used to perform "
+"calculations on the primitives. You will therefore not find a definition of "
+"a primitive type or function in the source code of the *Prelude*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:71
+msgid "Here is again the list of primitive types in Idris:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:98
+#, no-wrap
+msgid ""
+"* Signed, fixed precision integers:\n"
+"  * `Int8`: Integer in the range [-128,127]\n"
+"  * `Int16`: Integer in the range [-32768,32767]\n"
+"  * `Int32`: Integer in the range [-2147483648,2147483647]\n"
+"  * `Int64`: Integer in the range [-9223372036854775808,9223372036854775807]\n"
+"* Unsigned, fixed precision integers:\n"
+"  * `Bits8`: Integer in the range [0,255]\n"
+"  * `Bits16`: Integer in the range [0,65535]\n"
+"  * `Bits32`: Integer in the range [0,4294967295]\n"
+"  * `Bits64`: Integer in the range [0,18446744073709551615]\n"
+"* `Integer`: A signed, arbitrary precision integer.\n"
+"* `Double`: A double precision (64 bit) floating point number.\n"
+"* `Char`: A unicode character.\n"
+"* `String`: A sequence of unicode characters.\n"
+"* `%World`: A symbolic representation of the current world state.\n"
+"  We learned about this when I showed you how `IO` is implemented.\n"
+"  Most of the time, you will not handle values of this type in your own\n"
+"  code.\n"
+"* `Int`: This one is special. It is a fixed precision, signed integer,\n"
+"   but the bit size is somewhat dependent on the backend and\n"
+"   (maybe) platform we use.\n"
+"   For instance, if you use the default Chez Scheme backend, `Int` is\n"
+"   a 64 bit signed integer, while on the JavaScript backends it is a\n"
+"   32 bit signed integer for performance reasons. Therefore, `Int` comes\n"
+"   with very few guarantees, and you should use one of the well\n"
+"   specified integer types listed above whenever possible.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:104
+msgid ""
+"It can be instructive to learn, where in the compiler's source code the "
+"primitive types and functions are defined. This source code can be found in "
+"folder `src` of the [Idris project](https://github.com/idris-lang/Idris2)  "
+"and the primitive types are the constant constructors of data type `Core.TT."
+"Constant`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:106
+msgid "### Primitive Functions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:112
+msgid ""
+"All calculations operating on primitives are based on two kinds of primitive "
+"functions: The ones built into the compiler (see below) and the ones defined "
+"by programmers via the foreign function interface (FFI), about which I'll "
+"talk in another chapter."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:119
+msgid ""
+"Built-in primitive functions are functions known to the compiler the "
+"definition of which can not be found in the *Prelude*. They define the core "
+"functionality available for the primitive types. Typically, you do not "
+"invoke these directly (although it is perfectly fine to do so in most cases) "
+"but via functions and interfaces exported by the *Prelude* or the *base* "
+"library."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:123
+msgid ""
+"For instance, the primitive function for adding two eight bit unsigned "
+"integers is `prim__add_Bits8`. You can inspect its type and behavior at the "
+"REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:130
+msgid ""
+"```repl Tutorial.Prim> :t prim__add_Bits8 prim__add_Bits8 : Bits8 -> Bits8 -"
+"> Bits8 Tutorial.Prim> prim__add_Bits8 12 100 112 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:148
+msgid ""
+"If you look at the source code implementing interface `Num` for `Bits8`, you "
+"will see that the plus operator just invokes `prim__add_Bits8` internally. "
+"The same goes for most of the other functions in primitive interface "
+"implementations.  For instance, every primitive type with the exception of `"
+"%World` comes with primitive comparison functions.  For `Bits8`, these are: "
+"`prim__eq_Bits8`, `prim__gt_Bits8`, `prim__lt_Bits8`, `prim__gte_Bits8`, and "
+"`prim__lte_Bits8`.  Note, that these functions do not return a `Bool` (which "
+"is *not* a primitive type in Idris), but an `Int`. They are therefore not as "
+"safe or convenient to use as the corresponding operator implementations form "
+"interfaces `Eq` and `Comp`.  On the other hand, they do not go via a "
+"conversion to `Bool` and might therefore perform slightly better in "
+"performance critical code (which you can only identify after some serious "
+"profiling)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:152
+msgid ""
+"As with primitive types, the primitive functions are listed as constructors "
+"in a data type (`Core.TT.PrimFn`) in the compiler sources. We will look at "
+"most of these in the following sections."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:154
+msgid "### Consequences of being Primitive"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:163
+msgid ""
+"Primitive functions and types are opaque to the compiler in most regards: "
+"They have to be defined and implemented by each backend individually, "
+"therefore, the compiler knows nothing about the inner structure of a "
+"primitive value nor about the inner workings of primitive functions. For "
+"instance, in the following recursive function, *we* know that the argument "
+"in the recursive call must be converging towards the base case (unless there "
+"is a bug in the backend we use), but the compiler does not:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:170
+msgid ""
+"```idris covering replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ "
+"= [] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:174
+msgid ""
+"In these cases, we either must be content with just a *covering* function, "
+"or we use `assert_smaller` to convince the totality checker (the preferred "
+"way):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:180
+msgid ""
+"```idris replicateBits8 : Bits8 -> a -> List a replicateBits8 0 _ = [] "
+"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:184
+msgid ""
+"I have shown you the risks of using `assert_smaller` before, so we must be "
+"extra careful in making sure that the new function argument is indeed "
+"smaller with relation to the base case."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:189
+msgid ""
+"While Idris knows nothing about the internal workings of primitives and "
+"related functions, most of these functions still reduce during evaluation "
+"when fed with values known at compile time. For instance, we can trivially "
+"proof that for `Bits8` the following equation holds:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:194
+msgid "```idris zeroBits8 : the Bits8 0 = 255 + 1 zeroBits8 = Refl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:200
+msgid ""
+"Having no clue about the internal structure of a primitive nor about the "
+"implementations of primitive functions, Idris can't help us proofing any "
+"*general* properties of such functions and values. Here is an example to "
+"demonstrate this. Assume we'd like to wrap a list in a data type indexed by "
+"the list's length:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:205
+#, no-wrap
+msgid ""
+"```idris\n"
+"data LenList : (n : Nat) -> Type -> Type where\n"
+"  MkLenList : (as : List a) -> LenList (length as) a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:209
+msgid ""
+"When we concatenate two `LenList`s, the length indices should be added. "
+"That's how list concatenation affects the length of lists. We can safely "
+"teach Idris that this is true:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:215
+#, no-wrap
+msgid ""
+"```idris\n"
+"0 concatLen : (xs,ys : List a) -> length xs + length ys = length (xs ++ ys)\n"
+"concatLen []        ys = Refl\n"
+"concatLen (x :: xs) ys = cong S $ concatLen xs ys\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:217
+msgid "With the above lemma, we can implement concatenation of `LenList`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:223
+#, no-wrap
+msgid ""
+"```idris\n"
+"(++) : LenList m a -> LenList n a -> LenList (m + n) a\n"
+"MkLenList xs ++ MkLenList ys =\n"
+"  rewrite concatLen xs ys in MkLenList (xs ++ ys)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:231
+msgid ""
+"The same is not possible for strings. There are applications where pairing a "
+"string with its length would be useful (for instance, if we wanted to make "
+"sure that strings are getting strictly shorter during parsing and will "
+"therefore eventually be wholly consumed), but Idris cannot help us getting "
+"these things right.  There is no way to implement and thus proof the "
+"following lemma in a safe way:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:235
+msgid ""
+"```idris 0 concatLenStr : (a,b : String) -> length a + length b = length (a +"
+"+ b)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:239
+msgid ""
+"<!-- markdownlint-disable MD026 --> ### Believe Me! <!-- markdownlint-enable "
+"MD026 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:245
+msgid ""
+"In order to implement `concatLenStr`, we have to abandon all safety and use "
+"the ten ton wrecking ball of type coercion: `believe_me`. This primitive "
+"function allows us to freely coerce a value of any type into a value of any "
+"other type.  Needless to say, this is only safe if we *really* know what we "
+"are doing:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:249
+msgid ""
+"```idris concatLenStr a b = believe_me $ Refl {x = length a + length b} ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:257
+msgid ""
+"The explicit assignment of variable `x` in `{x = length a + length b}` is "
+"necessary, because otherwise Idris will complain about an *unsolved hole*: "
+"It can't infer the type of parameter `x` in the `Refl` constructor. We could "
+"assign any type to `x` here, because we are passing the result to "
+"`believe_me` anyway, but I consider it to be good practice to assign one of "
+"the two sides of the equality to make our intention clear."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:262
+msgid ""
+"The higher the complexity of a primitive type, the riskier it is to assume "
+"even the most basic properties for it to hold.  For instance, we might act "
+"under the delusion that floating point addition is associative:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:267
+msgid ""
+"```idris 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z "
+"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)} ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:270
+msgid ""
+"Well, guess what: That's a lie. And lies lead us straight into the `Void`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:274
+msgid "```idris Tiny : Double Tiny = 0.0000000000000001"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:277
+msgid "One : Double One = 1.0"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:280
+msgid "wrong : (0 _ : 1.0000000000000002 = 1.0) -> Void wrong Refl impossible"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:284
+msgid "boom : Void boom = wrong (doubleAddAssoc One Tiny Tiny)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:291
+msgid ""
+"Here's what happens in the code above: The call to `doubleAddAssoc` returns "
+"a proof that `One + (Tiny + Tiny)` is equal to `(One + Tiny) + Tiny`. But "
+"`One + (Tiny + Tiny)` equals `1.0000000000000002`, while `(One + Tiny) + "
+"Tiny` equals `1.0`.  We can therefore pass our (wrong) proof to `wrong`, "
+"because it is of the correct type, and from this follows a proof of `Void`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:293
+msgid "## Working with Strings"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:297
+msgid ""
+"Module `Data.String` in *base* offers a rich set of functions for working "
+"with strings. All these are based on the following primitive operations "
+"built into the compiler:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid "`prim__strLength`: Returns the length of a string."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid "`prim__strHead`: Extracts the first character from a string."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid "`prim__strTail`: Removes the first character from a string."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid "`prim__strCons`: Prepends a character to a string."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid "`prim__strAppend`: Appends two strings."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid ""
+"`prim__strIndex`: Extracts a character at the given position from a string."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:305
+msgid "`prim__strSubstr`: Extracts the substring between the given positions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:311
+msgid ""
+"Needless to say, not all of these functions are total. Therefore, Idris must "
+"make sure that invalid calls do not reduce during compile time, as otherwise "
+"the compiler would crash. If, however we force the evaluation of a partial "
+"primitive function by compiling and running the corresponding program, this "
+"program will crash with an error:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:318
+msgid ""
+"```repl Tutorial.Prim> prim__strTail \"\" prim__strTail \"\" Tutorial.Prim> :"
+"exec putStrLn (prim__strTail \"\")  Exception in substring: 1 and 0 are not "
+"valid start/end indices for \"\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:323
+msgid ""
+"Note, how `prim__strTail \"\"` is not reduced at the REPL and how the same "
+"expression leads to a runtime exception if we compile and execute the "
+"program. Valid calls to `prim__strTail` are reduced just fine, however:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:328
+msgid ""
+"```idris tailExample : prim__strTail \"foo\" = \"oo\" tailExample = Refl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:330
+msgid "### Pack and Unpack"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:339
+msgid ""
+"Two of the most important functions for working with strings are `unpack` "
+"and `pack`, which convert a string to a list of characters and vice versa. "
+"This allows us to conveniently implement many string operations by iterating "
+"or folding over the list of characters instead. This might not always be the "
+"most efficient thing to do, but unless you plan to handle very large amounts "
+"of text, they work and perform reasonably well."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:341
+msgid "### String Interpolation"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:345
+msgid ""
+"Idris allows us to include arbitrary string expressions in a string literal "
+"by wrapping them in curly braces, the first of which has to be escaped with "
+"a backslash. For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:350
+msgid ""
+"```idris interpEx1 : Bits64 -> Bits64 -> String interpEx1 x y = \"\\{show x} "
+"+ \\{show y} = \\{show $ x + y}\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:356
+msgid ""
+"This is a very convenient way to assemble complex strings from values of "
+"different types.  In addition, there is interface `Interpolation`, which "
+"allows us to use values in interpolated strings without having to convert "
+"them to strings first:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:359
+msgid "```idris data Element = H | He | C | N | O | F | Ne"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:362
+msgid "Formula : Type Formula = List (Element,Nat)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:371
+#, no-wrap
+msgid ""
+"Interpolation Element where\n"
+"  interpolate H  = \"H\"\n"
+"  interpolate He = \"He\"\n"
+"  interpolate C  = \"C\"\n"
+"  interpolate N  = \"N\"\n"
+"  interpolate O  = \"O\"\n"
+"  interpolate F  = \"F\"\n"
+"  interpolate Ne = \"Ne\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:376
+#, no-wrap
+msgid ""
+"Interpolation (Element,Nat) where\n"
+"  interpolate (_, 0) = \"\"\n"
+"  interpolate (x, 1) = \"\\{x}\"\n"
+"  interpolate (x, k) = \"\\{x}\\{show k}\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:379
+#, no-wrap
+msgid ""
+"Interpolation Formula where\n"
+"  interpolate = foldMap interpolate\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:383
+msgid ""
+"ethanol : String ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, "
+"the Nat 1)]}\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:385
+msgid "### Raw and Multiline String Literals"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:388
+msgid ""
+"In string literals, we have to escape certain characters like quotes, "
+"backslashes or new line characters. For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:393
+msgid ""
+"```idris escapeExample : String escapeExample = \"A quote: \\\". \\nThis is "
+"on a new line.\\nA backslash: \\\\\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:398
+msgid ""
+"Idris allows us to enter raw string literals, where there is no need to "
+"escape quotes and backslashes, by pre- and postfixing the wrapping quote "
+"characters with the same number of hash characters. For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:402
+msgid ""
+"```idris rawExample : String rawExample = #\"A quote: \". A blackslash: \\\"#"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:406
+msgid ""
+"rawExample2 : String rawExample2 = ##\"A quote: \". A blackslash: \\\"## ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:411
+msgid ""
+"With raw string literals, it is still possible to use string interpolation, "
+"but the opening curly brace has to be prefixed with a backslash and the same "
+"number of hashes as are being used for opening and closing the string "
+"literal:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:416
+msgid ""
+"```idris rawInterpolExample : String rawInterpolExample = ##\"An "
+"interpolated \"string\": \\##{rawExample}\"## ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:424
+msgid ""
+"Finally, Idris also allows us to conveniently write multiline strings. These "
+"can be pre- and postfixed with hashes if we want raw multiline string "
+"literals, and they also can be combined with string interpolation. Multiline "
+"literals are opened and closed with triple quote characters. Indenting the "
+"closing triple quotes allows us to indent the whole multiline literal. "
+"Whitespace used for indentation will not appear in the resulting string. For "
+"instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:435
+#, no-wrap
+msgid ""
+"```idris\n"
+"multiline1 : String\n"
+"multiline1 = \"\"\"\n"
+"  And I raise my head and stare\n"
+"  Into the eyes of a stranger\n"
+"  I've always known that the mirror never lies\n"
+"  People always turn away\n"
+"  From the eyes of a stranger\n"
+"  Afraid to see what hides behind the stare\n"
+"  \"\"\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:443
+#, no-wrap
+msgid ""
+"multiline2 : String\n"
+"multiline2 = #\"\"\"\n"
+"  An example for a simple expression:\n"
+"  \"foo\" ++ \"bar\".\n"
+"  This is reduced to \"\\#{\"foo\" ++ \"bar\"}\".\n"
+"  \"\"\"#\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:447
+msgid ""
+"Make sure to look at the example strings at the REPL to see the effect of "
+"interpolation and raw string literals and compare it with the syntax we used."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:454
+msgid ""
+"In these exercises, you are supposed to implement a bunch of utility "
+"functions for consuming and converting strings.  I don't give the expected "
+"types here, because you are supposed to come up with those yourself."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Prim.md:458
+msgid ""
+"Implement functions similar to `map`, `filter`, and `mapMaybe` for strings. "
+"The output type of these should always be a string."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Prim.md:461
+msgid "Implement functions similar to `foldl` and `foldMap` for strings."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Prim.md:464
+msgid ""
+"Implement a function similar to `traverse` for strings. The output type "
+"should be a wrapped string."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Prim.md:467
+msgid ""
+"Implement the bind operator for strings. The output type should again be a "
+"string."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:469
+msgid "## Integers"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:475
+msgid ""
+"As listed at the beginning of this chapter, Idris provides different fixed-"
+"precision signed and unsigned integer types as well as `Integer`, an "
+"arbitrary precision signed integer type.  All of them come with the "
+"following primitive functions (given here for `Bits8` as an example):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__add_Bits8`: Integer addition."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__sub_Bits8`: Integer subtraction."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__mul_Bits8`: Integer multiplication."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__div_Bits8`: Integer division."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__mod_Bits8`: Modulo function."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__shl_Bits8`: Bitwise left shift."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__shr_Bits8`: Bitwise right shift."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__and_Bits8`: Bitwise *and*."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__or_Bits8`: Bitwise *or*."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:486
+msgid "`prim__xor_Bits8`: Bitwise *xor*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:493
+msgid ""
+"Typically, you use the functions for addition and multiplication through the "
+"operators from interface `Num`, the function for subtraction through "
+"interface `Neg`, and the functions for division (`div` and `mod`) through "
+"interface `Integral`.  The bitwise operations are available through "
+"interfaces `Data.Bits.Bits` and `Data.Bits.FiniteBits`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:497
+msgid ""
+"For all integral types, the following laws are assumed to hold for numeric "
+"operations (`x`, `y`, and `z` are arbitrary value of the same primitive "
+"integral type):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x + y = y + x`: Addition is commutative."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x + (y + z) = (x + y) + z`: Addition is associative."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x + 0 = x`: Zero is the neutral element of addition."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x - x = x + (-x) = 0`: `-x` is the additive inverse of `x`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x * y = y * x`: Multiplication is commutative."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x * (y * z) = (x * y) * z`: Multiplication is associative."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x * 1 = x`: One is the neutral element of multiplication."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "`x * (y + z) = x * y + x * z`: The distributive law holds."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:507
+msgid "``y * (x `div` y) + (x `mod` y) = x`` (for `y /= 0`)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:515
+msgid ""
+"Please note, that the officially supported backends use *Euclidian modulus* "
+"for calculating `mod`: For `y /= 0`, ``x `mod` y`` is always a non-negative "
+"value strictly smaller than `abs y`, so that the law given above does hold. "
+"If `x` or `y` are negative numbers, this is different to what many other "
+"languages do but for good reasons as explained in the following [article]"
+"(https://www.microsoft.com/en-us/research/publication/division-and-modulus-"
+"for-computer-scientists/)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:517
+msgid "### Unsigned Integers"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:526
+msgid ""
+"The unsigned fixed precision integer types (`Bits8`, `Bits16`, `Bits32`, and "
+"`Bits64`) come with implementations of all integral interfaces (`Num`, "
+"`Neg`, and `Integral`) and the two interfaces for bitwise operations (`Bits` "
+"and `FiniteBits`).  All functions with the exception of `div` and `mod` are "
+"total. Overflows are handled by calculating the remainder modulo "
+"`2^bitsize`. For instance, for `Bits8`, all operations calculate their "
+"results modulo 256:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:537
+msgid ""
+"```repl Main> the Bits8 255 + 1 0 Main> the Bits8 255 + 255 254 Main> the "
+"Bits8 128 * 2 + 7 7 Main> the Bits8 12 - 13 255 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:539
+msgid "### Signed Integers"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:549
+msgid ""
+"Like the unsigned integer types, the signed fixed precision integer types "
+"(`Int8`, `Int16`, `Int32`, and `Int64`) come with implementations of all "
+"integral interfaces and the two interfaces for bitwise operations (`Bits` "
+"and `FiniteBits`).  Overflows are handled by calculating the remainder "
+"modulo `2^bitsize` and adding the lower bound (a negative number)  if the "
+"result is still out of range. For instance, for `Int8`, all operations "
+"calculate their results modulo 256, subtracting 128 if the result is still "
+"out of bounds:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:556
+msgid "```repl Main> the Int8 2 * 127 -2 Main> the Int8 3 * 127 125 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:558
+msgid "### Bitwise Operations"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:568
+msgid ""
+"Module `Data.Bits` exports interfaces for performing bitwise operations on "
+"integral types. I'm going to show a couple of examples on unsigned 8-bit "
+"numbers (`Bits8`) to explain the concept to readers new to bitwise "
+"arithmetics. Note, that this is much easier to grasp for unsigned integer "
+"types than for the signed versions.  Those have to include information about "
+"the *sign* of numbers in their bit pattern, and it is assumed that signed "
+"integers in Idris use a [two's complement representation](https://en."
+"wikipedia.org/wiki/Two%27s_complement), about which I will not go into the "
+"details here."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:573
+msgid ""
+"An unsigned 8-bit binary number is represented internally as a sequence of "
+"eight bits (with values 0 or 1), each of which corresponds to a power of 2. "
+"For instance, the number 23 (= 16 + 4 + 2 + 1) is represented as `0001 0111`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:576
+#, no-wrap
+msgid ""
+"```repl\n"
+"23 in binary:    0  0  0  1    0  1  1  1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:580
+#, no-wrap
+msgid ""
+"Bit number:      7  6  5  4    3  2  1  0\n"
+"Decimal value: 128 64 32 16    8  4  2  1\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:583
+msgid ""
+"We can use function `testBit` to check if the bit at the given position is "
+"set or not:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:592
+msgid ""
+"```repl Tutorial.Prim> testBit (the Bits8 23) 0 True Tutorial.Prim> testBit "
+"(the Bits8 23) 1 True Tutorial.Prim> testBit (the Bits8 23) 3 False ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:595
+msgid ""
+"Likewise, we can use functions `setBit` and `clearBit` to set or unset a bit "
+"at a certain position:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:602
+msgid ""
+"```repl Tutorial.Prim> setBit (the Bits8 23) 3 31 Tutorial.Prim> clearBit "
+"(the Bits8 23) 2 19 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:610
+msgid ""
+"There are also operators `(.&.)` (bitwise *and*) and `(.|.)` (bitwise *or*) "
+"as well as function `xor` (bitwise *exclusive or*)  for performing boolean "
+"operations on integral values.  For instance `x .&. y` has exactly those "
+"bits set, which both `x` and `y` have set, while `x .|. y` has all bits set "
+"that are either set in `x` or `y` (or both), and ``x `xor` y`` has those "
+"bits set that are set in exactly one of the two values:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:614
+#, no-wrap
+msgid ""
+"```repl\n"
+"23 in binary:          0  0  0  1    0  1  1  1\n"
+"11 in binary:          0  0  0  0    1  0  1  1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:619
+#, no-wrap
+msgid ""
+"23 .&. 11 in binary:   0  0  0  0    0  0  1  1\n"
+"23 .|. 11 in binary:   0  0  0  1    1  1  1  1\n"
+"23 `xor` 11 in binary: 0  0  0  1    1  1  0  0\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:621
+msgid "And here are the examples at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:630
+msgid ""
+"```repl Tutorial.Prim> the Bits8 23 .&. 11 3 Tutorial.Prim> the Bits8 23 .|. "
+"11 31 Tutorial.Prim> the Bits8 23 `xor` 11 28 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:637
+msgid ""
+"Finally, it is possible to shift all bits to the right or left by a certain "
+"number of steps by using functions `shiftR` and `shiftL`, respectively "
+"(overflowing bits will just be dropped).  A left shift can therefore be "
+"viewed as a multiplication by a power of two, while a right shift can be "
+"seen as a division by a power of two:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:640
+#, no-wrap
+msgid ""
+"```repl\n"
+"22 in binary:            0  0  0  1    0  1  1  0\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:644
+#, no-wrap
+msgid ""
+"22 `shiftL` 2 in binary: 0  1  0  1    1  0  0  0\n"
+"22 `shiftR` 1 in binary: 0  0  0  0    1  0  1  1\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:653
+msgid ""
+"```repl Tutorial.Prim> the Bits8 22 `shiftL` 2 88 Tutorial.Prim> the Bits8 "
+"22 `shiftR` 1 11 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:657
+msgid ""
+"Bitwise operations are often used in specialized code or certain high-"
+"performance applications. As programmers, we have to know they exist and how "
+"they work."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:659
+msgid "### Integer Literals"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:666
+msgid ""
+"So far, we always required an implementation of `Num` in order to be able to "
+"use integer literals for a given type. However, it is actually only "
+"necessary to implement a function `fromInteger` converting an `Integer` to "
+"the type in question. As we will see in the last section, such a function "
+"can even restrict the values allowed as valid literals."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:671
+msgid ""
+"For instance, assume we'd like to define a data type for representing the "
+"charge of a chemical molecule. Such a value can be positive or negative and "
+"(theoretically) of almost arbitrary magnitude:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:677
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Charge where\n"
+"  constructor MkCharge\n"
+"  value : Integer\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:683
+msgid ""
+"It makes sense to be able to sum up charges, but not to multiply them. They "
+"should therefore have an implementation of `Monoid` but not of `Num`. Still, "
+"we'd like to have the convenience of integer literals when using constant "
+"charges at compile time. Here's how to do this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:687
+msgid "```idris fromInteger : Integer -> Charge fromInteger = MkCharge"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:690
+#, no-wrap
+msgid ""
+"Semigroup Charge where\n"
+"  x <+> y = MkCharge $ x.value + y.value\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:694
+#, no-wrap
+msgid ""
+"Monoid Charge where\n"
+"  neutral = 0\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:696
+msgid "#### Alternative Bases"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:702
+msgid ""
+"In addition to the well known decimal literals, it is also possible to use "
+"integer literals in binary, octal, or hexadecimal representation. These have "
+"to be prefixed with a zero following by a `b`, `o`, or `x` for binary, "
+"octal, and hexadecimal, respectively:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:711
+msgid ""
+"```repl Tutorial.Prim> 0b1101 13 Tutorial.Prim> 0o773 507 Tutorial.Prim> "
+"0xffa2 65442 ```"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Prim.md:716
+msgid ""
+"Define a wrapper record for integral values and implement `Monoid` so that "
+"`(<+>)` corresponds to `(.&.)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:719
+#, no-wrap
+msgid ""
+"   Hint: Have a look at the functions available from interface\n"
+"   `Bits` to find a value suitable as the neutral element.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Prim.md:722
+msgid ""
+"Define a wrapper record for integral values and implement `Monoid` so that "
+"`(<+>)` corresponds to `(.|.)`."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Prim.md:725
+msgid ""
+"Use bitwise operations to implement a function, which tests if a given value "
+"of type `Bits64` is even or not."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Prim.md:727
+msgid "Convert a value of type `Bits64` to a string in binary representation."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Prim.md:729
+msgid ""
+"Convert a value of type `Bits64` to a string in hexadecimal representation."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:732
+#, no-wrap
+msgid ""
+"   Hint: Use `shiftR` and `(.&. 15)` to access subsequent packages of\n"
+"   four bits.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:734
+msgid "## Refined Primitives"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:741
+msgid ""
+"We often do not want to allow all values of a type in a certain context. For "
+"instance, `String` as an arbitrary sequence of UTF-8 characters (several of "
+"which are not even printable), is too general most of the time. Therefore, "
+"it is usually advisable to rule out invalid values early on, by pairing a "
+"value with an erased proof of validity."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:749
+msgid ""
+"We have learned how we can write elegant predicates, with which we can proof "
+"our functions to be total, and from which we can - in the ideal case - "
+"derive other, related predicates. However, when we define predicates on "
+"primitives they are to a certain degree doomed to live in isolation, unless "
+"we come up with a set of primitive axioms (implemented most likely using "
+"`believe_me`), with which we can manipulate our predicates."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:751
+msgid "### Use Case: ASCII Strings"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:756
+msgid ""
+"String encodings is a difficult topic, so in many low level routines it "
+"makes sense to rule out most characters from the beginning. Assume "
+"therefore, we'd like to make sure the strings we accept in our application "
+"only consist of ASCII characters:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:760
+msgid "```idris isAsciiChar : Char -> Bool isAsciiChar c = ord c <= 127"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:764
+msgid ""
+"isAsciiString : String -> Bool isAsciiString = all isAsciiChar . unpack ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:767
+msgid ""
+"We can now *refine* a string value by pairing it with an erased proof of "
+"validity:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:774
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Ascii where\n"
+"  constructor MkAscii\n"
+"  value : String\n"
+"  0 prf : isAsciiString value === True\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:779
+msgid ""
+"It is now *impossible* to at runtime or compile time create a value of type "
+"`Ascii` without first validating the wrapped string. With this, it is "
+"already pretty easy to safely wrap strings at compile time in a value of "
+"type `Ascii`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:784
+msgid "```idris hello : Ascii hello = MkAscii \"Hello World!\" Refl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:800
+msgid ""
+"And yet, it would be much more convenient to still use string literals for "
+"this, without having to sacrifice the comfort of safety. To do so, we can't "
+"use interface `FromString`, as its function `fromString` would force us to "
+"convert *any* string, even an invalid one. However, we actually don't need "
+"an implementation of `FromString` to support string literals, just like we "
+"didn't require an implementation of `Num` to support integer literals.  What "
+"we really need is a function named `fromString`. Now, when string literals "
+"are desugared, they are converted to invocations of `fromString` with the "
+"given string value as its argument.  For instance, literal `\"Hello\"` gets "
+"desugared to `fromString \"Hello\"`.  This happens before type checking and "
+"filling in of (auto) implicit values. It is therefore perfectly fine, to "
+"define a custom `fromString` function with an erased auto implicit argument "
+"as a proof of validity:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:805
+msgid ""
+"```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === "
+"True} -> Ascii fromString s = MkAscii s prf ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:808
+msgid ""
+"With this, we can us (valid) string literals for coming up with values of "
+"type `Ascii` directly:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:813
+msgid "```idris hello2 : Ascii hello2 = \"Hello World!\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:817
+msgid ""
+"In order to at runtime create values of type `Ascii` from strings of an "
+"unknown source, we can use a refinement function returning some kind of "
+"failure type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:822
+msgid ""
+"```idris test : (b : Bool) -> Dec (b === True)  test True = Yes Refl test "
+"False = No absurd"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:828
+#, no-wrap
+msgid ""
+"ascii : String -> Maybe Ascii\n"
+"ascii x = case test (isAsciiString x) of\n"
+"  Yes prf   => Just $ MkAscii x prf\n"
+"  No contra => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:830
+msgid "#### Disadvantages of Boolean Proofs"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:834
+msgid ""
+"For many use cases, what we described above for ASCII strings can take us "
+"very far. However, one drawback of this approach is that we can't safely "
+"perform any computations with the proofs at hand."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:839
+msgid ""
+"For instance, we know it will be perfectly fine to concatenate two ASCII "
+"strings, but in order to convince Idris of this, we will have to use "
+"`believe_me`, because we will not be able to proof the following lemma "
+"otherwise:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:847
+#, no-wrap
+msgid ""
+"```idris\n"
+"0 allAppend :  (f : Char -> Bool)\n"
+"            -> (s1,s2 : String)\n"
+"            -> (p1 : all f (unpack s1) === True)\n"
+"            -> (p2 : all f (unpack s2) === True)\n"
+"            -> all f (unpack (s1 ++ s2)) === True\n"
+"allAppend f s1 s2 p1 p2 = believe_me $ Refl {x = True}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:854
+#, no-wrap
+msgid ""
+"namespace Ascii\n"
+"  export\n"
+"  (++) : Ascii -> Ascii -> Ascii\n"
+"  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
+"    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:861
+msgid ""
+"The same goes for all operations extracting a substring from a given string: "
+"We will have to implement according rules using `believe_me`. Finding a "
+"reasonable set of axioms to conveniently deal with refined primitives can "
+"therefore be challenging at times, and whether such axioms are even required "
+"very much depends on the use case at hand."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:863
+msgid "### Use Case: Sanitized HTML"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:869
+msgid ""
+"Assume you write a simple web application for scientific discourse between "
+"registered users. To keep things simple, we only consider unformatted text "
+"input here. Users can write arbitrary text in a text field and upon hitting "
+"Enter, the message is displayed to all other registered users."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:871
+msgid "Assume now a user decides to enter the following text:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:875
+msgid "```html <script>alert(\"Hello World!\")</script> ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:884
+msgid ""
+"Well, it could have been (much) worse. Still, unless we take measures to "
+"prevent this from happening, this might embed a JavaScript program in our "
+"web page we never intended to have there! What I described here, is a well "
+"known security vulnerability called [cross-site scripting](https://en."
+"wikipedia.org/wiki/Cross-site_scripting).  It allows users of web pages to "
+"enter malicious JavaScript code in text fields, which will then be included "
+"in the page's HTML structure and executed when it is being displayed to "
+"other users."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:891
+msgid ""
+"We want to make sure, that this cannot happen on our own web page.  In order "
+"to protect us from this attack, we could for instance disallow certain "
+"characters like `'<'` or `'>'` completely (although this might not be "
+"enough!), but if our chat service is targeted at programmers, this will be "
+"overly restrictive. An alternative is to escape certain characters before "
+"rendering them on the page."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:903
+#, no-wrap
+msgid ""
+"```idris\n"
+"escape : String -> String\n"
+"escape = concat . map esc . unpack\n"
+"  where esc : Char -> String\n"
+"        esc '<'  = \"&lt;\"\n"
+"        esc '>'  = \"&gt;\"\n"
+"        esc '\"'  = \"&quot;\"\n"
+"        esc '&'  = \"&amp;\"\n"
+"        esc '\\'' = \"&apos;\"\n"
+"        esc c    = singleton c\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:910
+msgid ""
+"What we now want to do is to store a string together with a proof that is "
+"was properly escaped. This is another form of existential quantification: "
+"\"Here is a string, and there once existed another string, which we passed "
+"to `escape` and arrived at the string we have now\". Here's how to encode "
+"this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:918
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Escaped where\n"
+"  constructor MkEscaped\n"
+"  value    : String\n"
+"  0 origin : String\n"
+"  0 prf    : escape origin === value\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:925
+msgid ""
+"Whenever we now embed a string of unknown origin in our web page, we can "
+"request a value of type `Escaped` and have the very strong guarantee that we "
+"are no longer vulnerable to cross-site scripting attacks. Even better, it is "
+"also possible to safely embed string literals known at compile time without "
+"the need to escape them first:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:931
+#, no-wrap
+msgid ""
+"```idris\n"
+"namespace Escaped\n"
+"  export\n"
+"  fromString : (s : String) -> {auto 0 prf : escape s === s} -> Escaped\n"
+"  fromString s = MkEscaped s s prf\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:935
+msgid "escaped : Escaped escaped = \"Hello World!\" ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:941
+msgid ""
+"In this massive set of exercises, you are going to build a small library for "
+"working with predicates on primitives.  We want to keep the following goals "
+"in mind:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:955
+msgid ""
+"We want to use the usual operations of propositional logic to combine "
+"predicates: Negation, conjuction (logical *and*), and disjunction (logical "
+"*or*)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:955
+msgid ""
+"All predicates should be erased at runtime. If we proof something about a "
+"primitive number, we want to make sure not to carry around a huge proof of "
+"validity."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:955
+msgid ""
+"Calculations on predicates should make no appearance at runtime (with the "
+"exception of `decide`; see below)."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Prim.md:955
+msgid ""
+"Recursive calculations on predicates should be tail recursive if they are "
+"used in implementations of `decide`. This might be tough to achieve. If you "
+"can't find a tail recursive solution for a given problem, use what feels "
+"most natural instead."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:980
+msgid ""
+"A note on efficiency: In order to be able to run computations on our "
+"predicates, we try to convert primitive values to algebraic data types as "
+"often and as soon as possible: Unsigned integers will be converted to `Nat` "
+"using `cast`, and strings will be converted to `List Char` using `unpack`.  "
+"This allows us to work with proofs on `Nat` and `List` most of the time, and "
+"such proofs can be implemented without resorting to `believe_me` or other "
+"cheats. However, the one advantage of primitive types over algebraic data "
+"types is that they often perform much better. This is especially critical "
+"when comparing integral types with `Nat`: Operations on natural numbers "
+"often run with `O(n)` time complexity, where `n` is the size of one of the "
+"natural numbers involved, while with `Bits64`, for instance, many operations "
+"run in fast constant time (`O(1)`). Luckily, the Idris compiler optimizes "
+"many functions on natural number to use the corresponding `Integer` "
+"operations at runtime. This has the advantage that we can still use proper "
+"induction to proof stuff about natural numbers at compile time, while "
+"getting the benefit of fast integer operations at runtime. However, "
+"operations on `Nat` do run with `O(n)` time complexity and *compile time*. "
+"Proofs working on large natural number will therefore drastically slow down "
+"the compiler. A way out of this is discussed at the end of this section of "
+"exercises."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:983
+msgid ""
+"Enough talk, let's begin! To start with, you are given the following "
+"utilities:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:991
+#, no-wrap
+msgid ""
+"```idris\n"
+"-- Like `Dec` but with erased proofs. Constructors `Yes0`\n"
+"-- and `No0` will be converted to constants `0` and `1` by\n"
+"-- the compiler!\n"
+"data Dec0 : (prop : Type) -> Type where\n"
+"  Yes0 : (0 prf : prop) -> Dec0 prop\n"
+"  No0  : (0 contra : prop -> Void) -> Dec0 prop\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1005
+#, no-wrap
+msgid ""
+"-- For interfaces with more than one parameter (`a` and `p`\n"
+"-- in this example) sometimes one parameter can be determined\n"
+"-- by knowing the other. For instance, if we know what `p` is,\n"
+"-- we will most certainly also know what `a` is. We therefore\n"
+"-- specify that proof search on `Decidable` should only be\n"
+"-- based on `p` by listing `p` after a vertical bar: `| p`.\n"
+"-- This is like specifing the search parameter(s) of\n"
+"-- a data type with `[search p]` as was shown in the chapter\n"
+"-- about predicates.\n"
+"-- Specifying a single search parameter as shown here can\n"
+"-- drastically help with type inference.\n"
+"interface Decidable (0 a : Type) (0 p : a -> Type) | p where\n"
+"  decide : (v : a) -> Dec0 (p v)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1011
+msgid ""
+"-- We often have to pass `p` explicitly in order to help Idris with -- type "
+"inference. In such cases, it is more convenient to use -- `decideOn pred` "
+"instead of `decide {p = pred}`.  decideOn : (0 p : a -> Type) -> Decidable a "
+"p => (v : a) -> Dec0 (p v)  decideOn _ = decide"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1019
+msgid ""
+"-- Some primitive predicates can only be reasonably implemented -- using "
+"boolean functions. This utility helps with decidability -- on such proofs.  "
+"test0 : (b : Bool) -> Dec0 (b === True)  test0 True = Yes0 Refl test0 False "
+"= No0 absurd ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1025
+msgid ""
+"We also want to run decidable computations at compile time. This is often "
+"much more efficient than running a direct proof search on an inductive type. "
+"We therefore come up with a predicate witnessing that a `Dec0` value is "
+"actually a `Yes0` together with two utility functions:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1029
+#, no-wrap
+msgid ""
+"```idris\n"
+"data IsYes0 : (d : Dec0 prop) -> Type where\n"
+"  ItIsYes0 : IsYes0 (Yes0 prf)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1033
+msgid ""
+"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop fromYes0 (Yes0 x) "
+"= x fromYes0 (No0 contra) impossible"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1041
+#, no-wrap
+msgid ""
+"0 safeDecideOn :  (0 p : a -> Type)\n"
+"               -> Decidable a p\n"
+"               => (v : a)\n"
+"               -> (0 prf : IsYes0 (decideOn p v))\n"
+"               => p v\n"
+"safeDecideOn p v = fromYes0 $ decideOn p v\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1045
+msgid ""
+"Finally, as we are planning to refine mostly primitives, we will at times "
+"require some sledge hammer to convince Idris that we know what we are doing:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1055
+#, no-wrap
+msgid ""
+"```idris\n"
+"-- only use this if you are sure that `decideOn p v`\n"
+"-- will return a `Yes0`!\n"
+"0 unsafeDecideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> p v\n"
+"unsafeDecideOn p v = case decideOn p v of\n"
+"  Yes0 prf => prf\n"
+"  No0  _   =>\n"
+"    assert_total $ idris_crash \"Unexpected refinement failure in `unsafeRefineOn`\"\n"
+"```\n"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Prim.md:1058
+msgid "We start with equality proofs. Implement `Decidable` for `Equal v`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1061
+#, no-wrap
+msgid ""
+"   Hint: Use `DecEq` from module `Decidable.Equality` as a constraint\n"
+"         and make sure that `v` is available at runtime.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Prim.md:1063
+msgid "We want to be able to negate a predicate:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1068
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Neg : (p : a -> Type) -> a -> Type where\n"
+"     IsNot : {0 p : a -> Type} -> (contra : p v -> Void) -> Neg p v\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1070
+#, no-wrap
+msgid "   Implement `Decidable` for `Neg p` using a suitable constraint.\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Prim.md:1072
+msgid "We want to describe the conjunction of two predicates:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1077
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data (&&) : (p,q : a -> Type) -> a -> Type where\n"
+"     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1079
+#, no-wrap
+msgid "   Implement `Decidable` for `(p && q)` using suitable constraints.\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Prim.md:1083
+msgid ""
+"Come up with a data type called `(||)` for the disjunction (logical *or*) of "
+"two predicates and implement `Decidable` using suitable constraints."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Prim.md:1086
+msgid ""
+"Proof [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)  "
+"by implementing the following propositions:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1089
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   negOr : Neg (p || q) v -> (Neg p && Neg q) v\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1091
+#, no-wrap
+msgid "   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1094
+#, no-wrap
+msgid ""
+"   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1100
+#, no-wrap
+msgid ""
+"   The last of De Morgan's implications is harder to type and proof\n"
+"   as we need a way to come up with values of type `p v` and `q v`\n"
+"   and show that not both can exist. Here is a way to encode this\n"
+"   (annotated with quantity 0 as we will need to access an erased\n"
+"   contraposition):\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1107
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   0 negAnd :  Decidable a p\n"
+"            => Decidable a q\n"
+"            => Neg (p && q) v\n"
+"            -> (Neg p || Neg q) v\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1111
+#, no-wrap
+msgid ""
+"   When you implement `negAnd`, remember that you can freely access\n"
+"   erased (implicit) arguments, because `negAnd` itself can only be\n"
+"   used in an erased context.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1117
+msgid ""
+"So far, we implemented the tools to algebraically describe and combine "
+"several predicate. It is now time to come up with some examples. As a first "
+"use case, we will focus on limiting the valid range of natural numbers. For "
+"this, we use the following data type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1124
+#, no-wrap
+msgid ""
+"```idris\n"
+"-- Proof that m <= n\n"
+"data (<=) : (m,n : Nat) -> Type where\n"
+"  ZLTE : 0 <= n\n"
+"  SLTE : m <= n -> S m <= S n\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1128
+msgid ""
+"This is similar to `Data.Nat.LTE` but I find operator notation often to be "
+"clearer.  We also can define and use the following aliases:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1132
+msgid "```repl (>=) : (m,n : Nat) -> Type m >= n = n <= m"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1135
+msgid "(<) : (m,n : Nat) -> Type m < n = S m <= n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1138
+msgid "(>) : (m,n : Nat) -> Type m > n = n < m"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1141
+msgid "LessThan : (m,n : Nat) -> Type LessThan m = (< m)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1144
+msgid "To : (m,n : Nat) -> Type To m = (<= m)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1147
+msgid "GreaterThan : (m,n : Nat) -> Type GreaterThan m = (> m)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1150
+msgid "From : (m,n : Nat) -> Type From m = (>= m)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1153
+msgid "FromTo : (lower,upper : Nat) -> Nat -> Type FromTo l u = From l && To u"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1157
+msgid ""
+"Between : (lower,upper : Nat) -> Nat -> Type Between l u = GreaterThan l && "
+"LessThan u ```"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Prim.md:1171
+msgid ""
+"Coming up with a value of type `m <= n` by pattern matching on `m` and `n` "
+"is highly inefficient for large values of `m`, as it will require `m` "
+"iterations to do so. However, while in an erased context, we don't need to "
+"hold a value of type `m <= n`. We only need to show, that such a value "
+"follows from a more efficient computation. Such a computation is `compare` "
+"for natural numbers: Although this is implemented in the *Prelude* with a "
+"pattern match on its arguments, it is optimized by the compiler to a "
+"comparison of integers which runs in constant time even for very large "
+"numbers.  Since `Prelude.(<=)` for natural numbers is implemented in terms "
+"of `compare`, it runs just as efficiently."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1175
+#, no-wrap
+msgid ""
+"   We therefore need to proof the following two lemmas (make\n"
+"   sure to not confuse `Prelude.(<=)` with `Prim.(<=)` in\n"
+"   these declarations):\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1178
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1181
+#, no-wrap
+msgid ""
+"   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1185
+#, no-wrap
+msgid ""
+"   They come with a quantity of 0, because they are just as inefficient\n"
+"   as the other computations we discussed above. We therefore want\n"
+"   to make absolutely sure that they will never be used at runtime!\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1190
+#, no-wrap
+msgid ""
+"   Now, implement `Decidable Nat (<= n)`, making use of `test0`,\n"
+"   `fromLTE`, and `toLTE`.\n"
+"   Likewise, implement `Decidable Nat (m <=)`, because we require\n"
+"   both kinds of predicates.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1193
+#, no-wrap
+msgid ""
+"   Note: You should by know figure out yourself that `n` must be\n"
+"   available at runtime and how to make sure that this is the case.\n"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Prim.md:1198
+msgid ""
+"Proof that `(<=)` is reflexive and transitive by declaring and implementing "
+"corresponding propositions. As we might require the proof of transitivity to "
+"chain several values of type `(<=)`, it makes sense to also define a short "
+"operator alias for this."
+msgstr ""
+
+#. type: Bullet: '8. '
+#: ../src/Tutorial/Prim.md:1200
+msgid "Proof that from `n > 0` follows `IsSucc n` and vise versa."
+msgstr ""
+
+#. type: Bullet: '9. '
+#: ../src/Tutorial/Prim.md:1207
+msgid ""
+"Declare and implement safe division and modulo functions for `Bits64`, by "
+"requesting an erased proof that the denominator is strictly positive when "
+"cast to a natural number. In case of the modulo function, return a refined "
+"value carrying an erased proof that the result is strictly smaller than the "
+"modulus:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1213
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   safeMod :  (x,y : Bits64)\n"
+"           -> (0 prf : cast y > 0)\n"
+"           => Subset Bits64 (\\v => cast v < cast y)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '10. '
+#: ../src/Tutorial/Prim.md:1218
+msgid ""
+"We will use the predicates and utilities we defined so far to convert a "
+"value of type `Bits64` to a string of digits in base `b` with `2 <= b && b "
+"<= 16`.  To do so, implement the following skeleton definitions:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1223
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    -- this will require some help from `assert_total`\n"
+"    -- and `idris_crash`.\n"
+"    digit : (v : Bits64) -> (0 prf : cast v < 16) => Char\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1228
+#, no-wrap
+msgid ""
+"    record Base where\n"
+"      constructor MkBase\n"
+"      value : Bits64\n"
+"      0 prf : FromTo 2 16 (cast value)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1230
+#, no-wrap
+msgid "    base : Bits64 -> Maybe Base\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1235
+#, no-wrap
+msgid ""
+"    namespace Base\n"
+"      public export\n"
+"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1241
+#, no-wrap
+msgid ""
+"    Finally, implement `digits`, using `safeDiv` and `safeMod`\n"
+"    in your implementation. This might be challenging, as you will\n"
+"    have to manually transform some proofs to satisfy the type\n"
+"    checker. You might also require `assert_smaller` in the\n"
+"    recursive step.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1245
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    digits : Bits64 -> Base -> String\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1255
+msgid ""
+"We will now turn our focus on strings. Two of the most obvious ways in which "
+"we can restrict the strings we accept are by limiting the set of characters "
+"and limiting their lengths. More advanced refinements might require strings "
+"to match a certain pattern or regular expression. In such cases, we might "
+"either go for a boolean check or use a custom data type representing the "
+"different parts of the pattern, but we will not cover these topics here."
+msgstr ""
+
+#. type: Bullet: '11. '
+#: ../src/Tutorial/Prim.md:1258
+msgid "Implement the following aliases for useful predicates on characters."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1262
+#, no-wrap
+msgid ""
+"    Hint: Use `cast` to convert characters to natural numbers,\n"
+"    use `(<=)` and `InRange` to specify regions of characters,\n"
+"    and use `(||)` to combine regions of characters.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1266
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    -- Characters <= 127\n"
+"    IsAscii : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1269
+#, no-wrap
+msgid ""
+"    -- Characters <= 255\n"
+"    IsLatin : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1272
+#, no-wrap
+msgid ""
+"    -- Characters in the interval ['A','Z']\n"
+"    IsUpper : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1275
+#, no-wrap
+msgid ""
+"    -- Characters in the interval ['a','z']\n"
+"    IsLower : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1278
+#, no-wrap
+msgid ""
+"    -- Lower or upper case characters\n"
+"    IsAlpha : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1281
+#, no-wrap
+msgid ""
+"    -- Characters in the range ['0','9']\n"
+"    IsDigit : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1284
+#, no-wrap
+msgid ""
+"    -- Digits or characters from the alphabet\n"
+"    IsAlphaNum : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1287
+#, no-wrap
+msgid ""
+"    -- Characters in the ranges [0,31] or [127,159]\n"
+"    IsControl : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1290
+#, no-wrap
+msgid ""
+"    -- An ASCII character that is not a control character\n"
+"    IsPlainAscii : Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1294
+#, no-wrap
+msgid ""
+"    -- A latin character that is not a control character\n"
+"    IsPlainLatin : Char -> Type\n"
+"    ```\n"
+msgstr ""
+
+#. type: Bullet: '12. '
+#: ../src/Tutorial/Prim.md:1301
+msgid ""
+"The advantage of this more modular approach to predicates on primitives is "
+"that we can safely run calculations on our predicates and get the strong "
+"guarantees from the existing proofs on inductive types like `Nat` and "
+"`List`. Here are some examples of such calculations and conversions, all of "
+"which can be implemented without cheating:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1304
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    0 plainToAscii : IsPlainAscii c -> IsAscii c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1306
+#, no-wrap
+msgid "    0 digitToAlphaNum : IsDigit c -> IsAlphaNum c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1308
+#, no-wrap
+msgid "    0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1310
+#, no-wrap
+msgid "    0 lowerToAlpha : IsLower c -> IsAlpha c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1312
+#, no-wrap
+msgid "    0 upperToAlpha : IsUpper c -> IsAlpha c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1314
+#, no-wrap
+msgid "    0 lowerToAlphaNum : IsLower c -> IsAlphaNum c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1317
+#, no-wrap
+msgid ""
+"    0 upperToAlphaNum : IsUpper c -> IsAlphaNum c\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1324
+#, no-wrap
+msgid ""
+"    The following (`asciiToLatin`) is trickier. Remember that\n"
+"    `(<=)` is transitive. However, in your invocation of the proof\n"
+"    of transitivity, you will not be able to apply direct proof search using\n"
+"    `%search` because the search depth is too small. You could\n"
+"    increase the search depth, but it is much more efficient\n"
+"    to use `safeDecideOn` instead.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1327
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    0 asciiToLatin : IsAscii c -> IsLatin c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1330
+#, no-wrap
+msgid ""
+"    0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1334
+msgid ""
+"Before we turn our full attention to predicates on strings, we have to cover "
+"lists first, because we will often treat strings as lists of characters."
+msgstr ""
+
+#. type: Bullet: '13. '
+#: ../src/Tutorial/Prim.md:1336
+msgid "Implement `Decidable` for `Head`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1341
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    data Head : (p : a -> Type) -> List a -> Type where\n"
+"      AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)\n"
+"    ```\n"
+msgstr ""
+
+#. type: Bullet: '14. '
+#: ../src/Tutorial/Prim.md:1343
+msgid "Implement `Decidable` for `Length`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1350
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    data Length : (p : Nat -> Type) -> List a -> Type where\n"
+"      HasLength :  {0 p : Nat -> Type}\n"
+"                -> (0 prf : p (List.length vs))\n"
+"                -> Length p vs\n"
+"    ```\n"
+msgstr ""
+
+#. type: Bullet: '15. '
+#: ../src/Tutorial/Prim.md:1354
+msgid ""
+"The following predicate is a proof that all values in a list of values "
+"fulfill the given predicate. We will use this to limit the valid set of "
+"characters in a string."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1363
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    data All : (p : a -> Type) -> (as : List a) -> Type where\n"
+"      Nil  : All p []\n"
+"      (::) :  {0 p : a -> Type}\n"
+"           -> (0 h : p v)\n"
+"           -> (0 t : All p vs)\n"
+"           -> All p (v :: vs)\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1365
+#, no-wrap
+msgid "    Implement `Decidable` for `All`.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1373
+#, no-wrap
+msgid ""
+"    For a real challenge, try to make your implementation of\n"
+"    `decide` tail recursive. This will be important for real world\n"
+"    applications on the JavaScript backends, where we might want to\n"
+"    refine strings of thousands of characters without overflowing the\n"
+"    stack at runtime. In order to come up with a tail recursive implementation,\n"
+"    you will need an additional data type `AllSnoc` witnessing that a predicate\n"
+"    holds for all elements in a `SnocList`.\n"
+msgstr ""
+
+#. type: Bullet: '16. '
+#: ../src/Tutorial/Prim.md:1379
+msgid ""
+"It's time to come to an end here. An identifier in Idris is a sequence of "
+"alphanumeric characters, possibly separated by underscore characters (`_`). "
+"In addition, all identifiers must start with a letter.  Given this "
+"specification, implement predicate `IdentChar`, from which we can define a "
+"new wrapper type for identifiers:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1382
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    0 IdentChars : List Char -> Type\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1388
+#, no-wrap
+msgid ""
+"    record Identifier where\n"
+"      constructor MkIdentifier\n"
+"      value : String\n"
+"      0 prf : IdentChars (unpack value)\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1391
+#, no-wrap
+msgid ""
+"    Implement a factory method `identifier` for converting strings\n"
+"    of unknown source at runtime:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1395
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    identifier : String -> Maybe Identifier\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1398
+#, no-wrap
+msgid ""
+"    In addition, implement `fromString` for `Identifier` and verify,\n"
+"    that the following is a valid identifier:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1403
+#, no-wrap
+msgid ""
+"    ```idris\n"
+"    testIdent : Identifier\n"
+"    testIdent = \"fooBar_123\"\n"
+"    ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Prim.md:1409
+msgid ""
+"Final remarks: Proofing stuff about the primitives can be challenging, both "
+"when deciding on what axioms to use and when trying to make things perform "
+"well at runtime and compile time. I'm experimenting with a library, which "
+"deals with these issues. It is not yet finished, but you can have a look at "
+"it [here](https://github.com/stefan-hoeck/idris2-prim)."
+msgstr ""

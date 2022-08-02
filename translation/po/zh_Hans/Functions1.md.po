@@ -1,0 +1,1004 @@
+# Chinese translations for idris package
+# Copyright (C) 2022 Free Software Foundation, Inc.
+# This file is distributed under the same license as the idris package.
+# Automatically generated, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: idris 2-tutorial\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: 2022-08-02 13:19+0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:904 ../src/Tutorial/Functions1.md:576
+#: ../src/Tutorial/Functions2.md:955 ../src/Tutorial/Interfaces.md:814
+#: ../src/Tutorial/IO.md:1119
+msgid "### What's next"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:2
+msgid "# Functions Part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:12
+msgid ""
+"Idris is a *functional* programming language. This means, that functions are "
+"its main form of abstraction (unlike for instance in an object oriented "
+"language like Java, where *objects* and *classes* are the main form of "
+"abstraction). It also means that we expect Idris to make it very easy for us "
+"to compose and combine functions to create new functions. In fact, in Idris "
+"functions are *first class*: Functions can take other functions as arguments "
+"and can return functions as their results."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:16
+msgid ""
+"We already learned about the basic shape of top level function declarations "
+"in Idris in the [introduction](Intro.md), so we will continue from what we "
+"learned there."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:20
+msgid "```idris module Tutorial.Functions1 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:22
+msgid "## Functions with more than one Argument"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:28
+msgid ""
+"Let's implement a function, which checks if its three `Integer` arguments "
+"form a [Pythagorean triple](https://en.wikipedia.org/wiki/"
+"Pythagorean_triple).  We get to use a new operator for this: `==`, the "
+"equality operator."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:33
+msgid ""
+"```idris isTriple : Integer -> Integer -> Integer -> Bool isTriple x y z = x "
+"* x + y * y == z * z ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:36
+msgid ""
+"Let's give this a spin at the REPL before we talk a bit about the types:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:43
+msgid ""
+"```repl Tutorial.Functions1> isTriple 1 2 3 False Tutorial.Functions1> "
+"isTriple 3 4 5 True ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:49
+msgid ""
+"As can be seen from this example, the type of a function of several "
+"arguments consists just of a sequence of argument types (also called *input "
+"types*)  chained by function arrows (`->`), which is terminated by an output "
+"type (`Bool` in this case)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:61
+msgid ""
+"The implementation looks a bit like a mathematical equation: We list the "
+"arguments on the left hand side of `=` and describe the computation(s) to "
+"perform with them on the right hand side. Function implementations in "
+"functional programming languages often have this more mathematical look "
+"compared to implementations in imperative languages, which often describe "
+"not *what* to compute, but *how* to compute it by describing an algorithm as "
+"a sequence of imperative statements. We will later see that this imperative "
+"style is also available in Idris, but whenever possible we prefer the "
+"declarative style."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:68
+msgid ""
+"As can be seen in the REPL example, functions can be invoked by passing the "
+"arguments separated by whitespace. No parentheses are necessary unless one "
+"of the expressions we pass as the function's arguments contains itself "
+"additional whitespace.  This comes in very handy when we apply functions "
+"only partially (see later in this chapter)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:74
+msgid ""
+"Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive data type "
+"built into the Idris language but just a custom data type that you could "
+"have written yourself. We will learn more about declaring new data types in "
+"the next chapter."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:76
+msgid "## Function Composition"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:79
+msgid ""
+"Functions can be combined in several ways, the most direct probably being "
+"the dot operator:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:83
+msgid "```idris square : Integer -> Integer square n = n * n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:86
+msgid "times2 : Integer -> Integer times2 n = 2 * n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:90
+msgid "squareTimes2 : Integer -> Integer squareTimes2 = times2 . square ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:92
+msgid "Give this a try at the REPL! Does it do what you'd expect?"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:95
+msgid ""
+"We could have implemented `squareTimes2` without using the dot operator as "
+"follows:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:100
+msgid ""
+"```idris squareTimes2' : Integer -> Integer squareTimes2' n = times2 (square "
+"n)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:105
+msgid ""
+"It is important to note, that functions chained by the dot operator are "
+"invoked from right to left: `times2 . square` is the same as `\\n => times2 "
+"(square n)` and not `\\n => square (times2 n)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:108
+msgid ""
+"We can conveniently chain several functions using the dot operator to write "
+"more complex functions:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:113
+msgid ""
+"```idris dotChain : Integer -> String dotChain = reverse . show . square . "
+"square . times2 . times2 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:119
+msgid ""
+"This will first multiply the argument by four, then square it twice before "
+"converting it to a string (`show`) and reversing the resulting `String` "
+"(functions `show` and `reverse` are part of the Idris *Prelude* and as such "
+"are available in every Idris program)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:121
+msgid "## Higher-order Functions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:126
+msgid ""
+"Functions can take other functions as arguments. This is an incredibly "
+"powerful concept and we can go crazy with this very easily. But for sanity's "
+"sake, we'll start slowly:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:130
+msgid "```idris isEven : Integer -> Bool isEven n = mod n 2 == 0"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:134
+msgid ""
+"testSquare : (Integer -> Bool) -> Integer -> Bool testSquare fun n = fun "
+"(square n)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:142
+msgid ""
+"First `isEven` uses the `mod` function to check, whether an integer is "
+"divisible by two. But the interesting function is `testSquare`. It takes two "
+"arguments: The first argument is of type *function from `Integer` to "
+"`Bool`*, and the second of type `Integer`. This second argument is squared "
+"before being passed to the first argument. Again, give this a go at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:147
+msgid "```repl Tutorial.Functions1> testSquare isEven 12 True ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:154
+msgid ""
+"Take your time to understand what's going on here. We pass function `isEven` "
+"as an argument to `testSquare`. The second argument is an integer, which "
+"will first be squared and then passed to `isEven`. While this is not very "
+"interesting, we will see lots of use cases for passing functions as "
+"arguments to other functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:157
+msgid ""
+"I said above, we could go crazy pretty easily.  Consider for instance the "
+"following example:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:162
+msgid ""
+"```idris twice : (Integer -> Integer) -> Integer -> Integer twice f n = f (f "
+"n)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
+#: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
+#: ../src/Tutorial/Prim.md:646
+msgid "And at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:173
+msgid ""
+"```repl Tutorial.Functions1> twice square 2 16 Tutorial.Functions1> (twice . "
+"twice) square 2 65536 Tutorial.Functions1> (twice . twice . twice . twice) "
+"square 2 *** huge number *** ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:177
+msgid ""
+"You might be surprised about this behavior, so we'll try and break it down. "
+"The following two expressions are identical in their behavior:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:181
+msgid ""
+"```idris expr1 : Integer -> Integer expr1 = (twice . twice . twice . twice) "
+"square"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:185
+msgid ""
+"expr2 : Integer -> Integer expr2 = twice (twice (twice (twice square)))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:194
+msgid ""
+"So, `square` raises its argument to the 2nd power, `twice square` raises it "
+"to its 4th power (by invoking `square` twice in succession), `twice (twice "
+"square)` raises it to its 16th power (by invoking `twice square` twice in "
+"succession), and so on, until `twice (twice (twice (twice square)))` raises "
+"it to its 65536th power resulting in an impressively huge result."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:196
+msgid "## Currying"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:201
+msgid ""
+"Once we start using higher-order functions, the concept of partial function "
+"application (also called *currying* after mathematician and logician Haskell "
+"Curry) becomes very important."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:203
+msgid "Load this file in a REPL session and try the following:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:212
+msgid ""
+"```repl Tutorial.Functions1> :t testSquare isEven testSquare isEven : "
+"Integer -> Bool Tutorial.Functions1> :t isTriple 1 isTriple 1 : Integer -> "
+"Integer -> Bool Tutorial.Functions1> :t isTriple 1 2 isTriple 1 2 : Integer -"
+"> Bool ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:220
+msgid ""
+"Note, how in Idris we can partially apply a function with more than one "
+"argument and as a result get a new function back. For instance, `isTriple 1` "
+"applies argument `1` to function `isTriple` and as a result returns a new "
+"function of type `Integer -> Integer -> Bool`. We can even use the result of "
+"such a partially applied function in a new top level definition:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:225
+msgid ""
+"```idris partialExample : Integer -> Bool partialExample = isTriple 3 4 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:232
+msgid "```repl Tutorial.Functions1> partialExample 5 True ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:236
+msgid ""
+"We already used partial function application in our `twice` examples above "
+"to get some impressive results with very little code."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:238
+msgid "## Anonymous Functions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:245
+msgid ""
+"Sometimes we'd like to pass a small custom function to a higher-order "
+"function without bothering to write a top level definition. For instance, in "
+"the following example, function `someTest` is very specific and probably not "
+"very useful in general, but we'd still like to pass it to higher-order "
+"function `testSquare`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:250
+msgid "```idris someTest : Integer -> Bool someTest n = n >= 3 || n <= 10 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:252
+msgid "Here's, how to pass it to `testSquare`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:257
+msgid "```repl Tutorial.Functions1> testSquare someTest 100 True ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:260
+msgid ""
+"Instead of defining and using `someTest`, we can use an anonymous function:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:265
+msgid ""
+"```repl Tutorial.Functions1> testSquare (\\n => n >= 3 || n <= 10) 100 True "
+"```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:277
+msgid ""
+"Anonymous functions are sometimes also called *lambdas* (from [lambda "
+"calculus](https://en.wikipedia.org/wiki/Lambda_calculus)), and the backslash "
+"is chosen since it resembles the Greek letter *lambda*. The `\\n =>` syntax "
+"introduces a new anonymous function of one argument called `n`, the "
+"implementation of which is on the right hand side of the function arrow.  "
+"Like other top level functions, lambdas can have more than one arguments, "
+"separated by commas: `\\x,y => x * x + y`.  When we pass lambdas as "
+"arguments to higher-order functions, they typically need to be wrapped in "
+"parentheses or separated by the dollar operator `($)` (see the next section "
+"about this)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:280
+msgid ""
+"Note that, in a lambda, arguments are not annotated with types, so Idris has "
+"to be able to infer them from the current context."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:282
+msgid "## Operators"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:288
+msgid ""
+"In Idris, infix operators like `.`, `*` or `+` are not built into the "
+"language, but are just regular Idris function with some special support for "
+"using them in infix notation.  When we don't use operators in infix "
+"notation, we have to wrap them in parentheses."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:291
+msgid ""
+"As an example, let us define a custom operator for sequencing functions of "
+"type `Bits8 -> Bits8`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:294
+msgid "```idris infixr 4 >>>"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:297
+msgid ""
+"(>>>) : (Bits8 -> Bits8) -> (Bits8 -> Bits8) -> Bits8 -> Bits8 f1 >>> f2 = "
+"f2 . f1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:300
+msgid "foo : Bits8 -> Bits8 foo n = 2 * n + 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:304
+msgid "test : Bits8 -> Bits8 test = foo >>> foo >>> foo >>> foo ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:311
+msgid ""
+"In addition to declaring and defining the operator itself, we also have to "
+"specify its fixity: `infixr 4 >>>` means, that `(>>>)` associates to the "
+"right (meaning, that `f >>> g >>> h` is to be interpreted as `f >>> (g >>> "
+"h)`)  with a priority of `4`. You can also have a look at the fixity of "
+"operators exported by the *Prelude* in the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:319
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Functions1> :doc (.)\n"
+"Prelude.. : (b -> c) -> (a -> b) -> a -> c\n"
+"  Function composition.\n"
+"  Totality: total\n"
+"  Fixity Declaration: infixr operator, level 9\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:325
+msgid ""
+"When you mix infix operators in an expression, those with a higher priority "
+"bind more tightly. For instance, `(+)` is left associated with a priority of "
+"8, while `(*)` is left associated with a priority of 9. Hence, `a * b + c` "
+"is the same as `(a * b) + c` instead of `a * (b + c)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:327
+msgid "### Operator Sections"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:332
+msgid ""
+"Operators can be partially applied just like regular functions. In this "
+"case, the whole expression has to be wrapped in parentheses and is called an "
+"*operator section*. Here are two examples:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:339
+msgid ""
+"```repl Tutorial.Functions1> testSquare (< 10) 5 False Tutorial.Functions1> "
+"testSquare (10 <) 5 True ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:344
+msgid ""
+"As you can see, there is a difference between `(< 10)` and `(10 <)`. The "
+"first tests, whether its argument is less than 10, the second, whether 10 is "
+"less than its argument."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:348
+msgid ""
+"One exception where operator sections will not work is with the *minus* "
+"operator `(-)`. Here is an example to demonstrate this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:353
+msgid ""
+"```idris applyToTen : (Integer -> Integer) -> Integer applyToTen f = f 10 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:357
+msgid ""
+"This is just a higher-order function applying the number ten to its function "
+"argument. This works very well in the following example:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:362
+msgid "```repl Tutorial.Functions1> applyToThen (* 2)  20 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:365
+msgid "However, if we want to subtract five from ten, the following will fail:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:369
+msgid ""
+"```repl Tutorial.Functions1> applyToTen (- 5)  Error: Can't find an "
+"implementation for Num (Integer -> Integer)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:373
+#, no-wrap
+msgid ""
+"(Interactive):1:12--1:17\n"
+" 1 | applyToTen (- 5)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:377
+msgid ""
+"The problem here is, that Idris treats `- 5` as an integer literal instead "
+"of an operator section. In this special case, we therefore have to use an "
+"anonymous function instead:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:382
+msgid "```repl Tutorial.Functions1> applyToTen (\\x => x - 5)  5 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:384
+msgid "### Infix Notation for Non-Operators"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:390
+msgid ""
+"In Idris, it is possible to use infix notation for regular binary functions, "
+"by wrapping them in backticks.  It is even possible to define a precedence "
+"(fixity) for these and use them in operator sections, just like regular "
+"operators:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:393
+msgid "```idris infixl 8 `plus`"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:395
+msgid "infixl 9 `mult`"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:398
+msgid "plus : Integer -> Integer -> Integer plus = (+)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:401
+msgid "mult : Integer -> Integer -> Integer mult = (*)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:404
+msgid "arithTest : Integer arithTest = 5 `plus` 10 `mult` 12"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:408
+msgid "arithTest' : Integer arithTest' = 5 + 10 * 12 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:410
+msgid "### Operators exported by the *Prelude*"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:419
+msgid ""
+"Here is a list of important operators exported by the *Prelude*.  Most of "
+"these are *constrained*, that is they work only for types implementing a "
+"certain *interface*. Don't worry about this right now. We will learn about "
+"interfaces in due time, and the operators behave as they intuitively "
+"should.  For instance, addition and multiplication work for all numeric "
+"types, comparison operators work for almost all types in the *Prelude* with "
+"the exception of functions."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(.)`: Function composition"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(+)`: Addition"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(*)`: Multiplication"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(-)`: Subtraction"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(/)`: Division"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(==)` : True, if two values are equal"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(/=)` : True, if two values are not equal"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functions1.md:429
+msgid "`($)`: Function application"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:440
+msgid ""
+"The most special of the above is the last one. It has a priority of 0, so "
+"all other operators bind more tightly.  In addition, function application "
+"binds more tightly, so this can be used to reduce the number of parentheses "
+"required. For instance, instead of writing `isTriple 3 4 (2 + 3 * 1)` we can "
+"write `isTriple 3 4 $ 2 + 3 * 1`, which is exactly the same. Sometimes, this "
+"helps readability, sometimes, it doesn't. The important thing to remember is "
+"that `fun $ x y` is just the same as `fun (x y)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:442
+msgid "## Exercises"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Functions1.md:450
+msgid ""
+"Reimplement functions `testSquare` and `twice` by using the dot operator and "
+"dropping the second arguments (have a look at the implementation of "
+"`squareTimes2` to get an idea where this should lead you). This highly "
+"concise way of writing function implementations is sometimes called *point-"
+"free style* and is often the preferred way of writing small utility "
+"functions."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Functions1.md:453
+msgid ""
+"Declare and implement function `isOdd` by combining functions `isEven` from "
+"above and `not` (from the Idris *Prelude*). Use point-free style."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Functions1.md:456
+msgid ""
+"Declare and implement function `isSquareOf`, which checks whether its first "
+"`Integer` argument is the square of the second argument."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Functions1.md:460
+msgid ""
+"Declare and implement function `isSmall`, which checks whether its `Integer` "
+"argument is less than or equal to 100. Use one of the comparison operators "
+"`<=` or `>=` in your implementation."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Functions1.md:465
+msgid ""
+"Declare and implement function `absIsSmall`, which checks whether the "
+"absolute value of its `Integer` argument is less than or equal to 100.  Use "
+"functions `isSmall` and `abs` (from the Idris *Prelude*) in your "
+"implementation, which should be in point-free style."
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Functions1.md:471
+msgid ""
+"In this slightly extended exercise we are going to implement some utilities "
+"for working with `Integer` predicates (functions from `Integer` to `Bool`). "
+"Implement the following higher-order functions (use boolean operators `&&`, "
+"`||`, and function `not` in your implementations):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:475
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   -- return true, if and only if both predicates hold\n"
+"   and : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:478
+#, no-wrap
+msgid ""
+"   -- return true, if and only if at least one predicate holds\n"
+"   or : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:482
+#, no-wrap
+msgid ""
+"   -- return true, if the predicate does not hold\n"
+"   negate : (Integer -> Bool) -> Integer -> Bool\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:487
+#, no-wrap
+msgid ""
+"   After solving this exercise, give it a go in the REPL. In the\n"
+"   example below, we use binary function `and` in infix notation\n"
+"   by wrapping it in backticks. This is just a syntactic convenience\n"
+"   to make certain function applications more readable:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:492
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   Tutorial.Functions1> negate (isSmall `and` isOdd) 73\n"
+"   False\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Functions1.md:500
+msgid ""
+"As explained above, Idris allows us to define our own infix operators.  Even "
+"better, Idris supports *overloading* of function names, that is, two "
+"functions or operators can have the same name, but different types and "
+"implementations.  Idris will make use of the types to distinguish between "
+"equally named operators and functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:504
+#, no-wrap
+msgid ""
+"   This allows us, to reimplement functions `and`, `or`, and `negate`\n"
+"   from Exercise 6 by using the existing operator and function\n"
+"   names from boolean algebra:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:509
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   -- return true, if and only if both predicates hold\n"
+"   (&&) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
+"   x && y = and x y\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:512
+#, no-wrap
+msgid ""
+"   -- return true, if and only if at least one predicate holds\n"
+"   (||) : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:516
+#, no-wrap
+msgid ""
+"   -- return true, if the predicate does not hold\n"
+"   not : (Integer -> Bool) -> Integer -> Bool\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:518
+#, no-wrap
+msgid "   Implement the other two functions and test them at the REPL:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:523
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   Tutorial.Functions1> not (isSmall && isOdd) 73\n"
+"   False\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:527
+msgid "What we learned in this chapter:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:530
+#, no-wrap
+msgid ""
+"* A function in Idris can take an arbitrary number of arguments,\n"
+"separated by `->` in the function's type.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:534
+#, no-wrap
+msgid ""
+"* Functions can be combined\n"
+"sequentially using the dot operator, which leads to highly\n"
+"concise code.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:539
+#, no-wrap
+msgid ""
+"* Functions can be partially applied by passing them fewer\n"
+"arguments than they expect. The result is a new function\n"
+"expecting the remaining arguments. This technique is called\n"
+"*currying*.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:543
+#, no-wrap
+msgid ""
+"* Functions can be passed as arguments to other functions, which\n"
+"allows us to easily combine small coding units to create\n"
+"more complex behavior.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:547
+#, no-wrap
+msgid ""
+"* We can pass anonymous functions (*lambdas*) to higher-order\n"
+"functions, if writing a corresponding top level\n"
+"function would be too cumbersome.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:551
+#, no-wrap
+msgid ""
+"* Idris allows us to define our own infix operators. These\n"
+"have to be written in parentheses unless they are being used\n"
+"in infix notation.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:556
+#, no-wrap
+msgid ""
+"* Infix operators can also be partially applied. These *operator sections*\n"
+"have to be wrapped in parentheses, and the position of the\n"
+"argument determines, whether it is used as the operator's first\n"
+"or second argument.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:560
+#, no-wrap
+msgid ""
+"* Idris supports name overloading: Functions can have the same\n"
+"names but different implementations. Idris will decide, which function\n"
+"to used based to the types involved.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:567
+msgid ""
+"Please note, that function and operator names in a module must be unique. In "
+"order to define two functions with the same name, they have to be declared "
+"in distinct modules. If Idris is not able to decide, which of the two "
+"functions to use, we can help name resolution by prefixing a function with "
+"(a part of) its *namespace*:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:574
+msgid ""
+"```repl Tutorial.Functions1> :t Prelude.not Prelude.not : Bool -> Bool "
+"Tutorial.Functions1> :t Functions1.not Tutorial.Functions1.not : (Integer -> "
+"Bool) -> (Integer -> Bool) -> Integer -> Bool ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions1.md:581
+msgid ""
+"In the [next section](DataTypes.md), we will learn how to define our own "
+"data types and how to construct and deconstruct values of these new types. "
+"We will also learn about generic types and functions."
+msgstr ""

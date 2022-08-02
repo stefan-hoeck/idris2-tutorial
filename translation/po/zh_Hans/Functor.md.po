@@ -1,0 +1,2625 @@
+# Chinese translations for idris package
+# Copyright (C) 2022 Free Software Foundation, Inc.
+# This file is distributed under the same license as the idris package.
+# Automatically generated, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: idris 2-tutorial\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: 2022-08-02 13:19+0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
+#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
+#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
+#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
+#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+msgid "%default total ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:849 ../src/Tutorial/Folds.md:1003
+#: ../src/Tutorial/Functor.md:424 ../src/Tutorial/Traverse.md:292
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     Create : (value : a) -> Crud i a\n"
+"     Update : (id : i) -> (value : a) -> Crud i a\n"
+"     Read   : (id : i) -> Crud i a\n"
+"     Delete : (id : i) -> Crud i a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Folds.md:1014 ../src/Tutorial/Functor.md:437
+#: ../src/Tutorial/Traverse.md:303
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Response : (e, i, a : Type) -> Type where\n"
+"     Created : (id : i) -> (value : a) -> Response e i a\n"
+"     Updated : (id : i) -> (value : a) -> Response e i a\n"
+"     Found   : (values : List a) -> Response e i a\n"
+"     Deleted : (id : i) -> Response e i a\n"
+"     Error   : (err : e) -> Response e i a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions2.md:177 ../src/Tutorial/Functor.md:632
+#, no-wrap
+msgid ""
+"record Email where\n"
+"  constructor MkEmail\n"
+"  value : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functions2.md:181 ../src/Tutorial/Functor.md:636
+#: ../src/Tutorial/Interfaces.md:542
+#, no-wrap
+msgid ""
+"record Password where\n"
+"  constructor MkPassword\n"
+"  value : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:2
+msgid "# Functor and Friends"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:6
+msgid ""
+"Programming, like mathematics, is about abstraction. We try to model parts "
+"of the real world, reusing recurring patterns by abstracting over them."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:17
+msgid ""
+"In this chapter, we will learn about several related interfaces, which are "
+"all about abstraction and therefore can be hard to understand at the "
+"beginning. Especially figuring out *why* they are useful and *when* to use "
+"them will take time and experience. This chapter therefore comes with tons "
+"of exercises, most of which can be solved with only a few short lines of "
+"code. Don't skip them.  Come back to them several times until these things "
+"start feeling natural to you. You will then realize that their initial "
+"complexity has vanished."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:20
+msgid "```idris module Tutorial.Functor"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:24 ../src/Tutorial/IO.md:14
+msgid "import Data.List1 import Data.String import Data.Vect"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:29
+msgid "## Functor"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:42
+msgid ""
+"What do type constructors like `List`, `List1`, `Maybe`, or `IO` have in "
+"common? First, all of them are of type `Type -> Type`. Second, they all put "
+"values of a given type in a certain *context*. With `List`, the *context* is "
+"*non-determinism*: We know there to be zero or more values, but we don't "
+"know the exact number until we start taking the list apart by pattern "
+"matching on it. Likewise for `List1`, though we know for sure that there is "
+"at least one value. For `Maybe`, we are still not sure about how many values "
+"there are, but the possibilities are much smaller: Zero or one. With `IO`, "
+"the context is a different one: Arbitrary side effects."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:49
+msgid ""
+"Although the type constructors discussed above are quite different in how "
+"they behave and when they are useful, there are certain operations that keep "
+"coming up when working with them. The first such operation is *mapping a "
+"pure function over the data type, without affecting its underlying "
+"structure*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:53
+msgid ""
+"For instance, given a list of numbers, we'd like to multiply each number by "
+"two, without changing their order or removing any values:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:59
+#, no-wrap
+msgid ""
+"```idris\n"
+"multBy2List : Num a => List a -> List a\n"
+"multBy2List []        = []\n"
+"multBy2List (x :: xs) = 2 * x :: multBy2List xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:62
+msgid ""
+"But we might just as well convert every string in a list of strings to upper "
+"case characters:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:68
+#, no-wrap
+msgid ""
+"```idris\n"
+"toUpperList : List String -> List String\n"
+"toUpperList []        = []\n"
+"toUpperList (x :: xs) = toUpper x :: toUpperList xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:72
+msgid ""
+"Sometimes, the type of the stored value changes. In the next example, we "
+"calculate the lengths of the strings stored in a list:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:78
+#, no-wrap
+msgid ""
+"```idris\n"
+"toLengthList : List String -> List Nat\n"
+"toLengthList []        = []\n"
+"toLengthList (x :: xs) = length x :: toLengthList xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:83
+msgid ""
+"I'd like you to appreciate, just how boring these functions are. They are "
+"almost identical, with the only interesting part being the function we apply "
+"to each element. Surely, there must be a pattern to abstract over:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:89
+#, no-wrap
+msgid ""
+"```idris\n"
+"mapList : (a -> b) -> List a -> List b\n"
+"mapList f []        = []\n"
+"mapList f (x :: xs) = f x :: mapList f xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:94
+msgid ""
+"This is often the first step of abstraction in functional programming: Write "
+"a (possibly generic) higher-order function.  We can now concisely implement "
+"all examples shown above in terms of `mapList`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:98
+msgid ""
+"```idris multBy2List' : Num a => List a -> List a multBy2List' = mapList (2 "
+"*)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:101
+msgid ""
+"toUpperList' : List String -> List String toUpperList' = mapList toUpper"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:105
+msgid ""
+"toLengthList' : List String -> List Nat toLengthList' = mapList length ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:110
+msgid ""
+"But surely we'd like to do the same kind of thing with `List1` and `Maybe`! "
+"After all, they are just container types like `List`, the only difference "
+"being some detail about the number of values they can or can't hold:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:116
+msgid ""
+"```idris mapMaybe : (a -> b) -> Maybe a -> Maybe b mapMaybe f Nothing = "
+"Nothing mapMaybe f (Just v) = Just (f v)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:125
+msgid ""
+"Even with `IO`, we'd like to be able to map pure functions over effectful "
+"computations. The implementation is a bit more involved, due to the nested "
+"layers of data constructors, but if in doubt, the types will surely guide "
+"us. Note, however, that `IO` is not publicly exported, so its data "
+"constructor is unavailable to us. We can use functions `toPrim` and "
+"`fromPrim`, however, for converting `IO` from and to `PrimIO`, which we can "
+"freely dissect:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:134
+#, no-wrap
+msgid ""
+"```idris\n"
+"mapIO : (a -> b) -> IO a -> IO b\n"
+"mapIO f io = fromPrim $ mapPrimIO (toPrim io)\n"
+"  where mapPrimIO : PrimIO a -> PrimIO b\n"
+"        mapPrimIO prim w =\n"
+"          let MkIORes va w2 = prim w\n"
+"           in MkIORes (f va) w2\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:138
+msgid ""
+"From the concept of *mapping a pure function over values in a context* "
+"follow some derived functions, which are often useful. Here are some of them "
+"for `IO`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:142
+msgid "```idris mapConstIO : b -> IO a -> IO b mapConstIO = mapIO . const"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:146
+msgid "forgetIO : IO a -> IO ()  forgetIO = mapConstIO ()  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:151
+msgid ""
+"Of course, we'd want to implement `mapConst` and `forget` as well for "
+"`List`, `List1`, and `Maybe` (and dozens of other type constructors with "
+"some kind of mapping function), and they'd all look the same and be equally "
+"boring."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:161
+msgid ""
+"When we come upon a recurring class of functions with several useful derived "
+"functions, we should consider defining an interface. But how should we go "
+"about this here? When you look at the types of `mapList`, `mapMaybe`, and "
+"`mapIO`, you'll see that it's the `List`, `List1`, and `IO` types we need to "
+"get rid of. These are not of type `Type` but of type `Type -> Type`. "
+"Luckily, there is nothing preventing us from parametrizing an interface over "
+"something else than a `Type`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:166
+msgid ""
+"The interface we are looking for is called `Functor`.  Here is its "
+"definition and an example implementation (I appended a tick at the end of "
+"the names for them not to overlap with the interface and functions exported "
+"by the *Prelude*):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:170
+#, no-wrap
+msgid ""
+"```idris\n"
+"interface Functor' (0 f : Type -> Type) where\n"
+"  map' : (a -> b) -> f a -> f b\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:175
+#, no-wrap
+msgid ""
+"implementation Functor' Maybe where\n"
+"  map' _ Nothing  = Nothing\n"
+"  map' f (Just v) = Just $ f v\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:179
+msgid ""
+"Note, that we had to give the type of parameter `f` explicitly, and in that "
+"case it needs to be annotated with quantity zero if you want it to be erased "
+"at runtime (which you almost always want)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:186
+msgid ""
+"Now, reading type signatures consisting only of type parameters like the one "
+"of `map'` can take some time to get used to, especially when some type "
+"parameters are applied to other parameters as in `f a`. It can be very "
+"helpful to inspect these signatures together with all implicit arguments at "
+"the REPL (I formatted the output to make it more readable):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:197
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Functor> :ti map'\n"
+"Tutorial.Functor.map' :  {0 b : Type}\n"
+"                      -> {0 a : Type}\n"
+"                      -> {0 f : Type -> Type}\n"
+"                      -> Functor' f\n"
+"                      => (a -> b)\n"
+"                      -> f a\n"
+"                      -> f b\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:200
+msgid ""
+"It can also be helpful to replace type parameter `f` with a concrete value "
+"of the same type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:205
+msgid ""
+"```repl Tutorial.Functor> :t map' {f = Maybe} map' : (?a -> ?b) -> Maybe ?a -"
+"> Maybe ?b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:209
+msgid ""
+"Remember, being able to interpret type signatures is paramount to "
+"understanding what's going on in an Idris declaration. You *must* practice "
+"this and make use of the tools and utilities given to you."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:211
+msgid "### Derived Functions"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:215
+msgid ""
+"There are several functions and operators directly derivable from interface "
+"`Functor`. Eventually, you should know and remember all of them as they are "
+"highly useful. Here they are together with their types:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:219
+msgid ""
+"```repl Tutorial.Functor> :t (<$>)  Prelude.<$> : Functor f => (a -> b) -> f "
+"a -> f b"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:222
+msgid ""
+"Tutorial.Functor> :t (<&>)  Prelude.<&> : Functor f => f a -> (a -> b) -> f b"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:225
+msgid "Tutorial.Functor> :t ($>)  Prelude.$> : Functor f => f a -> b -> f b"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:228
+msgid "Tutorial.Functor> :t (<$)  Prelude.<$ : Functor f => b -> f a -> f b"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:232
+msgid ""
+"Tutorial.Functor> :t ignore Prelude.ignore : Functor f => f a -> f ()  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:235
+msgid ""
+"`(<$>)` is an operator alias for `map` and allows you to sometimes drop some "
+"parentheses. For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:239
+msgid ""
+"```idris tailShowReversNoOp : Show a => List1 a -> List String "
+"tailShowReversNoOp xs = map (reverse . show) (tail xs)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:243
+msgid ""
+"tailShowReverse : Show a => List1 a -> List String tailShowReverse xs = "
+"reverse . show <$> tail xs ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:249
+msgid ""
+"`(<&>)` is an alias for `(<$>)` with the arguments flipped.  The other three "
+"(`ignore`, `($>)`, and `(<$)`) are all used to replace the values in a "
+"context with a constant. They are often useful when you don't care about the "
+"values themselves but want to keep the underlying structure."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:251
+msgid "### Functors with more than one Type Parameter"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:259
+msgid ""
+"The type constructors we looked at so far where all of type `Type -> Type`. "
+"However, we can also implement `Functor` for other type constructors. The "
+"only prerequisite is that the type parameter we'd like to change with "
+"function `map` must be the last in the argument list. For instance, here is "
+"the `Functor` implementation for `Either e` (note, that `Either e` has of "
+"course type `Type -> Type` as required):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:265
+#, no-wrap
+msgid ""
+"```idris\n"
+"implementation Functor' (Either e) where\n"
+"  map' _ (Left ve)  = Left ve\n"
+"  map' f (Right va) = Right $ f va\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:269
+msgid ""
+"Here is another example, this time for a type constructor of type `Bool -> "
+"Type -> Type` (you might remember this from the exercises in the [last "
+"chapter](IO.md)):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:274
+#, no-wrap
+msgid ""
+"```idris\n"
+"data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"  Nil  : List01 False a\n"
+"  (::) : a -> List01 False a -> List01 ne a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:279
+#, no-wrap
+msgid ""
+"implementation Functor (List01 ne) where\n"
+"  map _ []        = []\n"
+"  map f (x :: xs) = f x :: map f xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:281
+msgid "### Functor Composition"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:284
+msgid ""
+"The nice thing about functors is how they can be paired and nested with "
+"other functors and the results are functors again:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:290
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Product (f,g : Type -> Type) (a : Type) where\n"
+"  constructor MkProduct\n"
+"  fst : f a\n"
+"  snd : g a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:294
+#, no-wrap
+msgid ""
+"implementation Functor f => Functor g => Functor (Product f g) where\n"
+"  map f (MkProduct l r) = MkProduct (map f l) (map f r)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:297
+msgid ""
+"The above allows us to conveniently map over a pair of functors. Note, "
+"however, that Idris needs some help with inferring the types involved:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:301
+msgid ""
+"```idris toPair : Product f g a -> (f a, g a)  toPair (MkProduct fst snd) = "
+"(fst, snd)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:304
+msgid "fromPair : (f a, g a) -> Product f g a fromPair (x,y) = MkProduct x y"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:310
+#, no-wrap
+msgid ""
+"productExample :  Show a\n"
+"               => (Either e a, List a)\n"
+"               -> (Either e String, List String)\n"
+"productExample = toPair . map show . fromPair {f = Either e, g = List}\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:313
+msgid ""
+"More often, we'd like to map over several layers of nested functors at once. "
+"Here's how to do this with an example:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:318
+#, no-wrap
+msgid ""
+"```idris\n"
+"record Comp (f,g : Type -> Type) (a : Type) where\n"
+"  constructor MkComp\n"
+"  unComp  : f (g a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:321
+#, no-wrap
+msgid ""
+"implementation Functor f => Functor g => Functor (Comp f g) where\n"
+"  map f (MkComp v) = MkComp $ map f <$> v\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:325
+msgid ""
+"compExample : Show a => List (Either e a) -> List (Either e String)  "
+"compExample = unComp . map show . MkComp {f = List, g = Either e} ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:327
+msgid "#### Named Implementations"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:334
+msgid ""
+"Sometimes, there are more ways to implement an interface for a given type. "
+"For instance, for numeric types we can have a `Monoid` representing addition "
+"and one representing multiplication.  Likewise, for nested functors, `map` "
+"can be interpreted as a mapping over only the first layer of values, or a "
+"mapping over several layers of values."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:339
+msgid ""
+"One way to go about this is to define single-field wrappers as shown with "
+"data type `Comp` above. However, Idris also allows us to define additional "
+"interface implementations, which must then be given a name. For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:344
+#, no-wrap
+msgid ""
+"```idris\n"
+"[Compose'] Functor f => Functor g => Functor (f . g) where\n"
+"  map f = (map . map) f\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:350
+msgid ""
+"Note, that this defines a new implementation of `Functor`, which will *not* "
+"be considered during implicit resolution in order to avoid ambiguities. "
+"However, it is possible to explicitly choose to use this implementation by "
+"passing it as an explicit argument to `map`, prefixed with an `@`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:355
+msgid ""
+"```idris compExample2 : Show a => List (Either e a) -> List (Either e "
+"String)  compExample2 = map @{Compose} show ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:358
+msgid ""
+"In the example above, we used `Compose` instead of `Compose'`, since the "
+"former is already exported by the *Prelude*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:360
+msgid "### Functor Laws"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:365
+msgid ""
+"Implementations of `Functor` are supposed to adhere to certain laws, just "
+"like implementations of `Eq` or `Ord`. Again, these laws are not verified by "
+"Idris, although it would be possible (and often cumbersome) to do so."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:370
+#, no-wrap
+msgid ""
+"1. `map id = id`: Mapping the identity function over a functor\n"
+"    must not have any visible effect such as changing a container's\n"
+"    structure or affecting the side effects perfomed when\n"
+"    running an `IO` action.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Functor.md:373
+msgid ""
+"`map (f . g) = map f . map g`: Sequencing two mappings must be identical to "
+"a single mapping using the composition of the two functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:380
+msgid ""
+"Both of these laws request, that `map` is preserving the *structure* of "
+"values. This is easier to understand with container types like `List`, "
+"`Maybe`, or `Either e`, where `map` is not allowed to add or remove any "
+"wrapped value, nor - in case of `List` - change their order. With `IO`, this "
+"can best be described as `map` not performing additional side effects."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Functor.md:385
+msgid ""
+"Write your own implementations of `Functor'` for `Maybe`, `List`, `List1`, "
+"`Vect n`, `Either e`, and `Pair a`."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Functor.md:388
+msgid ""
+"Write a named implementation of `Functor` for pairs of functors (similar to "
+"the one implemented for `Product`)."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Functor.md:391
+msgid ""
+"Implement `Functor` for data type `Identity` (which is available from "
+"`Control.Monad.Identity` in *base*):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:397
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   record Identity a where\n"
+"     constructor Id\n"
+"     value : a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Functor.md:404
+msgid ""
+"Here is a curious one: Implement `Functor` for `Const e` (which is also "
+"available from `Control.Applicative.Const` in *base*). You might be confused "
+"about the fact that the second type parameter has absolutely no relevance at "
+"runtime, as there is no value of that type. Such types are sometimes called "
+"*phantom types*. They can be quite useful for tagging values with additional "
+"typing information."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:407
+#, no-wrap
+msgid ""
+"   Don't let the above confuse you: There is only one possible implementation.\n"
+"   As usual, use holes and let the compiler guide you if you get lost.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:413
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   record Const (e,a : Type) where\n"
+"     constructor MkConst\n"
+"     value : e\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Functor.md:416
+msgid ""
+"Here is a sum type for describing CRUD operations (Create, Read, Update, and "
+"Delete) in a data store:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:426
+#, no-wrap
+msgid "   Implement `Functor` for `Crud i`.\n"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Functor.md:428
+msgid "Here is a sum type for describing responses from a data server:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:439
+#, no-wrap
+msgid "   Implement `Functor` for `Repsonse e i`.\n"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Functor.md:441
+msgid "Implement `Functor` for `Validated e`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:447
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Validated : (e,a : Type) -> Type where\n"
+"     Invalid : (err : e) -> Validated e a\n"
+"     Valid   : (val : a) -> Validated e a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:449
+msgid "## Applicative"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:453
+msgid ""
+"While `Functor` allows us to map a pure, unary function over a value in a "
+"context, it doesn't allow us to combine n such values under an n-ary "
+"function."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:455
+msgid "For instance, consider the following functions:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:460
+#, no-wrap
+msgid ""
+"```idris\n"
+"liftMaybe2 : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c\n"
+"liftMaybe2 f (Just va) (Just vb) = Just $ f va vb\n"
+"liftMaybe2 _ _         _         = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:464
+#, no-wrap
+msgid ""
+"liftVect2 : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c\n"
+"liftVect2 _ []        []        = []\n"
+"liftVect2 f (x :: xs) (y :: ys) = f x y :: liftVect2 f xs ys\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:473
+#, no-wrap
+msgid ""
+"liftIO2 : (a -> b -> c) -> IO a -> IO b -> IO c\n"
+"liftIO2 f ioa iob = fromPrim $ go (toPrim ioa) (toPrim iob)\n"
+"  where go : PrimIO a -> PrimIO b -> PrimIO c\n"
+"        go pa pb w =\n"
+"          let MkIORes va w2 = pa w\n"
+"              MkIORes vb w3 = pb w2\n"
+"           in MkIORes (f va vb) w3\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:478
+msgid ""
+"This behavior is not covered by `Functor`, yet it is a very common thing to "
+"do. For instance, we might want to read two numbers from standard input "
+"(both operations might fail), calculating the product of the two. Here's the "
+"code:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:486
+#, no-wrap
+msgid ""
+"```idris\n"
+"multNumbers : Num a => Neg a => IO (Maybe a)\n"
+"multNumbers = do\n"
+"  s1 <- getLine\n"
+"  s2 <- getLine\n"
+"  pure $ liftMaybe2 (*) (parseInteger s1) (parseInteger s2)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:490
+msgid ""
+"And it won't stop here. We might just as well want to have `liftMaybe3` for "
+"ternary functions and three `Maybe` arguments and so on, for arbitrary "
+"numbers of arguments."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:493
+msgid ""
+"But there is more: We'd also like to lift pure values into the context in "
+"question. With this, we could do the following:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:498
+#, no-wrap
+msgid ""
+"```idris\n"
+"liftMaybe3 : (a -> b -> c -> d) -> Maybe a -> Maybe b -> Maybe c -> Maybe d\n"
+"liftMaybe3 f (Just va) (Just vb) (Just vc) = Just $ f va vb vc\n"
+"liftMaybe3 _ _         _         _         = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:501
+msgid "pureMaybe : a -> Maybe a pureMaybe = Just"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:507
+#, no-wrap
+msgid ""
+"multAdd100 : Num a => Neg a => String -> String -> Maybe a\n"
+"multAdd100 s t = liftMaybe3 calc (parseInteger s) (parseInteger t) (pure 100)\n"
+"  where calc : a -> a -> a -> a\n"
+"        calc x y z = x * y + z\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:511
+msgid ""
+"As you'll of course already know, I am now going to present a new interface "
+"to encapsulate this behavior. It's called `Applicative`.  Here is its "
+"definition and an example implementation:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:516
+#, no-wrap
+msgid ""
+"```idris\n"
+"interface Functor' f => Applicative' f where\n"
+"  app   : f (a -> b) -> f a -> f b\n"
+"  pure' : a -> f a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:520
+#, no-wrap
+msgid ""
+"implementation Applicative' Maybe where\n"
+"  app (Just fun) (Just val) = Just $ fun val\n"
+"  app _          _          = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:523
+#, no-wrap
+msgid ""
+"  pure' = Just\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:527
+msgid ""
+"Interface `Applicative` is of course already exported by the *Prelude*.  "
+"There, function `app` is an operator sometimes called *app* or *apply*: "
+"`(<*>)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:530
+msgid ""
+"You may wonder, how functions like `liftMaybe2` or `liftIO3` are related to "
+"operator *apply*. Let me demonstrate this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:534
+msgid ""
+"```idris liftA2 : Applicative f => (a -> b -> c) -> f a -> f b -> f c liftA2 "
+"fun fa fb = pure fun <*> fa <*> fb"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:538
+msgid ""
+"liftA3 : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d "
+"liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:544
+msgid ""
+"It is really important for you to understand what's going on here, so let's "
+"break these down. If we specialize `liftA2` to use `Maybe` for `f`, `pure "
+"fun` is of type `Maybe (a -> b -> c)`. Likewise, `pure fun <*> fa` is of "
+"type `Maybe (b -> c)`, as `(<*>)` will apply the value stored in `fa` to the "
+"function stored in `pure fun` (currying!)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:550
+msgid ""
+"You'll often see such chains of applications of *apply*, the number of "
+"*applies* corresponding to the arity of the function we lift.  You'll "
+"sometimes also see the following, which allows us to drop the initial call "
+"to `pure`, and use the operator version of `map` instead:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:554
+msgid ""
+"```idris liftA2' : Applicative f => (a -> b -> c) -> f a -> f b -> f c "
+"liftA2' fun fa fb = fun <$> fa <*> fb"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:558
+msgid ""
+"liftA3' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d "
+"liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:564
+msgid ""
+"So, interface `Applicative` allows us to lift values (and functions!)  into "
+"computational contexts and apply them to values in the same contexts. Before "
+"we will see an extended example why this is useful, I'll quickly introduce "
+"some syntactic sugar for working with applicative functors."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:566
+msgid "### Idiom Brackets"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:571
+msgid ""
+"The programming style used for implementing `liftA2'` and `liftA3'` is also "
+"referred to as *applicative style* and is used a lot in Haskell for "
+"combining several effectful computations with a single pure function."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:575
+msgid ""
+"In Idris, there is an alternative to using such chains of operator "
+"applications: Idiom brackets. Here's another reimplementation of `liftA2` "
+"and `liftA3`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:579
+msgid ""
+"```idris liftA2'' : Applicative f => (a -> b -> c) -> f a -> f b -> f c "
+"liftA2'' fun fa fb = [| fun fa fb |]"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:583
+msgid ""
+"liftA3'' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d "
+"liftA3'' fun fa fb fc = [| fun fa fb fc |] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:590
+msgid ""
+"The above implementations will be desugared to the one given for `liftA2` "
+"and `liftA3`, again *before disambiguating, type checking, and filling in of "
+"implicit values*. Like with the *bind* operator, we can therefore write "
+"custom implementations for `pure` and `(<*>)`, and Idris will use these if "
+"it can disambiguate between the overloaded function names."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:592
+msgid "### Use Case: CSV Reader"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:604
+msgid ""
+"In order to understand the power and versatility that comes with applicative "
+"functors, we will look at a slightly extended example. We are going to write "
+"some utilities for parsing and decoding content from CSV files. These are "
+"files where each line holds a list of values separated by commas (or some "
+"other delimiter). Typically, they are used to store tabular data, for "
+"instance from spread sheet applications. What we would like to do is convert "
+"lines in a CSV file and store the result in custom records, where each "
+"record field corresponds to a column in the table."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:609
+msgid ""
+"For instance, here is a simple example file, containing tabular user "
+"information from a web store: First name, last name, age (optional), email "
+"address, gender, and password."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:615
+msgid ""
+"```repl Jon,Doe,42,jon@doe.ch,m,weijr332sdk Jane,Doe,,jane@doe.ch,f,"
+"aa433sd112 Stefan,Hoeck,,nope@goaway.ch,m,password123 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:621
+msgid ""
+"And here are the Idris data types necessary to hold this information at "
+"runtime. We use again custom string wrappers for increased type safety and "
+"because it will allow us to define for each data type what we consider to be "
+"valid input:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:624
+msgid "```idris data Gender = Male | Female | Other"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:628
+#, no-wrap
+msgid ""
+"record Name where\n"
+"  constructor MkName\n"
+"  value : String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:646
+#, no-wrap
+msgid ""
+"record User where\n"
+"  constructor MkUser\n"
+"  firstName : Name\n"
+"  lastName  : Name\n"
+"  age       : Maybe Nat\n"
+"  email     : Email\n"
+"  gender    : Gender\n"
+"  password  : Password\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:650
+msgid ""
+"We start by defining an interface for reading fields in a CSV file and "
+"writing implementations for the data types we'd like to read:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:655
+#, no-wrap
+msgid ""
+"```idris\n"
+"interface CSVField a where\n"
+"  read : String -> Maybe a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:659
+msgid ""
+"Below are implementations for `Gender` and `Bool`. I decided to in these "
+"cases encode each value with a single lower case character:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:666
+#, no-wrap
+msgid ""
+"```idris\n"
+"CSVField Gender where\n"
+"  read \"m\" = Just Male\n"
+"  read \"f\" = Just Female\n"
+"  read \"o\" = Just Other\n"
+"  read _   = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:672
+#, no-wrap
+msgid ""
+"CSVField Bool where\n"
+"  read \"t\" = Just True\n"
+"  read \"f\" = Just False\n"
+"  read _   = Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:675
+msgid "For numeric types, we can use the parsing functions from `Data.String`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:679
+#, no-wrap
+msgid ""
+"```idris\n"
+"CSVField Nat where\n"
+"  read = parsePositive\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:682
+#, no-wrap
+msgid ""
+"CSVField Integer where\n"
+"  read = parseInteger\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:686
+#, no-wrap
+msgid ""
+"CSVField Double where\n"
+"  read = parseDouble\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:692
+msgid ""
+"For optional values, the stored type must itself come with an instance of "
+"`CSVField`. We can then treat the empty string `\"\"` as `Nothing`, while a "
+"non-empty string will be passed to the encapsulated type's field reader.  "
+"(Remember that `(<$>)` is an alias for `map`.)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:698
+#, no-wrap
+msgid ""
+"```idris\n"
+"CSVField a => CSVField (Maybe a) where\n"
+"  read \"\" = Just Nothing\n"
+"  read s  = Just <$> read s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:703
+msgid ""
+"Finally, for our string wrappers, we need to decide what we consider to be "
+"valid values. For simplicity, I decided to limit the length of allowed "
+"strings and the set of valid characters."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:707
+msgid ""
+"```idris readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a "
+"readIf p mk s = if p s then Just (mk s) else Nothing"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:712
+#, no-wrap
+msgid ""
+"isValidName : String -> Bool\n"
+"isValidName s =\n"
+"  let len = length s\n"
+"   in 0 < len && len <= 100 && all isAlpha (unpack s)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:715
+#, no-wrap
+msgid ""
+"CSVField Name where\n"
+"  read = readIf isValidName MkName\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:720
+#, no-wrap
+msgid ""
+"isEmailChar : Char -> Bool\n"
+"isEmailChar '.' = True\n"
+"isEmailChar '@' = True\n"
+"isEmailChar c   = isAlphaNum c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:725
+#, no-wrap
+msgid ""
+"isValidEmail : String -> Bool\n"
+"isValidEmail s =\n"
+"  let len = length s\n"
+"   in 0 < len && len <= 100 && all isEmailChar (unpack s)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:728
+#, no-wrap
+msgid ""
+"CSVField Email where\n"
+"  read = readIf isValidEmail MkEmail\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:732
+#, no-wrap
+msgid ""
+"isPasswordChar : Char -> Bool\n"
+"isPasswordChar ' ' = True\n"
+"isPasswordChar c   = not (isControl c) && not (isSpace c)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:737
+#, no-wrap
+msgid ""
+"isValidPassword : String -> Bool\n"
+"isValidPassword s =\n"
+"  let len = length s\n"
+"   in 8 < len && len <= 100 && all isPasswordChar (unpack s)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:741
+#, no-wrap
+msgid ""
+"CSVField Password where\n"
+"  read = readIf isValidPassword MkPassword\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:745
+msgid ""
+"In a later chapter, we will learn about refinement types and how to store an "
+"erased proof of validity together with a validated value."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:749
+msgid ""
+"We can now start to decode whole lines in a CSV file.  In order to do so, we "
+"first introduce a custom error type encapsulating how things can go wrong:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:756
+#, no-wrap
+msgid ""
+"```idris\n"
+"data CSVError : Type where\n"
+"  FieldError           : (line, column : Nat) -> (str : String) -> CSVError\n"
+"  UnexpectedEndOfInput : (line, column : Nat) -> CSVError\n"
+"  ExpectedEndOfInput   : (line, column : Nat) -> CSVError\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:760
+msgid ""
+"We can now use `CSVField` to read a single field at a given line and "
+"position in a CSV file, and return a `FieldError` in case of a failure."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:766
+#, no-wrap
+msgid ""
+"```idris\n"
+"readField : CSVField a => (line, column : Nat) -> String -> Either CSVError a\n"
+"readField line col str =\n"
+"  maybe (Left $ FieldError line col str) Right (read str)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:772
+msgid ""
+"If we know in advance the number of fields we need to read, we can try and "
+"convert a list of strings to a `Vect` of the given length. This facilitates "
+"reading record values of a known number of fields, as we get the correct "
+"number of string variables when pattern matching on the vector:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:780
+#, no-wrap
+msgid ""
+"```idris\n"
+"toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n a)\n"
+"toVect 0     line _   []        = Right []\n"
+"toVect 0     line col _         = Left (ExpectedEndOfInput line col)\n"
+"toVect (S k) line col []        = Left (UnexpectedEndOfInput line col)\n"
+"toVect (S k) line col (x :: xs) = (x ::) <$> toVect k line (S col) xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:783
+msgid ""
+"Finally, we can implement function `readUser` to try and convert a single "
+"line in a CSV-file to a value of type `User`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:794
+#, no-wrap
+msgid ""
+"```idris\n"
+"readUser' : (line : Nat) -> List String -> Either CSVError User\n"
+"readUser' line ss = do\n"
+"  [fn,ln,a,em,g,pw] <- toVect 6 line 0 ss\n"
+"  [| MkUser (readField line 1 fn)\n"
+"            (readField line 2 ln)\n"
+"            (readField line 3 a)\n"
+"            (readField line 4 em)\n"
+"            (readField line 5 g)\n"
+"            (readField line 6 pw) |]\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:798
+msgid ""
+"readUser : (line : Nat) -> String -> Either CSVError User readUser line = "
+"readUser' line . forget . split (',' ==)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:800 ../src/Tutorial/Traverse.md:122
+msgid "Let's give this a go at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:808
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Functor> readUser 1 \"Joe,Foo,46,j@f.ch,m,pw1234567\"\n"
+"Right (MkUser (MkName \"Joe\") (MkName \"Foo\")\n"
+"  (Just 46) (MkEmail \"j@f.ch\") Male (MkPassword \"pw1234567\"))\n"
+"Tutorial.Functor> readUser 7 \"Joe,Foo,46,j@f.ch,m,shortPW\"\n"
+"Left (FieldError 7 6 \"shortPW\")\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:816
+msgid ""
+"Note, how in the implementation of `readUser'` we used an idiom bracket to "
+"map a function of six arguments (`MkUser`)  over six values of type `Either "
+"CSVError`. This will automatically succeed, if and only if all of the "
+"parsings have succeeded. It would have been notoriously cumbersome resulting "
+"in much less readable code to implement `readUser'` with a succession of six "
+"nested pattern matches."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:819
+msgid ""
+"However, the idiom bracket above looks still quite repetitive.  Surely, we "
+"can do better?"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:821
+msgid "#### A Case for Heterogeneous Lists"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:827
+msgid ""
+"It is time to learn about a family of types, which can be used as a generic "
+"representation for record types, and which will allow us to represent and "
+"read rows in heterogeneous tables with a minimal amount of code: "
+"Heterogeneous lists."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:835
+#, no-wrap
+msgid ""
+"```idris\n"
+"namespace HList\n"
+"  public export\n"
+"  data HList : (ts : List Type) -> Type where\n"
+"    Nil  : HList Nil\n"
+"    (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:841
+msgid ""
+"A heterogeneous list is a list type indexed over a *list of types*.  This "
+"allows us to at each position store a value of the type at the same position "
+"in the list index. For instance, here is a variant, which stores three "
+"values of types `Bool`, `Nat`, and `Maybe String` (in that order):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:846
+msgid ""
+"```idris hlist1 : HList [Bool, Nat, Maybe String] hlist1 = [True, 12, "
+"Nothing] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:854
+msgid ""
+"You could argue that heterogeneous lists are just tuples storing values of "
+"the given types. That's right, of course, however, as you'll learn the hard "
+"way in the exercises, we can use the list index to perform compile-time "
+"computations on `HList`, for instance when concatenating two such lists to "
+"keep track of the types stored in the result at the same time."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:859
+msgid ""
+"But first, we'll make use of `HList` as a means to concisely parse CSV-"
+"lines. In order to do that, we need to introduce a new interface for types "
+"corresponding to whole lines in a CSV-file:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:864
+#, no-wrap
+msgid ""
+"```idris\n"
+"interface CSVLine a where\n"
+"  decodeAt : (line, col : Nat) -> List String -> Either CSVError a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:871
+msgid ""
+"We'll now write two implementations of `CSVLine` for `HList`: One for the "
+"`Nil` case, which will succeed if and only if the current list of strings is "
+"empty. The other for the *cons* case, which will try and read a single field "
+"from the head of the list and the remainder from its tail. We use again an "
+"idiom bracket to concatenate the results:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:876
+#, no-wrap
+msgid ""
+"```idris\n"
+"CSVLine (HList []) where\n"
+"  decodeAt _ _ [] = Right Nil\n"
+"  decodeAt l c _  = Left (ExpectedEndOfInput l c)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:881
+#, no-wrap
+msgid ""
+"CSVField t => CSVLine (HList ts) => CSVLine (HList (t :: ts)) where\n"
+"  decodeAt l c []        = Left (UnexpectedEndOfInput l c)\n"
+"  decodeAt l c (s :: ss) = [| readField l c s :: decodeAt l (S c) ss |]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:887
+msgid ""
+"And that's it! All we need to add is two utility function for decoding whole "
+"lines before they have been split into tokens, one of which is specialized "
+"to `HList` and takes an erased list of types as argument to make it more "
+"convenient to use at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:891
+msgid ""
+"```idris decode : CSVLine a => (line : Nat) -> String -> Either CSVError a "
+"decode line = decodeAt line 1 . forget . split (',' ==)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:899
+#, no-wrap
+msgid ""
+"hdecode :  (0 ts : List Type)\n"
+"        -> CSVLine (HList ts)\n"
+"        => (line : Nat)\n"
+"        -> String\n"
+"        -> Either CSVError (HList ts)\n"
+"hdecode _ = decode\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:902
+msgid ""
+"It's time to reap the fruits of our labour and give this a go at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:909
+msgid ""
+"```repl Tutorial.Functor> hdecode [Bool,Nat,Double] 1 \"f,100,12.123\" Right "
+"[False, 100, 12.123] Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris,,"
+"f\" Left (FieldError 3 2 \"\")  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:911
+msgid "### Applicative Laws"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:914
+msgid ""
+"Again, `Applicative` implementations must follow certain laws. Here they are:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:917
+msgid ""
+"`pure id <*> fa = fa`: Lifting and applying the identity function has no "
+"visible effect."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:922
+msgid ""
+"`[| f . g |] <*> v = f <*> (g <*> v)`: I must not matter, whether we compose "
+"our functions first and then apply them, or whether we apply our functions "
+"first and then compose them."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:925
+#, no-wrap
+msgid ""
+"  The above might be hard to understand, so here\n"
+"  they are again with explicit types and implementations:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:929
+#, no-wrap
+msgid ""
+"  ```idris\n"
+"  compL : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c\n"
+"  compL f g v = [| f . g |] <*> v\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:933
+#, no-wrap
+msgid ""
+"  compR : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c\n"
+"  compR f g v = f <*> (g <*> v)\n"
+"  ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:936
+#, no-wrap
+msgid ""
+"  The second applicative law states, that the two implementations\n"
+"  `compL` and `compR` should behave identically.\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:939
+msgid ""
+"`pure f <*> pure x = pure (f x)`. This is also called the *homomorphism* "
+"law. It should be pretty self-explaining."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:942
+msgid ""
+"`f <*> pure v = pure ($ v) <*> f`. This is called the law of *interchange*."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:944
+#, no-wrap
+msgid "  This should again be explained with a concrete example:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:948
+#, no-wrap
+msgid ""
+"  ```idris\n"
+"  interL : Maybe (a -> b) -> a -> Maybe b\n"
+"  interL f v = f <*> pure v\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:952
+#, no-wrap
+msgid ""
+"  interR : Maybe (a -> b) -> a -> Maybe b\n"
+"  interR f v = pure ($ v) <*> f\n"
+"  ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:957
+#, no-wrap
+msgid ""
+"  Note, that `($ v)` has type `(a -> b) -> b`, so this\n"
+"  is a function type being applied to `f`, which has\n"
+"  a function of type `a -> b` wrapped in a `Maybe`\n"
+"  context.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:961
+#, no-wrap
+msgid ""
+"  The law of interchange states that it must not matter\n"
+"  whether we apply a pure value from the left or\n"
+"  right of the *apply* operator.\n"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Functor.md:965
+msgid "Implement `Applicative'` for `Either e` and `Identity`."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Functor.md:970
+msgid ""
+"Implement `Applicative'` for `Vect n`. Note: In order to implement `pure`, "
+"the length must be known at runtime.  This can be done by passing it as an "
+"unerased implicit to the interface implementation:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:974
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   implementation {n : _} -> Applicative' (Vect n) where\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Functor.md:977
+msgid ""
+"Implement `Applicative'` for `Pair e`, with `e` having a `Monoid` constraint."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Functor.md:980
+msgid ""
+"Implement `Applicative` for `Const e`, with `e` having a `Monoid` constraint."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Functor.md:985
+msgid ""
+"Implement `Applicative` for `Validated e`, with `e` having a `Semigroup` "
+"constraint. This will allow us to use `(<+>)` to accumulate errors in case "
+"of two `Invalid` values in the implementation of *apply*."
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Functor.md:990
+msgid ""
+"Add an additional data constructor of type `CSVError -> CSVError -> "
+"CSVError` to `CSVError` and use this to implement `Semigroup` for `CSVError`."
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Functor.md:994
+msgid ""
+"Refactor our CSV-parsers and all related functions so that they return "
+"`Validated` instead of `Either`. This will only work, if you solved exercise "
+"6."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1000
+#, no-wrap
+msgid ""
+"   Two things to note: You will have to adjust very little of\n"
+"   the existing code, as we can still use applicative syntax\n"
+"   with `Validated`. Also, with this change, we enhanced our CSV-parsers\n"
+"   with the ability of error accumulation. Here are some examples\n"
+"   from a REPL session:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1010
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"t,12,f\"\n"
+"   Valid [True, 12, Female]\n"
+"   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"o,-12,f\"\n"
+"   Invalid (App (FieldError 1 1 \"o\") (FieldError 1 2 \"-12\"))\n"
+"   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"o,-12,foo\"\n"
+"   Invalid (App (FieldError 1 1 \"o\")\n"
+"     (App (FieldError 1 2 \"-12\") (FieldError 1 3 \"foo\")))\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1015
+#, no-wrap
+msgid ""
+"   Behold the power of applicative functors and heterogeneous lists: With\n"
+"   only a few lines of code we wrote a pure, type-safe, and total\n"
+"   parser with error accumulation for lines in CSV-files, which is\n"
+"   very convenient to use at the same time!\n"
+msgstr ""
+
+#. type: Bullet: '8. '
+#: ../src/Tutorial/Functor.md:1018
+msgid ""
+"Since we introduced heterogeneous lists in this chapter, it would be a pity "
+"not to experiment with them a little."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1027
+#, no-wrap
+msgid ""
+"   This exercise is meant to sharpen your skills in type wizardry.\n"
+"   It therefore comes with very few hints. Try to decide yourself\n"
+"   what behavior you'd expect from a given function, how to express\n"
+"   this in the types, and how to implement it afterwards.\n"
+"   If your types are correct and precise enough, the implementations\n"
+"   will almost come for free. Don't give up too early if you get stuck.\n"
+"   Only if you truly run out of ideas should you have a glance\n"
+"   at the solutions (and then, only at the types at first!)\n"
+msgstr ""
+
+#. type: Bullet: '   1. '
+#: ../src/Tutorial/Functor.md:1029
+msgid "Implement `head` for `HList`."
+msgstr ""
+
+#. type: Bullet: '   2. '
+#: ../src/Tutorial/Functor.md:1031
+msgid "Implement `tail` for `HList`."
+msgstr ""
+
+#. type: Bullet: '   3. '
+#: ../src/Tutorial/Functor.md:1033
+msgid "Implement `(++)` for `HList`."
+msgstr ""
+
+#. type: Bullet: '   4. '
+#: ../src/Tutorial/Functor.md:1037
+msgid ""
+"Implement `index` for `HList`. This might be harder than the other three.  "
+"Go back and look how we implemented `indexList` in an [earlier exercise]"
+"(Dependent.md) and start from there."
+msgstr ""
+
+#. type: Bullet: '   5. '
+#: ../src/Tutorial/Functor.md:1043
+msgid ""
+"Package *contrib*, which is part of the Idris project, provides `Data.HVect."
+"HVect`, a data type for heterogeneous vectors. The only difference to our "
+"own `HList` is, that `HVect` is indexed over a vector of types instead of a "
+"list of types. This makes it easier to express certain operations at the "
+"type level."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1046
+#, no-wrap
+msgid ""
+"      Write your own implementation of `HVect` together with functions\n"
+"      `head`, `tail`, `(++)`, and `index`.\n"
+msgstr ""
+
+#. type: Bullet: '   6. '
+#: ../src/Tutorial/Functor.md:1050
+msgid ""
+"For a real challenge, try implementing a function for transposing a `Vect m "
+"(HVect ts)`. You'll first have to be creative about how to even express this "
+"in the types."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1057
+#, no-wrap
+msgid ""
+"      Note: In order to implement this, you'll need to pattern match\n"
+"      on an erased argument in at least one case to help Idris with\n"
+"      type inference. Pattern matching on erased arguments is forbidden\n"
+"      (they are erased after all, so we can't inspect them at runtime),\n"
+"      *unless* the structure of the value being matched on can be derived\n"
+"      from another, un-erased argument.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1061
+#, no-wrap
+msgid ""
+"      Also, don't worry if you get stuck on this one. It took me several\n"
+"      tries to figure it out. But I enjoyed the experience, so I just *had*\n"
+"      to include it here. :-)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1065
+#, no-wrap
+msgid ""
+"      Note, however, that such a function might be useful when working with\n"
+"      CSV-files, as it allows us to convert a table represented as\n"
+"      rows (a vector of tuples) to one represented as columns (a tuple of vectors).\n"
+msgstr ""
+
+#. type: Bullet: '9. '
+#: ../src/Tutorial/Functor.md:1069
+msgid ""
+"Show, that the composition of two applicative functors is again an "
+"applicative functor by implementing `Applicative` for `Comp f g`."
+msgstr ""
+
+#. type: Bullet: '10. '
+#: ../src/Tutorial/Functor.md:1073
+msgid ""
+"Show, that the product of two applicative functors is again an applicative "
+"functor by implementing `Applicative` for `Prod f g`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1075
+msgid "## Monad"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1081
+msgid ""
+"Finally, `Monad`. A lot of ink has been spilled about this one.  However, "
+"after what we already saw in the [chapter about `IO`](IO.md), there is not "
+"much left to discuss here. `Monad` extends `Applicative` and adds two new "
+"related functions: The *bind* operator (`(>>=)`) and function `join`. Here "
+"is its definition:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1087
+#, no-wrap
+msgid ""
+"```idris\n"
+"interface Applicative' m => Monad' m where\n"
+"  bind  : m a -> (a -> m b) -> m b\n"
+"  join' : m (m a) -> m a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1091
+msgid ""
+"Implementers of `Monad` are free to choose to either implement `(>>=)` or "
+"`join` or both. You will show in an exercise, how `join` can be implemented "
+"in terms of *bind* and vice versa."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1099
+msgid ""
+"The big difference between `Monad` and `Applicative` is, that the former "
+"allows a computation to depend on the result of an earlier computation. For "
+"instance, we could decide based on a string read from standard input whether "
+"to delete a file or play a song. The result of the first `IO` action "
+"(reading some user input) will affect, which `IO` action to run next.  This "
+"is not possible with the *apply* operator:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1103
+msgid "```repl (<*>) : IO (a -> b) -> IO a -> IO b ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1115
+msgid ""
+"The two `IO` actions have already been decided on when they are being passed "
+"as arguments to `(<*>)`. The result of the first cannot - in the general "
+"case - affect which computation to run in the second. (Actually, with `IO` "
+"this would theoretically be possible via side effects: The first action "
+"could write some command to a file or overwrite some mutable state, and the "
+"second action could read from that file or state, thus deciding on the next "
+"thing to do. But this is a speciality of `IO`, not of applicative functors "
+"in general. If the functor in question was `Maybe`, `List`, or `Vector`, no "
+"such thing would be possible.)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1121
+msgid ""
+"Let's demonstrate the difference with an example. Assume we'd like to "
+"enhance our CSV-reader with the ability to decode a line of tokens to a sum "
+"type. For instance, we'd like to decode CRUD requests from the lines of a "
+"CSV-file:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1129
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"  Create : (value : a) -> Crud i a\n"
+"  Update : (id : i) -> (value : a) -> Crud i a\n"
+"  Read   : (id : i) -> Crud i a\n"
+"  Delete : (id : i) -> Crud i a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1134
+msgid ""
+"We need a way to on each line decide, which data constructor to choose for "
+"our decoding. One way to do this is to put the name of the data constructor "
+"(or some other tag of identification) in the first column of the CSV-file:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1138
+msgid "```idris hlift : (a -> b) -> HList [a] -> b hlift f [x] = f x"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1141
+msgid "hlift2 : (a -> b -> c) -> HList [a,b] -> c hlift2 f [x,y] = f x y"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1158
+#, no-wrap
+msgid ""
+"decodeCRUD :  CSVField i\n"
+"           => CSVField a\n"
+"           => (line : Nat)\n"
+"           -> (s    : String)\n"
+"           -> Either CSVError (Crud i a)\n"
+"decodeCRUD l s =\n"
+"  let h ::: t = split (',' ==) s\n"
+"   in do\n"
+"     MkName n <- readField l 1 h\n"
+"     case n of\n"
+"       \"Create\" => hlift  Create  <$> decodeAt l 2 t\n"
+"       \"Update\" => hlift2 Update  <$> decodeAt l 2 t\n"
+"       \"Read\"   => hlift  Read    <$> decodeAt l 2 t\n"
+"       \"Delete\" => hlift  Delete  <$> decodeAt l 2 t\n"
+"       _        => Left (FieldError l 1 n)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1164
+msgid ""
+"I added two utility function for helping with type inference and to get "
+"slightly nicer syntax. The important thing to note is, how we pattern match "
+"on the result of the first parsing function to decide on the data "
+"constructor and thus the next parsing function to use."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1166
+msgid "Here's how this works at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1175
+msgid ""
+"```repl Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Create,"
+"jon@doe.ch\" Right (Create (MkEmail \"jon@doe.ch\"))  Tutorial.Functor> "
+"decodeCRUD {i = Nat} {a = Email} 1 \"Update,12,jane@doe.ch\" Right (Update "
+"12 (MkEmail \"jane@doe.ch\"))  Tutorial.Functor> decodeCRUD {i = Nat} {a = "
+"Email} 1 \"Delete,jon@doe.ch\" Left (FieldError 1 2 \"jon@doe.ch\")  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1184
+msgid ""
+"To conclude, `Monad`, unlike `Applicative`, allows us to chain computations "
+"sequentially, where intermediary results can affect the behavior of later "
+"computations.  So, if you have n unrelated effectful computations and want "
+"to combine them under a pure, n-ary function, `Applicative` will be "
+"sufficient. If, however, you want to decide based on the result of an "
+"effectful computation what computation to run next, you need a `Monad`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1190
+msgid ""
+"Note, however, that `Monad` has one important drawback compared to "
+"`Applicative`: In general, monads don't compose.  For instance, there is no "
+"`Monad` instance for `Either e . IO`.  We will later learn about monad "
+"transformers, which can be composed with other monads."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1192
+msgid "### Monad Laws"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1194
+msgid "Without further ado, here are the laws for `Monad`:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1198
+msgid ""
+"`ma >>= pure = ma` and `pure v >>= f = f v`.  These are monad's identity "
+"laws. Here they are as concrete examples:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1202
+#, no-wrap
+msgid ""
+"  ```idris\n"
+"  id1L : Maybe a -> Maybe a\n"
+"  id1L ma = ma >>= pure\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1205
+#, no-wrap
+msgid ""
+"  id2L : a -> (a -> Maybe b) -> Maybe b\n"
+"  id2L v f = pure v >>= f\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1209
+#, no-wrap
+msgid ""
+"  id2R : a -> (a -> Maybe b) -> Maybe b\n"
+"  id2R v f = f v\n"
+"  ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1212
+#, no-wrap
+msgid ""
+"  These two laws state that `pure` should behave\n"
+"  neutrally w.r.t. *bind*.\n"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1218
+msgid ""
+"(m >>= f) >>= g = m >>= (f >=> g)  This is the law of associativity for "
+"monad.  You might not have seen the second operator `(>=>)`.  It can be used "
+"to sequence effectful computations and has the following type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1223
+#, no-wrap
+msgid ""
+"  ```repl\n"
+"  Tutorial.Functor> :t (>=>)\n"
+"  Prelude.>=> : Monad m => (a -> m b) -> (b -> m c) -> a -> m c\n"
+"  ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1229
+msgid ""
+"The above are the *official* monad laws. However, we need to consider a "
+"third one, given that in Idris (and Haskell)  `Monad` extends `Applicative`: "
+"As `(<*>)` can be implemented in terms of `(>>=)`, the actual implementation "
+"of `(<*>)` must behave the same as the implementation in terms of `(>>=)`:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1231
+msgid "`mf <*> ma = mf >>= (\\fun => map (fun $) ma)`."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Functor.md:1237
+msgid ""
+"`Applicative` extends `Functor`, because every `Applicative` is also a "
+"`Functor`. Proof this by implementing `map` in terms of `pure` and `(<*>)`."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Functor.md:1241
+msgid ""
+"`Monad` extends `Applicative`, because every `Monad` is also an "
+"`Applicative`. Proof this by implementing `(<*>)` in terms of `(>>=)` and "
+"`pure`."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Functor.md:1244
+msgid ""
+"Implement `(>>=)` in terms of `join` and other functions in the `Monad` "
+"hierarchy."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Functor.md:1247
+msgid ""
+"Implement `join` in terms of `(>>=)` and other functions in the `Monad` "
+"hierarchy."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Functor.md:1250
+msgid "There is no lawful `Monad` implementation for `Validated e`.  Why?"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Functor.md:1256
+msgid ""
+"In this slightly extended exercise, we are going to simulate CRUD operations "
+"on a data store. We will use a mutable reference (imported from `Data.IORef` "
+"from the *base* library)  holding a list of `User`s paired with a unique ID "
+"of type `Nat` as our user data base:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1261
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   DB : Type\n"
+"   DB = IORef (List (Nat,User))\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1267
+#, no-wrap
+msgid ""
+"   Most operations on a database come with a risk of failure:\n"
+"   When we try to update or delete a user, the entry in question\n"
+"   might no longer be there. When we add a new user, a user\n"
+"   with the given email address might already exist. Here is\n"
+"   a custom error type to deal with this:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1274
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data DBError : Type where\n"
+"     UserExists        : Email -> Nat -> DBError\n"
+"     UserNotFound      : Nat -> DBError\n"
+"     SizeLimitExceeded : DBError\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1277
+#, no-wrap
+msgid ""
+"   In general, our functions will therefore have a\n"
+"   type similar to the following:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1281
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   someDBProg : arg1 -> arg2 -> DB -> IO (Either DBError a)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1284
+#, no-wrap
+msgid ""
+"   We'd like to abstract over this, by introducing a new wrapper\n"
+"   type:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1290
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   record Prog a where\n"
+"     constructor MkProg\n"
+"     runProg : DB -> IO (Either DBError a)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1294
+#, no-wrap
+msgid ""
+"   We are now ready to write us some utility functions. Make sure\n"
+"   to follow the following business rules when implementing the\n"
+"   functions below:\n"
+msgstr ""
+
+#. type: Bullet: '   * '
+#: ../src/Tutorial/Functor.md:1297
+msgid ""
+"Email addresses in the DB must be unique. (Consider implementing `Eq Email` "
+"to verify this)."
+msgstr ""
+
+#. type: Bullet: '   * '
+#: ../src/Tutorial/Functor.md:1299
+msgid "The size limit of 1000 entries must not be exceeded."
+msgstr ""
+
+#. type: Bullet: '   * '
+#: ../src/Tutorial/Functor.md:1303
+msgid ""
+"Operations trying to lookup a user by their ID must fail with `UserNotFound` "
+"in case no entry was found in the DB."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1308
+#, no-wrap
+msgid ""
+"   You'll need the following functions from `Data.IORef` when working\n"
+"   with mutable references: `newIORef`, `readIORef`, and `writeIORef`.\n"
+"   In addition, functions `Data.List.lookup` and `Data.List.find` might\n"
+"   be useful to implement some of the functions below.\n"
+msgstr ""
+
+#. type: Bullet: '   1. '
+#: ../src/Tutorial/Functor.md:1310
+msgid "Implement interfaces `Functor`, `Applicative`, and `Monad` for `Prog`."
+msgstr ""
+
+#. type: Bullet: '   2. '
+#: ../src/Tutorial/Functor.md:1312
+msgid "Implement interface `HasIO` for `Prog`."
+msgstr ""
+
+#. type: Bullet: '   3. '
+#: ../src/Tutorial/Functor.md:1314
+msgid "Implement the following utility functions:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1317
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      throw : DBError -> Prog a\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1319
+#, no-wrap
+msgid "      getUsers : Prog (List (Nat,User))\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1322
+#, no-wrap
+msgid ""
+"      -- check the size limit!\n"
+"      putUsers : List (Nat,User) -> Prog ()\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1326
+#, no-wrap
+msgid ""
+"      -- implement this in terms of `getUsers` and `putUsers`\n"
+"      modifyDB : (List (Nat,User) -> List (Nat,User)) -> Prog ()\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   4. '
+#: ../src/Tutorial/Functor.md:1330
+msgid ""
+"Implement function `lookupUser`. This should fail with an appropriate error, "
+"if a user with the given ID cannot be found."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1334
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      lookupUser : (id : Nat) -> Prog User\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   5. '
+#: ../src/Tutorial/Functor.md:1339
+msgid ""
+"Implement function `deleteUser`. This should fail with an appropriate error, "
+"if a user with the given ID cannot be found. Make use of `lookupUser` in "
+"your implementation."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1343
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      deleteUser : (id : Nat) -> Prog ()\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   6. '
+#: ../src/Tutorial/Functor.md:1349
+msgid ""
+"Implement function `addUser`. This should fail, if a user with the given "
+"`Email` already exists, or if the data banks size limit of 1000 entries is "
+"exceeded.  In addition, this should create and return a unique ID for the "
+"new user entry."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1353
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      addUser : (new : User) -> Prog Nat\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   7. '
+#: ../src/Tutorial/Functor.md:1358
+msgid ""
+"Implement function `updateUser`. This should fail, if the user in question "
+"cannot be found or a user with the updated user's `Email` already exists.  "
+"The returned value should be the updated user."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1362
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      updateUser : (id : Nat) -> (mod : User -> User) -> Prog User\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   8. '
+#: ../src/Tutorial/Functor.md:1366
+msgid ""
+"Data type `Prog` is actually too specific. We could just as well abstract "
+"over the error type and the `DB` environment:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1372
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      record Prog' env err a where\n"
+"        constructor MkProg\n"
+"        runProg' : env -> IO (Either err a)\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1378
+#, no-wrap
+msgid ""
+"      Verify, that all interface implementations you wrote\n"
+"      for `Prog` can be used verbatim to implement the same\n"
+"      interfaces for `Prog' env err`. The same goes for\n"
+"      `throw` with only a slight adjustment in the function's\n"
+"      type.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1380
+msgid "## Background and further Reading"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1388
+msgid ""
+"Concepts like *functor* and *monad* have their origin in *category theory*, "
+"a branch of mathematics. That is also where their laws come from.  Category "
+"theory was found to have applications in programming language theory, "
+"especially functional programming.  It is a highly abstract topic, but there "
+"is a pretty accessible introduction for programmers, written by [Bartosz "
+"Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-"
+"programmers-the-preface/)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1394
+msgid ""
+"The usefulness of applicative functors as a middle ground between functor "
+"and monad was discovered several years after monads had already been in use "
+"in Haskell. They where introduced in the article [*Applicative Programming "
+"with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html), "
+"which is freely available online and a highly recommended read."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1401
+msgid ""
+"Interfaces `Functor`, `Applicative`, and `Monad` abstract over programming "
+"patterns that come up when working with type constructors of type `Type -> "
+"Type`. Such data types are also referred to as *values in a context*, or "
+"*effectful computations*."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1404
+msgid ""
+"`Functor` allows us to *map* over values in a context without affecting the "
+"context's underlying structure."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1407
+msgid ""
+"`Applicative` allows us to apply n-ary functions to n effectful computations "
+"and to lift pure values into a context."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1411
+msgid ""
+"`Monad` allows us to chain effectful computations, where the intermediary "
+"results can affect, which computation to run further down the chain."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1415
+msgid ""
+"Unlike `Monad`, `Functor` and `Applicative` compose: The product and "
+"composition of two functors or applicatives are again functors or "
+"applicatives, respectively."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Functor.md:1419
+msgid ""
+"Idris provides syntactic sugar for working with some of the interfaces "
+"presented here: Idiom brackets for `Applicative`, *do blocks* and the bang "
+"operator for `Monad`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1421 ../src/Tutorial/Intro.md:431
+msgid "### What's next?"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:1425
+msgid ""
+"In the [next chapter](Folds.md) we get to learn more about recursion, "
+"totality checking, and an interface for collapsing container types: "
+"`Foldable`."
+msgstr ""

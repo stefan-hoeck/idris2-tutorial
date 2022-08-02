@@ -1,0 +1,1919 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1128 ../src/Tutorial/Eq.md:1057
+msgid "### Exercises part 4"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
+#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
+#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
+#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
+#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+msgid "%default total ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DPair.md:783 ../src/Tutorial/Eq.md:29
+#: ../src/Tutorial/Predicates.md:495
+msgid "```idris data ColType = I64 | Str | Boolean | Float"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DPair.md:936 ../src/Tutorial/Eq.md:460
+#, no-wrap
+msgid ""
+"```idris\n"
+"showColType : ColType -> String\n"
+"showColType I64      = \"i64\"\n"
+"showColType Str      = \"str\"\n"
+"showColType Boolean  = \"boolean\"\n"
+"showColType Float    = \"float\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:2
+msgid "# Propositional Equality"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:9
+msgid ""
+"In the [last chapter](DPair.md) we learned, how dependent pairs and records "
+"can be used to calculate *types* from values only known at runtime by "
+"pattern matching on these values. We will now look at how we can describe "
+"relations - or *contracts* - between values as types, and how we can use "
+"values of these types as proofs that the contracts hold."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:12
+msgid "```idris module Tutorial.Eq"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:17
+msgid ""
+"import Data.Either import Data.HList import Data.Vect import Data.String"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:22
+msgid "## Equality as a Type"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:26
+msgid ""
+"Imagine, we'd like to concatenate the contents of two CSV files, both of "
+"which we stored on disk as tables together with their schemata as shown in "
+"our discussion about dependent pairs:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:32
+msgid "Schema : Type Schema = List ColType"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:38 ../src/Tutorial/Predicates.md:501
+#, no-wrap
+msgid ""
+"IdrisType : ColType -> Type\n"
+"IdrisType I64     = Int64\n"
+"IdrisType Str     = String\n"
+"IdrisType Boolean = Bool\n"
+"IdrisType Float   = Double\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:41
+msgid "Row : Schema -> Type Row = HList . map IdrisType"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:47
+#, no-wrap
+msgid ""
+"record Table where\n"
+"  constructor MkTable\n"
+"  schema : Schema\n"
+"  size   : Nat\n"
+"  rows   : Vect size (Row schema)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:50
+msgid "concatTables1 : Table -> Table -> Maybe Table ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:55
+msgid ""
+"We will not be able to implement `concatTables` by appending the two row "
+"vectors, unless we can somehow verify that the two schemata are identical. "
+"\"Well,\" I hear you say, \"that shouldn't be a big issue! Just implement "
+"`Eq` for `ColType`\". Let's give this a try:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:63
+#, no-wrap
+msgid ""
+"```idris\n"
+"Eq ColType where\n"
+"  I64     == I64     = True\n"
+"  Str     == Str     = True\n"
+"  Boolean == Boolean = True\n"
+"  Float   == Float   = True\n"
+"  _       == _       = False\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:68
+#, no-wrap
+msgid ""
+"concatTables1 (MkTable s1 m rs1) (MkTable s2 n rs2) = case s1 == s2 of\n"
+"  True  => ?what_now\n"
+"  False => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:73
+msgid ""
+"Somehow, this doesn't seem to work. If we inspect the context of hole "
+"`what_now`, Idris still thinks that `s1` and `s2` are different, and if we "
+"go ahead and invoke `Vect.(++)` anyway in the `True` case, Idris will "
+"respond with a type error."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:82
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Relations> :t what_now\n"
+"   m : Nat\n"
+"   s1 : List ColType\n"
+"   rs1 : Vect m (HList (map IdrisType s1))\n"
+"   n : Nat\n"
+"   s2 : List ColType\n"
+"   rs2 : Vect n (HList (map IdrisType s2))\n"
+"------------------------------\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:85
+msgid "what_now : Maybe Table ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:92
+msgid ""
+"The problem is, that there is no reason for Idris to unify the two values, "
+"even though `(==)` returned `True` because the result of `(==)` holds no "
+"other information than the type being a `Bool`. *We* think, if this is "
+"`True` the two values should be identical, but Idris is not convinced. In "
+"fact, the following implementation of `Eq ColType` would be perfectly fine "
+"as far as the type checker is concerned:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:97
+#, no-wrap
+msgid ""
+"```repl\n"
+"Eq ColType where\n"
+"  _       == _       = True\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:106
+msgid ""
+"So Idris is right in not trusting us. You might expect it to inspect the "
+"implementation of `(==)` and figure out on its own, what the `True` result "
+"means, but this is not how these things work in general, because most of the "
+"time the number of computational paths to check would be far too large.  As "
+"a consequence, Idris is able to evaluate functions during unification, but "
+"it will not trace back information about function arguments from a "
+"function's result for us. We can do so manually, however, as we will see "
+"later."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:108
+msgid "### A Type for equal Schemata"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:114
+msgid ""
+"The problem described above is similar to what we saw when we talked about "
+"the benefit of [singleton types](DPair.md#erased-existentials): The types "
+"are not precise enough. What we are going to do now, is something we'll "
+"repeat time again for different use cases: We encode a contract between "
+"values in an indexed data type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:119
+#, no-wrap
+msgid ""
+"```idris\n"
+"data SameSchema : (s1 : Schema) -> (s2 : Schema) -> Type where\n"
+"  Same : SameSchema s s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:124
+msgid ""
+"First, note how `SameSchema` is a family of types indexed over two values of "
+"type `Schema`. But note also that the sole constructor restricts the values "
+"we allow for `s1` and `s2`: The two indices *must* be identical."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:128
+msgid ""
+"Why is this useful? Well, imagine we had a function for checking the "
+"equality of two schemata, which would try and return a value of type "
+"`SameSchema s1 s2`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:132
+msgid ""
+"```idris sameSchema : (s1, s2 : Schema) -> Maybe (SameSchema s1 s2)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:134
+msgid "We could then use this function to implement `concatTables`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:141
+#, no-wrap
+msgid ""
+"```idris\n"
+"concatTables : Table -> Table -> Maybe Table\n"
+"concatTables (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of\n"
+"  Just Same => Just $ MkTable s1 _ (rs1 ++ rs2)\n"
+"  Nothing   => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:143
+msgid ""
+"It worked! What's going on here? Well, let's inspect the types involved:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:150
+#, no-wrap
+msgid ""
+"```idris\n"
+"concatTables2 : Table -> Table -> Maybe Table\n"
+"concatTables2 (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of\n"
+"  Just Same => ?almost_there\n"
+"  Nothing   => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:152
+msgid "At the REPL, we get the following context for `almost_there`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:161
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Relations> :t almost_there\n"
+"   m : Nat\n"
+"   s2 : List ColType\n"
+"   rs1 : Vect m (HList (map IdrisType s2))\n"
+"   n : Nat\n"
+"   rs2 : Vect n (HList (map IdrisType s2))\n"
+"   s1 : List ColType\n"
+"------------------------------\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:164
+msgid "almost_there : Maybe Table ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:168
+msgid ""
+"See, how the types of `rs1` and `rs2` unify? Value `Same`, coming as the "
+"result of `sameSchema s1 s2`, is a *witness* that `s1` and `s2` are actually "
+"identical, because this is what we specified in the definition of `Same`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:172
+msgid ""
+"All that remains to do is to implement `sameSchema`. For this, we will write "
+"another data type for specifying when two values of type `ColType` are "
+"identical:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:177
+#, no-wrap
+msgid ""
+"```idris\n"
+"data SameColType : (c1, c2 : ColType) -> Type where\n"
+"  SameCT : SameColType c1 c1\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:180
+msgid ""
+"We can now define several utility functions. First, one for figuring out if "
+"two column types are identical:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:189
+#, no-wrap
+msgid ""
+"```idris\n"
+"sameColType : (c1, c2 : ColType) -> Maybe (SameColType c1 c2)\n"
+"sameColType I64     I64     = Just SameCT\n"
+"sameColType Str     Str     = Just SameCT\n"
+"sameColType Boolean Boolean = Just SameCT\n"
+"sameColType Float   Float   = Just SameCT\n"
+"sameColType _ _             = Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:195
+msgid ""
+"This will convince Idris, because in each pattern match, the return type "
+"will be adjusted according to the values we matched on. For instance, on the "
+"first line, the output type is `Maybe (SameColType I64 I64)` as you can "
+"easily verify yourself by inserting a hole and checking its type at the REPL."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:203
+msgid ""
+"We will need two additional utilities: Functions for creating values of type "
+"`SameSchema` for the nil and cons cases. Please note, how the "
+"implementations are trivial. Still, we often have to quickly write such "
+"small proofs (I'll explain in the next section, why I call them *proofs*), "
+"which will then be used to convince the type checker about some fact we "
+"already take for granted but Idris does not."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:207
+msgid "```idris sameNil : SameSchema [] [] sameNil = Same"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:213
+#, no-wrap
+msgid ""
+"sameCons :  SameColType c1 c2\n"
+"         -> SameSchema s1 s2\n"
+"         -> SameSchema (c1 :: s1) (c2 :: s2)\n"
+"sameCons SameCT Same = Same\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:221
+msgid ""
+"As usual, it can help understanding what's going on by replacing the right "
+"hand side of `sameCons` with a hole an check out its type and context at the "
+"REPL. The presence of values `SameCT` and `Same` on the left hand side "
+"forces Idris to unify `c1` and `c2` as well as `s1` and `s2`, from which the "
+"unification of `c1 :: s1` and `c2 :: s2` immediately follows.  With these, "
+"we can finally implement `sameSchema`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:229
+#, no-wrap
+msgid ""
+"```idris\n"
+"sameSchema []        []        = Just sameNil\n"
+"sameSchema (x :: xs) (y :: ys) =\n"
+"  [| sameCons (sameColType x y) (sameSchema xs ys) |]\n"
+"sameSchema (x :: xs) []        = Nothing\n"
+"sameSchema []        (x :: xs) = Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:238
+msgid ""
+"What we described here is a far stronger form of equality than what is "
+"provided by interface `Eq` and the `(==)` operator: Equality of values that "
+"is accepted by the type checker when trying to unify type level indices.  "
+"This is also called *propositional equality*: We will see below, that we can "
+"view types as mathematical *propositions*, and values of these types a "
+"*proofs* that these propositions hold."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:240
+msgid "### Type `Equal`"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:251
+msgid ""
+"Propositional equality is such a fundamental concept, that the *Prelude* "
+"exports a general data type for this already: `Equal`, with its only data "
+"constructor `Refl`. In addition, there is a built-in operator for expressing "
+"propositional equality, which gets desugared to `Equal`: `(=)`. This can "
+"sometimes lead to some confusion, because the equals symbol is also used for "
+"*definitional equality*: Describing in function implementations that the "
+"left-hand side and right-hand side are defined to be equal. If you want to "
+"disambiguate propositional from definitional equality, you can also use "
+"operator `(===)` for the former."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:253
+msgid "Here is another implementation of `concatTables`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:261
+#, no-wrap
+msgid ""
+"```idris\n"
+"eqColType : (c1,c2 : ColType) -> Maybe (c1 = c2)\n"
+"eqColType I64     I64     = Just Refl\n"
+"eqColType Str     Str     = Just Refl\n"
+"eqColType Boolean Boolean = Just Refl\n"
+"eqColType Float   Float   = Just Refl\n"
+"eqColType _ _             = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:266
+#, no-wrap
+msgid ""
+"eqCons :  {0 c1,c2 : a}\n"
+"       -> {0 s1,s2 : List a}\n"
+"       -> c1 = c2 -> s1 = s2 ->  c1 :: s1 = c2 :: s2\n"
+"eqCons Refl Refl = Refl\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:272
+#, no-wrap
+msgid ""
+"eqSchema : (s1,s2 : Schema) -> Maybe (s1 = s2)\n"
+"eqSchema []        []        = Just Refl\n"
+"eqSchema (x :: xs) (y :: ys) = [| eqCons (eqColType x y) (eqSchema xs ys) |]\n"
+"eqSchema (x :: xs) []        = Nothing\n"
+"eqSchema []        (x :: xs) = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:278
+#, no-wrap
+msgid ""
+"concatTables3 : Table -> Table -> Maybe Table\n"
+"concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of\n"
+"  Just Refl => Just $ MkTable _ _ (rs1 ++ rs2)\n"
+"  Nothing   => Nothing\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:285
+msgid ""
+"In the following exercises, you are going to implement some very basic "
+"properties of equality proofs. You'll have to come up with the types of the "
+"functions yourself, as the implementations will be incredibly simple."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:289
+msgid ""
+"Note: If you can't remember what the terms \"reflexive\", \"symmetric\", and "
+"\"transitive\" mean, quickly read about equivalence relations [here](https://"
+"en.wikipedia.org/wiki/Equivalence_relation)."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Eq.md:291
+msgid "Show that `SameColType` is a reflexive relation."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Eq.md:293
+msgid "Show that `SameColType` is a symmetric relation."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Eq.md:295
+msgid "Show that `SameColType` is a transitive relation."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Eq.md:299
+msgid ""
+"Let `f` be a function of type `ColType -> a` for an arbitrary type `a`. Show "
+"that from a value of type `SameColType c1 c2` follows that `f c1` and `f c2` "
+"are equal."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:303
+msgid ""
+"For `(=)` the above properties are available from the *Prelude* as functions "
+"`sym`, `trans`, and `cong`. Reflexivity comes from the data constructor "
+"`Refl` itself."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Eq.md:307
+msgid ""
+"Implement a function for verifying that two natural numbers are identical. "
+"Try using `cong` in your implementation."
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Eq.md:310
+msgid ""
+"Use the function from exercise 5 for zipping two `Table`s if they have the "
+"same number of rows."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:315
+#, no-wrap
+msgid ""
+"   Hint: Use `Vect.zipWith`. You will need to implement\n"
+"   custom function `appRows` for this, since Idris will\n"
+"   not automatically figure out that the types unify when\n"
+"   using `HList.(++)`:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:319
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   appRows : {ts1 : _} -> Row ts1 -> Row ts2 -> Row (ts1 ++ ts2)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:323
+msgid ""
+"We will later learn how to use *rewrite rules* to circumvent the need of "
+"writing custom functions like `appRows` and use `(++)` in `zipWith` directly."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:325
+msgid "## Programs as Proofs"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:333
+msgid ""
+"A famous observation by mathematician *Haskell Curry* and logician *William "
+"Alvin Howard* leads to the conclusion, that we can view a *type* in a "
+"programming language with a sufficiently rich type system as a mathematical "
+"proposition and a total program calculating a *value* of this type as a "
+"proof that the proposition holds. This is also known as the [Curry-Howard "
+"isomorphism](https://en.wikipedia.org/wiki/Curry"
+"%E2%80%93Howard_correspondence)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:336
+msgid "For instance, here is a simple proof that one plus one equals two:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:341
+msgid "```idris onePlusOne : the Nat 1 + 1 = 2 onePlusOne = Refl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:346
+msgid ""
+"The above proof is trivial, as Idris solves this by unification.  But we "
+"already stated some more interesting things in the exercises. For instance, "
+"the symmetry and transitivity of `SameColType`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:350
+msgid ""
+"```idris sctSymmetric : SameColType c1 c2 -> SameColType c2 c1 sctSymmetric "
+"SameCT = SameCT"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:354
+msgid ""
+"sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3 "
+"sctTransitive SameCT SameCT = SameCT ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:357
+msgid ""
+"Note, that a type alone is not a proof. For instance, we are free to state "
+"that one plus one equals three:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:361
+msgid "```idris onePlusOneWrong : the Nat 1 + 1 = 3 ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:365
+msgid ""
+"We will, however, have a hard time implementing this in a provably total "
+"way. We say: \"The type `the Nat 1 + 1 = 3` is *uninhabited*\", meaning, "
+"that there is no value of this type."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:367
+msgid "### When Proofs replace Tests"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:373
+msgid ""
+"We will see several different use cases for compile time proofs, a very "
+"straight forward one being to show that our functions behave as they should "
+"by proofing some properties about them. For instance, here is a proposition "
+"that `map` on list does not change the number of elements in the list:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:377
+msgid ""
+"```idris mapListLength : (f : a -> b) -> (as : List a) -> length as = length "
+"(map f as)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:381
+msgid ""
+"Read this as a universally quantified statement: For all functions `f` from "
+"`a` to `b` and for all lists `as` holding values of type `a`, the length of "
+"`map f as` is the same the as the length of the original list."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:387
+msgid ""
+"We can implement `mapListLength` by pattern matching on `as`. The `Nil` case "
+"will be trivial: Idris solves this by unification. It knows the value of the "
+"input list (`Nil`), and since `map` is implemented by pattern matching on "
+"the input as well, it follows immediately that the result will be `Nil` as "
+"well:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:391
+#, no-wrap
+msgid ""
+"```idris\n"
+"mapListLength f []        = Refl\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:395
+msgid ""
+"The `cons` case is more involved, and we will do this stepwise.  First, note "
+"that we can proof that the length of a map over the tail will stay the same "
+"by means of recursion:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:401
+#, no-wrap
+msgid ""
+"```repl\n"
+"mapListLength f (x :: xs) = case mapListLength f xs of\n"
+"  prf => ?mll1\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:403
+msgid "Let's inspect the types and context we have here:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:411
+#, no-wrap
+msgid ""
+"```repl\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+"   xs : List a\n"
+"   f : a -> b\n"
+"   x : a\n"
+"   prf : length xs = length (map f xs)\n"
+"------------------------------\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:414
+msgid "mll1 : S (length xs) = S (length (map f xs))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:422
+msgid ""
+"So, we have a proof of type `length xs = length (map f xs)`, and from the "
+"implementation of `map` Idris concludes that what we are actually looking "
+"for is a result of type `S (length xs) = S (length (map f xs))`. This is "
+"exactly what function `cong` from the *Prelude* is for (\"cong\" is an "
+"abbreviation for *congruence*). We can thus implement the *cons* case "
+"concisely like so:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:426
+msgid "```idris mapListLength f (x :: xs) = cong S $ mapListLength f xs ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:431
+msgid ""
+"Please take a moment to appreciate what we achieved here: A *proof* in the "
+"mathematical sense that our function will not affect the length of our list. "
+"We no longer need a unit test or similar program to verify this."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:435
+msgid ""
+"Before we continue, please note an important thing: In our case expression, "
+"we used a *variable* for the result from the recursive call:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:440
+#, no-wrap
+msgid ""
+"```repl\n"
+"mapListLength f (x :: xs) = case mapListLength f xs of\n"
+"  prf => cong S prf\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:448
+msgid ""
+"Here, we did not want the two lengths to unify, because we needed the "
+"distinction in our call to `cong`. Therefore: If you need a proof of type `x "
+"= y` in order for two variables to unify, use the `Refl` data constructor in "
+"the pattern match.  If, on the other hand, you need to run further "
+"computations on such a proof, use a variable and the left and right-hand "
+"sides will remain distinct."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:453
+msgid ""
+"Here is another example from the last chapter: We want to show that parsing "
+"and printing column types behaves correctly.  Writing proofs about parsers "
+"can be very hard in general, but here it can be done with a mere pattern "
+"match:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:467
+#, no-wrap
+msgid ""
+"readColType : String -> Maybe ColType\n"
+"readColType \"i64\"      = Just I64\n"
+"readColType \"str\"      = Just Str\n"
+"readColType \"boolean\"  = Just Boolean\n"
+"readColType \"float\"    = Just Float\n"
+"readColType s          = Nothing\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:474
+#, no-wrap
+msgid ""
+"showReadColType : (c : ColType) -> readColType (showColType c) = Just c\n"
+"showReadColType I64     = Refl\n"
+"showReadColType Str     = Refl\n"
+"showReadColType Boolean = Refl\n"
+"showReadColType Float   = Refl\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:477
+msgid ""
+"Such simple proofs give us quick but strong guarantees that we did not make "
+"any stupid mistakes."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:485
+msgid ""
+"The examples we saw so far were very easy to implement. In general, this is "
+"not the case, and we will have to learn about several additional techniques "
+"in order to proof interesting things about our programs. However, when we "
+"use Idris as a general purpose programming language and not as a proof "
+"assistant, we are free to choose whether some aspect of our code needs such "
+"strong guarantees or not."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:487
+msgid "### A Note of Caution: Lowercase Identifiers in Function Types"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:494
+msgid ""
+"When writing down the types of proofs as we did above, one has to be very "
+"careful not to fall into the following trap: In general, Idris will treat "
+"lowercase identifiers in function types as type parameters (erased implicit "
+"arguments).  For instance, here is a try at proofing the identity functor "
+"law for `Maybe`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:500
+msgid ""
+"```idris mapMaybeId1 : (ma : Maybe a) -> map id ma = ma mapMaybeId1 Nothing "
+"= Refl mapMaybeId1 (Just x) = ?mapMaybeId1_rhs ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:504
+msgid ""
+"You will not be able to implement the `Just` case, because Idris treats `id` "
+"as an implicit argument as can easily be seen when inspecting the context of "
+"`mapMaybeId1_rhs`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:510
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Relations> :t mapMaybeId1_rhs\n"
+" 0 a : Type\n"
+" 0 id : a -> a\n"
+"   x : a\n"
+"------------------------------\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:513
+msgid "mapMaybeId1_rhs : Just (id x) = Just x ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:517
+msgid ""
+"As you can see, `id` is an erased argument of type `a -> a`. And in fact, "
+"when type-checking this module, Idris will issue a warning that parameter "
+"`id` is shadowing an existing function:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:523
+#, no-wrap
+msgid ""
+"```repl\n"
+"Warning: We are about to implicitly bind the following lowercase names.\n"
+"You may be unintentionally shadowing the associated global definitions:\n"
+"  id is shadowing Prelude.Basics.id\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:527
+msgid ""
+"The same is not true for `map`: Since we explicitly pass arguments to `map`, "
+"Idris treats this as a function name and not as an implicit argument."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:530
+msgid ""
+"You have several options here. For instance, you could use an uppercase "
+"identifier, as these will never be treated as implicit arguments:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:534
+msgid "```idris Id : a -> a Id = id"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:539
+msgid ""
+"mapMaybeId2 : (ma : Maybe a) -> map Id ma = ma mapMaybeId2 Nothing = Refl "
+"mapMaybeId2 (Just x) = Refl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:543
+msgid ""
+"As an alternative - and this is the preferred way to handle this case - you "
+"can prefix `id` with part of its namespace, which will immediately resolve "
+"the issue:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:549
+msgid ""
+"```idris mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma mapMaybeId "
+"Nothing = Refl mapMaybeId (Just x) = Refl ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:554
+msgid ""
+"Note: If you have semantic highlighting turned on in your editor (for "
+"instance, by using the [idris2-lsp plugin](https://github.com/idris-"
+"community/idris2-lsp)), you will note that `map` and `id` in `mapMaybeId1` "
+"get highlighted differently: `map` as a function name, `id` as a bound "
+"variable."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:562
+msgid ""
+"In these exercises, you are going to proof several simple properties of "
+"small functions. When writing proofs, it is even more important to use holes "
+"to figure out what Idris expects from you next. Use the tools given to you, "
+"instead of trying to find your way in the dark!"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Eq.md:564
+msgid "Proof that `map id` on an `Either e` returns the value unmodified."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Eq.md:566
+msgid "Proof that `map id` on a list returns the list unmodified."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Eq.md:570
+msgid ""
+"Proof that complementing a strand of a nucleobase (see the [previous chapter]"
+"(DPair.md#use-case-nucleic-acids))  twice leads to the original strand."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:574
+#, no-wrap
+msgid ""
+"   Hint: Proof this for single bases first, and use `cong2`\n"
+"   from the *Prelude* in your implementation for sequences\n"
+"   of nucleic acids.\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Eq.md:576
+msgid "Implement function `replaceVect`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:580
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:584
+#, no-wrap
+msgid ""
+"   Now proof, that after replacing an element in a vector\n"
+"   using `replaceAt` accessing the same element using\n"
+"   `index` will return the value we just added.\n"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Eq.md:586
+msgid "Implement function `insertVect`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:590
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:593
+#, no-wrap
+msgid ""
+"   Use a similar proof as in exercise 4 to show that this\n"
+"   behaves correctly.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:596
+msgid ""
+"Note: Functions `replaceVect` and `insertVect` are available from `Data."
+"Vect` as `replaceAt` and `insertAt`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:598
+msgid "## Into the Void"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:612
+msgid ""
+"Remember function `onePlusOneWrong` from above? This was definitely a wrong "
+"statement: One plus one does not equal three. Sometimes, we want to express "
+"exactly this: That a certain statement is false and does not hold. Consider "
+"for a moment what it means to proof a statement in Idris: Such a statement "
+"(or proposition) is a type, and a proof of the statement is a value or "
+"expression of this type: The type is said to be *inhabited*.  If a statement "
+"is not true, there can be no value of the given type. We say, the given type "
+"is *uninhabited*.  If we still manage to get our hands on a value of an "
+"uninhabited type, that is a logical contradiction and from this, anything "
+"follows (remember [ex falso quodlibet](https://en.wikipedia.org/wiki/"
+"Principle_of_explosion))."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:617
+msgid ""
+"So this is how to express that a proposition does not hold: We state that if "
+"it *would* hold, this would lead to a contradiction.  The most natural way "
+"to express a contradiction in Idris is to return a value of type `Void`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:622
+msgid ""
+"```idris onePlusOneWrongProvably : the Nat 1 + 1 = 3 -> Void "
+"onePlusOneWrongProvably Refl impossible ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:628
+msgid ""
+"See how this is a provably total implementation of the given type: A "
+"function from `1 + 1 = 3` to `Void`. We implement this by pattern matching, "
+"and there is only one constructor to match on, which leads to an impossible "
+"case."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:633
+msgid ""
+"We can also use contradictory statements to proof other such statements. For "
+"instance, here is a proof that if the lengths of two lists are not the same, "
+"then the two list can't be the same either:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:638
+msgid ""
+"```idris notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> "
+"Void notSameLength1 f prf = f (cong length prf)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:642
+msgid ""
+"This is cumbersome to write and pretty hard to read, so there is function "
+"`Not` in the prelude to express the same thing more naturally:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:647
+msgid ""
+"```idris notSameLength : Not (List.length as = length bs) -> Not (as = bs)  "
+"notSameLength f prf = f (cong length prf)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:651
+msgid ""
+"Actually, this is just a specialized version of the contraposition of "
+"`cong`: If from `a = b` follows `f a = f b`, then from `not (f a = f b)` "
+"follows `not (a = b)`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:656
+msgid ""
+"```idris contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)  "
+"contraCong fun = fun . cong f ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:658
+msgid "### Interface `Uninhabited`"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:664
+msgid ""
+"There is an interface in the *Prelude* for uninhabited types: `Uninhabited` "
+"with its sole function `uninhabited`. Have a look at its documentation at "
+"the REPL. You will see, that there is already an impressive number of "
+"implementations available, many of which involve data type `Equal`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:667
+msgid ""
+"We can use `Uninhabited`, to for instance express that the empty schema is "
+"not equal to a non-empty schema:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:671
+#, no-wrap
+msgid ""
+"```idris\n"
+"Uninhabited (SameSchema [] (h :: t)) where\n"
+"  uninhabited Same impossible\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:675
+#, no-wrap
+msgid ""
+"Uninhabited (SameSchema (h :: t) []) where\n"
+"  uninhabited Same impossible\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:678
+msgid ""
+"There is a related function you need to know about: `absurd`, which combines "
+"`uninhabited` with `void`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:684
+msgid ""
+"```repl Tutorial.Eq> :printdef absurd Prelude.absurd : Uninhabited t => t -> "
+"a absurd h = void (uninhabited h)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:686
+msgid "### Decidable Equality"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:703
+msgid ""
+"When we implemented `sameColType`, we got a proof that two column types are "
+"indeed the same, from which we could figure out, whether two schemata are "
+"identical. The types guarantee we do not generate any false positives: If we "
+"generate a value of type `SameSchema s1 s2`, we have a proof that `s1` and "
+"`s2` are indeed identical.  However, `sameColType` and thus `sameSchema` "
+"could theoretically still produce false negatives by returning `Nothing` "
+"although the two values are identical. For instance, we could implement "
+"`sameColType` in such a way that it always returns `Nothing`. This would be "
+"in agreement with the types, but definitely not what we want. So, here is "
+"what we'd like to do in order to get yet stronger guarantees: We'd either "
+"want to return a proof that the two schemata are the same, or return a proof "
+"that the two schemata are not the same. (Remember that `Not a` is an alias "
+"for `a -> Void`)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:708
+msgid ""
+"We call a property, which either holds or leads to a contradiction a "
+"*decidable property*, and the *Prelude* exports data type `Dec prop`, which "
+"encapsulates this distinction."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:710
+msgid "Here is a way to encode this for `ColType`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:717
+#, no-wrap
+msgid ""
+"```idris\n"
+"decSameColType :  (c1,c2 : ColType) -> Dec (SameColType c1 c2)\n"
+"decSameColType I64 I64         = Yes SameCT\n"
+"decSameColType I64 Str         = No $ \\case SameCT impossible\n"
+"decSameColType I64 Boolean     = No $ \\case SameCT impossible\n"
+"decSameColType I64 Float       = No $ \\case SameCT impossible\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:722
+#, no-wrap
+msgid ""
+"decSameColType Str I64         = No $ \\case SameCT impossible\n"
+"decSameColType Str Str         = Yes SameCT\n"
+"decSameColType Str Boolean     = No $ \\case SameCT impossible\n"
+"decSameColType Str Float       = No $ \\case SameCT impossible\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:727
+#, no-wrap
+msgid ""
+"decSameColType Boolean I64     = No $ \\case SameCT impossible\n"
+"decSameColType Boolean Str     = No $ \\case SameCT impossible\n"
+"decSameColType Boolean Boolean = Yes SameCT\n"
+"decSameColType Boolean Float   = No $ \\case SameCT impossible\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:733
+#, no-wrap
+msgid ""
+"decSameColType Float I64       = No $ \\case SameCT impossible\n"
+"decSameColType Float Str       = No $ \\case SameCT impossible\n"
+"decSameColType Float Boolean   = No $ \\case SameCT impossible\n"
+"decSameColType Float Float     = Yes SameCT\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:741
+msgid ""
+"First, note how we could use a pattern match in a single argument lambda "
+"directly. This is sometimes called the *lambda case* style, named after an "
+"extension of the Haskell programming language. If we use the `SameCT` "
+"constructor in the pattern match, Idris is forced to try and unify for "
+"instance `Float` with `I64`. This is not possible, so the case as a whole is "
+"impossible."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:749
+msgid ""
+"Yet, this was pretty cumbersome to implement. In order to convince Idris we "
+"did not miss a case, there is no way around treating every possible pairing "
+"of constructors explicitly.  However, we get *much* stronger guarantees out "
+"of this: We can no longer create false positives *or* false negatives, and "
+"therefore, `decSameColType` is provably correct."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:752
+msgid ""
+"Doing the same thing for schemata requires some utility functions, the types "
+"of which we can figure out by placing some holes:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:764
+#, no-wrap
+msgid ""
+"```idris\n"
+"decSameSchema' :  (s1, s2 : Schema) -> Dec (SameSchema s1 s2)\n"
+"decSameSchema' []        []        = Yes Same\n"
+"decSameSchema' []        (y :: ys) = No ?decss1\n"
+"decSameSchema' (x :: xs) []        = No ?decss2\n"
+"decSameSchema' (x :: xs) (y :: ys) = case decSameColType x y of\n"
+"  Yes SameCT => case decSameSchema' xs ys of\n"
+"    Yes Same => Yes Same\n"
+"    No  contra => No $ \\prf => ?decss3\n"
+"  No  contra => No $ \\prf => ?decss4\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:770
+msgid ""
+"The first two cases are not too hard. The type of `decss1` is `SameSchema [] "
+"(y :: ys) -> Void`, which you can easily verify at the REPL. But that's just "
+"`uninhabited`, specialized to `SameSchema [] (y :: ys)`, and this we already "
+"implemented further above. The same goes for `decss2`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:777
+msgid ""
+"The other two cases are harder, so I already filled in as much stuff as "
+"possible. We know that we want to return a `No`, if either the heads or "
+"tails are provably distinct. The `No` holds a function, so I already added a "
+"lambda, leaving a hole only for the return value. Here are the type and - "
+"more important - context of `decss3`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:786
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Relations> :t decss3\n"
+"   y : ColType\n"
+"   xs : List ColType\n"
+"   ys : List ColType\n"
+"   x : ColType\n"
+"   contra : SameSchema xs ys -> Void\n"
+"   prf : SameSchema (y :: xs) (y :: ys)\n"
+"------------------------------\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:789
+msgid "decss3 : Void ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:797
+msgid ""
+"The types of `contra` and `prf` are what we need here: If `xs` and `ys` are "
+"distinct, then `y :: xs` and `y :: ys` must be distinct as well. This is the "
+"contraposition of the following statement: If `x :: xs` is the same as `y :: "
+"ys`, then `xs` and `ys` are the same as well. We must therefore implement a "
+"lemma, which proves that the *cons* constructor is [*injective*](https://en."
+"wikipedia.org/wiki/Injective_function):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:803
+#, no-wrap
+msgid ""
+"```idris\n"
+"consInjective :  SameSchema (c1 :: cs1) (c2 :: cs2)\n"
+"              -> (SameColType c1 c2, SameSchema cs1 cs2)\n"
+"consInjective Same = (SameCT, Same)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:809
+msgid ""
+"We can now pass `prf` to `consInjective` to extract a value of type "
+"`SameSchema xs ys`, which we then pass to `contra` in order to get the "
+"desired value of type `Void`.  With these observations and utilities, we can "
+"now implement `decSameSchema`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:821
+#, no-wrap
+msgid ""
+"```idris\n"
+"decSameSchema :  (s1, s2 : Schema) -> Dec (SameSchema s1 s2)\n"
+"decSameSchema []        []        = Yes Same\n"
+"decSameSchema []        (y :: ys) = No absurd\n"
+"decSameSchema (x :: xs) []        = No absurd\n"
+"decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of\n"
+"  Yes SameCT => case decSameSchema xs ys of\n"
+"    Yes Same   => Yes Same\n"
+"    No  contra => No $ contra . snd . consInjective\n"
+"  No  contra => No $ contra . fst . consInjective\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:825
+msgid ""
+"There is an interface called `DecEq` exported by module `Decidable.Equality` "
+"for types for which we can implement a decision procedure for propositional "
+"equality. We can implement this to figure out if two values are equal or not."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Eq.md:830
+msgid ""
+"Show that there can be no non-empty vector of `Void` by writing a "
+"corresponding implementation of uninhabited"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Eq.md:832
+msgid "Generalize exercise 1 for all uninhabited element types."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Eq.md:835
+msgid "Show that if `a = b` cannot hold, then `b = a` cannot hold either."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Eq.md:838
+msgid ""
+"Show that if `a = b` holds, and `b = c` cannot hold, then `a = c` cannot "
+"hold either."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Eq.md:841
+msgid ""
+"Implement `Uninhabited` for `Crud i a`. Try to be as general as possible."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:849 ../src/Tutorial/Folds.md:1003
+#: ../src/Tutorial/Functor.md:424 ../src/Tutorial/Traverse.md:292
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     Create : (value : a) -> Crud i a\n"
+"     Update : (id : i) -> (value : a) -> Crud i a\n"
+"     Read   : (id : i) -> Crud i a\n"
+"     Delete : (id : i) -> Crud i a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Eq.md:851
+msgid "Implement `DecEq` for `ColType`."
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Eq.md:856
+msgid ""
+"Implementations such as the one from exercise 6 are cumbersome to write as "
+"they require a quadratic number of pattern matches with relation to the "
+"number of data constructors. Here is a trick how to make this more bearable."
+msgstr ""
+
+#. type: Bullet: '   1. '
+#: ../src/Tutorial/Eq.md:859
+msgid ""
+"Implement a function `ctNat`, which assigns every value of type `ColType` a "
+"unique natural number."
+msgstr ""
+
+#. type: Bullet: '   2. '
+#: ../src/Tutorial/Eq.md:864
+msgid ""
+"Proof that `ctNat` is injective.  Hint: You will need to pattern match on "
+"the `ColType` values, but four matches should be enough to satisfy the "
+"coverage checker."
+msgstr ""
+
+#. type: Bullet: '   3. '
+#: ../src/Tutorial/Eq.md:869
+msgid ""
+"In your implementation of `DecEq` for `ColType`, use `decEq` on the result "
+"of applying both column types to `ctNat`, thus reducing it to only two lines "
+"of code."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:877
+#, no-wrap
+msgid ""
+"   We will later talk about `with` rules: Special forms of\n"
+"   dependent pattern matches, that allow us to learn something\n"
+"   about the shape of function arguments by performing\n"
+"   computations on them. These will allow us to use\n"
+"   a similar technique as shown here to implement `DecEq`\n"
+"   requiring only `n` pattern matches\n"
+"   for arbitrary sum types with `n` data constructors.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:879
+msgid "## Rewrite Rules"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:888
+msgid ""
+"One of the most important use cases of propositional equality is to replace "
+"or *rewrite* existing types, which Idris can't unify automatically "
+"otherwise. For instance, the following is no problem: Idris know that `0 + "
+"n` equals `n`, because `plus` on natural numbers is implemented by pattern "
+"matching on the first argument. The two vector lengths therefore unify just "
+"fine."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:895
+#, no-wrap
+msgid ""
+"```idris\n"
+"leftZero :  List (Vect n Nat)\n"
+"         -> List (Vect (0 + n) Nat)\n"
+"         -> List (Vect n Nat)\n"
+"leftZero = (++)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:899
+msgid ""
+"However, the example below can't be implemented as easily (try id!), because "
+"Idris can't figure out on its own that the two lengths unify."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:905
+#, no-wrap
+msgid ""
+"```idris\n"
+"rightZero' :  List (Vect n Nat)\n"
+"           -> List (Vect (n + 0) Nat)\n"
+"           -> List (Vect n Nat)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:909
+msgid ""
+"Probably for the first time we realize, just how little Idris knows about "
+"the laws of arithmetics. Idris is able to unify values when"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Eq.md:913
+msgid "all values in a computation are known at compile time"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Eq.md:913
+msgid ""
+"one expression follows directly from the other due to the pattern matches "
+"used in a function's implementation."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:917
+msgid ""
+"In expression `n + 0`, not all values are known (`n` is a variable), and "
+"`(+)` is implemented by pattern matching on the first argument, about which "
+"we know nothing here."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:923
+msgid ""
+"However, we can teach Idris. If we can proof that the two expressions are "
+"equivalent, we can replace one expression for the other, so that the two "
+"unify again. Here is a lemma and its proof, that `n + 0` equals `n`, for all "
+"natural numbers `n`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:929
+#, no-wrap
+msgid ""
+"```idris\n"
+"addZeroRight : (n : Nat) -> n + 0 = n\n"
+"addZeroRight 0     = Refl\n"
+"addZeroRight (S k) = cong S $ addZeroRight k\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:935
+msgid ""
+"Note, how the base case is trivial: Since there are no variables left, Idris "
+"can immediately figure out that `0 + 0 = 0`. In the recursive case, it can "
+"be instructive to replace `cong S` with a hole and look at its type and "
+"context to figure out how to proceed."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:940
+msgid ""
+"The *Prelude* exports function `replace` for substituting one variable in a "
+"term by another, based on a proof of equality.  Make sure to inspect its "
+"type first before looking at the example below:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:945
+msgid ""
+"```idris replaceVect : Vect (n + 0) a -> Vect n a replaceVect as = replace "
+"{p = \\k => Vect k a} (addZeroRight n) as ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:952
+msgid ""
+"As you can see, we *replace* a value of type `p x` with a value of type `p "
+"y` based on a proof that `x = y`, where `p` is a function from some type `t` "
+"to `Type`, and `x` and `y` are values of type `t`. In our `replaceVect` "
+"example, `t` equals `Nat`, `x` equals `n + 0`, `y` equals `n`, and `p` "
+"equals `\\k => Vect k a`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:960
+msgid ""
+"Using `replace` directly is not very convenient, because Idris can often not "
+"infer the value of `p` on its own. Indeed, we had to give its type "
+"explicitly in `replaceVect`.  Idris therefore provides special syntax for "
+"such *rewrite rules*, which will get desugared to calls to `replace` with "
+"all the details filled in for us. Here is an implementation of `replaceVect` "
+"with a rewrite rule:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:965
+msgid ""
+"```idris rewriteVect : Vect (n + 0) a -> Vect n a rewriteVect as = rewrite "
+"sym (addZeroRight n) in as ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:970
+msgid ""
+"One source of confusion is that *rewrite* uses proofs of equality the other "
+"way round: Given an `y = x` it replaces `p x` with `p y`. Hence the need to "
+"call `sym` in our implementation above."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:972
+msgid "### Use Case: Reversing Vectors"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:982
+msgid ""
+"Rewrite rules are often required when we perform interesting type-level "
+"computations. For instance, we have already seen many interesting examples "
+"of functions operating on `Vect`, which allowed us to keep track of the "
+"exact lengths of the vectors involved, but one key functionality has been "
+"missing from our discussions so far, and for good reasons: Function "
+"`reverse`. Here is a possible implementation, which is how `reverse` is "
+"implemented for lists:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:988
+#, no-wrap
+msgid ""
+"```repl\n"
+"reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a\n"
+"reverseOnto' xs []        = xs\n"
+"reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:993
+msgid "reverseVect' : Vect n a -> Vect n a reverseVect' = reverseOnto' [] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:997
+msgid ""
+"As you might have guessed, this will not compile as the length indices in "
+"the two clauses of `reverseOnto'` do not unify."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1001
+msgid ""
+"The *nil* case is a case we've already seen above: Here `n` is zero, because "
+"the second vector is empty, so we have to convince Idris once again that `m "
+"+ 0 = m`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1006
+msgid ""
+"```idris reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a reverseOnto xs "
+"[] = rewrite addZeroRight m in xs ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1013
+msgid ""
+"The second case is more complex. Here, Idris fails to unify `S (m + len)` "
+"with `m + S len`, where `len` is the length of `ys`, the tail of the second "
+"vector. Module `Data.Nat` provides many proofs about arithmetic operations "
+"on natural numbers, one of which is `plusSuccRightSucc`. Here's its type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1020
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Eq> :t plusSuccRightSucc\n"
+"Data.Nat.plusSuccRightSucc :  (left : Nat)\n"
+"                           -> (right : Nat)\n"
+"                           -> S (left + right) = left + S right\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1032
+msgid ""
+"In our case, we want to replace `S (m + len)` with `m + S len`, so we will "
+"need the version with arguments flipped. However, there is one more "
+"obstacle: We need to invoke `plusSuccRightSucc` with the length of `ys`, "
+"which is not given as an implicit function argument of `reverseOnto`. We "
+"therefore need to pattern match on `n` (the length of the second vector), in "
+"order to bind the length of the tail to a variable. Remember, that we are "
+"allowed to pattern match on an erased argument only if the constructor used "
+"follows from a match on another, unerased, argument (`ys` in this case). "
+"Here's the implementation of the second case:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1037
+#, no-wrap
+msgid ""
+"```idris\n"
+"reverseOnto {n = S len} xs (x :: ys) =\n"
+"  rewrite sym (plusSuccRightSucc m len) in reverseOnto (x :: xs) ys\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1043
+msgid ""
+"I know from my own experience that this can be highly confusing at first. If "
+"you use Idris as a general purpose programming language and not as a proof "
+"assistant, you probably will not have to use rewrite rules too often. Still, "
+"it is important to know that they exist, as they allow us to teach complex "
+"equivalences to Idris."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1045
+msgid "### A Note on Erasure"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1055
+msgid ""
+"Single value data types like `Unit`, `Equal`, or `SameSchema` have not "
+"runtime relevance, as values of these types are always identical.  We can "
+"therefore always use them as erased function arguments while still being "
+"able to pattern match on these values.  For instance, when you look at the "
+"type of `replace`, you will see that the equality proof is an erased "
+"argument.  This allows us to run arbitrarily complex computations to produce "
+"such values without fear of these computations slowing down the compiled "
+"Idris program."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Eq.md:1059
+msgid "Implement `plusSuccRightSucc` yourself."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Eq.md:1061
+msgid "Proof that `minus n n` equals zero for all natural numbers `n`."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Eq.md:1063
+msgid "Proof that `minus n 0` equals n for all natural numbers `n`"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Eq.md:1066
+msgid "Proof that `n * 1 = n` and `1 * n = n` for all natural numbers `n`."
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Eq.md:1069
+msgid "Proof that addition of natural numbers is commutative."
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Eq.md:1071
+msgid "Implement a tail-recursive version of `map` for vectors."
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Eq.md:1073
+msgid "Proof the following proposition:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1080
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   mapAppend :  (f : a -> b)\n"
+"             -> (xs : List a)\n"
+"             -> (ys : List a)\n"
+"             -> map f (xs ++ ys) = map f xs ++ map f ys\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '8. '
+#: ../src/Tutorial/Eq.md:1084
+msgid ""
+"Use the proof from exercise 7 to implement again a function for zipping two "
+"`Table`s, this time using a rewrite rule plus `Data.HList.(++)` instead of "
+"custom function `appRows`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:1096
+msgid ""
+"The concept of *types as propositions, values as proofs* is a very powerful "
+"tool for writing provably correct programs. We will therefore spend some "
+"more time defining data types for describing contracts between values, and "
+"values of these types as proofs that the contracts hold. This will allow us "
+"to describe necessary pre- and postconditions for our functions, thus "
+"reducing the need to return a `Maybe` or other failure type, because due to "
+"the restricted input, our functions can no longer fail."
+msgstr ""

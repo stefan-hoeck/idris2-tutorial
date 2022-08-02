@@ -1,0 +1,2017 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-08-02 13:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
+#: ../src/Tutorial/DPair.md:349 ../src/Tutorial/Eq.md:280
+#: ../src/Tutorial/Folds.md:374 ../src/Tutorial/Functor.md:382
+#: ../src/Tutorial/Interfaces.md:190 ../src/Tutorial/IO.md:318
+#: ../src/Tutorial/Predicates.md:306 ../src/Tutorial/Prim.md:449
+#: ../src/Tutorial/Traverse.md:248
+msgid "### Exercises part 1"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:437 ../src/Tutorial/Dependent.md:623
+#: ../src/Tutorial/DPair.md:654 ../src/Tutorial/Eq.md:556
+#: ../src/Tutorial/Folds.md:669 ../src/Tutorial/Functor.md:963
+#: ../src/Tutorial/Interfaces.md:353 ../src/Tutorial/IO.md:729
+#: ../src/Tutorial/Predicates.md:673 ../src/Tutorial/Prim.md:713
+#: ../src/Tutorial/Traverse.md:575
+msgid "### Exercises part 2"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:743 ../src/Tutorial/Dependent.md:843
+#: ../src/Tutorial/DPair.md:1129 ../src/Tutorial/Eq.md:827
+#: ../src/Tutorial/Folds.md:989 ../src/Tutorial/Functor.md:1233
+#: ../src/Tutorial/Interfaces.md:625 ../src/Tutorial/IO.md:950
+#: ../src/Tutorial/Predicates.md:1021 ../src/Tutorial/Prim.md:937
+#: ../src/Tutorial/Traverse.md:1017
+msgid "### Exercises part 3"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1320 ../src/Tutorial/Dependent.md:872
+#: ../src/Tutorial/DPair.md:1192 ../src/Tutorial/Eq.md:1086
+#: ../src/Tutorial/Folds.md:1052 ../src/Tutorial/Functions1.md:525
+#: ../src/Tutorial/Functions2.md:925 ../src/Tutorial/Functor.md:1396
+#: ../src/Tutorial/Interfaces.md:793 ../src/Tutorial/IO.md:1096
+#: ../src/Tutorial/Predicates.md:1359 ../src/Tutorial/Traverse.md:1110
+msgid "## Conclusion"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
+#: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
+#: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
+#: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
+#: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
+#: ../src/Tutorial/Traverse.md:1148
+msgid "<!-- vi: filetype=idris2 -->"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:15 ../src/Tutorial/DPair.md:37
+#: ../src/Tutorial/Eq.md:20 ../src/Tutorial/Folds.md:33
+#: ../src/Tutorial/Functions2.md:21 ../src/Tutorial/Functor.md:27
+#: ../src/Tutorial/IO.md:19 ../src/Tutorial/Predicates.md:28
+#: ../src/Tutorial/Prim.md:16 ../src/Tutorial/Traverse.md:30
+msgid "%default total ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Eq.md:849 ../src/Tutorial/Folds.md:1003
+#: ../src/Tutorial/Functor.md:424 ../src/Tutorial/Traverse.md:292
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     Create : (value : a) -> Crud i a\n"
+"     Update : (id : i) -> (value : a) -> Crud i a\n"
+"     Read   : (id : i) -> Crud i a\n"
+"     Delete : (id : i) -> Crud i a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Folds.md:1014 ../src/Tutorial/Functor.md:437
+#: ../src/Tutorial/Traverse.md:303
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Response : (e, i, a : Type) -> Type where\n"
+"     Created : (id : i) -> (value : a) -> Response e i a\n"
+"     Updated : (id : i) -> (value : a) -> Response e i a\n"
+"     Found   : (values : List a) -> Response e i a\n"
+"     Deleted : (id : i) -> Response e i a\n"
+"     Error   : (err : e) -> Response e i a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Folds.md:1024 ../src/Tutorial/IO.md:758
+#: ../src/Tutorial/Traverse.md:272
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"     Nil  : List01 False a\n"
+"     (::) : a -> List01 False a -> List01 ne a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Folds.md:1044 ../src/Tutorial/Traverse.md:312
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   record Comp (f,g : Type -> Type) (a : Type) where\n"
+"     constructor MkComp\n"
+"     unComp  : f (g a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Folds.md:1050 ../src/Tutorial/Traverse.md:318
+#, no-wrap
+msgid ""
+"   record Product (f,g : Type -> Type) (a : Type) where\n"
+"     constructor MkProduct\n"
+"     fst : f a\n"
+"     snd : g a\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Functor.md:800 ../src/Tutorial/Traverse.md:122
+msgid "Let's give this a go at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:2
+msgid "# Effectful Traversals"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:11
+msgid ""
+"In this chapter, we are going to bring our treatment of the higher-kinded "
+"interfaces in the *Prelude* to an end. In order to do so, we will continue "
+"developing the CSV reader we started implementing in chapter [Functor and "
+"Friends](Functor.md). I moved some of the data types and interfaces from "
+"that chapter to their own modules, so we can import them here without the "
+"need to start from scratch."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:16
+msgid ""
+"Note that unlike in our original CSV reader, we will use `Validated` instead "
+"of `Either` for handling exceptions, since this will allow us to accumulate "
+"all errors when reading a CSV file."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:19
+msgid "```idris module Tutorial.Traverse"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:27
+msgid ""
+"import Data.HList import Data.IORef import Data.List1 import Data.String "
+"import Data.Validated import Data.Vect import Text.CSV"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:32
+msgid "## Reading CSV Tables"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:37
+msgid ""
+"We stopped developing our CSV reader with function `hdecode`, which allows "
+"us to read a single line in a CSV file and decode it to a heterogeneous "
+"list.  As a reminder, here is how to use `hdecode` at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:42
+msgid ""
+"```repl Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 \"f,foo,12\" Valid "
+"[False, \"foo\", 12] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:51
+msgid ""
+"The next step will be to parse a whole CSV table, represented as a list of "
+"strings, where each string corresponds to one of the table's rows.  We will "
+"go about this stepwise as there are several aspects about doing this "
+"properly. What we are looking for - eventually - is a function of the "
+"following type (we are going to implement several versions of this function, "
+"hence the numbering):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:58
+#, no-wrap
+msgid ""
+"```idris\n"
+"hreadTable1 :  (0 ts : List Type)\n"
+"            -> CSVLine (HList ts)\n"
+"            => List String\n"
+"            -> Validated CSVError (List $ HList ts)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:61
+msgid ""
+"In our first implementation, we are not going to care about line numbers:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:66
+#, no-wrap
+msgid ""
+"```idris\n"
+"hreadTable1 _  []        = pure []\n"
+"hreadTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:72
+msgid ""
+"Note, how we can just use applicative syntax in the implementation of "
+"`hreadTable1`. To make this clearer, I used `pure []` on the first line "
+"instead of the more specific `Valid []`. In fact, if we used `Either` or "
+"`Maybe` instead of `Validated` for error handling, the implementation of "
+"`hreadTable1` would look exactly the same."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:81
+msgid ""
+"The question is: Can we extract a pattern to abstract over from this "
+"observation? What we do in `hreadTable1` is running an effectful computation "
+"of type `String -> Validated CSVError (HList ts)` over a list of strings, so "
+"that the result is a list of `HList ts` wrapped in a `Validated CSVError`. "
+"The first step of abstraction should be to use type parameters for the input "
+"and output: Run a computation of type `a -> Validated CSVError b` over a "
+"list `List a`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:88
+#, no-wrap
+msgid ""
+"```idris\n"
+"traverseValidatedList :  (a -> Validated CSVError b)\n"
+"                      -> List a\n"
+"                      -> Validated CSVError (List b)\n"
+"traverseValidatedList _ []        = pure []\n"
+"traverseValidatedList f (x :: xs) = [| f x :: traverseValidatedList f xs |]\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:95
+#, no-wrap
+msgid ""
+"hreadTable2 :  (0 ts : List Type)\n"
+"            -> CSVLine (HList ts)\n"
+"            => List String\n"
+"            -> Validated CSVError (List $ HList ts)\n"
+"hreadTable2 ts = traverseValidatedList (hdecode ts 0)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:104
+msgid ""
+"But our observation was, that the implementation of `hreadTable1` would be "
+"exactly the same if we used `Either CSVError` or `Maybe` as our effect types "
+"instead of `Validated CSVError`.  So, the next step should be to abstract "
+"over the *effect type*.  We note, that we used applicative syntax (idiom "
+"brackets and `pure`) in our implementation, so we will need to write a "
+"function with an `Applicative` constraint on the effect type:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:109
+#, no-wrap
+msgid ""
+"```idris\n"
+"traverseList :  Applicative f => (a -> f b) -> List a -> f (List b)\n"
+"traverseList _ []        = pure []\n"
+"traverseList f (x :: xs) = [| f x :: traverseList f xs |]\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:116
+#, no-wrap
+msgid ""
+"hreadTable3 :  (0 ts : List Type)\n"
+"            -> CSVLine (HList ts)\n"
+"            => List String\n"
+"            -> Validated CSVError (List $ HList ts)\n"
+"hreadTable3 ts = traverseList (hdecode ts 0)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:120
+msgid ""
+"Note, how the implementation of `traverseList` is exactly the same as the "
+"one of `traverseValidatedList`, but the types are more general and "
+"therefore, `traverseList` is much more powerful."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:131
+msgid ""
+"```repl Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"] Valid "
+"[[False, 12], [True, 0]] Tutorial.Traverse> hreadTable3 [Bool,Bits8] "
+"[\"f,12\",\"t,1000\"] Invalid (FieldError 0 2 \"1000\")  Tutorial.Traverse> "
+"hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"] Invalid (Append (FieldError 0 "
+"1 \"1\") (FieldError 0 2 \"1000\"))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:139
+msgid ""
+"This works very well already, but note how our error messages do not yet "
+"print the correct line numbers. That's not surprising, as we are using a "
+"dummy constant in our call to `hdecode`.  We will look at how we can come up "
+"with the line numbers on the fly when we talk about stateful computations "
+"later in this chapter.  For now, we could just manually annotate the lines "
+"with their numbers and pass a list of pairs to `hreadTable`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:147
+#, no-wrap
+msgid ""
+"```idris\n"
+"hreadTable4 :  (0 ts : List Type)\n"
+"            -> CSVLine (HList ts)\n"
+"            => List (Nat, String)\n"
+"            -> Validated CSVError (List $ HList ts)\n"
+"hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:154
+msgid ""
+"If this is the first time you came across function `uncurry`, make sure you "
+"have a look at its type and try to figure out why it is used here. There are "
+"several utility functions like this in the *Prelude*, such as `curry`, "
+"`uncurry`, `flip`, or even `id`, all of which can be very useful when "
+"working with higher-order functions."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:157
+msgid ""
+"While not perfect, this version at least allows us to verify at the REPL "
+"that the line numbers are passed to the error messages correctly:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:162
+msgid ""
+"```repl Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,"
+"\"1,100\")] Invalid (Append (FieldError 1 2 \"1000\") (FieldError 2 1 "
+"\"1\"))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:164
+msgid "### Interface Traversable"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:172
+msgid ""
+"Now, here is an interesting observation: We can implement a function like "
+"`traverseList` for other container types as well. You might think that's "
+"obvious, given that we can convert container types to lists via function "
+"`toList` from interface `Foldable`. However, while going via `List` might be "
+"feasible in some occasions, it is undesirable in general, as we loose typing "
+"information. For instance, here is such a function for `Vect`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:177
+msgid ""
+"```idris traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List "
+"b)  traverseVect' fun = traverseList fun . toList ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:182
+msgid ""
+"Note how we lost all information about the structure of the original "
+"container type. What we are looking for is a function like `traverseVect'`, "
+"which keeps this type level information: The result should be a vector of "
+"the same length as the input."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:188
+#, no-wrap
+msgid ""
+"```idris\n"
+"traverseVect : Applicative f => (a -> f b) -> Vect n a -> f (Vect n b)\n"
+"traverseVect _   []        = pure []\n"
+"traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:193
+msgid ""
+"That's much better! And as I wrote above, we can easily get the same for "
+"other container types like `List1`, `SnocList`, `Maybe`, and so on.  As "
+"usual, some derived functions will follow immediately from `traverseXY`.  "
+"For instance:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:198
+msgid ""
+"```idris sequenceList : Applicative f => List (f a) -> f (List a)  "
+"sequenceList = traverseList id ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:202
+msgid ""
+"All of this calls for a new interface, which is called `Traversable` and is "
+"exported from the *Prelude*. Here is its definition (with primes for "
+"disambiguation):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:207
+#, no-wrap
+msgid ""
+"```idris\n"
+"interface Functor t => Foldable t => Traversable' t where\n"
+"  traverse' : Applicative f => (a -> f b) -> t a -> f (t b)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:214
+msgid ""
+"Function `traverse` is one of the most abstract and versatile functions "
+"available from the *Prelude*. Just how powerful it is will only become clear "
+"once you start using it over and over again in your code. However, it will "
+"be the goal of the remainder of this chapter to show you several diverse and "
+"interesting use cases."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:229
+msgid ""
+"For now, we will quickly focus on the degree of abstraction.  Function "
+"`traverse` is parameterized over no less than four parameters: The container "
+"type `t` (`List`, `Vect n`, `Maybe`, to just name a few), the effect type "
+"(`Validated e`, `IO`, `Maybe`, and so on), the input element type `a`, and "
+"the output element type `b`. Considering that the libraries bundled with the "
+"Idris project export more than 30 data types with an implementation of "
+"`Applicative` and more than ten traversable container types, there are "
+"literally hundreds of combinations for traversing a container with an "
+"effectful computation. This number gets even larger once we realize that "
+"traversable containers - like applicative functors - are closed under "
+"composition (see the exercises and the final section in this chapter)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:231
+msgid "### Traversable Laws"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:233
+msgid "There are two laws function `traverse` must obey:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:241
+msgid ""
+"`traverse (Id . f) = Id . map f`: Traversing over the `Identity` monad is "
+"just functor `map`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:241
+msgid ""
+"`traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`: "
+"Traversing with a composition of effects must be the same when being done in "
+"a single traversal (left hand side) or a sequence of two traversals (right "
+"hand side)."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:246
+msgid ""
+"Since `map id = id` (functor's identity law), we can derive from the first "
+"law that `traverse Id = Id`. This means, that `traverse` must not change the "
+"size or shape of the container type, nor is it allowed to change the order "
+"of elements."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Traverse.md:253
+msgid ""
+"It is interesting that `Traversable` has a `Functor` constraint. Proof that "
+"every `Traversable` is automatically a `Functor` by implementing `map` in "
+"terms of `traverse`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:255
+#, no-wrap
+msgid "   Hint: Remember `Control.Monad.Identity`.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Traverse.md:259
+msgid ""
+"Likewise, proof that every `Traversable` is a `Foldable` by implementing "
+"`foldMap` in terms of `Traverse`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:261
+#, no-wrap
+msgid "   Hint: Remember `Control.Applicative.Const`.\n"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Traverse.md:264
+msgid ""
+"To gain some routine, implement `Traversable'` for `List1`, `Either e`, and "
+"`Maybe`."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Traverse.md:266
+msgid "Implement `Traversable` for `List01 ne`:"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Traverse.md:275
+msgid ""
+"Implement `Traversable` for rose trees. Try to satisfy the totality checker "
+"without cheating."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:282
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   record Tree a where\n"
+"     constructor Node\n"
+"     value  : a\n"
+"     forest : List (Tree a)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Traverse.md:284
+msgid "Implement `Traversable` for `Crud i`:"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Traverse.md:294
+msgid "Implement `Traversable` for `Response e i`:"
+msgstr ""
+
+#. type: Bullet: '8. '
+#: ../src/Tutorial/Traverse.md:307
+msgid ""
+"Like `Functor`, `Applicative` and `Foldable`, `Traversable` is closed under "
+"composition. Proof this by implementing `Traversable` for `Comp` and "
+"`Product`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:320
+msgid "## Programming with State"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:324
+msgid ""
+"Let's go back to our CSV reader. In order to get reasonable error messages, "
+"we'd like to tag each line with its index:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:328
+msgid "```idris zipWithIndex : List a -> List (Nat, a)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:331
+msgid ""
+"It is, of course, very easy to come up with an ad hoc implementation for "
+"this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:338
+#, no-wrap
+msgid ""
+"```idris\n"
+"zipWithIndex = go 1\n"
+"  where go : Nat -> List a -> List (Nat,a)\n"
+"        go _ []        = []\n"
+"        go n (x :: xs) = (n,x) :: go (S n) xs\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:344
+msgid ""
+"While this is perfectly fine, we should still note that we might want to do "
+"the same thing with the elements of trees, vectors, non-empty lists and so "
+"on.  And again, we are interested in whether there is some form of "
+"abstraction we can use to describe such computations."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:346
+msgid "### Mutable References in Idris"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:352
+msgid ""
+"Let us for a moment think about how we'd do such a thing in an imperative "
+"language. There, we'd probably define a local (mutable) variable to keep "
+"track of the current index, which would then be increased while iterating "
+"over the list in a `for`- or `while`-loop."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:363
+msgid ""
+"In Idris, there is no such thing as mutable state.  Or is there? Remember, "
+"how we used a mutable reference to simulate a data base connection in an "
+"earlier exercise. There, we actually used some truly mutable state. However, "
+"since accessing or modifying a mutable variable is not a referential "
+"transparent operation, such actions have to be performed within `IO`.  Other "
+"than that, nothing keeps us from using mutable variables in our code. The "
+"necessary functionality is available from module `Data.IORef` from the "
+"*base* library."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:367
+msgid ""
+"As a quick exercise, try to implement a function, which - given an `IORef "
+"Nat` - pairs a value with the current index and increases the index "
+"afterwards."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:369
+msgid "Here's how I would do this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:377
+#, no-wrap
+msgid ""
+"```idris\n"
+"pairWithIndexIO : IORef Nat -> a -> IO (Nat,a)\n"
+"pairWithIndexIO ref va = do\n"
+"  ix <- readIORef ref\n"
+"  writeIORef ref (S ix)\n"
+"  pure (ix,va)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:387
+msgid ""
+"Note, that every time we *run* `pairWithIndexIO ref`, the natural number "
+"stored in `ref` is incremented by one.  Also, look at the type of "
+"`pairWithIndexIO ref`: `a -> IO (Nat,a)`.  We want to apply this effectful "
+"computation to each element in a list, which should lead to a new list "
+"wrapped in `IO`, since all of this describes a single computation with side "
+"effects. But this is *exactly* what function `traverse` does: Our input type "
+"is `a`, our output type is `(Nat,a)`, our container type is `List`, and the "
+"effect type is `IO`!"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:392
+msgid ""
+"```idris zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))  "
+"zipListWithIndexIO ref = traverse (pairWithIndexIO ref)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:397
+msgid ""
+"Now *this* is really powerful: We could apply the same function to *any* "
+"traversable data structure. It therefore makes absolutely no sense to "
+"specialize `zipListWithIndexIO` to lists only:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:402
+msgid ""
+"```idris zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,"
+"a))  zipWithIndexIO ref = traverse (pairWithIndexIO ref)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:405
+msgid ""
+"To please our intellectual minds even more, here is the same function in "
+"point-free style:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:410
+msgid ""
+"```idris zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,"
+"a))  zipWithIndexIO' = traverse . pairWithIndexIO ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:413
+msgid ""
+"All that's left to do now is to initialize a new mutable variable before "
+"passing it to `zipWithIndexIO`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:418
+msgid ""
+"```idris zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))  "
+"zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:420
+msgid "Quickly, let's give this a go at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:429
+msgid ""
+"```repl > :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn "
+"[(0, \"hello\"), (1, \"world\")] > :exec zipFromZeroIO (Just 12) >>= printLn "
+"Just (0, 12)  > :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= "
+"printLn [(0, \"hello\"), (1, \"world\")] ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:432
+msgid ""
+"Thus, we solved the problem of tagging each element with its index once and "
+"for all for all traversable container types."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:434
+msgid "### The State Monad"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:441
+msgid ""
+"Alas, while the solution presented above is elegant and performs very well, "
+"it still carries its `IO` stain, which is fine if we are already in `IO` "
+"land, but unacceptable otherwise. We do not want to make our otherwise pure "
+"functions much harder to test and reason about just for a simple case of "
+"stateful element tagging."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:450
+msgid ""
+"Luckily, there is an alternative to using a mutable reference, which allows "
+"us to keep our computations pure and untainted. However, it is not easy to "
+"come upon this alternative on one's own, and it can be hard to figure out "
+"what's going on here, so I'll try to introduce this slowly.  We first need "
+"to ask ourselves what the essence of a \"stateful\" but otherwise pure "
+"computation is. There are two essential ingredients:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Traverse.md:458
+msgid ""
+"Access to the *current* state. In case of a pure function, this means that "
+"the function should take the current state as one of its arguments."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Traverse.md:458
+msgid ""
+"Ability to communicate the updated state to later stateful computations. In "
+"case of a pure function this means, that the function will return a pair of "
+"values: The computation's result plus the updated state."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:462
+msgid ""
+"These two prerequisites lead to the following generic type for a pure, "
+"stateful computation operating on state type `st` and producing values of "
+"type `a`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:467
+msgid ""
+"```idris Stateful : (st : Type) -> (a : Type) -> Type Stateful st a = st -> "
+"(st, a)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:470
+msgid ""
+"Our use case is pairing elements with indices, which can be implemented as a "
+"pure, stateful computation like so:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:475
+msgid ""
+"```idris pairWithIndex' : a -> Stateful Nat (Nat,a)  pairWithIndex' v index "
+"= (S index, (index,v))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:479
+msgid ""
+"Note, how we at the same time increment the index, returning the incremented "
+"value as the new state, while pairing the first argument with the original "
+"index."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:488
+msgid ""
+"Now, here is an important thing to note: While `Stateful` is a useful type "
+"alias, Idris in general does *not* resolve interface implementations for "
+"function types. If we want to write a small library of utility functions "
+"around such a type, it is therefore best to wrap it in a single-constructor "
+"data type and use this as our building block for writing more complex "
+"computations. We therefore introduce record `State` as a wrapper for pure, "
+"stateful computations:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:494
+#, no-wrap
+msgid ""
+"```idris\n"
+"record State st a where\n"
+"  constructor ST\n"
+"  runST : st -> (st,a)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:496
+msgid "We can now implement `pairWithIndex` in terms of `State` like so:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:501
+msgid ""
+"```idris pairWithIndex : a -> State Nat (Nat,a)  pairWithIndex v = ST $ "
+"\\index => (S index, (index, v))  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:505
+msgid ""
+"In addition, we can define some more utility functions. Here's one for "
+"getting the current state without modifying it (this corresponds to "
+"`readIORef`):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:510
+msgid "```idris get : State st st get = ST $ \\s => (s,s)  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:513
+msgid ""
+"Here are two others, for overwriting the current state. These corresponds to "
+"`writeIORef` and `modifyIORef`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:517
+msgid "```idris put : st -> State st ()  put v = ST $ \\_ => (v,())"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:521
+msgid ""
+"modify : (st -> st) -> State st ()  modify f = ST $ \\v => (f v,())  ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:524
+msgid ""
+"Finally, we can define three functions in addition to `runST` for running "
+"stateful computations"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:528
+msgid "```idris runState : st -> State st a -> (st, a)  runState = flip runST"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:531
+msgid "evalState : st -> State st a -> a evalState s = snd . runState s"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:535
+msgid "execState : st -> State st a -> st execState s = fst . runState s ```"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:542
+msgid ""
+"All of these are useful on their own, but the real power of `State s` comes "
+"from the observation that it is a monad.  Before you go on, please spend "
+"some time and try implementing `Functor`, `Applicative`, and `Monad` for "
+"`State s` yourself.  Even if you don't succeed, you will have an easier time "
+"understanding how the implementations below work."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:546
+#, no-wrap
+msgid ""
+"```idris\n"
+"Functor (State st) where\n"
+"  map f (ST run) = ST $ \\s => let (s2,va) = run s in (s2, f va)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:549
+#, no-wrap
+msgid ""
+"Applicative (State st) where\n"
+"  pure v = ST $ \\s => (s,v)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:554
+#, no-wrap
+msgid ""
+"  ST fun <*> ST val = ST $ \\s =>\n"
+"    let (s2, f)  = fun s\n"
+"        (s3, va) = val s2\n"
+"     in (s3, f va)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:560
+#, no-wrap
+msgid ""
+"Monad (State st) where\n"
+"  ST val >>= f = ST $ \\s =>\n"
+"    let (s2, va) = val s\n"
+"     in runST (f va) s2\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:573
+msgid ""
+"This may take some time to digest, so we come back to it in a slightly "
+"advanced exercise. The most important thing to note is, that we use every "
+"state value only ever once. We *must* make sure that the updated state is "
+"passed to later computations, otherwise the information about state updates "
+"is being lost. This can best be seen in the implementation of `Applicative`: "
+"The initial state, `s`, is used in the computation of the function value, "
+"which will also return an updated state, `s2`, which is then used in the "
+"computation of the function argument. This will again return an updated "
+"state, `s3`, which is passed on to later stateful computations together with "
+"the result of applying `f` to `va`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:583
+msgid ""
+"This sections consists of two extended exercise, the aim of which is to "
+"increase your understanding of the state monad.  In the first exercise, we "
+"will look at random value generation, a classical application of stateful "
+"computations.  In the second exercise, we will look at an indexed version of "
+"a state monad, which allows us to not only change the state's value but also "
+"its *type* during computations."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Traverse.md:590
+msgid ""
+"Below is the implementation of a simple pseudo-random number generator. We "
+"call this a *pseudo-random* number generator, because the numbers look "
+"pretty random but are generated predictably. If we initialize a series of "
+"such computations with a truly random seed, most users of our library will "
+"not be able to predict the outcome of our computations."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:596
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   rnd : Bits64 -> Bits64\n"
+"   rnd seed = fromInteger\n"
+"            $ (437799614237992725 * cast seed) `mod` 2305843009213693951\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:604
+#, no-wrap
+msgid ""
+"   The idea here is that the next pseudo-random number gets\n"
+"   calculated from the previous one. But once we think about\n"
+"   how we can use these numbers as seeds for computing\n"
+"   random values of other types, we realize that these are\n"
+"   just stateful computations. We can therefore write\n"
+"   down an alias for random value generators as stateful\n"
+"   computations:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:609
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   Gen : Type -> Type\n"
+"   Gen = State Bits64\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:617
+#, no-wrap
+msgid ""
+"   Before we begin, please note that `rnd` is not a very strong\n"
+"   pseudo-random number generator. It will not generate values in\n"
+"   the full 64bit range, nor is it safe to use in cryptographic\n"
+"   applications. It is sufficient for our purposes in this chapter,\n"
+"   however. Note also, that we could replace `rnd` with a stronger\n"
+"   generator without any changes to the functions you will implement\n"
+"   as part of this exercise.\n"
+msgstr ""
+
+#. type: Bullet: '   1. '
+#: ../src/Tutorial/Traverse.md:622
+msgid ""
+"Implement `bits64` in terms of `rnd`. This should return the current state, "
+"updating it afterwards by invoking function `rnd`. Make sure the state is "
+"properly updated, otherwise this won't behave as expected."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:626
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      bits64 : Gen Bits64\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:631
+#, no-wrap
+msgid ""
+"      This will be our *only* primitive generator, from which\n"
+"      we will derived all the others. Therefore,\n"
+"      before you continue, quickly test your implementation of\n"
+"      `bits64` at the REPL:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:636
+#, no-wrap
+msgid ""
+"      ```repl\n"
+"      Solutions.Traverse> runState 100 bits64\n"
+"      (2274787257952781382, 100)\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   2. '
+#: ../src/Tutorial/Traverse.md:642
+msgid ""
+"Implement `range64` for generating random values in the range `[0,upper]`. "
+"Hint: Use `bits64` and `mod` in your implementation but make sure to deal "
+"with the fact that `mod x upper` produces values in the range `[0,upper)`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:646
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      range64 : (upper : Bits64) -> Gen Bits64\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:649
+#, no-wrap
+msgid ""
+"      Likewise, implement `interval64` for generating values\n"
+"      in the range `[min a b, max a b]`:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:653
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      interval64 : (a,b : Bits64) -> Gen Bits64\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:655
+#, no-wrap
+msgid "      Finally, implement `interval` for arbitrary integral types.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:659
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      interval : Num n => Cast n Bits64 => (a,b : n) -> Gen n\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:663
+#, no-wrap
+msgid ""
+"      Note, that `interval` will not generate all possible values in\n"
+"      the given interval but only such values with a `Bits64`\n"
+"      representation in the the range `[0,2305843009213693950]`.\n"
+msgstr ""
+
+#. type: Bullet: '   3. '
+#: ../src/Tutorial/Traverse.md:665
+msgid "Implement a generator for random boolean values."
+msgstr ""
+
+#. type: Bullet: '   4. '
+#: ../src/Tutorial/Traverse.md:670
+msgid ""
+"Implement a generator for `Fin n`. You'll have to think carefully about "
+"getting this one to typecheck and be accepted by the totality checker "
+"without cheating.  Note: Have a look at function `Data.Fin.natToFin`."
+msgstr ""
+
+#. type: Bullet: '   5. '
+#: ../src/Tutorial/Traverse.md:674
+msgid ""
+"Implement a generator for selecting a random element from a vector of "
+"values. Use the generator from exercise 4 in your implementation."
+msgstr ""
+
+#. type: Bullet: '   6. '
+#: ../src/Tutorial/Traverse.md:678
+msgid ""
+"Implement `vect` and `list`. In case of `list`, the first argument should be "
+"used to randomly determine the length of the list."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:681
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      vect : {n : _} -> Gen a -> Gen (Vect n a)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:684
+#, no-wrap
+msgid ""
+"      list : Gen Nat -> Gen a -> Gen (List a)\n"
+"      ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:687
+#, no-wrap
+msgid ""
+"      Use `vect` to implement utility function `testGen` for\n"
+"      testing your generators at the REPL:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:691
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      testGen : Bits64 -> Gen a -> Vect 10 a\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   7. '
+#: ../src/Tutorial/Traverse.md:693
+msgid "Implement `choice`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:697
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      choice : {n : _} -> Vect (S n) (Gen a) -> Gen a\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   8. '
+#: ../src/Tutorial/Traverse.md:699
+msgid "Implement `either`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:703
+#, no-wrap
+msgid ""
+"      ```idris\n"
+"      either : Gen a -> Gen b -> Gen (Either a b)\n"
+"      ```\n"
+msgstr ""
+
+#. type: Bullet: '   9. '
+#: ../src/Tutorial/Traverse.md:708
+msgid ""
+"Implement a generator for printable ASCII characters.  These are characters "
+"with ASCII codes in the interval `[32,126]`. Hint: Function `chr` from the "
+"*Prelude* will be useful here."
+msgstr ""
+
+#. type: Bullet: '   10. '
+#: ../src/Tutorial/Traverse.md:711
+msgid ""
+"Implement a generator for strings. Hint: Function `pack` from the *Prelude* "
+"might be useful for this."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:715
+#, no-wrap
+msgid ""
+"       ```idris\n"
+"       string : Gen Nat -> Gen Char -> Gen String\n"
+"       ```\n"
+msgstr ""
+
+#. type: Bullet: '   11. '
+#: ../src/Tutorial/Traverse.md:722
+msgid ""
+"We shouldn't forget about our ability to encode interesting things in the "
+"types in Idris, so, for a challenge and without further ado, implement "
+"`hlist` (note the distinction between `HListF` and `HList`). If you are "
+"rather new to dependent types, this might take a moment to digest, so don't "
+"forget to use holes."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:727
+#, no-wrap
+msgid ""
+"       ```idris\n"
+"       data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where\n"
+"         Nil  : HListF f []\n"
+"         (::) : (x : f t) -> (xs : HLift f ts) -> HListF f (t :: ts)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:730
+#, no-wrap
+msgid ""
+"       hlist : HListF Gen ts -> Gen (HList ts)\n"
+"       ```\n"
+msgstr ""
+
+#. type: Bullet: '   12. '
+#: ../src/Tutorial/Traverse.md:732
+msgid ""
+"Generalize `hlist` to work with any applicative functor, not just `Gen`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:736
+#, no-wrap
+msgid ""
+"   If you arrived here, please realize how we can now generate pseudo-random\n"
+"   values for most primitives, as well as regular sum- and product types.\n"
+"   Here is an example REPL session:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:750
+#, no-wrap
+msgid ""
+"   ```repl\n"
+"   > testGen 100 $ hlist [bool, printableAscii, interval 0 127]\n"
+"   [[True, ';', 5],\n"
+"    [True, '^', 39],\n"
+"    [False, 'o', 106],\n"
+"    [True, 'k', 127],\n"
+"    [False, ' ', 11],\n"
+"    [False, '~', 76],\n"
+"    [True, 'M', 11],\n"
+"    [False, 'P', 107],\n"
+"    [True, '5', 67],\n"
+"    [False, '8', 9]]\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:764
+#, no-wrap
+msgid ""
+"   Final remarks: Pseudo-random value generators play an important role\n"
+"   in property based testing libraries like [QuickCheck](https://hackage.haskell.org/package/QuickCheck)\n"
+"   or [Hedgehog](https://github.com/stefan-hoeck/idris2-hedgehog).\n"
+"   The idea of property based testing is to test predefined *properties* of\n"
+"   pure functions against a large number of randomly generated arguments,\n"
+"   to get strong guarantees about these properties to hold for *all*\n"
+"   possible arguments. One example would be a test for verifying\n"
+"   that the result of reversing a list twice equals the original list.\n"
+"   While it is possible to proof many of the simpler properties in Idris\n"
+"   directly without the need for tests, this is no longer possible\n"
+"   as soon as functions are involved, which don't reduce during unification\n"
+"   such as foreign function calls or functions not publicly exported from\n"
+"   other modules.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Traverse.md:770
+msgid ""
+"While `State s a` gives us a convenient way to talk about stateful "
+"computations, it only allows us to mutate the state's *value* but not its "
+"*type*. For instance, the following function cannot be encapsulated in "
+"`State` because the type of the state changes:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:775
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   uncons : Vect (S n) a -> (Vect n a, a)\n"
+"   uncons (x :: xs) = (xs, x)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:784
+#, no-wrap
+msgid ""
+"   Your task is to come up with a new state type allowing for\n"
+"   such changes (sometimes referred to as an *indexed* state data type).\n"
+"   The goal of this exercise is to also sharpen your skills in\n"
+"   expressing things at the type level including derived function\n"
+"   types and interfaces. Therefore, I will give only little\n"
+"   guidance on how to go about this. If you get stuck, feel free to\n"
+"   peek at the solutions but make sure to only look at the types\n"
+"   at first.\n"
+msgstr ""
+
+#. type: Bullet: '   1. '
+#: ../src/Tutorial/Traverse.md:790
+msgid ""
+"Come up with a parameterized data type for encapsulating stateful "
+"computations where the input and output state type can differ. It must be "
+"possible to wrap `uncons` in a value of this type."
+msgstr ""
+
+#. type: Bullet: '   2. '
+#: ../src/Tutorial/Traverse.md:792
+msgid "Implement `Functor` for your indexed state type."
+msgstr ""
+
+#. type: Bullet: '   3. '
+#: ../src/Tutorial/Traverse.md:797
+msgid ""
+"It is not possible to implement `Applicative` for this *indexed* state type "
+"(but see also exercise 2.vii).  Still, implement the necessary functions to "
+"use it with idom brackets."
+msgstr ""
+
+#. type: Bullet: '   4. '
+#: ../src/Tutorial/Traverse.md:801
+msgid ""
+"It is not possible to implement `Monad` for this indexed state type. Still, "
+"implement the necessary functions to use it in do blocks."
+msgstr ""
+
+#. type: Bullet: '   5. '
+#: ../src/Tutorial/Traverse.md:805
+msgid ""
+"Generalize the functions from exercises 3 and 4 with two new interfaces "
+"`IxApplicative` and `IxMonad` and provide implementations of these for your "
+"indexed state data type."
+msgstr ""
+
+#. type: Bullet: '   6. '
+#: ../src/Tutorial/Traverse.md:809
+msgid ""
+"Implement functions `get`, `put`, `modify`, `runState`, `evalState`, and "
+"`execState` for the indexed state data type. Make sure to adjust the type "
+"parameters where necessary."
+msgstr ""
+
+#. type: Bullet: '   7. '
+#: ../src/Tutorial/Traverse.md:812
+msgid ""
+"Show that your indexed state type is strictly more powerful than `State` by "
+"implementing `Applicative` and `Monad` for it."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:816
+#, no-wrap
+msgid ""
+"      Hint: Keep the input and output state identical. Note also,\n"
+"      that you might need to implement `join` manually if Idris\n"
+"      has trouble inferring the types correctly.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:821
+#, no-wrap
+msgid ""
+"   Indexed state types can be useful when we want to make sure that\n"
+"   stateful computations are combined in the correct sequence, or\n"
+"   that scarce resources get cleaned up properly. We might get back\n"
+"   to such use cases in later examples.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:823
+msgid "## The Power of Composition"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:830
+msgid ""
+"After our excursion into the realms of stateful computations, we will go "
+"back and combine mutable state with error accumulation to tag and read CSV "
+"lines in a single traversal. We already defined `pairWithIndex` for tagging "
+"lines with their indices.  We also have `uncurry $ hdecode ts` for decoding "
+"single tagged lines.  We can now combine the two effects in a single "
+"computation:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:838
+#, no-wrap
+msgid ""
+"```idris\n"
+"tagAndDecode :  (0 ts : List Type)\n"
+"             -> CSVLine (HList ts)\n"
+"             => String\n"
+"             -> State Nat (Validated CSVError (HList ts))\n"
+"tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:851
+msgid ""
+"Now, as we learned before, applicative functors are closed under "
+"composition, and the result of `tagAndDecode` is a nesting of two "
+"applicatives: `State Nat` and `Validated CSVError`.  The *Prelude* exports a "
+"corresponding named interface implementation (`Prelude.Applicative."
+"Compose`), which we can use for traversing a list of strings with "
+"`tagAndDecode`.  Remember, that we have to provide named implementations "
+"explicitly.  Since `traverse` has the applicative functor as its second "
+"constraint, we also need to provide the first constraint (`Traversable`) "
+"explicitly. But this is going to be the unnamed default implementation! To "
+"get our hands on such a value, we can use the `%search` pragma:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:859
+#, no-wrap
+msgid ""
+"```idris\n"
+"readTable :  (0 ts : List Type)\n"
+"          -> CSVLine (HList ts)\n"
+"          => List String\n"
+"          -> Validated CSVError (List $ HList ts)\n"
+"readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:866
+msgid ""
+"This tells Idris to use the default implementation for the `Traversable` "
+"constraint, and `Prelude.Applicatie.Compose` for the `Applicative` "
+"constraint.  While this syntax is not very nice, it doesn't come up too "
+"often, and if it does, we can improve things by providing custom functions "
+"for better readability:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:875
+#, no-wrap
+msgid ""
+"```idris\n"
+"traverseComp : Traversable t\n"
+"             => Applicative f\n"
+"             => Applicative g\n"
+"             => (a -> f (g b))\n"
+"             -> t a\n"
+"             -> f (g (t b))\n"
+"traverseComp = traverse @{%search} @{Compose}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:882
+#, no-wrap
+msgid ""
+"readTable' :  (0 ts : List Type)\n"
+"           -> CSVLine (HList ts)\n"
+"           => List String\n"
+"           -> Validated CSVError (List $ HList ts)\n"
+"readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:885
+msgid ""
+"Note, how this allows us to combine two computational effects (mutable state "
+"and error accumulation) in a single list traversal."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:898
+msgid ""
+"But I am not yet done demonstrating the power of composition. As you showed "
+"in one of the exercises, `Traversable` is also closed under composition, so "
+"a nesting of traversables is again a traversable. Consider the following use "
+"case: When reading a CSV file, we'd like to allow lines to be annotated with "
+"additional information. Such annotations could be mere comments but also "
+"some formatting instructions or other custom data tags might be feasible.  "
+"Annotations are supposed to be separated from the rest of the content by a "
+"single hash character (`#`).  We want to keep track of these optional "
+"annotations so we come up with a custom data type encapsulating this "
+"distinction:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:904
+#, no-wrap
+msgid ""
+"```idris\n"
+"data Line : Type -> Type where\n"
+"  Annotated : String -> a -> Line a\n"
+"  Clean     : a -> Line a\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:908
+msgid ""
+"This is just another container type and we can easily implement "
+"`Traversable` for `Line` (do this yourself as a quick exercise):"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:913
+#, no-wrap
+msgid ""
+"```idris\n"
+"Functor Line where\n"
+"  map f (Annotated s x) = Annotated s $ f x\n"
+"  map f (Clean x)       = Clean $ f x\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:917
+#, no-wrap
+msgid ""
+"Foldable Line where\n"
+"  foldr f acc (Annotated _ x) = f x acc\n"
+"  foldr f acc (Clean x)       = f x acc\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:922
+#, no-wrap
+msgid ""
+"Traversable Line where\n"
+"  traverse f (Annotated s x) = Annotated s <$> f x\n"
+"  traverse f (Clean x)       = Clean <$> f x\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:928
+msgid ""
+"Below is a function for parsing a line and putting it in its correct "
+"category. For simplicity, we just split the line on hashes: If the result "
+"consists of exactly two strings, we treat the second part as an annotation, "
+"otherwise we treat the whole line as untagged CSV content."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:935
+#, no-wrap
+msgid ""
+"```idris\n"
+"readLine : String -> Line String\n"
+"readLine s = case split ('#' ==) s of\n"
+"  h ::: [t] => Annotated t h\n"
+"  _         => Clean s\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:938
+msgid ""
+"We are now going to implement a function for reading whole CSV tables, "
+"keeping track of line annotations:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:949
+#, no-wrap
+msgid ""
+"```idris\n"
+"readCSV :  (0 ts : List Type)\n"
+"        -> CSVLine (HList ts)\n"
+"        => String\n"
+"        -> Validated CSVError (List $ Line $ HList ts)\n"
+"readCSV ts = evalState 1\n"
+"           . traverse @{Compose} @{Compose} (tagAndDecode ts)\n"
+"           . map readLine\n"
+"           . lines\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:966
+msgid ""
+"Let's digest this monstrosity. This is written in point-free style, so we "
+"have to read it from end to beginning. First, we split the whole string at "
+"line breaks, getting a list of strings (function `Data.String.lines`). Next, "
+"we analyze each line, keeping track of optional annotations (`map "
+"readLine`).  This gives us a value of type `List (Line String)`. Since this "
+"is a nesting of traversables, we invoke `traverse` with a named instance "
+"from the *Prelude*: `Prelude.Traversable.Compose`.  Idris can disambiguate "
+"this based on the types, so we can drop the namespace prefix. But the "
+"effectful computation we run over the list of lines results in a composition "
+"of applicative functors, so we also need the named implementation for "
+"compositions of applicatives in the second constraint (again without need of "
+"an explicit prefix, which would be `Prelude.Applicative` here).  Finally, we "
+"evaluate the stateful computation with `evalState 1`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:974
+msgid ""
+"Honestly, I wrote all of this without verifying if it works, so let's give "
+"it a go at the REPL. I'll provide two example strings for this, a valid one "
+"without errors, and an invalid one. I use *multiline string literals* here, "
+"about which I'll talk in more detail in a later chapter. For the moment, "
+"note that these allow us to conveniently enter string literals with line "
+"breaks:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:984
+#, no-wrap
+msgid ""
+"```idris\n"
+"validInput : String\n"
+"validInput = \"\"\"\n"
+"  f,12,-13.01#this is a comment\n"
+"  t,100,0.0017\n"
+"  t,1,100.8#color: red\n"
+"  f,255,0.0\n"
+"  f,24,1.12e17\n"
+"  \"\"\"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:994
+#, no-wrap
+msgid ""
+"invalidInput : String\n"
+"invalidInput = \"\"\"\n"
+"  o,12,-13.01#another comment\n"
+"  t,100,0.0017\n"
+"  t,1,abc\n"
+"  f,256,0.0\n"
+"  f,24,1.12e17\n"
+"  \"\"\"\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:996
+msgid "And here's how it goes at the REPL:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1004
+#, no-wrap
+msgid ""
+"```repl\n"
+"Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput\n"
+"Valid [Annotated \"this is a comment\" [False, 12, -13.01],\n"
+"       Clean [True, 100, 0.0017],\n"
+"       Annotated \"color: red\" [True, 1, 100.8],\n"
+"       Clean [False, 255, 0.0],\n"
+"       Clean [False, 24, 1.12e17]]\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1009
+#, no-wrap
+msgid ""
+"Tutorial.Traverse> readCSV [Bool,Bits8,Double] invalidInput\n"
+"Invalid (Append (FieldError 1 1 \"o\")\n"
+"  (Append (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1015
+msgid ""
+"It is pretty amazing how we wrote dozens of lines of code, always being "
+"guided by the type- and totality checkers, arriving eventually at a function "
+"for parsing properly typed CSV tables with automatic line numbering and "
+"error accumulation, all of which just worked on first try."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1025
+msgid ""
+"The *Prelude* provides three additional interfaces for container types "
+"parameterized over *two* type parameters such as `Either` or `Pair`: "
+"`Bifunctor`, `Bifoldable`, and `Bitraversable`. In the following exercises "
+"we get some hands-one experience working with these. You are supposed to "
+"look up what functions they provide and how to implement and use them "
+"yourself."
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../src/Tutorial/Traverse.md:1029
+msgid ""
+"Assume we'd like to not only interpret CSV content but also the optional "
+"comment tags in our CSV files.  For this, we could use a data type such as "
+"`Tagged`:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1035
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Tagged : (tag, value : Type) -> Type where\n"
+"     Tag  : tag -> value -> Tagged tag value\n"
+"     Pure : value -> Tagged tag value\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1039
+#, no-wrap
+msgid ""
+"   Implement interfaces `Functor`, `Foldable`, and `Traversable`\n"
+"   but also `Bifunctor`, `Bifoldable`, and `Bitraversable`\n"
+"   for `Tagged`.\n"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../src/Tutorial/Traverse.md:1045
+msgid ""
+"Show that the composition of a bifunctor with two functors such as `Either "
+"(List a) (Maybe b)` is again a bifunctor by defining a dedicated wrapper "
+"type for such compositions and writing a corresponding implementation of "
+"`Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/"
+"`Traversable`."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../src/Tutorial/Traverse.md:1051
+msgid ""
+"Show that the composition of a functor with a bifunctor such as `List "
+"(Either a b)` is again a bifunctor by defining a dedicated wrapper type for "
+"such compositions and writing a corresponding implementation of "
+"`Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/"
+"`Traversable`."
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Traverse.md:1055
+msgid ""
+"We are now going to adjust `readCSV` in such a way that it decodes comment "
+"tags and CSV content in a single traversal.  We need a new error type to "
+"include invalid tags for this:"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1061
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data TagError : Type where\n"
+"     CE         : CSVError -> TagError\n"
+"     InvalidTag : (line : Nat) -> (tag : String) -> TagError\n"
+"     Append     : TagError -> TagError -> TagError\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1064
+#, no-wrap
+msgid ""
+"   Semigroup TagError where (<+>) = Append\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1066
+#, no-wrap
+msgid "   For testing, we also define a simple data type for color tags:\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1070
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   data Color = Red | Green | Blue\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1076
+#, no-wrap
+msgid ""
+"   You should now implement the following functions, but\n"
+"   please note that while `readColor` will need to\n"
+"   access the current line number in case of an error,\n"
+"   it must *not* increase it, as otherwise line numbers\n"
+"   will be wrong in the invocation of `tagAndDecodeTE`.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1079
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   readColor : String -> State Nat (Validated TagError Color)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1081
+#, no-wrap
+msgid "   readTaggedLine : String -> Tagged String String\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1087
+#, no-wrap
+msgid ""
+"   tagAndDecodeTE :  (0 ts : List Type)\n"
+"                  -> CSVLine (HList ts)\n"
+"                  => String\n"
+"                  -> State Nat (Validated TagError (HList ts))\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1094
+#, no-wrap
+msgid ""
+"   Finally, implement `readTagged` by using the wrapper type\n"
+"   from exercise 3 as well as `readColor` and `tagAndDecodeTE`\n"
+"   in a call to `bitraverse`.\n"
+"   The implementation will look very similar to `readCSV` but\n"
+"   with some additional wrapping and unwrapping at the right\n"
+"   places.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1101
+#, no-wrap
+msgid ""
+"   ```idris\n"
+"   readTagged :  (0 ts : List Type)\n"
+"              -> CSVLine (HList ts)\n"
+"              => String\n"
+"              -> Validated TagError (List $ Tagged Color $ HList ts)\n"
+"   ```\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1103
+#, no-wrap
+msgid "   Test your implementation with some example strings at the REPL.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1108
+msgid ""
+"You can find more examples for functor/bifunctor compositions in Haskell's "
+"[bifunctors](https://hackage.haskell.org/package/bifunctors)  package."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1117
+msgid ""
+"Interface `Traversable` and its main function `traverse` are incredibly "
+"powerful forms of abstraction - even more so, because both `Applicative` and "
+"`Traversable` are closed under composition. If you are interested in "
+"additional use cases, the publication, which introduced `Traversable` to "
+"Haskell, is a highly recommended read: [The Essence of the Iterator Pattern]"
+"(https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1124
+msgid ""
+"The *base* library provides an extended version of the state monad in module "
+"`Control.Monad.State`. We will look at this in more detail when we talk "
+"about monad transformers.  Please note also, that `IO` itself is implemented "
+"as a [simple state monad](IO.md#how-io-is-implemented)  over an abstract, "
+"primitive state type: `%World`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1126
+msgid "Here's a short summary of what we learned in this chapter:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:1138
+msgid ""
+"Function `traverse` is used to run effectful computations over container "
+"types without affecting their size or shape."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:1138
+msgid ""
+"We can use `IORef` as mutable references in stateful computations running in "
+"`IO`."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:1138
+msgid ""
+"For referentially transparent computations with \"mutable\" state, the "
+"`State` monad is extremely useful."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:1138
+msgid ""
+"Applicative functors are closed under composition, so we can run several "
+"effectful computations in a single traversal."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../src/Tutorial/Traverse.md:1138
+msgid ""
+"Traversables are also closed under composition, so we can use `traverse` to "
+"operate on a nesting of containers."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Traverse.md:1146
+msgid ""
+"For now, this concludes our introduction of the *Prelude*'s higher-kinded "
+"interfaces, which started with the introduction of `Functor`, `Applicative`, "
+"and `Monad`, before moving on to `Foldable`, and - last but definitely not "
+"least - `Traversable`.  There's one still missing - `Alternative` - but this "
+"will have to wait a bit longer, because we need to first make our brains "
+"smoke with some more type-level wizardry."
+msgstr ""
