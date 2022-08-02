@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:19+0800\n"
-"PO-Revision-Date: 2022-08-02 14:09+0000\n"
+"PO-Revision-Date: 2022-08-02 14:52+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/intro/zh_Hans/>\n"
@@ -221,24 +221,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:99
-#, fuzzy
 msgid "### Total Functions"
-msgstr "### 总功能"
+msgstr "### 完全函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:104
-#, fuzzy
 msgid ""
 "A *total* function is a pure function, that is guaranteed to return a value "
 "of the expected return type for every possible input in a finite amount of "
 "time. A total function will never fail with an exception or loop infinitely."
-msgstr ""
-"*total* 函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返"
-"回类型的值。一个总函数永远不会因异常或无限循环而失败。"
+msgstr "*完全*函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返回"
+"类型的值。一个完全函数永远不会因异常或无限循环而失败。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:113
-#, fuzzy
 msgid ""
 "Idris comes with a totality checker built in, which enables us to verify the "
 "functions we write to be provably total. Totality in Idris is opt-in, as in "
@@ -248,40 +244,39 @@ msgid ""
 "keyword, Idris will fail with a type error, if its totality checker cannot "
 "verify that the function in question is indeed total."
 msgstr ""
-"Idris 内置了一个整体检查器，它使我们能够验证我们编写的函数是否是可证明的整"
-"体。 Idris 中的 Totality 是可选的，因为一般来说，检查任意计算机程序的整体性是"
-"无法确定的（另请参见 [halting problem](https://en.wikipedia.org/wiki/"
-"Halting_problem)）。但是，如果我们使用 `total` 关键字注释函数，如果 Idris 的"
-"总体检查器无法验证所讨论的函数确实是总体的，则 Idris 将失败并出现类型错误。"
+"Idris "
+"内置了一个完全性检查器，它使我们能够验证我们编写的函数是否是可证明的完全性。 "
+"Idris "
+"中的完全性是可选的，因为一般来说，检查任意计算机程序的完全性是无法确定的（"
+"另请参见 [停机问题](https://en.wikipedia.org/wiki/Halting_problem)）。但是，"
+"如果我们使用 `total` 关键字注释函数，如果 Idris "
+"的完全性检查器无法验证所讨论的函数确实是完全的，则 Idris "
+"将失败并出现类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:115
-#, fuzzy
 msgid "## Using the REPL"
 msgstr "## 使用 REPL"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:121
-#, fuzzy
 msgid ""
 "Idris comes with a useful REPL (an acronym for *Read Evaluate Print Loop*), "
 "which we will use for tinkering with small ideas, and for quickly "
 "experimenting with the code we just wrote.  In order to start a REPL "
 "session, run the following command in a terminal."
 msgstr ""
-"Idris 附带了一个有用的 REPL（*Read Evaluate Print Loop* 的首字母缩写词），我"
-"们将使用它来修补小想法，并快速试验我们刚刚编写的代码。要启动 REPL 会话，请在"
-"终端中运行以下命令。"
+"Idris 附带了一个有用的 REPL（*Read Evaluate Print Loop* "
+"的首字母缩写词），我们将使用它来修补小想法，并快速试验我们刚刚编写的代码。"
+"要启动 REPL 会话，请在终端中运行以下命令。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:125
-#, fuzzy
 msgid "```repl rlwrap idris2 ```"
 msgstr "```repl rlwrap idris2 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:131
-#, fuzzy
 msgid ""
 "(Using command-line utility `rlwrap` is optional. It leads to a somewhat "
 "nicer user experience, as it allows us to use the up and down arrow keys to "
@@ -289,18 +284,17 @@ msgid ""
 "be available for most Linux distributions.)"
 msgstr ""
 "（使用命令行实用程序 `rlwrap` 是可选的。它带来了更好的用户体验，因为它允许我"
-"们使用向上和向下箭头键滚动浏览我们输入的命令和表达式的历史记录。它应该适用于"
-"大多数 Linux 发行版。）"
+"们使用向上和向下箭头键滚动浏览我们输入的命令和表达式的历史记录。"
+"它应该适用于大多数 Linux 发行版。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:133
-#, fuzzy
 msgid "Idris should now be ready to accept you commands:"
 msgstr "Idris 现在应该准备好接受你的命令了："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:140
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "```repl\n"
 "     ____    __     _         ___\n"
@@ -309,68 +303,58 @@ msgid ""
 "  _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org\n"
 " /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
 msgstr ""
-"```回复\n"
-"     ____ __ _ ___\n"
-"    / _/___/ /____(_)____ |__ \\\n"
-"    / // __ / ___/ / ___/ __/ / 版本0.5.1-3c532ea35\n"
-"  _/ // /_/ / / / (__ ) / __/ https://www.idris-lang.org\n"
-" /___/\\__,_/_/ /_/____/ /____/ 类型 :?求助\n"
+"```repl\n"
+"     ____    __     _         ___\n"
+"    /  _/___/ /____(_)____   |__ \\\n"
+"    / // __  / ___/ / ___/   __/ /     Version 0.5.1-3c532ea35\n"
+"  _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org\n"
+" /___/\\__,_/_/  /_/____/   /____/      Type :? for help\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:144
-#, fuzzy
 msgid "Welcome to Idris 2.  Enjoy yourself! Main> ```"
-msgstr "欢迎来到伊德里斯 2。尽情享受吧！主>```"
+msgstr "Welcome to Idris 2.  Enjoy yourself! Main> ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:147
-#, fuzzy
 msgid ""
 "We can go ahead and enter some simple arithmetic expressions. Idris will "
 "*evaluate* these and print the result:"
-msgstr ""
-"我们可以继续输入一些简单的算术表达式。 Idris 将 * 评估 * 这些并打印结果："
+msgstr "我们可以继续输入一些简单的算术表达式。 Idris 将进行*求值*并打印结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:154
 #, fuzzy
 msgid "```repl Main> 2 * 4 8 Main> 3 * (7 + 100)  321 ```"
-msgstr "```repl Main> 2 * 4 8 Main> 3 * (7 + 100) 321 ```"
+msgstr "```repl Main> 2 * 4 8 Main> 3 * (7 + 100)  321 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:157
-#, fuzzy
 msgid ""
 "Since every expression in Idris has an associated *type*, we might want to "
 "inspect these as well:"
-msgstr ""
-"由于 Idris 中的每个表达式都有一个关联的 * 类型 *，我们可能还想检查这些："
+msgstr "由于 Idris 中的每个表达式都有一个关联的* 类型 *，我们可能还想检查这些："
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:162
-#, fuzzy
 msgid "```repl Main> :t 2 2 : Integer ```"
-msgstr "```repl Main> :t 2 2 : 整数 ```"
+msgstr "```repl Main> :t 2 2 : Integer ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:166
-#, fuzzy
 msgid ""
 "Here `:t` is a command of the Idris REPL (it is not part of the Idris "
 "programming language), and it is used to inspect the type of an expression."
-msgstr ""
-"这里 `:t` 是 Idris REPL 的命令（它不是 Idris 编程语言的一部分），它用于检查表"
-"达式的类型。"
+msgstr "这里的 `:t` 是 Idris REPL 的命令（它不是 Idris "
+"编程语言的一部分），它用于检查表达式的类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:171
-#, fuzzy
 msgid "```repl Main> :t 2 * 4 2 * 4 : Integer ```"
-msgstr "```repl Main> :t 2 * 4 2 * 4 : 整数 ```"
+msgstr "```repl Main> :t 2 * 4 2 * 4 : Integer ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:182
-#, fuzzy
 msgid ""
 "Whenever we perform calculations with integer literals without being "
 "explicit about the types we want to use, Idris will use `Integer` as a "
@@ -382,12 +366,12 @@ msgid ""
 "strings of unicode characters (`String`).  We will use many of these in due "
 "time."
 msgstr ""
-"每当我们使用整数文字执行计算而没有明确说明我们想要使用的类型时，Idris 将使用 "
-"`Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。它是语言中内置"
-"的 * 原始类型 * 之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、"
-"`Bits16`、`Bits32` `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度"
-"（64 位）浮点数（`Double`）、Unicode 字符（[X502X ]Char`) 和 unicode 字符串 "
-"(`String`)。我们将在适当的时候使用其中的许多。"
+"每当我们使用整数字面量执行计算而没有明确说明我们想要使用的类型时，Idris "
+"将使用 `Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。它是语言"
+"中内置的*原语类型*之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、"
+"`Bits16`、`Bits32` `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度（"
+"64 位）浮点数（`Double`）、Unicode 字符（`Char`) 和 unicode 字符串 "
+"(`String`)。我们将在适当的时候使用其中的大多数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:184

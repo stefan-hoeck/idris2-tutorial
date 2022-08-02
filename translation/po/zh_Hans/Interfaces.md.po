@@ -7,13 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 13:19+0800\n"
-"PO-Revision-Date: 2022-08-02 13:19+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-02 14:52+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
+"projects/idris2-tutorial/interfaces/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:262 ../src/Tutorial/Dependent.md:445
@@ -204,11 +207,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:2
+#, fuzzy
 msgid "# Interfaces"
-msgstr ""
+msgstr "# 接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:9
+#, fuzzy
 msgid ""
 "Function overloading - the definition of functions with the same name but "
 "different implementations - is a concept found in many programming "
@@ -217,20 +222,25 @@ msgid ""
 "Idris will try to disambiguate between these based on the types involved. "
 "Here is an example:"
 msgstr ""
+"函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris "
+"原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris "
+"将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:12
+#, fuzzy
 msgid "```idris module Tutorial.Interfaces"
-msgstr ""
+msgstr "```idris 模块 Tutorial.Interfaces"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:14
+#, fuzzy
 msgid "%default total"
-msgstr ""
+msgstr "%默认总计"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:20
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "namespace Bool\n"
 "  export\n"
@@ -238,20 +248,29 @@ msgid ""
 "  size True  = 1\n"
 "  size False = 0\n"
 msgstr ""
+"命名空间布尔\n"
+"  出口\n"
+"  大小：布尔 -> 整数\n"
+"  大小真 = 1\n"
+"  大小错误 = 0\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:25
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "namespace Integer\n"
 "  export\n"
 "  size : Integer -> Integer\n"
 "  size = id\n"
 msgstr ""
+"命名空间整数\n"
+"  出口\n"
+"  大小：整数 -> 整数\n"
+"  大小 = id\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:31
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "namespace List\n"
 "  export\n"
@@ -259,92 +278,123 @@ msgid ""
 "  size = cast . length\n"
 "```\n"
 msgstr ""
+"命名空间列表\n"
+"  出口\n"
+"  大小：列出一个 -> 整数\n"
+"  大小 = 演员表。长度\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:35
+#, fuzzy
 msgid ""
 "Here, we defined three different functions called `size`, each in its own "
 "namespace. We can disambiguate between these by prefixing them with their "
 "namespace:"
 msgstr ""
+"在这里，我们定义了三个不同的函数，称为 `size`，每个函数都在自己的命名空间中。"
+"我们可以通过在它们前面加上它们的命名空间来消除它们之间的歧义："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:40
+#, fuzzy
 msgid ""
 "```repl Tutorial.Interfaces> :t Bool.size Tutorial.Interfaces.Bool.size : "
 "Bool -> Integer ```"
 msgstr ""
+"```repl Tutorial.Interfaces> :t Bool.size Tutorial.Interfaces.Bool.size : "
+"Bool -> Integer ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:42
+#, fuzzy
 msgid "However, this is usually not necessary:"
-msgstr ""
+msgstr "但是，这通常不是必需的："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:47
+#, fuzzy
 msgid ""
 "```idris mean : List Integer -> Integer mean xs = sum xs `div` size xs ```"
 msgstr ""
+"```idris mean : List Integer -> Integer mean xs = sum xs `div` size xs ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:51
+#, fuzzy
 msgid ""
 "As you can see, Idris can disambiguate between the different `size` "
 "functions, since `xs` is of type `List Integer`, which unifies only with "
 "`List a`, the argument type of `List.size`."
 msgstr ""
+"如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` "
+"类型，它仅与 `List a[ X148X]，`List.size`的参数类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:53
+#, fuzzy
 msgid "## Interface Basics"
-msgstr ""
+msgstr "## 接口基础"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:57
+#, fuzzy
 msgid ""
 "While function overloading as described above works well, there are use "
 "cases, where this form of overloaded functions leads to a lot of code "
 "duplication."
-msgstr ""
+msgstr "虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量"
+"代码重复。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:61
+#, fuzzy
 msgid ""
 "As an example, consider a function `cmp` (short for *compare*, which is "
 "already exported by the *Prelude*), for describing an ordering for the "
 "values of type `String`:"
-msgstr ""
+msgstr "例如，考虑一个函数 `cmp`（*compare* 的缩写，已由 *Prelude* 导出），"
+"用于描述类型 [ X158X]字符串`："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:65
+#, fuzzy
 msgid "```idris cmp : String -> String -> Ordering ```"
-msgstr ""
+msgstr "```idris cmp : 字符串 -> 字符串 -> 排序 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:70
+#, fuzzy
 msgid ""
 "We'd also like to have similar functions for many other data types.  "
 "Function overloading allows us to do just that, but `cmp` is not an isolated "
 "piece of functionality. From it, we can derive functions like "
 "`greaterThan'`, `lessThan'`, `minimum'`, `maximum'`, and many others:"
 msgstr ""
+"我们还希望为许多其他数据类型提供类似的功能。函数重载允许我们这样做，但 `cmp` "
+"不是一个孤立的功能。从中，我们可以推导出 "
+"`greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:74
+#, fuzzy
 msgid ""
 "```idris lessThan' : String -> String -> Bool lessThan' s1 s2 = LT == cmp s1 "
 "s2"
 msgstr ""
+"```idris lessThan' : String -> String -> Bool lessThan' s1 s2 = LT == cmp s1 "
+"s2"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:77
+#, fuzzy
 msgid ""
 "greaterThan' : String -> String -> Bool greaterThan' s1 s2 = GT == cmp s1 s2"
-msgstr ""
+msgstr "大于'：字符串->字符串->布尔大于's1 s2 = GT == cmp s1 s2"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:83
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "minimum' : String -> String -> String\n"
 "minimum' s1 s2 =\n"
@@ -352,10 +402,15 @@ msgid ""
 "    LT => s1\n"
 "    _  => s2\n"
 msgstr ""
+"最小'：字符串->字符串->字符串\n"
+"最小值' s1 s2 =\n"
+"  案例 cmp s1 s2 的\n"
+"    LT => s1\n"
+"    _ => s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:90
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "maximum' : String -> String -> String\n"
 "maximum' s1 s2 =\n"
@@ -364,26 +419,37 @@ msgid ""
 "    _  => s2\n"
 "```\n"
 msgstr ""
+"最大'：字符串->字符串->字符串\n"
+"最大值' s1 s2 =\n"
+"  案例 cmp s1 s2 的\n"
+"    GT => s1\n"
+"    _ => s2\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:94
+#, fuzzy
 msgid ""
 "We'd need to implement all of these again for the other types with a `cmp` "
 "function, and most if not all of these implementations would be identical to "
 "the ones written above. That's a lot of code repetition."
-msgstr ""
+msgstr "我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）"
+"这些实现将与上面编写的相同。这是很多代码重复。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:99
+#, fuzzy
 msgid ""
 "One way to solve this is to use higher-order functions.  For instance, we "
 "could define function `minimumBy`, which takes a comparison function as its "
 "first argument and returns the smaller of the two remaining arguments:"
 msgstr ""
+"解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 "
+"`minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:107
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "minimumBy : (a -> a -> Ordering) -> a -> a -> a\n"
@@ -393,78 +459,109 @@ msgid ""
 "    _  => a2\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"minimumBy : (a -> a -> Ordering) -> a -> a -> a\n"
+"minimumBy f a1 a2 =\n"
+"  案例 f a1 a2 的\n"
+"    LT => a1\n"
+"    _ => a2\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:114
+#, fuzzy
 msgid ""
 "This solution is another proof of how higher-order functions allow us to "
 "reduce code duplication. However, the need to explicitly pass around the "
 "comparison function all the time can get tedious as well.  It would be nice, "
 "if we could teach Idris to come up with such a function on its own."
 msgstr ""
+"这个解决方案是高阶函数如何让我们减少代码重复的另一个证明。但是，始终需要显式"
+"传递比较函数也会变得乏味。如果我们能教 Idris 自己想出这样的功能，那就太好了。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:116
+#, fuzzy
 msgid "Interfaces solve exactly this issue. Here's an example:"
-msgstr ""
+msgstr "接口正好解决了这个问题。这是一个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:120
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "interface Comp a where\n"
 "  comp : a -> a -> Ordering\n"
 msgstr ""
+"```伊德里斯\n"
+"接口 Comp a where\n"
+"  comp : a -> a -> 排序\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:123
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "implementation Comp Bits8 where\n"
 "  comp = compare\n"
 msgstr ""
+"实现 Comp Bits8 其中\n"
+"  比较=比较\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:127
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "implementation Comp Bits16 where\n"
 "  comp = compare\n"
 "```\n"
 msgstr ""
+"实现 Comp Bits16 其中\n"
+"  比较=比较\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:133
+#, fuzzy
 msgid ""
 "The code above defines *interface* `Comp` providing function `comp` for "
 "calculating the ordering for two values of a type `a`, followed by two "
 "*implementations* of this interface for types `Bits8` and `Bits16`. Note, "
 "that the `implementation` keyword is optional."
 msgstr ""
+"上面的代码定义了 *interface* `Comp` 提供函数 `comp` 用于计算类型为 `a` "
+"的两个值的排序，然后是两个 [X143X ]`Bits8` 和 `Bits16` "
+"类型接口的实现*。请注意，`implementation` 关键字是可选的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:137
+#, fuzzy
 msgid ""
 "The `comp` implementations for `Bits8` and `Bits16` both use function "
 "`compare`, which is part of a similar interface from the *Prelude* called "
 "`Ord`."
 msgstr ""
+"`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude[ "
+"中类似接口的一部分X135X] 称为 `Ord`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:139
+#, fuzzy
 msgid "The next step is to look at the type of `comp` at the REPL:"
-msgstr ""
+msgstr "下一步是查看 REPL 中 `comp` 的类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:144
+#, fuzzy
 msgid ""
 "```repl Tutorial.Interfaces> :t comp Tutorial.Interfaces.comp : Comp a => a -"
 "> a -> Ordering ```"
 msgstr ""
+"```repl Tutorial.Interfaces> :t comp Tutorial.Interfaces.comp : Comp a => a -"
+"> a -> 排序 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:154
+#, fuzzy
 msgid ""
 "The interesting part in the type signature of `comp` is the initial `Comp a "
 "=>` argument. Here, `Comp` is a *constraint* on type parameter `a`. This "
@@ -474,31 +571,42 @@ msgid ""
 "come up with a value of type `Comp a` on its own, hence the new `=>` arrow.  "
 "If Idris fails to do so, it will answer with a type error."
 msgstr ""
+"`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` "
+"是类型参数 `a` 上的 *constraint*。该签名可以读作：“对于任何类型 `a`，给定 `a`"
+" 的接口 `Comp` 的实现，我们可以比较 ` 类型的两个值a` 并为这些返回一个 "
+"`Ordering`。”每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` "
+"类型的值，因此新的 `=>` 箭头。如果 Idris 没有这样做，它将返回类型错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:158
+#, fuzzy
 msgid ""
 "We can now use `comp` in the implementations of related functions.  All we "
 "have to do is to also prefix these derived functions with a `Comp` "
 "constraint:"
-msgstr ""
+msgstr "我们现在可以在相关函数的实现中使用`comp`。"
+"我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:162
+#, fuzzy
 msgid ""
 "```idris lessThan : Comp a => a -> a -> Bool lessThan s1 s2 = LT == comp s1 "
 "s2"
 msgstr ""
+"```idris lessThan : Comp a => a -> a -> Bool lessThan s1 s2 = LT == comp s1 "
+"s2"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:165
+#, fuzzy
 msgid ""
 "greaterThan : Comp a => a -> a -> Bool greaterThan s1 s2 = GT == comp s1 s2"
-msgstr ""
+msgstr "大于 : Comp a => a -> a -> Bool 大于 s1 s2 = GT == comp s1 s2"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:171
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "minimum : Comp a => a -> a -> a\n"
 "minimum s1 s2 =\n"
@@ -506,10 +614,15 @@ msgid ""
 "    LT => s1\n"
 "    _  => s2\n"
 msgstr ""
+"最小值：比较 a => a -> a -> a\n"
+"最小 s1 s2 =\n"
+"  case comp s1 s2 的\n"
+"    LT => s1\n"
+"    _ => s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:178
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "maximum : Comp a => a -> a -> a\n"
 "maximum s1 s2 =\n"
@@ -518,9 +631,16 @@ msgid ""
 "    _  => s2\n"
 "```\n"
 msgstr ""
+"最大值：Comp a => a -> a -> a\n"
+"最大 s1 s2 =\n"
+"  case comp s1 s2 的\n"
+"    GT => s1\n"
+"    _ => s2\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:185
+#, fuzzy
 msgid ""
 "Note, how the definition of `minimum` is almost identical to `minimumBy`. "
 "The only difference being that in case of `minimumBy` we had to pass the "
@@ -528,37 +648,49 @@ msgid ""
 "provided as part of the `Comp` implementation, which is passed around by "
 "Idris for us."
 msgstr ""
+"请注意，`minimum` 的定义与 `minimumBy` 的定义几乎相同。唯一的区别是，在 "
+"`minimumBy` 的情况下，我们必须将比较函数作为显式参数传递，而对于 `minimum`，"
+"它作为 `Comp` 的一部分提供实现，由 Idris 为我们传递。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:188
+#, fuzzy
 msgid ""
 "Thus, we have defined all these utility functions once and for all for every "
 "type with an implementation of interface `Comp`."
-msgstr ""
+msgstr "因此，我们用接口 `Comp` 的实现为每种类型一劳永逸地定义了所有这些实用函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:195
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "1. Implement function `anyLarger`, which should return `True`,\n"
 "if and only if a list of values contains at least one element larger\n"
 "than a given reference value. Use interface `Comp` in your\n"
 "implementation.\n"
 msgstr ""
+"1. 实现函数`anyLarger`，应该返回`True`，\n"
+"当且仅当值列表包含至少一个更大的元素\n"
+"比给定的参考值。使用接口 `Comp` 在你的\n"
+"执行。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:200
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "2. Implement function `allLarger`, which should return `True`,\n"
 "if and only if a list of values contains *only* elements larger\n"
 "than a given reference value. Note, that this is trivially true\n"
 "for the empty list. Use interface `Comp` in your implementation.\n"
 msgstr ""
+"2. 实现函数`allLarger`，应该返回`True`，\n"
+"当且仅当值列表包含更大的 *only* 元素\n"
+"比给定的参考值。请注意，这是微不足道的\n"
+"对于空列表。在您的实现中使用接口 `Comp`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:206
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "3. Implement function `maxElem`, which tries to extract the\n"
 "largest element from a list of values with a `Comp` implementation.\n"
@@ -566,47 +698,65 @@ msgid ""
 "Note, that the possibility of the list being empty must be considered\n"
 "when deciding on the output type.\n"
 msgstr ""
+"3. 实现函数`maxElem`，试图提取\n"
+"具有 `Comp` 实现的值列表中的最大元素。\n"
+"对于 `minElem` 也是如此，它试图提取最小的元素。\n"
+"请注意，必须考虑列表为空的可能性\n"
+"在决定输出类型时。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:210
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "4. Define an interface `Concat` for values like lists or\n"
 "strings, which can be concatenated. Provide implementations\n"
 "for lists and strings.\n"
 msgstr ""
+"4. 为列表或列表等值定义一个接口 `Concat`\n"
+"可以串联的字符串。提供实现\n"
+"对于列表和字符串。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:215
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "5. Implement function `concatList` for concatenating the\n"
 "values in a list holding values with a `Concat` implementation.\n"
 "Make sure to reflect the possibility of the list being empty in your\n"
 "output type.\n"
 msgstr ""
+"5. 实现函数 `concatList` 用于连接\n"
+"使用 `Concat` 实现的列表中的值。\n"
+"确保在您的列表中反映列表为空的可能性\n"
+"输出类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:217
+#, fuzzy
 msgid "## More about Interfaces"
-msgstr ""
+msgstr "## 更多关于接口的信息"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:224
+#, fuzzy
 msgid ""
 "In the last section, we learned about the very basics of interfaces: Why "
 "they are useful and how to define and implement them.  In this section, we "
 "will learn about some slightly advanced concepts: Extending interfaces, "
 "interfaces with constraints, and default implementations."
 msgstr ""
+"在上一节中，我们了解了接口的基础知识：为什么它们有用以及如何定义和实现它们。"
+"在本节中，我们将学习一些稍微高级的概念：扩展接口、带约束的接口和默认实现。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:226
+#, fuzzy
 msgid "### Extending Interfaces"
-msgstr ""
+msgstr "### 扩展接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:233
+#, fuzzy
 msgid ""
 "Some interfaces form a kind of hierarchy. For instance, for the `Concat` "
 "interface used in exercise 4, there might be a child interface called "
@@ -614,43 +764,58 @@ msgid ""
 "concatenation.  In such a case, we make an implementation of `Concat` a "
 "prerequisite for implementing `Empty`:"
 msgstr ""
+"一些接口形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，"
+"可能有一个名为 `Empty` "
+"的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 "
+"`Concat` 的实现作为实现 `Empty` 的先决条件："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:237
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "interface Concat a where\n"
 "  concat : a -> a -> a\n"
 msgstr ""
+"```伊德里斯\n"
+"接口 Concat a where\n"
+"  连接：一个->一个->一个\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:240
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "implementation Concat String where\n"
 "  concat = (++)\n"
 msgstr ""
+"实现 Concat String where\n"
+"  连接 = (++)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:243
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "interface Concat a => Empty a where\n"
 "  empty : a\n"
 msgstr ""
+"interface Concat a => Empty a where\n"
+"  空：一个\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:247
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "implementation Empty String where\n"
 "  empty = \"\"\n"
 "```\n"
 msgstr ""
+"实现空字符串 where\n"
+"  空=“”\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:254
+#, fuzzy
 msgid ""
 "`Concat a => Empty a` should be read as: \"An implementation of `Concat` for "
 "type `a` is a *prerequisite* for there being an implementation of `Empty` "
@@ -658,10 +823,13 @@ msgid ""
 "interface `Empty`, we *must* also have an implementation of `Concat` and can "
 "invoke the corresponding functions:"
 msgstr ""
+"`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 * 先决条件 *，"
+"因为存在为 `a` 实现 `Empty`。”但这也意味着，只要我们有接口 `Empty` 的实现，"
+"我们 * 必须* 也有 `Concat` 的实现，并且可以调用相应的函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:260
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "concatListE : Empty a => List a -> a\n"
@@ -669,22 +837,32 @@ msgid ""
 "concatListE (x :: xs) = concat x (concatListE xs)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"concatListE : 空 a => 列出 a -> a\n"
+"concatListE [] = 空\n"
+"concatListE (x :: xs) = concat x (concatListE xs)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:264
+#, fuzzy
 msgid ""
 "Note, how in the type of `concatListE` we only used an `Empty` constraint, "
 "and how in the implementation we were still able to invoke both `empty` and "
 "`concat`."
 msgstr ""
+"请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，"
+"以及在实现中我们如何仍然能够调用 `empty` 和 `连接`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:266
+#, fuzzy
 msgid "### Constrained Implementations"
-msgstr ""
+msgstr "### 受约束的实现"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:273
+#, fuzzy
 msgid ""
 "Sometimes, it is only possible to implement an interface for a generic type, "
 "if its type parameters implement this interface as well. For instance, "
@@ -692,10 +870,13 @@ msgid ""
 "itself implements `Comp`. We can constrain interface implementations with "
 "the same syntax we use for constrained functions:"
 msgstr ""
+"有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 ` "
+"实现接口 `Comp`Maybe a` 只有当类型 `a` 本身实现 `Comp` "
+"时才有意义。我们可以使用与约束函数相同的语法来约束接口实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:281
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "implementation Comp a => Comp (Maybe a) where\n"
@@ -705,9 +886,17 @@ msgid ""
 "  comp (Just x) (Just y) = comp x y\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"实现 Comp a => Comp (Maybe a) 其中\n"
+"  comp 没什么 没什么 = EQ\n"
+"  comp（只是_）没有= GT\n"
+"  什么都没有（只是_）= LT\n"
+"  comp (Just x) (Just y) = comp x y\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:292
+#, fuzzy
 msgid ""
 "This is not the same as extending an interface, although the syntax looks "
 "very similar. Here, the constraint lies on a *type parameter* instead of the "
@@ -717,34 +906,47 @@ msgid ""
 "`Comp a` constraint from the above implementation. Learning to read and "
 "understand Idris' type errors is important for fixing them."
 msgstr ""
+"这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * "
+"而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` "
+"中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，"
+"从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris "
+"的类型错误对于修复它们很重要。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:295
+#, fuzzy
 msgid "The good thing is, that Idris will solve all these constraints for us:"
-msgstr ""
+msgstr "好消息是，Idris 将为我们解决所有这些限制："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:300
+#, fuzzy
 msgid ""
 "```idris maxTest : Maybe Bits8 -> Ordering maxTest = comp (Just 12)  ```"
-msgstr ""
+msgstr "```idris maxTest : 也许是 Bits8 -> 订购 maxTest = comp (Just 12) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:305
+#, fuzzy
 msgid ""
 "Here, Idris tries to find an implementation for `Comp (Maybe Bits8)`.  In "
 "order to do so, it needs an implementation for `Comp Bits8`.  Go ahead, and "
 "replace `Bits8` in the type of `maxTest` with `Bits64`, and have a look at "
 "the error message Idris produces."
 msgstr ""
+"在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8`"
+" 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris "
+"产生的错误消息。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:307
+#, fuzzy
 msgid "### Default Implementations"
-msgstr ""
+msgstr "### 默认实现"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:320
+#, fuzzy
 msgid ""
 "Sometimes, we'd like to pack several related functions in an interface to "
 "allow programmers to implement each in the most efficient way, although they "
@@ -756,52 +958,71 @@ msgid ""
 "this case, we can give an implementation for `neq` already in the definition "
 "of `Equals`:"
 msgstr ""
+"有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现"
+"每个函数，尽管它们 * 可以* 相互实现。例如，考虑一个接口 `Equals` "
+"用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` 和 "
+"`neq`如果不是，则返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，"
+"所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 "
+"`Equals` 的定义中给出 `neq` 的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:324
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "interface Equals a where\n"
 "  eq : a -> a -> Bool\n"
 msgstr ""
+"```伊德里斯\n"
+"接口等于一个where\n"
+"  eq : a -> a -> Bool\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:328
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  neq : a -> a -> Bool\n"
 "  neq a1 a2 = not (eq a1 a2)\n"
 "```\n"
 msgstr ""
+"  neq : a -> a -> Bool\n"
+"  neq a1 a2 = 不是 (eq a1 a2)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:332
+#, fuzzy
 msgid ""
 "If in an implementation of `Equals` we only implement `eq`, Idris will use "
 "the default implementation for `neq` as shown above:"
-msgstr ""
+msgstr "如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` "
+"的默认实现，如上所示："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:337
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Equals String where\n"
 "  eq = (==)\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"等于字符串 where\n"
+"  eq = (==)\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:340
+#, fuzzy
 msgid ""
 "If on the other hand we'd like to provide explicit implementations for both "
 "functions, we can do so as well:"
-msgstr ""
+msgstr "另一方面，如果我们想为这两个函数提供显式实现，我们也可以这样做："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:346
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Equals Bool where\n"
@@ -809,37 +1030,51 @@ msgid ""
 "  eq False False = True\n"
 "  eq _ _         = False\n"
 msgstr ""
+"```伊德里斯\n"
+"等于 Bool where\n"
+"  eq 真 真 = 真\n"
+"  eq 假 假 = 真\n"
+"  eq _ _ = 假\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:351
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  neq True  False = True\n"
 "  neq False True  = True\n"
 "  neq _ _         = False\n"
 "```\n"
 msgstr ""
+"  neq True False = True\n"
+"  neq 假真 = 真\n"
+"  neq _ _ = 假\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:358
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "1. Implement interfaces `Equals`, `Comp`, `Concat`, and\n"
 "  `Empty` for pairs, constraining your implementations as necessary.\n"
 "  (Note, that multiple constraints can be given sequentially like\n"
 "  other function arguments: `Comp a => Comp b => Comp (a,b)`.)\n"
 msgstr ""
+"1. 实现接口`Equals`、`Comp`、`Concat`和\n"
+"  `Empty` 用于对，根据需要限制您的实现。\n"
+"  （请注意，可以按顺序给出多个约束，例如\n"
+"  其他函数参数：`Comp a => Comp b => Comp (a,b)`。）\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Interfaces.md:361
+#, fuzzy
 msgid ""
 "Below is an implementation of a binary tree. Implement interfaces `Equals` "
 "and `Concat` for this type."
-msgstr ""
+msgstr "下面是二叉树的实现。为此类型实现接口 `Equals` 和 `Concat`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:367
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   data Tree : Type -> Type where\n"
@@ -847,35 +1082,47 @@ msgid ""
 "     Node : Tree a -> Tree a -> Tree a\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   数据树：类型 -> 类型在哪里\n"
+"     叶：a -> 树 a\n"
+"     节点：树 a -> 树 a -> 树 a\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:369
+#, fuzzy
 msgid "## Interfaces in the *Prelude*"
-msgstr ""
+msgstr "## *Prelude*中的接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:374
+#, fuzzy
 msgid ""
 "The Idris *Prelude* provides several interfaces plus implementations that "
 "are useful in almost every non-trivial program. I'll introduce the basic "
 "ones here. The more advanced ones will be discussed in later chapters."
-msgstr ""
+msgstr "Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我"
+"将在这里介绍基本的。更高级的将在后面的章节中讨论。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:378
+#, fuzzy
 msgid ""
 "Most of these interfaces come with associated mathematical laws, and "
 "implementations are assumed to adhere to these laws. These laws will be "
 "given here as well."
-msgstr ""
+msgstr "这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也"
+"将在这里给出。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:380
+#, fuzzy
 msgid "### `Eq`"
-msgstr ""
+msgstr "### `Eq`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:389
+#, fuzzy
 msgid ""
 "Probably the most often used interface, `Eq` corresponds to interface "
 "`Equals` we used above as an example. Instead of `eq` and `neq`, `Eq` "
@@ -885,64 +1132,84 @@ msgid ""
 "define their own data types, `Eq` is typically one of the first interfaces "
 "they implement."
 msgstr ""
+"可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 "
+"`neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 "
+"*Prelude* 中定义的大多数数据类型都带有 `Eq` "
+"的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:391
+#, fuzzy
 msgid "#### `Eq` Laws"
-msgstr ""
+msgstr "#### `Eq` 定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:393
+#, fuzzy
 msgid "We expect the following laws to hold for all implementations of `Eq`:"
-msgstr ""
+msgstr "我们期望以下定律适用于 `Eq` 的所有实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:396
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `(==)` is *reflexive*: `x == x = True` for all `x`. This means, that\n"
 "every value is equal to itself.\n"
 msgstr ""
+"* `(==)` 是 *reflexive*：对于所有 `x`，`x == x = True`。这意味着\n"
+"每个值都等于它自己。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:399
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `(==)` is *symmetric*: `x == y = y == x` for all `x` and `y`.\n"
 "This means, that the order of arguments passed to `(==)` does not matter.\n"
 msgstr ""
+"* `(==)` 是 * 对称*：对于所有 `x` 和 `y`，`x == y = y == x`。\n"
+"这意味着，传递给 `(==)` 的参数顺序无关紧要。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:402
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `(==)` is *transitive*: From `x == y = True` and `y == z = True` follows\n"
 "`x == z = True`.\n"
 msgstr ""
+"* `(==)` 是 * 传递*：从 `x == y = True` 和 `y == z = True` 如下\n"
+"`x == z = True`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:405
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `(/=)` is the negation of `(==)`: `x == y = not (x /= y)`\n"
 "for all `x` and `y`.\n"
 msgstr ""
+"* `(/=)` 是 `(==)` 的否定：`x == y = not (x /= y)`\n"
+"对于所有 `x` 和 `y`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:410
+#, fuzzy
 msgid ""
 "In theory, Idris has the power to verify these laws at compile time for many "
 "non-primitive types. However, out of pragmatism this is not required when "
 "implementing `Eq`, since writing such proofs can be quite involved."
 msgstr ""
+"理论上，Idris "
+"有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 "
+"`Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:412
+#, fuzzy
 msgid "### `Ord`"
-msgstr ""
+msgstr "### `Ord`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:419
+#, fuzzy
 msgid ""
 "The pendant to `Comp` in the *Prelude* is interface `Ord`. In addition to "
 "`compare`, which is identical to our own `comp` it provides comparison "
@@ -951,25 +1218,32 @@ msgid ""
 "`Ord` constraint, we also have access to operators `(==)` and `(/=)` and "
 "related functions."
 msgstr ""
+"*Prelude*中`Comp`的挂件是接口`Ord`。除了 `compare`，它与我们自己的 `comp` "
+"相同，它提供了比较运算符 `(>=)`、`(>)`、[ X170X](<=)` 和 `(<)`，以及效用函数 "
+"`max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，"
+"我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:421
+#, fuzzy
 msgid "#### `Ord` Laws"
-msgstr ""
+msgstr "#### `Ord` 规律"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:423
+#, fuzzy
 msgid "We expect the following laws to hold for all implementations of `Ord`:"
-msgstr ""
+msgstr "我们期望以下定律适用于 `Ord` 的所有实现："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:433
+#, fuzzy
 msgid "`(<=)` is *reflexive* and *transitive*."
-msgstr ""
+msgstr "`(<=)` 是 * 自反 * 和 * 传递*。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:433
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `(<=)` is *antisymmetric*: From `x <= y = True` and `y <= x = True`\n"
 "follows `x == y = True`.\n"
@@ -980,47 +1254,66 @@ msgid ""
 "* `compare x y == GT = x > y`\n"
 "* `compare x y == LT = x < y`\n"
 msgstr ""
+"* `(<=)` 是 *antisymmetric*：来自 `x <= y = True` 和 `y <= x = True`\n"
+"遵循`x == y = True`。\n"
+"* `x <= y = y >= x`。\n"
+"* `x < y = not (y <= x)`\n"
+"* `x > y = 非 (y >= x)`\n"
+"* `比较 x y = EQ` => `x == y = True`\n"
+"* `比较 x y == GT = x > y`\n"
+"* `比较 x y == LT = x < y`\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:435
+#, fuzzy
 msgid "### `Semigroup` and `Monoid`"
-msgstr ""
+msgstr "### `Semigroup` 和 `Monoid`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:439
+#, fuzzy
 msgid ""
 "`Semigroup` is the pendant to our example interface `Concat`, with operator "
 "`(<+>)` (also called *append*) corresponding to function `concat`."
 msgstr ""
+"`Semigroup` 是我们示例接口 `Concat` 的附属物，运算符 `(<+>)`（也称为 "
+"*append*）对应于函数 [ X133X]连接`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:442
+#, fuzzy
 msgid ""
 "Likewise, `Monoid` corresponds to `Empty`, with `neutral` corresponding to "
 "`empty`."
-msgstr ""
+msgstr "同样，`Monoid` 对应 `Empty`，`neutral` 对应 `empty`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:449
+#, fuzzy
 msgid ""
 "These are incredibly important interfaces, which can be used to combine two "
 "or more values of a data type into a single value of the same type. Examples "
 "include but are not limited to addition or multiplication of numeric types, "
 "concatenation of sequences of data, or sequencing of computations."
-msgstr ""
+msgstr "这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。"
+"示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的排序。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:455
+#, fuzzy
 msgid ""
 "As an example, consider a data type for representing distances in a "
 "geometric application. We could just use `Double` for this, but that's not "
 "very type safe. It would be better to use a single field record wrapping "
 "values type `Double`, to give such values clear semantics:"
 msgstr ""
+"例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` "
+"，但这不是很安全的类型。最好使用单个字段记录包装值类型 "
+"`Double`，以便为这些值提供清晰的语义："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:461
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record Distance where\n"
@@ -1028,75 +1321,102 @@ msgid ""
 "  meters : Double\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"记录距离在哪里\n"
+"  构造函数 MkDistance\n"
+"  米：双\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:465
+#, fuzzy
 msgid ""
 "There is a natural way for combining two distances: We sum up the values "
 "they hold. This immediately leads to an implementation of `Semigroup`:"
-msgstr ""
+msgstr "有一种结合两个距离的自然方法：我们将它们持有的值相加。这立即导致 `Semigroup` "
+"的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:470
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Semigroup Distance where\n"
 "  x <+> y = MkDistance $ x.meters + y.meters\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"半群距离\n"
+"  x <+> y = MkDistance $ x.meters + y.meters\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:474
+#, fuzzy
 msgid ""
 "It is also immediately clear, that zero is the neutral element of this "
 "operation: Adding zero to any value does not affect the value at all.  This "
 "allows us to implement `Monoid` as well:"
-msgstr ""
+msgstr "也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。"
+"这也允许我们实现 `Monoid` ："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:479
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "Monoid Distance where\n"
 "  neutral = MkDistance 0\n"
 "```\n"
 msgstr ""
+"```伊德里斯\n"
+"Monoid 距离\n"
+"  中性 = MkDistance 0\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:481
+#, fuzzy
 msgid "#### `Semigroup` and `Monoid` Laws"
-msgstr ""
+msgstr "#### `Semigroup` 和 `Monoid` 定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:484
+#, fuzzy
 msgid ""
 "We expect the following laws to hold for all implementations of `Semigroup` "
 "and `Monoid`:"
-msgstr ""
+msgstr "我们期望以下定律适用于 `Semigroup` 和 `Monoid` 的所有实现："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:489
+#, fuzzy
 msgid ""
 "`(<+>)` is *associative*: `x <+> (y <+> z) = (x <+> y) <+> z`, for all "
 "values `x`, `y`, and `z`."
 msgstr ""
+"`(<+>)` 是 * 关联*: `x <+> (y <+> z) = (x <+> y) <+> z`,对于所有值 `x`、`y` "
+"和 `z`。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:489
+#, fuzzy
 msgid ""
 "`neutral` is the *neutral element* with relation to `(<+>)`: `neutral <+> x "
 "= x <+> neutral = x`, for all `x`."
 msgstr ""
+"`neutral` 是 *neutral element* 与 `(<+>)` 的关系： `neutral <+> x = x <+"
+">neutral = x[X95X ]，适用于所有 `x`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:491
+#, fuzzy
 msgid "### `Show`"
-msgstr ""
+msgstr "### `显示`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:497
+#, fuzzy
 msgid ""
 "The `Show` interface is mainly used for debugging purposes, and is supposed "
 "to display values of a given type as a string, typically closely resembling "
@@ -1104,33 +1424,46 @@ msgid ""
 "of arguments in parentheses where necessary. For instance, experiment with "
 "the output of the following function at the REPL:"
 msgstr ""
+"`Show` 接口主要用于调试目的，并且应该将给定类型的值显示为字符串，"
+"通常非常类似于用于创建值的 Idris "
+"代码。这包括在必要时将参数正确包装在括号中。例如，在 REPL "
+"中试验以下函数的输出："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:502
+#, fuzzy
 msgid ""
 "```idris showExample : Maybe (Either String (List (Maybe Integer))) -> "
 "String showExample = show ```"
 msgstr ""
+"```idris showExample : Maybe (Either String (List (Maybe Integer))) -> "
+"String showExample = show ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:509
+#, fuzzy
 msgid ""
 "```repl Tutorial.Interfaces> showExample (Just (Right [Just 12, Nothing]))  "
 "\"Just (Right [Just 12, Nothing])\" ```"
 msgstr ""
+"```repl Tutorial.Interfaces> showExample (Just (Right [Just 12, Nothing])) "
+"\"Just (Right [Just 12, Nothing])\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:511
+#, fuzzy
 msgid "We will learn how to implement instances of `Show` in an exercise."
-msgstr ""
+msgstr "我们将在练习中学习如何实现 `Show` 的实例。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:513
+#, fuzzy
 msgid "### Overloaded Literals"
-msgstr ""
+msgstr "### 重载文字"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:524
+#, fuzzy
 msgid ""
 "Literal values in Idris, such as integer literals (`12001`), string literals "
 "(`\"foo bar\"`), floating point literals (`12.112`), and character literals "
@@ -1142,9 +1475,17 @@ msgid ""
 "using floating point literals).  The case of integer literals is special, "
 "and will be discussed in the next section."
 msgstr ""
+"Idris 中的文字值，例如整数文字 (`12001`)、字符串文字 (`\"foo bar\"`)、"
+"浮点文字 (`12.112`) 和字符文字(`'$'`) 可以重载。这意味着，"
+"我们可以仅从字符串文字创建 `String` "
+"以外的类型的值。其具体工作原理必须等待另一部分，但对于许多常见情况，"
+"一个值足以实现接口 "
+"`FromString`（用于使用字符串文字）、`FromChar`（用于使用字符文字）或 "
+"`FromDouble` （用于使用浮点文字）。整数文字的情况很特殊，将在下一节中讨论。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:531
+#, fuzzy
 msgid ""
 "Here is an example of using `FromString`. Assume, we write an application "
 "where users can identify themselves with a username and password. Both "
@@ -1153,25 +1494,34 @@ msgid ""
 "these cases, it is advisable to come up with new types for the two, "
 "especially since getting these things wrong is a security concern."
 msgstr ""
+"这是使用 `FromString` 的示例。假设我们编写了一个应用程序，用户可以在其中使用"
+"用户名和密码来识别自己。两者都由字符串组成，因此很容易混淆和混淆这两件事，尽"
+"管它们显然具有非常不同的语义。在这些情况下，建议为这两种情况提供新类型，特别"
+"是因为弄错这些东西是一个安全问题。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:533
+#, fuzzy
 msgid "Here are three example record types to do this:"
-msgstr ""
+msgstr "以下是执行此操作的三种示例记录类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:538
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "record UserName where\n"
 "  constructor MkUserName\n"
 "  name : String\n"
 msgstr ""
+"```伊德里斯\n"
+"在哪里记录用户名\n"
+"  构造函数 MkUserName\n"
+"  名称：字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:548
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record User where\n"
 "  constructor MkUser\n"
@@ -1179,116 +1529,155 @@ msgid ""
 "  password : Password\n"
 "```\n"
 msgstr ""
+"记录用户在哪里\n"
+"  构造函数 MkUser\n"
+"  名称：用户名\n"
+"  密码：密码\n"
+"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:551
+#, fuzzy
 msgid ""
 "In order to create a value of type `User`, even for testing, we'd have to "
 "wrap all strings using the given constructors:"
-msgstr ""
+msgstr "为了创建 `User` "
+"类型的值，即使是为了测试，我们也必须使用给定的构造函数包装所有字符串："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:556
+#, fuzzy
 msgid ""
 "```idris hock : User hock = MkUser (MkUserName \"hock\") (MkPassword \"not "
 "telling\")  ```"
 msgstr ""
+"```idris hock : 用户 hock = MkUser (MkUserName \"hock\") (MkPassword \"not "
+"tell\") ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:560
+#, fuzzy
 msgid ""
 "This is rather cumbersome, and some people might think this to be too high a "
 "price to pay just for an increase in type safety (I'd tend to disagree).  "
 "Luckily, we can get the convenience of string literals back very easily:"
 msgstr ""
+"这是相当麻烦的，有些人可能认为这对于仅仅为了增加类型安全性而付出的代价太高了"
+"（我倾向于不同意）。幸运的是，我们可以很容易地恢复字符串文字的便利性："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:564
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "```idris\n"
 "FromString UserName where\n"
 "  fromString = MkUserName\n"
 msgstr ""
+"```伊德里斯\n"
+"FromString 用户名 where\n"
+"  fromString = MkUserName\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:567
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "FromString Password where\n"
 "  fromString = MkPassword\n"
 msgstr ""
+"FromString 密码 where\n"
+"  fromString = MkPassword\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:571
+#, fuzzy
 msgid "hock2 : User hock2 = MkUser \"hock\" \"not telling\" ```"
-msgstr ""
+msgstr "hock2 : 用户 hock2 = MkUser \"hock\" \"nottelling\" ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:573
+#, fuzzy
 msgid "### Numeric Interfaces"
-msgstr ""
+msgstr "### 数字接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:577
+#, fuzzy
 msgid ""
 "The *Prelude* also exports several interfaces providing the usual arithmetic "
 "operations. Below is a comprehensive list of the interfaces and the "
 "functions each provides:"
-msgstr ""
+msgstr "*Prelude* 还导出了几个提供常用算术运算的接口。下面是一个完整的接口列表和每个"
+"提供的功能："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:582
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `Num`\n"
 "  * `(+)` : Addition\n"
 "  * `(*)` : Multiplication\n"
 "  * `fromInteger` : Overloaded integer literals\n"
 msgstr ""
+"*`数字`\n"
+"  * `(+)` : 加法\n"
+"  * `(*)` ：乘法\n"
+"  * `fromInteger` : 重载整数字面量\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:586
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `Neg`\n"
 "  * `negate` : Negation\n"
 "  * `(-)` : Subtraction\n"
 msgstr ""
+"*`否定`\n"
+"  * `否定`：否定\n"
+"  * `(-)` : 减法\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:590
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `Integral`\n"
 "  * `div` : Integer division\n"
 "  * `mod` : Modulo operation\n"
 msgstr ""
+"*`积分`\n"
+"  * `div` : 整数除法\n"
+"  * `mod` : 模运算\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:594
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "* `Fractional`\n"
 "  * `(/)` : Division\n"
 "  * `recip` : Calculates the reciprocal of a value\n"
 msgstr ""
+"*`小数`\n"
+"  * `(/)` : 除法\n"
+"  * `recip` : 计算一个值的倒数\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:599
+#, fuzzy
 msgid ""
 "As you can see: We need to implement interface `Num` to use integer literals "
 "for a given type. In order to use negative integer literals like `-12`, we "
 "also have to implement interface `Neg`."
-msgstr ""
+msgstr "如您所见：我们需要实现接口 `Num` 以对给定类型使用整数文字。为了使用像 `-12` "
+"这样的负整数字面量，我们还必须实现接口 `Neg`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:601
+#, fuzzy
 msgid "### `Cast`"
-msgstr ""
+msgstr "### `演员`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:607
+#, fuzzy
 msgid ""
 "The last interface we will quickly discuss in this section is `Cast`. It is "
 "used to convert values of one type to values of another via function `cast`. "
@@ -1296,9 +1685,13 @@ msgid ""
 "unlike the other interfaces we looked at so far, with only one type "
 "parameter."
 msgstr ""
+"我们将在本节中快速讨论的最后一个接口是 `Cast`。它用于通过函数 `cast` "
+"将一种类型的值转换为另一种类型的值。 `Cast` 是特殊的，因为它是通过 * 两个* "
+"类型参数参数化的，这与我们目前看到的其他接口不同，只有一个类型参数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:614
+#, fuzzy
 msgid ""
 "So far, `Cast` is mainly used for interconversion between primitive types in "
 "the standard libraries, especially numeric types. When you look at the "
@@ -1306,9 +1699,13 @@ msgid ""
 "Cast` at the REPL), you'll see that there are dozens of implementations for "
 "most pairings of primitive types."
 msgstr ""
+"到目前为止，`Cast`主要用于标准库中基本类型之间的相互转换，尤其是数值类型。"
+"当您查看从 *Prelude* 导出的实现时（例如，通过在 REPL 中调用 `:doc "
+"Cast`），您会看到对于大多数配对有几十个实现原始类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:623
+#, fuzzy
 msgid ""
 "Although `Cast` would also be useful for other conversions (for going from "
 "`Maybe` to `List` or for going from `Either e` to `Maybe`, for instance), "
@@ -1317,57 +1714,77 @@ msgid ""
 "`List` and vice versa, but not for going from `Vect n` to `List`, or for "
 "going from `List1` to `List`, although these would be just as feasible."
 msgstr ""
+"尽管 `Cast` 也可用于其他转换（用于从 `Maybe` 到 `List` 或从 `e` 到 "
+"`例如，Maybe`），*Prelude* 和 *base* 似乎没有一致地引入这些。例如，从 "
+"`SnocList` 到 `List` 有 `Cast` 实现，反之亦然，但从 `Vect n` 到 [ "
+"X351X]List`，或者从 `List1` 到 `List`，尽管这些都是可行的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:629
+#, fuzzy
 msgid ""
 "These exercises are meant to make you comfortable with implementing "
 "interfaces for your own data types, as you will have to do so regularly when "
 "writing Idris code."
-msgstr ""
+msgstr "这些练习旨在让您熟悉为自己的数据类型实现接口，因为您在编写 Idris "
+"代码时必须定期这样做。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:635
+#, fuzzy
 msgid ""
 "While it is immediately clear why interfaces like `Eq`, `Ord`, or `Num` are "
 "useful, the usability of `Semigroup` and `Monoid` may be harder to "
 "appreciate at first.  Therefore, there are several exercises where you'll "
 "implement different instances for these."
 msgstr ""
+"虽然很清楚为什么像 `Eq`、`Ord` 或 `Num` 这样的接口很有用，但 `Semigroup` 和 `"
+"Monoid 的可用性` "
+"一开始可能更难欣赏。因此，有几个练习可以为这些练习实现不同的实例。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Interfaces.md:639
+#, fuzzy
 msgid ""
 "Define a record type `Complex` for complex numbers, by pairing two values of "
 "type `Double`.  Implement interfaces `Eq`, `Num`, `Neg`, and `Fractional` "
 "for `Complex`."
 msgstr ""
+"通过配对 `Double` 类型的两个值，为复数定义记录类型 `Complex`。为 `Complex` "
+"实现接口 `Eq`、`Num`、`Neg` 和 `Fractional`。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Interfaces.md:643
+#, fuzzy
 msgid ""
 "Implement interface `Show` for `Complex`. Have a look at data type `Prec` "
 "and function `showPrec` and how these are used in the *Prelude* to implement "
 "instances for `Either` and `Maybe`."
 msgstr ""
+"为 `Complex` 实现接口 `Show`。查看数据类型 `Prec` 和函数 `showPrec` "
+"以及如何在 *Prelude* 中使用它们来实现 `Either` 和 ` 的实例]也许`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:647
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Verify the correct behavior of your implementation by wrapping\n"
 "   a value of type `Complex` in a `Just` and `show` the result at\n"
 "   the REPL.\n"
 msgstr ""
+"   通过包装验证实现的正确行为\n"
+"   `Just` 和 `show` 中的 `Complex` 类型的值\n"
+"   REPL。\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Interfaces.md:649
+#, fuzzy
 msgid "Consider the following wrapper for optional values:"
-msgstr ""
+msgstr "考虑以下可选值的包装器："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:655
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   record First a where\n"
@@ -1375,58 +1792,76 @@ msgid ""
 "     value : Maybe a\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   记录 First a where\n"
+"     构造函数 MkFirst\n"
+"     价值：也许是\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:660
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Implement interfaces `Eq`, `Ord`, `Show`, `FromString`, `FromChar`, `FromDouble`,\n"
 "   `Num`, `Neg`, `Integral`, and `Fractional` for `First a`. All of these will require\n"
 "   corresponding constraints on type parameter `a`. Consider implementing and\n"
 "   using the following utility functions where they make sense:\n"
 msgstr ""
+"   实现接口 `Eq`, `Ord`, `Show`, `FromString`, `FromChar`, `FromDouble`,\n"
+"   `Num`、`Neg`、`Integral` 和 `Fractional` 用于 `First a`。所有这些都需要\n"
+"   类型参数 `a` 的相应约束。考虑实施和\n"
+"   在有意义的地方使用以下实用函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:663
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   pureFirst : a -> First a\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   pureFirst : a -> 第一个 a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:665
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "   mapFirst : (a -> b) -> First a -> First b\n"
-msgstr ""
+msgstr "   mapFirst : (a -> b) -> 第一个 a -> 第一个 b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:668
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   mapFirst2 : (a -> b -> c) -> First a -> First b -> First c\n"
 "   ```\n"
 msgstr ""
+"   mapFirst2 : (a -> b -> c) -> 第一个 a -> 第一个 b -> 第一个 c\n"
+"   ```\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Interfaces.md:673
+#, fuzzy
 msgid ""
 "Implement interfaces `Semigroup` and `Monoid` for `First a` in such a way, "
 "that `(<+>)` will return the first non-nothing argument and `neutral` is the "
 "corresponding neutral element. There must be no constraints on type "
 "parameter `a` in these implementations."
 msgstr ""
+"为 `First a` 实现接口 `Semigroup` 和 `Monoid`，使 `(<+>)` "
+"将返回第一个非空参数和 `neutral` 是相应的中性元素。在这些实现中，类型参数 `a`"
+" 必须没有约束。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Interfaces.md:676
+#, fuzzy
 msgid ""
 "Repeat exercises 3 and 4 for record `Last`. The `Semigroup` implementation "
 "should return the last non-nothing value."
-msgstr ""
+msgstr "对记录 `Last` 重复练习 3 和 4。 `Semigroup` 实现应该返回最后一个非空值。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:682
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   record Last a where\n"
@@ -1434,169 +1869,225 @@ msgid ""
 "     value : Maybe a\n"
 "   ```\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   记录 Last a where\n"
+"     构造函数 MkLast\n"
+"     价值：也许是\n"
+"   ```\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Interfaces.md:687
+#, fuzzy
 msgid ""
 "Function `foldMap` allows us to map a function returning a `Monoid` over a "
 "list of values and accumulate the result using `(<+>)` at the same time.  "
 "This is a very powerful way to accumulate the values stored in a list.  Use "
 "`foldMap` and `Last` to extract the last element (if any) from a list."
 msgstr ""
+"函数 `foldMap` 允许我们将返回 `Monoid` 的函数映射到值列表上，并同时使用 "
+"`(<+>)` 累加结果。这是累积存储在列表中的值的一种非常有效的方法。使用 "
+"`foldMap` 和 `Last` 从列表中提取最后一个元素（如果有）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:692
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Note, that the type of `foldMap` is more general and not specialized\n"
 "   to lists only. It works also for `Maybe`, `Either` and other container\n"
 "   types we haven't looked at so far. We will learn about\n"
 "   interface `Foldable` in a later section.\n"
 msgstr ""
+"   请注意，`foldMap` 的类型更通用，不是专门的\n"
+"   仅列出。它也适用于 `Maybe`、`Either` 和其他容器\n"
+"   到目前为止我们还没有看过的类型。我们将了解\n"
+"   接口 `Foldable` 在后面的部分。\n"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Interfaces.md:694
+#, fuzzy
 msgid "Consider record wrappers `Any` and `All` for boolean values:"
-msgstr ""
+msgstr "考虑记录包装器 `Any` 和 `All` 用于布尔值："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:699
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   record Any where\n"
 "     constructor MkAny\n"
 "     any : Bool\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   记录任何地方\n"
+"     构造函数 MkAny\n"
+"     任何：布尔\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:704
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   record All where\n"
 "     constructor MkAll\n"
 "     all : Bool\n"
 "   ```\n"
 msgstr ""
+"   记录所有地方\n"
+"     构造函数 MkAll\n"
+"     全部：布尔\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:708
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Implement `Semigroup` and `Monoid` for `Any`, so that the result of\n"
 "   `(<+>)` is `True`, if and only if at least one of the arguments is `True`.\n"
 "   Make sure that `neutral` is indeed the neutral element for this operation.\n"
 msgstr ""
+"   对 `Any` 实现 `Semigroup` 和 `Monoid`，使得结果\n"
+"   `(<+>)` 是 `True`，当且仅当至少一个参数是 `True`。\n"
+"   确保 `neutral` 确实是此操作的中性元素。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:712
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Likewise, implement `Semigroup` and `Monoid` for `All`, so that the result of\n"
 "   `(<+>)` is `True`, if and only if both of the arguments are `True`.\n"
 "   Make sure that `neutral` is indeed the neutral element for this operation.\n"
 msgstr ""
+"   同样，为 `All` 实现 `Semigroup` 和 `Monoid`，使得\n"
+"   `(<+>)` 是 `True`，当且仅当两个参数都是 `True`。\n"
+"   确保 `neutral` 确实是此操作的中性元素。\n"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Interfaces.md:715
+#, fuzzy
 msgid ""
 "Implement functions `anyElem` and `allElems` using `foldMap` and `Any` or "
 "`All`, respectively:"
-msgstr ""
+msgstr "分别使用 `foldMap` 和 `Any` 或 `All` 实现函数 `anyElem` 和 `allElems`："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:719
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   -- True, if the predicate holds for at least one element\n"
 "   anyElem : (a -> Bool) -> List a -> Bool\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   -- True，如果谓词至少对一个元素成立\n"
+"   anyElem : (a -> Bool) -> 列出 a -> Bool\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:723
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   -- True, if the predicate holds for all elements\n"
 "   allElems : (a -> Bool) -> List a -> Bool\n"
 "   ```\n"
 msgstr ""
+"   -- True，如果谓词适用于所有元素\n"
+"   allElems : (a -> Bool) -> 列出 a -> Bool\n"
+"   ```\n"
 
 #. type: Bullet: '9. '
 #: ../src/Tutorial/Interfaces.md:726
+#, fuzzy
 msgid ""
 "Record wrappers `Sum` and `Product` are mainly used to hold numeric types."
-msgstr ""
+msgstr "记录包装器 `Sum` 和 `Product` 主要用于保存数字类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:731
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   ```idris\n"
 "   record Sum a where\n"
 "     constructor MkSum\n"
 "     value : a\n"
 msgstr ""
+"   ```伊德里斯\n"
+"   记录 Sum a where\n"
+"     构造函数 MkSum\n"
+"     值：一个\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:736
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   record Product a where\n"
 "     constructor MkProduct\n"
 "     value : a\n"
 "   ```\n"
 msgstr ""
+"   记录产品在哪里\n"
+"     构造函数 MkProduct\n"
+"     值：一个\n"
+"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:739
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Given an implementation of `Num a`, implement `Semigroup (Sum a)`\n"
 "   and `Monoid (Sum a)`, so that `(<+>)` corresponds to addition.\n"
 msgstr ""
+"   给定 `Num a` 的实现，实现 `Semigroup (Sum a)`\n"
+"   和 `Monoid (Sum a)`，因此 `(<+>)` 对应于加法。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:742
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Likewise, implement `Semigroup (Product a)` and `Monoid (Product a)`,\n"
 "   so that `(<+>)` corresponds to multiplication.\n"
 msgstr ""
+"   同样，实现 `Semigroup (Product a)` 和 `Monoid (Product a)`，\n"
+"   因此 `(<+>)` 对应于乘法。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:745
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   When implementing `neutral`, remember that you can use integer\n"
 "   literals when working with numeric types.\n"
 msgstr ""
+"   在实现 `neutral` 时，记住可以使用整数\n"
+"   使用数字类型时的文字。\n"
 
 #. type: Bullet: '10. '
 #: ../src/Tutorial/Interfaces.md:748
+#, fuzzy
 msgid ""
 "Implement `sumList` and `productList` by using `foldMap` together with the "
 "wrappers from Exercise 9:"
-msgstr ""
+msgstr "通过使用 `foldMap` 和练习 9 中的包装器来实现 `sumList` 和 `productList`："
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:751
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "    ```idris\n"
 "    sumList : Num a => List a -> a\n"
 msgstr ""
+"    ```伊德里斯\n"
+"    sumList : Num a => List a -> a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:754
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "    productList : Num a => List a -> a\n"
 "    ```\n"
 msgstr ""
+"    productList : Num a => List a -> a\n"
+"    ```\n"
 
 #. type: Bullet: '11. '
 #: ../src/Tutorial/Interfaces.md:760
+#, fuzzy
 msgid ""
 "To appreciate the power and versatility of `foldMap`, after solving "
 "exercises 6 to 10 (or by loading `Solutions.Inderfaces` in a REPL session), "
@@ -1604,20 +2095,28 @@ msgid ""
 "calculate the first and last element of the list as well as the sum and "
 "product of all values."
 msgstr ""
+"要了解 `foldMap` 的强大功能和多功能性，在解决练习 6 到 10 之后（或通过在 "
+"REPL 会话中加载 `Solutions.Inderfaces`），在 REPL 中运行以下命令，这将 "
+"-在单个列表遍历中！ - 计算列表的第一个和最后一个元素以及所有值的总和和乘积。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:765
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "    ```repl\n"
 "    > foldMap (\\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]\n"
 "    (MkFirst (Just 3), (MkLast (Just 12), (MkSum 26, MkProduct 1008)))\n"
 "    ```\n"
 msgstr ""
+"    ```repl\n"
+"    > foldMap (\\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) "
+"[3,7,4,12]\n"
+"    （MkFirst（仅 3），（MkLast（仅 12），（MkSum 26，MkProduct 1008）））\n"
+"    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:772
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "    Note, that there are also `Semigroup` implementations for\n"
 "    types with an `Ord` implementation, which will return\n"
@@ -1626,9 +2125,16 @@ msgid ""
 "    natural numbers, or 0 and 255 for `Bits8`), these can even\n"
 "    be extended to `Monoid`.\n"
 msgstr ""
+"    请注意，还有 `Semigroup` 实现\n"
+"    具有 `Ord` 实现的类型，它将返回\n"
+"    两个值中的较小者或较大者。在类型的情况下\n"
+"    具有绝对最小值或最大值（例如，0 表示\n"
+"    自然数，或者 `Bits8` 的 0 和 255），这些甚至可以\n"
+"    扩展为 `Monoid`。\n"
 
 #. type: Bullet: '12. '
 #: ../src/Tutorial/Interfaces.md:778
+#, fuzzy
 msgid ""
 "In an earlier exercise, you implemented a data type representing chemical "
 "elements and wrote a function for calculating their atomic masses. Define a "
@@ -1636,24 +2142,32 @@ msgid ""
 "interfaces `Eq`, `Ord`, `Show`, `FromDouble`, `Semigroup`, and `Monoid` for "
 "this."
 msgstr ""
+"在之前的练习中，您实现了一个表示化学元素的数据类型并编写了一个用于计算其原子"
+"质量的函数。定义一个新的单字段记录类型来表示原子质量，并实现接口 `Eq`, `Ord`"
+", `Show`, `FromDouble`, ` Semigroup` 和 `Monoid` 为此。"
 
 #. type: Bullet: '13. '
 #: ../src/Tutorial/Interfaces.md:782
+#, fuzzy
 msgid ""
 "Use the new data type from exercise 12 to calculate the atomic mass of an "
 "element and compute the molecular mass of a molecule given by its formula."
-msgstr ""
+msgstr "使用练习 12 "
+"中的新数据类型来计算元素的原子质量并计算由其公式给出的分子的分子质量。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:785
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "    Hint: With a suitable utility function, you can use `foldMap`\n"
 "    once again for this.\n"
 msgstr ""
+"    提示：使用合适的实用函数，您可以使用 `foldMap`\n"
+"    再次为此。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:791
+#, fuzzy
 msgid ""
 "Final notes: If you are new to functional programming, make sure to give "
 "your implementations of exercises 6 to 10 a try at the REPL.  Note, how we "
@@ -1661,62 +2175,78 @@ msgid ""
 "as shown in exercise 11, these behaviors can be combined in a single list "
 "traversal."
 msgstr ""
+"最后注意事项：如果您是函数式编程的新手，请确保在 REPL 中尝试您的练习 6 到 10 "
+"的实现。请注意，我们如何用最少的代码实现所有这些功能，以及如练习 11 "
+"所示，如何将这些行为组合在一个列表遍历中。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
+#, fuzzy
 msgid ""
 "Interfaces allow us to implement the same function with different behavior "
 "for different types."
-msgstr ""
+msgstr "接口允许我们为不同类型实现具有不同行为的相同功能。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
+#, fuzzy
 msgid ""
 "Functions taking one or more interface implementations as arguments are "
 "called *constrained functions*."
-msgstr ""
+msgstr "将一个或多个接口实现作为参数的函数称为*约束函数*。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
+#, fuzzy
 msgid ""
 "Interfaces can be organized hierarchically by *extending* other interfaces."
-msgstr ""
+msgstr "接口可以通过*扩展*其他接口来分层组织。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
+#, fuzzy
 msgid ""
 "Interfaces implementations can themselves be *constrained* requiring other "
 "implementations to be available."
-msgstr ""
+msgstr "接口实现本身可以是*约束*，需要其他实现可用。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
+#, fuzzy
 msgid ""
 "Interface functions can be given a *default implementation*, which can be "
 "overridden by implementers, for instance for reasons of efficiency."
-msgstr ""
+msgstr "接口函数可以被赋予一个*默认实现*，它可以被实现者覆盖，例如出于效率的原因。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:807
+#, fuzzy
 msgid ""
 "Certain interfaces allow us to use literal values such as string or integer "
 "literals for our own data types."
-msgstr ""
+msgstr "某些接口允许我们为我们自己的数据类型使用字符串或整数文字等文字值。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:812
+#, fuzzy
 msgid ""
 "Note, that I did not yet tell the whole story about literal values in this "
 "section. More details for using literals with types that accept only a "
 "restricted set of values can be found in the chapter about [primitives](Prim."
 "md)."
 msgstr ""
+"请注意，我还没有在本节中讲述有关文字值的全部故事。"
+"关于使用只接受一组受限值的类型的文字的更多细节可以在关于 [primitives](Prim."
+"md) 的章节中找到。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:819
+#, fuzzy
 msgid ""
 "In the [next chapter](Functions2.md), we have a closer look at functions and "
 "their types. We will learn about named arguments, implicit arguments, and "
 "erased arguments as well as some constructors for implementing more complex "
 "functions."
 msgstr ""
+"在 [下一章](Functions2.md) 中，我们将仔细研究函数及其类型。我们将学习命名参数"
+"、隐式参数和擦除参数以及一些用于实现更复杂函数的构造函数。"
