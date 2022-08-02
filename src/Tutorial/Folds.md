@@ -223,7 +223,7 @@ replicateListTR n v = go Nil n
 
 The big advantage of tail recursive functions is, that they
 can be easily converted to efficient, imperative loops by the Idris
-compiler, an are thus *stack safe*: Recursive function calls
+compiler, and are thus *stack safe*: Recursive function calls
 are *not* added to the call stack, thus avoiding the dreaded
 stack overflow errors.
 
