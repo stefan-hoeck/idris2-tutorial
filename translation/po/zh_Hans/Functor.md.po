@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 14:09+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-02 15:39+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functor/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -288,9 +288,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1030 ../src/Tutorial/Traverse.md:1056
 #: ../src/Tutorial/Traverse.md:1067 ../src/Tutorial/Traverse.md:1077
 #: ../src/Tutorial/Traverse.md:1095
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "idris"
-msgstr ""
+msgstr "伊德里斯"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -363,9 +363,9 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
 #: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
 #: ../src/Tutorial/Traverse.md:997
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "repl"
-msgstr ""
+msgstr "重复"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -763,7 +763,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:95
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "multBy2List' : Num a => List a -> List a\n"
 "multBy2List' = mapList (2 *)\n"
@@ -774,6 +774,14 @@ msgid ""
 "toLengthList' : List String -> List Nat\n"
 "toLengthList' = mapList length\n"
 msgstr ""
+"multBy2List' : Num a => List a -> List a\n"
+"multBy2List' = mapList (2 *)\n"
+"\n"
+"toUpperList' : 列表字符串 -> 列表字符串\n"
+"toUpperList' = mapList toUpper\n"
+"\n"
+"toLengthList' : 列表字符串 -> 列表 Nat\n"
+"toLengthList' = mapList 长度\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:110
@@ -1005,7 +1013,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:216
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Tutorial.Functor> :t (<$>)\n"
 "Prelude.<$> : Functor f => (a -> b) -> f a -> f b\n"
@@ -1022,6 +1030,20 @@ msgid ""
 "Tutorial.Functor> :t ignore\n"
 "Prelude.ignore : Functor f => f a -> f ()\n"
 msgstr ""
+"Tutorial.Functor> :t (<$>)\n"
+"Prelude.<$> : Functor f => (a -> b) -> f a -> f b\n"
+"\n"
+"Tutorial.Functor> :t (<&>)\n"
+"Prelude.<&> : Functor f => f a -> (a -> b) -> f b\n"
+"\n"
+"Tutorial.Functor> :t ($>)\n"
+"Prelude.$> : 函子 f => f a -> b -> f b\n"
+"\n"
+"Tutorial.Functor> :t (<$)\n"
+"Prelude.<$ : Functor f => b -> f a -> f b\n"
+"\n"
+"Tutorial.Functor> :t 忽略\n"
+"Prelude.ignore : 函子 f => f a -> f ()\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:235
@@ -1187,7 +1209,7 @@ msgstr "更多时候，我们想一次映射多层嵌套函子。以下是如何
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:314
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "record Comp (f,g : Type -> Type) (a : Type) where\n"
 "  constructor MkComp\n"
@@ -1199,6 +1221,15 @@ msgid ""
 "compExample :  Show a => List (Either e a) -> List (Either e String)\n"
 "compExample = unComp . map show . MkComp {f = List, g = Either e}\n"
 msgstr ""
+"记录 Comp (f,g : Type -> Type) (a : Type) 其中\n"
+"  构造函数 MkComp\n"
+"  unComp : f (g a)\n"
+"\n"
+"实现 Functor f => Functor g => Functor (Comp f g) 其中\n"
+"  映射 f (MkComp v) = MkComp $ 映射 f <$> v\n"
+"\n"
+"compExample : Show a => List (Either e a) -> List (Either e String)\n"
+"compExample = unComp 。地图显示。 MkComp {f = 列表，g = 任一个 e}\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Functor.md:326
@@ -1802,7 +1833,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:622
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data Gender = Male | Female | Other\n"
 "\n"
@@ -1827,6 +1858,28 @@ msgid ""
 "  gender    : Gender\n"
 "  password  : Password\n"
 msgstr ""
+"数据性别 = 男 |女 |其他\n"
+"\n"
+"记录名称 where\n"
+"  构造函数 MkName\n"
+"  值：字符串\n"
+"\n"
+"记录电子邮件在哪里\n"
+"  构造函数 MkEmail\n"
+"  值：字符串\n"
+"\n"
+"记录密码在哪里\n"
+"  构造函数 MkPassword\n"
+"  值：字符串\n"
+"\n"
+"记录用户在哪里\n"
+"  构造函数 MkUser\n"
+"  名字：名字\n"
+"  姓氏：姓名\n"
+"  年龄：也许纳特\n"
+"  电子邮件：电子邮件\n"
+"  性别：性别\n"
+"  密码：密码\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:650
@@ -1890,7 +1943,7 @@ msgstr "对于数值类型，我们可以使用 `Data.String` 中的解析函数
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:676
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "CSVField Nat where\n"
 "  read = parsePositive\n"
@@ -1901,6 +1954,14 @@ msgid ""
 "CSVField Double where\n"
 "  read = parseDouble\n"
 msgstr ""
+"CSVField Nat where\n"
+"  读取 = parsePositive\n"
+"\n"
+"CSVField 整数 where\n"
+"  读取 = parseInteger\n"
+"\n"
+"CSVField Double where\n"
+"  读取 = parseDouble\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:692
@@ -1940,7 +2001,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:704
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a\n"
 "readIf p mk s = if p s then Just (mk s) else Nothing\n"
@@ -1978,6 +2039,41 @@ msgid ""
 "CSVField Password where\n"
 "  read = readIf isValidPassword MkPassword\n"
 msgstr ""
+"readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a\n"
+"readIf p mk s = if p s then Just (mk s) else Nothing\n"
+"\n"
+"isValidName : 字符串 -> 布尔值\n"
+"isValidName s =\n"
+"  让 len = 长度 s\n"
+"   in 0 < len && len <= 100 && all isAlpha (unpack s)\n"
+"\n"
+"CSV 字段名称 where\n"
+"  read = readIf isValidName MkName\n"
+"\n"
+"isEmailChar : 字符 -> 布尔值\n"
+"isEmailChar '.' = 真\n"
+"isEmailChar '@' = True\n"
+"isEmailChar c = isAlphaNum c\n"
+"\n"
+"isValidEmail : 字符串 -> 布尔\n"
+"isValidEmail s =\n"
+"  让 len = 长度 s\n"
+"   in 0 < len && len <= 100 && all isEmailChar (解包)\n"
+"\n"
+"CSVField 电子邮件地址\n"
+"  read = readIf isValidEmail MkEmail\n"
+"\n"
+"isPasswordChar : Char -> Bool\n"
+"isPasswordChar ' ' = True\n"
+"isPasswordChar c = not (isControl c) && not (isSpace c)\n"
+"\n"
+"isValidPassword : 字符串 -> 布尔\n"
+"isValidPassword s =\n"
+"  让 len = 长度 s\n"
+"   in 8 < len && len <= 100 && all isPasswordChar (unpack s)\n"
+"\n"
+"CSVField 密码 where\n"
+"  read = readIf isValidPassword MkPassword\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:745
@@ -2990,7 +3086,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1199
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "  id1L : Maybe a -> Maybe a\n"
 "  id1L ma = ma >>= pure\n"
@@ -3001,6 +3097,14 @@ msgid ""
 "  id2R : a -> (a -> Maybe b) -> Maybe b\n"
 "  id2R v f = f v\n"
 msgstr ""
+"  id1L : 也许一个 -> 也许一个\n"
+"  id1L ma = ma >>= 纯\n"
+"\n"
+"  id2L : a -> (a -> Maybe b) -> Maybe b\n"
+"  id2L v f = 纯 v >>= f\n"
+"\n"
+"  id2R : a -> (a -> 也许 b) -> 也许 b\n"
+"  id2R v f = f v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1212
