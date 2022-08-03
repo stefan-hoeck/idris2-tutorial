@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-03 04:30+0000\n"
+"PO-Revision-Date: 2022-08-03 05:18+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions1/zh_Hans/>\n"
@@ -384,7 +384,7 @@ msgstr "结论"
 #: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
 #, no-wrap
 msgid "What's next"
-msgstr "下一步是什么？"
+msgstr "下一步是什么"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -410,7 +410,6 @@ msgstr "函数第 1 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:12
-#, fuzzy
 msgid ""
 "Idris is a *functional* programming language. This means, that functions are "
 "its main form of abstraction (unlike for instance in an object oriented "
@@ -420,68 +419,64 @@ msgid ""
 "functions are *first class*: Functions can take other functions as arguments "
 "and can return functions as their results."
 msgstr ""
-"Idris 是一种 * 函数式* 编程语言。这意味着，函数是它的主要抽象形式（与 Java 等"
-"面向对象的语言不同，其中 *objects* 和 *classes* 是抽象的主要形式）。这也意味"
-"着我们希望 Idris 能够让我们非常轻松地组合和组合函数以创建新函数。实际上，在 "
-"Idris 中，函数是 * 的第一类*：函数可以将其他函数作为参数，并且可以将函数作为"
-"结果返回。"
+"Idris 是一种 *函数式* 编程语言。这意味着，函数是它的主要抽象形式（与 Java "
+"等面向对象的语言不同，其中 *objects* 和 *classes* 是抽象的主要形式）。"
+"这也意味着我们希望 Idris 能够让我们非常轻松地组合函数以创建新函数。实际上，"
+"在 Idris "
+"中，函数是*一等*的：函数可以将其他函数作为参数，并且可以将函数作为结果返回。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:16
-#, fuzzy
 msgid ""
 "We already learned about the basic shape of top level function declarations "
 "in Idris in the [introduction](Intro.md), so we will continue from what we "
 "learned there."
-msgstr ""
-"我们已经在 [introduction](Intro.md) 中了解了 Idris 中顶级函数声明的基本形式，"
-"因此我们将从那里学到的内容继续。"
+msgstr "我们已经在 [introduction](Intro.md) 中了解了 Idris "
+"中顶级函数声明的基本形式，因此我们将从那里学到的内容继续。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:17
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "module Tutorial.Functions1\n"
-msgstr "模块 Tutorial.Functions1\n"
+msgstr "module Tutorial.Functions1\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:21
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functions with more than one Argument"
 msgstr "具有多个参数的函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:28
-#, fuzzy
 msgid ""
 "Let's implement a function, which checks if its three `Integer` arguments "
 "form a [Pythagorean triple](https://en.wikipedia.org/wiki/"
 "Pythagorean_triple).  We get to use a new operator for this: `==`, the "
 "equality operator."
 msgstr ""
-"让我们实现一个函数，它检查它的三个 `Integer` 参数是否形成一个 [Pythagorean "
-"Triple](https://en.wikipedia.org/wiki/Pythagorean_triple)。我们为此使用一个新"
-"的运算符：`==`，相等运算符。"
+"让我们实现一个函数，它检查它的三个 `Integer` 参数是否形成一个 "
+"[勾股三元组](https://en.wikipedia.org/wiki/"
+"Pythagorean_triple)。我们为此使用一个新的运算符：`==`，相等运算符。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:29
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "isTriple : Integer -> Integer -> Integer -> Bool\n"
 "isTriple x y z = x * x + y * y == z * z\n"
 msgstr ""
-"isTriple : 整数 -> 整数 -> 整数 -> 布尔\n"
+"isTriple : Integer -> Integer -> Integer -> Bool\n"
 "isTriple x y z = x * x + y * y == z * z\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:36
-#, fuzzy
 msgid ""
 "Let's give this a spin at the REPL before we talk a bit about the types:"
-msgstr "在讨论类型之前，让我们先在 REPL 上进行一下介绍："
+msgstr "在讨论类型之前，让我们先在 REPL 上试一下："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:37
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> isTriple 1 2 3\n"
 "False\n"
@@ -489,13 +484,13 @@ msgid ""
 "True\n"
 msgstr ""
 "Tutorial.Functions1> isTriple 1 2 3\n"
-"错误的\n"
+"False\n"
 "Tutorial.Functions1> isTriple 3 4 5\n"
-"真的\n"
+"True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:49
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As can be seen from this example, the type of a function\n"
 "of several arguments consists just of a sequence\n"
@@ -503,15 +498,12 @@ msgid ""
 "chained by function arrows (`->`), which\n"
 "is terminated by an output type (`Bool` in this case).\n"
 msgstr ""
-"从这个例子可以看出，函数的类型\n"
-"几个参数只包含一个序列\n"
-"参数类型（也称为 * 输入类型 *）\n"
-"由功能箭头链接（`->`），其中\n"
-"由输出类型终止（在本例中为 `Bool`）。\n"
+"从这个例子可以看出，多参数函数的类型包含一个参数类型的序列（也称为 * "
+"输入类型 *），由函数箭头（`->`）链接起来，其中由输出类型终止（在本例中为 "
+"`Bool`）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:61
-#, fuzzy
 msgid ""
 "The implementation looks a bit like a mathematical equation: We list the "
 "arguments on the left hand side of `=` and describe the computation(s) to "
@@ -526,12 +518,11 @@ msgstr ""
 "该实现看起来有点像一个数学方程：我们在 `=` 的左侧列出参数，并在右侧描述要使用"
 "它们执行的计算。与命令式语言中的实现相比，函数式编程语言中的函数实现通常具有"
 "更多的数学外观，命令式语言通常不是描述*要计算什么*，而是通过将算法描述为*如何"
-"*来计算它命令式语句的序列。我们稍后会看到这种命令式风格在 Idris 中也可用，但"
-"只要有可能，我们更喜欢声明式风格。"
+"*来计算它命令式语句的序列。我们稍后会看到这种命令式风格在 Idris "
+"中也可用，但只要有可能，我们更喜欢声明式风格。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:68
-#, fuzzy
 msgid ""
 "As can be seen in the REPL example, functions can be invoked by passing the "
 "arguments separated by whitespace. No parentheses are necessary unless one "
@@ -540,31 +531,29 @@ msgid ""
 "only partially (see later in this chapter)."
 msgstr ""
 "从 REPL 示例中可以看出，可以通过传递由空格分隔的参数来调用函数。除非我们作为"
-"函数参数传递的表达式之一包含额外的空格，否则不需要括号。当我们仅部分应用函数"
-"时，这非常方便（见本章后面）。"
+"将包含额外的空格的表达式作为函数参数进行传递，否则不需要括号。当我们仅部分应"
+"用函数时，这非常方便（见本章后面）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:74
-#, fuzzy
 msgid ""
 "Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive data type "
 "built into the Idris language but just a custom data type that you could "
 "have written yourself. We will learn more about declaring new data types in "
 "the next chapter."
 msgstr ""
-"请注意，与 `Integer` 或 `Bits8` 不同，`Bool` 不是 Idris 语言中内置的原始数据"
-"类型，而只是您可以自己编写的自定义数据类型.我们将在下一章了解更多关于声明新数"
-"据类型的内容。"
+"请注意，与 `Integer` 或 `Bits8` 不同，`Bool` 不是 Idris "
+"语言中内置的原语数据类型，而只是您可以自己编写的自定义数据类型."
+"我们将在下一章了解更多关于声明新数据类型的内容。"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:75
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Function Composition"
-msgstr "功能组成"
+msgstr "函数组合"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:79
-#, fuzzy
 msgid ""
 "Functions can be combined in several ways, the most direct probably being "
 "the dot operator:"
@@ -572,7 +561,7 @@ msgstr "函数可以通过多种方式组合，最直接的可能是点运算符
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:80
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "square : Integer -> Integer\n"
 "square n = n * n\n"
@@ -583,24 +572,22 @@ msgid ""
 "squareTimes2 : Integer -> Integer\n"
 "squareTimes2 = times2 . square\n"
 msgstr ""
-"正方形：整数 -> 整数\n"
-"平方 n = n * n\n"
+"square : Integer -> Integer\n"
+"square n = n * n\n"
 "\n"
-"times2 : 整数 -> 整数\n"
-"次2 n = 2 * n\n"
+"times2 : Integer -> Integer\n"
+"times2 n = 2 * n\n"
 "\n"
-"squareTimes2 : 整数 -> 整数\n"
-"平方时间 2 = 时间 2 。正方形\n"
+"squareTimes2 : Integer -> Integer\n"
+"squareTimes2 = times2 . square\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:92
-#, fuzzy
 msgid "Give this a try at the REPL! Does it do what you'd expect?"
 msgstr "在 REPL 试试这个！它是否符合您的预期？"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:95
-#, fuzzy
 msgid ""
 "We could have implemented `squareTimes2` without using the dot operator as "
 "follows:"
@@ -608,33 +595,30 @@ msgstr "我们可以在不使用点运算符的情况下实现 `squareTimes2`，
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:96
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "squareTimes2' : Integer -> Integer\n"
 "squareTimes2' n = times2 (square n)\n"
 msgstr ""
-"squareTimes2' : 整数 -> 整数\n"
-"squareTimes2' n = times2（平方 n）\n"
+"squareTimes2' : Integer -> Integer\n"
+"squareTimes2' n = times2 (square n)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:105
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is important to note, that functions chained by the dot\n"
 "operator are invoked from right to left: `times2 . square`\n"
 "is the same as `\\n => times2 (square n)` and not\n"
 "`\\n => square (times2 n)`.\n"
 msgstr ""
-"需要注意的是，由点链接的函数\n"
-"运算符从右到左调用： `times2 。方形`\n"
-"与 `\\n"
-" => times2 (square n)` 相同，而不是\n"
-"`\\n"
-" => 正方形 (times2 n)`。\n"
+"需要注意的是，由点链接的函数，运算符会从右到左调用： `times2 . square`，"
+"等同于 `\\n"
+" => times2 (square n)` ，而不是 `\\n"
+" => square (times2 n)`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:108
-#, fuzzy
 msgid ""
 "We can conveniently chain several functions using the dot operator to write "
 "more complex functions:"
@@ -642,47 +626,44 @@ msgstr "我们可以方便地使用点运算符链接多个函数来编写更复
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:109
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "dotChain : Integer -> String\n"
 "dotChain = reverse . show . square . square . times2 . times2\n"
 msgstr ""
-"dotChain : 整数 -> 字符串\n"
-"点链 = 反向。节目 。正方形 。正方形 。次2。次2\n"
+"dotChain : Integer -> String\n"
+"dotChain = reverse . show . square . square . times2 . times2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:119
-#, fuzzy
 msgid ""
 "This will first multiply the argument by four, then square it twice before "
 "converting it to a string (`show`) and reversing the resulting `String` "
 "(functions `show` and `reverse` are part of the Idris *Prelude* and as such "
 "are available in every Idris program)."
 msgstr ""
-"这将首先将参数乘以四，然后将其平方两次，然后将其转换为字符串 (`show`) 并反转"
-"结果 `String`（函数 `show` 和 [ X169X]reverse` 是 Idris *Prelude* 的一部分，"
+"这将首先将参数乘以四，然后将其平方两次，然后将其转换为字符串 (`show`) "
+"并反转结果 `String`（函数 `show` 和 `reverse` 是 Idris *Prelude* 的一部分，"
 "因此在每个 Idris 程序中都可用）。"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:120
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Higher-order Functions"
 msgstr "高阶函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:126
-#, fuzzy
 msgid ""
 "Functions can take other functions as arguments. This is an incredibly "
 "powerful concept and we can go crazy with this very easily. But for sanity's "
 "sake, we'll start slowly:"
-msgstr ""
-"函数可以将其他函数作为参数。这是一个非常强大的概念，我们可以很容易地为此发"
-"疯。但为了理智起见，我们将慢慢开始："
+msgstr "函数可以将其他函数作为参数。这是一个非常强大的概念，我们可以很容易地为此发疯"
+"。但为了理智起见，我们将慢慢开始："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:127
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "isEven : Integer -> Bool\n"
 "isEven n = mod n 2 == 0\n"
@@ -690,15 +671,14 @@ msgid ""
 "testSquare : (Integer -> Bool) -> Integer -> Bool\n"
 "testSquare fun n = fun (square n)\n"
 msgstr ""
-"isEven : 整数 -> 布尔值\n"
+"isEven : Integer -> Bool\n"
 "isEven n = mod n 2 == 0\n"
 "\n"
-"testSquare：（整数->布尔）->整数->布尔\n"
-"testSquare fun n = fun（平方 n）\n"
+"testSquare : (Integer -> Bool) -> Integer -> Bool\n"
+"testSquare fun n = fun (square n)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:142
-#, fuzzy
 msgid ""
 "First `isEven` uses the `mod` function to check, whether an integer is "
 "divisible by two. But the interesting function is `testSquare`. It takes two "
@@ -707,23 +687,23 @@ msgid ""
 "before being passed to the first argument. Again, give this a go at the REPL:"
 msgstr ""
 "首先 `isEven` 使用 `mod` 函数来检查一个整数是否可以被 2 整除。但有趣的函数是 "
-"`testSquare`。它有两个参数：第一个参数是 * 类型的函数，从 `Integer` 到 "
-"`Bool`*，第二个参数是 `Integer` 类型。在传递给第一个参数之前，第二个参数是平"
-"方的。再一次，在 REPL 上试一试："
+"`testSquare`。它有两个参数：第一个参数的类型是 *从 `Integer` 到 `Bool` "
+"的函数*，第二个参数是 `Integer` "
+"类型。在传递给应用第一个参数之前，先把第二个参数进行平方计算。再一次，在 "
+"REPL 上试一试："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:143
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> testSquare isEven 12\n"
 "True\n"
 msgstr ""
 "Tutorial.Functions1> testSquare isEven 12\n"
-"真的\n"
+"True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:154
-#, fuzzy
 msgid ""
 "Take your time to understand what's going on here. We pass function `isEven` "
 "as an argument to `testSquare`. The second argument is an integer, which "
@@ -731,13 +711,12 @@ msgid ""
 "interesting, we will see lots of use cases for passing functions as "
 "arguments to other functions."
 msgstr ""
-"花点时间了解这里发生了什么。我们将函数 `isEven` 作为参数传递给 `testSquare`。"
-"第二个参数是一个整数，它首先会被平方，然后传递给 `isEven`。虽然这不是很有趣，"
-"但我们会看到很多将函数作为参数传递给其他函数的用例。"
+"花点时间了解这里发生了什么。我们将函数 `isEven` 作为参数传递给 "
+"`testSquare`。第二个参数是一个整数，它首先会被平方，然后传递给 `isEven`。虽然"
+"这不是很有趣，但我们会看到很多将函数作为参数传递给其他函数的用例。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:157
-#, fuzzy
 msgid ""
 "I said above, we could go crazy pretty easily.  Consider for instance the "
 "following example:"
@@ -745,25 +724,24 @@ msgstr "我在上面说过，我们很容易发疯。例如，考虑以下示例
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:158
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "twice : (Integer -> Integer) -> Integer -> Integer\n"
 "twice f n = f (f n)\n"
 msgstr ""
-"两次：（整数->整数）->整数->整数\n"
-"两次 f n = f (f n)\n"
+"twice : (Integer -> Integer) -> Integer -> Integer\n"
+"twice f n = f (f n)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
-#, fuzzy
 msgid "And at the REPL:"
-msgstr "在 REPL："
+msgstr "在 REPL 试一下："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:165
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> twice square 2\n"
 "16\n"
@@ -772,26 +750,24 @@ msgid ""
 "Tutorial.Functions1> (twice . twice . twice . twice) square 2\n"
 "*** huge number ***\n"
 msgstr ""
-"Tutorial.Functions1> 二次方 2\n"
+"Tutorial.Functions1> twice square 2\n"
 "16\n"
-"Tutorial.Functions1> (twice . two) square 2\n"
+"Tutorial.Functions1> (twice . twice) square 2\n"
 "65536\n"
-"Tutorial.Functions1>（两次.两次.两次.两次）平方2\n"
-"*** 巨大的数字 ***\n"
+"Tutorial.Functions1> (twice . twice . twice . twice) square 2\n"
+"*** huge number ***\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:177
-#, fuzzy
 msgid ""
 "You might be surprised about this behavior, so we'll try and break it down. "
 "The following two expressions are identical in their behavior:"
-msgstr ""
-"您可能会对这种行为感到惊讶，因此我们将尝试对其进行分解。以下两个表达式的行为"
+msgstr "您可能会对这种行为感到惊讶，因此我们将尝试对其进行分解。以下两个表达式的行为"
 "相同："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:178
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "expr1 : Integer -> Integer\n"
 "expr1 = (twice . twice . twice . twice) square\n"
@@ -799,15 +775,14 @@ msgid ""
 "expr2 : Integer -> Integer\n"
 "expr2 = twice (twice (twice (twice square)))\n"
 msgstr ""
-"expr1 : 整数 -> 整数\n"
-"expr1 = (两次. 两次. 两次. 两次) 平方\n"
+"expr1 : Integer -> Integer\n"
+"expr1 = (twice . twice . twice . twice) square\n"
 "\n"
-"expr2 : 整数 -> 整数\n"
-"expr2 = 两次（两次（两次（二次方）））\n"
+"expr2 : Integer -> Integer\n"
+"expr2 = twice (twice (twice (twice square)))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:194
-#, fuzzy
 msgid ""
 "So, `square` raises its argument to the 2nd power, `twice square` raises it "
 "to its 4th power (by invoking `square` twice in succession), `twice (twice "
@@ -815,37 +790,34 @@ msgid ""
 "succession), and so on, until `twice (twice (twice (twice square)))` raises "
 "it to its 65536th power resulting in an impressively huge result."
 msgstr ""
-"因此，`square` 将其参数提升到 2 次方，` 两次 square` 将其提升到 4 次方（通过"
-"连续调用 `square` 两次），` 两次(twice square)` 将其提升到其 16 次方（通过连"
-"续调用 `twice square` 两次），依此类推，直到 `twice (twice (twice (twice "
-"square))))[X292X ] 将其提高到 65536 次方，从而产生了令人印象深刻的巨大结果。"
+"因此，`square` 将其参数提升到 2 次方，` 两次 square` 将其提升到 4 次方（"
+"通过连续调用 `square` 两次），` twice (twice square)` 将其提升到其 16 次方（"
+"通过连续调用 `twice square` 两次），依此类推，直到 `twice (twice (twice ("
+"twice square))))` 将其提高到 65536 次方，从而产生了令人印象深刻的巨大结果。"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:195
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Currying"
-msgstr "咖喱"
+msgstr "柯里化"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:201
-#, fuzzy
 msgid ""
 "Once we start using higher-order functions, the concept of partial function "
 "application (also called *currying* after mathematician and logician Haskell "
 "Curry) becomes very important."
-msgstr ""
-"一旦我们开始使用高阶函数，偏函数应用的概念（在数学家和逻辑学家 Haskell Curry "
-"之后也称为 *currying*）变得非常重要。"
+msgstr "一旦我们开始使用高阶函数，偏函数应用的概念（在数学家和逻辑学家 Haskell Curry "
+"之后也称为 *柯里化*）变得非常重要。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:203
-#, fuzzy
 msgid "Load this file in a REPL session and try the following:"
 msgstr "在 REPL 会话中加载此文件并尝试以下操作："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:204
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> :t testSquare isEven\n"
 "testSquare isEven : Integer -> Bool\n"
@@ -855,15 +827,15 @@ msgid ""
 "isTriple 1 2 : Integer -> Bool\n"
 msgstr ""
 "Tutorial.Functions1> :t testSquare isEven\n"
-"testSquare isEven : 整数 -> 布尔\n"
+"testSquare isEven : Integer -> Bool\n"
 "Tutorial.Functions1> :t isTriple 1\n"
-"isTriple 1 : 整数 -> 整数 -> 布尔\n"
+"isTriple 1 : Integer -> Integer -> Bool\n"
 "Tutorial.Functions1> :t isTriple 1 2\n"
-"isTriple 1 2 : 整数 -> 布尔\n"
+"isTriple 1 2 : Integer -> Bool\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:220
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how in Idris we can partially apply a function\n"
 "with more than one argument and as a result get a new function\n"
@@ -873,53 +845,47 @@ msgid ""
 "use the result of such a partially applied function in\n"
 "a new top level definition:\n"
 msgstr ""
-"注意，我们如何在 Idris 中部分应用函数\n"
-"有多个参数，因此得到一个新函数\n"
-"背部。例如， `isTriple 1` 将参数 `1` 应用于函数\n"
-"`isTriple` 并因此返回一个新函数\n"
-"键入 ` 整数 -> 整数 -> 布尔 `。我们甚至可以\n"
-"使用这种部分应用函数的结果\n"
-"一个新的顶级定义：\n"
+"注意，我们如何在 Idris 中部分应用多参函数，并且返回一个新函数。例如， `"
+"isTriple 1` 会将参数 `1` 应用于函数 `isTriple` 并因此返回一个新函数，"
+"类型为为 `Integer -> Integer -> "
+"Bool`。我们甚至可以使用这种部分应用函数的结果作为一个新的顶级定义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:221
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "partialExample : Integer -> Bool\n"
 "partialExample = isTriple 3 4\n"
 msgstr ""
-"partialExample : 整数 -> 布尔\n"
-"部分示例 = isTriple 3 4\n"
+"partialExample : Integer -> Bool\n"
+"partialExample = isTriple 3 4\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:228
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> partialExample 5\n"
 "True\n"
 msgstr ""
 "Tutorial.Functions1> partialExample 5\n"
-"真的\n"
+"True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:236
-#, fuzzy
 msgid ""
 "We already used partial function application in our `twice` examples above "
 "to get some impressive results with very little code."
-msgstr ""
-"我们已经在上面的 `twice` 示例中使用了偏函数应用程序，只需很少的代码即可获得一"
-"些令人印象深刻的结果。"
+msgstr "我们已经在上面的 `twice` "
+"示例中使用了偏函数的应用程序，只需很少的代码即可获得一些令人印象深刻的结果。"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:237
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Anonymous Functions"
 msgstr "匿名函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:245
-#, fuzzy
 msgid ""
 "Sometimes we'd like to pass a small custom function to a higher-order "
 "function without bothering to write a top level definition. For instance, in "
@@ -928,56 +894,54 @@ msgid ""
 "function `testSquare`:"
 msgstr ""
 "有时我们想将一个小的自定义函数传递给一个高阶函数，而无需编写顶层定义。例如，"
-"在下面的示例中，函数 `someTest` 非常具体，一般来说可能不是很有用，但我们仍然"
-"希望将它传递给高阶函数 `testSquare`："
+"在下面的示例中，函数 `someTest` 非常具体，一般来说可能不是很有用，"
+"但我们仍然希望将它传递给高阶函数 `testSquare`："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:246
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "someTest : Integer -> Bool\n"
 "someTest n = n >= 3 || n <= 10\n"
 msgstr ""
-"someTest : 整数 -> 布尔\n"
-"一些测试 n = n >= 3 || n <= 10\n"
+"someTest : Integer -> Bool\n"
+"someTest n = n >= 3 || n <= 10\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:252
-#, fuzzy
 msgid "Here's, how to pass it to `testSquare`:"
-msgstr "下面是如何将其传递给 `testSquare`："
+msgstr "下面将展示如何将其传递给 `testSquare`："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:253
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> testSquare someTest 100\n"
 "True\n"
 msgstr ""
 "Tutorial.Functions1> testSquare someTest 100\n"
-"真的\n"
+"True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:260
-#, fuzzy
 msgid ""
 "Instead of defining and using `someTest`, we can use an anonymous function:"
-msgstr "我们可以使用匿名函数，而不是定义和使用 `someTest`："
+msgstr "我们也可以使用匿名函数，而不用定义和使用 `someTest`："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:261
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> testSquare (\\n => n >= 3 || n <= 10) 100\n"
 "True\n"
 msgstr ""
 "Tutorial.Functions1> testSquare (\\n"
 " => n >= 3 || n <= 10) 100\n"
-"真的\n"
+"True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:277
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Anonymous functions are sometimes also called *lambdas* (from\n"
 "[lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus)),\n"
@@ -991,38 +955,31 @@ msgid ""
 "they typically need to be wrapped in parentheses or separated\n"
 "by the dollar operator `($)` (see the next section about this).\n"
 msgstr ""
-"匿名函数有时也称为 *lambdas*（来自\n"
-"[λ演算](https://en.wikipedia.org/wiki/Lambda_calculus)),\n"
-"并且选择了反斜杠，因为它类似于希腊语\n"
+"匿名函数有时也称为 *lambdas*（来自[λ演算](https://en.wikipedia.org/wiki/"
+"Lambda_calculus)),并且选择了反斜杠，因为它类似于希腊语\n"
 "字母 * λ*。 `\\n"
-" =>` 语法引入了一个新的匿名\n"
-"一个名为 `n` 的参数的函数，实现\n"
-"它位于功能箭头的右侧。\n"
-"像其他顶级函数一样，lambda 可以有更多\n"
-"多个参数，以逗号分隔：`\\x,y => x * x + y`。\n"
-"当我们将 lambdas 作为参数传递给高阶函数时，\n"
-"它们通常需要用括号括起来或分开\n"
-"由美元运算符 `($)` （请参阅下一节）。\n"
+" =>` 语法引入了一个新的参数为 `n` "
+"的匿名函数，实现位于函数箭头的右侧。像其他顶级函数一样，lambda "
+"可以有多个参数，并以逗号分隔：`\\x,y => x * x + y`。当我们将 lambdas "
+"作为参数传递给高阶函数时，它们通常需要用括号括起来或由美元运算符 `($)` "
+"分开（请参阅下一节）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:280
-#, fuzzy
 msgid ""
 "Note that, in a lambda, arguments are not annotated with types, so Idris has "
 "to be able to infer them from the current context."
-msgstr ""
-"请注意，在 lambda 中，参数未使用类型进行注释，因此 Idris 必须能够从当前上下文"
-"中推断出它们。"
+msgstr "请注意，在 lambda 中，参数不使用类型进行注释，因此 Idris "
+"必须能够从当前上下文中推断出它们。"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:281
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Operators"
-msgstr "运营商"
+msgstr "操作符"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:288
-#, fuzzy
 msgid ""
 "In Idris, infix operators like `.`, `*` or `+` are not built into the "
 "language, but are just regular Idris function with some special support for "
@@ -1030,22 +987,20 @@ msgid ""
 "notation, we have to wrap them in parentheses."
 msgstr ""
 "在 Idris 中，`.`、`*` 或 `+` 等中缀运算符并未内置于语言中，而只是常规的 "
-"Idris 函数，对在中缀符号。当我们不使用中缀表示法的运算符时，我们必须将它们包"
+"Idris 函数对应的中缀符号。当我们使用非中缀表示法的运算符时，我们必须将它们包"
 "裹在括号中。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:291
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As an example, let us define a custom operator for sequencing\n"
 "functions of type `Bits8 -> Bits8`:\n"
-msgstr ""
-"举个例子，让我们定义一个自定义操作符来进行排序\n"
-"`Bits8 -> Bits8` 类型的函数：\n"
+msgstr "举个例子，让我们为类型为 `Bits8 -> Bits8` 的函数自定义操作符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:292
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "infixr 4 >>>\n"
 "\n"
@@ -1058,20 +1013,20 @@ msgid ""
 "test : Bits8 -> Bits8\n"
 "test = foo >>> foo >>> foo >>> foo\n"
 msgstr ""
-"中缀 4 >>>\n"
+"infixr 4 >>>\n"
 "\n"
 "(>>>) : (Bits8 -> Bits8) -> (Bits8 -> Bits8) -> Bits8 -> Bits8\n"
-"f1 >>> f2 = f2 。 f1\n"
+"f1 >>> f2 = f2 . f1\n"
 "\n"
 "foo : Bits8 -> Bits8\n"
-"富 n = 2 * n + 3\n"
+"foo n = 2 * n + 3\n"
 "\n"
-"测试：Bits8 -> Bits8\n"
-"测试 = 富 >>> 富 >>> 富 >>> 富\n"
+"test : Bits8 -> Bits8\n"
+"test = foo >>> foo >>> foo >>> foo\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:311
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In addition to declaring and defining the operator\n"
 "itself, we also have to specify its fixity: `infixr 4 >>>` means,\n"
@@ -1080,16 +1035,14 @@ msgid ""
 "with a priority of `4`. You can also have a look at the fixity\n"
 "of operators exported by the *Prelude* in the REPL:\n"
 msgstr ""
-"除了声明和定义操作符\n"
-"本身，我们还必须指定它的固定性：`infixr 4 >>>` 表示，\n"
-"`(>>>)` 关联到右边（意思是，那个\n"
-"`f >>> g >>> h` 将被解释为 `f >>> (g >>> h)`)\n"
-"优先级为 `4`。你也可以看看fixity\n"
-"REPL 中 *Prelude* 导出的运算符：\n"
+"除了声明和定义操作符本身，我们还必须指定它的固定性：`infixr 4 >>>` "
+"表示，`(>>>)` 关联到右边（意思是，那个\n"
+"`f >>> g >>> h` 将被解释为 `f >>> (g >>> h)`)优先级为 `4`。你也可以在 REPL "
+"中 看看 *Prelude* 导出的运算符的固定性：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:312
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> :doc (.)\n"
 "Prelude.. : (b -> c) -> (a -> b) -> a -> c\n"
@@ -1098,44 +1051,41 @@ msgid ""
 "  Fixity Declaration: infixr operator, level 9\n"
 msgstr ""
 "Tutorial.Functions1> :doc (.)\n"
-"前奏曲.. : (b -> c) -> (a -> b) -> a -> c\n"
-"  功能组成。\n"
-"  总量：总计\n"
-"  固定性声明：中缀操作员，9 级\n"
+"Prelude.. : (b -> c) -> (a -> b) -> a -> c\n"
+"  Function composition.\n"
+"  Totality: total\n"
+"  Fixity Declaration: infixr operator, level 9\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:325
-#, fuzzy
 msgid ""
 "When you mix infix operators in an expression, those with a higher priority "
 "bind more tightly. For instance, `(+)` is left associated with a priority of "
 "8, while `(*)` is left associated with a priority of 9. Hence, `a * b + c` "
 "is the same as `(a * b) + c` instead of `a * (b + c)`."
 msgstr ""
-"当您在表达式中混合中缀运算符时，具有较高优先级的运算符绑定得更紧密。例如，"
-"`(+)` 与优先级 8 关联，而 `(*)` 与优先级 9 关联。因此，`a * b + c ` 与 `(a * "
-"b) + c` 相同，而不是 `a * (b + c)`。"
+"当您在表达式中混合使用中缀运算符时，具有较高优先级的运算符绑定得更紧密。例如"
+"，`(+)` 的优先级为 8，而 `(*)` 的优先级为 9。因此，`a * b + c ` 与 `(a * b) +"
+" c` 相同，而不是 `a * (b + c)`。"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions1.md:326
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Operator Sections"
-msgstr "操作员部分"
+msgstr "操作符块"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:332
-#, fuzzy
 msgid ""
 "Operators can be partially applied just like regular functions. In this "
 "case, the whole expression has to be wrapped in parentheses and is called an "
 "*operator section*. Here are two examples:"
-msgstr ""
-"运算符可以像常规函数一样被部分应用。在这种情况下，整个表达式必须用括号括起"
-"来，称为 * 运算符部分 *。这里有两个例子："
+msgstr "运算符符可以像常规函数一样被部分应用。在这种情况下，整个表达式必须用括号括起"
+"来，称为 * 运算符块 *。这里有两个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:333
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> testSquare (< 10) 5\n"
 "False\n"
@@ -1143,56 +1093,49 @@ msgid ""
 "True\n"
 msgstr ""
 "Tutorial.Functions1> testSquare (< 10) 5\n"
-"错误的\n"
+"False\n"
 "Tutorial.Functions1> testSquare (10 <) 5\n"
-"真的\n"
+"True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:344
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, there is a difference between `(< 10)`\n"
 "and `(10 <)`. The first tests, whether its argument is\n"
 "less than 10, the second, whether 10 is less than its\n"
 "argument.\n"
-msgstr ""
-"如您所见，`(< 10)`\n"
-"和 `(10 <)`。第一个测试，它的论点是否是\n"
-"小于10，第二，10是否小于其\n"
-"争论。\n"
+msgstr "如您所见，`(< 10)`和 `(10 "
+"<)`。第一个测试，它的参数为是否小于10，第二，参数是否大于10。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:348
-#, fuzzy
 msgid ""
 "One exception where operator sections will not work is with the *minus* "
 "operator `(-)`. Here is an example to demonstrate this:"
-msgstr ""
-"运算符部分不起作用的一个例外是使用 *minus* 运算符 `(-)`。下面是一个例子来证明"
-"这一点："
+msgstr "运算符部分不起作用的一个例外是使用 *minus* 运算符 "
+"`(-)`。下面是一个例子来证明这一点："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:349
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "applyToTen : (Integer -> Integer) -> Integer\n"
 "applyToTen f = f 10\n"
 msgstr ""
-"applyToTen : (整数 -> 整数) -> 整数\n"
+"applyToTen : (Integer -> Integer) -> Integer\n"
 "applyToTen f = f 10\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:357
-#, fuzzy
 msgid ""
 "This is just a higher-order function applying the number ten to its function "
 "argument. This works very well in the following example:"
-msgstr ""
-"这只是一个将数字 10 应用于其函数参数的高阶函数。这在以下示例中非常有效："
+msgstr "这只是一个将数字 10 应用于其函数参数的高阶函数。这在以下示例中非常有效："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:358
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> applyToThen (* 2)\n"
 "20\n"
@@ -1202,13 +1145,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:365
-#, fuzzy
 msgid "However, if we want to subtract five from ten, the following will fail:"
 msgstr "但是，如果我们想从 10 中减去 5，以下将失败："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:366
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> applyToTen (- 5)\n"
 "Error: Can't find an implementation for Num (Integer -> Integer).\n"
@@ -1217,25 +1159,23 @@ msgid ""
 " 1 | applyToTen (- 5)\n"
 msgstr ""
 "Tutorial.Functions1> applyToTen (- 5)\n"
-"错误：找不到 Num (Integer -> Integer) 的实现。\n"
+"Error: Can't find an implementation for Num (Integer -> Integer).\n"
 "\n"
-"（互动）：1:12--1:17\n"
-" 1 |适用于十 (- 5)\n"
+"(Interactive):1:12--1:17\n"
+" 1 | applyToTen (- 5)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:377
-#, fuzzy
 msgid ""
 "The problem here is, that Idris treats `- 5` as an integer literal instead "
 "of an operator section. In this special case, we therefore have to use an "
 "anonymous function instead:"
-msgstr ""
-"这里的问题是，Idris 将 `- 5` 视为整数文字而不是运算符部分。在这种特殊情况下，"
-"我们因此必须使用匿名函数："
+msgstr "这里的问题是，Idris 将 `- 5` "
+"视为整数字面量而不是运算符块。在这种特殊情况下，我们因此必须使用匿名函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:378
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions1> applyToTen (\\x => x - 5)\n"
 "5\n"
@@ -1245,7 +1185,7 @@ msgstr ""
 
 #. type: Title ###
 #: ../src/Tutorial/Functions1.md:383
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Infix Notation for Non-Operators"
 msgstr "非运算符的中缀表示法"
 

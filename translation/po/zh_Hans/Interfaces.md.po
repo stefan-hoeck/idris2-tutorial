@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-03 04:30+0000\n"
+"PO-Revision-Date: 2022-08-03 05:18+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/interfaces/zh_Hans/>\n"
@@ -468,7 +468,7 @@ msgstr "结论"
 #: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
 #, no-wrap
 msgid "What's next"
-msgstr "下一步是什么？"
+msgstr "下一步是什么"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -490,15 +490,8 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
-#, fuzzy
 msgid "And at the REPL:"
-msgstr ""
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"在 REPL：\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"在 REPL：\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "在 REPL 试一下："
 
 #. type: Title #
 #: ../src/Tutorial/Interfaces.md:1

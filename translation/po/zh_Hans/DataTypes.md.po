@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-03 04:30+0000\n"
+"PO-Revision-Date: 2022-08-03 05:18+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/datatypes/zh_Hans/>\n"
@@ -2605,7 +2605,7 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
 #, no-wrap
 msgid "What's next"
-msgstr "下一步是什么？"
+msgstr "下一步是什么"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1366
