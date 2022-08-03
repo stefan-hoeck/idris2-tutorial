@@ -38,8 +38,7 @@ msgid ""
 "or less comprehensive guide to the Idris programming language,\n"
 "with a lot of introductory material targeted at newcomers to\n"
 "functional programming.\n"
-msgstr "这个项目的目标是：要成为 Idris "
-"编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。\n"
+msgstr "这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。\n"
 
 #. type: Plain text
 #: ../README.md:17
@@ -52,11 +51,7 @@ msgid ""
 "of the Idris programming language and its core libraries. Most\n"
 "chapters come with (sometimes lots of) exercises, with\n"
 "solutions available in directory `src/Solutions`.\n"
-msgstr ""
-"内容将分为几个部分，其中关于核心语言特性的部分是 Idris "
-"函数式编程主要指南。每个部分都由几个章节组成，每个章节都试图深入介绍 Idris "
-"编程语言及其核心库的某个方面。大多数章节都附带（有时很多）练习，在目录 `src/"
-"Solutions` 中提供了解决方案。\n"
+msgstr "内容将分为几个部分，其中关于核心语言特性的部分是 Idris 函数式编程主要指南。每个部分都由几个章节组成，每个章节都试图深入介绍 Idris 编程语言及其核心库的某个方面。大多数章节都附带（有时很多）练习，在目录 `src/Solutions` 中提供了解决方案。\n"
 
 #. type: Plain text
 #: ../README.md:22
@@ -66,8 +61,7 @@ msgid ""
 "yet finished, but is being actively developed and tried on\n"
 "several of my own students, some of which are completely\n"
 "new to functional programming.\n"
-msgstr "目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学"
-"生身上进行尝试，其中一些对函数式编程来说是纯萌新。\n"
+msgstr "目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学生身上进行尝试，其中一些对函数式编程来说是纯萌新。\n"
 
 #. type: Title ##
 #: ../README.md:23
@@ -89,8 +83,7 @@ msgid ""
 "Idris programming language. If you are new to functional programming,\n"
 "make sure to follow these chapters in order and *solve all the\n"
 "exercises*.\n"
-msgstr "这部分试图对 Idris 编程语言进行深入的介绍。如果您是函数式编程的新手，请确保按"
-"顺序阅读这些章节并*解决所有练习*。\n"
+msgstr "这部分试图对 Idris 编程语言进行深入的介绍。如果您是函数式编程的新手，请确保按顺序阅读这些章节并*解决所有练习*。\n"
 
 #. type: Plain text
 #: ../README.md:36
@@ -100,10 +93,7 @@ msgid ""
 "Haskell, you might go through the introductory material (Functions Part 1,\n"
 "Algebraic Data Types, and Interfaces) pretty quickly, as most of this\n"
 "stuff will already be familiar to you.\n"
-msgstr ""
-"如果您已经使用过其他纯函数式编程语言，例如 "
-"Haskell，那么您可能会很快完成介绍性材料（函数第 1 "
-"部分，代数数据类型和接口），因为这些内容中的大部分内容您已经很熟悉了。\n"
+msgstr "如果您已经使用过其他纯函数式编程语言，例如 Haskell，那么您可能会很快完成介绍性材料（函数第 1 部分，代数数据类型和接口），因为这些内容中的大部分内容您已经很熟悉了。\n"
 
 #. type: Plain text
 #: ../README.md:105
@@ -261,9 +251,7 @@ msgid ""
 "hand. I plan to eventually have a concise reference on Idris\n"
 "syntax, typical error messages, the module system, interactive\n"
 "editing and possibly others.\n"
-msgstr "附录可用作手头主题的参考。我计划最终对 Idris "
-"语法、典型错误消息、模块系统、交互式编辑以及可能的其他内容有一个简明的参考。"
-"\n"
+msgstr "附录可用作手头主题的参考。我计划最终对 Idris 语法、典型错误消息、模块系统、交互式编辑以及可能的其他内容有一个简明的参考。\n"
 
 #. type: Bullet: '1. '
 #: ../README.md:114
@@ -285,7 +273,4 @@ msgid ""
 "It is being tested nightly on GitHub and built against\n"
 "the latest commit of the Idris 2 main branch as well as the\n"
 "Idris 2 commit listed in file `.idris-version`.\n"
-msgstr ""
-"目前，该项目正在针对 Idris 2 存储库的主要分支进行积极开发和演进。它每晚在 "
-"GitHub 上进行测试，并针对 Idris 2 主分支的最新提交以及文件 `.idris-version` "
-"中列出的 Idris 2 提交进行构建。\n"
+msgstr "目前，该项目正在针对 Idris 2 存储库的主要分支进行积极开发和演进。它每晚在 GitHub 上进行测试，并针对 Idris 2 主分支的最新提交以及文件 `.idris-version` 中列出的 Idris 2 提交进行构建。\n"

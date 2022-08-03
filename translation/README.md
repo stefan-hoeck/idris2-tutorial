@@ -2,37 +2,19 @@
 
 # Idris 2 中的函数式编程
 
-The goal of this project is quickly explained: To become a more
-or less comprehensive guide to the Idris programming language,
-with a lot of introductory material targeted at newcomers to
-functional programming.
+这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。
 
-The content will be organized in several parts, with the part
-about the core language features being the main guide to
-functional programming in Idris. Every part consists of several
-chapters, each trying to cover in depth a certain aspect
-of the Idris programming language and its core libraries. Most
-chapters come with (sometimes lots of) exercises, with
-solutions available in directory `src/Solutions`.
+内容将分为几个部分，其中关于核心语言特性的部分是 Idris 函数式编程主要指南。每个部分都由几个章节组成，每个章节都试图深入介绍 Idris 编程语言及其核心库的某个方面。大多数章节都附带（有时很多）练习，在目录 `src/Solutions` 中提供了解决方案。
 
-Right now, even the part about core language features is not
-yet finished, but is being actively developed and tried on
-several of my own students, some of which are completely
-new to functional programming.
+目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学生身上进行尝试，其中一些对函数式编程来说是纯萌新。
 
 ## 目录
 
 ### 第 1 部分：核心语言功能
 
-This part tries to give a solid introduction to the
-Idris programming language. If you are new to functional programming,
-make sure to follow these chapters in order and *solve all the
-exercises*.
+这部分试图对 Idris 编程语言进行深入的介绍。如果您是函数式编程的新手，请确保按顺序阅读这些章节并*解决所有练习*。
 
-If you already used other pure functional programming languages like
-Haskell, you might go through the introductory material (Functions Part 1,
-Algebraic Data Types, and Interfaces) pretty quickly, as most of this
-stuff will already be familiar to you.
+如果您已经使用过其他纯函数式编程语言，例如 Haskell，那么您可能会很快完成介绍性材料（函数第 1 部分，代数数据类型和接口），因为这些内容中的大部分内容您已经很熟悉了。
 
 1. [简介](src/Tutorial/Intro.md)
    1. [关于Idris编程语言](src/Tutorial/Intro.md#about-the-idris-programming-language)
@@ -105,17 +87,10 @@ stuff will already be familiar to you.
 
 ### 第 2 部分：附录
 
-The appendices can be used as references for the topics at
-hand. I plan to eventually have a concise reference on Idris
-syntax, typical error messages, the module system, interactive
-editing and possibly others.
+附录可用作手头主题的参考。我计划最终对 Idris 语法、典型错误消息、模块系统、交互式编辑以及可能的其他内容有一个简明的参考。
 
 1. [Neovim 中的交互式编辑](src/Appendices/Neovim.md)
 
 ## 先决条件
 
-At the moment, this project is being actively developed and
-evolved against the main branch of the Idris 2 repository.
-It is being tested nightly on GitHub and built against
-the latest commit of the Idris 2 main branch as well as the
-Idris 2 commit listed in file `.idris-version`.
+目前，该项目正在针对 Idris 2 存储库的主要分支进行积极开发和演进。它每晚在 GitHub 上进行测试，并针对 Idris 2 主分支的最新提交以及文件 `.idris-version` 中列出的 Idris 2 提交进行构建。
