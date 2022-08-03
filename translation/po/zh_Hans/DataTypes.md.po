@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-03 07:47+0000\n"
+"PO-Revision-Date: 2022-08-03 15:23+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/datatypes/zh_Hans/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #. type: Title #
 #: ../src/Tutorial/DataTypes.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Algebraic Data Types"
 msgstr "代数数据类型"
 
@@ -543,7 +543,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:89
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, if we invoke `next` with argument `Thursday`,\n"
 "the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)\n"
@@ -553,17 +553,15 @@ msgid ""
 "also match the input (this becomes relevant with catch-all patterns,\n"
 "which we will talk about in a moment).\n"
 msgstr ""
-"例如，如果我们使用参数 `Thursday` 调用 `next`，\n"
-"前三个模式（`Monaday`、`Tuesday` 和 `Wednesday`）\n"
-"将根据参数进行检查，但它们不匹配。\n"
-"第四个模式是匹配的，结果 `Friday` 是\n"
-"回来。然后忽略以后的模式，即使它们会\n"
-"还匹配输入（这与包罗万象的模式有关，\n"
+"例如，如果我们使用参数 `Thursday` 调用 "
+"`next`，前三个模式（`Monaday`、`Tuesday` 和 "
+"`Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 "
+"`Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，"
 "我们稍后会谈到）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:98
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The function above is provably total. Idris knows about the\n"
 "possible values of type `Weekday`, and can therefore figure\n"
@@ -574,18 +572,16 @@ msgid ""
 "the clauses in `next` to get an idea about how an error\n"
 "message from the coverage checker looks like.)\n"
 msgstr ""
-"上面的功能可以证明是完全的。伊德里斯知道\n"
+"上面的函数可以证明是完全的。Idris 知道\n"
 "`Weekday` 类型的可能值，因此可以计算\n"
-"我们的模式匹配涵盖了所有可能的情况。我们可以\n"
-"因此使用 `total` 关键字注释函数，并且\n"
-"如果 Idris 无法验证\n"
-"功能的整体。 （继续，并尝试删除其中一个\n"
-"`next` 中的子句来了解错误是如何产生的\n"
-"来自覆盖检查器的消息看起来像。）\n"
+"我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，"
+"如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，"
+"并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆"
+"盖性检查器的错误消息长什么样。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:105
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Please remember, that these are very strong guarantees from\n"
 "the type checker: Given enough resources,\n"
@@ -594,34 +590,28 @@ msgid ""
 "(*resources* here meaning computational resources like\n"
 "memory or, in case of recursive functions, stack space).\n"
 msgstr ""
-"请记住，这些是来自\n"
-"类型检查器：给定足够的资源，\n"
-"一个可证明的总函数将 * 总是 * 返回\n"
-"在有限时间内给定类型的结果\n"
-"（*resources* 这里的意思是计算资源，比如\n"
-"内存，或者，在递归函数的情况下，堆栈空间）。\n"
+"请记住，这些来自类型检查器：给定足够的资源，"
+"一个可证明的完全函数在有限时间内将 * 总是 * 返回给定类型的结果（*资源*的意思"
+"是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:106
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Catch-all Patterns"
-msgstr "包罗万象的模式"
+msgstr "任意模式"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:111
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, it is convenient to only match on a subset\n"
 "of the possible values and collect the remaining possibilities\n"
 "in a catch-all clause:\n"
-msgstr ""
-"有时，只匹配一个子集很方便\n"
-"可能的值并收集剩余的可能性\n"
-"在一个包罗万象的条款中：\n"
+msgstr "有时比较实用的是只匹配一个可能子集的值，并收集剩余的可能性到任意模式中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:112
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "isWeekend : Weekday -> Bool\n"
@@ -629,15 +619,15 @@ msgid ""
 "isWeekend Sunday   = True\n"
 "isWeekend _        = False\n"
 msgstr ""
-"全部的\n"
-"isWeekend : 工作日 -> 布尔\n"
-"isWeekend 星期六 = True\n"
-"isWeekend 星期日 = 真\n"
-"isWeekend _ = 假\n"
+"total\n"
+"isWeekend : Weekday -> Bool\n"
+"isWeekend Saturday = True\n"
+"isWeekend Sunday   = True\n"
+"isWeekend _        = False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:125
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The final line with the catch-all pattern is only invoked,\n"
 "if the argument is not equal to `Saturday` or `Sunday`.\n"
@@ -645,27 +635,25 @@ msgid ""
 "the input from top to bottom and the first match decides,\n"
 "which path on the right hand side will be taken.\n"
 msgstr ""
-"仅调用具有包罗万象的模式的最后一行，\n"
-"如果参数不等于 `Saturday` 或 `Sunday`。\n"
-"记住：模式匹配中的模式匹配\n"
-"从上到下的输入和第一个匹配决定，\n"
-"将采用右侧的哪条路径。\n"
+"如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有任意模式的最后一行。记住："
+"模式匹配中的模式匹配\n"
+"从上到下的输入和第一个匹配决定将采用右侧的哪条路径。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:129
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can use catch-all patterns to implement an equality test for\n"
 "`Weekday` (we will not yet use the `==` operator for this; this will\n"
 "have to wait until we learn about *interfaces*):\n"
 msgstr ""
-"我们可以使用包罗万象的模式来实现等式测试\n"
-"`Weekday`（我们还不会为此使用 `==` 运算符；这将\n"
-"必须等到我们了解*interfaces*）：\n"
+"我们可以使用任意模式来实现等式测试\n"
+"`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:130
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "eqWeekday : Weekday -> Weekday -> Bool\n"
@@ -678,26 +666,26 @@ msgid ""
 "eqWeekday Sunday Sunday        = True\n"
 "eqWeekday _ _                  = False\n"
 msgstr ""
-"全部的\n"
-"eqWeekday : 工作日 -> 工作日 -> 布尔\n"
-"eqWeekday Monday Monday = True\n"
-"eqWeekday 周二 周二 = True\n"
-"eqWeekday 星期三 星期三 = True\n"
-"eqWeekday 星期四 星期四 = True\n"
-"eqWeekday Friday Friday = True\n"
-"eqWeekday 星期六 星期六 = True\n"
-"eqWeekday Sunday Sunday = True\n"
-"eqWeekday _ _ = 假\n"
+"total\n"
+"eqWeekday : Weekday -> Weekday -> Bool\n"
+"eqWeekday Monday Monday        = True\n"
+"eqWeekday Tuesday Tuesday      = True\n"
+"eqWeekday Wednesday Wednesday  = True\n"
+"eqWeekday Thursday Thursday    = True\n"
+"eqWeekday Friday Friday        = True\n"
+"eqWeekday Saturday Saturday    = True\n"
+"eqWeekday Sunday Sunday        = True\n"
+"eqWeekday _ _                  = False\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:143
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Enumeration Types in the Prelude"
 msgstr "Prelude 中的枚举类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:151
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Data types like `Weekday` consisting of a finite set\n"
 "of values are sometimes called *enumerations*. The Idris\n"
@@ -707,15 +695,13 @@ msgid ""
 "on these types:\n"
 msgstr ""
 "`Weekday` 等数据类型由有限集组成\n"
-"的值有时称为 * 枚举 *。伊德里斯\n"
-"*Prelude* 为我们定义了一些常见的枚举，对于\n"
-"实例 `Bool` 和 `Ordering`。与 `Weekday` 一样，\n"
-"我们可以在实现函数时使用模式匹配\n"
-"在这些类型上：\n"
+"的值有时称为 * 枚举 *。Idris 的\n"
+"*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday`"
+" 一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:152
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "-- this is how `not` is implemented in the *Prelude*\n"
 "total\n"
@@ -723,25 +709,23 @@ msgid ""
 "negate False = True\n"
 "negate True  = False\n"
 msgstr ""
-"-- 这就是 *Prelude* 中 `not` 的实现方式\n"
-"全部的\n"
-"否定：布尔 -> 布尔\n"
-"否定假=真\n"
-"否定真 = 假\n"
+"-- this is how `not` is implemented in the *Prelude*\n"
+"total\n"
+"negate : Bool -> Bool\n"
+"negate False = True\n"
+"negate True  = False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:162
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The `Ordering` data type describes an ordering relation\n"
 "between two values. For instance:\n"
-msgstr ""
-"`Ordering` 数据类型描述了一个排序关系\n"
-"两个值之间。例如：\n"
+msgstr "`Ordering` 数据类型描述了两个值之间的顺序关系。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:163
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "compareBool : Bool -> Bool -> Ordering\n"
@@ -750,16 +734,16 @@ msgid ""
 "compareBool True True   = EQ\n"
 "compareBool True False  = GT\n"
 msgstr ""
-"全部的\n"
-"compareBool : Bool -> Bool -> 排序\n"
+"total\n"
+"compareBool : Bool -> Bool -> Ordering\n"
 "compareBool False False = EQ\n"
-"compareBool False True = LT\n"
-"compareBool True True = EQ\n"
-"compareBool True False = GT\n"
+"compareBool False True  = LT\n"
+"compareBool True True   = EQ\n"
+"compareBool True False  = GT\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:176
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, `LT` means that the first argument is *less than*\n"
 "the second, `EQ` means that the two arguments are *equal*\n"
@@ -767,33 +751,30 @@ msgid ""
 "the second.\n"
 msgstr ""
 "这里，`LT` 表示第一个参数是*小于*\n"
-"第二个，`EQ`表示两个参数是*equal*\n"
-"和 `GT` 表示，第一个参数是 * 大于 *\n"
-"第二。\n"
+"第二个，`EQ`表示两个参数是*相等*\n"
+"， `GT` 表示第一个参数是 * 大于 *\n"
+"第二个。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:177
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Case Expressions"
-msgstr "案例表达式"
+msgstr "Case 表达式"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:183
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes we need to perform a computation with one\n"
 "of the arguments and want to pattern match on the result\n"
 "of this computation. We can use *case expressions* in this\n"
 "situation:\n"
-msgstr ""
-"有时我们需要用一个来执行计算\n"
-"参数并希望对结果进行模式匹配\n"
-"这个计算。我们可以在此使用 *case 表达式*\n"
-"情况：\n"
+msgstr "有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用*"
+"case 表达式*：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:184
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "-- returns the larger of the two arguments\n"
 "total\n"
@@ -803,17 +784,17 @@ msgid ""
 "    LT => y\n"
 "    _  => x\n"
 msgstr ""
-"-- 返回两个参数中较大的一个\n"
-"全部的\n"
-"maxBits8 : 位8 -> 位8 -> 位8\n"
+"-- returns the larger of the two arguments\n"
+"total\n"
+"maxBits8 : Bits8 -> Bits8 -> Bits8\n"
 "maxBits8 x y =\n"
-"  大小写比较 x y\n"
+"  case compare x y of\n"
 "    LT => y\n"
-"    _ => x\n"
+"    _  => x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:202
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The first line of the case expression (`case compare x y of`)\n"
 "will invoke function `compare` with arguments `x` and `y`. On\n"
@@ -824,88 +805,79 @@ msgid ""
 "the other two cases are handled with an underscore as a catch-all\n"
 "pattern.\n"
 msgstr ""
-"case 表达式的第一行 (`case compare x y of`)\n"
-"将使用参数 `x` 和 `y` 调用函数 `compare`。上\n"
-"以下（缩进）行，我们对结果进行模式匹配\n"
-"这个计算。这是 `Ordering` 类型，所以我们期望\n"
-"结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。\n"
-"在第一行，我们明确地处理 `LT` 的情况，而\n"
-"其他两种情况下划线作为包罗万象处理\n"
-"图案。\n"
+"case 表达式的第一行 (`case compare x y of`)将使用参数 `x` 和 `y` "
+"调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。这是 `Ordering` "
+"类型，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，"
+"我们明确地处理 `LT` 的情况，而其他两种情况下划线作为任意模式处理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:206
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that indentation matters here: The case block as a whole\n"
 "must be indented (if it starts on a new line), and the different\n"
 "cases must also be indented by the same amount of whitespace.\n"
-msgstr ""
-"请注意，缩进在这里很重要：整个案例块\n"
-"必须缩进（如果它从新行开始），并且不同的\n"
-"案例也必须缩进相同数量的空格。\n"
+msgstr "请注意，缩进在这里很重要：整个 Case 块必须缩进（如果它从新行开始），"
+"并且不同的 Case 也必须缩进相同数量的空格。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:209
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Function `compare` is overloaded for many data types. We will\n"
 "learn how this works when we talk about interfaces.\n"
-msgstr ""
-"函数 `compare` 对许多数据类型进行了重载。我们将\n"
-"当我们谈论接口时，了解它是如何工作的。\n"
+msgstr "函数 `compare` "
+"对许多数据类型进行了重载。当我们谈论接口时，我们将了解它是如何工作的。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/DataTypes.md:210
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "If Then Else"
-msgstr "如果然后其他"
+msgstr "If Then Else"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:214
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When working with `Bool`, there is an alternative to pattern matching\n"
 "common to most programming languages:\n"
-msgstr ""
-"使用 `Bool` 时，可以使用模式匹配的替代方法\n"
-"大多数编程语言的共同点：\n"
+msgstr "使用 `Bool` 时，可以使用模式匹配的替代方法，同时也是大多数编程语言的共同点："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:215
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "maxBits8' : Bits8 -> Bits8 -> Bits8\n"
 "maxBits8' x y = if compare x y == LT then y else x\n"
 msgstr ""
-"全部的\n"
+"total\n"
 "maxBits8' : Bits8 -> Bits8 -> Bits8\n"
 "maxBits8' x y = if compare x y == LT then y else x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:225
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that the `if then else` expression always returns a value\n"
 "and therefore, the `else` branch cannot be dropped. This is different\n"
 "from the behavior in typical imperative languages, where `if` is\n"
 "a statement with possible side effects.\n"
 msgstr ""
-"请注意，`if then else` 表达式总是返回一个值\n"
-"因此，不能删除 `else` 分支。这是不同的\n"
-"从典型的命令式语言中的行为，其中 `if` 是\n"
-"可能产生副作用的声明。\n"
+"请注意，`if then else` 表达式总是返回一个值。因此，不能删除 `else` "
+"分支。这是和典型的命令式语言中的行为所不同的，其中 `if` "
+"是可能产生副作用的声明。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:226
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Naming Conventions: Identifiers"
 msgstr "命名约定：标识符"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:233
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While we are free to use lower-case and upper-case identifiers for\n"
 "function names, type- and data constructors must be given upper-case\n"
@@ -914,42 +886,39 @@ msgid ""
 "will complain that it expected upper-case identifiers:\n"
 msgstr ""
 "虽然我们可以自由使用小写和大写标识符\n"
-"函数名、类型和数据构造函数必须大写\n"
-"标识符，以免混淆 Idris（操作员也可以）。\n"
-"例如，以下数据定义无效，并且 Idris\n"
-"会抱怨它需要大写的标识符：\n"
+"函数名，但是类型和数据构造函数必须大写标识符，以免混淆 "
+"Idris（运算符也可以）。例如，以下数据定义无效，并且 "
+"Idris会抱怨它需要大写的标识符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:234
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "data foo = bar | baz\n"
-msgstr "数据 foo = bar |巴兹\n"
+msgstr "data foo = bar | baz\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:240
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The same goes for similar data definitions like records and sum types\n"
 "(both will be explained below):\n"
-msgstr ""
-"类似的数据定义（如记录和总和类型）也是如此\n"
-"（两者都将在下面解释）：\n"
+msgstr "类似的数据定义（如记录与和类型）也是如此（两者都将在下面解释）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:241
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "-- not valid Idris\n"
 "record Foo where\n"
 "  constructor mkfoo\n"
 msgstr ""
-"-- 无效的伊德里斯\n"
-"记录 Foo 在哪里\n"
-"  构造函数 mkfoo\n"
+"-- not valid Idris\n"
+"record Foo where\n"
+"  constructor mkfoo\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:252
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "On the other hand, we typically use lower-case identifiers for function\n"
 "names, unless we plan to use them mostly during type checking (more on this\n"
@@ -957,15 +926,13 @@ msgid ""
 "a domain where upper-case identifiers are preferable, feel free to use\n"
 "those:\n"
 msgstr ""
-"另一方面，我们通常使用小写的函数标识符\n"
-"名称，除非我们计划主要在类型检查期间使用它们（更多关于这个\n"
-"之后）。然而，这不是 Idris 强制执行的，所以如果你在\n"
-"首选大写标识符的域，请随意使用\n"
-"那些：\n"
+"另一方面，我们通常使用小写的函数标识符名称，除非我们计划主要在类型检查期间使"
+"用它们（之后会有更多关于这个的讨论）。然而，这不是 Idris "
+"强制执行的，所以如果你在首选大写标识符的地方，请随意使用他们：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:253
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "foo : Bits32 -> Bits32\n"
 "foo = (* 2)\n"
@@ -974,10 +941,10 @@ msgid ""
 "Bar = foo\n"
 msgstr ""
 "foo : Bits32 -> Bits32\n"
-"富=（* 2）\n"
+"foo = (* 2)\n"
 "\n"
-"栏：Bits32 -> Bits32\n"
-"酒吧 = 富\n"
+"Bar : Bits32 -> Bits32\n"
+"Bar = foo\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:261 ../src/Tutorial/Dependent.md:444
@@ -986,201 +953,17 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:189 ../src/Tutorial/IO.md:317
 #: ../src/Tutorial/Predicates.md:305 ../src/Tutorial/Prim.md:448
 #: ../src/Tutorial/Traverse.md:247
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Exercises part 1"
-msgstr ""
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"练习第 1 部分\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 1 部分"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/DataTypes.md:267
-#, fuzzy
 msgid ""
 "Use pattern matching to implement your own versions of boolean operators "
 "`(&&)` and `(||)` calling them `and` and `or` respectively."
-msgstr ""
-"使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` 分别调用它们 ` 和 "
-"` 和 ` 或 `。"
+msgstr "使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` "
+"和 `or`。"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:274
