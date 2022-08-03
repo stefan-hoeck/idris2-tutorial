@@ -406,7 +406,11 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:441 ../src/Tutorial/Functions2.md:339
 #, fuzzy, no-wrap
 msgid "Exercises"
-msgstr "## 练习"
+msgstr ""
+"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"练习\n"
+"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"## 练习"
 
 #. type: Title #
 #: ../src/Tutorial/Functions2.md:1

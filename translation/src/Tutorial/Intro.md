@@ -195,9 +195,7 @@ distanceToMax：Bits8 -> Bits8
 distanceToMax n = maxBits8 - n
 ```
 
-这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以这样读：“`distanceToMax` 是 具有一个`Bits8` 类型参数的函数，它
-返回 `Bits8`" 类型的结果。在实现中，参数给定一个本地标识符 `n`，然后在
-右侧计算。再次继续尝试 REPL 的功能：
+这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以这样读：“`distanceToMax` 是 具有一个`Bits8` 类型参数的函数，它返回 `Bits8`" 类型的结果。在实现中，参数给定一个本地标识符 `n`，然后在右侧计算。再次继续尝试 REPL 的功能：
 
 ```repl
 Tutorial.Intro> distanceToMax 12
@@ -247,10 +245,7 @@ Tutorial.Intro> maxBits8 * maxBits8
 * [使用 Idris
   进行类型驱动开发](https://www.manning.com/books/type-driven-development-with-idris)
 
-  *专门*讲 Idris 的书！这描述得很详细
-  使用 Idris 和依赖类型的核心概念
-  编写健壮和简洁的代码。它使用 Idris 1 实现书中的例子，所以它的一部分必须稍微调整
-  使用 Idris 2 时，还有一个[所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。
+  *专门*讲 Idris 的书！这描述得很详细。使用 Idris 和依赖类型的核心概念编写健壮和简洁的代码。它使用 Idris 1 实现书中的例子，所以使用 Idris 2 时它的一部分必须稍微调整，有一个[所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。
 
 * [Idris 2
   速成课程](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
@@ -267,9 +262,7 @@ Tutorial.Intro> maxBits8 * maxBits8
 
 * [Idris 2 Discord 频道](https://discord.gg/UX68fDs2jc)
 
-  如果你被一段代码卡住了，想问一些
-晦涩的语言功能，想推广你的新库，
-  或者想和其他 Idris 程序员一起出去玩，可以去这个地方。Discord 频道非常活跃且对新人*非常*友好。
+  如果你被一段代码卡住了，想问一些晦涩的语言功能，想推广你的新库，或者想和其他 Idris 程序员一起出去玩，可以来这个地方。Discord 频道非常活跃且对新人*非常*友好。
 
 * The Idris REPL
 

@@ -1199,10 +1199,7 @@ msgid ""
 "  or want to just hang out with other Idris programmers, this\n"
 "  is the place to go. The discord channel is pretty active and\n"
 "  *very* friendly towards newcomers.\n"
-msgstr ""
-"  如果你被一段代码卡住了，想问一些晦涩的语言功能，想推广你的新库，"
-"或者想和其他 Idris 程序员一起出去玩，可以来这个地方。Discord "
-"频道非常活跃且对新人*非常*友好。\n"
+msgstr "  如果你被一段代码卡住了，想问一些晦涩的语言功能，想推广你的新库，或者想和其他 Idris 程序员一起出去玩，可以来这个地方。Discord 频道非常活跃且对新人*非常*友好。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:394
