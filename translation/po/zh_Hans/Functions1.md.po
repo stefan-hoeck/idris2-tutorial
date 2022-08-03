@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 16:03+0000\n"
+"PO-Revision-Date: 2022-08-03 04:30+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions1/zh_Hans/>\n"
@@ -374,40 +374,17 @@ msgstr "repl"
 #: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
 #: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
 #: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Conclusion"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "结论"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
 #: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
 #: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "What's next"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃＃ 下一步是什么\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "下一步是什么？"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -417,36 +394,19 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "<!-- vi: filetype=idris2\n"
 "-->\n"
 msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 
 #. type: Title #
 #: ../src/Tutorial/Functions1.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functions Part 1"
-msgstr "# 函数第 1 部分"
+msgstr "函数第 1 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:12
@@ -481,13 +441,13 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:17
 #, fuzzy, no-wrap
 msgid "module Tutorial.Functions1\n"
-msgstr "```idris 模块 Tutorial.Functions2"
+msgstr "模块 Tutorial.Functions1\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions1.md:21
 #, fuzzy, no-wrap
 msgid "Functions with more than one Argument"
-msgstr "## 具有多个参数的函数"
+msgstr "具有多个参数的函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:28
@@ -508,7 +468,9 @@ msgstr ""
 msgid ""
 "isTriple : Integer -> Integer -> Integer -> Bool\n"
 "isTriple x y z = x * x + y * y == z * z\n"
-msgstr "```idris isTriple : Integer -> Integer -> Integer -> Bool isTriple x y z = x * x + y * y == z * z ```"
+msgstr ""
+"isTriple : 整数 -> 整数 -> 整数 -> 布尔\n"
+"isTriple x y z = x * x + y * y == z * z\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:36
@@ -525,7 +487,11 @@ msgid ""
 "False\n"
 "Tutorial.Functions1> isTriple 3 4 5\n"
 "True\n"
-msgstr "```repl Tutorial.Functions1> isTriple 1 2 3 False Tutorial.Functions1> isTriple 3 4 5 True ```"
+msgstr ""
+"Tutorial.Functions1> isTriple 1 2 3\n"
+"错误的\n"
+"Tutorial.Functions1> isTriple 3 4 5\n"
+"真的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:49
@@ -536,7 +502,12 @@ msgid ""
 "of argument types (also called *input types*)\n"
 "chained by function arrows (`->`), which\n"
 "is terminated by an output type (`Bool` in this case).\n"
-msgstr "从这个例子可以看出，一个有多个参数的函数的类型只是由一系列参数类型（也称为*输入类型*）由函数箭头链接而成（`->`） ，由输出类型终止（在本例中为 `Bool`）。"
+msgstr ""
+"从这个例子可以看出，函数的类型\n"
+"几个参数只包含一个序列\n"
+"参数类型（也称为 * 输入类型 *）\n"
+"由功能箭头链接（`->`），其中\n"
+"由输出类型终止（在本例中为 `Bool`）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:61
@@ -589,7 +560,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:75
 #, fuzzy, no-wrap
 msgid "Function Composition"
-msgstr "## 函数组成"
+msgstr "功能组成"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:79
@@ -641,7 +612,9 @@ msgstr "我们可以在不使用点运算符的情况下实现 `squareTimes2`，
 msgid ""
 "squareTimes2' : Integer -> Integer\n"
 "squareTimes2' n = times2 (square n)\n"
-msgstr "squareTimes2 : 整数 -> 整数 squareTimes2 = times2 。方```"
+msgstr ""
+"squareTimes2' : 整数 -> 整数\n"
+"squareTimes2' n = times2（平方 n）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:105
@@ -651,7 +624,13 @@ msgid ""
 "operator are invoked from right to left: `times2 . square`\n"
 "is the same as `\\n => times2 (square n)` and not\n"
 "`\\n => square (times2 n)`.\n"
-msgstr "需要注意的是，由点运算符链接的函数是从右到左调用的： `times2 。 square` 与 `\\n => times2 (square n)` 相同，而不是 `\\n => square (times2 n)`。"
+msgstr ""
+"需要注意的是，由点链接的函数\n"
+"运算符从右到左调用： `times2 。方形`\n"
+"与 `\\n"
+" => times2 (square n)` 相同，而不是\n"
+"`\\n"
+" => 正方形 (times2 n)`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:108
@@ -667,7 +646,9 @@ msgstr "我们可以方便地使用点运算符链接多个函数来编写更复
 msgid ""
 "dotChain : Integer -> String\n"
 "dotChain = reverse . show . square . square . times2 . times2\n"
-msgstr "```idris dotChain：整数 -> 字符串 dotChain = reverse 。节目 。正方形 。正方形 。次2。次2 ```"
+msgstr ""
+"dotChain : 整数 -> 字符串\n"
+"点链 = 反向。节目 。正方形 。正方形 。次2。次2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:119
@@ -686,7 +667,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:120
 #, fuzzy, no-wrap
 msgid "Higher-order Functions"
-msgstr "## 高阶函数"
+msgstr "高阶函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:126
@@ -708,7 +689,12 @@ msgid ""
 "\n"
 "testSquare : (Integer -> Bool) -> Integer -> Bool\n"
 "testSquare fun n = fun (square n)\n"
-msgstr "testSquare : (Integer -> Bool) -> Integer -> Bool testSquare fun n = fun (square n) ```"
+msgstr ""
+"isEven : 整数 -> 布尔值\n"
+"isEven n = mod n 2 == 0\n"
+"\n"
+"testSquare：（整数->布尔）->整数->布尔\n"
+"testSquare fun n = fun（平方 n）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:142
@@ -731,7 +717,9 @@ msgstr ""
 msgid ""
 "Tutorial.Functions1> testSquare isEven 12\n"
 "True\n"
-msgstr "```repl Tutorial.Functions1> testSquare isEven 12 True ```"
+msgstr ""
+"Tutorial.Functions1> testSquare isEven 12\n"
+"真的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:154
@@ -761,7 +749,9 @@ msgstr "我在上面说过，我们很容易发疯。例如，考虑以下示例
 msgid ""
 "twice : (Integer -> Integer) -> Integer -> Integer\n"
 "twice f n = f (f n)\n"
-msgstr "```idris 两次：（整数 -> 整数）-> 整数 -> 整数两次 f n = f (f n) ```"
+msgstr ""
+"两次：（整数->整数）->整数->整数\n"
+"两次 f n = f (f n)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
@@ -769,13 +759,7 @@ msgstr "```idris 两次：（整数 -> 整数）-> 整数 -> 整数两次 f n = 
 #: ../src/Tutorial/Prim.md:646
 #, fuzzy
 msgid "And at the REPL:"
-msgstr ""
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"在 REPL：\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"在 REPL：\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "在 REPL："
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:165
@@ -787,7 +771,13 @@ msgid ""
 "65536\n"
 "Tutorial.Functions1> (twice . twice . twice . twice) square 2\n"
 "*** huge number ***\n"
-msgstr "```repl Tutorial.Functions1> two square 2 16 Tutorial.Functions1> (two . two) square 2 65536 Tutorial.Functions1> (twice . two . two . two) square 2 *** 巨大的数字 *** ```"
+msgstr ""
+"Tutorial.Functions1> 二次方 2\n"
+"16\n"
+"Tutorial.Functions1> (twice . two) square 2\n"
+"65536\n"
+"Tutorial.Functions1>（两次.两次.两次.两次）平方2\n"
+"*** 巨大的数字 ***\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:177
@@ -808,7 +798,12 @@ msgid ""
 "\n"
 "expr2 : Integer -> Integer\n"
 "expr2 = twice (twice (twice (twice square)))\n"
-msgstr "```idris expr1 : Integer -> Integer expr1 = (两次.两次.两次.两次)平方"
+msgstr ""
+"expr1 : 整数 -> 整数\n"
+"expr1 = (两次. 两次. 两次. 两次) 平方\n"
+"\n"
+"expr2 : 整数 -> 整数\n"
+"expr2 = 两次（两次（两次（二次方）））\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:194
@@ -829,7 +824,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:195
 #, fuzzy, no-wrap
 msgid "Currying"
-msgstr "## 咖喱"
+msgstr "咖喱"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:201
@@ -858,7 +853,13 @@ msgid ""
 "isTriple 1 : Integer -> Integer -> Bool\n"
 "Tutorial.Functions1> :t isTriple 1 2\n"
 "isTriple 1 2 : Integer -> Bool\n"
-msgstr "```repl Tutorial.Functions1> :t testSquare isEven testSquare isEven : Integer -> Bool Tutorial.Functions1> :t isTriple 1 isTriple 1 : Integer -> Integer -> Bool Tutorial.Functions1> :t isTriple 1 2 isTriple 1 2 :整数 -> 布尔 ```"
+msgstr ""
+"Tutorial.Functions1> :t testSquare isEven\n"
+"testSquare isEven : 整数 -> 布尔\n"
+"Tutorial.Functions1> :t isTriple 1\n"
+"isTriple 1 : 整数 -> 整数 -> 布尔\n"
+"Tutorial.Functions1> :t isTriple 1 2\n"
+"isTriple 1 2 : 整数 -> 布尔\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:220
@@ -871,7 +872,14 @@ msgid ""
 "type `Integer -> Integer -> Bool`. We can even\n"
 "use the result of such a partially applied function in\n"
 "a new top level definition:\n"
-msgstr "请注意，在 Idris 中，我们如何可以部分应用具有多个参数的函数，从而返回一个新函数。例如， `isTriple 1` 将参数 `1` 应用于函数 `isTriple` 并返回一个类型为 `Integer -> Integer -> Bool[ 的新函数X267X]。我们甚至可以在新的顶级定义中使用这种部分应用函数的结果："
+msgstr ""
+"注意，我们如何在 Idris 中部分应用函数\n"
+"有多个参数，因此得到一个新函数\n"
+"背部。例如， `isTriple 1` 将参数 `1` 应用于函数\n"
+"`isTriple` 并因此返回一个新函数\n"
+"键入 ` 整数 -> 整数 -> 布尔 `。我们甚至可以\n"
+"使用这种部分应用函数的结果\n"
+"一个新的顶级定义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:221
@@ -879,7 +887,9 @@ msgstr "请注意，在 Idris 中，我们如何可以部分应用具有多个�
 msgid ""
 "partialExample : Integer -> Bool\n"
 "partialExample = isTriple 3 4\n"
-msgstr "```idris partialExample : Integer -> Bool partialExample = isTriple 3 4 ```"
+msgstr ""
+"partialExample : 整数 -> 布尔\n"
+"部分示例 = isTriple 3 4\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:228
@@ -887,7 +897,9 @@ msgstr "```idris partialExample : Integer -> Bool partialExample = isTriple 3 4 
 msgid ""
 "Tutorial.Functions1> partialExample 5\n"
 "True\n"
-msgstr "```repl Tutorial.Functions1> partialExample 5 True ```"
+msgstr ""
+"Tutorial.Functions1> partialExample 5\n"
+"真的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:236
@@ -903,7 +915,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:237
 #, fuzzy, no-wrap
 msgid "Anonymous Functions"
-msgstr "## 匿名函数"
+msgstr "匿名函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:245
@@ -925,7 +937,9 @@ msgstr ""
 msgid ""
 "someTest : Integer -> Bool\n"
 "someTest n = n >= 3 || n <= 10\n"
-msgstr "```idris someTest : Integer -> Bool someTest n = n >= 3 || n <= 10 ```"
+msgstr ""
+"someTest : 整数 -> 布尔\n"
+"一些测试 n = n >= 3 || n <= 10\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:252
@@ -939,7 +953,9 @@ msgstr "下面是如何将其传递给 `testSquare`："
 msgid ""
 "Tutorial.Functions1> testSquare someTest 100\n"
 "True\n"
-msgstr "```repl Tutorial.Functions1> testSquare someTest 100 True ```"
+msgstr ""
+"Tutorial.Functions1> testSquare someTest 100\n"
+"真的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:260
@@ -954,7 +970,10 @@ msgstr "我们可以使用匿名函数，而不是定义和使用 `someTest`："
 msgid ""
 "Tutorial.Functions1> testSquare (\\n => n >= 3 || n <= 10) 100\n"
 "True\n"
-msgstr "```repl Tutorial.Functions1> testSquare (\\n => n >= 3 || n <= 10) 100 True ```"
+msgstr ""
+"Tutorial.Functions1> testSquare (\\n"
+" => n >= 3 || n <= 10) 100\n"
+"真的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:277
@@ -971,7 +990,19 @@ msgid ""
 "When we pass lambdas as arguments to higher-order functions,\n"
 "they typically need to be wrapped in parentheses or separated\n"
 "by the dollar operator `($)` (see the next section about this).\n"
-msgstr "匿名函数有时也称为 *lambdas*（来自 [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus)），选择反斜杠是因为它类似于希腊字母 * λ*。 `\\n =>` 语法引入了一个名为 `n` 的新匿名函数，其实现位于函数箭头的右侧。与其他顶级函数一样，lambda 可以有多个参数，以逗号分隔：`\\x,y => x * x + y`。当我们将 lambdas 作为参数传递给高阶函数时，它们通常需要用括号括起来或用美元运算符 `($)` 分隔（请参阅下一节）。"
+msgstr ""
+"匿名函数有时也称为 *lambdas*（来自\n"
+"[λ演算](https://en.wikipedia.org/wiki/Lambda_calculus)),\n"
+"并且选择了反斜杠，因为它类似于希腊语\n"
+"字母 * λ*。 `\\n"
+" =>` 语法引入了一个新的匿名\n"
+"一个名为 `n` 的参数的函数，实现\n"
+"它位于功能箭头的右侧。\n"
+"像其他顶级函数一样，lambda 可以有更多\n"
+"多个参数，以逗号分隔：`\\x,y => x * x + y`。\n"
+"当我们将 lambdas 作为参数传递给高阶函数时，\n"
+"它们通常需要用括号括起来或分开\n"
+"由美元运算符 `($)` （请参阅下一节）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:280
@@ -987,7 +1018,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:281
 #, fuzzy, no-wrap
 msgid "Operators"
-msgstr "## 运算符"
+msgstr "运营商"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:288
@@ -1008,7 +1039,9 @@ msgstr ""
 msgid ""
 "As an example, let us define a custom operator for sequencing\n"
 "functions of type `Bits8 -> Bits8`:\n"
-msgstr "例如，让我们为 `Bits8 -> Bits8` 类型的排序函数定义一个自定义运算符："
+msgstr ""
+"举个例子，让我们定义一个自定义操作符来进行排序\n"
+"`Bits8 -> Bits8` 类型的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:292
@@ -1046,7 +1079,13 @@ msgid ""
 "`f >>> g >>> h` is to be interpreted as `f >>> (g >>> h)`)\n"
 "with a priority of `4`. You can also have a look at the fixity\n"
 "of operators exported by the *Prelude* in the REPL:\n"
-msgstr "除了声明和定义运算符本身之外，我们还必须指定它的固定性：`infixr 4 >>>` 表示，`(>>>)` 关联到右边（意思是， `f >>> g >>> h` 将被解释为 `f >>> (g >>> h)`)，优先级为 `4` .您还可以查看 REPL 中 *Prelude* 导出的运算符的固定性："
+msgstr ""
+"除了声明和定义操作符\n"
+"本身，我们还必须指定它的固定性：`infixr 4 >>>` 表示，\n"
+"`(>>>)` 关联到右边（意思是，那个\n"
+"`f >>> g >>> h` 将被解释为 `f >>> (g >>> h)`)\n"
+"优先级为 `4`。你也可以看看fixity\n"
+"REPL 中 *Prelude* 导出的运算符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:312
@@ -1058,13 +1097,11 @@ msgid ""
 "  Totality: total\n"
 "  Fixity Declaration: infixr operator, level 9\n"
 msgstr ""
-"```repl\n"
 "Tutorial.Functions1> :doc (.)\n"
 "前奏曲.. : (b -> c) -> (a -> b) -> a -> c\n"
 "  功能组成。\n"
 "  总量：总计\n"
 "  固定性声明：中缀操作员，9 级\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:325
@@ -1083,7 +1120,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:326
 #, fuzzy, no-wrap
 msgid "Operator Sections"
-msgstr "### 运算符部分"
+msgstr "操作员部分"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:332
@@ -1104,7 +1141,11 @@ msgid ""
 "False\n"
 "Tutorial.Functions1> testSquare (10 <) 5\n"
 "True\n"
-msgstr "```repl Tutorial.Functions1> testSquare (< 10) 5 错误 Tutorial.Functions1> testSquare (10 <) 5 正确 ```"
+msgstr ""
+"Tutorial.Functions1> testSquare (< 10) 5\n"
+"错误的\n"
+"Tutorial.Functions1> testSquare (10 <) 5\n"
+"真的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:344
@@ -1114,7 +1155,11 @@ msgid ""
 "and `(10 <)`. The first tests, whether its argument is\n"
 "less than 10, the second, whether 10 is less than its\n"
 "argument.\n"
-msgstr "如您所见，`(< 10)` 和 `(10 <)` 之间存在差异。第一个测试它的参数是否小于 10，第二个测试 10 是否小于它的参数。"
+msgstr ""
+"如您所见，`(< 10)`\n"
+"和 `(10 <)`。第一个测试，它的论点是否是\n"
+"小于10，第二，10是否小于其\n"
+"争论。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:348
@@ -1132,7 +1177,9 @@ msgstr ""
 msgid ""
 "applyToTen : (Integer -> Integer) -> Integer\n"
 "applyToTen f = f 10\n"
-msgstr "```idris applyToTen : (Integer -> Integer) -> Integer applyToTen f = f 10 ```"
+msgstr ""
+"applyToTen : (整数 -> 整数) -> 整数\n"
+"applyToTen f = f 10\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:357
@@ -1149,7 +1196,9 @@ msgstr ""
 msgid ""
 "Tutorial.Functions1> applyToThen (* 2)\n"
 "20\n"
-msgstr "```repl Tutorial.Functions1> applyToThen (* 2) 20 ```"
+msgstr ""
+"Tutorial.Functions1> applyToThen (* 2)\n"
+"20\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:365
@@ -1166,7 +1215,12 @@ msgid ""
 "\n"
 "(Interactive):1:12--1:17\n"
 " 1 | applyToTen (- 5)\n"
-msgstr "```repl Tutorial.Functions1> applyToTen (- 5) 错误：找不到 Num 的实现（整数 -> 整数）。"
+msgstr ""
+"Tutorial.Functions1> applyToTen (- 5)\n"
+"错误：找不到 Num (Integer -> Integer) 的实现。\n"
+"\n"
+"（互动）：1:12--1:17\n"
+" 1 |适用于十 (- 5)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:377
@@ -1185,13 +1239,15 @@ msgstr ""
 msgid ""
 "Tutorial.Functions1> applyToTen (\\x => x - 5)\n"
 "5\n"
-msgstr "```repl Tutorial.Functions1> applyToTen (\\x => x - 5) 5 ```"
+msgstr ""
+"Tutorial.Functions1> applyToTen (\\x => x - 5)\n"
+"5\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions1.md:383
 #, fuzzy, no-wrap
 msgid "Infix Notation for Non-Operators"
-msgstr "### 非运算符的中缀表示法"
+msgstr "非运算符的中缀表示法"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:390
@@ -1246,7 +1302,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:409
 #, fuzzy, no-wrap
 msgid "Operators exported by the *Prelude*"
-msgstr "### *Prelude*导出的运算符"
+msgstr "*Prelude*导出的算子"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:419
@@ -1341,7 +1397,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:441 ../src/Tutorial/Functions2.md:339
 #, fuzzy, no-wrap
 msgid "Exercises"
-msgstr "## 练习"
+msgstr "练习"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Functions1.md:450
@@ -1457,10 +1513,8 @@ msgid ""
 "   Tutorial.Functions1> negate (isSmall `and` isOdd) 73\n"
 "   False\n"
 msgstr ""
-"   ```repl\n"
 "   Tutorial.Functions1> negate (isSmall `and` isOdd) 73\n"
 "   错误的\n"
-"   ```\n"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Functions1.md:500
@@ -1525,10 +1579,8 @@ msgid ""
 "   Tutorial.Functions1> not (isSmall && isOdd) 73\n"
 "   False\n"
 msgstr ""
-"   ```repl\n"
 "   Tutorial.Functions1> not (isSmall && isOdd) 73\n"
 "   错误的\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:527
@@ -1656,7 +1708,12 @@ msgid ""
 "Prelude.not : Bool -> Bool\n"
 "Tutorial.Functions1> :t Functions1.not\n"
 "Tutorial.Functions1.not : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool\n"
-msgstr "```repl Tutorial.Functions1> :t Prelude.not Prelude.not : Bool -> Bool Tutorial.Functions1> :t Functions1.not Tutorial.Functions1.not : (Integer -> Bool) -> (Integer -> Bool) -> 整数 -> 布尔 ```"
+msgstr ""
+"Tutorial.Functions1> :t Prelude.not\n"
+"Prelude.not : Bool -> Bool\n"
+"Tutorial.Functions1> :t Functions1.not\n"
+"Tutorial.Functions1.not : (Integer -> Bool) -> (Integer -> Bool) -> Integer -"
+"> Bool\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:581

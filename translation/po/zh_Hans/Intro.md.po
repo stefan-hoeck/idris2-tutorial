@@ -1001,10 +1001,7 @@ msgid ""
 "is given a local identifier `n`, which is then used in the\n"
 "calculation on the right hand side. Again, go ahead and try this\n"
 "function at the REPL:\n"
-msgstr ""
-"这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以这样读：“`distanceToMax` 是 具有一个`Bits8` 类型参数的函数，它\n"
-"返回 `Bits8`\" 类型的结果。在实现中，参数给定一个本地标识符 `n`，然后在\n"
-"右侧计算。再次继续尝试 REPL 的功能：\n"
+msgstr "这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以这样读：“`distanceToMax` 是 具有一个`Bits8` 类型参数的函数，它返回 `Bits8`\" 类型的结果。在实现中，参数给定一个本地标识符 `n`，然后在右侧计算。再次继续尝试 REPL 的功能：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:300
@@ -1145,11 +1142,7 @@ msgid ""
 "  its examples, so parts of it have to be slightly adjusted\n"
 "  when using Idris 2. There is also a\n"
 "  [list of required updates](https://idris2.readthedocs.io/en/latest/typedd/typedd.html).\n"
-msgstr ""
-"  *专门*讲 Idris 的书！这描述得很详细\n"
-"  使用 Idris 和依赖类型的核心概念\n"
-"  编写健壮和简洁的代码。它使用 Idris 1 实现书中的例子，所以它的一部分必须稍微调整\n"
-"  使用 Idris 2 时，还有一个[所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。\n"
+msgstr "  *专门*讲 Idris 的书！这描述得很详细。使用 Idris 和依赖类型的核心概念编写健壮和简洁的代码。它使用 Idris 1 实现书中的例子，所以使用 Idris 2 时它的一部分必须稍微调整，有一个[所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:370

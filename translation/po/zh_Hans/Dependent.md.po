@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-02 23:16+0800\n"
-"PO-Revision-Date: 2022-08-02 16:03+0000\n"
+"PO-Revision-Date: 2022-08-03 04:30+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dependent/zh_Hans/>\n"
@@ -458,40 +458,17 @@ msgstr ""
 #: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
 #: ../src/Tutorial/Interfaces.md:792 ../src/Tutorial/IO.md:1095
 #: ../src/Tutorial/Predicates.md:1358 ../src/Tutorial/Traverse.md:1109
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Conclusion"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃ 结论\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "结论"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
 #: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
 #: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "What's next"
-msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"＃＃＃ 下一步是什么\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "下一步是什么？"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
@@ -501,30 +478,13 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:821 ../src/Tutorial/IO.md:1125
 #: ../src/Tutorial/Predicates.md:1369 ../src/Tutorial/Prim.md:1411
 #: ../src/Tutorial/Traverse.md:1148
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "<!-- vi: filetype=idris2\n"
 "-->\n"
 msgstr ""
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"<!-- vi: filetype=idris2 -->\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"<!-- vi: filetype=idris2\n"
+"-->\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:1 ../src/Tutorial/Intro.md:76
