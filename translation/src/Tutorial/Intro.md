@@ -136,15 +136,10 @@ $ build/exec/hello
 Hello World!
 ```
 
-The `--find-ipkg` option will look for an `.ipkg` file in the current
-directory or one of its parent directories, from which it will get other
-settings like the source directory to use (`src` in our case). The `-o`
-option gives the name of the executable to be generated. Type `idris2
---help` for a list of available command-line options and environment
-variables.
+`--find-ipkg` 选项将在当前目录或其父目录之一中查找 `.ipkg` 文件，从中获取其他设置，如要使用的源码目录（在我们的例子中是
+`src`）。 `-o` 选项给出要生成的可执行文件的名称。输入 `idris2 --help` 以获取可用命令行选项和环境变量的列表。
 
-As an alternative, you can also load this source file in a REPL session and
-invoke function `main` from there:
+作为替代方案，您还可以在 REPL 会话中加载此源文件并从那里调用函数 `main`：
 
 ```sh
 rlwrap idris2 --find-ipkg src/Tutorial/Intro.md
@@ -155,40 +150,29 @@ Tutorial.Intro> :exec main
 Hello World!
 ```
 
-Go ahead and try both ways of building and running function `main` on your
-system!
+继续尝试在您的系统上构建和运行函数 `main` 的两种方法！
 
-Note: It might be instructive to omit the `--find-ipkg` option.  You will
-get an error message about the module name `Tutorial.Intro` not matching the
-file path `src/Tutorial/Intro.md`. You can also use option `--source-dir
-src` to silence this error.
+注意：省略 `--find-ipkg` 选项可能是有益的。您将收到有关模块名称 `Tutorial.Intro` 与文件路径
+`src/Tutorial/Intro.md` 不匹配的错误消息。您还可以使用选项 `--source-dir src` 来消除此错误。
 
-## The Shape of an Idris Definition
+## 一个 Idris 定义包含什么
 
-Now that we executed our first Idris program, we will talk a bit more about
-the code we had to write to define it.
+现在我们执行了第一个 Idris 程序，我们将更多地讨论我们必须编写的代码来定义它。
 
-A typical top level function in Idris consists of three things: The
-function's name (`main` in our case), its type (`IO ()`)  plus its
-implementation (`putStrLn "Hello World"`). It is easier to explain these
-things with a couple of simple examples. Below, we define a top level
-constant for the largest unsigned eight bit integer:
+Idris 中一个典型的顶级函数由三部分组成：函数的名称（在我们的例子中是 `main`），它的类型（`IO ()`）加上它的实现（`putStrLn
+"你好世界”`）。用几个简单的例子来解释这些事情会更容易。下面，我们为最大的无符号八位整数定义一个顶级常量：
 
 ```idris
 maxBits8 : Bits8
 maxBits8 = 255
 ```
 
-The first line can be read as: "We'd like to declare (nullary)  function
-`maxBits8`. It is of type `Bits8`". This is called the *function
-declaration*: We declare, that there shall be a function of the given name
-and type. The second line reads: "The result of invoking `maxBits8` should
-be `255`." (As you can see, we can use integer literals for other integral
-types than just `Integer`.) This is called the *function definition*:
-Function `maxBits8` should behave as described here when being evaluated.
+第一行可以读作：“我们想声明（空）函数 `maxBits8`。它的类型是
+`Bits8`”。这称为*函数声明*：我们声明，应该有一个给定名称和类型的函数。第二行显示：“调用 `maxBits8` 的结果应该是 `255`。”
+（如您所见，我们可以将整数字面量用于其他整数类型，而不仅仅是 `Integer`。）第二行称为*函数定义*：函数 `maxBits8`
+应该在求值时的表现在此处描述。
 
-We can inspect this at the REPL. Load this source file into an Idris REPL
-(as described above), and run the following tests.
+我们可以在 REPL 进行检查。将此源文件加载到 Idris REPL（如上所述）中，然后运行以下测试。
 
 ```repl
 Tutorial.Intro> maxBits8
@@ -197,28 +181,23 @@ Tutorial.Intro> :t maxBits8
 Tutorial.Intro.maxBits8 : Bits8
 ```
 
-We can also use `maxBits8` as part of another expression:
+我们也可以使用 `maxBits8` 作为另一个表达式的一部分：
 
 ```repl
 Tutorial.Intro> maxBits8 - 100
 155
 ```
 
-I called `maxBits8` a *nullary function*, which is just a fancy word for
-*constant*. Let's write and test our first *real* function:
+我将 `maxBits8` 称为 *空函数*，它只是 *常量* 的一个花哨的同义词。让我们编写并测试我们的第一个 *real* 函数：
 
 ```idris
-distanceToMax : Bits8 -> Bits8
+distanceToMax：Bits8 -> Bits8
 distanceToMax n = maxBits8 - n
 ```
 
-This introduces some new syntax and a new kind of type: Function
-types. `distanceToMax : Bits8 -> Bits8` can be read as follows:
-"`distanceToMax` is a function of one argument of type `Bits8`, which
-returns a result of type `Bits8`". In the implementation, the argument
-is given a local identifier `n`, which is then used in the
-calculation on the right hand side. Again, go ahead and try this
-function at the REPL:
+这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以这样读：“`distanceToMax` 是 具有一个`Bits8` 类型参数的函数，它
+返回 `Bits8`" 类型的结果。在实现中，参数给定一个本地标识符 `n`，然后在
+右侧计算。再次继续尝试 REPL 的功能：
 
 ```repl
 Tutorial.Intro> distanceToMax 12
@@ -229,125 +208,91 @@ Tutorial.Intro> :t distanceToMax 12
 distanceToMax 12 : Bits8
 ```
 
-As a final example, let's implement a function to calculate the square of an
-integer:
+作为最后一个例子，让我们实现一个计算整数平方的函数：
 
 ```idris
 square : Integer -> Integer
 square n = n * n
 ```
 
-We now learn a very important aspect of programming in Idris: Idris is a
-*statically typed* programming language. We are not allowed to freely mix
-types as we please. Doing so will result in an error message from the type
-checker (which is part of the compilation process of Idris).  For instance,
-if we try the following at the REPL, we will get a type error:
+我们现在学习 Idris 编程的一个非常重要的方面：Idris 是一种 *静态类型*
+编程语言。我们不允许随意混合类型。这样做会导致来自类型检查器的错误消息（这是 Idris 编译过程的一部分）。例如，如果我们在 REPL
+中尝试以下操作，我们将收到类型错误：
 
 ```repl
 Tutorial.Intro> square maxBits8
 Error: ...
 ```
 
-The reason: `square` expects an argument of type `Integer`, but `maxBits8`
-is of type `Bits8`. Many primitive types are interconvertible (sometimes
-with the risk of loss of precision) using function `cast` (more on the
-details later):
+原因：`square` 需要 `Integer` 类型的参数，但 `maxBits8` 的类型是 `Bits8`。许多原语类型可以使用函数 `cast`
+相互转换（有时会有精度损失的风险）（稍后会详细介绍）：
 
 ```repl
 Tutorial.Intro> square (cast maxBits8)
 65025
 ```
 
-Note, that in the example above the result is much larger that
-`maxBits8`. The reason is, that `maxBits8` is first converted to an
-`Integer` of the same value, which is then squared. If on the other hand we
-squared `maxBits8` directly, the result would be truncated to still fit the
-valid range of `Bits8`:
+请注意，在上面的示例中，结果比 `maxBits8` 大得多。原因是，首先将 `maxBits8` 转换为相同值的
+`Integer`，然后对其进行平方。另一方面，如果我们直接将 `maxBits8` 平方，结果将被截断以仍然适合 `Bits8` 的有效范围：
 
 ```repl
 Tutorial.Intro> maxBits8 * maxBits8
 1
 ```
 
-## Where to get Help
+## 在哪里可以获得帮助
 
-There are several resources available online and in print, where you can
-find help and documentation about the Idris programming language. Here is a
-non-comprehensive list of them:
+有多种在线资源和印刷资源，您可以在其中找到有关 Idris 编程语言的帮助和文档。以下是它们的非全面列表：
 
-* [Type-Driven Development with
-  Idris](https://www.manning.com/books/type-driven-development-with-idris)
+* [使用 Idris
+  进行类型驱动开发](https://www.manning.com/books/type-driven-development-with-idris)
 
-  *The* Idris book! This describes in great detail
-  the core concepts for using Idris and dependent types
-  to write robust and concise code. It uses Idris 1 in
-  its examples, so parts of it have to be slightly adjusted
-  when using Idris 2. There is also a
-  [list of required updates](https://idris2.readthedocs.io/en/latest/typedd/typedd.html).
+  *专门*讲 Idris 的书！这描述得很详细
+  使用 Idris 和依赖类型的核心概念
+  编写健壮和简洁的代码。它使用 Idris 1 实现书中的例子，所以它的一部分必须稍微调整
+  使用 Idris 2 时，还有一个[所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。
 
-* [A Crash Course in Idris
-  2](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
+* [Idris 2
+  速成课程](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
 
-  The official Idris 2 tutorial. A comprehensive but dense explanation of
-  all features of Idris 2. I find this to be useful as a reference, and as such
-  it is highly accessible. However, it is not an introduction to functional
-  programming or type-driven development in general.
+  Idris 2 官方教程。全面而密集的解释 Idris 2 的所有功能。我发现这作为参考很有用，因此它是高度可访问的。但是，它不是函数式编程或类型驱动开发的入门介绍
 
-* [The Idris 2 GitHub Repository](https://github.com/idris-lang/Idris2)
+* [Idris 2 GitHub 存储库](https://github.com/idris-lang/Idris2)
 
-  Look here for detailed installation instructions and some
-  introductory material. There is also a [wiki](https://github.com/idris-lang/Idris2/wiki),
-  where you can find a [list of editor plugins](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience),
-  a [list of community libraries](https://github.com/idris-lang/Idris2/wiki/Libraries),
-  a [list of external backends](https://github.com/idris-lang/Idris2/wiki/External-backends),
-  and other useful information.
+  在这里查看详细的安装说明和一些介绍材料。还有一个[wiki](https://github.com/idris-lang/Idris2/wiki)，
+  在这里你可以找到[编辑器插件列表](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience)，
+  [社区库列表](https://github.com/idris-lang/Idris2/wiki/Libraries),
+  [外部后端列表](https://github.com/idris-lang/Idris2/wiki/External-backends),
+和其他有用的信息。
 
-* [The Idris 2 Discord Channel](https://discord.gg/UX68fDs2jc)
+* [Idris 2 Discord 频道](https://discord.gg/UX68fDs2jc)
 
-  If you get stuck with a piece of code, want to ask about some
-  obscure language feature, want to promote your new library,
-  or want to just hang out with other Idris programmers, this
-  is the place to go. The discord channel is pretty active and
-  *very* friendly towards newcomers.
+  如果你被一段代码卡住了，想问一些
+晦涩的语言功能，想推广你的新库，
+  或者想和其他 Idris 程序员一起出去玩，可以去这个地方。Discord 频道非常活跃且对新人*非常*友好。
 
 * The Idris REPL
 
-  Finally, a lot of useful information can be provided by
-  Idris itself. I tend to have at least one REPL session open all the
-  time when programming in Idris. My editor (neovim) is set up
-  to use the [language server for Idris 2](https://github.com/idris-community/idris2-lsp),
-  which is incredibly useful. In the REPL,
+  最后，Idris 本身可以提供很多有用的信息。在 Idris 编程的时间我倾向于至少打开一个 REPL 会话。我的编辑器（neovim）已设置使用 [Idris 2 的语言服务器](https://github.com/idris-community/idris2-lsp)，在 REPL 中这非常有用。
 
-  * use `:t` to inspect the type of an expression or meta variable (hole):
-    `:t foldl`,
-  * use `:ti` to inspect the type of a function including implicit
-    arguments: `:ti foldl`,
-  * use `:m` to list all meta variables (holes) in scope,
-  * use `:doc` to access the documentation of a top level function (`:doc
-    the`), a data type plus all its constructors and available hints (`:doc
-    Bool`), a language feature (`:doc case`, `:doc let`, `:doc interface`,
-    `:doc record`, or even `:doc ?`), or an interface (`:doc Uninhabited`),
-  * use `:module` to import a module from one of the available packages:
-    `:module Data.Vect`,
-  * use `:browse` to list the names and types of all functions exported by a
-    loaded module: `:browse Data.Vect`,
-  * use `:help` to get a list of other commands plus a short description for
-    each.
+  * 使用 `:t` 检查表达式或元变量（孔）的类型：`:t foldl`,
+  * 使用 `:ti` 检查包含隐式参数的函数类型：`:ti foldl`,
+  * 使用 `:m` 列出范围内的所有元变量（孔），
+  * 使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，一种数据类型及其所有构造函数和可用提示 (`:doc Bool`
+    )，语言特征（`:doc case`, `:doc let`, `:doc interface`, `:doc record`，甚至 `:doc
+    ?`)，或者一个接口（`:doc Uninhabited`），
+  * 使用 `:module` 从可用包之一导入模块：`:module Data.Vect`,
+  * 使用 `:browse` 列出加载模块导出的所有函数的名称和类型： `:browse Data.Vect`,
+  * 使用 `:help` 获取其他命令的列表以及每个命令的简短描述。
 
-## Summary
+## 概括
 
-In this introduction we learned about the most basic features of the Idris
-programming language. We used the REPL to tinker with our ideas and inspect
-the types of things in our code, and we used the Idris compiler to compile
-an Idris source file to an executable.
+在本介绍中，我们了解了 Idris 编程语言的最基本功能。我们使用 REPL 来修改我们的想法并检查代码中事物的类型，我们使用 Idris 编译器将
+Idris 源文件编译为可执行文件。
 
-We also learned about the basic shape of a top level definition in Idris,
-which always consists of an identifier (its name), a type, and an
-implementation.
+我们还了解了 Idris 中顶级定义的基本形式，它始终由标识符（其名称）、类型和实现组成。
 
 ### 下一步是什么？
 
-In the [next chapter](Functions1.md), we start programming in Idris for
-real. We learn how to write our own pure functions, how functions compose,
-and how we can treat functions just like other values and pass them around
-as arguments to other functions.
+在[下一章](Functions1.md)中，我们开始在 Idris
+中进行真正的编程。我们学习如何编写我们自己的纯函数，函数如何组合，以及我们如何像对待其他值一样对待函数并将它们作为参数传递给其他函数。
