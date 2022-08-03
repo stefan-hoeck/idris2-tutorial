@@ -1,26 +1,18 @@
 # Algebraic Data Types
 
-In the [previous chapter](Functions1.md),
-we learned how to write our own functions and combine
-them to create more complex functionality. Of equal importance
-is the ability to define our own data types and use them
-as arguments and results in functions.
+在[上一章](Functions1.md)中，我们学会了如何编写自己的函数并组合他们来创建更复杂的函数。同等重要的是定义我们自己的数据类型并使用它们作为参数和函数结果。
 
-This is a lengthy chapter, densely packed with information.
-If you are new to Idris and functional programming, make
-sure to follow along slowly, experimenting with the examples,
-and possibly coming up with your own. Make sure to try
-and solve *all* exercises. The solutions to the exercises
-can be found [here](../Solutions/DataTypes.idr).
+这是一个冗长的章节，信息密集。
+如果您不熟悉 Idris 和函数式编程，请一定要慢慢来，用例子做实验，并可能想出你自己的示例。确保尝试并解决*所有*练习。练习题的答案可以在 [这里](../Solutions/DataTypes.idr) 找到。
 
 ```idris
 module Tutorial.DataTypes
 ```
 
-## Enumerations
+## 枚举
 
-Let's start with a data type for the days of the week as an
-example.
+让我们从一个星期几的数据类型开始
+例子。
 
 ```idris
 data Weekday = Monday
@@ -32,9 +24,8 @@ data Weekday = Monday
              | Sunday
 ```
 
-The declaration above defines a new *type* (`Weekday`) and
-several new *values* (`Monday` to `Sunday`) of the given
-type. Go ahead, and verify this at the REPL:
+上面的声明定义了一个新的 *类型* (`Weekday`) 和
+该类型给定的几个*值*(`Monday` 到 `Sunday`)。继续，并在 REPL 上验证这一点：
 
 ```repl
 Tutorial.DataTypes> :t Monday
@@ -43,19 +34,13 @@ Tutorial.DataTypes> :t Weekday
 Tutorial.DataTypes.Weekday : Type
 ```
 
-So, `Monday` is of type `Weekday`, while `Weekday` itself is of
-type `Type`.
+所以，`Monday` 是 `Weekday` 类型，而 `Weekday` 本身是 `Type` 类型。
 
-It is important to note, that a value of type `Weekday` can only
-ever be one of the values listed above. It is a *type error* to
-use anything else where a `Weekday` is expected.
+需要注意的是，`Weekday` 类型的值只能是上面列出的值之一。在需要 `Weekday` 的地方使用其他任何值都会产生一个*类型错误*。
 
-### Pattern Matching
+### 模式匹配
 
-In order to use our new data type as a function argument, we
-need to learn about an important concept in functional programming
-languages: Pattern matching. Let's implement a function, which calculates
-the successor of a weekday:
+为了使用我们的新数据类型作为函数参数，我们需要了解函数式编程语言中的一个重要概念：模式匹配。让我们实现一个函数，它计算一个星期几的后继：
 
 ```idris
 total
@@ -69,15 +54,10 @@ next Saturday  = Sunday
 next Sunday    = Monday
 ```
 
-In order to inspect a `Weekday` argument, we match on the
-different possible values and return a result for each of them.
-This is a very powerful concept, as it allows us to match
-on and extract values from deeply nested data structures.
-The different cases in a pattern match are inspected from
-top to bottom, each being compared against the current
-function argument. Once a matching pattern is found, the
-computation on the right hand side of this pattern is
-evaluated. Later patterns are then ignored.
+为了检查 `Weekday` 参数，我们匹配
+不同的可能值并为每个值返回一个结果。
+这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况
+，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是被求值。后面的模式将被忽略。
 
 For instance, if we invoke `next` with argument `Thursday`,
 the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)
