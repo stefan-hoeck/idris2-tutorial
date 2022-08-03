@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-03 05:18+0000\n"
+"PO-Revision-Date: 2022-08-03 06:34+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/intro/zh_Hans/>\n"
@@ -396,8 +396,7 @@ msgstr "介绍"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:15
-#, fuzzy, no-wrap
-#| msgid "Welcome to my Idris 2 tutorial. I'll try and treat as many aspects of the Idris 2 programming language as possible here.  All `.md` files in here a literate Idris files: They consist of Markdown (hence the `.md` ending), which is being pretty printed by GitHub together with Idris code blocks, which can be type checked and built by the Idris compiler (more on this later).  Note, however, that regular Idris source files use an `.idr` ending, and that you go with that file type unless you end up writing much more prose than code as I do at the moment. Later in this tutorial, you'll have to solve some exercises, the solutions of which can be found in the `src/Solutions` subfolder. There, I use regular `.idr` files."
+#, no-wrap
 msgid ""
 "Welcome to my Idris 2 tutorial. I'll try and treat as many aspects\n"
 "of the Idris 2 programming language as possible here.\n"
@@ -411,17 +410,24 @@ msgid ""
 "tutorial, you'll have to solve some exercises, the solutions of\n"
 "which can be found in the `src/Solutions` subfolder. There, I\n"
 "use regular `.idr` files.\n"
-msgstr "欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 Markdown 组成（因此以 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的代码比我现在所做的更啰嗦，否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，这些练习的答案可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `.idr` 文件。"
+msgstr ""
+"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 "
+"编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 "
+"Markdown 组成（因此以 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，"
+"可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 "
+"Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的代码比我现在所做的更啰嗦，"
+"否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，"
+"这些练习的答案可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `."
+"idr` 文件。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:19
-#, fuzzy, no-wrap
-#| msgid "Every Idris source file should typically start with a module name plus some necessary imports, and this document is no exception:"
+#, no-wrap
 msgid ""
 "Every Idris source file should typically start with a module\n"
 "name plus some necessary imports, and this document is no\n"
 "exception:\n"
-msgstr "每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外："
+msgstr "每个 Idris 源文件通常应该以模块名称和一些必要的导入开头，本文档也不例外。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:20
@@ -431,13 +437,13 @@ msgstr "module Tutorial.Intro\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:27
-#, fuzzy, no-wrap
-#| msgid "A module name consists of a list of identifiers separated by dots and must reflect the folder structure plus the module file's name."
+#, no-wrap
 msgid ""
 "A module name consists of a list of identifiers separated\n"
 "by dots and must reflect the folder structure plus the module\n"
 "file's name.\n"
-msgstr "模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名称。"
+msgstr "模块名称由以点分隔的标识符列表组成，并且必须反映文件夹结构加上模块文件的名称"
+"。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:28
@@ -447,13 +453,13 @@ msgstr "关于 Idris 编程语言"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:33
-#, fuzzy, no-wrap
-#| msgid "Idris is a *pure*, *dependently typed*, *total* *functional* programming language. I'll quickly explain each of these adjectives in this section."
+#, no-wrap
 msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional*\n"
 "programming language. I'll quickly explain each of these adjectives\n"
 "in this section.\n"
-msgstr "Idris 是一种*纯的*、*依赖类型*、具有*完全**函数* 的编程语言。我将在本节中快速解释这些形容词。"
+msgstr "Idris 是一种*纯的*、*依赖类型*、具有*完全**函数* "
+"的编程语言。我将在本节中快速解释这些形容词。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:34
@@ -463,8 +469,7 @@ msgstr "函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:42
-#, fuzzy, no-wrap
-#| msgid "In functional programming languages, functions are first-class constructs, meaning that they can be assigned to variables, passed as arguments to other functions, and returned as results from functions. Unlike for instance in object-oriented programming languages, in functional programming, functions are the main form of abstraction."
+#, no-wrap
 msgid ""
 "In functional programming languages, functions are first-class\n"
 "constructs, meaning that they can be assigned to variables,\n"
@@ -472,17 +477,19 @@ msgid ""
 "from functions. Unlike for instance in\n"
 "object-oriented programming languages, in functional programming,\n"
 "functions are the main form of abstraction.\n"
-msgstr "在函数式编程语言中，函数是一等结构，这意味着它们可以分配给变量，作为参数传递给其他函数，并作为函数的结果返回。与面向对象的编程语言不同，在函数式编程中，函数是抽象的主要形式。"
+msgstr ""
+"在函数式编程语言中，函数是一等结构，这意味着它们可以分配给变量，作为参数传递"
+"给其他函数，并作为函数的结果返回。与面向对象的编程语言不同，在函数式编程中，"
+"函数是抽象的主要形式。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:46
-#, fuzzy, no-wrap
-#| msgid "Functional programming languages are concerned with the evaluation of functions, unlike classical imperative languages, which are concerned with the execution of statements."
+#, no-wrap
 msgid ""
 "Functional programming languages are concerned with the evaluation\n"
 "of functions, unlike classical imperative languages, which are\n"
 "concerned with the execution of statements.\n"
-msgstr "函数式编程语言关注函数的求值，不像经典的命令式语言关注语句的执行。"
+msgstr "函数式编程语言关注函数的求值，不像经典的命令式语言关注语句的执行。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:47
@@ -492,8 +499,7 @@ msgstr "纯函数式编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:57
-#, fuzzy, no-wrap
-#| msgid "Pure functional programming languages come with an additional important guarantee: Functions don't have side effects like writing to a file or mutating global state. They can only compute a result from their arguments possibly by invoking other pure functions, *and nothing else*. As a consequence, given the same input, they will *always* generate the same output.  This property is known as [referential transparency](https://en.wikipedia.org/wiki/Referential_transparency)."
+#, no-wrap
 msgid ""
 "Pure functional programming languages come with an additional\n"
 "important guarantee: Functions don't have side effects like\n"
@@ -503,14 +509,17 @@ msgid ""
 "the same input, they will *always* generate the same output.\n"
 "This property is known as\n"
 "[referential transparency](https://en.wikipedia.org/wiki/Referential_transparency).\n"
-msgstr "纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这样的副作用。他们只能通过调用其他纯函数，给定参数来获取计算结果，*而没有其他获取数据的途径*。因此，给定相同的输入，它们将*总是*生成相同的输出。此属性称为 [引用透明](https://en.wikipedia.org/wiki/Referential_transparency)。"
+msgstr ""
+"纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这"
+"样的副作用。他们只能通过调用其他纯函数，给定参数来获取计算结果，*而没有其他获"
+"取数据的途径*。因此，给定相同的输入，它们将*总是*生成相同的输出。此属性称为 "
+"[引用透明](https://en.wikipedia.org/wiki/Referential_transparency)。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:59
-#, fuzzy, no-wrap
-#| msgid "Pure functions have several advantages:"
+#, no-wrap
 msgid "Pure functions have several advantages:\n"
-msgstr "纯函数有几个优点："
+msgstr "纯函数有几个优点：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:62
@@ -530,10 +539,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:68
-#, fuzzy, no-wrap
-#| msgid "There are, of course, also some disadvantages:"
+#, no-wrap
 msgid "There are, of course, also some disadvantages:\n"
-msgstr "当然，也有一些缺点："
+msgstr "当然，也有一些缺点：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Intro.md:71
