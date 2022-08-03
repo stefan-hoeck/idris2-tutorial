@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-03 06:26+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-03 07:47+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/datatypes/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -26,7 +26,7 @@ msgstr "代数数据类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:8
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the [previous chapter](Functions1.md),\n"
 "we learned how to write our own functions and combine\n"
@@ -34,15 +34,12 @@ msgid ""
 "is the ability to define our own data types and use them\n"
 "as arguments and results in functions.\n"
 msgstr ""
-"在【上一章】（Functions1.md）中，\n"
-"我们学会了如何编写自己的函数并结合\n"
-"他们创建更复杂的功能。同等重要\n"
-"是定义我们自己的数据类型并使用它们的能力\n"
-"作为参数并导致函数。\n"
+"在[上一章](Functions1.md)中，我们学会了如何编写自己的函数并组合他们来创建更复"
+"杂的函数。同等重要的是定义我们自己的数据类型并使用它们作为参数和函数结果。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:15
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is a lengthy chapter, densely packed with information.\n"
 "If you are new to Idris and functional programming, make\n"
@@ -52,11 +49,9 @@ msgid ""
 "can be found [here](../Solutions/DataTypes.idr).\n"
 msgstr ""
 "这是一个冗长的章节，信息密集。\n"
-"如果您不熟悉 Idris 和函数式编程，请制作\n"
-"一定要慢慢来，用例子做实验，\n"
-"并可能想出你自己的。确保尝试\n"
-"并解决*所有*练习。练习题的解决方法\n"
-"可以在 [这里](../Solutions/DataTypes.idr) 找到。\n"
+"如果您不熟悉 Idris 和函数式编程，请一定要慢慢来，用例子做实验，并可能想出你自"
+"己的示例。确保尝试并解决*所有*练习。练习题的答案可以在 [这里](../Solutions/"
+"DataTypes.idr) 找到。\n"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:16 ../src/Tutorial/DataTypes.md:25
@@ -334,19 +329,19 @@ msgstr "idris"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:16
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "module Tutorial.DataTypes\n"
-msgstr "```idris 模块 Tutorial.Interfaces"
+msgstr "module Tutorial.DataTypes\n"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:20
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Enumerations"
 msgstr "枚举"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:24
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's start with a data type for the days of the week as an\n"
 "example.\n"
@@ -356,7 +351,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:25
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Weekday = Monday\n"
 "             | Tuesday\n"
@@ -366,25 +361,24 @@ msgid ""
 "             | Saturday\n"
 "             | Sunday\n"
 msgstr ""
-"数据工作日 = 星期一\n"
-"             |周二\n"
-"             |周三\n"
-"             |周四\n"
-"             |星期五\n"
-"             |周六\n"
-"             |星期日\n"
+"data Weekday = Monday\n"
+"             | Tuesday\n"
+"             | Wednesday\n"
+"             | Thursday\n"
+"             | Friday\n"
+"             | Saturday\n"
+"             | Sunday\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:38
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The declaration above defines a new *type* (`Weekday`) and\n"
 "several new *values* (`Monday` to `Sunday`) of the given\n"
 "type. Go ahead, and verify this at the REPL:\n"
 msgstr ""
-"上面的声明定义了一个新的 *type* (`Weekday`) 和\n"
-"给定的几个新的 * 值 * (`Monday` 到 `Sunday`)\n"
-"类型。继续，并在 REPL 上验证这一点：\n"
+"上面的声明定义了一个新的 *类型* (`Weekday`) 和\n"
+"该类型给定的几个*值*(`Monday` 到 `Sunday`)。继续，并在 REPL 上验证这一点：\n"
 
 #. type: Code fence info string
 #: ../src/Tutorial/DataTypes.md:39 ../src/Tutorial/DataTypes.md:234
@@ -463,63 +457,57 @@ msgstr "repl"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:39
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.DataTypes> :t Monday\n"
 "Tutorial.DataTypes.Monday : Weekday\n"
 "Tutorial.DataTypes> :t Weekday\n"
 "Tutorial.DataTypes.Weekday : Type\n"
 msgstr ""
-"Tutorial.DataTypes> :t 星期一\n"
-"Tutorial.DataTypes.Monday：工作日\n"
-"Tutorial.DataTypes> :t 工作日\n"
-"Tutorial.DataTypes.Weekday ：类型\n"
+"Tutorial.DataTypes> :t Monday\n"
+"Tutorial.DataTypes.Monday : Weekday\n"
+"Tutorial.DataTypes> :t Weekday\n"
+"Tutorial.DataTypes.Weekday : Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:48
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, `Monday` is of type `Weekday`, while `Weekday` itself is of\n"
 "type `Type`.\n"
-msgstr ""
-"所以，`Monday` 是 `Weekday` 类型，而 `Weekday` 本身是\n"
-"键入 ` 类型 `。\n"
+msgstr "所以，`Monday` 是 `Weekday` 类型，而 `Weekday` 本身是 `Type` 类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:52
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is important to note, that a value of type `Weekday` can only\n"
 "ever be one of the values listed above. It is a *type error* to\n"
 "use anything else where a `Weekday` is expected.\n"
 msgstr ""
-"需要注意的是，`Weekday` 类型的值只能\n"
-"永远是上面列出的值之一。这是一个*类型错误*\n"
-"使用任何其他需要 `Weekday` 的地方。\n"
+"需要注意的是，`Weekday` 类型的值只能是上面列出的值之一。在需要 `Weekday` "
+"的地方使用其他任何值都会产生一个*类型错误*。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:53
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Pattern Matching"
-msgstr "#### 隐式模式匹配"
+msgstr "模式匹配"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:59
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to use our new data type as a function argument, we\n"
 "need to learn about an important concept in functional programming\n"
 "languages: Pattern matching. Let's implement a function, which calculates\n"
 "the successor of a weekday:\n"
-msgstr ""
-"为了使用我们的新数据类型作为函数参数，我们\n"
-"需要了解函数式编程中的一个重要概念\n"
-"语言：模式匹配。让我们实现一个函数，它计算\n"
-"工作日的继任者：\n"
+msgstr "为了使用我们的新数据类型作为函数参数，我们需要了解函数式编程语言中的一个重要"
+"概念：模式匹配。让我们实现一个函数，它计算一个星期几的后继：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:60
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "next : Weekday -> Weekday\n"
@@ -531,19 +519,19 @@ msgid ""
 "next Saturday  = Sunday\n"
 "next Sunday    = Monday\n"
 msgstr ""
-"全部的\n"
-"下一个：工作日 -> 工作日\n"
-"下周一 = 周二\n"
-"下周二 = 周三\n"
-"下周三 = 周四\n"
-"下周四 = 周五\n"
-"下周五 = 周六\n"
-"下周六 = 周日\n"
-"下周日 = 周一\n"
+"total\n"
+"next : Weekday -> Weekday\n"
+"next Monday    = Tuesday\n"
+"next Tuesday   = Wednesday\n"
+"next Wednesday = Thursday\n"
+"next Thursday  = Friday\n"
+"next Friday    = Saturday\n"
+"next Saturday  = Sunday\n"
+"next Sunday    = Monday\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:81
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to inspect a `Weekday` argument, we match on the\n"
 "different possible values and return a result for each of them.\n"
@@ -557,13 +545,10 @@ msgid ""
 msgstr ""
 "为了检查 `Weekday` 参数，我们匹配\n"
 "不同的可能值并为每个值返回一个结果。\n"
-"这是一个非常强大的概念，因为它允许我们匹配\n"
-"并从深度嵌套的数据结构中提取值。\n"
-"检查模式匹配中的不同情况\n"
-"从上到下，每个都与当前进行比较\n"
-"函数参数。一旦找到匹配的模式，\n"
-"该模式右侧的计算是\n"
-"评估。随后的模式将被忽略。\n"
+"这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。"
+"从上到下检查模式匹配中的不同情况\n"
+"，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是被求值"
+"。后面的模式将被忽略。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:89
@@ -717,7 +702,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:143
 #, fuzzy, no-wrap
 msgid "Enumeration Types in the Prelude"
-msgstr "## *Prelude*中的接口"
+msgstr "Prelude 中的枚举类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:151
@@ -967,10 +952,9 @@ msgid ""
 "record Foo where\n"
 "  constructor mkfoo\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   记录任何地方\n"
-"     构造函数 MkAny\n"
-"     任何：布尔\n"
+"-- 无效的伊德里斯\n"
+"记录 Foo 在哪里\n"
+"  构造函数 mkfoo\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:252
@@ -1013,24 +997,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:247
 #, fuzzy, no-wrap
 msgid "Exercises part 1"
-msgstr ""
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 1 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 1 部分"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/DataTypes.md:267
@@ -1152,7 +1119,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:318
 #, fuzzy, no-wrap
 msgid "Sum Types"
-msgstr "# 西格玛类型"
+msgstr "总和类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:326
@@ -1320,7 +1287,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:389
 #, fuzzy, no-wrap
 msgid "At the REPL:\n"
-msgstr "在 REPL 试一下："
+msgstr "在 REPL：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
@@ -1437,24 +1404,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:574
 #, fuzzy, no-wrap
 msgid "Exercises part 2"
-msgstr ""
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 2 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 2 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 2 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 2 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 2 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 2 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 2 部分"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/DataTypes.md:440
@@ -1472,9 +1422,8 @@ msgid ""
 "   total\n"
 "   eqTitle : Title -> Title -> Bool\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    数字：Bits64 -> 基数 -> 字符串\n"
-"    ```\n"
+"   全部的\n"
+"   eqTitle : 标题 -> 标题 -> 布尔\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/DataTypes.md:448
@@ -1491,9 +1440,8 @@ msgid ""
 "   total\n"
 "   isOther : Title -> Bool\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      头部：List01 真 a -> a\n"
-"      ```\n"
+"   全部的\n"
+"   isOther : 标题 -> 布尔\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/DataTypes.md:456
@@ -1584,10 +1532,11 @@ msgid ""
 "  title : Title\n"
 "  age   : Bits8\n"
 msgstr ""
-"记录专辑在哪里\n"
-"  构造函数 MkAlbum\n"
+"记录用户在哪里\n"
+"  构造函数 MkUser\n"
 "  名称：字符串\n"
-"  艺术家：艺术家\n"
+"  标题：标题\n"
+"  年龄：Bits8\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:493
@@ -1959,7 +1908,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:645
 #, fuzzy, no-wrap
 msgid "As usual, we should have a look at the result at the REPL:\n"
-msgstr "像往常一样，我们首先在 REPL 上尝试一下："
+msgstr "像往常一样，我们应该看看 REPL 的结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:646
@@ -2022,10 +1971,10 @@ msgid ""
 "  wd   : Weekday\n"
 "  bool : Bool\n"
 msgstr ""
-"   记录所有地方\n"
-"     构造函数 MkAll\n"
-"     全部：布尔\n"
-"   ```\n"
+"记录 Foo 在哪里\n"
+"  构造函数 MkFoo\n"
+"  wd : 工作日\n"
+"  布尔：布尔\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:678
@@ -2200,24 +2149,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:1016
 #, fuzzy, no-wrap
 msgid "Exercises part 3"
-msgstr ""
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 3 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:748
@@ -2455,7 +2387,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:839
 #, fuzzy, no-wrap
 msgid "It is important to go to the REPL and look at the types:\n"
-msgstr "查看 ` 和 ` 的类型很有启发性："
+msgstr "重要的是去 REPL 并查看类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:840
@@ -2957,7 +2889,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:1056
 #, fuzzy, no-wrap
 msgid "Generic Functions"
-msgstr "### 派生函数"
+msgstr "通用函数"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1062
@@ -3133,10 +3065,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:1127 ../src/Tutorial/Eq.md:1056
 #, fuzzy, no-wrap
 msgid "Exercises part 4"
-msgstr ""
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 4 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 4 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1137
@@ -3398,10 +3327,12 @@ msgid ""
 "     age           : Bits8\n"
 "     passwordOrKey : Either Bits64 String\n"
 msgstr ""
-"记录专辑在哪里\n"
-"  构造函数 MkAlbum\n"
-"  名称：字符串\n"
-"  艺术家：艺术家\n"
+"   记录客户在哪里\n"
+"     构造函数 MkClient\n"
+"     名称：字符串\n"
+"     标题：标题\n"
+"     年龄：Bits8\n"
+"     passwordOrKey : Bits64 字符串\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1260
