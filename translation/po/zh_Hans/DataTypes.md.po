@@ -1038,8 +1038,9 @@ msgstr ""
 msgid ""
 "Use pattern matching to implement your own versions of boolean operators "
 "`(&&)` and `(||)` calling them `and` and `or` respectively."
-msgstr "使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` 分别调用它们 ` 和 `"
-" 和 ` 或 `。"
+msgstr ""
+"使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` 分别调用它们 ` 和 "
+"` 和 ` 或 `。"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:274
@@ -1069,8 +1070,8 @@ msgid ""
 "division (`div`)  when going from seconds to some larger unit like hours)."
 msgstr ""
 "定义您自己的数据类型来表示不同的时间单位（秒、分钟、小时、天、周），并实现以"
-"下函数以使用不同的单位在时间跨度之间进行转换。提示：当从秒到一些更大的单位（"
-"如小时）时，使用整数除法（`div`）。"
+"下函数以使用不同的单位在时间跨度之间进行转换。提示：当从秒到一些更大的单位"
+"（如小时）时，使用整数除法（`div`）。"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:283
@@ -1118,7 +1119,8 @@ msgstr ""
 msgid ""
 "Define a data type for representing a subset of the chemical elements: "
 "Hydrogen (H), Carbon (C), Nitrogen (N), Oxygen (O), and Fluorine (F)."
-msgstr "定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。"
+msgstr ""
+"定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:309
@@ -1460,7 +1462,8 @@ msgstr ""
 msgid ""
 "Implement an equality test for `Title` (you can use the equality operator "
 "`(==)` for comparing two `String`s):"
-msgstr "为 `Title` 实现相等测试（您可以使用相等运算符 `(==)` 比较两个 `String`）："
+msgstr ""
+"为 `Title` 实现相等测试（您可以使用相等运算符 `(==)` 比较两个 `String`）："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:441
@@ -1542,8 +1545,8 @@ msgid ""
 "display an error message to the user who unsuccessfully tried to login into "
 "our web application."
 msgstr ""
-"实现函数 `showError : LoginError -> String`，可用于向尝试登录我们的 Web "
-"应用程序失败的用户显示错误消息。"
+"实现函数 `showError : LoginError -> String`，可用于向尝试登录我们的 Web 应用"
+"程序失败的用户显示错误消息。"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:472
@@ -2850,8 +2853,9 @@ msgstr ""
 msgid ""
 "The second pattern matches and splits the list into two parts: Its head "
 "(`7`) is bound to variable `n` and its tail (`[5,9]`) is bound to `ns`:"
-msgstr "第二个模式匹配并将列表分成两部分：它的头部（`7`）绑定到变量 `n` "
-"和它的尾部（`[5,9]`）绑定到 `ns`："
+msgstr ""
+"第二个模式匹配并将列表分成两部分：它的头部（`7`）绑定到变量 `n` 和它的尾部"
+"（`[5,9]`）绑定到 `ns`："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1009
@@ -2866,8 +2870,8 @@ msgid ""
 "In a second invocation, `intSum` is called with a new list: `[5,9]`.  The "
 "second pattern matches and `n` is bound to `5` and `ns` is bound to `[9]`:"
 msgstr ""
-"在第二次调用中，`intSum` 被调用一个新列表：`[5,9]`。第二个模式匹配并且 `n` "
-"绑定到 `5` 并且 `ns` 绑定到 `[9]`："
+"在第二次调用中，`intSum` 被调用一个新列表：`[5,9]`。第二个模式匹配并且 `n` 绑"
+"定到 `5` 并且 `ns` 绑定到 `[9]`："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1016
@@ -2881,8 +2885,9 @@ msgstr "   7 + (5 + intSum [9])\n"
 msgid ""
 "In a third invocation `intSum` is called with list `[9]`.  The second "
 "pattern matches and `n` is bound to `9` and `ns` is bound to `[]`:"
-msgstr "在第三次调用中，`intSum` 用列表 `[9]` 调用。第二个模式匹配并且 `n` 绑定到 `9`"
-" 并且 `ns` 绑定到 `[]`："
+msgstr ""
+"在第三次调用中，`intSum` 用列表 `[9]` 调用。第二个模式匹配并且 `n` 绑定到 "
+"`9` 并且 `ns` 绑定到 `[]`："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1024

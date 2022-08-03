@@ -336,7 +336,7 @@ handleRequest' db (MkRequest (MkCredentials email pw) album) =
         Nothing => UnknownUser email
 ```
 
-### Exercises
+### 练习
 
 The exercises in this section are supposed to increase
 you experience in writing purely functional code. In some

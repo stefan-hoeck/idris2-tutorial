@@ -500,7 +500,7 @@ showExample : Maybe (Either String (List (Maybe Integer))) -> String
 showExample = show
 ```
 
-And at the REPL:
+在 REPL 试一下：
 
 ```repl
 Tutorial.Interfaces> showExample (Just (Right [Just 12, Nothing]))
