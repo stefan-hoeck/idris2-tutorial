@@ -369,7 +369,7 @@ written for functions `pack` and `unpack` (which use
 `fastPack` and `fastUnpack` at runtime; see the corresponding
 rules in [the following source file](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)).
 
-### Exercises part 1
+### 练习第 1 部分
 
 In these exercises you are going to implement several
 recursive functions. Make sure to use tail recursion

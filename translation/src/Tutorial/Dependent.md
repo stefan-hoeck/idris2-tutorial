@@ -441,7 +441,7 @@ need to have access to the values of the indices at runtime, in
 which case we can pattern match on them and learn from
 this, which constructor(s) of the type family to use.
 
-### Exercises part 1
+### 练习第 1 部分
 
 1. Implement function `head` for non-empty vectors:
 

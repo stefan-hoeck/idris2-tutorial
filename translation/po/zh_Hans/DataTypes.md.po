@@ -552,12 +552,7 @@ msgid ""
 "returned. Later patterns are then ignored, even if they would\n"
 "also match the input (this becomes relevant with catch-all patterns,\n"
 "which we will talk about in a moment).\n"
-msgstr ""
-"例如，如果我们使用参数 `Thursday` 调用 "
-"`next`，前三个模式（`Monaday`、`Tuesday` 和 "
-"`Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 "
-"`Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，"
-"我们稍后会谈到）。\n"
+msgstr "例如，如果我们使用参数 `Thursday` 调用 `next`，前三个模式（`Monaday`、`Tuesday` 和 `Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 `Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，我们稍后会谈到）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:98
@@ -574,10 +569,7 @@ msgid ""
 msgstr ""
 "上面的函数可以证明是完全的。Idris 知道\n"
 "`Weekday` 类型的可能值，因此可以计算\n"
-"我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，"
-"如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，"
-"并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆"
-"盖性检查器的错误消息长什么样。）\n"
+"我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆盖性检查器的错误消息长什么样。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:105
@@ -589,10 +581,7 @@ msgid ""
 "a result of the given type in a finite amount of time\n"
 "(*resources* here meaning computational resources like\n"
 "memory or, in case of recursive functions, stack space).\n"
-msgstr ""
-"请记住，这些来自类型检查器：给定足够的资源，"
-"一个可证明的完全函数在有限时间内将 * 总是 * 返回给定类型的结果（*资源*的意思"
-"是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
+msgstr "请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 * 总是 * 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:106
@@ -635,8 +624,7 @@ msgid ""
 "the input from top to bottom and the first match decides,\n"
 "which path on the right hand side will be taken.\n"
 msgstr ""
-"如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有任意模式的最后一行。记住："
-"模式匹配中的模式匹配\n"
+"如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有任意模式的最后一行。记住：模式匹配中的模式匹配\n"
 "从上到下的输入和第一个匹配决定将采用右侧的哪条路径。\n"
 
 #. type: Plain text
@@ -648,8 +636,7 @@ msgid ""
 "have to wait until we learn about *interfaces*):\n"
 msgstr ""
 "我们可以使用任意模式来实现等式测试\n"
-"`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）："
-"\n"
+"`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:130
@@ -696,8 +683,7 @@ msgid ""
 msgstr ""
 "`Weekday` 等数据类型由有限集组成\n"
 "的值有时称为 * 枚举 *。Idris 的\n"
-"*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday`"
-" 一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
+"*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday` 一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:152
@@ -769,8 +755,7 @@ msgid ""
 "of the arguments and want to pattern match on the result\n"
 "of this computation. We can use *case expressions* in this\n"
 "situation:\n"
-msgstr "有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用*"
-"case 表达式*：\n"
+msgstr "有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用*case 表达式*：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:184
@@ -804,11 +789,7 @@ msgid ""
 "On the first line, we handle the `LT` case explicitly, while\n"
 "the other two cases are handled with an underscore as a catch-all\n"
 "pattern.\n"
-msgstr ""
-"case 表达式的第一行 (`case compare x y of`)将使用参数 `x` 和 `y` "
-"调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。这是 `Ordering` "
-"类型，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，"
-"我们明确地处理 `LT` 的情况，而其他两种情况下划线作为任意模式处理。\n"
+msgstr "case 表达式的第一行 (`case compare x y of`)将使用参数 `x` 和 `y` 调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。这是 `Ordering` 类型，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，我们明确地处理 `LT` 的情况，而其他两种情况下划线作为任意模式处理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:206
@@ -817,8 +798,7 @@ msgid ""
 "Note, that indentation matters here: The case block as a whole\n"
 "must be indented (if it starts on a new line), and the different\n"
 "cases must also be indented by the same amount of whitespace.\n"
-msgstr "请注意，缩进在这里很重要：整个 Case 块必须缩进（如果它从新行开始），"
-"并且不同的 Case 也必须缩进相同数量的空格。\n"
+msgstr "请注意，缩进在这里很重要：整个 Case 块必须缩进（如果它从新行开始），并且不同的 Case 也必须缩进相同数量的空格。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:209
@@ -826,8 +806,7 @@ msgstr "请注意，缩进在这里很重要：整个 Case 块必须缩进（如
 msgid ""
 "Function `compare` is overloaded for many data types. We will\n"
 "learn how this works when we talk about interfaces.\n"
-msgstr "函数 `compare` "
-"对许多数据类型进行了重载。当我们谈论接口时，我们将了解它是如何工作的。\n"
+msgstr "函数 `compare` 对许多数据类型进行了重载。当我们谈论接口时，我们将了解它是如何工作的。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/DataTypes.md:210
@@ -841,8 +820,7 @@ msgstr "If Then Else"
 msgid ""
 "When working with `Bool`, there is an alternative to pattern matching\n"
 "common to most programming languages:\n"
-msgstr "使用 `Bool` 时，可以使用模式匹配的替代方法，同时也是大多数编程语言的共同点："
-"\n"
+msgstr "使用 `Bool` 时，可以使用模式匹配的替代方法，同时也是大多数编程语言的共同点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:215
@@ -864,10 +842,7 @@ msgid ""
 "and therefore, the `else` branch cannot be dropped. This is different\n"
 "from the behavior in typical imperative languages, where `if` is\n"
 "a statement with possible side effects.\n"
-msgstr ""
-"请注意，`if then else` 表达式总是返回一个值。因此，不能删除 `else` "
-"分支。这是和典型的命令式语言中的行为所不同的，其中 `if` "
-"是可能产生副作用的声明。\n"
+msgstr "请注意，`if then else` 表达式总是返回一个值。因此，不能删除 `else` 分支。这是和典型的命令式语言中的行为所不同的，其中 `if` 是可能产生副作用的声明。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:226
@@ -886,9 +861,7 @@ msgid ""
 "will complain that it expected upper-case identifiers:\n"
 msgstr ""
 "虽然我们可以自由使用小写和大写标识符\n"
-"函数名，但是类型和数据构造函数必须大写标识符，以免混淆 "
-"Idris（运算符也可以）。例如，以下数据定义无效，并且 "
-"Idris会抱怨它需要大写的标识符：\n"
+"函数名，但是类型和数据构造函数必须大写标识符，以免混淆 Idris（运算符也可以）。例如，以下数据定义无效，并且 Idris会抱怨它需要大写的标识符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:234
@@ -925,10 +898,7 @@ msgid ""
 "later). This is not enforced by Idris, however, so if you are working in\n"
 "a domain where upper-case identifiers are preferable, feel free to use\n"
 "those:\n"
-msgstr ""
-"另一方面，我们通常使用小写的函数标识符名称，除非我们计划主要在类型检查期间使"
-"用它们（之后会有更多关于这个的讨论）。然而，这不是 Idris "
-"强制执行的，所以如果你在首选大写标识符的地方，请随意使用他们：\n"
+msgstr "另一方面，我们通常使用小写的函数标识符名称，除非我们计划主要在类型检查期间使用它们（之后会有更多关于这个的讨论）。然而，这不是 Idris 强制执行的，所以如果你在首选大写标识符的地方，请随意使用他们：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:253
@@ -962,7 +932,8 @@ msgstr "练习第 1 部分"
 msgid ""
 "Use pattern matching to implement your own versions of boolean operators "
 "`(&&)` and `(||)` calling them `and` and `or` respectively."
-msgstr "使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` "
+msgstr ""
+"使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` "
 "和 `or`。"
 
 #. type: Plain text

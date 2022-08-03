@@ -345,7 +345,7 @@ Again, as a quick exercise, try implementing `toDPair` in terms
 of `length`, and note how Idris will fail to unify the
 result of `length` with the actual length of the vector.
 
-### Exercises part 1
+### 练习第 1 部分
 
 1. Declare and implement a function for filtering a vector similar to
    `Data.List.filter`.

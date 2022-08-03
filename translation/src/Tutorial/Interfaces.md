@@ -186,7 +186,7 @@ by Idris for us.
 Thus, we have defined all these utility functions once and for
 all for every type with an implementation of interface `Comp`.
 
-### Exercises part 1
+### 练习第 1 部分
 
 1. Implement function `anyLarger`, which should return `True`,
 if and only if a list of values contains at least one element larger

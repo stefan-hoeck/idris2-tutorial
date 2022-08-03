@@ -314,7 +314,7 @@ Note also, that *do blocks* are ordinary expressions,
 and we can, for instance, start a new *do block* on
 the right hand side of a case expression.
 
-### Exercises part 1
+### 练习第 1 部分
 
 In these exercises, you are going to implement some
 small command-line applications. Some of these will potentially

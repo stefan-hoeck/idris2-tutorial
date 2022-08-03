@@ -294,7 +294,7 @@ using a technique called *proof search*. This allows us
 to make functions safe and convenient to use at the same
 time.
 
-### Exercises part 1
+### 练习第 1 部分
 
 In these exercises, you'll have to implement several
 functions making use of auto implicits, to constrain

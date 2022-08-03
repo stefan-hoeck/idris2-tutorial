@@ -446,7 +446,7 @@ Make sure to look at the example strings at the
 REPL to see the effect of interpolation and raw string
 literals and compare it with the syntax we used.
 
-### Exercises part 1
+### 练习第 1 部分
 
 In these exercises, you are supposed to implement a bunch
 of utility functions for consuming and converting strings.

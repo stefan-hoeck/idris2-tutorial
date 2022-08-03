@@ -1,4 +1,4 @@
-# Algebraic Data Types
+# 代数数据类型
 
 在[上一章](Functions1.md)中，我们学会了如何编写自己的函数并组合他们来创建更复杂的函数。同等重要的是定义我们自己的数据类型并使用它们作为参数和函数结果。
 
@@ -59,35 +59,17 @@ next Sunday    = Monday
 这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况
 ，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是被求值。后面的模式将被忽略。
 
-For instance, if we invoke `next` with argument `Thursday`,
-the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)
-will be checked against the argument, but they do not match.
-The fourth pattern is a match, and result `Friday` is being
-returned. Later patterns are then ignored, even if they would
-also match the input (this becomes relevant with catch-all patterns,
-which we will talk about in a moment).
+例如，如果我们使用参数 `Thursday` 调用 `next`，前三个模式（`Monaday`、`Tuesday` 和 `Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 `Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，我们稍后会谈到）。
 
-The function above is provably total. Idris knows about the
-possible values of type `Weekday`, and can therefore figure
-out that our pattern match covers all possible cases. We can
-therefore annotate the function with the `total` keyword, and
-Idris will answer with a type error, if it can't verify the
-function's totality. (Go ahead, and try removing one of
-the clauses in `next` to get an idea about how an error
-message from the coverage checker looks like.)
+上面的函数可以证明是完全的。Idris 知道
+`Weekday` 类型的可能值，因此可以计算
+我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆盖性检查器的错误消息长什么样。）
 
-Please remember, that these are very strong guarantees from
-the type checker: Given enough resources,
-a provably total function will *always* return
-a result of the given type in a finite amount of time
-(*resources* here meaning computational resources like
-memory or, in case of recursive functions, stack space).
+请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 * 总是 * 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。
 
-### Catch-all Patterns
+### 任意模式
 
-Sometimes, it is convenient to only match on a subset
-of the possible values and collect the remaining possibilities
-in a catch-all clause:
+有时比较实用的是只匹配一个可能子集的值，并收集剩余的可能性到任意模式中：
 
 ```idris
 total
@@ -97,15 +79,11 @@ isWeekend Sunday   = True
 isWeekend _        = False
 ```
 
-The final line with the catch-all pattern is only invoked,
-if the argument is not equal to `Saturday` or `Sunday`.
-Remember: Patterns in a pattern match are matched against
-the input from top to bottom and the first match decides,
-which path on the right hand side will be taken.
+如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有任意模式的最后一行。记住：模式匹配中的模式匹配
+从上到下的输入和第一个匹配决定将采用右侧的哪条路径。
 
-We can use catch-all patterns to implement an equality test for
-`Weekday` (we will not yet use the `==` operator for this; this will
-have to wait until we learn about *interfaces*):
+我们可以使用任意模式来实现等式测试
+`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）：
 
 ```idris
 total
@@ -120,14 +98,11 @@ eqWeekday Sunday Sunday        = True
 eqWeekday _ _                  = False
 ```
 
-### Enumeration Types in the Prelude
+### Prelude 中的枚举类型
 
-Data types like `Weekday` consisting of a finite set
-of values are sometimes called *enumerations*. The Idris
-*Prelude* defines some common enumerations for us, for
-instance `Bool` and `Ordering`. As with `Weekday`,
-we can use pattern matching when implementing functions
-on these types:
+`Weekday` 等数据类型由有限集组成
+的值有时称为 * 枚举 *。Idris 的
+*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday` 一样，我们可以在实现函数时使用模式匹配在这些类型上：
 
 ```idris
 -- this is how `not` is implemented in the *Prelude*
@@ -137,8 +112,7 @@ negate False = True
 negate True  = False
 ```
 
-The `Ordering` data type describes an ordering relation
-between two values. For instance:
+`Ordering` 数据类型描述了两个值之间的顺序关系。例如：
 
 ```idris
 total
@@ -149,17 +123,14 @@ compareBool True True   = EQ
 compareBool True False  = GT
 ```
 
-Here, `LT` means that the first argument is *less than*
-the second, `EQ` means that the two arguments are *equal*
-and `GT` means, that the first argument is *greater than*
-the second.
+这里，`LT` 表示第一个参数是*小于*
+第二个，`EQ`表示两个参数是*相等*
+， `GT` 表示第一个参数是 * 大于 *
+第二个。
 
-### Case Expressions
+### Case 表达式
 
-Sometimes we need to perform a computation with one
-of the arguments and want to pattern match on the result
-of this computation. We can use *case expressions* in this
-situation:
+有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用*case 表达式*：
 
 ```idris
 -- returns the larger of the two arguments
@@ -171,26 +142,15 @@ maxBits8 x y =
     _  => x
 ```
 
-The first line of the case expression (`case compare x y of`)
-will invoke function `compare` with arguments `x` and `y`. On
-the following (indented) lines, we pattern match on the result
-of this computation. This is of type `Ordering`, so we expect
-one of the three constructors `LT`, `EQ`, or `GT` as the result.
-On the first line, we handle the `LT` case explicitly, while
-the other two cases are handled with an underscore as a catch-all
-pattern.
+case 表达式的第一行 (`case compare x y of`)将使用参数 `x` 和 `y` 调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。这是 `Ordering` 类型，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，我们明确地处理 `LT` 的情况，而其他两种情况下划线作为任意模式处理。
 
-Note, that indentation matters here: The case block as a whole
-must be indented (if it starts on a new line), and the different
-cases must also be indented by the same amount of whitespace.
+请注意，缩进在这里很重要：整个 Case 块必须缩进（如果它从新行开始），并且不同的 Case 也必须缩进相同数量的空格。
 
-Function `compare` is overloaded for many data types. We will
-learn how this works when we talk about interfaces.
+函数 `compare` 对许多数据类型进行了重载。当我们谈论接口时，我们将了解它是如何工作的。
 
 #### If Then Else
 
-When working with `Bool`, there is an alternative to pattern matching
-common to most programming languages:
+使用 `Bool` 时，可以使用模式匹配的替代方法，同时也是大多数编程语言的共同点：
 
 ```idris
 total
@@ -198,25 +158,18 @@ maxBits8' : Bits8 -> Bits8 -> Bits8
 maxBits8' x y = if compare x y == LT then y else x
 ```
 
-Note, that the `if then else` expression always returns a value
-and therefore, the `else` branch cannot be dropped. This is different
-from the behavior in typical imperative languages, where `if` is
-a statement with possible side effects.
+请注意，`if then else` 表达式总是返回一个值。因此，不能删除 `else` 分支。这是和典型的命令式语言中的行为所不同的，其中 `if` 是可能产生副作用的声明。
 
-### Naming Conventions: Identifiers
+### 命名约定：标识符
 
-While we are free to use lower-case and upper-case identifiers for
-function names, type- and data constructors must be given upper-case
-identifiers in order not to confuse Idris (operators are also fine).
-For instance, the following data definition is not valid, and Idris
-will complain that it expected upper-case identifiers:
+虽然我们可以自由使用小写和大写标识符
+函数名，但是类型和数据构造函数必须大写标识符，以免混淆 Idris（运算符也可以）。例如，以下数据定义无效，并且 Idris会抱怨它需要大写的标识符：
 
 ```repl
 data foo = bar | baz
 ```
 
-The same goes for similar data definitions like records and sum types
-(both will be explained below):
+类似的数据定义（如记录与和类型）也是如此（两者都将在下面解释）：
 
 ```repl
 -- not valid Idris
@@ -224,11 +177,7 @@ record Foo where
   constructor mkfoo
 ```
 
-On the other hand, we typically use lower-case identifiers for function
-names, unless we plan to use them mostly during type checking (more on this
-later). This is not enforced by Idris, however, so if you are working in
-a domain where upper-case identifiers are preferable, feel free to use
-those:
+另一方面，我们通常使用小写的函数标识符名称，除非我们计划主要在类型检查期间使用它们（之后会有更多关于这个的讨论）。然而，这不是 Idris 强制执行的，所以如果你在首选大写标识符的地方，请随意使用他们：
 
 ```idris
 foo : Bits32 -> Bits32
@@ -238,10 +187,9 @@ Bar : Bits32 -> Bits32
 Bar = foo
 ```
 
-### Exercises part 1
+### 练习第 1 部分
 
-1. Use pattern matching to implement your own versions of boolean operators
-   `(&&)` and `(||)` calling them `and` and `or` respectively.
+1. 使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` 和 `or`。
 
    Note: One way to go about this is to enumerate
    all four possible combinations of two boolean

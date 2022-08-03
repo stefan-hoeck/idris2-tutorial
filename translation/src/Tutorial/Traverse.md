@@ -243,7 +243,7 @@ from the first law that `traverse Id = Id`. This means, that
 `traverse` must not change the size or shape of the container
 type, nor is it allowed to change the order of elements.
 
-### Exercises part 1
+### 练习第 1 部分
 
 1. It is interesting that `Traversable` has a `Functor` constraint. Proof
    that every `Traversable` is automatically a `Functor` by implementing

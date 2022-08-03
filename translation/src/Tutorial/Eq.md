@@ -276,7 +276,7 @@ concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of
   Nothing   => Nothing
 ```
 
-### Exercises part 1
+### 练习第 1 部分
 
 In the following exercises, you are going to implement
 some very basic properties of equality proofs. You'll

@@ -378,7 +378,7 @@ add or remove any wrapped value, nor - in case of `List` -
 change their order. With `IO`, this can best be described as `map`
 not performing additional side effects.
 
-### Exercises part 1
+### 练习第 1 部分
 
 1. Write your own implementations of `Functor'` for `Maybe`, `List`,
    `List1`, `Vect n`, `Either e`, and `Pair a`.
