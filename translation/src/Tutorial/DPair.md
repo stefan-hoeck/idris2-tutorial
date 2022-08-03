@@ -1,18 +1,20 @@
 # Sigma Types
 
-So far in our examples of dependently typed programming, type indices such
-as the length of vectors were known at compile time or could be calculated
-from values known at compile time. In real applications, however, such
-information is often not available until runtime, where values depend on the
-decisions made by users or the state of the surrounding world.  For
-instance, if we store a file's content as a vector of lines of text, the
-length of this vector is in general unknown until the file has been loaded
-into memory.  As a consequence, the types of values we work with depend on
-other values only known at runtime, and we can often only figure out these
-types by pattern matching on the values they depend on.  To express these
-dependencies, we need so called [*sigma
-types*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A3_type): Dependent
-pairs and their generalization, dependent records.
+So far in our examples of dependently typed programming,
+type indices such as the length of vectors were known at
+compile time or could be calculated from values known at
+compile time. In real applications, however, such information is
+often not available until runtime, where values depend on
+the decisions made by users or the state of the surrounding world.
+For instance, if we store a file's content as a vector of lines
+of text, the length of this vector is in general unknown until
+the file has been loaded into memory.
+As a consequence, the types of values we work with depend on
+other values only known at runtime, and we can often only figure out
+these types by pattern matching on the values they depend on.
+To express these dependencies, we need so called
+[*sigma types*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A3_type):
+Dependent pairs and their generalization, dependent records.
 
 ```idris
 module Tutorial.DPair
@@ -35,23 +37,26 @@ import Text.CSV
 
 ## Dependent Pairs
 
-We've already seen several examples of how useful the length index of a
-vector is to describe more precisely in the types what a function can and
-can't do. For instance, `map` or `traverse` operating on a vector will
-return a vector of exactly the same length. The types guarantee that this is
-true, therefore the following function is perfectly safe and provably total:
+We've already seen several examples of how useful the length
+index of a vector is to describe more precisely in the types what
+a function can and can't do. For instance, `map` or `traverse`
+operating on a vector will return a vector of exactly
+the same length. The types guarantee that this is true, therefore
+the following function is perfectly safe and provably total:
 
 ```idris
 parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat)
 parseAndDrop = map (drop 3) . traverse parsePositive
 ```
 
-Since the argument of `traverse parsePositive` is of type `Vect (3 + n)
-String`, its result will be of type `Maybe (Vect (3 + n) Nat)`. It is
-therefore safe to use this in a call to `drop 3`. Note, how all of this is
-known at compile time: We encoded the prerequisite that the first argument
-is a vector of at least three elements in the length index and could derive
-the length of the result from this.
+Since the argument of `traverse parsePositive`
+is of type `Vect (3 + n) String`, its result will be of
+type `Maybe (Vect (3 + n) Nat)`. It is therefore
+safe to use this in a call to `drop 3`. Note, how all of this
+is known at compile time: We encoded the prerequisite
+that the first argument is a vector of at least three elements
+in the length index and could derive the length
+of the result from this.
 
 ### Vectors of Unknown Length
 
@@ -63,26 +68,27 @@ Tutorial.Relations> :t takeWhile
 Data.List.takeWhile : (a -> Bool) -> List a -> List a
 ```
 
-This will take the longest prefix of the list argument, for which the given
-predicate returns `True`. In this case, it depends on the list elements and
-the predicate, how long this prefix will be.  Can we write such a function
-for vectors? Let's give it a try:
+This will take the longest prefix of the list argument, for which
+the given predicate returns `True`. In this case, it depends on
+the list elements and the predicate, how long this prefix will be.
+Can we write such a function for vectors? Let's give it a try:
 
 ```idris
 takeWhile' : (a -> Bool) -> Vect n a -> Vect m a
 ```
 
-Go ahead, and try to implement this. Don't try too long, as you will not be
-able to do so in a provably total way. The question is: What is the problem
-here? In order to understand this, we have to realize what the type of
-`takeWhile'` promises: "For all predicates operating on values on type `a`,
-and for all vectors holding values of this type, and for all lengths `m`, I
-give you a vector of length `m` holding values of type `a`".  All three
-arguments are said to be [*universally
-quantified*](https://en.wikipedia.org/wiki/Universal_quantification): The
-caller of our function is free to choose the predicate, the input vector,
-the type of values the vector holds, and *the length of the output
-vector*. Don't believe me? See here:
+Go ahead, and try to implement this. Don't try too long, as you will not
+be able to do so in a provably total way. The question is: What is the
+problem here?
+In order to understand this, we have to realize what the type of `takeWhile'`
+promises: "For all predicates operating on values on type `a`, and for
+all vectors holding values of this type, and for all lengths `m`, I
+give you a vector of length `m` holding values of type `a`".
+All three arguments are said to be
+[*universally quantified*](https://en.wikipedia.org/wiki/Universal_quantification):
+The caller of our function is free to choose the predicate,
+the input vector, the type of values the vector holds,
+and *the length of the output vector*. Don't believe me? See here:
 
 ```idris
 -- This looks like trouble: We got a non-empty vector of `Void`...
@@ -94,17 +100,18 @@ proofOfVoid : Void
 proofOfVoid = head voids
 ```
 
-See how I could freely decide on the value of `m` when invoking
-`takeWhile'`? Although I passed `takeWhile'` an empty vector (the only
-existing vector holding values of type `Void`), the function's type promises
-me to return a possibly non-empty vector holding values of the same type,
-from which I freely extracted the first one.
+See how I could freely decide on the value of `m` when invoking `takeWhile'`?
+Although I passed `takeWhile'` an empty vector (the only existing vector
+holding values of type `Void`), the function's type promises me
+to return a possibly non-empty vector holding values of the same
+type, from which I freely extracted the first one.
 
-Luckily, Idris doesn't allow this: We won't be able to implement
-`takeWhile'` without cheating (for instance, by turning totality checking
-off and looping forever).  So, the question remains, how to express the
-result of `takeWhile'` in a type. The answer to this is: "Use a *dependent
-pair*", a vector paired with a value corresponding to its length.
+Luckily, Idris doesn't allow this: We won't be able to
+implement `takeWhile'` without cheating (for instance, by
+turning totality checking off and looping forever).
+So, the question remains, how to express the result of `takeWhile'`
+in a type. The answer to this is: "Use a *dependent pair*", a vector
+paired with a value corresponding to its length.
 
 ```idris
 record AnyVect a where
@@ -113,14 +120,14 @@ record AnyVect a where
   vect   : Vect length a
 ```
 
-This corresponds to [*existential
-quantification*](https://en.wikipedia.org/wiki/Existential_quantification)
-in predicate logic: There is a natural number, which corresponds to the
-length of the vector I have here. Note, how from the outside of `AnyVect a`,
-the length of the wrapped vector is no longer visible at the type level but
-we can still inspect it and learn something about it at runtime, since it is
-wrapped up together with the actual vector. We can implement `takeWhile` in
-such a way that it returns a value of type `AnyVect a`:
+This corresponds to [*existential quantification*](https://en.wikipedia.org/wiki/Existential_quantification)
+in predicate logic: There is a natural number, which corresponds to
+the length of the vector I have here. Note, how from the outside
+of `AnyVect a`, the length of the wrapped vector is no longer
+visible at the type level but we can still inspect it and learn
+something about it at runtime, since it is wrapped up together
+with the actual vector. We can implement `takeWhile` in such
+a way that it returns a value of type `AnyVect a`:
 
 ```idris
 takeWhile : (a -> Bool) -> Vect n a -> AnyVect a
@@ -130,12 +137,13 @@ takeWhile f (x :: xs) = case f x of
   True  => let MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)
 ```
 
-This works in a provably total way, because callers of this function can no
-longer choose the length of the resulting vector themselves. Our function,
-`takeWhile`, decides on this length and returns it together with the vector,
-and the type checker verifies that we make no mistakes when pairing the two
-values. In fact, the length can be inferred automatically by Idris, so we
-can replace it with underscores, if we so desire:
+This works in a provably total way, because callers of this function
+can no longer choose the length of the resulting vector themselves. Our
+function, `takeWhile`, decides on this length and returns it together
+with the vector, and the type checker verifies that we
+make no mistakes when pairing the two values. In fact,
+the length can be inferred automatically by Idris, so we can replace
+it with underscores, if we so desire:
 
 ```idris
 takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a
@@ -145,11 +153,11 @@ takeWhile2 f (x :: xs) = case f x of
   True  => let MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)
 ```
 
-To summarize: Parameters in generic function types are universally
-quantified, and their values can be decided on at the call site of such
-functions. Dependent record types allow us to describe existentially
-quantified values. Callers cannot choose such values freely: They are
-returned as part of a function's result.
+To summarize: Parameters in generic function types are
+universally quantified, and their values can be decided on at the
+call site of such functions. Dependent record types allow us
+to describe existentially quantified values. Callers cannot choose
+such values freely: They are returned as part of a function's result.
 
 Note, that Idris allows us to be explicit about universal quantification.
 The type of `takeWhile'` can also be written like so:
@@ -158,9 +166,10 @@ The type of `takeWhile'` can also be written like so:
 takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a
 ```
 
-Universally quantified arguments are desugared to implicit erased arguments
-by Idris. The above is a less verbose version of the following function
-type, the likes of which we have seen before:
+Universally quantified arguments are desugared to implicit
+erased arguments by Idris. The above is a less verbose version
+of the following function type, the likes of which we have seen
+before:
 
 ```idris
 takeWhile''' :  {0 a : _}
@@ -171,21 +180,22 @@ takeWhile''' :  {0 a : _}
              -> Vect m a
 ```
 
-In Idris, we are free to choose whether we want to be explicit about
-universal quantification. Sometimes it can help understanding what's going
-on at the type level. Other languages - for instance
-[PureScript](https://www.purescript.org/) - are more strict about this:
-There, explicit annotations on universally quantified parameters are
-[mandatory](https://github.com/purescript/documentation/blob/master/language/Differences-from-Haskell.md#explicit-forall).
+In Idris, we are free to choose whether we want to be explicit
+about universal quantification. Sometimes it can help understanding
+what's going on at the type level. Other languages - for instance
+[PureScript](https://www.purescript.org/) - are more strict about
+this: There, explicit annotations on universally quantified parameters
+are [mandatory](https://github.com/purescript/documentation/blob/master/language/Differences-from-Haskell.md#explicit-forall).
 
 ### The Essence of Dependent Pairs
 
 It can take some time and experience to understand what's going on here. At
-least in my case, it took many sessions programming in Idris, before I
-figured out what dependent pairs are about: They pair a *value* of some type
-with a second value of a type calculated from the first value.  For
-instance, a natural number `n` (the value)  paired with a vector of length
-`n` (the second value, the type of which *depends* on the first value).
+least in my case, it took many sessions programming in Idris, before I figured
+out what dependent pairs are about: They pair a *value* of some type with
+a second value of a type calculated from the first value.
+For instance, a natural number `n` (the value)
+paired with a vector of length `n` (the second value, the type
+of which *depends* on the first value).
 This is such a fundamental concept of programming with dependent types, that
 a general dependent pair type is provided by the *Prelude*. Here is its
 implementation (primed for disambiguation):
@@ -198,10 +208,10 @@ record DPair' (a : Type) (p : a -> Type) where
 ```
 
 It is essential to understand what's going on here. There are two
-parameters: A type `a`, and a function `p`, calculating a *type* from a
-*value* of type `a`. Such a value (`fst`) is then used to calculate the
-*type* of the second value (`snd`).  For instance, here is `AnyVect a`
-represented as a `DPair`:
+parameters: A type `a`, and a function `p`, calculating a *type*
+from a *value* of type `a`. Such a value (`fst`) is then used
+to calculate the *type* of the second value (`snd`).
+For instance, here is `AnyVect a` represented as a `DPair`:
 
 ```idris
 AnyVect' : (a : Type) -> Type
@@ -218,27 +228,29 @@ AnyVect'' : (a : Type) -> Type
 AnyVect'' a = (n : Nat ** Vect n a)
 ```
 
-We can inspect at the REPL, that the right hand side of `AnyVect''` get's
-desugared to the right hand side of `AnyVect'`:
+We can inspect at the REPL, that the right hand side of `AnyVect''`
+get's desugared to the right hand side of `AnyVect'`:
 
 ```repl
 Tutorial.Relations> (n : Nat ** Vect n Int)
 DPair Nat (\n => Vect n Int)
 ```
 
-Idris can infer, that `n` must be of type `Nat`, so we can drop this
-information. (We still need to put the whole expression in parentheses.)
+Idris can infer, that `n` must be of type `Nat`, so we can drop
+this information. (We still need to put the whole expression in
+parentheses.)
 
 ```idris
 AnyVect3 : (a : Type) -> Type
 AnyVect3 a = (n ** Vect n a)
 ```
 
-This allows us to pair a natural number `n` with a vector of length `n`,
-which is exactly what we did with `AnyVect`. We can therefore rewrite
-`takeWhile` to return a `DPair` instead of our custom type `AnyVect`. Note,
-that like with regular pairs, we can use the same syntax `(x ** y)` for
-creating and pattern matching on dependent pairs:
+This allows us to pair a natural number `n` with a vector of
+length `n`, which is exactly what we did with `AnyVect`. We can
+therefore rewrite `takeWhile` to return a `DPair` instead of
+our custom type `AnyVect`. Note, that like with regular pairs,
+we can use the same syntax `(x ** y)` for creating and
+pattern matching on dependent pairs:
 
 ```idris
 takeWhile3 : (a -> Bool) -> Vect m a -> (n ** Vect n a)
@@ -248,8 +260,8 @@ takeWhile3 f (x :: xs) = case f x of
   True  => let (_  ** ys) = takeWhile3 f xs in (_ ** x :: ys)
 ```
 
-Just like with regular pairs, we can use the dependent pair syntax to define
-dependent triples and larger tuples:
+Just like with regular pairs, we can use the dependent pair
+syntax to define dependent triples and larger tuples:
 
 ```idris
 AnyMatrix : (a : Type) -> Type
@@ -258,16 +270,17 @@ AnyMatrix a = (m ** n ** Vect m (Vect n a))
 
 ### Erased Existentials
 
-Sometimes, it is possible to determine the value of an index by pattern
-matching on a value of the indexed type.  For instance, by pattern matching
-on a vector, we can learn about its length index. In these cases, it is not
-strictly necessary to carry around the index at runtime, and we can write a
-special version of a dependent pair where the first argument has quantity
-zero. Module `Data.DPair` from *base* exports data type `Exists` for this
-use case.
+Sometimes, it is possible to determine the value of an
+index by pattern matching on a value of the indexed type.
+For instance, by pattern matching on a vector, we can learn
+about its length index. In these cases, it is not strictly
+necessary to carry around the index at runtime,
+and we can write a special version of a dependent pair
+where the first argument has quantity zero. Module `Data.DPair`
+from *base* exports data type `Exists` for this use case.
 
-As an example, here is a version of `takeWhile` returning a value of type
-`Exists`:
+As an example, here is a version of `takeWhile` returning
+a value of type `Exists`:
 
 ```idris
 takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\n => Vect n a)
@@ -278,25 +291,26 @@ takeWhileExists f (x :: xs) = case f x of
   False => takeWhileExists f xs
 ```
 
-In order to restore an erased value, data type `Singleton` from *base*
-module `Data.Singleton` can be useful: It is parameterized by the *value* it
-stores:
+In order to restore an erased value, data type `Singleton`
+from *base* module `Data.Singleton` can be useful: It is
+parameterized by the *value* it stores:
 
 ```idris
 true : Singleton True
 true = Val True
 ```
 
-This is called a *singleton* type: A type corresponding to exactly one
-value. It is a type error to return any other value for constant `true`, and
-Idris knows this:
+This is called a *singleton* type: A type corresponding to
+exactly one value. It is a type error to return any other
+value for constant `true`, and Idris knows this:
 
 ```idris
 true' : Singleton True
 true' = Val _
 ```
 
-We can use this to conjure the (erased!) length of a vector out of thin air:
+We can use this to conjure the (erased!) length of a vector
+out of thin air:
 
 ```idris
 vectLength : Vect n a -> Singleton n
@@ -304,30 +318,32 @@ vectLength []        = Val 0
 vectLength (x :: xs) = let Val k = vectLength xs in Val (S k)
 ```
 
-This function comes with much stronger guarantees than `Data.Vect.length`:
-The latter claims to just return *any* natural number, while `vectLength`
-*must* return exactly `n` in order to type check. As a demonstration, here
-is a well-typed bogus implementation of `length`:
+This function comes with much stronger guarantees
+than `Data.Vect.length`: The latter claims to just return
+*any* natural number, while `vectLength` *must* return
+exactly `n` in order to type check. As a demonstration,
+here is a well-typed bogus implementation of `length`:
 
 ```idris
 bogusLength : Vect n a -> Nat
 bogusLength = const 0
 ```
 
-This would not be accepted as a valid implementation of `vectLength`, as you
-may quickly verify yourself.
+This would not be accepted as a valid implementation of
+`vectLength`, as you may quickly verify yourself.
 
-With the help of `vectLength` (but not with `Data.Vect.length`)  we can
-convert an erased existential to a proper dependent pair:
+With the help of `vectLength` (but not with `Data.Vect.length`)
+we can convert an erased existential to a proper dependent
+pair:
 
 ```idris
 toDPair : Exists (\n => Vect n a) -> (m ** Vect m a)
 toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)
 ```
 
-Again, as a quick exercise, try implementing `toDPair` in terms of `length`,
-and note how Idris will fail to unify the result of `length` with the actual
-length of the vector.
+Again, as a quick exercise, try implementing `toDPair` in terms
+of `length`, and note how Idris will fail to unify the
+result of `length` with the actual length of the vector.
 
 ### Exercises part 1
 
@@ -345,11 +361,12 @@ length of the vector.
 
 ## Use Case: Nucleic Acids
 
-We'd like to come up with a small, simplified library for running
-computations on nucleic acids: RNA and DNA. These are built from five types
-of nucleobases, three of which are used in both types of nucleic acids and
-two bases specific for each type of acid. We'd like to make sure that only
-valid bases are in strands of nucleic acids.  Here's a possible encoding:
+We'd like to come up with a small, simplified library for running computations
+on nucleic acids: RNA and DNA. These are built from five types of
+nucleobases, three of which are used in both types of nucleic
+acids and two bases specific for each type of acid. We'd like
+to make sure that only valid bases are in strands of nucleic acids.
+Here's a possible encoding:
 
 ```idris
 data BaseType = DNABase | RNABase
@@ -390,9 +407,9 @@ failing "Mismatch between: RNABase and DNABase."
 ```
 
 Note, how we used a variable for nucleobases `Adenine`, `Cytosine`, and
-`Guanine`: These are again universally quantified, and client code is free
-to choose a value here. This allows us to use these bases in strands of DNA
-*and* RNA:
+`Guanine`: These are again universally quantified,
+and client code is free to choose a value here. This allows us
+to use these bases in strands of DNA *and* RNA:
 
 ```idris
 dna1 : DNA
@@ -428,12 +445,14 @@ readDNA : String -> Maybe DNA
 readDNA = traverse readDNABase . unpack
 ```
 
-Again, in case of the bases appearing in both kinds of strands, users of the
-universally quantified `readAnyBase` are free to choose what base type they
-want, but they will never get a `Thymine` or `Uracile` value.
+Again, in case of the bases appearing in both kinds of strands,
+users of the universally quantified `readAnyBase`
+are free to choose what base type they want, but they will
+never get a `Thymine` or `Uracile` value.
 
 We can now implement some simple calculations on sequences of
-nucleobases. For instance, we can come up with the complementary strand:
+nucleobases. For instance, we can come up with the complementary
+strand:
 
 ```idris
 complementRNA' : RNA -> RNA
@@ -453,9 +472,9 @@ complementDNA' = map calc
         calc Thymine  = Adenine
 ```
 
-Ugh, code repetition! Not too bad here, but imagine there were dozens of
-bases with only few specialized ones. Surely, we can do better?
-Unfortunately, the following won't work:
+Ugh, code repetition! Not too bad here, but imagine there were
+dozens of bases with only few specialized ones. Surely, we can
+do better? Unfortunately, the following won't work:
 
 ```idris
 complementBase' : Nucleobase b -> Nucleobase b
@@ -466,12 +485,13 @@ complementBase' Thymine  = Adenine
 complementBase' Uracile  = Adenine
 ```
 
-All goes well with the exception of the `Adenine` case. Remember: Parameter
-`b` is universally quantified, and the *callers* of our function can decide
-what `b` is supposed to be. We therefore can't just return `Thymine`: Idris
-will respond with a type error since callers might want a `Nucleobase
-RNABase` instead.  One way to go about this is to take an additional
-unerased argument (explicit or implicit) representing the base type:
+All goes well with the exception of the `Adenine` case. Remember:
+Parameter `b` is universally quantified, and the *callers* of
+our function can decide what `b` is supposed to
+be. We therefore can't just return `Thymine`: Idris will respond
+with a type error since callers might want a `Nucleobase RNABase` instead.
+One way to go about this is to take an additional unerased argument
+(explicit or implicit) representing the base type:
 
 ```idris
 complementBase : (b : BaseType) -> Nucleobase b -> Nucleobase b
@@ -483,28 +503,29 @@ complementBase _       Thymine  = Adenine
 complementBase _       Uracile  = Adenine
 ```
 
-This is again an example of a dependent *function* type (also called a [*pi
-type*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A0_type)): The input
-and output types both *depend* on the *value* of the first argument.  We can
-now use this to calculate the complement of any nucleic acid:
+This is again an example of a dependent *function* type (also called a
+[*pi type*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A0_type)):
+The input and output types both *depend* on the *value* of the first argument.
+We can now use this to calculate the complement of any nucleic acid:
 
 ```idris
 complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b
 complement b = map (complementBase b)
 ```
 
-Now, here is an interesting use case: We'd like to read a sequence of
-nucleobases from user input, accepting two strings: The first telling us,
-whether the user plans to enter a DNA or RNA sequence, the second being the
-sequence itself. What should be the type of such a function? Well, we're
-describing computations with side effects, so something involving `IO` seems
-about right. User input almost always needs to be validated or translated,
-so something might go wrong and we need an error type for this
-case. Finally, our users can decide whether they want to enter a strand of
-RNA or DNA, so this distinction should be encoded as well.
+Now, here is an interesting use case: We'd like to read a sequence
+of nucleobases from user input, accepting two strings: The first
+telling us, whether the user plans to enter a DNA or RNA sequence,
+the second being the sequence itself. What should be the type of
+such a function? Well, we're describing computations with side effects,
+so something involving `IO` seems about right. User input almost
+always needs to be validated or translated, so something might go wrong
+and we need an error type for this case. Finally, our users can
+decide whether they want to enter a strand of RNA or DNA, so this
+distinction should be encoded as well.
 
-Of course, it is always possible to write a custom sum type for such a use
-case:
+Of course, it is always possible to write a custom sum type for
+such a use case:
 
 ```idris
 data Result : Type where
@@ -514,17 +535,18 @@ data Result : Type where
   GotRNA          : RNA -> Result
 ```
 
-This has all possible outcomes encoded in a single data type.  However, it
-is lacking in terms of flexibility. If we want to handle errors early on and
-just extract a strand of RNA or DNA, we need yet another data type:
+This has all possible outcomes encoded in a single data type.
+However, it is lacking in terms of flexibility. If we want to handle
+errors early on and just extract a strand of RNA or DNA, we need
+yet another data type:
 
 ```idris
 data RNAOrDNA = ItsRNA RNA | ItsDNA DNA
 ```
 
-This might be the way to go, but for results with many options, this can get
-cumbersome quickly. Also: Why come up with a custom data type when we
-already have the tools to deal with this at our hands?
+This might be the way to go, but for results with many options, this
+can get cumbersome quickly. Also: Why come up with a custom data type when
+we already have the tools to deal with this at our hands?
 
 Here is how we can encode this with a dependent pair:
 
@@ -552,9 +574,10 @@ getNucleicAcid = do
 ```
 
 Note, how we paired the type of nucleobases with the nucleic acid
-sequence. Assume now we implement a function for transcribing a strand of
-DNA to RNA, and we'd like to convert a sequence of nucleobases from user
-input to the corresponding RNA sequence.  Here's how to do this:
+sequence. Assume now we implement a function for transcribing
+a strand of DNA to RNA, and we'd like to convert a sequence of
+nucleobases from user input to the corresponding RNA sequence.
+Here's how to do this:
 
 ```idris
 transcribeBase : Nucleobase DNABase -> Nucleobase RNABase
@@ -580,26 +603,28 @@ transcribeProg = do
 ```
 
 By pattern matching on the first value of the dependent pair we could
-determine, whether the second value is an RNA or DNA sequence.  In the first
-case, we had to transcribe the sequence first, in the second case, we could
-invoke `printRNA` directly.
+determine, whether the second value is an RNA or DNA sequence.
+In the first case, we had to transcribe the
+sequence first, in the second case, we could invoke `printRNA` directly.
 
-In a more interesting scenario, we would *translate* the RNA sequence to the
-corresponding protein sequence. Still, this example shows how to deal with a
-simplified real world scenario: Data may be encoded differently and coming
-from different sources. By using precise types, we are forced to first
-convert values to the correct format. Failing to do so leads to a compile
-time exception instead of an error at runtime or - even worse - the program
-silently running a bogus computation.
+In a more interesting scenario, we would *translate* the RNA sequence
+to the corresponding protein sequence. Still, this example shows
+how to deal with a simplified real world scenario: Data may be
+encoded differently and coming from different sources. By using precise
+types, we are forced to first convert values to the correct
+format. Failing to do so leads to a compile time exception instead of
+an error at runtime or - even worse - the program silently running
+a bogus computation.
 
 ### Dependent Records vs Sum Types
 
-Dependent records as shown for `AnyVect a` are a generalization of dependent
-pairs: We can have an arbitrary number of fields and use the values stored
-therein to calculate the types of other values. For very simple cases like
-the example with nucleobases, it doesn't matter too much, whether we use a
-`DPair`, a custom dependent record, or even a sum type. In fact, the three
-encodings are equally expressive:
+Dependent records as shown for `AnyVect a` are a generalization
+of dependent pairs: We can have an arbitrary number of fields
+and use the values stored therein to calculate the types of
+other values. For very simple cases like the example with nucleobases,
+it doesn't matter too much, whether we use a `DPair`, a custom
+dependent record, or even a sum type. In fact, the three encodings
+are equally expressive:
 
 ```idris
 Acid1 : Type
@@ -615,19 +640,21 @@ data Acid3 : Type where
   SomeDNA : DNA -> Acid3
 ```
 
-It is trivial to write lossless conversions between these encodings, and
-with each encoding we can decide with a simple pattern match, whether we
-currently have a sequence of RNA or DNA. However, dependent types can depend
-on more than one value, as we will see in the exercises. In such cases, sum
-types and dependent pairs quickly become unwieldy, and you should go for an
-encoding as a dependent record.
+It is trivial to write lossless conversions between these
+encodings, and with each encoding we can decide with a simple
+pattern match, whether we currently have a sequence of
+RNA or DNA. However, dependent types can depend on more than
+one value, as we will see in the exercises. In such cases,
+sum types and dependent pairs quickly become unwieldy, and
+you should go for an encoding as a dependent record.
 
 ### Exercises part 2
 
-Sharpen your skills in using dependent pairs and dependent records! In
-exercises 2 to 7 you have to decide yourself, when a function should return
-a dependent pair or record, when a function requires additional arguments,
-on which you can pattern match, and what other utility functions might be
+Sharpen your skills in using dependent pairs and dependent
+records! In exercises 2 to 7 you have to decide yourself,
+when a function should return a dependent pair or record,
+when a function requires additional arguments, on which you
+can pattern match, and what other utility functions might be
 necessary.
 
 1. Proof that the three encodings for nucleobases are *isomorphic* (meaning:
@@ -662,19 +689,21 @@ necessary.
 
 8. Enjoy the fruits of your labour and test your program at the REPL.
 
-Note: Instead of using a dependent record, we could again have used a sum
-type of four constructors to encode the different types of
-sequences. However, the number of constructors required corresponds to the
-*product* of the number of values of each type level index. Therefore, this
-number can grow quickly and sum type encodings can lead to lengthy blocks of
-pattern matches in these cases.
+Note: Instead of using a dependent record, we could again
+have used a sum type of four constructors to encode the different
+types of sequences. However, the number of constructors
+required corresponds to the *product* of the number of values
+of each type level index. Therefore, this number can grow quickly
+and sum type encodings can lead to lengthy blocks of pattern matches
+in these cases.
 
 ## Use Case: CSV Files with a Schema
 
-In this section, we are going to look at an extended example based on our
-previous work on CSV parsers. We'd like to write a small command-line
-program, where users can specify a schema for the CSV tables they'd like to
-parse and load into memory. Before we begin, here is a REPL session running
+In this section, we are going to look at an extended example
+based on our previous work on CSV parsers. We'd like to
+write a small command-line program, where users can specify a
+schema for the CSV tables they'd like to parse and load into
+memory. Before we begin, here is a REPL session running
 the final program, which you will complete in the exercises:
 
 ```repl
@@ -715,9 +744,8 @@ Enter a command: quit
 Goodbye.
 ```
 
-This example was inspired by a similar program used as an example in the
-[Type-Driven Development with
-Idris](https://www.manning.com/books/type-driven-development-with-idris)
+This example was inspired by a similar program used as an example
+in the [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris)
 book.
 
 We'd like to focus on several things here:
@@ -732,17 +760,19 @@ We'd like to focus on several things here:
 We are often well advised to adhere to these two guidelines, as they can
 make the majority of our functions easier to implement and test.
 
-Since we allow users of our library to specify a schema (order and types of
-columns) for the table they work with, this information is not known until
-runtime. The same goes for the current size of the table. We will therefore
-store both values as fields in a dependent record.
+Since we allow users of our library to specify a schema (order and
+types of columns) for the table they work with, this information is
+not known until runtime. The same goes for the current size of the
+table. We will therefore store both values as fields in a
+dependent record.
 
 ### Encoding the Schema
 
 We need to inspect the table schema at runtime. Although theoretically
-possible, it is not advisable to operate on Idris types directly here.  We'd
-rather use a closed custom data type describing the types of columns we
-understand. In a first try, we only support some Idris primitives:
+possible, it is not advisable to operate on Idris types directly here.
+We'd rather use a closed custom data type describing the types of
+columns we understand. In a first try, we only support some Idris
+primitives:
 
 ```idris
 data ColType = I64 | Str | Boolean | Float
@@ -751,9 +781,9 @@ Schema : Type
 Schema = List ColType
 ```
 
-Next, we need a way to convert a `Schema` to a list of Idris types, which we
-will then use as the index of a heterogeneous list representing the rows in
-our table:
+Next, we need a way to convert a `Schema` to a list of Idris
+types, which we will then use as the index of a heterogeneous
+list representing the rows in our table:
 
 ```idris
 IdrisType : ColType -> Type
@@ -766,10 +796,10 @@ Row : Schema -> Type
 Row = HList . map IdrisType
 ```
 
-We can now describe a table as a dependent record storing the table's
-content as a vector of rows. In order to safely index rows of the table and
-parse new rows to be added, the current schema and size of the table must be
-known at runtime:
+We can now describe a table as a dependent record storing
+the table's content as a vector of rows. In order to safely
+index rows of the table and parse new rows to be added, the
+current schema and size of the table must be known at runtime:
 
 ```idris
 record Table where
@@ -779,12 +809,13 @@ record Table where
   rows   : Vect size (Row schema)
 ```
 
-Finally, we define an indexed data type describing commands operating on the
-current table. Using the current table as the command's index allows us to
-make sure that indices for accessing and deleting rows are within bounds and
-that new rows agree with the current schema. This is necessary to uphold our
-second design principle: All functions operating on tables must do so
-without the possibility of failure.
+Finally, we define an indexed data type describing commands
+operating on the current table. Using the current table as
+the command's index allows us to make sure that indices for
+accessing and deleting rows are within bounds and that
+new rows agree with the current schema. This is necessary
+to uphold our second design principle: All functions
+operating on tables must do so without the possibility of failure.
 
 ```idris
 data Command : (t : Table) -> Type where
@@ -797,9 +828,10 @@ data Command : (t : Table) -> Type where
   Quit        : Command t
 ```
 
-We can now implement the main application logic: How user entered commands
-affect the application's current state. As promised, this comes without the
-risk of failure, so we don't have to wrap the return type in an `Either`:
+We can now implement the main application logic: How user
+entered commands affect the application's current state. As promised,
+this comes without the risk of failure, so we don't have to
+wrap the return type in an `Either`:
 
 ```idris
 applyCommand : (t : Table) -> Command t -> Table
@@ -814,41 +846,45 @@ applyCommand (MkTable ts n rs) (Delete x)  = case n of
   Z   => absurd x
 ```
 
-Please understand, that the constructors of `Command t` are typed in such a
-way that indices are always within bounds (constructors `Get` and `Delete`),
-and new rows adhere to the table's current schema (constructor `Prepend`).
+Please understand, that the constructors of `Command t` are typed
+in such a way that indices are always within bounds (constructors
+`Get` and `Delete`), and new rows adhere to the table's
+current schema (constructor `Prepend`).
 
-One thing you might not have seen so far is the call to `absurd` on the last
-line. This is a derived function of the `Uninhabited` interface, which is
-used to describe types such as `Void` or - in the case above - `Fin 0`, of
-which there can be no value. Function `absurd` is then just another
-manifestation of the principle of explosion. If this doesn't make too much
-sense yet, don't worry. We will look at `Void` and its uses in the next
-chapter.
+One thing you might not have seen so far is the call to `absurd`
+on the last line. This is a derived function of the
+`Uninhabited` interface, which is used to describe types such
+as `Void` or - in the case above - `Fin 0`, of which there can
+be no value. Function `absurd` is then just another manifestation
+of the principle of explosion. If this doesn't make too much sense
+yet, don't worry. We will look at `Void` and its uses in the
+next chapter.
 
 ### Parsing Commands
 
-User input validation is an important topic when writing applications. If it
-happens early, you can keep larger parts of your application pure (which -
-in this context - means: "without the possibility of failure") and provably
-total.  If done properly, this step encodes and handles most if not all ways
-in which things can go wrong in your program, allowing you to come up with
-clear error messages telling users exactly what caused an issue. As you
-surely have experienced yourself, there are few things more frustrating than
-a non-trivial computer program terminating with an unhelpful "There was an
-error" message.
+User input validation is an important topic when writing
+applications. If it happens early, you can keep larger parts
+of your application pure (which - in this context - means:
+"without the possibility of failure") and provably total.
+If done properly, this step encodes and handles most if not all
+ways in which things can go wrong in your program, allowing
+you to come up with clear error messages telling users exactly what caused
+an issue. As you surely have experienced yourself, there are few
+things more frustrating than a non-trivial computer program terminating
+with an unhelpful "There was an error" message.
 
-So, in order to treat this important topic with all due respect, we are
-first going to implement a custom error type. This is not *strictly*
-necessary for small programs, but once your software gets more complex, it
-can be tremendously helpful for keeping track of what can go wrong where. In
-order to figure out what can possibly go wrong, we first need to decide on
-how the commands should be entered.  Here, we use a single keyword for each
-command, together with an optional number of arguments separated from the
-keyword by a single space character. For instance: `"new
-i64,boolean,str,str"`, for initializing an empty table with a new
-schema. With this settled, here is a list of things that can go wrong, and
-the messages we'd like to print:
+So, in order to treat this important topic with all due respect,
+we are first going to implement a custom error type. This is
+not *strictly* necessary for small programs, but once your software
+gets more complex, it can be tremendously helpful for keeping track
+of what can go wrong where. In order to figure out what can possibly
+go wrong, we first need to decide on how the commands should be entered.
+Here, we use a single keyword for each command, together with an
+optional number of arguments separated from the keyword by a single
+space character. For instance: `"new i64,boolean,str,str"`,
+for initializing an empty table with a new schema. With this settled,
+here is a list of things that can go wrong, and the messages we'd
+like to print:
 
 * A bogus command is entered. We repeat the input with a message that we
   don't know the command plus a list of commands we know about.
@@ -865,7 +901,8 @@ the messages we'd like to print:
 * A value not representing a natural number was entered as an index.  We
   print an according error message.
 
-That's a lot of stuff to keep track off, so let's encode this in a sum type:
+That's a lot of stuff to keep track off, so let's encode this in
+a sum type:
 
 ```idris
 data Error : Type where
@@ -878,12 +915,13 @@ data Error : Type where
   NoNat          : String -> Error
 ```
 
-In order to conveniently construct our error messages, it is best to use
-Idris' string interpolation facilities: We can enclose arbitrary string
-expressions in a string literal by enclosing them in curly braces, the first
-of which must be escaped with a backslash. Like so: `"foo \{myExpr a b
-c}"`.  We can pair this with multiline string literals to get nicely
-formatted error messages.
+In order to conveniently construct our error messages, it is best
+to use Idris' string interpolation facilities: We can enclose
+arbitrary string expressions in a string literal by enclosing
+them in curly braces, the first of which must be escaped with
+a backslash. Like so: `"foo \{myExpr a b c}"`.
+We can pair this with multiline string literals to get
+nicely formatted error messages.
 
 ```idris
 showColType : ColType -> String
@@ -940,10 +978,11 @@ showError (OutOfBounds size index) = """
 showError (NoNat x) = "Not a natural number: \{x}"
 ```
 
-We can now write parsers for the different commands. We need facilities to
-parse vector indices, schemata, and CSV rows.  Since we are using a CSV
-format for encoding and decoding rows, it makes sense to also encode the
-schema as a comma-separated list of values:
+We can now write parsers for the different commands. We need facilities
+to parse vector indices, schemata, and CSV rows.
+Since we are using a CSV format for encoding
+and decoding rows, it makes sense to also encode the schema
+as a comma-separated list of values:
 
 ```idris
 zipWithIndex : Traversable t => t a -> t (Nat, a)
@@ -965,12 +1004,13 @@ readSchema : String -> Either Error Schema
 readSchema = traverse (uncurry readColType) . zipWithIndex . fromCSV
 ```
 
-We also need to decode CSV content based on the current schema.  Note, how
-we can do so in a type safe manner by pattern matching on the schema, which
-will not be known until runtime. Unfortunately, we need to reimplement
-CSV-parsing, because we want to add the expected type to the error messages
-(a thing that would be much harder to do with interface `CSVLine` and error
-type `CSVError`).
+We also need to decode CSV content based on the current schema.
+Note, how we can do so in a type safe manner by pattern matching
+on the schema, which will not be known until runtime. Unfortunately,
+we need to reimplement CSV-parsing, because we want to add the
+expected type to the error messages (a thing that would be
+much harder to do with interface `CSVLine`
+and error type `CSVError`).
 
 ```idris
 decodeField : Nat -> (c : ColType) -> String -> Either Error (IdrisType c)
@@ -991,8 +1031,8 @@ decodeRow s = go 1 ts $ fromCSV s
         go k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]
 ```
 
-There is no hard and fast rule about whether to pass an index as an implicit
-argument or not. Some considerations:
+There is no hard and fast rule about whether to pass an index as an
+implicit argument or not. Some considerations:
 
 * Pattern matching on explicit arguments comes with less syntactic overhead.
 * If an argument can be inferred from the context most of the time, consider
@@ -1001,9 +1041,10 @@ argument or not. Some considerations:
 * Use explicit (possibly erased) arguments for values that can't be inferred
   by Idris most of the time.
 
-All that is missing now is a way to parse indices for accessing the current
-table's rows. We use the conversion for indices to start at one instead of
-zero, which feels more natural for most non-programmers.
+All that is missing now is a way to parse indices for accessing
+the current table's rows. We use the conversion for indices to
+start at one instead of zero, which feels more natural for most
+non-programmers.
 
 ```idris
 readFin : {n : _} -> String -> Either Error (Fin n)
@@ -1013,11 +1054,12 @@ readFin s = do
   maybeToEither (OutOfBounds n $ S k) $ natToFin k n
 ```
 
-We are finally able to implement a parser for user commands.  Function
-`Data.String.words` is used for splitting a string at space characters. In
-most cases, we expect the name of the command plus a single argument without
-additional spaces.  CSV rows can have additional space characters, however,
-so we use `Data.String.unwords` on the split string.
+We are finally able to implement a parser for user commands.
+Function `Data.String.words` is used for splitting a string
+at space characters. In most cases, we expect the name of
+the command plus a single argument without additional spaces.
+CSV rows can have additional space characters, however, so we
+use `Data.String.unwords` on the split string.
 
 ```idris
 readCommand :  (t : Table) -> String -> Either Error (Command t)
@@ -1034,8 +1076,9 @@ readCommand (MkTable ts n _) s         = case words s of
 
 ### Running the Application
 
-All that's left to do is to write functions for printing the results of
-commands to users and run the application in a loop until command `"quit"`
+All that's left to do is to write functions for
+printing the results of commands to users and run
+the application in a loop until command `"quit"`
 is entered.
 
 ```idris
@@ -1080,10 +1123,11 @@ main = runProg $ MkTable [] _ []
 
 ### Exercises part 3
 
-The challenges presented here all deal with enhancing our table editor in
-several interesting ways. Some of them are more a matter of style and less a
-matter of learning to write dependently typed programs, so feel free to
-solve these as you please. Exercises 1 to 3 should be considered to be
+The challenges presented here all deal with enhancing our
+table editor in several interesting ways. Some of them are
+more a matter of style and less a matter of learning to write
+dependently typed programs, so feel free to solve these as you
+please. Exercises 1 to 3 should be considered to be
 mandatory.
 
 1. Add support for storing Idris types `Integer` and `Nat` in CSV columns
@@ -1126,25 +1170,30 @@ mandatory.
    to make this partiality visible and annotate all downstream
    functions accordingly.
 
-You can find an implementation of these additions in the solutions. A small
-example table can be found in folder `resources`.
+You can find an implementation of these additions in the
+solutions. A small example table can be found in folder
+`resources`.
 
-Note: There are of course tons of projects to pursue from here, such as
-writing a proper query language, calculating new rows from existing ones,
-accumulating values in a column, concatenating and zipping tables, and so
-on.  We will stop for now, probably coming back to this in later examples.
+Note: There are of course tons of projects to pursue from
+here, such as writing a proper query language, calculating
+new rows from existing ones, accumulating values in a
+column, concatenating and zipping tables, and so on.
+We will stop for now, probably coming back to this in
+later examples.
 
 ## 结论
 
-Dependent pairs and records are necessary to at runtime inspect the values
-defining the types we work with. By pattern matching on these values, we
-learn about the types and possible shapes of other values, allowing us to
-reduce the number of potential bugs in our programs.
+Dependent pairs and records are necessary to at runtime
+inspect the values defining the types we work with. By pattern
+matching on these values, we learn about the types and
+possible shapes of other values, allowing us to reduce
+the number of potential bugs in our programs.
 
-In the [next chapter](Eq.md) we start learning about how to write data
-types, which we use as proofs that certain contracts between values
-hold. These will eventually allow us to define pre- and post conditions for
-our function arguments and output types.
+In the [next chapter](Eq.md) we start learning about how
+to write data types, which we use as proofs that certain
+contracts between values hold. These will eventually allow
+us to define pre- and post conditions for our function
+arguments and output types.
 
 <!-- vi: filetype=idris2
 -->

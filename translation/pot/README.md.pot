@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 13:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,29 +30,35 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:9
+#, no-wrap
 msgid ""
-"The goal of this project is quickly explained: To become a more or less "
-"comprehensive guide to the Idris programming language, with a lot of "
-"introductory material targeted at newcomers to functional programming."
+"The goal of this project is quickly explained: To become a more\n"
+"or less comprehensive guide to the Idris programming language,\n"
+"with a lot of introductory material targeted at newcomers to\n"
+"functional programming.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../README.md:17
+#, no-wrap
 msgid ""
-"The content will be organized in several parts, with the part about the core "
-"language features being the main guide to functional programming in Idris. "
-"Every part consists of several chapters, each trying to cover in depth a "
-"certain aspect of the Idris programming language and its core libraries. "
-"Most chapters come with (sometimes lots of) exercises, with solutions "
-"available in directory `src/Solutions`."
+"The content will be organized in several parts, with the part\n"
+"about the core language features being the main guide to\n"
+"functional programming in Idris. Every part consists of several\n"
+"chapters, each trying to cover in depth a certain aspect\n"
+"of the Idris programming language and its core libraries. Most\n"
+"chapters come with (sometimes lots of) exercises, with\n"
+"solutions available in directory `src/Solutions`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../README.md:22
+#, no-wrap
 msgid ""
-"Right now, even the part about core language features is not yet finished, "
-"but is being actively developed and tried on several of my own students, "
-"some of which are completely new to functional programming."
+"Right now, even the part about core language features is not\n"
+"yet finished, but is being actively developed and tried on\n"
+"several of my own students, some of which are completely\n"
+"new to functional programming.\n"
 msgstr ""
 
 #. type: Title ##
@@ -69,19 +75,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:31
+#, no-wrap
 msgid ""
-"This part tries to give a solid introduction to the Idris programming "
-"language. If you are new to functional programming, make sure to follow "
-"these chapters in order and *solve all the exercises*."
+"This part tries to give a solid introduction to the\n"
+"Idris programming language. If you are new to functional programming,\n"
+"make sure to follow these chapters in order and *solve all the\n"
+"exercises*.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../README.md:36
+#, no-wrap
 msgid ""
-"If you already used other pure functional programming languages like "
-"Haskell, you might go through the introductory material (Functions Part 1, "
-"Algebraic Data Types, and Interfaces) pretty quickly, as most of this stuff "
-"will already be familiar to you."
+"If you already used other pure functional programming languages like\n"
+"Haskell, you might go through the introductory material (Functions Part 1,\n"
+"Algebraic Data Types, and Interfaces) pretty quickly, as most of this\n"
+"stuff will already be familiar to you.\n"
 msgstr ""
 
 #. type: Plain text
@@ -166,10 +175,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:112
+#, no-wrap
 msgid ""
-"The appendices can be used as references for the topics at hand. I plan to "
-"eventually have a concise reference on Idris syntax, typical error messages, "
-"the module system, interactive editing and possibly others."
+"The appendices can be used as references for the topics at\n"
+"hand. I plan to eventually have a concise reference on Idris\n"
+"syntax, typical error messages, the module system, interactive\n"
+"editing and possibly others.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -185,9 +196,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../README.md:121
+#, no-wrap
 msgid ""
-"At the moment, this project is being actively developed and evolved against "
-"the main branch of the Idris 2 repository.  It is being tested nightly on "
-"GitHub and built against the latest commit of the Idris 2 main branch as "
-"well as the Idris 2 commit listed in file `.idris-version`."
+"At the moment, this project is being actively developed and\n"
+"evolved against the main branch of the Idris 2 repository.\n"
+"It is being tested nightly on GitHub and built against\n"
+"the latest commit of the Idris 2 main branch as well as the\n"
+"Idris 2 commit listed in file `.idris-version`.\n"
 msgstr ""

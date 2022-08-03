@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 13:26+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -456,22 +456,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:6
+#, no-wrap
 msgid ""
-"Programming, like mathematics, is about abstraction. We try to model parts "
-"of the real world, reusing recurring patterns by abstracting over them."
+"Programming, like mathematics, is about abstraction. We\n"
+"try to model parts of the real world, reusing recurring\n"
+"patterns by abstracting over them.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:17
+#, no-wrap
 msgid ""
-"In this chapter, we will learn about several related interfaces, which are "
-"all about abstraction and therefore can be hard to understand at the "
-"beginning. Especially figuring out *why* they are useful and *when* to use "
-"them will take time and experience. This chapter therefore comes with tons "
-"of exercises, most of which can be solved with only a few short lines of "
-"code. Don't skip them.  Come back to them several times until these things "
-"start feeling natural to you. You will then realize that their initial "
-"complexity has vanished."
+"In this chapter, we will learn about several related interfaces,\n"
+"which are all about abstraction and therefore can be hard to\n"
+"understand at the beginning. Especially figuring out\n"
+"*why* they are useful and *when* to use them will take\n"
+"time and experience. This chapter therefore comes\n"
+"with tons of exercises, most of which can be solved\n"
+"with only a few short lines of code. Don't skip them.\n"
+"Come back to them several times until these things start\n"
+"feeling natural to you. You will then realize that their\n"
+"initial complexity has vanished.\n"
 msgstr ""
 
 #. type: Plain text
@@ -513,19 +518,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:49
+#, no-wrap
 msgid ""
-"Although the type constructors discussed above are quite different in how "
-"they behave and when they are useful, there are certain operations that keep "
-"coming up when working with them. The first such operation is *mapping a "
-"pure function over the data type, without affecting its underlying "
-"structure*."
+"Although the type constructors discussed above are quite\n"
+"different in how they behave and when they are useful,\n"
+"there are certain operations that keep coming up\n"
+"when working with them. The first such operation\n"
+"is *mapping a pure function over the data type, without\n"
+"affecting its underlying structure*.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:53
+#, no-wrap
 msgid ""
-"For instance, given a list of numbers, we'd like to multiply each number by "
-"two, without changing their order or removing any values:"
+"For instance, given a list of numbers, we'd like to multiply\n"
+"each number by two, without changing their order or removing\n"
+"any values:\n"
 msgstr ""
 
 #. type: Plain text
@@ -539,9 +548,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:62
+#, no-wrap
 msgid ""
-"But we might just as well convert every string in a list of strings to upper "
-"case characters:"
+"But we might just as well convert every string in a\n"
+"list of strings to upper case characters:\n"
 msgstr ""
 
 #. type: Plain text
@@ -555,9 +565,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:72
+#, no-wrap
 msgid ""
-"Sometimes, the type of the stored value changes. In the next example, we "
-"calculate the lengths of the strings stored in a list:"
+"Sometimes, the type of the stored value changes. In the\n"
+"next example, we calculate the lengths of the strings stored\n"
+"in a list:\n"
 msgstr ""
 
 #. type: Plain text
@@ -571,10 +583,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:83
+#, no-wrap
 msgid ""
-"I'd like you to appreciate, just how boring these functions are. They are "
-"almost identical, with the only interesting part being the function we apply "
-"to each element. Surely, there must be a pattern to abstract over:"
+"I'd like you to appreciate, just how boring these functions are. They\n"
+"are almost identical, with the only interesting part being\n"
+"the function we apply to each element. Surely, there must be a\n"
+"pattern to abstract over:\n"
 msgstr ""
 
 #. type: Plain text
@@ -588,10 +602,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:94
+#, no-wrap
 msgid ""
-"This is often the first step of abstraction in functional programming: Write "
-"a (possibly generic) higher-order function.  We can now concisely implement "
-"all examples shown above in terms of `mapList`:"
+"This is often the first step of abstraction in functional\n"
+"programming: Write a (possibly generic) higher-order function.\n"
+"We can now concisely implement all examples shown above in\n"
+"terms of `mapList`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -610,10 +626,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:110
+#, no-wrap
 msgid ""
-"But surely we'd like to do the same kind of thing with `List1` and `Maybe`! "
-"After all, they are just container types like `List`, the only difference "
-"being some detail about the number of values they can or can't hold:"
+"But surely we'd like to do the same kind of thing with\n"
+"`List1` and `Maybe`! After all, they are just container\n"
+"types like `List`, the only difference being some detail\n"
+"about the number of values they can or can't hold:\n"
 msgstr ""
 
 #. type: Plain text
@@ -627,14 +645,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:125
+#, no-wrap
 msgid ""
-"Even with `IO`, we'd like to be able to map pure functions over effectful "
-"computations. The implementation is a bit more involved, due to the nested "
-"layers of data constructors, but if in doubt, the types will surely guide "
-"us. Note, however, that `IO` is not publicly exported, so its data "
-"constructor is unavailable to us. We can use functions `toPrim` and "
-"`fromPrim`, however, for converting `IO` from and to `PrimIO`, which we can "
-"freely dissect:"
+"Even with `IO`, we'd like to be able to map pure functions\n"
+"over effectful computations. The implementation is\n"
+"a bit more involved, due to the nested layers of\n"
+"data constructors, but if in doubt, the types will surely\n"
+"guide us. Note, however, that `IO` is not publicly exported,\n"
+"so its data constructor is unavailable to us. We can use\n"
+"functions `toPrim` and `fromPrim`, however, for converting\n"
+"`IO` from and to `PrimIO`, which we can freely dissect:\n"
 msgstr ""
 
 #. type: Plain text
@@ -651,10 +671,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:138
+#, no-wrap
 msgid ""
-"From the concept of *mapping a pure function over values in a context* "
-"follow some derived functions, which are often useful. Here are some of them "
-"for `IO`:"
+"From the concept of *mapping a pure function over\n"
+"values in a context* follow some derived functions, which are\n"
+"often useful. Here are some of them for `IO`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -670,11 +691,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:151
+#, no-wrap
 msgid ""
-"Of course, we'd want to implement `mapConst` and `forget` as well for "
-"`List`, `List1`, and `Maybe` (and dozens of other type constructors with "
-"some kind of mapping function), and they'd all look the same and be equally "
-"boring."
+"Of course, we'd want to implement `mapConst` and `forget` as well\n"
+"for `List`, `List1`, and `Maybe` (and dozens of other type\n"
+"constructors with some kind of mapping function), and they'd\n"
+"all look the same and be equally boring.\n"
 msgstr ""
 
 #. type: Plain text
@@ -694,11 +716,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:166
+#, no-wrap
 msgid ""
-"The interface we are looking for is called `Functor`.  Here is its "
-"definition and an example implementation (I appended a tick at the end of "
-"the names for them not to overlap with the interface and functions exported "
-"by the *Prelude*):"
+"The interface we are looking for is called `Functor`.\n"
+"Here is its definition and an example implementation (I appended\n"
+"a tick at the end of the names for them not to overlap with\n"
+"the interface and functions exported by the *Prelude*):\n"
 msgstr ""
 
 #. type: Plain text
@@ -715,20 +738,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:179
+#, no-wrap
 msgid ""
-"Note, that we had to give the type of parameter `f` explicitly, and in that "
-"case it needs to be annotated with quantity zero if you want it to be erased "
-"at runtime (which you almost always want)."
+"Note, that we had to give the type of parameter `f` explicitly,\n"
+"and in that case it needs to be annotated with quantity zero if\n"
+"you want it to be erased at runtime (which you almost always want).\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:186
+#, no-wrap
 msgid ""
-"Now, reading type signatures consisting only of type parameters like the one "
-"of `map'` can take some time to get used to, especially when some type "
-"parameters are applied to other parameters as in `f a`. It can be very "
-"helpful to inspect these signatures together with all implicit arguments at "
-"the REPL (I formatted the output to make it more readable):"
+"Now, reading type signatures consisting only of type parameters\n"
+"like the one of `map'` can take some time to get used to, especially\n"
+"when some type parameters are applied to other parameters as in\n"
+"`f a`. It can be very helpful to inspect these signatures together\n"
+"with all implicit arguments at the REPL (I formatted the output to\n"
+"make it more readable):\n"
 msgstr ""
 
 #. type: Plain text
@@ -747,9 +773,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:200
+#, no-wrap
 msgid ""
-"It can also be helpful to replace type parameter `f` with a concrete value "
-"of the same type:"
+"It can also be helpful to replace type parameter `f` with a concrete\n"
+"value of the same type:\n"
 msgstr ""
 
 #. type: Plain text
@@ -762,10 +789,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:209
+#, no-wrap
 msgid ""
-"Remember, being able to interpret type signatures is paramount to "
-"understanding what's going on in an Idris declaration. You *must* practice "
-"this and make use of the tools and utilities given to you."
+"Remember, being able to interpret type signatures is paramount to\n"
+"understanding what's going on in an Idris declaration. You *must*\n"
+"practice this and make use of the tools and utilities given to you.\n"
 msgstr ""
 
 #. type: Title ###
@@ -776,10 +804,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:215
+#, no-wrap
 msgid ""
-"There are several functions and operators directly derivable from interface "
-"`Functor`. Eventually, you should know and remember all of them as they are "
-"highly useful. Here they are together with their types:"
+"There are several functions and operators directly derivable from interface\n"
+"`Functor`. Eventually, you should know and remember all of them as\n"
+"they are highly useful. Here they are together with their types:\n"
 msgstr ""
 
 #. type: Plain text
@@ -890,9 +919,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:284
+#, no-wrap
 msgid ""
-"The nice thing about functors is how they can be paired and nested with "
-"other functors and the results are functors again:"
+"The nice thing about functors is how they can be paired and\n"
+"nested with other functors and the results are functors again:\n"
 msgstr ""
 
 #. type: Plain text
@@ -910,9 +940,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:297
+#, no-wrap
 msgid ""
-"The above allows us to conveniently map over a pair of functors. Note, "
-"however, that Idris needs some help with inferring the types involved:"
+"The above allows us to conveniently map over a pair of functors. Note,\n"
+"however, that Idris needs some help with inferring the types involved:\n"
 msgstr ""
 
 #. type: Plain text
@@ -933,9 +964,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:313
+#, no-wrap
 msgid ""
-"More often, we'd like to map over several layers of nested functors at once. "
-"Here's how to do this with an example:"
+"More often, we'd like to map over several layers of nested functors\n"
+"at once. Here's how to do this with an example:\n"
 msgstr ""
 
 #. type: Plain text
@@ -961,20 +993,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:334
+#, no-wrap
 msgid ""
-"Sometimes, there are more ways to implement an interface for a given type. "
-"For instance, for numeric types we can have a `Monoid` representing addition "
-"and one representing multiplication.  Likewise, for nested functors, `map` "
-"can be interpreted as a mapping over only the first layer of values, or a "
-"mapping over several layers of values."
+"Sometimes, there are more ways to implement an interface for\n"
+"a given type. For instance, for numeric types we can have\n"
+"a `Monoid` representing addition and one representing multiplication.\n"
+"Likewise, for nested functors, `map` can be interpreted as a mapping\n"
+"over only the first layer of values, or a mapping over several layers\n"
+"of values.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:339
+#, no-wrap
 msgid ""
-"One way to go about this is to define single-field wrappers as shown with "
-"data type `Comp` above. However, Idris also allows us to define additional "
-"interface implementations, which must then be given a name. For instance:"
+"One way to go about this is to define single-field wrappers as\n"
+"shown with data type `Comp` above. However, Idris also allows us\n"
+"to define additional interface implementations, which must then\n"
+"be given a name. For instance:\n"
 msgstr ""
 
 #. type: Plain text
@@ -987,11 +1023,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:350
+#, no-wrap
 msgid ""
-"Note, that this defines a new implementation of `Functor`, which will *not* "
-"be considered during implicit resolution in order to avoid ambiguities. "
-"However, it is possible to explicitly choose to use this implementation by "
-"passing it as an explicit argument to `map`, prefixed with an `@`:"
+"Note, that this defines a new implementation of `Functor`, which will\n"
+"*not* be considered during implicit resolution in order\n"
+"to avoid ambiguities. However,\n"
+"it is possible to explicitly choose to use this implementation\n"
+"by passing it as an explicit argument to `map`, prefixed with an `@`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1004,9 +1042,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:358
+#, no-wrap
 msgid ""
-"In the example above, we used `Compose` instead of `Compose'`, since the "
-"former is already exported by the *Prelude*."
+"In the example above, we used `Compose` instead of `Compose'`, since\n"
+"the former is already exported by the *Prelude*.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1017,10 +1056,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:365
+#, no-wrap
 msgid ""
-"Implementations of `Functor` are supposed to adhere to certain laws, just "
-"like implementations of `Eq` or `Ord`. Again, these laws are not verified by "
-"Idris, although it would be possible (and often cumbersome) to do so."
+"Implementations of `Functor` are supposed to adhere to certain laws,\n"
+"just like implementations of `Eq` or `Ord`. Again, these laws are\n"
+"not verified by Idris, although it would be possible (and\n"
+"often cumbersome) to do so.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1042,12 +1083,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:380
+#, no-wrap
 msgid ""
-"Both of these laws request, that `map` is preserving the *structure* of "
-"values. This is easier to understand with container types like `List`, "
-"`Maybe`, or `Either e`, where `map` is not allowed to add or remove any "
-"wrapped value, nor - in case of `List` - change their order. With `IO`, this "
-"can best be described as `map` not performing additional side effects."
+"Both of these laws request, that `map` is preserving the *structure*\n"
+"of values. This is easier to understand with container types like\n"
+"`List`, `Maybe`, or `Either e`, where `map` is not allowed to\n"
+"add or remove any wrapped value, nor - in case of `List` -\n"
+"change their order. With `IO`, this can best be described as `map`\n"
+"not performing additional side effects.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1154,15 +1197,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:453
+#, no-wrap
 msgid ""
-"While `Functor` allows us to map a pure, unary function over a value in a "
-"context, it doesn't allow us to combine n such values under an n-ary "
-"function."
+"While `Functor` allows us to map a pure, unary function\n"
+"over a value in a context, it doesn't allow us to combine\n"
+"n such values under an n-ary function.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:455
-msgid "For instance, consider the following functions:"
+#, no-wrap
+msgid "For instance, consider the following functions:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1188,11 +1233,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:478
+#, no-wrap
 msgid ""
-"This behavior is not covered by `Functor`, yet it is a very common thing to "
-"do. For instance, we might want to read two numbers from standard input "
-"(both operations might fail), calculating the product of the two. Here's the "
-"code:"
+"This behavior is not covered by `Functor`, yet it is a very\n"
+"common thing to do. For instance, we might want to read two numbers\n"
+"from standard input (both operations might fail), calculating the\n"
+"product of the two. Here's the code:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1208,17 +1254,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:490
+#, no-wrap
 msgid ""
-"And it won't stop here. We might just as well want to have `liftMaybe3` for "
-"ternary functions and three `Maybe` arguments and so on, for arbitrary "
-"numbers of arguments."
+"And it won't stop here. We might just as well want to have\n"
+"`liftMaybe3` for ternary functions and three `Maybe` arguments\n"
+"and so on, for arbitrary numbers of arguments.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:493
+#, no-wrap
 msgid ""
-"But there is more: We'd also like to lift pure values into the context in "
-"question. With this, we could do the following:"
+"But there is more: We'd also like to lift pure values into\n"
+"the context in question. With this, we could do the following:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1240,10 +1288,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:511
+#, no-wrap
 msgid ""
-"As you'll of course already know, I am now going to present a new interface "
-"to encapsulate this behavior. It's called `Applicative`.  Here is its "
-"definition and an example implementation:"
+"As you'll of course already know, I am now going to present a new\n"
+"interface to encapsulate this behavior. It's called `Applicative`.\n"
+"Here is its definition and an example implementation:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1272,9 +1321,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:530
+#, no-wrap
 msgid ""
-"You may wonder, how functions like `liftMaybe2` or `liftIO3` are related to "
-"operator *apply*. Let me demonstrate this:"
+"You may wonder, how functions like `liftMaybe2` or `liftIO3` are related\n"
+"to operator *apply*. Let me demonstrate this:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1301,11 +1351,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:550
+#, no-wrap
 msgid ""
-"You'll often see such chains of applications of *apply*, the number of "
-"*applies* corresponding to the arity of the function we lift.  You'll "
-"sometimes also see the following, which allows us to drop the initial call "
-"to `pure`, and use the operator version of `map` instead:"
+"You'll often see such chains of applications of *apply*, the number\n"
+"of *applies* corresponding to the arity of the function we lift.\n"
+"You'll sometimes also see the following, which allows us to drop\n"
+"the initial call to `pure`, and use the operator version of `map`\n"
+"instead:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1321,11 +1373,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:564
+#, no-wrap
 msgid ""
-"So, interface `Applicative` allows us to lift values (and functions!)  into "
-"computational contexts and apply them to values in the same contexts. Before "
-"we will see an extended example why this is useful, I'll quickly introduce "
-"some syntactic sugar for working with applicative functors."
+"So, interface `Applicative` allows us to lift values (and functions!)\n"
+"into computational contexts and apply them to values in the same\n"
+"contexts. Before we will see an extended example why this is\n"
+"useful, I'll quickly introduce some syntactic sugar for working\n"
+"with applicative functors.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1336,18 +1390,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:571
+#, no-wrap
 msgid ""
-"The programming style used for implementing `liftA2'` and `liftA3'` is also "
-"referred to as *applicative style* and is used a lot in Haskell for "
-"combining several effectful computations with a single pure function."
+"The programming style used for implementing `liftA2'` and `liftA3'`\n"
+"is also referred to as *applicative style* and is used a lot\n"
+"in Haskell for combining several effectful computations\n"
+"with a single pure function.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:575
+#, no-wrap
 msgid ""
-"In Idris, there is an alternative to using such chains of operator "
-"applications: Idiom brackets. Here's another reimplementation of `liftA2` "
-"and `liftA3`:"
+"In Idris, there is an alternative to using such chains of\n"
+"operator applications: Idiom brackets. Here's another\n"
+"reimplementation of `liftA2` and `liftA3`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1381,23 +1438,29 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:604
+#, no-wrap
 msgid ""
-"In order to understand the power and versatility that comes with applicative "
-"functors, we will look at a slightly extended example. We are going to write "
-"some utilities for parsing and decoding content from CSV files. These are "
-"files where each line holds a list of values separated by commas (or some "
-"other delimiter). Typically, they are used to store tabular data, for "
-"instance from spread sheet applications. What we would like to do is convert "
-"lines in a CSV file and store the result in custom records, where each "
-"record field corresponds to a column in the table."
+"In order to understand the power and versatility that comes\n"
+"with applicative functors, we will look at a slightly\n"
+"extended example. We are going to write some utilities\n"
+"for parsing and decoding content from CSV files. These\n"
+"are files where each line holds a list of values separated\n"
+"by commas (or some other delimiter). Typically, they are\n"
+"used to store tabular data, for instance from spread sheet\n"
+"applications. What we would like to do is convert\n"
+"lines in a CSV file and store the result in custom\n"
+"records, where each record field corresponds to a column\n"
+"in the table.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:609
+#, no-wrap
 msgid ""
-"For instance, here is a simple example file, containing tabular user "
-"information from a web store: First name, last name, age (optional), email "
-"address, gender, and password."
+"For instance, here is a simple example\n"
+"file, containing tabular user information from a web\n"
+"store: First name, last name, age (optional), email address,\n"
+"gender, and password.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1411,11 +1474,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:621
+#, no-wrap
 msgid ""
-"And here are the Idris data types necessary to hold this information at "
-"runtime. We use again custom string wrappers for increased type safety and "
-"because it will allow us to define for each data type what we consider to be "
-"valid input:"
+"And here are the Idris data types necessary to hold\n"
+"this information at runtime. We use again custom\n"
+"string wrappers for increased type safety and\n"
+"because it will allow us to define for each data type\n"
+"what we consider to be valid input:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1448,9 +1513,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:650
+#, no-wrap
 msgid ""
-"We start by defining an interface for reading fields in a CSV file and "
-"writing implementations for the data types we'd like to read:"
+"We start by defining an interface for reading fields\n"
+"in a CSV file and writing implementations for\n"
+"the data types we'd like to read:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1463,9 +1530,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:659
+#, no-wrap
 msgid ""
-"Below are implementations for `Gender` and `Bool`. I decided to in these "
-"cases encode each value with a single lower case character:"
+"Below are implementations for `Gender` and `Bool`. I decided\n"
+"to in these cases encode each value with a single lower\n"
+"case character:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1486,7 +1555,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:675
-msgid "For numeric types, we can use the parsing functions from `Data.String`:"
+#, no-wrap
+msgid ""
+"For numeric types, we can use the parsing functions\n"
+"from `Data.String`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1525,10 +1597,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:703
+#, no-wrap
 msgid ""
-"Finally, for our string wrappers, we need to decide what we consider to be "
-"valid values. For simplicity, I decided to limit the length of allowed "
-"strings and the set of valid characters."
+"Finally, for our string wrappers, we need to decide what\n"
+"we consider to be valid values. For simplicity, I decided\n"
+"to limit the length of allowed strings and the set of\n"
+"valid characters.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1574,16 +1648,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:745
+#, no-wrap
 msgid ""
-"In a later chapter, we will learn about refinement types and how to store an "
-"erased proof of validity together with a validated value."
+"In a later chapter, we will learn about refinement types and\n"
+"how to store an erased proof of validity together with\n"
+"a validated value.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:749
+#, no-wrap
 msgid ""
-"We can now start to decode whole lines in a CSV file.  In order to do so, we "
-"first introduce a custom error type encapsulating how things can go wrong:"
+"We can now start to decode whole lines in a CSV file.\n"
+"In order to do so, we first introduce a custom error\n"
+"type encapsulating how things can go wrong:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1598,9 +1676,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:760
+#, no-wrap
 msgid ""
-"We can now use `CSVField` to read a single field at a given line and "
-"position in a CSV file, and return a `FieldError` in case of a failure."
+"We can now use `CSVField` to read a single field at a given\n"
+"line and position in a CSV file, and return a `FieldError` in case\n"
+"of a failure.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1614,11 +1694,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:772
+#, no-wrap
 msgid ""
-"If we know in advance the number of fields we need to read, we can try and "
-"convert a list of strings to a `Vect` of the given length. This facilitates "
-"reading record values of a known number of fields, as we get the correct "
-"number of string variables when pattern matching on the vector:"
+"If we know in advance the number of fields we need to read,\n"
+"we can try and convert a list of strings to a `Vect` of\n"
+"the given length. This facilitates reading record values of\n"
+"a known number of fields, as we get the correct number\n"
+"of string variables when pattern matching on the vector:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1634,9 +1716,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:783
+#, no-wrap
 msgid ""
-"Finally, we can implement function `readUser` to try and convert a single "
-"line in a CSV-file to a value of type `User`:"
+"Finally, we can implement function `readUser` to try and convert\n"
+"a single line in a CSV-file to a value of type `User`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1659,7 +1742,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:800 ../src/Tutorial/Traverse.md:122
-msgid "Let's give this a go at the REPL:"
+#, no-wrap
+msgid "Let's give this a go at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1675,20 +1759,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:816
+#, no-wrap
 msgid ""
-"Note, how in the implementation of `readUser'` we used an idiom bracket to "
-"map a function of six arguments (`MkUser`)  over six values of type `Either "
-"CSVError`. This will automatically succeed, if and only if all of the "
-"parsings have succeeded. It would have been notoriously cumbersome resulting "
-"in much less readable code to implement `readUser'` with a succession of six "
-"nested pattern matches."
+"Note, how in the implementation of `readUser'` we used\n"
+"an idiom bracket to map a function of six arguments (`MkUser`)\n"
+"over six values of type `Either CSVError`. This will automatically\n"
+"succeed, if and only if all of the parsings have\n"
+"succeeded. It would have been notoriously cumbersome resulting\n"
+"in much less readable code to implement\n"
+"`readUser'` with a succession of six nested pattern matches.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:819
+#, no-wrap
 msgid ""
-"However, the idiom bracket above looks still quite repetitive.  Surely, we "
-"can do better?"
+"However, the idiom bracket above looks still quite repetitive.\n"
+"Surely, we can do better?\n"
 msgstr ""
 
 #. type: Title ####
@@ -1699,11 +1786,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:827
+#, no-wrap
 msgid ""
-"It is time to learn about a family of types, which can be used as a generic "
-"representation for record types, and which will allow us to represent and "
-"read rows in heterogeneous tables with a minimal amount of code: "
-"Heterogeneous lists."
+"It is time to learn about a family of types, which can\n"
+"be used as a generic representation for record types, and\n"
+"which will allow us to represent and read rows in\n"
+"heterogeneous tables with a minimal amount of code: Heterogeneous\n"
+"lists.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1719,11 +1808,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:841
+#, no-wrap
 msgid ""
-"A heterogeneous list is a list type indexed over a *list of types*.  This "
-"allows us to at each position store a value of the type at the same position "
-"in the list index. For instance, here is a variant, which stores three "
-"values of types `Bool`, `Nat`, and `Maybe String` (in that order):"
+"A heterogeneous list is a list type indexed over a *list of types*.\n"
+"This allows us to at each position store a value of the\n"
+"type at the same position in the list index. For instance,\n"
+"here is a variant, which stores three values of types\n"
+"`Bool`, `Nat`, and `Maybe String` (in that order):\n"
 msgstr ""
 
 #. type: Plain text
@@ -1736,20 +1827,25 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:854
+#, no-wrap
 msgid ""
-"You could argue that heterogeneous lists are just tuples storing values of "
-"the given types. That's right, of course, however, as you'll learn the hard "
-"way in the exercises, we can use the list index to perform compile-time "
-"computations on `HList`, for instance when concatenating two such lists to "
-"keep track of the types stored in the result at the same time."
+"You could argue that heterogeneous lists are just tuples\n"
+"storing values of the given types. That's right, of course,\n"
+"however, as you'll learn the hard way in the exercises,\n"
+"we can use the list index to perform compile-time computations\n"
+"on `HList`, for instance when concatenating two such lists\n"
+"to keep track of the types stored in the result at the\n"
+"same time.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:859
+#, no-wrap
 msgid ""
-"But first, we'll make use of `HList` as a means to concisely parse CSV-"
-"lines. In order to do that, we need to introduce a new interface for types "
-"corresponding to whole lines in a CSV-file:"
+"But first, we'll make use of `HList` as a means to\n"
+"concisely parse CSV-lines. In order to do that, we\n"
+"need to introduce a new interface for types corresponding\n"
+"to whole lines in a CSV-file:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1762,12 +1858,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:871
+#, no-wrap
 msgid ""
-"We'll now write two implementations of `CSVLine` for `HList`: One for the "
-"`Nil` case, which will succeed if and only if the current list of strings is "
-"empty. The other for the *cons* case, which will try and read a single field "
-"from the head of the list and the remainder from its tail. We use again an "
-"idiom bracket to concatenate the results:"
+"We'll now write two implementations of `CSVLine` for `HList`:\n"
+"One for the `Nil` case, which will succeed if and only if\n"
+"the current list of strings is empty. The other for the *cons*\n"
+"case, which will try and read a single field from the head\n"
+"of the list and the remainder from its tail. We use\n"
+"again an idiom bracket to concatenate the results:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1785,11 +1883,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:887
+#, no-wrap
 msgid ""
-"And that's it! All we need to add is two utility function for decoding whole "
-"lines before they have been split into tokens, one of which is specialized "
-"to `HList` and takes an erased list of types as argument to make it more "
-"convenient to use at the REPL:"
+"And that's it! All we need to add is two utility function\n"
+"for decoding whole lines before they have been split into\n"
+"tokens, one of which is specialized to `HList` and takes an\n"
+"erased list of types as argument to make it more convenient to\n"
+"use at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1809,8 +1909,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:902
+#, no-wrap
 msgid ""
-"It's time to reap the fruits of our labour and give this a go at the REPL:"
+"It's time to reap the fruits of our labour and give this a go at\n"
+"the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1831,8 +1933,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:914
+#, no-wrap
 msgid ""
-"Again, `Applicative` implementations must follow certain laws. Here they are:"
+"Again, `Applicative` implementations must follow certain\n"
+"laws. Here they are:\n"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2165,13 +2269,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1099
+#, no-wrap
 msgid ""
-"The big difference between `Monad` and `Applicative` is, that the former "
-"allows a computation to depend on the result of an earlier computation. For "
-"instance, we could decide based on a string read from standard input whether "
-"to delete a file or play a song. The result of the first `IO` action "
-"(reading some user input) will affect, which `IO` action to run next.  This "
-"is not possible with the *apply* operator:"
+"The big difference between `Monad` and `Applicative` is, that the\n"
+"former allows a computation to depend on the result of an\n"
+"earlier computation. For instance, we could decide based on\n"
+"a string read from standard input whether to delete a file\n"
+"or play a song. The result of the first `IO` action\n"
+"(reading some user input) will affect, which `IO` action to run next.\n"
+"This is not possible with the *apply* operator:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2199,11 +2305,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1121
+#, no-wrap
 msgid ""
-"Let's demonstrate the difference with an example. Assume we'd like to "
-"enhance our CSV-reader with the ability to decode a line of tokens to a sum "
-"type. For instance, we'd like to decode CRUD requests from the lines of a "
-"CSV-file:"
+"Let's demonstrate the difference with an example. Assume\n"
+"we'd like to enhance our CSV-reader with the ability to\n"
+"decode a line of tokens to a sum type. For instance,\n"
+"we'd like to decode CRUD requests from the lines of a\n"
+"CSV-file:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2219,10 +2327,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1134
+#, no-wrap
 msgid ""
-"We need a way to on each line decide, which data constructor to choose for "
-"our decoding. One way to do this is to put the name of the data constructor "
-"(or some other tag of identification) in the first column of the CSV-file:"
+"We need a way to on each line decide, which data constructor\n"
+"to choose for our decoding. One way to do this is to\n"
+"put the name of the data constructor (or some other\n"
+"tag of identification) in the first column of the CSV-file:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2254,16 +2364,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1164
+#, no-wrap
 msgid ""
-"I added two utility function for helping with type inference and to get "
-"slightly nicer syntax. The important thing to note is, how we pattern match "
-"on the result of the first parsing function to decide on the data "
-"constructor and thus the next parsing function to use."
+"I added two utility function for helping with type inference\n"
+"and to get slightly nicer syntax. The important thing to note\n"
+"is, how we pattern match on the result of the first\n"
+"parsing function to decide on the data constructor\n"
+"and thus the next parsing function to use.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1166
-msgid "Here's how this works at the REPL:"
+#, no-wrap
+msgid "Here's how this works at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2280,22 +2393,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1184
+#, no-wrap
 msgid ""
-"To conclude, `Monad`, unlike `Applicative`, allows us to chain computations "
-"sequentially, where intermediary results can affect the behavior of later "
-"computations.  So, if you have n unrelated effectful computations and want "
-"to combine them under a pure, n-ary function, `Applicative` will be "
-"sufficient. If, however, you want to decide based on the result of an "
-"effectful computation what computation to run next, you need a `Monad`."
+"To conclude, `Monad`, unlike `Applicative`, allows us to\n"
+"chain computations sequentially, where intermediary\n"
+"results can affect the behavior of later computations.\n"
+"So, if you have n unrelated effectful computations and want\n"
+"to combine them under a pure, n-ary function, `Applicative`\n"
+"will be sufficient. If, however, you want to decide\n"
+"based on the result of an effectful computation what\n"
+"computation to run next, you need a `Monad`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1190
+#, no-wrap
 msgid ""
-"Note, however, that `Monad` has one important drawback compared to "
-"`Applicative`: In general, monads don't compose.  For instance, there is no "
-"`Monad` instance for `Either e . IO`.  We will later learn about monad "
-"transformers, which can be composed with other monads."
+"Note, however, that `Monad` has one important drawback\n"
+"compared to `Applicative`: In general, monads don't compose.\n"
+"For instance, there is no `Monad` instance for `Either e . IO`.\n"
+"We will later learn about monad transformers, which can\n"
+"be composed with other monads.\n"
 msgstr ""
 
 #. type: Title ###
@@ -2306,7 +2424,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1194
-msgid "Without further ado, here are the laws for `Monad`:"
+#, no-wrap
+msgid "Without further ado, here are the laws for `Monad`:\n"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2662,24 +2781,26 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1388
+#, no-wrap
 msgid ""
-"Concepts like *functor* and *monad* have their origin in *category theory*, "
-"a branch of mathematics. That is also where their laws come from.  Category "
-"theory was found to have applications in programming language theory, "
-"especially functional programming.  It is a highly abstract topic, but there "
-"is a pretty accessible introduction for programmers, written by [Bartosz "
-"Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-"
-"programmers-the-preface/)."
+"Concepts like *functor* and *monad* have their origin in *category theory*,\n"
+"a branch of mathematics. That is also where their laws come from.\n"
+"Category theory was found to have applications in\n"
+"programming language theory, especially functional programming.\n"
+"It is a highly abstract topic, but there is a pretty accessible\n"
+"introduction for programmers, written by\n"
+"[Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1394
+#, no-wrap
 msgid ""
-"The usefulness of applicative functors as a middle ground between functor "
-"and monad was discovered several years after monads had already been in use "
-"in Haskell. They where introduced in the article [*Applicative Programming "
-"with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html), "
-"which is freely available online and a highly recommended read."
+"The usefulness of applicative functors as a middle ground between\n"
+"functor and monad was discovered several years after monads had\n"
+"already been in use in Haskell. They where introduced in the\n"
+"article [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html),\n"
+"which is freely available online and a highly recommended read.\n"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2736,8 +2857,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1425
+#, no-wrap
 msgid ""
-"In the [next chapter](Folds.md) we get to learn more about recursion, "
-"totality checking, and an interface for collapsing container types: "
-"`Foldable`."
+"In the [next chapter](Folds.md) we get to learn more about\n"
+"recursion, totality checking, and an interface for\n"
+"collapsing container types: `Foldable`.\n"
 msgstr ""

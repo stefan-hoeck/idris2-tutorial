@@ -1,15 +1,18 @@
 # Effectful Traversals
 
-In this chapter, we are going to bring our treatment of the higher-kinded
-interfaces in the *Prelude* to an end. In order to do so, we will continue
-developing the CSV reader we started implementing in chapter [Functor and
-Friends](Functor.md). I moved some of the data types and interfaces from
-that chapter to their own modules, so we can import them here without the
-need to start from scratch.
+In this chapter, we are going to bring our treatment
+of the higher-kinded interfaces in the *Prelude* to an
+end. In order to do so, we will continue developing the
+CSV reader we started implementing in chapter
+[Functor and Friends](Functor.md). I moved some of
+the data types and interfaces from that chapter to
+their own modules, so we can import them here without
+the need to start from scratch.
 
-Note that unlike in our original CSV reader, we will use `Validated` instead
-of `Either` for handling exceptions, since this will allow us to accumulate
-all errors when reading a CSV file.
+Note that unlike in our original CSV reader, we will use
+`Validated` instead of `Either` for handling exceptions,
+since this will allow us to accumulate all errors
+when reading a CSV file.
 
 ```idris
 module Tutorial.Traverse
@@ -27,21 +30,24 @@ import Text.CSV
 
 ## Reading CSV Tables
 
-We stopped developing our CSV reader with function `hdecode`, which allows
-us to read a single line in a CSV file and decode it to a heterogeneous
-list.  As a reminder, here is how to use `hdecode` at the REPL:
+We stopped developing our CSV reader with function
+`hdecode`, which allows us to read a single line
+in a CSV file and decode it to a heterogeneous list.
+As a reminder, here is how to use `hdecode` at the REPL:
 
 ```repl
 Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 "f,foo,12"
 Valid [False, "foo", 12]
 ```
 
-The next step will be to parse a whole CSV table, represented as a list of
-strings, where each string corresponds to one of the table's rows.  We will
-go about this stepwise as there are several aspects about doing this
-properly. What we are looking for - eventually - is a function of the
-following type (we are going to implement several versions of this function,
-hence the numbering):
+The next step will be to parse a whole CSV table, represented
+as a list of strings, where each string corresponds to one
+of the table's rows.
+We will go about this stepwise as there are several aspects
+about doing this properly. What we are looking for - eventually -
+is a function of the following type (we are going to
+implement several versions of this function, hence the
+numbering):
 
 ```idris
 hreadTable1 :  (0 ts : List Type)
@@ -50,18 +56,19 @@ hreadTable1 :  (0 ts : List Type)
             -> Validated CSVError (List $ HList ts)
 ```
 
-In our first implementation, we are not going to care about line numbers:
+In our first implementation, we are not going to care
+about line numbers:
 
 ```idris
 hreadTable1 _  []        = pure []
 hreadTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]
 ```
 
-Note, how we can just use applicative syntax in the implementation of
-`hreadTable1`. To make this clearer, I used `pure []` on the first line
-instead of the more specific `Valid []`. In fact, if we used `Either` or
-`Maybe` instead of `Validated` for error handling, the implementation of
-`hreadTable1` would look exactly the same.
+Note, how we can just use applicative syntax in the implementation
+of `hreadTable1`. To make this clearer, I used `pure []` on the first
+line instead of the more specific `Valid []`. In fact, if we used
+`Either` or `Maybe` instead of `Validated` for error handling,
+the implementation of `hreadTable1` would look exactly the same.
 
 The question is: Can we extract a pattern to abstract over
 from this observation? What we do in `hreadTable1` is running
@@ -86,12 +93,14 @@ hreadTable2 :  (0 ts : List Type)
 hreadTable2 ts = traverseValidatedList (hdecode ts 0)
 ```
 
-But our observation was, that the implementation of `hreadTable1` would be
-exactly the same if we used `Either CSVError` or `Maybe` as our effect types
-instead of `Validated CSVError`.  So, the next step should be to abstract
-over the *effect type*.  We note, that we used applicative syntax (idiom
-brackets and `pure`) in our implementation, so we will need to write a
-function with an `Applicative` constraint on the effect type:
+But our observation was, that the implementation of `hreadTable1`
+would be exactly the same if we used `Either CSVError` or `Maybe`
+as our effect types instead of `Validated CSVError`.
+So, the next step should be to abstract over the *effect type*.
+We note, that we used applicative syntax (idiom brackets and
+`pure`) in our implementation, so we will need to write
+a function with an `Applicative` constraint
+on the effect type:
 
 ```idris
 traverseList :  Applicative f => (a -> f b) -> List a -> f (List b)
@@ -105,9 +114,9 @@ hreadTable3 :  (0 ts : List Type)
 hreadTable3 ts = traverseList (hdecode ts 0)
 ```
 
-Note, how the implementation of `traverseList` is exactly the same as the
-one of `traverseValidatedList`, but the types are more general and
-therefore, `traverseList` is much more powerful.
+Note, how the implementation of `traverseList` is exactly the same
+as the one of `traverseValidatedList`, but the types are more general
+and therefore, `traverseList` is much more powerful.
 
 Let's give this a go at the REPL:
 
@@ -120,12 +129,13 @@ Tutorial.Traverse> hreadTable3 [Bool,Bits8] ["1,12","t,1000"]
 Invalid (Append (FieldError 0 1 "1") (FieldError 0 2 "1000"))
 ```
 
-This works very well already, but note how our error messages do not yet
-print the correct line numbers. That's not surprising, as we are using a
-dummy constant in our call to `hdecode`.  We will look at how we can come up
-with the line numbers on the fly when we talk about stateful computations
-later in this chapter.  For now, we could just manually annotate the lines
-with their numbers and pass a list of pairs to `hreadTable`:
+This works very well already, but note how our error messages do
+not yet print the correct line numbers. That's not surprising,
+as we are using a dummy constant in our call to `hdecode`.
+We will look at how we can come up with the line numbers on the
+fly when we talk about stateful computations later in this chapter.
+For now, we could just manually annotate the lines with their
+numbers and pass a list of pairs to `hreadTable`:
 
 ```idris
 hreadTable4 :  (0 ts : List Type)
@@ -135,11 +145,12 @@ hreadTable4 :  (0 ts : List Type)
 hreadTable4 ts = traverseList (uncurry $ hdecode ts)
 ```
 
-If this is the first time you came across function `uncurry`, make sure you
-have a look at its type and try to figure out why it is used here. There are
-several utility functions like this in the *Prelude*, such as `curry`,
-`uncurry`, `flip`, or even `id`, all of which can be very useful when
-working with higher-order functions.
+If this is the first time you came across function `uncurry`,
+make sure you have a look at its type and try to figure out why it is
+used here. There are several utility functions like this
+in the *Prelude*, such as `curry`, `uncurry`, `flip`, or even
+`id`, all of which can be very useful when working with higher-order
+functions.
 
 While not perfect, this version at least allows us to verify at the REPL
 that the line numbers are passed to the error messages correctly:
@@ -151,22 +162,23 @@ Invalid (Append (FieldError 1 2 "1000") (FieldError 2 1 "1"))
 
 ### Interface Traversable
 
-Now, here is an interesting observation: We can implement a function like
-`traverseList` for other container types as well. You might think that's
-obvious, given that we can convert container types to lists via function
-`toList` from interface `Foldable`. However, while going via `List` might be
-feasible in some occasions, it is undesirable in general, as we loose typing
-information. For instance, here is such a function for `Vect`:
+Now, here is an interesting observation: We can implement a function
+like `traverseList` for other container types as well. You might think that's
+obvious, given that we can convert container types to lists via
+function `toList` from interface `Foldable`. However, while going
+via `List` might be feasible in some occasions, it is undesirable in
+general, as we loose typing information. For instance, here
+is such a function for `Vect`:
 
 ```idris
 traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List b)
 traverseVect' fun = traverseList fun . toList
 ```
 
-Note how we lost all information about the structure of the original
-container type. What we are looking for is a function like `traverseVect'`,
-which keeps this type level information: The result should be a vector of
-the same length as the input.
+Note how we lost all information about the structure of the
+original container type. What we are looking for is a function
+like `traverseVect'`, which keeps this type level information:
+The result should be a vector of the same length as the input.
 
 ```idris
 traverseVect : Applicative f => (a -> f b) -> Vect n a -> f (Vect n b)
@@ -174,9 +186,9 @@ traverseVect _   []        = pure []
 traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]
 ```
 
-That's much better! And as I wrote above, we can easily get the same for
-other container types like `List1`, `SnocList`, `Maybe`, and so on.  As
-usual, some derived functions will follow immediately from `traverseXY`.
+That's much better! And as I wrote above, we can easily get the same
+for other container types like `List1`, `SnocList`, `Maybe`, and so on.
+As usual, some derived functions will follow immediately from `traverseXY`.
 For instance:
 
 ```idris
@@ -184,32 +196,36 @@ sequenceList : Applicative f => List (f a) -> f (List a)
 sequenceList = traverseList id
 ```
 
-All of this calls for a new interface, which is called `Traversable` and is
-exported from the *Prelude*. Here is its definition (with primes for
-disambiguation):
+All of this calls for a new interface, which is called
+`Traversable` and is exported from the *Prelude*. Here is
+its definition (with primes for disambiguation):
 
 ```idris
 interface Functor t => Foldable t => Traversable' t where
   traverse' : Applicative f => (a -> f b) -> t a -> f (t b)
 ```
 
-Function `traverse` is one of the most abstract and versatile functions
-available from the *Prelude*. Just how powerful it is will only become clear
-once you start using it over and over again in your code. However, it will
-be the goal of the remainder of this chapter to show you several diverse and
-interesting use cases.
+Function `traverse` is one of the most abstract and versatile
+functions available from the *Prelude*. Just how powerful
+it is will only become clear once you start using it
+over and over again in your code. However, it will be the
+goal of the remainder of this chapter to show you several
+diverse and interesting use cases.
 
-For now, we will quickly focus on the degree of abstraction.  Function
-`traverse` is parameterized over no less than four parameters: The container
-type `t` (`List`, `Vect n`, `Maybe`, to just name a few), the effect type
-(`Validated e`, `IO`, `Maybe`, and so on), the input element type `a`, and
-the output element type `b`. Considering that the libraries bundled with the
-Idris project export more than 30 data types with an implementation of
-`Applicative` and more than ten traversable container types, there are
-literally hundreds of combinations for traversing a container with an
-effectful computation. This number gets even larger once we realize that
-traversable containers - like applicative functors - are closed under
-composition (see the exercises and the final section in this chapter).
+For now, we will quickly focus on the degree of abstraction.
+Function `traverse` is parameterized over no less than
+four parameters: The container type `t` (`List`, `Vect n`,
+`Maybe`, to just name a few), the effect type (`Validated e`,
+`IO`, `Maybe`, and so on), the input element type `a`, and
+the output element type `b`. Considering that the libraries
+bundled with the Idris project export more than 30 data types
+with an implementation of `Applicative` and more than ten
+traversable container types, there are literally hundreds
+of combinations for traversing a container with an effectful
+computation. This number gets even larger once we realize
+that traversable containers - like applicative functors -
+are closed under composition (see the exercises and
+the final section in this chapter).
 
 ### Traversable Laws
 
@@ -222,10 +238,10 @@ There are two laws function `traverse` must obey:
   in a single traversal (left hand side) or a sequence of two traversals
   (right hand side).
 
-Since `map id = id` (functor's identity law), we can derive from the first
-law that `traverse Id = Id`. This means, that `traverse` must not change the
-size or shape of the container type, nor is it allowed to change the order
-of elements.
+Since `map id = id` (functor's identity law), we can derive
+from the first law that `traverse Id = Id`. This means, that
+`traverse` must not change the size or shape of the container
+type, nor is it allowed to change the order of elements.
 
 ### Exercises part 1
 
@@ -299,15 +315,16 @@ of elements.
 
 ## Programming with State
 
-Let's go back to our CSV reader. In order to get reasonable error messages,
-we'd like to tag each line with its index:
+Let's go back to our CSV reader. In order to get reasonable
+error messages, we'd like to tag each line with its
+index:
 
 ```idris
 zipWithIndex : List a -> List (Nat, a)
 ```
 
-It is, of course, very easy to come up with an ad hoc implementation for
-this:
+It is, of course, very easy to come up with an ad hoc
+implementation for this:
 
 ```idris
 zipWithIndex = go 1
@@ -316,30 +333,34 @@ zipWithIndex = go 1
         go n (x :: xs) = (n,x) :: go (S n) xs
 ```
 
-While this is perfectly fine, we should still note that we might want to do
-the same thing with the elements of trees, vectors, non-empty lists and so
-on.  And again, we are interested in whether there is some form of
-abstraction we can use to describe such computations.
+While this is perfectly fine, we should still note that
+we might want to do the same thing with the elements of
+trees, vectors, non-empty lists and so on.
+And again, we are interested in whether there is some
+form of abstraction we can use to describe such computations.
 
 ### Mutable References in Idris
 
-Let us for a moment think about how we'd do such a thing in an imperative
-language. There, we'd probably define a local (mutable) variable to keep
-track of the current index, which would then be increased while iterating
-over the list in a `for`- or `while`-loop.
+Let us for a moment think about how we'd do such a thing
+in an imperative language. There, we'd probably define
+a local (mutable) variable to keep track of the current
+index, which would then be increased while iterating over the list
+in a `for`- or `while`-loop.
 
-In Idris, there is no such thing as mutable state.  Or is there? Remember,
-how we used a mutable reference to simulate a data base connection in an
-earlier exercise. There, we actually used some truly mutable state. However,
-since accessing or modifying a mutable variable is not a referential
-transparent operation, such actions have to be performed within `IO`.  Other
-than that, nothing keeps us from using mutable variables in our code. The
-necessary functionality is available from module `Data.IORef` from the
-*base* library.
+In Idris, there is no such thing as mutable state.
+Or is there? Remember, how we used a mutable reference
+to simulate a data base connection in an earlier
+exercise. There, we actually used some truly mutable
+state. However, since accessing or modifying a mutable
+variable is not a referential transparent operation,
+such actions have to be performed within `IO`.
+Other than that, nothing keeps us from using mutable
+variables in our code. The necessary functionality is
+available from module `Data.IORef` from the *base* library.
 
-As a quick exercise, try to implement a function, which - given an `IORef
-Nat` - pairs a value with the current index and increases the index
-afterwards.
+As a quick exercise, try to implement a function, which -
+given an `IORef Nat` - pairs a value with the current
+index and increases the index afterwards.
 
 Here's how I would do this:
 
@@ -366,25 +387,26 @@ zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))
 zipListWithIndexIO ref = traverse (pairWithIndexIO ref)
 ```
 
-Now *this* is really powerful: We could apply the same function to *any*
-traversable data structure. It therefore makes absolutely no sense to
-specialize `zipListWithIndexIO` to lists only:
+Now *this* is really powerful: We could apply the same function
+to *any* traversable data structure. It therefore makes
+absolutely no sense to specialize `zipListWithIndexIO` to
+lists only:
 
 ```idris
 zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))
 zipWithIndexIO ref = traverse (pairWithIndexIO ref)
 ```
 
-To please our intellectual minds even more, here is the same function in
-point-free style:
+To please our intellectual minds even more, here is the
+same function in point-free style:
 
 ```idris
 zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))
 zipWithIndexIO' = traverse . pairWithIndexIO
 ```
 
-All that's left to do now is to initialize a new mutable variable before
-passing it to `zipWithIndexIO`:
+All that's left to do now is to initialize a new mutable variable
+before passing it to `zipWithIndexIO`:
 
 ```idris
 zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))
@@ -402,23 +424,26 @@ Just (0, 12)
 [(0, "hello"), (1, "world")]
 ```
 
-Thus, we solved the problem of tagging each element with its index once and
-for all for all traversable container types.
+Thus, we solved the problem of tagging each element with its
+index once and for all for all traversable container types.
 
 ### The State Monad
 
-Alas, while the solution presented above is elegant and performs very well,
-it still carries its `IO` stain, which is fine if we are already in `IO`
-land, but unacceptable otherwise. We do not want to make our otherwise pure
-functions much harder to test and reason about just for a simple case of
-stateful element tagging.
+Alas, while the solution presented above is elegant and
+performs very well, it still carries its `IO` stain, which
+is fine if we are already in `IO` land, but unacceptable
+otherwise. We do not want to make our otherwise pure functions
+much harder to test and reason about just for a simple
+case of stateful element tagging.
 
-Luckily, there is an alternative to using a mutable reference, which allows
-us to keep our computations pure and untainted. However, it is not easy to
-come upon this alternative on one's own, and it can be hard to figure out
-what's going on here, so I'll try to introduce this slowly.  We first need
-to ask ourselves what the essence of a "stateful" but otherwise pure
-computation is. There are two essential ingredients:
+Luckily, there is an alternative to using a mutable reference,
+which allows us to keep our computations pure and
+untainted. However, it is not easy to come upon this
+alternative on one's own, and it can be hard to figure out
+what's going on here, so I'll try to introduce this slowly.
+We first need to ask ourselves what the essence of a
+"stateful" but otherwise pure computation is. There
+are two essential ingredients:
 
 1. Access to the *current* state. In case of a pure function, this means
    that the function should take the current state as one of its arguments.
@@ -427,34 +452,35 @@ computation is. There are two essential ingredients:
    will return a pair of values: The computation's result plus the updated
    state.
 
-These two prerequisites lead to the following generic type for a pure,
-stateful computation operating on state type `st` and producing values of
-type `a`:
+These two prerequisites lead to the following generic
+type for a pure, stateful computation operating on state
+type `st` and producing values of type `a`:
 
 ```idris
 Stateful : (st : Type) -> (a : Type) -> Type
 Stateful st a = st -> (st, a)
 ```
 
-Our use case is pairing elements with indices, which can be implemented as a
-pure, stateful computation like so:
+Our use case is pairing elements with indices, which
+can be implemented as a pure, stateful computation like so:
 
 ```idris
 pairWithIndex' : a -> Stateful Nat (Nat,a)
 pairWithIndex' v index = (S index, (index,v))
 ```
 
-Note, how we at the same time increment the index, returning the incremented
-value as the new state, while pairing the first argument with the original
-index.
+Note, how we at the same time increment the index, returning
+the incremented value as the new state, while pairing
+the first argument with the original index.
 
-Now, here is an important thing to note: While `Stateful` is a useful type
-alias, Idris in general does *not* resolve interface implementations for
-function types. If we want to write a small library of utility functions
-around such a type, it is therefore best to wrap it in a single-constructor
-data type and use this as our building block for writing more complex
-computations. We therefore introduce record `State` as a wrapper for pure,
-stateful computations:
+Now, here is an important thing to note: While `Stateful` is
+a useful type alias, Idris in general does *not* resolve
+interface implementations for function types. If we want to
+write a small library of utility functions around such a type,
+it is therefore best to wrap it in a single-constructor data type and
+use this as our building block for writing more complex
+computations. We therefore introduce record `State` as
+a wrapper for pure, stateful computations:
 
 ```idris
 record State st a where
@@ -469,17 +495,17 @@ pairWithIndex : a -> State Nat (Nat,a)
 pairWithIndex v = ST $ \index => (S index, (index, v))
 ```
 
-In addition, we can define some more utility functions. Here's one for
-getting the current state without modifying it (this corresponds to
-`readIORef`):
+In addition, we can define some more utility functions. Here's
+one for getting the current state without modifying it
+(this corresponds to `readIORef`):
 
 ```idris
 get : State st st
 get = ST $ \s => (s,s)
 ```
 
-Here are two others, for overwriting the current state. These corresponds to
-`writeIORef` and `modifyIORef`:
+Here are two others, for overwriting the current state. These
+corresponds to `writeIORef` and `modifyIORef`:
 
 ```idris
 put : st -> State st ()
@@ -489,8 +515,8 @@ modify : (st -> st) -> State st ()
 modify f = ST $ \v => (f v,())
 ```
 
-Finally, we can define three functions in addition to `runST` for running
-stateful computations
+Finally, we can define three functions in addition to `runST`
+for running stateful computations
 
 ```idris
 runState : st -> State st a -> (st, a)
@@ -503,10 +529,11 @@ execState : st -> State st a -> st
 execState s = fst . runState s
 ```
 
-All of these are useful on their own, but the real power of `State s` comes
-from the observation that it is a monad.  Before you go on, please spend
-some time and try implementing `Functor`, `Applicative`, and `Monad` for
-`State s` yourself.  Even if you don't succeed, you will have an easier time
+All of these are useful on their own, but the real power of
+`State s` comes from the observation that it is a monad.
+Before you go on, please spend some time and try implementing
+`Functor`, `Applicative`, and `Monad` for `State s` yourself.
+Even if you don't succeed, you will have an easier time
 understanding how the implementations below work.
 
 ```idris
@@ -527,25 +554,28 @@ Monad (State st) where
      in runST (f va) s2
 ```
 
-This may take some time to digest, so we come back to it in a slightly
-advanced exercise. The most important thing to note is, that we use every
-state value only ever once. We *must* make sure that the updated state is
-passed to later computations, otherwise the information about state updates
-is being lost. This can best be seen in the implementation of `Applicative`:
-The initial state, `s`, is used in the computation of the function value,
-which will also return an updated state, `s2`, which is then used in the
-computation of the function argument. This will again return an updated
-state, `s3`, which is passed on to later stateful computations together with
-the result of applying `f` to `va`.
+This may take some time to digest, so we come back to it in a
+slightly advanced exercise. The most important thing to note is,
+that we use every state value only ever once. We *must* make sure
+that the updated state is passed to later computations, otherwise
+the information about state updates is being lost. This can
+best be seen in the implementation of `Applicative`: The initial
+state, `s`, is used in the computation of the function value,
+which will also return an updated state, `s2`, which is then
+used in the computation of the function argument. This will
+again return an updated state, `s3`, which is passed on to
+later stateful computations together with the result of
+applying `f` to `va`.
 
 ### Exercises part 2
 
-This sections consists of two extended exercise, the aim of which is to
-increase your understanding of the state monad.  In the first exercise, we
-will look at random value generation, a classical application of stateful
-computations.  In the second exercise, we will look at an indexed version of
-a state monad, which allows us to not only change the state's value but also
-its *type* during computations.
+This sections consists of two extended exercise, the aim
+of which is to increase your understanding of the state monad.
+In the first exercise, we will look at random value generation,
+a classical application of stateful computations.
+In the second exercise, we will look at an indexed version of
+a state monad, which allows us to not only change the
+state's value but also its *type* during computations.
 
 1. Below is the implementation of a simple pseudo-random number
    generator. We call this a *pseudo-random* number generator, because the
@@ -779,12 +809,12 @@ its *type* during computations.
 
 ## The Power of Composition
 
-After our excursion into the realms of stateful computations, we will go
-back and combine mutable state with error accumulation to tag and read CSV
-lines in a single traversal. We already defined `pairWithIndex` for tagging
-lines with their indices.  We also have `uncurry $ hdecode ts` for decoding
-single tagged lines.  We can now combine the two effects in a single
-computation:
+After our excursion into the realms of stateful computations, we
+will go back and combine mutable state with error accumulation
+to tag and read CSV lines in a single traversal. We already
+defined `pairWithIndex` for tagging lines with their indices.
+We also have `uncurry $ hdecode ts` for decoding single tagged lines.
+We can now combine the two effects in a single computation:
 
 ```idris
 tagAndDecode :  (0 ts : List Type)
@@ -795,16 +825,17 @@ tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s
 ```
 
 Now, as we learned before, applicative functors are closed under
-composition, and the result of `tagAndDecode` is a nesting of two
-applicatives: `State Nat` and `Validated CSVError`.  The *Prelude* exports a
-corresponding named interface implementation
-(`Prelude.Applicative.Compose`), which we can use for traversing a list of
-strings with `tagAndDecode`.  Remember, that we have to provide named
-implementations explicitly.  Since `traverse` has the applicative functor as
-its second constraint, we also need to provide the first constraint
-(`Traversable`) explicitly. But this is going to be the unnamed default
-implementation! To get our hands on such a value, we can use the `%search`
-pragma:
+composition, and the result of `tagAndDecode` is a nesting
+of two applicatives: `State Nat` and `Validated CSVError`.
+The *Prelude* exports a corresponding named interface implementation
+(`Prelude.Applicative.Compose`), which we can use for traversing
+a list of strings with `tagAndDecode`.
+Remember, that we have to provide named implementations explicitly.
+Since `traverse` has the applicative functor as its
+second constraint, we also need to provide the first
+constraint (`Traversable`) explicitly. But this
+is going to be the unnamed default implementation! To get our hands on such
+a value, we can use the `%search` pragma:
 
 ```idris
 readTable :  (0 ts : List Type)
@@ -814,10 +845,11 @@ readTable :  (0 ts : List Type)
 readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)
 ```
 
-This tells Idris to use the default implementation for the `Traversable`
-constraint, and `Prelude.Applicatie.Compose` for the `Applicative`
-constraint.  While this syntax is not very nice, it doesn't come up too
-often, and if it does, we can improve things by providing custom functions
+This tells Idris to use the default implementation for the
+`Traversable` constraint, and `Prelude.Applicatie.Compose` for the
+`Applicative` constraint.
+While this syntax is not very nice, it doesn't come up too often, and
+if it does, we can improve things by providing custom functions
 for better readability:
 
 ```idris
@@ -836,19 +868,21 @@ readTable' :  (0 ts : List Type)
 readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)
 ```
 
-Note, how this allows us to combine two computational effects (mutable state
-and error accumulation) in a single list traversal.
+Note, how this allows us to combine two computational effects
+(mutable state and error accumulation) in a single list traversal.
 
 But I am not yet done demonstrating the power of composition. As you showed
-in one of the exercises, `Traversable` is also closed under composition, so
-a nesting of traversables is again a traversable. Consider the following use
-case: When reading a CSV file, we'd like to allow lines to be annotated with
-additional information. Such annotations could be mere comments but also
-some formatting instructions or other custom data tags might be feasible.
-Annotations are supposed to be separated from the rest of the content by a
-single hash character (`#`).  We want to keep track of these optional
-annotations so we come up with a custom data type encapsulating this
-distinction:
+in one of the exercises, `Traversable` is also closed under composition,
+so a nesting of traversables is again a traversable. Consider the following
+use case: When reading a CSV file, we'd like to allow lines to be
+annotated with additional information. Such annotations could be
+mere comments but also some formatting instructions or other
+custom data tags might be feasible.
+Annotations are supposed to be separated from the rest of the
+content by a single hash character (`#`).
+We want to keep track of these optional annotations
+so we come up with a custom data type encapsulating
+this distinction:
 
 ```idris
 data Line : Type -> Type where
@@ -856,8 +890,9 @@ data Line : Type -> Type where
   Clean     : a -> Line a
 ```
 
-This is just another container type and we can easily implement
-`Traversable` for `Line` (do this yourself as a quick exercise):
+This is just another container type and we can
+easily implement `Traversable` for `Line` (do this yourself as
+a quick exercise):
 
 ```idris
 Functor Line where
@@ -873,10 +908,11 @@ Traversable Line where
   traverse f (Clean x)       = Clean <$> f x
 ```
 
-Below is a function for parsing a line and putting it in its correct
-category. For simplicity, we just split the line on hashes: If the result
-consists of exactly two strings, we treat the second part as an annotation,
-otherwise we treat the whole line as untagged CSV content.
+Below is a function for parsing a line and putting it in its
+correct category. For simplicity, we just split the line on hashes:
+If the result consists of exactly two strings, we treat the second
+part as an annotation, otherwise we treat the whole line as untagged
+CSV content.
 
 ```idris
 readLine : String -> Line String
@@ -885,8 +921,8 @@ readLine s = case split ('#' ==) s of
   _         => Clean s
 ```
 
-We are now going to implement a function for reading whole CSV tables,
-keeping track of line annotations:
+We are now going to implement a function for reading whole
+CSV tables, keeping track of line annotations:
 
 ```idris
 readCSV :  (0 ts : List Type)
@@ -899,26 +935,30 @@ readCSV ts = evalState 1
            . lines
 ```
 
-Let's digest this monstrosity. This is written in point-free style, so we
-have to read it from end to beginning. First, we split the whole string at
-line breaks, getting a list of strings (function `Data.String.lines`). Next,
-we analyze each line, keeping track of optional annotations (`map
-readLine`).  This gives us a value of type `List (Line String)`. Since this
-is a nesting of traversables, we invoke `traverse` with a named instance
-from the *Prelude*: `Prelude.Traversable.Compose`.  Idris can disambiguate
-this based on the types, so we can drop the namespace prefix. But the
-effectful computation we run over the list of lines results in a composition
-of applicative functors, so we also need the named implementation for
-compositions of applicatives in the second constraint (again without need of
-an explicit prefix, which would be `Prelude.Applicative` here).  Finally, we
-evaluate the stateful computation with `evalState 1`.
+Let's digest this monstrosity. This is written in point-free
+style, so we have to read it from end to beginning. First, we
+split the whole string at line breaks, getting a list of strings
+(function `Data.String.lines`). Next, we analyze each line,
+keeping track of optional annotations (`map readLine`).
+This gives us a value of type `List (Line String)`. Since
+this is a nesting of traversables, we invoke `traverse`
+with a named instance from the *Prelude*: `Prelude.Traversable.Compose`.
+Idris can disambiguate this based on the types, so we can
+drop the namespace prefix. But the effectful computation
+we run over the list of lines results in a composition
+of applicative functors, so we also need the named implementation
+for compositions of applicatives in the second
+constraint (again without need of an explicit
+prefix, which would be `Prelude.Applicative` here).
+Finally, we evaluate the stateful computation with `evalState 1`.
 
-Honestly, I wrote all of this without verifying if it works, so let's give
-it a go at the REPL. I'll provide two example strings for this, a valid one
-without errors, and an invalid one. I use *multiline string literals* here,
-about which I'll talk in more detail in a later chapter. For the moment,
-note that these allow us to conveniently enter string literals with line
-breaks:
+Honestly, I wrote all of this without verifying if it works,
+so let's give it a go at the REPL. I'll provide two
+example strings for this, a valid one without errors, and
+an invalid one. I use *multiline string literals* here, about which
+I'll talk in more detail in a later chapter. For the moment,
+note that these allow us to conveniently enter string literals
+with line breaks:
 
 ```idris
 validInput : String
@@ -955,19 +995,21 @@ Invalid (Append (FieldError 1 1 "o")
   (Append (FieldError 3 3 "abc") (FieldError 4 2 "256")))
 ```
 
-It is pretty amazing how we wrote dozens of lines of code, always being
-guided by the type- and totality checkers, arriving eventually at a function
-for parsing properly typed CSV tables with automatic line numbering and
+It is pretty amazing how we wrote dozens of lines of
+code, always being guided by the type- and totality
+checkers, arriving eventually at a function for parsing
+properly typed CSV tables with automatic line numbering and
 error accumulation, all of which just worked on first try.
 
 ### Exercises part 3
 
-The *Prelude* provides three additional interfaces for container types
-parameterized over *two* type parameters such as `Either` or `Pair`:
-`Bifunctor`, `Bifoldable`, and `Bitraversable`. In the following exercises
-we get some hands-one experience working with these. You are supposed to
-look up what functions they provide and how to implement and use them
-yourself.
+The *Prelude* provides three additional interfaces for
+container types parameterized over *two* type parameters
+such as `Either` or `Pair`: `Bifunctor`, `Bifoldable`,
+and `Bitraversable`. In the following exercises we get
+some hands-one experience working with these. You are
+supposed to look up what functions they provide
+and how to implement and use them yourself.
 
 1. Assume we'd like to not only interpret CSV content but also the optional
    comment tags in our CSV files.  For this, we could use a data type such
@@ -1048,23 +1090,25 @@ yourself.
    Test your implementation with some example strings at the REPL.
 
 
-You can find more examples for functor/bifunctor compositions in Haskell's
-[bifunctors](https://hackage.haskell.org/package/bifunctors)  package.
+You can find more examples for functor/bifunctor compositions
+in Haskell's [bifunctors](https://hackage.haskell.org/package/bifunctors)
+package.
 
 ## 结论
 
 Interface `Traversable` and its main function `traverse` are incredibly
-powerful forms of abstraction - even more so, because both `Applicative` and
-`Traversable` are closed under composition. If you are interested in
-additional use cases, the publication, which introduced `Traversable` to
-Haskell, is a highly recommended read: [The Essence of the Iterator
-Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
+powerful forms of abstraction - even more so, because both `Applicative`
+and `Traversable` are closed under composition. If you are interested
+in additional use cases, the publication, which
+introduced `Traversable` to Haskell, is a highly recommended read:
+[The Essence of the Iterator Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
 
-The *base* library provides an extended version of the state monad in module
-`Control.Monad.State`. We will look at this in more detail when we talk
-about monad transformers.  Please note also, that `IO` itself is implemented
-as a [simple state monad](IO.md#how-io-is-implemented)  over an abstract,
-primitive state type: `%World`.
+The *base* library provides an extended version of the
+state monad in module `Control.Monad.State`. We will look
+at this in more detail when we talk about monad transformers.
+Please note also, that `IO` itself is implemented as a
+[simple state monad](IO.md#how-io-is-implemented)
+over an abstract, primitive state type: `%World`.
 
 Here's a short summary of what we learned in this chapter:
 
@@ -1079,12 +1123,13 @@ Here's a short summary of what we learned in this chapter:
 * Traversables are also closed under composition, so we can use `traverse`
   to operate on a nesting of containers.
 
-For now, this concludes our introduction of the *Prelude*'s higher-kinded
-interfaces, which started with the introduction of `Functor`, `Applicative`,
-and `Monad`, before moving on to `Foldable`, and - last but definitely not
-least - `Traversable`.  There's one still missing - `Alternative` - but this
-will have to wait a bit longer, because we need to first make our brains
-smoke with some more type-level wizardry.
+For now, this concludes our introduction of the *Prelude*'s
+higher-kinded interfaces, which started with the introduction of
+`Functor`, `Applicative`, and `Monad`, before moving on to `Foldable`,
+and - last but definitely not least - `Traversable`.
+There's one still missing - `Alternative` - but this will
+have to wait a bit longer, because we need to first make
+our brains smoke with some more type-level wizardry.
 
 <!-- vi: filetype=idris2
 -->

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 13:28+0800\n"
 "PO-Revision-Date: 2022-08-03 04:30+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -516,42 +516,38 @@ msgstr "# 递归和折叠"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:12
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In this chapter, we are going to have a closer look at the computations we "
-"typically perform with *container types*: Parameterized data types like "
-"`List`, `Maybe`, or `Identity`, holding zero or more values of the "
-"parameter's type. Many of these functions are recursive in nature, so we "
-"start with a discourse about recursion in general, and tail recursion as an "
-"important optimization technique in particular. Most recursive functions in "
-"this part will describe pure iterations over lists."
-msgstr ""
-"在本章中，我们将仔细研究我们通常使用 * 容器类型 * 执行的计算：参数化数据类"
-"型，如 `List`、`Maybe` 或 [ X167X]Identity`，保存参数类型的零个或多个值。其中"
-"许多函数本质上是递归的，因此我们首先讨论一般的递归，特别是尾递归作为一种重要"
-"的优化技术。这部分中的大多数递归函数将描述列表上的纯迭代。"
+"In this chapter, we are going to have a closer look at the\n"
+"computations we typically perform with *container types*:\n"
+"Parameterized data types like `List`, `Maybe`, or\n"
+"`Identity`, holding zero or more values of the parameter's\n"
+"type. Many of these functions are recursive in nature,\n"
+"so we start with a discourse about recursion in general,\n"
+"and tail recursion as an important optimization technique\n"
+"in particular. Most recursive functions in this part\n"
+"will describe pure iterations over lists.\n"
+msgstr "在本章中，我们将仔细研究我们通常使用 * 容器类型 * 执行的计算：参数化数据类型，如 `List`、`Maybe` 或 [ X167X]Identity`，保存参数类型的零个或多个值。其中许多函数本质上是递归的，因此我们首先讨论一般的递归，特别是尾递归作为一种重要的优化技术。这部分中的大多数递归函数将描述列表上的纯迭代。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:17
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"It is recursive functions, for which totality is hard to determine, so we "
-"will next have a quick look at the totality checker and learn, when it will "
-"refuse to accept a function as being total and what to do about this."
-msgstr ""
-"它是递归函数，其整体性很难确定，因此我们接下来将快速查看整体性检查器并了解它"
-"何时会拒绝接受一个函数作为整体以及如何处理。"
+"It is recursive functions, for which totality is hard\n"
+"to determine, so we will next have a quick look at the\n"
+"totality checker and learn, when it will refuse to\n"
+"accept a function as being total and what to do about this.\n"
+msgstr "它是递归函数，其整体性很难确定，因此我们接下来将快速查看整体性检查器并了解它何时会拒绝接受一个函数作为整体以及如何处理。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:22
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Finally, we will start looking for common patterns in the recursive "
-"functions from the first part and will eventually introduce a new interface "
-"for consuming container types: Interface `Foldable`."
-msgstr ""
-"最后，我们将从第一部分开始寻找递归函数中的常见模式，并最终引入一个用于消费容"
-"器类型的新接口：接口 `Foldable`。"
+"Finally, we will start looking for common patterns in\n"
+"the recursive functions from the first part and will\n"
+"eventually introduce a new interface for consuming\n"
+"container types: Interface `Foldable`.\n"
+msgstr "最后，我们将从第一部分开始寻找递归函数中的常见模式，并最终引入一个用于消费容器类型的新接口：接口 `Foldable`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:23
@@ -575,34 +571,32 @@ msgstr "## 递归"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:38
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In this section, we are going to have a closer look at recursion in general "
-"and at tail recursion in particular."
+"In this section, we are going to have a closer look at\n"
+"recursion in general and at tail recursion in particular.\n"
 msgstr "在本节中，我们将仔细研究一般的递归，特别是尾递归。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:47
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Recursive functions are functions, which call themselves to repeat a task or "
-"calculation until a certain aborting condition (called the *base case*) "
-"holds.  Please note, that it is recursive functions, which make it hard to "
-"verify totality: Non-recursive functions, which are *covering* (they cover "
-"all possible cases in their pattern matches) are automatically total if they "
-"only invoke other total functions."
-msgstr ""
-"递归函数是函数，它们调用自己来重复任务或计算，直到某个中止条件（称为 * 基本情"
-"况 *）成立。请注意，它是递归函数，因此很难验证整体性：非递归函数，即 * 覆盖 "
-"*（它们涵盖了模式匹配中的所有可能情况）如果它们只调用其他函数，它们就会自动总"
-"计总功能。"
+"Recursive functions are functions, which call themselves\n"
+"to repeat a task or calculation until a certain aborting\n"
+"condition (called the *base case*) holds.\n"
+"Please note, that it is recursive functions, which\n"
+"make it hard to verify totality: Non-recursive functions,\n"
+"which are *covering* (they cover all possible cases in their\n"
+"pattern matches) are automatically total if they only invoke\n"
+"other total functions.\n"
+msgstr "递归函数是函数，它们调用自己来重复任务或计算，直到某个中止条件（称为 * 基本情况 *）成立。请注意，它是递归函数，因此很难验证整体性：非递归函数，即 * 覆盖 *（它们涵盖了模式匹配中的所有可能情况）如果它们只调用其他函数，它们就会自动总计总功能。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:50
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Here is an example of a recursive function: It generates a list of the given "
-"length filling it with identical values:"
+"Here is an example of a recursive function: It generates\n"
+"a list of the given length filling it with identical values:\n"
 msgstr "这是一个递归函数的例子：它生成一个给定长度的列表，用相同的值填充它："
 
 #. type: Plain text
@@ -621,19 +615,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:63
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"As you can see (this module has the `%default total` pragma at the top), "
-"this function is provably total. Idris verifies, that the `Nat` argument "
-"gets *strictly smaller* in each recursive call, and that therefore, the "
-"function *must* eventually come to an end. Of course, we can do the same "
-"thing for `Vect`, where we can even show that the length of the resulting "
-"vector matches the given natural number:"
-msgstr ""
-"正如你所看到的（这个模块在顶部有 `%default total` pragma），这个函数可以证明"
-"是总的。 Idris 验证 `Nat` 参数在每次递归调用中 * 严格小于 *，因此，函数 * 必"
-"须 * 最终结束。当然，我们可以对 `Vect` 做同样的事情，我们甚至可以证明结果向量"
-"的长度与给定的自然数匹配："
+"As you can see (this module has the `%default total` pragma at the top),\n"
+"this function is provably total. Idris verifies, that the `Nat` argument\n"
+"gets *strictly smaller* in each recursive call, and that therefore, the\n"
+"function *must* eventually come to an end. Of course, we can do the\n"
+"same thing for `Vect`, where we can even show that the length of the\n"
+"resulting vector matches the given natural number:\n"
+msgstr "正如你所看到的（这个模块在顶部有 `%default total` pragma），这个函数可以证明是总的。 Idris 验证 `Nat` 参数在每次递归调用中 * 严格小于 *，因此，函数 * 必须 * 最终结束。当然，我们可以对 `Vect` 做同样的事情，我们甚至可以证明结果向量的长度与给定的自然数匹配："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:64
@@ -651,14 +641,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:73
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"While we often use recursion to *create* values of data types like `List` or "
-"`Vect`, we also use recursion, when we *consume* such values.  For instance, "
-"here is a function for calculating the length of a list:"
-msgstr ""
-"虽然我们经常使用递归来 * 创建 * 数据类型的值，例如 `List` 或 `Vect`，但我们也"
-"使用递归，当我们 * 使用 * 此类值时.例如，这是一个计算列表长度的函数："
+"While we often use recursion to *create* values of data types like\n"
+"`List` or `Vect`, we also use recursion, when we *consume* such values.\n"
+"For instance, here is a function for calculating the length of a list:\n"
+msgstr "虽然我们经常使用递归来 * 创建 * 数据类型的值，例如 `List` 或 `Vect`，但我们也使用递归，当我们 * 使用 * 此类值时.例如，这是一个计算列表长度的函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:74
@@ -676,27 +664,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:82
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Again, Idris can verify that `len` is total, as the list we pass in the "
-"recursive case is strictly smaller than the original list argument."
-msgstr ""
-"同样，Idris 可以验证 `len` 是总的，因为我们在递归情况下传递的列表严格小于原始"
-"列表参数。"
+"Again, Idris can verify that `len` is total, as the list we pass in\n"
+"the recursive case is strictly smaller than the original list argument.\n"
+msgstr "同样，Idris 可以验证 `len` 是总的，因为我们在递归情况下传递的列表严格小于原始列表参数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:88
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"But when is a recursive function non-total? Here is an example: The "
-"following function creates a sequence of values until the given generation "
-"function (`gen`) returns a `Nothing`. Note, how we use a *state* value (of "
-"generic type `s`) and use `gen` to calculate a value together with the next "
-"state:"
-msgstr ""
-"但是什么时候递归函数是非全部的？这是一个示例：以下函数创建一系列值，直到给定"
-"的生成函数 (`gen`) 返回 `Nothing`。请注意，我们如何使用 *state* 值（通用类型 "
-"`s`）并使用 `gen` 来计算一个值以及下一个状态："
+"But when is a recursive function non-total? Here is an example: The\n"
+"following function creates a sequence of values until the given\n"
+"generation function (`gen`) returns a `Nothing`. Note, how we use\n"
+"a *state* value (of generic type `s`) and use `gen` to calculate\n"
+"a value together with the next state:\n"
+msgstr "但是什么时候递归函数是非全部的？这是一个示例：以下函数创建一系列值，直到给定的生成函数 (`gen`) 返回 `Nothing`。请注意，我们如何使用 *state* 值（通用类型 `s`）并使用 `gen` 来计算一个值以及下一个状态："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:89
@@ -718,17 +701,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:103
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"With `unfold`, Idris can't verify that any of its arguments is converging "
-"towards the base case. It therefore rightfully refuses to accept that "
-"`unfold` is total. And indeed, the following function produces an infinite "
-"list (so please, don't try to inspect this at the REPL, as doing so will "
-"consume all your computer's memory):"
-msgstr ""
-"使用 `unfold`，Idris 无法验证其任何论点是否收敛于基本情况。因此，它理所当然地"
-"拒绝接受 `unfold` 是完全的。事实上，下面的函数会生成一个无限列表（所以请不要"
-"尝试在 REPL 中检查它，因为这样做会消耗您计算机的所有内存）："
+"With `unfold`, Idris can't verify that any of its arguments is\n"
+"converging towards the base case. It therefore rightfully\n"
+"refuses to accept that `unfold` is total. And indeed, the following\n"
+"function produces an infinite list (so please, don't try to inspect\n"
+"this at the REPL, as doing so will consume all your computer's\n"
+"memory):\n"
+msgstr "使用 `unfold`，Idris 无法验证其任何论点是否收敛于基本情况。因此，它理所当然地拒绝接受 `unfold` 是完全的。事实上，下面的函数会生成一个无限列表（所以请不要尝试在 REPL 中检查它，因为这样做会消耗您计算机的所有内存）："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:104
@@ -744,14 +725,13 @@ msgstr "```idris fiboHelper : (Nat,Nat) -> ((Nat,Nat),Nat) fiboHelper (f0,f1) = 
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:117
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In order to safely create a (finite) sequence of Fibonacci numbers, we need "
-"to make sure the function generating the sequence will stop after a finite "
-"number of steps, for instance by limiting the length of the list:"
-msgstr ""
-"为了安全地创建一个（有限）斐波那契数列，我们需要确保生成该序列的函数将在有限"
-"步数后停止，例如通过限制列表的长度："
+"In order to safely create a (finite) sequence of Fibonacci numbers,\n"
+"we need to make sure the function generating the sequence will\n"
+"stop after a finite number of steps, for instance by limiting\n"
+"the length of the list:\n"
+msgstr "为了安全地创建一个（有限）斐波那契数列，我们需要确保生成该序列的函数将在有限步数后停止，例如通过限制列表的长度："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:118
@@ -782,10 +762,10 @@ msgstr "### 调用栈"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:133
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In order to demonstrate what tail recursion is about, we require the "
-"following `main` function:"
+"In order to demonstrate what tail recursion is about, we require\n"
+"the following `main` function:\n"
 msgstr "为了演示尾递归是什么，我们需要以下 `main` 函数："
 
 #. type: Plain text
@@ -798,16 +778,14 @@ msgstr "```idris main : IO () main = printLn 。长度 $ 复制列表 10000 10 `
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:144
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"If you have [Node.js](https://nodejs.org/en/) installed on your system, you "
-"might try the following experiment. Compile and run this module using the "
-"*Node.js* backend of Idris instead of the default *Chez Scheme* backend and "
-"run the resulting JavaScript source file with the Node.js binary:"
-msgstr ""
-"如果您的系统上安装了 [Node.js](https://nodejs.org/en/)，您可以尝试以下实验。"
-"使用 Idris 的 *Node.js* 后端而不是默认的 *Chez Scheme* 后端编译并运行此模块，"
-"并使用 Node.js 二进制文件运行生成的 JavaScript 源文件："
+"If you have [Node.js](https://nodejs.org/en/) installed on your system,\n"
+"you might try the following experiment. Compile and run this\n"
+"module using the *Node.js* backend of Idris instead of the default\n"
+"*Chez Scheme* backend and run the resulting JavaScript source file\n"
+"with the Node.js binary:\n"
+msgstr "如果您的系统上安装了 [Node.js](https://nodejs.org/en/)，您可以尝试以下实验。使用 Idris 的 *Node.js* 后端而不是默认的 *Chez Scheme* 后端编译并运行此模块，并使用 Node.js 二进制文件运行生成的 JavaScript 源文件："
 
 #. type: Code fence info string
 #: ../src/Tutorial/Folds.md:145 ../src/Tutorial/Folds.md:241
@@ -828,61 +806,49 @@ msgstr "```sh idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md nod
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:154
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Node.js will fail with the following error message and a lengthy stack "
-"trace: `RangeError: Maximum call stack size exceeded`.  What's going on "
-"here? How can it be that `main` fails with an exception although it is "
-"provably total?"
-msgstr ""
-"Node.js 将失败并显示以下错误消息和冗长的堆栈跟踪：`RangeError: Maximum call "
-"stack size exceeded`。这里发生了什么？ `main` 怎么会失败并出现异常，尽管它可"
-"以证明是完全的？"
+"Node.js will fail with the following error message and a lengthy\n"
+"stack trace: `RangeError: Maximum call stack size exceeded`.\n"
+"What's going on here? How can it be that `main` fails with an\n"
+"exception although it is provably total?\n"
+msgstr "Node.js 将失败并显示以下错误消息和冗长的堆栈跟踪：`RangeError: Maximum call stack size exceeded`。这里发生了什么？ `main` 怎么会失败并出现异常，尽管它可以证明是完全的？"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:169
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"First, remember that a function being total means that it will eventually "
-"produce a value of the given type in a finite amount of time, *given enough "
-"resources like computer memory*. Here, `main` hasn't been given enough "
-"resources as Node.js has a very small size limit on its call stack. The "
-"*call stack* can be thought of as a stack data structure (first in, last "
-"out), where nested function calls are put. In case of recursive functions, "
-"the stack size increases by one with every recursive function call. In case "
-"of our `main` function, we create and consume a list of length 10'000, so "
-"the call stack will hold at least 10'000 function calls before they are "
-"being invoked and the stack's size is reduced again. This exceeds Node.js's "
-"stack size limit by far, hence the overflow error."
-msgstr ""
-"首先，记住一个函数是总计意味着它最终会在有限的时间内产生一个给定类型的值，*给"
-"定足够的资源，比如计算机内存*。在这里，`main` 没有获得足够的资源，因为 Node."
-"js 在其调用堆栈上的大小限制非常小。 * 调用堆栈* 可以被认为是一个堆栈数据结构"
-"（先进后出），其中放置了嵌套的函数调用。在递归函数的情况下，堆栈大小随着每个"
-"递归函数调用而增加一。对于我们的 `main` 函数，我们创建并使用长度为 10'000 的"
-"列表，因此调用堆栈将在调用之前至少保存 10'000 个函数调用，并且堆栈的大小再次"
-"减小.这远远超出了 Node.js 的堆栈大小限制，因此出现了溢出错误。"
+"First, remember that a function\n"
+"being total means that it will eventually produce a value\n"
+"of the given type in a finite amount of time, *given\n"
+"enough resources like computer memory*. Here, `main` hasn't\n"
+"been given enough resources as Node.js has a very small size\n"
+"limit on its call stack. The *call stack* can be thought\n"
+"of as a stack data structure (first in, last out), where\n"
+"nested function calls are put. In case of recursive functions,\n"
+"the stack size increases by one with every recursive function\n"
+"call. In case of our `main` function, we create and consume\n"
+"a list of length 10'000, so the call stack will hold\n"
+"at least 10'000 function calls before they are being invoked\n"
+"and the stack's size is reduced again. This exceeds Node.js's\n"
+"stack size limit by far, hence the overflow error.\n"
+msgstr "首先，记住一个函数是总计意味着它最终会在有限的时间内产生一个给定类型的值，*给定足够的资源，比如计算机内存*。在这里，`main` 没有获得足够的资源，因为 Node.js 在其调用堆栈上的大小限制非常小。 * 调用堆栈* 可以被认为是一个堆栈数据结构（先进后出），其中放置了嵌套的函数调用。在递归函数的情况下，堆栈大小随着每个递归函数调用而增加一。对于我们的 `main` 函数，我们创建并使用长度为 10'000 的列表，因此调用堆栈将在调用之前至少保存 10'000 个函数调用，并且堆栈的大小再次减小.这远远超出了 Node.js 的堆栈大小限制，因此出现了溢出错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:180
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Now, before we look at a solution how to circumvent this issue, please note "
-"that this is a very serious and limiting source of bugs when using the "
-"JavaScript backends of Idris. In Idris, having no access to control "
-"structures like `for` or `while` loops, we *always* have to resort to "
-"recursion in order to describe iterative computations. Luckily (or should I "
-"say \"unfortunately\", since otherwise this issue would already have been "
-"addressed with all seriousness), the Scheme backends don't have this issue, "
-"as their stack size limit is much larger and they perform all kinds of "
-"optimizations internally to prevent the call stack from overflowing."
-msgstr ""
-"现在，在我们研究如何规避此问题的解决方案之前，请注意，在使用 Idris 的 "
-"JavaScript 后端时，这是一个非常严重且限制性的错误来源。在 Idris 中，由于无法"
-"访问 `for` 或 `while` 循环等控制结构，我们 * 总是 * 必须求助于递归来描述迭代"
-"计算。幸运的是（或者我应该说“不幸”，否则这个问题已经得到了严肃的解决），"
-"Scheme 后端没有这个问题，因为它们的堆栈大小限制要大得多，并且它们在内部执行各"
-"种优化以防止调用堆栈溢出。"
+"Now, before we look at a solution how to circumvent this issue,\n"
+"please note that this is a very serious and limiting source of\n"
+"bugs when using the JavaScript backends of Idris. In Idris, having no\n"
+"access to control structures like `for` or `while` loops, we *always*\n"
+"have to resort to recursion in order to describe iterative\n"
+"computations. Luckily (or should I say \"unfortunately\", since otherwise\n"
+"this issue would already have been addressed with all seriousness),\n"
+"the Scheme backends don't have this issue, as their stack size\n"
+"limit is much larger and they perform all kinds of optimizations\n"
+"internally to prevent the call stack from overflowing.\n"
+msgstr "现在，在我们研究如何规避此问题的解决方案之前，请注意，在使用 Idris 的 JavaScript 后端时，这是一个非常严重且限制性的错误来源。在 Idris 中，由于无法访问 `for` 或 `while` 循环等控制结构，我们 * 总是 * 必须求助于递归来描述迭代计算。幸运的是（或者我应该说“不幸”，否则这个问题已经得到了严肃的解决），Scheme 后端没有这个问题，因为它们的堆栈大小限制要大得多，并且它们在内部执行各种优化以防止调用堆栈溢出。"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:181
@@ -892,14 +858,13 @@ msgstr "### 尾递归"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:187
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"A recursive function is said to be *tail recursive*, if all recursive calls "
-"occur at *tail position*: The last function call in a (sub)expression. For "
-"instance, the following version of `len` is tail recursive:"
-msgstr ""
-"如果所有递归调用都发生在 * 尾部位置* 处，则称递归函数为 *tail recursive*："
-"（子）表达式中的最后一个函数调用。例如，以下版本的 `len` 是尾递归的："
+"A recursive function is said to be *tail recursive*, if\n"
+"all recursive calls occur at *tail position*: The last\n"
+"function call in a (sub)expression. For instance, the following\n"
+"version of `len` is tail recursive:\n"
+msgstr "如果所有递归调用都发生在 * 尾部位置* 处，则称递归函数为 *tail recursive*：（子）表达式中的最后一个函数调用。例如，以下版本的 `len` 是尾递归的："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:188
@@ -917,14 +882,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:197
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Compare this to `len` as defined above: There, the last function call is an "
-"invocation of operator `(+)`, and the recursive call happens in one of its "
-"arguments:"
-msgstr ""
-"将此与上面定义的 `len` 进行比较：最后一个函数调用是对运算符 `(+)` 的调用，递"
-"归调用发生在它的一个参数中："
+"Compare this to `len` as defined above: There, the last\n"
+"function call is an invocation of operator `(+)`, and\n"
+"the recursive call happens in one of its arguments:\n"
+msgstr "将此与上面定义的 `len` 进行比较：最后一个函数调用是对运算符 `(+)` 的调用，递归调用发生在它的一个参数中："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:198
@@ -934,13 +897,11 @@ msgstr "```repl len (_ :: xs) = 1 + len xs ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:204
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"We can use `lenOnto` as a utility to implement a tail recursive version of "
-"`len` without the additional `Nat` argument:"
-msgstr ""
-"我们可以使用 `lenOnto` 作为实用程序来实现 `len` 的尾递归版本，而无需额外的 "
-"`Nat` 参数："
+"We can use `lenOnto` as a utility to implement a tail recursive\n"
+"version of `len` without the additional `Nat` argument:\n"
+msgstr "我们可以使用 `lenOnto` 作为实用程序来实现 `len` 的尾递归版本，而无需额外的 `Nat` 参数："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:205
@@ -952,15 +913,14 @@ msgstr "```idris lenTR : 列出 a -> Nat lenTR = lenOnto 0 ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:215
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"This is a common pattern when writing tail recursive functions: We typically "
-"add an additional function argument for accumulating intermediary results, "
-"which is then passed on explicitly at each recursive call. For instance, "
-"here is a tail recursive version of `replicateList`:"
-msgstr ""
-"这是编写尾递归函数时的常见模式：我们通常添加一个额外的函数参数来累积中间结"
-"果，然后在每次递归调用时显式传递。例如，这里是 `replicateList` 的尾递归版本："
+"This is a common pattern when writing tail recursive functions:\n"
+"We typically add an additional function argument for accumulating\n"
+"intermediary results, which is then passed on explicitly at each\n"
+"recursive call. For instance, here is a tail recursive version\n"
+"of `replicateList`:\n"
+msgstr "这是编写尾递归函数时的常见模式：我们通常添加一个额外的函数参数来累积中间结果，然后在每次递归调用时显式传递。例如，这里是 `replicateList` 的尾递归版本："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:216
@@ -982,16 +942,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:229
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"The big advantage of tail recursive functions is, that they can be easily "
-"converted to efficient, imperative loops by the Idris compiler, an are thus "
-"*stack safe*: Recursive function calls are *not* added to the call stack, "
-"thus avoiding the dreaded stack overflow errors."
-msgstr ""
-"尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，"
-"因此是 * 堆栈安全 *：递归函数调用是 * 而不是 * 添加到调用堆栈，从而避免了可怕"
-"的堆栈溢出错误。"
+"The big advantage of tail recursive functions is, that they\n"
+"can be easily converted to efficient, imperative loops by the Idris\n"
+"compiler, an are thus *stack safe*: Recursive function calls\n"
+"are *not* added to the call stack, thus avoiding the dreaded\n"
+"stack overflow errors.\n"
+msgstr "尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 * 堆栈安全 *：递归函数调用是 * 而不是 * 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:230
@@ -1003,16 +961,14 @@ msgstr "```idris main1 : IO () main1 = printLn 。 lenTR $ 复制列表TR 10000 
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:240
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"We can again run `main1` using the *Node.js* backend. This time, we use "
-"slightly different syntax to execute a function other than `main` (Remember: "
-"The dollar prefix is only there to distinghish a terminal command from its "
-"output. It is not part of the command you enter in a terminal sesssion.):"
-msgstr ""
-"我们可以使用 *Node.js* 后端再次运行 `main1`。这一次，我们使用稍有不同的语法来"
-"执行除 `main` 以外的函数（请记住：美元前缀仅用于将终端命令与其输出区分开来。"
-"它不是您输入的命令的一部分终端会议。）："
+"We can again run `main1` using the *Node.js* backend. This time,\n"
+"we use slightly different syntax to execute a function other than\n"
+"`main` (Remember: The dollar prefix is only there to distinghish\n"
+"a terminal command from its output. It is not part of the\n"
+"command you enter in a terminal sesssion.):\n"
+msgstr "我们可以使用 *Node.js* 后端再次运行 `main1`。这一次，我们使用稍有不同的语法来执行除 `main` 以外的函数（请记住：美元前缀仅用于将终端命令与其输出区分开来。它不是您输入的命令的一部分终端会议。）："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:241
@@ -1024,22 +980,21 @@ msgstr "```sh $ idris2 --cg node --exec main1 --find-ipkg src/Tutorial/Folds.md 
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:248
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"As you can see, this time the computation finished without overflowing the "
-"call stack."
+"As you can see, this time the computation finished without\n"
+"overflowing the call stack.\n"
 msgstr "如您所见，这次计算完成并没有溢出调用堆栈。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:253
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Tail recursive functions are allowed to consist of (possibly nested) pattern "
-"matches, with recursive calls at tail position in several of the branches.  "
-"Here is an example:"
-msgstr ""
-"尾递归函数允许由（可能是嵌套的）模式匹配组成，在几个分支的尾位置进行递归调"
-"用。这是一个例子："
+"Tail recursive functions are allowed to consist of\n"
+"(possibly nested) pattern matches, with recursive\n"
+"calls at tail position in several of the branches.\n"
+"Here is an example:\n"
+msgstr "尾递归函数允许由（可能是嵌套的）模式匹配组成，在几个分支的尾位置进行递归调用。这是一个例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:254
@@ -1065,10 +1020,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:266
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note, how each invocation of `go` is in tail position in its branch of the "
-"case expression."
+"Note, how each invocation of `go` is in tail position in\n"
+"its branch of the case expression.\n"
 msgstr "请注意，`go` 的每次调用如何在其 case 表达式的分支中处于尾部位置。"
 
 #. type: Title ###
@@ -1079,23 +1034,21 @@ msgstr "### 相互递归"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:281
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"It is sometimes convenient to implement several related functions, which "
-"call each other recursively. In Idris, unlike in many other programming "
-"languages, a function must be declared in a source file *before* it can be "
-"called by other functions, as in general a function's implementation must be "
-"available during type checking (because Idris has dependent types). There "
-"are two ways around this, which actually result in the same internal "
-"representation in the compiler. Our first option is to write down the "
-"functions' declarations first with the implementations following after. "
-"Here's a silly example:"
-msgstr ""
-"有时可以方便地实现几个相关的函数，它们以递归方式相互调用。在 Idris 中，与许多"
-"其他编程语言不同，函数必须在源文件 * 中声明，然后* 才能被其他函数调用，因为通"
-"常函数的实现必须在类型检查期间可用（因为 Idris 有依赖类型）。有两种方法可以解"
-"决这个问题，它们实际上会在编译器中产生相同的内部表示。我们的第一个选择是先写"
-"下函数的声明，然后是实现。这是一个愚蠢的例子："
+"It is sometimes convenient to implement several related\n"
+"functions, which call each other recursively. In Idris,\n"
+"unlike in many other programming languages,\n"
+"a function must be declared in a source file\n"
+"*before* it can be called by other functions, as in general\n"
+"a function's implementation must\n"
+"be available during type checking (because Idris has\n"
+"dependent types). There are two ways around this, which\n"
+"actually result in the same internal representation in the\n"
+"compiler. Our first option is to write down the functions' declarations\n"
+"first with the implementations following after. Here's a\n"
+"silly example:\n"
+msgstr "有时可以方便地实现几个相关的函数，它们以递归方式相互调用。在 Idris 中，与许多其他编程语言不同，函数必须在源文件 * 中声明，然后* 才能被其他函数调用，因为通常函数的实现必须在类型检查期间可用（因为 Idris 有依赖类型）。有两种方法可以解决这个问题，它们实际上会在编译器中产生相同的内部表示。我们的第一个选择是先写下函数的声明，然后是实现。这是一个愚蠢的例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:282
@@ -1118,26 +1071,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:297
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"As you can see, function `even` is allowed to call function `odd` in its "
-"implementation, since `odd` has already been declared (but not yet "
-"implemented)."
-msgstr ""
-"如您所见，函数 `even` 被允许在其实现中调用函数 `odd`，因为 `odd` 已经被声明"
-"（但尚未实现）。"
+"As you can see, function `even` is allowed to call function `odd` in\n"
+"its implementation, since `odd` has already been declared (but not yet\n"
+"implemented).\n"
+msgstr "如您所见，函数 `even` 被允许在其实现中调用函数 `odd`，因为 `odd` 已经被声明（但尚未实现）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:302
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"If you're like me and want to keep declarations and implementations next to "
-"each other, you can introduce a `mutual` block, which has the same effect. "
-"Like with other code blocks, functions in a `mutual` block must all be "
-"indented by the same amount of whitespace:"
-msgstr ""
-"如果你和我一样，想保持声明和实现彼此相邻，你可以引入一个 `mutual` 块，它具有"
-"相同的效果。与其他代码块一样，`mutual` 块中的函数必须全部缩进相同数量的空格："
+"If you're like me and want to keep declarations and implementations\n"
+"next to each other, you can introduce a `mutual` block, which has\n"
+"the same effect. Like with other code blocks, functions in a `mutual`\n"
+"block must all be indented by the same amount of whitespace:\n"
+msgstr "如果你和我一样，想保持声明和实现彼此相邻，你可以引入一个 `mutual` 块，它具有相同的效果。与其他代码块一样，`mutual` 块中的函数必须全部缩进相同数量的空格："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:303
@@ -1160,16 +1109,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:319
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Just like with single recursive functions, mutually recursive functions can "
-"be optimized to imperative loops if all recursive calls occur at tail "
-"position. This is the case with functions `even` and `odd`, as can again be "
-"verified at the *Node.js* backend:"
-msgstr ""
-"就像单个递归函数一样，如果所有递归调用都发生在尾部位置，则可以将相互递归函数"
-"优化为命令式循环。函数 `even` 和 `odd` 就是这种情况，可以在 *Node.js* 后端再"
-"次验证："
+"Just like with single recursive functions, mutually recursive\n"
+"functions can be optimized to imperative loops if all\n"
+"recursive calls occur at tail position. This is the case\n"
+"with functions `even` and `odd`, as can again be\n"
+"verified at the *Node.js* backend:\n"
+msgstr "就像单个递归函数一样，如果所有递归调用都发生在尾部位置，则可以将相互递归函数优化为命令式循环。函数 `even` 和 `odd` 就是这种情况，可以在 *Node.js* 后端再次验证："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:320
@@ -1202,10 +1149,10 @@ msgstr "### 最后的评论"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:336
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In this section, we learned about several important aspects of recursion and "
-"totality checking, which are summarized here:"
+"In this section, we learned about several important aspects\n"
+"of recursion and totality checking, which are summarized here:\n"
 msgstr "在本节中，我们了解了递归和总体检查的几个重要方面，总结如下："
 
 #. type: Bullet: '* '
@@ -1245,54 +1192,45 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:354
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note, that not all Idris backends you will come across in the wild will "
-"perform tail call optimization. Please check the corresponding documentation."
-msgstr ""
-"请注意，并非您在野外遇到的所有 Idris 后端都会执行尾调用优化。请检查相应的文"
-"档。"
+"Note, that not all Idris backends you will come across in the wild\n"
+"will perform tail call optimization. Please check the corresponding\n"
+"documentation.\n"
+msgstr "请注意，并非您在野外遇到的所有 Idris 后端都会执行尾调用优化。请检查相应的文档。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:372
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note also, that most recursive functions in the core libraries (*prelude* "
-"and *base*) do not yet make use of tail recursion. There is an important "
-"reason for this: In many cases, non-tail recursive functions are easier to "
-"use in compile-time proofs, as they unify more naturally than their tail "
-"recursive counterparts.  Compile-time proofs are an important aspect of "
-"programming in Idris (as we will see in later chapters), so there is a "
-"compromise to be made between what performs well at runtime and what works "
-"well at compile time. Eventually, the way to go might be to provide two "
-"implementations for most recursive functions with a *transform rule* telling "
-"the compiler to use the optimized version at runtime whenever programmers "
-"use the non-optimized version in their code.  Such transform rules have - "
-"for instance - already been written for functions `pack` and `unpack` (which "
-"use `fastPack` and `fastUnpack` at runtime; see the corresponding rules in "
-"[the following source file](https://github.com/idris-lang/Idris2/blob/main/"
-"libs/prelude/Prelude/Types.idr))."
-msgstr ""
-"还要注意，核心库中的大多数递归函数（*prelude* 和 *base*）还没有使用尾递归。这"
-"有一个重要原因：在许多情况下，非尾递归函数更容易在编译时证明中使用，因为它们"
-"比尾递归对应物更自然地统一。编译时证明是 Idris 编程的一个重要方面（我们将在后"
-"面的章节中看到），因此在运行时表现良好和编译时表现良好之间需要做出折衷。最"
-"终，要走的路可能是为大多数递归函数提供两种实现，使用 * 转换规则 * 告诉编译器"
-"在运行时使用优化版本，只要程序员在其代码中使用非优化版本。例如，已经为函数 "
-"`pack` 和 `unpack` 编写了这样的转换规则（它们在运行时使用 `fastPack` 和 "
-"`fastUnpack`；参见[以下源文件](https://github.com/idris-lang/Idris2/blob/"
-"main/libs/prelude/Prelude/Types.idr)中的相应规则。"
+"Note also, that most recursive functions in the core libraries (*prelude*\n"
+"and *base*) do not yet make use of tail recursion. There is an\n"
+"important reason for this: In many cases, non-tail recursive\n"
+"functions are easier to use in compile-time proofs, as they\n"
+"unify more naturally than their tail recursive counterparts.\n"
+"Compile-time proofs are an important aspect of programming\n"
+"in Idris (as we will see in later chapters), so there is a\n"
+"compromise to be made between what performs well at runtime\n"
+"and what works well at compile time. Eventually, the way\n"
+"to go might be to provide two implementations for most\n"
+"recursive functions with a *transform rule* telling the\n"
+"compiler to use the optimized version at runtime whenever\n"
+"programmers use the non-optimized version in their code.\n"
+"Such transform rules have - for instance - already been\n"
+"written for functions `pack` and `unpack` (which use\n"
+"`fastPack` and `fastUnpack` at runtime; see the corresponding\n"
+"rules in [the following source file](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)).\n"
+msgstr "还要注意，核心库中的大多数递归函数（*prelude* 和 *base*）还没有使用尾递归。这有一个重要原因：在许多情况下，非尾递归函数更容易在编译时证明中使用，因为它们比尾递归对应物更自然地统一。编译时证明是 Idris 编程的一个重要方面（我们将在后面的章节中看到），因此在运行时表现良好和编译时表现良好之间需要做出折衷。最终，要走的路可能是为大多数递归函数提供两种实现，使用 * 转换规则 * 告诉编译器在运行时使用优化版本，只要程序员在其代码中使用非优化版本。例如，已经为函数 `pack` 和 `unpack` 编写了这样的转换规则（它们在运行时使用 `fastPack` 和 `fastUnpack`；参见[以下源文件](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)中的相应规则。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:379
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In these exercises you are going to implement several recursive functions. "
-"Make sure to use tail recursion whenever possible and quickly verify the "
-"correct behavior of all functions at the REPL."
-msgstr ""
-"在这些练习中，您将实现几个递归函数。确保尽可能使用尾递归，并快速验证 REPL 中"
-"所有函数的正确行为。"
+"In these exercises you are going to implement several\n"
+"recursive functions. Make sure to use tail recursion\n"
+"whenever possible and quickly verify the correct\n"
+"behavior of all functions at the REPL.\n"
+msgstr "在这些练习中，您将实现几个递归函数。确保尽可能使用尾递归，并快速验证 REPL 中所有函数的正确行为。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Folds.md:383
@@ -1503,33 +1441,28 @@ msgstr "##关于整体检查的一些注意事项"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:482
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"The totality checker in Idris verifies, that at least one (possibly erased!) "
-"argument in a recursive call converges towards a base case. For instance, "
-"with natural numbers, if the base case is zero (corresponding to data "
-"constructor `Z`), and we continue with `k` after pattern matching on `S k`, "
-"Idris can derive from `Nat`'s constructors, that `k` is strictly smaller "
-"than `S k` and therefore the recursive call must converge towards a base "
-"case.  Exactly the same reasoning is used when pattern matching on a list "
-"and continuing only with its tail in the recursive call."
-msgstr ""
-"Idris 中的整体性检查器验证递归调用中的至少一个（可能已删除！）参数收敛于基本"
-"情况。例如，对于自然数，如果基本情况为零（对应于数据构造函数 `Z`），我们在 "
-"`S k` 上进行模式匹配后继续 `k` , Idris 可以从 `Nat` 的构造函数派生，即 `k` 严"
-"格小于 `S k`，因此递归调用必须收敛于基本情况。当对列表进行模式匹配并仅在递归"
-"调用中继续其尾部时，使用完全相同的推理。"
+"The totality checker in Idris verifies, that at least one\n"
+"(possibly erased!) argument in a recursive call converges towards\n"
+"a base case. For instance, with natural numbers, if the base case\n"
+"is zero (corresponding to data constructor `Z`), and we continue\n"
+"with `k` after pattern matching on `S k`, Idris can derive from\n"
+"`Nat`'s constructors, that `k` is strictly smaller than `S k`\n"
+"and therefore the recursive call must converge towards a base case.\n"
+"Exactly the same reasoning is used when pattern matching on a list\n"
+"and continuing only with its tail in the recursive call.\n"
+msgstr "Idris 中的整体性检查器验证递归调用中的至少一个（可能已删除！）参数收敛于基本情况。例如，对于自然数，如果基本情况为零（对应于数据构造函数 `Z`），我们在 `S k` 上进行模式匹配后继续 `k` , Idris 可以从 `Nat` 的构造函数派生，即 `k` 严格小于 `S k`，因此递归调用必须收敛于基本情况。当对列表进行模式匹配并仅在递归调用中继续其尾部时，使用完全相同的推理。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:487
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"While this works in many cases, it doesn't always go as expected.  Below, "
-"I'll show you a couple of examples where totality checking fails, although "
-"*we* know, that the functions in question are definitely total."
-msgstr ""
-"虽然这在许多情况下都有效，但并不总是按预期进行。下面，我将向您展示几个总体检"
-"查失败的示例，尽管 * 我们 * 知道，所讨论的函数肯定是总体的。"
+"While this works in many cases, it doesn't always go as expected.\n"
+"Below, I'll show you a couple of examples where totality checking\n"
+"fails, although *we* know, that the functions in question are definitely\n"
+"total.\n"
+msgstr "虽然这在许多情况下都有效，但并不总是按预期进行。下面，我将向您展示几个总体检查失败的示例，尽管 * 我们 * 知道，所讨论的函数肯定是总体的。"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:488
@@ -1539,14 +1472,13 @@ msgstr "### 案例 1：在原语上递归"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:494
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Idris doesn't know anything about the internal structure of primitive data "
-"types. So the following function, although being obviously total, will not "
-"be accepted by the totality checker:"
-msgstr ""
-"Idris 对原始数据类型的内部结构一无所知。因此，以下函数虽然显然是完全的，但不"
-"会被整体检查器接受："
+"Idris doesn't know anything about the internal structure of\n"
+"primitive data types. So the following function, although\n"
+"being obviously total, will not be accepted by the totality\n"
+"checker:\n"
+msgstr "Idris 对原始数据类型的内部结构一无所知。因此，以下函数虽然显然是完全的，但不会被整体检查器接受："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:495
@@ -1560,39 +1492,32 @@ msgstr "```idris 覆盖 replicatePrim : Bits32 -> a -> List a replicatePrim 0 v 
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:514
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Unlike with natural numbers (`Nat`), which are defined as an inductive data "
-"type and are only converted to integer primitives during compilation, Idris "
-"can't tell that `x - 1` is strictly smaller than `x`, and so it fails to "
-"verify that this must converge towards the base case.  (The reason is, that "
-"`x - 1` is implemented in terms of primitive function `prim__sub_Bits32`, "
-"which is built into the compiler and must be implemented by each backend "
-"individually. The totality checker knows about data types, constructors, and "
-"functions defined in Idris, but not about (primitive) functions and foreign "
-"functions implemented at the backends. While it is theoretically possible to "
-"also define and use laws for primitive and foreign functions, this hasn't "
-"yet been done for most of them.)"
-msgstr ""
-"与自然数 (`Nat`) 不同，自然数被定义为归纳数据类型并且仅在编译期间转换为整数基"
-"元，Idris 无法判断 `x - 1` 严格小于比 `x`，因此它无法验证这必须收敛到基本情"
-"况。 （原因是 `x - 1` 是根据原始函数 `prim__sub_Bits32` 实现的，它内置在编译"
-"器中，必须由每个后端单独实现。整体检查器知道Idris 中定义的数据类型、构造函数"
-"和函数，但与后端实现的（原始）函数和外部函数无关。虽然理论上也可以为原始函数"
-"和外部函数定义和使用法则，但这还没有完成对于他们中的大多数人。）"
+"Unlike with natural numbers (`Nat`), which are defined as an inductive\n"
+"data type and are only converted to integer primitives during compilation,\n"
+"Idris can't tell that `x - 1` is strictly smaller than `x`, and so it\n"
+"fails to verify that this must converge towards the base case.\n"
+"(The reason is, that `x - 1` is implemented in terms of primitive\n"
+"function `prim__sub_Bits32`, which is built into the compiler and\n"
+"must be implemented by each backend individually. The totality\n"
+"checker knows about data types, constructors, and functions\n"
+"defined in Idris, but not about (primitive) functions and foreign functions\n"
+"implemented at the backends. While it is theoretically possible to\n"
+"also define and use laws for primitive and foreign functions, this hasn't yet\n"
+"been done for most of them.)\n"
+msgstr "与自然数 (`Nat`) 不同，自然数被定义为归纳数据类型并且仅在编译期间转换为整数基元，Idris 无法判断 `x - 1` 严格小于比 `x`，因此它无法验证这必须收敛到基本情况。 （原因是 `x - 1` 是根据原始函数 `prim__sub_Bits32` 实现的，它内置在编译器中，必须由每个后端单独实现。整体检查器知道Idris 中定义的数据类型、构造函数和函数，但与后端实现的（原始）函数和外部函数无关。虽然理论上也可以为原始函数和外部函数定义和使用法则，但这还没有完成对于他们中的大多数人。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:520
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Since non-totality is highly contagious (all functions invoking a partial "
-"function are themselves considered to be partial by the totality checker), "
-"there is utility function `assert_smaller`, which we can use to convince the "
-"totality checker and still annotate our functions with the `total` keyword:"
-msgstr ""
-"由于非全数具有高度传染性（所有调用偏函数的函数本身都被全数检查器认为是部分"
-"的），所以有实用函数 `assert_smaller`，我们可以使用它来说服全数检查器并仍然注"
-"释我们使用 `total` 关键字的函数："
+"Since non-totality is highly contagious (all functions invoking a\n"
+"partial function are themselves considered to be partial by the\n"
+"totality checker), there is utility function `assert_smaller`, which\n"
+"we can use to convince the totality checker and still annotate our\n"
+"functions with the `total` keyword:\n"
+msgstr "由于非全数具有高度传染性（所有调用偏函数的函数本身都被全数检查器认为是部分的），所以有实用函数 `assert_smaller`，我们可以使用它来说服全数检查器并仍然注释我们使用 `total` 关键字的函数："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:521
@@ -1605,16 +1530,14 @@ msgstr "```idris replicatePrim' : Bits32 -> a -> List a replicatePrim' 0 v = [] 
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:532
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Please note, though, that whenever you use `assert_smaller` to silence the "
-"totality checker, the burden of proving totality rests on your shoulders. "
-"Failing to do so can lead to arbitrary and unpredictable program behavior "
-"(which is the default with most other programming languages)."
-msgstr ""
-"但是请注意，每当您使用 `assert_smaller` 来使整体检查器静音时，证明整体性的重"
-"任就落在了您的肩上。不这样做可能会导致任意和不可预测的程序行为（这是大多数其"
-"他编程语言的默认设置）。"
+"Please note, though, that whenever you use `assert_smaller` to\n"
+"silence the totality checker, the burden of proving totality rests\n"
+"on your shoulders. Failing to do so can lead to arbitrary and\n"
+"unpredictable program behavior (which is the default with most\n"
+"other programming languages).\n"
+msgstr "但是请注意，每当您使用 `assert_smaller` 来使整体检查器静音时，证明整体性的重任就落在了您的肩上。不这样做可能会导致任意和不可预测的程序行为（这是大多数其他编程语言的默认设置）。"
 
 #. type: Title ####
 #: ../src/Tutorial/Folds.md:533
@@ -1624,20 +1547,17 @@ msgstr "#### Ex Falso Quodlibet"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:543
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Below - as a demonstration - is a simple proof of `Void`.  `Void` is an "
-"*uninhabited type*: a type with no values.  *Proofing `Void`* means, that we "
-"implement a function accepted by the totality checker, which returns a value "
-"of type `Void`, although this is supposed to be impossible as there is no "
-"such value. Doing so allows us to completely disable the type system "
-"together with all the guarantees it provides.  Here's the code and its dire "
-"consequences:"
-msgstr ""
-"下面 - 作为演示 - 是 `Void` 的简单证明。 `Void`是*无人居住的类型*：没有值的类"
-"型。 *Proofing `Void`* 意味着，我们实现了一个被整体检查器接受的函数，它返回一"
-"个类型为 `Void` 的值，尽管这应该是不可能的，因为没有这样的值.这样做可以让我们"
-"完全禁用类型系统以及它提供的所有保证。这是代码及其可怕的后果："
+"Below - as a demonstration - is a simple proof of `Void`.\n"
+"`Void` is an *uninhabited type*: a type with no values.\n"
+"*Proofing `Void`* means, that we implement a function accepted\n"
+"by the totality checker, which returns a value of type `Void`,\n"
+"although this is supposed to be impossible as there is no\n"
+"such value. Doing so allows us to completely\n"
+"disable the type system together with all the guarantees it provides.\n"
+"Here's the code and its dire consequences:\n"
+msgstr "下面 - 作为演示 - 是 `Void` 的简单证明。 `Void`是*无人居住的类型*：没有值的类型。 *Proofing `Void`* 意味着，我们实现了一个被整体检查器接受的函数，它返回一个类型为 `Void` 的值，尽管这应该是不可能的，因为没有这样的值.这样做可以让我们完全禁用类型系统以及它提供的所有保证。这是代码及其可怕的后果："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:544
@@ -1695,30 +1615,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:576
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Please take a moment to marvel at provably total function `coerce`: It "
-"claims to convert *any* value to a value of *any* other type.  And it is "
-"completely safe, as it only uses total functions in its implementation. The "
-"problem is - of course - that `proofOfVoid` should never ever have been a "
-"total function."
-msgstr ""
-"请花点时间惊叹于可证明的总功能 `coerce`：它声称将 *any* 值转换为 *any* 其他类"
-"型的值。而且它是完全安全的，因为它在实现中只使用了全部功能。问题是 - 当然 - "
-"`proofOfVoid` 永远不应该是一个完整的函数。"
+"Please take a moment to marvel at provably total function `coerce`:\n"
+"It claims to convert *any* value to a value of *any* other type.\n"
+"And it is completely safe, as it only uses total functions in its\n"
+"implementation. The problem is - of course - that `proofOfVoid` should\n"
+"never ever have been a total function.\n"
+msgstr "请花点时间惊叹于可证明的总功能 `coerce`：它声称将 *any* 值转换为 *any* 其他类型的值。而且它是完全安全的，因为它在实现中只使用了全部功能。问题是 - 当然 - `proofOfVoid` 永远不应该是一个完整的函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:581
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In `pain` we use `coerce` to conjure a string from an integer.  In the end, "
-"we get what we deserve: The program crashes with an error.  While things "
-"could have been much worse, it can still be quite time consuming and "
-"annoying to localize the source of such an error."
-msgstr ""
-"在 `pain` 中，我们使用 `coerce` 从整数变出一个字符串。最后，我们得到了我们应"
-"得的：程序因错误而崩溃。尽管情况可能会更糟，但定位此类错误的来源仍然非常耗时"
-"且令人讨厌。"
+"In `pain` we use `coerce` to conjure a string from an integer.\n"
+"In the end, we get what we deserve: The program crashes with an error.\n"
+"While things could have been much worse, it can still be quite\n"
+"time consuming and annoying to localize the source of such an error.\n"
+msgstr "在 `pain` 中，我们使用 `coerce` 从整数变出一个字符串。最后，我们得到了我们应得的：程序因错误而崩溃。尽管情况可能会更糟，但定位此类错误的来源仍然非常耗时且令人讨厌。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:582
@@ -1730,42 +1644,34 @@ msgstr "```sh $ idris2 --cg node --exec pain --find-ipkg src/Tutorial/Folds.md �
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:590
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"So, with a single thoughtless placement of `assert_smaller` we wrought havoc "
-"within our pure and total codebase sacrificing totality and type safety in "
-"one fell swoop. Therefore: Use at your own risk!"
-msgstr ""
-"因此，通过 `assert_smaller` 的一次轻率放置，我们在我们的纯代码库中造成了严重"
-"破坏，一举牺牲了整体性和类型安全性。因此：使用风险自负！"
+"So, with a single thoughtless placement of `assert_smaller` we wrought\n"
+"havoc within our pure and total codebase sacrificing totality and\n"
+"type safety in one fell swoop. Therefore: Use at your own risk!\n"
+msgstr "因此，通过 `assert_smaller` 的一次轻率放置，我们在我们的纯代码库中造成了严重破坏，一举牺牲了整体性和类型安全性。因此：使用风险自负！"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:594
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note: I do not expect you to understand all the dark magic at work in the "
-"code above. I'll explain the details in due time in another chapter."
-msgstr ""
-"注意：我不希望你理解上面代码中所有的黑魔法。我将在适当的时候在另一章中解释细"
-"节。"
+"Note: I do not expect you to understand all the dark magic at\n"
+"work in the code above. I'll explain the details in due time\n"
+"in another chapter.\n"
+msgstr "注意：我不希望你理解上面代码中所有的黑魔法。我将在适当的时候在另一章中解释细节。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:602
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Second note: *Ex falso quodlibet*, also called [the principle of explosion]"
-"(https://en.wikipedia.org/wiki/Principle_of_explosion)  is a law in "
-"classical logic: From a contradiction, any statement can be proven.  In our "
-"case, the contradiction was our proof of `Void`: The claim that we wrote a "
-"total function producing such a value, although `Void` is an uninhabited "
-"type.  You can verify this by inspecting `Void` at the REPL with `:doc "
-"Void`: It has no data constructors."
-msgstr ""
-"第二注：*Ex falso quodlibet*，也称为[爆炸原理](https://en.wikipedia.org/wiki/"
-"Principle_of_explosion) 是经典逻辑中的一条定律：从矛盾中，任何陈述都可以被证"
-"明。在我们的例子中，矛盾在于我们对 `Void` 的证明：声称我们编写了一个产生这样"
-"一个值的总函数，尽管 `Void` 是一种无人居住的类型。您可以通过在 REPL 中使用 `:"
-"doc Void` 检查 `Void` 来验证这一点：它没有数据构造函数。"
+"Second note: *Ex falso quodlibet*, also called\n"
+"[the principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion)\n"
+"is a law in classical logic: From a contradiction, any statement can be proven.\n"
+"In our case, the contradiction was our proof of `Void`: The claim that we wrote\n"
+"a total function producing such a value, although `Void` is an uninhabited type.\n"
+"You can verify this by inspecting `Void` at the REPL with `:doc Void`: It\n"
+"has no data constructors.\n"
+msgstr "第二注：*Ex falso quodlibet*，也称为[爆炸原理](https://en.wikipedia.org/wiki/Principle_of_explosion) 是经典逻辑中的一条定律：从矛盾中，任何陈述都可以被证明。在我们的例子中，矛盾在于我们对 `Void` 的证明：声称我们编写了一个产生这样一个值的总函数，尽管 `Void` 是一种无人居住的类型。您可以通过在 REPL 中使用 `:doc Void` 检查 `Void` 来验证这一点：它没有数据构造函数。"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:603
@@ -1775,14 +1681,12 @@ msgstr "### 案例 2：通过函数调用进行递归"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:608
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Below is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/"
-"Rose_tree).  Rose trees can represent search paths in computer algorithms, "
-"for instance in graph theory."
-msgstr ""
-"下面是 [* 玫瑰树 *]（https://en.wikipedia.org/wiki/Rose_tree）的实现。玫瑰树"
-"可以表示计算机算法中的搜索路径，例如在图论中。"
+"Below is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_tree).\n"
+"Rose trees can represent search paths in computer algorithms,\n"
+"for instance in graph theory.\n"
+msgstr "下面是 [* 玫瑰树 *]（https://en.wikipedia.org/wiki/Rose_tree）的实现。玫瑰树可以表示计算机算法中的搜索路径，例如在图论中。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:609
@@ -1805,8 +1709,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:620
-#, fuzzy
-msgid "We could try and compute the size of such a tree as follows:"
+#, fuzzy, no-wrap
+msgid "We could try and compute the size of such a tree as follows:\n"
 msgstr "我们可以尝试计算这样一棵树的大小，如下所示："
 
 #. type: Plain text
@@ -1820,31 +1724,24 @@ msgstr "```idris 覆盖大小：树 a -> Nat 大小（节点_森林）= S。 sum
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:632
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In the code above, the recursive call happens within `map`. *We* know that "
-"we are using only subtrees in the recursive calls (since we know how `map` "
-"is implemented for `List`), but Idris can't know this (teaching a totality "
-"checker how to figure this out on its own seems to be an open research "
-"question). So it will refuse to accept the function as being total."
-msgstr ""
-"在上面的代码中，递归调用发生在 `map` 中。 *We* 知道我们在递归调用中只使用子树"
-"（因为我们知道 `map` 是如何为 `List` 实现的），但 Idris 不知道这一点（教一个"
-"整体检查器如何自己解决这个问题似乎是一个开放的研究问题）。所以它会拒绝接受这"
-"个函数是完全的。"
+"In the code above, the recursive call happens within `map`. *We* know that\n"
+"we are using only subtrees in the recursive calls (since we know how `map`\n"
+"is implemented for `List`), but Idris can't know this (teaching a totality\n"
+"checker how to figure this out on its own seems to be an open research\n"
+"question). So it will refuse to accept the function as being total.\n"
+msgstr "在上面的代码中，递归调用发生在 `map` 中。 *We* 知道我们在递归调用中只使用子树（因为我们知道 `map` 是如何为 `List` 实现的），但 Idris 不知道这一点（教一个整体检查器如何自己解决这个问题似乎是一个开放的研究问题）。所以它会拒绝接受这个函数是完全的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:637
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"There are two ways to handle the case above. If we don't mind writing a bit "
-"of otherwise unneeded boilerplate code, we can use explicit recursion.  In "
-"fact, since we often also work with search *forests*, this is the preferable "
-"way here."
-msgstr ""
-"有两种方法可以处理上述情况。如果我们不介意编写一些其他不需要的样板代码，我们"
-"可以使用显式递归。事实上，由于我们也经常使用搜索 *forests*，因此这是这里的首"
-"选方式。"
+"There are two ways to handle the case above. If we don't mind writing\n"
+"a bit of otherwise unneeded boilerplate code, we can use explicit recursion.\n"
+"In fact, since we often also work with search *forests*, this is\n"
+"the preferable way here.\n"
+msgstr "有两种方法可以处理上述情况。如果我们不介意编写一些其他不需要的样板代码，我们可以使用显式递归。事实上，由于我们也经常使用搜索 *forests*，因此这是这里的首选方式。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:638
@@ -1865,26 +1762,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:652
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In the case above, Idris can verify that we don't blow up our trees behind "
-"its back as we are explicit about what happens in each recursive step.  This "
-"is the safe, preferable way of going about this, especially if you are new "
-"to the language and totality checking in general."
-msgstr ""
-"在上面的例子中，Idris 可以验证我们不会在它背后炸毁我们的树，因为我们清楚地知"
-"道每个递归步骤中发生的事情。这是解决此问题的安全、可取的方法，特别是如果您不"
-"熟悉语言和总体检查。"
+"In the case above, Idris can verify that we don't blow up our trees behind\n"
+"its back as we are explicit about what happens in each recursive step.\n"
+"This is the safe, preferable way of going about this, especially if you are\n"
+"new to the language and totality checking in general.\n"
+msgstr "在上面的例子中，Idris 可以验证我们不会在它背后炸毁我们的树，因为我们清楚地知道每个递归步骤中发生的事情。这是解决此问题的安全、可取的方法，特别是如果您不熟悉语言和总体检查。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:655
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"However, sometimes the solution presented above is just too cumbersome to "
-"write. For instance, here is an implementation of `Show` for rose trees:"
-msgstr ""
-"但是，有时上面提出的解决方案写起来太麻烦了。例如，这里是玫瑰树的 `Show` 的实"
-"现："
+"However, sometimes the solution presented above is just too cumbersome to\n"
+"write. For instance, here is an implementation of `Show` for rose trees:\n"
+msgstr "但是，有时上面提出的解决方案写起来太麻烦了。例如，这里是玫瑰树的 `Show` 的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:656
@@ -1902,26 +1794,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:667
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In this case, we'd have to manually reimplement `Show` for lists of trees: A "
-"tedious task - and error-prone on its own. Instead, we resort to using the "
-"mighty sledgehammer of totality checking: `assert_total`. Needless to say "
-"that this comes with the same risks as `assert_smaller`, so be very careful."
-msgstr ""
-"在这种情况下，我们必须为树列表手动重新实现 `Show`：这是一项乏味的任务——而且它"
-"本身很容易出错。相反，我们求助于使用强大的整体检查大锤：`assert_total`。不用"
-"说，这会带来与 `assert_smaller` 相同的风险，所以要非常小心。"
+"In this case, we'd have to manually reimplement `Show` for lists of trees:\n"
+"A tedious task - and error-prone on its own. Instead, we resort to using the\n"
+"mighty sledgehammer of totality checking: `assert_total`. Needless to say\n"
+"that this comes with the same risks as `assert_smaller`, so be very\n"
+"careful.\n"
+msgstr "在这种情况下，我们必须为树列表手动重新实现 `Show`：这是一项乏味的任务——而且它本身很容易出错。相反，我们求助于使用强大的整体检查大锤：`assert_total`。不用说，这会带来与 `assert_smaller` 相同的风险，所以要非常小心。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:673
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Implement the following functions in a provably total way without \"cheating"
-"\". Note: It is not necessary to implement these in a tail recursive way."
-msgstr ""
-"以可证明的完整方式实现以下功能，而不会“作弊”。注意：没有必要以尾递归的方式实"
-"现这些。"
+"Implement the following functions in a provably total\n"
+"way without \"cheating\". Note: It is not necessary to\n"
+"implement these in a tail recursive way.\n"
+msgstr "以可证明的完整方式实现以下功能，而不会“作弊”。注意：没有必要以尾递归的方式实现这些。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:682
@@ -1994,17 +1883,17 @@ msgstr "##界面可折叠"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:707
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"When looking back at all the exercises we solved in the section about "
-"recursion, most tail recursive functions on lists where of the following "
-"pattern: Iterate over all list elements from head to tail while passing "
-"along some state for accumulating intermediate results. At the end of the "
-"list, return the final state or convert it with an additional function call."
-msgstr ""
-"当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模"
-"式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，"
-"返回最终状态或使用附加函数调用对其进行转换。"
+"When looking back at all the exercises we solved\n"
+"in the section about recursion, most tail recursive functions\n"
+"on lists where of the following pattern: Iterate\n"
+"over all list elements from head to tail while\n"
+"passing along some state for accumulating intermediate\n"
+"results. At the end of the list,\n"
+"return the final state or convert it with an\n"
+"additional function call.\n"
+msgstr "当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返回最终状态或使用附加函数调用对其进行转换。"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:708
@@ -2043,25 +1932,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:734
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"We call this function a *left fold*, as it iterates over the list from left "
-"to right (head to tail), collapsing (or *folding*) the list until just a "
-"single value remains.  This new value might still be a list or other "
-"container type, but the original list has been consumed from head to tail.  "
-"Note how `leftFold` is tail recursive, and therefore all functions "
-"implemented in terms of `leftFold` are tail recursive (and thus, stack "
-"safe!) as well."
-msgstr ""
-"我们将此函数称为 *left fold*，因为它从左到右（从头到尾）迭代列表，折叠（或 "
-"*folding*）列表直到只剩下一个值。这个新值可能仍然是一个列表或其他容器类型，但"
-"原来的列表已经从头到尾被消耗掉了。请注意 `leftFold` 是如何尾递归的，因此根据 "
-"`leftFold` 实现的所有函数也是尾递归的（因此，堆栈安全！）。"
+"We call this function a *left fold*, as it iterates over\n"
+"the list from left to right (head to tail), collapsing (or\n"
+"*folding*) the list until just a single value remains.\n"
+"This new value might still be a list or other container type,\n"
+"but the original list has been consumed from head to tail.\n"
+"Note how `leftFold` is tail recursive, and therefore all\n"
+"functions implemented in terms of `leftFold` are\n"
+"tail recursive (and thus, stack safe!) as well.\n"
+msgstr "我们将此函数称为 *left fold*，因为它从左到右（从头到尾）迭代列表，折叠（或 *folding*）列表直到只剩下一个值。这个新值可能仍然是一个列表或其他容器类型，但原来的列表已经从头到尾被消耗掉了。请注意 `leftFold` 是如何尾递归的，因此根据 `leftFold` 实现的所有函数也是尾递归的（因此，堆栈安全！）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:736
-#, fuzzy
-msgid "Here are a few examples:"
+#, fuzzy, no-wrap
+msgid "Here are a few examples:\n"
 msgstr "这里有一些例子："
 
 #. type: Plain text
@@ -2087,31 +1973,28 @@ msgstr "### 右折叠"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:760
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"The example functions we implemented in terms of `leftFold` had to always "
-"completely traverse the whole list, as every single element was required to "
-"compute the result. This is not always necessary, however. For instance, if "
-"you look at `findList` from the exercises, we could abort iterating over the "
-"list as soon as our search was successful. It is *not* possible to implement "
-"this more efficient behavior in terms of `leftFold`: There, the result will "
-"only be returned when our pattern match reaches the `Nil` case."
-msgstr ""
-"我们根据 `leftFold` 实现的示例函数必须始终完全遍历整个列表，因为需要每个元素"
-"来计算结果。然而，这并不总是必要的。例如，如果您查看练习中的 `findList`，我们"
-"可以在搜索成功后立即中止迭代列表。在 `leftFold` 方面，*not* 可能实现这种更有"
-"效的行为：在那里，只有当我们的模式匹配达到 `Nil` 情况时才会返回结果。"
+"The example functions we implemented in terms of `leftFold` had\n"
+"to always completely traverse the whole list, as every single\n"
+"element was required to compute the result. This is not always\n"
+"necessary, however. For instance, if you look at `findList` from\n"
+"the exercises, we could abort iterating over the list as soon\n"
+"as our search was successful. It is *not* possible to implement\n"
+"this more efficient behavior in terms of `leftFold`: There,\n"
+"the result will only be returned when our pattern match reaches\n"
+"the `Nil` case.\n"
+msgstr "我们根据 `leftFold` 实现的示例函数必须始终完全遍历整个列表，因为需要每个元素来计算结果。然而，这并不总是必要的。例如，如果您查看练习中的 `findList`，我们可以在搜索成功后立即中止迭代列表。在 `leftFold` 方面，*not* 可能实现这种更有效的行为：在那里，只有当我们的模式匹配达到 `Nil` 情况时才会返回结果。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:765
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Interestingly, there is another, non-tail recursive fold, which reflects the "
-"list structure more naturally, we can use for breaking out early from an "
-"iteration. We call this a *right fold*. Here is its implementation:"
-msgstr ""
-"有趣的是，还有另一种非尾递归折叠，它更自然地反映了列表结构，我们可以用于从迭"
-"代的早期突破。我们称之为 * 右折叠 *。这是它的实现："
+"Interestingly, there is another, non-tail recursive fold, which\n"
+"reflects the list structure more naturally, we can use for\n"
+"breaking out early from an iteration. We call this a\n"
+"*right fold*. Here is its implementation:\n"
+msgstr "有趣的是，还有另一种非尾递归折叠，它更自然地反映了列表结构，我们可以用于从迭代的早期突破。我们称之为 * 右折叠 *。这是它的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:766
@@ -2129,13 +2012,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:775
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Now, it might not immediately be obvious how this differs from `leftFold`.  "
-"In order to see this, we will have to talk about lazy evaluation first."
-msgstr ""
-"现在，它与 `leftFold` 的区别可能不是很明显。为了看到这一点，我们必须先谈谈惰"
-"性评估。"
+"Now, it might not immediately be obvious how this differs from `leftFold`.\n"
+"In order to see this, we will have to talk about lazy evaluation\n"
+"first.\n"
+msgstr "现在，它与 `leftFold` 的区别可能不是很明显。为了看到这一点，我们必须先谈谈惰性评估。"
 
 #. type: Title ####
 #: ../src/Tutorial/Folds.md:776
@@ -2145,24 +2027,20 @@ msgstr "#### Idris 中的惰性评估"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:784
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"For some computations, it is not necessary to evaluate all function "
-"arguments in order to return a result. For instance, consider boolean "
-"operator `(&&)`: If the first argument evaluates to `False`, we already know "
-"that the result is `False` without even looking at the second argument. In "
-"such a case, we don't want to unnecessarily evaluate the second argument, as "
-"this might include a lengthy computation."
-msgstr ""
-"对于某些计算，无需评估所有函数参数即可返回结果。例如，考虑布尔运算符 `(&&)`："
-"如果第一个参数的计算结果为 `False`，我们甚至无需查看第二个参数就已经知道结果"
-"是 `False`争论。在这种情况下，我们不想不必要地评估第二个参数，因为这可能包括"
-"冗长的计算。"
+"For some computations, it is not necessary to evaluate all function\n"
+"arguments in order to return a result. For instance, consider\n"
+"boolean operator `(&&)`: If the first argument evaluates to `False`,\n"
+"we already know that the result is `False` without even looking at\n"
+"the second argument. In such a case, we don't want to unnecessarily evaluate\n"
+"the second argument, as this might include a lengthy computation.\n"
+msgstr "对于某些计算，无需评估所有函数参数即可返回结果。例如，考虑布尔运算符 `(&&)`：如果第一个参数的计算结果为 `False`，我们甚至无需查看第二个参数就已经知道结果是 `False`争论。在这种情况下，我们不想不必要地评估第二个参数，因为这可能包括冗长的计算。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:786
-#, fuzzy
-msgid "Consider the following REPL session:"
+#, fuzzy, no-wrap
+msgid "Consider the following REPL session:\n"
 msgstr "考虑以下 REPL 会话："
 
 #. type: Plain text
@@ -2175,16 +2053,14 @@ msgstr "```repl Tutorial.Folds> False && (长度 [1..10000000000] > 100) False `
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:797
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"If the second argument were evaluated, this computation would most certainly "
-"blow up your computer's memory, or at least take a very long time to run to "
-"completion. However, in this case, the result `False` is printed "
-"immediately. If you look at the type of `(&&)`, you'll see the following:"
-msgstr ""
-"如果计算第二个参数，这个计算肯定会炸毁你的计算机内存，或者至少需要很长时间才"
-"能完成。但是，在这种情况下，会立即打印结果 `False`。如果查看 `(&&)` 的类型，"
-"您将看到以下内容："
+"If the second argument were evaluated, this computation would most\n"
+"certainly blow up your computer's memory, or at least take a very long\n"
+"time to run to completion. However, in this case, the result `False` is\n"
+"printed immediately. If you look at the type of `(&&)`, you'll see\n"
+"the following:\n"
+msgstr "如果计算第二个参数，这个计算肯定会炸毁你的计算机内存，或者至少需要很长时间才能完成。但是，在这种情况下，会立即打印结果 `False`。如果查看 `(&&)` 的类型，您将看到以下内容："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:798
@@ -2196,37 +2072,32 @@ msgstr "```repl Tutorial.Folds> :t (&&) Prelude.&& : Bool -> Lazy Bool -> Bool `
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:816
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"As you can see, the second argument is wrapped in a `Lazy` type constructor. "
-"This is a built-in type, and the details are handled by Idris automatically "
-"most of the time. For instance, when passing arguments to `(&&)`, we don't "
-"have to manually wrap the values in some data constructor.  A lazy function "
-"argument will only be evaluated at the moment it is *required* in the "
-"function's implementation, for instance, because it is being pattern matched "
-"on, or it is being passed as a strict argument to another function. In the "
-"implementation of `(&&)`, the pattern match happens on the first argument, "
-"so the second will only be evaluated if the first argument is `True` and the "
-"second is returned as the function's (strict) result."
-msgstr ""
-"如您所见，第二个参数包装在 `Lazy` 类型构造函数中。这是一个内置类型，大部分时"
-"间细节由 Idris 自动处理。例如，当将参数传递给 `(&&)` 时，我们不必手动将值包装"
-"在某些数据构造函数中。惰性函数参数仅在函数实现中为 *required* 时才被评估，例"
-"如，因为它正在被模式匹配，或者它作为严格参数传递给另一个函数。在 `(&&)` 的实"
-"现中，模式匹配发生在第一个参数上，因此只有当第一个参数是 `True` 并且第二个参"
-"数作为函数返回时才会计算第二个参数（严格）结果。"
+"As you can see, the second argument is wrapped in a `Lazy` type\n"
+"constructor. This is a built-in type, and the details are handled\n"
+"by Idris automatically most of the time. For instance, when passing\n"
+"arguments to `(&&)`, we don't have to manually wrap the values in\n"
+"some data constructor.\n"
+"A lazy function argument will only be evaluated at the moment it\n"
+"is *required* in the function's implementation, for instance,\n"
+"because it is being pattern matched on, or it is being passed\n"
+"as a strict argument to another function. In the implementation\n"
+"of `(&&)`, the pattern match happens\n"
+"on the first argument, so the second will only be evaluated if\n"
+"the first argument is `True` and the second is returned as the function's\n"
+"(strict) result.\n"
+msgstr "如您所见，第二个参数包装在 `Lazy` 类型构造函数中。这是一个内置类型，大部分时间细节由 Idris 自动处理。例如，当将参数传递给 `(&&)` 时，我们不必手动将值包装在某些数据构造函数中。惰性函数参数仅在函数实现中为 *required* 时才被评估，例如，因为它正在被模式匹配，或者它作为严格参数传递给另一个函数。在 `(&&)` 的实现中，模式匹配发生在第一个参数上，因此只有当第一个参数是 `True` 并且第二个参数作为函数返回时才会计算第二个参数（严格）结果。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:821
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"There are two utility functions for working with lazy evaluation: Function "
-"`delay` wraps a value in the `Lazy` data type. Note, that the argument of "
-"`lazy` is strict, so the following might take several seconds to print its "
-"result:"
-msgstr ""
-"有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` 数据类型中。"
-"请注意，`lazy` 的参数是严格的，因此以下可能需要几秒钟才能打印其结果："
+"There are two utility functions for working with lazy evaluation:\n"
+"Function `delay` wraps a value in the `Lazy` data type. Note, that\n"
+"the argument of `lazy` is strict, so the following might take\n"
+"several seconds to print its result:\n"
+msgstr "有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` 数据类型中。请注意，`lazy` 的参数是严格的，因此以下可能需要几秒钟才能打印其结果："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:822
@@ -2238,10 +2109,10 @@ msgstr "```repl Tutorial.Folds> False && (延迟$长度 [1..10000] > 100) False 
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:829
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In addition, there is function `force`, which forces evaluation of a `Lazy` "
-"value."
+"In addition, there is function `force`, which forces evaluation\n"
+"of a `Lazy` value.\n"
 msgstr "此外，还有一个函数 `force`，它强制评估 `Lazy` 值。"
 
 #. type: Title ####
@@ -2252,17 +2123,15 @@ msgstr "#### 惰性求值和正确折叠"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:838
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"We will now learn how to make use of `rightFold` and lazy evaluation to "
-"implement folds, which can break out from iteration early.  Note, that in "
-"the implementation of `rightFold` the result of folding over the remainder "
-"of the list is passed as an argument to the accumulator (instead of the "
-"result of invoking the accumulator being used in the recursive call):"
-msgstr ""
-"我们现在将学习如何利用 `rightFold` 和惰性求值来实现折叠，它可以在早期迭代中突"
-"破。请注意，在 `rightFold` 的实现中，折叠列表剩余部分的结果作为参数传递给累加"
-"器（而不是在递归调用中调用累加器的结果）："
+"We will now learn how to make use of `rightFold` and lazy evaluation\n"
+"to implement folds, which can break out from iteration early.\n"
+"Note, that in the implementation of `rightFold` the result of\n"
+"folding over the remainder of the list is passed as an argument\n"
+"to the accumulator (instead of the result of invoking the accumulator\n"
+"being used in the recursive call):\n"
+msgstr "我们现在将学习如何利用 `rightFold` 和惰性求值来实现折叠，它可以在早期迭代中突破。请注意，在 `rightFold` 的实现中，折叠列表剩余部分的结果作为参数传递给累加器（而不是在递归调用中调用累加器的结果）："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:839
@@ -2272,14 +2141,12 @@ msgstr "```repl rightFold acc st (x :: xs) = acc x (rightFold acc st xs) ```"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:846
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"If the second argument of `acc` were lazily evaluated, it would be possible "
-"to abort the computation of `acc`'s result without having to iterate till "
-"the end of the list:"
-msgstr ""
-"如果 `acc` 的第二个参数被延迟评估，则可以中止 `acc` 的结果的计算，而不必迭代"
-"到列表末尾："
+"If the second argument of `acc` were lazily evaluated, it would be possible\n"
+"to abort the computation of `acc`'s result without having to iterate\n"
+"till the end of the list:\n"
+msgstr "如果 `acc` 的第二个参数被延迟评估，则可以中止 `acc` 的结果的计算，而不必迭代到列表末尾："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:847
@@ -2299,42 +2166,33 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:858
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note, how Idris takes care of the bookkeeping of laziness most of the time. "
-"(It doesn't handle the curried invocation of `rightFold` correctly, though, "
-"so we either must pass on the list argument of `foldHead` explicitly, or "
-"compose the curried function with `force` to get the types right.)"
-msgstr ""
-"请注意，Idris 在大多数情况下是如何处理懒惰的。 （但是，它不能正确处理 "
-"`rightFold` 的柯里化调用，因此我们要么必须显式传递 `foldHead` 的列表参数，要"
-"么使用 `force 组合柯里化函数` 获得正确的类型。）"
+"Note, how Idris takes care of the bookkeeping of laziness most of the time. (It\n"
+"doesn't handle the curried invocation of `rightFold` correctly, though, so we\n"
+"either must pass on the list argument of `foldHead` explicitly, or compose\n"
+"the curried function with `force` to get the types right.)\n"
+msgstr "请注意，Idris 在大多数情况下是如何处理懒惰的。 （但是，它不能正确处理 `rightFold` 的柯里化调用，因此我们要么必须显式传递 `foldHead` 的列表参数，要么使用 `force 组合柯里化函数` 获得正确的类型。）"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:865
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In order to verify that this works correctly, we need a debugging utility "
-"called `trace` from module `Debug.Trace`. This \"function\" allows us to "
-"print debugging messages to the console at certain points in our pure code. "
-"Please note, that this is for debugging purposes only and should never be "
-"left lying around in production code, as, strictly speaking, printing stuff "
-"to the console breaks referential transparency."
-msgstr ""
-"为了验证它是否正常工作，我们需要一个来自模块 `Debug.Trace` 的名为 `trace` 的"
-"调试实用程序。这个“函数”允许我们在纯代码中的某些点将调试消息打印到控制台。请"
-"注意，这仅用于调试目的，绝不应留在生产代码中，因为严格来说，将内容打印到控制"
-"台会破坏参考透明度。"
+"In order to verify that this works correctly, we need a debugging utility\n"
+"called `trace` from module `Debug.Trace`. This \"function\" allows us to\n"
+"print debugging messages to the console at certain points in our pure\n"
+"code. Please note, that this is for debugging purposes only and should\n"
+"never be left lying around in production code, as, strictly speaking,\n"
+"printing stuff to the console breaks referential transparency.\n"
+msgstr "为了验证它是否正常工作，我们需要一个来自模块 `Debug.Trace` 的名为 `trace` 的调试实用程序。这个“函数”允许我们在纯代码中的某些点将调试消息打印到控制台。请注意，这仅用于调试目的，绝不应留在生产代码中，因为严格来说，将内容打印到控制台会破坏参考透明度。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:868
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Here is an adjusted version of `foldHead`, which prints \"folded\" to "
-"standard output every time utility function `first` is being invoked:"
-msgstr ""
-"这是 `foldHead` 的调整版本，每次调用实用函数 `first` 时都会将“折叠”打印到标准"
-"输出："
+"Here is an adjusted version of `foldHead`, which prints \"folded\" to\n"
+"standard output every time utility function `first` is being invoked:\n"
+msgstr "这是 `foldHead` 的调整版本，每次调用实用函数 `first` 时都会将“折叠”打印到标准输出："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:869
@@ -2354,15 +2212,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:879
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In order to test this at the REPL, we need to know that `trace` uses "
-"`unsafePerformIO` internally and therefore will not reduce during "
-"evaluation. We have to resort to the `:exec` command to see this in action "
-"at the REPL:"
-msgstr ""
-"为了在 REPL 上进行测试，我们需要知道 `trace` 在内部使用 `unsafePerformIO`，因"
-"此在评估期间不会减少。我们必须求助于 `:exec` 命令才能在 REPL 中看到这一点："
+"In order to test this at the REPL, we need to know that `trace` uses `unsafePerformIO`\n"
+"internally and therefore will not reduce during evaluation. We have to\n"
+"resort to the `:exec` command to see this in action at the REPL:\n"
+msgstr "为了在 REPL 上进行测试，我们需要知道 `trace` 在内部使用 `unsafePerformIO`，因此在评估期间不会减少。我们必须求助于 `:exec` 命令才能在 REPL 中看到这一点："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:880
@@ -2375,19 +2230,18 @@ msgstr "```repl Tutorial.Folds> :exec printLn $ foldHeadTraced [1..10] folded Ju
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:888
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"As you can see, although the list holds ten elements, `first` is only called "
-"once resulting in a considerable increase of efficiency."
-msgstr ""
-"如您所见，虽然列表包含十个元素，但 `first` 仅被调用一次，从而大大提高了效率。"
+"As you can see, although the list holds ten elements, `first` is only called\n"
+"once resulting in a considerable increase of efficiency.\n"
+msgstr "如您所见，虽然列表包含十个元素，但 `first` 仅被调用一次，从而大大提高了效率。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:891
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Let's see what happens, if we change the implementation of `first` to use "
-"strict evaluation:"
+"Let's see what happens, if we change the implementation of `first` to\n"
+"use strict evaluation:\n"
 msgstr "让我们看看会发生什么，如果我们将 `first` 的实现更改为使用严格评估："
 
 #. type: Plain text
@@ -2408,16 +2262,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:903
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Although we don't use the second argument in the implementation of `first`, "
-"it is still being evaluated before evaluating the body of `first`, because "
-"Idris - unlike Haskell! - defaults to use strict semantics. Here's how this "
-"behaves at the REPL:"
-msgstr ""
-"虽然我们在 `first` 的实现中没有使用第二个参数，但它仍然在评估 `first` 的主体"
-"之前被评估，因为 Idris - 不像 Haskell！ - 默认使用严格的语义。以下是它在 "
-"REPL 中的行为方式："
+"Although we don't use the second argument in the implementation of `first`,\n"
+"it is still being evaluated before evaluating the body of `first`, because\n"
+"Idris - unlike Haskell! - defaults to use strict semantics. Here's how this\n"
+"behaves at the REPL:\n"
+msgstr "虽然我们在 `first` 的实现中没有使用第二个参数，但它仍然在评估 `first` 的主体之前被评估，因为 Idris - 不像 Haskell！ - 默认使用严格的语义。以下是它在 REPL 中的行为方式："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:904
@@ -2439,19 +2290,15 @@ msgstr "```repl Tutorial.Folds> :exec printLn $ foldHeadTracedStrict [1..10] 折
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:925
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"While this technique can sometimes lead to very elegant code, always "
-"remember that `rightFold` is not stack safe in the general case. So, unless "
-"your accumulator is not guaranteed to return a result after not too many "
-"iterations, consider implementing your function tail recursively with an "
-"explicit pattern match. Your code will be slightly more verbose, but with "
-"the guaranteed benefit of stack safety."
-msgstr ""
-"虽然这种技术有时会产生非常优雅的代码，但请始终记住 `rightFold` 在一般情况下不"
-"是堆栈安全的。因此，除非您的累加器不能保证在没有太多迭代后返回结果，否则请考"
-"虑使用显式模式匹配递归地实现您的函数 tail。您的代码会稍微冗长一些，但可以保证"
-"堆栈安全。"
+"While this technique can sometimes lead to very elegant code, always\n"
+"remember that `rightFold` is not stack safe in the general case. So,\n"
+"unless your accumulator is not guaranteed to return a result after\n"
+"not too many iterations, consider implementing your function\n"
+"tail recursively with an explicit pattern match. Your code will be\n"
+"slightly more verbose, but with the guaranteed benefit of stack safety.\n"
+msgstr "虽然这种技术有时会产生非常优雅的代码，但请始终记住 `rightFold` 在一般情况下不是堆栈安全的。因此，除非您的累加器不能保证在没有太多迭代后返回结果，否则请考虑使用显式模式匹配递归地实现您的函数 tail。您的代码会稍微冗长一些，但可以保证堆栈安全。"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:926
@@ -2461,19 +2308,15 @@ msgstr "### 折叠和幺半群"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:934
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Left and right folds share a common pattern: In both cases, we start with an "
-"initial *state* value and use an accumulator function for combining the "
-"current state with the current element. This principle of *combining values* "
-"after starting from an *initial value* lies at the heart of an interface "
-"we've already learned about: `Monoid`.  It therefore makes sense to fold a "
-"list over a monoid:"
-msgstr ""
-"左右折叠有一个共同的模式：在这两种情况下，我们从初始 *state* 值开始，并使用累"
-"加器函数将当前状态与当前元素相结合。从 * 初始值 * 开始后 * 组合值 * 的原理是"
-"我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺半群上是有意义"
-"的："
+"Left and right folds share a common pattern: In both cases, we start\n"
+"with an initial *state* value and use an accumulator function for\n"
+"combining the current state with the current element. This principle\n"
+"of *combining values* after starting from an *initial value* lies\n"
+"at the heart of an interface we've already learned about: `Monoid`.\n"
+"It therefore makes sense to fold a list over a monoid:\n"
+msgstr "左右折叠有一个共同的模式：在这两种情况下，我们从初始 *state* 值开始，并使用累加器函数将当前状态与当前元素相结合。从 * 初始值 * 开始后 * 组合值 * 的原理是我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺半群上是有意义的："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:935
@@ -2485,29 +2328,24 @@ msgstr "```idris foldMapList : Monoid m => (a -> m) -> List a -> m foldMapList f
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:946
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"Note how, with `foldMapList`, we no longer need to pass an accumulator "
-"function. All we need is a conversion from the element type to a type with "
-"an implementation of `Monoid`. As we have already seen in the chapter about "
-"[interfaces](Interfaces.md), there are *many* monoids in functional "
-"programming, and therefore, `foldMapList` is an incredibly useful function."
-msgstr ""
-"请注意，使用 `foldMapList`，我们不再需要传递累加器函数。我们所需要的只是将元"
-"素类型转换为具有 `Monoid` 实现的类型。正如我们在关于 [interfaces](Interfaces."
-"md) 的章节中已经看到的，在函数式编程中有 * 很多 * 幺半群，因此，"
-"`foldMapList` 是一个非常有用的函数。"
+"Note how, with `foldMapList`, we no longer need to pass an accumulator\n"
+"function. All we need is a conversion from the element type to\n"
+"a type with an implementation of `Monoid`. As we have already seen\n"
+"in the chapter about [interfaces](Interfaces.md), there are *many*\n"
+"monoids in functional programming, and therefore, `foldMapList` is\n"
+"an incredibly useful function.\n"
+msgstr "请注意，使用 `foldMapList`，我们不再需要传递累加器函数。我们所需要的只是将元素类型转换为具有 `Monoid` 实现的类型。正如我们在关于 [interfaces](Interfaces.md) 的章节中已经看到的，在函数式编程中有 * 很多 * 幺半群，因此，`foldMapList` 是一个非常有用的函数。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:950
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"We could make this even shorter: If the elements in our list already are of "
-"a type with a monoid implementation, we don't even need a conversion "
-"function to collapse the list:"
-msgstr ""
-"我们可以让这个更短：如果我们列表中的元素已经是具有 monoid 实现的类型，我们甚"
-"至不需要转换函数来折叠列表："
+"We could make this even shorter: If the elements in our list already\n"
+"are of a type with a monoid implementation, we don't even need a\n"
+"conversion function to collapse the list:\n"
+msgstr "我们可以让这个更短：如果我们列表中的元素已经是具有 monoid 实现的类型，我们甚至不需要转换函数来折叠列表："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:951
@@ -2525,28 +2363,22 @@ msgstr "### 停止对所有内容使用 `List`"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:971
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"And here we are, finally, looking at a large pile of utility functions all "
-"dealing in some way with the concept of collapsing (or folding)  a list of "
-"values into a single result. But all of these folding functions are just as "
-"useful when working with vectors, with non-empty lists, with rose trees, "
-"even with single-value containers like `Maybe`, `Either e`, or `Identity`. "
-"Heck, for the sake of completeness, they are even useful when working with "
-"zero-value containers like `Control.Applicative.Const e`! And since there "
-"are so many of these functions, we'd better look out for an essential set of "
-"them in terms of which we can implement all the others, and wrap up the "
-"whole bunch in an interface. This interface is called `Foldable`, and is "
-"available from the `Prelude`. When you look at its definition in the REPL (`:"
-"doc Foldable`), you'll see that it consists of six essential functions:"
-msgstr ""
-"最后，我们在这里查看一大堆实用函数，它们都以某种方式处理将值列表折叠（或折"
-"叠）为单个结果的概念。但是所有这些折叠函数在处理向量、非空列表、玫瑰树，甚至"
-"是单值容器（如 `Maybe`、`e` 或`身份`。哎呀，为了完整起见，它们甚至在使用诸如 "
-"`Control.Applicative.Const e` 之类的零值容器时很有用！而且由于这些功能有很"
-"多，我们最好找出其中的一组基本功能，我们可以根据这些功能实现所有其他功能，并"
-"将所有功能封装在一个接口中。此接口称为 `Foldable`，可从 `Prelude` 获得。当你"
-"在 REPL (`:doc Foldable`) 中查看它的定义时，你会发现它包含六个基本函数："
+"And here we are, finally, looking at a large pile of utility functions\n"
+"all dealing in some way with the concept of collapsing (or folding)\n"
+"a list of values into a single result. But all of these folding functions\n"
+"are just as useful when working with vectors, with non-empty lists, with\n"
+"rose trees, even with single-value containers like `Maybe`, `Either e`,\n"
+"or `Identity`. Heck, for the sake of completeness, they are even useful\n"
+"when working with zero-value containers like `Control.Applicative.Const e`!\n"
+"And since there are so many of these functions, we'd better look out for\n"
+"an essential set of them in terms of which we can implement all\n"
+"the others, and wrap up the whole bunch in an interface. This interface\n"
+"is called `Foldable`, and is available from the `Prelude`. When you\n"
+"look at its definition in the REPL (`:doc Foldable`), you'll see that\n"
+"it consists of six essential functions:\n"
+msgstr "最后，我们在这里查看一大堆实用函数，它们都以某种方式处理将值列表折叠（或折叠）为单个结果的概念。但是所有这些折叠函数在处理向量、非空列表、玫瑰树，甚至是单值容器（如 `Maybe`、`e` 或`身份`。哎呀，为了完整起见，它们甚至在使用诸如 `Control.Applicative.Const e` 之类的零值容器时很有用！而且由于这些功能有很多，我们最好找出其中的一组基本功能，我们可以根据这些功能实现所有其他功能，并将所有功能封装在一个接口中。此接口称为 `Foldable`，可从 `Prelude` 获得。当你在 REPL (`:doc Foldable`) 中查看它的定义时，你会发现它包含六个基本函数："
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Folds.md:978
@@ -2586,33 +2418,26 @@ msgstr "`foldMap`，用于折叠一个幺半群"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:987
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"For a minimal implementation of `Foldable`, it is sufficient to only "
-"implement `foldr`. However, consider implementing all six functions "
-"manually, because folds over container types are often performance critical "
-"operations, and each of them should be optimized accordingly.  For instance, "
-"implementing `toList` in terms of `foldr` for `List` just makes no sense, as "
-"this is a non-tail recursive function running in linear time complexity, "
-"while a hand-written implementation can just return its argument without any "
-"modifications."
-msgstr ""
-"对于 `Foldable` 的最小实现，仅实现 `foldr` 就足够了。但是，请考虑手动实现所有"
-"六个功能，因为对容器类型的折叠通常是性能关键操作，并且应相应地优化它们中的每"
-"一个。例如，根据 `List` 的 `foldr` 来实现 `toList` 是没有意义的，因为这是一个"
-"以线性时间复杂度运行的非尾递归函数，而一个手写的实现可以只返回它的参数而不做"
-"任何修改。"
+"For a minimal implementation of `Foldable`, it is sufficient to only\n"
+"implement `foldr`. However, consider implementing all six functions\n"
+"manually, because folds over container types are often performance\n"
+"critical operations, and each of them should be optimized accordingly.\n"
+"For instance, implementing `toList` in terms of `foldr` for `List`\n"
+"just makes no sense, as this is a non-tail recursive function\n"
+"running in linear time complexity, while a hand-written implementation\n"
+"can just return its argument without any modifications.\n"
+msgstr "对于 `Foldable` 的最小实现，仅实现 `foldr` 就足够了。但是，请考虑手动实现所有六个功能，因为对容器类型的折叠通常是性能关键操作，并且应相应地优化它们中的每一个。例如，根据 `List` 的 `foldr` 来实现 `toList` 是没有意义的，因为这是一个以线性时间复杂度运行的非尾递归函数，而一个手写的实现可以只返回它的参数而不做任何修改。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:993
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In these exercises, you are going to implement `Foldable` for different data "
-"types. Make sure to try and manually implement all six functions of the "
-"interface."
-msgstr ""
-"在这些练习中，您将为不同的数据类型实现 `Foldable`。确保尝试手动实现界面的所有"
-"六个功能。"
+"In these exercises, you are going to implement `Foldable`\n"
+"for different data types. Make sure to try and manually\n"
+"implement all six functions of the interface.\n"
+msgstr "在这些练习中，您将为不同的数据类型实现 `Foldable`。确保尝试手动实现界面的所有六个功能。"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Folds.md:995
@@ -2736,21 +2561,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1058
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"We learned a lot about recursion, totality checking, and folds in this "
-"chapter, all of which are important concepts in pure functional programming "
-"in general. Wrapping one's head around recursion takes time and experience. "
-"Therefore - as usual - try to solve as many exercises as you can."
-msgstr ""
-"我们在本章中学到了很多关于递归、整体性检查和折叠的知识，所有这些都是纯函数式"
-"编程中的重要概念。围绕递归进行思考需要时间和经验。因此 - 像往常一样 - 尝试尽"
-"可能多地解决练习。"
+"We learned a lot about recursion, totality checking, and folds\n"
+"in this chapter, all of which are important concepts in pure\n"
+"functional programming in general. Wrapping one's head\n"
+"around recursion takes time and experience. Therefore - as\n"
+"usual - try to solve as many exercises as you can.\n"
+msgstr "我们在本章中学到了很多关于递归、整体性检查和折叠的知识，所有这些都是纯函数式编程中的重要概念。围绕递归进行思考需要时间和经验。因此 - 像往常一样 - 尝试尽可能多地解决练习。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1062
-#, fuzzy
+#, fuzzy, no-wrap
 msgid ""
-"In the next chapter, we are taking the concept of iterating over container "
-"types one step further and look at effectful data traversals."
+"In the next chapter, we are taking the concept of iterating\n"
+"over container types one step further and look at\n"
+"effectful data traversals.\n"
 msgstr "在下一章中，我们将迭代容器类型的概念更进一步，并研究有效的数据遍历。"

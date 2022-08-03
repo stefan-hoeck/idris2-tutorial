@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 13:28+0800\n"
 "PO-Revision-Date: 2022-08-03 05:18+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -26,21 +26,25 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:8
+#, no-wrap
 msgid ""
-"In the [previous chapter](Functions1.md), we learned how to write our own "
-"functions and combine them to create more complex functionality. Of equal "
-"importance is the ability to define our own data types and use them as "
-"arguments and results in functions."
+"In the [previous chapter](Functions1.md),\n"
+"we learned how to write our own functions and combine\n"
+"them to create more complex functionality. Of equal importance\n"
+"is the ability to define our own data types and use them\n"
+"as arguments and results in functions.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:15
+#, no-wrap
 msgid ""
-"This is a lengthy chapter, densely packed with information.  If you are new "
-"to Idris and functional programming, make sure to follow along slowly, "
-"experimenting with the examples, and possibly coming up with your own. Make "
-"sure to try and solve *all* exercises. The solutions to the exercises can be "
-"found [here](../Solutions/DataTypes.idr)."
+"This is a lengthy chapter, densely packed with information.\n"
+"If you are new to Idris and functional programming, make\n"
+"sure to follow along slowly, experimenting with the examples,\n"
+"and possibly coming up with your own. Make sure to try\n"
+"and solve *all* exercises. The solutions to the exercises\n"
+"can be found [here](../Solutions/DataTypes.idr).\n"
 msgstr ""
 
 #. type: Code fence info string
@@ -331,7 +335,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:24
-msgid "Let's start with a data type for the days of the week as an example."
+#, no-wrap
+msgid ""
+"Let's start with a data type for the days of the week as an\n"
+"example.\n"
 msgstr ""
 
 #. type: Plain text
@@ -349,10 +356,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:38
+#, no-wrap
 msgid ""
-"The declaration above defines a new *type* (`Weekday`) and several new "
-"*values* (`Monday` to `Sunday`) of the given type. Go ahead, and verify this "
-"at the REPL:"
+"The declaration above defines a new *type* (`Weekday`) and\n"
+"several new *values* (`Monday` to `Sunday`) of the given\n"
+"type. Go ahead, and verify this at the REPL:\n"
 msgstr ""
 
 #. type: Code fence info string
@@ -442,16 +450,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:48
+#, no-wrap
 msgid ""
-"So, `Monday` is of type `Weekday`, while `Weekday` itself is of type `Type`."
+"So, `Monday` is of type `Weekday`, while `Weekday` itself is of\n"
+"type `Type`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:52
+#, no-wrap
 msgid ""
-"It is important to note, that a value of type `Weekday` can only ever be one "
-"of the values listed above. It is a *type error* to use anything else where "
-"a `Weekday` is expected."
+"It is important to note, that a value of type `Weekday` can only\n"
+"ever be one of the values listed above. It is a *type error* to\n"
+"use anything else where a `Weekday` is expected.\n"
 msgstr ""
 
 #. type: Title ###
@@ -462,11 +473,12 @@ msgstr "#### 隐式模式匹配"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:59
+#, no-wrap
 msgid ""
-"In order to use our new data type as a function argument, we need to learn "
-"about an important concept in functional programming languages: Pattern "
-"matching. Let's implement a function, which calculates the successor of a "
-"weekday:"
+"In order to use our new data type as a function argument, we\n"
+"need to learn about an important concept in functional programming\n"
+"languages: Pattern matching. Let's implement a function, which calculates\n"
+"the successor of a weekday:\n"
 msgstr ""
 
 #. type: Plain text
@@ -486,47 +498,56 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:81
+#, no-wrap
 msgid ""
-"In order to inspect a `Weekday` argument, we match on the different possible "
-"values and return a result for each of them.  This is a very powerful "
-"concept, as it allows us to match on and extract values from deeply nested "
-"data structures.  The different cases in a pattern match are inspected from "
-"top to bottom, each being compared against the current function argument. "
-"Once a matching pattern is found, the computation on the right hand side of "
-"this pattern is evaluated. Later patterns are then ignored."
+"In order to inspect a `Weekday` argument, we match on the\n"
+"different possible values and return a result for each of them.\n"
+"This is a very powerful concept, as it allows us to match\n"
+"on and extract values from deeply nested data structures.\n"
+"The different cases in a pattern match are inspected from\n"
+"top to bottom, each being compared against the current\n"
+"function argument. Once a matching pattern is found, the\n"
+"computation on the right hand side of this pattern is\n"
+"evaluated. Later patterns are then ignored.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:89
+#, no-wrap
 msgid ""
-"For instance, if we invoke `next` with argument `Thursday`, the first three "
-"patterns (`Monaday`, `Tuesday`, and `Wednesday`)  will be checked against "
-"the argument, but they do not match.  The fourth pattern is a match, and "
-"result `Friday` is being returned. Later patterns are then ignored, even if "
-"they would also match the input (this becomes relevant with catch-all "
-"patterns, which we will talk about in a moment)."
+"For instance, if we invoke `next` with argument `Thursday`,\n"
+"the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)\n"
+"will be checked against the argument, but they do not match.\n"
+"The fourth pattern is a match, and result `Friday` is being\n"
+"returned. Later patterns are then ignored, even if they would\n"
+"also match the input (this becomes relevant with catch-all patterns,\n"
+"which we will talk about in a moment).\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:98
+#, no-wrap
 msgid ""
-"The function above is provably total. Idris knows about the possible values "
-"of type `Weekday`, and can therefore figure out that our pattern match "
-"covers all possible cases. We can therefore annotate the function with the "
-"`total` keyword, and Idris will answer with a type error, if it can't verify "
-"the function's totality. (Go ahead, and try removing one of the clauses in "
-"`next` to get an idea about how an error message from the coverage checker "
-"looks like.)"
+"The function above is provably total. Idris knows about the\n"
+"possible values of type `Weekday`, and can therefore figure\n"
+"out that our pattern match covers all possible cases. We can\n"
+"therefore annotate the function with the `total` keyword, and\n"
+"Idris will answer with a type error, if it can't verify the\n"
+"function's totality. (Go ahead, and try removing one of\n"
+"the clauses in `next` to get an idea about how an error\n"
+"message from the coverage checker looks like.)\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:105
+#, no-wrap
 msgid ""
-"Please remember, that these are very strong guarantees from the type "
-"checker: Given enough resources, a provably total function will *always* "
-"return a result of the given type in a finite amount of time (*resources* "
-"here meaning computational resources like memory or, in case of recursive "
-"functions, stack space)."
+"Please remember, that these are very strong guarantees from\n"
+"the type checker: Given enough resources,\n"
+"a provably total function will *always* return\n"
+"a result of the given type in a finite amount of time\n"
+"(*resources* here meaning computational resources like\n"
+"memory or, in case of recursive functions, stack space).\n"
 msgstr ""
 
 #. type: Title ###
@@ -537,9 +558,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:111
+#, no-wrap
 msgid ""
-"Sometimes, it is convenient to only match on a subset of the possible values "
-"and collect the remaining possibilities in a catch-all clause:"
+"Sometimes, it is convenient to only match on a subset\n"
+"of the possible values and collect the remaining possibilities\n"
+"in a catch-all clause:\n"
 msgstr ""
 
 #. type: Plain text
@@ -555,19 +578,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:125
+#, no-wrap
 msgid ""
-"The final line with the catch-all pattern is only invoked, if the argument "
-"is not equal to `Saturday` or `Sunday`.  Remember: Patterns in a pattern "
-"match are matched against the input from top to bottom and the first match "
-"decides, which path on the right hand side will be taken."
+"The final line with the catch-all pattern is only invoked,\n"
+"if the argument is not equal to `Saturday` or `Sunday`.\n"
+"Remember: Patterns in a pattern match are matched against\n"
+"the input from top to bottom and the first match decides,\n"
+"which path on the right hand side will be taken.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:129
+#, no-wrap
 msgid ""
-"We can use catch-all patterns to implement an equality test for `Weekday` "
-"(we will not yet use the `==` operator for this; this will have to wait "
-"until we learn about *interfaces*):"
+"We can use catch-all patterns to implement an equality test for\n"
+"`Weekday` (we will not yet use the `==` operator for this; this will\n"
+"have to wait until we learn about *interfaces*):\n"
 msgstr ""
 
 #. type: Plain text
@@ -594,11 +620,14 @@ msgstr "## *Prelude*中的接口"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:151
+#, no-wrap
 msgid ""
-"Data types like `Weekday` consisting of a finite set of values are sometimes "
-"called *enumerations*. The Idris *Prelude* defines some common enumerations "
-"for us, for instance `Bool` and `Ordering`. As with `Weekday`, we can use "
-"pattern matching when implementing functions on these types:"
+"Data types like `Weekday` consisting of a finite set\n"
+"of values are sometimes called *enumerations*. The Idris\n"
+"*Prelude* defines some common enumerations for us, for\n"
+"instance `Bool` and `Ordering`. As with `Weekday`,\n"
+"we can use pattern matching when implementing functions\n"
+"on these types:\n"
 msgstr ""
 
 #. type: Plain text
@@ -614,9 +643,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:162
+#, no-wrap
 msgid ""
-"The `Ordering` data type describes an ordering relation between two values. "
-"For instance:"
+"The `Ordering` data type describes an ordering relation\n"
+"between two values. For instance:\n"
 msgstr ""
 
 #. type: Plain text
@@ -633,10 +663,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:176
+#, no-wrap
 msgid ""
-"Here, `LT` means that the first argument is *less than* the second, `EQ` "
-"means that the two arguments are *equal* and `GT` means, that the first "
-"argument is *greater than* the second."
+"Here, `LT` means that the first argument is *less than*\n"
+"the second, `EQ` means that the two arguments are *equal*\n"
+"and `GT` means, that the first argument is *greater than*\n"
+"the second.\n"
 msgstr ""
 
 #. type: Title ###
@@ -647,10 +679,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:183
+#, no-wrap
 msgid ""
-"Sometimes we need to perform a computation with one of the arguments and "
-"want to pattern match on the result of this computation. We can use *case "
-"expressions* in this situation:"
+"Sometimes we need to perform a computation with one\n"
+"of the arguments and want to pattern match on the result\n"
+"of this computation. We can use *case expressions* in this\n"
+"situation:\n"
 msgstr ""
 
 #. type: Plain text
@@ -668,28 +702,33 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:202
+#, no-wrap
 msgid ""
-"The first line of the case expression (`case compare x y of`)  will invoke "
-"function `compare` with arguments `x` and `y`. On the following (indented) "
-"lines, we pattern match on the result of this computation. This is of type "
-"`Ordering`, so we expect one of the three constructors `LT`, `EQ`, or `GT` "
-"as the result.  On the first line, we handle the `LT` case explicitly, while "
-"the other two cases are handled with an underscore as a catch-all pattern."
+"The first line of the case expression (`case compare x y of`)\n"
+"will invoke function `compare` with arguments `x` and `y`. On\n"
+"the following (indented) lines, we pattern match on the result\n"
+"of this computation. This is of type `Ordering`, so we expect\n"
+"one of the three constructors `LT`, `EQ`, or `GT` as the result.\n"
+"On the first line, we handle the `LT` case explicitly, while\n"
+"the other two cases are handled with an underscore as a catch-all\n"
+"pattern.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:206
+#, no-wrap
 msgid ""
-"Note, that indentation matters here: The case block as a whole must be "
-"indented (if it starts on a new line), and the different cases must also be "
-"indented by the same amount of whitespace."
+"Note, that indentation matters here: The case block as a whole\n"
+"must be indented (if it starts on a new line), and the different\n"
+"cases must also be indented by the same amount of whitespace.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:209
+#, no-wrap
 msgid ""
-"Function `compare` is overloaded for many data types. We will learn how this "
-"works when we talk about interfaces."
+"Function `compare` is overloaded for many data types. We will\n"
+"learn how this works when we talk about interfaces.\n"
 msgstr ""
 
 #. type: Title ####
@@ -700,9 +739,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:214
+#, no-wrap
 msgid ""
-"When working with `Bool`, there is an alternative to pattern matching common "
-"to most programming languages:"
+"When working with `Bool`, there is an alternative to pattern matching\n"
+"common to most programming languages:\n"
 msgstr ""
 
 #. type: Plain text
@@ -716,11 +756,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:225
+#, no-wrap
 msgid ""
-"Note, that the `if then else` expression always returns a value and "
-"therefore, the `else` branch cannot be dropped. This is different from the "
-"behavior in typical imperative languages, where `if` is a statement with "
-"possible side effects."
+"Note, that the `if then else` expression always returns a value\n"
+"and therefore, the `else` branch cannot be dropped. This is different\n"
+"from the behavior in typical imperative languages, where `if` is\n"
+"a statement with possible side effects.\n"
 msgstr ""
 
 #. type: Title ###
@@ -731,12 +772,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:233
+#, no-wrap
 msgid ""
-"While we are free to use lower-case and upper-case identifiers for function "
-"names, type- and data constructors must be given upper-case identifiers in "
-"order not to confuse Idris (operators are also fine).  For instance, the "
-"following data definition is not valid, and Idris will complain that it "
-"expected upper-case identifiers:"
+"While we are free to use lower-case and upper-case identifiers for\n"
+"function names, type- and data constructors must be given upper-case\n"
+"identifiers in order not to confuse Idris (operators are also fine).\n"
+"For instance, the following data definition is not valid, and Idris\n"
+"will complain that it expected upper-case identifiers:\n"
 msgstr ""
 
 #. type: Plain text
@@ -747,9 +789,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:240
+#, no-wrap
 msgid ""
-"The same goes for similar data definitions like records and sum types (both "
-"will be explained below):"
+"The same goes for similar data definitions like records and sum types\n"
+"(both will be explained below):\n"
 msgstr ""
 
 #. type: Plain text
@@ -767,11 +810,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:252
+#, no-wrap
 msgid ""
-"On the other hand, we typically use lower-case identifiers for function "
-"names, unless we plan to use them mostly during type checking (more on this "
-"later). This is not enforced by Idris, however, so if you are working in a "
-"domain where upper-case identifiers are preferable, feel free to use those:"
+"On the other hand, we typically use lower-case identifiers for function\n"
+"names, unless we plan to use them mostly during type checking (more on this\n"
+"later). This is not enforced by Idris, however, so if you are working in\n"
+"a domain where upper-case identifiers are preferable, feel free to use\n"
+"those:\n"
 msgstr ""
 
 #. type: Plain text
@@ -898,12 +943,14 @@ msgstr "# 西格玛类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:326
+#, no-wrap
 msgid ""
-"Assume we'd like to write some web form, where users of our web application "
-"can decide how they like to be addressed.  We give them a choice between two "
-"common predefined forms of address (Mr and Mrs), but also allow them to "
-"decide on a customized form. The possible choices can be encapsulated in an "
-"Idris data type:"
+"Assume we'd like to write some web form, where users of our\n"
+"web application can decide how they like to be addressed.\n"
+"We give them a choice between two common predefined\n"
+"forms of address (Mr and Mrs), but also allow them to\n"
+"decide on a customized form. The possible\n"
+"choices can be encapsulated in an Idris data type:\n"
 msgstr ""
 
 #. type: Plain text
@@ -914,11 +961,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:336
+#, no-wrap
 msgid ""
-"This looks almost like an enumeration type, with the exception that there is "
-"a new thing, called a *data constructor*, which accepts a `String` argument "
-"(actually, the values in an enumeration are also called (nullary) data "
-"constructors).  If we inspect the types at the REPL, we learn the following:"
+"This looks almost like an enumeration type, with the exception\n"
+"that there is a new thing, called a *data constructor*,\n"
+"which accepts a `String` argument (actually, the values\n"
+"in an enumeration are also called (nullary) data constructors).\n"
+"If we inspect the types at the REPL, we learn the following:\n"
 msgstr ""
 
 #. type: Plain text
@@ -933,9 +982,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:347
+#, no-wrap
 msgid ""
-"So, `Other` is a *function* from `String` to `Title`. This means, that we "
-"can pass `Other` a `String` argument and get a `Title` as the result:"
+"So, `Other` is a *function* from `String` to `Title`. This\n"
+"means, that we can pass `Other` a `String` argument and get\n"
+"a `Title` as the result:\n"
 msgstr ""
 
 #. type: Plain text
@@ -949,10 +1000,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:358
+#, no-wrap
 msgid ""
-"Again, a value of type `Title` can only consist of one of the three choices "
-"listed above, and again, we can use pattern matching to implement functions "
-"on the `Title` data type in a provably total way:"
+"Again, a value of type `Title` can only consist of one\n"
+"of the three choices listed above, and again,\n"
+"we can use pattern matching to implement functions\n"
+"on the `Title` data type in a provably total way:\n"
 msgstr ""
 
 #. type: Plain text
@@ -968,19 +1021,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:372
+#, no-wrap
 msgid ""
-"Note, how in the last pattern match, the string value stored in the `Other` "
-"data constructor is *bound* to local variable `x`.  Also, the `Other x` "
-"pattern has to be wrapped in parentheses, as otherwise Idris would think "
-"`Other` and `x` were to distinct function arguments."
+"Note, how in the last pattern match, the string value stored\n"
+"in the `Other` data constructor is *bound* to local variable `x`.\n"
+"Also, the `Other x` pattern has to be wrapped in parentheses,\n"
+"as otherwise Idris would think `Other` and `x` were to\n"
+"distinct function arguments.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:377
+#, no-wrap
 msgid ""
-"This is a very common way to extract the values from data constructors.  We "
-"can use `showTitle` to implement a function for creating a courteous "
-"greeting:"
+"This is a very common way to extract the values from\n"
+"data constructors.\n"
+"We can use `showTitle` to implement a function for creating\n"
+"a courteous greeting:\n"
 msgstr ""
 
 #. type: Plain text
@@ -994,15 +1051,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:387
+#, no-wrap
 msgid ""
-"In the implementation of `greet`, we use string literals and the string "
-"concatenation operator `(++)` to assemble the greeting from its parts."
+"In the implementation of `greet`, we use string literals\n"
+"and the string concatenation operator `(++)` to\n"
+"assemble the greeting from its parts.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:389
-msgid "At the REPL:"
-msgstr ""
+#, fuzzy, no-wrap
+msgid "At the REPL:\n"
+msgstr "在 REPL 试一下："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
@@ -1016,20 +1076,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:400
+#, no-wrap
 msgid ""
-"Data types like `Title` are called *sum types* as they consist of the sum of "
-"their different parts: A value of type `Title` is either a `Mr`, a `Mrs`, or "
-"a `String` wrapped up in `Other`."
+"Data types like `Title` are called *sum types* as they consist\n"
+"of the sum of their different parts: A value of type `Title`\n"
+"is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:407
+#, no-wrap
 msgid ""
-"Here's another (drastically simplified) example of a sum type.  Assume we "
-"allow two forms of authentication in our web application: Either by entering "
-"a username plus a password (for which we'll use an unsigned 64 bit integer "
-"here), or by providing user name plus a (very complex) secret key.  Here's a "
-"data type to encapsulate this use case:"
+"Here's another (drastically simplified) example of a sum type.\n"
+"Assume we allow two forms of authentication in our web application:\n"
+"Either by entering a username plus a password (for which we'll use\n"
+"an unsigned 64 bit integer here), or by providing user name\n"
+"plus a (very complex) secret key.\n"
+"Here's a data type to encapsulate this use case:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1040,9 +1103,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:414
+#, no-wrap
 msgid ""
-"As an example of a very primitive login function, we can hard-code some "
-"known credentials:"
+"As an example of a very primitive login function, we can\n"
+"hard-code some known credentials:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1058,10 +1122,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:426
+#, no-wrap
 msgid ""
-"As can be seen in the example above, we can also pattern match against "
-"primitive values by using integer and string literals. Give `login` a go at "
-"the REPL:"
+"As can be seen in the example above, we can also pattern\n"
+"match against primitive values by using integer and\n"
+"string literals. Give `login` a go at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1189,12 +1254,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:481
+#, no-wrap
 msgid ""
-"It is often useful to group together several values as a logical unit. For "
-"instance, in our web application we might want to group information about a "
-"user in a single data type. Such data types are often called *product types* "
-"(see below for an explanation).  The most common and convenient way to "
-"define them is the `record` construct:"
+"It is often useful to group together several values\n"
+"as a logical unit. For instance, in our web application\n"
+"we might want to group information about a user\n"
+"in a single data type. Such data types are often called\n"
+"*product types* (see below for an explanation).\n"
+"The most common and convenient way to\n"
+"define them is the `record` construct:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1214,10 +1282,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:493
+#, no-wrap
 msgid ""
-"The declaration above creates a new *type* called `User`, and a new *data "
-"constructor* called `MkUser`. As usual, have a look at their types in the "
-"REPL:"
+"The declaration above creates a new *type* called `User`,\n"
+"and a new *data constructor* called `MkUser`. As usual,\n"
+"have a look at their types in the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1232,9 +1301,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:504
+#, no-wrap
 msgid ""
-"We can use `MkUser` (which is a function from `String` to `Title` to `Bits8` "
-"to `User`)  to create values of type `User`:"
+"We can use `MkUser` (which is a function from\n"
+"`String` to `Title` to `Bits8` to `User`)\n"
+"to create values of type `User`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1252,9 +1323,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:517
+#, no-wrap
 msgid ""
-"We can also use pattern matching to extract the fields from a `User` value "
-"(they can again be bound to local variables):"
+"We can also use pattern matching to extract the fields from\n"
+"a `User` value (they can again be bound to local variables):\n"
 msgstr ""
 
 #. type: Plain text
@@ -1268,27 +1340,34 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:530
+#, no-wrap
 msgid ""
-"In the example above, the `name` and `title` field are bound to two new "
-"local variables (`n` and `t` respectively), which can then be used on the "
-"right hand side of `greetUser`'s implementation. For the `age` field, which "
-"is not used on the right hand side, we can use an underscore as a catch-all "
-"pattern."
+"In the example above, the `name` and `title` field\n"
+"are bound to two new local variables (`n` and `t` respectively),\n"
+"which can then be used on the right hand side of `greetUser`'s\n"
+"implementation. For the `age` field, which is not used\n"
+"on the right hand side, we can use an underscore as a catch-all\n"
+"pattern.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:545
+#, no-wrap
 msgid ""
-"Note, how Idris will prevent us from making a common mistake: If we confuse "
-"the order of arguments, the implementation will no longer type check. We can "
-"verify this by putting the erroneous code in a `failing` block: This is an "
-"indented code block, which will lead to an error during elaboration (type "
-"checking). We can give part of the expected error message as an optional "
-"string argument to a failing block. If this does not match part of the error "
-"message (or the whole code block does not fail to type check) the `failing` "
-"block itself fails to type check. This is a useful tool to demonstrate that "
-"type safety works in two directions: We can show that valid code type checks "
-"but also that invalid code is rejected by the Idris elaborator:"
+"Note, how Idris will prevent us from making\n"
+"a common mistake: If we confuse the order of arguments, the\n"
+"implementation will no longer type check. We can verify this\n"
+"by putting the erroneous code in a `failing` block: This\n"
+"is an indented code block, which will lead to an error\n"
+"during elaboration (type checking). We can give part\n"
+"of the expected error message as an optional string argument to\n"
+"a failing block. If this does not match part of\n"
+"the error message (or the whole code block does not fail\n"
+"to type check) the `failing` block itself fails to type\n"
+"check. This is a useful tool to demonstrate that type\n"
+"safety works in two directions: We can show that valid\n"
+"code type checks but also that invalid code is rejected\n"
+"by the Idris elaborator:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1302,11 +1381,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:558
+#, no-wrap
 msgid ""
-"In addition, for every record field, Idris creates an extractor function of "
-"the same name. This can either be used as a regular function, or it can be "
-"used in postfix notation by appending it to a variable of the record type "
-"separated by a dot. Here are two examples for extracting the age from a user:"
+"In addition, for every record field, Idris creates an\n"
+"extractor function of the same name. This can either\n"
+"be used as a regular function, or it can be used in\n"
+"postfix notation by appending it to a variable of\n"
+"the record type separated by a dot. Here are two examples\n"
+"for extracting the age from a user:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1328,24 +1410,30 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:581
+#, no-wrap
 msgid ""
-"As was already mentioned in the [intro](Intro.md), Idris is a *pure* "
-"functional programming language. In pure functions, we are not allowed to "
-"modify global mutable state. As such, if we want to modify a record value, "
-"we will always create a *new* value with the original value remaining "
-"unchanged: Records and other Idris values are *immutable*.  While this *can* "
-"have a slight impact on performance, it has the benefit that we can freely "
-"pass a record value to different functions, without fear of the functions "
-"modifying the value by in-place mutation. These are, again, very strong "
-"guarantees, which makes it drastically easier to reason about our code."
+"As was already mentioned in the [intro](Intro.md), Idris\n"
+"is a *pure* functional programming language. In pure functions,\n"
+"we are not allowed to modify global mutable state. As such,\n"
+"if we want to modify a record value, we will always\n"
+"create a *new* value with the original value remaining\n"
+"unchanged: Records and other Idris values are *immutable*.\n"
+"While this *can* have a slight impact on performance, it has\n"
+"the benefit that we can freely pass a record value to\n"
+"different functions, without fear of the functions modifying\n"
+"the value by in-place mutation. These are, again, very strong\n"
+"guarantees, which makes it drastically easier to reason\n"
+"about our code.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:586
+#, no-wrap
 msgid ""
-"There are several ways to modify a record, the most general being to pattern "
-"match on the record and adjust each field as desired. If, for instance, we'd "
-"like to increase the age of a `User` by one, we could do the following:"
+"There are several ways to modify a record, the most\n"
+"general being to pattern match on the record and\n"
+"adjust each field as desired. If, for instance, we'd like\n"
+"to increase the age of a `User` by one, we could do the following:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1359,10 +1447,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:597
+#, no-wrap
 msgid ""
-"That's a lot of code for such a simple thing, so Idris offers several "
-"syntactic conveniences for this. For instance, using *record* syntax, we can "
-"just access and update the `age` field of a value:"
+"That's a lot of code for such a simple thing, so Idris offers\n"
+"several syntactic conveniences for this. For instance,\n"
+"using *record* syntax, we can just access and update the `age`\n"
+"field of a value:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1376,26 +1466,30 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:607
+#, no-wrap
 msgid ""
-"Assignment operator `:=` assigns a new value to the `age` field in `u`. "
-"Remember, that this will create a new `User` value. The original value `u` "
-"remains unaffected by this."
+"Assignment operator `:=` assigns a new value to the `age` field\n"
+"in `u`. Remember, that this will create a new `User` value. The original\n"
+"value `u` remains unaffected by this.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:613
+#, no-wrap
 msgid ""
-"We can access a record field, either by using the field name as a projection "
-"function (`age u`; also have a look at `:t age` in the REPL), or by using "
-"dot syntax: `u.age`. This is special syntax and *not* related to the dot "
-"operator for function composition (`(.)`)."
+"We can access a record field, either by using the field name\n"
+"as a projection function (`age u`; also have a look at `:t age`\n"
+"in the REPL), or by using dot syntax: `u.age`. This is special\n"
+"syntax and *not* related to the dot operator for function\n"
+"composition (`(.)`).\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:616
+#, no-wrap
 msgid ""
-"The use case of modifying a record field is so common that Idris provides "
-"special syntax for this as well:"
+"The use case of modifying a record field is so common\n"
+"that Idris provides special syntax for this as well:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1409,10 +1503,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:627
+#, no-wrap
 msgid ""
-"Here, I used an *operator section* (`(+ 1)`) to make the code more concise.  "
-"As an alternative to an operator section, we could have used an anonymous "
-"function like so:"
+"Here, I used an *operator section* (`(+ 1)`) to make\n"
+"the code more concise.\n"
+"As an alternative to an operator section,\n"
+"we could have used an anonymous function like so:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1426,9 +1522,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:637
+#, no-wrap
 msgid ""
-"Finally, since our function's argument `u` is only used once at the very "
-"end, we can drop it altogether, to get the following, highly concise version:"
+"Finally, since our function's argument `u` is only used\n"
+"once at the very end, we can drop it altogether,\n"
+"to get the following, highly concise version:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1442,8 +1540,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:645
-msgid "As usual, we should have a look at the result at the REPL:"
-msgstr ""
+#, fuzzy, no-wrap
+msgid "As usual, we should have a look at the result at the REPL:\n"
+msgstr "像往常一样，我们首先在 REPL 上尝试一下："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:646
@@ -1455,9 +1554,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:653
+#, no-wrap
 msgid ""
-"It is possible to use this syntax to set and/or update several record fields "
-"at once:"
+"It is possible to use this syntax to set and/or update\n"
+"several record fields at once:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1477,10 +1577,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:666
+#, no-wrap
 msgid ""
-"I wrote above that a record is also called a *product type*.  This is quite "
-"obvious when we consider the number of possible values inhabiting a given "
-"type. For instance, consider the following custom record:"
+"I wrote above that a record is also called a *product type*.\n"
+"This is quite obvious when we consider the number\n"
+"of possible values inhabiting a given type. For instance, consider\n"
+"the following custom record:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1499,18 +1601,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:678
+#, no-wrap
 msgid ""
-"How many possible values of type `Foo` are there? The answer is `7 * 2 = "
-"14`, as we can pair every possible `Weekday` (seven in total) with every "
-"possible `Bool` (two in total). So, the number of possible values of a "
-"record type is the *product* of the number of possible values for each field."
+"How many possible values of type `Foo` are there? The answer is `7 * 2 = 14`,\n"
+"as we can pair every possible `Weekday` (seven in total) with every possible\n"
+"`Bool` (two in total). So, the number of possible values of a record type\n"
+"is the *product* of the number of possible values for each field.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:680
-msgid ""
-"The canonical product type is the `Pair`, which is available from the "
-"*Prelude*:"
+#, no-wrap
+msgid "The canonical product type is the `Pair`, which is available from the *Prelude*:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1524,12 +1626,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:692
+#, no-wrap
 msgid ""
-"Since it is quite common to return several values from a function wrapped in "
-"a `Pair` or larger tuple, Idris provides some syntactic sugar for working "
-"with these. Instead of `Pair Weekday Bool`, we can just write `(Weekday, "
-"Bool)`. Likewise, instead of `MkPair wd b`, we can just write `(wd, b)` (the "
-"space is optional):"
+"Since it is quite common to return several values from a function\n"
+"wrapped in a `Pair` or larger tuple, Idris provides some syntactic\n"
+"sugar for working with these. Instead of `Pair Weekday Bool`, we\n"
+"can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,\n"
+"we can just write `(wd, b)` (the space is optional):\n"
 msgstr ""
 
 #. type: Plain text
@@ -1543,7 +1646,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:700
-msgid "This works also for nested tuples:"
+#, no-wrap
+msgid "This works also for nested tuples:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1561,14 +1665,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:713
+#, no-wrap
 msgid ""
-"In the example above, `triple2` is converted to the form used in `triple` by "
-"the Idris compiler."
+"In the example above, `triple2` is converted to the form\n"
+"used in `triple` by the Idris compiler.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:715
-msgid "We can even use tuple syntax in pattern matches:"
+#, no-wrap
+msgid "We can even use tuple syntax in pattern matches:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1589,9 +1695,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:728
+#, no-wrap
 msgid ""
-"Sometimes, we'd like to take apart a value by pattern matching on it but "
-"still retain the value as a whole for using it in further computations:"
+"Sometimes, we'd like to take apart a value by pattern matching\n"
+"on it but still retain the value as a whole for using it\n"
+"in further computations:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1605,12 +1713,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:741
+#, no-wrap
 msgid ""
-"In `baz`, variable `t` is *bound* to the triple as a whole, which is then "
-"reused to construct the resulting quadruple. Remember, that `(Nat,Bool,"
-"Weekday,String)` is just sugar for `Pair Nat (Bool,Weekday,String)`, and "
-"`(length s, t)` is just sugar for `MkPair (length s) t`. Hence, the "
-"implementation above is correct as is confirmed by the type checker."
+"In `baz`, variable `t` is *bound* to the triple as a whole, which\n"
+"is then reused to construct the resulting quadruple. Remember,\n"
+"that `(Nat,Bool,Weekday,String)` is just sugar for\n"
+"`Pair Nat (Bool,Weekday,String)`, and `(length s, t)` is just\n"
+"sugar for `MkPair (length s) t`. Hence, the implementation above\n"
+"is correct as is confirmed by the type checker.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1687,13 +1797,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:772
+#, no-wrap
 msgid ""
-"Sometimes, a concept is general enough that we'd like to apply it not only "
-"to a single type, but to all kinds of types. For instance, we might not want "
-"to define data types for lists of integers, lists of strings, and lists of "
-"booleans, as this would lead to a lot of code duplication.  Instead, we'd "
-"like to have a single generic list type *parameterized* by the type of "
-"values it stores. This section explains how to define and use generic types."
+"Sometimes, a concept is general enough that we'd like\n"
+"to apply it not only to a single type, but to all\n"
+"kinds of types. For instance, we might not want to define\n"
+"data types for lists of integers, lists of strings, and lists\n"
+"of booleans, as this would lead to a lot of code duplication.\n"
+"Instead, we'd like to have a single generic list type *parameterized*\n"
+"by the type of values it stores. This section explains how\n"
+"to define and use generic types.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1704,36 +1817,46 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:786
+#, no-wrap
 msgid ""
-"Consider the case of parsing a `Weekday` from user input. Surely, such a "
-"function should return `Saturday`, if the string input was `\"Saturday\"`, "
-"but what if the input was `\"sdfkl332\"`? We have several options here.  For "
-"instance, we could just return a default result (`Sunday` perhaps?). But is "
-"this the behavior programmers expect when using our library? Maybe not. To "
-"silently continue with a default value in the face of invalid user input is "
-"hardly ever the best choice and may lead to a lot of confusion."
+"Consider the case of parsing\n"
+"a `Weekday` from user input. Surely, such\n"
+"a function should return `Saturday`, if the\n"
+"string input was `\"Saturday\"`, but what if the\n"
+"input was `\"sdfkl332\"`? We have several options here.\n"
+"For instance, we could just return a default result\n"
+"(`Sunday` perhaps?). But is this the behavior\n"
+"programmers expect when using our library? Maybe not. To silently\n"
+"continue with a default value in the face of invalid user input\n"
+"is hardly ever the best choice and may lead to a lot of\n"
+"confusion.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:792
+#, no-wrap
 msgid ""
-"In an imperative language, our function would probably throw an exception. "
-"We could do this in Idris as well (there is function `idris_crash` in the "
-"*Prelude* for this), but doing so, we would abandon totality! A high price "
-"to pay for such a common thing as a parsing error."
+"In an imperative language, our function would probably\n"
+"throw an exception. We could do this in Idris as\n"
+"well (there is function `idris_crash` in the *Prelude* for\n"
+"this), but doing so, we would abandon totality! A high\n"
+"price to pay for such a common thing as a parsing error.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:803
+#, no-wrap
 msgid ""
-"In languages like Java, our function might also return some kind of `null` "
-"value (leading to the dreaded `NullPointerException`s if not handled "
-"properly in client code). Our solution will be similar, but instead of "
-"silently returning `null`, we will make the possibility of failure visible "
-"in the types! We define a custom data type, which encapsulates the "
-"possibility of failure. Defining new data types in Idris is very cheap (in "
-"terms of the amount of code needed), therefore this is often the way to go "
-"in order to increase type safety.  Here's an example how to do this:"
+"In languages like Java, our function might also return some\n"
+"kind of `null` value (leading to the dreaded `NullPointerException`s if\n"
+"not handled properly in client code). Our solution will\n"
+"be similar, but instead of silently returning `null`,\n"
+"we will make the possibility of failure visible in the types!\n"
+"We define a custom data type, which encapsulates the possibility\n"
+"of failure. Defining new data types in Idris is very cheap\n"
+"(in terms of the amount of code needed), therefore this is\n"
+"often the way to go in order to increase type safety.\n"
+"Here's an example how to do this:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1756,17 +1879,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:823
+#, no-wrap
 msgid ""
-"But assume now, we'd also like to read `Bool` values from user input. We'd "
-"now have to write a custom data type `MaybeBool` and so on for all types "
-"we'd like to read from `String`, and the conversion of which might fail."
+"But assume now, we'd also like to read `Bool` values from\n"
+"user input. We'd now have to write a custom data type\n"
+"`MaybeBool` and so on for all types we'd like to read\n"
+"from `String`, and the conversion of which might fail.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:827
+#, no-wrap
 msgid ""
-"Idris, like many other programming languages, allows us to generalize this "
-"behavior by using *generic data types*. Here's an example:"
+"Idris, like many other programming languages, allows us\n"
+"to generalize this behavior by using *generic data\n"
+"types*. Here's an example:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1784,8 +1911,9 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:839
-msgid "It is important to go to the REPL and look at the types:"
-msgstr ""
+#, fuzzy, no-wrap
+msgid "It is important to go to the REPL and look at the types:\n"
+msgstr "查看 ` 和 ` 的类型很有启发性："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:840
@@ -1801,21 +1929,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:857
+#, no-wrap
 msgid ""
-"We need to introduce some jargon here. `Option` is what we call a *type "
-"constructor*. It is not yet a saturated type: It is a function from `Type` "
-"to `Type`.  However, `Option Bool` is a type, as is `Option Weekday`.  Even "
-"`Option (Option Bool)` is a valid type. `Option` is a type constructor "
-"*parameterized* over a *parameter* of type `Type`.  `Some` and `None` are "
-"`Option`s *data constructors*: The functions used to create values of type "
-"`Option a` for a type `a`."
+"We need to introduce some jargon here. `Option` is what we call\n"
+"a *type constructor*. It is not yet a saturated type: It is\n"
+"a function from `Type` to `Type`.\n"
+"However, `Option Bool` is a type, as is `Option Weekday`.\n"
+"Even `Option (Option Bool)` is a valid type. `Option` is\n"
+"a type constructor *parameterized* over a *parameter* of type `Type`.\n"
+"`Some` and `None` are `Option`s *data constructors*: The functions\n"
+"used to create values of type `Option a` for a type `a`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:860
+#, no-wrap
 msgid ""
-"Let's see some other use cases for `Option`. Below is a safe division "
-"operation:"
+"Let's see some other use cases for `Option`. Below is a safe\n"
+"division operation:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1830,23 +1961,29 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:872
+#, no-wrap
 msgid ""
-"The possibility of returning some kind of *null* value in the face of "
-"invalid input is so common, that there is a data type like `Option` already "
-"in the *Prelude*: `Maybe`, with data constructors `Just` and `Nothing`."
+"The possibility of returning some kind of *null* value in the\n"
+"face of invalid input is so common, that there is a data type\n"
+"like `Option` already in the *Prelude*: `Maybe`, with\n"
+"data constructors `Just` and `Nothing`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:884
+#, no-wrap
 msgid ""
-"It is important to understand the difference between returning `Maybe "
-"Integer` in a function, which might fail, and returning `null` in languages "
-"like Java: In the former case, the possibility of failure is visible in the "
-"types. The type checker will force us to treat `Maybe Integer` differently "
-"than `Integer`: Idris will *not* allow us to forget to eventually handle the "
-"failure case.  Not so, if `null` is silently returned without adjusting the "
-"types. Programmers may (and often *will*) forget to handle the `null` case, "
-"leading to unexpected and sometimes hard to debug runtime exceptions."
+"It is important to understand the difference between returning `Maybe Integer`\n"
+"in a function, which might fail, and returning\n"
+"`null` in languages like Java: In the former case, the\n"
+"possibility of failure is visible in the types. The type checker\n"
+"will force us to treat `Maybe Integer` differently than\n"
+"`Integer`: Idris will *not* allow us to forget to\n"
+"eventually handle the failure case.\n"
+"Not so, if `null` is silently returned without adjusting the\n"
+"types. Programmers may (and often *will*) forget to handle the\n"
+"`null` case, leading to unexpected and sometimes\n"
+"hard to debug runtime exceptions.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1857,14 +1994,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:896
+#, no-wrap
 msgid ""
-"While `Maybe` is very useful to quickly provide a default value to signal "
-"some kind of failure, this value (`Nothing`) is not very informative. It "
-"will not tell us *what exactly* went wrong. For instance, in case of our "
-"`Weekday` reading function, it might be interesting later on to know the "
-"value of the invalid input string. And just like with `Maybe` and `Option` "
-"above, this concept is general enough that we might encounter other types of "
-"invalid values.  Here's a data type to encapsulate this:"
+"While `Maybe` is very useful to quickly provide a default\n"
+"value to signal some kind of failure, this value (`Nothing`) is\n"
+"not very informative. It will not tell us *what exactly*\n"
+"went wrong. For instance, in case of our `Weekday`\n"
+"reading function, it might be interesting later on to know\n"
+"the value of the invalid input string. And just like with\n"
+"`Maybe` and `Option` above, this concept is general enough\n"
+"that we might encounter other types of invalid values.\n"
+"Here's a data type to encapsulate this:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1875,11 +2015,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:907
+#, no-wrap
 msgid ""
-"`Validated` is a type constructor parameterized over two type parameters `e` "
-"and `a`. It's data constructors are `Invalid` and `Valid`, the former "
-"holding a value describing some error condition, the latter the result in "
-"case of a successful computation.  Let's see this in action:"
+"`Validated` is a type constructor parameterized over two\n"
+"type parameters `e` and `a`. It's data constructors\n"
+"are `Invalid` and `Valid`,\n"
+"the former holding a value describing some error condition,\n"
+"the latter the result in case of a successful computation.\n"
+"Let's see this in action:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1900,23 +2043,26 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:929
+#, no-wrap
 msgid ""
-"Again, this is such a general concept that a data type similar to "
-"`Validated` is already available from the *Prelude*: `Either` with data "
-"constructors `Left` and `Right`.  It is very common for functions to "
-"encapsulate the possibility of failure by returning an `Either err val`, "
-"where `err` is the error type and `val` is the desired return type. This is "
-"the type safe (and total!) alternative to throwing a catchable exception in "
-"an imperative language."
+"Again, this is such a general concept that a data type\n"
+"similar to `Validated` is already available from the\n"
+"*Prelude*: `Either` with data constructors `Left` and `Right`.\n"
+"It is very common for functions to encapsulate the possibility\n"
+"of failure by returning an `Either err val`, where `err`\n"
+"is the error type and `val` is the desired return type. This\n"
+"is the type safe (and total!) alternative to throwing a catchable\n"
+"exception in an imperative language.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:934
+#, no-wrap
 msgid ""
-"Note, however, that the semantics of `Either` are not always \"`Left` is an "
-"error and `Right` a success\". A function returning an `Either` just means "
-"that it can have to different types of results, each of which are *tagged* "
-"with the corresponding data constructor."
+"Note, however, that the semantics of `Either` are not always \"`Left` is\n"
+"an error and `Right` a success\". A function returning an `Either` just\n"
+"means that it can have to different types of results, each of which\n"
+"are *tagged* with the corresponding data constructor.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1927,11 +2073,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:941
+#, no-wrap
 msgid ""
-"One of the most important data structures in pure functional programming is "
-"the singly linked list. Here is its definition (called `Seq` in order for it "
-"not to collide with `List`, which is of course already available from the "
-"Prelude):"
+"One of the most important data structures in pure functional\n"
+"programming is the singly linked list. Here is its definition\n"
+"(called `Seq` in order for it not to collide with `List`,\n"
+"which is of course already available from the Prelude):\n"
 msgstr ""
 
 #. type: Plain text
@@ -1942,21 +2089,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:953
+#, no-wrap
 msgid ""
-"This calls for some explanations. `Seq` consists of two *data constructors*: "
-"`Nil` (representing an empty sequence of values) and `(::)` (also called the "
-"*cons operator*), which prepends a new value of type `a` to an already "
-"existing list of values of the same type. As you can see, we can also use "
-"operators as data constructors, but please do not overuse this. Use clear "
-"names for your functions and data constructors and only introduce new "
-"operators when it truly helps readability!"
+"This calls for some explanations. `Seq` consists of two *data constructors*:\n"
+"`Nil` (representing an empty sequence of values) and `(::)` (also\n"
+"called the *cons operator*), which prepends a new value of type `a` to\n"
+"an already existing list of values of the same type. As you can see,\n"
+"we can also use operators as data constructors, but please do not overuse\n"
+"this. Use clear names for your functions and data constructors and only\n"
+"introduce new operators when it truly helps readability!\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:956
+#, no-wrap
 msgid ""
-"Here is an example of how to use the `List` constructors (I use `List` here, "
-"as this is what you should use in your own code):"
+"Here is an example of how to use the `List` constructors\n"
+"(I use `List` here, as this is what you should use in your own code):\n"
 msgstr ""
 
 #. type: Plain text
@@ -1970,10 +2119,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:966
+#, no-wrap
 msgid ""
-"However, there is a more concise way of writing the above. Idris accepts "
-"special syntax for constructing data types consisting exactly of the two "
-"constructors `Nil` and `(::)`:"
+"However, there is a more concise way of writing the above. Idris\n"
+"accepts special syntax for constructing data types consisting\n"
+"exactly of the two constructors `Nil` and `(::)`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1991,22 +2141,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:980
+#, no-wrap
 msgid ""
-"The two definitions `ints` and `ints2` are treated identically by the "
-"compiler.  Note, that list syntax can also be used in pattern matches."
+"The two definitions `ints` and `ints2`\n"
+"are treated identically by the compiler.\n"
+"Note, that list syntax can also be used in pattern matches.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:991
+#, no-wrap
 msgid ""
-"There is another thing that's special about `Seq` and `List`: Each of them "
-"is defined in terms of itself (the cons operator accepts a value and another "
-"`Seq` as arguments). We call such data types *recursive* data types, and "
-"their recursive nature means, that in order to decompose or consume them, we "
-"typically require recursive functions. In an imperative language, we might "
-"use a for loop or similar construct to iterate over the values of a `List` "
-"or a `Seq`, but these things do not exist in a language without in-place "
-"mutation. Here's how to sum a list of integers:"
+"There is another thing that's special about\n"
+"`Seq` and `List`: Each of them is defined\n"
+"in terms of itself (the cons operator accepts a value\n"
+"and another `Seq` as arguments). We call such data types\n"
+"*recursive* data types, and their recursive nature means, that in order to\n"
+"decompose or consume them, we typically require recursive\n"
+"functions. In an imperative language, we might use a for loop or\n"
+"similar construct to iterate over the values of a `List` or a `Seq`,\n"
+"but these things do not exist in a language without in-place\n"
+"mutation. Here's how to sum a list of integers:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2021,11 +2176,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1004
+#, no-wrap
 msgid ""
-"Recursive functions can be hard to grasp at first, so I'll break this down a "
-"bit. If we invoke `intSum` with the empty list, the first pattern matches "
-"and the function returns zero immediately.  If, however, we invoke `intSum` "
-"with a non-empty list - `[7,5,9]` for instance - the following happens:"
+"Recursive functions can be hard to grasp at first, so I'll break\n"
+"this down a bit. If we invoke `intSum` with the empty list,\n"
+"the first pattern matches and the function returns zero immediately.\n"
+"If, however, we invoke `intSum` with a non-empty list - `[7,5,9]`\n"
+"for instance - the following happens:\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -2111,9 +2268,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1055
+#, no-wrap
 msgid ""
-"Thus, the recursive implementation of `intSum` leads to a sequence of nested "
-"calls to `intSum`, which terminates once the argument is the empty list."
+"Thus, the recursive implementation of `intSum` leads to a sequence of\n"
+"nested calls to `intSum`, which terminates once the argument is the\n"
+"empty list.\n"
 msgstr ""
 
 #. type: Title ###
@@ -2124,19 +2283,23 @@ msgstr "### 派生函数"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1062
+#, no-wrap
 msgid ""
-"In order to fully appreciate the versatility that comes with generic data "
-"types, we also need to talk about generic functions.  Like generic types, "
-"these are parameterized over one or more type parameters."
+"In order to fully appreciate the versatility that comes with\n"
+"generic data types, we also need to talk about generic functions.\n"
+"Like generic types, these are parameterized over one or more\n"
+"type parameters.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1068
+#, no-wrap
 msgid ""
-"Consider for instance the case of breaking out of the `Option` data type. In "
-"case of a `Some`, we'd like to return the stored value, while for the `None` "
-"case we provide a default value. Here's how to do this, specialized to "
-"`Integer`s:"
+"Consider for instance the case of breaking out of the\n"
+"`Option` data type. In case of a `Some`, we'd like to return\n"
+"the stored value, while for the `None` case we provide\n"
+"a default value. Here's how to do this, specialized to\n"
+"`Integer`s:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2151,10 +2314,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1080
+#, no-wrap
 msgid ""
-"It's pretty obvious that this, again, is not general enough.  Surely, we'd "
-"also like to break out of `Option Bool` or `Option String` in a similar "
-"fashion. That's exactly what the generic function `fromOption` does:"
+"It's pretty obvious that this, again, is not general enough.\n"
+"Surely, we'd also like to break out of `Option Bool` or\n"
+"`Option String` in a similar fashion. That's exactly\n"
+"what the generic function `fromOption` does:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2169,29 +2334,34 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1095
+#, no-wrap
 msgid ""
-"The lower-case `a` is again a *type parameter*. You can read the type "
-"signature as follows: \"For any type `a`, given a *value* of type `a`, and "
-"an `Option a`, we can return a value of type `a`.\" Note, that `fromOption` "
-"knows nothing else about `a`, other than it being a type. It is therefore "
-"not possible, to conjure a value of type `a` out of thin air. We *must* have "
-"a value available to deal with the `None` case."
+"The lower-case `a` is again a *type parameter*. You can read\n"
+"the type signature as follows: \"For any type `a`, given a *value*\n"
+"of type `a`, and an `Option a`, we can return a value of\n"
+"type `a`.\" Note, that `fromOption` knows nothing else about\n"
+"`a`, other than it being a type. It is therefore not possible,\n"
+"to conjure a value of type `a` out of thin air. We *must* have\n"
+"a value available to deal with the `None` case.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1098
+#, no-wrap
 msgid ""
-"The pendant to `fromOption` for `Maybe` is called `fromMaybe` and is "
-"available from module `Data.Maybe` from the *base* library."
+"The pendant to `fromOption` for `Maybe` is called `fromMaybe`\n"
+"and is available from module `Data.Maybe` from the *base* library.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1104
+#, no-wrap
 msgid ""
-"Sometimes, `fromOption` is not general enough. Assume we'd like to print the "
-"value of a freshly parsed `Bool`, giving some generic error message in case "
-"of a `None`. We can't use `fromOption` for this, as we have an `Option Bool` "
-"and we'd like to return a `String`. Here's how to do this:"
+"Sometimes, `fromOption` is not general enough. Assume we'd like to\n"
+"print the value of a freshly parsed `Bool`, giving some generic\n"
+"error message in case of a `None`. We can't use `fromOption`\n"
+"for this, as we have an `Option Bool` and we'd like to\n"
+"return a `String`. Here's how to do this:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2221,10 +2391,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1126
+#, no-wrap
 msgid ""
-"In Idris, lower-case identifiers in function types are treated as *type "
-"parameters*, while upper-case identifiers are treated as types or type "
-"constructors that must be in scope."
+"In Idris, lower-case identifiers in function types are\n"
+"treated as *type parameters*, while upper-case identifiers\n"
+"are treated as types or type constructors that must\n"
+"be in scope.\n"
 msgstr ""
 
 #. type: Title ###
@@ -2238,19 +2410,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1137
+#, no-wrap
 msgid ""
-"If this is your first time programming in a purely functional language, the "
-"exercises below are *very* important. Do not skip any of them! Take your "
-"time and work through them all. In most cases, the types should be enough to "
-"explain what's going on, even though they might appear cryptic in the "
-"beginning. Otherwise, have a look at the comments (if any)  of each exercise."
+"If this is your first time programming in a purely\n"
+"functional language, the exercises below are *very*\n"
+"important. Do not skip any of them! Take your time and\n"
+"work through them all. In most cases,\n"
+"the types should be enough to explain what's going\n"
+"on, even though they might appear cryptic in the\n"
+"beginning. Otherwise, have a look at the comments (if any)\n"
+"of each exercise.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1140
+#, no-wrap
 msgid ""
-"Remember, that lower-case identifiers in a function signature are treated as "
-"type parameters."
+"Remember, that lower-case identifiers in a function\n"
+"signature are treated as type parameters.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -2446,20 +2623,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1285
+#, no-wrap
 msgid ""
-"While the examples in the section about parameterized data types are short "
-"and concise, there is a slightly more verbose but much more general form for "
-"writing such definitions, which makes it much clearer what's going on.  In "
-"my opinion, this more general form should be preferred in all but the most "
-"simple data definitions."
+"While the examples in the section about parameterized\n"
+"data types are short and concise, there is a slightly\n"
+"more verbose but much more general form for writing such\n"
+"definitions, which makes it much clearer what's going on.\n"
+"In my opinion, this more general form should be preferred\n"
+"in all but the most simple data definitions.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1290
+#, no-wrap
 msgid ""
-"Here are the definitions of `Option`, `Validated`, and `Seq` again, using "
-"this more general form (I put them in their own *namespace*, so Idris will "
-"not complain about identical names in the same source file):"
+"Here are the definitions of `Option`, `Validated`, and `Seq` again,\n"
+"using this more general form (I put them in their own *namespace*,\n"
+"so Idris will not complain about identical names in\n"
+"the same source file):\n"
 msgstr ""
 
 #. type: Plain text
@@ -2511,9 +2692,10 @@ msgstr "结论"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1323
+#, no-wrap
 msgid ""
-"We covered a lot of ground in this chapter, so I'll summarize the most "
-"important points below:"
+"We covered a lot of ground in this chapter,\n"
+"so I'll summarize the most important points below:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2609,9 +2791,10 @@ msgstr "下一步是什么"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1366
+#, no-wrap
 msgid ""
-"In the [next section](Interfaces.md), we will introduce *interfaces*, "
-"another approach to *function overloading*."
+"In the [next section](Interfaces.md), we will introduce\n"
+"*interfaces*, another approach to *function overloading*.\n"
 msgstr ""
 
 #. type: Plain text

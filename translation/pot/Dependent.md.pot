@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 13:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -439,13 +439,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:9
+#, no-wrap
 msgid ""
-"The ability to calculate types from values, pass them as arguments to "
-"functions, and return them as results from functions - in short, being a "
-"dependently typed language - is one of the most distinguishing features of "
-"Idris. Many of the more advanced type level extensions of languages like "
-"Haskell (and quite a bit more) can be treated in one fell swoop with "
-"dependent types."
+"The ability to calculate types from values, pass them as arguments\n"
+"to functions, and return them as results from functions - in\n"
+"short, being a dependently typed language - is one of the\n"
+"most distinguishing features of Idris. Many of the more advanced\n"
+"type level extensions of languages like Haskell (and quite a\n"
+"bit more) can be treated in one fell swoop with dependent types.\n"
 msgstr ""
 
 #. type: Plain text
@@ -459,7 +460,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:17
-msgid "Consider the following functions:"
+#, no-wrap
+msgid "Consider the following functions:\n"
 msgstr ""
 
 #. type: Plain text
@@ -475,16 +477,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:35
+#, no-wrap
 msgid ""
-"The implementations type check, and still, they are obviously not what users "
-"of our library would expect. In the first example, we'd expect the "
-"implementation to apply the function argument to all values stored in the "
-"list, without dropping any of them or changing their order.  The second is "
-"trickier: The two list arguments might be of different length.  What are we "
-"supposed to do when that's the case? Return a list of the same length as the "
-"smaller of the two? Return an empty list? Or shouldn't we in most use cases "
-"expect the two lists to be of the same length? How could we even describe "
-"such a precondition?"
+"The implementations type check, and still, they are obviously not\n"
+"what users of our library would expect. In the first example, we'd expect\n"
+"the implementation to apply the function argument to all values stored\n"
+"in the list, without dropping any of them or changing their order.\n"
+"The second is trickier: The two list arguments might be of different length.\n"
+"What are we supposed to do when that's the case? Return a list of the same\n"
+"length as the smaller of the two? Return an empty list? Or shouldn't\n"
+"we in most use cases expect the two lists to be of the same length?\n"
+"How could we even describe such a precondition?\n"
 msgstr ""
 
 #. type: Title ##
@@ -495,10 +498,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:41
+#, no-wrap
 msgid ""
-"The answer to the issues described above is of course: Dependent types.  And "
-"the most common introductory example is the *vector*: A list indexed by its "
-"length:"
+"The answer to the issues described above is of course: Dependent types.\n"
+"And the most common introductory example is the *vector*: A list indexed\n"
+"by its length:\n"
 msgstr ""
 
 #. type: Plain text
@@ -528,9 +532,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:61
+#, no-wrap
 msgid ""
-"Let's experiment with this idea to gain a better understanding.  There is "
-"only one way to come up with a vector of length zero:"
+"Let's experiment with this idea to gain a better understanding.\n"
+"There is only one way to come up with a vector of length zero:\n"
 msgstr ""
 
 #. type: Plain text
@@ -543,9 +548,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:69
+#, no-wrap
 msgid ""
-"The following, on the other hand, leads to a type error (a pretty "
-"complicated one, actually):"
+"The following, on the other hand, leads to a type error (a pretty complicated\n"
+"one, actually):\n"
 msgstr ""
 
 #. type: Plain text
@@ -559,11 +565,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:80
+#, no-wrap
 msgid ""
-"The problem: `[12]` gets desugared to `12 :: Nil`, but this has the wrong "
-"type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type `Vect "
-"(S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies, at "
-"compile time, that our vector is of the correct length!"
+"The problem: `[12]` gets desugared to `12 :: Nil`, but this has the wrong\n"
+"type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type\n"
+"`Vect (S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies,\n"
+"at compile time, that our vector is of the correct length!\n"
 msgstr ""
 
 #. type: Plain text
@@ -576,13 +583,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:93
+#, no-wrap
 msgid ""
-"So, we found a way to encode the *length* of a list-like data structure in "
-"its *type*, and it is a *type error* if the number of elements in a vector "
-"does not agree with then length given in its type. We will shortly see "
-"several use cases, where this additional piece of information allows us to "
-"be more precise in the types and rule out additional programming mistakes. "
-"But first, we need to quickly clarify some terminology."
+"So, we found a way to encode the *length* of a list-like data structure in\n"
+"its *type*, and it is a *type error* if the number of elements in\n"
+"a vector does not agree with then length given in its type. We will\n"
+"shortly see several use cases, where this additional piece of information\n"
+"allows us to be more precise in the types and rule out additional\n"
+"programming mistakes. But first, we need to quickly clarify some\n"
+"terminology.\n"
 msgstr ""
 
 #. type: Title ###
@@ -593,26 +602,31 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:101
+#, no-wrap
 msgid ""
-"`Vect` is not only a generic type, parameterized over the type of elements "
-"it holds, it is actually a *family of types*, each of them associated with a "
-"natural number representing it's length. We also say, the type family `Vect` "
-"is *indexed* by its length."
+"`Vect` is not only a generic type, parameterized over the type\n"
+"of elements it holds, it is actually a *family of types*, each\n"
+"of them associated with a natural number representing it's\n"
+"length. We also say, the type family `Vect` is *indexed* by\n"
+"its length.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:108
+#, no-wrap
 msgid ""
-"The difference between a type parameter and an index is, that the latter can "
-"and does change across data constructors, while the former is the same for "
-"all data constructors. Or, put differently, we can learn about the *value* "
-"of an index by pattern matching on a *value* of the type family, while this "
-"is not possible with a type parameter."
+"The difference between a type parameter and an index is, that\n"
+"the latter can and does change across data constructors, while\n"
+"the former is the same for all data constructors. Or, put differently,\n"
+"we can learn about the *value* of an index by pattern matching\n"
+"on a *value* of the type family, while this is not possible\n"
+"with a type parameter.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:110
-msgid "Let's demonstrate this with a contrived example:"
+#, no-wrap
+msgid "Let's demonstrate this with a contrived example:\n"
 msgstr ""
 
 #. type: Plain text
@@ -627,12 +641,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:124
+#, no-wrap
 msgid ""
-"Here, `Indexed` is indexed over its `Nat` argument, as values of the index "
-"changes across constructors (I chose some arbitrary value for each "
-"constructor), and we can learn about these values by pattern matching on "
-"`Indexed` values.  We can use this, for instance, to create a `Vect` of the "
-"same length as the index of `Indexed`:"
+"Here, `Indexed` is indexed over its `Nat` argument, as\n"
+"values of the index changes across constructors (I chose some\n"
+"arbitrary value for each constructor), and we\n"
+"can learn about these values by pattern matching on `Indexed` values.\n"
+"We can use this, for instance, to create a `Vect` of the same length\n"
+"as the index of `Indexed`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -643,15 +659,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:133
+#, no-wrap
 msgid ""
-"Go ahead, and try implementing this yourself! Work with holes, pattern match "
-"on the `Indexed` argument, and learn about the expected output type in each "
-"case by inspecting the holes and their context."
+"Go ahead, and try implementing this yourself! Work with\n"
+"holes, pattern match on the `Indexed` argument, and\n"
+"learn about the expected output type in each case by\n"
+"inspecting the holes and their context.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:135
-msgid "Here is my implementation:"
+#, no-wrap
+msgid "Here is my implementation:\n"
 msgstr ""
 
 #. type: Plain text
@@ -665,10 +684,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:146
+#, no-wrap
 msgid ""
-"As you can see, by pattern matching on the value of the `Indexed n` "
-"argument, we learned about the value of the `n` index itself, which was "
-"necessary to return a `Vect` of the correct length."
+"As you can see, by pattern matching on the value of the\n"
+"`Indexed n` argument, we learned about the value of\n"
+"the `n` index itself, which was necessary to return a\n"
+"`Vect` of the correct length.\n"
 msgstr ""
 
 #. type: Title ###
@@ -679,12 +700,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:154
+#, no-wrap
 msgid ""
-"Function `bogusMapList` behaved unexpectedly, because it always returned the "
-"empty list. With `Vect`, we need to be true to the types here. If we map "
-"over a `Vect`, the argument *and* output type contain a length index, and "
-"these length indices will tell us *exactly*, if and how the lengths of our "
-"vectors are modified:"
+"Function `bogusMapList` behaved unexpectedly, because it always\n"
+"returned the empty list. With `Vect`, we need to be true to the\n"
+"types here. If we map over a `Vect`, the argument *and* output type\n"
+"contain a length index, and these length indices will tell us\n"
+"*exactly*, if and how the lengths of our vectors are modified:\n"
 msgstr ""
 
 #. type: Plain text
@@ -703,12 +725,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:173
+#, no-wrap
 msgid ""
-"While these examples are quite interesting, they are not really useful, are "
-"they? That's because they are too specialized. We'd like to have a *general* "
-"function for mapping vectors of any length.  Instead of using concrete "
-"lengths in type signatures, we can also use *variables* as already seen in "
-"the definition of `Vect`.  This allows us to declare the general case:"
+"While these examples are quite interesting,\n"
+"they are not really useful, are they? That's because they are too\n"
+"specialized. We'd like to have a *general* function for mapping\n"
+"vectors of any length.\n"
+"Instead of using concrete lengths in type signatures,\n"
+"we can also use *variables* as already seen in the definition of `Vect`.\n"
+"This allows us to declare the general case:\n"
 msgstr ""
 
 #. type: Plain text
@@ -719,9 +744,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:181
+#, no-wrap
 msgid ""
-"This type describes a length-preserving map. It is actually more instructive "
-"(but not necessary) to include the implicit arguments as well:"
+"This type describes a length-preserving map. It is actually\n"
+"more instructive (but not necessary) to include the\n"
+"implicit arguments as well:\n"
 msgstr ""
 
 #. type: Plain text
@@ -732,16 +759,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:196
+#, no-wrap
 msgid ""
-"We ignore the two type parameters `a`, and `b`, as these just describe a "
-"generic function (note, however, that we can group arguments of the same "
-"type and quantity in a single pair of curly braces; this is optional, but it "
-"sometimes helps making type signatures a bit shorter). The implicit argument "
-"of type `Nat`, however, tells us that the input and output `Vect` are of the "
-"same length. It is a type error to not uphold to this contract. When "
-"implementing `mapVect`, it is very instructive to follow along and use some "
-"holes. In order to get *any* information about the length of the `Vect` "
-"argument, we need to pattern match on it:"
+"We ignore the two type parameters `a`, and `b`, as these just\n"
+"describe a generic function (note, however, that we can group arguments\n"
+"of the same type and quantity in a single pair of curly braces; this\n"
+"is optional, but it sometimes helps making type signatures a bit\n"
+"shorter). The implicit argument of type `Nat`, however, tells us that the\n"
+"input and output `Vect` are of the same length. It is a type error\n"
+"to not uphold to this contract. When implementing `mapVect`, it\n"
+"is very instructive to follow along and use some holes. In order\n"
+"to get *any* information about the length of the `Vect` argument,\n"
+"we need to pattern match on it:\n"
 msgstr ""
 
 #. type: Plain text
@@ -754,7 +783,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:203
-msgid "At the REPL, we learn the following:"
+#, no-wrap
+msgid "At the REPL, we learn the following:\n"
 msgstr ""
 
 #. type: Plain text
@@ -782,9 +812,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:226
+#, no-wrap
 msgid ""
-"The first hole, `impl_0` is of type `Vect 0 b`. There is only one such "
-"value, as discussed above:"
+"The first hole, `impl_0` is of type `Vect 0 b`. There is only one such\n"
+"value, as discussed above:\n"
 msgstr ""
 
 #. type: Plain text
@@ -795,13 +826,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:238
+#, no-wrap
 msgid ""
-"The second case is again more interesting. We note, that `xs` is of type "
-"`Vect n a`, for an arbitrary length `n` (given as an erased argument), while "
-"the result is of type `Vect (S n) b`. So, the result has to be one element "
-"longer than `xs`. Luckily, we already have a value of type `a` (bound to "
-"variable `x`) and a function from `a` to `b` (bound to variable `f`), so we "
-"can apply `f` to `x` and prepend the result to a yet unknown remainder:"
+"The second case is again more interesting. We note, that `xs` is\n"
+"of type `Vect n a`, for an arbitrary length `n` (given as an erased\n"
+"argument), while the result is of type `Vect (S n) b`. So, the\n"
+"result has to be one element longer than `xs`. Luckily, we already\n"
+"have a value of type `a` (bound to variable `x`) and a function\n"
+"from `a` to `b` (bound to variable `f`), so we can apply `f`\n"
+"to `x` and prepend the result to a yet unknown remainder:\n"
 msgstr ""
 
 #. type: Plain text
@@ -812,7 +845,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:244
-msgid "Let's inspect the new hole at the REPL:"
+#, no-wrap
+msgid "Let's inspect the new hole at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -832,15 +866,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:265
+#, no-wrap
 msgid ""
-"Now, we have a `Vect n a` and need a `Vect n b`, without knowing anything "
-"else about `n`. We *could* learn more about `n` by pattern matching further "
-"on `xs`, but this would quickly lead us down a rabbit hole, since after such "
-"a pattern match, we'd end up with another `Nil` case and another *cons* "
-"case, with a new tail of unknown length. Instead, we can invoke `mapVect` "
-"recursively to convert the remainder (`xs`) to a `Vect n b`.  The type "
-"checker guarantees, that the lengths of `xs` and `mapVect f xs` are the "
-"same, so the whole expression type checks and we are done:"
+"Now, we have a `Vect n a` and need a `Vect n b`, without knowing anything\n"
+"else about `n`. We *could* learn more about `n` by pattern matching further\n"
+"on `xs`, but this would quickly lead us down a rabbit hole, since after\n"
+"such a pattern match, we'd end up with another `Nil` case and another\n"
+"*cons* case, with a new tail of unknown length. Instead, we can invoke\n"
+"`mapVect` recursively to convert the remainder (`xs`) to a `Vect n b`.\n"
+"The type checker guarantees, that the lengths of `xs` and `mapVect f xs`\n"
+"are the same, so the whole expression type checks and we are done:\n"
 msgstr ""
 
 #. type: Plain text
@@ -857,12 +892,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:277
+#, no-wrap
 msgid ""
-"Let us now have a look at `bogusZipList`: We'd like to pairwise merge two "
-"lists holding elements of (possibly) distinct types through a given binary "
-"function. As discussed above, the most reasonable thing to do is to expect "
-"the two lists as well as the result to be of equal length.  With `Vect`, "
-"this can be expressed and implemented as follows:"
+"Let us now have a look at `bogusZipList`: We'd like to pairwise merge\n"
+"two lists holding elements of (possibly) distinct types through a\n"
+"given binary function. As discussed above, the most reasonable thing\n"
+"to do is to expect the two lists as well as the result to be of equal length.\n"
+"With `Vect`, this can be expressed and implemented as follows:\n"
 msgstr ""
 
 #. type: Plain text
@@ -876,17 +912,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:295
+#, no-wrap
 msgid ""
-"Now, here is an interesting thing: The totality checker (activated "
-"throughout this source file due to the initial `%default total` pragma)  "
-"accepts the above implementation as being total, although it is missing two "
-"more cases. This works, because Idris can figure out on its own, that the "
-"other two cases are *impossible*.  From the pattern match on the first "
-"`Vect` argument, Idris learns whether `n` is zero or the successor of "
-"another natural number. But from this it can derive, whether the second "
-"vector, being also of length `n`, is a `Nil` or a *cons*. Still, it can be "
-"informative to add the impossible cases explicitly. We can use keyword "
-"`impossible` to do so:"
+"Now, here is an interesting thing: The totality checker (activated\n"
+"throughout this source file due to the initial `%default total` pragma)\n"
+"accepts the above implementation as being total, although it is\n"
+"missing two more cases. This works, because Idris\n"
+"can figure out on its own, that the other two cases are *impossible*.\n"
+"From the pattern match on the first `Vect` argument, Idris learns\n"
+"whether `n` is zero or the successor of another natural number. But\n"
+"from this it can derive, whether the second vector, being also\n"
+"of length `n`, is a `Nil` or a *cons*. Still, it can be informative to add the\n"
+"impossible cases explicitly. We can use keyword `impossible` to\n"
+"do so:\n"
 msgstr ""
 
 #. type: Plain text
@@ -899,16 +937,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:306
+#, no-wrap
 msgid ""
-"It is - of course - a type error to annotate a case in a pattern match with "
-"`impossible`, if Idris cannot verify that this case is indeed impossible. We "
-"will learn in a later section what to do, when we think we are right about "
-"an impossible case and Idris is not."
+"It is - of course - a type error to annotate a case in a pattern\n"
+"match with `impossible`, if Idris cannot verify that this case is\n"
+"indeed impossible. We will learn in a later section what to do,\n"
+"when we think we are right about an impossible case\n"
+"and Idris is not.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:308
-msgid "Let's give `zipWith` a spin at the REPL:"
+#, no-wrap
+msgid "Let's give `zipWith` a spin at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -931,36 +972,43 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:329
+#, no-wrap
 msgid ""
-"It is amazing to experience the amount of work Idris can do for us and the "
-"amount of things it can infer on its own when things go well. When things "
-"don't go well, however, the error messages we get from Idris can be quite "
-"long and hard to understand, especially for programmers new to the language. "
-"For instance, the error message in the last REPL example above was pretty "
-"long, listing different things Idris tried to do together with the reason "
-"why each of them failed."
+"It is amazing to experience the amount of work Idris can do\n"
+"for us and the amount of things it can infer on its own when\n"
+"things go well. When things don't go well, however, the\n"
+"error messages we get from Idris can\n"
+"be quite long and hard to understand, especially\n"
+"for programmers new to the language. For instance, the error\n"
+"message in the last REPL example above was pretty long, listing\n"
+"different things Idris tried to do together with the reason\n"
+"why each of them failed.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:341
+#, no-wrap
 msgid ""
-"If this happens, it often means that a combination of a type error and an "
-"ambiguity resulting from overloaded function names is at work. In the "
-"example above, the two vectors are of distinct length, which leads to a type "
-"error if we interpret the list literals as vectors. However, list literals "
-"are overloaded to work with all data types with constructors `Nil` and "
-"`(::)`, so Idris will now try other data constructors than those of `Vect` "
-"(the ones of `List` and `Stream` from the *Prelude* in this case), each of "
-"which will again fail with a type error since `zipWith` expects arguments of "
-"type `Vect`, and neither `List` nor `Stream` will work."
+"If this happens, it often means that a combination of a type error\n"
+"and an ambiguity resulting from overloaded function names is\n"
+"at work. In the example above, the two vectors are of distinct\n"
+"length, which leads to a type error if we interpret the list\n"
+"literals as vectors. However, list literals are overloaded to work\n"
+"with all data types with constructors `Nil` and `(::)`, so Idris\n"
+"will now try other data constructors than those of `Vect` (the\n"
+"ones of `List` and `Stream` from the *Prelude* in this case),\n"
+"each of which will again fail with a type error since `zipWith`\n"
+"expects arguments of type `Vect`, and neither `List` nor `Stream`\n"
+"will work.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:345
+#, no-wrap
 msgid ""
-"If this happens, prefixing overloaded function names with their namespaces "
-"can often simplify things, as Idris no longer needs to disambiguate these "
-"functions:"
+"If this happens, prefixing overloaded function names with\n"
+"their namespaces can often simplify things, as Idris no\n"
+"longer needs to disambiguate these functions:\n"
 msgstr ""
 
 #. type: Plain text
@@ -977,19 +1025,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:360
+#, no-wrap
 msgid ""
-"Here, the message is much clearer: Idris can't *unify* the lengths of the "
-"two vectors. *Unification* means: Idris tries to at compile time convert two "
-"expressions to the same normal form. If this succeeds, the two expressions "
-"are considered to be equivalent, if it doesn't, Idris fails with a "
-"unification error."
+"Here, the message is much clearer: Idris can't *unify* the lengths of the\n"
+"two vectors. *Unification* means: Idris tries to at compile time convert\n"
+"two expressions to the same normal form. If this succeeds,\n"
+"the two expressions are considered to be equivalent,\n"
+"if it doesn't, Idris fails with a unification error.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:363
+#, no-wrap
 msgid ""
-"As an alternative to prefixing overloaded functions with their namespace, we "
-"can use `the` to help with type inference:"
+"As an alternative to prefixing overloaded functions with their\n"
+"namespace, we can use `the` to help with type inference:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1006,14 +1056,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:379
+#, no-wrap
 msgid ""
-"It is interesting to note, that the error above is not \"Mismatch between: 2 "
-"and 3\" but \"Mismatch between: 0 and 1\" instead. Here's what's going on: "
-"Idris tries to unify integer literals `2` and `3`, which are first converted "
-"to the corresponding `Nat` values `S (S Z)` and `S (S (S Z))`, "
-"respectively.  The two patterns match until we arrive at `Z` vs `S Z`, "
-"corresponding to values `0` and `1`, which is the discrepancy reported in "
-"the error message."
+"It is interesting to note, that the error above is not \"Mismatch between: 2 and 3\"\n"
+"but \"Mismatch between: 0 and 1\" instead. Here's what's going on: Idris tries to\n"
+"unify integer literals `2` and `3`, which are first converted to the\n"
+"corresponding `Nat` values `S (S Z)` and `S (S (S Z))`, respectively.\n"
+"The two patterns match until we arrive at `Z` vs `S Z`, corresponding\n"
+"to values `0` and `1`, which is the discrepancy reported in the error message.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1024,11 +1074,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:387
+#, no-wrap
 msgid ""
-"So far, we were able to learn something about the lengths of vectors by "
-"pattern matching on them. In the `Nil` case, it was clear that the length is "
-"0, while in the *cons* case the length was the successor of another natural "
-"number.  This is not possible when we want to create a new vector:"
+"So far, we were able to learn something about the lengths\n"
+"of vectors by pattern matching on them. In the `Nil`\n"
+"case, it was clear that the length is 0, while in the *cons*\n"
+"case the length was the successor of another natural number.\n"
+"This is not possible when we want to create a new vector:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1041,9 +1093,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:395
+#, no-wrap
 msgid ""
-"You will have a hard time implementing `fill`. The following, for instance, "
-"leads to a type error:"
+"You will have a hard time implementing `fill`. The following,\n"
+"for instance, leads to a type error:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1054,9 +1107,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:403
+#, no-wrap
 msgid ""
-"The problem is, that *the callers of our function decide about the length of "
-"the resulting vector*. The full type of `fill` is actually the following:"
+"The problem is, that *the callers of our function decide about\n"
+"the length of the resulting vector*. The full type of `fill` is\n"
+"actually the following:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1067,22 +1122,25 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:415
+#, no-wrap
 msgid ""
-"You can read this type as follows: For every type `a` and for every natural "
-"number `n` (about which I know *nothing* at runtime, since it has quantity "
-"zero), given a value of type `a`, I'll give you a vector holding exactly `n` "
-"elements of type `a`. This is like saying: \"Think about a natural number "
-"`n`, and I'll give you `n` apples without you telling me the value of `n`"
-"\".  Idris is powerful, but it is not a clairvoyant."
+"You can read this type as follows: For every type `a` and for\n"
+"every natural number `n` (about which I know *nothing* at runtime,\n"
+"since it has quantity zero), given a value of type `a`, I'll give\n"
+"you a vector holding exactly `n` elements of type `a`. This is\n"
+"like saying: \"Think about a natural number `n`, and\n"
+"I'll give you `n` apples without you telling me the value of `n`\".\n"
+"Idris is powerful, but it is not a clairvoyant.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:420
+#, no-wrap
 msgid ""
-"In order to implement `fill`, we need to know what `n` actually is: We need "
-"to pass `n` as an explicit, unerased argument, which will allow us to "
-"pattern match on it and decide - based on this pattern match - which "
-"constructors of `Vect` to use:"
+"In order to implement `fill`, we need to know what\n"
+"`n` actually is: We need to pass `n` as an explicit, unerased argument, which\n"
+"will allow us to pattern match on it and decide - based on this pattern\n"
+"match - which constructors of `Vect` to use:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1093,10 +1151,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:428
+#, no-wrap
 msgid ""
-"Now, `replicate` is a *dependent function type*: The output type *depends* "
-"on the value of one the arguments. It is straight forward to implement "
-"`replicate` by pattern matching on `n`:"
+"Now, `replicate` is a *dependent function type*: The output type\n"
+"*depends* on the value of one the arguments. It is straight forward\n"
+"to implement `replicate` by pattern matching on `n`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1109,14 +1168,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:443
+#, no-wrap
 msgid ""
-"This is a pattern that comes up often when working with indexed types: We "
-"can learn about the values of the indices by pattern matching on the values "
-"of the type family. However, in order to return a value of the type family "
-"from a function, we need to either know the values of the indices at compile "
-"time (see constants `ex1` or `ex3`, for instance), or we need to have access "
-"to the values of the indices at runtime, in which case we can pattern match "
-"on them and learn from this, which constructor(s) of the type family to use."
+"This is a pattern that comes up often when working with\n"
+"indexed types: We can learn about the values of the indices\n"
+"by pattern matching on the values of the type family. However,\n"
+"in order to return a value of the type family from a function,\n"
+"we need to either know the values of the indices at compile\n"
+"time (see constants `ex1` or `ex3`, for instance), or we\n"
+"need to have access to the values of the indices at runtime, in\n"
+"which case we can pattern match on them and learn from\n"
+"this, which constructor(s) of the type family to use.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1249,9 +1311,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:530
+#, no-wrap
 msgid ""
-"Consider function `index`, which tries to extract a value from a `List` at "
-"the given position:"
+"Consider function `index`, which tries to extract a value from\n"
+"a `List` at the given position:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1266,38 +1329,43 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:552
+#, no-wrap
 msgid ""
-"Now, here is a thing to consider when writing functions like `indexList`: Do "
-"we want to express the possibility of failure in the output type, or do we "
-"want to restrict the accepted arguments, so the function can no longer fail? "
-"These are important design decisions, especially in larger applications.  "
-"Returning a `Maybe` or `Either` from a function forces client code to "
-"eventually deal with the `Nothing` or `Left` case, and until this happens, "
-"all intermediary results will carry the `Maybe` or `Either` stain, which "
-"will make it more cumbersome to run calculations with these intermediary "
-"results.  On the other hand, restricting the values accepted as input will "
-"complicate the argument types and will put the burden of input validation on "
-"our functions' callers, (although, at compile time we can get help from "
-"Idris, as we will see when we talk about auto implicits) while keeping the "
-"output pure and clean."
+"Now, here is a thing to consider when writing functions like `indexList`:\n"
+"Do we want to express the possibility of failure in the output type,\n"
+"or do we want to restrict the accepted arguments,\n"
+"so the function can no longer fail? These are important design decisions,\n"
+"especially in larger applications.\n"
+"Returning a `Maybe` or `Either` from a function forces client code to eventually\n"
+"deal with the `Nothing` or `Left` case, and until this happens, all intermediary\n"
+"results will carry the `Maybe` or `Either` stain, which will make it more\n"
+"cumbersome to run calculations with these intermediary results.\n"
+"On the other hand, restricting the\n"
+"values accepted as input will complicate the argument types\n"
+"and will put the burden of input validation on our functions' callers,\n"
+"(although, at compile time we can get help from Idris, as we will\n"
+"see when we talk about auto implicits) while keeping the output pure and clean.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:557
+#, no-wrap
 msgid ""
-"Languages without dependent types (like Haskell), can often only take the "
-"route described above: To wrap the result in a `Maybe` or `Either`.  "
-"However, in Idris we can often *refine* the input types to restrict the set "
-"of accepted values, thus ruling out the possibility of failure."
+"Languages without dependent types (like Haskell), can often only take\n"
+"the route described above: To wrap the result in a `Maybe` or `Either`.\n"
+"However, in Idris we can often *refine* the input types to restrict the\n"
+"set of accepted values, thus ruling out the possibility of failure.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:563
+#, no-wrap
 msgid ""
-"Assume, as an example, we'd like to extract a value from a `Vect n a` at "
-"(zero-based) index `k`. Surely, this can succeed if and only if `k` is a "
-"natural number strictly smaller than the length `n` of the vector. Luckily, "
-"we can express this precondition in an indexed type:"
+"Assume, as an example, we'd like to extract a value from a `Vect n a`\n"
+"at (zero-based) index `k`. Surely, this can succeed if and only if\n"
+"`k` is a natural number strictly smaller than the length `n` of\n"
+"the vector. Luckily, we can express this precondition in an indexed\n"
+"type:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1311,17 +1379,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:576
+#, no-wrap
 msgid ""
-"`Fin n` is the type of natural numbers strictly smaller than `n`.  It is "
-"defined inductively: `FZ` corresponds to natural number *zero*, which, as "
-"can be seen in its type, is strictly smaller than `S n` for any natural "
-"number `n`. `FS` is the inductive case: If `k` is strictly smaller than `n` "
-"(`k` being of type `Fin n`), then `FS k` is strictly smaller than `S n`."
+"`Fin n` is the type of natural numbers strictly smaller than `n`.\n"
+"It is defined inductively: `FZ` corresponds to natural number *zero*,\n"
+"which, as can be seen in its type, is strictly smaller than\n"
+"`S n` for any natural number `n`. `FS` is the inductive case:\n"
+"If `k` is strictly smaller than `n` (`k` being of type `Fin n`),\n"
+"then `FS k` is strictly smaller than `S n`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:578
-msgid "Let's come up with some values of type `Fin`:"
+#, no-wrap
+msgid "Let's come up with some values of type `Fin`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1343,15 +1414,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:596
+#, no-wrap
 msgid ""
-"Note, that there is no value of type `Fin 0`. We will learn in a later "
-"session, how to express \"there is no value of type `x`\" in a type."
+"Note, that there is no value of type `Fin 0`. We will learn\n"
+"in a later session, how to express \"there is no value of type `x`\"\n"
+"in a type.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:599
+#, no-wrap
 msgid ""
-"Let us now check, whether we can use `Fin` to safely index into a `Vect`:"
+"Let us now check, whether we can use `Fin` to safely index\n"
+"into a `Vect`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1362,9 +1437,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:606
+#, no-wrap
 msgid ""
-"Before you continue, try to implement `index` yourself, making use of holes "
-"if you get stuck."
+"Before you continue, try to implement `index` yourself, making use\n"
+"of holes if you get stuck.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1377,10 +1453,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:616
+#, no-wrap
 msgid ""
-"Note, how there is no `Nil` case and the totality checker is still happy. "
-"That's because `Nil` is of type `Vect 0 a`, but there is no value of type "
-"`Fin 0`! We can verify this by adding the missing impossible clauses:"
+"Note, how there is no `Nil` case and the totality checker is still\n"
+"happy. That's because `Nil` is of type `Vect 0 a`, but there is no\n"
+"value of type `Fin 0`! We can verify this by adding the missing\n"
+"impossible clauses:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1480,17 +1558,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:669
+#, no-wrap
 msgid ""
-"Hint: Since `Fin n` consists of the values strictly smaller than `n`, `Fin "
-"(S n)` consists of the values smaller than or equal to `n`."
+"Hint: Since `Fin n` consists of the values strictly smaller\n"
+"than `n`, `Fin (S n)` consists of the values smaller than\n"
+"or equal to `n`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:674
+#, no-wrap
 msgid ""
-"Note: Functions `take`, `drop`, and `splitAt`, while correct and provably "
-"total, are rather cumbersome to type.  There is an alternative way to "
-"declare their types, as we will see in the next section."
+"Note: Functions `take`, `drop`, and `splitAt`, while correct and\n"
+"provably total, are rather cumbersome to type.\n"
+"There is an alternative way to declare their types,\n"
+"as we will see in the next section.\n"
 msgstr ""
 
 #. type: Title ##
@@ -1501,20 +1583,25 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:682
+#, no-wrap
 msgid ""
-"In the last section - especially in some of the exercises - we started more "
-"and more to use compile time computations to describe the types of our "
-"functions and values.  This is a very powerful concept, as it allows us to "
-"compute output types from input types. Here's an example:"
+"In the last section - especially in some of the exercises - we\n"
+"started more and more to use compile time computations to\n"
+"describe the types of our functions and values.\n"
+"This is a very powerful concept, as it allows us to\n"
+"compute output types from input types. Here's an example:\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:689
+#, no-wrap
 msgid ""
-"It is possible to concatenate two `List`s with the `(++)` operator. Surely, "
-"this should also be possible for `Vect`. But `Vect` is indexed by its "
-"length, so we have to reflect in the types exactly how the lengths of the "
-"inputs affect the lengths of the output. Here's how to do this:"
+"It is possible to concatenate two `List`s with the `(++)`\n"
+"operator. Surely, this should also be possible for\n"
+"`Vect`. But `Vect` is indexed by its length, so we have\n"
+"to reflect in the types exactly how the lengths of the\n"
+"inputs affect the lengths of the output. Here's how to\n"
+"do this:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1528,17 +1615,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:699
+#, no-wrap
 msgid ""
-"Note, how we keep track of the lengths at the type-level, again ruling out "
-"certain common programming errors like inadvertently dropping some values."
+"Note, how we keep track of the lengths at the type-level, again\n"
+"ruling out certain common programming errors like inadvertently dropping\n"
+"some values.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:704
+#, no-wrap
 msgid ""
-"We can also use type-level computations as patterns on the input types. Here "
-"is an alternative type and implementation for `drop`, which you implemented "
-"in the exercises by using a `Fin n` argument:"
+"We can also use type-level computations as patterns\n"
+"on the input types. Here is an alternative type and implementation\n"
+"for `drop`, which you implemented in the exercises by\n"
+"using a `Fin n` argument:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1558,25 +1649,31 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:717
+#, no-wrap
 msgid ""
-"After all the examples and exercises in this section you might have come to "
-"the conclusion that we can use arbitrary expressions in the types and Idris "
-"will happily evaluate and unify all of them for us."
+"After all the examples and exercises in this section\n"
+"you might have come to the conclusion that we can\n"
+"use arbitrary expressions in the types and Idris\n"
+"will happily evaluate and unify all of them for us.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:723
+#, no-wrap
 msgid ""
-"I'm afraid that's not even close to the truth. The examples in this section "
-"were hand-picked because they are known to *just work*. The reason being, "
-"that there was always a direct link between our own pattern matches and the "
-"implementations of functions we used at compile time."
+"I'm afraid that's not even close to the truth. The examples\n"
+"in this section were hand-picked because they are known\n"
+"to *just work*. The reason being, that there was always\n"
+"a direct link between our own pattern matches and the\n"
+"implementations of functions we used at compile time.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:726
+#, no-wrap
 msgid ""
-"For instance, here is the implementation of addition of natural numbers:"
+"For instance, here is the implementation of addition of\n"
+"natural numbers:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1590,22 +1687,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:744
+#, no-wrap
 msgid ""
-"As you can see, `add` is implemented via a pattern match on its *first* "
-"argument, while the second argument is never inspected. Note, how this is "
-"exactly how `(++)` for `Vect` is implemented: There, we also pattern match "
-"on the first argument, returning the second unmodified in the `Nil` case, "
-"and prepending the head to the result of appending the tail in the *cons* "
-"case. Since there is a direct correspondence between the two pattern "
-"matches, it is possible for Idris to unify `0 + n` with `n` in the `Nil` "
-"case, and `(S k) + n` with `S (k + n)` in the *cons* case."
+"As you can see, `add` is implemented via a pattern match\n"
+"on its *first* argument, while the second argument is never\n"
+"inspected. Note, how this is exactly how `(++)` for `Vect`\n"
+"is implemented: There, we also pattern match on the first\n"
+"argument, returning the second unmodified in the `Nil`\n"
+"case, and prepending the head to the result of appending\n"
+"the tail in the *cons* case. Since there is a direct\n"
+"correspondence between the two pattern matches, it\n"
+"is possible for Idris to unify `0 + n` with `n` in the\n"
+"`Nil` case, and `(S k) + n` with `S (k + n)` in the\n"
+"*cons* case.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:747
+#, no-wrap
 msgid ""
-"Here is a simple example, where Idris will not longer be convinced without "
-"some help from us:"
+"Here is a simple example, where Idris will not longer\n"
+"be convinced without some help from us:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1620,28 +1722,37 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:767
+#, no-wrap
 msgid ""
-"When we type-check the above, Idris will fail with the following error "
-"message: \"Can't solve constraint between: plus n 1 and S n.\" Here's what's "
-"going on: From the pattern match on the left hand side, Idris knows that the "
-"length of the vector is `S n`, for some natural number `n` corresponding to "
-"the length of `xs`. The length of the vector on the right hand side is `n + "
-"1`, according to the type of `(++)` and the lengths of `xs` and `[x]`. "
-"Overloaded operator `(+)` is implemented via function `Prelude.plus`, that's "
-"why Idris replaces `(+)` with `plus` in the error message."
+"When we type-check the above,\n"
+"Idris will fail with the following error message:\n"
+"\"Can't solve constraint between: plus n 1 and S n.\"\n"
+"Here's what's going on: From the pattern match on the\n"
+"left hand side, Idris knows that the length of the\n"
+"vector is `S n`, for some natural number `n`\n"
+"corresponding to the length of `xs`. The length\n"
+"of the vector on the right hand side is `n + 1`,\n"
+"according to the type of `(++)` and the lengths\n"
+"of `xs` and `[x]`. Overloaded operator `(+)`\n"
+"is implemented via function `Prelude.plus`, that's\n"
+"why Idris replaces `(+)` with `plus` in the error message.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:779
+#, no-wrap
 msgid ""
-"As you can see from the above, Idris can't verify on its own that `1 + n` is "
-"the same thing as `n + 1`.  It can accept some help from us, though. If we "
-"come up with a *proof* that the above equality holds (or - more generally - "
-"that our implementation of addition for natural numbers is *commutative*), "
-"we can use this proof to *rewrite* the types on the right hand side of "
-"`reverse`. Writing proofs and using `rewrite` will require some in-depth "
-"explanations and examples. Therefore, these things will have to wait until "
-"another chapter."
+"As you can see from the above, Idris can't verify on\n"
+"its own that `1 + n` is the same thing as `n + 1`.\n"
+"It can accept some help from us, though. If we come\n"
+"up with a *proof* that the above equality holds\n"
+"(or - more generally - that our implementation of\n"
+"addition for natural numbers is *commutative*),\n"
+"we can use this proof to *rewrite* the types on\n"
+"the right hand side of `reverse`. Writing proofs and\n"
+"using `rewrite` will require some in-depth explanations\n"
+"and examples. Therefore, these things will have to wait\n"
+"until another chapter.\n"
 msgstr ""
 
 #. type: Title ###
@@ -1652,11 +1763,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:788
+#, no-wrap
 msgid ""
-"In functions like `replicate`, we pass a natural number `n` as an explicit, "
-"unrestricted argument from which we infer the length of the vector to "
-"return.  In some circumstances, `n` can be inferred from the context.  For "
-"instance, in the following example it is tedious to pass `n` explicitly:"
+"In functions like `replicate`, we pass a natural number `n`\n"
+"as an explicit, unrestricted argument from which we infer\n"
+"the length of the vector to return.\n"
+"In some circumstances, `n` can be inferred from the context.\n"
+"For instance, in the following example it is tedious to\n"
+"pass `n` explicitly:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1669,9 +1783,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:796
+#, no-wrap
 msgid ""
-"The value `n` is clearly derivable from the context, which can be confirmed "
-"by replacing it with underscores:"
+"The value `n` is clearly derivable from the context, which\n"
+"can be confirmed by replacing it with underscores:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1684,9 +1799,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:805
+#, no-wrap
 msgid ""
-"We therefore can implement an alternative version of `replicate`, where we "
-"pass `n` as an implicit argument of *unrestricted* quantity:"
+"We therefore can implement an alternative version of `replicate`,\n"
+"where we pass `n` as an implicit argument of *unrestricted*\n"
+"quantity:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1699,19 +1816,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:813
+#, no-wrap
 msgid ""
-"Note how, in the implementation of `replicate'`, we can refer to `n` and "
-"pass it as an explicit argument to `replicate`."
+"Note how, in the implementation of `replicate'`, we can refer to `n`\n"
+"and pass it as an explicit argument to `replicate`.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:819
+#, no-wrap
 msgid ""
-"Deciding whether to pass potentially inferable arguments to a function "
-"implicitly or explicitly is a question of how often the arguments actually "
-"*are* inferable by Idris. Sometimes it might even be useful to have both "
-"verions of a function. Remember, however, that even in case of an implicit "
-"argument we can still pass the value explicitly:"
+"Deciding whether to pass potentially inferable arguments to a function implicitly\n"
+"or explicitly is a question of how often the arguments actually *are* inferable\n"
+"by Idris. Sometimes it might even be useful to have both verions\n"
+"of a function. Remember, however, that even in case of an implicit argument\n"
+"we can still pass the value explicitly:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1724,10 +1843,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:828
+#, no-wrap
 msgid ""
-"In the type signature above, the question mark (`?`) means, that Idris "
-"should try and figure out the value on its own by unification. This forces "
-"us to specify `n` explicitly on the right hand side of `ex6`."
+"In the type signature above, the question mark (`?`) means, that Idris\n"
+"should try and figure out the value on its own by unification. This\n"
+"forces us to specify `n` explicitly on the right hand side of `ex6`.\n"
 msgstr ""
 
 #. type: Title ####
@@ -1738,10 +1858,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:835
+#, no-wrap
 msgid ""
-"The implementation of `replicate'` makes use of function `replicate`, where "
-"we could pattern match on the explicit argument `n`. However, it is also "
-"possible to pattern match on implicit, named arguments of non-zero quantity:"
+"The implementation of `replicate'` makes use of function `replicate`,\n"
+"where we could pattern match on the explicit argument `n`. However, it\n"
+"is also possible to pattern match on implicit, named arguments of\n"
+"non-zero quantity:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1858,15 +1980,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:902
+#, no-wrap
 msgid ""
-"Note, that data type `Vect` together with many of the functions we "
-"implemented here is available from module `Data.Vect` from the *base* "
-"library. Likewise, `Fin` is available from `Data.Fin` from *base*."
+"Note, that data type `Vect` together with many of the functions we\n"
+"implemented here is available from module `Data.Vect` from the *base*\n"
+"library. Likewise, `Fin` is available from `Data.Fin` from *base*.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:907
+#, no-wrap
 msgid ""
-"In the [next section](IO.md), it is time to learn how to write effectful "
-"programs and how to do this while still staying *pure*."
+"In the [next section](IO.md), it is time to learn how to write effectful programs\n"
+"and how to do this while still staying *pure*.\n"
 msgstr ""

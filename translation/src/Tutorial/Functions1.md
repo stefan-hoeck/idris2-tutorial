@@ -1,10 +1,18 @@
 # 函数第 1 部分
 
-Idris 是一种 *函数式* 编程语言。这意味着，函数是它的主要抽象形式（与 Java 等面向对象的语言不同，其中 *objects* 和
-*classes* 是抽象的主要形式）。这也意味着我们希望 Idris 能够让我们非常轻松地组合函数以创建新函数。实际上，在 Idris
-中，函数是*一等*的：函数可以将其他函数作为参数，并且可以将函数作为结果返回。
+Idris is a *functional* programming language. This means,
+that functions are its main form of abstraction (unlike for
+instance in an object oriented language like Java, where
+*objects* and *classes* are the main form of abstraction). It also
+means that we expect Idris to make it very easy for
+us to compose and combine functions to create new
+functions. In fact, in Idris functions are *first class*:
+Functions can take other functions as arguments and
+can return functions as their results.
 
-我们已经在 [introduction](Intro.md) 中了解了 Idris 中顶级函数声明的基本形式，因此我们将从那里学到的内容继续。
+We already learned about the basic shape of top level
+function declarations in Idris in the [introduction](Intro.md),
+so we will continue from what we learned there.
 
 ```idris
 module Tutorial.Functions1
@@ -12,15 +20,19 @@ module Tutorial.Functions1
 
 ## 具有多个参数的函数
 
-让我们实现一个函数，它检查它的三个 `Integer` 参数是否形成一个
-[勾股三元组](https://en.wikipedia.org/wiki/Pythagorean_triple)。我们为此使用一个新的运算符：`==`，相等运算符。
+Let's implement a function, which checks if its three
+`Integer` arguments form a
+[Pythagorean triple](https://en.wikipedia.org/wiki/Pythagorean_triple).
+We get to use a new operator for this: `==`, the equality
+operator.
 
 ```idris
 isTriple : Integer -> Integer -> Integer -> Bool
 isTriple x y z = x * x + y * y == z * z
 ```
 
-在讨论类型之前，让我们先在 REPL 上试一下：
+Let's give this a spin at the REPL before we talk a bit
+about the types:
 
 ```repl
 Tutorial.Functions1> isTriple 1 2 3
@@ -31,19 +43,35 @@ True
 
 从这个例子可以看出，多参数函数的类型包含一个参数类型的序列（也称为 * 输入类型 *），由函数箭头（`->`）链接起来，其中由输出类型终止（在本例中为 `Bool`）。
 
-该实现看起来有点像一个数学方程：我们在 `=`
-的左侧列出参数，并在右侧描述要使用它们执行的计算。与命令式语言中的实现相比，函数式编程语言中的函数实现通常具有更多的数学外观，命令式语言通常不是描述*要计算什么*，而是通过将算法描述为*如何*来计算它命令式语句的序列。我们稍后会看到这种命令式风格在
-Idris 中也可用，但只要有可能，我们更喜欢声明式风格。
+The implementation looks a bit like a mathematical equation:
+We list the arguments on the left hand side of `=` and describe the
+computation(s) to perform with them on the right hand
+side. Function implementations in functional programming
+languages often have this more mathematical look compared
+to implementations in imperative  languages, which often
+describe not *what* to compute, but *how* to
+compute it by describing an algorithm as a sequence of
+imperative statements. We will later see that this
+imperative style is also available in Idris, but whenever
+possible we prefer the declarative style.
 
-从 REPL
-示例中可以看出，可以通过传递由空格分隔的参数来调用函数。除非我们作为将包含额外的空格的表达式作为函数参数进行传递，否则不需要括号。当我们仅部分应用函数时，这非常方便（见本章后面）。
+As can be seen in the REPL example, functions can be invoked
+by passing the arguments separated by whitespace. No parentheses
+are necessary unless one of the expressions we pass as the
+function's arguments contains itself additional whitespace.
+This comes in very handy when we apply functions
+only partially (see later in this chapter).
 
-请注意，与 `Integer` 或 `Bits8` 不同，`Bool` 不是 Idris
-语言中内置的原语数据类型，而只是您可以自己编写的自定义数据类型.我们将在下一章了解更多关于声明新数据类型的内容。
+Note that, unlike `Integer` or `Bits8`, `Bool` is not a primitive
+data type built into the Idris language but just a custom
+data type that you could have written yourself. We will
+learn more about declaring new data types in the
+next chapter.
 
 ## 函数组合
 
-函数可以通过多种方式组合，最直接的可能是点运算符：
+Functions can be combined in several ways, the most direct
+probably being the dot operator:
 
 ```idris
 square : Integer -> Integer
@@ -56,9 +84,10 @@ squareTimes2 : Integer -> Integer
 squareTimes2 = times2 . square
 ```
 
-在 REPL 试试这个！它是否符合您的预期？
+Give this a try at the REPL! Does it do what you'd expect?
 
-我们可以在不使用点运算符的情况下实现 `squareTimes2`，如下所示：
+We could have implemented `squareTimes2` without using
+the dot operator as follows:
 
 ```idris
 squareTimes2' : Integer -> Integer
@@ -67,19 +96,26 @@ squareTimes2' n = times2 (square n)
 
 需要注意的是，由点链接的函数，运算符会从右到左调用： `times2 . square`，等同于 `\n => times2 (square n)` ，而不是 `\n => square (times2 n)`。
 
-我们可以方便地使用点运算符链接多个函数来编写更复杂的函数：
+We can conveniently chain several functions using the
+dot operator to write more complex functions:
 
 ```idris
 dotChain : Integer -> String
 dotChain = reverse . show . square . square . times2 . times2
 ```
 
-这将首先将参数乘以四，然后将其平方两次，然后将其转换为字符串 (`show`) 并反转结果 `String`（函数 `show` 和 `reverse`
-是 Idris *Prelude* 的一部分，因此在每个 Idris 程序中都可用）。
+This will first multiply the argument by four, then square
+it twice before converting it to a string (`show`) and
+reversing the resulting `String` (functions `show` and
+`reverse` are part of the Idris *Prelude* and as such are
+available in every Idris program).
 
 ## 高阶函数
 
-函数可以将其他函数作为参数。这是一个非常强大的概念，我们可以很容易地为此发疯。但为了理智起见，我们将慢慢开始：
+Functions can take other functions as arguments. This is
+an incredibly powerful concept and we can go crazy with
+this very easily. But for sanity's sake, we'll start
+slowly:
 
 ```idris
 isEven : Integer -> Bool
@@ -89,26 +125,35 @@ testSquare : (Integer -> Bool) -> Integer -> Bool
 testSquare fun n = fun (square n)
 ```
 
-首先 `isEven` 使用 `mod` 函数来检查一个整数是否可以被 2 整除。但有趣的函数是
-`testSquare`。它有两个参数：第一个参数的类型是 *从 `Integer` 到 `Bool` 的函数*，第二个参数是 `Integer`
-类型。在传递给应用第一个参数之前，先把第二个参数进行平方计算。再一次，在 REPL 上试一试：
+First `isEven` uses the `mod` function to check, whether
+an integer is divisible by two. But the interesting function
+is `testSquare`. It takes two arguments: The first argument
+is of type *function from `Integer` to `Bool`*, and the second
+of type `Integer`. This second argument is squared before
+being passed to the first argument. Again, give this a go
+at the REPL:
 
 ```repl
 Tutorial.Functions1> testSquare isEven 12
 True
 ```
 
-花点时间了解这里发生了什么。我们将函数 `isEven` 作为参数传递给 `testSquare`。第二个参数是一个整数，它首先会被平方，然后传递给
-`isEven`。虽然这不是很有趣，但我们会看到很多将函数作为参数传递给其他函数的用例。
+Take your time to understand what's going on here. We pass
+function `isEven` as an argument to `testSquare`. The
+second argument is an integer, which will first be squared
+and then passed to `isEven`. While this is not very interesting,
+we will see lots of use cases for passing functions as
+arguments to other functions.
 
-我在上面说过，我们很容易发疯。例如，考虑以下示例：
+I said above, we could go crazy pretty easily.
+Consider for instance the following example:
 
 ```idris
 twice : (Integer -> Integer) -> Integer -> Integer
 twice f n = f (f n)
 ```
 
-在 REPL 试一下：
+And at the REPL:
 
 ```repl
 Tutorial.Functions1> twice square 2
@@ -119,7 +164,9 @@ Tutorial.Functions1> (twice . twice . twice . twice) square 2
 *** huge number ***
 ```
 
-您可能会对这种行为感到惊讶，因此我们将尝试对其进行分解。以下两个表达式的行为相同：
+You might be surprised about this behavior, so we'll try
+and break it down. The following two expressions are identical
+in their behavior:
 
 ```idris
 expr1 : Integer -> Integer
@@ -129,15 +176,23 @@ expr2 : Integer -> Integer
 expr2 = twice (twice (twice (twice square)))
 ```
 
-因此，`square` 将其参数提升到 2 次方，` 两次 square` 将其提升到 4 次方（通过连续调用 `square` 两次），` twice
-(twice square)` 将其提升到其 16 次方（通过连续调用 `twice square` 两次），依此类推，直到 `twice (twice
-(twice (twice square))))` 将其提高到 65536 次方，从而产生了令人印象深刻的巨大结果。
+So, `square` raises its argument to the 2nd power,
+`twice square` raises it to its 4th power (by invoking
+`square` twice in succession),
+`twice (twice square)` raises it to its 16th power
+(by invoking `twice square` twice in succession),
+and so on, until `twice (twice (twice (twice square)))`
+raises it to its 65536th power resulting in an impressively
+huge result.
 
 ## 柯里化
 
-一旦我们开始使用高阶函数，偏函数应用的概念（在数学家和逻辑学家 Haskell Curry 之后也称为 *柯里化*）变得非常重要。
+Once we start using higher-order functions, the concept
+of partial function application (also called *currying*
+after mathematician and logician Haskell Curry) becomes
+very important.
 
-在 REPL 会话中加载此文件并尝试以下操作：
+Load this file in a REPL session and try the following:
 
 ```repl
 Tutorial.Functions1> :t testSquare isEven
@@ -155,33 +210,40 @@ partialExample : Integer -> Bool
 partialExample = isTriple 3 4
 ```
 
-在 REPL 试一下：
+And at the REPL:
 
 ```repl
 Tutorial.Functions1> partialExample 5
 True
 ```
 
-我们已经在上面的 `twice` 示例中使用了偏函数的应用程序，只需很少的代码即可获得一些令人印象深刻的结果。
+We already used partial function application in our `twice`
+examples above to get some impressive results with very
+little code.
 
 ## 匿名函数
 
-有时我们想将一个小的自定义函数传递给一个高阶函数，而无需编写顶层定义。例如，在下面的示例中，函数 `someTest`
-非常具体，一般来说可能不是很有用，但我们仍然希望将它传递给高阶函数 `testSquare`：
+Sometimes we'd like to pass a small custom function to
+a higher-order function without bothering to write a
+top level definition. For instance, in the following example,
+function `someTest` is very specific and probably not
+very useful in general, but we'd still like to pass it
+to higher-order function `testSquare`:
 
 ```idris
 someTest : Integer -> Bool
 someTest n = n >= 3 || n <= 10
 ```
 
-下面将展示如何将其传递给 `testSquare`：
+Here's, how to pass it to `testSquare`:
 
 ```repl
 Tutorial.Functions1> testSquare someTest 100
 True
 ```
 
-我们也可以使用匿名函数，而不用定义和使用 `someTest`：
+Instead of defining and using `someTest`, we can use an
+anonymous function:
 
 ```repl
 Tutorial.Functions1> testSquare (\n => n >= 3 || n <= 10) 100
@@ -191,12 +253,16 @@ True
 匿名函数有时也称为 *lambdas*（来自[λ演算](https://en.wikipedia.org/wiki/Lambda_calculus)),并且选择了反斜杠，因为它类似于希腊语
 字母 * λ*。 `\n =>` 语法引入了一个新的参数为 `n` 的匿名函数，实现位于函数箭头的右侧。像其他顶级函数一样，lambda 可以有多个参数，并以逗号分隔：`\x,y => x * x + y`。当我们将 lambdas 作为参数传递给高阶函数时，它们通常需要用括号括起来或由美元运算符 `($)` 分开（请参阅下一节）。
 
-请注意，在 lambda 中，参数不使用类型进行注释，因此 Idris 必须能够从当前上下文中推断出它们。
+Note that, in a lambda, arguments are not annotated with types,
+so Idris has to be able to infer them from the current context.
 
 ## 操作符
 
-在 Idris 中，`.`、`*` 或 `+` 等中缀运算符并未内置于语言中，而只是常规的 Idris
-函数对应的中缀符号。当我们使用非中缀表示法的运算符时，我们必须将它们包裹在括号中。
+In Idris, infix operators like `.`, `*` or `+` are not built into
+the language, but are just regular Idris function with
+some special support for using them in infix notation.
+When we don't use operators in infix notation, we have
+to wrap them in parentheses.
 
 举个例子，让我们为类型为 `Bits8 -> Bits8` 的函数自定义操作符：
 
@@ -224,12 +290,18 @@ Prelude.. : (b -> c) -> (a -> b) -> a -> c
   Fixity Declaration: infixr operator, level 9
 ```
 
-当您在表达式中混合使用中缀运算符时，具有较高优先级的运算符绑定得更紧密。例如，`(+)` 的优先级为 8，而 `(*)` 的优先级为 9。因此，`a *
-b + c ` 与 `(a * b) + c` 相同，而不是 `a * (b + c)`。
+When you mix infix operators in an expression, those with
+a higher priority bind more tightly. For instance, `(+)`
+is left associated with a priority of 8, while `(*)`
+is left associated with a priority of 9. Hence,
+`a * b + c` is the same as `(a * b) + c` instead of `a * (b + c)`.
 
 ### 操作符块
 
-运算符符可以像常规函数一样被部分应用。在这种情况下，整个表达式必须用括号括起来，称为 * 运算符块 *。这里有两个例子：
+Operators can be partially applied just like regular
+functions. In this case, the whole expression has to
+be wrapped in parentheses and is called an *operator
+section*. Here are two examples:
 
 ```repl
 Tutorial.Functions1> testSquare (< 10) 5
@@ -240,21 +312,26 @@ True
 
 如您所见，`(< 10)`和 `(10 <)`。第一个测试，它的参数为是否小于10，第二，参数是否大于10。
 
-运算符部分不起作用的一个例外是使用 *minus* 运算符 `(-)`。下面是一个例子来证明这一点：
+One exception where operator sections will not work is
+with the *minus* operator `(-)`. Here is an example to
+demonstrate this:
 
 ```idris
 applyToTen : (Integer -> Integer) -> Integer
 applyToTen f = f 10
 ```
 
-这只是一个将数字 10 应用于其函数参数的高阶函数。这在以下示例中非常有效：
+This is just a higher-order function applying the number ten
+to its function argument. This works very well in the following
+example:
 
 ```repl
 Tutorial.Functions1> applyToThen (* 2)
 20
 ```
 
-但是，如果我们想从 10 中减去 5，以下将失败：
+However, if we want to subtract five from ten, the following
+will fail:
 
 ```repl
 Tutorial.Functions1> applyToTen (- 5)
@@ -264,7 +341,9 @@ Error: Can't find an implementation for Num (Integer -> Integer).
  1 | applyToTen (- 5)
 ```
 
-这里的问题是，Idris 将 `- 5` 视为整数字面量而不是运算符块。在这种特殊情况下，我们因此必须使用匿名函数：
+The problem here is, that Idris treats `- 5` as an integer literal
+instead of an operator section. In this special case, we therefore
+have to use an anonymous function instead:
 
 ```repl
 Tutorial.Functions1> applyToTen (\x => x - 5)
@@ -273,9 +352,10 @@ Tutorial.Functions1> applyToTen (\x => x - 5)
 
 ### 非运算符的中缀表示法
 
-In Idris, it is possible to use infix notation for regular binary functions,
-by wrapping them in backticks.  It is even possible to define a precedence
-(fixity) for these and use them in operator sections, just like regular
+In Idris, it is possible to use infix notation for
+regular binary functions, by wrapping them in backticks.
+It is even possible to define a precedence (fixity) for
+these and use them in operator sections, just like regular
 operators:
 
 ```idris
@@ -298,13 +378,14 @@ arithTest' = 5 + 10 * 12
 
 ### Operators exported by the *Prelude*
 
-Here is a list of important operators exported by the *Prelude*.  Most of
-these are *constrained*, that is they work only for types implementing a
-certain *interface*. Don't worry about this right now. We will learn about
-interfaces in due time, and the operators behave as they intuitively
-should.  For instance, addition and multiplication work for all numeric
-types, comparison operators work for almost all types in the *Prelude* with
-the exception of functions.
+Here is a list of important operators exported by the *Prelude*.
+Most of these are *constrained*, that is they work only
+for types implementing a certain *interface*. Don't worry
+about this right now. We will learn about interfaces in due
+time, and the operators behave as they intuitively should.
+For instance, addition and multiplication work for all
+numeric types, comparison operators work for almost all
+types in the *Prelude* with the exception of functions.
 
 * `(.)`: Function composition
 * `(+)`: Addition
@@ -316,12 +397,15 @@ the exception of functions.
 * `(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators
 * `($)`: Function application
 
-The most special of the above is the last one. It has a priority of 0, so
-all other operators bind more tightly.  In addition, function application
-binds more tightly, so this can be used to reduce the number of parentheses
-required. For instance, instead of writing `isTriple 3 4 (2 + 3 * 1)` we can
-write `isTriple 3 4 $ 2 + 3 * 1`, which is exactly the same. Sometimes, this
-helps readability, sometimes, it doesn't. The important thing to remember is
+The most special of the above is the last one. It has a
+priority of 0, so all other operators bind more tightly.
+In addition, function application binds more tightly, so
+this can be used to reduce the number of parentheses
+required. For instance, instead of writing
+`isTriple 3 4 (2 + 3 * 1)` we can write
+`isTriple 3 4 $ 2 + 3 * 1`,
+which is exactly the same. Sometimes, this helps readability,
+sometimes, it doesn't. The important thing to remember is
 that `fun $ x y` is just the same as `fun (x y)`.
 
 ## Exercises
@@ -440,10 +524,11 @@ or second argument.
 names but different implementations. Idris will decide, which function
 to used based to the types involved.
 
-Please note, that function and operator names in a module must be unique. In
-order to define two functions with the same name, they have to be declared
-in distinct modules. If Idris is not able to decide, which of the two
-functions to use, we can help name resolution by prefixing a function with
+Please note, that function and operator names in a module
+must be unique. In order to define two functions with the same
+name, they have to be declared in distinct modules. If Idris
+is not able to decide, which of the two functions to use, we
+can help name resolution by prefixing a function with
 (a part of) its *namespace*:
 
 ```repl
@@ -455,9 +540,10 @@ Tutorial.Functions1.not : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> B
 
 ### 下一步是什么
 
-In the [next section](DataTypes.md), we will learn how to define our own
-data types and how to construct and deconstruct values of these new
-types. We will also learn about generic types and functions.
+In the [next section](DataTypes.md), we will learn how to define
+our own data types and how to construct and deconstruct
+values of these new types. We will also learn about
+generic types and functions.
 
 <!-- vi: filetype=idris2
 -->

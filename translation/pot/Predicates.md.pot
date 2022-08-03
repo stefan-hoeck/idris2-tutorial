@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-02 23:16+0800\n"
+"POT-Creation-Date: 2022-08-03 13:26+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -427,7 +427,8 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
-msgid "And at the REPL:"
+#, no-wrap
+msgid "And at the REPL:\n"
 msgstr ""
 
 #. type: Title #
@@ -438,14 +439,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:12
+#, no-wrap
 msgid ""
-"In the [last chapter](Eq.md) we learned about propositional equality, which "
-"allowed us to proof that two values are equal. Equality is a relation "
-"between values, and we used an indexed data type to encode this relation by "
-"limiting the degrees of freedom of the indices in the sole data constructor. "
-"There are other relations and contracts we can encode this way. This will "
-"allow us to restrict the values we accept as a function's arguments or the "
-"values returned by functions."
+"In the [last chapter](Eq.md) we learned about propositional\n"
+"equality, which allowed us to proof that two values are\n"
+"equal. Equality is a relation between values, and we used\n"
+"an indexed data type to encode this relation by limiting\n"
+"the degrees of freedom of the indices in the sole data\n"
+"constructor. There are other relations and contracts we\n"
+"can encode this way. This will allow us to restrict the\n"
+"values we accept as a function's arguments or the values\n"
+"returned by functions.\n"
 msgstr ""
 
 #. type: Plain text
@@ -475,23 +479,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:38
+#, no-wrap
 msgid ""
-"Often, when we implement functions operating on values of a given type, not "
-"all values are considered to be valid arguments for the function in "
-"question. For instance, we typically do not allow division by zero, as the "
-"result is undefined in the general case. This concept of putting a "
-"*precondition* on a function argument comes up pretty often, and there are "
-"several ways to go about this."
+"Often, when we implement functions operating on values\n"
+"of a given type, not all values are considered to be\n"
+"valid arguments for the function in question. For instance,\n"
+"we typically do not allow division by zero, as the result\n"
+"is undefined in the general case. This concept of putting\n"
+"a *precondition* on a function argument comes up pretty often,\n"
+"and there are several ways to go about this.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:45
+#, no-wrap
 msgid ""
-"A very common operation when working with lists or other container types is "
-"to extract the first value in the sequence.  This function, however, cannot "
-"work in the general case, because in order to extract a value from a list, "
-"the list must not be empty. Here are a couple of ways to encode and "
-"implement this, each with its own advantages and disadvantages:"
+"A very common operation when working with lists or other\n"
+"container types is to extract the first value in the sequence.\n"
+"This function, however, cannot work in the general case, because\n"
+"in order to extract a value from a list, the list must not\n"
+"be empty. Here are a couple of ways to encode and implement\n"
+"this, each with its own advantages and disadvantages:\n"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -557,11 +565,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:100
+#, no-wrap
 msgid ""
-"There is a time and place for most if not all of the solutions listed above "
-"in Idris, but we will often turn to the last one and refine function "
-"arguments with predicates (so called *preconditions*), because it makes our "
-"functions nice to use at runtime *and* compile time."
+"There is a time and place for most if not all of the solutions\n"
+"listed above in Idris, but we will often turn to the last one and\n"
+"refine function arguments with predicates (so called\n"
+"*preconditions*), because it makes our functions nice to use at\n"
+"runtime *and* compile time.\n"
 msgstr ""
 
 #. type: Title ###
@@ -572,10 +582,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:107
+#, no-wrap
 msgid ""
-"Remember how we implemented an indexed data type for propositional equality: "
-"We restricted the valid values of the indices in the constructors. We can do "
-"the same thing for a predicate for non-empty lists:"
+"Remember how we implemented an indexed data type for\n"
+"propositional equality: We restricted the valid\n"
+"values of the indices in the constructors. We can do\n"
+"the same thing for a predicate for non-empty lists:\n"
 msgstr ""
 
 #. type: Plain text
@@ -588,10 +600,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:117
+#, no-wrap
 msgid ""
-"This is a single-value data type, so we can always use it as an erased "
-"function argument and still pattern match on it. We can now use this to "
-"implement a safe and pure `head` function:"
+"This is a single-value data type, so we can always use it\n"
+"as an erased function argument and still pattern match on\n"
+"it. We can now use this to implement a safe and pure `head`\n"
+"function:\n"
 msgstr ""
 
 #. type: Plain text
@@ -605,26 +619,32 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:129
+#, no-wrap
 msgid ""
-"Note, how value `IsNotNil` is a *witness* that its index, which corresponds "
-"to our list argument, is indeed non-empty, because this is what we specified "
-"in its type.  The impossible case in the implementation of `head1` is not "
-"strictly necessary here. It was given above for completeness."
+"Note, how value `IsNotNil` is a *witness* that its index,\n"
+"which corresponds to our list argument, is indeed non-empty,\n"
+"because this is what we specified in its type.\n"
+"The impossible case in the implementation of `head1` is not\n"
+"strictly necessary here. It was given above for completeness.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:134
+#, no-wrap
 msgid ""
-"We call `NotNil` a *predicate* on lists, as it restricts the values allowed "
-"in the index. We can express a function's preconditions by adding additional "
-"(possibly erased) predicates to the function's list of arguments."
+"We call `NotNil` a *predicate* on lists, as it restricts\n"
+"the values allowed in the index. We can express a function's\n"
+"preconditions by adding additional (possibly erased) predicates\n"
+"to the function's list of arguments.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:138
+#, no-wrap
 msgid ""
-"The first really cool thing is how we can safely use `head1`, if we can at "
-"compile-time show that our list argument is indeed non-empty:"
+"The first really cool thing is how we can safely use `head1`,\n"
+"if we can at compile-time show that our list argument is\n"
+"indeed non-empty:\n"
 msgstr ""
 
 #. type: Plain text
@@ -637,14 +657,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:152
+#, no-wrap
 msgid ""
-"It is a bit cumbersome that we have to pass the `IsNotNil` proof manually. "
-"Before we scratch that itch, we will first discuss what to do with lists, "
-"the values of which are not known until runtime. For these cases, we have to "
-"try and produce a value of the predicate programmatically by inspecting the "
-"runtime list value. In the most simple case, we can wrap the proof in a "
-"`Maybe`, but if we can show that our predicate is *decidable*, we can get "
-"even stronger guarantees by returning a `Dec`:"
+"It is a bit cumbersome that we have to pass the `IsNotNil` proof\n"
+"manually. Before we scratch that itch, we will first discuss what\n"
+"to do with lists, the values of which are not known until\n"
+"runtime. For these cases, we have to try and produce a value\n"
+"of the predicate programmatically by inspecting the runtime\n"
+"list value. In the most simple case, we can wrap the proof\n"
+"in a `Maybe`, but if we can show that our predicate is *decidable*,\n"
+"we can get even stronger guarantees by returning a `Dec`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -661,9 +683,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:164
+#, no-wrap
 msgid ""
-"With this, we can implement function `headMaybe`, which is to be used with "
-"lists of unknown origin:"
+"With this, we can implement function `headMaybe`, which\n"
+"is to be used with lists of unknown origin:\n"
 msgstr ""
 
 #. type: Plain text
@@ -678,11 +701,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:176
+#, no-wrap
 msgid ""
-"Of course, for trivial functions like `headMaybe` it makes more sense to "
-"implement them directly by pattern matching on the list argument, but we "
-"will soon see examples of predicates the values of which are more cumbersome "
-"to create."
+"Of course, for trivial functions like `headMaybe` it makes\n"
+"more sense to implement them directly by pattern matching on\n"
+"the list argument, but we will soon see examples of predicates\n"
+"the values of which are more cumbersome to create.\n"
 msgstr ""
 
 #. type: Title ###
@@ -693,21 +717,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:187
+#, no-wrap
 msgid ""
-"Having to manually pass a proof of being non-empty to `head1` makes this "
-"function unnecessarily verbose to use at compile time. Idris allows us to "
-"define implicit function arguments, the values of which it tries to assemble "
-"on its own by means of a technique called *proof search*. This is not to be "
-"confused with type inference, which means inferring values or types from the "
-"surrounding context. It's best to look at some examples to explain the "
-"difference."
+"Having to manually pass a proof of being non-empty to\n"
+"`head1` makes this function unnecessarily verbose to\n"
+"use at compile time. Idris allows us to define implicit\n"
+"function arguments, the values of which it tries to assemble\n"
+"on its own by means of a technique called *proof search*. This is not\n"
+"to be confused with type inference, which means inferring\n"
+"values or types from the surrounding context. It's best\n"
+"to look at some examples to explain the difference.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:190
+#, no-wrap
 msgid ""
-"Let us first have a look at the following implementation of `replicate` for "
-"vectors:"
+"Let us first have a look at the following implementation of\n"
+"`replicate` for vectors:\n"
 msgstr ""
 
 #. type: Plain text
@@ -721,11 +748,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:202
+#, no-wrap
 msgid ""
-"Function `replicate'` takes an unerased implicit argument.  The *value* of "
-"this argument must be derivable from the surrounding context. For instance, "
-"in the following example it is immediately clear that `n` equals three, "
-"because that is the length of the vector we want:"
+"Function `replicate'` takes an unerased implicit argument.\n"
+"The *value* of this argument must be derivable from the surrounding\n"
+"context. For instance, in the following example it is\n"
+"immediately clear that `n` equals three, because that is\n"
+"the length of the vector we want:\n"
 msgstr ""
 
 #. type: Plain text
@@ -738,10 +767,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:211
+#, no-wrap
 msgid ""
-"In the next example, the value of `n` is not known at compile time, but it "
-"is available as an unerased implicit, so this can again be passed as is to "
-"`replicate'`:"
+"In the next example, the value of `n` is not known at compile time,\n"
+"but it is available as an unerased implicit, so this can again\n"
+"be passed as is to `replicate'`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -754,12 +784,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:223
+#, no-wrap
 msgid ""
-"However, in the following example, the value of `n` can't be inferred, as "
-"the intermediary vector is immediately converted to a list of unknown "
-"length. Although Idris could try and insert any value for `n` here, it won't "
-"do so, because it can't be sure that this is the length we want. We "
-"therefore have to pass the length explicitly:"
+"However, in the following example, the value of `n` can't\n"
+"be inferred, as the intermediary vector is immediately converted\n"
+"to a list of unknown length. Although Idris could try and insert\n"
+"any value for `n` here, it won't do so, because it can't be\n"
+"sure that this is the length we want. We therefore have to pass the\n"
+"length explicitly:\n"
 msgstr ""
 
 #. type: Plain text
@@ -772,11 +804,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:234
+#, no-wrap
 msgid ""
-"Note, how the *value* of `n` had to be inferable in these examples, which "
-"means it had to make an appearance in the surrounding context. With auto "
-"implicit arguments, this works differently. Here is the `head` example, this "
-"time with an auto implicit:"
+"Note, how the *value* of `n` had to be inferable in\n"
+"these examples, which means it had to make an appearance\n"
+"in the surrounding context. With auto implicit arguments,\n"
+"this works differently. Here is the `head` example, this\n"
+"time with an auto implicit:\n"
 msgstr ""
 
 #. type: Plain text
@@ -790,19 +824,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:249
+#, no-wrap
 msgid ""
-"Note the `auto` keyword before the quantity of implicit argument `prf`. This "
-"means, we want Idris to construct this value on its own, without it being "
-"visible in the surrounding context.  In order to do so, Idris will have to "
-"at compile time know the structure of the list argument `as`. It will then "
-"try and build such a value from the data type's constructors. If it "
-"succeeds, this value will then be automatically filled in as the desired "
-"argument, otherwise, Idris will fail with a type error."
+"Note the `auto` keyword before the quantity of implicit argument\n"
+"`prf`. This means, we want Idris to construct this value\n"
+"on its own, without it being visible in the surrounding context.\n"
+"In order to do so, Idris will have to at compile time know the\n"
+"structure of the list argument `as`. It will then try and build\n"
+"such a value from the data type's constructors. If it succeeds,\n"
+"this value will then be automatically filled in as the desired argument,\n"
+"otherwise, Idris will fail with a type error.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:251
-msgid "Let's see this in action:"
+#, no-wrap
+msgid "Let's see this in action:\n"
 msgstr ""
 
 #. type: Plain text
@@ -815,7 +852,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:258
-msgid "The following example fails with an error:"
+#, no-wrap
+msgid "The following example fails with an error:\n"
 msgstr ""
 
 #. type: Plain text
@@ -855,10 +893,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:287
+#, no-wrap
 msgid ""
-"During proof search, Idris will also look for values of the required type in "
-"the current function context. This allows us to implement `headMaybe` "
-"without having to pass on the `NotNil` proof manually:"
+"During proof search, Idris will also look for values of\n"
+"the required type in the current function context. This allows\n"
+"us to implement `headMaybe` without having to pass on\n"
+"the `NotNil` proof manually:\n"
 msgstr ""
 
 #. type: Plain text
@@ -874,22 +914,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:304
+#, no-wrap
 msgid ""
-"To conclude: Predicates allow us to restrict the values a function accepts "
-"as arguments. At runtime, we need to build such *witnesses* by pattern "
-"matching on the function arguments. These operations can typically fail. At "
-"compile time, we can let Idris try and build these values for us using a "
-"technique called *proof search*. This allows us to make functions safe and "
-"convenient to use at the same time."
+"To conclude: Predicates allow us to restrict the values\n"
+"a function accepts as arguments. At runtime, we need to\n"
+"build such *witnesses* by pattern matching on the function\n"
+"arguments. These operations can typically fail. At compile\n"
+"time, we can let Idris try and build these values for us\n"
+"using a technique called *proof search*. This allows us\n"
+"to make functions safe and convenient to use at the same\n"
+"time.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:312
+#, no-wrap
 msgid ""
-"In these exercises, you'll have to implement several functions making use of "
-"auto implicits, to constrain the values accepted as function arguments. The "
-"results should be *pure*, that is, not wrapped in a failure type like "
-"`Maybe`."
+"In these exercises, you'll have to implement several\n"
+"functions making use of auto implicits, to constrain\n"
+"the values accepted as function arguments. The results\n"
+"should be *pure*, that is, not wrapped in a failure type\n"
+"like `Maybe`.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -936,10 +981,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:339
+#, no-wrap
 msgid ""
-"The predicates you implemented in these exercises are already available in "
-"the *base* library: `Data.List.NonEmpty`, `Data.Maybe.IsJust`, `Data.Either."
-"IsLeft`, `Data.Either.IsRight`, and `Data.Nat.IsSucc`."
+"The predicates you implemented in these exercises are already\n"
+"available in the *base* library: `Data.List.NonEmpty`,\n"
+"`Data.Maybe.IsJust`, `Data.Either.IsLeft`, `Data.Either.IsRight`,\n"
+"and `Data.Nat.IsSucc`.\n"
 msgstr ""
 
 #. type: Title ##
@@ -950,10 +997,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:346
+#, no-wrap
 msgid ""
-"The predicates we saw so far restricted the values of a single type, but it "
-"is also possible to define predicates describing contracts between several "
-"values of possibly distinct types."
+"The predicates we saw so far restricted the values of\n"
+"a single type, but it is also possible to define predicates\n"
+"describing contracts between several values of possibly\n"
+"distinct types.\n"
 msgstr ""
 
 #. type: Title ###
@@ -964,9 +1013,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:351
+#, no-wrap
 msgid ""
-"Assume we'd like to extract a value of a given type from a heterogeneous "
-"list:"
+"Assume we'd like to extract a value of a given type from\n"
+"a heterogeneous list:\n"
 msgstr ""
 
 #. type: Plain text
@@ -977,9 +1027,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:358
+#, no-wrap
 msgid ""
-"This can't work in general: If we could implement this we would immediately "
-"have a proof of void:"
+"This can't work in general: If we could implement this we would\n"
+"immediately have a proof of void:\n"
 msgstr ""
 
 #. type: Plain text
@@ -992,10 +1043,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:367
+#, no-wrap
 msgid ""
-"The problem is obvious: The type of which we'd like to extract a value must "
-"be an element of the index of the heterogeneous list.  Here is a predicate, "
-"with which we can express this:"
+"The problem is obvious: The type of which we'd like to extract\n"
+"a value must be an element of the index of the heterogeneous list.\n"
+"Here is a predicate, with which we can express this:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1009,16 +1061,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:386
+#, no-wrap
 msgid ""
-"This is a predicate describing a contract between two values: A value of "
-"type `a` and a list of `a`s. Values of this predicate are witnesses that the "
-"value is an element of the list.  Note, how this is defined recursively: The "
-"case where the value we look for is at the head of the list is handled by "
-"the `Here` constructor, where the same variable (`x`) is used for the "
-"element and the head of the list. The case where the value is deeper within "
-"the list is handled by the `There` constructor. This can be read as follows: "
-"If `x` is and element of `xs`, then `x` is also an element of `y :: xs` for "
-"any value `y`. Let's write down some examples to get a feel for these:"
+"This is a predicate describing a contract between two values:\n"
+"A value of type `a` and a list of `a`s. Values of this predicate\n"
+"are witnesses that the value is an element of the list.\n"
+"Note, how this is defined recursively: The case\n"
+"where the value we look for is at the head of the list is\n"
+"handled by the `Here` constructor, where the same variable (`x`) is used\n"
+"for the element and the head of the list. The case where the value\n"
+"is deeper within  the list is handled by the `There`\n"
+"constructor. This can be read as follows: If `x` is and element\n"
+"of `xs`, then `x` is also an element of `y :: xs` for any\n"
+"value `y`. Let's write down some examples to get a feel\n"
+"for these:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1037,17 +1093,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:402
+#, no-wrap
 msgid ""
-"Now, `Elem` is just another way of indexing into a list of values. Instead "
-"of using a `Fin` index, which is limited by the list's length, we use a "
-"proof that a value can be found at a certain position."
+"Now, `Elem` is just another way of indexing into a list\n"
+"of values. Instead of using a `Fin` index, which is limited\n"
+"by the list's length, we use a proof that a value can be found\n"
+"at a certain position.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:405
+#, no-wrap
 msgid ""
-"We can use the `Elem` predicate to extract a value from the desired type of "
-"a heterogeneous list:"
+"We can use the `Elem` predicate to extract a value from\n"
+"the desired type of a heterogeneous list:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1058,11 +1117,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:415
+#, no-wrap
 msgid ""
-"It is important to note that the auto implicit must not be erased in this "
-"case. This is no longer a single value data type, and we must be able to "
-"pattern match on this value in order to figure out, how far within the "
-"heterogeneous list our value is stored:"
+"It is important to note that the auto implicit must not be\n"
+"erased in this case. This is no longer a single value data type,\n"
+"and we must be able to pattern match on this value in order to\n"
+"figure out, how far within the heterogeneous list our value\n"
+"is stored:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1076,15 +1137,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:425
+#, no-wrap
 msgid ""
-"It can be instructive to implement `get` yourself, using holes on the right "
-"hand side to see the context and types of values Idris infers based on the "
-"value of the `Elem` predicate."
+"It can be instructive to implement `get` yourself, using holes on\n"
+"the right hand side to see the context and types of values Idris\n"
+"infers based on the value of the `Elem` predicate.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:427
-msgid "Let's give this a spin at the REPL:"
+#, no-wrap
+msgid "Let's give this a spin at the REPL:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1103,13 +1166,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:446
+#, no-wrap
 msgid ""
-"With this example we start to appreciate what *proof search* actually means: "
-"Given a value `v` and a list of values `vs`, Idris tries to find a proof "
-"that `v` is an element of `vs`.  Now, before we continue, please note that "
-"proof search is not a silver bullet. The search algorithm has a reasonably "
-"limited *search depth*, and will fail with the search if this limit is "
-"exceeded. For instance:"
+"With this example we start to appreciate what *proof search*\n"
+"actually means: Given a value `v` and a list of values `vs`, Idris tries\n"
+"to find a proof that `v` is an element of `vs`.\n"
+"Now, before we continue, please note that proof search is\n"
+"not a silver bullet. The search algorithm has a reasonably limited\n"
+"*search depth*, and will fail with the search if this limit\n"
+"is exceeded. For instance:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1138,13 +1203,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:474
+#, no-wrap
 msgid ""
-"As you can see, Idris fails to find a proof that `Maybe String` is an "
-"element of `Tps`. The search depth can be increased with the `"
-"%auto_implicit_depth` directive, which will hold for the rest of the source "
-"file or until set to a different value.  The default value is set at 25. In "
-"general, it is not advisable to set this to a too large value as this can "
-"drastically increase compile times."
+"As you can see, Idris fails to find a proof that `Maybe String`\n"
+"is an element of `Tps`. The search depth can be increased with\n"
+"the `%auto_implicit_depth` directive, which will hold for the\n"
+"rest of the source file or until set to a different value.\n"
+"The default value is set at 25. In general, it is not advisable\n"
+"to set this to a too large value as this can drastically increase\n"
+"compile times.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1166,13 +1233,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:492
+#, no-wrap
 msgid ""
-"In the chapter about [sigma types](DPair.md), we introduced a schema for CSV "
-"files. This was not very nice to use, because we had to use natural numbers "
-"to access a certain column. Even worse, users of our small library had to do "
-"the same. There was no way to define a name for each column and access "
-"columns by name. We are going to change this. Here is an encoding for this "
-"use case:"
+"In the chapter about [sigma types](DPair.md), we introduced\n"
+"a schema for CSV files. This was not very nice to use, because\n"
+"we had to use natural numbers to access a certain column. Even\n"
+"worse, users of our small library had to do the same. There was\n"
+"no way to define a name for each column and access columns by\n"
+"name. We are going to change this. Here is an encoding\n"
+"for this use case:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1215,10 +1284,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:531
+#, no-wrap
 msgid ""
-"As you can see, in a schema we now pair a column's type with its name. Here "
-"is an example schema for a CSV file holding information about employees in a "
-"company:"
+"As you can see, in a schema we now pair a column's type\n"
+"with its name. Here is an example schema for a CSV file\n"
+"holding information about employees in a company:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1237,12 +1307,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:549
+#, no-wrap
 msgid ""
-"Such a schema could of course again be read from user input, but we will "
-"wait with implementing a parser until later in this chapter.  Using this new "
-"schema with an `HList` directly led to issues with type inference, therefore "
-"I quickly wrote a custom row type: A heterogeneous list indexed over a "
-"schema."
+"Such a schema could of course again be read from user\n"
+"input, but we will wait with implementing a parser until\n"
+"later in this chapter.\n"
+"Using this new schema with an `HList` directly led to issues\n"
+"with type inference, therefore I quickly wrote a custom\n"
+"row type: A heterogeneous list indexed over a schema.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1261,15 +1333,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:565
+#, no-wrap
 msgid ""
-"In the signature of *cons*, I list the erased implicit arguments explicitly. "
-"This is good practice, as otherwise Idris will often issue shadowing "
-"warnings when using such data constructors in client code."
+"In the signature of *cons*, I list the erased implicit arguments\n"
+"explicitly. This is good practice, as otherwise Idris will often\n"
+"issue shadowing warnings when using such data constructors in client\n"
+"code.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:567
-msgid "We can now define a type alias for CSV rows representing employees:"
+#, no-wrap
+msgid "We can now define a type alias for CSV rows representing employees:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1285,31 +1360,39 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:584
+#, no-wrap
 msgid ""
-"Note, how I gave `Employee` a zero quantity. This means, we are only ever "
-"allowed to use this function at compile time but never at runtime. This is a "
-"safe way to make sure our type-level functions and aliases do not leak into "
-"the executable when we build our application. We are allowed to use zero-"
-"quantity functions and values in type signatures and when computing other "
-"erased values, but not for runtime-relevant computations."
+"Note, how I gave `Employee` a zero quantity. This means, we are\n"
+"only ever allowed to use this function at compile time\n"
+"but never at runtime. This is a safe way to make sure\n"
+"our type-level functions and aliases do not leak into the\n"
+"executable when we build our application. We are allowed\n"
+"to use zero-quantity functions and values in type signatures\n"
+"and when computing other erased values, but not for runtime-relevant\n"
+"computations.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:602
+#, no-wrap
 msgid ""
-"We would now like to access a value in a row based on the name given. For "
-"this, we write a custom predicate, which serves as a witness that a column "
-"with the given name is part of the schema. Now, here is an important thing "
-"to note: In this predicate we include an index for the *type* of the column "
-"with the given name. We need this, because when we access a column by name, "
-"we need a way to figure out the return type. But during proof search, this "
-"type will have to be derived by Idris based on the column name and schema in "
-"question (otherwise, the proof search will fail unless the return type is "
-"known in advance).  We therefore *must* tell Idris, that it can't include "
-"this type in the list of search criteria, otherwise it will try and infer "
-"the column type from the context (using type inference) before running the "
-"proof search. This can be done by listing the indices to be used in the "
-"search like so: `[search name schema]`."
+"We would now like to access a value in a row based on\n"
+"the name given. For this, we write a custom predicate, which\n"
+"serves as a witness that a column with the given name is\n"
+"part of the schema. Now, here is an important thing to note:\n"
+"In this predicate we include an index for the *type* of the\n"
+"column with the given name. We need this, because when we\n"
+"access a column by name, we need a way to figure out\n"
+"the return type. But during proof search, this type will\n"
+"have to be derived by Idris based on the column name and\n"
+"schema in question (otherwise, the proof search will fail\n"
+"unless the return type is known in advance).\n"
+"We therefore *must* tell Idris, that\n"
+"it can't include this type in the list of search criteria,\n"
+"otherwise it will try and infer the column type from the\n"
+"context (using type inference) before running the proof\n"
+"search. This can be done by listing the indices to be used in\n"
+"the search like so: `[search name schema]`.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1331,9 +1414,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:619
+#, no-wrap
 msgid ""
-"With this, we are now ready to access the value at a given column based on "
-"the column's name:"
+"With this, we are now ready to access the value\n"
+"at a given column based on the column's name:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1351,13 +1435,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:638
+#, no-wrap
 msgid ""
-"Below is an example how to use this at compile time. Note the amount of work "
-"Idris performs for us: It first comes up with proofs that `firstName`, "
-"`lastName`, and `age` are indeed valid names in the `Employee` schema. From "
-"these proofs it automatically figures out the return types of the calls to "
-"`getAt` and extracts the corresponding values from the row. All of this "
-"happens in a provably total and type safe way."
+"Below is an example how to use this at compile time. Note\n"
+"the amount of work Idris performs for us: It first comes\n"
+"up with proofs that `firstName`, `lastName`, and `age`\n"
+"are indeed valid names in the `Employee` schema. From\n"
+"these proofs it automatically figures out the return types\n"
+"of the calls to `getAt` and extracts the corresponding values\n"
+"from the row. All of this happens in a provably total and type\n"
+"safe way.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1375,14 +1462,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:657
+#, no-wrap
 msgid ""
-"In order to at runtime specify a column name, we need a way for computing "
-"values of type `InSchema` by comparing the column names with the schema in "
-"question. Since we have to compare two string values for being "
-"propositionally equal, we use the `DecEq` implementation for `String` here "
-"(Idris provides `DecEq` implementations for all primitives). We extract the "
-"column type at the same time and pair this (as a dependent pair) with the "
-"`InSchema` proof:"
+"In order to at runtime specify a column name, we need a way\n"
+"for computing values of type `InSchema` by comparing\n"
+"the column names with the schema in question. Since we have\n"
+"to compare two string values for being propositionally equal,\n"
+"we use the `DecEq` implementation for `String` here (Idris provides `DecEq`\n"
+"implementations for all primitives). We extract the column type\n"
+"at the same time and pair this (as a dependent pair) with\n"
+"the `InSchema` proof:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1400,9 +1489,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:671
+#, no-wrap
 msgid ""
-"At the end of this chapter we will use `InSchema` in our CSV command-line "
-"application to list all values in a column."
+"At the end of this chapter we will use `InSchema` in\n"
+"our CSV command-line application to list all values\n"
+"in a column.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1462,20 +1553,25 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:718
+#, no-wrap
 msgid ""
-"A recurring pattern when writing larger applications is the combination of "
-"different parts of a program each with their own failure types in a larger "
-"effectful computation.  We saw this, for instance, when implementing a "
-"command-line tool for handling CSV files. There, we read and wrote data from "
-"and to files, we parsed column types and schemata, we parsed row and column "
-"indices and command-line commands.  All these operations came with the "
-"potential of failure and might be implemented in different parts of our "
-"application.  In order to unify these different failure types, we wrote a "
-"custom sum type encapsulating each of them, and wrote a single handler for "
-"this sum type. This approach was alright then, but it does not scale well "
-"and is lacking in terms of flexibility. We are therefore trying a different "
-"approach here. Before we continue, we quickly implement a couple of "
-"functions with the potential of failure plus some custom error types:"
+"A recurring pattern when writing larger applications is\n"
+"the combination of different parts of a program each with\n"
+"their own failure types in a larger effectful computation.\n"
+"We saw this, for instance, when implementing a command-line\n"
+"tool for handling CSV files. There, we read and wrote data\n"
+"from and to files, we parsed column types and schemata,\n"
+"we parsed row and column indices and command-line commands.\n"
+"All these operations came with the potential of failure and\n"
+"might be implemented in different parts of our application.\n"
+"In order to unify these different failure types, we wrote\n"
+"a custom sum type encapsulating each of them, and wrote a\n"
+"single handler for this sum type. This approach was alright\n"
+"then, but it does not scale well and is lacking in terms of\n"
+"flexibility. We are therefore trying a different\n"
+"approach here. Before we continue, we quickly implement a\n"
+"couple of functions with the potential of failure plus\n"
+"some custom error types:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1503,12 +1599,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:746
+#, no-wrap
 msgid ""
-"However, if we wanted to parse a `Fin n`, there'd be already two ways how "
-"this could fail: The string in question could not represent a natural number "
-"(leading to a `NoNat` error), or it could be out of bounds (leading to an "
-"`OutOfBounds` error).  We have to somehow encode these two possibilities in "
-"the return type, for instance, by using an `Either` as the error type:"
+"However, if we wanted to parse a `Fin n`, there'd be already\n"
+"two ways how this could fail: The string in question could not\n"
+"represent a natural number (leading to a `NoNat` error), or it\n"
+"could be out of bounds (leading to an `OutOfBounds` error).\n"
+"We have to somehow encode these two possibilities in the\n"
+"return type, for instance, by using an `Either` as the error\n"
+"type:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1528,14 +1627,16 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:767
+#, no-wrap
 msgid ""
-"This is incredibly ugly. A custom sum type might have been slightly better, "
-"but we still would have to use `mapFst` when invoking `readNat'`, and "
-"writing custom sum types for every possible combination of errors will get "
-"cumbersome very quickly as well.  What we are looking for, is a generalized "
-"sum type: A type indexed by a list of types (the possible choices) holding a "
-"single value of exactly one of the types in question.  Here is a first naive "
-"try:"
+"This is incredibly ugly. A custom sum type might have been slightly better,\n"
+"but we still would have to use `mapFst` when invoking `readNat'`, and\n"
+"writing custom sum types for every possible combination of errors\n"
+"will get cumbersome very quickly as well.\n"
+"What we are looking for, is a generalized sum type: A type\n"
+"indexed by a list of types (the possible choices) holding\n"
+"a single value of exactly one of the types in question.\n"
+"Here is a first naive try:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1548,15 +1649,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:783
+#, no-wrap
 msgid ""
-"However, there is a crucial piece of information missing: We have not "
-"verified that `t` is an element of `ts`, nor *which* type it actually is. In "
-"fact, this is another case of an erased existential, and we will have no way "
-"to at runtime learn something about `t`. What we need to do is to pair the "
-"value with a proof, that its type `t` is an element of `ts`.  We could use "
-"`Elem` again for this, but for some use cases we will require access to the "
-"number of types in the list.  We will therefore use a vector instead of a "
-"list as our index.  Here is a predicate similar to `Elem` but for vectors:"
+"However, there is a crucial piece of information missing:\n"
+"We have not verified that `t` is an element of `ts`, nor\n"
+"*which* type it actually is. In fact, this is another case\n"
+"of an erased existential, and we will have no way to at runtime\n"
+"learn something about `t`. What we need to do is to pair the value\n"
+"with a proof, that its type `t` is an element of `ts`.\n"
+"We could use `Elem` again for this, but for some use cases\n"
+"we will require access to the number of types in the list.\n"
+"We will therefore use a vector instead of a list as our index.\n"
+"Here is a predicate similar to `Elem` but for vectors:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1574,9 +1678,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:797
+#, no-wrap
 msgid ""
-"A value of type `Has v vs` is a witness that `v` is an element of `vs`. With "
-"this, we can now implement an indexed sum type (also called an *open union*):"
+"A value of type `Has v vs` is a witness that `v` is an\n"
+"element of `vs`. With this, we can now implement an indexed\n"
+"sum type (also called an *open union*):\n"
 msgstr ""
 
 #. type: Plain text
@@ -1592,12 +1698,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:811
+#, no-wrap
 msgid ""
-"Note the difference between `HList` and `Union`. `HList` is a *generalized "
-"product type*: It holds a value for each type in its index. `Union` is a "
-"*generalized sum type*: It holds only a single value, which must be of a "
-"type listed in the index.  With this we can now define a much more flexible "
-"error type:"
+"Note the difference between `HList` and `Union`. `HList` is\n"
+"a *generalized product type*: It holds a value for each type\n"
+"in its index. `Union` is a *generalized sum type*: It holds\n"
+"only a single value, which must be of a type listed in the index.\n"
+"With this we can now define a much more flexible error type:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1610,9 +1717,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:820
+#, no-wrap
 msgid ""
-"A function returning an `Err ts a` describes a computation, which can fail "
-"with one of the errors listed in `ts`.  We first need some utility functions."
+"A function returning an `Err ts a` describes a computation, which\n"
+"can fail with one of the errors listed in `ts`.\n"
+"We first need some utility functions.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1631,8 +1740,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:834
+#, no-wrap
 msgid ""
-"Next, we can write more flexible versions of the parsers we wrote above:"
+"Next, we can write more flexible versions of the\n"
+"parsers we wrote above:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1652,9 +1763,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:849
+#, no-wrap
 msgid ""
-"Before we implement `readFin`, we introduce a short cut for specifying that "
-"several error types must be present:"
+"Before we implement `readFin`, we introduce a short cut for\n"
+"specifying that several error types must be present:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1668,10 +1780,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:860
+#, no-wrap
 msgid ""
-"Function `Errs` returns a tuple of constraints. This can be used as a "
-"witness that all listed types are present in the vector of types: Idris will "
-"automatically extract the proofs from the tuple as needed."
+"Function `Errs` returns a tuple of constraints. This can\n"
+"be used as a witness that all listed types are present\n"
+"in the vector of types: Idris will automatically extract\n"
+"the proofs from the tuple as needed.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1686,7 +1800,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:871
-msgid "As a last example, here are parsers for schemata and CSV rows:"
+#, no-wrap
+msgid ""
+"As a last example, here are parsers for schemata and\n"
+"CSV rows:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1742,11 +1859,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:925
+#, no-wrap
 msgid ""
-"Here is an example REPL session, where I test `readSchema`. I defined "
-"variable `ts` using the `:let` command to make this more convenient.  Note, "
-"how the order of error types is of no importance, as long as types "
-"`InvalidColumn` and `NoColType` are present in the list of errors:"
+"Here is an example REPL session, where I test `readSchema`. I defined\n"
+"variable `ts` using the `:let` command to make this more convenient.\n"
+"Note, how the order of error types is of no importance, as long\n"
+"as types `InvalidColumn` and `NoColType` are present in the list of\n"
+"errors:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1770,22 +1889,25 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:943
+#, no-wrap
 msgid ""
-"There are several techniques for handling errors, all of which are useful at "
-"times. For instance, we might want to handle some errors early on and "
-"individually, while dealing with others much later in our application. Or we "
-"might want to handle them all in one fell swoop. We look at both approaches "
-"here."
+"There are several techniques for handling errors, all of which\n"
+"are useful at times. For instance, we might want to handle some\n"
+"errors early on and individually, while dealing with others\n"
+"much later in our application. Or we might want to handle\n"
+"them all in one fell swoop. We look at both approaches here.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:950
+#, no-wrap
 msgid ""
-"First, in order to handle a single error individually, we need to *split* a "
-"union into one of two possibilities: A value of the error type in question "
-"or a new union, holding one of the other error types. We need a new "
-"predicate for this, which not only encodes the presence of a value in a "
-"vector but also the result of removing that value:"
+"First, in order to handle a single error individually, we need\n"
+"to *split* a union into one of two possibilities: A value of\n"
+"the error type in question or a new union, holding one of the\n"
+"other error types. We need a new predicate for this, which\n"
+"not only encodes the presence of a value in a vector\n"
+"but also the result of removing that value:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1800,10 +1922,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:962
+#, no-wrap
 msgid ""
-"Once again, we want to use one of the indices (`rem`) in our functions' "
-"return types, so we only use the other indices during proof search. Here is "
-"a function for splitting off a value from an open union:"
+"Once again, we want to use one of the indices (`rem`) in our\n"
+"functions' return types, so we only use the other indices during\n"
+"proof search. Here is a function for splitting off a value from\n"
+"an open union:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1821,19 +1945,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:977
+#, no-wrap
 msgid ""
-"This tries to extract a value of type `t` from a union. If it works, the "
-"result is wrapped in a `Left`, otherwise a new union is returned in a "
-"`Right`, but this one has `t` removed from its list of possible types."
+"This tries to extract a value of type `t` from a union. If it works,\n"
+"the result is wrapped in a `Left`, otherwise a new union is returned\n"
+"in a `Right`, but this one has `t` removed from its list of possible\n"
+"types.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:982
+#, no-wrap
 msgid ""
-"With this, we can implement a handler for single errors.  Error handling "
-"often happens in an effectful context (we might want to print a message to "
-"the console or write the error to a log file), so we use an applicative "
-"effect type to handle errors in."
+"With this, we can implement a handler for single errors.\n"
+"Error handling often happens in an effectful context (we might want to\n"
+"print a message to the console or write the error to a log file), so\n"
+"we use an applicative effect type to handle errors in.\n"
 msgstr ""
 
 #. type: Plain text
@@ -1853,9 +1980,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:998
+#, no-wrap
 msgid ""
-"For handling all errors at once, we can use a handler type indexed by the "
-"vector of errors, and parameterized by the output type:"
+"For handling all errors at once, we can use a handler type\n"
+"indexed by the vector of errors, and parameterized by the\n"
+"output type:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1880,9 +2009,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1019
+#, no-wrap
 msgid ""
-"Below, we will see an additional way of handling all errors at once by "
-"defining a custom interface for error handling."
+"Below, we will see an additional way of handling all\n"
+"errors at once by defining a custom interface for\n"
+"error handling.\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -1948,16 +2079,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1065
+#, no-wrap
 msgid ""
-"Well, here it finally is: The truth about interfaces. Internally, an "
-"interface is just a record data type, with its fields corresponding to the "
-"members of the interface. An interface implementation is a *value* of such a "
-"record, annotated with a `%hint` pragma (see below) to make the value "
-"available during proof search. Finally, a constrained function is just a "
-"function with one or more auto implicit arguments. For instance, here is the "
-"same function for looking up an element in a list, once with the known "
-"syntax for constrained functions, and once with an auto implicit argument. "
-"The code produced by Idris is the same in both cases:"
+"Well, here it finally is: The truth about interfaces. Internally,\n"
+"an interface is just a record data type, with its fields corresponding\n"
+"to the members of the interface. An interface implementation is\n"
+"a *value* of such a record, annotated with a `%hint` pragma (see\n"
+"below) to make the value available during proof search. Finally,\n"
+"a constrained function is just a function with one or more auto implicit\n"
+"arguments. For instance, here is the same function for looking up\n"
+"an element in a list, once with the known syntax for constrained\n"
+"functions, and once with an auto implicit argument. The code\n"
+"produced by Idris is the same in both cases:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1975,9 +2108,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1079
+#, no-wrap
 msgid ""
-"Being mere records, we can also take interfaces as regular function "
-"arguments and dissect them with a pattern match:"
+"Being mere records, we can also take interfaces as\n"
+"regular function arguments and dissect them with a pattern\n"
+"match:\n"
 msgstr ""
 
 #. type: Plain text
@@ -1996,11 +2131,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1093
+#, no-wrap
 msgid ""
-"I'll now demonstrate how we can achieve the same behavior with proof search "
-"as with a regular interface definition plus implementations. Since I want to "
-"finish the CSV example with our new error handling tools, we are going to "
-"implement some error handlers.  First, an interface is just a record:"
+"I'll now demonstrate how we can achieve the same behavior\n"
+"with proof search as with a regular interface definition\n"
+"plus implementations. Since I want to finish the CSV\n"
+"example with our new error handling tools, we are\n"
+"going to implement some error handlers.\n"
+"First, an interface is just a record:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2014,10 +2152,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1104
+#, no-wrap
 msgid ""
-"In order to access the record in a constrained function, we use the `"
-"%search` keyword, which will try to conjure a value of the desired type "
-"(`Print a` in this case) by means of a proof search:"
+"In order to access the record in a constrained function,\n"
+"we use the `%search` keyword, which will try to conjure a\n"
+"value of the desired type (`Print a` in this case) by\n"
+"means of a proof search:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2030,9 +2170,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1112
+#, no-wrap
 msgid ""
-"As an alternative, we could use a named constraint, and access it directly "
-"via its name:"
+"As an alternative, we could use a named constraint, and access\n"
+"it directly via its name:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2045,9 +2186,10 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1120
+#, no-wrap
 msgid ""
-"As yet another alternative, we could use the syntax for auto implicit "
-"arguments:"
+"As yet another alternative, we could use the syntax for auto\n"
+"implicit arguments:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2069,10 +2211,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1133
+#, no-wrap
 msgid ""
-"Interface implementations are just values of the given record type, but in "
-"order to be available during proof search, these need to be annotated with a "
-"`%hint` pragma:"
+"Interface implementations are just values of the given\n"
+"record type, but in order to be available during proof search,\n"
+"these need to be annotated with a `%hint` pragma:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2104,10 +2247,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1162
+#, no-wrap
 msgid ""
-"We can also write an implementation of `Print` for a union or errors. For "
-"this, we first come up with a proof that all types in the union's index come "
-"with an implementation of `Print`:"
+"We can also write an implementation of `Print` for\n"
+"a union or errors. For this, we first come up with a\n"
+"proof that all types in the union's index come with an\n"
+"implementation of `Print`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2129,12 +2274,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1184
+#, no-wrap
 msgid ""
-"Defining interfaces this way can be an advantage, as there is much less "
-"magic going on, and we have more fine grained control over the types and "
-"values of our fields. Note also, that all of the magic comes from the search "
-"hints, with which our \"interface implementations\" were annotated.  These "
-"made the corresponding values and functions available during proof search."
+"Defining interfaces this way can be an advantage, as there\n"
+"is much less magic going on, and we have more fine grained\n"
+"control over the types and values of our fields. Note also,\n"
+"that all of the magic comes from the search hints, with\n"
+"which our \"interface implementations\" were annotated.\n"
+"These made the corresponding values and functions available\n"
+"during proof search.\n"
 msgstr ""
 
 #. type: Title ####
@@ -2145,20 +2293,24 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1195
+#, no-wrap
 msgid ""
-"To conclude this chapter, we reimplement our CSV command parser, using the "
-"flexible error handling approach from the last section. While not "
-"necessarily less verbose than the original parser, this approach decouples "
-"the handling of errors and printing of error messages from the rest of the "
-"application: Functions with a possibility of failure are reusable in "
-"different contexts, as are the pretty printers we use for the error messages."
+"To conclude this chapter, we reimplement our CSV command\n"
+"parser, using the flexible error handling approach from\n"
+"the last section. While not necessarily less verbose than\n"
+"the original parser, this approach decouples the handling\n"
+"of errors and printing of error messages from the rest\n"
+"of the application: Functions with a possibility of failure\n"
+"are reusable in different contexts, as are the pretty\n"
+"printers we use for the error messages.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1198
+#, no-wrap
 msgid ""
-"First, we repeat some stuff from earlier chapters. I sneaked in a new "
-"command for printing all values in a column:"
+"First, we repeat some stuff from earlier chapters. I sneaked\n"
+"in a new command for printing all values in a column:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2199,10 +2351,11 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1235
+#, no-wrap
 msgid ""
-"Next, below is the command parser reimplemented. In total, it can fail in "
-"seven different was, at least some of which might also be possible in other "
-"parts of a larger application."
+"Next, below is the command parser reimplemented. In total,\n"
+"it can fail in seven different was, at least some of which\n"
+"might also be possible in other parts of a larger application.\n"
 msgstr ""
 
 #. type: Plain text
@@ -2251,18 +2404,22 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1280
+#, no-wrap
 msgid ""
-"Note, how we could invoke functions like `readFin` or `readSchema` directly, "
-"because the necessary error types are part of our list of possible errors."
+"Note, how we could invoke functions like `readFin` or\n"
+"`readSchema` directly, because the necessary error types\n"
+"are part of our list of possible errors.\n"
 msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1286
+#, no-wrap
 msgid ""
-"To conclude this sections, here is the functionality for printing the result "
-"of a command plus the application's main loop. Most of this is repeated from "
-"earlier chapters, but note how we can handle all errors at once with a "
-"single call to `print`:"
+"To conclude this sections, here is the functionality\n"
+"for printing the result of a command plus the application's\n"
+"main loop. Most of this is repeated from earlier chapters,\n"
+"but note how we can handle all errors at once with a single\n"
+"call to `print`:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2318,7 +2475,8 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1336
-msgid "Here is an example REPL session:"
+#, no-wrap
+msgid "Here is an example REPL session:\n"
 msgstr ""
 
 #. type: Plain text
@@ -2347,11 +2505,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:1367
+#, no-wrap
 msgid ""
-"Predicates allow us to describe contracts between types and to refine the "
-"values we accept as valid function arguments.  They allow us to make a "
-"function safe and convenient to use at runtime *and* compile time by using "
-"them as auto implicit arguments, which Idris should try to construct on its "
-"own if it has enough information about the structure of a function's "
-"arguments."
+"Predicates allow us to describe contracts between types\n"
+"and to refine the values we accept as valid function arguments.\n"
+"They allow us to make a function safe and convenient to use\n"
+"at runtime *and* compile time by using them as auto implicit\n"
+"arguments, which Idris should try to construct on its own if\n"
+"it has enough information about the structure of a function's\n"
+"arguments.\n"
 msgstr ""

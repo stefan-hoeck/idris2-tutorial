@@ -1,11 +1,11 @@
 # 依赖类型
 
-The ability to calculate types from values, pass them as arguments to
-functions, and return them as results from functions - in short, being a
-dependently typed language - is one of the most distinguishing features of
-Idris. Many of the more advanced type level extensions of languages like
-Haskell (and quite a bit more) can be treated in one fell swoop with
-dependent types.
+The ability to calculate types from values, pass them as arguments
+to functions, and return them as results from functions - in
+short, being a dependently typed language - is one of the
+most distinguishing features of Idris. Many of the more advanced
+type level extensions of languages like Haskell (and quite a
+bit more) can be treated in one fell swoop with dependent types.
 
 ```idris
 module Tutorial.Dependent
@@ -23,21 +23,21 @@ bogusZipList : (a -> b -> c) -> List a -> List b -> List c
 bogusZipList _ _ _ = []
 ```
 
-The implementations type check, and still, they are obviously not what users
-of our library would expect. In the first example, we'd expect the
-implementation to apply the function argument to all values stored in the
-list, without dropping any of them or changing their order.  The second is
-trickier: The two list arguments might be of different length.  What are we
-supposed to do when that's the case? Return a list of the same length as the
-smaller of the two? Return an empty list? Or shouldn't we in most use cases
-expect the two lists to be of the same length? How could we even describe
-such a precondition?
+The implementations type check, and still, they are obviously not
+what users of our library would expect. In the first example, we'd expect
+the implementation to apply the function argument to all values stored
+in the list, without dropping any of them or changing their order.
+The second is trickier: The two list arguments might be of different length.
+What are we supposed to do when that's the case? Return a list of the same
+length as the smaller of the two? Return an empty list? Or shouldn't
+we in most use cases expect the two lists to be of the same length?
+How could we even describe such a precondition?
 
 ## Length-Indexed Lists
 
-The answer to the issues described above is of course: Dependent types.  And
-the most common introductory example is the *vector*: A list indexed by its
-length:
+The answer to the issues described above is of course: Dependent types.
+And the most common introductory example is the *vector*: A list indexed
+by its length:
 
 ```idris
 data Vect : (len : Nat) -> (a : Type) -> Type where
@@ -56,16 +56,16 @@ the *length* of the vector here.
 zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one
 element longer (`S n`) than its second argument, which is of length `n`.
 
-Let's experiment with this idea to gain a better understanding.  There is
-only one way to come up with a vector of length zero:
+Let's experiment with this idea to gain a better understanding.
+There is only one way to come up with a vector of length zero:
 
 ```idris
 ex1 : Vect 0 Integer
 ex1 = Nil
 ```
 
-The following, on the other hand, leads to a type error (a pretty
-complicated one, actually):
+The following, on the other hand, leads to a type error (a pretty complicated
+one, actually):
 
 ```idris
 failing "Mismatch between: S ?n and 0."
@@ -74,9 +74,9 @@ failing "Mismatch between: S ?n and 0."
 ```
 
 The problem: `[12]` gets desugared to `12 :: Nil`, but this has the wrong
-type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type `Vect
-(S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies, at
-compile time, that our vector is of the correct length!
+type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type
+`Vect (S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies,
+at compile time, that our vector is of the correct length!
 
 ```idris
 ex3 : Vect 1 Integer
@@ -84,24 +84,27 @@ ex3 = [12]
 ```
 
 So, we found a way to encode the *length* of a list-like data structure in
-its *type*, and it is a *type error* if the number of elements in a vector
-does not agree with then length given in its type. We will shortly see
-several use cases, where this additional piece of information allows us to
-be more precise in the types and rule out additional programming
-mistakes. But first, we need to quickly clarify some terminology.
+its *type*, and it is a *type error* if the number of elements in
+a vector does not agree with then length given in its type. We will
+shortly see several use cases, where this additional piece of information
+allows us to be more precise in the types and rule out additional
+programming mistakes. But first, we need to quickly clarify some
+terminology.
 
 ### Type Indices versus Type Parameters
 
-`Vect` is not only a generic type, parameterized over the type of elements
-it holds, it is actually a *family of types*, each of them associated with a
-natural number representing it's length. We also say, the type family `Vect`
-is *indexed* by its length.
+`Vect` is not only a generic type, parameterized over the type
+of elements it holds, it is actually a *family of types*, each
+of them associated with a natural number representing it's
+length. We also say, the type family `Vect` is *indexed* by
+its length.
 
-The difference between a type parameter and an index is, that the latter can
-and does change across data constructors, while the former is the same for
-all data constructors. Or, put differently, we can learn about the *value*
-of an index by pattern matching on a *value* of the type family, while this
-is not possible with a type parameter.
+The difference between a type parameter and an index is, that
+the latter can and does change across data constructors, while
+the former is the same for all data constructors. Or, put differently,
+we can learn about the *value* of an index by pattern matching
+on a *value* of the type family, while this is not possible
+with a type parameter.
 
 Let's demonstrate this with a contrived example:
 
@@ -112,19 +115,21 @@ data Indexed : Nat -> Type where
   I4 : String -> Indexed 4
 ```
 
-Here, `Indexed` is indexed over its `Nat` argument, as values of the index
-changes across constructors (I chose some arbitrary value for each
-constructor), and we can learn about these values by pattern matching on
-`Indexed` values.  We can use this, for instance, to create a `Vect` of the
-same length as the index of `Indexed`:
+Here, `Indexed` is indexed over its `Nat` argument, as
+values of the index changes across constructors (I chose some
+arbitrary value for each constructor), and we
+can learn about these values by pattern matching on `Indexed` values.
+We can use this, for instance, to create a `Vect` of the same length
+as the index of `Indexed`:
 
 ```idris
 fromIndexed : Indexed n -> a -> Vect n a
 ```
 
-Go ahead, and try implementing this yourself! Work with holes, pattern match
-on the `Indexed` argument, and learn about the expected output type in each
-case by inspecting the holes and their context.
+Go ahead, and try implementing this yourself! Work with
+holes, pattern match on the `Indexed` argument, and
+learn about the expected output type in each case by
+inspecting the holes and their context.
 
 Here is my implementation:
 
@@ -134,17 +139,18 @@ fromIndexed I3     va = [va, va, va]
 fromIndexed (I4 _) va = [va, va, va, va]
 ```
 
-As you can see, by pattern matching on the value of the `Indexed n`
-argument, we learned about the value of the `n` index itself, which was
-necessary to return a `Vect` of the correct length.
+As you can see, by pattern matching on the value of the
+`Indexed n` argument, we learned about the value of
+the `n` index itself, which was necessary to return a
+`Vect` of the correct length.
 
 ### Length-Preserving `map`
 
-Function `bogusMapList` behaved unexpectedly, because it always returned the
-empty list. With `Vect`, we need to be true to the types here. If we map
-over a `Vect`, the argument *and* output type contain a length index, and
-these length indices will tell us *exactly*, if and how the lengths of our
-vectors are modified:
+Function `bogusMapList` behaved unexpectedly, because it always
+returned the empty list. With `Vect`, we need to be true to the
+types here. If we map over a `Vect`, the argument *and* output type
+contain a length index, and these length indices will tell us
+*exactly*, if and how the lengths of our vectors are modified:
 
 ```idris
 map3_1 : (a -> b) -> Vect 3 a -> Vect 1 b
@@ -157,32 +163,36 @@ map5_10 : (a -> b) -> Vect 5 a -> Vect 10 b
 map5_10 f [u,v,w,x,y] = [f u, f u, f v, f v, f w, f w, f x, f x, f y, f y]
 ```
 
-While these examples are quite interesting, they are not really useful, are
-they? That's because they are too specialized. We'd like to have a *general*
-function for mapping vectors of any length.  Instead of using concrete
-lengths in type signatures, we can also use *variables* as already seen in
-the definition of `Vect`.  This allows us to declare the general case:
+While these examples are quite interesting,
+they are not really useful, are they? That's because they are too
+specialized. We'd like to have a *general* function for mapping
+vectors of any length.
+Instead of using concrete lengths in type signatures,
+we can also use *variables* as already seen in the definition of `Vect`.
+This allows us to declare the general case:
 
 ```idris
 mapVect' : (a -> b) -> Vect n a -> Vect n b
 ```
 
-This type describes a length-preserving map. It is actually more instructive
-(but not necessary) to include the implicit arguments as well:
+This type describes a length-preserving map. It is actually
+more instructive (but not necessary) to include the
+implicit arguments as well:
 
 ```idris
 mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b
 ```
 
-We ignore the two type parameters `a`, and `b`, as these just describe a
-generic function (note, however, that we can group arguments of the same
-type and quantity in a single pair of curly braces; this is optional, but it
-sometimes helps making type signatures a bit shorter). The implicit argument
-of type `Nat`, however, tells us that the input and output `Vect` are of the
-same length. It is a type error to not uphold to this contract. When
-implementing `mapVect`, it is very instructive to follow along and use some
-holes. In order to get *any* information about the length of the `Vect`
-argument, we need to pattern match on it:
+We ignore the two type parameters `a`, and `b`, as these just
+describe a generic function (note, however, that we can group arguments
+of the same type and quantity in a single pair of curly braces; this
+is optional, but it sometimes helps making type signatures a bit
+shorter). The implicit argument of type `Nat`, however, tells us that the
+input and output `Vect` are of the same length. It is a type error
+to not uphold to this contract. When implementing `mapVect`, it
+is very instructive to follow along and use some holes. In order
+to get *any* information about the length of the `Vect` argument,
+we need to pattern match on it:
 
 ```repl
 mapVect _ Nil       = ?impl_0
@@ -218,12 +228,13 @@ value, as discussed above:
 mapVect _ Nil       = Nil
 ```
 
-The second case is again more interesting. We note, that `xs` is of type
-`Vect n a`, for an arbitrary length `n` (given as an erased argument), while
-the result is of type `Vect (S n) b`. So, the result has to be one element
-longer than `xs`. Luckily, we already have a value of type `a` (bound to
-variable `x`) and a function from `a` to `b` (bound to variable `f`), so we
-can apply `f` to `x` and prepend the result to a yet unknown remainder:
+The second case is again more interesting. We note, that `xs` is
+of type `Vect n a`, for an arbitrary length `n` (given as an erased
+argument), while the result is of type `Vect (S n) b`. So, the
+result has to be one element longer than `xs`. Luckily, we already
+have a value of type `a` (bound to variable `x`) and a function
+from `a` to `b` (bound to variable `f`), so we can apply `f`
+to `x` and prepend the result to a yet unknown remainder:
 
 ```repl
 mapVect f (x :: xs) = f x :: ?rest
@@ -245,12 +256,12 @@ rest : Vect n b
 
 Now, we have a `Vect n a` and need a `Vect n b`, without knowing anything
 else about `n`. We *could* learn more about `n` by pattern matching further
-on `xs`, but this would quickly lead us down a rabbit hole, since after such
-a pattern match, we'd end up with another `Nil` case and another *cons*
-case, with a new tail of unknown length. Instead, we can invoke `mapVect`
-recursively to convert the remainder (`xs`) to a `Vect n b`.  The type
-checker guarantees, that the lengths of `xs` and `mapVect f xs` are the
-same, so the whole expression type checks and we are done:
+on `xs`, but this would quickly lead us down a rabbit hole, since after
+such a pattern match, we'd end up with another `Nil` case and another
+*cons* case, with a new tail of unknown length. Instead, we can invoke
+`mapVect` recursively to convert the remainder (`xs`) to a `Vect n b`.
+The type checker guarantees, that the lengths of `xs` and `mapVect f xs`
+are the same, so the whole expression type checks and we are done:
 
 ```idris
 mapVect f (x :: xs) = f x :: mapVect f xs
@@ -258,11 +269,11 @@ mapVect f (x :: xs) = f x :: mapVect f xs
 
 ### Zipping Vectors
 
-Let us now have a look at `bogusZipList`: We'd like to pairwise merge two
-lists holding elements of (possibly) distinct types through a given binary
-function. As discussed above, the most reasonable thing to do is to expect
-the two lists as well as the result to be of equal length.  With `Vect`,
-this can be expressed and implemented as follows:
+Let us now have a look at `bogusZipList`: We'd like to pairwise merge
+two lists holding elements of (possibly) distinct types through a
+given binary function. As discussed above, the most reasonable thing
+to do is to expect the two lists as well as the result to be of equal length.
+With `Vect`, this can be expressed and implemented as follows:
 
 ```idris
 zipWith : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
@@ -272,24 +283,26 @@ zipWith f (x :: xs) (y :: ys)  = f x y :: zipWith f xs ys
 
 Now, here is an interesting thing: The totality checker (activated
 throughout this source file due to the initial `%default total` pragma)
-accepts the above implementation as being total, although it is missing two
-more cases. This works, because Idris can figure out on its own, that the
-other two cases are *impossible*.  From the pattern match on the first
-`Vect` argument, Idris learns whether `n` is zero or the successor of
-another natural number. But from this it can derive, whether the second
-vector, being also of length `n`, is a `Nil` or a *cons*. Still, it can be
-informative to add the impossible cases explicitly. We can use keyword
-`impossible` to do so:
+accepts the above implementation as being total, although it is
+missing two more cases. This works, because Idris
+can figure out on its own, that the other two cases are *impossible*.
+From the pattern match on the first `Vect` argument, Idris learns
+whether `n` is zero or the successor of another natural number. But
+from this it can derive, whether the second vector, being also
+of length `n`, is a `Nil` or a *cons*. Still, it can be informative to add the
+impossible cases explicitly. We can use keyword `impossible` to
+do so:
 
 ```idris
 zipWith _ [] (_ :: _) impossible
 zipWith _ (_ :: _) [] impossible
 ```
 
-It is - of course - a type error to annotate a case in a pattern match with
-`impossible`, if Idris cannot verify that this case is indeed impossible. We
-will learn in a later section what to do, when we think we are right about
-an impossible case and Idris is not.
+It is - of course - a type error to annotate a case in a pattern
+match with `impossible`, if Idris cannot verify that this case is
+indeed impossible. We will learn in a later section what to do,
+when we think we are right about an impossible case
+and Idris is not.
 
 Let's give `zipWith` a spin at the REPL:
 
@@ -304,27 +317,31 @@ Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 
 #### Simplifying Type Errors
 
-It is amazing to experience the amount of work Idris can do for us and the
-amount of things it can infer on its own when things go well. When things
-don't go well, however, the error messages we get from Idris can be quite
-long and hard to understand, especially for programmers new to the
-language. For instance, the error message in the last REPL example above was
-pretty long, listing different things Idris tried to do together with the
-reason why each of them failed.
+It is amazing to experience the amount of work Idris can do
+for us and the amount of things it can infer on its own when
+things go well. When things don't go well, however, the
+error messages we get from Idris can
+be quite long and hard to understand, especially
+for programmers new to the language. For instance, the error
+message in the last REPL example above was pretty long, listing
+different things Idris tried to do together with the reason
+why each of them failed.
 
-If this happens, it often means that a combination of a type error and an
-ambiguity resulting from overloaded function names is at work. In the
-example above, the two vectors are of distinct length, which leads to a type
-error if we interpret the list literals as vectors. However, list literals
-are overloaded to work with all data types with constructors `Nil` and
-`(::)`, so Idris will now try other data constructors than those of `Vect`
-(the ones of `List` and `Stream` from the *Prelude* in this case), each of
-which will again fail with a type error since `zipWith` expects arguments of
-type `Vect`, and neither `List` nor `Stream` will work.
+If this happens, it often means that a combination of a type error
+and an ambiguity resulting from overloaded function names is
+at work. In the example above, the two vectors are of distinct
+length, which leads to a type error if we interpret the list
+literals as vectors. However, list literals are overloaded to work
+with all data types with constructors `Nil` and `(::)`, so Idris
+will now try other data constructors than those of `Vect` (the
+ones of `List` and `Stream` from the *Prelude* in this case),
+each of which will again fail with a type error since `zipWith`
+expects arguments of type `Vect`, and neither `List` nor `Stream`
+will work.
 
-If this happens, prefixing overloaded function names with their namespaces
-can often simplify things, as Idris no longer needs to disambiguate these
-functions:
+If this happens, prefixing overloaded function names with
+their namespaces can often simplify things, as Idris no
+longer needs to disambiguate these functions:
 
 ```repl
 Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil
@@ -336,13 +353,13 @@ Mismatch between: 0 and 1.
 ```
 
 Here, the message is much clearer: Idris can't *unify* the lengths of the
-two vectors. *Unification* means: Idris tries to at compile time convert two
-expressions to the same normal form. If this succeeds, the two expressions
-are considered to be equivalent, if it doesn't, Idris fails with a
-unification error.
+two vectors. *Unification* means: Idris tries to at compile time convert
+two expressions to the same normal form. If this succeeds,
+the two expressions are considered to be equivalent,
+if it doesn't, Idris fails with a unification error.
 
-As an alternative to prefixing overloaded functions with their namespace, we
-can use `the` to help with type inference:
+As an alternative to prefixing overloaded functions with their
+namespace, we can use `the` to help with type inference:
 
 ```repl
 Tutorial.Dependent> zipWith (*) (the (Vect 3 _) [1,2,3]) (the (Vect 2 _) [10,20])
@@ -353,72 +370,76 @@ and:
 Mismatch between: 0 and 1.
 ```
 
-It is interesting to note, that the error above is not "Mismatch between: 2
-and 3" but "Mismatch between: 0 and 1" instead. Here's what's going on:
-Idris tries to unify integer literals `2` and `3`, which are first converted
-to the corresponding `Nat` values `S (S Z)` and `S (S (S Z))`,
-respectively.  The two patterns match until we arrive at `Z` vs `S Z`,
-corresponding to values `0` and `1`, which is the discrepancy reported in
-the error message.
+It is interesting to note, that the error above is not "Mismatch between: 2 and 3"
+but "Mismatch between: 0 and 1" instead. Here's what's going on: Idris tries to
+unify integer literals `2` and `3`, which are first converted to the
+corresponding `Nat` values `S (S Z)` and `S (S (S Z))`, respectively.
+The two patterns match until we arrive at `Z` vs `S Z`, corresponding
+to values `0` and `1`, which is the discrepancy reported in the error message.
 
 ### Creating Vectors
 
-So far, we were able to learn something about the lengths of vectors by
-pattern matching on them. In the `Nil` case, it was clear that the length is
-0, while in the *cons* case the length was the successor of another natural
-number.  This is not possible when we want to create a new vector:
+So far, we were able to learn something about the lengths
+of vectors by pattern matching on them. In the `Nil`
+case, it was clear that the length is 0, while in the *cons*
+case the length was the successor of another natural number.
+This is not possible when we want to create a new vector:
 
 ```idris
 failing "Mismatch between: S ?n and n."
   fill : a -> Vect n a
 ```
 
-You will have a hard time implementing `fill`. The following, for instance,
-leads to a type error:
+You will have a hard time implementing `fill`. The following,
+for instance, leads to a type error:
 
 ```idris
   fill va = [va,va]
 ```
 
-The problem is, that *the callers of our function decide about the length of
-the resulting vector*. The full type of `fill` is actually the following:
+The problem is, that *the callers of our function decide about
+the length of the resulting vector*. The full type of `fill` is
+actually the following:
 
 ```idris
 fill' : {0 a : Type} -> {0 n : Nat} -> a -> Vect n a
 ```
 
-You can read this type as follows: For every type `a` and for every natural
-number `n` (about which I know *nothing* at runtime, since it has quantity
-zero), given a value of type `a`, I'll give you a vector holding exactly `n`
-elements of type `a`. This is like saying: "Think about a natural number
-`n`, and I'll give you `n` apples without you telling me the value of `n`".
+You can read this type as follows: For every type `a` and for
+every natural number `n` (about which I know *nothing* at runtime,
+since it has quantity zero), given a value of type `a`, I'll give
+you a vector holding exactly `n` elements of type `a`. This is
+like saying: "Think about a natural number `n`, and
+I'll give you `n` apples without you telling me the value of `n`".
 Idris is powerful, but it is not a clairvoyant.
 
-In order to implement `fill`, we need to know what `n` actually is: We need
-to pass `n` as an explicit, unerased argument, which will allow us to
-pattern match on it and decide - based on this pattern match - which
-constructors of `Vect` to use:
+In order to implement `fill`, we need to know what
+`n` actually is: We need to pass `n` as an explicit, unerased argument, which
+will allow us to pattern match on it and decide - based on this pattern
+match - which constructors of `Vect` to use:
 
 ```idris
 replicate : (n : Nat) -> a -> Vect n a
 ```
 
-Now, `replicate` is a *dependent function type*: The output type *depends*
-on the value of one the arguments. It is straight forward to implement
-`replicate` by pattern matching on `n`:
+Now, `replicate` is a *dependent function type*: The output type
+*depends* on the value of one the arguments. It is straight forward
+to implement `replicate` by pattern matching on `n`:
 
 ```idris
 replicate 0     _  = []
 replicate (S k) va = va :: replicate k va
 ```
 
-This is a pattern that comes up often when working with indexed types: We
-can learn about the values of the indices by pattern matching on the values
-of the type family. However, in order to return a value of the type family
-from a function, we need to either know the values of the indices at compile
-time (see constants `ex1` or `ex3`, for instance), or we need to have access
-to the values of the indices at runtime, in which case we can pattern match
-on them and learn from this, which constructor(s) of the type family to use.
+This is a pattern that comes up often when working with
+indexed types: We can learn about the values of the indices
+by pattern matching on the values of the type family. However,
+in order to return a value of the type family from a function,
+we need to either know the values of the indices at compile
+time (see constants `ex1` or `ex3`, for instance), or we
+need to have access to the values of the indices at runtime, in
+which case we can pattern match on them and learn from
+this, which constructor(s) of the type family to use.
 
 ### Exercises part 1
 
@@ -503,8 +524,8 @@ on them and learn from this, which constructor(s) of the type family to use.
 
 ## `Fin`: Safe Indexing into Vectors
 
-Consider function `index`, which tries to extract a value from a `List` at
-the given position:
+Consider function `index`, which tries to extract a value from
+a `List` at the given position:
 
 ```idris
 indexList : (pos : Nat) -> List a -> Maybe a
@@ -513,29 +534,31 @@ indexList 0     (x :: _)  = Just x
 indexList (S k) (_ :: xs) = indexList k xs
 ```
 
-Now, here is a thing to consider when writing functions like `indexList`: Do
-we want to express the possibility of failure in the output type, or do we
-want to restrict the accepted arguments, so the function can no longer fail?
-These are important design decisions, especially in larger applications.
-Returning a `Maybe` or `Either` from a function forces client code to
-eventually deal with the `Nothing` or `Left` case, and until this happens,
-all intermediary results will carry the `Maybe` or `Either` stain, which
-will make it more cumbersome to run calculations with these intermediary
-results.  On the other hand, restricting the values accepted as input will
-complicate the argument types and will put the burden of input validation on
-our functions' callers, (although, at compile time we can get help from
-Idris, as we will see when we talk about auto implicits) while keeping the
-output pure and clean.
+Now, here is a thing to consider when writing functions like `indexList`:
+Do we want to express the possibility of failure in the output type,
+or do we want to restrict the accepted arguments,
+so the function can no longer fail? These are important design decisions,
+especially in larger applications.
+Returning a `Maybe` or `Either` from a function forces client code to eventually
+deal with the `Nothing` or `Left` case, and until this happens, all intermediary
+results will carry the `Maybe` or `Either` stain, which will make it more
+cumbersome to run calculations with these intermediary results.
+On the other hand, restricting the
+values accepted as input will complicate the argument types
+and will put the burden of input validation on our functions' callers,
+(although, at compile time we can get help from Idris, as we will
+see when we talk about auto implicits) while keeping the output pure and clean.
 
-Languages without dependent types (like Haskell), can often only take the
-route described above: To wrap the result in a `Maybe` or `Either`.
-However, in Idris we can often *refine* the input types to restrict the set
-of accepted values, thus ruling out the possibility of failure.
+Languages without dependent types (like Haskell), can often only take
+the route described above: To wrap the result in a `Maybe` or `Either`.
+However, in Idris we can often *refine* the input types to restrict the
+set of accepted values, thus ruling out the possibility of failure.
 
-Assume, as an example, we'd like to extract a value from a `Vect n a` at
-(zero-based) index `k`. Surely, this can succeed if and only if `k` is a
-natural number strictly smaller than the length `n` of the vector. Luckily,
-we can express this precondition in an indexed type:
+Assume, as an example, we'd like to extract a value from a `Vect n a`
+at (zero-based) index `k`. Surely, this can succeed if and only if
+`k` is a natural number strictly smaller than the length `n` of
+the vector. Luckily, we can express this precondition in an indexed
+type:
 
 ```idris
 data Fin : (n : Nat) -> Type where
@@ -543,11 +566,12 @@ data Fin : (n : Nat) -> Type where
   FS : (k : Fin n) -> Fin (S n)
 ```
 
-`Fin n` is the type of natural numbers strictly smaller than `n`.  It is
-defined inductively: `FZ` corresponds to natural number *zero*, which, as
-can be seen in its type, is strictly smaller than `S n` for any natural
-number `n`. `FS` is the inductive case: If `k` is strictly smaller than `n`
-(`k` being of type `Fin n`), then `FS k` is strictly smaller than `S n`.
+`Fin n` is the type of natural numbers strictly smaller than `n`.
+It is defined inductively: `FZ` corresponds to natural number *zero*,
+which, as can be seen in its type, is strictly smaller than
+`S n` for any natural number `n`. `FS` is the inductive case:
+If `k` is strictly smaller than `n` (`k` being of type `Fin n`),
+then `FS k` is strictly smaller than `S n`.
 
 Let's come up with some values of type `Fin`:
 
@@ -565,17 +589,19 @@ fin4_5 : Fin 5
 fin4_5 = FS (FS (FS (FS FZ)))
 ```
 
-Note, that there is no value of type `Fin 0`. We will learn in a later
-session, how to express "there is no value of type `x`" in a type.
+Note, that there is no value of type `Fin 0`. We will learn
+in a later session, how to express "there is no value of type `x`"
+in a type.
 
-Let us now check, whether we can use `Fin` to safely index into a `Vect`:
+Let us now check, whether we can use `Fin` to safely index
+into a `Vect`:
 
 ```idris
 index : Fin n -> Vect n a -> a
 ```
 
-Before you continue, try to implement `index` yourself, making use of holes
-if you get stuck.
+Before you continue, try to implement `index` yourself, making use
+of holes if you get stuck.
 
 ```idris
 index FZ     (x :: _) = x
@@ -583,8 +609,9 @@ index (FS k) (_ :: xs) = index k xs
 ```
 
 Note, how there is no `Nil` case and the totality checker is still
-happy. That's because `Nil` is of type `Vect 0 a`, but there is no value of
-type `Fin 0`! We can verify this by adding the missing impossible clauses:
+happy. That's because `Nil` is of type `Vect 0 a`, but there is no
+value of type `Fin 0`! We can verify this by adding the missing
+impossible clauses:
 
 ```idris
 index FZ     Nil impossible
@@ -633,24 +660,29 @@ index (FS _) Nil impossible
 
    Hint: Use `take` and `drop` in your implementation.
 
-Hint: Since `Fin n` consists of the values strictly smaller than `n`, `Fin
-(S n)` consists of the values smaller than or equal to `n`.
+Hint: Since `Fin n` consists of the values strictly smaller
+than `n`, `Fin (S n)` consists of the values smaller than
+or equal to `n`.
 
-Note: Functions `take`, `drop`, and `splitAt`, while correct and provably
-total, are rather cumbersome to type.  There is an alternative way to
-declare their types, as we will see in the next section.
+Note: Functions `take`, `drop`, and `splitAt`, while correct and
+provably total, are rather cumbersome to type.
+There is an alternative way to declare their types,
+as we will see in the next section.
 
 ## Compile-Time Computations
 
-In the last section - especially in some of the exercises - we started more
-and more to use compile time computations to describe the types of our
-functions and values.  This is a very powerful concept, as it allows us to
+In the last section - especially in some of the exercises - we
+started more and more to use compile time computations to
+describe the types of our functions and values.
+This is a very powerful concept, as it allows us to
 compute output types from input types. Here's an example:
 
-It is possible to concatenate two `List`s with the `(++)` operator. Surely,
-this should also be possible for `Vect`. But `Vect` is indexed by its
-length, so we have to reflect in the types exactly how the lengths of the
-inputs affect the lengths of the output. Here's how to do this:
+It is possible to concatenate two `List`s with the `(++)`
+operator. Surely, this should also be possible for
+`Vect`. But `Vect` is indexed by its length, so we have
+to reflect in the types exactly how the lengths of the
+inputs affect the lengths of the output. Here's how to
+do this:
 
 ```idris
 (++) : Vect m a -> Vect n a -> Vect (m + n) a
@@ -658,12 +690,14 @@ inputs affect the lengths of the output. Here's how to do this:
 (++) (x :: xs) ys = x :: (xs ++ ys)
 ```
 
-Note, how we keep track of the lengths at the type-level, again ruling out
-certain common programming errors like inadvertently dropping some values.
+Note, how we keep track of the lengths at the type-level, again
+ruling out certain common programming errors like inadvertently dropping
+some values.
 
-We can also use type-level computations as patterns on the input types. Here
-is an alternative type and implementation for `drop`, which you implemented
-in the exercises by using a `Fin n` argument:
+We can also use type-level computations as patterns
+on the input types. Here is an alternative type and implementation
+for `drop`, which you implemented in the exercises by
+using a `Fin n` argument:
 
 ```idris
 drop' : (m : Nat) -> Vect (m + n) a -> Vect n a
@@ -673,16 +707,19 @@ drop' (S k) (_ :: xs) = drop' k xs
 
 ### Limitations
 
-After all the examples and exercises in this section you might have come to
-the conclusion that we can use arbitrary expressions in the types and Idris
+After all the examples and exercises in this section
+you might have come to the conclusion that we can
+use arbitrary expressions in the types and Idris
 will happily evaluate and unify all of them for us.
 
-I'm afraid that's not even close to the truth. The examples in this section
-were hand-picked because they are known to *just work*. The reason being,
-that there was always a direct link between our own pattern matches and the
+I'm afraid that's not even close to the truth. The examples
+in this section were hand-picked because they are known
+to *just work*. The reason being, that there was always
+a direct link between our own pattern matches and the
 implementations of functions we used at compile time.
 
-For instance, here is the implementation of addition of natural numbers:
+For instance, here is the implementation of addition of
+natural numbers:
 
 ```idris
 add : Nat -> Nat -> Nat
@@ -690,17 +727,20 @@ add Z     n = n
 add (S k) n = S $ add k n
 ```
 
-As you can see, `add` is implemented via a pattern match on its *first*
-argument, while the second argument is never inspected. Note, how this is
-exactly how `(++)` for `Vect` is implemented: There, we also pattern match
-on the first argument, returning the second unmodified in the `Nil` case,
-and prepending the head to the result of appending the tail in the *cons*
-case. Since there is a direct correspondence between the two pattern
-matches, it is possible for Idris to unify `0 + n` with `n` in the `Nil`
-case, and `(S k) + n` with `S (k + n)` in the *cons* case.
+As you can see, `add` is implemented via a pattern match
+on its *first* argument, while the second argument is never
+inspected. Note, how this is exactly how `(++)` for `Vect`
+is implemented: There, we also pattern match on the first
+argument, returning the second unmodified in the `Nil`
+case, and prepending the head to the result of appending
+the tail in the *cons* case. Since there is a direct
+correspondence between the two pattern matches, it
+is possible for Idris to unify `0 + n` with `n` in the
+`Nil` case, and `(S k) + n` with `S (k + n)` in the
+*cons* case.
 
-Here is a simple example, where Idris will not longer be convinced without
-some help from us:
+Here is a simple example, where Idris will not longer
+be convinced without some help from us:
 
 ```idris
 failing "Can't solve constraint"
@@ -709,60 +749,70 @@ failing "Can't solve constraint"
   reverse (x :: xs) = reverse xs ++ [x]
 ```
 
-When we type-check the above, Idris will fail with the following error
-message: "Can't solve constraint between: plus n 1 and S n." Here's what's
-going on: From the pattern match on the left hand side, Idris knows that the
-length of the vector is `S n`, for some natural number `n` corresponding to
-the length of `xs`. The length of the vector on the right hand side is `n +
-1`, according to the type of `(++)` and the lengths of `xs` and
-`[x]`. Overloaded operator `(+)` is implemented via function `Prelude.plus`,
-that's why Idris replaces `(+)` with `plus` in the error message.
+When we type-check the above,
+Idris will fail with the following error message:
+"Can't solve constraint between: plus n 1 and S n."
+Here's what's going on: From the pattern match on the
+left hand side, Idris knows that the length of the
+vector is `S n`, for some natural number `n`
+corresponding to the length of `xs`. The length
+of the vector on the right hand side is `n + 1`,
+according to the type of `(++)` and the lengths
+of `xs` and `[x]`. Overloaded operator `(+)`
+is implemented via function `Prelude.plus`, that's
+why Idris replaces `(+)` with `plus` in the error message.
 
-As you can see from the above, Idris can't verify on its own that `1 + n` is
-the same thing as `n + 1`.  It can accept some help from us, though. If we
-come up with a *proof* that the above equality holds (or - more generally -
-that our implementation of addition for natural numbers is *commutative*),
-we can use this proof to *rewrite* the types on the right hand side of
-`reverse`. Writing proofs and using `rewrite` will require some in-depth
-explanations and examples. Therefore, these things will have to wait until
-another chapter.
+As you can see from the above, Idris can't verify on
+its own that `1 + n` is the same thing as `n + 1`.
+It can accept some help from us, though. If we come
+up with a *proof* that the above equality holds
+(or - more generally - that our implementation of
+addition for natural numbers is *commutative*),
+we can use this proof to *rewrite* the types on
+the right hand side of `reverse`. Writing proofs and
+using `rewrite` will require some in-depth explanations
+and examples. Therefore, these things will have to wait
+until another chapter.
 
 ### Unrestricted Implicits
 
-In functions like `replicate`, we pass a natural number `n` as an explicit,
-unrestricted argument from which we infer the length of the vector to
-return.  In some circumstances, `n` can be inferred from the context.  For
-instance, in the following example it is tedious to pass `n` explicitly:
+In functions like `replicate`, we pass a natural number `n`
+as an explicit, unrestricted argument from which we infer
+the length of the vector to return.
+In some circumstances, `n` can be inferred from the context.
+For instance, in the following example it is tedious to
+pass `n` explicitly:
 
 ```idris
 ex4 : Vect 3 Integer
 ex4 = zipWith (*) (replicate 3 10) (replicate 3 11)
 ```
 
-The value `n` is clearly derivable from the context, which can be confirmed
-by replacing it with underscores:
+The value `n` is clearly derivable from the context, which
+can be confirmed by replacing it with underscores:
 
 ```idris
 ex5 : Vect 3 Integer
 ex5 = zipWith (*) (replicate _ 10) (replicate _ 11)
 ```
 
-We therefore can implement an alternative version of `replicate`, where we
-pass `n` as an implicit argument of *unrestricted* quantity:
+We therefore can implement an alternative version of `replicate`,
+where we pass `n` as an implicit argument of *unrestricted*
+quantity:
 
 ```idris
 replicate' : {n : _} -> a -> Vect n a
 replicate' = replicate n
 ```
 
-Note how, in the implementation of `replicate'`, we can refer to `n` and
-pass it as an explicit argument to `replicate`.
+Note how, in the implementation of `replicate'`, we can refer to `n`
+and pass it as an explicit argument to `replicate`.
 
-Deciding whether to pass potentially inferable arguments to a function
-implicitly or explicitly is a question of how often the arguments actually
-*are* inferable by Idris. Sometimes it might even be useful to have both
-verions of a function. Remember, however, that even in case of an implicit
-argument we can still pass the value explicitly:
+Deciding whether to pass potentially inferable arguments to a function implicitly
+or explicitly is a question of how often the arguments actually *are* inferable
+by Idris. Sometimes it might even be useful to have both verions
+of a function. Remember, however, that even in case of an implicit argument
+we can still pass the value explicitly:
 
 ```idris
 ex6 : Vect ? Bool
@@ -770,14 +820,15 @@ ex6 = replicate' {n = 2} True
 ```
 
 In the type signature above, the question mark (`?`) means, that Idris
-should try and figure out the value on its own by unification. This forces
-us to specify `n` explicitly on the right hand side of `ex6`.
+should try and figure out the value on its own by unification. This
+forces us to specify `n` explicitly on the right hand side of `ex6`.
 
 #### Pattern Matching on Implicits
 
-The implementation of `replicate'` makes use of function `replicate`, where
-we could pattern match on the explicit argument `n`. However, it is also
-possible to pattern match on implicit, named arguments of non-zero quantity:
+The implementation of `replicate'` makes use of function `replicate`,
+where we could pattern match on the explicit argument `n`. However, it
+is also possible to pattern match on implicit, named arguments of
+non-zero quantity:
 
 ```idris
 replicate'' : {n : _} -> a -> Vect n a
@@ -844,8 +895,8 @@ library. Likewise, `Fin` is available from `Data.Fin` from *base*.
 
 ### 下一步是什么
 
-In the [next section](IO.md), it is time to learn how to write effectful
-programs and how to do this while still staying *pure*.
+In the [next section](IO.md), it is time to learn how to write effectful programs
+and how to do this while still staying *pure*.
 
 <!-- vi: filetype=idris2
 -->
