@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-03 05:18+0000\n"
+"PO-Revision-Date: 2022-08-03 07:16+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/predicates/zh_Hans/>\n"
@@ -482,9 +482,9 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:164 ../src/Tutorial/Functions1.md:227
 #: ../src/Tutorial/Interfaces.md:504 ../src/Tutorial/Predicates.md:461
 #: ../src/Tutorial/Prim.md:646
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "And at the REPL:\n"
-msgstr "在 REPL 试一下："
+msgstr "在 REPL 试一下：\n"
 
 #. type: Title #
 #: ../src/Tutorial/Predicates.md:1

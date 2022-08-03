@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-03 05:18+0000\n"
+"PO-Revision-Date: 2022-08-03 07:16+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions2/zh_Hans/>\n"
@@ -404,13 +404,9 @@ msgstr ""
 
 #. type: Title ###
 #: ../src/Tutorial/Functions1.md:441 ../src/Tutorial/Functions2.md:339
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Exercises"
-msgstr ""
-"#-#-#-#-#  Functions1.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"练习\n"
-"#-#-#-#-#  Functions2.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"## 练习"
+msgstr "练习"
 
 #. type: Title #
 #: ../src/Tutorial/Functions2.md:1
