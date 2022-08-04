@@ -659,7 +659,7 @@ At the end of this chapter we will use `InSchema` in
 our CSV command-line application to list all values
 in a column.
 
-### Exercises part 2
+### 练习第 2 部分
 
 1. Show that `InSchema` is decidable by changing the output type of
    `inSchema` to `Dec (c ** InSchema n ss c)`.

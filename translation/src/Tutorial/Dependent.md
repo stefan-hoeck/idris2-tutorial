@@ -618,7 +618,7 @@ index FZ     Nil impossible
 index (FS _) Nil impossible
 ```
 
-### Exercises part 2
+### 练习第 2 部分
 
 1. Implement function `update`, which, given a function of type `a -> a`,
    updates the value in a`Vect n a` at position `k < n`.

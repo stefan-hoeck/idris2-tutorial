@@ -658,7 +658,7 @@ mighty sledgehammer of totality checking: `assert_total`. Needless to say
 that this comes with the same risks as `assert_smaller`, so be very
 careful.
 
-### Exercises part 2
+### 练习第 2 部分
 
 Implement the following functions in a provably total
 way without "cheating". Note: It is not necessary to

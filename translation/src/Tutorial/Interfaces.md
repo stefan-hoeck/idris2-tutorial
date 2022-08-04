@@ -349,7 +349,7 @@ Equals Bool where
   neq _ _         = False
 ```
 
-### Exercises part 2
+### 练习第 2 部分
 
 1. Implement interfaces `Equals`, `Comp`, `Concat`, and
   `Empty` for pairs, constraining your implementations as necessary.

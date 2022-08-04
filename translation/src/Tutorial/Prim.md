@@ -708,7 +708,7 @@ Tutorial.Prim> 0xffa2
 65442
 ```
 
-### Exercises part 2
+### 练习第 2 部分
 
 1. Define a wrapper record for integral values and implement `Monoid` so
    that `(<+>)` corresponds to `(.&.)`.

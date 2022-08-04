@@ -312,14 +312,14 @@ arithTest' = 5 + 10 * 12
    的函数）。实现以下高阶函数（在您的实现中使用布尔运算符 `&&`、`||` 和函数 `not`）：
 
    ```idris
-   -- 返回真，当且仅当两个谓词都成立
-   和 : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
+   -- return true, if and only if both predicates hold
+   and : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 
-   -- 返回真，当且仅当至少一个谓词成立
-   或 : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
+   -- return true, if and only if at least one predicate holds
+   or : (Integer -> Bool) -> (Integer -> Bool) -> Integer -> Bool
 
-   -- 如果谓词不成立，则返回真
-   否定：（整数->布尔）->整数->布尔
+   -- return true, if the predicate does not hold
+   negate : (Integer -> Bool) -> Integer -> Bool
    ```
 
    完成这个练习后，在 REPL 中试一试。在下面的例子中，我们通过用反引号包裹来使用两参数函数 `and` 的中缀表示法的

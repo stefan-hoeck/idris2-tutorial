@@ -648,7 +648,7 @@ one value, as we will see in the exercises. In such cases,
 sum types and dependent pairs quickly become unwieldy, and
 you should go for an encoding as a dependent record.
 
-### Exercises part 2
+### 练习第 2 部分
 
 Sharpen your skills in using dependent pairs and dependent
 records! In exercises 2 to 7 you have to decide yourself,

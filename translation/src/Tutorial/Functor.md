@@ -958,7 +958,7 @@ laws. Here they are:
   whether we apply a pure value from the left or
   right of the *apply* operator.
 
-### Exercises part 2
+### 练习第 2 部分
 
 1. Implement `Applicative'` for `Either e` and `Identity`.
 

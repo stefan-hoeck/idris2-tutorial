@@ -551,7 +551,7 @@ Note: If you have semantic highlighting turned on in your editor
 you will note that `map` and `id` in `mapMaybeId1` get
 highlighted differently: `map` as a function name, `id` as a bound variable.
 
-### Exercises part 2
+### 练习第 2 部分
 
 In these exercises, you are going to proof several simple properties
 of small functions. When writing proofs, it is even more important

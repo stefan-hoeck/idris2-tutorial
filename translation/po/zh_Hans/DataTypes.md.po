@@ -946,9 +946,7 @@ msgid ""
 "   is a shorter, more clever way,\n"
 "   requiring only two pattern matches for each of the\n"
 "   two functions.\n"
-msgstr ""
-"   注意：解决此问题的一种方法是枚举两个布尔值的所有四种可能组合值并给出每个结"
-"果。然而，有一种更短、更聪明的方式，两个函数每个只需要两个模式匹配。\n"
+msgstr "   注意：解决此问题的一种方法是枚举两个布尔值的所有四种可能组合值并给出每个结果。然而，有一种更短、更聪明的方式，两个函数每个只需要两个模式匹配。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/DataTypes.md:282
@@ -959,8 +957,8 @@ msgid ""
 "division (`div`)  when going from seconds to some larger unit like hours)."
 msgstr ""
 "定义您自己的数据类型来表示不同的时间单位（秒、分钟、小时、天、周），并实现以"
-"下函数以使用不同的单位在时间跨度之间进行转换。提示：当从秒到一些更大的单位（"
-"如小时）时，使用整数除法（`div`）。"
+"下函数以使用不同的单位在时间跨度之间进行转换。提示：当从秒到一些更大的单位"
+"（如小时）时，使用整数除法（`div`）。"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:283
@@ -1007,7 +1005,8 @@ msgstr ""
 msgid ""
 "Define a data type for representing a subset of the chemical elements: "
 "Hydrogen (H), Carbon (C), Nitrogen (N), Oxygen (O), and Fluorine (F)."
-msgstr "定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。"
+msgstr ""
+"定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:309
@@ -1050,9 +1049,7 @@ msgid ""
 "decide on a customized form. The possible\n"
 "choices can be encapsulated in an Idris data type:\n"
 msgstr ""
-"假设我们想写一些 web 表单，我们的 Web 应用程序用户可以决定他们喜欢如何处理。"
-"我们让他们在两个常见的预定义之间进行选择地址形式（先生和夫人），但也允许他们"
-"决定一个定制的表格。可能的\n"
+"假设我们想写一些 web 表单，我们的 Web 应用程序用户可以决定他们喜欢如何处理。我们让他们在两个常见的预定义之间进行选择地址形式（先生和夫人），但也允许他们决定一个定制的表格。可能的\n"
 "选择可以封装在 Idris 数据类型中：\n"
 
 #. type: Plain text
@@ -1098,9 +1095,7 @@ msgid ""
 "So, `Other` is a *function* from `String` to `Title`. This\n"
 "means, that we can pass `Other` a `String` argument and get\n"
 "a `Title` as the result:\n"
-msgstr ""
-"所以，`Other` 是从 `String` 到 `Title` 的 *函数*。这意味着，我们可以传递给 "
-"`Other` 一个 `String` 参数并得到结果 `Title`：\n"
+msgstr "所以，`Other` 是从 `String` 到 `Title` 的 *函数*。这意味着，我们可以传递给 `Other` 一个 `String` 参数并得到结果 `Title`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:348
@@ -1152,10 +1147,7 @@ msgid ""
 "Also, the `Other x` pattern has to be wrapped in parentheses,\n"
 "as otherwise Idris would think `Other` and `x` were to\n"
 "distinct function arguments.\n"
-msgstr ""
-"注意，在最后一个模式匹配中，存储在 `Other` 数据构造函数中字符串值被 *绑定* "
-"到局部变量 `x`。此外，`Other x` 模式必须用括号括起来，否则 Idris 会认为 "
-"`Other` 和 `x` 是不同的函数参数。\n"
+msgstr "注意，在最后一个模式匹配中，存储在 `Other` 数据构造函数中字符串值被 *绑定* 到局部变量 `x`。此外，`Other x` 模式必须用括号括起来，否则 Idris 会认为 `Other` 和 `x` 是不同的函数参数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:377
@@ -1165,8 +1157,7 @@ msgid ""
 "data constructors.\n"
 "We can use `showTitle` to implement a function for creating\n"
 "a courteous greeting:\n"
-msgstr "这是从数据构造函数中提取值的通用方式。我们可以使用 `showTitle` "
-"来实现创建礼貌问候的函数：\n"
+msgstr "这是从数据构造函数中提取值的通用方式。我们可以使用 `showTitle` 来实现创建礼貌问候的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:378
@@ -1187,8 +1178,7 @@ msgid ""
 "In the implementation of `greet`, we use string literals\n"
 "and the string concatenation operator `(++)` to\n"
 "assemble the greeting from its parts.\n"
-msgstr "在 `greet` 的实现中，我们使用字符串字面量和字符串连接运算符 `(++)` "
-"从各个部分组装问候语。\n"
+msgstr "在 `greet` 的实现中，我们使用字符串字面量和字符串连接运算符 `(++)` 从各个部分组装问候语。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:389
@@ -1198,7 +1188,12 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
+#| "\"Hello, Dr. Hck!\"\n"
+#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
+#| "\"Hello, Mrs. Smith!\"\n"
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"
@@ -1217,9 +1212,7 @@ msgid ""
 "Data types like `Title` are called *sum types* as they consist\n"
 "of the sum of their different parts: A value of type `Title`\n"
 "is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.\n"
-msgstr ""
-"像 `Title` 这样的数据类型被称为 *和类型* 因为它们由不同部分的和组成：`Title` "
-"类型的值是 `Mr`、`Mrs` 或包裹在 `Other` 中的 `String`。\n"
+msgstr "像 `Title` 这样的数据类型被称为 *和类型* 因为它们由不同部分的和组成：`Title` 类型的值是 `Mr`、`Mrs` 或包裹在 `Other` 中的 `String`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:407
@@ -1275,8 +1268,7 @@ msgid ""
 "As can be seen in the example above, we can also pattern\n"
 "match against primitive values by using integer and\n"
 "string literals. Give `login` a go at the REPL:\n"
-msgstr "从上面的例子中可以看出，我们也可以通过使用整数和字符串字面量的原始值进行模式"
-"匹配字。在 REPL 中试一试 `login`：\n"
+msgstr "从上面的例子中可以看出，我们也可以通过使用整数和字符串字面量的原始值进行模式匹配字。在 REPL 中试一试 `login`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:427
@@ -1312,7 +1304,8 @@ msgstr "练习第 2 部分"
 msgid ""
 "Implement an equality test for `Title` (you can use the equality operator "
 "`(==)` for comparing two `String`s):"
-msgstr "为 `Title` 实现相等测试（您可以使用相等运算符 `(==)` 比较两个 `String`）："
+msgstr ""
+"为 `Title` 实现相等测试（您可以使用相等运算符 `(==)` 比较两个 `String`）："
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:441
@@ -1372,9 +1365,7 @@ msgid ""
 "   but make sure not to disclose any confidential information:\n"
 "   An invalid username should be stored in the corresponding\n"
 "   error value, but an invalid password or key should not.\n"
-msgstr ""
-"   将这三种可能性封装在叫做 `LoginError` 的和类型中，但请确保不要泄露任何机密"
-"信息：无效的用户名应存储相应的错误值，但不应该存储无效的密码或密钥。\n"
+msgstr "   将这三种可能性封装在叫做 `LoginError` 的和类型中，但请确保不要泄露任何机密信息：无效的用户名应存储相应的错误值，但不应该存储无效的密码或密钥。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/DataTypes.md:471
@@ -1383,8 +1374,8 @@ msgid ""
 "display an error message to the user who unsuccessfully tried to login into "
 "our web application."
 msgstr ""
-"实现函数 `showError : LoginError -> String`，可用于向尝试登录我们的 Web "
-"应用程序失败的用户显示错误消息。"
+"实现函数 `showError : LoginError -> String`，可用于向尝试登录我们的 Web 应用"
+"程序失败的用户显示错误消息。"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:472
@@ -1404,10 +1395,8 @@ msgid ""
 "The most common and convenient way to\n"
 "define them is the `record` construct:\n"
 msgstr ""
-"将几个值组合在一起作为一个逻辑单元通常很有用。例如，在我们的 Web 应用程序中，"
-"我们可能想要对用户的信息进行分组\n"
-"在单一数据类型中。这种数据类型通常被称为 *积类型*（见下文解释）。"
-"最常见和最方便义方式是通过 `record` 构造进行定义：\n"
+"将几个值组合在一起作为一个逻辑单元通常很有用。例如，在我们的 Web 应用程序中，我们可能想要对用户的信息进行分组\n"
+"在单一数据类型中。这种数据类型通常被称为 *积类型*（见下文解释）。最常见和最方便义方式是通过 `record` 构造进行定义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:482
@@ -1432,9 +1421,7 @@ msgid ""
 "The declaration above creates a new *type* called `User`,\n"
 "and a new *data constructor* called `MkUser`. As usual,\n"
 "have a look at their types in the REPL:\n"
-msgstr ""
-"上面的声明创建了一个名为 `User` 的新 *类型*，和一个名为 `MkUser` 的新 "
-"*数据构造函数*。照常，看看他们在 REPL 中的类型：\n"
+msgstr "上面的声明创建了一个名为 `User` 的新 *类型*，和一个名为 `MkUser` 的新 *数据构造函数*。照常，看看他们在 REPL 中的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:494

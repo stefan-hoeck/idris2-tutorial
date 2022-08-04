@@ -191,18 +191,9 @@ Bar = foo
 
 1. 使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` 和 `or`。
 
-   Note: One way to go about this is to enumerate
-   all four possible combinations of two boolean
-   values and give the result for each. However, there
-   is a shorter, more clever way,
-   requiring only two pattern matches for each of the
-   two functions.
+   注意：解决此问题的一种方法是枚举两个布尔值的所有四种可能组合值并给出每个结果。然而，有一种更短、更聪明的方式，两个函数每个只需要两个模式匹配。
 
-2. Define your own data type representing different units of time (seconds,
-   minutes, hours, days, weeks), and implement the following functions for
-   converting between time spans using different units. Hint: Use integer
-   division (`div`)  when going from seconds to some larger unit like
-   hours).
+2. 定义您自己的数据类型来表示不同的时间单位（秒、分钟、小时、天、周），并实现以下函数以使用不同的单位在时间跨度之间进行转换。提示：当从秒到一些更大的单位（如小时）时，使用整数除法（`div`）。
 
    ```idris
    data UnitOfTime = Second -- add additional values
@@ -224,11 +215,9 @@ Bar = foo
    convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
    ```
 
-3. Define a data type for representing a subset of the chemical elements:
-   Hydrogen (H), Carbon (C), Nitrogen (N), Oxygen (O), and Fluorine (F).
+3. 定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。
 
-   Declare and implement function `atomicMass`, which for each element
-   returns its atomic mass in dalton:
+   声明并实现函数 `atomicMass`，它对每个元素返回以道尔顿为单位的原子质量：
 
    ```repl
    Hydrogen : 1.008
@@ -238,24 +227,20 @@ Bar = foo
    Fluorine : 18.9984
    ```
 
-## Sum Types
+## 和类型
 
-Assume we'd like to write some web form, where users of our
-web application can decide how they like to be addressed.
-We give them a choice between two common predefined
-forms of address (Mr and Mrs), but also allow them to
-decide on a customized form. The possible
-choices can be encapsulated in an Idris data type:
+假设我们想写一些 web 表单，我们的 Web 应用程序用户可以决定他们喜欢如何处理。我们让他们在两个常见的预定义之间进行选择地址形式（先生和夫人），但也允许他们决定一个定制的表格。可能的
+选择可以封装在 Idris 数据类型中：
 
 ```idris
-data Title = Mr | Mrs | Other String
+数据标题 = 先生 |夫人 |其他字符串
 ```
 
-This looks almost like an enumeration type, with the exception
-that there is a new thing, called a *data constructor*,
-which accepts a `String` argument (actually, the values
-in an enumeration are also called (nullary) data constructors).
-If we inspect the types at the REPL, we learn the following:
+这看起来几乎像一个枚举类型，除了
+有一个新东西，叫做*数据构造函数*，
+它接受一个 `String` 参数（实际上，值
+在枚举中也称为（空）数据构造函数）。
+如果我们检查 REPL 中的类型，我们会了解到以下内容：
 
 ```repl
 Tutorial.DataTypes> :t Mr
@@ -264,9 +249,7 @@ Tutorial.DataTypes> :t Other
 Tutorial.DataTypes.Other : String -> Title
 ```
 
-So, `Other` is a *function* from `String` to `Title`. This
-means, that we can pass `Other` a `String` argument and get
-a `Title` as the result:
+所以，`Other` 是从 `String` 到 `Title` 的 *函数*。这意味着，我们可以传递给 `Other` 一个 `String` 参数并得到结果 `Title`：
 
 ```idris
 total
@@ -274,10 +257,9 @@ dr : Title
 dr = Other "Dr."
 ```
 
-Again, a value of type `Title` can only consist of one
-of the three choices listed above, and again,
-we can use pattern matching to implement functions
-on the `Title` data type in a provably total way:
+同样，`Title` 类型的值只能包含一个
+在上面列出的三个选择中的一个，再一次，我们可以使用模式匹配来实现函数
+在 `Title` 数据类型上以可证明的全部方式：
 
 ```idris
 total
@@ -287,16 +269,9 @@ showTitle Mrs       = "Mrs."
 showTitle (Other x) = x
 ```
 
-Note, how in the last pattern match, the string value stored
-in the `Other` data constructor is *bound* to local variable `x`.
-Also, the `Other x` pattern has to be wrapped in parentheses,
-as otherwise Idris would think `Other` and `x` were to
-distinct function arguments.
+注意，在最后一个模式匹配中，存储在 `Other` 数据构造函数中字符串值被 *绑定* 到局部变量 `x`。此外，`Other x` 模式必须用括号括起来，否则 Idris 会认为 `Other` 和 `x` 是不同的函数参数。
 
-This is a very common way to extract the values from
-data constructors.
-We can use `showTitle` to implement a function for creating
-a courteous greeting:
+这是从数据构造函数中提取值的通用方式。我们可以使用 `showTitle` 来实现创建礼貌问候的函数：
 
 ```idris
 total
@@ -304,11 +279,9 @@ greet : Title -> String -> String
 greet t name = "Hello, " ++ showTitle t ++ " " ++ name ++ "!"
 ```
 
-In the implementation of `greet`, we use string literals
-and the string concatenation operator `(++)` to
-assemble the greeting from its parts.
+在 `greet` 的实现中，我们使用字符串字面量和字符串连接运算符 `(++)` 从各个部分组装问候语。
 
-At the REPL:
+在 REPL 中：
 
 ```repl
 Tutorial.DataTypes> greet dr "HÃ¶ck"
@@ -317,23 +290,19 @@ Tutorial.DataTypes> greet Mrs "Smith"
 "Hello, Mrs. Smith!"
 ```
 
-Data types like `Title` are called *sum types* as they consist
-of the sum of their different parts: A value of type `Title`
-is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.
+像 `Title` 这样的数据类型被称为 *和类型* 因为它们由不同部分的和组成：`Title` 类型的值是 `Mr`、`Mrs` 或包裹在 `Other` 中的 `String`。
 
-Here's another (drastically simplified) example of a sum type.
-Assume we allow two forms of authentication in our web application:
-Either by entering a username plus a password (for which we'll use
-an unsigned 64 bit integer here), or by providing user name
-plus a (very complex) secret key.
-Here's a data type to encapsulate this use case:
+这是 sum 类型的另一个（大大简化的）示例。
+假设我们在 Web 应用程序中允许两种形式的身份验证：
+通过输入用户名和密码（我们将使用
+此处为无符号 64 位整数），或通过提供用户名加上一个（非常复杂的）密钥。
+这是封装此用例的数据类型：
 
 ```idris
 data Credentials = Password String Bits64 | Key String String
 ```
 
-As an example of a very primitive login function, we can
-hard-code some known credentials:
+作为一个非常原始的登录函数的例子，我们可以硬编码一些已知的凭据：
 
 ```idris
 total
@@ -343,9 +312,7 @@ login (Key "Y" "xyz")               = greet (Other "Agent") "Y"
 login _                             = "Access denied!"
 ```
 
-As can be seen in the example above, we can also pattern
-match against primitive values by using integer and
-string literals. Give `login` a go at the REPL:
+从上面的例子中可以看出，我们也可以通过使用整数和字符串字面量的原始值进行模式匹配字。在 REPL 中试一试 `login`：
 
 ```repl
 Tutorial.DataTypes> login (Password "Anderson" 6665443)
@@ -356,50 +323,36 @@ Tutorial.DataTypes> login (Key "Y" "foo")
 "Access denied!"
 ```
 
-### Exercises part 2
+### 练习第 2 部分
 
-1. Implement an equality test for `Title` (you can use the equality operator
-   `(==)` for comparing two `String`s):
+1. 为 `Title` 实现相等测试（您可以使用相等运算符 `(==)` 比较两个 `String`）：
 
    ```idris
    total
    eqTitle : Title -> Title -> Bool
    ```
 
-2. For `Title`, implement a simple test to check, whether a custom title is
-   being used:
+2. 对于 `Title`，实现一个简单的测试来检查是否正在使用自定义标题：
 
    ```idris
    total
    isOther : Title -> Bool
    ```
 
-3. Given our simple `Credentials` type, there are three ways for
-   authentication to fail:
+3. 鉴于我们简单的 `Credentials` 类型，身份验证失败的三种方式：
 
-   * An unknown username was used.
-   * The password given does not match the one associated with the username.
-   * An invalid key was used.
+   * 使用了未知的用户名。
+   * 给定的密码与与用户名关联的密码不匹配。
+   * 使用了无效的密钥。
 
-   Encapsulate these three possibilities in a sum type
-   called `LoginError`,
-   but make sure not to disclose any confidential information:
-   An invalid username should be stored in the corresponding
-   error value, but an invalid password or key should not.
+   将这三种可能性封装在叫做 `LoginError` 的和类型中，但请确保不要泄露任何机密信息：无效的用户名应存储相应的错误值，但不应该存储无效的密码或密钥。
 
-4. Implement function `showError : LoginError -> String`, which can be used
-   to display an error message to the user who unsuccessfully tried to login
-   into our web application.
+4. 实现函数 `showError : LoginError -> String`，可用于向尝试登录我们的 Web 应用程序失败的用户显示错误消息。
 
-## Records
+## 记录
 
-It is often useful to group together several values
-as a logical unit. For instance, in our web application
-we might want to group information about a user
-in a single data type. Such data types are often called
-*product types* (see below for an explanation).
-The most common and convenient way to
-define them is the `record` construct:
+将几个值组合在一起作为一个逻辑单元通常很有用。例如，在我们的 Web 应用程序中，我们可能想要对用户的信息进行分组
+在单一数据类型中。这种数据类型通常被称为 *积类型*（见下文解释）。最常见和最方便义方式是通过 `record` 构造进行定义：
 
 ```idris
 record User where
@@ -409,9 +362,7 @@ record User where
   age   : Bits8
 ```
 
-The declaration above creates a new *type* called `User`,
-and a new *data constructor* called `MkUser`. As usual,
-have a look at their types in the REPL:
+上面的声明创建了一个名为 `User` 的新 *类型*，和一个名为 `MkUser` 的新 *数据构造函数*。照常，看看他们在 REPL 中的类型：
 
 ```repl
 Tutorial.DataTypes> :t User
@@ -420,9 +371,9 @@ Tutorial.DataTypes> :t MkUser
 Tutorial.DataTypes.MkUser : String -> Title -> Bits8 -> User
 ```
 
-We can use `MkUser` (which is a function from
-`String` to `Title` to `Bits8` to `User`)
-to create values of type `User`:
+我们可以使用 `MkUser` （这会从
+`String` 到 `Title` 到 `Bits8` 到 `User`）
+创建 `User` 类型的值：
 
 ```idris
 total
@@ -434,8 +385,7 @@ drNo : User
 drNo = MkUser "No" dr 73
 ```
 
-We can also use pattern matching to extract the fields from
-a `User` value (they can again be bound to local variables):
+我们还可以使用模式匹配从 `User` 提取值（它们可以再次绑定到局部变量）：
 
 ```idris
 total
@@ -443,12 +393,10 @@ greetUser : User -> String
 greetUser (MkUser n t _) = greet t n
 ```
 
-In the example above, the `name` and `title` field
-are bound to two new local variables (`n` and `t` respectively),
-which can then be used on the right hand side of `greetUser`'s
-implementation. For the `age` field, which is not used
-on the right hand side, we can use an underscore as a catch-all
-pattern.
+在上面的示例中，`name` 和 `title` 字段
+绑定到两个新的局部变量（分别为 `n` 和 `t`），
+然后可以在 `greetUser` 的右侧实现使用
+。对于 `age` 字段，在右侧未使用，我们可以使用下划线作为任意模式。
 
 Note, how Idris will prevent us from making
 a common mistake: If we confuse the order of arguments, the

@@ -719,7 +719,7 @@ it is abused just to show how clever you are, you make things
 harder for other people (including your future self!)
 reading and trying to understand your code.
 
-### Exercises part 2
+### 练习第 2 部分
 
 1. Reimplement the following *do blocks*, once by using *bang notation*, and
    once by writing them in their desugared form with nested *bind*s:

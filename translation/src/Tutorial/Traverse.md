@@ -567,7 +567,7 @@ again return an updated state, `s3`, which is passed on to
 later stateful computations together with the result of
 applying `f` to `va`.
 
-### Exercises part 2
+### 练习第 2 部分
 
 This sections consists of two extended exercise, the aim
 of which is to increase your understanding of the state monad.
