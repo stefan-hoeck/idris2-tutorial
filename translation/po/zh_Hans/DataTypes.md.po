@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-04 15:42+0000\n"
+"PO-Revision-Date: 2022-08-05 00:28+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/datatypes/zh_Hans/>\n"
@@ -581,7 +581,10 @@ msgid ""
 "a result of the given type in a finite amount of time\n"
 "(*resources* here meaning computational resources like\n"
 "memory or, in case of recursive functions, stack space).\n"
-msgstr "请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 * 总是 * 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
+msgstr ""
+"请记住，这些来自类型检查器：给定足够的资源，"
+"一个可证明的完全函数在有限时间内将 *总是* 返回给定类型的结果（*资源*的意思是"
+"计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:106
@@ -1056,7 +1059,7 @@ msgstr ""
 #: ../src/Tutorial/DataTypes.md:327
 #, no-wrap
 msgid "data Title = Mr | Mrs | Other String\n"
-msgstr "数据标题 = 先生 |夫人 |其他字符串\n"
+msgstr "data Title = Mr | Mrs | Other String\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:336
@@ -1188,12 +1191,7 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, fuzzy, no-wrap
-#| msgid ""
-#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
-#| "\"Hello, Dr. Hck!\"\n"
-#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
-#| "\"Hello, Mrs. Smith!\"\n"
+#, no-wrap
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"
@@ -1507,7 +1505,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:545
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how Idris will prevent us from making\n"
 "a common mistake: If we confuse the order of arguments, the\n"
@@ -1524,36 +1522,29 @@ msgid ""
 "code type checks but also that invalid code is rejected\n"
 "by the Idris elaborator:\n"
 msgstr ""
-"请注意，伊德里斯将如何阻止我们\n"
-"一个常见的错误：如果我们混淆了参数的顺序，\n"
-"实现将不再进行类型检查。我们可以验证这一点\n"
-"通过将错误代码放入 `failing` 块中：这\n"
-"是缩进的代码块，会导致错误\n"
-"在细化过程中（类型检查）。我们可以给一部分\n"
-"将预期的错误消息作为可选字符串参数\n"
-"一个失败的块。如果这不符合部分\n"
-"错误消息（或整个代码块不会失败\n"
-"类型检查）`failing` 块本身无法键入\n"
-"查看。这是演示该类型的有用工具\n"
-"安全有两个方向：我们可以证明有效\n"
-"代码类型检查，但无效代码也被拒绝\n"
-"由 Idris 阐述者：\n"
+"请注意，如果我们混淆了参数的顺序，Idris 将会阻止我们这个常见的错误：\n"
+"实现将不能通过行类型检查。我们可以验证这一点，通过将错误代码放入 `failing` "
+"块中：这是缩进的代码块，在细化过程中（类型检查）会导致错误。"
+"我们可以给一部分预期的错误消息作为 failing 块的可选字符串参数。如果这不能匹配"
+"部分错误消息（或在类型检查中不会失败的整个代码块类）`failing` "
+"块本身无法通过类型检查。下面是对类型安全有帮助的两个方向：通过 Idris "
+"细化，我们可以证明有效代码类型检查，但拒绝无效代码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:546
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "failing \"Mismatch between: String and Title\"\n"
 "  greetUser' : User -> String\n"
 "  greetUser' (MkUser n t _) = greet n t\n"
 msgstr ""
-"失败“不匹配：字符串和标题”\n"
-"  greetUser' : 用户 -> 字符串\n"
+"failing \"Mismatch between: String and Title\"\n"
+"  greetUser' : User -> String\n"
 "  greetUser' (MkUser n t _) = greet n t\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:558
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In addition, for every record field, Idris creates an\n"
 "extractor function of the same name. This can either\n"
@@ -1562,16 +1553,14 @@ msgid ""
 "the record type separated by a dot. Here are two examples\n"
 "for extracting the age from a user:\n"
 msgstr ""
-"此外，对于每个记录字段，Idris 都会创建一个\n"
-"同名提取函数。这既可以\n"
-"可以用作常规函数，也可以用于\n"
-"通过将后缀表示法附加到变量\n"
-"用点分隔的记录类型。这里有两个例子\n"
+"此外，对于每个记录字段，Idris 都会创建一个同名提取函数。这既可以可以用作常规"
+"函数，也可以用于通过将后缀表示法附加到变量，把记录类型用点作为分隔。\n"
+"这里有两个例子，\n"
 "从用户那里提取年龄：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:559
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "getAgeFunction : User -> Bits8\n"
 "getAgeFunction u = age u\n"
@@ -1579,21 +1568,21 @@ msgid ""
 "getAgePostfix : User -> Bits8\n"
 "getAgePostfix u = u.age\n"
 msgstr ""
-"getAgeFunction : 用户 -> Bits8\n"
-"getAgeFunction u = 年龄\n"
+"getAgeFunction : User -> Bits8\n"
+"getAgeFunction u = age u\n"
 "\n"
-"getAgePostfix : 用户 -> Bits8\n"
+"getAgePostfix : User -> Bits8\n"
 "getAgePostfix u = u.age\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:567
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Syntactic Sugar for Records"
 msgstr "记录的语法糖"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:581
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As was already mentioned in the [intro](Intro.md), Idris\n"
 "is a *pure* functional programming language. In pure functions,\n"
@@ -1608,86 +1597,78 @@ msgid ""
 "guarantees, which makes it drastically easier to reason\n"
 "about our code.\n"
 msgstr ""
-"正如在 [intro](Intro.md) 中已经提到的，Idris\n"
-"是一种 * 纯 * 函数式编程语言。在纯函数中，\n"
+"正如在 [intro](Intro.md) 中已经提到的，Idris是一种 *纯* "
+"函数式编程语言。在纯函数中，\n"
 "我们不允许修改全局可变状态。像这样，\n"
 "如果我们想修改记录值，我们总是\n"
-"创建一个 *new* 值，保留原始值\n"
-"不变：记录和其他 Idris 值是 * 不可变的 *。\n"
-"虽然这个 * 可以* 对性能有轻微影响，但它有\n"
-"我们可以自由地将记录值传递给的好处\n"
-"不同的功能，不用担心功能修改\n"
-"就地突变的值。这些再次非常强大\n"
-"保证，这使得推理变得更加容易\n"
-"关于我们的代码。\n"
+"创建一个 *新* 值，保留原始值不变：记录和其他 Idris 值是 *不可变的*。\n"
+"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数"
+"会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们"
+"的代码推理变得更加容易。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:586
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There are several ways to modify a record, the most\n"
 "general being to pattern match on the record and\n"
 "adjust each field as desired. If, for instance, we'd like\n"
 "to increase the age of a `User` by one, we could do the following:\n"
 msgstr ""
-"有几种方法可以修改记录，最\n"
-"一般是在记录上进行模式匹配，并且\n"
-"根据需要调整每个字段。例如，如果我们想\n"
-"要将 `User` 的年龄增加一，我们可以执行以下操作：\n"
+"有几种方法可以修改记录，最通用的是在记录上进行模式匹配，并且\n"
+"根据需要调整每个字段。例如，如果我们想要将 `User` "
+"的年龄增加一，我们可以执行以下操作：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:587
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "incAge : User -> User\n"
 "incAge (MkUser name title age) = MkUser name title (age + 1)\n"
 msgstr ""
-"全部的\n"
-"incAge : 用户 -> 用户\n"
+"total\n"
+"incAge : User -> User\n"
 "incAge (MkUser name title age) = MkUser name title (age + 1)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:597
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "That's a lot of code for such a simple thing, so Idris offers\n"
 "several syntactic conveniences for this. For instance,\n"
 "using *record* syntax, we can just access and update the `age`\n"
 "field of a value:\n"
 msgstr ""
-"这么简单的事情有很多代码，所以 Idris 提供\n"
-"为此提供了几种语法便利。例如，\n"
-"使用 *record* 语法，我们可以访问和更新 `age`\n"
-"值的字段：\n"
+"这么简单的事情有很多代码，所以 Idris 为此提供了几种语法糖。例如，\n"
+"使用 *记录* 语法，我们可以访问和更新 `age` 字段的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:598
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "incAge2 : User -> User\n"
 "incAge2 u = { age := u.age + 1 } u\n"
 msgstr ""
-"全部的\n"
-"incAge2 : 用户 -> 用户\n"
-"incAge2 u = { 年龄 := u.age + 1 } u\n"
+"total\n"
+"incAge2 : User -> User\n"
+"incAge2 u = { age := u.age + 1 } u\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:607
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Assignment operator `:=` assigns a new value to the `age` field\n"
 "in `u`. Remember, that this will create a new `User` value. The original\n"
 "value `u` remains unaffected by this.\n"
 msgstr ""
-"赋值运算符 `:=` 为 `age` 字段分配一个新值\n"
-"在 `u` 中。请记住，这将创建一个新的 `User` 值。原本的\n"
-"值 `u` 不受此影响。\n"
+"赋值运算符 `:=` 为 在 `u` 中的 `age` 字段分配一个新值。请记住，"
+"这将创建一个新的 `User` 值。原本的值 `u` 不受此影响。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:613
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can access a record field, either by using the field name\n"
 "as a projection function (`age u`; also have a look at `:t age`\n"
@@ -1695,159 +1676,152 @@ msgid ""
 "syntax and *not* related to the dot operator for function\n"
 "composition (`(.)`).\n"
 msgstr ""
-"我们可以通过使用字段名称来访问记录字段\n"
-"作为投影函数 (`age u`; 也看看 `:t age`\n"
-"在 REPL 中），或使用点语法：`u.age`。这很特别\n"
-"与函数的点运算符相关的语法和 *not*\n"
-"合成（`(.)`）。\n"
+"我们可以通过使用字段名称来访问记录字段，\n"
+"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u."
+"age`。这个特殊语法有别于函数组合的点运算符（`(.)`）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:616
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The use case of modifying a record field is so common\n"
 "that Idris provides special syntax for this as well:\n"
 msgstr ""
-"修改记录字段的用例如此普遍\n"
+"修改记录字段的用例如此普遍，\n"
 "Idris 也为此提供了特殊的语法：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:617
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "incAge3 : User -> User\n"
 "incAge3 u = { age $= (+ 1) } u\n"
 msgstr ""
-"全部的\n"
-"incAge3 : 用户 -> 用户\n"
-"incAge3 u = { 年龄 $= (+ 1) } u\n"
+"total\n"
+"incAge3 : User -> User\n"
+"incAge3 u = { age $= (+ 1) } u\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:627
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, I used an *operator section* (`(+ 1)`) to make\n"
 "the code more concise.\n"
 "As an alternative to an operator section,\n"
 "we could have used an anonymous function like so:\n"
 msgstr ""
-"在这里，我使用了 * 运算符部分 * (`(+ 1)`) 来制作\n"
-"代码更简洁。\n"
-"作为操作员部分的替代方案，\n"
+"在这里，我使用了 *运算符块* (`(+ 1)`) 来使代码更简洁。\n"
+"作为运算符块的替代方案，\n"
 "我们可以像这样使用匿名函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:628
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "incAge4 : User -> User\n"
 "incAge4 u = { age $= \\x => x + 1 } u\n"
 msgstr ""
-"全部的\n"
-"incAge4 : 用户 -> 用户\n"
-"incAge4 u = { 年龄 $= \\x => x + 1 } u\n"
+"total\n"
+"incAge4 : User -> User\n"
+"incAge4 u = { age $= \\x => x + 1 } u\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:637
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, since our function's argument `u` is only used\n"
 "once at the very end, we can drop it altogether,\n"
 "to get the following, highly concise version:\n"
 msgstr ""
-"最后，由于我们函数的参数 `u` 只被使用\n"
-"一旦在最后，我们可以完全放弃它，\n"
+"最后，由于我们函数的参数 `u` 只是在最后被使用一次，我们可以完全放弃它，\n"
 "获得以下高度简洁的版本：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:638
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "incAge5 : User -> User\n"
 "incAge5 = { age $= (+ 1) }\n"
 msgstr ""
-"全部的\n"
-"incAge5 : 用户 -> 用户\n"
-"incAge5 = { 年龄 $= (+ 1) }\n"
+"total\n"
+"incAge5 : User -> User\n"
+"incAge5 = { age $= (+ 1) }\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:645
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "As usual, we should have a look at the result at the REPL:\n"
 msgstr "像往常一样，我们应该看看 REPL 的结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:646
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.DataTypes> incAge5 drNo\n"
 "MkUser \"No\" (Other \"Dr.\") 74\n"
 msgstr ""
 "Tutorial.DataTypes> incAge5 drNo\n"
-"MkUser“否”（其他“博士”）74\n"
+"MkUser \"No\" (Other \"Dr.\") 74\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:653
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is possible to use this syntax to set and/or update\n"
 "several record fields at once:\n"
-msgstr ""
-"可以使用此语法来设置和/或更新\n"
-"一次有几个记录字段：\n"
+msgstr "可以使用此语法来设置或更新一个或多个记录字段：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:654
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "drNoJunior : User\n"
 "drNoJunior = { name $= (++ \" Jr.\"), title := Mr, age := 17 } drNo\n"
 msgstr ""
-"全部的\n"
-"drNoJunior：用户\n"
-"drNoJunior = { name $= (++ \"Jr.\"), title := Mr, age := 17 } drNo\n"
+"total\n"
+"drNoJunior : User\n"
+"drNoJunior = { name $= (++ \" Jr.\"), title := Mr, age := 17 } drNo\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:660
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Tuples"
 msgstr "元组"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:666
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "I wrote above that a record is also called a *product type*.\n"
 "This is quite obvious when we consider the number\n"
 "of possible values inhabiting a given type. For instance, consider\n"
 "the following custom record:\n"
 msgstr ""
-"我在上面写了一条记录也称为*产品类型*。\n"
-"当我们考虑数字时，这很明显\n"
-"存在于给定类型中的可能值。例如，考虑\n"
-"以下自定义记录：\n"
+"我在上面写了一条记录也被称为*积类型*。\n"
+"当我们考虑存在于给定类型中的可能值数量的时候，这是很显而易见的。例如，考虑以"
+"下自定义记录：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:667
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Foo where\n"
 "  constructor MkFoo\n"
 "  wd   : Weekday\n"
 "  bool : Bool\n"
 msgstr ""
-"记录 Foo 在哪里\n"
-"  构造函数 MkFoo\n"
-"  wd : 工作日\n"
-"  布尔：布尔\n"
+"record Foo where\n"
+"  constructor MkFoo\n"
+"  wd   : Weekday\n"
+"  bool : Bool\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:678
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "How many possible values of type `Foo` are there? The answer is `7 * 2 = 14`,\n"
 "as we can pair every possible `Weekday` (seven in total) with every possible\n"
@@ -1856,30 +1830,30 @@ msgid ""
 msgstr ""
 "`Foo` 类型的可能值有多少？答案是`7 * 2 = 14`，\n"
 "因为我们可以将所有可能的 `Weekday`（总共七个）与所有可能的\n"
-"`Bool`（共两个）。因此，记录类型的可能值的数量\n"
-"是每个字段可能值的数量的 *product*。\n"
+"`Bool`（共两个）相乘。因此，记录类型的可能值的数量是每个字段可能值的数量的 "
+"*积*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:680
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The canonical product type is the `Pair`, which is available from the *Prelude*:\n"
-msgstr "规范的产品类型是 `Pair`，可从 *Prelude* 获得：\n"
+msgstr "规范的积类型是 `Pair`，可从 *Prelude* 获得：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:681
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool\n"
 "weekdayAndBool wd b = MkPair wd b\n"
 msgstr ""
-"全部的\n"
+"total\n"
 "weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool\n"
 "weekdayAndBool wd b = MkPair wd b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:692
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since it is quite common to return several values from a function\n"
 "wrapped in a `Pair` or larger tuple, Idris provides some syntactic\n"
@@ -1887,33 +1861,32 @@ msgid ""
 "can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,\n"
 "we can just write `(wd, b)` (the space is optional):\n"
 msgstr ""
-"因为从一个函数返回多个值是很常见的\n"
-"包裹在 `Pair` 或更大的元组中，Idris 提供了一些语法\n"
-"与这些一起工作的糖。而不是 `Pair Weekday Bool`，我们\n"
-"可以只写 `(Weekday, Bool)`。同样，代替 `MkPair wd b`，\n"
-"我们可以只写 `(wd, b)` （空格是可选的）：\n"
+"因为通过包裹在 `Pair` 或更大的元组中，从一个函数返回多个值是很常见的，Idris "
+"提供了一些与这些一起工作的语法糖。我们可以只写 `(Weekday, Bool)` 来代替 `"
+"Pair Weekday Bool`。同样我们可以只写 `(wd, b)` （空格是可选的）来代替 `"
+"MkPair wd b`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:693
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)\n"
 "weekdayAndBool2 wd b = (wd, b)\n"
 msgstr ""
-"全部的\n"
-"weekdayAndBool2 : 工作日 -> Bool -> (Weekday, Bool)\n"
+"total\n"
+"weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)\n"
 "weekdayAndBool2 wd b = (wd, b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:700
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "This works also for nested tuples:\n"
 msgstr "这也适用于嵌套元组：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:701
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "triple : Pair Bool (Pair Weekday String)\n"
@@ -1923,77 +1896,75 @@ msgid ""
 "triple2 : (Bool, Weekday, String)\n"
 "triple2 = (False, Friday, \"foo\")\n"
 msgstr ""
-"全部的\n"
-"Triple : Pair Bool (Pair Weekday String)\n"
-"Triple = MkPair False（星期五，“foo”）\n"
+"total\n"
+"triple : Pair Bool (Pair Weekday String)\n"
+"triple = MkPair False (Friday, \"foo\")\n"
 "\n"
-"全部的\n"
-"Triple2：（布尔，工作日，字符串）\n"
-"Triple2 = (False, Friday, \"foo\")\n"
+"total\n"
+"triple2 : (Bool, Weekday, String)\n"
+"triple2 = (False, Friday, \"foo\")\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:713
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the example above, `triple2` is converted to the form\n"
 "used in `triple` by the Idris compiler.\n"
 msgstr ""
-"在上面的例子中，`triple2` 被转换为形式\n"
-"Idris 编译器在 `triple` 中使用。\n"
+"在上面的例子中，`triple2` 在\n"
+"Idris 编译器中会被转换成 `triple` 的形式来使用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:715
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "We can even use tuple syntax in pattern matches:\n"
 msgstr "我们甚至可以在模式匹配中使用元组语法：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:716
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "bar : Bool\n"
 "bar = case triple of\n"
 "  (b,wd,_) => b && isWeekend wd\n"
 msgstr ""
-"全部的\n"
-"酒吧：布尔\n"
-"bar = 大小写的三倍\n"
+"total\n"
+"bar : Bool\n"
+"bar = case triple of\n"
 "  (b,wd,_) => b && isWeekend wd\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:723
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "As Patterns"
-msgstr "作为模式"
+msgstr "As 模式"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:728
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, we'd like to take apart a value by pattern matching\n"
 "on it but still retain the value as a whole for using it\n"
 "in further computations:\n"
-msgstr ""
-"有时，我们想通过模式匹配来分解一个值\n"
-"在它上面，但仍然保留使用它的整体价值\n"
-"在进一步的计算中：\n"
+msgstr "有时，我们想通过模式匹配来提取它上面的一个值，但仍然保留使用它的整体值在进一"
+"步的计算中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:729
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)\n"
 "baz t@(_,_,s) = (length s, t)\n"
 msgstr ""
-"全部的\n"
+"total\n"
 "baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)\n"
-"baz t@(_,_,s) = (长度 s, t)\n"
+"baz t@(_,_,s) = (length s, t)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:741
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In `baz`, variable `t` is *bound* to the triple as a whole, which\n"
 "is then reused to construct the resulting quadruple. Remember,\n"
@@ -2002,12 +1973,11 @@ msgid ""
 "sugar for `MkPair (length s) t`. Hence, the implementation above\n"
 "is correct as is confirmed by the type checker.\n"
 msgstr ""
-"在 `baz` 中，变量 `t` 是 *bound* 到整个三元组，即\n"
-"然后被重用以构造生成的四元组。记住，\n"
-"`(Nat,Bool,Weekday,String)` 只是糖\n"
-"`Pair Nat (Bool,Weekday,String)`，而 `(length s, t)` 只是\n"
-"`MkPair（长度 s）t` 的糖。因此，上面的实现\n"
-"是正确的，由类型检查器确认。\n"
+"在 `baz` 中，变量 `t` 会 *绑定* "
+"到整个三元组，然后被重用以构造生成的四元组。记住，\n"
+"`(Nat,Bool,Weekday,String)` 只是 `Pair Nat (Bool,Weekday,String)` 的糖，而 `("
+"length s, t)` 只是\n"
+"`MkPair（length s）t` 的糖。因此，上面的实现是正确的，由类型检查器确认。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
@@ -2016,253 +1986,65 @@ msgstr ""
 #: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
 #: ../src/Tutorial/Predicates.md:1020 ../src/Tutorial/Prim.md:936
 #: ../src/Tutorial/Traverse.md:1016
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Exercises part 3"
-msgstr ""
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"练习第 3 部分\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Predicates.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Dependent.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Prim.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DPair.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 3 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Interfaces.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 3 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:748
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "1. Define a record type for time spans by pairing a `UnitOfTime`\n"
 "with an integer representing the duration of the time span in\n"
 "the given unit of time. Define also a function for converting\n"
 "a time span to an `Integer` representing the duration in seconds.\n"
 msgstr ""
-"1. 通过配对 `UnitOfTime` 来定义时间跨度的记录类型\n"
-"用一个整数表示时间跨度的持续时间\n"
-"给定的时间单位。还定义一个用于转换的函数\n"
-"`Integer` 的时间跨度，以秒为单位表示持续时间。\n"
+"1. 通过把 `UnitOfTime` 和表示时间跨度的整数配对来定义一个记录类型。再定义一个"
+"用于转换的函数来定义时间跨度的记录类型，以秒为单位表示持续时间。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:752
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "2. Implement an equality check for time spans: Two time spans\n"
 "should be considered equal, if and only if they correspond to\n"
 "the same number of seconds.\n"
-msgstr ""
-"2. 对时间跨度实施相等检查：两个时间跨度\n"
-"应该被认为是相等的，当且仅当它们对应于\n"
+msgstr "2. 对时间跨度实施相等检查：两个时间跨度应该被认为是相等的，当且仅当它们对应于"
 "相同的秒数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:757
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "3. Implement a function for pretty printing time spans:\n"
 "The resulting string should display the time span in its\n"
 "given unit, plus show the number of seconds in parentheses,\n"
 "if the unit is not already seconds.\n"
 msgstr ""
-"3.实现漂亮的打印时间跨度的功能：\n"
-"结果字符串应显示其时间跨度\n"
-"给定单位，加上括号中显示的秒数，\n"
-"如果单位还不是秒。\n"
+"3.实现美观的打印时间跨度的函数：\n"
+"结果字符串应显示其时间跨度的给定单位，如果单位还不是秒，再加上括号中显示的秒"
+"数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:761
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "4. Implement a function for adding two time spans. If the\n"
 "two time spans use different units of time, use the smaller\n"
 "unit of time to ensure a lossless conversion.\n"
 msgstr ""
 "4. 实现两个时间跨度相加的功能。如果\n"
-"两个时间跨度使用不同的时间单位，使用较小的\n"
-"时间单位，以确保无损转换。\n"
+"两个时间跨度使用不同的时间单位，使用较小的时间单位，以确保无损转换。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:762
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Generic Data Types"
 msgstr "通用数据类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:772
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, a concept is general enough that we'd like\n"
 "to apply it not only to a single type, but to all\n"
@@ -2273,24 +2055,21 @@ msgid ""
 "by the type of values it stores. This section explains how\n"
 "to define and use generic types.\n"
 msgstr ""
-"有时，一个概念足够笼统，我们会喜欢\n"
-"不仅适用于单一类型，而且适用于所有类型\n"
-"种类型。例如，我们可能不想定义\n"
-"整数列表、字符串列表和列表的数据类型\n"
-"布尔值，因为这会导致大量代码重复。\n"
-"相反，我们希望有一个通用列表类型 *parameterized*\n"
-"根据它存储的值的类型。本节说明如何\n"
-"定义和使用泛型类型。\n"
+"有时，我们会喜欢一个概念足够笼统，不仅适用于单一类型，而且适用于所有类型。例"
+"如，我们可能不想定义整数列表、字符串列表和布尔列表，因为这会导致大量代码重复"
+"。\n"
+"相反，我们希望有一个通用列表类型，根据它存储的值的类型 "
+"*参数化*。本节说明如何定义和使用泛型类型。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:773
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Maybe"
 msgstr "Maybe"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:786
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Consider the case of parsing\n"
 "a `Weekday` from user input. Surely, such\n"
@@ -2304,21 +2083,16 @@ msgid ""
 "is hardly ever the best choice and may lead to a lot of\n"
 "confusion.\n"
 msgstr ""
-"考虑解析的情况\n"
-"来自用户输入的 `Weekday`。果然，这样的\n"
-"一个函数应该返回 `Saturday`，如果\n"
-"字符串输入是 `\"Saturday\"`，但如果\n"
-"输入是 `\"sdfkl332\"`？我们在这里有几个选择。\n"
+"考虑解析来自用户输入的 `Weekday` 的情况。如果\n"
+"字符串输入是 `\"Saturday\"`，一个函数的确应该返回 `Saturday`，但如果\n"
+"输入是 `\"sdfkl332\"` 呢？我们在这里有几个选择。\n"
 "例如，我们可以只返回一个默认结果\n"
-"（`Sunday` 也许？）。但这是行为吗\n"
-"程序员在使用我们的库时期望什么？也许不吧。默默地\n"
-"面对无效的用户输入，继续使用默认值\n"
-"几乎不是最好的选择，可能会导致很多\n"
-"混乱。\n"
+"（也许是 `Sunday` ？）。但这是程序员在使用我们的库时期望行为吗？也许不吧。默"
+"默地面对无效的用户输入，继续使用默认值不是最好的选择，可能会导致很多混乱。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:792
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In an imperative language, our function would probably\n"
 "throw an exception. We could do this in Idris as\n"
@@ -2327,14 +2101,13 @@ msgid ""
 "price to pay for such a common thing as a parsing error.\n"
 msgstr ""
 "在命令式语言中，我们的函数可能会\n"
-"抛出异常。我们可以在 Idris 中这样做\n"
-"好吧（*Prelude* 中有功能 `idris_crash`\n"
-"这），但这样做，我们会放弃整体！高\n"
-"为解析错误等常见问题付出的代价。\n"
+"抛出异常。我们可以在 Idris 中这样做（*Prelude* 中有功能 `idris_crash`\n"
+"这），好吧，但这样做，我们会放弃完全性！为解析错误等常见问题付出过高的代价。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:803
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In languages like Java, our function might also return some\n"
 "kind of `null` value (leading to the dreaded `NullPointerException`s if\n"
@@ -2347,20 +2120,17 @@ msgid ""
 "often the way to go in order to increase type safety.\n"
 "Here's an example how to do this:\n"
 msgstr ""
-"在像 Java 这样的语言中，我们的函数也可能返回一些\n"
-"一种 `null` 值（导致可怕的 `NullPointerException`s 如果\n"
-"未在客户端代码中正确处理）。我们的解决方案将\n"
-"相似，但不是默默地返回 `null`，\n"
-"我们将在类型中显示失败的可能性！\n"
-"我们定义了一个自定义的数据类型，它封装了可能性\n"
-"的失败。在 Idris 中定义新的数据类型非常便宜\n"
-"（就所需的代码量而言），因此这是\n"
-"通常是为了增加类型安全性。\n"
+"在像 Java 这样的语言中，我们的函数也可能返回一种 `null` 值（如果\n"
+"未在客户端代码中正确处理，会导致可怕的 `NullPointerException` "
+"）。我们的解决方案将很相似，但不是默默地返回 "
+"`null`，我们将在类型中显示失败的可能性！\n"
+"我们定义了一个自定义的数据类型，它封装了可能的失败。在 Idris 中定义新的数据类"
+"型非常廉价（就所需的代码量而言），因此这通常是为了增加类型安全性。\n"
 "这是一个如何执行此操作的示例：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:804
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data MaybeWeekday = WD Weekday | NoWeekday\n"
 "\n"
@@ -2375,48 +2145,46 @@ msgid ""
 "readWeekday \"Sunday\"    = WD Sunday\n"
 "readWeekday _           = NoWeekday\n"
 msgstr ""
-"数据 MaybeWeekday = WD 工作日 |现在平日\n"
+"data MaybeWeekday = WD Weekday | NoWeekday\n"
 "\n"
-"全部的\n"
-"readWeekday : 字符串 -> MaybeWeekday\n"
-"readWeekday \"星期一\" = WD 星期一\n"
-"readWeekday \"星期二\" = WD 星期二\n"
-"readWeekday \"星期三\" = WD 星期三\n"
-"readWeekday \"星期四\" = WD 星期四\n"
-"readWeekday \"Friday\" = WD 星期五\n"
-"readWeekday \"星期六\" = WD 星期六\n"
-"readWeekday \"星期日\" = WD 星期日\n"
-"readWeekday _ = NoWeekday\n"
+"total\n"
+"readWeekday : String -> MaybeWeekday\n"
+"readWeekday \"Monday\"    = WD Monday\n"
+"readWeekday \"Tuesday\"   = WD Tuesday\n"
+"readWeekday \"Wednesday\" = WD Wednesday\n"
+"readWeekday \"Thursday\"  = WD Thursday\n"
+"readWeekday \"Friday\"    = WD Friday\n"
+"readWeekday \"Saturday\"  = WD Saturday\n"
+"readWeekday \"Sunday\"    = WD Sunday\n"
+"readWeekday _           = NoWeekday\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:823
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But assume now, we'd also like to read `Bool` values from\n"
 "user input. We'd now have to write a custom data type\n"
 "`MaybeBool` and so on for all types we'd like to read\n"
 "from `String`, and the conversion of which might fail.\n"
 msgstr ""
-"但假设现在，我们还想从 `Bool` 读取值\n"
-"用户输入。我们现在必须编写一个自定义数据类型\n"
-"`MaybeBool` 等等我们想读的所有类型\n"
-"来自 `String`，并且转换可能会失败。\n"
+"但假设现在，我们还想从用户输入读取 `Bool` 值。"
+"我们现在必须编写一个自定义数据类型 `MaybeBool` ，还有其他任何我们想从 "
+"`String` 中读取的类型，并且转换可能会失败。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:827
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Idris, like many other programming languages, allows us\n"
 "to generalize this behavior by using *generic data\n"
 "types*. Here's an example:\n"
 msgstr ""
 "与许多其他编程语言一样，Idris 允许我们\n"
-"通过使用 * 通用数据来概括此行为\n"
-"类型*。这是一个例子：\n"
+"通过使用 *通用数据类型* 来概括此行为。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:828
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Option a = Some a | None\n"
 "\n"
@@ -2426,23 +2194,23 @@ msgid ""
 "readBool \"False\"   = Some False\n"
 "readBool _         = None\n"
 msgstr ""
-"数据选项 a = 一些 a |没有任何\n"
+"data Option a = Some a | None\n"
 "\n"
-"全部的\n"
-"readBool : 字符串 -> 选项布尔\n"
-"readBool \"True\" = 有些真\n"
-"readBool \"False\" = 一些错误\n"
-"readBool _ = 无\n"
+"total\n"
+"readBool : String -> Option Bool\n"
+"readBool \"True\"    = Some True\n"
+"readBool \"False\"   = Some False\n"
+"readBool _         = None\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:839
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "It is important to go to the REPL and look at the types:\n"
 msgstr "重要的是去 REPL 并查看类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:840
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.DataTypes> :t Some\n"
 "Tutorial.DataTypes.Some : a -> Option a\n"
@@ -2451,16 +2219,16 @@ msgid ""
 "Tutorial.DataTypes> :t Option\n"
 "Tutorial.DataTypes.Option : Type -> Type\n"
 msgstr ""
-"Tutorial.DataTypes> :t 一些\n"
-"Tutorial.DataTypes.Some : a -> 选项 a\n"
-"Tutorial.DataTypes> :t 无\n"
-"Tutorial.DataTypes.None ：选择一个\n"
-"Tutorial.DataTypes> :t 选项\n"
-"Tutorial.DataTypes.Option : 类型 -> 类型\n"
+"Tutorial.DataTypes> :t Some\n"
+"Tutorial.DataTypes.Some : a -> Option a\n"
+"Tutorial.DataTypes> :t None\n"
+"Tutorial.DataTypes.None : Optin a\n"
+"Tutorial.DataTypes> :t Option\n"
+"Tutorial.DataTypes.Option : Type -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:857
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We need to introduce some jargon here. `Option` is what we call\n"
 "a *type constructor*. It is not yet a saturated type: It is\n"
@@ -2471,56 +2239,53 @@ msgid ""
 "`Some` and `None` are `Option`s *data constructors*: The functions\n"
 "used to create values of type `Option a` for a type `a`.\n"
 msgstr ""
-"我们需要在这里介绍一些行话。 `Option`就是我们所说的\n"
-"* 类型构造函数*。它还不是饱和类型：它是\n"
-"从 `Type` 到 `Type` 的函数。\n"
+"我们需要在这里介绍一些行话。 `Option`就是我们所说的 "
+"*类型构造函数*。它还不是饱和类型：它是从 `Type` 到 `Type` 的函数。\n"
 "但是，`Option Bool` 是一种类型，`Option Weekday` 也是一种类型。\n"
-"甚至 `Option (Option Bool)` 也是有效类型。 `选项`是\n"
-"`Type` 类型的 *parameter* 上的类型构造函数 *parameterized*。\n"
-"`Some` 和 `None` 是 `Option` 的 * 数据构造函数*：函数\n"
-"用于为类型 `a` 创建 `Option a` 类型的值。\n"
+"甚至 `Option (Option Bool)` 也是有效类型。\n"
+"`Option`是\n"
+"`Type` 类型的 *参数* 上的 *参数化* 类型构造函数。\n"
+"`Some` 和 `None` 是 `Option` 的 *数据构造函数*：用于为类型 `a` 创建 `Option "
+"a` 类型值的函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:860
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's see some other use cases for `Option`. Below is a safe\n"
 "division operation:\n"
-msgstr ""
-"让我们看看 `Option` 的一些其他用例。下面是保险箱\n"
-"分工操作：\n"
+msgstr "让我们看看 `Option` 的一些其他用例。下面是安全除法运算：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:861
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "safeDiv : Integer -> Integer -> Option Integer\n"
 "safeDiv n 0 = None\n"
 "safeDiv n k = Some (n `div` k)\n"
 msgstr ""
-"全部的\n"
-"safeDiv : 整数 -> 整数 -> 选项整数\n"
-"safeDiv n 0 = 无\n"
-"safeDiv n k = 一些 (n `div` k)\n"
+"total\n"
+"safeDiv : Integer -> Integer -> Option Integer\n"
+"safeDiv n 0 = None\n"
+"safeDiv n k = Some (n `div` k)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:872
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The possibility of returning some kind of *null* value in the\n"
 "face of invalid input is so common, that there is a data type\n"
 "like `Option` already in the *Prelude*: `Maybe`, with\n"
 "data constructors `Just` and `Nothing`.\n"
 msgstr ""
-"返回某种 *null* 值的可能性\n"
-"面对无效输入是如此普遍，以至于有一种数据类型\n"
-"像 `Option` 已经在 *Prelude*: `Maybe`，与\n"
-"数据构造函数 `Just` 和 `Nothing`。\n"
+"面对无效输入返回某种 *null* 值的可能性是如此普遍，以至于有一种类似 `Option` "
+"的数据类型已经在 *Prelude* 中了: `Maybe`，它的数据构造函数是 `Just` 和 "
+"`Nothing`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:884
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is important to understand the difference between returning `Maybe Integer`\n"
 "in a function, which might fail, and returning\n"
@@ -2534,27 +2299,23 @@ msgid ""
 "`null` case, leading to unexpected and sometimes\n"
 "hard to debug runtime exceptions.\n"
 msgstr ""
-"了解返回 `Maybe Integer` 之间的区别很重要\n"
-"在一个函数中，它可能会失败，并返回\n"
+"了解在一个函数中返回 `Maybe Integer` 之间的区别很重要，它可能会失败，并返回 "
 "Java 等语言中的 `null`：在前一种情况下，\n"
-"失败的可能性在类型中是可见的。类型检查器\n"
-"将迫使我们对待 `Maybe Integer` 不同于\n"
-"`Integer`：Idris 将 *not* 让我们忘记\n"
-"最终处理失败的情况。\n"
-"不是这样，如果 `null` 被静默返回而不调整\n"
-"类型。程序员可能（并且经常 * 将 *）忘记处理\n"
-"`null` 的情况，导致意外，有时\n"
+"失败的可能性在类型中是可见的。类型检查器将迫使我们不同于 `Integer` 对待 `"
+"Maybe Integer` ：Idris 将 *不会* 让我们忘记最终处理失败的情况。\n"
+"如果不这样， `null` 被静默返回而不调整\n"
+"类型。程序员可能（并且经常 *会*）忘记处理 `null` 的情况，导致意外，有时\n"
 "难以调试运行时异常。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:885
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Either"
-msgstr "任何一个"
+msgstr "Either"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:896
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While `Maybe` is very useful to quickly provide a default\n"
 "value to signal some kind of failure, this value (`Nothing`) is\n"
@@ -2568,23 +2329,20 @@ msgid ""
 msgstr ""
 "虽然 `Maybe` 对于快速提供默认值非常有用\n"
 "表示某种故障的值，这个值 (`Nothing`) 是\n"
-"不是很丰富。它不会告诉我们*到底是什么*\n"
-"出错。例如，如果我们的 `Weekday`\n"
-"阅读功能，以后知道可能会很有趣\n"
-"无效输入字符串的值。就像\n"
-"上面的`Maybe`和`Option`，这个概念够笼统\n"
-"我们可能会遇到其他类型的无效值。\n"
-"这是一个封装它的数据类型：\n"
+"不是很丰富。它不会告诉我们*到底是什么*出错。例如，如果我们的 `Weekday`\n"
+"解析功能，无效输入字符串的值知道以后可能会很有趣。就像上面的`Maybe`和`Option`"
+"，这个概念够笼统，我们可能会遇到其他类型的无效值。这是一个封装它的数据类型："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:897
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "data Validated e a = Invalid e | Valid a\n"
-msgstr "数据已验证 e a = 无效 e |有效\n"
+msgstr "data Validated e a = Invalid e | Valid a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:907
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "`Validated` is a type constructor parameterized over two\n"
 "type parameters `e` and `a`. It's data constructors\n"
@@ -2593,16 +2351,14 @@ msgid ""
 "the latter the result in case of a successful computation.\n"
 "Let's see this in action:\n"
 msgstr ""
-"`Validated` 是一个通过两个参数化的类型构造函数\n"
-"类型参数 `e` 和 `a`。它是数据构造函数\n"
-"是`无效`和`有效`，\n"
+"`Validated` 是一个通过两个类型参数 `e` 和 `a` "
+"进行参数化的类型构造函数。它的数据构造函数是`Invalid`和`Valid`，\n"
 "前者持有一个描述某些错误条件的值，\n"
-"后者是计算成功的结果。\n"
-"让我们看看它的实际效果：\n"
+"后者是计算成功的结果。让我们看看它的实际效果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:908
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "total\n"
 "readWeekdayV : String -> Validated String Weekday\n"
@@ -2615,16 +2371,16 @@ msgid ""
 "readWeekdayV \"Sunday\"    = Valid Sunday\n"
 "readWeekdayV s           = Invalid (\"Not a weekday: \" ++ s)\n"
 msgstr ""
-"全部的\n"
+"total\n"
 "readWeekdayV : String -> Validated String Weekday\n"
-"readWeekdayV \"星期一\" = 星期一有效\n"
-"readWeekdayV \"Tuesday\" = 周二有效\n"
-"readWeekdayV \"Wednesday\" = 周三有效\n"
-"readWeekdayV \"Thursday\" = 周四有效\n"
-"readWeekdayV \"Friday\" = 周五有效\n"
-"readWeekdayV \"Saturday\" = 周六有效\n"
-"readWeekdayV \"Sunday\" = 周日有效\n"
-"readWeekdayV s = 无效（“不是工作日：” ++ s）\n"
+"readWeekdayV \"Monday\"    = Valid Monday\n"
+"readWeekdayV \"Tuesday\"   = Valid Tuesday\n"
+"readWeekdayV \"Wednesday\" = Valid Wednesday\n"
+"readWeekdayV \"Thursday\"  = Valid Thursday\n"
+"readWeekdayV \"Friday\"    = Valid Friday\n"
+"readWeekdayV \"Saturday\"  = Valid Saturday\n"
+"readWeekdayV \"Sunday\"    = Valid Sunday\n"
+"readWeekdayV s           = Invalid (\"Not a weekday: \" ++ s)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:929
