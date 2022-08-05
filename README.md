@@ -1,6 +1,9 @@
-> [Chinese Translation](translation/README.md)
+> [Chinese Translation](translation/README.md)  
+> [![翻译状态](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)
 
 # Functional Programming in Idris 2
+
+
 
 The goal of this project is quickly explained: To become a more
 or less comprehensive guide to the Idris programming language,
