@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-03 13:28+0800\n"
+"POT-Creation-Date: 2022-08-05 09:41+0800\n"
 "PO-Revision-Date: 2022-08-03 06:24+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -19,19 +19,26 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 
 #. type: Plain text
-#: ../README.md:2
-#, no-wrap
-msgid "> [Chinese Translation](translation/README.md)\n"
+#: ../README.md:1
+#, fuzzy, no-wrap
+#| msgid "> [Chinese Translation](translation/README.md)\n"
+msgid "> [Chinese Translation](translation/README.md)  \n"
 msgstr "> 这里是中文版！\n"
 
-#. type: Title #
+#. type: Plain text
 #: ../README.md:3
+#, no-wrap
+msgid "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
+msgstr ""
+
+#. type: Title #
+#: ../README.md:4
 #, no-wrap
 msgid "Functional Programming in Idris 2"
 msgstr "Idris 2 中的函数式编程"
 
 #. type: Plain text
-#: ../README.md:9
+#: ../README.md:12
 #, no-wrap
 msgid ""
 "The goal of this project is quickly explained: To become a more\n"
@@ -41,7 +48,7 @@ msgid ""
 msgstr "这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。\n"
 
 #. type: Plain text
-#: ../README.md:17
+#: ../README.md:20
 #, no-wrap
 msgid ""
 "The content will be organized in several parts, with the part\n"
@@ -54,7 +61,7 @@ msgid ""
 msgstr "内容将分为几个部分，其中关于核心语言特性的部分是 Idris 函数式编程主要指南。每个部分都由几个章节组成，每个章节都试图深入介绍 Idris 编程语言及其核心库的某个方面。大多数章节都附带（有时很多）练习，在目录 `src/Solutions` 中提供了解决方案。\n"
 
 #. type: Plain text
-#: ../README.md:22
+#: ../README.md:25
 #, no-wrap
 msgid ""
 "Right now, even the part about core language features is not\n"
@@ -64,19 +71,19 @@ msgid ""
 msgstr "目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学生身上进行尝试，其中一些对函数式编程来说是纯萌新。\n"
 
 #. type: Title ##
-#: ../README.md:23
+#: ../README.md:26
 #, no-wrap
 msgid "Table of Contents"
 msgstr "目录"
 
 #. type: Title ###
-#: ../README.md:25
+#: ../README.md:28
 #, no-wrap
 msgid "Part 1: Core Language Features"
 msgstr "第 1 部分：核心语言功能"
 
 #. type: Plain text
-#: ../README.md:31
+#: ../README.md:34
 #, no-wrap
 msgid ""
 "This part tries to give a solid introduction to the\n"
@@ -86,7 +93,7 @@ msgid ""
 msgstr "这部分试图对 Idris 编程语言进行深入的介绍。如果您是函数式编程的新手，请确保按顺序阅读这些章节并*解决所有练习*。\n"
 
 #. type: Plain text
-#: ../README.md:36
+#: ../README.md:39
 #, no-wrap
 msgid ""
 "If you already used other pure functional programming languages like\n"
@@ -96,7 +103,7 @@ msgid ""
 msgstr "如果您已经使用过其他纯函数式编程语言，例如 Haskell，那么您可能会很快完成介绍性材料（函数第 1 部分，代数数据类型和接口），因为这些内容中的大部分内容您已经很熟悉了。\n"
 
 #. type: Plain text
-#: ../README.md:105
+#: ../README.md:108
 #, no-wrap
 msgid ""
 "1. [Introduction](src/Tutorial/Intro.md)\n"
@@ -238,13 +245,13 @@ msgstr ""
 "    4. [改进原语](src/Tutorial/Prim.md#refined-primitives)\n"
 
 #. type: Title ###
-#: ../README.md:106
+#: ../README.md:109
 #, no-wrap
 msgid "Part 2: Appendices"
 msgstr "第 2 部分：附录"
 
 #. type: Plain text
-#: ../README.md:112
+#: ../README.md:115
 #, no-wrap
 msgid ""
 "The appendices can be used as references for the topics at\n"
@@ -254,18 +261,18 @@ msgid ""
 msgstr "附录可用作手头主题的参考。我计划最终对 Idris 语法、典型错误消息、模块系统、交互式编辑以及可能的其他内容有一个简明的参考。\n"
 
 #. type: Bullet: '1. '
-#: ../README.md:114
+#: ../README.md:117
 msgid "[Interactive Editing in Neovim](src/Appendices/Neovim.md)"
 msgstr "[Neovim 中的交互式编辑](src/Appendices/Neovim.md)"
 
 #. type: Title ##
-#: ../README.md:115
+#: ../README.md:118
 #, no-wrap
 msgid "Prerequisites"
 msgstr "先决条件"
 
 #. type: Plain text
-#: ../README.md:121
+#: ../README.md:124
 #, no-wrap
 msgid ""
 "At the moment, this project is being actively developed and\n"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 13:28+0800\n"
+"POT-Creation-Date: 2022-08-05 09:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. type: Plain text
-#: ../README.md:2
+#: ../README.md:1
 #, no-wrap
-msgid "> [Chinese Translation](translation/README.md)\n"
+msgid "> [Chinese Translation](translation/README.md)  \n"
+msgstr ""
+
+#. type: Plain text
+#: ../README.md:3
+#, no-wrap
+msgid "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
 msgstr ""
 
 #. type: Title #
-#: ../README.md:3
+#: ../README.md:4
 #, no-wrap
 msgid "Functional Programming in Idris 2"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:9
+#: ../README.md:12
 #, no-wrap
 msgid ""
 "The goal of this project is quickly explained: To become a more\n"
@@ -39,7 +45,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:17
+#: ../README.md:20
 #, no-wrap
 msgid ""
 "The content will be organized in several parts, with the part\n"
@@ -52,7 +58,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:22
+#: ../README.md:25
 #, no-wrap
 msgid ""
 "Right now, even the part about core language features is not\n"
@@ -62,19 +68,19 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../README.md:23
+#: ../README.md:26
 #, no-wrap
 msgid "Table of Contents"
 msgstr ""
 
 #. type: Title ###
-#: ../README.md:25
+#: ../README.md:28
 #, no-wrap
 msgid "Part 1: Core Language Features"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:31
+#: ../README.md:34
 #, no-wrap
 msgid ""
 "This part tries to give a solid introduction to the\n"
@@ -84,7 +90,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:36
+#: ../README.md:39
 #, no-wrap
 msgid ""
 "If you already used other pure functional programming languages like\n"
@@ -94,7 +100,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:105
+#: ../README.md:108
 #, no-wrap
 msgid ""
 "1. [Introduction](src/Tutorial/Intro.md)\n"
@@ -168,13 +174,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../README.md:106
+#: ../README.md:109
 #, no-wrap
 msgid "Part 2: Appendices"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:112
+#: ../README.md:115
 #, no-wrap
 msgid ""
 "The appendices can be used as references for the topics at\n"
@@ -184,18 +190,18 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../README.md:114
+#: ../README.md:117
 msgid "[Interactive Editing in Neovim](src/Appendices/Neovim.md)"
 msgstr ""
 
 #. type: Title ##
-#: ../README.md:115
+#: ../README.md:118
 #, no-wrap
 msgid "Prerequisites"
 msgstr ""
 
 #. type: Plain text
-#: ../README.md:121
+#: ../README.md:124
 #, no-wrap
 msgid ""
 "At the moment, this project is being actively developed and\n"

@@ -1,6 +1,9 @@
-> 这里是中文版！
+> [Chinese Translation](translation/README.md)  
+> [![ç¿»è¯ç¶æ](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)
 
 # Idris 2 中的函数式编程
+
+
 
 这个项目的目标是：要成为 Idris 编程语言的全面指南，其中包含大量针对函数式编程新手的介绍性材料。
 
