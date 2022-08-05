@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-05 14:32+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/eq/zh_Hans/>\n"
@@ -402,15 +402,9 @@ msgstr "练习第 3 部分"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:1127 ../src/Tutorial/Eq.md:1056
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Exercises part 4"
-msgstr ""
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"练习第 4 部分\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"### 练习第 4 部分\n"
-"#-#-#-#-#  DataTypes.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+msgstr "练习第 4 部分"
 
 #. type: Title ##
 #: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
