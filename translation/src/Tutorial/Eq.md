@@ -1048,7 +1048,7 @@ This allows us to run arbitrarily complex computations to produce
 such values without fear of these computations slowing down
 the compiled Idris program.
 
-### Exercises part 4
+### 练习第 4 部分
 
 1. Implement `plusSuccRightSucc` yourself.
 

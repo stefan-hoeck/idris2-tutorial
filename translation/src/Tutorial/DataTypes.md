@@ -690,41 +690,29 @@ readWeekdayV "Sunday"    = Valid Sunday
 readWeekdayV s           = Invalid ("Not a weekday: " ++ s)
 ```
 
-Again, this is such a general concept that a data type
-similar to `Validated` is already available from the
-*Prelude*: `Either` with data constructors `Left` and `Right`.
-It is very common for functions to encapsulate the possibility
-of failure by returning an `Either err val`, where `err`
-is the error type and `val` is the desired return type. This
-is the type safe (and total!) alternative to throwing a catchable
-exception in an imperative language.
+同样，这是一个通用的概念，类似于 `Validated` 的数据类型已经存在于
+*Prelude*：`Either` 和数据构造函数 `Left` 和 `Right`。
+对可能导致失败的函数封装是很常见的，
+通过返回 `Either err val` 类型，其中 `err` 是错误类型，`val` 是所需的返回类型。这个是命令式语言中抛出异常的替代品，（并且完全）类型安全。
 
-Note, however, that the semantics of `Either` are not always "`Left` is
-an error and `Right` a success". A function returning an `Either` just
-means that it can have to different types of results, each of which
-are *tagged* with the corresponding data constructor.
+但是请注意，`Either` 的语义并不总是“`Left` 错误和 `Right` 成功”。返回 `Either` 的函数只是意味着它可以有不同类型的结果，是 * 被标记* 相应的数据构造函数之一。
 
-### List
+### 列表
 
-One of the most important data structures in pure functional
-programming is the singly linked list. Here is its definition
-(called `Seq` in order for it not to collide with `List`,
-which is of course already available from the Prelude):
+纯函数编程中最重要的数据结构之一是单链表。这是它的定义
+（称为 `Seq` 是为了不与 `List` 冲突，
+这当然可以从 Prelude 中获得）：
 
 ```idris
 data Seq a = Nil | (::) a (Seq a)
 ```
 
-This calls for some explanations. `Seq` consists of two *data constructors*:
-`Nil` (representing an empty sequence of values) and `(::)` (also
-called the *cons operator*), which prepends a new value of type `a` to
-an already existing list of values of the same type. As you can see,
-we can also use operators as data constructors, but please do not overuse
-this. Use clear names for your functions and data constructors and only
-introduce new operators when it truly helps readability!
+这需要一些解释。 `Seq` 由两个 *数据构造函数* 组成：
+`Nil` （表示一个空的值序列）和 `(::)` （也称为 *cons 运算符*)，它将 `a` 类型的新值添加到已经存在的相同类型的值列表。如你看到的，
+我们也可以使用运算符作为数据构造函数，但请不要过度使用。为您的函数和数据构造函数使用清晰的名称，并且仅当它真正有助于可读性时，再引入新的运算符！
 
-Here is an example of how to use the `List` constructors
-(I use `List` here, as this is what you should use in your own code):
+下面是如何使用 `List` 构造函数的示例
+（我在这里使用 `List`，因为这是您应该在自己的代码中使用的内容）：
 
 ```idris
 total
@@ -732,9 +720,7 @@ ints : List Int64
 ints = 1 :: 2 :: -3 :: Nil
 ```
 
-However, there is a more concise way of writing the above. Idris
-accepts special syntax for constructing data types consisting
-exactly of the two constructors `Nil` and `(::)`:
+但是，有一种更简洁的方式来编写上述内容。Idris 接受用于两个构造函数恰好是 `Nil` 和 `(::)`的数据类型的特殊语法，：
 
 ```idris
 total
@@ -746,20 +732,12 @@ ints3 : List Int64
 ints3 = []
 ```
 
-The two definitions `ints` and `ints2`
-are treated identically by the compiler.
-Note, that list syntax can also be used in pattern matches.
+两个定义 `ints` 和 `ints2` 会被编译器同等对待。
+请注意，该列表语法也可用于模式匹配。
 
-There is another thing that's special about
-`Seq` and `List`: Each of them is defined
-in terms of itself (the cons operator accepts a value
-and another `Seq` as arguments). We call such data types
-*recursive* data types, and their recursive nature means, that in order to
-decompose or consume them, we typically require recursive
-functions. In an imperative language, we might use a for loop or
-similar construct to iterate over the values of a `List` or a `Seq`,
-but these things do not exist in a language without in-place
-mutation. Here's how to sum a list of integers:
+`Seq`和`List` 之间还有一些特别的：分别用自身来定义（cons 运算符接受一个值
+和另一个 `Seq` 作为参数）。我们称这样的数据类型为 *递归* 数据类型，它们的递归性质意味着，为了分解或消耗它们，我们通常需要递归函数。在命令式语言中，我们可能会使用 for 循环或类似的结构来迭代 `List` 或 `Seq` 的值，
+但是这些东西不存在于不可变数据的语言中。以下是对整数列表求和的方法：
 
 ```idris
 total
@@ -768,71 +746,58 @@ intSum Nil       = 0
 intSum (n :: ns) = n + intSum ns
 ```
 
-Recursive functions can be hard to grasp at first, so I'll break
-this down a bit. If we invoke `intSum` with the empty list,
-the first pattern matches and the function returns zero immediately.
-If, however, we invoke `intSum` with a non-empty list - `[7,5,9]`
-for instance - the following happens:
+递归函数一开始可能很难掌握，所以我会把他分解一下。如果我们用空列表调用 `intSum`，
+第一个模式被匹配并且函数立即返回零。
+但是，如果我们使用非空列表调用 `intSum` - `[7,5,9]` - 会发生以下情况：
 
-1. The second pattern matches and splits the list into two parts: Its head
-   (`7`) is bound to variable `n` and its tail (`[5,9]`) is bound to `ns`:
+1. 第二个模式被匹配并将列表分成两部分：它的头部（`7`）绑定到变量 `n` 和它的尾部（`[5,9]`）绑定到 `ns`：
 
    ```repl
    7 + intSum [5,9]
    ```
-2. In a second invocation, `intSum` is called with a new list: `[5,9]`.  The
-   second pattern matches and `n` is bound to `5` and `ns` is bound to
-   `[9]`:
+2. 在第二次调用中，`intSum` 被一个新列表调用：`[5,9]`。第二个模式被匹配并且 `n` 绑定到 `5` 并且 `ns` 绑定到
+   `[9]`：
 
    ```repl
    7 + (5 + intSum [9])
    ```
 
-3. In a third invocation `intSum` is called with list `[9]`.  The second
-   pattern matches and `n` is bound to `9` and `ns` is bound to `[]`:
+3. 在第三次调用中，`intSum` 用列表 `[9]` 调用。第二个模式被匹配并且 `n` 绑定到 `9` 并且 `ns` 绑定到 `[]`：
 
    ```repl
    7 + (5 + (9 + intSum [])
    ```
 
-4. In a fourth invocation, `intSum` is called with list `[]` and returns `0`
-   immediately:
+4. 在第四次调用中，使用列表 `[]` 调用 `intSum` 并立即返回 `0`：
 
    ```repl
    7 + (5 + (9 + 0)
    ```
 
-5. In the third invocation, `9` and `0` are added and `9` is returned:
+5. 在第三次调用中，累加 `9` 和 `0` 并返回 `9`：
 
    ```repl
    7 + (5 + 9)
    ```
 
-6. In the second invocation, `5` and `9` are added and `14` is returned:
+6. 在第二次调用中，累加 `5` 和 `9` 并返回 `14`：
 
    ```repl
    7 + 14
    ```
 
-7. Finally, our initial invocation of `intSum` adds `7` and `14` and returns
-   `21`.
+7. 最后，我们对 `intSum` 的初始调用累加 `7` 和 `14` 并返回 `21`。
 
-Thus, the recursive implementation of `intSum` leads to a sequence of
-nested calls to `intSum`, which terminates once the argument is the
-empty list.
+因此，`intSum` 的递归实现导致了一个嵌套调用 `intSum` 的序列，一旦参数是
+空列表也会终止嵌套。
 
-### Generic Functions
+### 通用函数
 
-In order to fully appreciate the versatility that comes with
-generic data types, we also need to talk about generic functions.
-Like generic types, these are parameterized over one or more
-type parameters.
+为了充分体会泛型数据类型所带来的多功能性，我们还需要谈谈泛型函数。
+与泛型类型一样，它们通过一个或多个参数化类型参数来实现。
 
-Consider for instance the case of breaking out of the
-`Option` data type. In case of a `Some`, we'd like to return
-the stored value, while for the `None` case we provide
-a default value. Here's how to do this, specialized to
-`Integer`s:
+考虑展开`Option` 数据类型的情况。如果是 `Some`，我们希望返回存储的值，而对于 `None` 的情况，我们提供默认值。这里展示如何做到这一点，专门用于
+`Integer` 的函数：
 
 ```idris
 total
@@ -841,10 +806,10 @@ integerFromOption _ (Some y) = y
 integerFromOption x None     = x
 ```
 
-It's pretty obvious that this, again, is not general enough.
-Surely, we'd also like to break out of `Option Bool` or
-`Option String` in a similar fashion. That's exactly
-what the generic function `fromOption` does:
+很明显，这又不够普遍。
+当然，我们也想展开 `Option Bool` 或
+`Option String` 以类似的方式。这正是
+通用函数 `fromOption` 做的事情：
 
 ```idris
 total
@@ -853,22 +818,11 @@ fromOption _ (Some y) = y
 fromOption x None     = x
 ```
 
-The lower-case `a` is again a *type parameter*. You can read
-the type signature as follows: "For any type `a`, given a *value*
-of type `a`, and an `Option a`, we can return a value of
-type `a`." Note, that `fromOption` knows nothing else about
-`a`, other than it being a type. It is therefore not possible,
-to conjure a value of type `a` out of thin air. We *must* have
-a value available to deal with the `None` case.
+小写的 `a` 又是一个 * 类型化参数 *。你可以这样读他的类型签名：“对于任何类型 `a`，给定一个 `a` 类型的 * 值 * 和 `Option a`，我们可以返回一个类型 `a` 的值。”请注意，`fromOption` 对 `a` 一无所知，除了它是一个类型。因此不可能凭空变出一个 `a` 类型的值。我们*必须*有可用于处理 `None` 情况的值。
 
-The pendant to `fromOption` for `Maybe` is called `fromMaybe`
-and is available from module `Data.Maybe` from the *base* library.
+`Maybe` 的 `fromOption` 挂件称为 `fromMaybe`，并且可从 *base* 库中的模块 `Data.Maybe` 获得。
 
-Sometimes, `fromOption` is not general enough. Assume we'd like to
-print the value of a freshly parsed `Bool`, giving some generic
-error message in case of a `None`. We can't use `fromOption`
-for this, as we have an `Option Bool` and we'd like to
-return a `String`. Here's how to do this:
+有时，`fromOption` 不够通用。假设我们想打印新解析的 `Bool` 的值，给出一些通用的 `None` 的情况下的错误消息。我们不能使用 `fromOption`，为此，我们有一个 `Option Bool` 并且我们想返回一个 `String`。以下是如何执行此操作：
 
 ```idris
 total
@@ -881,32 +835,25 @@ handleBool : Option Bool -> String
 handleBool = option "Not a boolean value." show
 ```
 
-Function `option` is parameterized over *two* type parameters:
-`a` represents the type of values stored in the `Option`,
-while `b` is the return type. In case of a `Just`, we need
-a way to convert the stored `a` to a `b`, an that's done
-using the function argument of type `a -> b`.
+函数 `option` 通过 * 两个* 类型参数进行参数化：
+`a`表示`Option`中存储的值的类型，
+而 `b` 是返回类型。如果是 `Just`，我们需要一种将存储的 `a` 转换为 `b` 的方法，使用 `a -> b` 类型的函数参数就可以咯。
 
-In Idris, lower-case identifiers in function types are
-treated as *type parameters*, while upper-case identifiers
-are treated as types or type constructors that must
-be in scope.
+在 Idris 中，函数类型中的小写标识符是
+被视为 *类型参数*，而大写标识符
+被视为类型或类型构造函数，且必须
+在作用域内。
 
-### Exercises part 4
+### 练习第 4 部分
 
-If this is your first time programming in a purely
-functional language, the exercises below are *very*
-important. Do not skip any of them! Take your time and
-work through them all. In most cases,
-the types should be enough to explain what's going
-on, even though they might appear cryptic in the
-beginning. Otherwise, have a look at the comments (if any)
-of each exercise.
+如果这是你第一次使用纯编函数式语言进行编程，下面的练习是*非常*重要的。不要跳过任何一个！
+花点时间和通过他们所有的工作。在大多数情况下，类型应该足以解释发生了什么
+开，即使它们在一开始看起来很神秘。否则，请查看每次练习的评论（如果有）。
 
-Remember, that lower-case identifiers in a function
-signature are treated as type parameters.
+请记住，函数中的小写标识符
+签名被视为类型参数。
 
-1. Implement the following generic functions for `Maybe`:
+1. 为 `Maybe` 实现以下通用函数：
 
    ```idris
    -- make sure to map a `Just` to a `Just`.
@@ -941,7 +888,7 @@ signature are treated as type parameters.
    foldMaybe : (acc -> el -> acc) -> acc -> Maybe el -> acc
    ```
 
-2. Implement the following generic functions for `Either`:
+2. 为 `Either` 实现以下通用函数：
 
    ```idris
    total
@@ -971,7 +918,7 @@ signature are treated as type parameters.
    fromEither : (e -> c) -> (a -> c) -> Either e a -> c
    ```
 
-3. Implement the following generic functions for `List`:
+3. 为 `List` 实现以下通用函数：
 
    ```idris
    total
@@ -1008,8 +955,7 @@ signature are treated as type parameters.
    foldList : (acc -> el -> acc) -> acc -> List el -> acc
    ```
 
-4. Assume we store user data for our web application in the following
-   record:
+4. 假设我们将 Web 应用程序的用户数据存储在以下记录中：
 
    ```idris
    record Client where
@@ -1020,41 +966,28 @@ signature are treated as type parameters.
      passwordOrKey : Either Bits64 String
    ```
 
-   Using `LoginError` from an earlier exercise,
-   implement function `login`, which, given a list of `Client`s
-   plus a value of type `Credentials` will return either a `LoginError`
-   in case no valid credentials where provided, or the first `Client`
-   for whom the credentials match.
+   使用前面练习中的 `LoginError` 实现函数 `login`，给定 `Client` 的列表加上 `Credentials` 类型的值。如果没有提供有效凭据将会返回 `LoginError`，
+   ，或者第一个凭据匹配的 `Client` 对象。
 
-5. Using your data type for chemical elements from an earlier exercise,
-   implement a function for calculating the molar mass of a molecular
-   formula.
+5. 使用前面练习中化学元素的数据类型，实现一个计算分子式摩尔质量的函数。
 
-   Use a list of elements each paired with its count
-   (a natural number) for representing formulae. For
-   instance:
+   使用一个元素列表，每个元素都与其计数（自然数）对「pair」用于表示公式。例如：
 
    ```idris
    ethanol : List (Element,Nat)
    ethanol = [(C,2),(H,6),(O,1)]
    ```
 
-   Hint: You can use function `cast` to convert a natural
-   number to a `Double`.
+   提示：您可以使用函数 `cast` 转换自然数为 `Double`。
 
-## Alternative Syntax for Data Definitions
+## 数据定义的替代语法
 
-While the examples in the section about parameterized
-data types are short and concise, there is a slightly
-more verbose but much more general form for writing such
-definitions, which makes it much clearer what's going on.
-In my opinion, this more general form should be preferred
-in all but the most simple data definitions.
+虽然关于参数化的部分中的示例数据类型短小精悍，有一种写这样的更冗长但更一般的形式定义，这使得正在发生的事情变得更加清晰。
+在我看来，除了最简单的数据定义之外应该首选这种更一般的形式。
 
-Here are the definitions of `Option`, `Validated`, and `Seq` again,
-using this more general form (I put them in their own *namespace*,
-so Idris will not complain about identical names in
-the same source file):
+下面是 `Option`、`Validated` 和 `Seq` 的定义，
+使用这种更通用的形式（我将它们放在自己的 *命名空间* 中，
+所以 Idris 不会抱怨同一个源文件中具有不同的名称）：
 
 ```idris
 -- GADT is an acronym for "generalized algebraic data type"
@@ -1072,65 +1005,40 @@ namespace GADT
     (::) : a -> GADT.Seq a -> Seq a
 ```
 
-Here, `Option` is clearly declared as a type constructor
-(a function of type `Type -> Type`), while `Some`
-is a generic function of type `a -> Option a` (where `a` is
-a *type parameter*)
-and `None` is a nullary generic function of type `Option a`
-(`a` again being a type parameter).
-Likewise for `Validated` and `Seq`. Note, that in case
-of `Seq` we had to disambiguate between the different
-`Seq` definitions in the recursive case. Since we will
-usually not define several data types with the same name in
-a source file, this is not necessary most of the time.
+这里， `Option` 明确声明为类型构造函数（类型 `Type -> Type` 的函数），而 `Some` 是 `a > Option a` 类型的通用函数（其中 `a` 是 *类型参数*）， `None` 是 `Option a` 类型的空泛型函数
+（`a` 又是一个类型参数）。
+同样适用于 `Validated` 和 `Seq`。请注意，以防万一 `Seq` 我们必须区分不同的
+递归情况下的 `Seq` 定义。既然我们
+通常不会定义多个同名的数据类型在同一个源文件，大多数时候这不是必需的。
 
 ## 结论
 
-We covered a lot of ground in this chapter,
-so I'll summarize the most important points below:
+我们在本章中涵盖了很多内容，
+所以我将总结以下最重要的几点：
 
-* Enumerations are data types consisting of a finite
-number of possible *values*.
+* 枚举是由有限个可能的 *值* 组成的数据类型。
 
-* Sum types are data types with more than one data
-constructor, where each constructor describes a
-*choice* that can be made.
+* 和类型是具有多个数据构造函数的数据类型，其中每个构造函数描述一个可以做出的*选择*。
 
-* Product types are data types with a single constructor
-used to group several values of possibly different types.
+* 积类型是具有单个构造函数的数据类型，用于对可能不同类型的多个值进行分组。
 
-* We use pattern matching to deconstruct immutable
-values in Idris. The possible patterns correspond to
-a data type's data constructors.
+* 我们在 Idris 中使用模式匹配来解构不可变的值。可能的模式对应于数据类型的数据构造函数。
 
-* We can *bind* variables to values in a pattern or
-use an underscore as a placeholder for a value that's
-not needed on the right hand side of an implementation.
+* 我们可以将变量*绑定*到模式中的值或
+使用下划线作为值的占位符，在实现的右侧不需要。
 
-* We can pattern match on an intermediary result by introducing
-a *case block*.
+* 我们可以通过引入 *Case 块* 对中间结果进行模式匹配。
 
-* The preferred way to define new product types is
-to define them as *records*, since these come with
-additional syntactic conveniences for setting and
-modifying individual *record fields*.
+* 定义新的积类型的首选方法是将它们定义为 *记录*，因为它们带有额外的语法糖用来更新和设置单个 *记录字段*。
 
-* Generic types and functions allow us generalize
-certain concepts and make them available for many
-types by using *type parameters* instead of
-concrete types in function and type signatures.
+* 泛型类型和函数允许我们泛化某些概念并使它们可供许多人使用，通过使用 *类型参数* 而不是函数和类型签名中的具体类型。
 
-* Common concepts like *nullary values* (`Maybe`),
-computations that might fail with some error
-condition (`Either`), and handling collections
-of values of the same type at once (`List`) are
-example use cases of generic types and functions
-already provided by the *Prelude*.
+* 常见概念，如 * 空值 * (`Maybe`)，
+可能因某些错误条件而失败的计算（`Either`），和处理包含相同类型的值的集合（`List`）是泛型类型和函数的示例用例，他们已由 *Prelude* 提供。
 
 ## 下一步是什么
 
-In the [next section](Interfaces.md), we will introduce
-*interfaces*, another approach to *function overloading*.
+在 [下一节](Interfaces.md) 中，我们将介绍 *接口*，这是*函数重载*的另一种方法。
 
 <!-- vi: filetype=idris2
 -->
