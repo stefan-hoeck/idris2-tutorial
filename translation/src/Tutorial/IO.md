@@ -937,7 +937,7 @@ use cases for this in later chapters, especially when we
 talk about monad transformers. For now, you can treat these
 `io` parameters as being specialized to `IO`.
 
-### Exercises part 3
+### 练习第 3 部分
 
 1. As we have seen in the examples above, `IO` actions working with file
    handles often come with the risk of failure. We can therefore simplify

@@ -1005,7 +1005,7 @@ Below, we will see an additional way of handling all
 errors at once by defining a custom interface for
 error handling.
 
-### Exercises part 3
+### 练习第 3 部分
 
 1. Implement the following utility functions for `Union`:
 

@@ -822,7 +822,7 @@ There is an interface called `DecEq` exported by module `Decidable.Equality`
 for types for which we can implement a decision procedure for propositional
 equality. We can implement this to figure out if two values are equal or not.
 
-### Exercises part 3
+### 练习第 3 部分
 
 1. Show that there can be no non-empty vector of `Void` by writing a
    corresponding implementation of uninhabited

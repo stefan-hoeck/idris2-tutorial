@@ -621,7 +621,7 @@ there are `Cast` implementations from going from `SnocList` to
 or for going from `List1` to `List`, although these would
 be just as feasible.
 
-### Exercises part 3
+### 练习第 3 部分
 
 These exercises are meant to make you comfortable with
 implementing interfaces for your own data types, as you

@@ -978,7 +978,7 @@ just makes no sense, as this is a non-tail recursive function
 running in linear time complexity, while a hand-written implementation
 can just return its argument without any modifications.
 
-### Exercises part 3
+### 练习第 3 部分
 
 In these exercises, you are going to implement `Foldable`
 for different data types. Make sure to try and manually

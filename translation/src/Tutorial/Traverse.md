@@ -1001,7 +1001,7 @@ checkers, arriving eventually at a function for parsing
 properly typed CSV tables with automatic line numbering and
 error accumulation, all of which just worked on first try.
 
-### Exercises part 3
+### 练习第 3 部分
 
 The *Prelude* provides three additional interfaces for
 container types parameterized over *two* type parameters

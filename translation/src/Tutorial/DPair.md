@@ -1121,7 +1121,7 @@ main : IO ()
 main = runProg $ MkTable [] _ []
 ```
 
-### Exercises part 3
+### 练习第 3 部分
 
 The challenges presented here all deal with enhancing our
 table editor in several interesting ways. Some of them are

@@ -581,10 +581,7 @@ msgid ""
 "a result of the given type in a finite amount of time\n"
 "(*resources* here meaning computational resources like\n"
 "memory or, in case of recursive functions, stack space).\n"
-msgstr ""
-"请记住，这些来自类型检查器：给定足够的资源，"
-"一个可证明的完全函数在有限时间内将 *总是* 返回给定类型的结果（*资源*的意思是"
-"计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
+msgstr "请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 *总是* 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:106
@@ -1191,7 +1188,12 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
+#| "\"Hello, Dr. Hck!\"\n"
+#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
+#| "\"Hello, Mrs. Smith!\"\n"
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"
@@ -1523,12 +1525,7 @@ msgid ""
 "by the Idris elaborator:\n"
 msgstr ""
 "请注意，如果我们混淆了参数的顺序，Idris 将会阻止我们这个常见的错误：\n"
-"实现将不能通过行类型检查。我们可以验证这一点，通过将错误代码放入 `failing` "
-"块中：这是缩进的代码块，在细化过程中（类型检查）会导致错误。"
-"我们可以给一部分预期的错误消息作为 failing 块的可选字符串参数。如果这不能匹配"
-"部分错误消息（或在类型检查中不会失败的整个代码块类）`failing` "
-"块本身无法通过类型检查。下面是对类型安全有帮助的两个方向：通过 Idris "
-"细化，我们可以证明有效代码类型检查，但拒绝无效代码：\n"
+"实现将不能通过行类型检查。我们可以验证这一点，通过将错误代码放入 `failing` 块中：这是缩进的代码块，在细化过程中（类型检查）会导致错误。我们可以给一部分预期的错误消息作为 failing 块的可选字符串参数。如果这不能匹配部分错误消息（或在类型检查中不会失败的整个代码块类）`failing` 块本身无法通过类型检查。下面是对类型安全有帮助的两个方向：通过 Idris 细化，我们可以证明有效代码类型检查，但拒绝无效代码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:546
@@ -1553,8 +1550,7 @@ msgid ""
 "the record type separated by a dot. Here are two examples\n"
 "for extracting the age from a user:\n"
 msgstr ""
-"此外，对于每个记录字段，Idris 都会创建一个同名提取函数。这既可以可以用作常规"
-"函数，也可以用于通过将后缀表示法附加到变量，把记录类型用点作为分隔。\n"
+"此外，对于每个记录字段，Idris 都会创建一个同名提取函数。这既可以可以用作常规函数，也可以用于通过将后缀表示法附加到变量，把记录类型用点作为分隔。\n"
 "这里有两个例子，\n"
 "从用户那里提取年龄：\n"
 
@@ -1597,14 +1593,11 @@ msgid ""
 "guarantees, which makes it drastically easier to reason\n"
 "about our code.\n"
 msgstr ""
-"正如在 [intro](Intro.md) 中已经提到的，Idris是一种 *纯* "
-"函数式编程语言。在纯函数中，\n"
+"正如在 [intro](Intro.md) 中已经提到的，Idris是一种 *纯* 函数式编程语言。在纯函数中，\n"
 "我们不允许修改全局可变状态。像这样，\n"
 "如果我们想修改记录值，我们总是\n"
 "创建一个 *新* 值，保留原始值不变：记录和其他 Idris 值是 *不可变的*。\n"
-"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数"
-"会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们"
-"的代码推理变得更加容易。\n"
+"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们的代码推理变得更加容易。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:586
@@ -1616,8 +1609,7 @@ msgid ""
 "to increase the age of a `User` by one, we could do the following:\n"
 msgstr ""
 "有几种方法可以修改记录，最通用的是在记录上进行模式匹配，并且\n"
-"根据需要调整每个字段。例如，如果我们想要将 `User` "
-"的年龄增加一，我们可以执行以下操作：\n"
+"根据需要调整每个字段。例如，如果我们想要将 `User` 的年龄增加一，我们可以执行以下操作：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:587
@@ -1662,9 +1654,7 @@ msgid ""
 "Assignment operator `:=` assigns a new value to the `age` field\n"
 "in `u`. Remember, that this will create a new `User` value. The original\n"
 "value `u` remains unaffected by this.\n"
-msgstr ""
-"赋值运算符 `:=` 为 在 `u` 中的 `age` 字段分配一个新值。请记住，"
-"这将创建一个新的 `User` 值。原本的值 `u` 不受此影响。\n"
+msgstr "赋值运算符 `:=` 为 在 `u` 中的 `age` 字段分配一个新值。请记住，这将创建一个新的 `User` 值。原本的值 `u` 不受此影响。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:613
@@ -1677,8 +1667,7 @@ msgid ""
 "composition (`(.)`).\n"
 msgstr ""
 "我们可以通过使用字段名称来访问记录字段，\n"
-"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u."
-"age`。这个特殊语法有别于函数组合的点运算符（`(.)`）。\n"
+"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u.age`。这个特殊语法有别于函数组合的点运算符（`(.)`）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:616
@@ -1802,8 +1791,7 @@ msgid ""
 "the following custom record:\n"
 msgstr ""
 "我在上面写了一条记录也被称为*积类型*。\n"
-"当我们考虑存在于给定类型中的可能值数量的时候，这是很显而易见的。例如，考虑以"
-"下自定义记录：\n"
+"当我们考虑存在于给定类型中的可能值数量的时候，这是很显而易见的。例如，考虑以下自定义记录：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:667
@@ -1830,8 +1818,7 @@ msgid ""
 msgstr ""
 "`Foo` 类型的可能值有多少？答案是`7 * 2 = 14`，\n"
 "因为我们可以将所有可能的 `Weekday`（总共七个）与所有可能的\n"
-"`Bool`（共两个）相乘。因此，记录类型的可能值的数量是每个字段可能值的数量的 "
-"*积*。\n"
+"`Bool`（共两个）相乘。因此，记录类型的可能值的数量是每个字段可能值的数量的 *积*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:680
@@ -1860,11 +1847,7 @@ msgid ""
 "sugar for working with these. Instead of `Pair Weekday Bool`, we\n"
 "can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,\n"
 "we can just write `(wd, b)` (the space is optional):\n"
-msgstr ""
-"因为通过包裹在 `Pair` 或更大的元组中，从一个函数返回多个值是很常见的，Idris "
-"提供了一些与这些一起工作的语法糖。我们可以只写 `(Weekday, Bool)` 来代替 `"
-"Pair Weekday Bool`。同样我们可以只写 `(wd, b)` （空格是可选的）来代替 `"
-"MkPair wd b`：\n"
+msgstr "因为通过包裹在 `Pair` 或更大的元组中，从一个函数返回多个值是很常见的，Idris 提供了一些与这些一起工作的语法糖。我们可以只写 `(Weekday, Bool)` 来代替 `Pair Weekday Bool`。同样我们可以只写 `(wd, b)` （空格是可选的）来代替 `MkPair wd b`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:693
@@ -1947,8 +1930,7 @@ msgid ""
 "Sometimes, we'd like to take apart a value by pattern matching\n"
 "on it but still retain the value as a whole for using it\n"
 "in further computations:\n"
-msgstr "有时，我们想通过模式匹配来提取它上面的一个值，但仍然保留使用它的整体值在进一"
-"步的计算中：\n"
+msgstr "有时，我们想通过模式匹配来提取它上面的一个值，但仍然保留使用它的整体值在进一步的计算中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:729
@@ -1973,10 +1955,8 @@ msgid ""
 "sugar for `MkPair (length s) t`. Hence, the implementation above\n"
 "is correct as is confirmed by the type checker.\n"
 msgstr ""
-"在 `baz` 中，变量 `t` 会 *绑定* "
-"到整个三元组，然后被重用以构造生成的四元组。记住，\n"
-"`(Nat,Bool,Weekday,String)` 只是 `Pair Nat (Bool,Weekday,String)` 的糖，而 `("
-"length s, t)` 只是\n"
+"在 `baz` 中，变量 `t` 会 *绑定* 到整个三元组，然后被重用以构造生成的四元组。记住，\n"
+"`(Nat,Bool,Weekday,String)` 只是 `Pair Nat (Bool,Weekday,String)` 的糖，而 `(length s, t)` 只是\n"
 "`MkPair（length s）t` 的糖。因此，上面的实现是正确的，由类型检查器确认。\n"
 
 #. type: Title ###
@@ -1998,9 +1978,7 @@ msgid ""
 "with an integer representing the duration of the time span in\n"
 "the given unit of time. Define also a function for converting\n"
 "a time span to an `Integer` representing the duration in seconds.\n"
-msgstr ""
-"1. 通过把 `UnitOfTime` 和表示时间跨度的整数配对来定义一个记录类型。再定义一个"
-"用于转换的函数来定义时间跨度的记录类型，以秒为单位表示持续时间。\n"
+msgstr "1. 通过把 `UnitOfTime` 和表示时间跨度的整数配对来定义一个记录类型。再定义一个用于转换的函数来定义时间跨度的记录类型，以秒为单位表示持续时间。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:752
@@ -2009,8 +1987,7 @@ msgid ""
 "2. Implement an equality check for time spans: Two time spans\n"
 "should be considered equal, if and only if they correspond to\n"
 "the same number of seconds.\n"
-msgstr "2. 对时间跨度实施相等检查：两个时间跨度应该被认为是相等的，当且仅当它们对应于"
-"相同的秒数。\n"
+msgstr "2. 对时间跨度实施相等检查：两个时间跨度应该被认为是相等的，当且仅当它们对应于相同的秒数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:757
@@ -2022,8 +1999,7 @@ msgid ""
 "if the unit is not already seconds.\n"
 msgstr ""
 "3.实现美观的打印时间跨度的函数：\n"
-"结果字符串应显示其时间跨度的给定单位，如果单位还不是秒，再加上括号中显示的秒"
-"数。\n"
+"结果字符串应显示其时间跨度的给定单位，如果单位还不是秒，再加上括号中显示的秒数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:761
@@ -2055,11 +2031,8 @@ msgid ""
 "by the type of values it stores. This section explains how\n"
 "to define and use generic types.\n"
 msgstr ""
-"有时，我们会喜欢一个概念足够笼统，不仅适用于单一类型，而且适用于所有类型。例"
-"如，我们可能不想定义整数列表、字符串列表和布尔列表，因为这会导致大量代码重复"
-"。\n"
-"相反，我们希望有一个通用列表类型，根据它存储的值的类型 "
-"*参数化*。本节说明如何定义和使用泛型类型。\n"
+"有时，我们会喜欢一个概念足够笼统，不仅适用于单一类型，而且适用于所有类型。例如，我们可能不想定义整数列表、字符串列表和布尔列表，因为这会导致大量代码重复。\n"
+"相反，我们希望有一个通用列表类型，根据它存储的值的类型 *参数化*。本节说明如何定义和使用泛型类型。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:773
@@ -2087,8 +2060,7 @@ msgstr ""
 "字符串输入是 `\"Saturday\"`，一个函数的确应该返回 `Saturday`，但如果\n"
 "输入是 `\"sdfkl332\"` 呢？我们在这里有几个选择。\n"
 "例如，我们可以只返回一个默认结果\n"
-"（也许是 `Sunday` ？）。但这是程序员在使用我们的库时期望行为吗？也许不吧。默"
-"默地面对无效的用户输入，继续使用默认值不是最好的选择，可能会导致很多混乱。\n"
+"（也许是 `Sunday` ？）。但这是程序员在使用我们的库时期望行为吗？也许不吧。默默地面对无效的用户输入，继续使用默认值不是最好的选择，可能会导致很多混乱。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:792
@@ -2102,8 +2074,7 @@ msgid ""
 msgstr ""
 "在命令式语言中，我们的函数可能会\n"
 "抛出异常。我们可以在 Idris 中这样做（*Prelude* 中有功能 `idris_crash`\n"
-"这），好吧，但这样做，我们会放弃完全性！为解析错误等常见问题付出过高的代价。"
-"\n"
+"这），好吧，但这样做，我们会放弃完全性！为解析错误等常见问题付出过高的代价。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:803
@@ -2121,11 +2092,8 @@ msgid ""
 "Here's an example how to do this:\n"
 msgstr ""
 "在像 Java 这样的语言中，我们的函数也可能返回一种 `null` 值（如果\n"
-"未在客户端代码中正确处理，会导致可怕的 `NullPointerException` "
-"）。我们的解决方案将很相似，但不是默默地返回 "
-"`null`，我们将在类型中显示失败的可能性！\n"
-"我们定义了一个自定义的数据类型，它封装了可能的失败。在 Idris 中定义新的数据类"
-"型非常廉价（就所需的代码量而言），因此这通常是为了增加类型安全性。\n"
+"未在客户端代码中正确处理，会导致可怕的 `NullPointerException` ）。我们的解决方案将很相似，但不是默默地返回 `null`，我们将在类型中显示失败的可能性！\n"
+"我们定义了一个自定义的数据类型，它封装了可能的失败。在 Idris 中定义新的数据类型非常廉价（就所需的代码量而言），因此这通常是为了增加类型安全性。\n"
 "这是一个如何执行此操作的示例：\n"
 
 #. type: Plain text
@@ -2166,10 +2134,7 @@ msgid ""
 "user input. We'd now have to write a custom data type\n"
 "`MaybeBool` and so on for all types we'd like to read\n"
 "from `String`, and the conversion of which might fail.\n"
-msgstr ""
-"但假设现在，我们还想从用户输入读取 `Bool` 值。"
-"我们现在必须编写一个自定义数据类型 `MaybeBool` ，还有其他任何我们想从 "
-"`String` 中读取的类型，并且转换可能会失败。\n"
+msgstr "但假设现在，我们还想从用户输入读取 `Bool` 值。我们现在必须编写一个自定义数据类型 `MaybeBool` ，还有其他任何我们想从 `String` 中读取的类型，并且转换可能会失败。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:827
@@ -2239,14 +2204,12 @@ msgid ""
 "`Some` and `None` are `Option`s *data constructors*: The functions\n"
 "used to create values of type `Option a` for a type `a`.\n"
 msgstr ""
-"我们需要在这里介绍一些行话。 `Option`就是我们所说的 "
-"*类型构造函数*。它还不是饱和类型：它是从 `Type` 到 `Type` 的函数。\n"
+"我们需要在这里介绍一些行话。 `Option`就是我们所说的 *类型构造函数*。它还不是饱和类型：它是从 `Type` 到 `Type` 的函数。\n"
 "但是，`Option Bool` 是一种类型，`Option Weekday` 也是一种类型。\n"
 "甚至 `Option (Option Bool)` 也是有效类型。\n"
 "`Option`是\n"
 "`Type` 类型的 *参数* 上的 *参数化* 类型构造函数。\n"
-"`Some` 和 `None` 是 `Option` 的 *数据构造函数*：用于为类型 `a` 创建 `Option "
-"a` 类型值的函数。\n"
+"`Some` 和 `None` 是 `Option` 的 *数据构造函数*：用于为类型 `a` 创建 `Option a` 类型值的函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:860
@@ -2278,10 +2241,7 @@ msgid ""
 "face of invalid input is so common, that there is a data type\n"
 "like `Option` already in the *Prelude*: `Maybe`, with\n"
 "data constructors `Just` and `Nothing`.\n"
-msgstr ""
-"面对无效输入返回某种 *null* 值的可能性是如此普遍，以至于有一种类似 `Option` "
-"的数据类型已经在 *Prelude* 中了: `Maybe`，它的数据构造函数是 `Just` 和 "
-"`Nothing`。\n"
+msgstr "面对无效输入返回某种 *null* 值的可能性是如此普遍，以至于有一种类似 `Option` 的数据类型已经在 *Prelude* 中了: `Maybe`，它的数据构造函数是 `Just` 和 `Nothing`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:884
@@ -2299,10 +2259,8 @@ msgid ""
 "`null` case, leading to unexpected and sometimes\n"
 "hard to debug runtime exceptions.\n"
 msgstr ""
-"了解在一个函数中返回 `Maybe Integer` 之间的区别很重要，它可能会失败，并返回 "
-"Java 等语言中的 `null`：在前一种情况下，\n"
-"失败的可能性在类型中是可见的。类型检查器将迫使我们不同于 `Integer` 对待 `"
-"Maybe Integer` ：Idris 将 *不会* 让我们忘记最终处理失败的情况。\n"
+"了解在一个函数中返回 `Maybe Integer` 之间的区别很重要，它可能会失败，并返回 Java 等语言中的 `null`：在前一种情况下，\n"
+"失败的可能性在类型中是可见的。类型检查器将迫使我们不同于 `Integer` 对待 `Maybe Integer` ：Idris 将 *不会* 让我们忘记最终处理失败的情况。\n"
 "如果不这样， `null` 被静默返回而不调整\n"
 "类型。程序员可能（并且经常 *会*）忘记处理 `null` 的情况，导致意外，有时\n"
 "难以调试运行时异常。\n"
@@ -2330,9 +2288,7 @@ msgstr ""
 "虽然 `Maybe` 对于快速提供默认值非常有用\n"
 "表示某种故障的值，这个值 (`Nothing`) 是\n"
 "不是很丰富。它不会告诉我们*到底是什么*出错。例如，如果我们的 `Weekday`\n"
-"解析功能，无效输入字符串的值知道以后可能会很有趣。就像上面的`Maybe`和`Option`"
-"，这个概念够笼统，我们可能会遇到其他类型的无效值。这是一个封装它的数据类型："
-"\n"
+"解析功能，无效输入字符串的值知道以后可能会很有趣。就像上面的`Maybe`和`Option`，这个概念够笼统，我们可能会遇到其他类型的无效值。这是一个封装它的数据类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:897
@@ -2351,8 +2307,7 @@ msgid ""
 "the latter the result in case of a successful computation.\n"
 "Let's see this in action:\n"
 msgstr ""
-"`Validated` 是一个通过两个类型参数 `e` 和 `a` "
-"进行参数化的类型构造函数。它的数据构造函数是`Invalid`和`Valid`，\n"
+"`Validated` 是一个通过两个类型参数 `e` 和 `a` 进行参数化的类型构造函数。它的数据构造函数是`Invalid`和`Valid`，\n"
 "前者持有一个描述某些错误条件的值，\n"
 "后者是计算成功的结果。让我们看看它的实际效果：\n"
 

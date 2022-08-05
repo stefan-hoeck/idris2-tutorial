@@ -933,7 +933,7 @@ escaped : Escaped
 escaped = "Hello World!"
 ```
 
-### Exercises part 3
+### 练习第 3 部分
 
 In this massive set of exercises, you are going to build
 a small library for working with predicates on primitives.

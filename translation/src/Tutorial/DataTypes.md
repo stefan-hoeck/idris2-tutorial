@@ -65,7 +65,7 @@ next Sunday    = Monday
 `Weekday` 类型的可能值，因此可以计算
 我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆盖性检查器的错误消息长什么样。）
 
-请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 * 总是 * 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。
+请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 *总是* 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。
 
 ### 任意模式
 
@@ -233,7 +233,7 @@ Bar = foo
 选择可以封装在 Idris 数据类型中：
 
 ```idris
-数据标题 = 先生 |夫人 |其他字符串
+data Title = Mr | Mrs | Other String
 ```
 
 这看起来几乎像一个枚举类型，除了
@@ -398,20 +398,8 @@ greetUser (MkUser n t _) = greet t n
 然后可以在 `greetUser` 的右侧实现使用
 。对于 `age` 字段，在右侧未使用，我们可以使用下划线作为任意模式。
 
-Note, how Idris will prevent us from making
-a common mistake: If we confuse the order of arguments, the
-implementation will no longer type check. We can verify this
-by putting the erroneous code in a `failing` block: This
-is an indented code block, which will lead to an error
-during elaboration (type checking). We can give part
-of the expected error message as an optional string argument to
-a failing block. If this does not match part of
-the error message (or the whole code block does not fail
-to type check) the `failing` block itself fails to type
-check. This is a useful tool to demonstrate that type
-safety works in two directions: We can show that valid
-code type checks but also that invalid code is rejected
-by the Idris elaborator:
+请注意，如果我们混淆了参数的顺序，Idris 将会阻止我们这个常见的错误：
+实现将不能通过行类型检查。我们可以验证这一点，通过将错误代码放入 `failing` 块中：这是缩进的代码块，在细化过程中（类型检查）会导致错误。我们可以给一部分预期的错误消息作为 failing 块的可选字符串参数。如果这不能匹配部分错误消息（或在类型检查中不会失败的整个代码块类）`failing` 块本身无法通过类型检查。下面是对类型安全有帮助的两个方向：通过 Idris 细化，我们可以证明有效代码类型检查，但拒绝无效代码：
 
 ```idris
 failing "Mismatch between: String and Title"
@@ -419,12 +407,9 @@ failing "Mismatch between: String and Title"
   greetUser' (MkUser n t _) = greet n t
 ```
 
-In addition, for every record field, Idris creates an
-extractor function of the same name. This can either
-be used as a regular function, or it can be used in
-postfix notation by appending it to a variable of
-the record type separated by a dot. Here are two examples
-for extracting the age from a user:
+此外，对于每个记录字段，Idris 都会创建一个同名提取函数。这既可以可以用作常规函数，也可以用于通过将后缀表示法附加到变量，把记录类型用点作为分隔。
+这里有两个例子，
+从用户那里提取年龄：
 
 ```idris
 getAgeFunction : User -> Bits8
@@ -434,25 +419,16 @@ getAgePostfix : User -> Bits8
 getAgePostfix u = u.age
 ```
 
-### Syntactic Sugar for Records
+### 记录的语法糖
 
-As was already mentioned in the [intro](Intro.md), Idris
-is a *pure* functional programming language. In pure functions,
-we are not allowed to modify global mutable state. As such,
-if we want to modify a record value, we will always
-create a *new* value with the original value remaining
-unchanged: Records and other Idris values are *immutable*.
-While this *can* have a slight impact on performance, it has
-the benefit that we can freely pass a record value to
-different functions, without fear of the functions modifying
-the value by in-place mutation. These are, again, very strong
-guarantees, which makes it drastically easier to reason
-about our code.
+正如在 [intro](Intro.md) 中已经提到的，Idris是一种 *纯* 函数式编程语言。在纯函数中，
+我们不允许修改全局可变状态。像这样，
+如果我们想修改记录值，我们总是
+创建一个 *新* 值，保留原始值不变：记录和其他 Idris 值是 *不可变的*。
+虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们的代码推理变得更加容易。
 
-There are several ways to modify a record, the most
-general being to pattern match on the record and
-adjust each field as desired. If, for instance, we'd like
-to increase the age of a `User` by one, we could do the following:
+有几种方法可以修改记录，最通用的是在记录上进行模式匹配，并且
+根据需要调整每个字段。例如，如果我们想要将 `User` 的年龄增加一，我们可以执行以下操作：
 
 ```idris
 total
@@ -460,10 +436,8 @@ incAge : User -> User
 incAge (MkUser name title age) = MkUser name title (age + 1)
 ```
 
-That's a lot of code for such a simple thing, so Idris offers
-several syntactic conveniences for this. For instance,
-using *record* syntax, we can just access and update the `age`
-field of a value:
+这么简单的事情有很多代码，所以 Idris 为此提供了几种语法糖。例如，
+使用 *记录* 语法，我们可以访问和更新 `age` 字段的值：
 
 ```idris
 total
@@ -471,18 +445,13 @@ incAge2 : User -> User
 incAge2 u = { age := u.age + 1 } u
 ```
 
-Assignment operator `:=` assigns a new value to the `age` field
-in `u`. Remember, that this will create a new `User` value. The original
-value `u` remains unaffected by this.
+赋值运算符 `:=` 为 在 `u` 中的 `age` 字段分配一个新值。请记住，这将创建一个新的 `User` 值。原本的值 `u` 不受此影响。
 
-We can access a record field, either by using the field name
-as a projection function (`age u`; also have a look at `:t age`
-in the REPL), or by using dot syntax: `u.age`. This is special
-syntax and *not* related to the dot operator for function
-composition (`(.)`).
+我们可以通过使用字段名称来访问记录字段，
+作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u.age`。这个特殊语法有别于函数组合的点运算符（`(.)`）。
 
-The use case of modifying a record field is so common
-that Idris provides special syntax for this as well:
+修改记录字段的用例如此普遍，
+Idris 也为此提供了特殊的语法：
 
 ```idris
 total
@@ -490,10 +459,9 @@ incAge3 : User -> User
 incAge3 u = { age $= (+ 1) } u
 ```
 
-Here, I used an *operator section* (`(+ 1)`) to make
-the code more concise.
-As an alternative to an operator section,
-we could have used an anonymous function like so:
+在这里，我使用了 *运算符块* (`(+ 1)`) 来使代码更简洁。
+作为运算符块的替代方案，
+我们可以像这样使用匿名函数：
 
 ```idris
 total
@@ -501,9 +469,8 @@ incAge4 : User -> User
 incAge4 u = { age $= \x => x + 1 } u
 ```
 
-Finally, since our function's argument `u` is only used
-once at the very end, we can drop it altogether,
-to get the following, highly concise version:
+最后，由于我们函数的参数 `u` 只是在最后被使用一次，我们可以完全放弃它，
+获得以下高度简洁的版本：
 
 ```idris
 total
@@ -511,15 +478,14 @@ incAge5 : User -> User
 incAge5 = { age $= (+ 1) }
 ```
 
-As usual, we should have a look at the result at the REPL:
+像往常一样，我们应该看看 REPL 的结果：
 
 ```repl
 Tutorial.DataTypes> incAge5 drNo
 MkUser "No" (Other "Dr.") 74
 ```
 
-It is possible to use this syntax to set and/or update
-several record fields at once:
+可以使用此语法来设置或更新一个或多个记录字段：
 
 ```idris
 total
@@ -527,12 +493,10 @@ drNoJunior : User
 drNoJunior = { name $= (++ " Jr."), title := Mr, age := 17 } drNo
 ```
 
-### Tuples
+### 元组
 
-I wrote above that a record is also called a *product type*.
-This is quite obvious when we consider the number
-of possible values inhabiting a given type. For instance, consider
-the following custom record:
+我在上面写了一条记录也被称为*积类型*。
+当我们考虑存在于给定类型中的可能值数量的时候，这是很显而易见的。例如，考虑以下自定义记录：
 
 ```idris
 record Foo where
@@ -541,12 +505,11 @@ record Foo where
   bool : Bool
 ```
 
-How many possible values of type `Foo` are there? The answer is `7 * 2 = 14`,
-as we can pair every possible `Weekday` (seven in total) with every possible
-`Bool` (two in total). So, the number of possible values of a record type
-is the *product* of the number of possible values for each field.
+`Foo` 类型的可能值有多少？答案是`7 * 2 = 14`，
+因为我们可以将所有可能的 `Weekday`（总共七个）与所有可能的
+`Bool`（共两个）相乘。因此，记录类型的可能值的数量是每个字段可能值的数量的 *积*。
 
-The canonical product type is the `Pair`, which is available from the *Prelude*:
+规范的积类型是 `Pair`，可从 *Prelude* 获得：
 
 ```idris
 total
@@ -554,11 +517,7 @@ weekdayAndBool : Weekday -> Bool -> Pair Weekday Bool
 weekdayAndBool wd b = MkPair wd b
 ```
 
-Since it is quite common to return several values from a function
-wrapped in a `Pair` or larger tuple, Idris provides some syntactic
-sugar for working with these. Instead of `Pair Weekday Bool`, we
-can just write `(Weekday, Bool)`. Likewise, instead of `MkPair wd b`,
-we can just write `(wd, b)` (the space is optional):
+因为通过包裹在 `Pair` 或更大的元组中，从一个函数返回多个值是很常见的，Idris 提供了一些与这些一起工作的语法糖。我们可以只写 `(Weekday, Bool)` 来代替 `Pair Weekday Bool`。同样我们可以只写 `(wd, b)` （空格是可选的）来代替 `MkPair wd b`：
 
 ```idris
 total
@@ -566,7 +525,7 @@ weekdayAndBool2 : Weekday -> Bool -> (Weekday, Bool)
 weekdayAndBool2 wd b = (wd, b)
 ```
 
-This works also for nested tuples:
+这也适用于嵌套元组：
 
 ```idris
 total
@@ -578,10 +537,10 @@ triple2 : (Bool, Weekday, String)
 triple2 = (False, Friday, "foo")
 ```
 
-In the example above, `triple2` is converted to the form
-used in `triple` by the Idris compiler.
+在上面的例子中，`triple2` 在
+Idris 编译器中会被转换成 `triple` 的形式来使用。
 
-We can even use tuple syntax in pattern matches:
+我们甚至可以在模式匹配中使用元组语法：
 
 ```idris
 total
@@ -590,11 +549,9 @@ bar = case triple of
   (b,wd,_) => b && isWeekend wd
 ```
 
-### As Patterns
+### As 模式
 
-Sometimes, we'd like to take apart a value by pattern matching
-on it but still retain the value as a whole for using it
-in further computations:
+有时，我们想通过模式匹配来提取它上面的一个值，但仍然保留使用它的整体值在进一步的计算中：
 
 ```idris
 total
@@ -602,74 +559,43 @@ baz : (Bool,Weekday,String) -> (Nat,Bool,Weekday,String)
 baz t@(_,_,s) = (length s, t)
 ```
 
-In `baz`, variable `t` is *bound* to the triple as a whole, which
-is then reused to construct the resulting quadruple. Remember,
-that `(Nat,Bool,Weekday,String)` is just sugar for
-`Pair Nat (Bool,Weekday,String)`, and `(length s, t)` is just
-sugar for `MkPair (length s) t`. Hence, the implementation above
-is correct as is confirmed by the type checker.
+在 `baz` 中，变量 `t` 会 *绑定* 到整个三元组，然后被重用以构造生成的四元组。记住，
+`(Nat,Bool,Weekday,String)` 只是 `Pair Nat (Bool,Weekday,String)` 的糖，而 `(length s, t)` 只是
+`MkPair（length s）t` 的糖。因此，上面的实现是正确的，由类型检查器确认。
 
-### Exercises part 3
+### 练习第 3 部分
 
-1. Define a record type for time spans by pairing a `UnitOfTime`
-with an integer representing the duration of the time span in
-the given unit of time. Define also a function for converting
-a time span to an `Integer` representing the duration in seconds.
+1. 通过把 `UnitOfTime` 和表示时间跨度的整数配对来定义一个记录类型。再定义一个用于转换的函数来定义时间跨度的记录类型，以秒为单位表示持续时间。
 
-2. Implement an equality check for time spans: Two time spans
-should be considered equal, if and only if they correspond to
-the same number of seconds.
+2. 对时间跨度实施相等检查：两个时间跨度应该被认为是相等的，当且仅当它们对应于相同的秒数。
 
-3. Implement a function for pretty printing time spans:
-The resulting string should display the time span in its
-given unit, plus show the number of seconds in parentheses,
-if the unit is not already seconds.
+3.实现美观的打印时间跨度的函数：
+结果字符串应显示其时间跨度的给定单位，如果单位还不是秒，再加上括号中显示的秒数。
 
-4. Implement a function for adding two time spans. If the
-two time spans use different units of time, use the smaller
-unit of time to ensure a lossless conversion.
+4. 实现两个时间跨度相加的功能。如果
+两个时间跨度使用不同的时间单位，使用较小的时间单位，以确保无损转换。
 
-## Generic Data Types
+## 通用数据类型
 
-Sometimes, a concept is general enough that we'd like
-to apply it not only to a single type, but to all
-kinds of types. For instance, we might not want to define
-data types for lists of integers, lists of strings, and lists
-of booleans, as this would lead to a lot of code duplication.
-Instead, we'd like to have a single generic list type *parameterized*
-by the type of values it stores. This section explains how
-to define and use generic types.
+有时，我们会喜欢一个概念足够笼统，不仅适用于单一类型，而且适用于所有类型。例如，我们可能不想定义整数列表、字符串列表和布尔列表，因为这会导致大量代码重复。
+相反，我们希望有一个通用列表类型，根据它存储的值的类型 *参数化*。本节说明如何定义和使用泛型类型。
 
 ### Maybe
 
-Consider the case of parsing
-a `Weekday` from user input. Surely, such
-a function should return `Saturday`, if the
-string input was `"Saturday"`, but what if the
-input was `"sdfkl332"`? We have several options here.
-For instance, we could just return a default result
-(`Sunday` perhaps?). But is this the behavior
-programmers expect when using our library? Maybe not. To silently
-continue with a default value in the face of invalid user input
-is hardly ever the best choice and may lead to a lot of
-confusion.
+考虑解析来自用户输入的 `Weekday` 的情况。如果
+字符串输入是 `"Saturday"`，一个函数的确应该返回 `Saturday`，但如果
+输入是 `"sdfkl332"` 呢？我们在这里有几个选择。
+例如，我们可以只返回一个默认结果
+（也许是 `Sunday` ？）。但这是程序员在使用我们的库时期望行为吗？也许不吧。默默地面对无效的用户输入，继续使用默认值不是最好的选择，可能会导致很多混乱。
 
-In an imperative language, our function would probably
-throw an exception. We could do this in Idris as
-well (there is function `idris_crash` in the *Prelude* for
-this), but doing so, we would abandon totality! A high
-price to pay for such a common thing as a parsing error.
+在命令式语言中，我们的函数可能会
+抛出异常。我们可以在 Idris 中这样做（*Prelude* 中有功能 `idris_crash`
+这），好吧，但这样做，我们会放弃完全性！为解析错误等常见问题付出过高的代价。
 
-In languages like Java, our function might also return some
-kind of `null` value (leading to the dreaded `NullPointerException`s if
-not handled properly in client code). Our solution will
-be similar, but instead of silently returning `null`,
-we will make the possibility of failure visible in the types!
-We define a custom data type, which encapsulates the possibility
-of failure. Defining new data types in Idris is very cheap
-(in terms of the amount of code needed), therefore this is
-often the way to go in order to increase type safety.
-Here's an example how to do this:
+在像 Java 这样的语言中，我们的函数也可能返回一种 `null` 值（如果
+未在客户端代码中正确处理，会导致可怕的 `NullPointerException` ）。我们的解决方案将很相似，但不是默默地返回 `null`，我们将在类型中显示失败的可能性！
+我们定义了一个自定义的数据类型，它封装了可能的失败。在 Idris 中定义新的数据类型非常廉价（就所需的代码量而言），因此这通常是为了增加类型安全性。
+这是一个如何执行此操作的示例：
 
 ```idris
 data MaybeWeekday = WD Weekday | NoWeekday
@@ -686,14 +612,10 @@ readWeekday "Sunday"    = WD Sunday
 readWeekday _           = NoWeekday
 ```
 
-But assume now, we'd also like to read `Bool` values from
-user input. We'd now have to write a custom data type
-`MaybeBool` and so on for all types we'd like to read
-from `String`, and the conversion of which might fail.
+但假设现在，我们还想从用户输入读取 `Bool` 值。我们现在必须编写一个自定义数据类型 `MaybeBool` ，还有其他任何我们想从 `String` 中读取的类型，并且转换可能会失败。
 
-Idris, like many other programming languages, allows us
-to generalize this behavior by using *generic data
-types*. Here's an example:
+与许多其他编程语言一样，Idris 允许我们
+通过使用 *通用数据类型* 来概括此行为。这是一个例子：
 
 ```idris
 data Option a = Some a | None
@@ -705,7 +627,7 @@ readBool "False"   = Some False
 readBool _         = None
 ```
 
-It is important to go to the REPL and look at the types:
+重要的是去 REPL 并查看类型：
 
 ```repl
 Tutorial.DataTypes> :t Some
@@ -716,17 +638,14 @@ Tutorial.DataTypes> :t Option
 Tutorial.DataTypes.Option : Type -> Type
 ```
 
-We need to introduce some jargon here. `Option` is what we call
-a *type constructor*. It is not yet a saturated type: It is
-a function from `Type` to `Type`.
-However, `Option Bool` is a type, as is `Option Weekday`.
-Even `Option (Option Bool)` is a valid type. `Option` is
-a type constructor *parameterized* over a *parameter* of type `Type`.
-`Some` and `None` are `Option`s *data constructors*: The functions
-used to create values of type `Option a` for a type `a`.
+我们需要在这里介绍一些行话。 `Option`就是我们所说的 *类型构造函数*。它还不是饱和类型：它是从 `Type` 到 `Type` 的函数。
+但是，`Option Bool` 是一种类型，`Option Weekday` 也是一种类型。
+甚至 `Option (Option Bool)` 也是有效类型。
+`Option`是
+`Type` 类型的 *参数* 上的 *参数化* 类型构造函数。
+`Some` 和 `None` 是 `Option` 的 *数据构造函数*：用于为类型 `a` 创建 `Option a` 类型值的函数。
 
-Let's see some other use cases for `Option`. Below is a safe
-division operation:
+让我们看看 `Option` 的一些其他用例。下面是安全除法运算：
 
 ```idris
 total
@@ -735,45 +654,28 @@ safeDiv n 0 = None
 safeDiv n k = Some (n `div` k)
 ```
 
-The possibility of returning some kind of *null* value in the
-face of invalid input is so common, that there is a data type
-like `Option` already in the *Prelude*: `Maybe`, with
-data constructors `Just` and `Nothing`.
+面对无效输入返回某种 *null* 值的可能性是如此普遍，以至于有一种类似 `Option` 的数据类型已经在 *Prelude* 中了: `Maybe`，它的数据构造函数是 `Just` 和 `Nothing`。
 
-It is important to understand the difference between returning `Maybe Integer`
-in a function, which might fail, and returning
-`null` in languages like Java: In the former case, the
-possibility of failure is visible in the types. The type checker
-will force us to treat `Maybe Integer` differently than
-`Integer`: Idris will *not* allow us to forget to
-eventually handle the failure case.
-Not so, if `null` is silently returned without adjusting the
-types. Programmers may (and often *will*) forget to handle the
-`null` case, leading to unexpected and sometimes
-hard to debug runtime exceptions.
+了解在一个函数中返回 `Maybe Integer` 之间的区别很重要，它可能会失败，并返回 Java 等语言中的 `null`：在前一种情况下，
+失败的可能性在类型中是可见的。类型检查器将迫使我们不同于 `Integer` 对待 `Maybe Integer` ：Idris 将 *不会* 让我们忘记最终处理失败的情况。
+如果不这样， `null` 被静默返回而不调整
+类型。程序员可能（并且经常 *会*）忘记处理 `null` 的情况，导致意外，有时
+难以调试运行时异常。
 
 ### Either
 
-While `Maybe` is very useful to quickly provide a default
-value to signal some kind of failure, this value (`Nothing`) is
-not very informative. It will not tell us *what exactly*
-went wrong. For instance, in case of our `Weekday`
-reading function, it might be interesting later on to know
-the value of the invalid input string. And just like with
-`Maybe` and `Option` above, this concept is general enough
-that we might encounter other types of invalid values.
-Here's a data type to encapsulate this:
+虽然 `Maybe` 对于快速提供默认值非常有用
+表示某种故障的值，这个值 (`Nothing`) 是
+不是很丰富。它不会告诉我们*到底是什么*出错。例如，如果我们的 `Weekday`
+解析功能，无效输入字符串的值知道以后可能会很有趣。就像上面的`Maybe`和`Option`，这个概念够笼统，我们可能会遇到其他类型的无效值。这是一个封装它的数据类型：
 
 ```idris
 data Validated e a = Invalid e | Valid a
 ```
 
-`Validated` is a type constructor parameterized over two
-type parameters `e` and `a`. It's data constructors
-are `Invalid` and `Valid`,
-the former holding a value describing some error condition,
-the latter the result in case of a successful computation.
-Let's see this in action:
+`Validated` 是一个通过两个类型参数 `e` 和 `a` 进行参数化的类型构造函数。它的数据构造函数是`Invalid`和`Valid`，
+前者持有一个描述某些错误条件的值，
+后者是计算成功的结果。让我们看看它的实际效果：
 
 ```idris
 total

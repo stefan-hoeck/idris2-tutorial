@@ -1220,7 +1220,7 @@ must behave the same as the implementation in terms of `(>>=)`:
 
 * `mf <*> ma = mf >>= (\fun => map (fun $) ma)`.
 
-### Exercises part 3
+### 练习第 3 部分
 
 1. `Applicative` extends `Functor`, because every `Applicative` is also a
    `Functor`. Proof this by implementing `map` in terms of `pure` and

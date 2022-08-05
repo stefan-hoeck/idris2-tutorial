@@ -836,7 +836,7 @@ replicate'' {n = Z}   _ = Nil
 replicate'' {n = S _} v = v :: replicate'' v
 ```
 
-### Exercises part 3
+### 练习第 3 部分
 
 1. Here is a function declaration for flattening a `List` of `List`s:
 
