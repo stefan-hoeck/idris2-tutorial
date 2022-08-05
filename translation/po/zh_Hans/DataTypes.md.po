@@ -683,8 +683,7 @@ msgid ""
 msgstr ""
 "`Weekday` 等数据类型由有限集组成\n"
 "的值有时称为 *枚举*。Idris 的\n"
-"*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday`"
-" 一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
+"*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday` 一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:152
@@ -1189,7 +1188,12 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
+#| "\"Hello, Dr. Hck!\"\n"
+#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
+#| "\"Hello, Mrs. Smith!\"\n"
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"
@@ -1589,14 +1593,11 @@ msgid ""
 "guarantees, which makes it drastically easier to reason\n"
 "about our code.\n"
 msgstr ""
-"正如在 [介绍](Intro.md) 中已经提到的，Idris是一种 *纯* "
-"函数式编程语言。在纯函数中，\n"
+"正如在 [介绍](Intro.md) 中已经提到的，Idris是一种 *纯* 函数式编程语言。在纯函数中，\n"
 "我们不允许修改全局可变状态。像这样，\n"
 "如果我们想修改记录值，我们总是\n"
 "创建一个 *新* 值，保留原始值不变：记录和其他 Idris 值是 *不可变的*。\n"
-"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数"
-"会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们"
-"的代码推理变得更加容易。\n"
+"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们的代码推理变得更加容易。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:586
