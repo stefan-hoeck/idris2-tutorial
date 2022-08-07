@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-07 06:45+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/interfaces/zh_Hans/>\n"
@@ -445,13 +445,13 @@ msgstr "在 REPL 试一下：\n"
 
 #. type: Title #
 #: ../src/Tutorial/Interfaces.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interfaces"
-msgstr "# 接口"
+msgstr "接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:9
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Function overloading - the definition of functions\n"
 "with the same name but different implementations - is a concept\n"
@@ -459,11 +459,14 @@ msgid ""
 "of functions: Two functions with the same name can be defined in\n"
 "different modules or namespaces, and Idris will try to disambiguate\n"
 "between these based on the types involved. Here is an example:\n"
-msgstr "函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris 原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris 将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子："
+msgstr ""
+"函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris "
+"原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris "
+"将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:10
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Interfaces\n"
 "\n"
@@ -485,89 +488,99 @@ msgid ""
 "  size : List a -> Integer\n"
 "  size = cast . length\n"
 msgstr ""
-"模块 Tutorial.Interfaces\n"
+"module Tutorial.Interfaces\n"
 "\n"
-"%默认总计\n"
+"%default total\n"
 "\n"
-"命名空间布尔\n"
-"  出口\n"
-"  大小：布尔 -> 整数\n"
-"  大小真 = 1\n"
-"  大小错误 = 0\n"
+"namespace Bool\n"
+"  export\n"
+"  size : Bool -> Integer\n"
+"  size True  = 1\n"
+"  size False = 0\n"
 "\n"
-"命名空间整数\n"
-"  出口\n"
-"  大小：整数 -> 整数\n"
-"  大小 = id\n"
+"namespace Integer\n"
+"  export\n"
+"  size : Integer -> Integer\n"
+"  size = id\n"
 "\n"
-"命名空间列表\n"
-"  出口\n"
-"  大小：列出一个 -> 整数\n"
-"  大小 = 演员表。长度\n"
+"namespace List\n"
+"  export\n"
+"  size : List a -> Integer\n"
+"  size = cast . length\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:35
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, we defined three different functions\n"
 "called `size`, each in its own namespace. We can disambiguate between\n"
 "these by prefixing them with their namespace:\n"
-msgstr "在这里，我们定义了三个不同的函数，称为 `size`，每个函数都在自己的命名空间中。我们可以通过在它们前面加上它们的命名空间来消除它们之间的歧义："
+msgstr ""
+"在这里，我们定义了三个不同的函数，称为 `size`，每个函数都在自己的命名空间中。"
+"我们可以通过在它们前面加上它们的命名空间来消除它们之间的歧义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:36
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Interfaces> :t Bool.size\n"
 "Tutorial.Interfaces.Bool.size : Bool -> Integer\n"
-msgstr "```repl Tutorial.Interfaces> :t Bool.size Tutorial.Interfaces.Bool.size : Bool -> Integer ```"
+msgstr ""
+"Tutorial.Interfaces> :t Bool.size\n"
+"Tutorial.Interfaces.Bool.size : Bool -> Integer\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:42
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "However, this is usually not necessary:\n"
-msgstr "但是，这通常不是必需的："
+msgstr "但是，这通常不是必需的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:43
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mean : List Integer -> Integer\n"
 "mean xs = sum xs `div` size xs\n"
-msgstr "```idris mean : List Integer -> Integer mean xs = sum xs `div` size xs ```"
+msgstr ""
+"mean : List Integer -> Integer\n"
+"mean xs = sum xs `div` size xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:51
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, Idris can disambiguate between the different\n"
 "`size` functions, since `xs` is of type `List Integer`, which\n"
 "unifies only with `List a`, the argument type of `List.size`.\n"
-msgstr "如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` 类型，它仅与 `List a[ X148X]，`List.size`的参数类型。"
+msgstr ""
+"如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` "
+"类型，它仅与 `List a` 的参数类型为 `List.size`。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Interfaces.md:52
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interface Basics"
-msgstr "## 接口基础"
+msgstr "接口基础"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:57
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While function overloading as described above\n"
 "works well, there are use cases, where\n"
 "this form of overloaded functions leads to a lot of code duplication.\n"
-msgstr "虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量代码重复。"
+msgstr "虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量"
+"代码重复。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:61
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As an example, consider a function `cmp` (short for *compare*, which is\n"
 "already exported by the *Prelude*), for describing an ordering\n"
 "for the values of type `String`:\n"
-msgstr "例如，考虑一个函数 `cmp`（*compare* 的缩写，已由 *Prelude* 导出），用于描述类型 [ X158X]字符串`："
+msgstr "例如，考虑一个函数 `cmp` （*compare* 的缩写，已由 *Prelude* 导出），用于描述 "
+"`String` 类型值的顺序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:62
