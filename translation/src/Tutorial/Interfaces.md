@@ -1,11 +1,6 @@
-# Interfaces
+# 接口
 
-Function overloading - the definition of functions
-with the same name but different implementations - is a concept
-found in many programming languages. Idris natively supports overloading
-of functions: Two functions with the same name can be defined in
-different modules or namespaces, and Idris will try to disambiguate
-between these based on the types involved. Here is an example:
+函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris 原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris 将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子：
 
 ```idris
 module Tutorial.Interfaces
@@ -29,44 +24,33 @@ namespace List
   size = cast . length
 ```
 
-Here, we defined three different functions
-called `size`, each in its own namespace. We can disambiguate between
-these by prefixing them with their namespace:
+在这里，我们定义了三个不同的函数，称为 `size`，每个函数都在自己的命名空间中。我们可以通过在它们前面加上它们的命名空间来消除它们之间的歧义：
 
 ```repl
 Tutorial.Interfaces> :t Bool.size
 Tutorial.Interfaces.Bool.size : Bool -> Integer
 ```
 
-However, this is usually not necessary:
+但是，这通常不是必需的：
 
 ```idris
 mean : List Integer -> Integer
 mean xs = sum xs `div` size xs
 ```
 
-As you can see, Idris can disambiguate between the different
-`size` functions, since `xs` is of type `List Integer`, which
-unifies only with `List a`, the argument type of `List.size`.
+如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` 类型，它仅与 `List a` 的参数类型为 `List.size`。
 
-## Interface Basics
+## 接口基础
 
-While function overloading as described above
-works well, there are use cases, where
-this form of overloaded functions leads to a lot of code duplication.
+虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量代码重复。
 
-As an example, consider a function `cmp` (short for *compare*, which is
-already exported by the *Prelude*), for describing an ordering
-for the values of type `String`:
+例如，考虑一个函数 `cmp` （*compare* 的缩写，已由 *Prelude* 导出），用于描述 `String` 类型值的顺序：
 
 ```idris
 cmp : String -> String -> Ordering
 ```
 
-We'd also like to have similar functions for many other data types.
-Function overloading allows us to do just that, but `cmp` is not an
-isolated piece of functionality. From it, we can derive functions
-like `greaterThan'`, `lessThan'`, `minimum'`, `maximum'`, and many others:
+我们还希望为许多其他数据类型提供类似的函数。函数重载允许我们这样做，但 `cmp` 不是一个孤立的函数。从中，我们可以推导出 `greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数：
 
 ```idris
 lessThan' : String -> String -> Bool
@@ -88,14 +72,9 @@ maximum' s1 s2 =
     _  => s2
 ```
 
-We'd need to implement all of these again for the other types with a `cmp`
-function, and most if not all of these implementations would be identical
-to the ones written above. That's a lot of code repetition.
+我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）这些实现将与上面编写的相同。这会有很多代码重复。
 
-One way to solve this is to use higher-order functions.
-For instance, we could define function `minimumBy`, which takes
-a comparison function as its first argument and returns the smaller
-of the two remaining arguments:
+解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 `minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个：
 
 ```idris
 minimumBy : (a -> a -> Ordering) -> a -> a -> a
@@ -105,14 +84,9 @@ minimumBy f a1 a2 =
     _  => a2
 ```
 
-This solution is another proof of how higher-order functions
-allow us to reduce code duplication. However, the need to explicitly
-pass around the comparison function all the time
-can get tedious as well.
-It would be nice, if we could teach Idris to come up with
-such a function on its own.
+这个解决方案是高阶函数如何让我们减少代码重复的另一个证明。但是，始终需要显式传递比较函数也会变得乏味。如果我们能教 Idris 自己想出这样的功能，那就太好了。
 
-Interfaces solve exactly this issue. Here's an example:
+接口正好解决了这个问题。这是一个例子：
 
 ```idris
 interface Comp a where
@@ -125,36 +99,21 @@ implementation Comp Bits16 where
   comp = compare
 ```
 
-The code above defines *interface* `Comp` providing
-function `comp` for calculating the
-ordering for two values of a type `a`, followed by two *implementations*
-of this interface for types `Bits8` and `Bits16`. Note, that the
-`implementation` keyword is optional.
+上面的代码定义了 *接口* `Comp` ，提供函数 `comp` 用于计算类型为 `a` 的两个值的排序，然后是 `Bits8` 和 `Bits16` 类型接口的两个 *实现*。请注意，`implementation` 关键字是可选的。
 
-The `comp` implementations for `Bits8` and `Bits16` both use
-function `compare`, which is part of a similar interface
-from the *Prelude* called `Ord`.
+`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude* 中类似接口的一部分，称为 `Ord`。
 
-The next step is to look at the type of `comp` at the REPL:
+下一步是查看 REPL 中 `comp` 的类型：
 
 ```repl
 Tutorial.Interfaces> :t comp
 Tutorial.Interfaces.comp : Comp a => a -> a -> Ordering
 ```
 
-The interesting part in the type signature of `comp` is
-the initial `Comp a =>` argument. Here, `Comp` is a *constraint* on
-type parameter `a`. This signature can be read as:
-"For any type `a`, given an implementation
-of interface `Comp` for `a`, we can compare two values
-of type `a` and return an `Ordering` for these."
-Whenever we invoke `comp`, we expect Idris to come up with a
-value of type `Comp a` on its own, hence the new `=>` arrow.
-If Idris fails to do so, it will answer with a type error.
+`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` 是类型参数 `a` 上的 *约束*。该签名可以读作：“对于任何类型 `a`，给定 `a` 的接口 `Comp` 的实现，我们可以比较 `a` 类型的两个值并返回一个 `Ordering` ”。
+每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` 类型的值，因此这里需要新的 `=>` 箭头。如果 Idris 没有推断出来，它将返回类型错误。
 
-We can now use `comp` in the implementations of related functions.
-All we have to do is to also prefix these derived functions
-with a `Comp` constraint:
+我们现在可以在相关函数的实现中使用`comp`。我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束：
 
 ```idris
 lessThan : Comp a => a -> a -> Bool
@@ -176,60 +135,35 @@ maximum s1 s2 =
     _  => s2
 ```
 
-Note, how the definition of `minimum` is almost identical
-to `minimumBy`. The only difference being that in case of
-`minimumBy` we had to pass the comparison function as an
-explicit argument, while for `minimum` it is provided as
-part of the `Comp` implementation, which is passed around
-by Idris for us.
+请注意，`minimum` 的定义与 `minimumBy` 的定义几乎相同。唯一的区别是，在 `minimumBy` 的情况下，我们必须将比较函数作为显式参数传递，而对于 `minimum`，它作为 `Comp` 的一部分提供实现，由 Idris 为我们传递。
 
-Thus, we have defined all these utility functions once and for
-all for every type with an implementation of interface `Comp`.
+因此，我们用接口 `Comp` 的实现为每种类型一劳永逸地定义了所有这些实用函数。
 
 ### 练习第 1 部分
 
-1. Implement function `anyLarger`, which should return `True`,
-if and only if a list of values contains at least one element larger
-than a given reference value. Use interface `Comp` in your
-implementation.
+1. 实现函数`anyLarger`，应该返回`True` 的条件为，
+当且仅当值列表包含至少一个比给定的参考值更大的元素。使用接口 `Comp` 在你的实现中。
 
-2. Implement function `allLarger`, which should return `True`,
-if and only if a list of values contains *only* elements larger
-than a given reference value. Note, that this is trivially true
-for the empty list. Use interface `Comp` in your implementation.
+2. 实现函数`allLarger`，应该返回`True` 的条件为，
+当且仅当值列表的 *只* 包含比给定的参考值更大的元素。请注意，对于空列表总是返回 true。在您的实现中使用接口 `Comp`。
 
-3. Implement function `maxElem`, which tries to extract the
-largest element from a list of values with a `Comp` implementation.
-Likewise for `minElem`, which tries to extract the smallest element.
-Note, that the possibility of the list being empty must be considered
-when deciding on the output type.
+3. 实现函数`maxElem`，试图提取
+具有 `Comp` 实现的值列表中的最大元素。
+对于 `minElem` 也是如此，它试图提取最小的元素。
+请注意，在决定输出类型时必须考虑列表为空的可能性。
 
-4. Define an interface `Concat` for values like lists or
-strings, which can be concatenated. Provide implementations
-for lists and strings.
+4. 为列表或列表等值定义一个接口 `Concat`，可以串联的字符串。提供实对于列表和字符串的实现。
 
-5. Implement function `concatList` for concatenating the
-values in a list holding values with a `Concat` implementation.
-Make sure to reflect the possibility of the list being empty in your
-output type.
+5. 实现函数 `concatList` 用于连接使用 `Concat` 实现的列表中的值。
+确保在您的列表中反映列表为空的可能输出类型。
 
-## More about Interfaces
+## 更多关于接口的信息
 
-In the last section, we learned about the very basics
-of interfaces: Why they are useful and how to define and
-implement them.
-In this section, we will learn about some slightly
-advanced concepts: Extending interfaces, interfaces with
-constraints, and default implementations.
+在上一节中，我们了解了接口的基础知识：为什么它们有用以及如何定义和实现它们。在本节中，我们将学习一些稍微高级的概念：扩展接口、带约束的接口和默认实现。
 
-### Extending Interfaces
+### 扩展接口
 
-Some interfaces form a kind of hierarchy. For instance, for
-the `Concat` interface used in exercise 4, there might
-be a child interface called `Empty`, for those types,
-which have a neutral element with relation to concatenation.
-In such a case, we make an implementation of `Concat` a
-prerequisite for implementing `Empty`:
+一些接口会形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，可能有一个名为 `Empty` 的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 `Concat` 的实现作为实现 `Empty` 的先决条件：
 
 ```idris
 interface Concat a where
@@ -245,12 +179,7 @@ implementation Empty String where
   empty = ""
 ```
 
-`Concat a => Empty a` should be read as: "An implementation
-of `Concat` for type `a` is a *prerequisite* for there being
-an implementation of `Empty` for `a`."
-But this also means that, whenever we have an implementation
-of interface `Empty`, we *must* also have an implementation of `Concat`
-and can invoke the corresponding functions:
+`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 *先决条件*，才能为 `a` 实现 `Empty` 接口”。但这也意味着，只要我们有接口 `Empty` 的实现，我们 *必须* 也有 `Concat` 的实现，并且可以调用相应的函数：
 
 ```idris
 concatListE : Empty a => List a -> a
@@ -258,18 +187,11 @@ concatListE []        = empty
 concatListE (x :: xs) = concat x (concatListE xs)
 ```
 
-Note, how in the type of `concatListE` we only used an `Empty`
-constraint, and how in the implementation we were still able
-to invoke both `empty` and `concat`.
+请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，以及在实现中我们如何仍然能够调用 `empty` 和 `concat`。
 
-### Constrained Implementations
+### 受约束的实现
 
-Sometimes, it is only possible to implement an interface
-for a generic type, if its type parameters implement
-this interface as well. For instance, implementing interface `Comp`
-for `Maybe a` makes sense only if type `a` itself implements
-`Comp`. We can constrain interface implementations with
-the same syntax we use for constrained functions:
+有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 `Maybe a` 实现接口 `Comp` 时，只有当类型 `a` 本身实现 `Comp` 时才有意义。我们可以使用与约束函数相同的语法来约束接口实现：
 
 ```idris
 implementation Comp a => Comp (Maybe a) where
@@ -279,44 +201,20 @@ implementation Comp a => Comp (Maybe a) where
   comp (Just x) (Just y) = comp x y
 ```
 
-This is not the same as extending an interface, although
-the syntax looks very similar. Here, the constraint lies
-on a *type parameter* instead of the full type.
-The last line in the implementation of `Comp (Maybe a)`
-compares the values stored in the two `Just`s. This is
-only possible, if there is a `Comp` implementation for
-these values as well. Go ahead, and remove the `Comp a`
-constraint from the above implementation. Learning to
-read and understand Idris' type errors is important
-for fixing them.
+这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * 而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` 中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，让我们试试从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris 的类型错误对于修复它们很重要。
 
-The good thing is, that Idris will solve all these
-constraints for us:
+好消息是，Idris 将为我们解决所有这些限制：
 
 ```idris
 maxTest : Maybe Bits8 -> Ordering
 maxTest = comp (Just 12)
 ```
 
-Here, Idris tries to find an implementation for `Comp (Maybe Bits8)`.
-In order to do so, it needs an implementation for `Comp Bits8`.
-Go ahead, and replace `Bits8` in the type of `maxTest` with `Bits64`,
-and have a look at the error message Idris produces.
+在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8` 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris 产生的错误消息。
 
-### Default Implementations
+### 默认实现
 
-Sometimes, we'd like to pack several related functions
-in an interface to allow programmers to implement each
-in the most efficient way, although they *could* be
-implemented in terms of each other. For instance,
-consider an interface `Equals` for comparing two
-values for equality, with functions `eq` returning
-`True` if two values are equal and `neq` returning
-`True` if they are not. Surely, we can implement `neq`
-in terms of `eq`, so most of the time when implementing
-`Equals`, we will only implement the latter.
-In this case, we can give an implementation for `neq`
-already in the definition of `Equals`:
+有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现每个函数，尽管它们 *可以* 相互实现。例如，考虑一个接口 `Equals` 用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` ，如果不相等则 `neq` 返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 `Equals` 的定义中给出 `neq` 的实现：
 
 ```idris
 interface Equals a where
@@ -326,17 +224,14 @@ interface Equals a where
   neq a1 a2 = not (eq a1 a2)
 ```
 
-If in an implementation of `Equals` we only implement `eq`,
-Idris will use the default implementation for `neq` as
-shown above:
+如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` 的默认实现，如上所示：
 
 ```idris
 Equals String where
   eq = (==)
 ```
 
-If on the other hand we'd like to provide explicit implementations
-for both functions, we can do so as well:
+另一方面，如果我们想为这两个函数提供显式实现，我们也可以这样做：
 
 ```idris
 Equals Bool where
@@ -351,13 +246,9 @@ Equals Bool where
 
 ### 练习第 2 部分
 
-1. Implement interfaces `Equals`, `Comp`, `Concat`, and
-  `Empty` for pairs, constraining your implementations as necessary.
-  (Note, that multiple constraints can be given sequentially like
-  other function arguments: `Comp a => Comp b => Comp (a,b)`.)
+1. 实现接口`Equals`、`Comp`、`Concat` 和 `Empty` 用于 pairs，根据需要限制您的实现。（请注意，可以按顺序给出多个约束，例如其他函数参数：`Comp a => Comp b => Comp (a,b)`。）
 
-2. Below is an implementation of a binary tree. Implement interfaces
-   `Equals` and `Concat` for this type.
+2. 下面是二叉树的实现。为此类型实现接口 `Equals` 和 `Concat`。
 
    ```idris
    data Tree : Type -> Type where
@@ -365,93 +256,57 @@ Equals Bool where
      Node : Tree a -> Tree a -> Tree a
    ```
 
-## Interfaces in the *Prelude*
+## *Prelude* 中的接口
 
-The Idris *Prelude* provides several interfaces plus implementations
-that are useful in almost every non-trivial program. I'll introduce
-the basic ones here. The more advanced ones will be discussed in later
-chapters.
+Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我将在这里介绍基本的。更高级的将在后面的章节中讨论。
 
-Most of these interfaces come with associated mathematical laws,
-and implementations are assumed to adhere to these laws. These
-laws will be given here as well.
+这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也将在这里给出。
 
 ### `Eq`
 
-Probably the most often used interface, `Eq` corresponds to
-interface `Equals` we used above as an example. Instead of
-`eq` and `neq`, `Eq` provides two operators `(==)` and `(/=)`
-for comparing two values of the same type for being equal
-or not. Most of the data types defined in the *Prelude* come
-with an implementation of `Eq`, and whenever programmers define
-their own data types, `Eq` is typically one of the first
-interfaces they implement.
+可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 `neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 *Prelude* 中定义的大多数数据类型都带有 `Eq` 的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。
 
-#### `Eq` Laws
+#### `Eq` 定律
 
-We expect the following laws to hold for all implementations of `Eq`:
+我们期望以下定律适用于 `Eq` 的所有实现：
 
-* `(==)` is *reflexive*: `x == x = True` for all `x`. This means, that
-every value is equal to itself.
+* `(==)` 具有 *自反性*：对于所有 `x`，`x == x = True`。这意味着每个值都等于它自己。
 
-* `(==)` is *symmetric*: `x == y = y == x` for all `x` and `y`.
-This means, that the order of arguments passed to `(==)` does not matter.
+* `(==)` 具有 *交换律*：对于所有 `x` 和 `y`，`x == y = y == x`。
+这意味着，传递给 `(==)` 的参数顺序无关紧要。
 
-* `(==)` is *transitive*: From `x == y = True` and `y == z = True` follows
-`x == z = True`.
+* `(==)` 具有 *传递性*：从 `x == y = True` 和 `y == z = True` 可以得出 `x == z = True`。
 
-* `(/=)` is the negation of `(==)`: `x == y = not (x /= y)`
-for all `x` and `y`.
+* `(/=)` 是 `(==)` 的否定：对于所有 `x` 和 `y` 都有 `x == y = not (x /= y)` 。
 
-In theory, Idris has the power to verify these laws at compile time
-for many non-primitive types. However, out of pragmatism this is not
-required when implementing `Eq`, since writing such proofs can be
-quite involved.
+理论上，Idris 有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 `Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。
 
 ### `Ord`
 
-The pendant to `Comp` in the *Prelude* is interface `Ord`. In addition
-to `compare`, which is identical to our own `comp` it provides comparison
-operators `(>=)`, `(>)`, `(<=)`, and `(<)`, as well as utility functions
-`max` and `min`. Unlike `Comp`, `Ord` extends `Eq`,
-so whenever there is an `Ord` constraint, we also have access to operators
-`(==)` and `(/=)` and related functions.
+*Prelude* 中 `Comp` 的对应接口是 `Ord`。除了 `compare` 会与我们自己的 `comp` 相同之外，它还提供了比较运算符 `(>=)`、`(>)`、`(<=)` 和 `(<)`，以及工具函数 `max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。
 
-#### `Ord` Laws
+#### `Ord` 定律
 
-We expect the following laws to hold for all implementations of `Ord`:
+我们期望以下定律适用于 `Ord` 的所有实现：
 
-* `(<=)` is *reflexive* and *transitive*.
-* `(<=)` is *antisymmetric*: From `x <= y = True` and `y <= x = True`
-follows `x == y = True`.
-* `x <= y = y >= x`.
+* `(<=)` 具有 *自反性* 和 *传递性*。
+* `(<=)` 具有 *反对称性*：从 `x <= y = True` 和 `y <= x = True` 可以得到 `x == y = True`。
+* `x <= y = y >= x`。
 * `x < y = not (y <= x)`
 * `x > y = not (y >= x)`
 * `compare x y = EQ` => `x == y = True`
 * `compare x y == GT = x > y`
 * `compare x y == LT = x < y`
 
-### `Semigroup` and `Monoid`
+### `Semigroup` 和 `Monoid`
 
-`Semigroup` is the pendant to our example interface `Concat`,
-with operator `(<+>)` (also called *append*) corresponding
-to function `concat`.
+`Semigroup` 是我们示例接口 `Concat` 的附属物，运算符 `(<+>)`（也称为 *append*）对应于函数 `concat`。
 
-Likewise, `Monoid` corresponds to `Empty`,
-with `neutral` corresponding to `empty`.
+同样，`Monoid` 对应 `Empty`，`neutral` 对应 `empty`。
 
-These are incredibly important interfaces, which can be used
-to combine two or more values of a data type into a single
-value of the same type. Examples include but are not limited
-to addition or multiplication
-of numeric types, concatenation of sequences of data, or
-sequencing of computations.
+这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的序列。
 
-As an example, consider a data type for representing
-distances in a geometric application. We could just use `Double`
-for this, but that's not very type safe. It would be better
-to use a single field record wrapping values type `Double`,
-to give such values clear semantics:
+例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` ，但这不是很安全的类型。最好使用单个字段记录包装值类型 `Double`，以便为这些值提供清晰的语义：
 
 ```idris
 record Distance where
@@ -459,33 +314,28 @@ record Distance where
   meters : Double
 ```
 
-There is a natural way for combining two distances: We sum up
-the values they hold. This immediately leads to an implementation
-of `Semigroup`:
+有一种结合两个距离的自然方法：我们将它们持有的值相加。这就产生了 `Semigroup` 的实现：
 
 ```idris
 Semigroup Distance where
   x <+> y = MkDistance $ x.meters + y.meters
 ```
 
-It is also immediately clear, that zero is the neutral element of this
-operation: Adding zero to any value does not affect the value at all.
-This allows us to implement `Monoid` as well:
+也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。这也允许我们实现 `Monoid` ：
 
 ```idris
 Monoid Distance where
   neutral = MkDistance 0
 ```
 
-#### `Semigroup` and `Monoid` Laws
+#### `Semigroup` 和 `Monoid` 定律
 
-We expect the following laws to hold for all implementations of `Semigroup`
-and `Monoid`:
+我们期望以下定律适用于 `Semigroup` 和 `Monoid` 的所有实现：
 
-* `(<+>)` is *associative*: `x <+> (y <+> z) = (x <+> y) <+> z`, for all
-  values `x`, `y`, and `z`.
-* `neutral` is the *neutral element* with relation to `(<+>)`: `neutral <+>
-  x = x <+> neutral = x`, for all `x`.
+* `(<+>)` 具有 *交换律*: 对于所有值 `x`、`y` 和 `z`，都有 `x <+> (y <+> z) = (x <+> y) <+>
+  z`,。
+* `neutral` 是 *中性元素* 与 `(<+>)` 的关系： `neutral <+> x = x <+> neutral =
+  x`，适用于所有 `x`。
 
 ### `Show`
 

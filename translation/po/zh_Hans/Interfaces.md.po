@@ -459,10 +459,7 @@ msgid ""
 "of functions: Two functions with the same name can be defined in\n"
 "different modules or namespaces, and Idris will try to disambiguate\n"
 "between these based on the types involved. Here is an example:\n"
-msgstr ""
-"函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris "
-"原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris "
-"将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子：\n"
+msgstr "函数重载——定义同名但实现不同的函数——是许多编程语言中的一个概念。 Idris 原生支持函数的重载：两个同名的函数可以定义在不同的模块或命名空间中，Idris 将尝试根据所涉及的类型消除它们之间的歧义。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:10
@@ -515,9 +512,7 @@ msgid ""
 "Here, we defined three different functions\n"
 "called `size`, each in its own namespace. We can disambiguate between\n"
 "these by prefixing them with their namespace:\n"
-msgstr ""
-"在这里，我们定义了三个不同的函数，称为 `size`，每个函数都在自己的命名空间中。"
-"我们可以通过在它们前面加上它们的命名空间来消除它们之间的歧义：\n"
+msgstr "在这里，我们定义了三个不同的函数，称为 `size`，每个函数都在自己的命名空间中。我们可以通过在它们前面加上它们的命名空间来消除它们之间的歧义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:36
@@ -552,9 +547,7 @@ msgid ""
 "As you can see, Idris can disambiguate between the different\n"
 "`size` functions, since `xs` is of type `List Integer`, which\n"
 "unifies only with `List a`, the argument type of `List.size`.\n"
-msgstr ""
-"如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` "
-"类型，它仅与 `List a` 的参数类型为 `List.size`。\n"
+msgstr "如您所见，Idris 可以区分不同的 `size` 函数，因为 `xs` 是 `List Integer` 类型，它仅与 `List a` 的参数类型为 `List.size`。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Interfaces.md:52
@@ -569,8 +562,7 @@ msgid ""
 "While function overloading as described above\n"
 "works well, there are use cases, where\n"
 "this form of overloaded functions leads to a lot of code duplication.\n"
-msgstr "虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量"
-"代码重复。\n"
+msgstr "虽然如上所述的函数重载效果很好，但在某些用例中，这种形式的重载函数会导致大量代码重复。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:61
@@ -579,8 +571,7 @@ msgid ""
 "As an example, consider a function `cmp` (short for *compare*, which is\n"
 "already exported by the *Prelude*), for describing an ordering\n"
 "for the values of type `String`:\n"
-msgstr "例如，考虑一个函数 `cmp` （*compare* 的缩写，已由 *Prelude* 导出），用于描述 "
-"`String` 类型值的顺序：\n"
+msgstr "例如，考虑一个函数 `cmp` （*compare* 的缩写，已由 *Prelude* 导出），用于描述 `String` 类型值的顺序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:62
@@ -596,10 +587,7 @@ msgid ""
 "Function overloading allows us to do just that, but `cmp` is not an\n"
 "isolated piece of functionality. From it, we can derive functions\n"
 "like `greaterThan'`, `lessThan'`, `minimum'`, `maximum'`, and many others:\n"
-msgstr ""
-"我们还希望为许多其他数据类型提供类似的函数。函数重载允许我们这样做，但 `cmp` "
-"不是一个孤立的函数。从中，我们可以推导出 "
-"`greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数：\n"
+msgstr "我们还希望为许多其他数据类型提供类似的函数。函数重载允许我们这样做，但 `cmp` 不是一个孤立的函数。从中，我们可以推导出 `greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:71
@@ -648,8 +636,7 @@ msgid ""
 "We'd need to implement all of these again for the other types with a `cmp`\n"
 "function, and most if not all of these implementations would be identical\n"
 "to the ones written above. That's a lot of code repetition.\n"
-msgstr "我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）"
-"这些实现将与上面编写的相同。这会有很多代码重复。\n"
+msgstr "我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）这些实现将与上面编写的相同。这会有很多代码重复。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:99
@@ -659,9 +646,7 @@ msgid ""
 "For instance, we could define function `minimumBy`, which takes\n"
 "a comparison function as its first argument and returns the smaller\n"
 "of the two remaining arguments:\n"
-msgstr ""
-"解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 "
-"`minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个：\n"
+msgstr "解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 `minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:100
@@ -689,10 +674,7 @@ msgid ""
 "can get tedious as well.\n"
 "It would be nice, if we could teach Idris to come up with\n"
 "such a function on its own.\n"
-msgstr ""
-"这个解决方案是高阶函数如何让我们减少代码重复的另一个证明。但是，始终需要显式"
-"传递比较函数也会变得乏味。如果我们能教 Idris 自己想出这样的功能，那就太好了。"
-"\n"
+msgstr "这个解决方案是高阶函数如何让我们减少代码重复的另一个证明。但是，始终需要显式传递比较函数也会变得乏味。如果我们能教 Idris 自己想出这样的功能，那就太好了。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:116
@@ -731,10 +713,7 @@ msgid ""
 "ordering for two values of a type `a`, followed by two *implementations*\n"
 "of this interface for types `Bits8` and `Bits16`. Note, that the\n"
 "`implementation` keyword is optional.\n"
-msgstr ""
-"上面的代码定义了 *接口* `Comp` ，提供函数 `comp` 用于计算类型为 `a` "
-"的两个值的排序，然后是 `Bits8` 和 `Bits16` 类型接口的两个 "
-"*实现*。请注意，`implementation` 关键字是可选的。\n"
+msgstr "上面的代码定义了 *接口* `Comp` ，提供函数 `comp` 用于计算类型为 `a` 的两个值的排序，然后是 `Bits8` 和 `Bits16` 类型接口的两个 *实现*。请注意，`implementation` 关键字是可选的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:137
@@ -743,9 +722,7 @@ msgid ""
 "The `comp` implementations for `Bits8` and `Bits16` both use\n"
 "function `compare`, which is part of a similar interface\n"
 "from the *Prelude* called `Ord`.\n"
-msgstr ""
-"`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude* "
-"中类似接口的一部分，称为 `Ord`。\n"
+msgstr "`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude* 中类似接口的一部分，称为 `Ord`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:139
@@ -777,12 +754,8 @@ msgid ""
 "value of type `Comp a` on its own, hence the new `=>` arrow.\n"
 "If Idris fails to do so, it will answer with a type error.\n"
 msgstr ""
-"`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` "
-"是类型参数 `a` 上的 *约束*。该签名可以读作：“对于任何类型 `a`，给定 `a` "
-"的接口 `Comp` 的实现，我们可以比较 `a` 类型的两个值并返回一个 `Ordering` ”。"
-"\n"
-"每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` 类型的值，"
-"因此这里需要新的 `=>` 箭头。如果 Idris 没有推断出来，它将返回类型错误。\n"
+"`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` 是类型参数 `a` 上的 *约束*。该签名可以读作：“对于任何类型 `a`，给定 `a` 的接口 `Comp` 的实现，我们可以比较 `a` 类型的两个值并返回一个 `Ordering` ”。\n"
+"每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` 类型的值，因此这里需要新的 `=>` 箭头。如果 Idris 没有推断出来，它将返回类型错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:158
@@ -791,8 +764,7 @@ msgid ""
 "We can now use `comp` in the implementations of related functions.\n"
 "All we have to do is to also prefix these derived functions\n"
 "with a `Comp` constraint:\n"
-msgstr "我们现在可以在相关函数的实现中使用`comp`。"
-"我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束：\n"
+msgstr "我们现在可以在相关函数的实现中使用`comp`。我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:159
@@ -844,10 +816,7 @@ msgid ""
 "explicit argument, while for `minimum` it is provided as\n"
 "part of the `Comp` implementation, which is passed around\n"
 "by Idris for us.\n"
-msgstr ""
-"请注意，`minimum` 的定义与 `minimumBy` 的定义几乎相同。唯一的区别是，在 "
-"`minimumBy` 的情况下，我们必须将比较函数作为显式参数传递，而对于 `minimum`，"
-"它作为 `Comp` 的一部分提供实现，由 Idris 为我们传递。\n"
+msgstr "请注意，`minimum` 的定义与 `minimumBy` 的定义几乎相同。唯一的区别是，在 `minimumBy` 的情况下，我们必须将比较函数作为显式参数传递，而对于 `minimum`，它作为 `Comp` 的一部分提供实现，由 Idris 为我们传递。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:188
@@ -867,8 +836,7 @@ msgid ""
 "implementation.\n"
 msgstr ""
 "1. 实现函数`anyLarger`，应该返回`True` 的条件为，\n"
-"当且仅当值列表包含至少一个比给定的参考值更大的元素。使用接口 `Comp` "
-"在你的实现中。\n"
+"当且仅当值列表包含至少一个比给定的参考值更大的元素。使用接口 `Comp` 在你的实现中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:200
@@ -880,8 +848,7 @@ msgid ""
 "for the empty list. Use interface `Comp` in your implementation.\n"
 msgstr ""
 "2. 实现函数`allLarger`，应该返回`True` 的条件为，\n"
-"当且仅当值列表的 *只* 包含比给定的参考值更大的元素。请注意，"
-"对于空列表总是返回 true。在您的实现中使用接口 `Comp`。\n"
+"当且仅当值列表的 *只* 包含比给定的参考值更大的元素。请注意，对于空列表总是返回 true。在您的实现中使用接口 `Comp`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:206
@@ -905,8 +872,7 @@ msgid ""
 "4. Define an interface `Concat` for values like lists or\n"
 "strings, which can be concatenated. Provide implementations\n"
 "for lists and strings.\n"
-msgstr "4. 为列表或列表等值定义一个接口 "
-"`Concat`，可以串联的字符串。提供实对于列表和字符串的实现。\n"
+msgstr "4. 为列表或列表等值定义一个接口 `Concat`，可以串联的字符串。提供实对于列表和字符串的实现。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:215
@@ -936,9 +902,7 @@ msgid ""
 "In this section, we will learn about some slightly\n"
 "advanced concepts: Extending interfaces, interfaces with\n"
 "constraints, and default implementations.\n"
-msgstr ""
-"在上一节中，我们了解了接口的基础知识：为什么它们有用以及如何定义和实现它们。"
-"在本节中，我们将学习一些稍微高级的概念：扩展接口、带约束的接口和默认实现。\n"
+msgstr "在上一节中，我们了解了接口的基础知识：为什么它们有用以及如何定义和实现它们。在本节中，我们将学习一些稍微高级的概念：扩展接口、带约束的接口和默认实现。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:225
@@ -956,11 +920,7 @@ msgid ""
 "which have a neutral element with relation to concatenation.\n"
 "In such a case, we make an implementation of `Concat` a\n"
 "prerequisite for implementing `Empty`:\n"
-msgstr ""
-"一些接口会形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，"
-"可能有一个名为 `Empty` "
-"的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 "
-"`Concat` 的实现作为实现 `Empty` 的先决条件：\n"
+msgstr "一些接口会形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，可能有一个名为 `Empty` 的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 `Concat` 的实现作为实现 `Empty` 的先决条件：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:234
@@ -1000,10 +960,7 @@ msgid ""
 "But this also means that, whenever we have an implementation\n"
 "of interface `Empty`, we *must* also have an implementation of `Concat`\n"
 "and can invoke the corresponding functions:\n"
-msgstr ""
-"`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 *先决条件*，才能为 "
-"`a` 实现 `Empty` 接口”。但这也意味着，只要我们有接口 `Empty` 的实现，我们 "
-"*必须* 也有 `Concat` 的实现，并且可以调用相应的函数：\n"
+msgstr "`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 *先决条件*，才能为 `a` 实现 `Empty` 接口”。但这也意味着，只要我们有接口 `Empty` 的实现，我们 *必须* 也有 `Concat` 的实现，并且可以调用相应的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:255
@@ -1024,9 +981,7 @@ msgid ""
 "Note, how in the type of `concatListE` we only used an `Empty`\n"
 "constraint, and how in the implementation we were still able\n"
 "to invoke both `empty` and `concat`.\n"
-msgstr ""
-"请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，"
-"以及在实现中我们如何仍然能够调用 `empty` 和 `concat`。\n"
+msgstr "请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，以及在实现中我们如何仍然能够调用 `empty` 和 `concat`。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:265
@@ -1044,10 +999,7 @@ msgid ""
 "for `Maybe a` makes sense only if type `a` itself implements\n"
 "`Comp`. We can constrain interface implementations with\n"
 "the same syntax we use for constrained functions:\n"
-msgstr ""
-"有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 `Maybe "
-"a` 实现接口 `Comp` 时，只有当类型 `a` 本身实现 `Comp` "
-"时才有意义。我们可以使用与约束函数相同的语法来约束接口实现：\n"
+msgstr "有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 `Maybe a` 实现接口 `Comp` 时，只有当类型 `a` 本身实现 `Comp` 时才有意义。我们可以使用与约束函数相同的语法来约束接口实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:274
@@ -1079,12 +1031,7 @@ msgid ""
 "constraint from the above implementation. Learning to\n"
 "read and understand Idris' type errors is important\n"
 "for fixing them.\n"
-msgstr ""
-"这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * "
-"而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` "
-"中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，"
-"让我们试试从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris "
-"的类型错误对于修复它们很重要。\n"
+msgstr "这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * 而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` 中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，让我们试试从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris 的类型错误对于修复它们很重要。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:295
@@ -1112,10 +1059,7 @@ msgid ""
 "In order to do so, it needs an implementation for `Comp Bits8`.\n"
 "Go ahead, and replace `Bits8` in the type of `maxTest` with `Bits64`,\n"
 "and have a look at the error message Idris produces.\n"
-msgstr ""
-"在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8`"
-" 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris "
-"产生的错误消息。\n"
+msgstr "在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8` 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris 产生的错误消息。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:306
@@ -1139,13 +1083,7 @@ msgid ""
 "`Equals`, we will only implement the latter.\n"
 "In this case, we can give an implementation for `neq`\n"
 "already in the definition of `Equals`:\n"
-msgstr ""
-"有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现"
-"每个函数，尽管它们 *可以* 相互实现。例如，考虑一个接口 `Equals` "
-"用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` ，"
-"如果不相等则 `neq` 返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，"
-"所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 "
-"`Equals` 的定义中给出 `neq` 的实现：\n"
+msgstr "有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现每个函数，尽管它们 *可以* 相互实现。例如，考虑一个接口 `Equals` 用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` ，如果不相等则 `neq` 返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 `Equals` 的定义中给出 `neq` 的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:321
@@ -1170,8 +1108,7 @@ msgid ""
 "If in an implementation of `Equals` we only implement `eq`,\n"
 "Idris will use the default implementation for `neq` as\n"
 "shown above:\n"
-msgstr "如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` "
-"的默认实现，如上所示：\n"
+msgstr "如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` 的默认实现，如上所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:333
@@ -1221,10 +1158,7 @@ msgid ""
 "  `Empty` for pairs, constraining your implementations as necessary.\n"
 "  (Note, that multiple constraints can be given sequentially like\n"
 "  other function arguments: `Comp a => Comp b => Comp (a,b)`.)\n"
-msgstr ""
-"1. 实现接口`Equals`、`Comp`、`Concat` 和 `Empty` 用于 pairs，根据需要限制您的"
-"实现。（请注意，可以按顺序给出多个约束，例如其他函数参数：`Comp a => Comp b "
-"=> Comp (a,b)`。）\n"
+msgstr "1. 实现接口`Equals`、`Comp`、`Concat` 和 `Empty` 用于 pairs，根据需要限制您的实现。（请注意，可以按顺序给出多个约束，例如其他函数参数：`Comp a => Comp b => Comp (a,b)`。）\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Interfaces.md:361
@@ -1259,9 +1193,7 @@ msgid ""
 "that are useful in almost every non-trivial program. I'll introduce\n"
 "the basic ones here. The more advanced ones will be discussed in later\n"
 "chapters.\n"
-msgstr ""
-"Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我"
-"将在这里介绍基本的。更高级的将在后面的章节中讨论。\n"
+msgstr "Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我将在这里介绍基本的。更高级的将在后面的章节中讨论。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:378
@@ -1270,8 +1202,7 @@ msgid ""
 "Most of these interfaces come with associated mathematical laws,\n"
 "and implementations are assumed to adhere to these laws. These\n"
 "laws will be given here as well.\n"
-msgstr "这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也"
-"将在这里给出。\n"
+msgstr "这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也将在这里给出。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:379
@@ -1291,11 +1222,7 @@ msgid ""
 "with an implementation of `Eq`, and whenever programmers define\n"
 "their own data types, `Eq` is typically one of the first\n"
 "interfaces they implement.\n"
-msgstr ""
-"可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 "
-"`neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 "
-"*Prelude* 中定义的大多数数据类型都带有 `Eq` "
-"的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。\n"
+msgstr "可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 `neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 *Prelude* 中定义的大多数数据类型都带有 `Eq` 的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Interfaces.md:390
@@ -1315,8 +1242,7 @@ msgstr "我们期望以下定律适用于 `Eq` 的所有实现：\n"
 msgid ""
 "* `(==)` is *reflexive*: `x == x = True` for all `x`. This means, that\n"
 "every value is equal to itself.\n"
-msgstr "* `(==)` 具有 *自反性*：对于所有 `x`，`x == x = "
-"True`。这意味着每个值都等于它自己。\n"
+msgstr "* `(==)` 具有 *自反性*：对于所有 `x`，`x == x = True`。这意味着每个值都等于它自己。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:399
@@ -1334,9 +1260,7 @@ msgstr ""
 msgid ""
 "* `(==)` is *transitive*: From `x == y = True` and `y == z = True` follows\n"
 "`x == z = True`.\n"
-msgstr ""
-"* `(==)` 具有 *传递性*：从 `x == y = True` 和 `y == z = True` 可以得出 `x == "
-"z = True`。\n"
+msgstr "* `(==)` 具有 *传递性*：从 `x == y = True` 和 `y == z = True` 可以得出 `x == z = True`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:405
@@ -1344,8 +1268,7 @@ msgstr ""
 msgid ""
 "* `(/=)` is the negation of `(==)`: `x == y = not (x /= y)`\n"
 "for all `x` and `y`.\n"
-msgstr "* `(/=)` 是 `(==)` 的否定：对于所有 `x` 和 `y` 都有 `x == y = not (x /= y)` "
-"。\n"
+msgstr "* `(/=)` 是 `(==)` 的否定：对于所有 `x` 和 `y` 都有 `x == y = not (x /= y)` 。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:410
@@ -1355,10 +1278,7 @@ msgid ""
 "for many non-primitive types. However, out of pragmatism this is not\n"
 "required when implementing `Eq`, since writing such proofs can be\n"
 "quite involved.\n"
-msgstr ""
-"理论上，Idris "
-"有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 "
-"`Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。\n"
+msgstr "理论上，Idris 有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 `Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:411
@@ -1376,11 +1296,7 @@ msgid ""
 "`max` and `min`. Unlike `Comp`, `Ord` extends `Eq`,\n"
 "so whenever there is an `Ord` constraint, we also have access to operators\n"
 "`(==)` and `(/=)` and related functions.\n"
-msgstr ""
-"*Prelude* 中 `Comp` 的对应接口是 `Ord`。除了 `compare` 会与我们自己的 `comp` "
-"相同之外，它还提供了比较运算符 `(>=)`、`(>)`、`(<=)` 和 `(<)`，以及工具函数 "
-"`max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，"
-"我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。\n"
+msgstr "*Prelude* 中 `Comp` 的对应接口是 `Ord`。除了 `compare` 会与我们自己的 `comp` 相同之外，它还提供了比较运算符 `(>=)`、`(>)`、`(<=)` 和 `(<)`，以及工具函数 `max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Interfaces.md:420
@@ -1412,8 +1328,7 @@ msgid ""
 "* `compare x y == GT = x > y`\n"
 "* `compare x y == LT = x < y`\n"
 msgstr ""
-"* `(<=)` 具有 *反对称性*：从 `x <= y = True` 和 `y <= x = True` 可以得到 `x "
-"== y = True`。\n"
+"* `(<=)` 具有 *反对称性*：从 `x <= y = True` 和 `y <= x = True` 可以得到 `x == y = True`。\n"
 "* `x <= y = y >= x`。\n"
 "* `x < y = not (y <= x)`\n"
 "* `x > y = not (y >= x)`\n"
@@ -1434,9 +1349,7 @@ msgid ""
 "`Semigroup` is the pendant to our example interface `Concat`,\n"
 "with operator `(<+>)` (also called *append*) corresponding\n"
 "to function `concat`.\n"
-msgstr ""
-"`Semigroup` 是我们示例接口 `Concat` 的附属物，运算符 `(<+>)`（也称为 "
-"*append*）对应于函数 `concat`。\n"
+msgstr "`Semigroup` 是我们示例接口 `Concat` 的附属物，运算符 `(<+>)`（也称为 *append*）对应于函数 `concat`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:442
@@ -1456,9 +1369,7 @@ msgid ""
 "to addition or multiplication\n"
 "of numeric types, concatenation of sequences of data, or\n"
 "sequencing of computations.\n"
-msgstr ""
-"这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。"
-"示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的序列。\n"
+msgstr "这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的序列。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:455
@@ -1469,10 +1380,7 @@ msgid ""
 "for this, but that's not very type safe. It would be better\n"
 "to use a single field record wrapping values type `Double`,\n"
 "to give such values clear semantics:\n"
-msgstr ""
-"例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` "
-"，但这不是很安全的类型。最好使用单个字段记录包装值类型 "
-"`Double`，以便为这些值提供清晰的语义：\n"
+msgstr "例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` ，但这不是很安全的类型。最好使用单个字段记录包装值类型 `Double`，以便为这些值提供清晰的语义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:456
@@ -1493,8 +1401,7 @@ msgid ""
 "There is a natural way for combining two distances: We sum up\n"
 "the values they hold. This immediately leads to an implementation\n"
 "of `Semigroup`:\n"
-msgstr "有一种结合两个距离的自然方法：我们将它们持有的值相加。这就产生了 `Semigroup` "
-"的实现：\n"
+msgstr "有一种结合两个距离的自然方法：我们将它们持有的值相加。这就产生了 `Semigroup` 的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:466
@@ -1513,8 +1420,7 @@ msgid ""
 "It is also immediately clear, that zero is the neutral element of this\n"
 "operation: Adding zero to any value does not affect the value at all.\n"
 "This allows us to implement `Monoid` as well:\n"
-msgstr "也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。"
-"这也允许我们实现 `Monoid` ：\n"
+msgstr "也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。这也允许我们实现 `Monoid` ：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:475
@@ -1546,8 +1452,8 @@ msgid ""
 "`(<+>)` is *associative*: `x <+> (y <+> z) = (x <+> y) <+> z`, for all "
 "values `x`, `y`, and `z`."
 msgstr ""
-"`(<+>)` 具有 *交换律*: 对于所有值 `x`、`y` 和 `z`，都有 `x <+> (y <+> z) = ("
-"x <+> y) <+> z`,。"
+"`(<+>)` 具有 *交换律*: 对于所有值 `x`、`y` 和 `z`，都有 `x <+> (y <+> z) = "
+"(x <+> y) <+> z`,。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:489
