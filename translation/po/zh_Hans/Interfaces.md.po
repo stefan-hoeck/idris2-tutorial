@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-07 06:45+0000\n"
+"PO-Revision-Date: 2022-08-08 00:13+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/interfaces/zh_Hans/>\n"
@@ -584,23 +584,26 @@ msgstr "例如，考虑一个函数 `cmp` （*compare* 的缩写，已由 *Prelu
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:62
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "cmp : String -> String -> Ordering\n"
-msgstr "```idris cmp : 字符串 -> 字符串 -> 排序 ```"
+msgstr "cmp : String -> String -> Ordering\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:70
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We'd also like to have similar functions for many other data types.\n"
 "Function overloading allows us to do just that, but `cmp` is not an\n"
 "isolated piece of functionality. From it, we can derive functions\n"
 "like `greaterThan'`, `lessThan'`, `minimum'`, `maximum'`, and many others:\n"
-msgstr "我们还希望为许多其他数据类型提供类似的功能。函数重载允许我们这样做，但 `cmp` 不是一个孤立的功能。从中，我们可以推导出 `greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数："
+msgstr ""
+"我们还希望为许多其他数据类型提供类似的函数。函数重载允许我们这样做，但 `cmp` "
+"不是一个孤立的函数。从中，我们可以推导出 "
+"`greaterThan'`、`lessThan'`、`minimum'`、`maximum'` 等函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:71
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "lessThan' : String -> String -> Bool\n"
 "lessThan' s1 s2 = LT == cmp s1 s2\n"
@@ -620,46 +623,49 @@ msgid ""
 "    GT => s1\n"
 "    _  => s2\n"
 msgstr ""
-"lessThan' : 字符串 -> 字符串 -> 布尔\n"
-"小于 s1 s2 = LT == cmp s1 s2\n"
+"lessThan' : String -> String -> Bool\n"
+"lessThan' s1 s2 = LT == cmp s1 s2\n"
 "\n"
-"大于'：字符串->字符串->布尔\n"
-"大于 s1 s2 = GT == cmp s1 s2\n"
+"greaterThan' : String -> String -> Bool\n"
+"greaterThan' s1 s2 = GT == cmp s1 s2\n"
 "\n"
-"最小'：字符串->字符串->字符串\n"
-"最小值' s1 s2 =\n"
-"  案例 cmp s1 s2 的\n"
+"minimum' : String -> String -> String\n"
+"minimum' s1 s2 =\n"
+"  case cmp s1 s2 of\n"
 "    LT => s1\n"
-"    _ => s2\n"
+"    _  => s2\n"
 "\n"
-"最大'：字符串->字符串->字符串\n"
-"最大值' s1 s2 =\n"
-"  案例 cmp s1 s2 的\n"
+"maximum' : String -> String -> String\n"
+"maximum' s1 s2 =\n"
+"  case cmp s1 s2 of\n"
 "    GT => s1\n"
-"    _ => s2\n"
+"    _  => s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:94
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We'd need to implement all of these again for the other types with a `cmp`\n"
 "function, and most if not all of these implementations would be identical\n"
 "to the ones written above. That's a lot of code repetition.\n"
-msgstr "我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）这些实现将与上面编写的相同。这是很多代码重复。"
+msgstr "我们需要使用 `cmp` 函数为其他类型再次实现所有这些，并且大多数（如果不是全部）"
+"这些实现将与上面编写的相同。这会有很多代码重复。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:99
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "One way to solve this is to use higher-order functions.\n"
 "For instance, we could define function `minimumBy`, which takes\n"
 "a comparison function as its first argument and returns the smaller\n"
 "of the two remaining arguments:\n"
-msgstr "解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 `minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个："
+msgstr ""
+"解决这个问题的一种方法是使用高阶函数。例如，我们可以定义函数 "
+"`minimumBy`，它将比较函数作为其第一个参数并返回剩余两个参数中较小的一个：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:100
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "minimumBy : (a -> a -> Ordering) -> a -> a -> a\n"
 "minimumBy f a1 a2 =\n"
@@ -667,17 +673,15 @@ msgid ""
 "    LT => a1\n"
 "    _  => a2\n"
 msgstr ""
-"```伊德里斯\n"
 "minimumBy : (a -> a -> Ordering) -> a -> a -> a\n"
 "minimumBy f a1 a2 =\n"
-"  案例 f a1 a2 的\n"
+"  case f a1 a2 of\n"
 "    LT => a1\n"
-"    _ => a2\n"
-"```\n"
+"    _  => a2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:114
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This solution is another proof of how higher-order functions\n"
 "allow us to reduce code duplication. However, the need to explicitly\n"
@@ -685,17 +689,20 @@ msgid ""
 "can get tedious as well.\n"
 "It would be nice, if we could teach Idris to come up with\n"
 "such a function on its own.\n"
-msgstr "这个解决方案是高阶函数如何让我们减少代码重复的另一个证明。但是，始终需要显式传递比较函数也会变得乏味。如果我们能教 Idris 自己想出这样的功能，那就太好了。"
+msgstr ""
+"这个解决方案是高阶函数如何让我们减少代码重复的另一个证明。但是，始终需要显式"
+"传递比较函数也会变得乏味。如果我们能教 Idris 自己想出这样的功能，那就太好了。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:116
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interfaces solve exactly this issue. Here's an example:\n"
-msgstr "接口正好解决了这个问题。这是一个例子："
+msgstr "接口正好解决了这个问题。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:117
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Comp a where\n"
 "  comp : a -> a -> Ordering\n"
@@ -706,52 +713,59 @@ msgid ""
 "implementation Comp Bits16 where\n"
 "  comp = compare\n"
 msgstr ""
-"接口 Comp a where\n"
-"  comp : a -> a -> 排序\n"
+"interface Comp a where\n"
+"  comp : a -> a -> Ordering\n"
 "\n"
-"实现 Comp Bits8 其中\n"
-"  比较=比较\n"
+"implementation Comp Bits8 where\n"
+"  comp = compare\n"
 "\n"
-"实现 Comp Bits16 其中\n"
-"  比较=比较\n"
+"implementation Comp Bits16 where\n"
+"  comp = compare\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:133
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The code above defines *interface* `Comp` providing\n"
 "function `comp` for calculating the\n"
 "ordering for two values of a type `a`, followed by two *implementations*\n"
 "of this interface for types `Bits8` and `Bits16`. Note, that the\n"
 "`implementation` keyword is optional.\n"
-msgstr "上面的代码定义了 *interface* `Comp` 提供函数 `comp` 用于计算类型为 `a` 的两个值的排序，然后是两个 [X143X ]`Bits8` 和 `Bits16` 类型接口的实现*。请注意，`implementation` 关键字是可选的。"
+msgstr ""
+"上面的代码定义了 *接口* `Comp` ，提供函数 `comp` 用于计算类型为 `a` "
+"的两个值的排序，然后是 `Bits8` 和 `Bits16` 类型接口的两个 "
+"*实现*。请注意，`implementation` 关键字是可选的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:137
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The `comp` implementations for `Bits8` and `Bits16` both use\n"
 "function `compare`, which is part of a similar interface\n"
 "from the *Prelude* called `Ord`.\n"
-msgstr "`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude[ 中类似接口的一部分X135X] 称为 `Ord`。"
+msgstr ""
+"`Bits8` 和 `Bits16` 的 `comp` 实现都使用函数 `compare`，它是 *Prelude* "
+"中类似接口的一部分，称为 `Ord`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:139
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The next step is to look at the type of `comp` at the REPL:\n"
-msgstr "下一步是查看 REPL 中 `comp` 的类型："
+msgstr "下一步是查看 REPL 中 `comp` 的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:140
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Interfaces> :t comp\n"
 "Tutorial.Interfaces.comp : Comp a => a -> a -> Ordering\n"
-msgstr "```repl Tutorial.Interfaces> :t comp Tutorial.Interfaces.comp : Comp a => a -> a -> 排序 ```"
+msgstr ""
+"Tutorial.Interfaces> :t comp\n"
+"Tutorial.Interfaces.comp : Comp a => a -> a -> Ordering\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:154
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The interesting part in the type signature of `comp` is\n"
 "the initial `Comp a =>` argument. Here, `Comp` is a *constraint* on\n"
@@ -762,20 +776,27 @@ msgid ""
 "Whenever we invoke `comp`, we expect Idris to come up with a\n"
 "value of type `Comp a` on its own, hence the new `=>` arrow.\n"
 "If Idris fails to do so, it will answer with a type error.\n"
-msgstr "`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` 是类型参数 `a` 上的 *constraint*。该签名可以读作：“对于任何类型 `a`，给定 `a` 的接口 `Comp` 的实现，我们可以比较 ` 类型的两个值a` 并为这些返回一个 `Ordering`。”每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` 类型的值，因此新的 `=>` 箭头。如果 Idris 没有这样做，它将返回类型错误。"
+msgstr ""
+"`comp` 的类型签名中有趣的部分是初始的 `Comp a =>` 参数。这里，`Comp` "
+"是类型参数 `a` 上的 *约束*。该签名可以读作：“对于任何类型 `a`，给定 `a` "
+"的接口 `Comp` 的实现，我们可以比较 `a` 类型的两个值并返回一个 `Ordering` ”。"
+"\n"
+"每当我们调用 `comp` 时，我们希望 Idris 自己得出一个 `Comp a` 类型的值，"
+"因此这里需要新的 `=>` 箭头。如果 Idris 没有推断出来，它将返回类型错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:158
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can now use `comp` in the implementations of related functions.\n"
 "All we have to do is to also prefix these derived functions\n"
 "with a `Comp` constraint:\n"
-msgstr "我们现在可以在相关函数的实现中使用`comp`。我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束："
+msgstr "我们现在可以在相关函数的实现中使用`comp`。"
+"我们所要做的就是在这些派生函数前面加上一个 `Comp` 约束：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:159
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "lessThan : Comp a => a -> a -> Bool\n"
 "lessThan s1 s2 = LT == comp s1 s2\n"
@@ -796,26 +817,26 @@ msgid ""
 "    _  => s2\n"
 msgstr ""
 "lessThan : Comp a => a -> a -> Bool\n"
-"小于 s1 s2 = LT == 比较 s1 s2\n"
+"lessThan s1 s2 = LT == comp s1 s2\n"
 "\n"
-"大于 : Comp a => a -> a -> Bool\n"
-"大于 s1 s2 = GT == comp s1 s2\n"
+"greaterThan : Comp a => a -> a -> Bool\n"
+"greaterThan s1 s2 = GT == comp s1 s2\n"
 "\n"
-"最小值：比较 a => a -> a -> a\n"
-"最小 s1 s2 =\n"
-"  case comp s1 s2 的\n"
+"minimum : Comp a => a -> a -> a\n"
+"minimum s1 s2 =\n"
+"  case comp s1 s2 of\n"
 "    LT => s1\n"
-"    _ => s2\n"
+"    _  => s2\n"
 "\n"
-"最大值：Comp a => a -> a -> a\n"
-"最大 s1 s2 =\n"
-"  case comp s1 s2 的\n"
+"maximum : Comp a => a -> a -> a\n"
+"maximum s1 s2 =\n"
+"  case comp s1 s2 of\n"
 "    GT => s1\n"
-"    _ => s2\n"
+"    _  => s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:185
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how the definition of `minimum` is almost identical\n"
 "to `minimumBy`. The only difference being that in case of\n"
@@ -823,47 +844,48 @@ msgid ""
 "explicit argument, while for `minimum` it is provided as\n"
 "part of the `Comp` implementation, which is passed around\n"
 "by Idris for us.\n"
-msgstr "请注意，`minimum` 的定义与 `minimumBy` 的定义几乎相同。唯一的区别是，在 `minimumBy` 的情况下，我们必须将比较函数作为显式参数传递，而对于 `minimum`，它作为 `Comp` 的一部分提供实现，由 Idris 为我们传递。"
+msgstr ""
+"请注意，`minimum` 的定义与 `minimumBy` 的定义几乎相同。唯一的区别是，在 "
+"`minimumBy` 的情况下，我们必须将比较函数作为显式参数传递，而对于 `minimum`，"
+"它作为 `Comp` 的一部分提供实现，由 Idris 为我们传递。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:188
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Thus, we have defined all these utility functions once and for\n"
 "all for every type with an implementation of interface `Comp`.\n"
-msgstr "因此，我们用接口 `Comp` 的实现为每种类型一劳永逸地定义了所有这些实用函数。"
+msgstr "因此，我们用接口 `Comp` 的实现为每种类型一劳永逸地定义了所有这些实用函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:195
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "1. Implement function `anyLarger`, which should return `True`,\n"
 "if and only if a list of values contains at least one element larger\n"
 "than a given reference value. Use interface `Comp` in your\n"
 "implementation.\n"
 msgstr ""
-"1. 实现函数`anyLarger`，应该返回`True`，\n"
-"当且仅当值列表包含至少一个更大的元素\n"
-"比给定的参考值。使用接口 `Comp` 在你的\n"
-"执行。\n"
+"1. 实现函数`anyLarger`，应该返回`True` 的条件为，\n"
+"当且仅当值列表包含至少一个比给定的参考值更大的元素。使用接口 `Comp` "
+"在你的实现中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:200
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "2. Implement function `allLarger`, which should return `True`,\n"
 "if and only if a list of values contains *only* elements larger\n"
 "than a given reference value. Note, that this is trivially true\n"
 "for the empty list. Use interface `Comp` in your implementation.\n"
 msgstr ""
-"2. 实现函数`allLarger`，应该返回`True`，\n"
-"当且仅当值列表包含更大的 *only* 元素\n"
-"比给定的参考值。请注意，这是微不足道的\n"
-"对于空列表。在您的实现中使用接口 `Comp`。\n"
+"2. 实现函数`allLarger`，应该返回`True` 的条件为，\n"
+"当且仅当值列表的 *只* 包含比给定的参考值更大的元素。请注意，"
+"对于空列表总是返回 true。在您的实现中使用接口 `Comp`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:206
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "3. Implement function `maxElem`, which tries to extract the\n"
 "largest element from a list of values with a `Comp` implementation.\n"
@@ -874,44 +896,39 @@ msgstr ""
 "3. 实现函数`maxElem`，试图提取\n"
 "具有 `Comp` 实现的值列表中的最大元素。\n"
 "对于 `minElem` 也是如此，它试图提取最小的元素。\n"
-"请注意，必须考虑列表为空的可能性\n"
-"在决定输出类型时。\n"
+"请注意，在决定输出类型时必须考虑列表为空的可能性。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:210
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "4. Define an interface `Concat` for values like lists or\n"
 "strings, which can be concatenated. Provide implementations\n"
 "for lists and strings.\n"
-msgstr ""
-"4. 为列表或列表等值定义一个接口 `Concat`\n"
-"可以串联的字符串。提供实现\n"
-"对于列表和字符串。\n"
+msgstr "4. 为列表或列表等值定义一个接口 "
+"`Concat`，可以串联的字符串。提供实对于列表和字符串的实现。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:215
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "5. Implement function `concatList` for concatenating the\n"
 "values in a list holding values with a `Concat` implementation.\n"
 "Make sure to reflect the possibility of the list being empty in your\n"
 "output type.\n"
 msgstr ""
-"5. 实现函数 `concatList` 用于连接\n"
-"使用 `Concat` 实现的列表中的值。\n"
-"确保在您的列表中反映列表为空的可能性\n"
-"输出类型。\n"
+"5. 实现函数 `concatList` 用于连接使用 `Concat` 实现的列表中的值。\n"
+"确保在您的列表中反映列表为空的可能输出类型。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Interfaces.md:216
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "More about Interfaces"
-msgstr "## 更多关于接口的信息"
+msgstr "更多关于接口的信息"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:224
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the last section, we learned about the very basics\n"
 "of interfaces: Why they are useful and how to define and\n"
@@ -919,17 +936,19 @@ msgid ""
 "In this section, we will learn about some slightly\n"
 "advanced concepts: Extending interfaces, interfaces with\n"
 "constraints, and default implementations.\n"
-msgstr "在上一节中，我们了解了接口的基础知识：为什么它们有用以及如何定义和实现它们。在本节中，我们将学习一些稍微高级的概念：扩展接口、带约束的接口和默认实现。"
+msgstr ""
+"在上一节中，我们了解了接口的基础知识：为什么它们有用以及如何定义和实现它们。"
+"在本节中，我们将学习一些稍微高级的概念：扩展接口、带约束的接口和默认实现。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:225
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Extending Interfaces"
-msgstr "### 扩展接口"
+msgstr "扩展接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:233
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Some interfaces form a kind of hierarchy. For instance, for\n"
 "the `Concat` interface used in exercise 4, there might\n"
@@ -937,11 +956,15 @@ msgid ""
 "which have a neutral element with relation to concatenation.\n"
 "In such a case, we make an implementation of `Concat` a\n"
 "prerequisite for implementing `Empty`:\n"
-msgstr "一些接口形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，可能有一个名为 `Empty` 的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 `Concat` 的实现作为实现 `Empty` 的先决条件："
+msgstr ""
+"一些接口会形成一种层次结构。例如，对于练习 4 中使用的 `Concat` 接口，"
+"可能有一个名为 `Empty` "
+"的子接口，用于那些具有与串联相关的中性元素的类型。在这种情况下，我们将 "
+"`Concat` 的实现作为实现 `Empty` 的先决条件：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:234
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Concat a where\n"
 "  concat : a -> a -> a\n"
@@ -955,21 +978,21 @@ msgid ""
 "implementation Empty String where\n"
 "  empty = \"\"\n"
 msgstr ""
-"接口 Concat a where\n"
-"  连接：一个->一个->一个\n"
+"interface Concat a where\n"
+"  concat : a -> a -> a\n"
 "\n"
-"实现 Concat String where\n"
-"  连接 = (++)\n"
+"implementation Concat String where\n"
+"  concat = (++)\n"
 "\n"
 "interface Concat a => Empty a where\n"
-"  空：一个\n"
+"  empty : a\n"
 "\n"
-"实现空字符串 where\n"
-"  空=“”\n"
+"implementation Empty String where\n"
+"  empty = \"\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:254
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "`Concat a => Empty a` should be read as: \"An implementation\n"
 "of `Concat` for type `a` is a *prerequisite* for there being\n"
@@ -977,40 +1000,43 @@ msgid ""
 "But this also means that, whenever we have an implementation\n"
 "of interface `Empty`, we *must* also have an implementation of `Concat`\n"
 "and can invoke the corresponding functions:\n"
-msgstr "`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 * 先决条件 *，因为存在为 `a` 实现 `Empty`。”但这也意味着，只要我们有接口 `Empty` 的实现，我们 * 必须* 也有 `Concat` 的实现，并且可以调用相应的函数："
+msgstr ""
+"`Concat a => Empty a` 应读作：“`Concat` 类型 `a` 的实现是 *先决条件*，才能为 "
+"`a` 实现 `Empty` 接口”。但这也意味着，只要我们有接口 `Empty` 的实现，我们 "
+"*必须* 也有 `Concat` 的实现，并且可以调用相应的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:255
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "concatListE : Empty a => List a -> a\n"
 "concatListE []        = empty\n"
 "concatListE (x :: xs) = concat x (concatListE xs)\n"
 msgstr ""
-"```伊德里斯\n"
-"concatListE : 空 a => 列出 a -> a\n"
-"concatListE [] = 空\n"
+"concatListE : Empty a => List a -> a\n"
+"concatListE []        = empty\n"
 "concatListE (x :: xs) = concat x (concatListE xs)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:264
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how in the type of `concatListE` we only used an `Empty`\n"
 "constraint, and how in the implementation we were still able\n"
 "to invoke both `empty` and `concat`.\n"
-msgstr "请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，以及在实现中我们如何仍然能够调用 `empty` 和 `连接`。"
+msgstr ""
+"请注意，在 `concatListE` 的类型中，我们如何只使用 `Empty` 约束，"
+"以及在实现中我们如何仍然能够调用 `empty` 和 `concat`。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:265
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Constrained Implementations"
-msgstr "### 受约束的实现"
+msgstr "受约束的实现"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:273
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, it is only possible to implement an interface\n"
 "for a generic type, if its type parameters implement\n"
@@ -1018,11 +1044,14 @@ msgid ""
 "for `Maybe a` makes sense only if type `a` itself implements\n"
 "`Comp`. We can constrain interface implementations with\n"
 "the same syntax we use for constrained functions:\n"
-msgstr "有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 ` 实现接口 `Comp`Maybe a` 只有当类型 `a` 本身实现 `Comp` 时才有意义。我们可以使用与约束函数相同的语法来约束接口实现："
+msgstr ""
+"有时，只有泛型类型的类型参数也实现了该接口，才能实现该接口。例如，为 `Maybe "
+"a` 实现接口 `Comp` 时，只有当类型 `a` 本身实现 `Comp` "
+"时才有意义。我们可以使用与约束函数相同的语法来约束接口实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:274
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "implementation Comp a => Comp (Maybe a) where\n"
 "  comp Nothing  Nothing  = EQ\n"
@@ -1030,17 +1059,15 @@ msgid ""
 "  comp Nothing  (Just _) = LT\n"
 "  comp (Just x) (Just y) = comp x y\n"
 msgstr ""
-"```伊德里斯\n"
-"实现 Comp a => Comp (Maybe a) 其中\n"
-"  comp 没什么 没什么 = EQ\n"
-"  comp（只是_）没有= GT\n"
-"  什么都没有（只是_）= LT\n"
+"implementation Comp a => Comp (Maybe a) where\n"
+"  comp Nothing  Nothing  = EQ\n"
+"  comp (Just _) Nothing  = GT\n"
+"  comp Nothing  (Just _) = LT\n"
 "  comp (Just x) (Just y) = comp x y\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:292
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is not the same as extending an interface, although\n"
 "the syntax looks very similar. Here, the constraint lies\n"
@@ -1052,43 +1079,53 @@ msgid ""
 "constraint from the above implementation. Learning to\n"
 "read and understand Idris' type errors is important\n"
 "for fixing them.\n"
-msgstr "这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * 而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` 中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris 的类型错误对于修复它们很重要。"
+msgstr ""
+"这与扩展接口不同，尽管语法看起来非常相似。在这里，约束位于 * 类型参数 * "
+"而不是完整类型。 `Comp (Maybe a)` 实现的最后一行比较了存储在两个 `Just` "
+"中的值。这只有在这些值也有 `Comp` 实现的情况下才有可能。继续，"
+"让我们试试从上述实现中删除 `Comp a` 约束。学习阅读和理解 Idris "
+"的类型错误对于修复它们很重要。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:295
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The good thing is, that Idris will solve all these\n"
 "constraints for us:\n"
-msgstr "好消息是，Idris 将为我们解决所有这些限制："
+msgstr "好消息是，Idris 将为我们解决所有这些限制：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:296
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "maxTest : Maybe Bits8 -> Ordering\n"
 "maxTest = comp (Just 12)\n"
-msgstr "```idris maxTest : 也许是 Bits8 -> 订购 maxTest = comp (Just 12) ```"
+msgstr ""
+"maxTest : Maybe Bits8 -> Ordering\n"
+"maxTest = comp (Just 12)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:305
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, Idris tries to find an implementation for `Comp (Maybe Bits8)`.\n"
 "In order to do so, it needs an implementation for `Comp Bits8`.\n"
 "Go ahead, and replace `Bits8` in the type of `maxTest` with `Bits64`,\n"
 "and have a look at the error message Idris produces.\n"
-msgstr "在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8` 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris 产生的错误消息。"
+msgstr ""
+"在这里，Idris 试图找到 `Comp (Maybe Bits8)` 的实现。为此，它需要 `Comp Bits8`"
+" 的实现。继续，将 `maxTest` 类型中的 `Bits8` 替换为 `Bits64`，并查看 Idris "
+"产生的错误消息。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:306
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Default Implementations"
-msgstr "### 默认实现"
+msgstr "默认实现"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:320
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, we'd like to pack several related functions\n"
 "in an interface to allow programmers to implement each\n"
@@ -1102,11 +1139,17 @@ msgid ""
 "`Equals`, we will only implement the latter.\n"
 "In this case, we can give an implementation for `neq`\n"
 "already in the definition of `Equals`:\n"
-msgstr "有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现每个函数，尽管它们 * 可以* 相互实现。例如，考虑一个接口 `Equals` 用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` 和 `neq`如果不是，则返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 `Equals` 的定义中给出 `neq` 的实现："
+msgstr ""
+"有时，我们希望将几个相关的函数打包到一个接口中，以便程序员以最有效的方式实现"
+"每个函数，尽管它们 *可以* 相互实现。例如，考虑一个接口 `Equals` "
+"用于比较两个值是否相等，如果两个值相等，则函数 `eq` 返回 `True` ，"
+"如果不相等则 `neq` 返回 `True`。当然，我们可以用 `eq` 来实现 `neq`，"
+"所以大多数时候在实现 `Equals` 时，我们只会实现后者。在这种情况下，我们可以在 "
+"`Equals` 的定义中给出 `neq` 的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:321
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Equals a where\n"
 "  eq : a -> a -> Bool\n"
@@ -1114,42 +1157,43 @@ msgid ""
 "  neq : a -> a -> Bool\n"
 "  neq a1 a2 = not (eq a1 a2)\n"
 msgstr ""
+"interface Equals a where\n"
+"  eq : a -> a -> Bool\n"
+"\n"
 "  neq : a -> a -> Bool\n"
-"  neq a1 a2 = 不是 (eq a1 a2)\n"
-"```\n"
+"  neq a1 a2 = not (eq a1 a2)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:332
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If in an implementation of `Equals` we only implement `eq`,\n"
 "Idris will use the default implementation for `neq` as\n"
 "shown above:\n"
-msgstr "如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` 的默认实现，如上所示："
+msgstr "如果在 `Equals` 的实现中我们只实现 `eq`，Idris 将使用 `neq` "
+"的默认实现，如上所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:333
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Equals String where\n"
 "  eq = (==)\n"
 msgstr ""
-"```伊德里斯\n"
-"等于字符串 where\n"
+"Equals String where\n"
 "  eq = (==)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:340
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If on the other hand we'd like to provide explicit implementations\n"
 "for both functions, we can do so as well:\n"
-msgstr "另一方面，如果我们想为这两个函数提供显式实现，我们也可以这样做："
+msgstr "另一方面，如果我们想为这两个函数提供显式实现，我们也可以这样做：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:341
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Equals Bool where\n"
 "  eq True True   = True\n"
@@ -1160,29 +1204,30 @@ msgid ""
 "  neq False True  = True\n"
 "  neq _ _         = False\n"
 msgstr ""
-"```伊德里斯\n"
-"等于 Bool where\n"
-"  eq 真 真 = 真\n"
-"  eq 假 假 = 真\n"
-"  eq _ _ = 假\n"
+"Equals Bool where\n"
+"  eq True True   = True\n"
+"  eq False False = True\n"
+"  eq _ _         = False\n"
+"\n"
+"  neq True  False = True\n"
+"  neq False True  = True\n"
+"  neq _ _         = False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:358
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "1. Implement interfaces `Equals`, `Comp`, `Concat`, and\n"
 "  `Empty` for pairs, constraining your implementations as necessary.\n"
 "  (Note, that multiple constraints can be given sequentially like\n"
 "  other function arguments: `Comp a => Comp b => Comp (a,b)`.)\n"
 msgstr ""
-"1. 实现接口`Equals`、`Comp`、`Concat`和\n"
-"  `Empty` 用于对，根据需要限制您的实现。\n"
-"  （请注意，可以按顺序给出多个约束，例如\n"
-"  其他函数参数：`Comp a => Comp b => Comp (a,b)`。）\n"
+"1. 实现接口`Equals`、`Comp`、`Concat` 和 `Empty` 用于 pairs，根据需要限制您的"
+"实现。（请注意，可以按顺序给出多个约束，例如其他函数参数：`Comp a => Comp b "
+"=> Comp (a,b)`。）\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Interfaces.md:361
-#, fuzzy
 msgid ""
 "Below is an implementation of a binary tree. Implement interfaces `Equals` "
 "and `Concat` for this type."
@@ -1190,52 +1235,53 @@ msgstr "下面是二叉树的实现。为此类型实现接口 `Equals` 和 `Con
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:362
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Tree : Type -> Type where\n"
 "     Leaf : a -> Tree a\n"
 "     Node : Tree a -> Tree a -> Tree a\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   数据树：类型 -> 类型在哪里\n"
-"     叶：a -> 树 a\n"
-"     节点：树 a -> 树 a -> 树 a\n"
-"   ```\n"
+"   data Tree : Type -> Type where\n"
+"     Leaf : a -> Tree a\n"
+"     Node : Tree a -> Tree a -> Tree a\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Interfaces.md:368
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interfaces in the *Prelude*"
-msgstr "## *Prelude*中的接口"
+msgstr "*Prelude* 中的接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:374
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The Idris *Prelude* provides several interfaces plus implementations\n"
 "that are useful in almost every non-trivial program. I'll introduce\n"
 "the basic ones here. The more advanced ones will be discussed in later\n"
 "chapters.\n"
-msgstr "Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我将在这里介绍基本的。更高级的将在后面的章节中讨论。"
+msgstr ""
+"Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的程序中都很有用。我"
+"将在这里介绍基本的。更高级的将在后面的章节中讨论。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:378
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Most of these interfaces come with associated mathematical laws,\n"
 "and implementations are assumed to adhere to these laws. These\n"
 "laws will be given here as well.\n"
-msgstr "这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也将在这里给出。"
+msgstr "这些接口中的大多数都带有相关的数学定律，并且假设实现遵守这些定律。这些法律也"
+"将在这里给出。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:379
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "`Eq`"
-msgstr "### `Eq`"
+msgstr "`Eq`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:389
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Probably the most often used interface, `Eq` corresponds to\n"
 "interface `Equals` we used above as an example. Instead of\n"
@@ -1245,79 +1291,84 @@ msgid ""
 "with an implementation of `Eq`, and whenever programmers define\n"
 "their own data types, `Eq` is typically one of the first\n"
 "interfaces they implement.\n"
-msgstr "可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 `neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 *Prelude* 中定义的大多数数据类型都带有 `Eq` 的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。"
+msgstr ""
+"可能是最常用的接口，`Eq`对应我们上面举例的接口`Equals`。代替 `eq` 和 "
+"`neq`，`Eq` 提供了两个运算符 `(==)` 和 `(/=)`比较两个相同类型的值是否相等。 "
+"*Prelude* 中定义的大多数数据类型都带有 `Eq` "
+"的实现，每当程序员定义自己的数据类型时，`Eq` 通常是第一个他们实现的接口。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Interfaces.md:390
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "`Eq` Laws"
-msgstr "#### `Eq` 定律"
+msgstr "`Eq` 定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:393
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "We expect the following laws to hold for all implementations of `Eq`:\n"
-msgstr "我们期望以下定律适用于 `Eq` 的所有实现："
+msgstr "我们期望以下定律适用于 `Eq` 的所有实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:396
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* `(==)` is *reflexive*: `x == x = True` for all `x`. This means, that\n"
 "every value is equal to itself.\n"
-msgstr ""
-"* `(==)` 是 *reflexive*：对于所有 `x`，`x == x = True`。这意味着\n"
-"每个值都等于它自己。\n"
+msgstr "* `(==)` 具有 *自反性*：对于所有 `x`，`x == x = "
+"True`。这意味着每个值都等于它自己。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:399
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* `(==)` is *symmetric*: `x == y = y == x` for all `x` and `y`.\n"
 "This means, that the order of arguments passed to `(==)` does not matter.\n"
 msgstr ""
-"* `(==)` 是 * 对称*：对于所有 `x` 和 `y`，`x == y = y == x`。\n"
+"* `(==)` 具有 *交换律*：对于所有 `x` 和 `y`，`x == y = y == x`。\n"
 "这意味着，传递给 `(==)` 的参数顺序无关紧要。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:402
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* `(==)` is *transitive*: From `x == y = True` and `y == z = True` follows\n"
 "`x == z = True`.\n"
 msgstr ""
-"* `(==)` 是 * 传递*：从 `x == y = True` 和 `y == z = True` 如下\n"
-"`x == z = True`。\n"
+"* `(==)` 具有 *传递性*：从 `x == y = True` 和 `y == z = True` 可以得出 `x == "
+"z = True`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:405
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* `(/=)` is the negation of `(==)`: `x == y = not (x /= y)`\n"
 "for all `x` and `y`.\n"
-msgstr ""
-"* `(/=)` 是 `(==)` 的否定：`x == y = not (x /= y)`\n"
-"对于所有 `x` 和 `y`。\n"
+msgstr "* `(/=)` 是 `(==)` 的否定：对于所有 `x` 和 `y` 都有 `x == y = not (x /= y)` "
+"。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:410
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In theory, Idris has the power to verify these laws at compile time\n"
 "for many non-primitive types. However, out of pragmatism this is not\n"
 "required when implementing `Eq`, since writing such proofs can be\n"
 "quite involved.\n"
-msgstr "理论上，Idris 有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 `Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。"
+msgstr ""
+"理论上，Idris "
+"有能力在编译时为许多非原始类型验证这些定律。但是，出于实用主义考虑，在实现 "
+"`Eq` 时不需要这样做，因为编写这样的证明可能非常复杂。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:411
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "`Ord`"
-msgstr "### `Ord`"
+msgstr "`Ord`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:419
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The pendant to `Comp` in the *Prelude* is interface `Ord`. In addition\n"
 "to `compare`, which is identical to our own `comp` it provides comparison\n"
@@ -1325,29 +1376,32 @@ msgid ""
 "`max` and `min`. Unlike `Comp`, `Ord` extends `Eq`,\n"
 "so whenever there is an `Ord` constraint, we also have access to operators\n"
 "`(==)` and `(/=)` and related functions.\n"
-msgstr "*Prelude*中`Comp`的挂件是接口`Ord`。除了 `compare`，它与我们自己的 `comp` 相同，它提供了比较运算符 `(>=)`、`(>)`、[ X170X](<=)` 和 `(<)`，以及效用函数 `max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。"
+msgstr ""
+"*Prelude* 中 `Comp` 的对应接口是 `Ord`。除了 `compare` 会与我们自己的 `comp` "
+"相同之外，它还提供了比较运算符 `(>=)`、`(>)`、`(<=)` 和 `(<)`，以及工具函数 "
+"`max` 和 `min`。与 `Comp` 不同，`Ord` 扩展了 `Eq`，因此只要存在 `Ord` 约束，"
+"我们还可以访问运算符 `(= =)` 和 `(/=)` 及相关函数。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Interfaces.md:420
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "`Ord` Laws"
-msgstr "#### `Ord` 规律"
+msgstr "`Ord` 定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:423
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "We expect the following laws to hold for all implementations of `Ord`:\n"
-msgstr "我们期望以下定律适用于 `Ord` 的所有实现："
+msgstr "我们期望以下定律适用于 `Ord` 的所有实现：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:433
-#, fuzzy
 msgid "`(<=)` is *reflexive* and *transitive*."
-msgstr "`(<=)` 是 * 自反 * 和 * 传递*。"
+msgstr "`(<=)` 具有 *自反性* 和 *传递性*。"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:433
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* `(<=)` is *antisymmetric*: From `x <= y = True` and `y <= x = True`\n"
 "follows `x == y = True`.\n"
@@ -1358,41 +1412,43 @@ msgid ""
 "* `compare x y == GT = x > y`\n"
 "* `compare x y == LT = x < y`\n"
 msgstr ""
-"* `(<=)` 是 *antisymmetric*：来自 `x <= y = True` 和 `y <= x = True`\n"
-"遵循`x == y = True`。\n"
+"* `(<=)` 具有 *反对称性*：从 `x <= y = True` 和 `y <= x = True` 可以得到 `x "
+"== y = True`。\n"
 "* `x <= y = y >= x`。\n"
 "* `x < y = not (y <= x)`\n"
-"* `x > y = 非 (y >= x)`\n"
-"* `比较 x y = EQ` => `x == y = True`\n"
-"* `比较 x y == GT = x > y`\n"
-"* `比较 x y == LT = x < y`\n"
+"* `x > y = not (y >= x)`\n"
+"* `compare x y = EQ` => `x == y = True`\n"
+"* `compare x y == GT = x > y`\n"
+"* `compare x y == LT = x < y`\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:434
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "`Semigroup` and `Monoid`"
-msgstr "### `Semigroup` 和 `Monoid`"
+msgstr "`Semigroup` 和 `Monoid`"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:439
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "`Semigroup` is the pendant to our example interface `Concat`,\n"
 "with operator `(<+>)` (also called *append*) corresponding\n"
 "to function `concat`.\n"
-msgstr "`Semigroup` 是我们示例接口 `Concat` 的附属物，运算符 `(<+>)`（也称为 *append*）对应于函数 [ X133X]连接`。"
+msgstr ""
+"`Semigroup` 是我们示例接口 `Concat` 的附属物，运算符 `(<+>)`（也称为 "
+"*append*）对应于函数 `concat`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:442
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Likewise, `Monoid` corresponds to `Empty`,\n"
 "with `neutral` corresponding to `empty`.\n"
-msgstr "同样，`Monoid` 对应 `Empty`，`neutral` 对应 `empty`。"
+msgstr "同样，`Monoid` 对应 `Empty`，`neutral` 对应 `empty`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:449
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "These are incredibly important interfaces, which can be used\n"
 "to combine two or more values of a data type into a single\n"
@@ -1400,108 +1456,107 @@ msgid ""
 "to addition or multiplication\n"
 "of numeric types, concatenation of sequences of data, or\n"
 "sequencing of computations.\n"
-msgstr "这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的排序。"
+msgstr ""
+"这些是非常重要的接口，可用于将数据类型的两个或多个值组合成同一类型的单个值。"
+"示例包括但不限于数字类型的加法或乘法、数据序列的串联或计算的序列。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:455
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As an example, consider a data type for representing\n"
 "distances in a geometric application. We could just use `Double`\n"
 "for this, but that's not very type safe. It would be better\n"
 "to use a single field record wrapping values type `Double`,\n"
 "to give such values clear semantics:\n"
-msgstr "例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` ，但这不是很安全的类型。最好使用单个字段记录包装值类型 `Double`，以便为这些值提供清晰的语义："
+msgstr ""
+"例如，考虑在几何应用程序中表示距离的数据类型。我们可以为此使用 `Double` "
+"，但这不是很安全的类型。最好使用单个字段记录包装值类型 "
+"`Double`，以便为这些值提供清晰的语义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:456
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Distance where\n"
 "  constructor MkDistance\n"
 "  meters : Double\n"
 msgstr ""
-"```伊德里斯\n"
-"记录距离在哪里\n"
-"  构造函数 MkDistance\n"
-"  米：双\n"
-"```\n"
+"record Distance where\n"
+"  constructor MkDistance\n"
+"  meters : Double\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:465
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There is a natural way for combining two distances: We sum up\n"
 "the values they hold. This immediately leads to an implementation\n"
 "of `Semigroup`:\n"
-msgstr "有一种结合两个距离的自然方法：我们将它们持有的值相加。这立即导致 `Semigroup` 的实现："
+msgstr "有一种结合两个距离的自然方法：我们将它们持有的值相加。这就产生了 `Semigroup` "
+"的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:466
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Semigroup Distance where\n"
 "  x <+> y = MkDistance $ x.meters + y.meters\n"
 msgstr ""
-"```伊德里斯\n"
-"半群距离\n"
+"Semigroup Distance where\n"
 "  x <+> y = MkDistance $ x.meters + y.meters\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:474
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is also immediately clear, that zero is the neutral element of this\n"
 "operation: Adding zero to any value does not affect the value at all.\n"
 "This allows us to implement `Monoid` as well:\n"
-msgstr "也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。这也允许我们实现 `Monoid` ："
+msgstr "也很明显，零是此操作的中性元素：将零添加到任何值都不会影响该值。"
+"这也允许我们实现 `Monoid` ：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:475
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Monoid Distance where\n"
 "  neutral = MkDistance 0\n"
 msgstr ""
-"```伊德里斯\n"
-"Monoid 距离\n"
-"  中性 = MkDistance 0\n"
-"```\n"
+"Monoid Distance where\n"
+"  neutral = MkDistance 0\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Interfaces.md:480
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "`Semigroup` and `Monoid` Laws"
-msgstr "#### `Semigroup` 和 `Monoid` 定律"
+msgstr "`Semigroup` 和 `Monoid` 定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Interfaces.md:484
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We expect the following laws to hold for all implementations of `Semigroup`\n"
 "and `Monoid`:\n"
-msgstr "我们期望以下定律适用于 `Semigroup` 和 `Monoid` 的所有实现："
+msgstr "我们期望以下定律适用于 `Semigroup` 和 `Monoid` 的所有实现：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:489
-#, fuzzy
 msgid ""
 "`(<+>)` is *associative*: `x <+> (y <+> z) = (x <+> y) <+> z`, for all "
 "values `x`, `y`, and `z`."
 msgstr ""
-"`(<+>)` 是 * 关联*: `x <+> (y <+> z) = (x <+> y) <+> z`,对于所有值 `x`、`y` "
-"和 `z`。"
+"`(<+>)` 具有 *交换律*: 对于所有值 `x`、`y` 和 `z`，都有 `x <+> (y <+> z) = ("
+"x <+> y) <+> z`,。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Interfaces.md:489
-#, fuzzy
 msgid ""
 "`neutral` is the *neutral element* with relation to `(<+>)`: `neutral <+> x "
 "= x <+> neutral = x`, for all `x`."
 msgstr ""
-"`neutral` 是 *neutral element* 与 `(<+>)` 的关系： `neutral <+> x = x <"
-"+>neutral = x[X95X ]，适用于所有 `x`。"
+"`neutral` 是 *中性元素* 与 `(<+>)` 的关系： `neutral <+> x = x <+> neutral = "
+"x`，适用于所有 `x`。"
 
 #. type: Title ###
 #: ../src/Tutorial/Interfaces.md:490
