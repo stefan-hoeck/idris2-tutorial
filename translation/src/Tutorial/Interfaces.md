@@ -339,11 +339,7 @@ Monoid Distance where
 
 ### `Show`
 
-The `Show` interface is mainly used for debugging purposes, and is
-supposed to display values of a given type as a string, typically closely
-resembling the Idris code used to create the value. This includes the
-proper wrapping of arguments in parentheses where necessary. For instance,
-experiment with the output of the following function at the REPL:
+`Show` 接口主要用于调试目的，并且应该将给定类型的值显示为字符串，通常非常类似于用于创建值的 Idris 代码。这包括在必要时将参数正确包装在括号中。例如，在 REPL 中试验以下函数的输出：
 
 ```idris
 showExample : Maybe (Either String (List (Maybe Integer))) -> String
@@ -357,29 +353,15 @@ Tutorial.Interfaces> showExample (Just (Right [Just 12, Nothing]))
 "Just (Right [Just 12, Nothing])"
 ```
 
-We will learn how to implement instances of `Show` in an exercise.
+我们将在练习中学习如何实现 `Show` 的实例。
 
-### Overloaded Literals
+### 字面量重载
 
-Literal values in Idris, such as integer literals (`12001`), string
-literals (`"foo bar"`), floating point literals (`12.112`), and
-character literals  (`'$'`) can be overloaded. This means, that we
-can create values of types other than `String` from just a string
-literal. The exact workings of this has to wait for another section,
-but for many common cases, it is sufficient for a value to implement
-interfaces `FromString` (for using string literals), `FromChar` (for using
-character literals), or `FromDouble` (for using floating point literals).
-The case of integer literals is special, and will be discussed in the next
-section.
+Idris 中的字面量，例如整数字面量 (`12001`)、字符串字面量 (`"foo bar"`)、浮点字面量 (`12.112`) 和字符字面量(`'$'`) 都可以重载。这意味着，我们可以仅从字符串字面量创建 `String` 以外的类型的值。其具体工作原理必须等待另一部分，但对于许多常见情况，一个值足以实现接口 `FromString`（用于使用字符串文字面量）、`FromChar`（用于使用字符字面量）或 `FromDouble` （用于使用浮点字面量）。整数字面量的情况很特殊，将在下一节中讨论。
 
-Here is an example of using `FromString`. Assume, we write an application
-where users can identify themselves with a username and password. Both
-consist of strings of characters, so it is pretty easy to confuse and mix
-up the two things, although they clearly have very different semantics.
-In these cases, it is advisable to come up with new types for the two,
-especially since getting these things wrong is a security concern.
+这是使用 `FromString` 的示例。假设我们编写了一个应用程序，用户可以在其中使用用户名和密码来识别自己。两者都由字符串组成，因此很容易混淆这两件事，尽管它们显然具有非常不同的语义。在这些情况下，建议为这两种情况提供新类型，特别是因为弄错这些东西是一个安全问题。
 
-Here are three example record types to do this:
+以下是执行此操作的三种示例记录类型：
 
 ```idris
 record UserName where
@@ -396,17 +378,14 @@ record User where
   password : Password
 ```
 
-In order to create a value of type `User`, even for testing, we'd have
-to wrap all strings using the given constructors:
+为了创建 `User` 类型的值，即使是为了测试，我们也必须使用给定的构造函数包装所有字符串：
 
 ```idris
 hock : User
 hock = MkUser (MkUserName "hock") (MkPassword "not telling")
 ```
 
-This is rather cumbersome, and some people might think this to be too high
-a price to pay just for an increase in type safety (I'd tend to disagree).
-Luckily, we can get the convenience of string literals back very easily:
+这是相当麻烦的，有些人可能认为这对于仅仅为了增加类型安全性而付出的代价太高了（我倾向于不同意）。幸运的是，我们可以很容易地恢复字符串字面量的便利性：
 
 ```idris
 FromString UserName where
@@ -419,11 +398,9 @@ hock2 : User
 hock2 = MkUser "hock" "not telling"
 ```
 
-### Numeric Interfaces
+### 数字接口
 
-The *Prelude* also exports several interfaces providing the usual arithmetic
-operations. Below is a comprehensive list of the interfaces and the
-functions each provides:
+*Prelude* 还导出了几个提供常用算术运算的接口。下面是一个完整的接口列表和每个提供的函数：
 
 * `Num`
   * `(+)` : Addition
@@ -442,60 +419,31 @@ functions each provides:
   * `(/)` : Division
   * `recip` : Calculates the reciprocal of a value
 
-As you can see: We need to implement interface `Num` to
-use integer literals for a given type. In order to use
-negative integer literals like `-12`, we also have to
-implement interface `Neg`.
+如您所见：我们需要实现接口 `Num` 以对给定类型使用整数文字。为了使用像 `-12` 这样的负整数字面量，我们还必须实现接口 `Neg`。
 
 ### `Cast`
 
-The last interface we will quickly discuss in this section is `Cast`. It
-is used to convert values of one type to values of another via
-function `cast`. `Cast` is special, since it is parameterized
-over *two* type parameters unlike the other interfaces we looked
-at so far, with only one type parameter.
+我们将在本节中快速讨论的最后一个接口是 `Cast`。它用于通过函数 `cast` 将一种类型的值转换为另一种类型的值。 `Cast` 是特殊的，因为它是通过 *两* 类型参数参数化的，这与我们目前看到的其他接口不同，只有一个类型参数。
 
-So far, `Cast` is mainly used for interconversion
-between primitive types in the standard libraries,
-especially numeric types. When you look
-at the implementations exported from the *Prelude* (for instance,
-by invoking `:doc Cast` at the REPL), you'll see that there are
-dozens of implementations for most pairings of primitive types.
+到目前为止，`Cast`主要用于标准库中基本类型之间的相互转换，尤其是数值类型。当您查看从 *Prelude* 导出的实现时（例如，通过在 REPL 中调用 `:doc Cast`），您会看到几十个种原语类型的实现。
 
-Although `Cast` would also be useful for other conversions (for
-going from `Maybe` to `List` or for going from `Either e` to `Maybe`,
-for instance), the *Prelude* and
-*base* seem not to introduce these consistently. For instance,
-there are `Cast` implementations from going from `SnocList` to
-`List` and vice versa, but not for going from `Vect n` to `List`,
-or for going from `List1` to `List`, although these would
-be just as feasible.
+尽管 `Cast` 也可用于其他转换（用于从 `Maybe` 到 `List` 或从 `Either e` 到 `Maybe`），*Prelude* 和 *base* 似乎没有一致地引入这些。例如，从 `SnocList` 到 `List` 有 `Cast` 实现，反之亦然，但没有从 `Vect n` 到 `List`，或者从 `List1` 到 `List`，尽管这些都是可行的。
 
 ### 练习第 3 部分
 
-These exercises are meant to make you comfortable with
-implementing interfaces for your own data types, as you
-will have to do so regularly when writing Idris code.
+这些练习旨在让您熟悉为自己的数据类型实现接口，因为您在编写 Idris 代码时必须定期这样做。
 
-While it is immediately clear why interfaces like
-`Eq`, `Ord`, or `Num` are useful, the usability of
-`Semigroup` and `Monoid` may be harder to appreciate at first.
-Therefore, there are several exercises where you'll implement
-different instances for these.
+虽然很清楚为什么像 `Eq`、`Ord` 或 `Num` 这样的接口很有用，但 `Semigroup` 和 `Monoid` 的可用性一开始可能更难欣赏。因此，有几个练习可以为这些练习实现不同的实例。
 
-1. Define a record type `Complex` for complex numbers, by pairing two values
-   of type `Double`.  Implement interfaces `Eq`, `Num`, `Neg`, and
-   `Fractional` for `Complex`.
+1. 通过配对 `Double` 类型的两个值，为复数定义记录类型 `Complex`。为 `Complex` 实现接口
+   `Eq`、`Num`、`Neg` 和 `Fractional`。
 
-2. Implement interface `Show` for `Complex`. Have a look at data type `Prec`
-   and function `showPrec` and how these are used in the *Prelude* to
-   implement instances for `Either` and `Maybe`.
+2. 为 `Complex` 实现接口 `Show`。查看数据类型 `Prec` 和函数 `showPrec` 以及如何使用它们来实现在
+   *Prelude* 中的 `Either` 和 `Maybe` 的实例。
 
-   Verify the correct behavior of your implementation by wrapping
-   a value of type `Complex` in a `Just` and `show` the result at
-   the REPL.
+   通过在 `Just` 和 `show` 中包装`Complex` 类型的值来实现，并在 REPL 中验证正确的行为。
 
-3. Consider the following wrapper for optional values:
+3. 考虑以下可选值的包装器：
 
    ```idris
    record First a where
@@ -503,10 +451,7 @@ different instances for these.
      value : Maybe a
    ```
 
-   Implement interfaces `Eq`, `Ord`, `Show`, `FromString`, `FromChar`, `FromDouble`,
-   `Num`, `Neg`, `Integral`, and `Fractional` for `First a`. All of these will require
-   corresponding constraints on type parameter `a`. Consider implementing and
-   using the following utility functions where they make sense:
+   实现接口 `Eq`, `Ord`, `Show`, `FromString`, `FromChar`, `FromDouble`, `Num`、`Neg`、`Integral` 和 `Fractional` 用于 `First a`。所有这些都需要类型参数 `a` 的相应约束。考虑在有意义的地方实现并使用以下实用函数：
 
    ```idris
    pureFirst : a -> First a
@@ -516,13 +461,10 @@ different instances for these.
    mapFirst2 : (a -> b -> c) -> First a -> First b -> First c
    ```
 
-4. Implement interfaces `Semigroup` and `Monoid` for `First a` in such a
-   way, that `(<+>)` will return the first non-nothing argument and
-   `neutral` is the corresponding neutral element. There must be no
-   constraints on type parameter `a` in these implementations.
+4. 为 `First a` 实现接口 `Semigroup` 和 `Monoid`，使 `(<+>)` 返回第一个非空参数， `neutral`
+   是相应的中性元素。在这些实现中，类型参数 `a` 必须没有约束。
 
-5. Repeat exercises 3 and 4 for record `Last`. The `Semigroup`
-   implementation should return the last non-nothing value.
+5. 对记录 `Last` 重复练习 3 和 4。 `Semigroup` 实现应该返回最后一个非空值。
 
    ```idris
    record Last a where
@@ -530,18 +472,12 @@ different instances for these.
      value : Maybe a
    ```
 
-6. Function `foldMap` allows us to map a function returning a `Monoid` over
-   a list of values and accumulate the result using `(<+>)` at the same
-   time.  This is a very powerful way to accumulate the values stored in a
-   list.  Use `foldMap` and `Last` to extract the last element (if any) from
-   a list.
+6. 函数 `foldMap` 允许我们将返回 `Monoid` 的函数映射到值列表上，并同时使用 `(<+>)`
+   累加结果。这是累积存储在列表中的值的一种非常有效的方法。使用 `foldMap` 和 `Last` 从列表中提取最后一个元素（如果有）。
 
-   Note, that the type of `foldMap` is more general and not specialized
-   to lists only. It works also for `Maybe`, `Either` and other container
-   types we haven't looked at so far. We will learn about
-   interface `Foldable` in a later section.
+   请注意，`foldMap` 的类型更通用，不是专门用于列表的。它也适用于 `Maybe`、`Either` 和到目前为止我们还没有看过的其它容器类型。在后面的部分我们将了解接口 `Foldable` 。
 
-7. Consider record wrappers `Any` and `All` for boolean values:
+7. 考虑记录包装器 `Any` 和 `All` 用于布尔值：
 
    ```idris
    record Any where
@@ -553,16 +489,11 @@ different instances for these.
      all : Bool
    ```
 
-   Implement `Semigroup` and `Monoid` for `Any`, so that the result of
-   `(<+>)` is `True`, if and only if at least one of the arguments is `True`.
-   Make sure that `neutral` is indeed the neutral element for this operation.
+   对 `Any` 实现 `Semigroup` 和 `Monoid`，仅当至少一个参数是 `True` 时，`(<+>)` 的结果是 `True`。确保 `neutral` 确实是此操作的中性元素。
 
-   Likewise, implement `Semigroup` and `Monoid` for `All`, so that the result of
-   `(<+>)` is `True`, if and only if both of the arguments are `True`.
-   Make sure that `neutral` is indeed the neutral element for this operation.
+   同样，为 `All` 实现 `Semigroup` 和 `Monoid`，当且仅当两个参数都是 `True`， `(<+>)` 的结果为 `True`，确保 `neutral` 确实是此操作的中性元素。
 
-8. Implement functions `anyElem` and `allElems` using `foldMap` and `Any` or
-   `All`, respectively:
+8. 分别使用 `foldMap` 为 `Any` 或 `All` 实现函数 `anyElem` 和 `allElems`：
 
    ```idris
    -- True, if the predicate holds for at least one element
@@ -572,8 +503,7 @@ different instances for these.
    allElems : (a -> Bool) -> List a -> Bool
    ```
 
-9. Record wrappers `Sum` and `Product` are mainly used to hold numeric
-   types.
+9. 记录包装器 `Sum` 和 `Product` 主要用于保存数字类型。
 
    ```idris
    record Sum a where
@@ -585,17 +515,15 @@ different instances for these.
      value : a
    ```
 
-   Given an implementation of `Num a`, implement `Semigroup (Sum a)`
-   and `Monoid (Sum a)`, so that `(<+>)` corresponds to addition.
+   给定 `Num a` 的实现，实现 `Semigroup (Sum a)`
+   和 `Monoid (Sum a)`，因此 `(<+>)` 对应于加法。
 
-   Likewise, implement `Semigroup (Product a)` and `Monoid (Product a)`,
-   so that `(<+>)` corresponds to multiplication.
+   同样，实现 `Semigroup (Product a)` 和 `Monoid (Product a)`，
+   因此 `(<+>)` 对应于乘法。
 
-   When implementing `neutral`, remember that you can use integer
-   literals when working with numeric types.
+   在实现 `neutral` 时，在处理数字类型时，可以使用整数字面量。
 
-10. Implement `sumList` and `productList` by using `foldMap` together with
-    the wrappers from Exercise 9:
+10. 通过使用 `foldMap` 和练习 9 中的包装器来实现 `sumList` 和 `productList`：
 
     ```idris
     sumList : Num a => List a -> a
@@ -603,69 +531,40 @@ different instances for these.
     productList : Num a => List a -> a
     ```
 
-11. To appreciate the power and versatility of `foldMap`, after solving
-    exercises 6 to 10 (or by loading `Solutions.Inderfaces` in a REPL
-    session), run the following at the REPL, which will - in a single list
-    traversal! - calculate the first and last element of the list as well as
-    the sum and product of all values.
+11. 要了解 `foldMap` 的强大功能和多功能性，在解决练习 6 到 10 之后（或通过在 REPL 会话中加载
+    `Solutions.Inderfaces`），在 REPL 中运行以下命令，这将 在单列表中遍历！ -
+    计算列表的第一个和最后一个元素以及所有值的总和和乘积。
 
     ```repl
     > foldMap (\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]
     (MkFirst (Just 3), (MkLast (Just 12), (MkSum 26, MkProduct 1008)))
     ```
 
-    Note, that there are also `Semigroup` implementations for
-    types with an `Ord` implementation, which will return
-    the smaller or larger of two values. In case of types
-    with an absolute minimum or maximum (for instance, 0 for
-    natural numbers, or 0 and 255 for `Bits8`), these can even
-    be extended to `Monoid`.
+    请注意，对于具有 `Ord` 实现，也有 `Semigroup` 实现的类型，它将返回两个值中的较小值或较大值。对于具有绝对最小值或最大值的类型（例如，自然数中的0，或 `Bits8` 中的 0 和 255），还可以可以被可以扩展到为 `Monoid`。
 
-12. In an earlier exercise, you implemented a data type representing
-    chemical elements and wrote a function for calculating their atomic
-    masses. Define a new single field record type for representing atomic
-    masses, and implement interfaces `Eq`, `Ord`, `Show`, `FromDouble`,
-    `Semigroup`, and `Monoid` for this.
+12. 在之前的练习中，您实现了一个表示化学元素的数据类型并编写了一个用于计算其原子质量的函数。定义一个新的单字段记录类型来表示原子质量，并为它实现接口
+    `Eq`, `Ord`, `Show`, `FromDouble`, ` Semigroup` 和 `Monoid` 。
 
-13. Use the new data type from exercise 12 to calculate the atomic mass of
-    an element and compute the molecular mass of a molecule given by its
-    formula.
+13. 使用练习 12 中的新数据类型来计算元素的原子质量并计算由其公式给出的分子的分子质量。
 
-    Hint: With a suitable utility function, you can use `foldMap`
-    once again for this.
+    提示：使用合适的实用程序函数，您可以再次使用 `foldMap` 来实现此目的。
 
-Final notes: If you are new to functional programming, make sure
-to give your implementations of exercises 6 to 10 a try at the REPL.
-Note, how we can implement all of these functions with a minimal amount
-of code and how, as shown in exercise 11, these behaviors can be
-combined in a single list traversal.
+最后注意事项：如果您是函数式编程的新手，请确保在 REPL 中尝试您的练习 6 到 10 的实现。请注意，我们如何用最少的代码实现所有这些功能，以及如练习 11 所示，如何将这些行为组合在一个列表遍历中。
 
 ## 结论
 
-* Interfaces allow us to implement the same function with different behavior
-  for different types.
-* Functions taking one or more interface implementations as arguments are
-  called *constrained functions*.
-* Interfaces can be organized hierarchically by *extending* other
-  interfaces.
-* Interfaces implementations can themselves be *constrained* requiring other
-  implementations to be available.
-* Interface functions can be given a *default implementation*, which can be
-  overridden by implementers, for instance for reasons of efficiency.
-* Certain interfaces allow us to use literal values such as string or
-  integer literals for our own data types.
+* 接口允许我们为不同类型实现具有不同行为的相同功能。
+* 将一个或多个接口实现作为参数的函数称为*约束函数*。
+* 接口可以通过*扩展*其他接口来组织层次。
+* 接口实现本身可以具有*约束*，需要其他实现可用。
+* 接口函数可以被赋予一个*默认实现*，它可以被实现者覆盖，例如出于效率的原因。
+* 某些接口允许我们为我们自己的数据类型使用字符串或整数等字面量。
 
-Note, that I did not yet tell the whole story about literal values
-in this section. More details for using literals with types that
-accept only a restricted set of values can be found in the
-chapter about [primitives](Prim.md).
+请注意，我还没有在本节中讲述有关字面量的全部故事。关于使用只接受一组受限值的类型的字面量的更多细节可以在关于 [原语](Prim.md) 章节中找到。
 
 ### 下一步是什么
 
-In the [next chapter](Functions2.md), we have a closer look
-at functions and their types. We will learn about named arguments,
-implicit arguments, and erased arguments as well as some
-constructors for implementing more complex functions.
+在 [下一章](Functions2.md) 中，我们将仔细研究函数及其类型。我们将学习命名参数、隐式参数和擦除参数以及一些用于实现更复杂函数的构造函数。
 
 <!-- vi: filetype=idris2
 -->
