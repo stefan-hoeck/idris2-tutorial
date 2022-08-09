@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-03 07:47+0000\n"
+"PO-Revision-Date: 2022-08-09 12:54+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions2/zh_Hans/>\n"
@@ -410,9 +410,9 @@ msgstr "练习"
 
 #. type: Title #
 #: ../src/Tutorial/Functions2.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functions Part 2"
-msgstr "# 函数第 2 部分"
+msgstr "函数第 2 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:9
@@ -428,33 +428,41 @@ msgstr "到目前为止，我们了解了 Idris 语言的核心特性，它与�
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:15
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In this chapter, we start to dissect Idris functions and their types\n"
 "for real. We learn about implicit arguments, named arguments, as well\n"
 "as erasure and quantities. But first, we'll look at `let` bindings\n"
 "and `where` blocks, which help us implement functions too complex\n"
 "to fit on a single line of code. Let's get started!\n"
-msgstr "在本章中，我们开始真正剖析 Idris 函数及其类型。我们了解隐式参数、命名参数以及擦除和数量。但首先，我们将看看 `let` 绑定和 `where` 块，它们可以帮助我们实现过于复杂而无法在一行代码中放置的函数。让我们开始吧！"
+msgstr ""
+"在本章中，我们开始真正剖析 Idris "
+"函数及其类型。我们了解隐式参数、命名参数以及擦除和定量。但首先，我们将看看 "
+"`let` 绑定和 `where` "
+"块，它们可以帮助我们实现过于复杂而无法在一行代码中放置的函数。让我们开始吧！"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:16
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Functions2\n"
 "\n"
 "%default total\n"
-msgstr "```idris 模块 Tutorial.Functions2"
+msgstr ""
+"module Tutorial.Functions2\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions2.md:22
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Let Bindings and Local Definitions"
-msgstr "## 让绑定和局部定义"
+msgstr "Let 绑定和局部定义"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:31
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The functions we looked at so far were simple enough\n"
 "to be implemented directly via pattern matching\n"
@@ -463,53 +471,61 @@ msgid ""
 "important language constructs for introducing and reusing\n"
 "new local variables and functions. We'll look at these\n"
 "in two case studies.\n"
-msgstr "到目前为止，我们看到的函数非常简单，可以通过模式匹配直接实现，而不需要额外的辅助函数或变量。情况并非总是如此，并且有两个重要的语言结构用于引入和重用新的局部变量和函数。我们将在两个案例研究中研究这些。"
+msgstr ""
+"到目前为止，我们看到的函数非常简单，可以通过模式匹配直接实现，而不需要额外的"
+"辅助函数或变量。情况并非总是如此，并且有两个重要的语言结构用于引入和重用新的"
+"局部变量和函数。我们将在两个案例研究中研究这些。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:32
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Use Case 1: Arithmetic Mean and Standard Deviation"
-msgstr "### 用例 1：算术平均值和标准差"
+msgstr "用例 1：算术平均值和标准差"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:37
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In this example, we'd like to calculate the arithmetic\n"
 "mean and the standard deviation of a list of floating point values.\n"
 "There are several things we need to consider.\n"
-msgstr "在此示例中，我们要计算浮点值列表的算术平均值和标准差。我们需要考虑几件事。"
+msgstr "在此示例中，我们要计算浮点值列表的算术平均值和标准差。我们需要考虑几件事。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:41
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "First, we need a function for calculating the sum of\n"
 "a list of numeric values. The *Prelude* exports function\n"
 "`sum` for this:\n"
-msgstr "首先，我们需要一个函数来计算数值列表的总和。 *Prelude* 为此导出函数 `sum`："
+msgstr "首先，我们需要一个函数来计算数值列表的总和。 *Prelude* 为此导出函数 `sum`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:42
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> :t sum\n"
 "Prelude.sum : Num a => Foldable t => t a -> a\n"
-msgstr "```repl Main> :t sum Prelude.sum : Num a => Foldable t => t a -> a ```"
+msgstr ""
+"Main> :t sum\n"
+"Prelude.sum : Num a => Foldable t => t a -> a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:51
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is - of course - similar to `sumList` from Exercise 10\n"
 "of the [last section](Interfaces.md), but generalized to all\n"
 "container types with a `Foldable` implementation. We will\n"
 "learn about interface `Foldable` in a later section.\n"
-msgstr "这 - 当然 - 类似于 [最后一节](Interfaces.md) 的练习 10 中的 `sumList`，但推广到具有 `Foldable` 实现的所有容器类型。我们将在后面的部分了解接口 `Foldable`。"
+msgstr ""
+"这 - 当然 - 类似于 [上一节](Interfaces.md) 的练习 10 中的 `sumList`，"
+"但推广到具有 `Foldable` 实现的所有容器类型。我们将在后面的部分了解接口 "
+"`Foldable`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:62
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to also calculate the variance,\n"
 "we need to convert every value in the list to\n"
@@ -521,43 +537,52 @@ msgid ""
 "which is again more general\n"
 "and works also like our `mapMaybe` for `Maybe`\n"
 "and `mapEither` for `Either e`. Here's its type:\n"
-msgstr "为了也计算方差，我们需要将列表中的每个值转换为一个新值，因为我们必须从列表中的每个值中减去平均值并将结果平方。在上一节的练习中，我们为此定义了函数 `mapList`。 *Prelude* - 当然 - 已经导出了一个名为 `map` 的类似函数，它再次更通用并且也像我们的 `mapMaybe` 用于 `Maybe[X411X ] 和 `mapEither` 用于 ` 或 e`。这是它的类型："
+msgstr ""
+"为了也可以计算方差，我们需要将列表中的每个值转换为一个新值，因为我们必须从列"
+"表中的每个值中减去平均值并将结果平方。在上一节的练习中，我们为此定义了函数 "
+"`mapList`。 *Prelude* - 当然 - 已经导出了一个名为 `map` 的类似函数，"
+"它同样更通用并且也像我们的 `mapMaybe` 用于 `Maybe]` 和 `mapEither` 用于 `"
+"Either e`。这是它的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:63
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> :t map\n"
 "Prelude.map : Functor f => (a -> b) -> f a -> f b\n"
-msgstr "```repl Main> :t map Prelude.map : Functor f => (a -> b) -> f a -> f b ```"
+msgstr ""
+"Main> :t map\n"
+"Prelude.map : Functor f => (a -> b) -> f a -> f b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:70
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Interface `Functor` is another one we'll talk about\n"
 "in a later section.\n"
-msgstr "接口 `Functor` 是另一个我们将在后面讨论的接口。"
+msgstr "接口 `Functor` 是另一个我们将在后面讨论的接口。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:73
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, we need a way to calculate the length of\n"
 "a list of values. We use function `length` for this:\n"
-msgstr "最后，我们需要一种计算值列表长度的方法。我们为此使用函数 `length`："
+msgstr "最后，我们需要一种计算值列表长度的方法。我们为此使用函数 `length`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:74
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> :t List.length\n"
 "Prelude.List.length : List a -> Nat\n"
-msgstr "```repl Main> :t List.length Prelude.List.length : List a -> Nat ```"
+msgstr ""
+"Main> :t List.length\n"
+"Prelude.List.length : List a -> Nat\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:87
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, `Nat` is the type of natural numbers\n"
 "(unbounded, unsigned integers). `Nat` is actually not a primitive data\n"
@@ -567,22 +592,30 @@ msgid ""
 "to define natural numbers this way, but the Idris compiler\n"
 "treats these and several other *number-like* types specially, and\n"
 "replaces them with primitive integers during code generation.\n"
-msgstr "这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` 实际上不是原始数据类型，而是在 *Prelude* 中使用数据构造函数 `Z 定义的求和类型： Nat` （为零）和 `S ： Nat -> Nat`（后继）。以这种方式定义自然数似乎效率极低，但 Idris 编译器会特别处理这些类型和其他几个 * 类数字 * 类型，并在代码生成期间将它们替换为原始整数。"
+msgstr ""
+"这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` "
+"实际上不是原语数据类型，而是在 *Prelude* 中使用数据构造函数 `Z: Nat` （为零）"
+"和 `S ： Nat -> Nat`（后继）定义的和类型 。以这种方式定义自然数似乎效率极低，"
+"但 Idris 编译器会特别处理这些类型和其他几个 *类数字* "
+"类型，并在代码生成期间将它们替换为原语整数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:93
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We are now ready to give the implementation of `mean` a go.\n"
 "Since this is Idris, and we care about clear semantics, we will\n"
 "quickly define a custom record type instead of just returning\n"
 "a tuple of `Double`s. This makes it clearer, which floating\n"
 "point number corresponds to which statistic entity:\n"
-msgstr "我们现在已经准备好执行 `mean` 了。由于这是 Idris，并且我们关心清晰的语义，我们将快速定义自定义记录类型，而不是仅仅返回 `Double`s 的元组。这样就更清楚了，哪个浮点数对应哪个统计实体："
+msgstr ""
+"我们现在已经准备好执行 `mean` 了。由于这是 "
+"Idris，并且我们关心清晰的语义，我们将快速定义自定义记录类型，而不是仅仅返回 "
+"`Double` 的元组。这样就更清楚了，哪个浮点数对应哪个统计实体：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:94
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "square : Double -> Double\n"
 "square n = n * n\n"
@@ -600,31 +633,41 @@ msgid ""
 "      variance := sum (map (\\x => square (x - mean)) xs) / len\n"
 "   in MkStats mean variance (sqrt variance)\n"
 msgstr ""
-"stats : 双列表 -> 统计\n"
-"统计 xs =\n"
-"  让 len := cast (length xs)\n"
-"      平均值 := sum xs / len\n"
-"      方差 := sum (map (\\x => square (x - mean)) xs) / len\n"
-"   在 MkStats 平均方差（平方方差）\n"
-"```\n"
+"square : Double -> Double\n"
+"square n = n * n\n"
+"\n"
+"record Stats where\n"
+"  constructor MkStats\n"
+"  mean      : Double\n"
+"  variance  : Double\n"
+"  deviation : Double\n"
+"\n"
+"stats : List Double -> Stats\n"
+"stats xs =\n"
+"  let len      := cast (length xs)\n"
+"      mean     := sum xs / len\n"
+"      variance := sum (map (\\x => square (x - mean)) xs) / len\n"
+"   in MkStats mean variance (sqrt variance)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:113
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "As usual, we first try this at the REPL:\n"
-msgstr "像往常一样，我们首先在 REPL 上尝试一下："
+msgstr "像往常一样，我们首先在 REPL 上尝试一下：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:114
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> stats [2,4,4,4,5,5,7,9]\n"
 "MkStats 5.0 4.0 2.0\n"
-msgstr "```repl Tutorial.Functions2> stats [2,4,4,4,5,5,7,9] MkStats 5.0 4.0 2.0 ```"
+msgstr ""
+"Tutorial.Functions2> stats [2,4,4,4,5,5,7,9]\n"
+"MkStats 5.0 4.0 2.0\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:133
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Seems to work, so let's digest this step by step.\n"
 "We introduce several new local variables\n"
@@ -640,11 +683,18 @@ msgid ""
 "Note also, that the alignment of assignment operators\n"
 "`:=` is optional. I do this, since I thinks it helps\n"
 "readability.\n"
-msgstr "似乎有效，所以让我们一步一步消化这个。我们引入了几个新的局部变量（`len`、`mean` 和 `variance`），它们都将在余下的实现中多次使用。为此，我们使用 `let` 绑定。这包括 `let` 关键字，后跟一个或多个变量赋值，然后是最终表达式，它必须以 `in` 为前缀。请注意，空格再次很重要：我们需要正确对齐三个变量名。继续，试试如果删除 `mean` 或 `variance` 前面的空格会发生什么。另请注意，赋值运算符 `:=` 的对齐方式是可选的。我这样做是因为我认为它有助于提高可读性。"
+msgstr ""
+"似乎有效，所以让我们一步一步消化这个。我们引入了几个新的局部变量（`len`、`mea"
+"n` 和 `variance`），它们都将在余下的实现中多次使用。为此，我们使用 `let` "
+"绑定。这包括 `let` 关键字，后跟一个或多个变量赋值，然后是最终表达式，"
+"它必须以 `in` "
+"为前缀。请注意，空格同样很重要：我们需要正确对齐三个变量名。继续，"
+"试试如果删除 `mean` 或 `variance` 前面的空格会发生什么。另请注意，赋值运算符 "
+"`:=` 的对齐方式是可选的。我这样做是因为我认为它有助于提高可读性。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:149
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's also quickly look at the different variables\n"
 "and their types. `len` is the length of the list\n"
@@ -661,43 +711,52 @@ msgid ""
 "using an anonymous function to subtract the mean\n"
 "and square the result. We then sum up the new terms\n"
 "and divide again by the number of values.\n"
-msgstr "让我们快速看看不同的变量及其类型。 `len` 是转换为 `Double` 的列表的长度，因为这是稍后需要的，我们将 `Double` 类型的其他值除以长度。 Idris 对此非常严格：我们不允许在没有显式转换的情况下混合数字类型。请注意，在这种情况下，Idris 能够从周围的上下文 * 推断 * `len` 的类型。 `mean` 很简单：我们 `sum` 将存储在列表中的值相加并除以列表的长度。 `variance` 是三个中涉及最多的一个：我们使用匿名函数将列表中的每个项目映射到一个新值，以减去均值并平方结果。然后我们将新项相加并再次除以值的数量。"
+msgstr ""
+"让我们快速看看不同的变量及其类型。 `len` 是转换为 `Double` "
+"的列表的长度，因为这是稍后需要的，我们将 `Double` 类型的其他值除以长度。 "
+"Idris 对此非常严格：我们不允许在没有显式转换的情况下混合数字类型。请注意，在"
+"这种情况下，Idris 能够从周围的上下文 *推断* `len` 的类型。 `mean` 很简单："
+"我们 `sum` 将存储在列表中的值相加并除以列表的长度。 `variance` 是三个中涉及最"
+"多的一个：我们使用匿名函数将列表中的每个项目映射到一个新值，以减去均值并平方"
+"结果。然后我们将新项相加并再次除以值的数量。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:150
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Use Case 2: Simulating a Simple Web Server"
-msgstr "### 用例 2：模拟一个简单的 Web 服务器"
+msgstr "用例 2：模拟一个简单的 Web 服务器"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:156
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the second use case, we are going to write a slightly\n"
 "larger application. This should give you an idea about how to\n"
 "design data types and functions around some business\n"
 "logic you'd like to implement.\n"
-msgstr "在第二个用例中，我们将编写一个稍大的应用程序。这应该让您了解如何围绕您想要实现的某些业务逻辑设计数据类型和功能。"
+msgstr "在第二个用例中，我们将编写一个稍大的应用程序。这应该让您了解如何围绕您想要实"
+"现的某些业务逻辑设计数据类型和功能。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:161
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Assume we run a music streaming web server, where users\n"
 "can buy whole albums and listen to them online. We'd\n"
 "like to simulate a user connecting to the server and\n"
 "getting access to one of the albums they bought.\n"
-msgstr "假设我们运行一个音乐流网络服务器，用户可以在其中购买整张专辑并在线收听。我们想模拟一个用户连接到服务器并访问他们购买的一张专辑。"
+msgstr "假设我们运行一个音乐流网络服务器，用户可以在其中购买整张专辑并在线收听。我们"
+"想模拟一个用户连接到服务器并访问他们购买的一张专辑。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:163
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "We first define a bunch of record types:\n"
-msgstr "我们首先定义了一堆记录类型："
+msgstr "我们首先定义了一堆记录类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:164
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Artist where\n"
 "  constructor MkArtist\n"
@@ -723,33 +782,33 @@ msgid ""
 "  password : Password\n"
 "  albums   : List Album\n"
 msgstr ""
-"记录艺术家在哪里\n"
-"  构造函数 MkArtist\n"
-"  名称：字符串\n"
+"record Artist where\n"
+"  constructor MkArtist\n"
+"  name : String\n"
 "\n"
-"记录专辑在哪里\n"
-"  构造函数 MkAlbum\n"
-"  名称：字符串\n"
-"  艺术家：艺术家\n"
+"record Album where\n"
+"  constructor MkAlbum\n"
+"  name   : String\n"
+"  artist : Artist\n"
 "\n"
-"记录电子邮件在哪里\n"
-"  构造函数 MkEmail\n"
-"  值：字符串\n"
+"record Email where\n"
+"  constructor MkEmail\n"
+"  value : String\n"
 "\n"
-"记录密码在哪里\n"
-"  构造函数 MkPassword\n"
-"  值：字符串\n"
+"record Password where\n"
+"  constructor MkPassword\n"
+"  value : String\n"
 "\n"
-"记录用户在哪里\n"
-"  构造函数 MkUser\n"
-"  名称：字符串\n"
-"  电子邮件：电子邮件\n"
-"  密码：密码\n"
-"  专辑：列出专辑\n"
+"record User where\n"
+"  constructor MkUser\n"
+"  name     : String\n"
+"  email    : Email\n"
+"  password : Password\n"
+"  albums   : List Album\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:202
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Most of these should be self-explanatory. Note, however, that\n"
 "in several cases (`Email`, `Artist`, `Password`) we wrap a\n"
@@ -763,11 +822,18 @@ msgid ""
 "Utility function `on` from the *Prelude* is very useful for this. Don't\n"
 "forget to inspect its type at the REPL, and try to understand what's\n"
 "going on here.\n"
-msgstr "其中大部分应该是不言自明的。但是请注意，在某些情况下（`Email`、`Artist`、`Password`）我们将单个值包装在新的记录类型中。当然，我们 * 可以 * 使用未包装的 `String` 类型，但我们最终会得到许多 `String` 字段，这很难消除歧义。为了不将电子邮件字符串与密码字符串混淆，因此将它们都包装在新的记录类型中会有所帮助，以大大提高类型安全性，但代价是必须重新实现某些接口。 *Prelude* 中的实用函数 `on` 对此非常有用。不要忘记在 REPL 中检查它的类型，并尝试了解这里发生了什么。"
+msgstr ""
+"其中大部分应该是不言自明的。但是请注意，在某些情况下（`Email`、`Artist`、`Pas"
+"sword`）我们将单个值包装在新的记录类型中。当然，我们 *可以* 使用未包装的 "
+"`String` 类型，但我们最终会得到许多 `String` 字段，这很难消除歧义。为了不将电"
+"子邮件字符串与密码字符串混淆，因此将它们都包装在新的记录类型中会有所帮助，以"
+"大大提高类型安全性，但代价是必须重新实现某些接口。 *Prelude* 中的实用函数 "
+"`on` 对此非常有用。不要忘记在 REPL 中检查它的类型，并尝试了解这里发生了什么。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:203
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Eq Artist where (==) = (==) `on` name\n"
 "\n"
@@ -777,34 +843,36 @@ msgid ""
 "\n"
 "Eq Album where (==) = (==) `on` \\a => (a.name, a.artist)\n"
 msgstr ""
-"Eq Artist where (==) = (==) `on` 名称\n"
+"Eq Artist where (==) = (==) `on` name\n"
 "\n"
-"Eq 电子邮件，其中 (==) = (==) `on` 值\n"
+"Eq Email where (==) = (==) `on` value\n"
 "\n"
-"Eq 密码 where (==) = (==) `on` 值\n"
+"Eq Password where (==) = (==) `on` value\n"
 "\n"
-"Eq 专辑 where (==) = (==) `on` \\a => (a.name, a.artist)\n"
+"Eq Album where (==) = (==) `on` \\a => (a.name, a.artist)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:216
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In case of `Album`, we wrap the two fields of the record in\n"
 "a `Pair`, which already comes with an implementation of `Eq`.\n"
 "This allows us to again use function `on`, which is very convenient.\n"
-msgstr "在 `Album` 的情况下，我们将记录的两个字段包装在 `Pair` 中，它已经附带了 `Eq` 的实现。这让我们可以再次使用`on`函数，非常方便。"
+msgstr ""
+"在 `Album` 的情况下，我们将记录的两个字段包装在 `Pair` 中，它已经附带了 `Eq` "
+"的实现。这让我们可以再次使用`on`函数，非常方便。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:219
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Next, we have to define the data types representing\n"
 "server requests and responses:\n"
-msgstr "接下来，我们必须定义代表服务器请求和响应的数据类型："
+msgstr "接下来，我们必须定义代表服务器请求和响应的数据类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:220
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Credentials where\n"
 "  constructor MkCredentials\n"
@@ -822,47 +890,64 @@ msgid ""
 "  AccessDenied    : Email -> Album -> Response\n"
 "  Success         : Album -> Response\n"
 msgstr ""
-"数据响应：键入 where\n"
-"  UnknownUser : 电子邮件 -> 回复\n"
-"  无效密码：响应\n"
-"  AccessDenied : 电子邮件 -> 相册 -> 回复\n"
-"  成功：相册 -> 响应\n"
-"```\n"
+"record Credentials where\n"
+"  constructor MkCredentials\n"
+"  email    : Email\n"
+"  password : Password\n"
+"\n"
+"record Request where\n"
+"  constructor MkRequest\n"
+"  credentials : Credentials\n"
+"  album       : Album\n"
+"\n"
+"data Response : Type where\n"
+"  UnknownUser     : Email -> Response\n"
+"  InvalidPassword : Response\n"
+"  AccessDenied    : Email -> Album -> Response\n"
+"  Success         : Album -> Response\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:243
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For server responses, we use a custom sum type encoding\n"
 "the possible outcomes of a client request. In practice,\n"
 "the `Success` case would return some kind of connection\n"
 "to start the actual album stream, but we just\n"
 "wrap up the album we found to simulate this behavior.\n"
-msgstr "对于服务器响应，我们使用自定义 sum 类型来编码客户端请求的可能结果。在实践中，`Success` 案例会返回某种连接来启动实际的专辑流，但我们只是包装我们找到的专辑来模拟这种行为。"
+msgstr ""
+"对于服务器响应，我们使用自定义 sum "
+"类型来编码客户端请求的可能结果。在实践中，`Success` 案例会返回某种连接来启动"
+"实际的专辑流，但我们只是包装我们找到的专辑来模拟这种行为。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:248
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can now go ahead and simulate the handling of\n"
 "a request at the server. To emulate our user data base,\n"
 "a simple list of users will do. Here's the type of the\n"
 "function we'd like to implement:\n"
-msgstr "我们现在可以继续模拟在服务器上对请求的处理。为了模拟我们的用户数据库，一个简单的用户列表就可以了。这是我们要实现的函数的类型："
+msgstr "我们现在可以继续模拟在服务器上对请求的处理。为了模拟我们的用户数据库，一个简"
+"单的用户列表就可以了。这是我们要实现的函数的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:249
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "DB : Type\n"
 "DB = List User\n"
 "\n"
 "handleRequest : DB -> Request -> Response\n"
-msgstr "处理请求：数据库->请求->响应```"
+msgstr ""
+"DB : Type\n"
+"DB = List User\n"
+"\n"
+"handleRequest : DB -> Request -> Response\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:265
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how we defined a short alias for `List User` called `DB`.\n"
 "This is often useful to make lengthy type signatures more readable\n"
@@ -873,11 +958,17 @@ msgid ""
 "expected and vice versa. In more complex programs it is therefore\n"
 "usually preferable to define new types by wrapping values in\n"
 "single-field records.\n"
-msgstr "请注意，我们如何为 `List User` 定义一个称为 `DB` 的短别名。这通常有助于使冗长的类型签名更具可读性并在给定的上下文中传达类型的含义。但是，这将 *not* 引入新类型，也不会增加类型安全性：`DB` is *identical* to `List User`，并且作为这样，类型为 `DB` 的值可以在需要 `List User` 的任何地方使用，反之亦然。因此，在更复杂的程序中，通常最好通过将值包装在单字段记录中来定义新类型。"
+msgstr ""
+"请注意，我们如何为 `List User` 定义一个称为 `DB` 的短别名。这通常有助于使冗长"
+"的类型签名更具可读性并在给定的上下文中传达类型的含义。但是，这将 *不会* "
+"引入新类型，也不会增加类型安全性：`DB` 只是 `List User` 的一个 "
+"*身份*，并且作为这样，类型为 `DB` 的值可以在需要 `List User` 的任何地方使用，"
+"反之亦然。因此，在更复杂的程序中，通常最好通过将值包装在单字段记录中来定义新"
+"类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:274
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The implementation will proceed as follows: It will first\n"
 "try and lookup a `User` by is email address in the data\n"
@@ -887,17 +978,21 @@ msgid ""
 "If all of these steps succeed, the result will be an `Album`\n"
 "wrapped in a `Success`. If any of the steps fails, the\n"
 "result will describe exactly what went wrong.\n"
-msgstr "实现将按如下进行：它将首先尝试在数据库中通过电子邮件地址查找 `User`。如果成功，它会将提供的密码与用户的实际密码进行比较。如果两者匹配，它将在用户的专辑列表中查找请求的专辑。如果所有这些步骤都成功，结果将是 `Album` 包裹在 `Success` 中。如果任何步骤失败，结果将准确描述问题所在。"
+msgstr ""
+"实现将按如下进行：它将首先尝试在数据库中通过电子邮件地址查找 `User`。如果成功"
+"，它会将提供的密码与用户的实际密码进行比较。如果两者匹配，它将在用户的专辑列"
+"表中查找请求的专辑。如果所有这些步骤都成功，结果将是 `Album` 包裹在 `Success`"
+" 中。如果任何步骤失败，结果将准确描述问题所在。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:276
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here's a possible implementation:\n"
-msgstr "这是一个可能的实现："
+msgstr "这是一个可能的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:277
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "handleRequest db (MkRequest (MkCredentials email pw) album) =\n"
 "  case lookupUser db of\n"
@@ -916,26 +1011,26 @@ msgid ""
 "        lookupAlbum (x :: xs) =\n"
 "          if x == album then Success album else lookupAlbum xs\n"
 msgstr ""
-"handleRequest db (MkRequest (MkCredentials email pw) 相册) =\n"
-"  案例查找用户数据库\n"
-"    Just (MkUser _ _ 密码相册) =>\n"
+"handleRequest db (MkRequest (MkCredentials email pw) album) =\n"
+"  case lookupUser db of\n"
+"    Just (MkUser _ _ password albums)  =>\n"
 "      if password == pw then lookupAlbum albums else InvalidPassword\n"
 "\n"
-"    什么都没有 => 未知用户电子邮件\n"
+"    Nothing => UnknownUser email\n"
 "\n"
-"  其中lookupUser：列出用户->也许用户\n"
-"        lookupUser [] = 无\n"
-"        查找用户 (x :: xs) =\n"
+"  where lookupUser : List User -> Maybe User\n"
+"        lookupUser []        = Nothing\n"
+"        lookupUser (x :: xs) =\n"
 "          if x.email == email then Just x else lookupUser xs\n"
 "\n"
-"        lookupAlbum : 列出专辑 -> 响应\n"
-"        lookupAlbum [] = AccessDenied 电子邮件相册\n"
-"        查找相册 (x :: xs) =\n"
-"          if x == album then Success 相册 else lookupAlbum xs\n"
+"        lookupAlbum : List Album -> Response\n"
+"        lookupAlbum []        = AccessDenied email album\n"
+"        lookupAlbum (x :: xs) =\n"
+"          if x == album then Success album else lookupAlbum xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:305
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "I'd like to point out several things in this example. First,\n"
 "note how we can extract values from nested records in a\n"
@@ -946,21 +1041,28 @@ msgid ""
 "`album` variable from the pattern match in the implementation's\n"
 "first line. Likewise, `lookupAlbum` makes use of the `album`\n"
 "variable.\n"
-msgstr "我想在这个例子中指出几件事。首先，请注意我们如何在单个模式匹配中从嵌套记录中提取值。其次，我们在 `where` 块中定义了两个 *local* 函数：`lookupUser` 和 `lookupAlbum`。这两者都可以访问周围范围内的所有变量。例如，`lookupUser` 在实现的第一行中使用来自模式匹配的 `album` 变量。同样，`lookupAlbum` 使用 `album` 变量。"
+msgstr ""
+"我想在这个例子中指出几件事。首先，请注意我们如何在单个模式匹配中从嵌套记录中"
+"提取值。其次，我们在 `where` 块中定义了两个 *局部* 函数：`lookupUser` 和 "
+"`lookupAlbum`。这两者都可以访问作用域内的所有变量。例如，`lookupUser` "
+"在实现的第一行中使用来自模式匹配的 `album` 变量。同样，`lookupAlbum` 使用 "
+"`album` 变量。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:310
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "A `where` block introduces new local definitions, accessible\n"
 "only from the surrounding scope and from other functions\n"
 "defined later in the same `where` block. These need to\n"
 "be explicitly typed and indented by the same amount of whitespace.\n"
-msgstr "`where` 块引入了新的局部定义，只能从周围范围和稍后在同一 `where` 块中定义的其他函数访问。这些需要以相同数量的空格显式键入和缩进。"
+msgstr ""
+"`where` 块引入了新的局部定义，只能从作用域和稍后在同一 `where` "
+"块中定义的其他函数访问。这些需要以相同数量的空格输入和缩进。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:318
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Local definitions can also be introduce *before* a function's\n"
 "implementation by using the `let` keyword. This usage\n"
@@ -969,11 +1071,16 @@ msgid ""
 "computations. Below is how we could have implemented `handleRequest` with\n"
 "local definitions introduced by the `let` keyword. Again,\n"
 "all definitions have to be properly typed and indented:\n"
-msgstr "局部定义也可以通过使用 `let` 关键字在 * 函数实现之前引入 *。 `let` 的这种用法不要与上面描述的 *let bindings* 混淆，后者用于绑定和重用中间计算的结果。下面是我们如何使用 `let` 关键字引入的本地定义来实现 `handleRequest`。同样，所有定义都必须正确输入和缩进："
+msgstr ""
+"局部定义也可以通过使用 `let` 关键字在函数实现 *之前* 引入。 `let` "
+"的这种用法不要与上面描述的 *let bindings* "
+"混淆，后者用于绑定和重用中间计算的结果。下面是我们如何使用 `let` "
+"关键字引入的本地定义来实现 "
+"`handleRequest`。同样，所有定义都必须正确输入和缩进：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:319
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "handleRequest' : DB -> Request -> Response\n"
 "handleRequest' db (MkRequest (MkCredentials email pw) album) =\n"
@@ -993,47 +1100,49 @@ msgid ""
 "\n"
 "        Nothing => UnknownUser email\n"
 msgstr ""
-"handleRequest' : 数据库 -> 请求 -> 响应\n"
-"handleRequest' db (MkRequest (MkCredentials email pw) 相册) =\n"
-"  让 lookupUser : 列出用户 -> 可能用户\n"
-"      lookupUser [] = 无\n"
-"      查找用户 (x :: xs) =\n"
+"handleRequest' : DB -> Request -> Response\n"
+"handleRequest' db (MkRequest (MkCredentials email pw) album) =\n"
+"  let lookupUser : List User -> Maybe User\n"
+"      lookupUser []        = Nothing\n"
+"      lookupUser (x :: xs) =\n"
 "        if x.email == email then Just x else lookupUser xs\n"
 "\n"
-"      lookupAlbum : 列出专辑 -> 响应\n"
-"      lookupAlbum [] = AccessDenied 电子邮件相册\n"
-"      查找相册 (x :: xs) =\n"
-"        if x == album then Success 相册 else lookupAlbum xs\n"
+"      lookupAlbum : List Album -> Response\n"
+"      lookupAlbum []        = AccessDenied email album\n"
+"      lookupAlbum (x :: xs) =\n"
+"        if x == album then Success album else lookupAlbum xs\n"
 "\n"
-"   万一 lookupUser db 的\n"
-"        Just (MkUser _ _ 密码相册) =>\n"
+"   in case lookupUser db of\n"
+"        Just (MkUser _ _ password albums)  =>\n"
 "          if password == pw then lookupAlbum albums else InvalidPassword\n"
 "\n"
-"        什么都没有 => 未知用户电子邮件\n"
+"        Nothing => UnknownUser email\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:345
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The exercises in this section are supposed to increase\n"
 "you experience in writing purely functional code. In some\n"
 "cases it might be useful to use `let` expressions or\n"
 "`where` blocks, but this will not always be required.\n"
-msgstr "本节中的练习旨在增加您编写纯函数式代码的经验。在某些情况下，使用 `let` 表达式或 `where` 块可能很有用，但这并不总是必需的。"
+msgstr "本节中的练习旨在增加您编写纯函数式代码的经验。在某些情况下，使用 `let` "
+"表达式或 `where` 块可能很有用，但这并不总是必需的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:350
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Exercise 3 is again of utmost importance. `traverseList`\n"
 "is a specialized version of the more general `traverse`,\n"
 "one of the most powerful and versatile functions\n"
 "available in the *Prelude* (check out its type!).\n"
-msgstr "练习 3 再次至关重要。 `traverseList` 是更通用的 `traverse` 的专用版本，是 *Prelude* 中最强大和最通用的功能之一（查看它的类型！）。"
+msgstr ""
+"练习 3 同样至关重要。 `traverseList` 是更通用的 `traverse` 的专用版本，是 "
+"*Prelude* 中最强大和最通用的功能之一（查看它的类型！）。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Functions2.md:355
-#, fuzzy
 msgid ""
 "Module `Data.List` in *base* exports functions `find` and `elem`.  Inspect "
 "their types and use these in the implementation of `handleRequest`. This "
