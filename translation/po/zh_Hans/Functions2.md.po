@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-09 12:54+0000\n"
+"PO-Revision-Date: 2022-08-10 00:12+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions2/zh_Hans/>\n"
@@ -416,7 +416,7 @@ msgstr "函数第 2 部分"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:9
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So far, we learned about the core features of the Idris\n"
 "language, which it has in common with several other\n"
@@ -424,7 +424,10 @@ msgid ""
 "(Higher order) Functions, algebraic data types, pattern matching,\n"
 "parametric polymorphism (generic types and functions), and\n"
 "ad hoc polymorphism (interfaces and constrained functions).\n"
-msgstr "到目前为止，我们了解了 Idris 语言的核心特性，它与其他几种纯的强类型编程语言（如 Haskell）有共同之处：（高阶）函数、代数数据类型、模式匹配、参数多态性（泛型类型和函数）和临时多态性（接口和约束函数）。"
+msgstr ""
+"到目前为止，我们了解了 Idris 语言的核心特性，它与其他几种纯的强类型编程语言（"
+"如 Haskell）有共同之处：（高阶）函数、代数数据类型、模式匹配、参数多态性（泛"
+"型类型和函数）和临时多态性（接口和约束函数）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:15
@@ -1153,7 +1156,6 @@ msgstr ""
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functions2.md:365
-#, fuzzy
 msgid ""
 "Define an enumeration type listing the four [nucleobases](https://en."
 "wikipedia.org/wiki/Nucleobase)  occurring in DNA strands. Define also a type "
@@ -1163,13 +1165,12 @@ msgid ""
 "Note, that this function might fail, so adjust the result type accordingly."
 msgstr ""
 "定义枚举类型，列出 DNA 链中出现的四个 [核碱基](https://en.wikipedia.org/wiki/"
-"Nucleobase)。还为核碱基列表定义类型别名 `DNA`。声明并实现函数 `readBase` 用于"
-"将单个字符（类型 `Char`）转换为核碱基。您可以在实现中使用字符文字，如下所示："
-"`'A'`、`'a'`。请注意，此功能可能会失败，因此请相应地调整结果类型。"
+"Nucleobase)。还为核碱基列表定义类型别名 `DNA`。声明并实现函数 `readBase` "
+"用于将单个字符（类型 `Char`）转换为核碱基。您可以在实现中使用字符文字，如下所"
+"示：`'A'`、`'a'`。请注意，此函数可能会失败，因此请相应地调整结果类型。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Functions2.md:371
-#, fuzzy
 msgid ""
 "Implement the following function, which tries to convert all values in a "
 "list with a function, which might fail. The result should be a `Just` "
@@ -1181,26 +1182,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:372
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)\n"
-"   ```\n"
+msgstr "   traverseList : (a -> Maybe b) -> List a -> Maybe (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:378
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   You can verify, that the function behaves correctly with\n"
 "   the following test: `traverseList Just [1,2,3] = Just [1,2,3]`.\n"
-msgstr ""
-"   您可以验证该功能是否正确运行\n"
-"   以下测试：`traverseList Just [1,2,3] = Just [1,2,3]`。\n"
+msgstr "   您可以通过下面的测试验证该函数是否正确运行：`traverseList Just [1,2,3] = "
+"Just [1,2,3]`。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Functions2.md:382
-#, fuzzy
 msgid ""
 "Implement function `readDNA : String -> Maybe DNA` using the functions and "
 "types defined in exercises 2 and 3.  You will also need function `unpack` "
@@ -1211,7 +1207,6 @@ msgstr ""
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Functions2.md:385
-#, fuzzy
 msgid ""
 "Implement function `complement : DNA -> DNA` to calculate the complement of "
 "a strand of DNA."
@@ -1219,57 +1214,62 @@ msgstr "实现函数 `complement : DNA -> DNA` 来计算一条 DNA 链的补码�
 
 #. type: Title ##
 #: ../src/Tutorial/Functions2.md:386
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The Truth about Function Arguments"
-msgstr "## 关于函数参数的真相"
+msgstr "关于函数参数的真相"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:390
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So far, when we defined a top level function, it looked something\n"
 "like the following:\n"
-msgstr "到目前为止，当我们定义一个顶级函数时，它看起来像下面这样："
+msgstr "到目前为止，当我们定义一个顶级函数时，它看起来像下面这样：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:391
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipEitherWith : (a -> b -> c) -> Either e a -> Either e b -> Either e c\n"
 "zipEitherWith f (Right va) (Right vb) = Right (f va vb)\n"
 "zipEitherWith f (Left e)   _          = Left e\n"
 "zipEitherWith f _          (Left e)   = Left e\n"
 msgstr ""
-"```伊德里斯\n"
-"zipEitherWith : (a -> b -> c) -> 任意 e a -> 任意 e b -> 任意 e c\n"
-"zipEitherWith f (右 va) (右 vb) = 右 (f va vb)\n"
-"zipEitherWith f (左 e) _ = 左 e\n"
-"zipEitherWith f _ (Left e) = Left e\n"
-"```\n"
+"zipEitherWith : (a -> b -> c) -> Either e a -> Either e b -> Either e c\n"
+"zipEitherWith f (Right va) (Right vb) = Right (f va vb)\n"
+"zipEitherWith f (Left e)   _          = Left e\n"
+"zipEitherWith f _          (Left e)   = Left e\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:401
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Function `zipEitherWith` is a generic higher-order function combining the\n"
 "values stored in two `Either`s via a binary function. If either\n"
 "of the `Either` arguments is a `Left`, the result is also a `Left`.\n"
-msgstr "函数 `zipEitherWith` 是一个通用的高阶函数，通过二进制函数将两个 `Either` 中存储的值组合在一起。如果任一 `Either` 参数是 `Left`，则结果也是 `Left`。"
+msgstr ""
+"函数 `zipEitherWith` 是一个通用的高阶函数，通过二进制函数将两个 `Either` "
+"中存储的值组合在一起。如果任一 `Either` 类型参数是 `Left`，则结果也是 "
+"`Left`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:407
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is a *generic function* with *type parameters* `a`, `b`, `c`, and `e`.\n"
 "However, there is a more verbose type for `zipEitherWith`, which is\n"
 "visible in the REPL when entering `:ti zipEitherWith` (the `i` here\n"
 "tells Idris to include `implicit` arguments). You will get a type\n"
 "similar to this:\n"
-msgstr "这是一个 * 泛型函数 *，带有 * 类型参数 * `a`、`b`、`c` 和 `e[ X73X]。但是，`zipEitherWith` 有一个更详细的类型，当输入 ` 时，它在 REPL 中可见：ti zipEitherWith`（这里的 `i` 告诉 Idris 包含 [X236X ]implicit` 参数）。你会得到一个类似这样的类型："
+msgstr ""
+"这是一个 *泛型函数*，带有 *类型参数* `a`、`b`、`c` 和 "
+"`e`。但是，`zipEitherWith` 有一个更详细的类型，当在 REPL 中输入 `:ti "
+"zipEitherWith`（这里的 `i` 告诉 Idris 包含 `implicit` "
+"参数）时。你会得到一个类似这样的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:408
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipEitherWith' :  {0 a : Type}\n"
 "               -> {0 b : Type}\n"
@@ -1280,54 +1280,50 @@ msgid ""
 "               -> Either e b\n"
 "               -> Either e c\n"
 msgstr ""
-"```伊德里斯\n"
-"zipEitherWith'：{0 a：类型}\n"
-"               -> {0 b：类型}\n"
-"               -> {0 c：类型}\n"
-"               -> {0 e：类型}\n"
+"zipEitherWith' :  {0 a : Type}\n"
+"               -> {0 b : Type}\n"
+"               -> {0 c : Type}\n"
+"               -> {0 e : Type}\n"
 "               -> (a -> b -> c)\n"
-"               -> 要么\n"
-"               -> 要么 e b\n"
-"               -> 要么 e c\n"
-"```\n"
+"               -> Either e a\n"
+"               -> Either e b\n"
+"               -> Either e c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:421
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to understand what's going on here, we will have to talk about\n"
 "named arguments, implicit arguments, and quantities.\n"
-msgstr "为了理解这里发生了什么，我们将不得不讨论命名参数、隐式参数和数量。"
+msgstr "为了理解这里发生了什么，我们将不得不讨论命名参数、隐式参数和定量。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:422
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Named Arguments"
-msgstr "### 命名参数"
+msgstr "命名参数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:425
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "In a function type, we can give each argument a name. Like so:\n"
-msgstr "在函数类型中，我们可以给每个参数一个名称。像这样："
+msgstr "在函数类型中，我们可以给每个参数一个名称。像这样：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:426
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "fromMaybe : (deflt : a) -> (ma : Maybe a) -> a\n"
 "fromMaybe deflt Nothing = deflt\n"
 "fromMaybe _    (Just x) = x\n"
 msgstr ""
-"```伊德里斯\n"
 "fromMaybe : (deflt : a) -> (ma : Maybe a) -> a\n"
 "fromMaybe deflt Nothing = deflt\n"
-"fromMaybe _ (Just x) = x\n"
-"```\n"
+"fromMaybe _    (Just x) = x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:439
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, the first argument is given name `deflt`, the second `ma`. These\n"
 "names can be reused in a function's implementation, as was done for `deflt`,\n"
@@ -1336,41 +1332,49 @@ msgid ""
 "arguments: It can serve as documentation, but it also\n"
 "allows us to pass the arguments to a function in arbitrary order\n"
 "when using the following syntax:\n"
-msgstr "这里，第一个参数的名称是 `deflt`，第二个参数是 `ma`。这些名称可以在函数的实现中重复使用，就像 `deflt` 所做的那样，但这不是强制性的：我们可以在实现中自由使用不同的名称。我们选择命名参数有几个原因：它可以用作文档，但它也允许我们在使用以下语法时以任意顺序将参数传递给函数："
+msgstr ""
+"这里，第一个参数的名称是 `deflt`，第二个参数是 "
+"`ma`。这些名称可以在函数的实现中重复使用，就像 `deflt` 所做的那样，但这不是强"
+"制性的：我们可以在实现中自由使用不同的名称。我们选择命名参数有几个原因：它可"
+"以用作文档，但它也允许我们在使用以下语法时以任意顺序将参数传递给函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:440
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "extractBool : Maybe Bool -> Bool\n"
 "extractBool v = fromMaybe { ma = v, deflt = False }\n"
-msgstr "```idris extractBool : Maybe Bool -> Bool extractBool v = fromMaybe { ma = v, deflt = False } ```"
+msgstr ""
+"extractBool : Maybe Bool -> Bool\n"
+"extractBool v = fromMaybe { ma = v, deflt = False }\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:446
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Or even :\n"
-msgstr "甚至 ："
+msgstr "甚至 ：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:447
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "extractBool2 : Maybe Bool -> Bool\n"
 "extractBool2 = fromMaybe { deflt = False }\n"
-msgstr "```idris extractBool2 : Maybe Bool -> Bool extractBool2 = fromMaybe { deflt = False } ```"
+msgstr ""
+"extractBool2 : Maybe Bool -> Bool\n"
+"extractBool2 = fromMaybe { deflt = False }\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:454
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The arguments in a record's constructor are automatically named\n"
 "in accordance with the field names:\n"
-msgstr "记录构造函数中的参数根据字段名称自动命名："
+msgstr "记录构造函数中的参数根据字段名称自动命名：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:455
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Dragon where\n"
 "  constructor MkDragon\n"
@@ -1381,27 +1385,32 @@ msgid ""
 "gorgar : Dragon\n"
 "gorgar = MkDragon { strength = 150, name = \"Gorgar\", hitPoints = 10000 }\n"
 msgstr ""
-"```伊德里斯\n"
-"记录龙在哪里\n"
-"  构造函数 MkDragon\n"
-"  名称：字符串\n"
-"  力量：自然\n"
-"  命中点：Int16\n"
+"record Dragon where\n"
+"  constructor MkDragon\n"
+"  name      : String\n"
+"  strength  : Nat\n"
+"  hitPoints : Int16\n"
+"\n"
+"gorgar : Dragon\n"
+"gorgar = MkDragon { strength = 150, name = \"Gorgar\", hitPoints = 10000 }\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:471
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For the use cases described above, named arguments are merely a\n"
 "convenience and completely optional. However, Idris is a *dependently typed*\n"
 "programming language: Types can be calculated from and depend on\n"
 "values. For instance, the *result type* of a function can *depend* on\n"
 "the *value* of one of its arguments. Here's a contrived example:\n"
-msgstr "对于上述用例，命名参数只是一种方便且完全可选的。但是，Idris 是一种 * 依赖类型 * 编程语言：类型可以根据值计算并取决于值。例如，函数的 * 结果类型 * 可以 * 取决于 * 其参数之一的 * 值 *。这是一个人为的例子："
+msgstr ""
+"对于上述用例，命名参数只是一种方便且完全可选的。但是，Idris 是一种 *依赖类型*"
+" 编程语言：类型可以根据值计算并取决于值。例如，函数的 *结果类型* 可以 "
+"*取决于* 其参数之一的 *值*。这是一个人为的例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:472
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "IntOrString : Bool -> Type\n"
 "IntOrString True  = Integer\n"
@@ -1410,11 +1419,18 @@ msgid ""
 "intOrString : (v : Bool) -> IntOrString v\n"
 "intOrString False = \"I'm a String\"\n"
 "intOrString True  = 1000\n"
-msgstr "intOrString : (v : Bool) -> IntOrString v intOrString False = \"我是字符串\" intOrString True = 1000 ```"
+msgstr ""
+"IntOrString : Bool -> Type\n"
+"IntOrString True  = Integer\n"
+"IntOrString False = String\n"
+"\n"
+"intOrString : (v : Bool) -> IntOrString v\n"
+"intOrString False = \"I'm a String\"\n"
+"intOrString True  = 1000\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:489
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If you see such a thing for the first time, it can be hard to understand\n"
 "what's going on here. First, function `IntOrString` computes a `Type`\n"
@@ -1423,20 +1439,28 @@ msgid ""
 "calculate the return type of function `intOrString` based on its\n"
 "boolean argument `v`: If `v` is `True`, the return type is (in accordance\n"
 "with `IntOrString True = Integer`) `Integer`, otherwise it is `String`.\n"
-msgstr "如果您第一次看到这样的事情，可能很难理解这里发生了什么。首先，函数 `IntOrString` 从 `Bool` 值计算 `Type`：如果参数是 `True`，则返回类型 `Integer[ X215X]，如果参数为 `False`，则返回 `String`。我们使用它来根据其布尔参数 `v` 计算函数 `intOrString` 的返回类型： 如果 `v` 为 `True`，则返回类型为（根据`IntOrString True = Integer`）`Integer`，否则为`String`。"
+msgstr ""
+"如果您第一次看到这样的事情，可能很难理解这里发生了什么。首先，函数 "
+"`IntOrString` 从 `Bool` 值计算 `Type`：如果参数是 `True`，则返回类型 "
+"`Integer`，如果参数为 `False`，则返回 `String`。我们使用 `intOrString` "
+"来根据其布尔参数 `v` 计算函数 的返回类型： 如果 `v` 为 "
+"`True`，则返回类型为（根据`IntOrString True = "
+"Integer`）`Integer`，否则为`String`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:493
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how in the type signature of `intOrString`, we *must* give the\n"
 "argument of type `Bool` a name (`v`) in order to reference it in\n"
 "the result type `IntOrString v`.\n"
-msgstr "注意，在 `intOrString` 的类型签名中，我们 * 必须 * 给 `Bool` 类型的参数命名 (`v`) 以便在结果类型 `IntOrString v` 中引用它。"
+msgstr ""
+"注意，在 `intOrString` 的类型签名中，我们 *必须* 给 `Bool` 类型的参数命名 "
+"(`v`) 以便在结果类型 `IntOrString v` 中引用它。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:500
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You might wonder at this moment, why this is useful and why we would\n"
 "ever want to define a function with such a strange type. We will see\n"
@@ -1444,17 +1468,21 @@ msgid ""
 "in order to express dependent function types, we need to name\n"
 "at least some of the function's arguments and refer to them by name\n"
 "in the types of other arguments.\n"
-msgstr "此时您可能想知道，为什么这很有用，以及为什么我们要定义一个具有如此奇怪类型的函数。我们会在适当的时候看到很多非常有用的例子！现在，可以这么说，为了表达依赖函数类型，我们至少需要命名函数的一些参数，并在其他参数的类型中通过名称引用它们。"
+msgstr ""
+"此时您可能想知道，为什么这很有用，以及为什么我们要定义一个具有如此奇怪类型的"
+"函数。我们会在适当的时候看到很多非常有用的例子！现在，可以这么说，为了表达依"
+"赖函数类型，我们至少需要命名函数的一些参数，并在其他参数的类型中通过名称引用"
+"它们。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:501
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Implicit Arguments"
-msgstr "### 隐式参数"
+msgstr "隐式参数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:509
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Implicit arguments are arguments, the values of which the compiler\n"
 "should infer and fill in for us automatically. For instance, in\n"
@@ -1462,11 +1490,14 @@ msgid ""
 "infer the value of type parameter `a` automatically from the\n"
 "types of the other arguments (ignore the 0 quantity for the moment;\n"
 "I'll explain it in the next subsection):\n"
-msgstr "隐式参数是参数，编译器应该自动为我们推断和填充其值。例如，在下面的函数签名中，我们希望编译器从其他参数的类型中自动推断类型参数 `a` 的值（暂时忽略 0 数量；我将在下一小节）："
+msgstr ""
+"隐式参数也是参数，编译器应该自动为我们推断和填充其值。例如，在下面的函数签名"
+"中，我们希望编译器从其他参数的类型中自动推断类型参数 `a` 的值（暂时忽略定量 "
+"0；我将在下一小节）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:510
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "maybeToEither : {0 a : Type} -> Maybe a -> Either String a\n"
 "maybeToEither Nothing  = Left \"Nope\"\n"
@@ -1477,30 +1508,44 @@ msgid ""
 "maybeToEither' : Maybe a -> Either String a\n"
 "maybeToEither' Nothing  = Left \"Nope\"\n"
 "maybeToEither' (Just x) = Right x\n"
-msgstr "-- 请记住，上面是 -- 等价于以下内容： MaybeToEither' : Maybe a -> Either String a maybeToEither' Nothing = Left \"Nope\" maybeToEither' (Just x) = Right x ```"
+msgstr ""
+"maybeToEither : {0 a : Type} -> Maybe a -> Either String a\n"
+"maybeToEither Nothing  = Left \"Nope\"\n"
+"maybeToEither (Just x) = Right x\n"
+"\n"
+"-- Please remember, that the above is\n"
+"-- equivalent to the following:\n"
+"maybeToEither' : Maybe a -> Either String a\n"
+"maybeToEither' Nothing  = Left \"Nope\"\n"
+"maybeToEither' (Just x) = Right x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:527
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, implicit arguments are wrapped in curly braces,\n"
 "unlike explicit named arguments, which are wrapped in parentheses.\n"
 "Inferring the value of an implicit argument is not always possible.\n"
 "For instance, if we enter the following\n"
 "at the REPL, Idris will fail with an error:\n"
-msgstr "如您所见，隐式参数包含在花括号中，与显式命名参数不同，后者包含在括号中。推断隐含参数的值并不总是可能的。例如，如果我们在 REPL 中输入以下内容，Idris 将失败并出现错误："
+msgstr ""
+"如您所见，隐式参数包含在花括号中，与显式命名参数不同，后者包含在括号中。推断"
+"隐含参数的值并不总是可能的。例如，如果我们在 REPL 中输入以下内容，Idris "
+"将失败并出现错误：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:528
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> show (maybeToEither Nothing)\n"
 "Error: Can't find an implementation for Show (Either String ?a).\n"
-msgstr "```repl Tutorial.Functions2> show (maybeToEither Nothing) 错误：找不到 Show (Either String ?a) 的实现。 ```"
+msgstr ""
+"Tutorial.Functions2> show (maybeToEither Nothing)\n"
+"Error: Can't find an implementation for Show (Either String ?a).\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:540
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Idris is unable to find an implementation of `Show (Either String a)`\n"
 "without knowing what `a` actually is.\n"
@@ -1509,72 +1554,85 @@ msgid ""
 "If this happens, there are several ways to help the type checker.\n"
 "We could, for instance, pass a value for the implicit argument\n"
 "explicitly. Here's the syntax to do this:\n"
-msgstr "Idris 在不知道 `a` 实际上是什么的情况下无法找到 `Show (Either String a)` 的实现。注意类型参数前面的问号：`?a`。如果发生这种情况，有几种方法可以帮助类型检查器。例如，我们可以为隐式参数显式传递一个值。这是执行此操作的语法："
+msgstr ""
+"Idris 在不知道 `a` 实际上是什么的情况下无法找到 `Show (Either String a)` 的实"
+"现。注意类型参数前面的问号：`?a`。如果发生这种情况，有几种方法可以帮助类型检"
+"查器。例如，我们可以为隐式参数显式传递一个值。这是执行此操作的语法：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:541
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing)\n"
 "\"Left \"Nope\"\"\n"
-msgstr "```repl Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing) \"Left \"Nope\"\" ```"
+msgstr ""
+"Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing)\n"
+"\"Left \"Nope\"\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:549
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, we use the same syntax\n"
 "as shown above for explicit named arguments and the\n"
 "two forms of argument passing can be mixed.\n"
-msgstr "如您所见，我们对显式命名参数使用与上面所示相同的语法，并且可以混合使用两种形式的参数传递。"
+msgstr "如您所见，我们对显式命名参数使用与上面所示相同的语法，并且可以混合使用两种形"
+"式的参数传递。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:552
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We could also specify the type of the whole expression using\n"
 "utility function `the` from the *Prelude*:\n"
-msgstr "我们还可以使用 *Prelude* 中的实用函数 `the` 指定整个表达式的类型："
+msgstr "我们还可以使用 *Prelude* 中的实用函数 `the` 指定整个表达式的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:553
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> show (the (Either String Int8) (maybeToEither Nothing))\n"
 "\"Left \"Nope\"\"\n"
-msgstr "```repl Tutorial.Functions2> show (the (Either String Int8) (maybeToEither Nothing)) \"Left \"Nope\"\" ```"
+msgstr ""
+"Tutorial.Functions2> show (the (Either String Int8) (maybeToEither Nothing))"
+"\n"
+"\"Left \"Nope\"\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:559
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "It is instructive to have a look at the type of `the`:\n"
-msgstr "查看 ` 和 ` 的类型很有启发性："
+msgstr "查看 `the` 的类型很有启发性：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:560
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :ti the\n"
 "Prelude.the : (0 a : Type) -> a -> a\n"
-msgstr "```repl Tutorial.Functions2> :ti the Prelude.the : (0 a : Type) -> a -> a ```"
+msgstr ""
+"Tutorial.Functions2> :ti the\n"
+"Prelude.the : (0 a : Type) -> a -> a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:566
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Compare this with the identity function `id`:\n"
-msgstr "将此与恒等函数 `id` 进行比较："
+msgstr "将此与恒等函数 `id` 进行比较：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:567
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :ti id\n"
 "Prelude.id : {0 a : Type} -> a -> a\n"
-msgstr "```repl Tutorial.Functions2> :ti id Prelude.id : {0 a : Type} -> a -> a ```"
+msgstr ""
+"Tutorial.Functions2> :ti id\n"
+"Prelude.id : {0 a : Type} -> a -> a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:581
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The only difference between the two: In case of `the`,\n"
 "the type parameter `a` is an *explicit* argument, while\n"
@@ -1585,95 +1643,105 @@ msgid ""
 "to return an argument without modifying it at all (which,\n"
 "in the presence of higher-order functions,\n"
 "happens surprisingly often).\n"
-msgstr "两者之间的唯一区别：在 `the` 的情况下，类型参数 `a` 是 *explicit* 参数，而在 `id` 的情况下，它是一个 *implicit* 参数。尽管这两个函数具有几乎相同的类型（和实现！），但它们的用途却截然不同：`the` 用于帮助类型推断，而 `id` 用于我们想要的任何时候返回一个参数而不修改它（在高阶函数存在的情况下，这种情况经常发生）。"
+msgstr ""
+"两者之间的唯一区别：在 `the` 的情况下，类型参数 `a` 是 *显式* 参数，而在 `id`"
+" 的情况下，它是一个 *隐式* 参数。尽管这两个函数具有几乎相同的类型（和实现！）"
+"，但它们的用途却截然不同：`the` 用于帮助类型推断，而 `id` 用于我们想要的任何"
+"时候返回一个参数而不修改它（在高阶函数存在的情况下，这种情况经常发生）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:585
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Both ways to improve type inference shown above\n"
 "are used quite often, and must be understood by Idris\n"
 "programmers.\n"
-msgstr "上面显示的两种改进类型推断的方法都经常使用，并且 Idris 程序员必须理解。"
+msgstr "上面显示的两种改进类型推断的方法都经常使用，并且 Idris 程序员必须理解。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:586
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Multiplicities"
-msgstr "### 多重性"
+msgstr "多重性"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:593
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, we need to talk about the zero multiplicity, which appeared\n"
 "in several of the type signatures in this section. Idris 2, unlike\n"
 "its predecessor Idris 1, is based on a core language called\n"
 "*quantitative type theory* (QTT): Every variable in Idris 2 is\n"
 "associated with one of three possible multiplicities:\n"
-msgstr "最后，我们需要谈谈在本节的几个类型签名中出现的零多重性。 Idris 2 与其前身 Idris 1 不同，它基于称为 * 定量类型理论 * (QTT) 的核心语言：Idris 2 中的每个变量都与三种可能的多重性之一相关联："
+msgstr ""
+"最后，我们需要谈谈在本节的几个类型签名中出现的零多重性。 Idris 2 与其前身 "
+"Idris 1 不同，它基于称为 *定量类型理论* (QTT) 的核心语言：Idris 2 "
+"中的每个变量都与三种可能的多重性之一相关联：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions2.md:598
-#, fuzzy
 msgid "`0`, meaning that the variable is *erased* at runtime."
-msgstr "``0`` ，表示变量在运行时被 *擦除*"
+msgstr "`0` ，表示变量在运行时被 *擦除*"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions2.md:598
-#, fuzzy
 msgid "`1`, meaning that the variable is used *exactly once* at runtime."
-msgstr "``1`` ，表示变量在运行时 *正好使用一次*"
+msgstr "`1` ，表示变量在运行时 *正好使用一次*"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:598
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* *Unrestricted* (the default), meaning that the variable is used\n"
 "   an arbitrary number of times at runtime.\n"
-msgstr ""
-"* *Unrestricted*（默认），表示使用变量\n"
-"   在运行时任意次数。\n"
+msgstr "* *无限制*（默认），表示在运行时使用变量任意次数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:604
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We will not talk about the most complex of the three, multiplicity `1`, here.\n"
 "We are, however, often interested in multiplicity `0`: A variable with\n"
 "multiplicity `0` is only relevant at *compile time*. It will not make\n"
 "any appearance at runtime, and the computation of such a variable will\n"
 "never affect a program's runtime performance.\n"
-msgstr "我们不会在这里讨论三者中最复杂的，多重性 `1`。然而，我们经常对多重性 `0` 感兴趣：具有多重性 `0` 的变量仅在 * 编译时 * 相关。它不会在运行时出现，并且这样一个变量的计算永远不会影响程序的运行时性能。"
+msgstr ""
+"我们不会在这里讨论三者中最复杂的，多重性 `1`。然而，我们经常对多重性 `0` "
+"感兴趣：具有多重性 `0` 的变量仅在 *编译时* 相关。它不会在运行时出现，并且这样"
+"一个变量的计算永远不会影响程序的运行时性能。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:609
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the type signature of `maybeToEither` we see that type\n"
 "parameter `a` has multiplicity `0`, and will therefore be erased and\n"
 "is only relevant at compile time, while the `Maybe a` argument\n"
 "has *unrestricted* multiplicity.\n"
-msgstr "在 `maybeToEither` 的类型签名中，我们看到类型参数 `a` 具有多重性 `0`，因此将被擦除并且仅在编译时相关，而 [ X171X]也许 ` 参数具有 * 无限制 * 多重性。"
+msgstr ""
+"在 `maybeToEither` 的类型签名中，我们看到类型参数 `a` 具有多重性 "
+"`0`，因此将被擦除并且仅在编译时相关，而 `Maybe a ` 参数具有 *无限制* 多重性。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:613
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is also possible to annotate explicit arguments with multiplicities,\n"
 "in which case the argument must again be put in parentheses. For an example,\n"
 "look again at the type signature of `the`.\n"
-msgstr "也可以用多重性注释显式参数，在这种情况下，参数必须再次放在括号中。例如，再次查看 `the` 的类型签名。"
+msgstr "也可以用多重性注释显式参数，在这种情况下，同样参数必须放在括号中。例如，"
+"再次查看 `the` 的类型签名。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:614
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Underscores"
-msgstr "### 下划线"
+msgstr "下划线"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:623
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is often desirable, to only write as little code as necessary\n"
 "and let Idris figure out the rest.\n"
@@ -1682,59 +1750,64 @@ msgid ""
 "we can't just drop it, as this would make it impossible for\n"
 "Idris, which of several arguments we were planning to drop,\n"
 "but we can use an underscore as a placeholder instead:\n"
-msgstr "通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情况：包罗万象的模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，因为这会使 Idris 无法使用，我们计划删除几个参数中的哪一个，但我们可以使用下划线作为一个占位符："
+msgstr ""
+"通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情况"
+"：任意模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，因为这会使 "
+"Idris 无法使用，但我们可以使用下划线作为一个占位符，表明我们计划删除几个参数"
+"中的哪一个：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:624
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "isRight : Either a b -> Bool\n"
 "isRight (Right _) = True\n"
 "isRight _         = False\n"
 msgstr ""
-"```伊德里斯\n"
-"isRight : a b -> Bool\n"
-"isRight（右_）=真\n"
-"isRight _ = 假\n"
-"```\n"
+"isRight : Either a b -> Bool\n"
+"isRight (Right _) = True\n"
+"isRight _         = False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:633
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But when we look at the type signature of `isRight`, we will note\n"
 "that type parameters `a` and `b` are also only used once, and\n"
 "are therefore of no importance. Let's get rid of them:\n"
-msgstr "但是当我们查看 `isRight` 的类型签名时，我们会注意到类型参数 `a` 和 `b` 也只使用一次，因此并不重要.让我们摆脱它们："
+msgstr ""
+"但是当我们查看 `isRight` 的类型签名时，我们会注意到类型参数 `a` 和 `b` "
+"也只使用一次，因此它们并不重要.让我们摆脱它们：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:634
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "isRight' : Either _ _ -> Bool\n"
 "isRight' (Right _) = True\n"
 "isRight' _         = False\n"
 msgstr ""
-"```伊德里斯\n"
-"isRight' : _ _ -> Bool\n"
-"isRight'（右_）=真\n"
-"isRight' _ = 假\n"
-"```\n"
+"isRight' : Either _ _ -> Bool\n"
+"isRight' (Right _) = True\n"
+"isRight' _         = False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:645
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the detailed type signature of `zipEitherWith`, it should\n"
 "be obvious for Idris that the implicit arguments are of type `Type`.\n"
 "After all, all of them are later on applied to the `Either` type\n"
 "constructor, which is of type `Type -> Type -> Type`. Let's get rid\n"
 "of them:\n"
-msgstr "在 `zipEitherWith` 的详细类型签名中，Idris 应该很明显隐式参数的类型是 `Type`。毕竟，它们后来都应用于 `Either` 类型构造函数，它的类型为 `Type -> Type -> Type`。让我们摆脱它们："
+msgstr ""
+"在 `zipEitherWith` 的详细类型签名中，对 Idris 来说，隐式参数的类型应该是 "
+"`Type`。毕竟，它们后来都应用于 `Either` 类型构造函数，它的类型为 `Type -> "
+"Type -> Type`。让我们摆脱它们：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:646
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipEitherWith'' :  {0 a : _}\n"
 "                -> {0 b : _}\n"
@@ -1745,70 +1818,77 @@ msgid ""
 "                -> Either e b\n"
 "                -> Either e c\n"
 msgstr ""
-"```伊德里斯\n"
-"zipEitherWith''：{0 a：_}\n"
-"                -> {0 b：_}\n"
-"                -> {0 c：_}\n"
+"zipEitherWith'' :  {0 a : _}\n"
+"                -> {0 b : _}\n"
+"                -> {0 c : _}\n"
 "                -> {0 e : _}\n"
 "                -> (a -> b -> c)\n"
-"                -> 要么\n"
-"                -> 要么 e b\n"
-"                -> 要么 e c\n"
-"```\n"
+"                -> Either e a\n"
+"                -> Either e b\n"
+"                -> Either e c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:658
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Consider the following contrived example:\n"
-msgstr "考虑以下人为设计的示例："
+msgstr "考虑以下人为设计的示例：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:659
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "foo : Integer -> String\n"
 "foo n = show (the (Either String Integer) (Right n))\n"
-msgstr "```idris foo : Integer -> String foo n = show (the (Either String Integer) (Right n)) ```"
+msgstr ""
+"foo : Integer -> String\n"
+"foo n = show (the (Either String Integer) (Right n))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:669
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since we wrap an `Integer` in a `Right`, it is obvious\n"
 "that the second argument in `Either String Integer` is\n"
 "`Integer`. Only the `String` argument can't be inferred\n"
 "by Idris. Even better, the `Either` itself is obvious!\n"
 "Let's get rid of the unnecessary noise:\n"
-msgstr "由于我们将 `Integer` 包装在 `Right` 中，很明显 `Either String Integer` 中的第二个参数是 `Integer`。 Idris 无法推断出只有 `String` 参数。更妙的是，`Either` 本身就很明显了！让我们摆脱不必要的噪音："
+msgstr ""
+"由于我们将 `Integer` 包装在 `Right` 中，很明显 `Either String Integer` "
+"中的第二个参数是 `Integer`。 Idris 无法推断出的只有 `String` "
+"参数。更妙的是，`Either` 本身就很明显了！让我们摆脱不必要的噪音：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:670
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "foo' : Integer -> String\n"
 "foo' n = show (the (_ String _) (Right n))\n"
-msgstr "```idris foo' : Integer -> String foo' n = show (the (_ String _) (Right n)) ```"
+msgstr ""
+"foo' : Integer -> String\n"
+"foo' n = show (the (_ String _) (Right n))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:680
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Please note, that using underscores as in `foo'` is\n"
 "not always desirable, as it can quite drastically\n"
 "obfuscate the written code. Always use a syntactic\n"
 "convenience to make code more readable, and not to\n"
 "show people how clever you are.\n"
-msgstr "请注意，在 `foo'` 中使用下划线并不总是可取的，因为它会极大地混淆编写的代码。始终使用方便的语法来使代码更具可读性，而不是向人们展示你有多聪明。"
+msgstr ""
+"请注意，在 `foo'` 中使用下划线并不总是可取的，因为它会极大地混淆编写的代码。"
+"始终使用方便的语法来使代码更具可读性，而不是向人们展示你有多聪明。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Functions2.md:681
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Programming with Holes"
-msgstr "## 孔编程"
+msgstr "孔编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:696
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Solved all the exercises so far? Got angry at the type checker\n"
 "for always complaining and never being really helpful? It's time\n"
@@ -1823,11 +1903,18 @@ msgid ""
 "and quantities of all other variables in scope can be inspected\n"
 "at the REPL (or in your editor, if you setup the necessary plugin).\n"
 "Let's see them holes in action.\n"
-msgstr "解决了到目前为止的所有练习？对类型检查器总是抱怨并且从来没有真正提供帮助而生气？是时候改变这一点了。 Idris 带有几个非常有用的交互式编辑功能。有时，编译器能够为我们实现完整的功能（如果类型足够具体）。即使这不可能，也有一个非常有用且重要的功能，当类型变得过于复杂时，它可以帮助我们：孔。孔是变量，其名称以问号为前缀。每当我们计划在以后实现某个功能时，我们都可以将它们用作占位符。此外，它们的类型以及范围内所有其他变量的类型和数量可以在 REPL（或在您的编辑器中，如果您设置了必要的插件）进行检查。让我们看看他们的行动漏洞。"
+msgstr ""
+"解决了到目前为止的所有练习？对类型检查器总是抱怨并且从来没有真正提供帮助而生"
+"气？是时候改变这一点了。 Idris 带有几个非常有用的交互式编辑功能。有时，编译器"
+"能够为我们实现完整的功能（如果类型足够具体）。即使这不可能，也有一个非常有用"
+"且重要的功能，当类型变得过于复杂时，它可以帮助我们：孔。孔是变量，其名称以问"
+"号为前缀。每当我们计划在以后实现某个功能时，我们都可以将它们用作占位符。此外"
+"，它们的类型以及范围内所有其他变量的类型和数量可以在 REPL（或在您的编辑器中，"
+"如果您设置了必要的插件）进行检查。让我们在实践中看看孔是什么样子。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:704
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Remember the `traverseList` example from an Exercise earlier in\n"
 "this section? If this was your first encounter with applicative list\n"
@@ -1836,79 +1923,83 @@ msgid ""
 "piece of functionality for functions returning `Either e`, where\n"
 "`e` is a type with a `Semigroup` implementation, and we'd like\n"
 "to accumulate the values in all `Left`s we meet along the way.\n"
-msgstr "还记得本节前面练习中的 `traverseList` 示例吗？如果这是您第一次遇到应用程序列表遍历，那么这可能是一项令人讨厌的工作。好吧，让我们让它变得更难一点。我们希望为返回 `Either e` 的函数实现相同的功能，其中 `e` 是具有 `Semigroup` 实现的类型，我们希望累积我们沿途遇到的所有 `Left` 中的值。"
+msgstr ""
+"还记得本节前面练习中的 `traverseList` 示例吗？如果这是您第一次遇到应用程序列"
+"表遍历，那么这可能是一项令人讨厌的工作。好吧，让我们让它变得更难一点。"
+"我们希望为返回 `Either e` 的函数实现相同的功能，其中 `e` 是具有 `Semigroup` "
+"实现的类型，我们希望累积我们沿途遇到的所有 `Left` 中的值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:706
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here's the type of the function:\n"
-msgstr "这是函数的类型："
+msgstr "这是函数的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:707
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseEither :  Semigroup e\n"
 "               => (a -> Either e b)\n"
 "               -> List a\n"
 "               -> Either e (List b)\n"
 msgstr ""
-"```伊德里斯\n"
-"traverseEither : 半群 e\n"
-"               => (a -> 要么 e b)\n"
-"               -> 列出一个\n"
-"               -> 任一个 e（列表 b）\n"
-"```\n"
+"traverseEither :  Semigroup e\n"
+"               => (a -> Either e b)\n"
+"               -> List a\n"
+"               -> Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:718
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, in order to follow along, you might want to start your own\n"
 "Idris source file, load it into a REPL session and adjust the\n"
 "code as described here. The first thing we'll do, is write a\n"
 "skeleton implementation with a hole on the right hand side:\n"
-msgstr "现在，为了继续进行，您可能想要启动自己的 Idris 源文件，将其加载到 REPL 会话中并按照此处所述调整代码。我们要做的第一件事是编写一个在右侧有一个洞的骨架实现："
+msgstr ""
+"现在，为了继续进行，您可能想要启动自己的 Idris 源文件，将其加载到 REPL 会话中"
+"并按照此处所述调整代码。我们要做的第一件事是编写一个在右侧有一个孔的骨架实现"
+"：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:719
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "traverseEither fun as = ?impl\n"
-msgstr "```repl traverseEither fun as = ?impl ```"
+msgstr "traverseEither fun as = ?impl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:725
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When you now go to the REPL and reload the file using command `:r`,\n"
 "you can enter `:m` to list all the *metavariables*:\n"
-msgstr "当您现在转到 REPL 并使用命令 `:r` 重新加载文件时，您可以输入 `:m` 以列出所有 * 元变量*："
+msgstr "当您现在转到 REPL 并使用命令 `:r` 重新加载文件时，您可以输入 `:m` 以列出所有 "
+"*元变量*：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:726
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :m\n"
 "1 hole:\n"
 "  Tutorial.Functions2.impl : Either e (List b)\n"
 msgstr ""
-"```repl\n"
 "Tutorial.Functions2> :m\n"
-"1个孔：\n"
-"  Tutorial.Functions2.impl : 要么 e (列表 b)\n"
-"```\n"
+"1 hole:\n"
+"  Tutorial.Functions2.impl : Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:734
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Next, we'd like to display the hole's type (including all variables in the\n"
 "surrounding context plus their types):\n"
-msgstr "接下来，我们要显示洞的类型（包括周围上下文中的所有变量及其类型）："
+msgstr "接下来，我们要显示孔的类型（包括周围上下文中的所有变量及其类型）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:735
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :t impl\n"
 " 0 b : Type\n"
@@ -1919,57 +2010,60 @@ msgid ""
 "------------------------------\n"
 "impl : Either e (List b)\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Functions2> :t impl\n"
-" 0 b : 类型\n"
-" 0 a : 类型\n"
-" 0 e : 类型\n"
-"   如：列出一个\n"
-"   有趣：a -> 要么 e b\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+" 0 e : Type\n"
+"   as : List a\n"
+"   fun : a -> Either e b\n"
 "------------------------------\n"
+"impl : Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:750
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, we have some erased type parameters (`a`, `b`, and `e`), a value\n"
 "of type `List a` called `as`, and a function from `a` to\n"
 "`Either e b` called `fun`. Our goal is to come up with a value\n"
 "of type `Either a (List b)`.\n"
-msgstr "因此，我们有一些已擦除的类型参数（`a`、`b` 和 `e`），类型为 `List a` 的值称为 [X93X ]as`，以及从 `a` 到 ` 的函数，或者 b`，称为 `fun`。我们的目标是提出一个类型为 ` 的值，要么是 (List b)`。"
+msgstr ""
+"因此，我们有一些已擦除的类型参数（`a`、`b` 和 `e`），类型为 `List a` "
+"的值称为 `as`，以及从 `a` 到 `Either a b` 的函数，称为 `fun`。"
+"我们的目标是提出一个类型为 `Either a (List b)` 的值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:754
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We *could* just return a `Right []`, but that only make sense\n"
 "if our input list is indeed the empty list. We therefore should\n"
 "start with a pattern match on the list:\n"
-msgstr "我们 * 可以 * 只返回一个 `Right []`，但这只有在我们的输入列表确实是空列表时才有意义。因此，我们应该从列表中的模式匹配开始："
+msgstr "我们 *可以* 只返回一个 `Right []`，但这只有在我们的输入列表确实是空列表时才有"
+"意义。因此，我们应该从列表中的模式匹配开始：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:755
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseEither fun []        = ?impl_0\n"
 "traverseEither fun (x :: xs) = ?impl_1\n"
 msgstr ""
-"```repl\n"
-"traverseEither fun [] = ?impl_0\n"
+"traverseEither fun []        = ?impl_0\n"
 "traverseEither fun (x :: xs) = ?impl_1\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:762
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The result is two holes, which must be given distinct names. When inspecting `impl_0`,\n"
 "we get the following result:\n"
-msgstr "结果是两个孔，它们必须被赋予不同的名称。在检查 `impl_0` 时，我们得到以下结果："
+msgstr "结果是两个孔，它们必须被赋予不同的名称。在检查 `impl_0` "
+"时，我们得到以下结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:763
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :t impl_0\n"
 " 0 b : Type\n"
@@ -1979,17 +2073,17 @@ msgid ""
 "------------------------------\n"
 "impl_0 : Either e (List b)\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Functions2> :t impl_0\n"
-" 0 b : 类型\n"
-" 0 a : 类型\n"
-" 0 e : 类型\n"
-"   有趣：a -> 要么 e b\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+" 0 e : Type\n"
+"   fun : a -> Either e b\n"
 "------------------------------\n"
+"impl_0 : Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:779
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, this is an interesting situation. We are supposed to come up with a value\n"
 "of type `Either e (List b)` with nothing to work with. We know nothing\n"
@@ -1997,28 +2091,29 @@ msgid ""
 "Likewise, we know nothing about `e` or `b` either, so we can't produce\n"
 "any values of these either. The *only* option we have is to replace `impl_0`\n"
 "with an empty list wrapped in a `Right`:\n"
-msgstr "现在，这是一个有趣的情况。我们应该想出一个类型为 `Either e (List b)` 的值，而没有任何东西可以使用。我们对 `a` 一无所知，因此我们无法提供调用 `fun` 的参数。同样，我们对 `e` 或 `b` 也一无所知，因此我们也无法生成这些值。我们拥有的 *only* 选项是将 `impl_0` 替换为包含在 `Right` 中的空列表："
+msgstr ""
+"现在，这是一个有趣的情况。我们应该想出一个类型为 `Either e (List b)` "
+"的值，而不使用任何东西。我们对 `a` 一无所知，因此我们无法提供调用 `fun` "
+"的参数。同样，我们对 `e` 或 `b` 也一无所知，因此我们也无法生成这些值。"
+"我们拥有的 *唯一* 选项是将 `impl_0` 替换为包含在 `Right` 中的空列表：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:780
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "traverseEither fun []        = Right []\n"
-msgstr ""
-"```伊德里斯\n"
-"traverseEither fun [] = Right []\n"
-"```\n"
+msgstr "traverseEither fun []        = Right []\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:786
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The non-empty case is of course slightly more involved. Here's the context\n"
 "of `?impl_1`:\n"
-msgstr "非空的情况当然稍微多一些。这是 `?impl_1` 的上下文："
+msgstr "非空的情况当然稍微多一些。这是 `?impl_1` 的上下文：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:787
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :t impl_1\n"
 " 0 b : Type\n"
@@ -2030,19 +2125,19 @@ msgid ""
 "------------------------------\n"
 "impl_1 : Either e (List b)\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Functions2> :t impl_1\n"
-" 0 b : 类型\n"
-" 0 a : 类型\n"
-" 0 e : 类型\n"
-"   x：一个\n"
-"   xs ：列出一个\n"
-"   有趣：a -> 要么 e b\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+" 0 e : Type\n"
+"   x : a\n"
+"   xs : List a\n"
+"   fun : a -> Either e b\n"
 "------------------------------\n"
+"impl_1 : Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:810
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since `x` is of type `a`, we can either use it as an argument\n"
 "to `fun` or drop and ignore it. `xs`, on the other hand, is\n"
@@ -2055,31 +2150,36 @@ msgid ""
 "calling `traverseEither`). We therefore can do both at the\n"
 "same time and analyze the results in a single pattern match\n"
 "by wrapping both in a `Pair`:\n"
-msgstr "由于 `x` 是 `a` 类型，我们可以将其用作 `fun` 的参数，也可以放弃并忽略它。另一方面，`xs` 是 `List a` 类型列表的其余部分。我们可以通过递归调用 `traverseEither` 再次删除它或进一步处理它。由于目标是尝试转换 *all* 值，我们都不应该放弃。因为在两个 `Left` 的情况下，我们应该累积值，我们最终还是需要运行这两个计算（调用 `fun`，并递归调用 `traverseEither`） .因此，我们可以同时进行这两项操作，并通过将两者包装在 `Pair` 中来分析单个模式匹配中的结果："
+msgstr ""
+"由于 `x` 是 `a` 类型，我们可以将其用作 `fun` "
+"的参数，也可以放弃并忽略它。另一方面，`xs` 是 `List a` 类型列表的其余部分。"
+"我们可以通过递归调用 `traverseEither` 再次删除它或进一步处理它。"
+"由于目标是尝试转换 *所有* 值，我们都不应该放弃。因为在两个 `Left` "
+"的情况下，我们应该累积值，我们最终还是需要运行这两个计算（调用 `fun`，"
+"并递归调用 `traverseEither`） .因此，我们可以同时进行这两项操作，"
+"并通过将两者包装在 `Pair` 中来分析单个模式匹配中的结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:811
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseEither fun (x :: xs) =\n"
 "  case (fun x, traverseEither fun xs) of\n"
 "   p => ?impl_2\n"
 msgstr ""
-"```repl\n"
 "traverseEither fun (x :: xs) =\n"
-"  case (fun x, traverseEither fun xs) 的\n"
+"  case (fun x, traverseEither fun xs) of\n"
 "   p => ?impl_2\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:818
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Once again, we inspect the context:\n"
-msgstr "我们再次检查上下文："
+msgstr "我们再次检查上下文：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:819
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :t impl_2\n"
 " 0 b : Type\n"
@@ -2092,28 +2192,28 @@ msgid ""
 "------------------------------\n"
 "impl_2 : Either e (List b)\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Functions2> :t impl_2\n"
-" 0 b : 类型\n"
-" 0 a : 类型\n"
-" 0 e : 类型\n"
-"   xs ：列出一个\n"
-"   有趣：a -> 要么 e b\n"
-"   x：一个\n"
-"   p : (要么 e b，要么 e (列表 b))\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+" 0 e : Type\n"
+"   xs : List a\n"
+"   fun : a -> Either e b\n"
+"   x : a\n"
+"   p : (Either e b, Either e (List b))\n"
 "------------------------------\n"
+"impl_2 : Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:834
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We'll definitely need to pattern match on pair `p` next\n"
 "to figure out, which of the two computations succeeded:\n"
-msgstr "我们肯定需要在对 `p` 上进行模式匹配，以确定两个计算中的哪一个成功："
+msgstr "我们肯定需要在对 `p` 进行模式匹配，以确定两个计算中的哪一个成功：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:835
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseEither fun (x :: xs) =\n"
 "  case (fun x, traverseEither fun xs) of\n"
@@ -2122,27 +2222,26 @@ msgid ""
 "    (Right _, Left z)  => ?impl_8\n"
 "    (Right y, Right z) => ?impl_9\n"
 msgstr ""
-"```repl\n"
 "traverseEither fun (x :: xs) =\n"
-"  case (fun x, traverseEither fun xs) 的\n"
-"    （左 y，左 z）=> ?impl_6\n"
-"    （左 y，右 _）=> ?impl_7\n"
-"    （右_，左z）=> ?impl_8\n"
-"    （右 y，右 z）=> ?impl_9\n"
-"```\n"
+"  case (fun x, traverseEither fun xs) of\n"
+"    (Left y, Left z)   => ?impl_6\n"
+"    (Left y, Right _)  => ?impl_7\n"
+"    (Right _, Left z)  => ?impl_8\n"
+"    (Right y, Right z) => ?impl_9\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:847
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "At this point we might have forgotten what we actually\n"
 "wanted to do (at least to me, this happens annoyingly often),\n"
 "so we'll just quickly check what our goal is:\n"
-msgstr "在这一点上，我们可能已经忘记了我们真正想要做什么（至少对我来说，这种情况经常发生），所以我们将快速检查我们的目标是什么："
+msgstr "在这一点上，我们可能已经忘记了我们真正想要做什么（至少对我来说，这种情况经常"
+"发生），所以我们将快速检查我们的目标是什么：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:848
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> :t impl_6\n"
 " 0 b : Type\n"
@@ -2156,21 +2255,21 @@ msgid ""
 "------------------------------\n"
 "impl_6 : Either e (List b)\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Functions2> :t impl_6\n"
-" 0 b : 类型\n"
-" 0 a : 类型\n"
-" 0 e : 类型\n"
-"   xs ：列出一个\n"
-"   有趣：a -> 要么 e b\n"
-"   x：一个\n"
-"   是：e\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+" 0 e : Type\n"
+"   xs : List a\n"
+"   fun : a -> Either e b\n"
+"   x : a\n"
+"   y : e\n"
 "   z : e\n"
 "------------------------------\n"
+"impl_6 : Either e (List b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:868
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, we are still looking for a value of type `Either e (List b)`, and\n"
 "we have two values of type `e` in scope. According to the spec we\n"
@@ -2178,11 +2277,15 @@ msgid ""
 "We can proceed for the other cases in a similar manner, remembering\n"
 "that we should return a `Right`, if and only if all conversions\n"
 "where successful:\n"
-msgstr "因此，我们仍在寻找类型为 `Either e (List b)` 的值，并且我们在范围内有两个类型为 `e` 的值。根据规范，我们希望使用 `e`s `Semigroup` 实现来累积这些。我们可以以类似的方式处理其他情况，记住我们应该返回 `Right`，当且仅当所有转换都成功："
+msgstr ""
+"因此，我们仍在寻找类型为 `Either e (List b)` 的值，"
+"并且我们在范围内有两个类型为 `e` 的值。根据规范，我们希望使用 `e` 的 "
+"`Semigroup` 实现来累积这些。我们可以以类似的方式处理其他情况，"
+"记住我们应该返回 `Right`，当且仅当所有转换都成功：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:869
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseEither fun (x :: xs) =\n"
 "  case (fun x, traverseEither fun xs) of\n"
@@ -2191,24 +2294,22 @@ msgid ""
 "    (Right _, Left z)  => Left z\n"
 "    (Right y, Right z) => Right (y :: z)\n"
 msgstr ""
-"```伊德里斯\n"
 "traverseEither fun (x :: xs) =\n"
-"  case (fun x, traverseEither fun xs) 的\n"
-"    (左 y, 左 z) => 左 (y <+> z)\n"
-"    （左 y，右 _）=> 左 y\n"
-"    （右_，左z）=>左z\n"
-"    (右 y, 右 z) => 右 (y :: z)\n"
-"```\n"
+"  case (fun x, traverseEither fun xs) of\n"
+"    (Left y, Left z)   => Left (y <+> z)\n"
+"    (Left y, Right _)  => Left y\n"
+"    (Right _, Left z)  => Left z\n"
+"    (Right y, Right z) => Right (y :: z)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:879
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "To reap the fruits of our labour, let's show off with a small example:\n"
-msgstr "为了收获我们的劳动成果，让我们用一个小例子来炫耀一下："
+msgstr "为了收获我们的劳动成果，让我们用一个小例子来炫耀一下：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:880
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Nucleobase = Adenine | Cytosine | Guanine | Thymine\n"
 "\n"
@@ -2225,38 +2326,50 @@ msgid ""
 "readDNA : String -> Either (List String) DNA\n"
 "readDNA = traverseEither readNucleobase . unpack\n"
 msgstr ""
+"data Nucleobase = Adenine | Cytosine | Guanine | Thymine\n"
+"\n"
 "readNucleobase : Char -> Either (List String) Nucleobase\n"
-"readNucleobase 'A' = 右腺嘌呤\n"
-"readNucleobase 'C' = 右胞嘧啶\n"
-"readNucleobase 'G' = 右鸟嘌呤\n"
-"readNucleobase 'T' = 右胸腺嘧啶\n"
-"readNucleobase c = Left [\"未知核碱基：\" ++ show c]\n"
+"readNucleobase 'A' = Right Adenine\n"
+"readNucleobase 'C' = Right Cytosine\n"
+"readNucleobase 'G' = Right Guanine\n"
+"readNucleobase 'T' = Right Thymine\n"
+"readNucleobase c   = Left [\"Unknown nucleobase: \" ++ show c]\n"
+"\n"
+"DNA : Type\n"
+"DNA = List Nucleobase\n"
+"\n"
+"readDNA : String -> Either (List String) DNA\n"
+"readDNA = traverseEither readNucleobase . unpack\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:898
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Let's try this at the REPL:\n"
-msgstr "让我们在 REPL 上试试这个："
+msgstr "让我们在 REPL 上试试这个：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:899
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functions2> readDNA \"CGTTA\"\n"
 "Right [Cytosine, Guanine, Thymine, Thymine, Adenine]\n"
 "Tutorial.Functions2> readDNA \"CGFTAQ\"\n"
 "Left [\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q'\"]\n"
-msgstr "```repl Tutorial.Functions2> readDNA \"CGTTA\" Right [Cytosine, Guanine, Thymine, Thymine, Adenine] Tutorial.Functions2> readDNA \"CGFTAQ\" Left [\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q' \"] ```"
+msgstr ""
+"Tutorial.Functions2> readDNA \"CGTTA\"\n"
+"Right [Cytosine, Guanine, Thymine, Thymine, Adenine]\n"
+"Tutorial.Functions2> readDNA \"CGFTAQ\"\n"
+"Left [\"Unknown nucleobase: 'F'\", \"Unknown nucleobase: 'Q'\"]\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functions2.md:906
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interactive Editing"
-msgstr "### 交互式编辑"
+msgstr "交互式编辑"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:916
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There are plugins available for several editors and\n"
 "programming environments, which facilitate interacting\n"
@@ -2266,11 +2379,15 @@ msgid ""
 "I added some examples of what's possible to the\n"
 "[appendix](../Appendices/Neovim.md). Now would be a good\n"
 "time to start using the utilities discussed there.\n"
-msgstr "有一些可用于多个编辑器和编程环境的插件，它们有助于在实现您的功能时与 Idris 编译器进行交互。一位深受 Idris 社区支持的编辑器是 Neovim。由于我自己是 Neovim 用户，因此我在 [附录](../Appendices/Neovim.md) 中添加了一些可能的示例。现在是开始使用那里讨论的实用程序的好时机。"
+msgstr ""
+"有一些可用于多个编辑器和编程环境的插件，它们有助于在实现您的功能时与 Idris "
+"编译器进行交互。一位深受 Idris 社区支持的编辑器是 Neovim。由于我自己是 "
+"Neovim 用户，因此我在 [附录](../Appendices/Neovim.md) "
+"中添加了一些可能的示例。现在是开始使用那里讨论的实用程序的好时机。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:923
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If you use a different editor, probably with less support\n"
 "for the Idris programming language, you should at the very\n"
@@ -2278,36 +2395,39 @@ msgid ""
 "source file you are currently working on is loaded. This\n"
 "allows you to introduce new metavariables and inspect their\n"
 "types and context as you develop your code.\n"
-msgstr "如果您使用不同的编辑器，可能对 Idris 编程语言的支持较少，您至少应该始终打开一个 REPL 会话，您当前正在处理的源文件被加载到该会话中。这允许您在开发代码时引入新的元变量并检查它们的类型和上下文。"
+msgstr ""
+"如果您使用不同的编辑器，可能对 Idris 编程语言的支持较少，"
+"您至少应该始终打开一个 REPL 会话，您当前正在处理的源文件被加载到该会话中。这"
+"允许您在开发代码时引入新的元变量并检查它们的类型和上下文。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:929
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We again covered a lot of ground in this section. I can't stress enough that you\n"
 "should get yourselves accustomed to programming with holes and let the\n"
 "type checker help you figure out what to do next.\n"
-msgstr "在本节中，我们再次涵盖了很多内容。我怎么强调都不过分，你应该让自己习惯于使用孔进行编程，并让类型检查器帮助你弄清楚下一步该做什么。"
+msgstr "在本节中，我们再次涵盖了很多内容。我怎么强调都不过分，你应该让自己习惯于使用"
+"孔进行编程，并让类型检查器帮助你弄清楚下一步该做什么。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:932
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* When in need of local utility functions, consider defining them\n"
 "as local definitions in a *where block*.\n"
 msgstr ""
-"* 当需要局部效用函数时，考虑定义它们\n"
-"作为 *where 块*中的本地定义。\n"
+"* 当需要局部使用函数时，考虑定义它们\n"
+"作为 *where 块*中的局部定义。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions2.md:934
-#, fuzzy
 msgid "Use *let expressions* to define and reuse local variables."
 msgstr "使用 *let 表达式* 来定义和重用局部变量。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:938
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* Function arguments can be given a name, which can serve as documentation,\n"
 "can be used to pass arguments in any order, and is used to refer to\n"
@@ -2319,53 +2439,45 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:942
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* Implicit arguments are wrapped in curly braces. The compiler is\n"
 "supposed to infer them from the context. If that's not possible,\n"
 "they can be passed explicitly as other named arguments.\n"
-msgstr ""
-"* 隐式参数用花括号括起来。编译器是\n"
-"应该从上下文中推断出它们。如果这不可能，\n"
-"它们可以作为其他命名参数显式传递。\n"
+msgstr "* 隐式参数用大括号括起来。编译器应该从上下文中推断出它们。如果这不可能，它们"
+"可以作为其他命名参数显式传递。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:945
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* Whenever possible, Idris adds implicit erased arguments for all\n"
 "type parameters automatically.\n"
-msgstr ""
-"* 只要有可能，Idris 都会为所有\n"
-"自动输入参数。\n"
+msgstr "* 只要有可能，Idris 都会为所有参数自动添加隐式擦除参数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:948
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* Quantities allow us to track how often a function argument is\n"
 "used. Quantity 0 means, the argument is erased at runtime.\n"
-msgstr ""
-"* 数量允许我们跟踪函数参数的频率\n"
-"用过的。数量 0 表示，参数在运行时被擦除。\n"
+msgstr "* 定量允许我们跟踪函数参数的使用频率。定量 0 表示，参数在运行时被擦除。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:953
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* Use *holes* as placeholders for pieces of code you plan to fill\n"
 "in at a later time. Use the REPL (or your editor) to inspect\n"
 "the types of holes together with the names, types, and quantities of all\n"
 "variables in their context.\n"
 msgstr ""
-"* 使用 *holes* 作为您计划填充的代码片段的占位符\n"
-"在稍后的时间。使用 REPL（或您的编辑器）检查\n"
-"孔的类型以及所有孔的名称、类型和数量\n"
-"在他们的上下文中的变量。\n"
+"* 使用 *孔* 作为您计划在稍后的时间填充代码片段的占位符。使用 REPL（或您的编辑"
+"器）检查孔的类型以及所有孔的名称、类型和在他们的上下文中的变量的定量。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:962
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the [next chapter](Dependent.md)\n"
 "we'll start using dependent types to help us write provably correct code.\n"
@@ -2373,4 +2485,8 @@ msgid ""
 "Idris' type signatures will be of paramount importance there. Whenever\n"
 "you feel lost, add one or more holes and inspect their context to decide what to\n"
 "do next.\n"
-msgstr "在[下一章]（Dependent.md）中，我们将开始使用依赖类型来帮助我们编写可证明正确的代码。很好地理解如何阅读 Idris 的类型签名将是至关重要的。每当您感到迷茫时，添加一个或多个漏洞并检查其上下文以决定下一步该做什么。"
+msgstr ""
+"在 [下一章](Dependent.md) "
+"中，我们将开始使用依赖类型来帮助我们编写可证明正确的代码。很好地理解如何阅读 "
+"Idris 的类型签名将是至关重要的。每当您感到迷茫时，添加一个或多个孔并检查其上"
+"下文以决定下一步该做什么。\n"
