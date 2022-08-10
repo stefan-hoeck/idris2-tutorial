@@ -1,11 +1,6 @@
 # 依赖类型
 
-The ability to calculate types from values, pass them as arguments
-to functions, and return them as results from functions - in
-short, being a dependently typed language - is one of the
-most distinguishing features of Idris. Many of the more advanced
-type level extensions of languages like Haskell (and quite a
-bit more) can be treated in one fell swoop with dependent types.
+从值计算类型、将它们作为参数传递给函数并将它们作为函数结果返回的能力——简而言之，作为一种依赖类型的语言——是 Idris 最显着的特征之一。许多更高级的语言的类型级别扩展，如 Haskell（以及更多）都可以使用依赖类型来处理。
 
 ```idris
 module Tutorial.Dependent
@@ -13,7 +8,7 @@ module Tutorial.Dependent
 %default total
 ```
 
-Consider the following functions:
+考虑以下函数：
 
 ```idris
 bogusMapList : (a -> b) -> List a -> List b
@@ -23,21 +18,11 @@ bogusZipList : (a -> b -> c) -> List a -> List b -> List c
 bogusZipList _ _ _ = []
 ```
 
-The implementations type check, and still, they are obviously not
-what users of our library would expect. In the first example, we'd expect
-the implementation to apply the function argument to all values stored
-in the list, without dropping any of them or changing their order.
-The second is trickier: The two list arguments might be of different length.
-What are we supposed to do when that's the case? Return a list of the same
-length as the smaller of the two? Return an empty list? Or shouldn't
-we in most use cases expect the two lists to be of the same length?
-How could we even describe such a precondition?
+实现可以通过类型检查，但它们显然不是我们库的用户所期望的。在第一个示例中，我们希望实现将函数参数应用于存储在列表中的所有值，而不会删除它们中的任何一个或更改它们的顺序。第二个比较棘手：两个列表参数的长度可能不同。遇到这种情况我们该怎么办？返回与两者中较小的长度相同的列表？返回一个空列表？或者在大多数用例中我们不应该期望两个列表具有相同的长度吗？我们怎么能描述这样的前提条件呢？
 
-## Length-Indexed Lists
+## 长度索引列表
 
-The answer to the issues described above is of course: Dependent types.
-And the most common introductory example is the *vector*: A list indexed
-by its length:
+上述问题的答案当然是：依赖类型。最常见的介绍性示例是 *向量*：按长度索引的列表：
 
 ```idris
 data Vect : (len : Nat) -> (a : Type) -> Type where
@@ -45,27 +30,16 @@ data Vect : (len : Nat) -> (a : Type) -> Type where
   (::) : (x : a) -> (xs : Vect n a) -> Vect (S n) a
 ```
 
-Before we move on, please compare this with the implementation of `Seq` in
-the [section about algebraic data types](DataTypes.md). The constructors
-are exactly the same: `Nil` and `(::)`. But there is an important difference:
-`Vect`, unlike `Seq` or `List`, is not a function from `Type` to `Type`, it is
-a function from `Nat` to `Type` to `Type`. Go ahead! Open the REPL and
-verify this! The `Nat` argument (also called an *index*) represents
-the *length* of the vector here.
-`Nil` has type `Vect 0 a`: A vector of length
-zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one
-element longer (`S n`) than its second argument, which is of length `n`.
+在我们继续之前，请将此与 [关于代数数据类型的部分](DataTypes.md) 中的 `Seq` 的实现进行比较。构造函数完全相同：`Nil` 和 `(::)`。但是有一个重要的区别：`Vect` 不像`Seq`或`List`，不是从`Type`到`Type` 的函数，它是从 `Nat` 到 `Type` 到 `Type` 的函数。前进！打开 REPL 并验证这一点！ `Nat` 参数（也称为 *索引*）在这里表示向量的 *长度*。 `Nil` 的类型为 `Vect 0 a`：长度为零的向量。 `Cons` 的类型为 `a -> Vect n a -> Vect (S n) a`：它恰好比其长度为 `n` 的第二个参数多一个元素 (`S n`)，。
 
-Let's experiment with this idea to gain a better understanding.
-There is only one way to come up with a vector of length zero:
+让我们尝试这个想法以获得更好的理解。只有一种方法可以得出长度为零的向量：
 
 ```idris
 ex1 : Vect 0 Integer
 ex1 = Nil
 ```
 
-The following, on the other hand, leads to a type error (a pretty complicated
-one, actually):
+另一方面，以下会导致类型错误（实际上是一个非常复杂的错误）：
 
 ```idris
 failing "Mismatch between: S ?n and 0."
@@ -73,40 +47,22 @@ failing "Mismatch between: S ?n and 0."
   ex2 = [12]
 ```
 
-The problem: `[12]` gets desugared to `12 :: Nil`, but this has the wrong
-type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type
-`Vect (S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies,
-at compile time, that our vector is of the correct length!
+问题：`[12]` 被脱糖为 `12 :: Nil`，但这类型错误！由于此处 `Nil` 的类型为 `Vect 0 Integer`，因此 `12 :: Nil` 的类型为 `Vect (S 0) Integer`，也就是 `Vect 1 Integer `。 Idris 在编译时验证我们的向量的长度是否正确！
 
 ```idris
 ex3 : Vect 1 Integer
 ex3 = [12]
 ```
 
-So, we found a way to encode the *length* of a list-like data structure in
-its *type*, and it is a *type error* if the number of elements in
-a vector does not agree with then length given in its type. We will
-shortly see several use cases, where this additional piece of information
-allows us to be more precise in the types and rule out additional
-programming mistakes. But first, we need to quickly clarify some
-terminology.
+因此，我们找到了一种方法，将类列表数据结构的 *长度* 编码为 *类型*，如果在向量中的元素个数与其类型中给出的长度不一致，会得到一个 *类型错误*，我们很快就会看到几个用例，这些额外的信息使我们能够更精确地确定类型并排除额外的编程错误。但首先，我们需要快速澄清一些术语。
 
-### Type Indices versus Type Parameters
+### 类型索引与类型参数
 
-`Vect` is not only a generic type, parameterized over the type
-of elements it holds, it is actually a *family of types*, each
-of them associated with a natural number representing it's
-length. We also say, the type family `Vect` is *indexed* by
-its length.
+`Vect` 不仅是一个泛型类型，参数化了它所拥有的元素的类型，它实际上是一个 *类型族*，它们中的每一个都与一个代表它的长度的自然数相关联。我们也说，类型族 `Vect` 按其长度 *被索引*。
 
-The difference between a type parameter and an index is, that
-the latter can and does change across data constructors, while
-the former is the same for all data constructors. Or, put differently,
-we can learn about the *value* of an index by pattern matching
-on a *value* of the type family, while this is not possible
-with a type parameter.
+类型参数和索引之间的区别在于，后者可以并且确实在数据构造函数中发生变化，而前者对于所有数据构造函数都是相同的。或者，换句话说，我们可以通过对类型族的 *值* 进行模式匹配来了解索引的 *值，而对于类型参数，这是不可能的。
 
-Let's demonstrate this with a contrived example:
+让我们用一个人为的例子来证明这一点：
 
 ```idris
 data Indexed : Nat -> Type where
@@ -115,23 +71,15 @@ data Indexed : Nat -> Type where
   I4 : String -> Indexed 4
 ```
 
-Here, `Indexed` is indexed over its `Nat` argument, as
-values of the index changes across constructors (I chose some
-arbitrary value for each constructor), and we
-can learn about these values by pattern matching on `Indexed` values.
-We can use this, for instance, to create a `Vect` of the same length
-as the index of `Indexed`:
+在这里，`Indexed` 在它的 `Nat` 参数上进行索引，因为索引的值在构造函数之间发生变化（我为每个构造函数选择了一些任意值），我们可以通过模式匹配了解这些 `Indexed` 值。例如，我们可以使用它来创建与 `Indexed` 的索引长度相同的 `Vect`：
 
 ```idris
 fromIndexed : Indexed n -> a -> Vect n a
 ```
 
-Go ahead, and try implementing this yourself! Work with
-holes, pattern match on the `Indexed` argument, and
-learn about the expected output type in each case by
-inspecting the holes and their context.
+来吧，尝试自己实现它！使用孔，对 `Indexed` 参数进行模式匹配，并通过检查孔及其上下文了解每种情况下的预期输出类型。
 
-Here is my implementation:
+这是我的实现：
 
 ```idris
 fromIndexed I0     va = []
@@ -139,18 +87,11 @@ fromIndexed I3     va = [va, va, va]
 fromIndexed (I4 _) va = [va, va, va, va]
 ```
 
-As you can see, by pattern matching on the value of the
-`Indexed n` argument, we learned about the value of
-the `n` index itself, which was necessary to return a
-`Vect` of the correct length.
+如您所见，通过对 `Indexed n` 参数的值进行模式匹配，我们了解了 `n` 索引本身的值，这是返回 `Vect` 所必需的正确长度。
 
-### Length-Preserving `map`
+### 长度保持的 `map`
 
-Function `bogusMapList` behaved unexpectedly, because it always
-returned the empty list. With `Vect`, we need to be true to the
-types here. If we map over a `Vect`, the argument *and* output type
-contain a length index, and these length indices will tell us
-*exactly*, if and how the lengths of our vectors are modified:
+函数 `bogusMapList` 表现异常，因为它总是返回空列表。对于 `Vect`，我们需要忠实于这里的类型。如果我们在 `Vect` 上映射，参数 *和* 输出类型包含一个长度索引，这些长度索引将 *确切的* 告诉我们，我们的向量长度如何被修改：
 
 ```idris
 map3_1 : (a -> b) -> Vect 3 a -> Vect 1 b
@@ -163,43 +104,26 @@ map5_10 : (a -> b) -> Vect 5 a -> Vect 10 b
 map5_10 f [u,v,w,x,y] = [f u, f u, f v, f v, f w, f w, f x, f x, f y, f y]
 ```
 
-While these examples are quite interesting,
-they are not really useful, are they? That's because they are too
-specialized. We'd like to have a *general* function for mapping
-vectors of any length.
-Instead of using concrete lengths in type signatures,
-we can also use *variables* as already seen in the definition of `Vect`.
-This allows us to declare the general case:
+虽然这些例子很有趣，但它们并不是真的有用，不是吗？那是因为他们太专业了。我们想要一个 *通用* 函数来映射任意长度的向量。除了在类型签名中使用具体的长度，我们还可以使用 *变量*，正如在 `Vect` 的定义中已经看到的那样。这允许我们声明一般情况：
 
 ```idris
 mapVect' : (a -> b) -> Vect n a -> Vect n b
 ```
 
-This type describes a length-preserving map. It is actually
-more instructive (but not necessary) to include the
-implicit arguments as well:
+这种类型描述了一个长度保持映射。包含隐式参数实际上更有指导意义（但不是必需的）：
 
 ```idris
 mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b
 ```
 
-We ignore the two type parameters `a`, and `b`, as these just
-describe a generic function (note, however, that we can group arguments
-of the same type and quantity in a single pair of curly braces; this
-is optional, but it sometimes helps making type signatures a bit
-shorter). The implicit argument of type `Nat`, however, tells us that the
-input and output `Vect` are of the same length. It is a type error
-to not uphold to this contract. When implementing `mapVect`, it
-is very instructive to follow along and use some holes. In order
-to get *any* information about the length of the `Vect` argument,
-we need to pattern match on it:
+我们忽略了两个类型参数 `a` 和 `b`，因为它们只是描述了一个泛型函数（但是请注意，我们可以将相同类型和定量的参数组合成一对大括号；这是可选的，但有时有助于使类型签名更短）。然而，`Nat` 类型的隐式参数告诉我们输入和输出 `Vect` 的长度相同。不遵守本合约属于类型错误。在实现 `mapVect` 时，遵循并使用一些孔非常有指导意义。为了获得关于 `Vect` 参数长度的 *任何* 信息，我们需要对其进行模式匹配：
 
 ```repl
 mapVect _ Nil       = ?impl_0
 mapVect f (x :: xs) = ?impl_1
 ```
 
-At the REPL, we learn the following:
+在 REPL，我们学到以下内容：
 
 ```repl
 Tutorial.Dependent> :t impl_0
@@ -221,26 +145,19 @@ Tutorial.Dependent> :t impl_1
 impl_1 : Vect (S n) b
 ```
 
-The first hole, `impl_0` is of type `Vect 0 b`. There is only one such
-value, as discussed above:
+第一个孔 `impl_0` 的类型为 `Vect 0 b`。如上所述，只有一个这样的值：
 
 ```idris
 mapVect _ Nil       = Nil
 ```
 
-The second case is again more interesting. We note, that `xs` is
-of type `Vect n a`, for an arbitrary length `n` (given as an erased
-argument), while the result is of type `Vect (S n) b`. So, the
-result has to be one element longer than `xs`. Luckily, we already
-have a value of type `a` (bound to variable `x`) and a function
-from `a` to `b` (bound to variable `f`), so we can apply `f`
-to `x` and prepend the result to a yet unknown remainder:
+第二种情况更有趣。我们注意到，`xs` 是 `Vect n a` 类型，对于任意长度 `n`（作为已擦除参数给出），而结果是类型 `Vect (S n) b`。因此，结果必须比 `xs` 长一个元素。幸运的是，我们已经有了一个 `a` 类型的值（绑定到变量 `x`）和一个从 `a` 到 `b` 的函数（绑定到变量 `f`)，因此我们可以将 `f` 应用于 `x` 并将结果添加到未知的余数：
 
 ```repl
-mapVect f (x :: xs) = f x :: ?rest
+```repl mapVect f (x :: xs) = f x :: ?rest ```
 ```
 
-Let's inspect the new hole at the REPL:
+让我们在 REPL 检查一下新的孔：
 
 ```repl
 Tutorial.Dependent> :t rest
@@ -254,26 +171,15 @@ Tutorial.Dependent> :t rest
 rest : Vect n b
 ```
 
-Now, we have a `Vect n a` and need a `Vect n b`, without knowing anything
-else about `n`. We *could* learn more about `n` by pattern matching further
-on `xs`, but this would quickly lead us down a rabbit hole, since after
-such a pattern match, we'd end up with another `Nil` case and another
-*cons* case, with a new tail of unknown length. Instead, we can invoke
-`mapVect` recursively to convert the remainder (`xs`) to a `Vect n b`.
-The type checker guarantees, that the lengths of `xs` and `mapVect f xs`
-are the same, so the whole expression type checks and we are done:
+现在，我们有一个 `Vect n a` 并且需要一个 `Vect n b`，而不知道关于 `n` 的任何其他信息。我们 *可以* 通过在 `xs` 上进一步进行模式匹配来了解更多关于 `n` 的信息，但这会很快将我们引向一个兔子洞，因为在这样的模式匹配之后，我们'最终会出现另一个 `Nil` 分支和另一个 `cons` 分支，新的尾巴长度未知。相反，我们可以递归调用 `mapVect` 以将余数 (`xs`) 转换为 `Vect n b`。类型检查器保证 `xs` 和 `mapVect f xs` 的长度是相同的，所以整个表达式类型检查，我们就完成了：
 
 ```idris
 mapVect f (x :: xs) = f x :: mapVect f xs
 ```
 
-### Zipping Vectors
+### 向量压缩
 
-Let us now have a look at `bogusZipList`: We'd like to pairwise merge
-two lists holding elements of (possibly) distinct types through a
-given binary function. As discussed above, the most reasonable thing
-to do is to expect the two lists as well as the result to be of equal length.
-With `Vect`, this can be expressed and implemented as follows:
+现在让我们看一下 `bogusZipList`：我们希望通过给定的二元函数成对合并两个包含（可能）不同类型的元素的列表。如上所述，最合理的做法是期望两个列表以及结果的长度相等。使用 `Vect` 可以表达和实现如下：
 
 ```idris
 zipWith : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
@@ -281,30 +187,16 @@ zipWith f []        []         = Nil
 zipWith f (x :: xs) (y :: ys)  = f x y :: zipWith f xs ys
 ```
 
-Now, here is an interesting thing: The totality checker (activated
-throughout this source file due to the initial `%default total` pragma)
-accepts the above implementation as being total, although it is
-missing two more cases. This works, because Idris
-can figure out on its own, that the other two cases are *impossible*.
-From the pattern match on the first `Vect` argument, Idris learns
-whether `n` is zero or the successor of another natural number. But
-from this it can derive, whether the second vector, being also
-of length `n`, is a `Nil` or a *cons*. Still, it can be informative to add the
-impossible cases explicitly. We can use keyword `impossible` to
-do so:
+现在，这是一件有趣的事情：完全性检查器（由于初始 `%default total` 杂注而在整个源文件中激活）接受上述实现作为完全函数，尽管它缺少另外两个分支。这行得通，因为 Idris 可以自己弄清楚，其他两种情况是 *不可能的*。从第一个 `Vect` 参数的模式匹配中，Idris 了解 `n` 是零还是另一个自然数的后继。但由此可以得出，长度也为 `n` 的第二个向量是 `Nil` 还是 `cons`。尽管如此，明确添加不可能的情况仍然可以提供信息。我们可以使用关键字 `impossible` 来做到这一点：
 
 ```idris
 zipWith _ [] (_ :: _) impossible
 zipWith _ (_ :: _) [] impossible
 ```
 
-It is - of course - a type error to annotate a case in a pattern
-match with `impossible`, if Idris cannot verify that this case is
-indeed impossible. We will learn in a later section what to do,
-when we think we are right about an impossible case
-and Idris is not.
+如果 Idris 无法验证这种情况确实是不可能的，那么用 `impossible` 注释模式匹配中的情况当然是类型错误。当我们认为我们对不可能的情况是正确的而 Idris 不是时，我们将在后面的部分中学习该怎么做。
 
-Let's give `zipWith` a spin at the REPL:
+让我们在 REPL 上给 `zipWith` 一个旋转：
 
 ```repl
 Tutorial.Dependent> zipWith (*) [1,2,3] [10,20,30]
@@ -315,33 +207,13 @@ Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]
 ... Nasty type error ...
 ```
 
-#### Simplifying Type Errors
+#### 简化类型错误
 
-It is amazing to experience the amount of work Idris can do
-for us and the amount of things it can infer on its own when
-things go well. When things don't go well, however, the
-error messages we get from Idris can
-be quite long and hard to understand, especially
-for programmers new to the language. For instance, the error
-message in the last REPL example above was pretty long, listing
-different things Idris tried to do together with the reason
-why each of them failed.
+体验 Idris 可以为我们做的大量工作以及当事情进展顺利时它可以自行推断出的事情的数量，真是令人惊叹。然而，当事情进展不顺利时，我们从 Idris 收到的错误消息可能会很长且难以理解，尤其是对于刚接触该语言的程序员而言。例如，上面最后一个 REPL 示例中的错误消息很长，列出了 Idris 尝试做的不同事情以及每件事失败的原因。
 
-If this happens, it often means that a combination of a type error
-and an ambiguity resulting from overloaded function names is
-at work. In the example above, the two vectors are of distinct
-length, which leads to a type error if we interpret the list
-literals as vectors. However, list literals are overloaded to work
-with all data types with constructors `Nil` and `(::)`, so Idris
-will now try other data constructors than those of `Vect` (the
-ones of `List` and `Stream` from the *Prelude* in this case),
-each of which will again fail with a type error since `zipWith`
-expects arguments of type `Vect`, and neither `List` nor `Stream`
-will work.
+如果发生这种情况，通常意味着类型错误和函数名重载导致的歧义在起作用。在上面的示例中，两个向量的长度不同，如果我们将列表字面量解释为向量，则会导致类型错误。但是，列表字面量被重载以使用构造函数 `Nil` 和 `(::)` 的所有数据类型，因此 Idris 现在将尝试除 `Vect` 之外的其他数据构造函数]（在这种情况下，来自 *Prelude* 的 `List` 和 `Stream` ），由于 `zipWith` 需要 `Vect` 类型的参数，所以 `List` 和 `Stream` 都不起作用。
 
-If this happens, prefixing overloaded function names with
-their namespaces can often simplify things, as Idris no
-longer needs to disambiguate these functions:
+如果发生这种情况，在重载函数名称前加上它们的命名空间通常可以简化事情，因为 Idris 不再需要消除这些函数的歧义：
 
 ```repl
 Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil
@@ -352,14 +224,9 @@ and:
 Mismatch between: 0 and 1.
 ```
 
-Here, the message is much clearer: Idris can't *unify* the lengths of the
-two vectors. *Unification* means: Idris tries to at compile time convert
-two expressions to the same normal form. If this succeeds,
-the two expressions are considered to be equivalent,
-if it doesn't, Idris fails with a unification error.
+在这里，信息更加清晰：Idris 无法 *统一* 两个向量的长度。 *Unification* 表示：Idris 尝试在编译时将两个表达式转换为相同的范式。如果成功，则认为这两个表达式是等价的，否则，Idris 将失败并出现统一错误。
 
-As an alternative to prefixing overloaded functions with their
-namespace, we can use `the` to help with type inference:
+作为使用名称空间作为重载函数前缀的替代方法，我们可以使用 `the` 来帮助进行类型推断：
 
 ```repl
 Tutorial.Dependent> zipWith (*) (the (Vect 3 _) [1,2,3]) (the (Vect 2 _) [10,20])
@@ -370,148 +237,105 @@ and:
 Mismatch between: 0 and 1.
 ```
 
-It is interesting to note, that the error above is not "Mismatch between: 2 and 3"
-but "Mismatch between: 0 and 1" instead. Here's what's going on: Idris tries to
-unify integer literals `2` and `3`, which are first converted to the
-corresponding `Nat` values `S (S Z)` and `S (S (S Z))`, respectively.
-The two patterns match until we arrive at `Z` vs `S Z`, corresponding
-to values `0` and `1`, which is the discrepancy reported in the error message.
+有趣的是，上面的错误不是“不匹配：2 和 3”，而是“不匹配：0 和 1”。这是发生了什么：Idris 尝试统一整数字面量 `2` 和 `3`，它们首先转换为相应的 `Nat` 值 `S (S Z)[` 和 `S (S (S Z))`。这两个模式匹配，直到我们到达 `Z` vs `S Z`，对应于值 `0` 和 `1`，这是报告中报告的差异错误信息。
 
-### Creating Vectors
+### 创建向量
 
-So far, we were able to learn something about the lengths
-of vectors by pattern matching on them. In the `Nil`
-case, it was clear that the length is 0, while in the *cons*
-case the length was the successor of another natural number.
-This is not possible when we want to create a new vector:
+到目前为止，我们能够通过对向量进行模式匹配来了解向量的长度。在 `Nil` 的情况下，很明显长度为 0，而在 *cons* 的情况下，长度是另一个自然数的后继。当我们要创建一个新向量时，这是不可能的：
 
 ```idris
 failing "Mismatch between: S ?n and n."
   fill : a -> Vect n a
 ```
 
-You will have a hard time implementing `fill`. The following,
-for instance, leads to a type error:
+您将很难实现 `fill`。例如，以下内容会导致类型错误：
 
 ```idris
   fill va = [va,va]
 ```
 
-The problem is, that *the callers of our function decide about
-the length of the resulting vector*. The full type of `fill` is
-actually the following:
+问题是，*我们函数的调用者决定了结果向量的长度*。 `fill`的完整类型其实如下：
 
 ```idris
 fill' : {0 a : Type} -> {0 n : Nat} -> a -> Vect n a
 ```
 
-You can read this type as follows: For every type `a` and for
-every natural number `n` (about which I know *nothing* at runtime,
-since it has quantity zero), given a value of type `a`, I'll give
-you a vector holding exactly `n` elements of type `a`. This is
-like saying: "Think about a natural number `n`, and
-I'll give you `n` apples without you telling me the value of `n`".
-Idris is powerful, but it is not a clairvoyant.
+您可以按如下方式阅读此类型：对于每个类型 `a` 和每个自然数 `n` （我知道在运行时 *什么都没有* ，因为它的定量为零)，给定一个 `a` 类型的值，我会给你一个向量，它正好包含 `a` 类型的 `n` 个元素。这就像说：“想想一个自然数 `n`，我会给你 `n` 个苹果，而你却不告诉我 `n` 的值”。Idris 很强大，但不是千里眼。
 
-In order to implement `fill`, we need to know what
-`n` actually is: We need to pass `n` as an explicit, unerased argument, which
-will allow us to pattern match on it and decide - based on this pattern
-match - which constructors of `Vect` to use:
+为了实现 `fill`，我们需要知道 `n` 实际上是什么：我们需要将 `n` 作为显式的、未擦除的参数传递，这将允许我们对其进行模式匹配并决定 - 基于此模式匹配 - 使用 `Vect` 的哪些构造函数：
 
 ```idris
 replicate : (n : Nat) -> a -> Vect n a
 ```
 
-Now, `replicate` is a *dependent function type*: The output type
-*depends* on the value of one the arguments. It is straight forward
-to implement `replicate` by pattern matching on `n`:
+现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 一个参数的值。通过 `n` 上的模式匹配来实现 `replicate` 很简单：
 
 ```idris
 replicate 0     _  = []
 replicate (S k) va = va :: replicate k va
 ```
 
-This is a pattern that comes up often when working with
-indexed types: We can learn about the values of the indices
-by pattern matching on the values of the type family. However,
-in order to return a value of the type family from a function,
-we need to either know the values of the indices at compile
-time (see constants `ex1` or `ex3`, for instance), or we
-need to have access to the values of the indices at runtime, in
-which case we can pattern match on them and learn from
-this, which constructor(s) of the type family to use.
+这是使用索引类型时经常出现的模式：我们可以通过对类型族的值进行模式匹配来了解索引的值。但是，为了从函数返回类型族的值，我们需要在编译时知道索引的值（参见常量 `ex1` 或 `ex3`，例如)，或者我们需要在运行时访问索引的值，在这种情况下，我们可以对它们进行模式匹配并从中学习使用类型族的构造函数。
 
 ### 练习第 1 部分
 
-1. Implement function `head` for non-empty vectors:
+1. 为非空向量实现函数 `head`：
 
    ```idris
    head : Vect (S n) a -> a
    ```
 
-   Note, how we can describe non-emptiness by using a *pattern*
-   in the length of `Vect`. This rules out the `Nil` case, and we can
-   return a value of type `a`, without having to wrap it in
-   a `Maybe`! Make sure to add an `impossible` clause for the `Nil`
-   case (although this is not strictly necessary here).
+   请注意，我们如何使用 *模式* 来描述在 `Vect` 的长度上的非空性。这排除了 `Nil` 的情况，我们可以返回一个 `a` 类型的值，而不必将其包装在一个`Maybe` 中！确保为 `Nil` 添加一个 `impossible` 子句分支（尽管这不是绝对必要的）。
 
-2. Using `head` as a reference, declare and implement function `tail` for
-   non-empty vectors. The types should reflect that the output is exactly
-   one element shorter than the input.
+2. 以`head`为参考，为非空向量声明并实现函数`tail`。类型应该反映输出恰好比输入短一个元素。
 
-3. Implement `zipWith3`. If possible, try to doing so without looking at the
-   implementation of `zipWith`:
+3. 实现 `zipWith3`。如果可能，请尝试在不查看 `zipWith` 的实现的情况下这样做：
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
 
-4. Declare and implement a function `foldSemi`
-   for accumulating the values stored
-   in a `List` through `Semigroup`s append operator (`(<+>)`).
-   (Make sure to only use a `Semigroup` constraint, as opposed to
-   a `Monoid` constraint.)
+4. 声明并实现一个函数`foldSemi`
+   用于累积存储的值
+   在 `List` 到 `Semigroup` 的附加运算符 (`(<+>)`) 中。
+   （确保只使用 `Semigroup` 约束，而不是
+   `Monoid` 约束。）
 
-5. Do the same as in Exercise 4, but for non-empty vectors. How
-   does a vector's non-emptiness affect the output type?
+5. 做与练习 4 相同的操作，但对于非空向量。向量的非空性会影响输出类型吗？
 
-6. Given an initial value of type `a` and a function `a -> a`,
-   we'd like to generate `Vect`s of `a`s, the first value of
-   which is `a`, the second value being `f a`, the third
-   being `f (f a)` and so on.
+6. 给定一个 `a` 类型的初始值和一个函数 `a -> a`，
+   我们想生成 `a` 类型的 `Vect`，第一个值
+   即 `a`，第二个值为 `f a`，第三个
+   是 `f (f a)` 等等。
 
-   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like
-   to get results similar to the following: `[1,2,4,8,16,...]`.
+   例如，如果 `a` 是 1 并且 `f` 是 `(* 2)`，我们希望
+   获得类似于以下的结果：`[1,2,4,8,16,...]`。
 
-   Declare and implement function `iterate`, which should
-   encapsulate this behavior. Get some inspiration from `replicate`
-   if you don't know where to start.
+   声明并实现函数 `iterate`，它应该
+   封装这种行为。从 `replicate` 中获得一些灵感，
+   如果你不知道从哪里开始。
 
-7. Given an initial value of a state type `s` and
-   a function `fun : s -> (s,a)`,
-   we'd like to generate `Vect`s of `a`s. Declare and implement
-   function `generate`, which should encapsulate this behavior. Make sure to use
-   the updated state in every new invocation of `fun`.
+7. 给定类型为 `s` 的初始值和
+   一个函数 `fun : s -> (s,a)`,
+   我们想生成元素类型为 `a` 的 `Vect`。声明并实现
+   函数 `generate`，它应该封装这个行为。确保使用
+   每次新调用 `fun` 时的更新状态。
 
-   Here's an example how this can be used to generate the first
-   `n` Fibonacci numbers:
-
-   ```repl
+   这是一个示例如何使用它来生成第一个
+   `n` 斐波那契数：
+    ```repl
    generate 10 (\(x,y) => let z = x + y in ((y,z),z)) (0,1)
    [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
    ```
 
-8. Implement function `fromList`, which converts a list of values to a
-   `Vect` of the same length. Use holes if you get stuck:
+8. 实现函数 `fromList`，它将值列表转换为相同长度的 `Vect`。如果卡住，请使用孔：
 
    ```idris
    fromList : (as : List a) -> Vect (length as) a
    ```
 
-   Note how, in the type of `fromList`, we can *calculate* the
-   length of the resulting vector by passing the list argument
-   to function *length*.
+   请注意，在 `fromList` 的类型中，我们如何通过 `length` 函数*计算* list 参数得到向量的长度。
 
-9. Consider the following declarations:
+9. 考虑以下声明：
 
    ```idris
    maybeSize : Maybe a -> Nat
@@ -519,13 +343,12 @@ this, which constructor(s) of the type family to use.
    fromMaybe : (m : Maybe a) -> Vect (maybeSize m) a
    ```
 
-   Choose a reasonable implementation for `maybeSize` and
-   implement `fromMaybe` afterwards.
+   为 `maybeSize` 选择一个合理的实现，
+   然后执行 `fromMaybe` 。
 
-## `Fin`: Safe Indexing into Vectors
+## `Fin`：向量的安全索引
 
-Consider function `index`, which tries to extract a value from
-a `List` at the given position:
+考虑函数 `index`，它试图从给定位置的 `List` 中提取一个值：
 
 ```idris
 indexList : (pos : Nat) -> List a -> Maybe a
@@ -534,31 +357,11 @@ indexList 0     (x :: _)  = Just x
 indexList (S k) (_ :: xs) = indexList k xs
 ```
 
-Now, here is a thing to consider when writing functions like `indexList`:
-Do we want to express the possibility of failure in the output type,
-or do we want to restrict the accepted arguments,
-so the function can no longer fail? These are important design decisions,
-especially in larger applications.
-Returning a `Maybe` or `Either` from a function forces client code to eventually
-deal with the `Nothing` or `Left` case, and until this happens, all intermediary
-results will carry the `Maybe` or `Either` stain, which will make it more
-cumbersome to run calculations with these intermediary results.
-On the other hand, restricting the
-values accepted as input will complicate the argument types
-and will put the burden of input validation on our functions' callers,
-(although, at compile time we can get help from Idris, as we will
-see when we talk about auto implicits) while keeping the output pure and clean.
+现在，在编写 `indexList` 之类的函数时要考虑的一点是：我们是要表达输出类型失败的可能性，还是要限制接受的参数，所以函数不能再失败？这些都是重要的设计决策，尤其是在较大的应用程序中。从函数返回 `Maybe` 或 `Either` 会强制客户端代码最终处理 `Nothing` 或 `Left` 情况，直到发生这种情况，所有中间结果都将带有 `Maybe` 或 `Either` 污点，这将使使用这些中间结果运行计算变得更加麻烦。另一方面，限制作为输入接受的值会使参数类型复杂化，并将输入验证的负担放在我们函数的调用者身上，（尽管在编译时我们可以从 Idris 获得帮助，正如我们将在讨论时看到的那样关于自动隐式），同时保持输出纯净和干净。
 
-Languages without dependent types (like Haskell), can often only take
-the route described above: To wrap the result in a `Maybe` or `Either`.
-However, in Idris we can often *refine* the input types to restrict the
-set of accepted values, thus ruling out the possibility of failure.
+没有依赖类型的语言（如 Haskell）通常只能采用上述路线：将结果包装在 `Maybe` 或 `Either` 中。但是，在 Idris 中，我们通常可以 *细化* 输入类型以限制接受值的集合，从而排除失败的可能性。
 
-Assume, as an example, we'd like to extract a value from a `Vect n a`
-at (zero-based) index `k`. Surely, this can succeed if and only if
-`k` is a natural number strictly smaller than the length `n` of
-the vector. Luckily, we can express this precondition in an indexed
-type:
+假设，作为一个例子，我们想从 `Vect n a` 的（从零开始的）索引 `k` 处的中提取一个值。当然，当且仅当 `k` 是一个严格小于向量长度 `n` 的自然数时，这才能成功。幸运的是，我们可以用索引类型来表达这个前提条件：
 
 ```idris
 data Fin : (n : Nat) -> Type where
@@ -566,14 +369,9 @@ data Fin : (n : Nat) -> Type where
   FS : (k : Fin n) -> Fin (S n)
 ```
 
-`Fin n` is the type of natural numbers strictly smaller than `n`.
-It is defined inductively: `FZ` corresponds to natural number *zero*,
-which, as can be seen in its type, is strictly smaller than
-`S n` for any natural number `n`. `FS` is the inductive case:
-If `k` is strictly smaller than `n` (`k` being of type `Fin n`),
-then `FS k` is strictly smaller than `S n`.
+`Fin n` 是严格小于 `n` 的自然数类型。它是归纳定义的：`FZ` 对应于自然数 *0*，从其类型中可以看出，对于任何自然数，`n` 都严格小于 `S n`。 `FS` 是归纳情况：如果 `k` 严格小于 `n` （`k` 属于 `Fin n` 类型)，则 `FS k` 严格小于 `S n`。
 
-Let's come up with some values of type `Fin`:
+让我们想出一些 `Fin` 类型的值：
 
 ```idris
 fin0_5 : Fin 5
@@ -589,29 +387,22 @@ fin4_5 : Fin 5
 fin4_5 = FS (FS (FS (FS FZ)))
 ```
 
-Note, that there is no value of type `Fin 0`. We will learn
-in a later session, how to express "there is no value of type `x`"
-in a type.
+请注意，没有 `Fin 0` 类型的值。我们将在后面的课程中学习，如何在类型中表达“没有类型 `x` 的值”。
 
-Let us now check, whether we can use `Fin` to safely index
-into a `Vect`:
+现在让我们检查一下，是否可以使用 `Fin` 安全地索引到 `Vect`：
 
 ```idris
 index : Fin n -> Vect n a -> a
 ```
 
-Before you continue, try to implement `index` yourself, making use
-of holes if you get stuck.
+在继续之前，请尝试自己实现 `index`，如果遇到困难，请充分利用孔。
 
 ```idris
 index FZ     (x :: _) = x
 index (FS k) (_ :: xs) = index k xs
 ```
 
-Note, how there is no `Nil` case and the totality checker is still
-happy. That's because `Nil` is of type `Vect 0 a`, but there is no
-value of type `Fin 0`! We can verify this by adding the missing
-impossible clauses:
+请注意，如何没有 `Nil` 分支，并且总体检查器仍然很高兴。那是因为 `Nil` 的类型是 `Vect 0 a`，但是没有 `Fin 0` 类型的值！我们可以通过添加缺失的不可能子句来验证这一点：
 
 ```idris
 index FZ     Nil impossible
@@ -620,69 +411,43 @@ index (FS _) Nil impossible
 
 ### 练习第 2 部分
 
-1. Implement function `update`, which, given a function of type `a -> a`,
-   updates the value in a`Vect n a` at position `k < n`.
+1. 实现函数 `update`，给定一个类型为 `a -> a` 的函数，在 `Vect n a` 中 `k < n` 处的位置更新值。
 
-2. Implement function `insert`, which inserts a value of type `a` at
-   position `k <= n` in a `Vect n a`. Note, that `k` is the index of the
-   freshly inserted value, so that the following holds:
+2. 实现函数 `insert`，它在 `Vect n a` 中的 `k <= n` 位置插入 `a` 类型的值。请注意，`k`
+   是新插入值的索引，因此以下成立：
 
    ```repl
    index k (insert k v vs) = v
    ```
 
-3. Implement function `delete`, which deletes a value from a vector at the
-   given index.
+3. 实现函数 `delete`，它从向量中的给定索引处删除一个值。
 
-   This is trickier than Exercises 1 and 2, as we have to properly
-   encode in the types that the vector is getting one element shorter.
+   这比练习 1 和练习 2 更棘手，因为我们必须正确编码向量正在缩短一个元素的类型。
 
-4. We can use `Fin` to implement safe indexing into `List`s as well. Try to
-   come up with a type and implementation for `safeIndexList`.
+4. 我们也可以使用 `Fin` 来实现对 `List` 的安全索引。尝试为 `safeIndexList` 提出一个类型和实现。
 
-   Note: If you don't know how to start, look at the type of `fromList`
-   for some inspiration. You might also need give the arguments in
-   a different order than for `index`.
+   注意：如果不知道怎么下手，看`fromList`的类型找一些灵感。您可能还需要与 `index`  不同的顺序给出参数。
 
-5. Implement function `finToNat`, which converts a `Fin n` to the
-   corresponding natural number, and use this to declare and implement
-   function `take` for splitting of the first `k` elements of a `Vect n a`
-   with `k <= n`.
+5. 实现函数`finToNat`，将一个`Fin n`转换为对应的自然数，并用它来声明和实现函数 `take` ，通过对 `Vect n a` 的前
+   `k` 个元素进行拆分 ，其中 `k <= n`。
 
-6. Implement function `minus` for subtracting a value `k` from a natural
-   number `n` with `k <= n`.
+6. 实现函数 `minus` 用于从 `k <= n` 的自然数 `n` 中减去值 `k`。
 
-7. Use `minus` from Exercise 6 to declare and implement function `drop`, for
-   dropping the first `k` values from a `Vect n a`, with `k <= n`.
+7. 使用练习 6 中的 `minus` 声明和实现函数 `drop`，用于从 `Vect n a` 中删除第一个 `k` 值，其中 `k <= n`。
 
-8. Implement function `splitAt` for splitting a `Vect n a` at position `k <=
-   n`, returning the prefix and suffix of the vector wrapped in a pair.
+8. 实现函数 `splitAt` 用于在位置 `k <= n` 处拆分 `Vect n a`，返回包装成对的向量的前缀和后缀。
 
-   Hint: Use `take` and `drop` in your implementation.
+   提示：在你的实现中使用 `take` 和 `drop`。
 
-Hint: Since `Fin n` consists of the values strictly smaller
-than `n`, `Fin (S n)` consists of the values smaller than
-or equal to `n`.
+提示：由于 `Fin n` 由严格小于 `n` 的值组成，因此 `Fin (S n)` 由小于或等于 `n 的值组成`。
 
-Note: Functions `take`, `drop`, and `splitAt`, while correct and
-provably total, are rather cumbersome to type.
-There is an alternative way to declare their types,
-as we will see in the next section.
+注意：函数 `take`、`drop` 和 `splitAt` 虽然正确且可证明是完全的，但键入起来相当麻烦。正如我们将在下一节中看到的，还有另一种声明它们的类型的方法。
 
-## Compile-Time Computations
+## 编译时计算
 
-In the last section - especially in some of the exercises - we
-started more and more to use compile time computations to
-describe the types of our functions and values.
-This is a very powerful concept, as it allows us to
-compute output types from input types. Here's an example:
+在上一节中——尤其是在一些练习中——我们开始越来越多地使用编译时计算来描述函数和值的类型。这是一个非常强大的概念，因为它允许我们根据输入类型计算输出类型。这是一个例子：
 
-It is possible to concatenate two `List`s with the `(++)`
-operator. Surely, this should also be possible for
-`Vect`. But `Vect` is indexed by its length, so we have
-to reflect in the types exactly how the lengths of the
-inputs affect the lengths of the output. Here's how to
-do this:
+可以使用 `(++)` 运算符连接两个 `List`。当然，这对于 `Vect` 也应该是可能的。但是 `Vect` 是由它的长度索引的，所以我们必须在类型中准确地反映输入的长度如何影响输出的长度。以下是如何执行此操作：
 
 ```idris
 (++) : Vect m a -> Vect n a -> Vect (m + n) a
@@ -690,14 +455,9 @@ do this:
 (++) (x :: xs) ys = x :: (xs ++ ys)
 ```
 
-Note, how we keep track of the lengths at the type-level, again
-ruling out certain common programming errors like inadvertently dropping
-some values.
+请注意，我们如何在类型级别跟踪长度，再次排除某些常见的编程错误，例如无意中删除某些值。
 
-We can also use type-level computations as patterns
-on the input types. Here is an alternative type and implementation
-for `drop`, which you implemented in the exercises by
-using a `Fin n` argument:
+我们还可以使用类型级计算作为输入类型的模式。这是 `drop` 的另一种类型和实现，您在练习中使用 `Fin n` 参数实现了它：
 
 ```idris
 drop' : (m : Nat) -> Vect (m + n) a -> Vect n a
@@ -705,21 +465,13 @@ drop' 0     xs        = xs
 drop' (S k) (_ :: xs) = drop' k xs
 ```
 
-### Limitations
+### 限制
 
-After all the examples and exercises in this section
-you might have come to the conclusion that we can
-use arbitrary expressions in the types and Idris
-will happily evaluate and unify all of them for us.
+在本节中的所有示例和练习之后，您可能已经得出结论，我们可以在类型中使用任意表达式，并且 Idris 会很乐意为我们评估和统一所有这些表达式。
 
-I'm afraid that's not even close to the truth. The examples
-in this section were hand-picked because they are known
-to *just work*. The reason being, that there was always
-a direct link between our own pattern matches and the
-implementations of functions we used at compile time.
+恐怕这甚至不接近事实。本节中的示例是精心挑选的，因为它们已知 *可以正常工作*。原因是，我们自己的模式匹配和我们在编译时使用的函数的实现之间总是存在直接联系。
 
-For instance, here is the implementation of addition of
-natural numbers:
+例如，这里是自然数加法的实现：
 
 ```idris
 add : Nat -> Nat -> Nat
@@ -727,20 +479,9 @@ add Z     n = n
 add (S k) n = S $ add k n
 ```
 
-As you can see, `add` is implemented via a pattern match
-on its *first* argument, while the second argument is never
-inspected. Note, how this is exactly how `(++)` for `Vect`
-is implemented: There, we also pattern match on the first
-argument, returning the second unmodified in the `Nil`
-case, and prepending the head to the result of appending
-the tail in the *cons* case. Since there is a direct
-correspondence between the two pattern matches, it
-is possible for Idris to unify `0 + n` with `n` in the
-`Nil` case, and `(S k) + n` with `S (k + n)` in the
-*cons* case.
+如您所见， `add` 是通过对其 *第一个* 参数的模式匹配来实现的，而第二个参数从未被检查过。请注意，这正是 `(++)` 在 `Vect` 上的实现方式：在那里，我们还对第一个参数进行模式匹配，在 `Nil` 分支中返回未修改的第二个参数，并将头部添加到 *cons* 分支中追加尾部的结果。由于两个模式匹配之间存在直接对应关系，因此 Idris 可以在 `Nil` 的情况下将 `0 + n` 与 `n` 统一起来，而在 *cons* 的情况下 `(S k) + n` 与 `S (k + n)` 统一起来。
 
-Here is a simple example, where Idris will not longer
-be convinced without some help from us:
+这是一个简单的例子，如果没有我们的帮助，Idris 将不再相信：
 
 ```idris
 failing "Can't solve constraint"
@@ -749,86 +490,47 @@ failing "Can't solve constraint"
   reverse (x :: xs) = reverse xs ++ [x]
 ```
 
-When we type-check the above,
-Idris will fail with the following error message:
-"Can't solve constraint between: plus n 1 and S n."
-Here's what's going on: From the pattern match on the
-left hand side, Idris knows that the length of the
-vector is `S n`, for some natural number `n`
-corresponding to the length of `xs`. The length
-of the vector on the right hand side is `n + 1`,
-according to the type of `(++)` and the lengths
-of `xs` and `[x]`. Overloaded operator `(+)`
-is implemented via function `Prelude.plus`, that's
-why Idris replaces `(+)` with `plus` in the error message.
+当我们对上述内容进行类型检查时，Idris 将失败并显示以下错误消息：“无法解决之间的约束：加plus n 1 和 S n。”这是发生了什么：从左侧的模式匹配中，Idris 知道向量的长度是 `S n`，对于某个自然数 `n` 对应于 `xs`。右边向量的长度是`n + 1`，根据 `(++)` 的类型和 `xs` 和 `[x]` 的长度。重载运算符 `(+)` 是通过函数 `Prelude.plus` 实现的，这就是 Idris 在错误消息中将 `(+)` 替换为 `plus` 的原因.
 
-As you can see from the above, Idris can't verify on
-its own that `1 + n` is the same thing as `n + 1`.
-It can accept some help from us, though. If we come
-up with a *proof* that the above equality holds
-(or - more generally - that our implementation of
-addition for natural numbers is *commutative*),
-we can use this proof to *rewrite* the types on
-the right hand side of `reverse`. Writing proofs and
-using `rewrite` will require some in-depth explanations
-and examples. Therefore, these things will have to wait
-until another chapter.
+从上面可以看出，Idris 自己无法验证 `1 + n` 与 `n + 1` 是一回事。不过，它可以接受我们的一些帮助。如果我们提出上述等式成立的 *证明*（或者更一般地说，我们对自然数加法的实现是 *可交换的*），我们可以将此证明用于 *重写* `reverse` 右侧的类型。编写证明和使用 `rewrite` 需要一些深入的解释和示例。所以，这些事情还得等到下一章再说。
 
-### Unrestricted Implicits
+### 不受限制的隐式
 
-In functions like `replicate`, we pass a natural number `n`
-as an explicit, unrestricted argument from which we infer
-the length of the vector to return.
-In some circumstances, `n` can be inferred from the context.
-For instance, in the following example it is tedious to
-pass `n` explicitly:
+在像 `replicate` 这样的函数中，我们传递一个自然数 `n` 作为一个明确的、不受限制的参数，我们从中推断要返回的向量的长度。在某些情况下，可以从上下文中推断出 `n`。例如，在以下示例中，显式传递 `n` 是很乏味的：
 
 ```idris
 ex4 : Vect 3 Integer
 ex4 = zipWith (*) (replicate 3 10) (replicate 3 11)
 ```
 
-The value `n` is clearly derivable from the context, which
-can be confirmed by replacing it with underscores:
+`n` 的值显然可以从上下文中推导出来，可以通过将其替换为下划线来确认：
 
 ```idris
 ex5 : Vect 3 Integer
 ex5 = zipWith (*) (replicate _ 10) (replicate _ 11)
 ```
 
-We therefore can implement an alternative version of `replicate`,
-where we pass `n` as an implicit argument of *unrestricted*
-quantity:
+因此，我们可以实现 `replicate` 的替代版本，其中我们将 `n` 作为 *无限制* 定量的隐式参数传递：
 
 ```idris
 replicate' : {n : _} -> a -> Vect n a
 replicate' = replicate n
 ```
 
-Note how, in the implementation of `replicate'`, we can refer to `n`
-and pass it as an explicit argument to `replicate`.
+请注意，在 `replicate'` 的实现中，我们可以引用 `n` 并将其作为显式参数传递给 `replicate`。
 
-Deciding whether to pass potentially inferable arguments to a function implicitly
-or explicitly is a question of how often the arguments actually *are* inferable
-by Idris. Sometimes it might even be useful to have both verions
-of a function. Remember, however, that even in case of an implicit argument
-we can still pass the value explicitly:
+决定是否将潜在的可推断参数隐式或显式传递给函数是一个问题，即 Idris 实际 *是* 可推断参数的使用频率。有时，同时拥有一个函数的两个版本甚至可能很有用。但是请记住，即使是隐式参数，我们仍然可以显式传递值：
 
 ```idris
 ex6 : Vect ? Bool
 ex6 = replicate' {n = 2} True
 ```
 
-In the type signature above, the question mark (`?`) means, that Idris
-should try and figure out the value on its own by unification. This
-forces us to specify `n` explicitly on the right hand side of `ex6`.
+在上面的类型签名中，问号 (`?`) 的意思是，Idris 应该尝试通过统一自己找出值。这迫使我们在 `ex6` 的右侧明确指定 `n`。
 
-#### Pattern Matching on Implicits
+#### 隐式模式匹配
 
-The implementation of `replicate'` makes use of function `replicate`,
-where we could pattern match on the explicit argument `n`. However, it
-is also possible to pattern match on implicit, named arguments of
-non-zero quantity:
+`replicate'` 的实现使用了函数 `replicate`，我们可以在显式参数 `n` 上进行模式匹配。但是，也可以对非零数量的隐式命名参数进行模式匹配：
 
 ```idris
 replicate'' : {n : _} -> a -> Vect n a
@@ -838,25 +540,21 @@ replicate'' {n = S _} v = v :: replicate'' v
 
 ### 练习第 3 部分
 
-1. Here is a function declaration for flattening a `List` of `List`s:
+1. 这是一个用于扁平化 `List` 中的 `List` 的函数声明：
 
    ```idris
    flattenList : List (List a) -> List a
    ```
 
-   Implement `flattenList` and declare and implement a similar
-   function `flattenVect` for flattening vectors of vectors.
+   实现 `flattenList` 并声明和实现一个类似的函数 `flattenVect` 用于扁平化向量的向量。
 
-2. Implement functions `take'` and `splitAt'` like in the exercises of the
-   previous section but using the technique shown for `drop'`.
+2. 像上一节的练习一样实现函数 `take'` 和 `splitAt'`，但使用 `drop'` 所示的技术。
 
-3. Implement function `transpose` for converting an `m x n`-matrix
-   (represented as a `Vect m (Vect n a)`)  to an `n x m`-matrix.
+3. 实现函数 `transpose` 用于将 `m x n` 矩阵（表示为 `Vect m (Vect n a)`）转换为 `n x m` 矩阵。
 
-   Note: This might be a challenging exercise, but make sure
-   to give it a try. As usual, make use of holes if you get stuck!
+   注意：这可能是一项具有挑战性的练习，但请确保试一试。像往常一样，如果你被卡住了，就利用洞！
 
-   Here is an example how this should work in action:
+   这是一个示例，它应该如何在行动中发挥作用：
 
    ```repl
    Solutions.Dependent> transpose [[1,2,3],[4,5,6]]
@@ -865,38 +563,24 @@ replicate'' {n = S _} v = v :: replicate'' v
 
 ## 结论
 
-* Dependent types allow us to calculate types from values.  This makes it
-  possible to encode properties of values at the type-level and verify these
-  properties at compile time.
+* 依赖类型允许我们根据值计算类型。这使得在类型级别对值的属性进行编码并在编译时验证这些属性成为可能。
 
-* Length-indexed lists (vectors) let us rule out certain implementation
-  errors, by forcing us to be precise about the lengths of input and output
-  vectors.
+* 长度索引列表（向量）通过强制我们准确了解输入和输出向量的长度，让我们排除了某些实现错误。
 
-* We can use patterns in type signatures, for instance to express that the
-  length of a vector is non-zero and therefore, the vector is non-empty.
+* 我们可以在类型签名中使用模式，例如表示向量的长度非零，因此向量非空。
 
-* When creating values of a type family, the values of the indices need to
-  be known at compile time, or they need to be passed as arguments to the
-  function creating the values, where we can pattern match on them to figure
-  out, which constructors to use.
+* 创建类型族的值时，索引的值需要在编译时知道，或者它们需要作为参数传递给创建值的函数，我们可以对它们进行模式匹配以确定哪些构造函数利用。
 
-* We can use `Fin n`, the type of natural numbers strictly smaller than `n`,
-  to safely index into a vector of length `n`.
+* 我们可以使用严格小于 `n` 的自然数类型 `Fin n` 来安全地索引长度为 `n` 的向量。
 
-* Sometimes, it is convenient to pass inferable arguments as non-erased
-  implicits, in which case we can still inspect them by pattern matching or
-  pass them to other functions, while Idris will try and fill in the values
-  for us.
+* 有时，将可推断参数作为非擦除隐式传递很方便，在这种情况下，我们仍然可以通过模式匹配检查它们或将它们传递给其他函数，而 Idris
+  会尝试为我们填充值。
 
-Note, that data type `Vect` together with many of the functions we
-implemented here is available from module `Data.Vect` from the *base*
-library. Likewise, `Fin` is available from `Data.Fin` from *base*.
+请注意，数据类型 `Vect` 以及我们在此处实现的许多功能可从 *base* 库中的模块 `Data.Vect` 获得。同样，`Fin` 可从 `Data.Fin` 从 *base* 获得。
 
 ### 下一步是什么
 
-In the [next section](IO.md), it is time to learn how to write effectful programs
-and how to do this while still staying *pure*.
+在 [next section](IO.md) 中，是时候学习如何编写有效的程序以及如何在保持 * 纯 * 的同时做到这一点。
 
 <!-- vi: filetype=idris2
 -->

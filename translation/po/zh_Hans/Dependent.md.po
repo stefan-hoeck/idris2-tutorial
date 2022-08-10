@@ -451,11 +451,7 @@ msgid ""
 "most distinguishing features of Idris. Many of the more advanced\n"
 "type level extensions of languages like Haskell (and quite a\n"
 "bit more) can be treated in one fell swoop with dependent types.\n"
-msgstr ""
-"从值计算类型、将它们作为参数传递给函数并将它们作为函数结果返回的能力——简而言"
-"之，作为一种依赖类型的语言——是 Idris "
-"最显着的特征之一。许多更高级的语言的类型级别扩展，如 "
-"Haskell（以及更多）都可以使用依赖类型来处理。\n"
+msgstr "从值计算类型、将它们作为参数传递给函数并将它们作为函数结果返回的能力——简而言之，作为一种依赖类型的语言——是 Idris 最显着的特征之一。许多更高级的语言的类型级别扩展，如 Haskell（以及更多）都可以使用依赖类型来处理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:10
@@ -504,12 +500,7 @@ msgid ""
 "length as the smaller of the two? Return an empty list? Or shouldn't\n"
 "we in most use cases expect the two lists to be of the same length?\n"
 "How could we even describe such a precondition?\n"
-msgstr ""
-"实现可以通过类型检查，但它们显然不是我们库的用户所期望的。在第一个示例中，我"
-"们希望实现将函数参数应用于存储在列表中的所有值，而不会删除它们中的任何一个或"
-"更改它们的顺序。第二个比较棘手：两个列表参数的长度可能不同。遇到这种情况我们"
-"该怎么办？返回与两者中较小的长度相同的列表？返回一个空列表？或者在大多数用例"
-"中我们不应该期望两个列表具有相同的长度吗？我们怎么能描述这样的前提条件呢？\n"
+msgstr "实现可以通过类型检查，但它们显然不是我们库的用户所期望的。在第一个示例中，我们希望实现将函数参数应用于存储在列表中的所有值，而不会删除它们中的任何一个或更改它们的顺序。第二个比较棘手：两个列表参数的长度可能不同。遇到这种情况我们该怎么办？返回与两者中较小的长度相同的列表？返回一个空列表？或者在大多数用例中我们不应该期望两个列表具有相同的长度吗？我们怎么能描述这样的前提条件呢？\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Dependent.md:36
@@ -524,8 +515,7 @@ msgid ""
 "The answer to the issues described above is of course: Dependent types.\n"
 "And the most common introductory example is the *vector*: A list indexed\n"
 "by its length:\n"
-msgstr "上述问题的答案当然是：依赖类型。最常见的介绍性示例是 "
-"*向量*：按长度索引的列表：\n"
+msgstr "上述问题的答案当然是：依赖类型。最常见的介绍性示例是 *向量*：按长度索引的列表：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:42
@@ -553,14 +543,7 @@ msgid ""
 "`Nil` has type `Vect 0 a`: A vector of length\n"
 "zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one\n"
 "element longer (`S n`) than its second argument, which is of length `n`.\n"
-msgstr ""
-"在我们继续之前，请将此与 [关于代数数据类型的部分](DataTypes.md) 中的 `Seq` "
-"的实现进行比较。构造函数完全相同：`Nil` 和 "
-"`(::)`。但是有一个重要的区别：`Vect` 不像`Seq`或`List`，不是从`Type`到`Type` "
-"的函数，它是从 `Nat` 到 `Type` 到 `Type` 的函数。前进！打开 REPL "
-"并验证这一点！ `Nat` 参数（也称为 *索引*）在这里表示向量的 *长度*。 `Nil` "
-"的类型为 `Vect 0 a`：长度为零的向量。 `Cons` 的类型为 `a -> Vect n a -> Vect "
-"(S n) a`：它恰好比其长度为 `n` 的第二个参数多一个元素 (`S n`)，。\n"
+msgstr "在我们继续之前，请将此与 [关于代数数据类型的部分](DataTypes.md) 中的 `Seq` 的实现进行比较。构造函数完全相同：`Nil` 和 `(::)`。但是有一个重要的区别：`Vect` 不像`Seq`或`List`，不是从`Type`到`Type` 的函数，它是从 `Nat` 到 `Type` 到 `Type` 的函数。前进！打开 REPL 并验证这一点！ `Nat` 参数（也称为 *索引*）在这里表示向量的 *长度*。 `Nil` 的类型为 `Vect 0 a`：长度为零的向量。 `Cons` 的类型为 `a -> Vect n a -> Vect (S n) a`：它恰好比其长度为 `n` 的第二个参数多一个元素 (`S n`)，。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:61
@@ -608,10 +591,7 @@ msgid ""
 "type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type\n"
 "`Vect (S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies,\n"
 "at compile time, that our vector is of the correct length!\n"
-msgstr ""
-"问题：`[12]` 被脱糖为 `12 :: Nil`，但这类型错误！由于此处 `Nil` 的类型为 `"
-"Vect 0 Integer`，因此 `12 :: Nil` 的类型为 `Vect (S 0) Integer`，也就是 `"
-"Vect 1 Integer `。 Idris 在编译时验证我们的向量的长度是否正确！\n"
+msgstr "问题：`[12]` 被脱糖为 `12 :: Nil`，但这类型错误！由于此处 `Nil` 的类型为 `Vect 0 Integer`，因此 `12 :: Nil` 的类型为 `Vect (S 0) Integer`，也就是 `Vect 1 Integer `。 Idris 在编译时验证我们的向量的长度是否正确！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:81
@@ -634,11 +614,7 @@ msgid ""
 "allows us to be more precise in the types and rule out additional\n"
 "programming mistakes. But first, we need to quickly clarify some\n"
 "terminology.\n"
-msgstr ""
-"因此，我们找到了一种方法，将类列表数据结构的 *长度* 编码为 "
-"*类型*，如果在向量中的元素个数与其类型中给出的长度不一致，会得到一个 *类型错"
-"误*，我们很快就会看到几个用例，这些额外的信息使我们能够更精确地确定类型并排除"
-"额外的编程错误。但首先，我们需要快速澄清一些术语。\n"
+msgstr "因此，我们找到了一种方法，将类列表数据结构的 *长度* 编码为 *类型*，如果在向量中的元素个数与其类型中给出的长度不一致，会得到一个 *类型错误*，我们很快就会看到几个用例，这些额外的信息使我们能够更精确地确定类型并排除额外的编程错误。但首先，我们需要快速澄清一些术语。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:94
@@ -655,10 +631,7 @@ msgid ""
 "of them associated with a natural number representing it's\n"
 "length. We also say, the type family `Vect` is *indexed* by\n"
 "its length.\n"
-msgstr ""
-"`Vect` 不仅是一个泛型类型，参数化了它所拥有的元素的类型，它实际上是一个 "
-"*类型族*，它们中的每一个都与一个代表它的长度的自然数相关联。我们也说，类型族 "
-"`Vect` 按其长度 *被索引*。\n"
+msgstr "`Vect` 不仅是一个泛型类型，参数化了它所拥有的元素的类型，它实际上是一个 *类型族*，它们中的每一个都与一个代表它的长度的自然数相关联。我们也说，类型族 `Vect` 按其长度 *被索引*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:108
@@ -670,10 +643,7 @@ msgid ""
 "we can learn about the *value* of an index by pattern matching\n"
 "on a *value* of the type family, while this is not possible\n"
 "with a type parameter.\n"
-msgstr ""
-"类型参数和索引之间的区别在于，后者可以并且确实在数据构造函数中发生变化，而前"
-"者对于所有数据构造函数都是相同的。或者，换句话说，我们可以通过对类型族的 *值*"
-" 进行模式匹配来了解索引的 *值，而对于类型参数，这是不可能的。\n"
+msgstr "类型参数和索引之间的区别在于，后者可以并且确实在数据构造函数中发生变化，而前者对于所有数据构造函数都是相同的。或者，换句话说，我们可以通过对类型族的 *值* 进行模式匹配来了解索引的 *值，而对于类型参数，这是不可能的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:110
@@ -705,11 +675,7 @@ msgid ""
 "can learn about these values by pattern matching on `Indexed` values.\n"
 "We can use this, for instance, to create a `Vect` of the same length\n"
 "as the index of `Indexed`:\n"
-msgstr ""
-"在这里，`Indexed` 在它的 `Nat` 参数上进行索引，因为索引的值在构造函数之间发生"
-"变化（我为每个构造函数选择了一些任意值），我们可以通过模式匹配了解这些 "
-"`Indexed` 值。例如，我们可以使用它来创建与 `Indexed` 的索引长度相同的 "
-"`Vect`：\n"
+msgstr "在这里，`Indexed` 在它的 `Nat` 参数上进行索引，因为索引的值在构造函数之间发生变化（我为每个构造函数选择了一些任意值），我们可以通过模式匹配了解这些 `Indexed` 值。例如，我们可以使用它来创建与 `Indexed` 的索引长度相同的 `Vect`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:125
@@ -725,8 +691,7 @@ msgid ""
 "holes, pattern match on the `Indexed` argument, and\n"
 "learn about the expected output type in each case by\n"
 "inspecting the holes and their context.\n"
-msgstr "来吧，尝试自己实现它！使用孔，对 `Indexed` "
-"参数进行模式匹配，并通过检查孔及其上下文了解每种情况下的预期输出类型。\n"
+msgstr "来吧，尝试自己实现它！使用孔，对 `Indexed` 参数进行模式匹配，并通过检查孔及其上下文了解每种情况下的预期输出类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:135
@@ -754,9 +719,7 @@ msgid ""
 "`Indexed n` argument, we learned about the value of\n"
 "the `n` index itself, which was necessary to return a\n"
 "`Vect` of the correct length.\n"
-msgstr ""
-"如您所见，通过对 `Indexed n` 参数的值进行模式匹配，我们了解了 `n` "
-"索引本身的值，这是返回 `Vect` 所必需的正确长度。\n"
+msgstr "如您所见，通过对 `Indexed n` 参数的值进行模式匹配，我们了解了 `n` 索引本身的值，这是返回 `Vect` 所必需的正确长度。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:147
@@ -773,11 +736,7 @@ msgid ""
 "types here. If we map over a `Vect`, the argument *and* output type\n"
 "contain a length index, and these length indices will tell us\n"
 "*exactly*, if and how the lengths of our vectors are modified:\n"
-msgstr ""
-"函数 `bogusMapList` 表现异常，因为它总是返回空列表。对于 "
-"`Vect`，我们需要忠实于这里的类型。如果我们在 `Vect` 上映射，参数 *和* "
-"输出类型包含一个长度索引，这些长度索引将 *确切的* "
-"告诉我们，我们的向量长度如何被修改：\n"
+msgstr "函数 `bogusMapList` 表现异常，因为它总是返回空列表。对于 `Vect`，我们需要忠实于这里的类型。如果我们在 `Vect` 上映射，参数 *和* 输出类型包含一个长度索引，这些长度索引将 *确切的* 告诉我们，我们的向量长度如何被修改：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:155
@@ -812,11 +771,7 @@ msgid ""
 "Instead of using concrete lengths in type signatures,\n"
 "we can also use *variables* as already seen in the definition of `Vect`.\n"
 "This allows us to declare the general case:\n"
-msgstr ""
-"虽然这些例子很有趣，但它们并不是真的有用，不是吗？那是因为他们太专业了。"
-"我们想要一个 *通用* "
-"函数来映射任意长度的向量。除了在类型签名中使用具体的长度，我们还可以使用 "
-"*变量*，正如在 `Vect` 的定义中已经看到的那样。这允许我们声明一般情况：\n"
+msgstr "虽然这些例子很有趣，但它们并不是真的有用，不是吗？那是因为他们太专业了。我们想要一个 *通用* 函数来映射任意长度的向量。除了在类型签名中使用具体的长度，我们还可以使用 *变量*，正如在 `Vect` 的定义中已经看到的那样。这允许我们声明一般情况：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:174
@@ -831,15 +786,13 @@ msgid ""
 "This type describes a length-preserving map. It is actually\n"
 "more instructive (but not necessary) to include the\n"
 "implicit arguments as well:\n"
-msgstr "这种类型描述了一个长度保持映射。包含隐式参数实际上更有指导意义（但不是必需的"
-"）：\n"
+msgstr "这种类型描述了一个长度保持映射。包含隐式参数实际上更有指导意义（但不是必需的）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:182
 #, no-wrap
 msgid "mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b\n"
-msgstr ""
-"mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b\n"
+msgstr "mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:196
@@ -855,13 +808,7 @@ msgid ""
 "is very instructive to follow along and use some holes. In order\n"
 "to get *any* information about the length of the `Vect` argument,\n"
 "we need to pattern match on it:\n"
-msgstr ""
-"我们忽略了两个类型参数 `a` 和 `b`，因为它们只是描述了一个泛型函数（但是请注意"
-"，我们可以将相同类型和定量的参数组合成一对大括号；这是可选的，但有时有助于使"
-"类型签名更短）。然而，`Nat` 类型的隐式参数告诉我们输入和输出 `Vect` "
-"的长度相同。不遵守本合约属于类型错误。在实现 `mapVect` "
-"时，遵循并使用一些孔非常有指导意义。为了获得关于 `Vect` 参数长度的 *任何* "
-"信息，我们需要对其进行模式匹配：\n"
+msgstr "我们忽略了两个类型参数 `a` 和 `b`，因为它们只是描述了一个泛型函数（但是请注意，我们可以将相同类型和定量的参数组合成一对大括号；这是可选的，但有时有助于使类型签名更短）。然而，`Nat` 类型的隐式参数告诉我们输入和输出 `Vect` 的长度相同。不遵守本合约属于类型错误。在实现 `mapVect` 时，遵循并使用一些孔非常有指导意义。为了获得关于 `Vect` 参数长度的 *任何* 信息，我们需要对其进行模式匹配：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:197
@@ -944,12 +891,7 @@ msgid ""
 "have a value of type `a` (bound to variable `x`) and a function\n"
 "from `a` to `b` (bound to variable `f`), so we can apply `f`\n"
 "to `x` and prepend the result to a yet unknown remainder:\n"
-msgstr ""
-"第二种情况更有趣。我们注意到，`xs` 是 `Vect n a` 类型，对于任意长度 "
-"`n`（作为已擦除参数给出），而结果是类型 `Vect (S n) b`。因此，结果必须比 `xs`"
-" 长一个元素。幸运的是，我们已经有了一个 `a` 类型的值（绑定到变量 `x`）"
-"和一个从 `a` 到 `b` 的函数（绑定到变量 `f`)，因此我们可以将 `f` 应用于 `x` "
-"并将结果添加到未知的余数：\n"
+msgstr "第二种情况更有趣。我们注意到，`xs` 是 `Vect n a` 类型，对于任意长度 `n`（作为已擦除参数给出），而结果是类型 `Vect (S n) b`。因此，结果必须比 `xs` 长一个元素。幸运的是，我们已经有了一个 `a` 类型的值（绑定到变量 `x`）和一个从 `a` 到 `b` 的函数（绑定到变量 `f`)，因此我们可以将 `f` 应用于 `x` 并将结果添加到未知的余数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:239
@@ -999,14 +941,7 @@ msgid ""
 "`mapVect` recursively to convert the remainder (`xs`) to a `Vect n b`.\n"
 "The type checker guarantees, that the lengths of `xs` and `mapVect f xs`\n"
 "are the same, so the whole expression type checks and we are done:\n"
-msgstr ""
-"现在，我们有一个 `Vect n a` 并且需要一个 `Vect n b`，而不知道关于 `n` "
-"的任何其他信息。我们 *可以* 通过在 `xs` 上进一步进行模式匹配来了解更多关于 "
-"`n` 的信息，但这会很快将我们引向一个兔子洞，因为在这样的模式匹配之后，"
-"我们'最终会出现另一个 `Nil` 分支和另一个 `cons` "
-"分支，新的尾巴长度未知。相反，我们可以递归调用 `mapVect` 以将余数 (`xs`) "
-"转换为 `Vect n b`。类型检查器保证 `xs` 和 `mapVect f xs` "
-"的长度是相同的，所以整个表达式类型检查，我们就完成了：\n"
+msgstr "现在，我们有一个 `Vect n a` 并且需要一个 `Vect n b`，而不知道关于 `n` 的任何其他信息。我们 *可以* 通过在 `xs` 上进一步进行模式匹配来了解更多关于 `n` 的信息，但这会很快将我们引向一个兔子洞，因为在这样的模式匹配之后，我们'最终会出现另一个 `Nil` 分支和另一个 `cons` 分支，新的尾巴长度未知。相反，我们可以递归调用 `mapVect` 以将余数 (`xs`) 转换为 `Vect n b`。类型检查器保证 `xs` 和 `mapVect f xs` 的长度是相同的，所以整个表达式类型检查，我们就完成了：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:266
@@ -1029,10 +964,7 @@ msgid ""
 "given binary function. As discussed above, the most reasonable thing\n"
 "to do is to expect the two lists as well as the result to be of equal length.\n"
 "With `Vect`, this can be expressed and implemented as follows:\n"
-msgstr ""
-"现在让我们看一下 `bogusZipList`：我们希望通过给定的二元函数成对合并两个包含（"
-"可能）不同类型的元素的列表。如上所述，最合理的做法是期望两个列表以及结果的长"
-"度相等。使用 `Vect` 可以表达和实现如下：\n"
+msgstr "现在让我们看一下 `bogusZipList`：我们希望通过给定的二元函数成对合并两个包含（可能）不同类型的元素的列表。如上所述，最合理的做法是期望两个列表以及结果的长度相等。使用 `Vect` 可以表达和实现如下：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:278
@@ -1061,14 +993,7 @@ msgid ""
 "of length `n`, is a `Nil` or a *cons*. Still, it can be informative to add the\n"
 "impossible cases explicitly. We can use keyword `impossible` to\n"
 "do so:\n"
-msgstr ""
-"现在，这是一件有趣的事情：完全性检查器（由于初始 `%default total` 杂注而在整"
-"个源文件中激活）接受上述实现作为完全函数，尽管它缺少另外两个分支。这行得通，"
-"因为 Idris 可以自己弄清楚，其他两种情况是 *不可能的*。从第一个 `Vect` "
-"参数的模式匹配中，Idris 了解 `n` 是零还是另一个自然数的后继。但由此可以得出，"
-"长度也为 `n` 的第二个向量是 `Nil` 还是 "
-"`cons`。尽管如此，明确添加不可能的情况仍然可以提供信息。我们可以使用关键字 "
-"`impossible` 来做到这一点：\n"
+msgstr "现在，这是一件有趣的事情：完全性检查器（由于初始 `%default total` 杂注而在整个源文件中激活）接受上述实现作为完全函数，尽管它缺少另外两个分支。这行得通，因为 Idris 可以自己弄清楚，其他两种情况是 *不可能的*。从第一个 `Vect` 参数的模式匹配中，Idris 了解 `n` 是零还是另一个自然数的后继。但由此可以得出，长度也为 `n` 的第二个向量是 `Nil` 还是 `cons`。尽管如此，明确添加不可能的情况仍然可以提供信息。我们可以使用关键字 `impossible` 来做到这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:296
@@ -1089,10 +1014,7 @@ msgid ""
 "indeed impossible. We will learn in a later section what to do,\n"
 "when we think we are right about an impossible case\n"
 "and Idris is not.\n"
-msgstr ""
-"如果 Idris 无法验证这种情况确实是不可能的，那么用 `impossible` "
-"注释模式匹配中的情况当然是类型错误。当我们认为我们对不可能的情况是正确的而 "
-"Idris 不是时，我们将在后面的部分中学习该怎么做。\n"
+msgstr "如果 Idris 无法验证这种情况确实是不可能的，那么用 `impossible` 注释模式匹配中的情况当然是类型错误。当我们认为我们对不可能的情况是正确的而 Idris 不是时，我们将在后面的部分中学习该怎么做。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:308
@@ -1113,8 +1035,7 @@ msgid ""
 msgstr ""
 "Tutorial.Dependent> zipWith (*) [1,2,3] [10,20,30]\n"
 "[10, 40, 90]\n"
-"Tutorial.Dependent> zipWith (\\x,y => x ++ \": \" ++ show y) [\"The answer\"]"
-" [42]\n"
+"Tutorial.Dependent> zipWith (\\x,y => x ++ \": \" ++ show y) [\"The answer\"] [42]\n"
 "[\"The answer: 42\"]\n"
 "Tutorial.Dependent> zipWith (*) [1,2,3] [10,20]\n"
 "... Nasty type error ...\n"
@@ -1138,12 +1059,7 @@ msgid ""
 "message in the last REPL example above was pretty long, listing\n"
 "different things Idris tried to do together with the reason\n"
 "why each of them failed.\n"
-msgstr ""
-"体验 Idris 可以为我们做的大量工作以及当事情进展顺利时它可以自行推断出的事情的"
-"数量，真是令人惊叹。然而，当事情进展不顺利时，我们从 Idris 收到的错误消息可能"
-"会很长且难以理解，尤其是对于刚接触该语言的程序员而言。例如，上面最后一个 "
-"REPL 示例中的错误消息很长，列出了 Idris "
-"尝试做的不同事情以及每件事失败的原因。\n"
+msgstr "体验 Idris 可以为我们做的大量工作以及当事情进展顺利时它可以自行推断出的事情的数量，真是令人惊叹。然而，当事情进展不顺利时，我们从 Idris 收到的错误消息可能会很长且难以理解，尤其是对于刚接触该语言的程序员而言。例如，上面最后一个 REPL 示例中的错误消息很长，列出了 Idris 尝试做的不同事情以及每件事失败的原因。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:341
@@ -1160,13 +1076,7 @@ msgid ""
 "each of which will again fail with a type error since `zipWith`\n"
 "expects arguments of type `Vect`, and neither `List` nor `Stream`\n"
 "will work.\n"
-msgstr ""
-"如果发生这种情况，通常意味着类型错误和函数名重载导致的歧义在起作用。在上面的"
-"示例中，两个向量的长度不同，如果我们将列表字面量解释为向量，则会导致类型错误"
-"。但是，列表字面量被重载以使用构造函数 `Nil` 和 `(::)` 的所有数据类型，因此 "
-"Idris 现在将尝试除 `Vect` 之外的其他数据构造函数]（在这种情况下，来自 "
-"*Prelude* 的 `List` 和 `Stream` ），由于 `zipWith` 需要 `Vect` 类型的参数，"
-"所以 `List` 和 `Stream` 都不起作用。\n"
+msgstr "如果发生这种情况，通常意味着类型错误和函数名重载导致的歧义在起作用。在上面的示例中，两个向量的长度不同，如果我们将列表字面量解释为向量，则会导致类型错误。但是，列表字面量被重载以使用构造函数 `Nil` 和 `(::)` 的所有数据类型，因此 Idris 现在将尝试除 `Vect` 之外的其他数据构造函数]（在这种情况下，来自 *Prelude* 的 `List` 和 `Stream` ），由于 `zipWith` 需要 `Vect` 类型的参数，所以 `List` 和 `Stream` 都不起作用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:345
@@ -1175,8 +1085,7 @@ msgid ""
 "If this happens, prefixing overloaded function names with\n"
 "their namespaces can often simplify things, as Idris no\n"
 "longer needs to disambiguate these functions:\n"
-msgstr "如果发生这种情况，在重载函数名称前加上它们的命名空间通常可以简化事情，因为 "
-"Idris 不再需要消除这些函数的歧义：\n"
+msgstr "如果发生这种情况，在重载函数名称前加上它们的命名空间通常可以简化事情，因为 Idris 不再需要消除这些函数的歧义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:346
@@ -1189,8 +1098,7 @@ msgid ""
 "    Vect 1 ?c\n"
 "Mismatch between: 0 and 1.\n"
 msgstr ""
-"Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent."
-"Nil\n"
+"Tutorial.Dependent> zipWith (*) (Dependent.(::) 1 Dependent.Nil) Dependent.Nil\n"
 "Error: When unifying:\n"
 "    Vect 0 ?c\n"
 "and:\n"
@@ -1206,10 +1114,7 @@ msgid ""
 "two expressions to the same normal form. If this succeeds,\n"
 "the two expressions are considered to be equivalent,\n"
 "if it doesn't, Idris fails with a unification error.\n"
-msgstr ""
-"在这里，信息更加清晰：Idris 无法 *统一* 两个向量的长度。 *Unification* 表示："
-"Idris 尝试在编译时将两个表达式转换为相同的范式。如果成功，则认为这两个表达式"
-"是等价的，否则，Idris 将失败并出现统一错误。\n"
+msgstr "在这里，信息更加清晰：Idris 无法 *统一* 两个向量的长度。 *Unification* 表示：Idris 尝试在编译时将两个表达式转换为相同的范式。如果成功，则认为这两个表达式是等价的，否则，Idris 将失败并出现统一错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:363
@@ -1217,8 +1122,7 @@ msgstr ""
 msgid ""
 "As an alternative to prefixing overloaded functions with their\n"
 "namespace, we can use `the` to help with type inference:\n"
-msgstr "作为使用名称空间作为重载函数前缀的替代方法，我们可以使用 `the` "
-"来帮助进行类型推断：\n"
+msgstr "作为使用名称空间作为重载函数前缀的替代方法，我们可以使用 `the` 来帮助进行类型推断：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:364
@@ -1231,8 +1135,7 @@ msgid ""
 "    Vect 3 ?c\n"
 "Mismatch between: 0 and 1.\n"
 msgstr ""
-"Tutorial.Dependent> zipWith (*) (the (Vect 3 _) [1,2,3]) (the (Vect 2 _) "
-"[10,20])\n"
+"Tutorial.Dependent> zipWith (*) (the (Vect 3 _) [1,2,3]) (the (Vect 2 _) [10,20])\n"
 "Error: When unifying:\n"
 "    Vect 2 ?c\n"
 "and:\n"
@@ -1249,12 +1152,7 @@ msgid ""
 "corresponding `Nat` values `S (S Z)` and `S (S (S Z))`, respectively.\n"
 "The two patterns match until we arrive at `Z` vs `S Z`, corresponding\n"
 "to values `0` and `1`, which is the discrepancy reported in the error message.\n"
-msgstr ""
-"有趣的是，上面的错误不是“不匹配：2 和 3”，而是“不匹配：0 和 "
-"1”。这是发生了什么：Idris 尝试统一整数字面量 `2` 和 `3`，"
-"它们首先转换为相应的 `Nat` 值 `S (S Z)[` 和 `S (S (S Z))`。这两个模式匹配，"
-"直到我们到达 `Z` vs `S Z`，对应于值 `0` 和 "
-"`1`，这是报告中报告的差异错误信息。\n"
+msgstr "有趣的是，上面的错误不是“不匹配：2 和 3”，而是“不匹配：0 和 1”。这是发生了什么：Idris 尝试统一整数字面量 `2` 和 `3`，它们首先转换为相应的 `Nat` 值 `S (S Z)[` 和 `S (S (S Z))`。这两个模式匹配，直到我们到达 `Z` vs `S Z`，对应于值 `0` 和 `1`，这是报告中报告的差异错误信息。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:380
@@ -1271,11 +1169,7 @@ msgid ""
 "case, it was clear that the length is 0, while in the *cons*\n"
 "case the length was the successor of another natural number.\n"
 "This is not possible when we want to create a new vector:\n"
-msgstr ""
-"到目前为止，我们能够通过对向量进行模式匹配来了解向量的长度。在 `Nil` "
-"的情况下，很明显长度为 0，而在 *cons* "
-"的情况下，长度是另一个自然数的后继。当我们要创建一个新向量时，这是不可能的："
-"\n"
+msgstr "到目前为止，我们能够通过对向量进行模式匹配来了解向量的长度。在 `Nil` 的情况下，很明显长度为 0，而在 *cons* 的情况下，长度是另一个自然数的后继。当我们要创建一个新向量时，这是不可能的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:388
@@ -1327,12 +1221,7 @@ msgid ""
 "like saying: \"Think about a natural number `n`, and\n"
 "I'll give you `n` apples without you telling me the value of `n`\".\n"
 "Idris is powerful, but it is not a clairvoyant.\n"
-msgstr ""
-"您可以按如下方式阅读此类型：对于每个类型 `a` 和每个自然数 `n` （"
-"我知道在运行时 *什么都没有* ，因为它的定量为零)，给定一个 `a` "
-"类型的值，我会给你一个向量，它正好包含 `a` 类型的 `n` 个元素。这就像说：“"
-"想想一个自然数 `n`，我会给你 `n` 个苹果，而你却不告诉我 `n` 的值”。Idris "
-"很强大，但不是千里眼。\n"
+msgstr "您可以按如下方式阅读此类型：对于每个类型 `a` 和每个自然数 `n` （我知道在运行时 *什么都没有* ，因为它的定量为零)，给定一个 `a` 类型的值，我会给你一个向量，它正好包含 `a` 类型的 `n` 个元素。这就像说：“想想一个自然数 `n`，我会给你 `n` 个苹果，而你却不告诉我 `n` 的值”。Idris 很强大，但不是千里眼。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:420
@@ -1342,10 +1231,7 @@ msgid ""
 "`n` actually is: We need to pass `n` as an explicit, unerased argument, which\n"
 "will allow us to pattern match on it and decide - based on this pattern\n"
 "match - which constructors of `Vect` to use:\n"
-msgstr ""
-"为了实现 `fill`，我们需要知道 `n` 实际上是什么：我们需要将 `n` "
-"作为显式的、未擦除的参数传递，这将允许我们对其进行模式匹配并决定 - "
-"基于此模式匹配 - 使用 `Vect` 的哪些构造函数：\n"
+msgstr "为了实现 `fill`，我们需要知道 `n` 实际上是什么：我们需要将 `n` 作为显式的、未擦除的参数传递，这将允许我们对其进行模式匹配并决定 - 基于此模式匹配 - 使用 `Vect` 的哪些构造函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:421
@@ -1360,9 +1246,7 @@ msgid ""
 "Now, `replicate` is a *dependent function type*: The output type\n"
 "*depends* on the value of one the arguments. It is straight forward\n"
 "to implement `replicate` by pattern matching on `n`:\n"
-msgstr ""
-"现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 一个参数的值。"
-"通过 `n` 上的模式匹配来实现 `replicate` 很简单：\n"
+msgstr "现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 一个参数的值。通过 `n` 上的模式匹配来实现 `replicate` 很简单：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:429
@@ -1387,11 +1271,7 @@ msgid ""
 "need to have access to the values of the indices at runtime, in\n"
 "which case we can pattern match on them and learn from\n"
 "this, which constructor(s) of the type family to use.\n"
-msgstr ""
-"这是使用索引类型时经常出现的模式：我们可以通过对类型族的值进行模式匹配来了解"
-"索引的值。但是，为了从函数返回类型族的值，我们需要在编译时知道索引的值（"
-"参见常量 `ex1` 或 `ex3`，例如)，或者我们需要在运行时访问索引的值，在这种情况"
-"下，我们可以对它们进行模式匹配并从中学习使用类型族的构造函数。\n"
+msgstr "这是使用索引类型时经常出现的模式：我们可以通过对类型族的值进行模式匹配来了解索引的值。但是，为了从函数返回类型族的值，我们需要在编译时知道索引的值（参见常量 `ex1` 或 `ex3`，例如)，或者我们需要在运行时访问索引的值，在这种情况下，我们可以对它们进行模式匹配并从中学习使用类型族的构造函数。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Dependent.md:447
@@ -1413,10 +1293,7 @@ msgid ""
 "   return a value of type `a`, without having to wrap it in\n"
 "   a `Maybe`! Make sure to add an `impossible` clause for the `Nil`\n"
 "   case (although this is not strictly necessary here).\n"
-msgstr ""
-"   请注意，我们如何使用 *模式* 来描述在 `Vect` 的长度上的非空性。这排除了 "
-"`Nil` 的情况，我们可以返回一个 `a` 类型的值，而不必将其包装在一个`Maybe` 中！"
-"确保为 `Nil` 添加一个 `impossible` 子句分支（尽管这不是绝对必要的）。\n"
+msgstr "   请注意，我们如何使用 *模式* 来描述在 `Vect` 的长度上的非空性。这排除了 `Nil` 的情况，我们可以返回一个 `a` 类型的值，而不必将其包装在一个`Maybe` 中！确保为 `Nil` 添加一个 `impossible` 子句分支（尽管这不是绝对必要的）。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Dependent.md:461
@@ -1424,7 +1301,8 @@ msgid ""
 "Using `head` as a reference, declare and implement function `tail` for non-"
 "empty vectors. The types should reflect that the output is exactly one "
 "element shorter than the input."
-msgstr "以`head`为参考，为非空向量声明并实现函数`tail`。类型应该反映输出恰好比输入短"
+msgstr ""
+"以`head`为参考，为非空向量声明并实现函数`tail`。类型应该反映输出恰好比输入短"
 "一个元素。"
 
 #. type: Bullet: '3. '
@@ -1432,7 +1310,8 @@ msgstr "以`head`为参考，为非空向量声明并实现函数`tail`。类型
 msgid ""
 "Implement `zipWith3`. If possible, try to doing so without looking at the "
 "implementation of `zipWith`:"
-msgstr "实现 `zipWith3`。如果可能，请尝试在不查看 `zipWith` 的实现的情况下这样做："
+msgstr ""
+"实现 `zipWith3`。如果可能，请尝试在不查看 `zipWith` 的实现的情况下这样做："
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:465
@@ -1474,8 +1353,7 @@ msgid ""
 "   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
 "   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
 msgstr ""
-"   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect "
-"n d\n"
+"   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
 "\n"
 "4. 声明并实现一个函数`foldSemi`\n"
 "   用于累积存储的值\n"
@@ -1514,7 +1392,8 @@ msgstr ""
 msgid ""
 "Implement function `fromList`, which converts a list of values to a `Vect` "
 "of the same length. Use holes if you get stuck:"
-msgstr "实现函数 `fromList`，它将值列表转换为相同长度的 `Vect`。如果卡住，请使用孔："
+msgstr ""
+"实现函数 `fromList`，它将值列表转换为相同长度的 `Vect`。如果卡住，请使用孔："
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:507
@@ -1529,8 +1408,7 @@ msgid ""
 "   Note how, in the type of `fromList`, we can *calculate* the\n"
 "   length of the resulting vector by passing the list argument\n"
 "   to function *length*.\n"
-msgstr "   请注意，在 `fromList` 的类型中，我们如何通过 `length` 函数*计算* list "
-"参数得到向量的长度。\n"
+msgstr "   请注意，在 `fromList` 的类型中，我们如何通过 `length` 函数*计算* list 参数得到向量的长度。\n"
 
 #. type: Bullet: '9. '
 #: ../src/Tutorial/Dependent.md:516
@@ -1605,15 +1483,7 @@ msgid ""
 "and will put the burden of input validation on our functions' callers,\n"
 "(although, at compile time we can get help from Idris, as we will\n"
 "see when we talk about auto implicits) while keeping the output pure and clean.\n"
-msgstr ""
-"现在，在编写 `indexList` 之类的函数时要考虑的一点是：我们是要表达输出类型失败"
-"的可能性，还是要限制接受的参数，所以函数不能再失败？这些都是重要的设计决策，"
-"尤其是在较大的应用程序中。从函数返回 `Maybe` 或 `Either` "
-"会强制客户端代码最终处理 `Nothing` 或 `Left` 情况，直到发生这种情况，"
-"所有中间结果都将带有 `Maybe` 或 `Either` 污点，这将使使用这些中间结果运行计算"
-"变得更加麻烦。另一方面，限制作为输入接受的值会使参数类型复杂化，并将输入验证"
-"的负担放在我们函数的调用者身上，（尽管在编译时我们可以从 Idris 获得帮助，正如"
-"我们将在讨论时看到的那样关于自动隐式），同时保持输出纯净和干净。\n"
+msgstr "现在，在编写 `indexList` 之类的函数时要考虑的一点是：我们是要表达输出类型失败的可能性，还是要限制接受的参数，所以函数不能再失败？这些都是重要的设计决策，尤其是在较大的应用程序中。从函数返回 `Maybe` 或 `Either` 会强制客户端代码最终处理 `Nothing` 或 `Left` 情况，直到发生这种情况，所有中间结果都将带有 `Maybe` 或 `Either` 污点，这将使使用这些中间结果运行计算变得更加麻烦。另一方面，限制作为输入接受的值会使参数类型复杂化，并将输入验证的负担放在我们函数的调用者身上，（尽管在编译时我们可以从 Idris 获得帮助，正如我们将在讨论时看到的那样关于自动隐式），同时保持输出纯净和干净。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:557
@@ -1623,10 +1493,7 @@ msgid ""
 "the route described above: To wrap the result in a `Maybe` or `Either`.\n"
 "However, in Idris we can often *refine* the input types to restrict the\n"
 "set of accepted values, thus ruling out the possibility of failure.\n"
-msgstr ""
-"没有依赖类型的语言（如 Haskell）通常只能采用上述路线：将结果包装在 `Maybe` "
-"或 `Either` 中。但是，在 Idris 中，我们通常可以 *细化* "
-"输入类型以限制接受值的集合，从而排除失败的可能性。\n"
+msgstr "没有依赖类型的语言（如 Haskell）通常只能采用上述路线：将结果包装在 `Maybe` 或 `Either` 中。但是，在 Idris 中，我们通常可以 *细化* 输入类型以限制接受值的集合，从而排除失败的可能性。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:563
@@ -1637,10 +1504,7 @@ msgid ""
 "`k` is a natural number strictly smaller than the length `n` of\n"
 "the vector. Luckily, we can express this precondition in an indexed\n"
 "type:\n"
-msgstr ""
-"假设，作为一个例子，我们想从 `Vect n a` 的（从零开始的）索引 `k` "
-"处的中提取一个值。当然，当且仅当 `k` 是一个严格小于向量长度 `n` "
-"的自然数时，这才能成功。幸运的是，我们可以用索引类型来表达这个前提条件：\n"
+msgstr "假设，作为一个例子，我们想从 `Vect n a` 的（从零开始的）索引 `k` 处的中提取一个值。当然，当且仅当 `k` 是一个严格小于向量长度 `n` 的自然数时，这才能成功。幸运的是，我们可以用索引类型来表达这个前提条件：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:564
@@ -1664,11 +1528,7 @@ msgid ""
 "`S n` for any natural number `n`. `FS` is the inductive case:\n"
 "If `k` is strictly smaller than `n` (`k` being of type `Fin n`),\n"
 "then `FS k` is strictly smaller than `S n`.\n"
-msgstr ""
-"`Fin n` 是严格小于 `n` 的自然数类型。它是归纳定义的：`FZ` 对应于自然数 "
-"*0*，从其类型中可以看出，对于任何自然数，`n` 都严格小于 `S n`。 `FS` "
-"是归纳情况：如果 `k` 严格小于 `n` （`k` 属于 `Fin n` 类型)，则 `FS k` "
-"严格小于 `S n`。\n"
+msgstr "`Fin n` 是严格小于 `n` 的自然数类型。它是归纳定义的：`FZ` 对应于自然数 *0*，从其类型中可以看出，对于任何自然数，`n` 都严格小于 `S n`。 `FS` 是归纳情况：如果 `k` 严格小于 `n` （`k` 属于 `Fin n` 类型)，则 `FS k` 严格小于 `S n`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:578
@@ -1711,8 +1571,7 @@ msgid ""
 "Note, that there is no value of type `Fin 0`. We will learn\n"
 "in a later session, how to express \"there is no value of type `x`\"\n"
 "in a type.\n"
-msgstr "请注意，没有 `Fin 0` 类型的值。我们将在后面的课程中学习，如何在类型中表达“"
-"没有类型 `x` 的值”。\n"
+msgstr "请注意，没有 `Fin 0` 类型的值。我们将在后面的课程中学习，如何在类型中表达“没有类型 `x` 的值”。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:599
@@ -1754,10 +1613,7 @@ msgid ""
 "happy. That's because `Nil` is of type `Vect 0 a`, but there is no\n"
 "value of type `Fin 0`! We can verify this by adding the missing\n"
 "impossible clauses:\n"
-msgstr ""
-"请注意，如何没有 `Nil` 分支，并且总体检查器仍然很高兴。那是因为 `Nil` "
-"的类型是 `Vect 0 a`，但是没有 `Fin 0` "
-"类型的值！我们可以通过添加缺失的不可能子句来验证这一点：\n"
+msgstr "请注意，如何没有 `Nil` 分支，并且总体检查器仍然很高兴。那是因为 `Nil` 的类型是 `Vect 0 a`，但是没有 `Fin 0` 类型的值！我们可以通过添加缺失的不可能子句来验证这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:617
@@ -1774,7 +1630,8 @@ msgstr ""
 msgid ""
 "Implement function `update`, which, given a function of type `a -> a`, "
 "updates the value in a`Vect n a` at position `k < n`."
-msgstr "实现函数 `update`，给定一个类型为 `a -> a` 的函数，在 `Vect n a` 中 `k < n` "
+msgstr ""
+"实现函数 `update`，给定一个类型为 `a -> a` 的函数，在 `Vect n a` 中 `k < n` "
 "处的位置更新值。"
 
 #. type: Bullet: '2. '
@@ -1784,8 +1641,8 @@ msgid ""
 "`k <= n` in a `Vect n a`. Note, that `k` is the index of the freshly "
 "inserted value, so that the following holds:"
 msgstr ""
-"实现函数 `insert`，它在 `Vect n a` 中的 `k <= n` 位置插入 `a` "
-"类型的值。请注意，`k` 是新插入值的索引，因此以下成立："
+"实现函数 `insert`，它在 `Vect n a` 中的 `k <= n` 位置插入 `a` 类型的值。请注"
+"意，`k` 是新插入值的索引，因此以下成立："
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:631
@@ -1806,16 +1663,16 @@ msgstr "实现函数 `delete`，它从向量中的给定索引处删除一个值
 msgid ""
 "   This is trickier than Exercises 1 and 2, as we have to properly\n"
 "   encode in the types that the vector is getting one element shorter.\n"
-msgstr "   这比练习 1 和练习 2 "
-"更棘手，因为我们必须正确编码向量正在缩短一个元素的类型。\n"
+msgstr "   这比练习 1 和练习 2 更棘手，因为我们必须正确编码向量正在缩短一个元素的类型。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Dependent.md:643
 msgid ""
 "We can use `Fin` to implement safe indexing into `List`s as well. Try to "
 "come up with a type and implementation for `safeIndexList`."
-msgstr "我们也可以使用 `Fin` 来实现对 `List` 的安全索引。尝试为 `safeIndexList` "
-"提出一个类型和实现。"
+msgstr ""
+"我们也可以使用 `Fin` 来实现对 `List` 的安全索引。尝试为 `safeIndexList` 提出"
+"一个类型和实现。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:647
@@ -1824,8 +1681,7 @@ msgid ""
 "   Note: If you don't know how to start, look at the type of `fromList`\n"
 "   for some inspiration. You might also need give the arguments in\n"
 "   a different order than for `index`.\n"
-msgstr "   注意：如果不知道怎么下手，看`fromList`的类型找一些灵感。您可能还需要与 "
-"`index`  不同的顺序给出参数。\n"
+msgstr "   注意：如果不知道怎么下手，看`fromList`的类型找一些灵感。您可能还需要与 `index`  不同的顺序给出参数。\n"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Dependent.md:652
@@ -1850,16 +1706,17 @@ msgid ""
 "Use `minus` from Exercise 6 to declare and implement function `drop`, for "
 "dropping the first `k` values from a `Vect n a`, with `k <= n`."
 msgstr ""
-"使用练习 6 中的 `minus` 声明和实现函数 `drop`，用于从 `Vect n a` "
-"中删除第一个 `k` 值，其中 `k <= n`。"
+"使用练习 6 中的 `minus` 声明和实现函数 `drop`，用于从 `Vect n a` 中删除第一"
+"个 `k` 值，其中 `k <= n`。"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Dependent.md:663
 msgid ""
 "Implement function `splitAt` for splitting a `Vect n a` at position `k <= "
 "n`, returning the prefix and suffix of the vector wrapped in a pair."
-msgstr "实现函数 `splitAt` 用于在位置 `k <= n` 处拆分 `Vect n "
-"a`，返回包装成对的向量的前缀和后缀。"
+msgstr ""
+"实现函数 `splitAt` 用于在位置 `k <= n` 处拆分 `Vect n a`，返回包装成对的向量"
+"的前缀和后缀。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:665
@@ -1874,8 +1731,7 @@ msgid ""
 "Hint: Since `Fin n` consists of the values strictly smaller\n"
 "than `n`, `Fin (S n)` consists of the values smaller than\n"
 "or equal to `n`.\n"
-msgstr "提示：由于 `Fin n` 由严格小于 `n` 的值组成，因此 `Fin (S n)` 由小于或等于 `n "
-"的值组成`。\n"
+msgstr "提示：由于 `Fin n` 由严格小于 `n` 的值组成，因此 `Fin (S n)` 由小于或等于 `n 的值组成`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:674
@@ -1885,9 +1741,7 @@ msgid ""
 "provably total, are rather cumbersome to type.\n"
 "There is an alternative way to declare their types,\n"
 "as we will see in the next section.\n"
-msgstr ""
-"注意：函数 `take`、`drop` 和 `splitAt` 虽然正确且可证明是完全的，但键入起来相"
-"当麻烦。正如我们将在下一节中看到的，还有另一种声明它们的类型的方法。\n"
+msgstr "注意：函数 `take`、`drop` 和 `splitAt` 虽然正确且可证明是完全的，但键入起来相当麻烦。正如我们将在下一节中看到的，还有另一种声明它们的类型的方法。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Dependent.md:675
@@ -1904,10 +1758,7 @@ msgid ""
 "describe the types of our functions and values.\n"
 "This is a very powerful concept, as it allows us to\n"
 "compute output types from input types. Here's an example:\n"
-msgstr ""
-"在上一节中——尤其是在一些练习中——我们开始越来越多地使用编译时计算来描述函数和"
-"值的类型。这是一个非常强大的概念，因为它允许我们根据输入类型计算输出类型。这"
-"是一个例子：\n"
+msgstr "在上一节中——尤其是在一些练习中——我们开始越来越多地使用编译时计算来描述函数和值的类型。这是一个非常强大的概念，因为它允许我们根据输入类型计算输出类型。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:689
@@ -1919,10 +1770,7 @@ msgid ""
 "to reflect in the types exactly how the lengths of the\n"
 "inputs affect the lengths of the output. Here's how to\n"
 "do this:\n"
-msgstr ""
-"可以使用 `(++)` 运算符连接两个 `List`。当然，这对于 `Vect` 也应该是可能的。"
-"但是 `Vect` 是由它的长度索引的，所以我们必须在类型中准确地反映输入的长度如何"
-"影响输出的长度。以下是如何执行此操作：\n"
+msgstr "可以使用 `(++)` 运算符连接两个 `List`。当然，这对于 `Vect` 也应该是可能的。但是 `Vect` 是由它的长度索引的，所以我们必须在类型中准确地反映输入的长度如何影响输出的长度。以下是如何执行此操作：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:690
@@ -1943,8 +1791,7 @@ msgid ""
 "Note, how we keep track of the lengths at the type-level, again\n"
 "ruling out certain common programming errors like inadvertently dropping\n"
 "some values.\n"
-msgstr "请注意，我们如何在类型级别跟踪长度，再次排除某些常见的编程错误，例如无意中删"
-"除某些值。\n"
+msgstr "请注意，我们如何在类型级别跟踪长度，再次排除某些常见的编程错误，例如无意中删除某些值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:704
@@ -1954,8 +1801,7 @@ msgid ""
 "on the input types. Here is an alternative type and implementation\n"
 "for `drop`, which you implemented in the exercises by\n"
 "using a `Fin n` argument:\n"
-msgstr "我们还可以使用类型级计算作为输入类型的模式。这是 `drop` 的另一种类型和实现，"
-"您在练习中使用 `Fin n` 参数实现了它：\n"
+msgstr "我们还可以使用类型级计算作为输入类型的模式。这是 `drop` 的另一种类型和实现，您在练习中使用 `Fin n` 参数实现了它：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:705
@@ -1983,9 +1829,7 @@ msgid ""
 "you might have come to the conclusion that we can\n"
 "use arbitrary expressions in the types and Idris\n"
 "will happily evaluate and unify all of them for us.\n"
-msgstr ""
-"在本节中的所有示例和练习之后，您可能已经得出结论，我们可以在类型中使用任意表"
-"达式，并且 Idris 会很乐意为我们评估和统一所有这些表达式。\n"
+msgstr "在本节中的所有示例和练习之后，您可能已经得出结论，我们可以在类型中使用任意表达式，并且 Idris 会很乐意为我们评估和统一所有这些表达式。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:723
@@ -1996,10 +1840,7 @@ msgid ""
 "to *just work*. The reason being, that there was always\n"
 "a direct link between our own pattern matches and the\n"
 "implementations of functions we used at compile time.\n"
-msgstr ""
-"恐怕这甚至不接近事实。本节中的示例是精心挑选的，因为它们已知 *可以正常工作*。"
-"原因是，我们自己的模式匹配和我们在编译时使用的函数的实现之间总是存在直接联系"
-"。\n"
+msgstr "恐怕这甚至不接近事实。本节中的示例是精心挑选的，因为它们已知 *可以正常工作*。原因是，我们自己的模式匹配和我们在编译时使用的函数的实现之间总是存在直接联系。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:726
@@ -2036,14 +1877,7 @@ msgid ""
 "is possible for Idris to unify `0 + n` with `n` in the\n"
 "`Nil` case, and `(S k) + n` with `S (k + n)` in the\n"
 "*cons* case.\n"
-msgstr ""
-"如您所见， `add` 是通过对其 *第一个* "
-"参数的模式匹配来实现的，而第二个参数从未被检查过。请注意，这正是 `(++)` 在 "
-"`Vect` 上的实现方式：在那里，我们还对第一个参数进行模式匹配，在 `Nil` "
-"分支中返回未修改的第二个参数，并将头部添加到 *cons* "
-"分支中追加尾部的结果。由于两个模式匹配之间存在直接对应关系，因此 Idris "
-"可以在 `Nil` 的情况下将 `0 + n` 与 `n` 统一起来，而在 *cons* 的情况下 `(S k) "
-"+ n` 与 `S (k + n)` 统一起来。\n"
+msgstr "如您所见， `add` 是通过对其 *第一个* 参数的模式匹配来实现的，而第二个参数从未被检查过。请注意，这正是 `(++)` 在 `Vect` 上的实现方式：在那里，我们还对第一个参数进行模式匹配，在 `Nil` 分支中返回未修改的第二个参数，并将头部添加到 *cons* 分支中追加尾部的结果。由于两个模式匹配之间存在直接对应关系，因此 Idris 可以在 `Nil` 的情况下将 `0 + n` 与 `n` 统一起来，而在 *cons* 的情况下 `(S k) + n` 与 `S (k + n)` 统一起来。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:747
@@ -2083,13 +1917,7 @@ msgid ""
 "of `xs` and `[x]`. Overloaded operator `(+)`\n"
 "is implemented via function `Prelude.plus`, that's\n"
 "why Idris replaces `(+)` with `plus` in the error message.\n"
-msgstr ""
-"当我们对上述内容进行类型检查时，Idris "
-"将失败并显示以下错误消息：“无法解决之间的约束：加plus n 1 和 S "
-"n。”这是发生了什么：从左侧的模式匹配中，Idris 知道向量的长度是 `S n`，"
-"对于某个自然数 `n` 对应于 `xs`。右边向量的长度是`n + 1`，根据 `(++)` "
-"的类型和 `xs` 和 `[x]` 的长度。重载运算符 `(+)` 是通过函数 `Prelude.plus` "
-"实现的，这就是 Idris 在错误消息中将 `(+)` 替换为 `plus` 的原因.\n"
+msgstr "当我们对上述内容进行类型检查时，Idris 将失败并显示以下错误消息：“无法解决之间的约束：加plus n 1 和 S n。”这是发生了什么：从左侧的模式匹配中，Idris 知道向量的长度是 `S n`，对于某个自然数 `n` 对应于 `xs`。右边向量的长度是`n + 1`，根据 `(++)` 的类型和 `xs` 和 `[x]` 的长度。重载运算符 `(+)` 是通过函数 `Prelude.plus` 实现的，这就是 Idris 在错误消息中将 `(+)` 替换为 `plus` 的原因.\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:779
@@ -2106,12 +1934,7 @@ msgid ""
 "using `rewrite` will require some in-depth explanations\n"
 "and examples. Therefore, these things will have to wait\n"
 "until another chapter.\n"
-msgstr ""
-"从上面可以看出，Idris 自己无法验证 `1 + n` 与 `n + 1` "
-"是一回事。不过，它可以接受我们的一些帮助。如果我们提出上述等式成立的 "
-"*证明*（或者更一般地说，我们对自然数加法的实现是 *可交换的*），"
-"我们可以将此证明用于 *重写* `reverse` 右侧的类型。编写证明和使用 `rewrite` "
-"需要一些深入的解释和示例。所以，这些事情还得等到下一章再说。\n"
+msgstr "从上面可以看出，Idris 自己无法验证 `1 + n` 与 `n + 1` 是一回事。不过，它可以接受我们的一些帮助。如果我们提出上述等式成立的 *证明*（或者更一般地说，我们对自然数加法的实现是 *可交换的*），我们可以将此证明用于 *重写* `reverse` 右侧的类型。编写证明和使用 `rewrite` 需要一些深入的解释和示例。所以，这些事情还得等到下一章再说。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:780
@@ -2129,10 +1952,7 @@ msgid ""
 "In some circumstances, `n` can be inferred from the context.\n"
 "For instance, in the following example it is tedious to\n"
 "pass `n` explicitly:\n"
-msgstr ""
-"在像 `replicate` 这样的函数中，我们传递一个自然数 `n` 作为一个明确的、不受限"
-"制的参数，我们从中推断要返回的向量的长度。在某些情况下，可以从上下文中推断出 "
-"`n`。例如，在以下示例中，显式传递 `n` 是很乏味的：\n"
+msgstr "在像 `replicate` 这样的函数中，我们传递一个自然数 `n` 作为一个明确的、不受限制的参数，我们从中推断要返回的向量的长度。在某些情况下，可以从上下文中推断出 `n`。例如，在以下示例中，显式传递 `n` 是很乏味的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:789
@@ -2169,8 +1989,7 @@ msgid ""
 "We therefore can implement an alternative version of `replicate`,\n"
 "where we pass `n` as an implicit argument of *unrestricted*\n"
 "quantity:\n"
-msgstr "因此，我们可以实现 `replicate` 的替代版本，其中我们将 `n` 作为 *无限制* "
-"定量的隐式参数传递：\n"
+msgstr "因此，我们可以实现 `replicate` 的替代版本，其中我们将 `n` 作为 *无限制* 定量的隐式参数传递：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:806
@@ -2188,8 +2007,7 @@ msgstr ""
 msgid ""
 "Note how, in the implementation of `replicate'`, we can refer to `n`\n"
 "and pass it as an explicit argument to `replicate`.\n"
-msgstr "请注意，在 `replicate'` 的实现中，我们可以引用 `n` 并将其作为显式参数传递给 "
-"`replicate`。\n"
+msgstr "请注意，在 `replicate'` 的实现中，我们可以引用 `n` 并将其作为显式参数传递给 `replicate`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:819
@@ -2200,10 +2018,7 @@ msgid ""
 "by Idris. Sometimes it might even be useful to have both verions\n"
 "of a function. Remember, however, that even in case of an implicit argument\n"
 "we can still pass the value explicitly:\n"
-msgstr ""
-"决定是否将潜在的可推断参数隐式或显式传递给函数是一个问题，即 Idris 实际 *是* "
-"可推断参数的使用频率。有时，同时拥有一个函数的两个版本甚至可能很有用。但是请"
-"记住，即使是隐式参数，我们仍然可以显式传递值：\n"
+msgstr "决定是否将潜在的可推断参数隐式或显式传递给函数是一个问题，即 Idris 实际 *是* 可推断参数的使用频率。有时，同时拥有一个函数的两个版本甚至可能很有用。但是请记住，即使是隐式参数，我们仍然可以显式传递值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:820
@@ -2222,8 +2037,7 @@ msgid ""
 "In the type signature above, the question mark (`?`) means, that Idris\n"
 "should try and figure out the value on its own by unification. This\n"
 "forces us to specify `n` explicitly on the right hand side of `ex6`.\n"
-msgstr "在上面的类型签名中，问号 (`?`) 的意思是，Idris 应该尝试通过统一自己找出值。"
-"这迫使我们在 `ex6` 的右侧明确指定 `n`。\n"
+msgstr "在上面的类型签名中，问号 (`?`) 的意思是，Idris 应该尝试通过统一自己找出值。这迫使我们在 `ex6` 的右侧明确指定 `n`。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Dependent.md:829
@@ -2239,9 +2053,7 @@ msgid ""
 "where we could pattern match on the explicit argument `n`. However, it\n"
 "is also possible to pattern match on implicit, named arguments of\n"
 "non-zero quantity:\n"
-msgstr ""
-"`replicate'` 的实现使用了函数 `replicate`，我们可以在显式参数 `n` "
-"上进行模式匹配。但是，也可以对非零数量的隐式命名参数进行模式匹配：\n"
+msgstr "`replicate'` 的实现使用了函数 `replicate`，我们可以在显式参数 `n` 上进行模式匹配。但是，也可以对非零数量的隐式命名参数进行模式匹配：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:836
@@ -2272,22 +2084,23 @@ msgstr "   flattenList : List (List a) -> List a\n"
 msgid ""
 "   Implement `flattenList` and declare and implement a similar\n"
 "   function `flattenVect` for flattening vectors of vectors.\n"
-msgstr "   实现 `flattenList` 并声明和实现一个类似的函数 `flattenVect` "
-"用于扁平化向量的向量。\n"
+msgstr "   实现 `flattenList` 并声明和实现一个类似的函数 `flattenVect` 用于扁平化向量的向量。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Dependent.md:856
 msgid ""
 "Implement functions `take'` and `splitAt'` like in the exercises of the "
 "previous section but using the technique shown for `drop'`."
-msgstr "像上一节的练习一样实现函数 `take'` 和 `splitAt'`，但使用 `drop'` 所示的技术。"
+msgstr ""
+"像上一节的练习一样实现函数 `take'` 和 `splitAt'`，但使用 `drop'` 所示的技术。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Dependent.md:860
 msgid ""
 "Implement function `transpose` for converting an `m x n`-matrix (represented "
 "as a `Vect m (Vect n a)`)  to an `n x m`-matrix."
-msgstr "实现函数 `transpose` 用于将 `m x n` 矩阵（表示为 `Vect m (Vect n a)`）转换为 "
+msgstr ""
+"实现函数 `transpose` 用于将 `m x n` 矩阵（表示为 `Vect m (Vect n a)`）转换为 "
 "`n x m` 矩阵。"
 
 #. type: Plain text
@@ -2296,8 +2109,7 @@ msgstr "实现函数 `transpose` 用于将 `m x n` 矩阵（表示为 `Vect m (V
 msgid ""
 "   Note: This might be a challenging exercise, but make sure\n"
 "   to give it a try. As usual, make use of holes if you get stuck!\n"
-msgstr "   注意：这可能是一项具有挑战性的练习，但请确保试一试。像往常一样，如果你被卡"
-"住了，就利用洞！\n"
+msgstr "   注意：这可能是一项具有挑战性的练习，但请确保试一试。像往常一样，如果你被卡住了，就利用洞！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:865
@@ -2321,7 +2133,8 @@ msgid ""
 "Dependent types allow us to calculate types from values.  This makes it "
 "possible to encode properties of values at the type-level and verify these "
 "properties at compile time."
-msgstr "依赖类型允许我们根据值计算类型。这使得在类型级别对值的属性进行编码并在编译时"
+msgstr ""
+"依赖类型允许我们根据值计算类型。这使得在类型级别对值的属性进行编码并在编译时"
 "验证这些属性成为可能。"
 
 #. type: Bullet: '* '
@@ -2330,7 +2143,8 @@ msgid ""
 "Length-indexed lists (vectors) let us rule out certain implementation "
 "errors, by forcing us to be precise about the lengths of input and output "
 "vectors."
-msgstr "长度索引列表（向量）通过强制我们准确了解输入和输出向量的长度，让我们排除了某"
+msgstr ""
+"长度索引列表（向量）通过强制我们准确了解输入和输出向量的长度，让我们排除了某"
 "些实现错误。"
 
 #. type: Bullet: '* '
@@ -2347,7 +2161,8 @@ msgid ""
 "known at compile time, or they need to be passed as arguments to the "
 "function creating the values, where we can pattern match on them to figure "
 "out, which constructors to use."
-msgstr "创建类型族的值时，索引的值需要在编译时知道，或者它们需要作为参数传递给创建值"
+msgstr ""
+"创建类型族的值时，索引的值需要在编译时知道，或者它们需要作为参数传递给创建值"
 "的函数，我们可以对它们进行模式匹配以确定哪些构造函数利用。"
 
 #. type: Bullet: '* '
@@ -2355,7 +2170,8 @@ msgstr "创建类型族的值时，索引的值需要在编译时知道，或者
 msgid ""
 "We can use `Fin n`, the type of natural numbers strictly smaller than `n`, "
 "to safely index into a vector of length `n`."
-msgstr "我们可以使用严格小于 `n` 的自然数类型 `Fin n` 来安全地索引长度为 `n` 的向量。"
+msgstr ""
+"我们可以使用严格小于 `n` 的自然数类型 `Fin n` 来安全地索引长度为 `n` 的向量。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Dependent.md:898
@@ -2375,9 +2191,7 @@ msgid ""
 "Note, that data type `Vect` together with many of the functions we\n"
 "implemented here is available from module `Data.Vect` from the *base*\n"
 "library. Likewise, `Fin` is available from `Data.Fin` from *base*.\n"
-msgstr ""
-"请注意，数据类型 `Vect` 以及我们在此处实现的许多功能可从 *base* 库中的模块 "
-"`Data.Vect` 获得。同样，`Fin` 可从 `Data.Fin` 从 *base* 获得。\n"
+msgstr "请注意，数据类型 `Vect` 以及我们在此处实现的许多功能可从 *base* 库中的模块 `Data.Vect` 获得。同样，`Fin` 可从 `Data.Fin` 从 *base* 获得。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:907
@@ -2385,5 +2199,4 @@ msgstr ""
 msgid ""
 "In the [next section](IO.md), it is time to learn how to write effectful programs\n"
 "and how to do this while still staying *pure*.\n"
-msgstr "在 [next section](IO.md) 中，是时候学习如何编写有效的程序以及如何在保持 * 纯 "
-"* 的同时做到这一点。\n"
+msgstr "在 [next section](IO.md) 中，是时候学习如何编写有效的程序以及如何在保持 * 纯 * 的同时做到这一点。\n"
