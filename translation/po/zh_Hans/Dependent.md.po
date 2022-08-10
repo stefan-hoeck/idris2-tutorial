@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-10 00:54+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dependent/zh_Hans/>\n"
@@ -443,7 +443,7 @@ msgstr "依赖类型"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:9
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The ability to calculate types from values, pass them as arguments\n"
 "to functions, and return them as results from functions - in\n"
@@ -451,37 +451,49 @@ msgid ""
 "most distinguishing features of Idris. Many of the more advanced\n"
 "type level extensions of languages like Haskell (and quite a\n"
 "bit more) can be treated in one fell swoop with dependent types.\n"
-msgstr "从值计算类型、将它们作为参数传递给函数并将它们作为函数结果返回的能力——简而言之，作为一种依赖类型的语言——是 Idris 最显着的特征之一。许多更高级的语言的类型级别扩展，如 Haskell（以及更多），可以一举用依赖类型来处理。"
+msgstr ""
+"从值计算类型、将它们作为参数传递给函数并将它们作为函数结果返回的能力——简而言"
+"之，作为一种依赖类型的语言——是 Idris "
+"最显着的特征之一。许多更高级的语言的类型级别扩展，如 "
+"Haskell（以及更多）都可以使用依赖类型来处理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:10
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Dependent\n"
 "\n"
 "%default total\n"
-msgstr "```idris 模块 Tutorial.Dependent"
+msgstr ""
+"module Tutorial.Dependent\n"
+"\n"
+"%default total\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:17
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Consider the following functions:\n"
-msgstr "考虑以下函数："
+msgstr "考虑以下函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:18
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "bogusMapList : (a -> b) -> List a -> List b\n"
 "bogusMapList _ _ = []\n"
 "\n"
 "bogusZipList : (a -> b -> c) -> List a -> List b -> List c\n"
 "bogusZipList _ _ _ = []\n"
-msgstr "bogusZipList : (a -> b -> c) -> 列表 a -> 列表 b -> 列表 c bogusZipList _ _ _ = [] ```"
+msgstr ""
+"bogusMapList : (a -> b) -> List a -> List b\n"
+"bogusMapList _ _ = []\n"
+"\n"
+"bogusZipList : (a -> b -> c) -> List a -> List b -> List c\n"
+"bogusZipList _ _ _ = []\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:35
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The implementations type check, and still, they are obviously not\n"
 "what users of our library would expect. In the first example, we'd expect\n"
@@ -492,40 +504,44 @@ msgid ""
 "length as the smaller of the two? Return an empty list? Or shouldn't\n"
 "we in most use cases expect the two lists to be of the same length?\n"
 "How could we even describe such a precondition?\n"
-msgstr "实现类型检查，但它们显然不是我们库的用户所期望的。在第一个示例中，我们希望实现将函数参数应用于存储在列表中的所有值，而不会删除它们中的任何一个或更改它们的顺序。第二个比较棘手：两个列表参数的长度可能不同。遇到这种情况我们该怎么办？返回与两者中较小的长度相同的列表？返回一个空列表？或者在大多数用例中我们不应该期望两个列表具有相同的长度吗？我们怎么能描述这样的前提条件呢？"
+msgstr ""
+"实现可以通过类型检查，但它们显然不是我们库的用户所期望的。在第一个示例中，我"
+"们希望实现将函数参数应用于存储在列表中的所有值，而不会删除它们中的任何一个或"
+"更改它们的顺序。第二个比较棘手：两个列表参数的长度可能不同。遇到这种情况我们"
+"该怎么办？返回与两者中较小的长度相同的列表？返回一个空列表？或者在大多数用例"
+"中我们不应该期望两个列表具有相同的长度吗？我们怎么能描述这样的前提条件呢？\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Dependent.md:36
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Length-Indexed Lists"
-msgstr "## 长度索引列表"
+msgstr "长度索引列表"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:41
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The answer to the issues described above is of course: Dependent types.\n"
 "And the most common introductory example is the *vector*: A list indexed\n"
 "by its length:\n"
-msgstr "上述问题的答案当然是：依赖类型。最常见的介绍性示例是 *vector*：按长度索引的列表："
+msgstr "上述问题的答案当然是：依赖类型。最常见的介绍性示例是 "
+"*向量*：按长度索引的列表：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:42
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Vect : (len : Nat) -> (a : Type) -> Type where\n"
 "  Nil  : Vect 0 a\n"
 "  (::) : (x : a) -> (xs : Vect n a) -> Vect (S n) a\n"
 msgstr ""
-"```伊德里斯\n"
 "data Vect : (len : Nat) -> (a : Type) -> Type where\n"
-"  无：Vect 0 a\n"
+"  Nil  : Vect 0 a\n"
 "  (::) : (x : a) -> (xs : Vect n a) -> Vect (S n) a\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:58
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Before we move on, please compare this with the implementation of `Seq` in\n"
 "the [section about algebraic data types](DataTypes.md). The constructors\n"
@@ -537,67 +553,79 @@ msgid ""
 "`Nil` has type `Vect 0 a`: A vector of length\n"
 "zero. *Cons* has type `a -> Vect n a -> Vect (S n) a`: It is exactly one\n"
 "element longer (`S n`) than its second argument, which is of length `n`.\n"
-msgstr "在我们继续之前，请将此与 [关于代数数据类型的部分](DataTypes.md) 中的 `Seq` 的实现进行比较。构造函数完全相同：`Nil` 和 `(::)`。但是有一个重要的区别：`Vect`，不像`Seq`或`List`，不是从`Type`到`Type[的函数X296X]，它是从 `Nat` 到 `Type` 到 `Type` 的函数。前进！打开 REPL 并验证这一点！ `Nat` 参数（也称为 *index*）在这里表示向量的 *length*。 `Nil` 的类型为 `Vect 0 a`：长度为零的向量。 *Cons* 的类型为 `a -> Vect n a -> Vect (S n) a`：它恰好比其第二个参数长一个元素 (`S n`)，其长度为 `n`。"
+msgstr ""
+"在我们继续之前，请将此与 [关于代数数据类型的部分](DataTypes.md) 中的 `Seq` "
+"的实现进行比较。构造函数完全相同：`Nil` 和 "
+"`(::)`。但是有一个重要的区别：`Vect` 不像`Seq`或`List`，不是从`Type`到`Type` "
+"的函数，它是从 `Nat` 到 `Type` 到 `Type` 的函数。前进！打开 REPL "
+"并验证这一点！ `Nat` 参数（也称为 *索引*）在这里表示向量的 *长度*。 `Nil` "
+"的类型为 `Vect 0 a`：长度为零的向量。 `Cons` 的类型为 `a -> Vect n a -> Vect "
+"(S n) a`：它恰好比其长度为 `n` 的第二个参数多一个元素 (`S n`)，。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:61
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's experiment with this idea to gain a better understanding.\n"
 "There is only one way to come up with a vector of length zero:\n"
-msgstr "让我们尝试这个想法以获得更好的理解。只有一种方法可以得出长度为零的向量："
+msgstr "让我们尝试这个想法以获得更好的理解。只有一种方法可以得出长度为零的向量：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:62
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "ex1 : Vect 0 Integer\n"
 "ex1 = Nil\n"
-msgstr "```idris ex1 : Vect 0 整数 ex1 = Nil ```"
+msgstr ""
+"ex1 : Vect 0 Integer\n"
+"ex1 = Nil\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:69
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The following, on the other hand, leads to a type error (a pretty complicated\n"
 "one, actually):\n"
-msgstr "另一方面，以下会导致类型错误（实际上是一个非常复杂的错误）："
+msgstr "另一方面，以下会导致类型错误（实际上是一个非常复杂的错误）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:70
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "failing \"Mismatch between: S ?n and 0.\"\n"
 "  ex2 : Vect 0 Integer\n"
 "  ex2 = [12]\n"
 msgstr ""
-"```伊德里斯\n"
-"失败“不匹配：S ?n 和 0。”\n"
-"  ex2 : Vect 0 整数\n"
+"failing \"Mismatch between: S ?n and 0.\"\n"
+"  ex2 : Vect 0 Integer\n"
 "  ex2 = [12]\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:80
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The problem: `[12]` gets desugared to `12 :: Nil`, but this has the wrong\n"
 "type! Since `Nil` has type `Vect 0 Integer` here, `12 :: Nil` has type\n"
 "`Vect (S 0) Integer`, which is identical to `Vect 1 Integer`. Idris verifies,\n"
 "at compile time, that our vector is of the correct length!\n"
-msgstr "问题：`[12]` 被脱糖为 `12 :: Nil`，但这类型错误！由于此处 `Nil` 的类型为 `Vect 0 Integer`，因此 `12 :: Nil` 的类型为 `Vect (S 0) Integer`，与`Vect 1 整数 `。 Idris 在编译时验证我们的向量的长度是否正确！"
+msgstr ""
+"问题：`[12]` 被脱糖为 `12 :: Nil`，但这类型错误！由于此处 `Nil` 的类型为 `"
+"Vect 0 Integer`，因此 `12 :: Nil` 的类型为 `Vect (S 0) Integer`，也就是 `"
+"Vect 1 Integer `。 Idris 在编译时验证我们的向量的长度是否正确！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:81
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "ex3 : Vect 1 Integer\n"
 "ex3 = [12]\n"
-msgstr "```idris ex3 : Vect 1 整数 ex3 = [12] ```"
+msgstr ""
+"ex3 : Vect 1 Integer\n"
+"ex3 = [12]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:93
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, we found a way to encode the *length* of a list-like data structure in\n"
 "its *type*, and it is a *type error* if the number of elements in\n"
@@ -606,13 +634,17 @@ msgid ""
 "allows us to be more precise in the types and rule out additional\n"
 "programming mistakes. But first, we need to quickly clarify some\n"
 "terminology.\n"
-msgstr "因此，我们找到了一种方法，将类列表数据结构的 *length* 编码为 *type*，如果元素个数为 *type error*在向量中与其类型中给出的长度不一致。我们很快就会看到几个用例，这些额外的信息使我们能够更精确地确定类型并排除额外的编程错误。但首先，我们需要快速澄清一些术语。"
+msgstr ""
+"因此，我们找到了一种方法，将类列表数据结构的 *长度* 编码为 "
+"*类型*，如果在向量中的元素个数与其类型中给出的长度不一致，会得到一个 *类型错"
+"误*，我们很快就会看到几个用例，这些额外的信息使我们能够更精确地确定类型并排除"
+"额外的编程错误。但首先，我们需要快速澄清一些术语。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Dependent.md:94
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Type Indices versus Type Parameters"
-msgstr "### 类型索引与类型参数"
+msgstr "类型索引与类型参数"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:101
