@@ -1,17 +1,8 @@
-# Functions Part 2
+# 函数第 2 部分
 
-So far, we learned about the core features of the Idris
-language, which it has in common with several other
-pure, strongly typed programming languages like Haskell:
-(Higher order) Functions, algebraic data types, pattern matching,
-parametric polymorphism (generic types and functions), and
-ad hoc polymorphism (interfaces and constrained functions).
+到目前为止，我们了解了 Idris 语言的核心特性，它与其他几种纯的强类型编程语言（如 Haskell）有共同之处：（高阶）函数、代数数据类型、模式匹配、参数多态性（泛型类型和函数）和临时多态性（接口和约束函数）。
 
-In this chapter, we start to dissect Idris functions and their types
-for real. We learn about implicit arguments, named arguments, as well
-as erasure and quantities. But first, we'll look at `let` bindings
-and `where` blocks, which help us implement functions too complex
-to fit on a single line of code. Let's get started!
+在本章中，我们开始真正剖析 Idris 函数及其类型。我们了解隐式参数、命名参数以及擦除和定量。但首先，我们将看看 `let` 绑定和 `where` 块，它们可以帮助我们实现过于复杂而无法在一行代码中放置的函数。让我们开始吧！
 
 ```idris
 module Tutorial.Functions2
@@ -19,77 +10,42 @@ module Tutorial.Functions2
 %default total
 ```
 
-## Let Bindings and Local Definitions
+## Let 绑定和局部定义
 
-The functions we looked at so far were simple enough
-to be implemented directly via pattern matching
-without the need of additional auxiliary functions or
-variables. This is not always the case, and there are two
-important language constructs for introducing and reusing
-new local variables and functions. We'll look at these
-in two case studies.
+到目前为止，我们看到的函数非常简单，可以通过模式匹配直接实现，而不需要额外的辅助函数或变量。情况并非总是如此，并且有两个重要的语言结构用于引入和重用新的局部变量和函数。我们将在两个案例研究中研究这些。
 
-### Use Case 1: Arithmetic Mean and Standard Deviation
+### 用例 1：算术平均值和标准差
 
-In this example, we'd like to calculate the arithmetic
-mean and the standard deviation of a list of floating point values.
-There are several things we need to consider.
+在此示例中，我们要计算浮点值列表的算术平均值和标准差。我们需要考虑几件事。
 
-First, we need a function for calculating the sum of
-a list of numeric values. The *Prelude* exports function
-`sum` for this:
+首先，我们需要一个函数来计算数值列表的总和。 *Prelude* 为此导出函数 `sum`：
 
 ```repl
 Main> :t sum
 Prelude.sum : Num a => Foldable t => t a -> a
 ```
 
-This is - of course - similar to `sumList` from Exercise 10
-of the [last section](Interfaces.md), but generalized to all
-container types with a `Foldable` implementation. We will
-learn about interface `Foldable` in a later section.
+这 - 当然 - 类似于 [上一节](Interfaces.md) 的练习 10 中的 `sumList`，但推广到具有 `Foldable` 实现的所有容器类型。我们将在后面的部分了解接口 `Foldable`。
 
-In order to also calculate the variance,
-we need to convert every value in the list to
-a new value, as we have to subtract the mean
-from every value in the list and square the
-result. In the previous section's exercises, we
-defined function `mapList` for this. The *Prelude* - of course -
-already exports a similar function called `map`,
-which is again more general
-and works also like our `mapMaybe` for `Maybe`
-and `mapEither` for `Either e`. Here's its type:
+为了也可以计算方差，我们需要将列表中的每个值转换为一个新值，因为我们必须从列表中的每个值中减去平均值并将结果平方。在上一节的练习中，我们为此定义了函数 `mapList`。 *Prelude* - 当然 - 已经导出了一个名为 `map` 的类似函数，它同样更通用并且也像我们的 `mapMaybe` 用于 `Maybe]` 和 `mapEither` 用于 `Either e`。这是它的类型：
 
 ```repl
 Main> :t map
 Prelude.map : Functor f => (a -> b) -> f a -> f b
 ```
 
-Interface `Functor` is another one we'll talk about
-in a later section.
+接口 `Functor` 是另一个我们将在后面讨论的接口。
 
-Finally, we need a way to calculate the length of
-a list of values. We use function `length` for this:
+最后，我们需要一种计算值列表长度的方法。我们为此使用函数 `length`：
 
 ```repl
 Main> :t List.length
 Prelude.List.length : List a -> Nat
 ```
 
-Here, `Nat` is the type of natural numbers
-(unbounded, unsigned integers). `Nat` is actually not a primitive data
-type but a sum type defined in the *Prelude* with
-data constructors `Z : Nat` (for zero)
-and `S : Nat -> Nat` (for successor). It might seem highly inefficient
-to define natural numbers this way, but the Idris compiler
-treats these and several other *number-like* types specially, and
-replaces them with primitive integers during code generation.
+这里，`Nat` 是自然数的类型（无界、无符号整数）。 `Nat` 实际上不是原语数据类型，而是在 *Prelude* 中使用数据构造函数 `Z: Nat` （为零）和 `S ： Nat -> Nat`（后继）定义的和类型 。以这种方式定义自然数似乎效率极低，但 Idris 编译器会特别处理这些类型和其他几个 *类数字* 类型，并在代码生成期间将它们替换为原语整数。
 
-We are now ready to give the implementation of `mean` a go.
-Since this is Idris, and we care about clear semantics, we will
-quickly define a custom record type instead of just returning
-a tuple of `Double`s. This makes it clearer, which floating
-point number corresponds to which statistic entity:
+我们现在已经准备好执行 `mean` 了。由于这是 Idris，并且我们关心清晰的语义，我们将快速定义自定义记录类型，而不是仅仅返回 `Double` 的元组。这样就更清楚了，哪个浮点数对应哪个统计实体：
 
 ```idris
 square : Double -> Double
@@ -109,57 +65,24 @@ stats xs =
    in MkStats mean variance (sqrt variance)
 ```
 
-As usual, we first try this at the REPL:
+像往常一样，我们首先在 REPL 上尝试一下：
 
 ```repl
 Tutorial.Functions2> stats [2,4,4,4,5,5,7,9]
 MkStats 5.0 4.0 2.0
 ```
 
-Seems to work, so let's digest this step by step.
-We introduce several new local variables
-(`len`, `mean`, and `variance`),
-which all will be used more than once in the remainder
-of the implementation. To do so, we use a `let` binding. This
-consists of the `let` keyword, followed by one or more
-variable assignments, followed by the final expression,
-which has to be prefixed by `in`. Note, that whitespace
-is significant again: We need to properly align the three
-variable names. Go ahead, and try out what happens if
-you remove a space in front of `mean` or `variance`.
-Note also, that the alignment of assignment operators
-`:=` is optional. I do this, since I thinks it helps
-readability.
+似乎有效，所以让我们一步一步消化这个。我们引入了几个新的局部变量（`len`、`mean` 和 `variance`），它们都将在余下的实现中多次使用。为此，我们使用 `let` 绑定。这包括 `let` 关键字，后跟一个或多个变量赋值，然后是最终表达式，它必须以 `in` 为前缀。请注意，空格同样很重要：我们需要正确对齐三个变量名。继续，试试如果删除 `mean` 或 `variance` 前面的空格会发生什么。另请注意，赋值运算符 `:=` 的对齐方式是可选的。我这样做是因为我认为它有助于提高可读性。
 
-Let's also quickly look at the different variables
-and their types. `len` is the length of the list
-cast to a `Double`, since this is what's needed
-later on, where we divide other values of type `Double`
-by the length. Idris is very strict about this: We are
-not allowed to mix up numeric types without explicit
-casts. Please note, that in this case Idris is able
-to *infer* the type of `len` from the surrounding
-context. `mean` is straight forward: We `sum` up the
-values stored in the list and divide by the list's
-length. `variance` is the most involved of the
-three: We map each item in the list to a new value
-using an anonymous function to subtract the mean
-and square the result. We then sum up the new terms
-and divide again by the number of values.
+让我们快速看看不同的变量及其类型。 `len` 是转换为 `Double` 的列表的长度，因为这是稍后需要的，我们将 `Double` 类型的其他值除以长度。 Idris 对此非常严格：我们不允许在没有显式转换的情况下混合数字类型。请注意，在这种情况下，Idris 能够从周围的上下文 *推断* `len` 的类型。 `mean` 很简单：我们 `sum` 将存储在列表中的值相加并除以列表的长度。 `variance` 是三个中涉及最多的一个：我们使用匿名函数将列表中的每个项目映射到一个新值，以减去均值并平方结果。然后我们将新项相加并再次除以值的数量。
 
-### Use Case 2: Simulating a Simple Web Server
+### 用例 2：模拟一个简单的 Web 服务器
 
-In the second use case, we are going to write a slightly
-larger application. This should give you an idea about how to
-design data types and functions around some business
-logic you'd like to implement.
+在第二个用例中，我们将编写一个稍大的应用程序。这应该让您了解如何围绕您想要实现的某些业务逻辑设计数据类型和功能。
 
-Assume we run a music streaming web server, where users
-can buy whole albums and listen to them online. We'd
-like to simulate a user connecting to the server and
-getting access to one of the albums they bought.
+假设我们运行一个音乐流网络服务器，用户可以在其中购买整张专辑并在线收听。我们想模拟一个用户连接到服务器并访问他们购买的一张专辑。
 
-We first define a bunch of record types:
+我们首先定义了一堆记录类型：
 
 ```idris
 record Artist where
@@ -187,18 +110,7 @@ record User where
   albums   : List Album
 ```
 
-Most of these should be self-explanatory. Note, however, that
-in several cases (`Email`, `Artist`, `Password`) we wrap a
-single value in a new record type. Of course, we *could* have
-used the unwrapped `String` type instead, but we'd have ended
-up with many `String` fields, which can be hard to disambiguate.
-In order not to confuse an email string with a password string,
-it can therefore be helpful to wrap both of them in a new
-record type to drastically increase type safety at the cost
-of having to reimplement some interfaces.
-Utility function `on` from the *Prelude* is very useful for this. Don't
-forget to inspect its type at the REPL, and try to understand what's
-going on here.
+其中大部分应该是不言自明的。但是请注意，在某些情况下（`Email`、`Artist`、`Password`）我们将单个值包装在新的记录类型中。当然，我们 *可以* 使用未包装的 `String` 类型，但我们最终会得到许多 `String` 字段，这很难消除歧义。为了不将电子邮件字符串与密码字符串混淆，因此将它们都包装在新的记录类型中会有所帮助，以大大提高类型安全性，但代价是必须重新实现某些接口。 *Prelude* 中的实用函数 `on` 对此非常有用。不要忘记在 REPL 中检查它的类型，并尝试了解这里发生了什么。
 
 ```idris
 Eq Artist where (==) = (==) `on` name
@@ -210,12 +122,9 @@ Eq Password where (==) = (==) `on` value
 Eq Album where (==) = (==) `on` \a => (a.name, a.artist)
 ```
 
-In case of `Album`, we wrap the two fields of the record in
-a `Pair`, which already comes with an implementation of `Eq`.
-This allows us to again use function `on`, which is very convenient.
+在 `Album` 的情况下，我们将记录的两个字段包装在 `Pair` 中，它已经附带了 `Eq` 的实现。这让我们可以再次使用`on`函数，非常方便。
 
-Next, we have to define the data types representing
-server requests and responses:
+接下来，我们必须定义代表服务器请求和响应的数据类型：
 
 ```idris
 record Credentials where
@@ -235,16 +144,9 @@ data Response : Type where
   Success         : Album -> Response
 ```
 
-For server responses, we use a custom sum type encoding
-the possible outcomes of a client request. In practice,
-the `Success` case would return some kind of connection
-to start the actual album stream, but we just
-wrap up the album we found to simulate this behavior.
+对于服务器响应，我们使用自定义 sum 类型来编码客户端请求的可能结果。在实践中，`Success` 案例会返回某种连接来启动实际的专辑流，但我们只是包装我们找到的专辑来模拟这种行为。
 
-We can now go ahead and simulate the handling of
-a request at the server. To emulate our user data base,
-a simple list of users will do. Here's the type of the
-function we'd like to implement:
+我们现在可以继续模拟在服务器上对请求的处理。为了模拟我们的用户数据库，一个简单的用户列表就可以了。这是我们要实现的函数的类型：
 
 ```idris
 DB : Type
@@ -253,26 +155,11 @@ DB = List User
 handleRequest : DB -> Request -> Response
 ```
 
-Note, how we defined a short alias for `List User` called `DB`.
-This is often useful to make lengthy type signatures more readable
-and communicate the meaning of a type in the given context. However,
-this will *not* introduce a new type, nor will it
-increase type safety: `DB` is *identical* to `List User`, and as
-such, a value of type `DB` can be used wherever a `List User` is
-expected and vice versa. In more complex programs it is therefore
-usually preferable to define new types by wrapping values in
-single-field records.
+请注意，我们如何为 `List User` 定义一个称为 `DB` 的短别名。这通常有助于使冗长的类型签名更具可读性并在给定的上下文中传达类型的含义。但是，这将 *不会* 引入新类型，也不会增加类型安全性：`DB` 只是 `List User` 的一个 *身份*，并且作为这样，类型为 `DB` 的值可以在需要 `List User` 的任何地方使用，反之亦然。因此，在更复杂的程序中，通常最好通过将值包装在单字段记录中来定义新类型。
 
-The implementation will proceed as follows: It will first
-try and lookup a `User` by is email address in the data
-base. If this is successful, it will compare the provided password
-with the user's actual password. If the two match, it will
-lookup the requested album in the user's list of albums.
-If all of these steps succeed, the result will be an `Album`
-wrapped in a `Success`. If any of the steps fails, the
-result will describe exactly what went wrong.
+实现将按如下进行：它将首先尝试在数据库中通过电子邮件地址查找 `User`。如果成功，它会将提供的密码与用户的实际密码进行比较。如果两者匹配，它将在用户的专辑列表中查找请求的专辑。如果所有这些步骤都成功，结果将是 `Album` 包裹在 `Success` 中。如果任何步骤失败，结果将准确描述问题所在。
 
-Here's a possible implementation:
+这是一个可能的实现：
 
 ```idris
 handleRequest db (MkRequest (MkCredentials email pw) album) =
@@ -293,28 +180,11 @@ handleRequest db (MkRequest (MkCredentials email pw) album) =
           if x == album then Success album else lookupAlbum xs
 ```
 
-I'd like to point out several things in this example. First,
-note how we can extract values from nested records in a
-single pattern match.
-Second, we defined two *local* functions in a `where` block: `lookupUser`,
-and `lookupAlbum`. Both of these have access to all variables
-in the surrounding scope. For instance, `lookupUser` uses the
-`album` variable from the pattern match in the implementation's
-first line. Likewise, `lookupAlbum` makes use of the `album`
-variable.
+我想在这个例子中指出几件事。首先，请注意我们如何在单个模式匹配中从嵌套记录中提取值。其次，我们在 `where` 块中定义了两个 *局部* 函数：`lookupUser` 和 `lookupAlbum`。这两者都可以访问作用域内的所有变量。例如，`lookupUser` 在实现的第一行中使用来自模式匹配的 `album` 变量。同样，`lookupAlbum` 使用 `album` 变量。
 
-A `where` block introduces new local definitions, accessible
-only from the surrounding scope and from other functions
-defined later in the same `where` block. These need to
-be explicitly typed and indented by the same amount of whitespace.
+`where` 块引入了新的局部定义，只能从作用域和稍后在同一 `where` 块中定义的其他函数访问。这些需要以相同数量的空格输入和缩进。
 
-Local definitions can also be introduce *before* a function's
-implementation by using the `let` keyword. This usage
-of `let` is not to be confused with *let bindings* described
-above, which are used to bind and reuse the results of intermediate
-computations. Below is how we could have implemented `handleRequest` with
-local definitions introduced by the `let` keyword. Again,
-all definitions have to be properly typed and indented:
+局部定义也可以通过使用 `let` 关键字在函数实现 *之前* 引入。 `let` 的这种用法不要与上面描述的 *let bindings* 混淆，后者用于绑定和重用中间计算的结果。下面是我们如何使用 `let` 关键字引入的本地定义来实现 `handleRequest`。同样，所有定义都必须正确输入和缩进：
 
 ```idris
 handleRequest' : DB -> Request -> Response
@@ -338,52 +208,35 @@ handleRequest' db (MkRequest (MkCredentials email pw) album) =
 
 ### 练习
 
-The exercises in this section are supposed to increase
-you experience in writing purely functional code. In some
-cases it might be useful to use `let` expressions or
-`where` blocks, but this will not always be required.
+本节中的练习旨在增加您编写纯函数式代码的经验。在某些情况下，使用 `let` 表达式或 `where` 块可能很有用，但这并不总是必需的。
 
-Exercise 3 is again of utmost importance. `traverseList`
-is a specialized version of the more general `traverse`,
-one of the most powerful and versatile functions
-available in the *Prelude* (check out its type!).
+练习 3 同样至关重要。 `traverseList` 是更通用的 `traverse` 的专用版本，是 *Prelude* 中最强大和最通用的功能之一（查看它的类型！）。
 
-1. Module `Data.List` in *base* exports functions `find` and `elem`.
-   Inspect their types and use these in the implementation of
-   `handleRequest`. This should allow you to completely get rid of the
-   `where` block.
+1. *base* 中的模块 `Data.List` 导出函数 `find` 和 `elem`。检查它们的类型并在 `handleRequest`
+   的实现中使用它们。这应该可以让您完全摆脱 `where` 块。
 
-2. Define an enumeration type listing the four
-   [nucleobases](https://en.wikipedia.org/wiki/Nucleobase)  occurring in DNA
-   strands. Define also a type alias `DNA` for lists of nucleobases.
-   Declare and implement function `readBase` for converting a single
-   character (type `Char`) to a nucleobase.  You can use character literals
-   in your implementation like so: `'A'`, `'a'`. Note, that this function
-   might fail, so adjust the result type accordingly.
+2. 定义枚举类型，列出 DNA 链中出现的四个
+   [核碱基](https://en.wikipedia.org/wiki/Nucleobase)。还为核碱基列表定义类型别名
+   `DNA`。声明并实现函数 `readBase` 用于将单个字符（类型
+   `Char`）转换为核碱基。您可以在实现中使用字符文字，如下所示：`'A'`、`'a'`。请注意，此函数可能会失败，因此请相应地调整结果类型。
 
-3. Implement the following function, which tries to convert all values in a
-   list with a function, which might fail. The result should be a `Just`
-   holding the list of converted values in unmodified order, if and only if
-   every single conversion was successful.
+3. 实现以下函数，该函数尝试使用函数转换列表中的所有值，这可能会失败。结果应该是 `Just`
+   以未修改的顺序保存转换值的列表，当且仅当每次转换都成功时。
 
    ```idris
    traverseList : (a -> Maybe b) -> List a -> Maybe (List b)
    ```
 
-   You can verify, that the function behaves correctly with
-   the following test: `traverseList Just [1,2,3] = Just [1,2,3]`.
+   您可以通过下面的测试验证该函数是否正确运行：`traverseList Just [1,2,3] = Just [1,2,3]`。
 
-4. Implement function `readDNA : String -> Maybe DNA` using the functions
-   and types defined in exercises 2 and 3.  You will also need function
-   `unpack` from the *Prelude*.
+4. 使用练习 2 和 3 中定义的函数和类型实现函数 `readDNA : String -> Maybe DNA`。您还需要 *Prelude*
+   中的函数 `unpack`。
 
-5. Implement function `complement : DNA -> DNA` to calculate the complement
-   of a strand of DNA.
+5. 实现函数 `complement : DNA -> DNA` 来计算一条 DNA 链的补码。
 
-## The Truth about Function Arguments
+## 关于函数参数的真相
 
-So far, when we defined a top level function, it looked something
-like the following:
+到目前为止，当我们定义一个顶级函数时，它看起来像下面这样：
 
 ```idris
 zipEitherWith : (a -> b -> c) -> Either e a -> Either e b -> Either e c
@@ -392,15 +245,9 @@ zipEitherWith f (Left e)   _          = Left e
 zipEitherWith f _          (Left e)   = Left e
 ```
 
-Function `zipEitherWith` is a generic higher-order function combining the
-values stored in two `Either`s via a binary function. If either
-of the `Either` arguments is a `Left`, the result is also a `Left`.
+函数 `zipEitherWith` 是一个通用的高阶函数，通过二进制函数将两个 `Either` 中存储的值组合在一起。如果任一 `Either` 类型参数是 `Left`，则结果也是 `Left`。
 
-This is a *generic function* with *type parameters* `a`, `b`, `c`, and `e`.
-However, there is a more verbose type for `zipEitherWith`, which is
-visible in the REPL when entering `:ti zipEitherWith` (the `i` here
-tells Idris to include `implicit` arguments). You will get a type
-similar to this:
+这是一个 *泛型函数*，带有 *类型参数* `a`、`b`、`c` 和 `e`。但是，`zipEitherWith` 有一个更详细的类型，当在 REPL 中输入 `:ti zipEitherWith`（这里的 `i` 告诉 Idris 包含 `implicit` 参数）时。你会得到一个类似这样的类型：
 
 ```idris
 zipEitherWith' :  {0 a : Type}
@@ -413,12 +260,11 @@ zipEitherWith' :  {0 a : Type}
                -> Either e c
 ```
 
-In order to understand what's going on here, we will have to talk about
-named arguments, implicit arguments, and quantities.
+为了理解这里发生了什么，我们将不得不讨论命名参数、隐式参数和定量。
 
-### Named Arguments
+### 命名参数
 
-In a function type, we can give each argument a name. Like so:
+在函数类型中，我们可以给每个参数一个名称。像这样：
 
 ```idris
 fromMaybe : (deflt : a) -> (ma : Maybe a) -> a
@@ -426,28 +272,21 @@ fromMaybe deflt Nothing = deflt
 fromMaybe _    (Just x) = x
 ```
 
-Here, the first argument is given name `deflt`, the second `ma`. These
-names can be reused in a function's implementation, as was done for `deflt`,
-but this is not mandatory: We are free to use different names in the
-implementation. There are several reasons, why we'd choose to name our
-arguments: It can serve as documentation, but it also
-allows us to pass the arguments to a function in arbitrary order
-when using the following syntax:
+这里，第一个参数的名称是 `deflt`，第二个参数是 `ma`。这些名称可以在函数的实现中重复使用，就像 `deflt` 所做的那样，但这不是强制性的：我们可以在实现中自由使用不同的名称。我们选择命名参数有几个原因：它可以用作文档，但它也允许我们在使用以下语法时以任意顺序将参数传递给函数：
 
 ```idris
 extractBool : Maybe Bool -> Bool
 extractBool v = fromMaybe { ma = v, deflt = False }
 ```
 
-Or even :
+甚至 ：
 
 ```idris
 extractBool2 : Maybe Bool -> Bool
 extractBool2 = fromMaybe { deflt = False }
 ```
 
-The arguments in a record's constructor are automatically named
-in accordance with the field names:
+记录构造函数中的参数根据字段名称自动命名：
 
 ```idris
 record Dragon where
@@ -460,11 +299,7 @@ gorgar : Dragon
 gorgar = MkDragon { strength = 150, name = "Gorgar", hitPoints = 10000 }
 ```
 
-For the use cases described above, named arguments are merely a
-convenience and completely optional. However, Idris is a *dependently typed*
-programming language: Types can be calculated from and depend on
-values. For instance, the *result type* of a function can *depend* on
-the *value* of one of its arguments. Here's a contrived example:
+对于上述用例，命名参数只是一种方便且完全可选的。但是，Idris 是一种 *依赖类型* 编程语言：类型可以根据值计算并取决于值。例如，函数的 *结果类型* 可以 *取决于* 其参数之一的 *值*。这是一个人为的例子：
 
 ```idris
 IntOrString : Bool -> Type
@@ -476,33 +311,15 @@ intOrString False = "I'm a String"
 intOrString True  = 1000
 ```
 
-If you see such a thing for the first time, it can be hard to understand
-what's going on here. First, function `IntOrString` computes a `Type`
-from a `Bool` value: If the argument is `True`, it returns type `Integer`,
-if the argument is `False` it returns `String`. We use this to
-calculate the return type of function `intOrString` based on its
-boolean argument `v`: If `v` is `True`, the return type is (in accordance
-with `IntOrString True = Integer`) `Integer`, otherwise it is `String`.
+如果您第一次看到这样的事情，可能很难理解这里发生了什么。首先，函数 `IntOrString` 从 `Bool` 值计算 `Type`：如果参数是 `True`，则返回类型 `Integer`，如果参数为 `False`，则返回 `String`。我们使用 `intOrString` 来根据其布尔参数 `v` 计算函数 的返回类型： 如果 `v` 为 `True`，则返回类型为（根据`IntOrString True = Integer`）`Integer`，否则为`String`。
 
-Note, how in the type signature of `intOrString`, we *must* give the
-argument of type `Bool` a name (`v`) in order to reference it in
-the result type `IntOrString v`.
+注意，在 `intOrString` 的类型签名中，我们 *必须* 给 `Bool` 类型的参数命名 (`v`) 以便在结果类型 `IntOrString v` 中引用它。
 
-You might wonder at this moment, why this is useful and why we would
-ever want to define a function with such a strange type. We will see
-lots of very useful examples in due time! For now, suffice to say that
-in order to express dependent function types, we need to name
-at least some of the function's arguments and refer to them by name
-in the types of other arguments.
+此时您可能想知道，为什么这很有用，以及为什么我们要定义一个具有如此奇怪类型的函数。我们会在适当的时候看到很多非常有用的例子！现在，可以这么说，为了表达依赖函数类型，我们至少需要命名函数的一些参数，并在其他参数的类型中通过名称引用它们。
 
-### Implicit Arguments
+### 隐式参数
 
-Implicit arguments are arguments, the values of which the compiler
-should infer and fill in for us automatically. For instance, in
-the following function signature, we expect the compiler to
-infer the value of type parameter `a` automatically from the
-types of the other arguments (ignore the 0 quantity for the moment;
-I'll explain it in the next subsection):
+隐式参数也是参数，编译器应该自动为我们推断和填充其值。例如，在下面的函数签名中，我们希望编译器从其他参数的类型中自动推断类型参数 `a` 的值（暂时忽略定量 0；我将在下一小节）：
 
 ```idris
 maybeToEither : {0 a : Type} -> Maybe a -> Either String a
@@ -516,107 +333,64 @@ maybeToEither' Nothing  = Left "Nope"
 maybeToEither' (Just x) = Right x
 ```
 
-As you can see, implicit arguments are wrapped in curly braces,
-unlike explicit named arguments, which are wrapped in parentheses.
-Inferring the value of an implicit argument is not always possible.
-For instance, if we enter the following
-at the REPL, Idris will fail with an error:
+如您所见，隐式参数包含在花括号中，与显式命名参数不同，后者包含在括号中。推断隐含参数的值并不总是可能的。例如，如果我们在 REPL 中输入以下内容，Idris 将失败并出现错误：
 
 ```repl
 Tutorial.Functions2> show (maybeToEither Nothing)
 Error: Can't find an implementation for Show (Either String ?a).
 ```
 
-Idris is unable to find an implementation of `Show (Either String a)`
-without knowing what `a` actually is.
-Note the question mark in front of the
-type parameter: `?a`.
-If this happens, there are several ways to help the type checker.
-We could, for instance, pass a value for the implicit argument
-explicitly. Here's the syntax to do this:
+Idris 在不知道 `a` 实际上是什么的情况下无法找到 `Show (Either String a)` 的实现。注意类型参数前面的问号：`?a`。如果发生这种情况，有几种方法可以帮助类型检查器。例如，我们可以为隐式参数显式传递一个值。这是执行此操作的语法：
 
 ```repl
 Tutorial.Functions2> show (maybeToEither {a = Int8} Nothing)
 "Left "Nope""
 ```
 
-As you can see, we use the same syntax
-as shown above for explicit named arguments and the
-two forms of argument passing can be mixed.
+如您所见，我们对显式命名参数使用与上面所示相同的语法，并且可以混合使用两种形式的参数传递。
 
-We could also specify the type of the whole expression using
-utility function `the` from the *Prelude*:
+我们还可以使用 *Prelude* 中的实用函数 `the` 指定整个表达式的类型：
 
 ```repl
 Tutorial.Functions2> show (the (Either String Int8) (maybeToEither Nothing))
 "Left "Nope""
 ```
 
-It is instructive to have a look at the type of `the`:
+查看 `the` 的类型很有启发性：
 
 ```repl
 Tutorial.Functions2> :ti the
 Prelude.the : (0 a : Type) -> a -> a
 ```
 
-Compare this with the identity function `id`:
+将此与恒等函数 `id` 进行比较：
 
 ```repl
 Tutorial.Functions2> :ti id
 Prelude.id : {0 a : Type} -> a -> a
 ```
 
-The only difference between the two: In case of `the`,
-the type parameter `a` is an *explicit* argument, while
-in case of `id`, it is an *implicit* argument. Although
-the two functions have almost identical types (and implementations!),
-they serve quite different purposes: `the` is used to help
-type inference, while `id` is used whenever we'd like
-to return an argument without modifying it at all (which,
-in the presence of higher-order functions,
-happens surprisingly often).
+两者之间的唯一区别：在 `the` 的情况下，类型参数 `a` 是 *显式* 参数，而在 `id` 的情况下，它是一个 *隐式* 参数。尽管这两个函数具有几乎相同的类型（和实现！），但它们的用途却截然不同：`the` 用于帮助类型推断，而 `id` 用于我们想要的任何时候返回一个参数而不修改它（在高阶函数存在的情况下，这种情况经常发生）。
 
-Both ways to improve type inference shown above
-are used quite often, and must be understood by Idris
-programmers.
+上面显示的两种改进类型推断的方法都经常使用，并且 Idris 程序员必须理解。
 
-### Multiplicities
+### 多重性
 
-Finally, we need to talk about the zero multiplicity, which appeared
-in several of the type signatures in this section. Idris 2, unlike
-its predecessor Idris 1, is based on a core language called
-*quantitative type theory* (QTT): Every variable in Idris 2 is
-associated with one of three possible multiplicities:
+最后，我们需要谈谈在本节的几个类型签名中出现的零多重性。 Idris 2 与其前身 Idris 1 不同，它基于称为 *定量类型理论* (QTT) 的核心语言：Idris 2 中的每个变量都与三种可能的多重性之一相关联：
 
-* `0`, meaning that the variable is *erased* at runtime.
-* `1`, meaning that the variable is used *exactly once* at runtime.
-* *Unrestricted* (the default), meaning that the variable is used
-   an arbitrary number of times at runtime.
+* `0` ，表示变量在运行时被 *擦除*
+* `1` ，表示变量在运行时 *正好使用一次*
+* *无限制*（默认），表示在运行时使用变量任意次数。
 
-We will not talk about the most complex of the three, multiplicity `1`, here.
-We are, however, often interested in multiplicity `0`: A variable with
-multiplicity `0` is only relevant at *compile time*. It will not make
-any appearance at runtime, and the computation of such a variable will
-never affect a program's runtime performance.
+我们不会在这里讨论三者中最复杂的，多重性 `1`。然而，我们经常对多重性 `0` 感兴趣：具有多重性 `0` 的变量仅在 *编译时* 相关。它不会在运行时出现，并且这样一个变量的计算永远不会影响程序的运行时性能。
 
-In the type signature of `maybeToEither` we see that type
-parameter `a` has multiplicity `0`, and will therefore be erased and
-is only relevant at compile time, while the `Maybe a` argument
-has *unrestricted* multiplicity.
+在 `maybeToEither` 的类型签名中，我们看到类型参数 `a` 具有多重性 `0`，因此将被擦除并且仅在编译时相关，而 `Maybe a ` 参数具有 *无限制* 多重性。
 
-It is also possible to annotate explicit arguments with multiplicities,
-in which case the argument must again be put in parentheses. For an example,
-look again at the type signature of `the`.
+也可以用多重性注释显式参数，在这种情况下，同样参数必须放在括号中。例如，再次查看 `the` 的类型签名。
 
-### Underscores
+### 下划线
 
-It is often desirable, to only write as little code as necessary
-and let Idris figure out the rest.
-We have already learned about one such occasion: Catch-all patterns.
-If a variable in a pattern match is not used on the right hand side,
-we can't just drop it, as this would make it impossible for
-Idris, which of several arguments we were planning to drop,
-but we can use an underscore as a placeholder instead:
+通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情况：任意模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，因为这会使 Idris 无法使用，但我们可以使用下划线作为一个占位符，表明我们计划删除几个参数中的哪一个：
 
 ```idris
 isRight : Either a b -> Bool
@@ -624,9 +398,7 @@ isRight (Right _) = True
 isRight _         = False
 ```
 
-But when we look at the type signature of `isRight`, we will note
-that type parameters `a` and `b` are also only used once, and
-are therefore of no importance. Let's get rid of them:
+但是当我们查看 `isRight` 的类型签名时，我们会注意到类型参数 `a` 和 `b` 也只使用一次，因此它们并不重要.让我们摆脱它们：
 
 ```idris
 isRight' : Either _ _ -> Bool
@@ -634,11 +406,7 @@ isRight' (Right _) = True
 isRight' _         = False
 ```
 
-In the detailed type signature of `zipEitherWith`, it should
-be obvious for Idris that the implicit arguments are of type `Type`.
-After all, all of them are later on applied to the `Either` type
-constructor, which is of type `Type -> Type -> Type`. Let's get rid
-of them:
+在 `zipEitherWith` 的详细类型签名中，对 Idris 来说，隐式参数的类型应该是 `Type`。毕竟，它们后来都应用于 `Either` 类型构造函数，它的类型为 `Type -> Type -> Type`。让我们摆脱它们：
 
 ```idris
 zipEitherWith'' :  {0 a : _}
@@ -651,55 +419,29 @@ zipEitherWith'' :  {0 a : _}
                 -> Either e c
 ```
 
-Consider the following contrived example:
+考虑以下人为设计的示例：
 
 ```idris
 foo : Integer -> String
 foo n = show (the (Either String Integer) (Right n))
 ```
 
-Since we wrap an `Integer` in a `Right`, it is obvious
-that the second argument in `Either String Integer` is
-`Integer`. Only the `String` argument can't be inferred
-by Idris. Even better, the `Either` itself is obvious!
-Let's get rid of the unnecessary noise:
+由于我们将 `Integer` 包装在 `Right` 中，很明显 `Either String Integer` 中的第二个参数是 `Integer`。 Idris 无法推断出的只有 `String` 参数。更妙的是，`Either` 本身就很明显了！让我们摆脱不必要的噪音：
 
 ```idris
 foo' : Integer -> String
 foo' n = show (the (_ String _) (Right n))
 ```
 
-Please note, that using underscores as in `foo'` is
-not always desirable, as it can quite drastically
-obfuscate the written code. Always use a syntactic
-convenience to make code more readable, and not to
-show people how clever you are.
+请注意，在 `foo'` 中使用下划线并不总是可取的，因为它会极大地混淆编写的代码。始终使用方便的语法来使代码更具可读性，而不是向人们展示你有多聪明。
 
-## Programming with Holes
+## 孔编程
 
-Solved all the exercises so far? Got angry at the type checker
-for always complaining and never being really helpful? It's time
-to change that. Idris comes with several highly useful interactive
-editing features. Sometimes, the compiler is able to implement
-complete functions for us (if the types are specific enough). Even
-if that's not possible, there's an incredibly useful and important
-feature, which can help us when the types are getting too complicated: Holes.
-Holes are variables, the names of which are prefixed with a question mark.
-We can use them as placeholders whenever we plan to implement a piece
-of functionality at a later time. In addition, their types and the types
-and quantities of all other variables in scope can be inspected
-at the REPL (or in your editor, if you setup the necessary plugin).
-Let's see them holes in action.
+解决了到目前为止的所有练习？对类型检查器总是抱怨并且从来没有真正提供帮助而生气？是时候改变这一点了。 Idris 带有几个非常有用的交互式编辑功能。有时，编译器能够为我们实现完整的功能（如果类型足够具体）。即使这不可能，也有一个非常有用且重要的功能，当类型变得过于复杂时，它可以帮助我们：孔。孔是变量，其名称以问号为前缀。每当我们计划在以后实现某个功能时，我们都可以将它们用作占位符。此外，它们的类型以及范围内所有其他变量的类型和数量可以在 REPL（或在您的编辑器中，如果您设置了必要的插件）进行检查。让我们在实践中看看孔是什么样子。
 
-Remember the `traverseList` example from an Exercise earlier in
-this section? If this was your first encounter with applicative list
-traversals, this might have been a nasty bit of work. Well, let's just
-make it a wee bit harder still. We'd like to implement the same
-piece of functionality for functions returning `Either e`, where
-`e` is a type with a `Semigroup` implementation, and we'd like
-to accumulate the values in all `Left`s we meet along the way.
+还记得本节前面练习中的 `traverseList` 示例吗？如果这是您第一次遇到应用程序列表遍历，那么这可能是一项令人讨厌的工作。好吧，让我们让它变得更难一点。我们希望为返回 `Either e` 的函数实现相同的功能，其中 `e` 是具有 `Semigroup` 实现的类型，我们希望累积我们沿途遇到的所有 `Left` 中的值。
 
-Here's the type of the function:
+这是函数的类型：
 
 ```idris
 traverseEither :  Semigroup e
@@ -708,17 +450,13 @@ traverseEither :  Semigroup e
                -> Either e (List b)
 ```
 
-Now, in order to follow along, you might want to start your own
-Idris source file, load it into a REPL session and adjust the
-code as described here. The first thing we'll do, is write a
-skeleton implementation with a hole on the right hand side:
+现在，为了继续进行，您可能想要启动自己的 Idris 源文件，将其加载到 REPL 会话中并按照此处所述调整代码。我们要做的第一件事是编写一个在右侧有一个孔的骨架实现：
 
 ```repl
 traverseEither fun as = ?impl
 ```
 
-When you now go to the REPL and reload the file using command `:r`,
-you can enter `:m` to list all the *metavariables*:
+当您现在转到 REPL 并使用命令 `:r` 重新加载文件时，您可以输入 `:m` 以列出所有 *元变量*：
 
 ```repl
 Tutorial.Functions2> :m
@@ -726,8 +464,7 @@ Tutorial.Functions2> :m
   Tutorial.Functions2.impl : Either e (List b)
 ```
 
-Next, we'd like to display the hole's type (including all variables in the
-surrounding context plus their types):
+接下来，我们要显示孔的类型（包括周围上下文中的所有变量及其类型）：
 
 ```repl
 Tutorial.Functions2> :t impl
@@ -740,22 +477,16 @@ Tutorial.Functions2> :t impl
 impl : Either e (List b)
 ```
 
-So, we have some erased type parameters (`a`, `b`, and `e`), a value
-of type `List a` called `as`, and a function from `a` to
-`Either e b` called `fun`. Our goal is to come up with a value
-of type `Either a (List b)`.
+因此，我们有一些已擦除的类型参数（`a`、`b` 和 `e`），类型为 `List a` 的值称为 `as`，以及从 `a` 到 `Either a b` 的函数，称为 `fun`。我们的目标是提出一个类型为 `Either a (List b)` 的值。
 
-We *could* just return a `Right []`, but that only make sense
-if our input list is indeed the empty list. We therefore should
-start with a pattern match on the list:
+我们 *可以* 只返回一个 `Right []`，但这只有在我们的输入列表确实是空列表时才有意义。因此，我们应该从列表中的模式匹配开始：
 
 ```repl
 traverseEither fun []        = ?impl_0
 traverseEither fun (x :: xs) = ?impl_1
 ```
 
-The result is two holes, which must be given distinct names. When inspecting `impl_0`,
-we get the following result:
+结果是两个孔，它们必须被赋予不同的名称。在检查 `impl_0` 时，我们得到以下结果：
 
 ```repl
 Tutorial.Functions2> :t impl_0
@@ -767,19 +498,13 @@ Tutorial.Functions2> :t impl_0
 impl_0 : Either e (List b)
 ```
 
-Now, this is an interesting situation. We are supposed to come up with a value
-of type `Either e (List b)` with nothing to work with. We know nothing
-about `a`, so we can't provide an argument with which to invoke `fun`.
-Likewise, we know nothing about `e` or `b` either, so we can't produce
-any values of these either. The *only* option we have is to replace `impl_0`
-with an empty list wrapped in a `Right`:
+现在，这是一个有趣的情况。我们应该想出一个类型为 `Either e (List b)` 的值，而不使用任何东西。我们对 `a` 一无所知，因此我们无法提供调用 `fun` 的参数。同样，我们对 `e` 或 `b` 也一无所知，因此我们也无法生成这些值。我们拥有的 *唯一* 选项是将 `impl_0` 替换为包含在 `Right` 中的空列表：
 
 ```idris
 traverseEither fun []        = Right []
 ```
 
-The non-empty case is of course slightly more involved. Here's the context
-of `?impl_1`:
+非空的情况当然稍微多一些。这是 `?impl_1` 的上下文：
 
 ```repl
 Tutorial.Functions2> :t impl_1
@@ -793,17 +518,7 @@ Tutorial.Functions2> :t impl_1
 impl_1 : Either e (List b)
 ```
 
-Since `x` is of type `a`, we can either use it as an argument
-to `fun` or drop and ignore it. `xs`, on the other hand, is
-the remainder of the list of type `List a`. We could again
-drop it or process it further by invoking `traverseEither`
-recursively. Since the goal is to try and convert *all* values,
-we should drop neither. Since in case of two `Left`s we
-are supposed to accumulate the values, we eventually need to
-run both computations anyway (invoking `fun`, and recursively
-calling `traverseEither`). We therefore can do both at the
-same time and analyze the results in a single pattern match
-by wrapping both in a `Pair`:
+由于 `x` 是 `a` 类型，我们可以将其用作 `fun` 的参数，也可以放弃并忽略它。另一方面，`xs` 是 `List a` 类型列表的其余部分。我们可以通过递归调用 `traverseEither` 再次删除它或进一步处理它。由于目标是尝试转换 *所有* 值，我们都不应该放弃。因为在两个 `Left` 的情况下，我们应该累积值，我们最终还是需要运行这两个计算（调用 `fun`，并递归调用 `traverseEither`） .因此，我们可以同时进行这两项操作，并通过将两者包装在 `Pair` 中来分析单个模式匹配中的结果：
 
 ```repl
 traverseEither fun (x :: xs) =
@@ -811,7 +526,7 @@ traverseEither fun (x :: xs) =
    p => ?impl_2
 ```
 
-Once again, we inspect the context:
+我们再次检查上下文：
 
 ```repl
 Tutorial.Functions2> :t impl_2
@@ -826,8 +541,7 @@ Tutorial.Functions2> :t impl_2
 impl_2 : Either e (List b)
 ```
 
-We'll definitely need to pattern match on pair `p` next
-to figure out, which of the two computations succeeded:
+我们肯定需要在对 `p` 进行模式匹配，以确定两个计算中的哪一个成功：
 
 ```repl
 traverseEither fun (x :: xs) =
@@ -838,9 +552,7 @@ traverseEither fun (x :: xs) =
     (Right y, Right z) => ?impl_9
 ```
 
-At this point we might have forgotten what we actually
-wanted to do (at least to me, this happens annoyingly often),
-so we'll just quickly check what our goal is:
+在这一点上，我们可能已经忘记了我们真正想要做什么（至少对我来说，这种情况经常发生），所以我们将快速检查我们的目标是什么：
 
 ```repl
 Tutorial.Functions2> :t impl_6
@@ -856,12 +568,7 @@ Tutorial.Functions2> :t impl_6
 impl_6 : Either e (List b)
 ```
 
-So, we are still looking for a value of type `Either e (List b)`, and
-we have two values of type `e` in scope. According to the spec we
-want to accumulate these using `e`s `Semigroup` implementation.
-We can proceed for the other cases in a similar manner, remembering
-that we should return a `Right`, if and only if all conversions
-where successful:
+因此，我们仍在寻找类型为 `Either e (List b)` 的值，并且我们在范围内有两个类型为 `e` 的值。根据规范，我们希望使用 `e` 的 `Semigroup` 实现来累积这些。我们可以以类似的方式处理其他情况，记住我们应该返回 `Right`，当且仅当所有转换都成功：
 
 ```idris
 traverseEither fun (x :: xs) =
@@ -872,7 +579,7 @@ traverseEither fun (x :: xs) =
     (Right y, Right z) => Right (y :: z)
 ```
 
-To reap the fruits of our labour, let's show off with a small example:
+为了收获我们的劳动成果，让我们用一个小例子来炫耀一下：
 
 ```idris
 data Nucleobase = Adenine | Cytosine | Guanine | Thymine
@@ -891,7 +598,7 @@ readDNA : String -> Either (List String) DNA
 readDNA = traverseEither readNucleobase . unpack
 ```
 
-Let's try this at the REPL:
+让我们在 REPL 上试试这个：
 
 ```repl
 Tutorial.Functions2> readDNA "CGTTA"
@@ -900,62 +607,36 @@ Tutorial.Functions2> readDNA "CGFTAQ"
 Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'"]
 ```
 
-### Interactive Editing
+### 交互式编辑
 
-There are plugins available for several editors and
-programming environments, which facilitate interacting
-with the Idris compiler when implementing your functions.
-One editor, which is well supported in the Idris
-community, is Neovim. Since I am a Neovim user myself,
-I added some examples of what's possible to the
-[appendix](../Appendices/Neovim.md). Now would be a good
-time to start using the utilities discussed there.
+有一些可用于多个编辑器和编程环境的插件，它们有助于在实现您的功能时与 Idris 编译器进行交互。一位深受 Idris 社区支持的编辑器是 Neovim。由于我自己是 Neovim 用户，因此我在 [附录](../Appendices/Neovim.md) 中添加了一些可能的示例。现在是开始使用那里讨论的实用程序的好时机。
 
-If you use a different editor, probably with less support
-for the Idris programming language, you should at the very
-least have a REPL session open all the time, where the
-source file you are currently working on is loaded. This
-allows you to introduce new metavariables and inspect their
-types and context as you develop your code.
+如果您使用不同的编辑器，可能对 Idris 编程语言的支持较少，您至少应该始终打开一个 REPL 会话，您当前正在处理的源文件被加载到该会话中。这允许您在开发代码时引入新的元变量并检查它们的类型和上下文。
 
 ## 结论
 
-We again covered a lot of ground in this section. I can't stress enough that you
-should get yourselves accustomed to programming with holes and let the
-type checker help you figure out what to do next.
+在本节中，我们再次涵盖了很多内容。我怎么强调都不过分，你应该让自己习惯于使用孔进行编程，并让类型检查器帮助你弄清楚下一步该做什么。
 
-* When in need of local utility functions, consider defining them
-as local definitions in a *where block*.
+* 当需要局部使用函数时，考虑定义它们
+作为 *where 块*中的局部定义。
 
-* Use *let expressions* to define and reuse local variables.
+* 使用 *let 表达式* 来定义和重用局部变量。
 
-* Function arguments can be given a name, which can serve as documentation,
-can be used to pass arguments in any order, and is used to refer to
-them in dependent types.
+* 函数参数可以命名，可以作为文档，
+可用于以任意顺序传递参数，并用于引用
+它们在依赖类型中。
 
-* Implicit arguments are wrapped in curly braces. The compiler is
-supposed to infer them from the context. If that's not possible,
-they can be passed explicitly as other named arguments.
+* 隐式参数用大括号括起来。编译器应该从上下文中推断出它们。如果这不可能，它们可以作为其他命名参数显式传递。
 
-* Whenever possible, Idris adds implicit erased arguments for all
-type parameters automatically.
+* 只要有可能，Idris 都会为所有参数自动添加隐式擦除参数。
 
-* Quantities allow us to track how often a function argument is
-used. Quantity 0 means, the argument is erased at runtime.
+* 定量允许我们跟踪函数参数的使用频率。定量 0 表示，参数在运行时被擦除。
 
-* Use *holes* as placeholders for pieces of code you plan to fill
-in at a later time. Use the REPL (or your editor) to inspect
-the types of holes together with the names, types, and quantities of all
-variables in their context.
+* 使用 *孔* 作为您计划在稍后的时间填充代码片段的占位符。使用 REPL（或您的编辑器）检查孔的类型以及所有孔的名称、类型和在他们的上下文中的变量的定量。
 
 ### 下一步是什么
 
-In the [next chapter](Dependent.md)
-we'll start using dependent types to help us write provably correct code.
-Having a good understanding of how to read
-Idris' type signatures will be of paramount importance there. Whenever
-you feel lost, add one or more holes and inspect their context to decide what to
-do next.
+在 [下一章](Dependent.md) 中，我们将开始使用依赖类型来帮助我们编写可证明正确的代码。很好地理解如何阅读 Idris 的类型签名将是至关重要的。每当您感到迷茫时，添加一个或多个孔并检查其上下文以决定下一步该做什么。
 
 <!-- vi: filetype=idris2
 -->
