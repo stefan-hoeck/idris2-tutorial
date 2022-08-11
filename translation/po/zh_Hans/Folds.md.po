@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-11 00:27+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/folds/zh_Hans/>\n"
@@ -2437,20 +2437,15 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/IO.md:753
 #: ../src/Tutorial/Traverse.md:267
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
 "     Nil  : List01 False a\n"
 "     (::) : a -> List01 False a -> List01 ne a\n"
 msgstr ""
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 List01 : (nonEmpty : Bool) -> Type -> Type where\n"
-"     无：List01 False a\n"
+"   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"     Nil  : List01 False a\n"
 "     (::) : a -> List01 False a -> List01 ne a\n"
-"   ```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Folds.md:1030

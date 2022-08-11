@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-11 00:27+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/io/zh_Hans/>\n"
@@ -438,40 +438,38 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/IO.md:753
 #: ../src/Tutorial/Traverse.md:267
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
 "     Nil  : List01 False a\n"
 "     (::) : a -> List01 False a -> List01 ne a\n"
 msgstr ""
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 List01 : (nonEmpty : Bool) -> Type -> Type where\n"
-"     无：List01 False a\n"
+"   data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"     Nil  : List01 False a\n"
 "     (::) : a -> List01 False a -> List01 ne a\n"
-"   ```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
 
 #. type: Title #
 #: ../src/Tutorial/IO.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "IO: Programming with Side Effects"
-msgstr "# IO：有副作用的编程"
+msgstr "IO：有副作用的编程"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:7
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So far, all our examples and exercises dealt with pure, total functions.\n"
 "We didn't read or write content from or to files, nor did\n"
 "we write any messages to the standard output. It is time to change\n"
 "that and learn, how we can write effectful programs in Idris.\n"
-msgstr "到目前为止，我们所有的例子和练习都是关于纯函数的。我们没有从文件读取或写入内容，也没有将任何消息写入标准输出。是时候改变这一点并学习如何在 Idris 中编写有效的程序了。"
+msgstr ""
+"到目前为止，我们所有的例子和练习都是关于纯函数的。我们没有从文件读取或写入内"
+"容，也没有将任何消息写入标准输出。是时候改变这一点并学习如何在 Idris "
+"中编写有效的程序了。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:8
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.IO\n"
 "\n"
@@ -482,58 +480,75 @@ msgid ""
 "import System.File\n"
 "\n"
 "%default total\n"
-msgstr "导入 Data.Either 导入 Data.List1 导入 Data.String 导入 Data.Vect 导入 Data.HList 导入 Decidable.Equality"
+msgstr ""
+"module Tutorial.IO\n"
+"\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"\n"
+"import System.File\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/IO.md:20
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Pure Side Effects?"
-msgstr "## 纯副作用？"
+msgstr "纯副作用？"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:24
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If we once again look at the *hello world* example from the\n"
 "[introduction](Intro.md), it had the following type and implementation:\n"
-msgstr "如果我们再次查看 [introduction](Intro.md) 中的 *hello world* 示例，它具有以下类型和实现："
+msgstr "如果我们再次查看 [介绍](Intro.md) 中的 *hello world* "
+"示例，它具有以下类型和实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:25
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hello : IO ()\n"
 "hello = putStrLn \"Hello World!\"\n"
-msgstr "```idris hello : IO () hello = putStrLn \"Hello World!\" ```"
+msgstr ""
+"hello : IO ()\n"
+"hello = putStrLn \"Hello World!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:32
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If you load this module in a REPL session and evaluate `hello`,\n"
 "you'll get the following:\n"
-msgstr "如果您在 REPL 会话中加载此模块并评估 `hello`，您将获得以下信息："
+msgstr "如果您在 REPL 会话中加载此模块并求值 `hello`，您将获得以下信息：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:33
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.IO> hello\n"
 "MkIO (prim__putStr \"Hello World!\")\n"
-msgstr "```repl Tutorial.IO> hello MkIO (prim__putStr \"Hello World!\") ```"
+msgstr ""
+"Tutorial.IO> hello\n"
+"MkIO (prim__putStr \"Hello World!\")\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:41
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This might not be what you expected, given that we'd actually wanted the\n"
 "program to just print \"Hello World!\". In order to explain what's going\n"
 "on here, we need to quickly look at how evaluation at the REPL works.\n"
-msgstr "这可能不是您所期望的，因为我们实际上希望程序只打印“Hello World！”。为了解释这里发生了什么，我们需要快速了解 REPL 的评估是如何工作的。"
+msgstr ""
+"这可能不是您所期望的，因为我们实际上希望程序只打印“Hello "
+"World！”。为了解释这里发生了什么，我们需要快速了解 REPL 的求值是如何工作的。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:51
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When we evaluate some expression at the REPL, Idris tries to\n"
 "reduce it to a value until it gets stuck somewhere. In the above case,\n"
@@ -544,11 +559,17 @@ msgid ""
 "and therefore can't reduce foreign function calls, unless they are\n"
 "built into the compiler itself. But even then, values of type `IO a`\n"
 "(`a` being a type parameter) are typically not reduced.\n"
-msgstr "当我们在 REPL 中评估某个表达式时，Idris 会尝试将其减少为一个值，直到它卡在某个地方。在上述情况下，Idris 卡在函数 `prim__putStr` 上。这是在 *Prelude* 中定义的 * 外部函数*，必须由每个后端实现才能在那里可用。在编译时（以及在 REPL 中），Idris 对外部函数的实现一无所知，因此无法减少外部函数调用，除非它们内置于编译器本身中。但即便如此，`IO a` 类型的值（`a` 是一个类型参数）通常不会减少。"
+msgstr ""
+"当我们在 REPL 中求值某个表达式时，Idris "
+"会尝试将其减少为一个值，直到它卡在某个地方。在上述情况下，Idris 卡在函数 "
+"`prim__putStr` 上。这是在 *Prelude* 中定义的 "
+"*外部函数*，必须由每个后端实现才能在那里可用。在编译时（以及在 REPL 中），"
+"Idris 对外部函数的实现一无所知，因此无法减少外部函数调用，除非它们内置于编译"
+"器本身中。但即便如此，`IO a` 类型的值（`a` 是一个类型参数）通常不会减少。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:61
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is important to understand that values of type `IO a` *describe*\n"
 "a program, which, when being *executed*, will return a value of type `a`,\n"
@@ -559,11 +580,17 @@ msgid ""
 "(`()` is syntactic sugar for type `Unit`, the\n"
 "empty tuple defined at the *Prelude*, which has only one value called `MkUnit`,\n"
 "for which we can also use `()` in our code.)\n"
-msgstr "重要的是要理解 `IO a` * 类型的值描述 * 一个程序，当 * 执行 * 时，将返回 `a[ 类型的值X139X]，在一路执行任意副作用之后。例如，`putStrLn` 的类型为 `String -> IO ()`。将其读作：“`putStrLn` 是一个函数，当给定一个 `String` 参数时，它将返回一个输出类型为 `()` 的有效程序的描述]”。 (`()` 是 `Unit` 类型的语法糖，在 *Prelude* 中定义的空元组，它只有一个值称为 `MkUnit`，我们也可以在我们的代码中使用 `()`。）"
+msgstr ""
+"重要的是要理解 `IO a` 类型的值 *描述* 一个程序，当 *执行* "
+"时，在一路执行任意副作用之后，将返回 `a` 类型的值。例如，`putStrLn` 的类型为 "
+"`String -> IO ()`。将其读作：“`putStrLn` 是一个函数，当给定一个 `String` "
+"参数时，它将返回一个输出类型为 `()` 的有效程序的描述”。 (`()` 是 `Unit` "
+"类型的语法糖，在 *Prelude* 中定义的空元组，它只有一个值称为 `MkUnit`，"
+"我们也可以在我们的代码中使用 `()`。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:72
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since values of type `IO a` are mere descriptions of effectful computations,\n"
 "functions returning such values or taking such values as\n"
@@ -575,17 +602,24 @@ msgid ""
 "thus breaking referential transparency.\n"
 "(Actually, there *is* such a function called `unsafePerformIO`.\n"
 "Do not ever use it in your code unless you know what you are doing.)\n"
-msgstr "由于 `IO a` 类型的值仅仅是对有效计算的描述，因此返回此类值或将此类值作为参数的函数仍然是 * 纯 * 并且因此是引用透明的。但是，不可能从 `IO a` 类型的值中提取 `a` 类型的值，也就是说，没有通用函数 `IO a -> a `，因为这样的函数在从其参数中提取结果时会无意中执行副作用，从而破坏引用透明度。 （实际上，有 * 是 * 这样一个名为 `unsafePerformIO` 的函数。除非您知道自己在做什么，否则不要在代码中使用它。）"
+msgstr ""
+"由于 `IO a` 类型的值仅仅是对有效计算的描述，"
+"因此返回此类值或将此类值作为参数的函数仍然是 *纯 * "
+"并且因此是引用透明的。但是，不可能从 `IO a` 类型的值中提取 `a` "
+"类型的值，也就是说，没有通用函数 `IO a -> a `，因为这样的函数在从其参数中提取"
+"结果时会无意中执行副作用，从而破坏引用透明度。 （实际上，确实 *有* "
+"这样一个名为 `unsafePerformIO` "
+"的函数。除非您知道自己在做什么，否则不要在代码中使用它。）\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:73
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Do Blocks"
-msgstr "### 做积木"
+msgstr "Do 代码块"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:83
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If you are new to pure functional programming, you might now - rightfully -\n"
 "mumble something about how useless it is to\n"
@@ -595,54 +629,62 @@ msgid ""
 "type `IO a -> a`, we are able to chain such computations and describe more\n"
 "complex programs. Idris provides special syntax for this: *Do blocks*.\n"
 "Here's an example:\n"
-msgstr "如果您是纯函数式编程的新手，那么您现在可能会——理所当然地——咕哝一些关于如果无法运行有效程序的描述是多么无用的话。所以，请听我说完。虽然我们在编写程序时无法运行 `IO a` 类型的值，也就是说，没有 `IO a -> a` 类型的函数，但我们能够链接这样的计算并描述更复杂的程序。 Idris 为此提供了特殊语法：*Do blocks*。这是一个例子："
+msgstr ""
+"如果您是纯函数式编程的新手，那么您现在可能会——理所当然地——咕哝一些关于如果无"
+"法运行有效程序的描述是多么无用的话。所以，请听我说完。"
+"虽然我们在编写程序时无法运行 `IO a` 类型的值，也就是说，没有 `IO a -> a` "
+"类型的函数，但我们能够链接这样的计算并描述更复杂的程序。 Idris "
+"为此提供了特殊语法：*Do 代码块*。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:84
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readHello : IO ()\n"
 "readHello = do\n"
 "  name <- getLine\n"
 "  putStrLn $ \"Hello \" ++ name ++ \"!\"\n"
 msgstr ""
-"```伊德里斯\n"
-"读你好：IO（）\n"
-"读你好=做\n"
-"  名称<-getLine\n"
-"  putStrLn $“你好”++名字++“！”\n"
-"```\n"
+"readHello : IO ()\n"
+"readHello = do\n"
+"  name <- getLine\n"
+"  putStrLn $ \"Hello \" ++ name ++ \"!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:93
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Before we talk about what's going on here, let's give this a go at\n"
 "the REPL:\n"
-msgstr "在我们谈论这里发生的事情之前，让我们在 REPL 上试一试："
+msgstr "在我们谈论这里发生的事情之前，让我们在 REPL 上试一试：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:94
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.IO> :exec readHello\n"
 "Stefan\n"
 "Hello Stefan!\n"
-msgstr "```repl Tutorial.IO> :exec readHello Stefan 你好 Stefan！ ```"
+msgstr ""
+"Tutorial.IO> :exec readHello\n"
+"Stefan\n"
+"Hello Stefan!\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:104
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is an interactive program, which will read a line from standard\n"
 "input (`getLine`), assign the result to variable `name`, and then\n"
 "use `name` to create a friendly greeting and write it to\n"
 "standard output.\n"
-msgstr "这是一个交互式程序，它将从标准输入 (`getLine`) 中读取一行，将结果赋值给变量 `name`，然后使用 `name` 创建一个友好的问候并将其写入标准输出。"
+msgstr ""
+"这是一个交互式程序，它将从标准输入 (`getLine`) 中读取一行，将结果赋值给变量 "
+"`name`，然后使用 `name` 创建一个友好的问候并将其写入标准输出。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:114
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note the `do` keyword at the beginning of the implementation of `readHello`:\n"
 "It starts a *do block*, where we can chain `IO` computations and bind\n"
@@ -653,26 +695,33 @@ msgid ""
 "description can then be returned by function `main`, the main entry point\n"
 "to an Idris program, which is being executed when we run a compiled\n"
 "Idris binary.\n"
-msgstr "注意 `readHello` 实现开始时的 `do` 关键字：它启动了一个 *do 块*，我们可以在其中链接 `IO` 计算和使用指向左侧的箭头 (`<-`) 将中间结果绑定到变量，然后可以在以后的 `IO` 操作中使用。这个概念足够强大，可以让我们将具有副作用的任意程序封装在 `IO` 类型的单个值中。然后可以通过函数 `main` 返回这样的描述，这是 Idris 程序的主入口点，当我们运行已编译的 Idris 二进制文件时，该程序正在执行。"
+msgstr ""
+"注意 `readHello` 实现开始时的 `do` 关键字：它启动了一个 *do 代码块*，"
+"我们可以在其中链接 `IO` 计算和使用指向左侧的箭头 (`<-`) "
+"将中间结果绑定到变量，然后可以在以后的 `IO` 操作中使用。这个概念足够强大，"
+"可以让我们将具有副作用的任意程序封装在 `IO` 类型的单个值中。然后可以通过函数 "
+"`main` 返回这样的描述，这是 Idris 程序的主入口点，当我们运行已编译的 Idris "
+"二进制文件时，该程序正在执行。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:115
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The Difference between Program Description and Execution"
-msgstr "### 程序描述和执行的区别"
+msgstr "程序描述和执行的区别"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:120
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to better understand the difference between *describing*\n"
 "an effectful computation and *executing* or *running* it, here is a small\n"
 "program:\n"
-msgstr "为了更好地理解*描述*有效计算和*执行*或*运行*之间的区别，这里有一个小程序："
+msgstr "为了更好地理解 *描述* 有效计算和 *执行* 或 *运行* "
+"之间的区别，这里有一个小程序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:121
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "launchMissiles : IO ()\n"
 "launchMissiles = putStrLn \"Boom! You're dead.\"\n"
@@ -696,31 +745,31 @@ msgid ""
 "readHellos : IO ()\n"
 "readHellos = runActions actions\n"
 msgstr ""
-"发射导弹：IO（）\n"
-"\" launchMissiles = putStrLn \"轰！你死了。\"\n"
+"launchMissiles : IO ()\n"
+"launchMissiles = putStrLn \"Boom! You're dead.\"\n"
 "\n"
-"友好读你好：IO（）\n"
-"友好读你好 = 做\n"
-"  _ <- putStrLn \"请输入您的姓名。\"\n"
-"  读你好\n"
+"friendlyReadHello : IO ()\n"
+"friendlyReadHello = do\n"
+"  _ <- putStrLn \"Please enter your name.\"\n"
+"  readHello\n"
 "\n"
-"行动：Vect 3 (IO ())\n"
-"动作 = [launchMissiles，friendlyReadHello，friendlyReadHello]\n"
+"actions : Vect 3 (IO ())\n"
+"actions = [launchMissiles, friendlyReadHello, friendlyReadHello]\n"
 "\n"
 "runActions : Vect (S n) (IO ()) -> IO ()\n"
-"runActions (_ :: xs) = 去 xs\n"
-"  去哪里： Vect k (IO ()) -> IO ()\n"
-"        去 [] = 纯 ()\n"
-"        去（y :: ys）=做\n"
-"          _ <- 是\n"
-"          去吧\n"
+"runActions (_ :: xs) = go xs\n"
+"  where go : Vect k (IO ()) -> IO ()\n"
+"        go []        = pure ()\n"
+"        go (y :: ys) = do\n"
+"          _ <- y\n"
+"          go ys\n"
 "\n"
-"读你好：IO（）\n"
-"readHellos = runActions 动作\n"
+"readHellos : IO ()\n"
+"readHellos = runActions actions\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:153
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Before I explain what the code above does, please note function\n"
 "`pure` used in the implementation of `runActions`. It is\n"
@@ -730,11 +779,16 @@ msgid ""
 "`IO` program will just return the wrapped value without performing\n"
 "any side effects. We can now look at the big picture of what's\n"
 "going on in `readHellos`.\n"
-msgstr "在我解释上面代码的作用之前，请注意 `runActions` 的实现中使用的函数 `pure`。它是一个受约束的函数，我们将在下一章中学习。专门用于 `IO`，它具有通用类型 `a -> IO a`：它允许我们将值包装在 `IO` 动作中。生成的 `IO` 程序将只返回包装后的值，而不会执行任何副作用。我们现在可以看一下 `readHellos` 中发生的事情的总体情况。"
+msgstr ""
+"在我解释上面代码的作用之前，请注意 `runActions` 的实现中使用的函数 "
+"`pure`。它是一个受约束的函数，我们将在下一章中学习。专门用于 `IO`，"
+"它具有通用类型 `a -> IO a`：它允许我们将值包装在 `IO` 动作中。生成的 `IO` "
+"程序将只返回包装后的值，而不会执行任何副作用。我们现在可以看一下 `readHellos`"
+" 中发生的事情的总体情况。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:160
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "First, we define a friendlier version of `readHello`: When executed, this will\n"
 "ask about our name explicitly. Since we will not use the result\n"
@@ -742,11 +796,15 @@ msgid ""
 "pattern here. Afterwards, `readHello` is invoked. We also define\n"
 "`launchMissiles`, which, when being executed, will lead to the\n"
 "destruction of planet earth.\n"
-msgstr "首先，我们定义了一个更友好的 `readHello` 版本：当执行时，它会明确询问我们的名字。由于我们将不再使用 `putStrLn` 的结果，因此我们可以在这里使用下划线作为包罗万象的模式。之后，调用 `readHello`。我们还定义了`launchMissiles`，执行时会导致地球毁灭。"
+msgstr ""
+"首先，我们定义了一个更友好的 `readHello` "
+"版本：当执行时，它会明确询问我们的名字。由于我们将不再使用 `putStrLn` "
+"的结果，因此我们可以在这里使用下划线作为包罗万象的模式。之后，调用 "
+"`readHello`。我们还定义了`launchMissiles`，执行时会导致地球毁灭。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:169
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, `runActions` is the function we use to\n"
 "demonstrate that *describing* an `IO` action is not the\n"
@@ -756,106 +814,108 @@ msgid ""
 "execution of the remaining `IO` actions in sequence. If this behaves\n"
 "as expected, the first `IO` action passed to `runActions` should be\n"
 "silently dropped together with all its potential side effects.\n"
-msgstr "现在，`runActions` 是我们用来证明 * 描述 * 和 `IO` 动作与 * 运行 * 动作不同的函数。它将从作为参数的非空向量中删除第一个动作，并返回一个新的 `IO` 动作，它描述了按顺序执行剩余的 `IO` 动作。如果这符合预期，则传递给 `runActions` 的第一个 `IO` 操作应连同其所有潜在副作用一起被静默删除。"
+msgstr ""
+"现在，`runActions` 是我们用来证明 *描述* `IO` 动作与 * 运行 * "
+"动作是不同的函数。它将从作为参数的非空向量中删除第一个动作，并返回一个新的 "
+"`IO` 动作，它描述了按顺序执行剩余的 `IO` 动作。如果这符合预期，则传递给 "
+"`runActions` 的第一个 `IO` 操作应连同其所有潜在副作用一起被静默删除。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:174
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When we execute `readHellos` at the REPL, we will be asked for our\n"
 "name twice, although `actions` also contains `launchMissiles` at the\n"
 "beginning. Luckily, although we described how to destroy the planet,\n"
 "the action was not executed, and we are (probably) still here.\n"
-msgstr "当我们在 REPL 中执行 `readHellos` 时，我们会被要求输入我们的名字两次，尽管 `actions` 开头也包含 `launchMissiles`。幸运的是，虽然我们描述了如何摧毁地球，但行动并未执行，我们（可能）还在这里。"
+msgstr ""
+"当我们在 REPL 中执行 `readHellos` 时，我们会被要求输入我们的名字两次，尽管 "
+"`actions` 开头也包含 `launchMissiles`。幸运的是，虽然我们描述了如何摧毁地球，"
+"但行动并未执行，我们（可能）还在这里。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:176
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "From this example we learn several things:\n"
-msgstr "从这个例子中，我们学到了几件事："
+msgstr "从这个例子中，我们学到了几件事：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:180
-#, fuzzy
 msgid ""
 "Values of type `IO a` are *pure descriptions* of programs, which, when being "
 "*executed*, perform arbitrary side effects before returning a value of type "
 "`a`."
-msgstr ""
-"`IO a` 类型的值是程序的 * 纯描述 *，当被 * 执行 * 时，在返回 `a[ 类型的值之前"
-"执行任意副作用X155X]。"
+msgstr "`IO a` 类型的值是程序的 *纯描述*，当被 *执行* 时，在返回 `a` "
+"类型的值之前执行任意副作用。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:184
-#, fuzzy
 msgid ""
 "Values of type `IO a` can be safely returned from functions and passed "
 "around as arguments or in data structures, without the risk of them being "
 "executed."
-msgstr ""
-"`IO a` 类型的值可以安全地从函数返回并作为参数或在数据结构中传递，而不会有被执"
+msgstr "`IO a` 类型的值可以安全地从函数返回并作为参数或在数据结构中传递，而不会有被执"
 "行的风险。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:187
-#, fuzzy
 msgid ""
 "Values of type `IO a` can be safely combined in *do blocks* to *describe* "
 "new `IO` actions."
-msgstr "`IO a` 类型的值可以安全地组合在 *do 块 * 到 * 描述 * 新 `IO` 动作中。"
+msgstr "`IO a` 类型的值可以安全地在 *do 块 * 中组合到 *描述* `IO` 的新动作中。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:191
-#, fuzzy
 msgid ""
 "An `IO` action will only ever get executed when it's passed to `:exec` at "
 "the REPL, or when it is the `main` function of a compiled Idris program that "
 "is being executed."
-msgstr ""
-"一个 `IO` 动作只会在它被传递给 REPL 的 `:exec` 或者当它是已编译的 Idris 程序"
-"的 `main` 函数时才会被执行。被执行。"
+msgstr "一个 `IO` 动作只会在它被传递给 REPL 的 `:exec` 或者当它是已编译的 Idris "
+"程序的 `main` 函数时才会被执行。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:196
-#, fuzzy
 msgid ""
 "It is not possible to ever break out of the `IO` context: There is no "
 "function of type `IO a -> a`, as such a function would need to execute its "
 "argument in order to extract the final result, and this would break "
 "referential transparency."
-msgstr ""
-"永远不可能跳出 `IO` 上下文：没有 `IO a -> a` 类型的函数，因为这样的函数需要执"
-"行它的参数才能提取最终结果，这将破坏参考透明度。"
+msgstr "永远不可能跳出 `IO` 上下文：没有 `IO a -> a` 类型的函数，因为这样的函数需要执"
+"行它的参数才能提取最终结果，这将破坏引用透明。"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:197
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Combining Pure Code with `IO` Actions"
-msgstr "### 结合纯代码和 `IO` 动作"
+msgstr "组合纯代码和 `IO` 动作"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:202
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The title of this subsection is somewhat misleading. `IO` actions\n"
 "*are* pure values, but what is typically meant here, is that we\n"
 "combine non-`IO` functions with effectful computations.\n"
-msgstr "本小节的标题有些误导。 `IO` 动作 * 是 * 纯值，但这里通常的意思是我们将非 `IO` 函数与有效计算相结合。"
+msgstr "本小节的标题有些误导。 `IO` 动作 *是* 纯值，但这里通常的意思是我们将非 `IO` "
+"函数与有效计算相结合。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:208
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As a demonstration, in this section we are going to write a small\n"
 "program for evaluating arithmetic expressions. We are going to\n"
 "keep things simple and allow only expressions with a single\n"
 "operator and two arguments, both of which must be integers,\n"
 "for instance `12 + 13`.\n"
-msgstr "作为演示，在本节中，我们将编写一个用于计算算术表达式的小程序。我们将保持简单，只允许具有单个运算符和两个参数的表达式，这两个参数都必须是整数，例如 `12 + 13`。"
+msgstr ""
+"作为演示，在本节中，我们将编写一个用于计算算术表达式的小程序。我们将保持简单"
+"，只允许具有单个运算符和两个参数的表达式，这两个参数都必须是整数，例如 `12 + "
+"13`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:216
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We are going to use function `split` from `Data.String` in\n"
 "*base* to tokenize arithmetic expressions. We are then trying\n"
@@ -864,11 +924,15 @@ msgid ""
 "error type. We could actually just use `String`, but I\n"
 "consider it to be good practice to use custom sum types\n"
 "for erroneous conditions.\n"
-msgstr "我们将使用 *base* 中 `Data.String` 中的函数 `split` 来标记算术表达式。然后我们尝试解析两个整数值和运算符。这些操作可能会失败，因为用户输入可能无效，所以我们还需要一个错误类型。我们实际上可以只使用 `String`，但我认为对错误条件使用自定义求和类型是一种好习惯。"
+msgstr ""
+"我们将使用 *base* 中 `Data.String` 中的函数 `split` 来标记算术表达式。然后我"
+"们尝试解析两个整数值和运算符。这些操作可能会失败，因为用户输入可能无效，所以"
+"我们还需要一个错误类型。我们实际上可以只使用 "
+"`String`，但我认为对错误条件使用自定义求和类型是一种好习惯。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:217
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Error : Type where\n"
 "  NotAnInteger    : (value : String) -> Error\n"
@@ -880,55 +944,59 @@ msgid ""
 "dispError (UnknownOperator v) = \"Unknown operator: \" ++ v ++ \".\"\n"
 "dispError (ParseError v)      = \"Invalid expression: \" ++ v ++ \".\"\n"
 msgstr ""
-"dispError : 错误 -> 字符串\n"
-"dispError (NotAnInteger v) = \"不是整数：\" ++ v ++ \"。\"\n"
-"dispError (UnknownOperator v) = \"未知运算符：\" ++ v ++ \"。\"\n"
-"dispError (ParseError v) = \"无效表达式：\" ++ v ++ \"。\"\n"
-"```\n"
+"data Error : Type where\n"
+"  NotAnInteger    : (value : String) -> Error\n"
+"  UnknownOperator : (value : String) -> Error\n"
+"  ParseError      : (input : String) -> Error\n"
+"\n"
+"dispError : Error -> String\n"
+"dispError (NotAnInteger v)    = \"Not an integer: \" ++ v ++ \".\"\n"
+"dispError (UnknownOperator v) = \"Unknown operator: \" ++ v ++ \".\"\n"
+"dispError (ParseError v)      = \"Invalid expression: \" ++ v ++ \".\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:231
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to parse integer literals, we use function `parseInteger`\n"
 "from `Data.String`:\n"
-msgstr "为了解析整数文字，我们使用来自 `Data.String` 的函数 `parseInteger`："
+msgstr "为了解析整数字面量，我们使用来自 `Data.String` 的函数 `parseInteger`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:232
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readInteger : String -> Either Error Integer\n"
 "readInteger s = maybe (Left $ NotAnInteger s) Right $ parseInteger s\n"
-msgstr "```idris readInteger : String -> Either Error Integer readInteger s = maybe (Left $ NotAnInteger s) Right $ parseInteger s ```"
+msgstr ""
+"readInteger : String -> Either Error Integer\n"
+"readInteger s = maybe (Left $ NotAnInteger s) Right $ parseInteger s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:239
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Likewise, we declare and implement a function for parsing\n"
 "arithmetic operators:\n"
-msgstr "同样，我们声明并实现了一个解析算术运算符的函数："
+msgstr "同样，我们声明并实现了一个解析算术运算符的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:240
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readOperator : String -> Either Error (Integer -> Integer -> Integer)\n"
 "readOperator \"+\" = Right (+)\n"
 "readOperator \"*\" = Right (*)\n"
 "readOperator s   = Left (UnknownOperator s)\n"
 msgstr ""
-"```伊德里斯\n"
-"readOperator : 字符串 -> 任一错误（整数 -> 整数 -> 整数）\n"
-"readOperator \"+\" = 右 (+)\n"
-"readOperator \"*\" = 右 (*)\n"
-"readOperator s = 左（UnknownOperator s）\n"
-"```\n"
+"readOperator : String -> Either Error (Integer -> Integer -> Integer)\n"
+"readOperator \"+\" = Right (+)\n"
+"readOperator \"*\" = Right (*)\n"
+"readOperator s   = Left (UnknownOperator s)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:254
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We are now ready to parse and evaluate simple arithmetic\n"
 "expressions. This consists of several steps (splitting the\n"
@@ -937,11 +1005,15 @@ msgid ""
 "blocks can be used in such occasions just as well. However,\n"
 "in this case we can use an alternative syntactic convenience:\n"
 "Pattern matching in let bindings. Here is the code:\n"
-msgstr "我们现在准备解析和评估简单的算术表达式。这包括几个步骤（拆分输入字符串，解析每个文字），每个步骤都可能失败。稍后，当我们了解 monad 时，我们会看到 do 块也可以在这种情况下使用。但是，在这种情况下，我们可以使用另一种语法便利：let 绑定中的模式匹配。这是代码："
+msgstr ""
+"我们现在准备解析和求值简单的算术表达式。这包括几个步骤（拆分输入字符串，解析"
+"每个字面量），每个步骤都可能失败。稍后，当我们了解 monad 时，我们会看到 do "
+"块也可以在这种情况下使用。但是，在这种情况下，我们可以使用另一种语法便利："
+"let 绑定中的模式匹配。这是代码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:255
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "eval : String -> Either Error Integer\n"
 "eval s =\n"
@@ -951,19 +1023,17 @@ msgid ""
 "      Right v2 := readInteger z  | Left e => Left e\n"
 "   in Right $ op v1 v2\n"
 msgstr ""
-"```伊德里斯\n"
-"eval : String -> 任一错误整数\n"
-"评估 s =\n"
-"  让 [x,y,z] := 忘记 $ split isSpace s | _ => 左（ParseError s）\n"
-"      右 v1 := readInteger x |左 e => 左 e\n"
-"      右操作 := readOperator y |左 e => 左 e\n"
-"      右 v2 := readInteger z |左 e => 左 e\n"
-"   在右 $ op v1 v2\n"
-"```\n"
+"eval : String -> Either Error Integer\n"
+"eval s =\n"
+"  let [x,y,z]  := forget $ split isSpace s | _ => Left (ParseError s)\n"
+"      Right v1 := readInteger x  | Left e => Left e\n"
+"      Right op := readOperator y | Left e => Left e\n"
+"      Right v2 := readInteger z  | Left e => Left e\n"
+"   in Right $ op v1 v2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:280
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's break this down a bit. On the first line, we split\n"
 "the input string at all whitespace occurrences. Since\n"
@@ -980,7 +1050,15 @@ msgid ""
 "and we get a list of exactly three tokens, continue with\n"
 "the `let` expression, otherwise return a `ParseError` in\n"
 "a `Left` immediately\".\n"
-msgstr "让我们分解一下。在第一行，我们在所有出现的空格处拆分输入字符串。由于 `split` 返回 `List1` （从 *base* 中的 `Data.List1` 导出的非空列表的类型），但在 [ X227X]List`更方便，我们使用`Data.List1.forget`转换结果。请注意，我们如何在赋值运算符 `:=` 的左侧使用模式匹配。这是一个部分模式匹配（*partial* 的意思，它没有涵盖所有可能的情况），因此我们还必须处理其他可能性，这是在垂直线之后完成的。可以这样理解：“如果左侧的模式匹配成功，并且我们得到一个正好包含三个标记的列表，则继续使用 `let` 表达式，否则返回 `ParseError[ X787X] 在 ` 左 ` 立即\"。"
+msgstr ""
+"让我们分解一下。在第一行，我们在所有出现的空格处拆分输入字符串。由于 `split` "
+"返回 `List1` （从 *base* 中的 `Data.List1` 导出的非空列表的类型），但用 "
+"`List`更方便，我们使用`Data.List1.forget` 转换结果。请注意，"
+"我们如何在赋值运算符 `:=` 的左侧使用模式匹配。这是一个部分模式匹配（*部分* 的"
+"意思，它没有涵盖所有可能的情况），因此我们还必须处理其他可能性，这是在垂直线"
+"之后完成的。可以这样理解：“如果左侧的模式匹配成功，并且我们得到一个正好包含三"
+"个标记的列表，则继续使用 `let` 表达式，否则立即返回 在 `Left` 中的 "
+"`ParseError` \"。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:286
