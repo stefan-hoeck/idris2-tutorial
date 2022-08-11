@@ -765,7 +765,7 @@ msgid ""
 "execution of the remaining `IO` actions in sequence. If this behaves\n"
 "as expected, the first `IO` action passed to `runActions` should be\n"
 "silently dropped together with all its potential side effects.\n"
-msgstr "现在，`runActions` 是我们用来证明 *描述* `IO` 动作与 * 运行 * 动作是不同的函数。它将从作为参数的非空向量中删除第一个动作，并返回一个新的 `IO` 动作，它描述了按顺序执行剩余的 `IO` 动作。如果这符合预期，则传递给 `runActions` 的第一个 `IO` 操作应连同其所有潜在副作用一起被静默删除。\n"
+msgstr "现在，`runActions` 是我们用来证明 *描述* `IO` 动作与 *运行* 动作是不同的函数。它将从作为参数的非空向量中删除第一个动作，并返回一个新的 `IO` 动作，它描述了按顺序执行剩余的 `IO` 动作。如果这符合预期，则传递给 `runActions` 的第一个 `IO` 操作应连同其所有潜在副作用一起被静默删除。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:174
@@ -808,7 +808,7 @@ msgstr ""
 msgid ""
 "Values of type `IO a` can be safely combined in *do blocks* to *describe* "
 "new `IO` actions."
-msgstr "`IO a` 类型的值可以安全地在 *do 块 * 中组合到 *描述* `IO` 的新动作中。"
+msgstr "`IO a` 类型的值可以安全地在 *do 块* 中组合到 *描述* `IO` 的新动作中。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:191
@@ -1372,7 +1372,7 @@ msgid ""
 "soon enough. The important thing to remember is how *do\n"
 "blocks* are always converted to sequences of *bind*\n"
 "operators as shown in `desugared1`.\n"
-msgstr "别担心，如果这还没有太大意义。我们将看到更多示例，您很快就会掌握其中的窍门。要记住的重要一点是 *do 块 * 总是转换为 *bind* 运算符的序列，如 `desugared1` 所示。\n"
+msgstr "别担心，如果这还没有太大意义。我们将看到更多示例，您很快就会掌握其中的窍门。要记住的重要一点是 *do 块* 总是转换为 *bind* 运算符的序列，如 `desugared1` 所示。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:489
