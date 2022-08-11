@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-11 00:27+0000\n"
+"PO-Revision-Date: 2022-08-11 04:54+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/io/zh_Hans/>\n"
@@ -1062,18 +1062,20 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:286
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The other three lines behave exactly the same: Each has\n"
 "a partial pattern match on the left hand side with\n"
 "instructions what to return in case of invalid input after\n"
 "the vertical bar. We will later see, that this syntax is also\n"
 "available in *do blocks*.\n"
-msgstr "其他三行的行为完全相同：每一行在左侧都有一个部分模式匹配，指示在竖线后输入无效时返回的内容。我们稍后会看到，这种语法也可以在 *do blocks* 中使用。"
+msgstr ""
+"其他三行的行为完全相同：每一行在左侧都有一个部分模式匹配，指示在竖线后输入无"
+"效时返回的内容。我们稍后会看到，这种语法也可以在 *do blocks* 中使用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:294
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how all of the functionality implemented so far is\n"
 "*pure*, that is, it does not describe computations with\n"
@@ -1082,20 +1084,26 @@ msgid ""
 "is still referentially transparent,\n"
 "can be easily tested at the REPL, and evaluated at\n"
 "compile time, which is the important thing here.)\n"
-msgstr "请注意，到目前为止实现的所有功能都是 *pure*，也就是说，它没有描述具有副作用的计算。 （有人可能会争辩说，失败的可能性已经是可观察到的 * 效果 *，但即便如此，上面的代码仍然是引用透明的，可以在 REPL 轻松测试，并在编译时评估，这是这里很重要。）"
+msgstr ""
+"请注意，到目前为止实现的所有功能都是 "
+"*纯的*，也就是说，它没有描述具有副作用的计算。 （有人可能会争辩说，"
+"失败的可能性已经是可观察到的 "
+"*副作用*，但即便如此，上面的代码仍然是引用透明的，可以在 REPL "
+"轻松测试，并在编译时求值，这是这里很重要。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:298
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, we can wrap this functionality in an `IO`\n"
 "action, which reads a string from standard input\n"
 "and tries to evaluate the arithmetic expression:\n"
-msgstr "最后，我们可以将此功能包装在 `IO` 操作中，该操作从标准输入读取字符串并尝试计算算术表达式："
+msgstr "最后，我们可以将此功能包装在 `IO` "
+"操作中，该操作从标准输入读取字符串并尝试计算算术表达式：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:299
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "exprProg : IO ()\n"
 "exprProg = do\n"
@@ -1106,20 +1114,18 @@ msgid ""
 "      putStrLn (dispError err)\n"
 "    Right res => putStrLn (s ++ \" = \" ++ show res)\n"
 msgstr ""
-"```伊德里斯\n"
 "exprProg : IO ()\n"
-"exprProg = 做\n"
-"  s <- 获取线\n"
-"  case eval 的\n"
-"    左错误 => 做\n"
-"      putStrLn \"发生错误：\"\n"
-"      putStrLn (dispError 错误)\n"
-"    右 res => putStrLn (s ++ \" = \" ++ 显示 res)\n"
-"```\n"
+"exprProg = do\n"
+"  s <- getLine\n"
+"  case eval s of\n"
+"    Left err  => do\n"
+"      putStrLn \"An error occured:\"\n"
+"      putStrLn (dispError err)\n"
+"    Right res => putStrLn (s ++ \" = \" ++ show res)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:316
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how in `exprProg` we were forced to deal with the\n"
 "possibility of failure and handle both constructors\n"
@@ -1127,11 +1133,14 @@ msgid ""
 "Note also, that *do blocks* are ordinary expressions,\n"
 "and we can, for instance, start a new *do block* on\n"
 "the right hand side of a case expression.\n"
-msgstr "请注意，在 `exprProg` 中，我们如何被迫处理失败的可能性并以不同方式处理 `Either` 的两个构造函数以打印结果。还要注意，*do blocks* 是普通表达式，例如，我们可以在 case 表达式的右侧开始一个新的 *do block*。"
+msgstr ""
+"请注意，在 `exprProg` 中，我们如何被迫处理失败的可能性并以不同方式处理 "
+"`Either` 的两个构造函数以打印结果。还要注意，*do blocks* 是普通表达式，例如，"
+"我们可以在 case 表达式的右侧开始一个新的 *do block*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:329
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In these exercises, you are going to implement some\n"
 "small command-line applications. Some of these will potentially\n"
@@ -1143,78 +1152,69 @@ msgid ""
 "meaning that you covered all cases in all pattern matches\n"
 "but your program might still loop due to unrestricted\n"
 "recursion.\n"
-msgstr "在这些练习中，您将实现一些小型命令行应用程序。其中一些可能会永远运行，因为它们只会在用户输入退出应用程序的关键字时停止。这样的程序不再是可证明的全部。如果您在源文件的顶部添加了 `%default total` 杂注，则需要使用 `covering` 注释这些函数，这意味着您涵盖了所有模式匹配中的所有情况，但由于不受限制的递归，您的程序可能仍会循环。"
+msgstr ""
+"在这些练习中，您将实现一些小型命令行应用程序。其中一些可能会永远运行，因为它"
+"们只会在用户输入退出应用程序的关键字时停止。这样的程序不再是可证明的全部。"
+"如果您在源文件的顶部添加了 `%default total` 杂注，则需要使用 `covering` 注释"
+"这些函数，这意味着您涵盖了所有模式匹配中的所有情况，但由于不受限制的递归，您"
+"的程序可能仍会循环。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/IO.md:333
-#, fuzzy
 msgid ""
 "Implement function `rep`, which will read a line of input from the terminal, "
 "evaluate it using the given function, and print the result to standard "
 "output:"
-msgstr ""
-"实现函数 `rep`，它将从终端读取一行输入，使用给定函数对其进行评估，并将结果打"
+msgstr "实现函数 `rep`，它将从终端读取一行输入，使用给定函数对其进行求值，并将结果打"
 "印到标准输出："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:334
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   rep : (String -> String) -> IO ()\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   覆盖\n"
-"   复制：（字符串->字符串）-> IO（）\n"
-"   ```\n"
+msgstr "   rep : (String -> String) -> IO ()\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/IO.md:341
-#, fuzzy
 msgid ""
 "Implement function `repl`, which behaves just like `rep` but will repeat "
 "itself forever (or until being forcefully terminated):"
-msgstr ""
-"实现函数 `repl`，其行为类似于 `rep`，但会永远重复（或直到被强制终止）："
+msgstr "实现函数 `repl`，其行为类似于 `rep`，但会永远重复（或直到被强制终止）："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:342
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   covering\n"
 "   repl : (String -> String) -> IO ()\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   覆盖\n"
-"   复制：（字符串->字符串）-> IO（）\n"
-"   ```\n"
+"   covering\n"
+"   repl : (String -> String) -> IO ()\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/IO.md:351
-#, fuzzy
 msgid ""
 "Implement function `replTill`, which behaves just like `repl` but will only "
 "continue looping if the given function returns a `Right`. If it returns a "
 "`Left`, `replTill` should print the final message wrapped in the `Left` and "
 "then stop."
 msgstr ""
-"实现函数 `replTill`，其行为类似于 `repl`，但只有在给定函数返回 `Right` 时才会"
-"继续循环。如果它返回 `Left`，`replTill` 应该打印包装在 `Left` 中的最终消息，"
-"然后停止。"
+"实现函数 `replTill`，其行为类似于 `repl`，但只有在给定函数返回 `Right` "
+"时才会继续循环。如果它返回 `Left`，`replTill` 应该打印包装在 `Left` "
+"中的最终消息，然后停止。"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:352
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   covering\n"
 "   replTill : (String -> Either String String) -> IO ()\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   覆盖\n"
-"   replTill : (String -> 任一字符串字符串) -> IO ()\n"
-"   ```\n"
+"   covering\n"
+"   replTill : (String -> Either String String) -> IO ()\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/IO.md:364
-#, fuzzy
 msgid ""
 "Write a program, which reads arithmetic expressions from standard input, "
 "evaluates them using `eval`, and prints the result to standard output. The "
@@ -1222,13 +1222,12 @@ msgid ""
 "the program should terminate with a friendly greeting.  Use `replTill` in "
 "your implementation."
 msgstr ""
-"编写一个程序，从标准输入读取算术表达式，使用 `eval` 计算它们，并将结果打印到"
-"标准输出。程序应该循环，直到用户通过输入“完成”停止它，在这种情况下，程序应该"
-"以友好的问候终止。在您的实现中使用 `replTill`。"
+"编写一个程序，从标准输入读取算术表达式，使用 `eval` "
+"计算它们，并将结果打印到标准输出。程序应该循环，直到用户通过输入“完成” "
+"停止它，在这种情况下，程序应该以友好的问候终止。在您的实现中使用 `replTill`。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/IO.md:373
-#, fuzzy
 msgid ""
 "Implement function `replWith`, which behaves just like `repl` but uses some "
 "internal state to accumulate values.  At each iteration (including the very "
@@ -1237,14 +1236,15 @@ msgid ""
 "`next`.  The loop should terminate in case of a `Left` and print a final "
 "message using `dispResult`:"
 msgstr ""
-"实现函数 `replWith`，其行为类似于 `repl`，但使用一些内部状态来累积值。在每次"
-"迭代中（包括第一次迭代！），当前状态应该使用函数 `dispState` 打印到标准输出，"
-"并且应该使用函数 `next` 计算下一个状态。如果出现 `Left`，循环应该终止，并使"
-"用 `dispResult` 打印最终消息："
+"实现函数 `replWith`，其行为类似于 "
+"`repl`，但使用一些内部状态来累积值。在每次迭代中（包括第一次迭代！），"
+"当前状态应该使用函数 `dispState` 打印到标准输出，并且应该使用函数 `next` "
+"计算下一个状态。如果出现 `Left`，循环应该终止，并使用 `dispResult` "
+"打印最终消息："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:374
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   covering\n"
 "   replWith :  (state      : s)\n"
@@ -1253,18 +1253,15 @@ msgid ""
 "            -> (dispResult : res -> s -> String)\n"
 "            -> IO ()\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   覆盖\n"
-"   replWith : (状态 : s)\n"
-"            -> (next : s -> String -> 无论是 res s)\n"
-"            -> (dispState : s -> 字符串)\n"
-"            -> (dispResult : res -> s -> 字符串)\n"
-"            -> IO()\n"
-"   ```\n"
+"   covering\n"
+"   replWith :  (state      : s)\n"
+"            -> (next       : s -> String -> Either res s)\n"
+"            -> (dispState  : s -> String)\n"
+"            -> (dispResult : res -> s -> String)\n"
+"            -> IO ()\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/IO.md:388
-#, fuzzy
 msgid ""
 "Use `replWith` from Exercise 5 to write a program for reading natural "
 "numbers from standard input and printing the accumulated sum of these "
@@ -1276,13 +1273,13 @@ msgstr ""
 
 #. type: Title ##
 #: ../src/Tutorial/IO.md:389
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Do Blocks, Desugared"
-msgstr "## 做块，脱糖"
+msgstr "Do 语法块，脱糖"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:402
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here's an important piece of information: There is nothing\n"
 "special about *do blocks*. They are just syntactic sugar,\n"
@@ -1295,17 +1292,24 @@ msgid ""
 "without using `do` notation, but the code you'll write\n"
 "will sometimes be harder to read, so *do blocks* provide\n"
 "nicer syntax for these occasions.\n"
-msgstr "这里有一条重要信息：*do blocks* 没有什么特别之处。它们只是语法糖，被转换为一系列运算符应用程序。使用 [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)，我们指的是一种编程语言中的语法，它可以更容易地用该语言表达某些事物，而不会使语言本身更强大或更具表现力。在这里，这意味着您可以编写所有 `IO` 程序而不使用 `do` 符号，但是您编写的代码有时会更难阅读，因此 *do blocks[X577X ] 为这些场合提供更好的语法。"
+msgstr ""
+"这里有一条重要信息：*do blocks* "
+"没有什么特别之处。它们只是语法糖，被转换为一系列运算符应用程序。使用 "
+"[语法糖](https://en.wikipedia.org/wiki/Syntactic_sugar)，我们指的是一种编程语"
+"言中的语法，它可以更容易地用该语言表达某些事物，而不会使语言本身更强大或更具"
+"表现力。在这里，这意味着您可以编写所有 `IO` 程序而不使用 `do` "
+"符号，但是您编写的代码有时会更难阅读，因此 *do blocks* "
+"为这些场合提供更好的语法。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:404
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Consider the following example program:\n"
-msgstr "考虑以下示例程序："
+msgstr "考虑以下示例程序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:405
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "sugared1 : IO ()\n"
 "sugared1 = do\n"
@@ -1314,26 +1318,24 @@ msgid ""
 "  str3 <- getLine\n"
 "  putStrLn (str1 ++ str2 ++ str3)\n"
 msgstr ""
-"```伊德里斯\n"
-"加糖1：IO（）\n"
-"加糖1 = 做\n"
-"  str1 <- 获取线\n"
-"  str2 <- 获取线\n"
-"  str3 <- 获取线\n"
+"sugared1 : IO ()\n"
+"sugared1 = do\n"
+"  str1 <- getLine\n"
+"  str2 <- getLine\n"
+"  str3 <- getLine\n"
 "  putStrLn (str1 ++ str2 ++ str3)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:416
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The compiler will convert this to the following program\n"
 "*before disambiguating function names and type checking*:\n"
-msgstr "在消除函数名称歧义和类型检查 * 之前，编译器会将其转换为以下程序 *："
+msgstr "*在消除函数名称歧义和类型检查之前*，编译器会将其转换为以下程序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:417
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "desugared1 : IO ()\n"
 "desugared1 =\n"
@@ -1345,9 +1347,8 @@ msgid ""
 "    )\n"
 "  )\n"
 msgstr ""
-"```伊德里斯\n"
-"脱糖1：IO（）\n"
-"脱糖1 =\n"
+"desugared1 : IO ()\n"
+"desugared1 =\n"
 "  getLine >>= (\\str1 =>\n"
 "    getLine >>= (\\str2 =>\n"
 "      getLine >>= (\\str3 =>\n"
@@ -1355,55 +1356,64 @@ msgstr ""
 "      )\n"
 "    )\n"
 "  )\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:432
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There is a new operator (`(>>=)`) called *bind* in the\n"
 "implementation of `desugared1`. If you look at its type\n"
 "at the REPL, you'll see the following:\n"
-msgstr "在 `desugared1` 的实现中有一个称为 *bind* 的新运算符 (`(>>=)`)。如果您在 REPL 中查看它的类型，您将看到以下内容："
+msgstr ""
+"在 `desugared1` 的实现中有一个称为 *bind* 的新运算符 (`(>>=)`)。如果您在 "
+"REPL 中查看它的类型，您将看到以下内容：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:433
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> :t (>>=)\n"
 "Prelude.>>= : Monad m => m a -> (a -> m b) -> m b\n"
-msgstr "```repl Main> :t (>>=) Prelude.>>= : Monad m => m a -> (a -> m b) -> m b ```"
+msgstr ""
+"Main> :t (>>=)\n"
+"Prelude.>>= : Monad m => m a -> (a -> m b) -> m b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:441
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is a constrained function requiring an interface called `Monad`.\n"
 "We will talk about `Monad` and some of its friends in the next\n"
 "chapter. Specialized to `IO`, *bind* has the following type:\n"
-msgstr "这是一个受约束的函数，需要一个名为 `Monad` 的接口。我们将在下一章讨论 `Monad` 和它的一些朋友。专门针对`IO`，*bind*有以下类型："
+msgstr ""
+"这是一个受约束的函数，需要一个名为 `Monad` 的接口。我们将在下一章讨论 `Monad`"
+" 和它的一些朋友。专门针对`IO`，*bind*有以下类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:442
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> :t (>>=) {m = IO}\n"
 ">>= : IO a -> (a -> IO b) -> IO b\n"
-msgstr "```repl Main> :t (>>=) {m = IO} >>= : IO a -> (a -> IO b) -> IO b ```"
+msgstr ""
+"Main> :t (>>=) {m = IO}\n"
+">>= : IO a -> (a -> IO b) -> IO b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:451
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This describes a sequencing of `IO` actions. Upon execution,\n"
 "the first `IO` action is being run and its result is\n"
 "being passed as an argument to the function generating\n"
 "the second `IO` action, which is then also being executed.\n"
-msgstr "这描述了 `IO` 动作的顺序。执行时，第一个 `IO` 动作正在运行，其结果作为参数传递给生成第二个 `IO` 动作的函数，然后也将执行该动作。"
+msgstr ""
+"这描述了 `IO` 动作的顺序。执行时，第一个 `IO` 动作正在运行，"
+"其结果作为参数传递给生成第二个 `IO` 动作的函数，然后也将执行该动作。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:466
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You might remember, that you already implemented something\n"
 "similar in an earlier exercise: In [Algebraic Data Types](DataTypes.md),\n"
@@ -1419,21 +1429,32 @@ msgid ""
 "hard to read, since we use several layers of nested\n"
 "anonymous function, that's why in such cases, *do blocks*\n"
 "are a nice alternative to express the same functionality.\n"
-msgstr "您可能还记得，您已经在之前的练习中实现了类似的东西：在 [Algebraic Data Types](DataTypes.md) 中，您为 `Maybe` 和 ` 实现了 *bind* 或者`。我们将在下一章中了解到，`Maybe` 和 `E` 也都带有 `Monad` 的实现。现在，可以说 `Monad` 允许我们通过将第一次计算的 *result* 传递给返回第二次计算的函数来按顺序运行具有某种效果的计算。在 `desugared1` 中，您可以看到，我们如何首先执行 `IO` 动作并使用其结果来计算下一个 `IO` 动作等等。代码有点难以阅读，因为我们使用了多层嵌套匿名函数，这就是为什么在这种情况下，*do 块* 是表达相同功能的不错选择。"
+msgstr ""
+"您可能还记得，您已经在之前的练习中实现了类似的东西：在 "
+"[代数数据类型](DataTypes.md) 中，您为 `Maybe` 和 `Either e` 实现了 *bind* "
+"。我们将在下一章中了解到，`Maybe` 和 `Either e` 也都带有 `Monad` "
+"的实现。现在，可以说 `Monad` 允许我们通过将第一次计算的 返回 *结果* "
+"传递给第二次计算的函数来按顺序运行具有某种副作用的计算。在 `desugared1` "
+"中，您可以看到，我们如何首先执行 `IO` 动作并使用其结果来计算下一个 `IO` 动作"
+"等等。代码有点难以阅读，因为我们使用了多层嵌套匿名函数，这就是为什么在这种情"
+"况下，*do 块* 是表达相同功能的不错选择。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:471
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since *do block* are always desugared to sequences of\n"
 "applied *bind* operators, we can use them to chain\n"
 "any monadic computation. For instance, we can rewrite\n"
 "function `eval` by using a *do block* like so:\n"
-msgstr "由于 *do 块 * 总是与应用的 *bind* 运算符序列脱糖，因此我们可以使用它们链接任何一元计算。例如，我们可以使用 *do 块 * 重写函数 `eval`，如下所示："
+msgstr ""
+"由于 *do 块* 总是与应用的 *bind* "
+"运算符序列脱糖，因此我们可以使用它们链接任何一元计算。例如，我们可以使用 *do "
+"块 * 重写函数 `eval`，如下所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:472
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "evalDo : String -> Either Error Integer\n"
 "evalDo s = case forget $ split isSpace s of\n"
@@ -1444,68 +1465,72 @@ msgid ""
 "    Right $ op v1 v2\n"
 "  _       => Left (ParseError s)\n"
 msgstr ""
-"```伊德里斯\n"
-"evalDo : String -> 任一错误整数\n"
-"evalDo s = case forget $ split isSpace s 的\n"
-"  [x,y,z] => 做\n"
-"    v1 <- 读取整数 x\n"
+"evalDo : String -> Either Error Integer\n"
+"evalDo s = case forget $ split isSpace s of\n"
+"  [x,y,z] => do\n"
+"    v1 <- readInteger x\n"
 "    op <- readOperator y\n"
 "    v2 <- readInteger z\n"
-"    对 $ op v1 v2\n"
-"  _ => 左（ParseError s）\n"
-"```\n"
+"    Right $ op v1 v2\n"
+"  _       => Left (ParseError s)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:488
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Don't worry, if this doesn't make too much sense yet. We will\n"
 "see many more examples, and you'll get the hang of this\n"
 "soon enough. The important thing to remember is how *do\n"
 "blocks* are always converted to sequences of *bind*\n"
 "operators as shown in `desugared1`.\n"
-msgstr "别担心，如果这还没有太大意义。我们将看到更多示例，您很快就会掌握其中的窍门。要记住的重要一点是 *do 块 * 总是如何转换为 *bind* 运算符的序列，如 `desugared1` 所示。"
+msgstr ""
+"别担心，如果这还没有太大意义。我们将看到更多示例，您很快就会掌握其中的窍门。"
+"要记住的重要一点是 *do 块 * 总是转换为 *bind* 运算符的序列，如 `desugared1` "
+"所示。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:489
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Binding Unit"
-msgstr "### 绑定单元"
+msgstr "Unit 绑定"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:492
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Remember our implementation of `friendlyReadHello`? Here it is again:\n"
-msgstr "还记得我们对 `friendlyReadHello` 的实现吗？这里又是："
+msgstr "还记得我们对 `friendlyReadHello` 的实现吗？这里又是：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:493
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "friendlyReadHello' : IO ()\n"
 "friendlyReadHello' = do\n"
 "  _ <- putStrLn \"Please enter your name.\"\n"
 "  readHello\n"
 msgstr ""
-"友好读你好：IO（）\n"
-"友好读你好 = 做\n"
-"  _ <- putStrLn \"请输入您的姓名。\"\n"
-"  读你好\n"
+"friendlyReadHello' : IO ()\n"
+"friendlyReadHello' = do\n"
+"  _ <- putStrLn \"Please enter your name.\"\n"
+"  readHello\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:505
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The underscore in there is a bit ugly and unnecessary. In fact,\n"
 "a common use case is to just chain effectful computations with\n"
 "result type `Unit` (`()`), merely for the side\n"
 "effects they perform. For instance, we could repeat `friendlyReadHello`\n"
 "three times, like so:\n"
-msgstr "那里的下划线有点丑陋和不必要。事实上，一个常见的用例是将有效计算与结果类型 `Unit` (`()`) 链接起来，只是为了它们执行的副作用。例如，我们可以重复 `friendlyReadHello` 三次，如下所示："
+msgstr ""
+"那里的下划线有点丑陋和不必要。事实上，一个常见的用例是将有效计算与结果类型 "
+"`Unit` (`()`) 链接起来，只是为了它们执行的副作用。例如，我们可以重复 "
+"`friendlyReadHello` 三次，如下所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:506
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "friendly3 : IO ()\n"
 "friendly3 = do\n"
@@ -1513,25 +1538,23 @@ msgid ""
 "  _ <- friendlyReadHello\n"
 "  friendlyReadHello\n"
 msgstr ""
-"```伊德里斯\n"
-"友好3：IO（）\n"
-"友好3 = 做\n"
-"  _ <-friendlyReadHello\n"
-"  _ <-friendlyReadHello\n"
-"  友好阅读你好\n"
-"```\n"
+"friendly3 : IO ()\n"
+"friendly3 = do\n"
+"  _ <- friendlyReadHello\n"
+"  _ <- friendlyReadHello\n"
+"  friendlyReadHello\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:516
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is such a common thing to do, that Idris allows us to\n"
 "drop the bound underscores altogether:\n"
-msgstr "这是很常见的事情，Idris 允许我们完全放弃绑定的下划线："
+msgstr "这是很常见的事情，Idris 允许我们完全放弃绑定的下划线：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:517
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "friendly4 : IO ()\n"
 "friendly4 = do\n"
@@ -1540,24 +1563,22 @@ msgid ""
 "  friendlyReadHello\n"
 "  friendlyReadHello\n"
 msgstr ""
-"```伊德里斯\n"
-"友好4：IO（）\n"
-"友好4 = 做\n"
-"  友好阅读你好\n"
-"  友好阅读你好\n"
-"  友好阅读你好\n"
-"  友好阅读你好\n"
-"```\n"
+"friendly4 : IO ()\n"
+"friendly4 = do\n"
+"  friendlyReadHello\n"
+"  friendlyReadHello\n"
+"  friendlyReadHello\n"
+"  friendlyReadHello\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:527
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Note, however, that the above gets desugared slightly differently:\n"
-msgstr "但是请注意，上述内容的脱糖略有不同："
+msgstr "但是请注意，上述内容的脱糖略有不同：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:528
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "friendly4Desugared : IO ()\n"
 "friendly4Desugared =\n"
@@ -1566,32 +1587,32 @@ msgid ""
 "  friendlyReadHello >>\n"
 "  friendlyReadHello\n"
 msgstr ""
-"```伊德里斯\n"
-"友好4Desugared : IO ()\n"
-"友好4Desugared =\n"
-"  友好阅读你好>>\n"
-"  友好阅读你好>>\n"
-"  友好阅读你好>>\n"
-"  友好阅读你好\n"
-"```\n"
+"friendly4Desugared : IO ()\n"
+"friendly4Desugared =\n"
+"  friendlyReadHello >>\n"
+"  friendlyReadHello >>\n"
+"  friendlyReadHello >>\n"
+"  friendlyReadHello\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:538
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Operator `(>>)` has the following type:\n"
-msgstr "运算符 `(>>)` 具有以下类型："
+msgstr "运算符 `(>>)` 具有以下类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:539
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> :t (>>)\n"
 "Prelude.>> : Monad m => m () -> Lazy (m b) -> m b\n"
-msgstr "```repl Main> :t (>>) Prelude.>> : Monad m => m () -> Lazy (m b) -> m b ```"
+msgstr ""
+"Main> :t (>>)\n"
+"Prelude.>> : Monad m => m () -> Lazy (m b) -> m b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:550
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note the `Lazy` keyword in the type signature. This means,\n"
 "that the wrapped argument will be *lazily evaluated*. This\n"
@@ -1599,17 +1620,21 @@ msgid ""
 "in question is `Maybe` the result will be `Nothing` if\n"
 "the first argument is `Nothing`, in which case there is no\n"
 "need to even evaluate the second argument.\n"
-msgstr "注意类型签名中的 `Lazy` 关键字。这意味着，包装的参数将被 * 延迟评估 *。这在很多场合都是有道理的。例如，如果所讨论的 `Monad` 是 `Maybe` 如果第一个参数是 `Nothing`，那么结果将是 `Nothing`，在这种情况下甚至不需要评估第二个参数。"
+msgstr ""
+"注意类型签名中的 `Lazy` 关键字。这意味着，包装的参数将被 "
+"*延迟求值*。这在很多场合都是有道理的。例如，如果所讨论的 `Monad` 是 `Maybe` "
+"如果第一个参数是 `Nothing`，那么结果将是 "
+"`Nothing`，在这种情况下甚至不需要求值第二个参数。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:551
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Do, Overloaded"
-msgstr "### 做，重载"
+msgstr "Do和重载"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:562
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Because Idris supports function and operator overloading, we\n"
 "can write custom *bind* operators, which allows us to\n"
@@ -1620,11 +1645,16 @@ msgid ""
 "will be converted to a vector of length `n`, and\n"
 "the results will be concatenated leading to\n"
 "a vector of length `m * n`:\n"
-msgstr "因为 Idris 支持函数和运算符重载，我们可以编写自定义的 *bind* 运算符，这允许我们对没有实现 `Monad` 的类型使用 *do notation*。例如，这是 `(>>=)` 的自定义实现，用于对返回向量的计算进行排序。第一个向量（长度为 `m`）中的每个值都将转换为长度为 `n` 的向量，结果将被连接到长度为 `m * 的向量n`："
+msgstr ""
+"因为 Idris 支持函数和运算符重载，我们可以编写自定义的 *bind* 运算符，"
+"这允许我们对没有实现 `Monad` 的类型使用 *do notation*。例如，这是 `(>>=)` "
+"的自定义实现，用于对返回向量的计算进行排序。第一个向量（长度为 `m`）"
+"中的每个值都将转换为长度为 `n` 的向量，结果将被连接到长度为 `m * n ` 的向量："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:563
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "flatten : Vect m (Vect n a) -> Vect (m * n) a\n"
 "flatten []        = []\n"
@@ -1633,14 +1663,16 @@ msgid ""
 "(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
 "as >>= f = flatten (map f as)\n"
 msgstr ""
-"```伊德里斯\n"
-"展平：Vect m (Vect n a) -> Vect (m * n) a\n"
-"展平 [] = []\n"
-"展平 (x :: xs) = x ++ 展平 xs\n"
+"flatten : Vect m (Vect n a) -> Vect (m * n) a\n"
+"flatten []        = []\n"
+"flatten (x :: xs) = x ++ flatten xs\n"
+"\n"
+"(>>=) : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
+"as >>= f = flatten (map f as)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:580
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is not possible to write an implementation of `Monad`,\n"
 "which encapsulates this behavior, as the types wouldn't\n"
@@ -1650,11 +1682,15 @@ msgid ""
 "have to be the same, which is not what we expressed\n"
 "in our custom version of *bind*. Here is an example to\n"
 "see this in action:\n"
-msgstr "无法编写封装此行为的 `Monad` 的实现，因为类型不匹配：专用于 `Vect` 的 Monadic *bind* 具有类型 [ X167X]Vect k a -> (a -> Vect k b) -> Vect k b`。如您所见，所有三个 `Vect` 的大小必须相同，这不是我们在自定义版本的 *bind* 中表达的。下面是一个例子，可以看到这一点："
+msgstr ""
+"无法编写封装此行为的 `Monad` 的实现，因为类型不匹配：专用于 `Vect` 的 "
+"Monadic *bind* 具有类型 `Vect k a -> (a -> Vect k b) -> Vect k b`。如您所见，"
+"所有三个 `Vect` 的大小必须相同，这不是我们在自定义版本的 *bind* "
+"中表达的。下面是一个例子，可以看到这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:581
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "modString : String -> Vect 4 String\n"
 "modString s = [s, reverse s, toUpper s, toLower s]\n"
@@ -1665,16 +1701,18 @@ msgid ""
 "  s2 <- [1, 2, 3]\n"
 "  modString (s1 ++ show s2)\n"
 msgstr ""
-"testDo : Vect 24 字符串\n"
+"modString : String -> Vect 4 String\n"
+"modString s = [s, reverse s, toUpper s, toLower s]\n"
+"\n"
+"testDo : Vect 24 String\n"
 "testDo = IO.do\n"
-"  s1 <- [“你好”，“世界”]\n"
+"  s1 <- [\"Hello\", \"World\"]\n"
 "  s2 <- [1, 2, 3]\n"
-"  modString (s1 ++ 显示 s2)\n"
-"```\n"
+"  modString (s1 ++ show s2)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:601
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Try to figure out how `testDo` works by desugaring it\n"
 "manually and then comparing its result with what you\n"
@@ -1685,26 +1723,33 @@ msgid ""
 "`Vect k` does have an implementation of `Monad`, but it is\n"
 "still good to know that it is possible to help\n"
 "the compiler with disambiguating do blocks.\n"
-msgstr "尝试通过手动对 `testDo` 进行脱糖，然后将其结果与您在 REPL 中的预期结果进行比较来弄清楚 `testDo` 是如何工作的。请注意，我们如何帮助 Idris 消除歧义，通过在 `do` 关键字前加上运算符名称空间的一部分来使用哪个版本的 *bind* 运算符。在这种情况下，这不是绝对必要的，虽然 `Vect k` 确实有 `Monad` 的实现，但知道它可以帮助编译器消除歧义仍然是件好事做积木。"
+msgstr ""
+"尝试通过手动对 `testDo` 进行脱糖，然后将其结果与您在 REPL "
+"中的预期结果进行比较来弄清楚 `testDo` 是如何工作的。请注意，我们如何帮助 "
+"Idris 消除歧义，通过在 `do` "
+"关键字前加上运算符名称空间的一部分来使用哪个版本的 *bind* "
+"运算符。在这种情况下，这不是绝对必要的，虽然 `Vect k` 确实有 `Monad` 的实现，"
+"但知道它可以帮助编译器消除歧义对 do 语法块来说仍然是件好事。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:605
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Of course, we can (and should!) overload `(>>)` in the\n"
 "same manner as `(>>=)`, if we want to overload the\n"
 "behavior of *do blocks*.\n"
-msgstr "当然，如果我们想重载 * 的行为，我们可以（并且应该！）重载 `(>>)` 和 `(>>=)` 一样块*。"
+msgstr "当然，如果我们想重载 *do 语法块* 的行为，我们可以（并且应该！）重载 `(>>)` "
+"和 `(>>=)`。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/IO.md:606
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Modules and Namespaces"
-msgstr "#### 模块和命名空间"
+msgstr "模块和命名空间"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:614
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Every data type, function, or operator can be unambiguously\n"
 "identified by prefixing it with its *namespace*. A function's\n"
@@ -1712,31 +1757,42 @@ msgid ""
 "For instance, the fully qualified name of function `eval`\n"
 "would be `Tutorial.IO.eval`. Function and operator names must\n"
 "be unique in their namespace.\n"
-msgstr "每个数据类型、函数或运算符都可以通过为其 * 命名空间 * 加上前缀来明确标识。函数的命名空间通常与定义它的模块相同。例如，函数 `eval` 的完全限定名称将是 `Tutorial.IO.eval`。函数和运算符名称在其命名空间中必须是唯一的。"
+msgstr ""
+"每个数据类型、函数或运算符都可以通过为其 *命名空间* "
+"加上前缀来明确标识。函数的命名空间通常与定义它的模块相同。例如，函数 `eval` "
+"的完全限定名称将是 `Tutorial.IO."
+"eval`。函数和运算符名称在其命名空间中必须是唯一的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:620
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As we already learned, Idris can often disambiguate between\n"
 "functions with the same name but defined in different namespaces\n"
 "based on the types involved. If this is not possible, we can help\n"
 "the compiler by *prefixing* the function or operator name with\n"
 "a *suffix* of the full namespace. Let's demonstrate this at the REPL:\n"
-msgstr "正如我们已经了解到的那样，Idris 通常可以消除具有相同名称但根据所涉及的类型在不同命名空间中定义的函数之间的歧义。如果这是不可能的，我们可以通过 * 前缀 * 使用完整命名空间的 * 后缀 * 的函数或运算符名称来帮助编译器。让我们在 REPL 上演示一下："
+msgstr ""
+"正如我们已经了解到的那样，Idris 通常可以消除具有相同名称但根据所涉及的类型在"
+"不同命名空间中定义的函数之间的歧义。如果这还是不行的话，我们可以通过 *前缀* "
+"使用完整命名空间的 *后缀* 的函数或运算符名称来帮助编译器。让我们在 REPL "
+"上演示一下：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:621
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.IO> :t (>>=)\n"
 "Prelude.>>= : Monad m => m a -> (a -> m b) -> m b\n"
 "Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
-msgstr "```repl Tutorial.IO> :t (>>=) Prelude.>>= : Monad m => m a -> (a -> m b) -> m b Tutorial.IO.>>= : Vect m a -> ( a -> Vect n b) -> Vect (m * n) b ```"
+msgstr ""
+"Tutorial.IO> :t (>>=)\n"
+"Prelude.>>= : Monad m => m a -> (a -> m b) -> m b\n"
+"Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:633
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, if we load this module in a REPL session and\n"
 "inspect the type of `(>>=)`, we get two results as two\n"
@@ -1744,21 +1800,29 @@ msgid ""
 "the REPL to print the type of our custom *bind* operator,\n"
 "is is sufficient to prefix it with `IO`, although we could\n"
 "also prefix it with its full namespace:\n"
-msgstr "如您所见，如果我们在 REPL 会话中加载此模块并检查 `(>>=)` 的类型，我们会得到两个结果，因为具有此名称的两个运算符都在范围内。如果我们只希望 REPL 打印我们自定义的 *bind* 运算符的类型，那么在它前面加上 `IO` 就足够了，尽管我们也可以在它前面加上完整的命名空间："
+msgstr ""
+"如您所见，如果我们在 REPL 会话中加载此模块并检查 `(>>=)` "
+"的类型，我们会得到两个结果，因为具有此名称的两个运算符都在范围内。"
+"如果我们只希望 REPL 打印我们自定义的 *bind* 运算符的类型，那么在它前面加上 "
+"`IO` 就足够了，尽管我们也可以在它前面加上完整的命名空间：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:634
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.IO> :t IO.(>>=)\n"
 "Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
 "Tutorial.IO> :t Tutorial.IO.(>>=)\n"
 "Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
-msgstr "```repl Tutorial.IO> :t IO.(>>=) Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b Tutorial.IO> : t Tutorial.IO.(>>=) Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b ```"
+msgstr ""
+"Tutorial.IO> :t IO.(>>=)\n"
+"Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
+"Tutorial.IO> :t Tutorial.IO.(>>=)\n"
+"Tutorial.IO.>>= : Vect m a -> (a -> Vect n b) -> Vect (m * n) b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:649
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since function names must be unique in their namespace and\n"
 "we still may want to define two overloaded versions of a function\n"
@@ -1768,11 +1832,15 @@ msgid ""
 "it to its own namespace (note, that all definitions in a\n"
 "namespace must be indented by the same amount of\n"
 "white space):\n"
-msgstr "由于函数名称在它们的命名空间中必须是唯一的，而且我们仍然可能希望在 Idris 模块中定义函数的两个重载版本，因此 Idris 可以为模块添加额外的命名空间。例如，为了定义另一个名为 `eval` 的函数，我们需要将它添加到它自己的命名空间中（注意，命名空间中的所有定义必须缩进相同数量的空格）："
+msgstr ""
+"由于函数名称在它们的命名空间中必须是唯一的，而且我们仍然可能希望在 Idris "
+"模块中定义函数的两个重载版本，因此 Idris 可以为模块添加额外的命名空间。例如，"
+"为了定义另一个名为 `eval` 的函数，我们需要将它添加到它自己的命名空间中（注意"
+"，命名空间中的所有定义必须缩进相同数量的空格）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:650
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "namespace Foo\n"
 "  export\n"
@@ -1782,21 +1850,31 @@ msgid ""
 "-- prefixing `eval` with its namespace is not strictly necessary here\n"
 "testFooEval : Nat\n"
 "testFooEval = Foo.eval 12 100\n"
-msgstr "-- 在 `eval` 前加上它的命名空间并不是绝对必要的 testFooEval : Nat testFooEval = Foo.eval 12 100 ```"
+msgstr ""
+"namespace Foo\n"
+"  export\n"
+"  eval : Nat -> Nat -> Nat\n"
+"  eval = (*)\n"
+"\n"
+"-- prefixing `eval` with its namespace is not strictly necessary here\n"
+"testFooEval : Nat\n"
+"testFooEval = Foo.eval 12 100\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:665
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, here is an important thing: For functions and data types to\n"
 "be accessible from outside their namespace or module, they need to\n"
 "be *exported* by annotating them with the `export` or `public export`\n"
 "keywords.\n"
-msgstr "现在，这里有一件重要的事情：对于要从其命名空间或模块外部访问的函数和数据类型，需要通过使用 `export` 或 ` 注释它们来 *exported*公共导出` 关键字。"
+msgstr ""
+"现在，这里有一件重要的事情：对于要从其命名空间或模块外部访问的函数和数据类型"
+"，需要通过使用 `export` 或 `public export` 关键字注释它们来 *导出*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:674
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The difference between `export` and `public export` is the following:\n"
 "A function annotated with `export` exports its type and can be\n"
@@ -1806,95 +1884,104 @@ msgid ""
 "implementation. This is necessary to use the function in compile-time\n"
 "computations. A data type annotated with `public export`\n"
 "exports its data constructors as well.\n"
-msgstr "`export` 和 `public export` 的区别如下：用 `export` 注解的函数导出其类型，可以从其他命名空间调用。使用 `export` 注释的数据类型导出其类型构造函数，但不导出其数据构造函数。使用 `public export` 注释的函数也会导出其实现。这是在编译时计算中使用该函数所必需的。使用 `public export` 注释的数据类型也会导出其数据构造函数。"
+msgstr ""
+"`export` 和 `public export` 的区别如下：用 `export` "
+"注解的函数导出其类型，可以从其他命名空间调用。使用 `export` "
+"注释的数据类型导出其类型构造函数，但不导出其数据构造函数。使用 `public "
+"export` 注释的函数也会导出其实现。这是在编译时计算中使用该函数所必需的。使用 "
+"`public export` 注释的数据类型也会导出其数据构造函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:680
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In general, consider annotating data types with `public export`,\n"
 "since otherwise you will not be able to create values of these\n"
 "types or deconstruct them in pattern matches. Likewise, unless you\n"
 "plan to use your functions in compile-time computations, annotate\n"
 "them with `export`.\n"
-msgstr "通常，请考虑使用 `public export` 注释数据类型，否则您将无法创建这些类型的值或在模式匹配中解构它们。同样，除非您打算在编译时计算中使用您的函数，否则请使用 `export` 注释它们。"
+msgstr ""
+"通常，请考虑使用 `public export` 注释数据类型，否则您将无法创建这些类型的值或"
+"在模式匹配中解构它们。同样，除非您打算在编译时计算中使用您的函数，否则请使用 "
+"`export` 注释它们。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:681
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Bind, with a Bang"
-msgstr "### 绑定，砰的一声"
+msgstr "绑定，砰的一声"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:688
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, even *do blocks* are too noisy to express a\n"
 "combination of effectful computations. In this case, we\n"
 "can prefix the effectful parts with an exclamation mark\n"
 "(wrapping them in parentheses if they contain additional\n"
 "white space), while leaving pure expressions unmodified:\n"
-msgstr "有时，即使是 *do 块 * 也过于嘈杂，无法表达有效计算的组合。在这种情况下，我们可以在有效部分前面加上一个感叹号（如果它们包含额外的空格，则将它们括在括号中），同时保持纯表达式不变："
+msgstr ""
+"有时，即使是 *do 块* 也过于嘈杂，无法表达有效计算的组合。在这种情况下，我们可"
+"以在副作用部分前面加上一个感叹号（如果它们包含额外的空格，则将它们括在括号中"
+"），同时保持纯表达式不变：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:689
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "getHello : IO ()\n"
 "getHello = putStrLn $ \"Hello \" ++ !getLine ++ \"!\"\n"
-msgstr "```idris getHello : IO () getHello = putStrLn $ \"Hello\" ++ !getLine ++ \"!\" ```"
+msgstr ""
+"getHello : IO ()\n"
+"getHello = putStrLn $ \"Hello \" ++ !getLine ++ \"!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:695
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The above gets desugared to the following *do block*:\n"
-msgstr "上面的内容被分解为以下 *do 块*："
+msgstr "上面的内容被分解为以下 *do 块*：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:696
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "getHello' : IO ()\n"
 "getHello' = do\n"
 "  s <- getLine\n"
 "  putStrLn $ \"Hello \" ++ s ++ \"!\"\n"
 msgstr ""
-"```伊德里斯\n"
 "getHello' : IO ()\n"
-"getHello' = 做\n"
-"  s <- 获取线\n"
-"  putStrLn $ \"你好\" ++ s ++ \"！\"\n"
-"```\n"
+"getHello' = do\n"
+"  s <- getLine\n"
+"  putStrLn $ \"Hello \" ++ s ++ \"!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:704
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here is another example:\n"
-msgstr "这是另一个例子："
+msgstr "这是另一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:705
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "bangExpr : String -> String -> String -> Maybe Integer\n"
 "bangExpr s1 s2 s3 =\n"
 "  Just $ !(parseInteger s1) + !(parseInteger s2) * !(parseInteger s3)\n"
 msgstr ""
-"```伊德里斯\n"
-"bangExpr : 字符串 -> 字符串 -> 字符串 -> 也许整数\n"
+"bangExpr : String -> String -> String -> Maybe Integer\n"
 "bangExpr s1 s2 s3 =\n"
-"  只需 $ !(parseInteger s1) + !(parseInteger s2) * !(parseInteger s3)\n"
-"```\n"
+"  Just $ !(parseInteger s1) + !(parseInteger s2) * !(parseInteger s3)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:712
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "And here is the desugared *do block*:\n"
-msgstr "这是脱糖的 *do 块*："
+msgstr "这是脱糖的 *do 块*：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:713
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "bangExpr' : String -> String -> String -> Maybe Integer\n"
 "bangExpr' s1 s2 s3 = do\n"
@@ -1903,39 +1990,38 @@ msgid ""
 "  x3 <- parseInteger s3\n"
 "  Just $ x1 + x2 * x3\n"
 msgstr ""
-"```伊德里斯\n"
-"bangExpr' : 字符串 -> 字符串 -> 字符串 -> 可能整数\n"
-"bangExpr' s1 s2 s3 = 做\n"
+"bangExpr' : String -> String -> String -> Maybe Integer\n"
+"bangExpr' s1 s2 s3 = do\n"
 "  x1 <- parseInteger s1\n"
 "  x2 <- parseInteger s2\n"
 "  x3 <- parseInteger s3\n"
-"  只需 $ x1 + x2 * x3\n"
-"```\n"
+"  Just $ x1 + x2 * x3\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:727
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Please remember the following: Syntactic sugar has been introduced\n"
 "to make code more readable or more convenient to write. If\n"
 "it is abused just to show how clever you are, you make things\n"
 "harder for other people (including your future self!)\n"
 "reading and trying to understand your code.\n"
-msgstr "请记住以下几点： 已引入语法糖以使代码更具可读性或更方便编写。如果它被滥用只是为了展示你有多聪明，你会让其他人（包括你未来的自己！）阅读和试图理解你的代码变得更加困难。"
+msgstr ""
+"请记住以下几点： 已引入语法糖以使代码更具可读性或更方便编写。如果它被滥用只是"
+"为了展示你有多聪明，你会让其他人（包括你未来的自己！）阅读和试图理解你的代码"
+"变得更加困难。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/IO.md:733
-#, fuzzy
 msgid ""
 "Reimplement the following *do blocks*, once by using *bang notation*, and "
 "once by writing them in their desugared form with nested *bind*s:"
-msgstr ""
-"重新实现以下 *do 块*，一次使用 *bang notation*，一次通过嵌套 *bind*s 以脱糖形"
-"式编写它们："
+msgstr "重新实现以下 *do 块*，一次使用 *bang notation*，一次通过嵌套 *bind*s "
+"以脱糖形式编写它们："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:734
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   ex1a : IO String\n"
 "   ex1a = do\n"
@@ -1950,18 +2036,21 @@ msgid ""
 "     n2 <- parseInteger \"300\"\n"
 "     Just $ n1 + n2 * 100\n"
 msgstr ""
-"```伊德里斯\n"
-"加糖1：IO（）\n"
-"加糖1 = 做\n"
-"  str1 <- 获取线\n"
-"  str2 <- 获取线\n"
-"  str3 <- 获取线\n"
-"  putStrLn (str1 ++ str2 ++ str3)\n"
-"```\n"
+"   ex1a : IO String\n"
+"   ex1a = do\n"
+"     s1 <- getLine\n"
+"     s2 <- getLine\n"
+"     s3 <- getLine\n"
+"     pure $ s1 ++ reverse s2 ++ s3\n"
+"\n"
+"   ex1b : Maybe Integer\n"
+"   ex1b = do\n"
+"     n1 <- parseInteger \"12\"\n"
+"     n2 <- parseInteger \"300\"\n"
+"     Just $ n1 + n2 * 100\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/IO.md:752
-#, fuzzy
 msgid ""
 "Below is the definition of an indexed family of types, the index of which "
 "keeps track of whether the value in question is possibly empty or provably "
@@ -1970,7 +2059,7 @@ msgstr "下面是索引类型族的定义，其索引跟踪所讨论的值是否
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:766
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Please note, that the `Nil` case *must* have the `nonEmpty`\n"
 "   tag set to `False`, while with the *cons* case, this is\n"
@@ -1980,45 +2069,38 @@ msgid ""
 "   be a *cons*, as for the `Nil` case the `nonEmpty` tag is\n"
 "   always set to `False`.\n"
 msgstr ""
-"   请注意，`Nil` 案例 * 必须 * 具有 `nonEmpty`\n"
-"   标签设置为 `False`，而在 *cons* 的情况下，这是\n"
-"   可选的。因此，a `List01 False a` 可以为空或非空，\n"
-"   我们只会通过模式找出情况\n"
-"   匹配它。 A `List01 True a` 另一方面 * 必须*\n"
-"   是 *cons*，对于 `Nil` 的情况， `nonEmpty` 标签是\n"
-"   始终设置为 `False`。\n"
+"   请注意，`Nil` 分支 *必须* 有一个值为 `False` 的 `nonEmpty` 标签，而在 "
+"*cons* 的情况下，这是可选的。因此，`List01 False a` 可以为空或非空，\n"
+"   我们只会通过模式找出匹配它的情况。 另一方面， `List01 True a` *必须* 是 "
+"*cons*，对于 `Nil` 的情况， `nonEmpty` 标签应始终设置为 `False`。\n"
 
 #. type: Bullet: '   1. '
 #: ../src/Tutorial/IO.md:768
-#, fuzzy
 msgid "Declare and implement function `head` for non-empty lists:"
 msgstr "为非空列表声明并实现函数 `head`："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:772
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      head : List01 True a -> a\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      头部：List01 真 a -> a\n"
+"      ```idris\n"
+"      head : List01 True a -> a\n"
 "      ```\n"
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/IO.md:776
-#, fuzzy
 msgid ""
 "Declare and implement function `weaken` for converting any `List01 ne a` to "
 "a `List01 False a` of the same length and order of values."
-msgstr ""
-"声明并实现函数 `weaken` 用于将任何 `List01 ne a` 转换为具有相同长度和值顺序"
-"的 `List01 False a`。"
+msgstr "声明并实现函数 `weaken` 用于将任何 `List01 ne a` "
+"转换为具有相同长度和值顺序的 `List01 False a`。"
 
 #. type: Bullet: '   3. '
 #: ../src/Tutorial/IO.md:779
-#, fuzzy
 msgid ""
 "Declare and implement function `tail` for extracting the possibly empty tail "
 "from a non-empty list."
@@ -2026,7 +2108,6 @@ msgstr "声明并实现函数 `tail` 用于从非空列表中提取可能为空�
 
 #. type: Bullet: '   4. '
 #: ../src/Tutorial/IO.md:784
-#, fuzzy
 msgid ""
 "Implement function `(++)` for concatenating two values of type `List01`. "
 "Note, how we use a type-level computation to make sure the result is non-"
@@ -2037,19 +2118,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:788
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a\n"
 "      ```\n"
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/IO.md:794
-#, fuzzy
 msgid ""
 "Implement utility function `concat'` and use it in the implementation of "
 "`concat`. Note, that in `concat` the two boolean tags are passed as "
@@ -2062,59 +2142,56 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:797
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      concat' : List01 ne1 (List01 ne2 a) -> List01 False a\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      concat' : List01 ne1 (List01 ne2 a) -> List01 False a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:802
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      concat :  {ne1, ne2 : _}\n"
 "             -> List01 ne1 (List01 ne2 a)\n"
 "             -> List01 (ne1 && ne2) a\n"
 "      ```\n"
 msgstr ""
-"      连接：{ne1，ne2：_}\n"
+"      concat :  {ne1, ne2 : _}\n"
 "             -> List01 ne1 (List01 ne2 a)\n"
-"             -> List01 (ne1 && ne2) 一个\n"
+"             -> List01 (ne1 && ne2) a\n"
 "      ```\n"
 
 #. type: Bullet: '   6. '
 #: ../src/Tutorial/IO.md:804
-#, fuzzy
 msgid "Implement `map01`:"
 msgstr "实现 `map01`："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:808
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      map01 : (a -> b) -> List01 ne a -> List01 ne b\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      map01 : (a -> b) -> List01 ne a -> List01 ne b\n"
 "      ```\n"
 
 #. type: Bullet: '   7. '
 #: ../src/Tutorial/IO.md:811
-#, fuzzy
 msgid ""
 "Implement a custom *bind* operator in namespace `List01` for sequencing "
 "computations returning `List01`s."
-msgstr ""
-"在命名空间 `List01` 中实现自定义 *bind* 运算符，用于对返回 `List01`s 的计算进"
-"行排序。"
+msgstr "在命名空间 `List01` 中实现自定义 *bind* 运算符，用于对返回 `List01`s "
+"的计算进行排序。"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:814
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Hint: Use `map01` and `concat` in your implementation and\n"
 "      make sure to use unrestricted implicits where necessary.\n"
@@ -2124,7 +2201,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:817
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      You can use the following examples to test your\n"
 "      custom *bind* operator:\n"
@@ -2134,7 +2211,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:823
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      -- this and lf are necessary to make sure, which tag to use\n"
@@ -2142,25 +2219,25 @@ msgid ""
 "      lt : List01 True a -> List01 True a\n"
 "      lt = id\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      -- this 和 lf 是确定使用哪个标签所必需的\n"
-"      -- 使用列表文字时\n"
+"      ```idris\n"
+"      -- this and lf are necessary to make sure, which tag to use\n"
+"      -- when using list literals\n"
 "      lt : List01 True a -> List01 True a\n"
 "      lt = id\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:826
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      lf : List01 False a -> List01 False a\n"
 "      lf = id\n"
 msgstr ""
-"      lf : List01 假 a -> List01 假 a\n"
-"      lf = 身份证\n"
+"      lf : List01 False a -> List01 False a\n"
+"      lf = id\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:833
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      test : List01 True Integer\n"
 "      test = List01.do\n"
@@ -2169,16 +2246,16 @@ msgid ""
 "        op <- lt [(*), (+), (-)]\n"
 "        [op x y]\n"
 msgstr ""
-"      测试：List01 真整数\n"
-"      测试 = List01.do\n"
-"        x <- lt [1,2,3]\n"
-"        y <- lt [4,5,6,7]\n"
+"      test : List01 True Integer\n"
+"      test = List01.do\n"
+"        x  <- lt [1,2,3]\n"
+"        y  <- lt [4,5,6,7]\n"
 "        op <- lt [(*), (+), (-)]\n"
-"        [操作 x y]\n"
+"        [op x y]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:841
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      test2 : List01 False Integer\n"
 "      test2 = List01.do\n"
@@ -2188,17 +2265,17 @@ msgid ""
 "        lt [op x y]\n"
 "      ```\n"
 msgstr ""
-"      test2 : List01 假整数\n"
+"      test2 : List01 False Integer\n"
 "      test2 = List01.do\n"
-"        x <- lt [1,2,3]\n"
-"        y <- 无 {a = 整数}\n"
+"        x  <- lt [1,2,3]\n"
+"        y  <- Nil {a = Integer}\n"
 "        op <- lt [(*), (+), (-)]\n"
 "        lt [op x y]\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:857
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Some notes on Exercise 2: Here, we combined the capabilities\n"
 "of `List` and `Data.List1` in a single indexed type family.\n"
@@ -2215,11 +2292,18 @@ msgid ""
 "values of the indices from pattern matching on the data\n"
 "values alone, so they have to be passed as unerased\n"
 "(possibly implicit) arguments.\n"
-msgstr "练习 2 的一些注意事项：在这里，我们将 `List` 和 `Data.List1` 的功能组合在一个索引类型族中。这使我们能够正确处理列表连接：如果至少有一个参数可证明是非空的，则结果也是非空的。为了用 `List` 和 `List1` 正确解决这个问题，总共需要编写四个连接函数。因此，虽然通常可以定义不同的数据类型而不是索引族，但后者允许我们执行类型级计算，以更精确地了解我们编写的函数的前置条件和后置条件，但代价是更复杂类型签名。此外，有时不可能仅从数据值的模式匹配中导出索引的值，因此必须将它们作为未擦除（可能是隐式）参数传递。"
+msgstr ""
+"练习 2 的一些注意事项：在这里，我们将 `List` 和 `Data.List1` 的函数组合在一个"
+"索引类型族中。这使我们能够正确处理列表连接：如果至少有一个参数可证明是非空的"
+"，则结果也是非空的。为了用 `List` 和 `List1` 正确解决这个问题，总共需要编写四"
+"个连接函数。因此，虽然通常可以定义不同的数据类型而不是索引族，但后者允许我们"
+"执行类型级计算，以更精确地了解我们编写的函数的前置条件和后置条件，但代价是更"
+"复杂类型签名。此外，有时不可能仅从数据值的模式匹配中导出索引的值，因此必须将"
+"它们作为未擦除（可能是隐式）参数传递。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:864
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Please remember, that *do blocks* are first desugared, before\n"
 "type-checking, disambiguating which *bind* operator to use,\n"
@@ -2227,34 +2311,42 @@ msgid ""
 "to define *bind* operators with arbitrary constraints or\n"
 "implicit arguments as was shown above. Idris will handle\n"
 "all the details, *after* desugaring the *do blocks*.\n"
-msgstr "请记住，首先对 *do 块* 进行脱糖，然后再进行类型检查、消除使用哪个 *bind* 运算符的歧义以及填充隐式参数。因此，使用任意约束或隐式参数定义 *bind* 运算符是非常好的，如上所示。 Idris 将处理所有细节，* 在 * 脱糖 *do 块* 之后。"
+msgstr ""
+"请记住，首先对 *do 块* 进行脱糖，然后再进行类型检查、消除使用哪个 *bind* "
+"运算符的歧义以及填充隐式参数。因此，使用任意约束或隐式参数定义 *bind* "
+"运算符是非常好的，如上所示。 Idris 将脱糖 *do 块* *之后*处理所有细节。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/IO.md:865
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Working with Files"
-msgstr "## 使用文件"
+msgstr "使用文件"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:872
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Module `System.File` from the *base* library exports utilities necessary\n"
 "to work with file handles and read and write from and to files. When\n"
 "you have a file path (for instance \"/home/hock/idris/tutorial/tutorial.ipkg\"),\n"
 "the first thing we will typically do is to try and create a file handle\n"
 "(of type `System.File.File` by calling `fileOpen`).\n"
-msgstr "*base* 库中的模块 `System.File` 导出处理文件句柄和读取和写入文件所需的实用程序。当您有一个文件路径（例如“/home/hock/idris/tutorial/tutorial.ipkg”）时，我们通常会做的第一件事是尝试创建一个文件句柄（类型为 `System.File. File` 通过调用 `fileOpen`）。"
+msgstr ""
+"*base* 库中的模块 `System.File` "
+"导出处理文件句柄和读取和写入文件所需的实用程序。当您有一个文件路径（例如“/"
+"home/hock/idris/tutorial/tutorial."
+"ipkg”）时，我们通常会做的第一件事是尝试创建一个文件句柄（类型为 `"
+"System.File. File` 通过调用 `fileOpen`）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:874
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here is a program for counting all empty lines in a Unix/Linux-file:\n"
-msgstr "这是一个计算 Unix/Linux 文件中所有空行的程序："
+msgstr "这是一个计算 Unix/Linux 文件中所有空行的程序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:875
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "covering\n"
 "countEmpty : (path : String) -> IO (Either FileError Nat)\n"
@@ -2267,22 +2359,21 @@ msgid ""
 "            | Left err => closeFile file $> Left err\n"
 "          go (k + 1) file\n"
 msgstr ""
-"```伊德里斯\n"
-"覆盖\n"
-"countEmpty：（路径：字符串）-> IO（FileError Nat）\n"
+"covering\n"
+"countEmpty : (path : String) -> IO (Either FileError Nat)\n"
 "countEmpty path = openFile path Read >>= either (pure . Left) (go 0)\n"
-"  覆盖的地方：Nat -> File -> IO（FileError Nat）\n"
-"        去k文件=做\n"
-"          错误 <- fEOF 文件 | True => closeFile 文件 $> 右 k\n"
-"          右 \"\\n\" <- fGetLine 文件\n"
-"            |对 _ => 去 k 文件\n"
+"  where covering go : Nat -> File -> IO (Either FileError Nat)\n"
+"        go k file = do\n"
+"          False <- fEOF file | True => closeFile file $> Right k\n"
+"          Right \"\\n"
+"\" <- fGetLine file\n"
+"            | Right _  => go k file\n"
 "            | Left err => closeFile file $> Left err\n"
-"          去（k + 1）文件\n"
-"```\n"
+"          go (k + 1) file\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:894
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the example above, I invoked `(>>=)` without starting a *do block*.\n"
 "Make sure you understand what's going on here. Reading concise functional\n"
@@ -2290,11 +2381,15 @@ msgid ""
 "Have a look at function `either` at the REPL, try figuring out what\n"
 "`(pure . Left)` does, and note how we use a curried version of `go`\n"
 "as the second argument to `either`.\n"
-msgstr "在上面的示例中，我调用了 `(>>=)` 而不启动 *do 块*。确保你了解这里发生了什么。阅读简洁的功能代码对于理解其他人的代码很重要。查看 REPL 中的函数 `either`，尝试弄清楚 `(pure . Left)` 做了什么，并注意我们如何使用 `go` 的柯里化版本`either` 的第二个参数。"
+msgstr ""
+"在上面的示例中，我调用了 `(>>=)` 而不启动 *do "
+"块*。确保你了解这里发生了什么。阅读简洁的函数代码对于理解其他人的代码很重要。"
+"查看 REPL 中的函数 `either`，尝试弄清楚 `(pure . Left)` 做了什么，"
+"并注意我们如何使用 `go` 的柯里化版本`either` 的第二个参数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:905
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Function `go` calls for some additional explanations. First, note how\n"
 "we used the same syntax for pattern matching intermediary results\n"
@@ -2306,27 +2401,36 @@ msgid ""
 "`fGetLine` will return the line including its trailing newline character\n"
 "`'\\n'`, so in order to check for empty lines, we have to match against\n"
 "`\"\\n\"` instead of the empty string `\"\"`.\n"
-msgstr "函数 `go` 需要一些额外的解释。首先，请注意我们如何使用与 `let` 绑定相同的语法来进行模式匹配中间结果。如您所见，我们可以使用多个垂直条来处理多个附加模式。为了从文件中读取单行，我们使用函数 `fGetLine`。与使用文件系统的大多数操作一样，此函数可能会因 `FileError` 而失败，我们必须正确处理。另请注意，`fGetLine` 将返回包含其尾随换行符 `'\\n'` 的行，因此为了检查空行，我们必须匹配 `\"\\ n\"` 而不是空字符串 `\"\"`。"
+msgstr ""
+"函数 `go` 需要一些额外的解释。首先，请注意我们如何使用与 `let` 绑定相同的语法"
+"来进行模式匹配中间结果。如您所见，我们可以使用多个垂直条来处理多个附加模式。"
+"为了从文件中读取单行，我们使用函数 "
+"`fGetLine`。与使用文件系统的大多数操作一样，此函数可能会因 `FileError` "
+"而失败，我们必须正确处理。另请注意，`fGetLine` 将返回包含其尾随换行符 `'\\n"
+"'` 的行，因此为了检查空行，我们必须匹配 `\"\\ n\"` 而不是空字符串 `\"\"`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:910
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, `go` is not provably total and rightfully so.\n"
 "Files like `/dev/urandom` or `/dev/zero` provide infinite\n"
 "streams of data, so `countEmpty` will never\n"
 "terminate when invoked with such a file path.\n"
-msgstr "最后，`go` 不能被证明是完全的并且是正确的。像 `/dev/urandom` 或 `/dev/zero` 这样的文件提供了无限的数据流，所以当使用这样的文件路径调用时，`countEmpty` 永远不会终止。"
+msgstr ""
+"最后，`go` 不能被证明是完全的并且是正确的。像 `/dev/urandom` 或 `/dev/zero` "
+"这样的文件提供了无限的数据流，所以当使用这样的文件路径调用时，`countEmpty` "
+"永远不会终止。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/IO.md:911
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Safe Resource Handling"
-msgstr "### 安全资源处理"
+msgstr "安全资源处理"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:919
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how we had to manually open and close the file handle in\n"
 "`countEmpty`. This is error-prone and tedious. Resource handling\n"
@@ -2334,11 +2438,14 @@ msgid ""
 "details here, but there is a convenient function exported\n"
 "from `System.File`: `withFile`, which handles the opening,\n"
 "closing and handling of file errors for us.\n"
-msgstr "注意，我们必须手动打开和关闭 `countEmpty` 中的文件句柄。这是容易出错且乏味的。资源处理是一个很大的话题，这里肯定不赘述，但是从`System.File`导出一个方便的函数：`withFile`，处理打开，为我们关闭和处理文件错误。"
+msgstr ""
+"注意，我们必须手动打开和关闭 `countEmpty` 中的文件句柄。这是容易出错且乏味的"
+"。资源处理是一个很大的话题，这里肯定不赘述，但是从`System."
+"File`导出一个方便的函数：`withFile`，处理打开，为我们关闭和处理文件错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:920
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "covering\n"
 "countEmpty' : (path : String) -> IO (Either FileError Nat)\n"
@@ -2351,38 +2458,39 @@ msgid ""
 "            | Left err => pure (Left err)\n"
 "          go (k + 1) file\n"
 msgstr ""
-"```伊德里斯\n"
-"覆盖\n"
-"countEmpty'：（路径：字符串）-> IO（FileError Nat）\n"
+"covering\n"
+"countEmpty' : (path : String) -> IO (Either FileError Nat)\n"
 "countEmpty' path = withFile path Read pure (go 0)\n"
-"  覆盖的地方：Nat -> File -> IO（FileError Nat）\n"
-"        去k文件=做\n"
-"          错误 <- fEOF 文件 |真 => 纯（右 k）\n"
-"          右 \"\\n\" <- fGetLine 文件\n"
-"            |对 _ => 去 k 文件\n"
-"            |左错误 => 纯（左错误）\n"
-"          去（k + 1）文件\n"
-"```\n"
+"  where covering go : Nat -> File -> IO (Either FileError Nat)\n"
+"        go k file = do\n"
+"          False <- fEOF file | True => pure (Right k)\n"
+"          Right \"\\n"
+"\" <- fGetLine file\n"
+"            | Right _  => go k file\n"
+"            | Left err => pure (Left err)\n"
+"          go (k + 1) file\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:937
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Go ahead, and have a look at the type of `withFile`, then\n"
 "have a look how we use it to simplify the implementation of\n"
 "`countEmpty'`. Reading and understanding slightly more complex\n"
 "function types is important when learning to program in Idris.\n"
-msgstr "来吧，看看 `withFile` 的类型，然后看看我们如何使用它来简化 `countEmpty'` 的实现。在学习 Idris 编程时，阅读和理解稍微复杂的函数类型很重要。"
+msgstr ""
+"来吧，看看 `withFile` 的类型，然后看看我们如何使用它来简化 `countEmpty'` "
+"的实现。在学习 Idris 编程时，阅读和理解稍微复杂的函数类型很重要。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/IO.md:938
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interface `HasIO`"
-msgstr "####接口`HasIO`"
+msgstr "`HasIO` 接口"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:948
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When you look at the `IO` functions we used so far, you'll\n"
 "notice that most if not all of them actually don't work\n"
@@ -2392,11 +2500,16 @@ msgid ""
 "use cases for this in later chapters, especially when we\n"
 "talk about monad transformers. For now, you can treat these\n"
 "`io` parameters as being specialized to `IO`.\n"
-msgstr "当您查看我们目前使用的 `IO` 函数时，您会注意到大多数（如果不是全部）实际上不适用于 `IO` 本身，而是使用类型参数 [X158X ]io`，约束为 `HasIO`。该接口允许我们将 * 提升 * 类型为 `IO a` 的值放入另一个上下文中。我们将在后面的章节中看到这方面的用例，尤其是当我们谈论 monad 转换器时。现在，您可以将这些 `io` 参数视为专用于 `IO`。"
+msgstr ""
+"当您查看我们目前使用的 `IO` 函数时，您会注意到大多数（如果不是全部）"
+"实际上不适用于 `IO` 本身，而是使用类型参数 `io`，约束为 `HasIO`。"
+"该接口允许我们将 *提升* 类型为 `IO a` "
+"的值放入另一个上下文中。我们将在后面的章节中看到这方面的用例，"
+"尤其是当我们谈论 monad 转换器时。现在，您可以将这些 `io` 参数视为专用于 "
+"`IO`。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/IO.md:959
-#, fuzzy
 msgid ""
 "As we have seen in the examples above, `IO` actions working with file "
 "handles often come with the risk of failure. We can therefore simplify "
@@ -2405,14 +2518,14 @@ msgid ""
 "following utility functions and use these to further cleanup the "
 "implementation of `countEmpty'`:"
 msgstr ""
-"正如我们在上面的示例中所看到的，使用文件句柄的 `IO` 操作通常会带来失败的风"
-"险。因此，我们可以通过编写一些实用函数和自定义 *bind* 运算符来处理这些嵌套效"
-"果来简化事情。在新的命名空间 `IOErr` 中，实现以下实用函数并使用它们进一步清"
-"理 `countEmpty'` 的实现："
+"正如我们在上面的示例中所看到的，使用文件句柄的 `IO` "
+"操作通常会带来失败的风险。因此，我们可以通过编写一些实用函数和自定义 *bind* "
+"运算符来处理这些嵌套效果来简化事情。在新的命名空间 `IOErr` 中，"
+"实现以下实用函数并使用它们进一步清理 `countEmpty'` 的实现："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:960
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   pure : a -> IO (Either e a)\n"
 "\n"
@@ -2426,13 +2539,13 @@ msgid ""
 "\n"
 "   (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)\n"
 msgstr ""
-"   纯：a -> IO（要么 e a）\n"
+"   pure : a -> IO (Either e a)\n"
 "\n"
-"   失败：e -> IO（要么 e a）\n"
+"   fail : e -> IO (Either e a)\n"
 "\n"
-"   电梯：IO a -> IO（要么 e a）\n"
+"   lift : IO a -> IO (Either e a)\n"
 "\n"
-"   抓住：IO（e1 a）->（e1-> IO（e2 a））-> IO（e2 a）\n"
+"   catch : IO (Either e1 a) -> (e1 -> IO (Either e2 a)) -> IO (Either e2 a)\n"
 "\n"
 "   (>>=) : IO (Either e a) -> (a -> IO (Either e b)) -> IO (Either e b)\n"
 "\n"
@@ -2440,7 +2553,6 @@ msgstr ""
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/IO.md:977
-#, fuzzy
 msgid ""
 "Write a function `countWords` for counting the words in a file.  Consider "
 "using `Data.String.words` and the utilities from exercise 1 in your "
@@ -2451,20 +2563,19 @@ msgstr ""
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/IO.md:983
-#, fuzzy
 msgid ""
 "We can generalize the functionality used in `countEmpty` and `countWords`, "
 "by implementing a helper function for iterating over the lines in a file and "
 "accumulating some state along the way. Implement `withLines` and use it to "
 "reimplement `countEmpty` and `countWords`:"
 msgstr ""
-"我们可以概括 `countEmpty` 和 `countWords` 中使用的功能，通过实现一个辅助函数"
-"来迭代文件中的行并在此过程中累积一些状态。实现 `withLines` 并用它重新实现 "
-"`countEmpty` 和 `countWords`："
+"我们可以概括 `countEmpty` 和 `countWords` "
+"中使用的功能，通过实现一个辅助函数来迭代文件中的行并在此过程中累积一些状态。"
+"实现 `withLines` 并用它重新实现 `countEmpty` 和 `countWords`："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:984
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   covering\n"
 "   withLines :  (path : String)\n"
@@ -2472,28 +2583,25 @@ msgid ""
 "             -> (initialState : s)\n"
 "             -> IO (Either FileError s)\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   覆盖\n"
-"   withLines：（路径：字符串）\n"
-"             -> (accum : s -> 字符串 -> s)\n"
-"             ->（初始状态：s）\n"
-"             -> IO（文件错误）\n"
-"   ```\n"
+"   covering\n"
+"   withLines :  (path : String)\n"
+"             -> (accum : s -> String -> s)\n"
+"             -> (initialState : s)\n"
+"             -> IO (Either FileError s)\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/IO.md:996
-#, fuzzy
 msgid ""
 "We often use a `Monoid` for accumulating values.  It is therefore convenient "
 "to specialize `withLines` for this case. Use `withLines` to implement "
 "`foldLines` according to the type given below:"
 msgstr ""
-"我们经常使用 `Monoid` 来累加值。因此在这种情况下特化 `withLines` 很方便。使"
-"用 `withLines` 根据下面给出的类型实现 `foldLines`："
+"我们经常使用 `Monoid` 来累加值。因此在这种情况下特化 `withLines` 很方便。"
+"使用 `withLines` 根据下面给出的类型实现 `foldLines`："
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:997
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   covering\n"
 "   foldLines :  Monoid s\n"
@@ -2501,46 +2609,46 @@ msgid ""
 "             -> (f    : String -> s)\n"
 "             -> IO (Either FileError s)\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   覆盖\n"
-"   foldLines : Monoid s\n"
-"             =>（路径：字符串）\n"
-"             -> (f: 字符串 -> s)\n"
-"             -> IO（文件错误）\n"
-"   ```\n"
+"   covering\n"
+"   foldLines :  Monoid s\n"
+"             => (path : String)\n"
+"             -> (f    : String -> s)\n"
+"             -> IO (Either FileError s)\n"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/IO.md:1012
-#, fuzzy
 msgid ""
 "Implement function `wordCount` for counting the number of lines, words, and "
 "characters in a text document. Define a custom record type together with an "
 "implementation of `Monoid` for storing and accumulating these values and use "
 "`foldLines` in your implementation of `wordCount`."
 msgstr ""
-"实现函数 `wordCount` 用于计算文本文档中的行数、单词数和字符数。定义自定义记录"
-"类型以及 `Monoid` 的实现，用于存储和累积这些值，并在 `wordCount` 的实现中使"
-"用 `foldLines`。"
+"实现函数 `wordCount` 用于计算文本文档中的行数、单词数和字符数。"
+"定义自定义记录类型以及 `Monoid` 的实现，用于存储和累积这些值，并在 "
+"`wordCount` 的实现中使用 `foldLines`。"
 
 #. type: Title ##
 #: ../src/Tutorial/IO.md:1013
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "How `IO` is Implemented"
-msgstr "## `IO` 是如何实现的"
+msgstr "`IO` 是如何实现的"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1019
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In this final section of an already lengthy chapter, we will risk\n"
 "a glance at how `IO` is implemented in Idris. It is interesting\n"
 "to note, that `IO` is not a built-in type but a regular data type\n"
 "with only one minor speciality. Let's learn about it at the REPL:\n"
-msgstr "在已经很长的一章的最后一节中，我们将冒险看一眼 `IO` 在 Idris 中是如何实现的。有趣的是，`IO` 不是内置类型，而是只有一个小特性的常规数据类型。让我们在 REPL 中了解它："
+msgstr ""
+"在已经很长的一章的最后一节中，我们将冒险看一眼 `IO` 在 Idris "
+"中是如何实现的。有趣的是，`IO` "
+"不是内置类型，而是只有一个小特性的常规数据类型。让我们在 REPL 中了解它：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1020
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.IO> :doc IO\n"
 "data PrimIO.IO : Type -> Type\n"
@@ -2552,86 +2660,88 @@ msgid ""
 "    HasLinearIO IO\n"
 "    Monad IO\n"
 msgstr ""
-"```repl\n"
-"教程.IO> :doc IO\n"
-"数据 PrimIO.IO：类型 -> 类型\n"
-"  总量：总计\n"
-"  构造函数： MkIO : (1 _ : PrimIO a) -> IO a\n"
-"  提示：\n"
-"    应用IO\n"
-"    函子 IO\n"
+"Tutorial.IO> :doc IO\n"
+"data PrimIO.IO : Type -> Type\n"
+"  Totality: total\n"
+"  Constructor: MkIO : (1 _ : PrimIO a) -> IO a\n"
+"  Hints:\n"
+"    Applicative IO\n"
+"    Functor IO\n"
 "    HasLinearIO IO\n"
-"    单子IO\n"
-"```\n"
+"    Monad IO\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1037
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, we learn that `IO` has a single data constructor\n"
 "called `MkIO`, which takes a single argument of type\n"
 "`PrimIO a` with quantity *1*. We are not going to\n"
 "talk about the quantities here, as in fact they are not\n"
 "important to understand how `IO` works.\n"
-msgstr "在这里，我们了解到 `IO` 有一个名为 `MkIO` 的单个数据构造函数，它采用类型为 `PrimIO a` 的单个参数，数量为 *1* .我们不打算在这里讨论数量，因为事实上它们对于理解 `IO` 的工作原理并不重要。"
+msgstr ""
+"在这里，我们了解到 `IO` 有一个名为 `MkIO` 的单个数据构造函数，它采用类型为 `"
+"PrimIO a` 的单个参数，定量为 *1* .我们不打算在这里讨论定量，"
+"因为事实上它们对于理解 `IO` 的工作原理并不重要。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1039
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Now, `PrimIO a` is a type alias for the following function:\n"
-msgstr "现在，`PrimIO a` 是以下函数的类型别名："
+msgstr "现在，`PrimIO a` 是以下函数的类型别名：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1040
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.IO> :printdef PrimIO\n"
 "PrimIO.PrimIO : Type -> Type\n"
 "PrimIO a = (1 _ : %World) -> IORes a\n"
-msgstr "```repl Tutorial.IO> :printdef PrimIO PrimIO.PrimIO : Type -> Type PrimIO a = (1 _ : %World) -> IORes a ```"
+msgstr ""
+"Tutorial.IO> :printdef PrimIO\n"
+"PrimIO.PrimIO : Type -> Type\n"
+"PrimIO a = (1 _ : %World) -> IORes a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1049
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Again, don't mind the quantities. There is only\n"
 "one piece of the puzzle missing: `IORes a`, which is\n"
 "a publicly exported record type:\n"
-msgstr "再次，不要介意数量。只缺少一块拼图：`IORes a`，这是一种公开导出的记录类型："
+msgstr "同样，不要介意定量。只缺少一块拼图：`IORes a`，这是一种公开导出的记录类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1050
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Solutions.IO> :doc IORes\n"
 "data PrimIO.IORes : Type -> Type\n"
 "  Totality: total\n"
 "  Constructor: MkIORes : a -> (1 _ : %World) -> IORes a\n"
 msgstr ""
-"```repl\n"
 "Solutions.IO> :doc IORes\n"
-"数据 PrimIO.IORes：类型 -> 类型\n"
-"  总量：总计\n"
-"  构造函数： MkIORes : a -> (1 _ : %World) -> IORes a\n"
-"```\n"
+"data PrimIO.IORes : Type -> Type\n"
+"  Totality: total\n"
+"  Constructor: MkIORes : a -> (1 _ : %World) -> IORes a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1059
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, to put this all together, `IO` is a wrapper around\n"
 "something similar to the following function type:\n"
-msgstr "所以，总而言之，`IO` 是一个类似于以下函数类型的包装器："
+msgstr "所以，总而言之，`IO` 是一个类似于以下函数类型的包装器：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1060
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "%World -> (a, %World)\n"
-msgstr "```repl %World -> (a, %World) ```"
+msgstr "%World -> (a, %World)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1072
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You can think of type `%World` as a placeholder for the\n"
 "state of the outside world of a program (file system,\n"
@@ -2641,11 +2751,16 @@ msgid ""
 "plus a result of type `a`. The world state being updated\n"
 "represents all the side effects describable in a computer\n"
 "program.\n"
-msgstr "您可以将类型 `%World` 视为程序外部世界状态（文件系统、内存、网络连接等）的占位符。从概念上讲，要执行 `IO a` 动作，我们将世界的当前状态传递给它，并作为回报获得更新的世界状态加上 `a` 类型的结果。正在更新的世界状态代表了计算机程序中可描述的所有副作用。"
+msgstr ""
+"您可以将类型 `%World` "
+"视为程序外部世界状态（文件系统、内存、网络连接等）的占位符。从概念上讲，"
+"要执行 `IO a` 动作，我们将世界的当前状态传递给它，"
+"并作为回报获得更新的世界状态加上 `a` "
+"类型的结果。正在更新的世界状态代表了计算机程序中可描述的所有副作用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1088
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, it is important to understand that there is no such\n"
 "thing as the *state of the world*. The `%World` type is\n"
@@ -2662,22 +2777,32 @@ msgid ""
 "type `%World` (it is an abstract, primitive type), and\n"
 "therefore we cannot ever extract a value of type `a`\n"
 "from an `IO a` action (modulo `unsafePerformIO`).\n"
-msgstr "现在，重要的是要了解世界上没有 * 状态 * 这样的东西。 `%World` 类型只是一个占位符，它被转换为某种常量，在运行时不会被检查。因此，如果我们有一个 `%World` 类型的值，我们可以将它传递给 `IO a` 动作并执行它，这正是运行时发生的情况：类型 `%World`（一个无趣的占位符，如 `null`、`0`，或者 - 如果是 JavaScript 后端 - `undefined`）被传递给`main` 函数，从而使整个程序运行起来。但是，不可能以编程方式创建 `%World` 类型的值（它是一种抽象的原始类型），因此我们永远无法从 `a` X760X]IO 一个 ` 动作（模 `unsafePerformIO`）。"
+msgstr ""
+"现在，重要的是要了解世界上没有 *状态* 这样的东西。 `%World` "
+"类型只是一个占位符，它被转换为某种常量，在运行时不会被检查。因此，"
+"如果我们有一个 `%World` 类型的值，我们可以将它传递给 `IO a` "
+"动作并执行它，这正是运行时发生的情况：类型 `%World`（一个无趣的占位符，如 "
+"`null`、`0`，或者 - 如果是 JavaScript 后端 - `undefined`）被传递给`main` "
+"函数，从而使整个程序运行起来。但是，不可能以编程方式创建 `%World` "
+"类型的值（它是一种抽象的原始类型），因此我们永远无法从 `IO a` 动作中提取 "
+"`a`（模 `unsafePerformIO`）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1094
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Once we will talk about monad transformers and the state\n"
 "monad, you will see that `IO` is nothing else but\n"
 "a state monad in disguise but with an abstract state\n"
 "type, which makes it impossible for us to run the\n"
 "stateful computation.\n"
-msgstr "一旦我们将讨论 monad 转换器和 state monad，你会发现 `IO` 只不过是一个伪装的 state monad，但具有抽象的状态类型，这使得我们无法运行有状态计算."
+msgstr ""
+"一旦我们将讨论 monad 转换器和状态 monad，你会发现 `IO` "
+"只不过是一个伪装的状态 "
+"monad，但具有抽象的状态类型，这使得我们无法运行有状态计算.\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:1099
-#, fuzzy
 msgid ""
 "Values of type `IO a` describe programs with side effects, which will "
 "eventually result in a value of type `a`."
@@ -2685,44 +2810,37 @@ msgstr "`IO a` 类型的值描述了具有副作用的程序，最终将导致 `
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:1104
-#, fuzzy
 msgid ""
 "While we cannot safely extract a value of type `a` from an `IO a`, we can "
 "use several combinators and syntactic constructs to combine `IO` actions and "
 "build more-complex programs."
-msgstr ""
-"虽然我们不能安全地从 `IO a` 中提取 `a` 类型的值，但我们可以使用多个组合子和句"
-"法结构来组合 `IO` 动作并构建更复杂的程式。"
+msgstr "虽然我们不能安全地从 `IO a` 中提取 `a` 类型的值，"
+"但我们可以使用多个组合子和句法结构来组合 `IO` 动作并构建更复杂的程式。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:1107
-#, fuzzy
 msgid ""
 "*Do blocks* offer a convenient way to run and combine `IO` actions "
 "sequentially."
-msgstr "*Do blocks* 提供了一种方便的方式来顺序运行和组合 `IO` 动作。"
+msgstr "*Do 语法块* 提供了一种方便的方式来顺序运行和组合 `IO` 动作。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:1110
-#, fuzzy
 msgid ""
 "*Do blocks* are desugared to nested applications of *bind* operators "
 "(`(>>=)`)."
-msgstr "*Do 块* 对 *bind* 运算符 (`(>>=)`) 的嵌套应用程序进行去糖化。"
+msgstr "*Do 语法块* 对 *bind* 运算符 (`(>>=)`) 的嵌套应用程序进行去糖化。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:1114
-#, fuzzy
 msgid ""
 "*Bind* operators, and thus *do blocks*, can be overloaded to achieve custom "
 "behavior instead of the default (monadic) *bind*."
-msgstr ""
-"*Bind* 操作符和 *do 块 * 可以被重载以实现自定义行为，而不是默认的（单子）"
-"*bind*。"
+msgstr "*Bind* 操作符和 *do 语法块* "
+"可以被重载以实现自定义行为，而不是默认的（单子）*bind*。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/IO.md:1117
-#, fuzzy
 msgid ""
 "Under the hood, `IO` actions are stateful computations operating on a "
 "symbolic `%World` state."
@@ -2730,9 +2848,11 @@ msgstr "在底层，`IO` 动作是在符号 `%World` 状态上运行的有状态
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:1123
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, that we had a glimpse at *monads* and the *bind* operator,\n"
 "it is time to in the [next chapter](Functor.md) introduce `Monad` and some\n"
 "related interfaces for real.\n"
-msgstr "现在，我们已经了解了 *monads* 和 *bind* 运算符，是时候在 [下一章](Functor.md) 中介绍 `Monad` 和一些相关的接口是真实的。"
+msgstr ""
+"现在，我们已经了解了 *monads* 和 *bind* 运算符，是时候在 [下一章](Functor.md)"
+" 中介绍 `Monad` 和一些和现实世界相关的接口。\n"
