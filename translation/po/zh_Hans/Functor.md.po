@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-11 14:05+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functor/zh_Hans/>\n"
@@ -430,7 +430,7 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Folds.md:996
 #: ../src/Tutorial/Functor.md:417 ../src/Tutorial/Traverse.md:285
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Crud : (i : Type) -> (a : Type) -> Type where\n"
 "     Create : (value : a) -> Crud i a\n"
@@ -438,29 +438,16 @@ msgid ""
 "     Read   : (id : i) -> Crud i a\n"
 "     Delete : (id : i) -> Crud i a\n"
 msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
-"     创建：（值：a）-> Crud i a\n"
-"     更新：（id：i）->（value：a）-> Crud i a\n"
-"     阅读：（id：i）-> Crud i a\n"
-"     删除 : (id : i) -> Crud i a\n"
-"   ```\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
-"     创建：（值：a）-> Crud i a\n"
-"     更新：（id：i）->（value：a）-> Crud i a\n"
-"     阅读：（id：i）-> Crud i a\n"
-"     删除 : (id : i) -> Crud i a\n"
-"   ```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     Create : (value : a) -> Crud i a\n"
+"     Update : (id : i) -> (value : a) -> Crud i a\n"
+"     Read   : (id : i) -> Crud i a\n"
+"     Delete : (id : i) -> Crud i a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1006 ../src/Tutorial/Functor.md:429
 #: ../src/Tutorial/Traverse.md:295
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Response : (e, i, a : Type) -> Type where\n"
 "     Created : (id : i) -> (value : a) -> Response e i a\n"
@@ -469,36 +456,32 @@ msgid ""
 "     Deleted : (id : i) -> Response e i a\n"
 "     Error   : (err : e) -> Response e i a\n"
 msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据响应：（e，i，a：Type）-> Type where\n"
-"     创建 : (id : i) -> (value : a) -> 响应 e i a\n"
-"     更新：（id：i）->（值：a）->响应 e i a\n"
-"     找到：（值：列表 a）-> 响应 e i a\n"
-"     已删除 : (id : i) -> 响应 e i a\n"
-"     错误 : (err : e) -> 响应 e i a\n"
-"   ```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   data Response : (e, i, a : Type) -> Type where\n"
+"     Created : (id : i) -> (value : a) -> Response e i a\n"
+"     Updated : (id : i) -> (value : a) -> Response e i a\n"
+"     Found   : (values : List a) -> Response e i a\n"
+"     Deleted : (id : i) -> Response e i a\n"
+"     Error   : (err : e) -> Response e i a\n"
 
 #. type: Title #
 #: ../src/Tutorial/Functor.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functor and Friends"
-msgstr "# 函子和朋友"
+msgstr "函子和它的朋友们"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:6
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Programming, like mathematics, is about abstraction. We\n"
 "try to model parts of the real world, reusing recurring\n"
 "patterns by abstracting over them.\n"
-msgstr "编程，就像数学一样，是关于抽象的。我们尝试对现实世界的某些部分进行建模，通过对它们进行抽象来重用重复出现的模式。"
+msgstr "编程，就像数学一样，是关于抽象的。我们尝试对现实世界的某些部分进行建模，通过"
+"对它们进行抽象来重用重复出现的模式。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:17
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In this chapter, we will learn about several related interfaces,\n"
 "which are all about abstraction and therefore can be hard to\n"
@@ -510,11 +493,16 @@ msgid ""
 "Come back to them several times until these things start\n"
 "feeling natural to you. You will then realize that their\n"
 "initial complexity has vanished.\n"
-msgstr "在本章中，我们将学习几个相关的接口，它们都是关于抽象的，因此一开始可能很难理解。尤其是弄清楚 *为什么* 有用以及 *何时* 使用它们需要时间和经验。因此，本章包含大量练习，其中大部分练习只需几行代码即可解决。不要跳过它们。回到他们身边几次，直到这些事情开始对你来说很自然。然后你会意识到它们最初的复杂性已经消失了。"
+msgstr ""
+"在本章中，我们将学习几个相关的接口，它们都是关于抽象的，因此一开始可能很难理"
+"解。尤其是弄清楚 *为什么* 有用以及 *何时* 使用它们需要时间和经验。因此，本章"
+"包含大量练习，其中大部分练习只需几行代码即可解决。不要跳过它们。回到他们身边"
+"几次，直到这些事情开始对你来说很自然。然后你会意识到它们最初的复杂性已经消失"
+"了。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:18
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Functor\n"
 "\n"
@@ -524,19 +512,23 @@ msgid ""
 "\n"
 "%default total\n"
 msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"导入 Data.List1 导入 Data.String 导入 Data.Vect\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"module Tutorial.Functor\n"
+"\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Functor.md:28
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functor"
-msgstr "## 函子"
+msgstr "函子"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:42
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "What do type constructors like `List`, `List1`, `Maybe`, or\n"
 "`IO` have in common? First, all of them are of type\n"
@@ -550,11 +542,18 @@ msgid ""
 "sure about how many values there are, but the possibilities\n"
 "are much smaller: Zero or one. With `IO`, the context is a different one:\n"
 "Arbitrary side effects.\n"
-msgstr "`List`、`List1`、`Maybe` 或 `IO` 等类型构造函数有什么共同点？首先，它们都是类型 `Type -> Type`。其次，它们都将给定类型的值放在某个 * 上下文 * 中。对于 `List`，*context* 是 *non-determinism*：我们知道有零个或多个值，但在开始之前我们不知道确切的数字通过对其进行模式匹配将列表分开。对于 `List1` 也是如此，尽管我们确定至少有一个值。对于 `Maybe`，我们仍然不确定有多少个值，但可能性要小得多：零或一。使用 `IO`，上下文是不同的：任意副作用。"
+msgstr ""
+"`List`、`List1`、`Maybe` 或 `IO` 等类型构造函数有什么共同点？首先，"
+"它们都是类型 `Type -> Type`。其次，它们都将给定类型的值放在某个 *上下文* 中。"
+"对于 `List`，*上下文* 是 *不确定性*：我们知道有零个或多个值，但在开始之前我们"
+"不知道确切的数字通过对其进行模式匹配将列表分开。对于 `List1` "
+"也是如此，尽管我们确定至少有一个值。对于 "
+"`Maybe`，我们仍然不确定有多少个值，但可能性要小得多：零或一。使用 "
+"`IO`，上下文是不同的：任意副作用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:49
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Although the type constructors discussed above are quite\n"
 "different in how they behave and when they are useful,\n"
@@ -562,113 +561,112 @@ msgid ""
 "when working with them. The first such operation\n"
 "is *mapping a pure function over the data type, without\n"
 "affecting its underlying structure*.\n"
-msgstr "尽管上面讨论的类型构造函数在它们的行为方式和何时有用方面有很大不同，但在使用它们时会不断出现某些操作。第一个这样的操作是*在数据类型上映射一个纯函数，而不影响其底层结构*。"
+msgstr ""
+"尽管上面讨论的类型构造函数在它们的行为方式和何时有用方面有很大不同，但在使用"
+"它们时会不断出现某些操作。第一个这样的操作是 "
+"*在数据类型上映射一个纯函数，而不影响其底层结构*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:53
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, given a list of numbers, we'd like to multiply\n"
 "each number by two, without changing their order or removing\n"
 "any values:\n"
-msgstr "例如，给定一个数字列表，我们希望将每个数字乘以 2，而不更改它们的顺序或删除任何值："
+msgstr "例如，给定一个数字列表，我们希望将每个数字乘以 "
+"2，而不更改它们的顺序或删除任何值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:54
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "multBy2List : Num a => List a -> List a\n"
 "multBy2List []        = []\n"
 "multBy2List (x :: xs) = 2 * x :: multBy2List xs\n"
 msgstr ""
-"```伊德里斯\n"
 "multBy2List : Num a => List a -> List a\n"
-"multBy2List [] = []\n"
+"multBy2List []        = []\n"
 "multBy2List (x :: xs) = 2 * x :: multBy2List xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:62
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But we might just as well convert every string in a\n"
 "list of strings to upper case characters:\n"
-msgstr "但是我们也可以将字符串列表中的每个字符串都转换为大写字符："
+msgstr "但是我们也可以将字符串列表中的每个字符串都转换为大写字符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:63
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "toUpperList : List String -> List String\n"
 "toUpperList []        = []\n"
 "toUpperList (x :: xs) = toUpper x :: toUpperList xs\n"
 msgstr ""
-"```伊德里斯\n"
-"toUpperList : 列表字符串 -> 列表字符串\n"
-"toUpperList [] = []\n"
+"toUpperList : List String -> List String\n"
+"toUpperList []        = []\n"
 "toUpperList (x :: xs) = toUpper x :: toUpperList xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:72
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, the type of the stored value changes. In the\n"
 "next example, we calculate the lengths of the strings stored\n"
 "in a list:\n"
-msgstr "有时，存储值的类型会发生变化。在下一个示例中，我们计算存储在列表中的字符串的长度："
+msgstr "有时，存储值的类型会发生变化。在下一个示例中，我们计算存储在列表中的字符串的"
+"长度：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:73
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "toLengthList : List String -> List Nat\n"
 "toLengthList []        = []\n"
 "toLengthList (x :: xs) = length x :: toLengthList xs\n"
 msgstr ""
-"```伊德里斯\n"
-"toLengthList : 列表字符串 -> 列表 Nat\n"
-"toLengthList [] = []\n"
-"toLengthList (x :: xs) = 长度 x :: toLengthList xs\n"
-"```\n"
+"toLengthList : List String -> List Nat\n"
+"toLengthList []        = []\n"
+"toLengthList (x :: xs) = length x :: toLengthList xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:83
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "I'd like you to appreciate, just how boring these functions are. They\n"
 "are almost identical, with the only interesting part being\n"
 "the function we apply to each element. Surely, there must be a\n"
 "pattern to abstract over:\n"
-msgstr "我希望你能体会到，这些功能是多么无聊。它们几乎相同，唯一有趣的部分是我们应用于每个元素的函数。当然，必须有一个抽象的模式："
+msgstr "我希望你能体会到，这些功能是多么无聊。它们几乎相同，唯一有趣的部分是我们应用"
+"于每个元素的函数。当然，必须有一个抽象的模式：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:84
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapList : (a -> b) -> List a -> List b\n"
 "mapList f []        = []\n"
 "mapList f (x :: xs) = f x :: mapList f xs\n"
 msgstr ""
-"```伊德里斯\n"
-"mapList : (a -> b) -> 列表 a -> 列表 b\n"
-"地图列表 f [] = []\n"
-"地图列表 f (x :: xs) = f x :: 地图列表 f xs\n"
-"```\n"
+"mapList : (a -> b) -> List a -> List b\n"
+"mapList f []        = []\n"
+"mapList f (x :: xs) = f x :: mapList f xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:94
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is often the first step of abstraction in functional\n"
 "programming: Write a (possibly generic) higher-order function.\n"
 "We can now concisely implement all examples shown above in\n"
 "terms of `mapList`:\n"
-msgstr "这通常是函数式编程中抽象的第一步：编写一个（可能是通用的）高阶函数。我们现在可以根据 `mapList` 简洁地实现上面显示的所有示例："
+msgstr "这通常是函数式编程中抽象的第一步：编写一个（可能是通用的）高阶函数。"
+"我们现在可以根据 `mapList` 简洁地实现上面显示的所有示例：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:95
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "multBy2List' : Num a => List a -> List a\n"
 "multBy2List' = mapList (2 *)\n"
@@ -682,34 +680,39 @@ msgstr ""
 "multBy2List' : Num a => List a -> List a\n"
 "multBy2List' = mapList (2 *)\n"
 "\n"
-"toUpperList' : 列表字符串 -> 列表字符串\n"
+"toUpperList' : List String -> List String\n"
 "toUpperList' = mapList toUpper\n"
 "\n"
-"toLengthList' : 列表字符串 -> 列表 Nat\n"
-"toLengthList' = mapList 长度\n"
+"toLengthList' : List String -> List Nat\n"
+"toLengthList' = mapList length\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:110
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But surely we'd like to do the same kind of thing with\n"
 "`List1` and `Maybe`! After all, they are just container\n"
 "types like `List`, the only difference being some detail\n"
 "about the number of values they can or can't hold:\n"
-msgstr "但我们肯定想对 `List1` 和 `Maybe` 做同样的事情！毕竟，它们只是像 `List` 这样的容器类型，唯一的区别是关于它们可以或不可以保存的值的数量的一些细节："
+msgstr ""
+"但我们肯定想对 `List1` 和 `Maybe` 做同样的事情！毕竟，它们只是像 `List` "
+"这样的容器类型，唯一的区别是关于它们可以或不可以保存的值的数量的一些细节：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:111
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapMaybe : (a -> b) -> Maybe a -> Maybe b\n"
 "mapMaybe f Nothing  = Nothing\n"
 "mapMaybe f (Just v) = Just (f v)\n"
-msgstr "```idris mapMaybe : (a -> b) -> Maybe a -> Maybe b mapMaybe f Nothing = Nothing mapMaybe f (Just v) = Just (f v) ```"
+msgstr ""
+"mapMaybe : (a -> b) -> Maybe a -> Maybe b\n"
+"mapMaybe f Nothing  = Nothing\n"
+"mapMaybe f (Just v) = Just (f v)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:125
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Even with `IO`, we'd like to be able to map pure functions\n"
 "over effectful computations. The implementation is\n"
@@ -719,11 +722,15 @@ msgid ""
 "so its data constructor is unavailable to us. We can use\n"
 "functions `toPrim` and `fromPrim`, however, for converting\n"
 "`IO` from and to `PrimIO`, which we can freely dissect:\n"
-msgstr "即使使用 `IO`，我们也希望能够将纯函数映射到有效的计算上。由于数据构造函数的嵌套层，实现有点复杂，但如果有疑问，类型肯定会指导我们。但是请注意，`IO` 不是公开导出的，因此我们无法使用它的数据构造函数。我们可以使用函数 `toPrim` 和 `fromPrim`，但是，将 `IO` 与 `PrimIO` 相互转换，我们可以自由剖析："
+msgstr ""
+"即使使用 `IO`，我们也希望能够将纯函数映射到副作用的计算上。由于数据构造函数的"
+"嵌套层，实现有点复杂，但如果有疑问，类型肯定会指导我们。但是请注意，`IO` "
+"不是公开导出的，因此我们无法使用它的数据构造函数。我们可以使用函数 `toPrim` "
+"和 `fromPrim`，但是，将 `IO` 与 `PrimIO` 相互转换，我们可以自由剖析：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:126
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapIO : (a -> b) -> IO a -> IO b\n"
 "mapIO f io = fromPrim $ mapPrimIO (toPrim io)\n"
@@ -732,48 +739,55 @@ msgid ""
 "          let MkIORes va w2 = prim w\n"
 "           in MkIORes (f va) w2\n"
 msgstr ""
-"```伊德里斯\n"
 "mapIO : (a -> b) -> IO a -> IO b\n"
 "mapIO f io = fromPrim $ mapPrimIO (toPrim io)\n"
-"  其中 mapPrimIO : PrimIO a -> PrimIO b\n"
+"  where mapPrimIO : PrimIO a -> PrimIO b\n"
 "        mapPrimIO prim w =\n"
-"          让 MkIORes va w2 = prim w\n"
-"           在 MkIORes (f va) w2\n"
-"```\n"
+"          let MkIORes va w2 = prim w\n"
+"           in MkIORes (f va) w2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:138
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "From the concept of *mapping a pure function over\n"
 "values in a context* follow some derived functions, which are\n"
 "often useful. Here are some of them for `IO`:\n"
-msgstr "从 * 将纯函数映射到上下文中的值的概念 * 遵循一些派生函数，这些函数通常很有用。以下是 `IO` 中的一些："
+msgstr "从 *将纯函数映射到上下文中的值的概念* 遵循一些派生函数，这些函数通常很有用。"
+"以下是 `IO` 中的一些：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:139
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapConstIO : b -> IO a -> IO b\n"
 "mapConstIO = mapIO . const\n"
 "\n"
 "forgetIO : IO a -> IO ()\n"
 "forgetIO = mapConstIO ()\n"
-msgstr "```idris mapConstIO : b -> IO a -> IO b mapConstIO = mapIO 。常量"
+msgstr ""
+"mapConstIO : b -> IO a -> IO b\n"
+"mapConstIO = mapIO . const\n"
+"\n"
+"forgetIO : IO a -> IO ()\n"
+"forgetIO = mapConstIO ()\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:151
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Of course, we'd want to implement `mapConst` and `forget` as well\n"
 "for `List`, `List1`, and `Maybe` (and dozens of other type\n"
 "constructors with some kind of mapping function), and they'd\n"
 "all look the same and be equally boring.\n"
-msgstr "当然，我们也想为 `List`、`List1` 和 `Maybe` 实现 `mapConst` 和 `forget` ]（以及其他几十个具有某种映射函数的类型构造函数），它们看起来都一样并且同样无聊。"
+msgstr ""
+"当然，我们也想为 `List`、`List1` 和 `Maybe` 实现 `mapConst` 和 `forget` ]（以"
+"及其他几十个具有某种映射函数的类型构造函数），它们看起来都一样并且同样无聊。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:161
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When we come upon a recurring class of functions with\n"
 "several useful derived functions, we should consider defining\n"
@@ -784,21 +798,28 @@ msgid ""
 "`Type -> Type`. Luckily, there is nothing preventing us\n"
 "from parametrizing an interface over something else than\n"
 "a `Type`.\n"
-msgstr "当我们遇到具有几个有用的派生函数的重复函数类时，我们应该考虑定义一个接口。但是我们应该怎么做呢？当您查看 `mapList`、`mapMaybe` 和 `mapIO` 的类型时，您会发现它是 `List`、`我们需要去掉 List1` 和 `IO` 类型。这些不是 `Type` 类型，而是 `Type -> Type` 类型。幸运的是，除了 `Type` 之外，没有什么能阻止我们对接口进行参数化。"
+msgstr ""
+"当我们遇到具有几个有用的派生函数的重复函数类时，我们应该考虑定义一个接口。但"
+"是我们应该怎么做呢？当您查看 `mapList`、`mapMaybe` 和 `mapIO` 的类型时，"
+"您会发现它是 `List`、`我们需要去掉 List1` 和 `IO` 类型。这些不是 `Type` "
+"类型，而是 `Type -> Type` 类型。幸运的是，除了 `Type` "
+"之外，没有什么能阻止我们对接口进行参数化。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:166
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The interface we are looking for is called `Functor`.\n"
 "Here is its definition and an example implementation (I appended\n"
 "a tick at the end of the names for them not to overlap with\n"
 "the interface and functions exported by the *Prelude*):\n"
-msgstr "我们要找的接口叫做`Functor`。这是它的定义和一个示例实现（我在名称末尾附加了一个勾号，以免它们与 *Prelude* 导出的接口和函数重叠）："
+msgstr ""
+"我们要找的接口叫做`Functor`。这是它的定义和一个示例实现（我在名称末尾附加了一"
+"个引号，以免它们与 *Prelude* 导出的接口和函数重叠）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:167
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Functor' (0 f : Type -> Type) where\n"
 "  map' : (a -> b) -> f a -> f b\n"
@@ -807,24 +828,26 @@ msgid ""
 "  map' _ Nothing  = Nothing\n"
 "  map' f (Just v) = Just $ f v\n"
 msgstr ""
-"```伊德里斯\n"
-"实现函子'（e）其中\n"
-"  地图'_（左ve）=左ve\n"
-"  地图' f (右 va) = 右 $ f va\n"
-"```\n"
+"interface Functor' (0 f : Type -> Type) where\n"
+"  map' : (a -> b) -> f a -> f b\n"
+"\n"
+"implementation Functor' Maybe where\n"
+"  map' _ Nothing  = Nothing\n"
+"  map' f (Just v) = Just $ f v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:179
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that we had to give the type of parameter `f` explicitly,\n"
 "and in that case it needs to be annotated with quantity zero if\n"
 "you want it to be erased at runtime (which you almost always want).\n"
-msgstr "请注意，我们必须明确给出参数 `f` 的类型，在这种情况下，如果您希望它在运行时被擦除（您几乎总是想要），则需要用数量零进行注释。"
+msgstr "请注意，我们必须明确给出参数 `f` 的类型，在这种情况下，如果您希望它在运行时被"
+"擦除（您几乎总是想要），则需要用定量零进行注释。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:186
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, reading type signatures consisting only of type parameters\n"
 "like the one of `map'` can take some time to get used to, especially\n"
@@ -832,11 +855,14 @@ msgid ""
 "`f a`. It can be very helpful to inspect these signatures together\n"
 "with all implicit arguments at the REPL (I formatted the output to\n"
 "make it more readable):\n"
-msgstr "现在，读取仅包含类型参数（如 `map'` 之一）的类型签名可能需要一些时间来适应，尤其是当某些类型参数应用于其他参数时，例如 `f a` .检查这些签名以及 REPL 中的所有隐式参数会非常有帮助（我对输出进行了格式化以使其更具可读性）："
+msgstr ""
+"现在，读取仅包含类型参数（如 `map'` 中的某个）的类型签名可能需要一些时间来适"
+"应，尤其是当某些类型参数应用于其他参数时，例如 `f a` .检查这些签名以及 REPL "
+"中的所有隐式参数会非常有帮助（我对输出进行了格式化以使其更具可读性）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:187
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functor> :ti map'\n"
 "Tutorial.Functor.map' :  {0 b : Type}\n"
@@ -847,60 +873,63 @@ msgid ""
 "                      -> f a\n"
 "                      -> f b\n"
 msgstr ""
-"```repl\n"
 "Tutorial.Functor> :ti map'\n"
-"Tutorial.Functor.map'：{0 b：类型}\n"
-"                      -> {0 a：类型}\n"
-"                      -> {0 f : 类型 -> 类型}\n"
-"                      -> 函子'f\n"
+"Tutorial.Functor.map' :  {0 b : Type}\n"
+"                      -> {0 a : Type}\n"
+"                      -> {0 f : Type -> Type}\n"
+"                      -> Functor' f\n"
 "                      => (a -> b)\n"
-"                      -> 一个\n"
+"                      -> f a\n"
 "                      -> f b\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:200
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It can also be helpful to replace type parameter `f` with a concrete\n"
 "value of the same type:\n"
-msgstr "将类型参数 `f` 替换为相同类型的具体值也很有帮助："
+msgstr "将类型参数 `f` 替换为相同类型的具体值也很有帮助：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:201
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functor> :t map' {f = Maybe}\n"
 "map' : (?a -> ?b) -> Maybe ?a -> Maybe ?b\n"
-msgstr "```repl Tutorial.Functor> :t map' {f = Maybe} map' : (?a -> ?b) -> Maybe ?a -> Maybe ?b ```"
+msgstr ""
+"Tutorial.Functor> :t map' {f = Maybe}\n"
+"map' : (?a -> ?b) -> Maybe ?a -> Maybe ?b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:209
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Remember, being able to interpret type signatures is paramount to\n"
 "understanding what's going on in an Idris declaration. You *must*\n"
 "practice this and make use of the tools and utilities given to you.\n"
-msgstr "请记住，能够解释类型签名对于理解 Idris 声明中发生的事情至关重要。您 * 必须* 练习这一点，并利用提供给您的工具和实用程序。"
+msgstr "请记住，能够解释类型签名对于理解 Idris 声明中发生的事情至关重要。您 *必须* "
+"练习这一点，并利用提供给您的工具和实用程序。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:210
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Derived Functions"
-msgstr "### 派生函数"
+msgstr "派生函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:215
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There are several functions and operators directly derivable from interface\n"
 "`Functor`. Eventually, you should know and remember all of them as\n"
 "they are highly useful. Here they are together with their types:\n"
-msgstr "有几个函数和运算符可以直接从接口 `Functor` 派生。最终，您应该知道并记住所有这些，因为它们非常有用。在这里，它们与它们的类型一起："
+msgstr ""
+"有几个函数和运算符可以直接从接口 `Functor` 派生。最终，您应该知道并记住所有这"
+"些，因为它们非常有用。在这里，它们与它们的类型一起：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:216
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functor> :t (<$>)\n"
 "Prelude.<$> : Functor f => (a -> b) -> f a -> f b\n"
@@ -924,53 +953,61 @@ msgstr ""
 "Prelude.<&> : Functor f => f a -> (a -> b) -> f b\n"
 "\n"
 "Tutorial.Functor> :t ($>)\n"
-"Prelude.$> : 函子 f => f a -> b -> f b\n"
+"Prelude.$> : Functor f => f a -> b -> f b\n"
 "\n"
 "Tutorial.Functor> :t (<$)\n"
 "Prelude.<$ : Functor f => b -> f a -> f b\n"
 "\n"
-"Tutorial.Functor> :t 忽略\n"
-"Prelude.ignore : 函子 f => f a -> f ()\n"
+"Tutorial.Functor> :t ignore\n"
+"Prelude.ignore : Functor f => f a -> f ()\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:235
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "`(<$>)` is an operator alias for `map` and allows you to sometimes\n"
 "drop some parentheses. For instance:\n"
-msgstr "`(<$>)` 是 `map` 的运算符别名，有时您可以去掉一些括号。例如："
+msgstr "`(<$>)` 是 `map` 的运算符别名，有时您可以去掉一些括号。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:236
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "tailShowReversNoOp : Show a => List1 a -> List String\n"
 "tailShowReversNoOp xs = map (reverse . show) (tail xs)\n"
 "\n"
 "tailShowReverse : Show a => List1 a -> List String\n"
 "tailShowReverse xs = reverse . show <$> tail xs\n"
-msgstr "```idris tailShowReversNoOp : Show a => List1 a -> List String tailShowReversNoOp xs = map (reverse . show) (tail xs)"
+msgstr ""
+"tailShowReversNoOp : Show a => List1 a -> List String\n"
+"tailShowReversNoOp xs = map (reverse . show) (tail xs)\n"
+"\n"
+"tailShowReverse : Show a => List1 a -> List String\n"
+"tailShowReverse xs = reverse . show <$> tail xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:249
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "`(<&>)` is an alias for `(<$>)` with the arguments flipped.\n"
 "The other three (`ignore`, `($>)`, and `(<$)`) are all used\n"
 "to replace the values in a context with a constant. They are often useful\n"
 "when you don't care about the values themselves but\n"
 "want to keep the underlying structure.\n"
-msgstr "`(<&>)` 是 `(<$>)` 的别名，参数被翻转。其他三个（`ignore`、`($>)` 和 `(<$)`）都用于将上下文中的值替换为常量。当您不关心值本身但想要保留底层结构时，它们通常很有用。"
+msgstr ""
+"`(<&>)` 是 `(<$>)` 参数被翻转后的别名，。其他三个（`ignore`、`($>)` 和 `(<$)`"
+"）都用于将上下文中的值替换为常量。当您不关心值本身但想要保留底层结构时，它们"
+"通常很有用。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:250
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functors with more than one Type Parameter"
-msgstr "### 具有多个类型参数的函子"
+msgstr "具有多个类型参数的函子"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:259
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The type constructors we looked at so far where all\n"
 "of type `Type -> Type`. However, we can also implement `Functor`\n"
@@ -979,34 +1016,38 @@ msgid ""
 "be the last in the argument list. For instance, here is the\n"
 "`Functor` implementation for `Either e` (note, that `Either e`\n"
 "has of course type `Type -> Type` as required):\n"
-msgstr "到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 `map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 `Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必需的）："
+msgstr ""
+"到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，"
+"我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 "
+"`map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 "
+"`Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必要条件）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:260
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "implementation Functor' (Either e) where\n"
 "  map' _ (Left ve)  = Left ve\n"
 "  map' f (Right va) = Right $ f va\n"
 msgstr ""
-"```伊德里斯\n"
-"实现函子'（e）其中\n"
-"  地图'_（左ve）=左ve\n"
-"  地图' f (右 va) = 右 $ f va\n"
-"```\n"
+"implementation Functor' (Either e) where\n"
+"  map' _ (Left ve)  = Left ve\n"
+"  map' f (Right va) = Right $ f va\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:269
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here is another example, this time for a type constructor of\n"
 "type `Bool -> Type -> Type` (you might remember this from\n"
 "the exercises in the [last chapter](IO.md)):\n"
-msgstr "这是另一个例子，这次是一个类型为 `Bool -> Type -> Type` 的类型构造函数（你可能还记得 [上一章](IO.md) 的练习中的这个）："
+msgstr ""
+"这是另一个例子，这次是一个类型为 `Bool -> Type -> Type` 的类型构造函数（"
+"你可能还记得 [上一章](IO.md) 的练习中的这个）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:270
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
 "  Nil  : List01 False a\n"
@@ -1016,32 +1057,31 @@ msgid ""
 "  map _ []        = []\n"
 "  map f (x :: xs) = f x :: map f xs\n"
 msgstr ""
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 List01 : (nonEmpty : Bool) -> Type -> Type where\n"
-"     无：List01 False a\n"
-"     (::) : a -> List01 False a -> List01 ne a\n"
-"   ```\n"
-"#-#-#-#-#  IO.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"data List01 : (nonEmpty : Bool) -> Type -> Type where\n"
+"  Nil  : List01 False a\n"
+"  (::) : a -> List01 False a -> List01 ne a\n"
+"\n"
+"implementation Functor (List01 ne) where\n"
+"  map _ []        = []\n"
+"  map f (x :: xs) = f x :: map f xs\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:280
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functor Composition"
-msgstr "### 函子组合"
+msgstr "函子组合"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:284
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The nice thing about functors is how they can be paired and\n"
 "nested with other functors and the results are functors again:\n"
-msgstr "函子的好处是它们可以如何与其他函子配对和嵌套，结果又是函子："
+msgstr "函子的好处是它们可以如何与其他函子配对和嵌套，结果又是函子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:285
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Product (f,g : Type -> Type) (a : Type) where\n"
 "  constructor MkProduct\n"
@@ -1051,21 +1091,26 @@ msgid ""
 "implementation Functor f => Functor g => Functor (Product f g) where\n"
 "  map f (MkProduct l r) = MkProduct (map f l) (map f r)\n"
 msgstr ""
-"实现 Functor f => Functor g => Functor (Product f g) 其中\n"
-"  映射 f (MkProduct l r) = MkProduct (映射 f l) (映射 f r)\n"
-"```\n"
+"record Product (f,g : Type -> Type) (a : Type) where\n"
+"  constructor MkProduct\n"
+"  fst : f a\n"
+"  snd : g a\n"
+"\n"
+"implementation Functor f => Functor g => Functor (Product f g) where\n"
+"  map f (MkProduct l r) = MkProduct (map f l) (map f r)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:297
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The above allows us to conveniently map over a pair of functors. Note,\n"
 "however, that Idris needs some help with inferring the types involved:\n"
-msgstr "以上允许我们方便地映射一对函子。但是请注意，Idris 需要一些帮助来推断所涉及的类型："
+msgstr "以上允许我们方便地映射一对函子。但是请注意，Idris "
+"需要一些帮助来推断所涉及的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:298
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "toPair : Product f g a -> (f a, g a)\n"
 "toPair (MkProduct fst snd) = (fst, snd)\n"
@@ -1078,23 +1123,28 @@ msgid ""
 "               -> (Either e String, List String)\n"
 "productExample = toPair . map show . fromPair {f = Either e, g = List}\n"
 msgstr ""
-"productExample : 显示一个\n"
-"               =>（要么 e a，列出 a）\n"
-"               ->（要么是字符串，要么是列表字符串）\n"
-"产品示例 = toPair 。地图显示。 fromPair {f = 任意一个 e, g = 列表}\n"
-"```\n"
+"toPair : Product f g a -> (f a, g a)\n"
+"toPair (MkProduct fst snd) = (fst, snd)\n"
+"\n"
+"fromPair : (f a, g a) -> Product f g a\n"
+"fromPair (x,y) = MkProduct x y\n"
+"\n"
+"productExample :  Show a\n"
+"               => (Either e a, List a)\n"
+"               -> (Either e String, List String)\n"
+"productExample = toPair . map show . fromPair {f = Either e, g = List}\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:313
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "More often, we'd like to map over several layers of nested functors\n"
 "at once. Here's how to do this with an example:\n"
-msgstr "更多时候，我们想一次映射多层嵌套函子。以下是如何通过示例执行此操作："
+msgstr "更多时候，我们想一次映射多层嵌套函子。以下是如何通过示例执行此操作：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:314
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Comp (f,g : Type -> Type) (a : Type) where\n"
 "  constructor MkComp\n"
@@ -1106,25 +1156,25 @@ msgid ""
 "compExample :  Show a => List (Either e a) -> List (Either e String)\n"
 "compExample = unComp . map show . MkComp {f = List, g = Either e}\n"
 msgstr ""
-"记录 Comp (f,g : Type -> Type) (a : Type) 其中\n"
-"  构造函数 MkComp\n"
-"  unComp : f (g a)\n"
+"record Comp (f,g : Type -> Type) (a : Type) where\n"
+"  constructor MkComp\n"
+"  unComp  : f (g a)\n"
 "\n"
-"实现 Functor f => Functor g => Functor (Comp f g) 其中\n"
-"  映射 f (MkComp v) = MkComp $ 映射 f <$> v\n"
+"implementation Functor f => Functor g => Functor (Comp f g) where\n"
+"  map f (MkComp v) = MkComp $ map f <$> v\n"
 "\n"
-"compExample : Show a => List (Either e a) -> List (Either e String)\n"
-"compExample = unComp 。地图显示。 MkComp {f = 列表，g = 任一个 e}\n"
+"compExample :  Show a => List (Either e a) -> List (Either e String)\n"
+"compExample = unComp . map show . MkComp {f = List, g = Either e}\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Functor.md:326
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Named Implementations"
-msgstr "#### 命名实现"
+msgstr "命名实现"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:334
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, there are more ways to implement an interface for\n"
 "a given type. For instance, for numeric types we can have\n"
@@ -1132,76 +1182,87 @@ msgid ""
 "Likewise, for nested functors, `map` can be interpreted as a mapping\n"
 "over only the first layer of values, or a mapping over several layers\n"
 "of values.\n"
-msgstr "有时，有更多方法可以为给定类型实现接口。例如，对于数字类型，我们可以有一个 `Monoid` 代表加法和一个代表乘法。同样，对于嵌套函子，`map` 可以解释为仅对第一层值的映射，或对若干层值的映射。"
+msgstr ""
+"有时，有更多方法可以为给定类型实现接口。例如，对于数字类型，我们可以有一个 "
+"`Monoid` 代表加法和一个代表乘法。同样，对于嵌套函子，`map` "
+"可以解释为仅对第一层值的映射，或对若干层值的映射。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:339
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "One way to go about this is to define single-field wrappers as\n"
 "shown with data type `Comp` above. However, Idris also allows us\n"
 "to define additional interface implementations, which must then\n"
 "be given a name. For instance:\n"
-msgstr "解决此问题的一种方法是定义单字段包装器，如上面的数据类型 `Comp` 所示。然而，Idris 也允许我们定义额外的接口实现，然后必须给它一个名字。例如："
+msgstr ""
+"解决此问题的一种方法是定义单字段包装器，如上面的数据类型 `Comp` 所示。然而，"
+"Idris 也允许我们定义额外的接口实现，然后必须给它一个名字。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:340
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "[Compose'] Functor f => Functor g => Functor (f . g) where\n"
 "  map f = (map . map) f\n"
 msgstr ""
-"```伊德里斯\n"
-"[Compose'] Functor f => Functor g => Functor (f . g) 其中\n"
-"  地图 f = (地图 . 地图) f\n"
-"```\n"
+"[Compose'] Functor f => Functor g => Functor (f . g) where\n"
+"  map f = (map . map) f\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:350
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that this defines a new implementation of `Functor`, which will\n"
 "*not* be considered during implicit resolution in order\n"
 "to avoid ambiguities. However,\n"
 "it is possible to explicitly choose to use this implementation\n"
 "by passing it as an explicit argument to `map`, prefixed with an `@`:\n"
-msgstr "请注意，这定义了 `Functor` 的新实现，在隐式解析期间将考虑 *not* 以避免歧义。但是，可以通过将其作为显式参数传递给 `map` 来显式选择使用此实现，并以 `@` 为前缀："
+msgstr ""
+"请注意，这定义了 `Functor` 的新实现，在隐式解析期间将 *不* "
+"细化以避免歧义。但是，可以通过将其作为显式参数传递给 `map` "
+"来显式选择使用此实现，并以 `@` 为前缀：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:351
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "compExample2 :  Show a => List (Either e a) -> List (Either e String)\n"
 "compExample2 = map @{Compose} show\n"
-msgstr "```idris compExample2 : Show a => List (Either e a) -> List (Either e String) compExample2 = map @{Compose} show ```"
+msgstr ""
+"compExample2 :  Show a => List (Either e a) -> List (Either e String)\n"
+"compExample2 = map @{Compose} show\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:358
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the example above, we used `Compose` instead of `Compose'`, since\n"
 "the former is already exported by the *Prelude*.\n"
-msgstr "在上面的示例中，我们使用 `Compose` 代替 `Compose'`，因为前者已经由 *Prelude* 导出。"
+msgstr "在上面的示例中，我们使用 `Compose` 代替 `Compose'`，因为前者已经由 *Prelude* "
+"导出。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:359
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Functor Laws"
-msgstr "### 函子定律"
+msgstr "函子定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:365
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Implementations of `Functor` are supposed to adhere to certain laws,\n"
 "just like implementations of `Eq` or `Ord`. Again, these laws are\n"
 "not verified by Idris, although it would be possible (and\n"
 "often cumbersome) to do so.\n"
-msgstr "`Functor` 的实现应该遵守某些规律，就像 `Eq` 或 `Ord` 的实现一样。同样，这些法律并未得到 Idris 的验证，尽管这样做是可能的（而且通常很麻烦）。"
+msgstr ""
+"`Functor` 的实现应该遵守某些规律，就像 `Eq` 或 `Ord` 的实现一样。同样，"
+"这些法律并未得到 Idris 的验证，尽管这样做是可能的（而且通常很麻烦）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:370
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "1. `map id = id`: Mapping the identity function over a functor\n"
 "    must not have any visible effect such as changing a container's\n"
@@ -1209,23 +1270,21 @@ msgid ""
 "    running an `IO` action.\n"
 msgstr ""
 "1. `map id = id`：将恒等函数映射到函子上\n"
-"    不得有任何可见的效果，例如更改容器的\n"
-"    结构或影响时执行的副作用\n"
-"    运行 `IO` 动作。\n"
+"    不得有任何可见的副作用，例如更改容器的\n"
+"    结构或影响运行 `IO` 动作的副作用\n"
+"    。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functor.md:373
-#, fuzzy
 msgid ""
 "`map (f . g) = map f . map g`: Sequencing two mappings must be identical to "
 "a single mapping using the composition of the two functions."
-msgstr ""
-"`map (f . g) = 映射 f . map g`：使用两个函数的组合对两个映射进行排序必须与单"
-"个映射相同。"
+msgstr "`map (f . g) = map f . map g`: "
+"两个映射的顺序必须与使用两个函数组合后的单个映射相同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:380
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Both of these laws request, that `map` is preserving the *structure*\n"
 "of values. This is easier to understand with container types like\n"
@@ -1233,29 +1292,30 @@ msgid ""
 "add or remove any wrapped value, nor - in case of `List` -\n"
 "change their order. With `IO`, this can best be described as `map`\n"
 "not performing additional side effects.\n"
-msgstr "这两条定律都要求 `map` 保留值的 *structure*。使用 `List`、`Maybe` 或 `Ei` 等容器类型更容易理解，其中不允许添加或删除 `map`任何包装的值，也不 - 在 `List` 的情况下 - 更改它们的顺序。使用 `IO`，这可以最好地描述为 `map` 没有执行额外的副作用。"
+msgstr ""
+"这两条定律都要求 `map` 保留值的 *结构*。使用 `List`、`Maybe` 或 `Either e` "
+"等容器类型更容易理解，其中 `map` 不允许添加或删除任何包装的值，也不 - 在 "
+"`List` 的情况下 - 更改它们的顺序。对于使用 `IO`，最好地描述为 `map` "
+"没有执行额外的副作用。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Functor.md:385
-#, fuzzy
 msgid ""
 "Write your own implementations of `Functor'` for `Maybe`, `List`, `List1`, "
 "`Vect n`, `Either e`, and `Pair a`."
 msgstr ""
-"为 `Maybe`、`List`、`List1`、`Vect n`、` 编写自己的 `Functor'` 实现e` 和 ` "
-"对 a`。"
+"为 `Maybe`、`List`、`List1`、`Vect n`、`Either e` 和 `Pair a` `编写自己的 "
+"`Functor'` 实现。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functor.md:388
-#, fuzzy
 msgid ""
 "Write a named implementation of `Functor` for pairs of functors (similar to "
 "the one implemented for `Product`)."
-msgstr "为仿函数对编写 `Functor` 的命名实现（类似于为 `Product` 实现的实现）。"
+msgstr "为 pairs 函数编写 `Functor` 的命名实现（类似于为 `Product` 实现的实现）。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Functor.md:391
-#, fuzzy
 msgid ""
 "Implement `Functor` for data type `Identity` (which is available from "
 "`Control.Monad.Identity` in *base*):"
@@ -1265,21 +1325,18 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:392
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   record Identity a where\n"
 "     constructor Id\n"
 "     value : a\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   记录身份在哪里\n"
-"     构造函数 ID\n"
-"     值：一个\n"
-"   ```\n"
+"   record Identity a where\n"
+"     constructor Id\n"
+"     value : a\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Functor.md:404
-#, fuzzy
 msgid ""
 "Here is a curious one: Implement `Functor` for `Const e` (which is also "
 "available from `Control.Applicative.Const` in *base*). You might be confused "
@@ -1290,12 +1347,12 @@ msgid ""
 msgstr ""
 "这是一个奇怪的问题：为 `Const e` 实现 `Functor`（也可以从 *base* 中的 "
 "`Control.Applicative.Const` 获得）。您可能会对第二个类型参数在运行时绝对没有"
-"相关性这一事实感到困惑，因为没有该类型的值。这种类型有时被称为*幻像类型*。它"
-"们对于使用附加类型信息标记值非常有用。"
+"相关性这一事实感到困惑，因为没有该类型的值。这种类型有时被称为 "
+"*幻像类型*。它们对于使用附加类型信息标记值非常有用。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:407
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Don't let the above confuse you: There is only one possible implementation.\n"
 "   As usual, use holes and let the compiler guide you if you get lost.\n"
@@ -1305,89 +1362,82 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:408
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   record Const (e,a : Type) where\n"
 "     constructor MkConst\n"
 "     value : e\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   记录 Const (e,a : Type) 其中\n"
-"     构造函数 MkConst\n"
-"     价值：e\n"
-"   ```\n"
+"   record Const (e,a : Type) where\n"
+"     constructor MkConst\n"
+"     value : e\n"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Functor.md:416
-#, fuzzy
 msgid ""
 "Here is a sum type for describing CRUD operations (Create, Read, Update, and "
 "Delete) in a data store:"
-msgstr ""
-"这是用于描述数据存储中的 CRUD 操作（创建、读取、更新和删除）的求和类型："
+msgstr "这是用于描述数据存储中的 CRUD 操作（创建、读取、更新和删除）的求和类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:426
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Implement `Functor` for `Crud i`.\n"
 msgstr "   为 `Crud i` 实现 `Functor`。\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Functor.md:428
-#, fuzzy
 msgid "Here is a sum type for describing responses from a data server:"
-msgstr "以下是用于描述来自数据服务器的响应的 sum 类型："
+msgstr "以下是用于描述来自数据服务器的响应的和类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:439
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Implement `Functor` for `Repsonse e i`.\n"
 msgstr "   为 `Repsonse e i` 实现 `Functor`。\n"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Functor.md:441
-#, fuzzy
 msgid "Implement `Functor` for `Validated e`:"
 msgstr "为 `Validated e` 实现 `Functor`："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:442
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Validated : (e,a : Type) -> Type where\n"
 "     Invalid : (err : e) -> Validated e a\n"
 "     Valid   : (val : a) -> Validated e a\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   数据验证：（e，a：类型）->类型在哪里\n"
-"     无效 : (err : e) -> 已验证 e a\n"
-"     有效 : (val : a) -> 已验证 e a\n"
-"   ```\n"
+"   data Validated : (e,a : Type) -> Type where\n"
+"     Invalid : (err : e) -> Validated e a\n"
+"     Valid   : (val : a) -> Validated e a\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Functor.md:448
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Applicative"
-msgstr "## 适用"
+msgstr "应用子"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:453
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While `Functor` allows us to map a pure, unary function\n"
 "over a value in a context, it doesn't allow us to combine\n"
 "n such values under an n-ary function.\n"
-msgstr "虽然 `Functor` 允许我们将纯一元函数映射到上下文中的值上，但它不允许我们在 n 元函数下组合 n 个这样的值。"
+msgstr "虽然 `Functor` 允许我们将纯的一元函数映射到上下文中的值上，但它不允许我们在 "
+"n 元函数下组合 n 个这样的值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:455
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "For instance, consider the following functions:\n"
-msgstr "例如，考虑以下函数："
+msgstr "例如，考虑以下函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:456
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "liftMaybe2 : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c\n"
 "liftMaybe2 f (Just va) (Just vb) = Just $ f va vb\n"
@@ -1405,28 +1455,37 @@ msgid ""
 "              MkIORes vb w3 = pb w2\n"
 "           in MkIORes (f va vb) w3\n"
 msgstr ""
-"```伊德里斯\n"
-"mapIO : (a -> b) -> IO a -> IO b\n"
-"mapIO f io = fromPrim $ mapPrimIO (toPrim io)\n"
-"  其中 mapPrimIO : PrimIO a -> PrimIO b\n"
-"        mapPrimIO prim w =\n"
-"          让 MkIORes va w2 = prim w\n"
-"           在 MkIORes (f va) w2\n"
-"```\n"
+"liftMaybe2 : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c\n"
+"liftMaybe2 f (Just va) (Just vb) = Just $ f va vb\n"
+"liftMaybe2 _ _         _         = Nothing\n"
+"\n"
+"liftVect2 : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c\n"
+"liftVect2 _ []        []        = []\n"
+"liftVect2 f (x :: xs) (y :: ys) = f x y :: liftVect2 f xs ys\n"
+"\n"
+"liftIO2 : (a -> b -> c) -> IO a -> IO b -> IO c\n"
+"liftIO2 f ioa iob = fromPrim $ go (toPrim ioa) (toPrim iob)\n"
+"  where go : PrimIO a -> PrimIO b -> PrimIO c\n"
+"        go pa pb w =\n"
+"          let MkIORes va w2 = pa w\n"
+"              MkIORes vb w3 = pb w2\n"
+"           in MkIORes (f va vb) w3\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:478
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This behavior is not covered by `Functor`, yet it is a very\n"
 "common thing to do. For instance, we might want to read two numbers\n"
 "from standard input (both operations might fail), calculating the\n"
 "product of the two. Here's the code:\n"
-msgstr "`Functor` 没有涵盖这种行为，但这是很常见的事情。例如，我们可能想从标准输入中读取两个数字（这两个操作都可能失败），计算两者的乘积。这是代码："
+msgstr ""
+"`Functor` 没有涵盖这种行为，但这是很常见的事情。例如，我们可能想从标准输入中"
+"读取两个数字（这两个操作都可能失败），计算两者的乘积。这是代码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:479
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "multNumbers : Num a => Neg a => IO (Maybe a)\n"
 "multNumbers = do\n"
@@ -1434,34 +1493,34 @@ msgid ""
 "  s2 <- getLine\n"
 "  pure $ liftMaybe2 (*) (parseInteger s1) (parseInteger s2)\n"
 msgstr ""
-"```伊德里斯\n"
-"multNumbers : Num a => Neg a => IO (也许是 a)\n"
-"多数字 = 做\n"
-"  s1 <- 获取线\n"
-"  s2 <- 获取线\n"
-"  纯 $liftMaybe2 (*) (parseInteger s1) (parseInteger s2)\n"
-"```\n"
+"multNumbers : Num a => Neg a => IO (Maybe a)\n"
+"multNumbers = do\n"
+"  s1 <- getLine\n"
+"  s2 <- getLine\n"
+"  pure $ liftMaybe2 (*) (parseInteger s1) (parseInteger s2)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:490
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "And it won't stop here. We might just as well want to have\n"
 "`liftMaybe3` for ternary functions and three `Maybe` arguments\n"
 "and so on, for arbitrary numbers of arguments.\n"
-msgstr "它不会止步于此。对于三元函数，我们可能还希望有 `liftMaybe3` 和三个 `Maybe` 参数等等，对于任意数量的参数。"
+msgstr "它不会止步于此。对于三元函数，我们可能还希望有 `liftMaybe3` 和三个 `Maybe` "
+"参数等等，对于任意数量的参数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:493
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But there is more: We'd also like to lift pure values into\n"
 "the context in question. With this, we could do the following:\n"
-msgstr "但还有更多：我们还想将纯粹的价值观提升到所讨论的背景中。有了这个，我们可以做以下事情："
+msgstr "但还有更多：我们还想将纯的值提升到所讨论的上下文中。有了这个，我们可以做以下"
+"事情：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:494
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "liftMaybe3 : (a -> b -> c -> d) -> Maybe a -> Maybe b -> Maybe c -> Maybe d\n"
 "liftMaybe3 f (Just va) (Just vb) (Just vc) = Just $ f va vb vc\n"
@@ -1475,24 +1534,32 @@ msgid ""
 "  where calc : a -> a -> a -> a\n"
 "        calc x y z = x * y + z\n"
 msgstr ""
+"liftMaybe3 : (a -> b -> c -> d) -> Maybe a -> Maybe b -> Maybe c -> Maybe d\n"
+"liftMaybe3 f (Just va) (Just vb) (Just vc) = Just $ f va vb vc\n"
+"liftMaybe3 _ _         _         _         = Nothing\n"
+"\n"
+"pureMaybe : a -> Maybe a\n"
+"pureMaybe = Just\n"
+"\n"
 "multAdd100 : Num a => Neg a => String -> String -> Maybe a\n"
-"multAdd100 s t = liftMaybe3 calc (parseInteger s) (parseInteger t) (纯 100)\n"
-"  其中 calc : a -> a -> a -> a\n"
-"        计算 x y z = x * y + z\n"
-"```\n"
+"multAdd100 s t = liftMaybe3 calc (parseInteger s) (parseInteger t) (pure 100)"
+"\n"
+"  where calc : a -> a -> a -> a\n"
+"        calc x y z = x * y + z\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:511
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you'll of course already know, I am now going to present a new\n"
 "interface to encapsulate this behavior. It's called `Applicative`.\n"
 "Here is its definition and an example implementation:\n"
-msgstr "正如您当然已经知道的那样，我现在将提供一个新接口来封装这种行为。它被称为 `Applicative`。这是它的定义和示例实现："
+msgstr "正如您当然已经知道的那样，我现在将提供一个新接口来封装这种行为。它被称为 "
+"`Applicative`。这是它的定义和示例实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:512
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Functor' f => Applicative' f where\n"
 "  app   : f (a -> b) -> f a -> f b\n"
@@ -1504,121 +1571,158 @@ msgid ""
 "\n"
 "  pure' = Just\n"
 msgstr ""
-"实施应用'也许在哪里\n"
+"interface Functor' f => Applicative' f where\n"
+"  app   : f (a -> b) -> f a -> f b\n"
+"  pure' : a -> f a\n"
+"\n"
+"implementation Applicative' Maybe where\n"
 "  app (Just fun) (Just val) = Just $ fun val\n"
-"  应用程序 _ _ = 无\n"
+"  app _          _          = Nothing\n"
+"\n"
+"  pure' = Just\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:527
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Interface `Applicative` is of course already exported by the *Prelude*.\n"
 "There, function `app` is an operator sometimes called *app* or *apply*:\n"
 "`(<*>)`.\n"
-msgstr "接口 `Applicative` 当然已经由 *Prelude* 导出。在那里，函数 `app` 是一个有时称为 *app* 或 *apply* 的运算符：`(<*>)`。"
+msgstr ""
+"接口 `Applicative` 当然已经由 *Prelude* 导出。在那里，函数 `app` "
+"是一个有时称为 *app* 或 *apply* 的运算符：`(<*>)`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:530
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You may wonder, how functions like `liftMaybe2` or `liftIO3` are related\n"
 "to operator *apply*. Let me demonstrate this:\n"
-msgstr "您可能想知道，像 `liftMaybe2` 或 `liftIO3` 这样的函数如何与运算符 *apply* 相关联。让我演示一下："
+msgstr "您可能想知道，像 `liftMaybe2` 或 `liftIO3` 这样的函数如何与运算符 *apply* "
+"相关联。让我演示一下：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:531
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "liftA2 : Applicative f => (a -> b -> c) -> f a -> f b -> f c\n"
 "liftA2 fun fa fb = pure fun <*> fa <*> fb\n"
 "\n"
 "liftA3 : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d\n"
 "liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc\n"
-msgstr "liftA3 : 应用 f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc```"
+msgstr ""
+"liftA2 : Applicative f => (a -> b -> c) -> f a -> f b -> f c\n"
+"liftA2 fun fa fb = pure fun <*> fa <*> fb\n"
+"\n"
+"liftA3 : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d\n"
+"liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:544
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is really important for you to understand what's going on here, so let's\n"
 "break these down. If we specialize `liftA2` to use `Maybe` for `f`,\n"
 "`pure fun` is of type `Maybe (a -> b -> c)`. Likewise, `pure fun <*> fa`\n"
 "is of type `Maybe (b -> c)`, as `(<*>)` will apply the value stored\n"
 "in `fa` to the function stored in `pure fun` (currying!).\n"
-msgstr "了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 `liftA2` 专门用于 `Maybe` 用于 `f`，则 `pure fun` 的类型为 `Maybe (a -> b -> c)`。同样，`pure fun <*> fa` 是 ` 类型的可能 (b -> c)`，因为 `(<*>)` 将应用存储在 [ X288X]fa` 到存储在 `pure fun` 中的函数（柯里化！）。"
+msgstr ""
+"了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 "
+"`liftA2` 中的 `f` 用于 `Maybe`，则 `pure fun` 的类型为 `Maybe (a -> b -> "
+"c)`。同样，`pure fun <*> fa` 是 ` 类型为 `Maybe  (b -> c)`，因为 `(<*>)` "
+"将应用存储在 `f a` 到存储在 `pure fun` 中的函数（柯里化！）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:550
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You'll often see such chains of applications of *apply*, the number\n"
 "of *applies* corresponding to the arity of the function we lift.\n"
 "You'll sometimes also see the following, which allows us to drop\n"
 "the initial call to `pure`, and use the operator version of `map`\n"
 "instead:\n"
-msgstr "你会经常看到 *apply* 这样的应用链，*applies* 的数量对应于我们提升的函数的数量。您有时还会看到以下内容，这使我们可以放弃对 `pure` 的初始调用，并改用 `map` 的运算符版本："
+msgstr ""
+"你会经常看到 *apply* 这样的应用链，*applies* "
+"的数量对应于我们提升的函数的数量。您有时还会看到以下内容，这使我们可以放弃对 "
+"`pure` 的初始调用，并改用 `map` 的运算符版本：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:551
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "liftA2' : Applicative f => (a -> b -> c) -> f a -> f b -> f c\n"
 "liftA2' fun fa fb = fun <$> fa <*> fb\n"
 "\n"
 "liftA3' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d\n"
 "liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc\n"
-msgstr "liftA3' : 应用 f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d liftA3' fun fa fb fc = fun <$> fa <*> fb < *> fc ```"
+msgstr ""
+"liftA2' : Applicative f => (a -> b -> c) -> f a -> f b -> f c\n"
+"liftA2' fun fa fb = fun <$> fa <*> fb\n"
+"\n"
+"liftA3' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d\n"
+"liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:564
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, interface `Applicative` allows us to lift values (and functions!)\n"
 "into computational contexts and apply them to values in the same\n"
 "contexts. Before we will see an extended example why this is\n"
 "useful, I'll quickly introduce some syntactic sugar for working\n"
 "with applicative functors.\n"
-msgstr "因此，接口 `Applicative` 允许我们将值（和函数！）提升到计算上下文中，并将它们应用于相同上下文中的值。在我们将看到一个扩展示例为什么这很有用之前，我将快速介绍一些用于使用应用函子的语法糖。"
+msgstr ""
+"因此，接口 `Applicative` 允许我们将值（和函数！）提升到计算上下文中，并将它们"
+"应用于相同上下文中的值。在我们将看到一个扩展示例为什么这很有用之前，我将快速"
+"介绍一些用于使用应用函子的语法糖。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:565
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Idiom Brackets"
-msgstr "### 成语括号"
+msgstr "习语括号"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:571
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The programming style used for implementing `liftA2'` and `liftA3'`\n"
 "is also referred to as *applicative style* and is used a lot\n"
 "in Haskell for combining several effectful computations\n"
 "with a single pure function.\n"
-msgstr "用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *applicative 风格*，在 Haskell 中被大量用于将几个有效的计算与单一的纯函数。"
+msgstr ""
+"用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *applicative 风格*，在 "
+"Haskell 中被大量用于将几个有效的计算与单一的纯函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:575
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In Idris, there is an alternative to using such chains of\n"
 "operator applications: Idiom brackets. Here's another\n"
 "reimplementation of `liftA2` and `liftA3`:\n"
-msgstr "在 Idris 中，有一个替代使用这种运算符应用程序链的方法：成语方括号。这是 `liftA2` 和 `liftA3` 的另一个重新实现："
+msgstr "在 Idris 中，有一个替代使用这种运算符应用程序链的方法：习语括号。这是 "
+"`liftA2` 和 `liftA3` 的另一个重新实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:576
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "liftA2'' : Applicative f => (a -> b -> c) -> f a -> f b -> f c\n"
 "liftA2'' fun fa fb = [| fun fa fb |]\n"
 "\n"
 "liftA3'' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d\n"
 "liftA3'' fun fa fb fc = [| fun fa fb fc |]\n"
-msgstr "liftA3'' : 应用 f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d liftA3'' fun fa fb fc = [|有趣的 fa fb fc |] ```"
+msgstr ""
+"liftA2'' : Applicative f => (a -> b -> c) -> f a -> f b -> f c\n"
+"liftA2'' fun fa fb = [| fun fa fb |]\n"
+"\n"
+"liftA3'' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d\n"
+"liftA3'' fun fa fb fc = [| fun fa fb fc |]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:590
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The above implementations will be desugared to the one given\n"
 "for `liftA2` and `liftA3`, again *before disambiguating,\n"
@@ -1626,17 +1730,21 @@ msgid ""
 "*bind* operator, we can therefore write custom implementations\n"
 "for `pure` and `(<*>)`, and Idris will use these if it\n"
 "can disambiguate between the overloaded function names.\n"
-msgstr "在消除歧义、类型检查和填充隐式值 * 之前，上述实现将被简化为 `liftA2` 和 `liftA3` 给定的实现。与 *bind* 运算符一样，我们因此可以为 `pure` 和 `(<*>)` 编写自定义实现，如果 Idris 可以在重载的函数名。"
+msgstr ""
+"在消除歧义、类型检查和填充隐式值 *之前*，上述实现将被简化为 `liftA2` 和 "
+"`liftA3` 给定的实现。与 *bind* 运算符一样，我们因此可以为 `pure` 和 `(<*>)` "
+"编写自定义实现，如果 Idris "
+"可以消除重载函数名称之间的歧义，它将使用这些名称。。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:591
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Use Case: CSV Reader"
-msgstr "### 用例：CSV 阅读器"
+msgstr "用例：CSV 阅读器"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:604
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to understand the power and versatility that comes\n"
 "with applicative functors, we will look at a slightly\n"
@@ -1649,41 +1757,53 @@ msgid ""
 "lines in a CSV file and store the result in custom\n"
 "records, where each record field corresponds to a column\n"
 "in the table.\n"
-msgstr "为了理解应用函子的强大功能和多功能性，我们将看一个稍微扩展的示例。我们将编写一些实用程序来解析和解码 CSV 文件中的内容。这些文件的每一行都包含一个由逗号（或其他分隔符）分隔的值列表。通常，它们用于存储表格数据，例如来自电子表格应用程序的数据。我们想要做的是转换 CSV 文件中的行并将结果存储在自定义记录中，其中每个记录字段对应于表中的一列。"
+msgstr ""
+"为了理解应用函子的强大功能和多功能性，我们将看一个稍微扩展的示例。"
+"我们将编写一些实用程序来解析和解码 CSV 文件中的内容。这些文件的每一行都包含一"
+"个由逗号（或其他分隔符）分隔的值列表。通常，它们用于存储表格数据，例如来自电"
+"子表格应用程序的数据。我们想要做的是转换 CSV "
+"文件中的行并将结果存储在自定义记录中，其中每个记录字段对应于表中的一列。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:609
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, here is a simple example\n"
 "file, containing tabular user information from a web\n"
 "store: First name, last name, age (optional), email address,\n"
 "gender, and password.\n"
-msgstr "例如，这是一个简单的示例文件，其中包含来自网络商店的表格用户信息：名字、姓氏、年龄（可选）、电子邮件地址、性别和密码。"
+msgstr "例如，这是一个简单的示例文件，其中包含来自网络商店的表格用户信息：名字、姓氏"
+"、年龄（可选）、电子邮件地址、性别和密码。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:610
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Jon,Doe,42,jon@doe.ch,m,weijr332sdk\n"
 "Jane,Doe,,jane@doe.ch,f,aa433sd112\n"
 "Stefan,Hoeck,,nope@goaway.ch,m,password123\n"
-msgstr "```repl Jon,Doe,42,jon@doe.ch,m,weijr332sdk Jane,Doe,,jane@doe.ch,f,aa433sd112 Stefan,Hoeck,,nope@goaway.ch,m,password123 ```"
+msgstr ""
+"Jon,Doe,42,jon@doe.ch,m,weijr332sdk\n"
+"Jane,Doe,,jane@doe.ch,f,aa433sd112\n"
+"Stefan,Hoeck,,nope@goaway.ch,m,password123\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:621
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "And here are the Idris data types necessary to hold\n"
 "this information at runtime. We use again custom\n"
 "string wrappers for increased type safety and\n"
 "because it will allow us to define for each data type\n"
 "what we consider to be valid input:\n"
-msgstr "以下是在运行时保存此信息所必需的 Idris 数据类型。我们再次使用自定义字符串包装器来提高类型安全性，因为它允许我们为每种数据类型定义我们认为是有效输入的内容："
+msgstr ""
+"以下是在运行时保存此信息所必需的 Idris 数据类型。我们再次使用自定义字符串包装"
+"器来提高类型安全性，因为它允许我们为每种数据类型定义我们认为是有效输入的内容"
+"：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:622
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Gender = Male | Female | Other\n"
 "\n"
@@ -1708,49 +1828,48 @@ msgid ""
 "  gender    : Gender\n"
 "  password  : Password\n"
 msgstr ""
-"数据性别 = 男 |女 |其他\n"
+"data Gender = Male | Female | Other\n"
 "\n"
-"记录名称 where\n"
-"  构造函数 MkName\n"
-"  值：字符串\n"
+"record Name where\n"
+"  constructor MkName\n"
+"  value : String\n"
 "\n"
-"记录电子邮件在哪里\n"
-"  构造函数 MkEmail\n"
-"  值：字符串\n"
+"record Email where\n"
+"  constructor MkEmail\n"
+"  value : String\n"
 "\n"
-"记录密码在哪里\n"
-"  构造函数 MkPassword\n"
-"  值：字符串\n"
+"record Password where\n"
+"  constructor MkPassword\n"
+"  value : String\n"
 "\n"
-"记录用户在哪里\n"
-"  构造函数 MkUser\n"
-"  名字：名字\n"
-"  姓氏：姓名\n"
-"  年龄：也许纳特\n"
-"  电子邮件：电子邮件\n"
-"  性别：性别\n"
-"  密码：密码\n"
+"record User where\n"
+"  constructor MkUser\n"
+"  firstName : Name\n"
+"  lastName  : Name\n"
+"  age       : Maybe Nat\n"
+"  email     : Email\n"
+"  gender    : Gender\n"
+"  password  : Password\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:650
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We start by defining an interface for reading fields\n"
 "in a CSV file and writing implementations for\n"
 "the data types we'd like to read:\n"
-msgstr "我们首先定义一个用于读取 CSV 文件中的字段的接口，并为我们想要读取的数据类型编写实现："
+msgstr "我们首先定义一个用于读取 CSV "
+"文件中的字段的接口，并为我们想要读取的数据类型编写实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:651
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface CSVField a where\n"
 "  read : String -> Maybe a\n"
 msgstr ""
-"```伊德里斯\n"
-"接口 CSVField a where\n"
-"  阅读：字符串->也许是\n"
-"```\n"
+"interface CSVField a where\n"
+"  read : String -> Maybe a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:659

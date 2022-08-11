@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-11 00:27+0000\n"
+"PO-Revision-Date: 2022-08-11 14:05+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/folds/zh_Hans/>\n"
@@ -430,7 +430,7 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:842 ../src/Tutorial/Folds.md:996
 #: ../src/Tutorial/Functor.md:417 ../src/Tutorial/Traverse.md:285
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Crud : (i : Type) -> (a : Type) -> Type where\n"
 "     Create : (value : a) -> Crud i a\n"
@@ -438,24 +438,11 @@ msgid ""
 "     Read   : (id : i) -> Crud i a\n"
 "     Delete : (id : i) -> Crud i a\n"
 msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
-"     创建：（值：a）-> Crud i a\n"
-"     更新：（id：i）->（value：a）-> Crud i a\n"
-"     阅读：（id：i）-> Crud i a\n"
-"     删除 : (id : i) -> Crud i a\n"
-"   ```\n"
-"#-#-#-#-#  Eq.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
-"     创建：（值：a）-> Crud i a\n"
-"     更新：（id：i）->（value：a）-> Crud i a\n"
-"     阅读：（id：i）-> Crud i a\n"
-"     删除 : (id : i) -> Crud i a\n"
-"   ```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"     Create : (value : a) -> Crud i a\n"
+"     Update : (id : i) -> (value : a) -> Crud i a\n"
+"     Read   : (id : i) -> Crud i a\n"
+"     Delete : (id : i) -> Crud i a\n"
 
 #. type: Title #
 #: ../src/Tutorial/Folds.md:1
@@ -2403,7 +2390,7 @@ msgstr "为 `Response e i` 实现 `Foldable`："
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1006 ../src/Tutorial/Functor.md:429
 #: ../src/Tutorial/Traverse.md:295
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Response : (e, i, a : Type) -> Type where\n"
 "     Created : (id : i) -> (value : a) -> Response e i a\n"
@@ -2412,17 +2399,12 @@ msgid ""
 "     Deleted : (id : i) -> Response e i a\n"
 "     Error   : (err : e) -> Response e i a\n"
 msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"   ```伊德里斯\n"
-"   数据响应：（e，i，a：Type）-> Type where\n"
-"     创建 : (id : i) -> (value : a) -> 响应 e i a\n"
-"     更新：（id：i）->（值：a）->响应 e i a\n"
-"     找到：（值：列表 a）-> 响应 e i a\n"
-"     已删除 : (id : i) -> 响应 e i a\n"
-"     错误 : (err : e) -> 响应 e i a\n"
-"   ```\n"
-"#-#-#-#-#  Folds.md.po (idris 2-tutorial)  #-#-#-#-#\n"
+"   data Response : (e, i, a : Type) -> Type where\n"
+"     Created : (id : i) -> (value : a) -> Response e i a\n"
+"     Updated : (id : i) -> (value : a) -> Response e i a\n"
+"     Found   : (values : List a) -> Response e i a\n"
+"     Deleted : (id : i) -> Response e i a\n"
+"     Error   : (err : e) -> Response e i a\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Folds.md:1018
