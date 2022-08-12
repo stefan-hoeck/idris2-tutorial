@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-12 00:19+0000\n"
+"PO-Revision-Date: 2022-08-12 13:55+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functor/zh_Hans/>\n"
@@ -2970,24 +2970,27 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1164
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "I added two utility function for helping with type inference\n"
 "and to get slightly nicer syntax. The important thing to note\n"
 "is, how we pattern match on the result of the first\n"
 "parsing function to decide on the data constructor\n"
 "and thus the next parsing function to use.\n"
-msgstr "我添加了两个实用函数来帮助进行类型推断并获得更好的语法。需要注意的重要一点是，我们如何对第一个解析函数的结果进行模式匹配，以决定数据构造函数，从而决定下一个要使用的解析函数。"
+msgstr ""
+"我添加了两个实用函数来帮助进行类型推断并获得更好的语法。需要注意的重要一点是"
+"，我们如何对第一个解析函数的结果进行模式匹配，以决定数据构造函数，从而决定下"
+"一个要使用的解析函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1166
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here's how this works at the REPL:\n"
-msgstr "以下是 REPL 的工作原理："
+msgstr "在 REPL 中看一下工作原理：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1167
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Create,jon@doe.ch\"\n"
 "Right (Create (MkEmail \"jon@doe.ch\"))\n"
@@ -2995,11 +2998,18 @@ msgid ""
 "Right (Update 12 (MkEmail \"jane@doe.ch\"))\n"
 "Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Delete,jon@doe.ch\"\n"
 "Left (FieldError 1 2 \"jon@doe.ch\")\n"
-msgstr "```repl Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Create,jon@doe.ch\" Right (Create (MkEmail \"jon@doe.ch\")) Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Update,12,jane@doe.ch\" Right (Update 12 (MkEmail \"jane@doe.ch\")) Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1“删除，jon@doe.ch”左（FieldError 1 2“jon@doe.ch”）```"
+msgstr ""
+"Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Create,jon@doe.ch\"\n"
+"Right (Create (MkEmail \"jon@doe.ch\"))\n"
+"Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Update,12,jane@doe."
+"ch\"\n"
+"Right (Update 12 (MkEmail \"jane@doe.ch\"))\n"
+"Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 \"Delete,jon@doe.ch\"\n"
+"Left (FieldError 1 2 \"jon@doe.ch\")\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1184
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "To conclude, `Monad`, unlike `Applicative`, allows us to\n"
 "chain computations sequentially, where intermediary\n"
@@ -3009,44 +3019,51 @@ msgid ""
 "will be sufficient. If, however, you want to decide\n"
 "based on the result of an effectful computation what\n"
 "computation to run next, you need a `Monad`.\n"
-msgstr "总而言之，`Monad` 与 `Applicative` 不同，它允许我们按顺序链接计算，其中中间结果会影响后续计算的行为。因此，如果您有 n 个不相关的有效计算并希望将它们组合在一个纯 n 元函数下，`Applicative` 就足够了。但是，如果您想根据有效计算的结果来决定接下来要运行什么计算，则需要 `Monad`。"
+msgstr ""
+"总而言之，`Monad` 与 `Applicative` "
+"不同，它允许我们按顺序链接计算，其中中间结果会影响后续计算的行为。因此，"
+"如果您有 n 个不相关的有效计算并希望将它们组合在一个纯 n "
+"元函数下，`Applicative` "
+"就足够了。但是，如果您想根据有效计算的结果来决定接下来要运行什么计算，则需要 "
+"`Monad`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1190
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, however, that `Monad` has one important drawback\n"
 "compared to `Applicative`: In general, monads don't compose.\n"
 "For instance, there is no `Monad` instance for `Either e . IO`.\n"
 "We will later learn about monad transformers, which can\n"
 "be composed with other monads.\n"
-msgstr "但是请注意，与 `Applicative` 相比，`Monad` 有一个重要的缺点：通常，monad 不会组合。例如， `Either e 没有 `Monad` 实例。 IO`。稍后我们将了解可以与其他 monad 组合的 monad 转换器。"
+msgstr ""
+"但是请注意，与 `Applicative` 相比，`Monad` 有一个重要的缺点：通常，monad "
+"不能组合。例如， `Either e . IO` 没有 `Monad` 实例。稍后我们将了解可以与其他 "
+"monad 组合的 monad 转换器。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:1191
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Monad Laws"
-msgstr "### 单子定律"
+msgstr "单子定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1194
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Without further ado, here are the laws for `Monad`:\n"
-msgstr "事不宜迟，以下是 `Monad` 的定律："
+msgstr "事不宜迟，以下是 `Monad` 的定律：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1198
-#, fuzzy
 msgid ""
 "`ma >>= pure = ma` and `pure v >>= f = f v`.  These are monad's identity "
 "laws. Here they are as concrete examples:"
-msgstr ""
-"`ma >>= pure = ma` 和 `pure v >>= f = f v`。这些是 monad 的恒等律。下面是具体"
-"的例子："
+msgstr "`ma >>= pure = ma` 和 `pure v >>= f = f v`。这些是 monad "
+"的恒等律。下面是具体的例子："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1199
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  id1L : Maybe a -> Maybe a\n"
 "  id1L ma = ma >>= pure\n"
@@ -3057,89 +3074,84 @@ msgid ""
 "  id2R : a -> (a -> Maybe b) -> Maybe b\n"
 "  id2R v f = f v\n"
 msgstr ""
-"  id1L : 也许一个 -> 也许一个\n"
-"  id1L ma = ma >>= 纯\n"
+"  id1L : Maybe a -> Maybe a\n"
+"  id1L ma = ma >>= pure\n"
 "\n"
 "  id2L : a -> (a -> Maybe b) -> Maybe b\n"
-"  id2L v f = 纯 v >>= f\n"
+"  id2L v f = pure v >>= f\n"
 "\n"
-"  id2R : a -> (a -> 也许 b) -> 也许 b\n"
+"  id2R : a -> (a -> Maybe b) -> Maybe b\n"
 "  id2R v f = f v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1212
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  These two laws state that `pure` should behave\n"
 "  neutrally w.r.t. *bind*.\n"
-msgstr ""
-"  这两条定律规定 `pure` 应该表现\n"
-"  中立地w.r.t. *绑定*。\n"
+msgstr "  这两条定律规定 `pure` 在 *bind* 中应该表现为中立。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1218
-#, fuzzy
 msgid ""
 "(m >>= f) >>= g = m >>= (f >=> g)  This is the law of associativity for "
 "monad.  You might not have seen the second operator `(>=>)`.  It can be used "
 "to sequence effectful computations and has the following type:"
 msgstr ""
-"(m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。您可能没有见过第二个运"
-"算符 `(>=>)`。它可用于对有效计算进行排序，并具有以下类型："
+"(m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。"
+"您可能没有见过第二个运算符 "
+"`(>=>)`。它可用于对有效计算进行排序，并具有以下类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1219
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  Tutorial.Functor> :t (>=>)\n"
 "  Prelude.>=> : Monad m => (a -> m b) -> (b -> m c) -> a -> m c\n"
 msgstr ""
-"  ```repl\n"
 "  Tutorial.Functor> :t (>=>)\n"
 "  Prelude.>=> : Monad m => (a -> m b) -> (b -> m c) -> a -> m c\n"
-"  ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1229
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The above are the *official* monad laws. However, we need to\n"
 "consider a third one, given that in Idris (and Haskell)\n"
 "`Monad` extends `Applicative`: As `(<*>)` can be implemented\n"
 "in terms of `(>>=)`, the actual implementation of `(<*>)`\n"
 "must behave the same as the implementation in terms of `(>>=)`:\n"
-msgstr "以上是 * 官方的* monad 法则。但是，我们需要考虑第三个，因为在 Idris（和 Haskell）中，`Monad` extends `Applicative`: As `(<*>)` 可以在就 `(>>=)` 而言，`(<*>)` 的实际实现必须与 `(>>=)` 的实现表现相同："
+msgstr ""
+"以上是 *官方的* monad 定律。但是，我们需要考虑第三个，因为在 Idris（和 "
+"Haskell）中，`Monad` 扩展自 `Applicative`: 由于 `(<*>)` 可以由 `(>>=)` "
+"实现，`(<*>)` 的实际实现必须与 `(>>=)` 的实现表现相同：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1231
-#, fuzzy
 msgid "`mf <*> ma = mf >>= (\\fun => map (fun $) ma)`."
-msgstr "`mf <*> ma = mf >>= (\\fun => map (fun $) ma)`。"
+msgstr "`mf <*> ma = mf >>= (\\fun => map (fun $) ma)`."
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Functor.md:1237
-#, fuzzy
 msgid ""
 "`Applicative` extends `Functor`, because every `Applicative` is also a "
 "`Functor`. Proof this by implementing `map` in terms of `pure` and `(<*>)`."
 msgstr ""
-"`Applicative` 扩展了 `Functor`，因为每个 `Applicative` 也是一个 `Functor`。通"
-"过根据 `pure` 和 `(<*>)` 实现 `map` 来证明这一点。"
+"`Applicative` 扩展了 `Functor`，因为每个 `Applicative` 也是一个 `Functor`。"
+"通过根据 `pure` 和 `(<*>)` 实现 `map` 来证明这一点。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functor.md:1241
-#, fuzzy
 msgid ""
 "`Monad` extends `Applicative`, because every `Monad` is also an "
 "`Applicative`. Proof this by implementing `(<*>)` in terms of `(>>=)` and "
 "`pure`."
 msgstr ""
-"`Monad` 扩展了 `Applicative`，因为每个 `Monad` 也是一个 `Applicative`。通过根"
-"据 `(>>=)` 和 `pure` 实现 `(<*>)` 来证明这一点。"
+"`Monad` 扩展了 `Applicative`，因为每个 `Monad` 也是一个 `Applicative`。"
+"通过根据 `(>>=)` 和 `pure` 实现 `(<*>)` 来证明这一点。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Functor.md:1244
-#, fuzzy
 msgid ""
 "Implement `(>>=)` in terms of `join` and other functions in the `Monad` "
 "hierarchy."
@@ -3147,7 +3159,6 @@ msgstr "根据 `join` 和 `Monad` 层次结构中的其他函数实现 `(>>=)`�
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Functor.md:1247
-#, fuzzy
 msgid ""
 "Implement `join` in terms of `(>>=)` and other functions in the `Monad` "
 "hierarchy."
@@ -3155,38 +3166,34 @@ msgstr "根据 `(>>=)` 和 `Monad` 层次结构中的其他函数实现 `join`�
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Functor.md:1250
-#, fuzzy
 msgid "There is no lawful `Monad` implementation for `Validated e`.  Why?"
 msgstr "`Validated e` 没有合法的 `Monad` 实现。为什么？"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Functor.md:1256
-#, fuzzy
 msgid ""
 "In this slightly extended exercise, we are going to simulate CRUD operations "
 "on a data store. We will use a mutable reference (imported from `Data.IORef` "
 "from the *base* library)  holding a list of `User`s paired with a unique ID "
 "of type `Nat` as our user data base:"
 msgstr ""
-"在这个稍微扩展的练习中，我们将在数据存储上模拟 CRUD 操作。我们将使用一个可变"
-"引用（从 *base* 库中的 `Data.IORef` 导入），其中包含一个 `User` 列表和一个 "
-"[X238X 类型的唯一 ID ]Nat` 作为我们的用户数据库："
+"在这个稍微扩展的练习中，我们将在数据存储上模拟 CRUD "
+"操作。我们将使用一个可变引用（从 *base* 库中的 `Data.IORef` 导入），"
+"其中包含一个 `User` 列表和一个类型为 `Nat` 的唯一 ID 作为我们的用户数据库："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1257
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   DB : Type\n"
 "   DB = IORef (List (Nat,User))\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   数据库：类型\n"
-"   DB = IORef（列表（Nat，用户））\n"
-"   ```\n"
+"   DB : Type\n"
+"   DB = IORef (List (Nat,User))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1267
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Most operations on a database come with a risk of failure:\n"
 "   When we try to update or delete a user, the entry in question\n"
@@ -3202,42 +3209,37 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1268
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data DBError : Type where\n"
 "     UserExists        : Email -> Nat -> DBError\n"
 "     UserNotFound      : Nat -> DBError\n"
 "     SizeLimitExceeded : DBError\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   数据 DBError : 键入 where\n"
-"     UserExists : 电子邮件 -> Nat -> DBError\n"
-"     UserNotFound : Nat -> DBError\n"
-"     SizeLimitExceeded：DBError\n"
-"   ```\n"
+"   data DBError : Type where\n"
+"     UserExists        : Email -> Nat -> DBError\n"
+"     UserNotFound      : Nat -> DBError\n"
+"     SizeLimitExceeded : DBError\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1277
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   In general, our functions will therefore have a\n"
 "   type similar to the following:\n"
 msgstr ""
 "   一般来说，我们的函数因此会有一个\n"
-"   键入类似于以下内容：\n"
+"   类似于以下内容的类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1278
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   someDBProg : arg1 -> arg2 -> DB -> IO (Either DBError a)\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   someDBProg : arg1 -> arg2 -> DB -> IO (DBError a)\n"
-"   ```\n"
+msgstr "   someDBProg : arg1 -> arg2 -> DB -> IO (Either DBError a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1284
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   We'd like to abstract over this, by introducing a new wrapper\n"
 "   type:\n"
@@ -3247,21 +3249,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1285
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   record Prog a where\n"
 "     constructor MkProg\n"
 "     runProg : DB -> IO (Either DBError a)\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   记录 Prog a where\n"
-"     构造函数 MkProg\n"
-"     runProg : DB -> IO (DBError a)\n"
-"   ```\n"
+"   record Prog a where\n"
+"     constructor MkProg\n"
+"     runProg : DB -> IO (Either DBError a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1294
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   We are now ready to write us some utility functions. Make sure\n"
 "   to follow the following business rules when implementing the\n"
@@ -3273,32 +3273,27 @@ msgstr ""
 
 #. type: Bullet: '   * '
 #: ../src/Tutorial/Functor.md:1297
-#, fuzzy
 msgid ""
 "Email addresses in the DB must be unique. (Consider implementing `Eq Email` "
 "to verify this)."
-msgstr ""
-"数据库中的电子邮件地址必须是唯一的。 （考虑实现 `Eq Email` 来验证这一点）。"
+msgstr "数据库中的电子邮件地址必须是唯一的。 （考虑实现 `Eq Email` 来验证这一点）。"
 
 #. type: Bullet: '   * '
 #: ../src/Tutorial/Functor.md:1299
-#, fuzzy
 msgid "The size limit of 1000 entries must not be exceeded."
 msgstr "不得超过 1000 个条目的大小限制。"
 
 #. type: Bullet: '   * '
 #: ../src/Tutorial/Functor.md:1303
-#, fuzzy
 msgid ""
 "Operations trying to lookup a user by their ID must fail with `UserNotFound` "
 "in case no entry was found in the DB."
-msgstr ""
-"如果在 DB 中找不到条目，则尝试通过 ID 查找用户的操作必须失败并显示 "
+msgstr "如果在 DB 中找不到条目，则尝试通过 ID 查找用户的操作必须失败并显示 "
 "`UserNotFound`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1308
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   You'll need the following functions from `Data.IORef` when working\n"
 "   with mutable references: `newIORef`, `readIORef`, and `writeIORef`.\n"
@@ -3312,156 +3307,146 @@ msgstr ""
 
 #. type: Bullet: '   1. '
 #: ../src/Tutorial/Functor.md:1310
-#, fuzzy
 msgid "Implement interfaces `Functor`, `Applicative`, and `Monad` for `Prog`."
 msgstr "为 `Prog` 实现接口 `Functor`、`Applicative` 和 `Monad`。"
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/Functor.md:1312
-#, fuzzy
 msgid "Implement interface `HasIO` for `Prog`."
 msgstr "为 `Prog` 实现接口 `HasIO`。"
 
 #. type: Bullet: '   3. '
 #: ../src/Tutorial/Functor.md:1314
-#, fuzzy
 msgid "Implement the following utility functions:"
 msgstr "实现以下实用功能："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1317
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      throw : DBError -> Prog a\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      抛出：DBError -> Prog a\n"
+"      ```idris\n"
+"      throw : DBError -> Prog a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1319
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "      getUsers : Prog (List (Nat,User))\n"
-msgstr "      getUsers : Prog (列表 (Nat,User))\n"
+msgstr "      getUsers : Prog (List (Nat,User))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1322
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      -- check the size limit!\n"
 "      putUsers : List (Nat,User) -> Prog ()\n"
 msgstr ""
-"      -- 检查大小限制！\n"
-"      putUsers : 列表 (Nat,User) -> Prog ()\n"
+"      -- check the size limit!\n"
+"      putUsers : List (Nat,User) -> Prog ()\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1326
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      -- implement this in terms of `getUsers` and `putUsers`\n"
 "      modifyDB : (List (Nat,User) -> List (Nat,User)) -> Prog ()\n"
 "      ```\n"
 msgstr ""
-"      -- 用 `getUsers` 和 `putUsers` 来实现\n"
+"      -- implement this in terms of `getUsers` and `putUsers`\n"
 "      modifyDB : (List (Nat,User) -> List (Nat,User)) -> Prog ()\n"
 "      ```\n"
 
 #. type: Bullet: '   4. '
 #: ../src/Tutorial/Functor.md:1330
-#, fuzzy
 msgid ""
 "Implement function `lookupUser`. This should fail with an appropriate error, "
 "if a user with the given ID cannot be found."
-msgstr ""
-"实现函数`lookupUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的"
-"错误。"
+msgstr "实现函数`lookupUser`。如果找不到具有给定 ID "
+"的用户，这应该会失败并出现适当的错误。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1334
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      lookupUser : (id : Nat) -> Prog User\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      lookupUser : (id : Nat) -> Prog User\n"
 "      ```\n"
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/Functor.md:1339
-#, fuzzy
 msgid ""
 "Implement function `deleteUser`. This should fail with an appropriate error, "
 "if a user with the given ID cannot be found. Make use of `lookupUser` in "
 "your implementation."
 msgstr ""
-"实现函数`deleteUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的"
-"错误。在您的实现中使用 `lookupUser`。"
+"实现函数 `deleteUser`。如果找不到具有给定 ID "
+"的用户，这应该会失败并出现适当的错误。在您的实现中使用 `lookupUser`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1343
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      deleteUser : (id : Nat) -> Prog ()\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      deleteUser : (id : Nat) -> Prog ()\n"
 "      ```\n"
 
 #. type: Bullet: '   6. '
 #: ../src/Tutorial/Functor.md:1349
-#, fuzzy
 msgid ""
 "Implement function `addUser`. This should fail, if a user with the given "
 "`Email` already exists, or if the data banks size limit of 1000 entries is "
 "exceeded.  In addition, this should create and return a unique ID for the "
 "new user entry."
 msgstr ""
-"实现函数`addUser`。如果具有给定 `Email` 的用户已经存在，或者超过了 1000 个条"
-"目的数据库大小限制，这应该会失败。此外，这应该为新用户条目创建并返回一个唯一 "
-"ID。"
+"实现函数 `addUser`。如果具有给定 `Email` 的用户已经存在，或者超过了 1000 "
+"个条目的数据库大小限制，这应该会失败。此外，"
+"这应该为新用户条目创建并返回一个唯一 ID。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1353
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      addUser : (new : User) -> Prog Nat\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      addUser : (new : User) -> Prog Nat\n"
 "      ```\n"
 
 #. type: Bullet: '   7. '
 #: ../src/Tutorial/Functor.md:1358
-#, fuzzy
 msgid ""
 "Implement function `updateUser`. This should fail, if the user in question "
 "cannot be found or a user with the updated user's `Email` already exists.  "
 "The returned value should be the updated user."
-msgstr ""
-"实现函数`updateUser`。如果找不到相关用户或更新用户的 `Email` 的用户已经存在，"
-"这应该会失败。返回的值应该是更新的用户。"
+msgstr "实现函数`updateUser`。如果找不到相关用户或更新用户的 `Email` "
+"的用户已经存在，这应该会失败。返回的值应该是更新的用户。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1362
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      updateUser : (id : Nat) -> (mod : User -> User) -> Prog User\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      updateUser : (id : Nat) -> (mod : User -> User) -> Prog User\n"
 "      ```\n"
 
 #. type: Bullet: '   8. '
 #: ../src/Tutorial/Functor.md:1366
-#, fuzzy
 msgid ""
 "Data type `Prog` is actually too specific. We could just as well abstract "
 "over the error type and the `DB` environment:"
@@ -3469,7 +3454,7 @@ msgstr "数据类型 `Prog` 实际上太具体了。我们也可以抽象出错�
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1372
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      record Prog' env err a where\n"
@@ -3477,15 +3462,15 @@ msgid ""
 "        runProg' : env -> IO (Either err a)\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      记录 Prog' env 错误的地方\n"
-"        构造函数 MkProg\n"
-"        runProg' : env -> IO (要么错误 a)\n"
+"      ```idris\n"
+"      record Prog' env err a where\n"
+"        constructor MkProg\n"
+"        runProg' : env -> IO (Either err a)\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1378
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Verify, that all interface implementations you wrote\n"
 "      for `Prog` can be used verbatim to implement the same\n"
@@ -3501,13 +3486,13 @@ msgstr ""
 
 #. type: Title ##
 #: ../src/Tutorial/Functor.md:1379
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Background and further Reading"
-msgstr "## 背景和延伸阅读"
+msgstr "背景和延伸阅读"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1388
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Concepts like *functor* and *monad* have their origin in *category theory*,\n"
 "a branch of mathematics. That is also where their laws come from.\n"
@@ -3516,35 +3501,42 @@ msgid ""
 "It is a highly abstract topic, but there is a pretty accessible\n"
 "introduction for programmers, written by\n"
 "[Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).\n"
-msgstr "*functor* 和 *monad* 等概念起源于数学分支 * 范畴论*。这也是他们的法律的来源。范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski] (https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/ ）。"
+msgstr ""
+"*functor* 和 *monad* 等概念起源于数学分支 *范畴论*。这也是他们的定律的来源。"
+"范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度"
+"抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz "
+"Milewski](https://bartoszmilewski.com/2014/10/28/"
+"category-theory-for-programmers-the-preface/ ）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1394
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The usefulness of applicative functors as a middle ground between\n"
 "functor and monad was discovered several years after monads had\n"
 "already been in use in Haskell. They where introduced in the\n"
 "article [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html),\n"
 "which is freely available online and a highly recommended read.\n"
-msgstr "应用函子作为函子和单子之间的中间地带的有用性是在单子已经在 Haskell 中使用几年之后才发现的。它们在文章 [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html) 中进行了介绍，该文章可在线免费获得，并且强烈推荐阅读。"
+msgstr ""
+"应用函子作为函子和单子之间的中间地带的有用性是在单子已经在 Haskell "
+"中使用几年之后才发现的。它们在文章 [*Applicative Programming with "
+"Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html) "
+"中进行了介绍，该文章可在线免费获得，并且强烈推荐阅读。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1401
-#, fuzzy
 msgid ""
 "Interfaces `Functor`, `Applicative`, and `Monad` abstract over programming "
 "patterns that come up when working with type constructors of type `Type -> "
 "Type`. Such data types are also referred to as *values in a context*, or "
 "*effectful computations*."
 msgstr ""
-"接口 `Functor`、`Applicative` 和 `Monad` 抽象了使用 `Type -> Type` 类型的类型"
-"构造函数时出现的编程模式。此类数据类型也称为上下文中的 * 值 *，或 * 有效计算 "
-"*。"
+"接口 `Functor`、`Applicative` 和 `Monad` 抽象了使用 `Type -> Type` "
+"类型的类型构造函数时出现的编程模式。此类数据类型也称为上下文中的 *值 *，或 * "
+"有效计算 *。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1404
-#, fuzzy
 msgid ""
 "`Functor` allows us to *map* over values in a context without affecting the "
 "context's underlying structure."
@@ -3552,45 +3544,38 @@ msgstr "`Functor` 允许我们在上下文中的值上 *map* 而不影响上下�
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1407
-#, fuzzy
 msgid ""
 "`Applicative` allows us to apply n-ary functions to n effectful computations "
 "and to lift pure values into a context."
-msgstr ""
-"`Applicative` 允许我们将 n 元函数应用于 n 个有效计算，并将纯值提升到上下文"
-"中。"
+msgstr "`Applicative` 允许我们将 n 元函数应用于 n "
+"个有效计算，并将纯值提升到上下文中。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1411
-#, fuzzy
 msgid ""
 "`Monad` allows us to chain effectful computations, where the intermediary "
 "results can affect, which computation to run further down the chain."
-msgstr ""
-"`Monad` 允许我们链接有效的计算，其中中间结果可能会影响，哪些计算在链中运行得"
-"更远。"
+msgstr "`Monad` "
+"允许我们链接有效的计算，其中中间结果可能会影响，哪些计算在链中运行得更远。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1415
-#, fuzzy
 msgid ""
 "Unlike `Monad`, `Functor` and `Applicative` compose: The product and "
 "composition of two functors or applicatives are again functors or "
 "applicatives, respectively."
-msgstr ""
-"与 `Monad` 不同，`Functor` 和 `Applicative` 组合：两个函子或应用程序的乘积和"
-"组合再次分别是函子或应用程序。"
+msgstr "与 `Monad` 不同，`Functor` 和 `Applicative` "
+"组合：两个函子或应用程序的乘积和组合再次分别是函子或应用程序。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1419
-#, fuzzy
 msgid ""
 "Idris provides syntactic sugar for working with some of the interfaces "
 "presented here: Idiom brackets for `Applicative`, *do blocks* and the bang "
 "operator for `Monad`."
 msgstr ""
-"Idris 为使用此处介绍的一些接口提供了语法糖：`Applicative`、*do blocks* 的成语"
-"方括号和 `Monad` 的 bang 运算符。"
+"Idris 为使用此处介绍的一些接口提供了语法糖：`Applicative`、*do blocks* "
+"的习语括号和 `Monad` 的感叹号运算符。"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:1420 ../src/Tutorial/Intro.md:430
@@ -3600,9 +3585,10 @@ msgstr "下一步是什么？"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1425
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the [next chapter](Folds.md) we get to learn more about\n"
 "recursion, totality checking, and an interface for\n"
 "collapsing container types: `Foldable`.\n"
-msgstr "在[下一章]（Folds.md）中，我们将了解更多关于递归、总体检查和折叠容器类型的接口：`Foldable`。"
+msgstr "在[下一章](Folds.md) "
+"中，我们将了解更多关于递归、完全性检查和折叠容器类型的接口：`Foldable`。\n"
