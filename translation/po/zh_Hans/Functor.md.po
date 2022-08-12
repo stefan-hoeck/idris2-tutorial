@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-11 14:05+0000\n"
+"PO-Revision-Date: 2022-08-12 00:19+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functor/zh_Hans/>\n"
@@ -1873,16 +1873,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:659
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Below are implementations for `Gender` and `Bool`. I decided\n"
 "to in these cases encode each value with a single lower\n"
 "case character:\n"
-msgstr "下面是 `Gender` 和 `Bool` 的实现。在这些情况下，我决定使用单个小写字符对每个值进行编码："
+msgstr "下面是 `Gender` 和 `Bool` "
+"的实现。在这些情况下，我决定使用单个小写字符对每个值进行编码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:660
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "CSVField Gender where\n"
 "  read \"m\" = Just Male\n"
@@ -1895,24 +1896,28 @@ msgid ""
 "  read \"f\" = Just False\n"
 "  read _   = Nothing\n"
 msgstr ""
-"```伊德里斯\n"
-"CSVField 性别 where\n"
-"  读“m”=只是男性\n"
-"  读“f”=只是女性\n"
-"  读“o”=只是其他\n"
-"  读 _ = 没有\n"
+"CSVField Gender where\n"
+"  read \"m\" = Just Male\n"
+"  read \"f\" = Just Female\n"
+"  read \"o\" = Just Other\n"
+"  read _   = Nothing\n"
+"\n"
+"CSVField Bool where\n"
+"  read \"t\" = Just True\n"
+"  read \"f\" = Just False\n"
+"  read _   = Nothing\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:675
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For numeric types, we can use the parsing functions\n"
 "from `Data.String`:\n"
-msgstr "对于数值类型，我们可以使用 `Data.String` 中的解析函数："
+msgstr "对于数值类型，我们可以使用 `Data.String` 中的解析函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:676
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "CSVField Nat where\n"
 "  read = parsePositive\n"
@@ -1924,52 +1929,54 @@ msgid ""
 "  read = parseDouble\n"
 msgstr ""
 "CSVField Nat where\n"
-"  读取 = parsePositive\n"
+"  read = parsePositive\n"
 "\n"
-"CSVField 整数 where\n"
-"  读取 = parseInteger\n"
+"CSVField Integer where\n"
+"  read = parseInteger\n"
 "\n"
 "CSVField Double where\n"
-"  读取 = parseDouble\n"
+"  read = parseDouble\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:692
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For optional values, the stored type must itself\n"
 "come with an instance of `CSVField`. We can then treat\n"
 "the empty string `\"\"` as `Nothing`, while a non-empty\n"
 "string will be passed to the encapsulated type's field reader.\n"
 "(Remember that `(<$>)` is an alias for `map`.)\n"
-msgstr "对于可选值，存储的类型本身必须带有 `CSVField` 的实例。然后我们可以将空字符串 `\"\"` 视为 `Nothing`，而将非空字符串传递给封装类型的字段读取器。 （记住 `(<$>)` 是 `map` 的别名。）"
+msgstr ""
+"对于可选值，存储的类型本身必须带有 `CSVField` 的实例。然后我们可以将空字符串 "
+"`\"\"` 视为 `Nothing`，而将非空字符串传递给封装类型的字段读取器。 （记住 "
+"`(<$>)` 是 `map` 的别名。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:693
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "CSVField a => CSVField (Maybe a) where\n"
 "  read \"\" = Just Nothing\n"
 "  read s  = Just <$> read s\n"
 msgstr ""
-"```伊德里斯\n"
-"CSVField a => CSVField (也许是 a) 其中\n"
-"  读“”=什么都没有\n"
-"  读取 s = 只是 <$> 读取 s\n"
-"```\n"
+"CSVField a => CSVField (Maybe a) where\n"
+"  read \"\" = Just Nothing\n"
+"  read s  = Just <$> read s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:703
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, for our string wrappers, we need to decide what\n"
 "we consider to be valid values. For simplicity, I decided\n"
 "to limit the length of allowed strings and the set of\n"
 "valid characters.\n"
-msgstr "最后，对于我们的字符串包装器，我们需要决定我们认为什么是有效值。为简单起见，我决定限制允许的字符串长度和有效字符集。"
+msgstr "最后，对于我们的字符串包装器，我们需要决定我们认为什么是有效值。为简单起见，"
+"我决定限制允许的字符串长度和有效字符集。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:704
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a\n"
 "readIf p mk s = if p s then Just (mk s) else Nothing\n"
@@ -2010,110 +2017,113 @@ msgstr ""
 "readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a\n"
 "readIf p mk s = if p s then Just (mk s) else Nothing\n"
 "\n"
-"isValidName : 字符串 -> 布尔值\n"
+"isValidName : String -> Bool\n"
 "isValidName s =\n"
-"  让 len = 长度 s\n"
+"  let len = length s\n"
 "   in 0 < len && len <= 100 && all isAlpha (unpack s)\n"
 "\n"
-"CSV 字段名称 where\n"
+"CSVField Name where\n"
 "  read = readIf isValidName MkName\n"
 "\n"
-"isEmailChar : 字符 -> 布尔值\n"
-"isEmailChar '.' = 真\n"
+"isEmailChar : Char -> Bool\n"
+"isEmailChar '.' = True\n"
 "isEmailChar '@' = True\n"
-"isEmailChar c = isAlphaNum c\n"
+"isEmailChar c   = isAlphaNum c\n"
 "\n"
-"isValidEmail : 字符串 -> 布尔\n"
+"isValidEmail : String -> Bool\n"
 "isValidEmail s =\n"
-"  让 len = 长度 s\n"
-"   in 0 < len && len <= 100 && all isEmailChar (解包)\n"
+"  let len = length s\n"
+"   in 0 < len && len <= 100 && all isEmailChar (unpack s)\n"
 "\n"
-"CSVField 电子邮件地址\n"
+"CSVField Email where\n"
 "  read = readIf isValidEmail MkEmail\n"
 "\n"
 "isPasswordChar : Char -> Bool\n"
 "isPasswordChar ' ' = True\n"
-"isPasswordChar c = not (isControl c) && not (isSpace c)\n"
+"isPasswordChar c   = not (isControl c) && not (isSpace c)\n"
 "\n"
-"isValidPassword : 字符串 -> 布尔\n"
+"isValidPassword : String -> Bool\n"
 "isValidPassword s =\n"
-"  让 len = 长度 s\n"
+"  let len = length s\n"
 "   in 8 < len && len <= 100 && all isPasswordChar (unpack s)\n"
 "\n"
-"CSVField 密码 where\n"
+"CSVField Password where\n"
 "  read = readIf isValidPassword MkPassword\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:745
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In a later chapter, we will learn about refinement types and\n"
 "how to store an erased proof of validity together with\n"
 "a validated value.\n"
-msgstr "在后面的章节中，我们将学习细化类型以及如何将已擦除的有效性证明与验证值一起存储。"
+msgstr "在后面的章节中，我们将学习细化类型以及如何将已擦除的有效性证明与验证值一起存"
+"储。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:749
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can now start to decode whole lines in a CSV file.\n"
 "In order to do so, we first introduce a custom error\n"
 "type encapsulating how things can go wrong:\n"
-msgstr "我们现在可以开始解码 CSV 文件中的整行。为了做到这一点，我们首先引入一个自定义错误类型来封装事情是如何出错的："
+msgstr "我们现在可以开始解码 CSV 文件中的整行。为了做到这一点，我们首先引入一个自定义"
+"错误类型来封装事情是如何出错的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:750
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data CSVError : Type where\n"
 "  FieldError           : (line, column : Nat) -> (str : String) -> CSVError\n"
 "  UnexpectedEndOfInput : (line, column : Nat) -> CSVError\n"
 "  ExpectedEndOfInput   : (line, column : Nat) -> CSVError\n"
 msgstr ""
-"```伊德里斯\n"
-"数据 CSVError : 在哪里输入\n"
-"  FieldError : (line, column : Nat) -> (str: String) -> CSVError\n"
-"  UnexpectedEndOfInput：（行，列：Nat）-> CSVError\n"
-"  ExpectedEndOfInput : (line, column : Nat) -> CSVError\n"
-"```\n"
+"data CSVError : Type where\n"
+"  FieldError           : (line, column : Nat) -> (str : String) -> CSVError\n"
+"  UnexpectedEndOfInput : (line, column : Nat) -> CSVError\n"
+"  ExpectedEndOfInput   : (line, column : Nat) -> CSVError\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:760
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can now use `CSVField` to read a single field at a given\n"
 "line and position in a CSV file, and return a `FieldError` in case\n"
 "of a failure.\n"
-msgstr "我们现在可以使用 `CSVField` 读取 CSV 文件中给定行和位置的单个字段，并在失败的情况下返回 `FieldError`。"
+msgstr "我们现在可以使用 `CSVField` 读取 CSV 文件中给定行和位置的单个字段，"
+"并在失败的情况下返回 `FieldError`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:761
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readField : CSVField a => (line, column : Nat) -> String -> Either CSVError a\n"
 "readField line col str =\n"
 "  maybe (Left $ FieldError line col str) Right (read str)\n"
 msgstr ""
-"```伊德里斯\n"
-"readField : CSVField a => (line, column : Nat) -> String -> Either CSVError a\n"
-"readField 行 col str =\n"
-"  可能（左 $ FieldError line col str）右（读取 str）\n"
-"```\n"
+"readField : CSVField a => (line, column : Nat) -> String -> Either CSVError "
+"a\n"
+"readField line col str =\n"
+"  maybe (Left $ FieldError line col str) Right (read str)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:772
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If we know in advance the number of fields we need to read,\n"
 "we can try and convert a list of strings to a `Vect` of\n"
 "the given length. This facilitates reading record values of\n"
 "a known number of fields, as we get the correct number\n"
 "of string variables when pattern matching on the vector:\n"
-msgstr "如果我们事先知道需要读取的字段数量，我们可以尝试将字符串列表转换为给定长度的 `Vect`。这有助于读取已知数量字段的记录值，因为我们在向量上进行模式匹配时得到正确数量的字符串变量："
+msgstr ""
+"如果我们事先知道需要读取的字段数量，我们可以尝试将字符串列表转换为给定长度的 "
+"`Vect`。这有助于读取已知数量字段的记录值，因为我们在向量上进行模式匹配时得到"
+"正确数量的字符串变量：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:773
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n a)\n"
 "toVect 0     line _   []        = Right []\n"
@@ -2121,25 +2131,25 @@ msgid ""
 "toVect (S k) line col []        = Left (UnexpectedEndOfInput line col)\n"
 "toVect (S k) line col (x :: xs) = (x ::) <$> toVect k line (S col) xs\n"
 msgstr ""
-"```伊德里斯\n"
-"toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n a)\n"
-"toVect 0 线 _ [] = 右 []\n"
-"toVect 0 line col _ = Left (ExpectedEndOfInput line col)\n"
-"toVect (S k) line col [] = Left (UnexpectedEndOfInput line col)\n"
+"toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n "
+"a)\n"
+"toVect 0     line _   []        = Right []\n"
+"toVect 0     line col _         = Left (ExpectedEndOfInput line col)\n"
+"toVect (S k) line col []        = Left (UnexpectedEndOfInput line col)\n"
 "toVect (S k) line col (x :: xs) = (x ::) <$> toVect k line (S col) xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:783
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, we can implement function `readUser` to try and convert\n"
 "a single line in a CSV-file to a value of type `User`:\n"
-msgstr "最后，我们可以实现函数 `readUser` 来尝试将 CSV 文件中的一行转换为 `User` 类型的值："
+msgstr "最后，我们可以实现函数 `readUser` 来尝试将 CSV 文件中的一行转换为 `User` "
+"类型的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:784
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readUser' : (line : Nat) -> List String -> Either CSVError User\n"
 "readUser' line ss = do\n"
@@ -2154,29 +2164,28 @@ msgid ""
 "readUser : (line : Nat) -> String -> Either CSVError User\n"
 "readUser line = readUser' line . forget . split (',' ==)\n"
 msgstr ""
-"```伊德里斯\n"
 "readUser' : (line : Nat) -> List String -> Either CSVError User\n"
-"readUser' 行 ss = do\n"
+"readUser' line ss = do\n"
 "  [fn,ln,a,em,g,pw] <- toVect 6 line 0 ss\n"
 "  [| MkUser (readField line 1 fn)\n"
 "            (readField line 2 ln)\n"
-"            （读取字段第 3 行 a）\n"
-"            （读取字段第 4 行）\n"
+"            (readField line 3 a)\n"
+"            (readField line 4 em)\n"
 "            (readField line 5 g)\n"
-"            （读取字段第 6 行 pw）|]\n"
+"            (readField line 6 pw) |]\n"
+"\n"
+"readUser : (line : Nat) -> String -> Either CSVError User\n"
+"readUser line = readUser' line . forget . split (',' ==)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:800 ../src/Tutorial/Traverse.md:122
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Let's give this a go at the REPL:\n"
-msgstr ""
-"#-#-#-#-#  Functor.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"#-#-#-#-#  Traverse.md.po (idris 2-tutorial)  #-#-#-#-#\n"
-"让我们在 REPL 上试一试："
+msgstr "让我们在 REPL 上试一试：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:801
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functor> readUser 1 \"Joe,Foo,46,j@f.ch,m,pw1234567\"\n"
 "Right (MkUser (MkName \"Joe\") (MkName \"Foo\")\n"
@@ -2184,17 +2193,15 @@ msgid ""
 "Tutorial.Functor> readUser 7 \"Joe,Foo,46,j@f.ch,m,shortPW\"\n"
 "Left (FieldError 7 6 \"shortPW\")\n"
 msgstr ""
-"```repl\n"
 "Tutorial.Functor> readUser 1 \"Joe,Foo,46,j@f.ch,m,pw1234567\"\n"
-"对 (MkUser (MkName \"Joe\") (MkName \"Foo\")\n"
-"  (仅 46) (MkEmail \"j@f.ch\") 男 (MkPassword \"pw1234567\"))\n"
+"Right (MkUser (MkName \"Joe\") (MkName \"Foo\")\n"
+"  (Just 46) (MkEmail \"j@f.ch\") Male (MkPassword \"pw1234567\"))\n"
 "Tutorial.Functor> readUser 7 \"Joe,Foo,46,j@f.ch,m,shortPW\"\n"
-"左（FieldError 7 6“shortPW”）\n"
-"```\n"
+"Left (FieldError 7 6 \"shortPW\")\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:816
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how in the implementation of `readUser'` we used\n"
 "an idiom bracket to map a function of six arguments (`MkUser`)\n"
@@ -2203,36 +2210,41 @@ msgid ""
 "succeeded. It would have been notoriously cumbersome resulting\n"
 "in much less readable code to implement\n"
 "`readUser'` with a succession of six nested pattern matches.\n"
-msgstr "请注意，在 `readUser'` 的实现中，我们如何使用惯用括号将六个参数 (`MkUser`) 的函数映射到 ` 或 CSVError` 类型的六个值上。当且仅当所有解析都成功时，这将自动成功。众所周知，使用连续六个嵌套模式匹配来实现 `readUser'` 的代码的可读性会大大降低。"
+msgstr ""
+"请注意，在 `readUser'` 的实现中，我们如何使用习语括号将六个参数 (`MkUser`) "
+"的函数映射到 `Either CSVError` "
+"类型的六个值上。当且仅当所有解析都成功时，这将自动成功。众所周知，"
+"使用连续六个嵌套模式匹配来实现 `readUser'` 的代码的可读性会大大降低。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:819
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "However, the idiom bracket above looks still quite repetitive.\n"
 "Surely, we can do better?\n"
-msgstr "但是，上面的成语括号看起来仍然非常重复。当然，我们可以做得更好吗？"
+msgstr "但是，上面的习语括号看起来仍然非常重复。当然，我们可以做得更好吗？\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Functor.md:820
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "A Case for Heterogeneous Lists"
-msgstr "#### 异构列表的案例"
+msgstr "异构列表的案例"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:827
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is time to learn about a family of types, which can\n"
 "be used as a generic representation for record types, and\n"
 "which will allow us to represent and read rows in\n"
 "heterogeneous tables with a minimal amount of code: Heterogeneous\n"
 "lists.\n"
-msgstr "是时候学习一组类型了，它们可以用作记录类型的通用表示，并且允许我们用最少的代码表示和读取异构表中的行：异构列表。"
+msgstr "是时候学习一组类型了，它们可以用作记录类型的通用表示，并且允许我们用最少的代"
+"码表示和读取异构表中的行：异构列表。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:828
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "namespace HList\n"
 "  public export\n"
@@ -2240,36 +2252,39 @@ msgid ""
 "    Nil  : HList Nil\n"
 "    (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)\n"
 msgstr ""
-"```伊德里斯\n"
-"命名空间 HList\n"
-"  公共出口\n"
+"namespace HList\n"
+"  public export\n"
 "  data HList : (ts : List Type) -> Type where\n"
-"    无：HList 无\n"
+"    Nil  : HList Nil\n"
 "    (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:841
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "A heterogeneous list is a list type indexed over a *list of types*.\n"
 "This allows us to at each position store a value of the\n"
 "type at the same position in the list index. For instance,\n"
 "here is a variant, which stores three values of types\n"
 "`Bool`, `Nat`, and `Maybe String` (in that order):\n"
-msgstr "异构列表是在类型 * 的 * 列表上索引的列表类型。这允许我们在每个位置将类型的值存储在列表索引中的相同位置。例如，这里有一个变体，它存储了 `Bool`、`Nat` 和 `Maybe String` 类型的三个值（按此顺序）："
+msgstr ""
+"异构列表是在 *类型列表* 上索引的列表类型。这允许我们在每个位置将类型的值存储"
+"在列表索引中的相同位置。例如，这里有一个变体，它存储了 `Bool`、`Nat` 和 `"
+"Maybe String` 类型的三个值（按此顺序）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:842
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hlist1 : HList [Bool, Nat, Maybe String]\n"
 "hlist1 = [True, 12, Nothing]\n"
-msgstr "```idris hlist1 : HList [Bool, Nat, Maybe String] hlist1 = [True, 12, Nothing] ```"
+msgstr ""
+"hlist1 : HList [Bool, Nat, Maybe String]\n"
+"hlist1 = [True, 12, Nothing]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:854
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You could argue that heterogeneous lists are just tuples\n"
 "storing values of the given types. That's right, of course,\n"
@@ -2278,33 +2293,35 @@ msgid ""
 "on `HList`, for instance when concatenating two such lists\n"
 "to keep track of the types stored in the result at the\n"
 "same time.\n"
-msgstr "您可能会争辩说，异构列表只是存储给定类型值的元组。没错，当然，但是，因为您将在练习中学习困难的方法，我们可以使用列表索引对 `HList` 执行编译时计算，例如连接两个这样的列表以保持同时跟踪结果中存储的类型。"
+msgstr ""
+"您可能会争辩说，异构列表只是存储给定类型值的元组。没错，当然，但是，因为您将"
+"在练习中学习困难的方法，我们可以使用列表索引对 `HList` "
+"执行编译时计算，例如连接两个这样的列表以保持同时跟踪结果中存储的类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:859
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But first, we'll make use of `HList` as a means to\n"
 "concisely parse CSV-lines. In order to do that, we\n"
 "need to introduce a new interface for types corresponding\n"
 "to whole lines in a CSV-file:\n"
-msgstr "但首先，我们将使用 `HList` 作为简洁解析 CSV 行的方法。为此，我们需要为对应于 CSV 文件中整行的类型引入一个新接口："
+msgstr "但首先，我们将使用 `HList` 作为简洁解析 CSV 行的方法。为此，我们需要为对应于 "
+"CSV 文件中整行的类型引入一个新接口：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:860
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface CSVLine a where\n"
 "  decodeAt : (line, col : Nat) -> List String -> Either CSVError a\n"
 msgstr ""
-"```伊德里斯\n"
-"接口 CSVLine a where\n"
+"interface CSVLine a where\n"
 "  decodeAt : (line, col : Nat) -> List String -> Either CSVError a\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:871
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We'll now write two implementations of `CSVLine` for `HList`:\n"
 "One for the `Nil` case, which will succeed if and only if\n"
@@ -2312,11 +2329,15 @@ msgid ""
 "case, which will try and read a single field from the head\n"
 "of the list and the remainder from its tail. We use\n"
 "again an idiom bracket to concatenate the results:\n"
-msgstr "现在，我们将为 `HList` 编写 `CSVLine` 的两个实现：一个针对 `Nil` 的情况，当且仅当当前字符串列表为空时才会成功.另一个用于 *cons* 的情况，它将尝试从列表的头部读取单个字段，并从其尾部读取剩余部分。我们再次使用惯用括号来连接结果："
+msgstr ""
+"现在，我们将为 `HList` 编写 `CSVLine` 的两个实现：一个针对 `Nil` 的情况，"
+"当且仅当当前字符串列表为空时才会成功.另一个用于 *cons* 的情况，它将尝试从列表"
+"的头部读取单个字段，并从其尾部读取剩余部分。我们再次使用惯用括号来连接结果："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:872
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "CSVLine (HList []) where\n"
 "  decodeAt _ _ [] = Right Nil\n"
@@ -2326,25 +2347,31 @@ msgid ""
 "  decodeAt l c []        = Left (UnexpectedEndOfInput l c)\n"
 "  decodeAt l c (s :: ss) = [| readField l c s :: decodeAt l (S c) ss |]\n"
 msgstr ""
-"CSVField t => CSVLine (HList ts) => CSVLine (HList (t :: ts)) 其中\n"
-"  decodeAt l c [] = Left (UnexpectedEndOfInput l c)\n"
+"CSVLine (HList []) where\n"
+"  decodeAt _ _ [] = Right Nil\n"
+"  decodeAt l c _  = Left (ExpectedEndOfInput l c)\n"
+"\n"
+"CSVField t => CSVLine (HList ts) => CSVLine (HList (t :: ts)) where\n"
+"  decodeAt l c []        = Left (UnexpectedEndOfInput l c)\n"
 "  decodeAt l c (s :: ss) = [| readField l c s :: decodeAt l (S c) ss |]\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:887
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "And that's it! All we need to add is two utility function\n"
 "for decoding whole lines before they have been split into\n"
 "tokens, one of which is specialized to `HList` and takes an\n"
 "erased list of types as argument to make it more convenient to\n"
 "use at the REPL:\n"
-msgstr "就是这样！我们需要添加的是两个实用函数，用于在将整行拆分为标记之前对其进行解码，其中一个专用于 `HList` 并将已擦除的类型列表作为参数，以使其更方便使用在 REPL："
+msgstr ""
+"就是这样！我们需要添加的是两个实用函数，用于在将整行拆分为标记之前对其进行解"
+"码，其中一个专用于 `HList` 并将已擦除的类型列表作为参数，以使其更方便使用在 "
+"REPL：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:888
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "decode : CSVLine a => (line : Nat) -> String -> Either CSVError a\n"
 "decode line = decodeAt line 1 . forget . split (',' ==)\n"
@@ -2356,67 +2383,72 @@ msgid ""
 "        -> Either CSVError (HList ts)\n"
 "hdecode _ = decode\n"
 msgstr ""
-"```伊德里斯\n"
-"readTable1 : (0 ts : 列表类型)\n"
-"            -> CSVLine (HList ts)\n"
-"            => 列表字符串\n"
-"            -> Validated CSVError (List $HList ts)\n"
-"```\n"
+"decode : CSVLine a => (line : Nat) -> String -> Either CSVError a\n"
+"decode line = decodeAt line 1 . forget . split (',' ==)\n"
+"\n"
+"hdecode :  (0 ts : List Type)\n"
+"        -> CSVLine (HList ts)\n"
+"        => (line : Nat)\n"
+"        -> String\n"
+"        -> Either CSVError (HList ts)\n"
+"hdecode _ = decode\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:902
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It's time to reap the fruits of our labour and give this a go at\n"
 "the REPL:\n"
-msgstr "是时候收获我们的劳动成果并在 REPL 上试一试了："
+msgstr "是时候收获我们的劳动成果并在 REPL 上试一试了：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:903
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Functor> hdecode [Bool,Nat,Double] 1 \"f,100,12.123\"\n"
 "Right [False, 100, 12.123]\n"
 "Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris,,f\"\n"
 "Left (FieldError 3 2 \"\")\n"
-msgstr "```repl Tutorial.Functor> hdecode [Bool,Nat,Double] 1 \"f,100,12.123\" 对 [False, 100, 12.123] Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris,,f \" 左 (FieldError 3 2 \"\") ```"
+msgstr ""
+"Tutorial.Functor> hdecode [Bool,Nat,Double] 1 \"f,100,12.123\"\n"
+"Right [False, 100, 12.123]\n"
+"Tutorial.Functor> hdecode [Name,Name,Gender] 3 \"Idris,,f\"\n"
+"Left (FieldError 3 2 \"\")\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Functor.md:910
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Applicative Laws"
-msgstr "### 适用法律"
+msgstr "应用函子法律"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:914
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Again, `Applicative` implementations must follow certain\n"
 "laws. Here they are:\n"
-msgstr "同样，`Applicative` 的实现必须遵循一定的规律。他们来了："
+msgstr "同样，`Applicative` 的实现必须遵循一定的规律。他们来了：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:917
-#, fuzzy
 msgid ""
 "`pure id <*> fa = fa`: Lifting and applying the identity function has no "
 "visible effect."
-msgstr "`pure id <*> fa = fa`：提升和应用恒等函数没有可见效果。"
+msgstr "`pure id <*> fa = fa`：提升和应用恒等函数没有可见作用。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:922
-#, fuzzy
 msgid ""
 "`[| f . g |] <*> v = f <*> (g <*> v)`: I must not matter, whether we compose "
 "our functions first and then apply them, or whether we apply our functions "
 "first and then compose them."
 msgstr ""
-"`[| F 。 g |] <*> v = f <*> (g <*> v)`：不管是先组合函数然后应用它们，还是先"
-"应用函数然后组合它们."
+"`[| F 。 g |] <*> v = f <*> (g <*> "
+"v)`：不管是先组合函数然后应用它们，还是先应用函数然后组合它们，结果应该相同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:925
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  The above might be hard to understand, so here\n"
 "  they are again with explicit types and implementations:\n"
@@ -2426,7 +2458,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:926
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  compL : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c\n"
 "  compL f g v = [| f . g |] <*> v\n"
@@ -2434,45 +2466,44 @@ msgid ""
 "  compR : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c\n"
 "  compR f g v = f <*> (g <*> v)\n"
 msgstr ""
-"  compR : 也许 (b -> c) -> 也许 (a -> b) -> 也许 a -> 也许 c\n"
+"  compL : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c\n"
+"  compL f g v = [| f . g |] <*> v\n"
+"\n"
+"  compR : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c\n"
 "  compR f g v = f <*> (g <*> v)\n"
-"  ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:936
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  The second applicative law states, that the two implementations\n"
 "  `compL` and `compR` should behave identically.\n"
 msgstr ""
-"  第二个适用法律规定，这两个实施\n"
+"  第二个应用函子法律规定，这两个实施\n"
 "  `compL` 和 `compR` 的行为应该相同。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:939
-#, fuzzy
 msgid ""
 "`pure f <*> pure x = pure (f x)`. This is also called the *homomorphism* "
 "law. It should be pretty self-explaining."
-msgstr ""
-"`纯 f <*> 纯 x = 纯 (f x)`。这也称为 * 同态 * 定律。这应该是不言自明的。"
+msgstr "`pure f <*> pure x = pure (f x)`。这也称为 *同态* 定律。这应该是不言自明的。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:942
-#, fuzzy
 msgid ""
 "`f <*> pure v = pure ($ v) <*> f`. This is called the law of *interchange*."
-msgstr "`f <*> 纯 v = 纯 ($ v) <*> f`。这称为*交换*定律。"
+msgstr "`f <*> pure v = pure ($ v) <*> f`.。这称为*交换* 律。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:944
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "  This should again be explained with a concrete example:\n"
 msgstr "  这应该再次用一个具体的例子来解释：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:945
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  interL : Maybe (a -> b) -> a -> Maybe b\n"
 "  interL f v = f <*> pure v\n"
@@ -2480,13 +2511,15 @@ msgid ""
 "  interR : Maybe (a -> b) -> a -> Maybe b\n"
 "  interR f v = pure ($ v) <*> f\n"
 msgstr ""
-"  interR : 也许 (a -> b) -> a -> 也许 b\n"
-"  interR f v = 纯 ($ v) <*> f\n"
-"  ```\n"
+"  interL : Maybe (a -> b) -> a -> Maybe b\n"
+"  interL f v = f <*> pure v\n"
+"\n"
+"  interR : Maybe (a -> b) -> a -> Maybe b\n"
+"  interR f v = pure ($ v) <*> f\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:957
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  Note, that `($ v)` has type `(a -> b) -> b`, so this\n"
 "  is a function type being applied to `f`, which has\n"
@@ -2494,86 +2527,73 @@ msgid ""
 "  context.\n"
 msgstr ""
 "  注意，`($ v)` 的类型是 `(a -> b) -> b`，所以这个\n"
-"  是应用于 `f` 的函数类型，它有\n"
-"  `a -> b` 类型的函数，包裹在 `Maybe` 中\n"
-"  语境。\n"
+"  是应用于 `f` 的函数类型，它有一个\n"
+"  `a -> b` 类型的函数，被包裹在 `Maybe` 上下文中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:961
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "  The law of interchange states that it must not matter\n"
 "  whether we apply a pure value from the left or\n"
 "  right of the *apply* operator.\n"
-msgstr ""
-"  交换定律指出，它必须无关紧要\n"
-"  我们是从左边应用一个纯值还是\n"
-"  *apply* 运算符的右侧。\n"
+msgstr "  交换律指出， 我们是从左边应用一个纯值还是 *apply* 运算符的右侧。"
+"它必须无关紧要\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Functor.md:965
-#, fuzzy
 msgid "Implement `Applicative'` for `Either e` and `Identity`."
-msgstr "为 ` 或 ` 和 `Identity` 实现 `Applicative'`。"
+msgstr "为 `Either e` 和 `Identity` 实现 `Applicative'`。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Functor.md:970
-#, fuzzy
 msgid ""
 "Implement `Applicative'` for `Vect n`. Note: In order to implement `pure`, "
 "the length must be known at runtime.  This can be done by passing it as an "
 "unerased implicit to the interface implementation:"
 msgstr ""
-"为 `Vect n` 实现 `Applicative'`。注意：为了实现 `pure`，必须在运行时知道长"
-"度。这可以通过将其作为未擦除的隐式传递给接口实现来完成："
+"为 `Vect n` 实现 `Applicative'`。注意：为了实现 `pure`，必须在运行时知道长度"
+"。这可以通过将其作为未擦除的隐式传递给接口实现来完成："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:971
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   implementation {n : _} -> Applicative' (Vect n) where\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   实现 {n : _} -> Applicative' (Vect n) 其中\n"
-"   ```\n"
+msgstr "   implementation {n : _} -> Applicative' (Vect n) where\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Functor.md:977
-#, fuzzy
 msgid ""
 "Implement `Applicative'` for `Pair e`, with `e` having a `Monoid` constraint."
 msgstr "为 `Pair e` 实现 `Applicative'`，其中 `e` 具有 `Monoid` 约束。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Functor.md:980
-#, fuzzy
 msgid ""
 "Implement `Applicative` for `Const e`, with `e` having a `Monoid` constraint."
 msgstr "为 `Const e` 实现 `Applicative`，其中 `e` 具有 `Monoid` 约束。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Functor.md:985
-#, fuzzy
 msgid ""
 "Implement `Applicative` for `Validated e`, with `e` having a `Semigroup` "
 "constraint. This will allow us to use `(<+>)` to accumulate errors in case "
 "of two `Invalid` values in the implementation of *apply*."
 msgstr ""
-"为 `Validated e` 实现 `Applicative`，其中 `e` 具有 `Semigroup` 约束。这将允许"
-"我们在 *apply* 的实现中使用 `(<+>)` 来累积两个 `Invalid` 值的错误。"
+"为 `Validated e` 实现 `Applicative`，其中 `e` 具有 `Semigroup` 约束。"
+"这将允许我们在 *apply* 的实现中使用 `(<+>)` 来累积两个 `Invalid` 值的错误。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Functor.md:990
-#, fuzzy
 msgid ""
 "Add an additional data constructor of type `CSVError -> CSVError -> "
 "CSVError` to `CSVError` and use this to implement `Semigroup` for `CSVError`."
 msgstr ""
-"添加一个 `CSVError -> CSVError -> CSVError` 到 `CSVError` 类型的附加数据构造"
-"函数，并使用它为 `CSVError` 实现 `Semigroup`。"
+"添加一个 `CSVError -> CSVError -> CSVError` 到 `CSVError` "
+"类型的附加数据构造函数，并使用它为 `CSVError` 实现 `Semigroup`。"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Functor.md:994
-#, fuzzy
 msgid ""
 "Refactor our CSV-parsers and all related functions so that they return "
 "`Validated` instead of `Either`. This will only work, if you solved exercise "
@@ -2584,7 +2604,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1000
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Two things to note: You will have to adjust very little of\n"
 "   the existing code, as we can still use applicative syntax\n"
@@ -2593,14 +2613,13 @@ msgid ""
 "   from a REPL session:\n"
 msgstr ""
 "   需要注意的两件事：您将不得不调整很少的\n"
-"   现有代码，因为我们仍然可以使用应用语法\n"
-"   使用 ` 验证 `。此外，通过此更改，我们增强了 CSV 解析器\n"
-"   具有累积误差的能力。这里有些例子\n"
-"   来自 REPL 会话：\n"
+"   现有代码，因为我们仍然可以通过使用 `Validated`使用应用语法\n"
+"   。此外，通过此更改，我们增强了 CSV 解析器\n"
+"   具有累积误差的能力。这里有些来自 REPL 会话的例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1001
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"t,12,f\"\n"
 "   Valid [True, 12, Female]\n"
@@ -2610,19 +2629,17 @@ msgid ""
 "   Invalid (App (FieldError 1 1 \"o\")\n"
 "     (App (FieldError 1 2 \"-12\") (FieldError 1 3 \"foo\")))\n"
 msgstr ""
-"   ```repl\n"
 "   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"t,12,f\"\n"
-"   有效[真，12，女]\n"
+"   Valid [True, 12, Female]\n"
 "   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"o,-12,f\"\n"
-"   无效 (App (FieldError 1 1 \"o\") (FieldError 1 2 \"-12\"))\n"
+"   Invalid (App (FieldError 1 1 \"o\") (FieldError 1 2 \"-12\"))\n"
 "   Solutions.Functor> hdecode [Bool,Nat,Gender] 1 \"o,-12,foo\"\n"
-"   无效（应用程序（FieldError 1 1“o”）\n"
+"   Invalid (App (FieldError 1 1 \"o\")\n"
 "     (App (FieldError 1 2 \"-12\") (FieldError 1 3 \"foo\")))\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1015
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Behold the power of applicative functors and heterogeneous lists: With\n"
 "   only a few lines of code we wrote a pure, type-safe, and total\n"
@@ -2631,12 +2648,10 @@ msgid ""
 msgstr ""
 "   看看应用函子和异构列表的力量：\n"
 "   仅仅几行代码，我们就编写了一个纯粹的、类型安全的、完全的\n"
-"   对 CSV 文件中的行进行错误累积的解析器，即\n"
-"   同时使用非常方便！\n"
+"   对 CSV 文件中的行进行错误累积的解析器，同时使用非常方便！\n"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Functor.md:1018
-#, fuzzy
 msgid ""
 "Since we introduced heterogeneous lists in this chapter, it would be a pity "
 "not to experiment with them a little."
@@ -2644,7 +2659,7 @@ msgstr "由于我们在本章中介绍了异构列表，很遗憾没有对它们
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1027
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   This exercise is meant to sharpen your skills in type wizardry.\n"
 "   It therefore comes with very few hints. Try to decide yourself\n"
@@ -2655,47 +2670,41 @@ msgid ""
 "   Only if you truly run out of ideas should you have a glance\n"
 "   at the solutions (and then, only at the types at first!)\n"
 msgstr ""
-"   这个练习旨在提高你的字体魔法技能。\n"
-"   因此，它带有很少的提示。试着自己做决定\n"
-"   您期望从给定函数中获得什么行为，如何表达\n"
-"   这在类型中，以及之后如何实现它。\n"
+"   这个练习旨在提高你的类型技巧的技能。\n"
+"   因此，它带有很少的提示。您期望从给定函数中获得什么行为试着自己做决定\n"
+"   ，这在类型中如何表达，以及之后如何实现它。\n"
 "   如果您的类型足够正确和精确，那么实现\n"
-"   几乎是免费的。如果遇到困难，不要过早放弃。\n"
+"   几乎是轻而易举的。如果遇到困难，不要过早放弃。\n"
 "   只有当你真的没有想法时，你才应该瞥一眼\n"
 "   在解决方案上（然后，首先只在类型上！）\n"
 
 #. type: Bullet: '   1. '
 #: ../src/Tutorial/Functor.md:1029
-#, fuzzy
 msgid "Implement `head` for `HList`."
 msgstr "为 `HList` 实现 `head`。"
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/Functor.md:1031
-#, fuzzy
 msgid "Implement `tail` for `HList`."
 msgstr "为 `HList` 实现 `tail`。"
 
 #. type: Bullet: '   3. '
 #: ../src/Tutorial/Functor.md:1033
-#, fuzzy
 msgid "Implement `(++)` for `HList`."
 msgstr "为 `HList` 实现 `(++)`。"
 
 #. type: Bullet: '   4. '
 #: ../src/Tutorial/Functor.md:1037
-#, fuzzy
 msgid ""
 "Implement `index` for `HList`. This might be harder than the other three.  "
 "Go back and look how we implemented `indexList` in an [earlier exercise]"
 "(Dependent.md) and start from there."
 msgstr ""
-"为 `HList` 实现 `index`。这可能比其他三个更难。回过头来看看我们如何在 [早期练"
-"习](Dependent.md) 中实现 `indexList` 并从那里开始。"
+"为 `HList` 实现 `index`。这可能比其他三个更难。回过头来看看我们如何在 "
+"[早期练习](Dependent.md) 中实现 `indexList` 并从那里开始。"
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/Functor.md:1043
-#, fuzzy
 msgid ""
 "Package *contrib*, which is part of the Idris project, provides `Data.HVect."
 "HVect`, a data type for heterogeneous vectors. The only difference to our "
@@ -2703,34 +2712,32 @@ msgid ""
 "list of types. This makes it easier to express certain operations at the "
 "type level."
 msgstr ""
-"包 *contrib* 是 Idris 项目的一部分，它提供了 `Data.HVect.HVect`，一种异构向量"
-"的数据类型。与我们自己的 `HList` 的唯一区别是，`HVect` 是通过类型向量而不是类"
-"型列表来索引的。这使得在类型级别表达某些操作变得更容易。"
+"包 *contrib* 是 Idris 项目的一部分，它提供了 `Data.HVect."
+"HVect`，一种异构向量的数据类型。与我们自己的 `HList` 的唯一区别是，`HVect` 是"
+"通过类型向量而不是类型列表来索引的。这使得在类型级别表达某些操作变得更容易。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1046
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Write your own implementation of `HVect` together with functions\n"
 "      `head`, `tail`, `(++)`, and `index`.\n"
 msgstr ""
 "      编写您自己的 `HVect` 实现以及函数\n"
-"      `头`、`尾`、`(++)`和`索引`。\n"
+"      `head`、`tail`、`(++)` 和 `index`。\n"
 
 #. type: Bullet: '   6. '
 #: ../src/Tutorial/Functor.md:1050
-#, fuzzy
 msgid ""
 "For a real challenge, try implementing a function for transposing a `Vect m "
 "(HVect ts)`. You'll first have to be creative about how to even express this "
 "in the types."
-msgstr ""
-"对于真正的挑战，尝试实现一个函数来转置 `Vect m (HVect ts)`。您首先必须对如何"
-"在类型中表达这一点有创意。"
+msgstr "对于真正的挑战，尝试实现一个函数来转置 `Vect m (HVect "
+"ts)`。您首先必须对如何在类型中表达这一点有创意。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1057
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Note: In order to implement this, you'll need to pattern match\n"
 "      on an erased argument in at least one case to help Idris with\n"
@@ -2739,100 +2746,95 @@ msgid ""
 "      *unless* the structure of the value being matched on can be derived\n"
 "      from another, un-erased argument.\n"
 msgstr ""
-"      注意：为了实现这一点，您需要进行模式匹配\n"
-"      在至少一个案例中的一个被抹去的论点上，以帮助伊德里斯\n"
-"      类型推断。禁止对已擦除参数进行模式匹配\n"
+"      注意：为了实现这一点，您需要在至少一个案例中的一个被抹去的参数上进行模"
+"式匹配，以帮助 Idris 进行类型推断。禁止对已擦除参数进行模式匹配\n"
 "      （它们毕竟被删除了，所以我们不能在运行时检查它们），\n"
-"      *除非*可以推导出被匹配的值的结构\n"
-"      来自另一个未被抹去的论点。\n"
+"      *除非* 可以通过另一个未被抹去的参数推导出被匹配的值的结构。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1061
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Also, don't worry if you get stuck on this one. It took me several\n"
 "      tries to figure it out. But I enjoyed the experience, so I just *had*\n"
 "      to include it here. :-)\n"
 msgstr ""
-"      另外，如果您卡在这个上，请不要担心。我花了好几个\n"
-"      试图弄清楚。但是我很享受这种体验，所以我只是*有*\n"
-"      把它包括在这里。 :-)\n"
+"      另外，如果您卡在这个上，请不要担心。我花了好几次才试图把他弄清楚。但是"
+"我很享受这种体验，所以我 *必须* 把它包括在这里。 :-)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1065
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Note, however, that such a function might be useful when working with\n"
 "      CSV-files, as it allows us to convert a table represented as\n"
 "      rows (a vector of tuples) to one represented as columns (a tuple of vectors).\n"
-msgstr ""
-"      但是请注意，这样的功能在使用\n"
-"      CSV 文件，因为它允许我们转换表示为的表\n"
-"      行（元组向量）到表示为列（向量元组）的行。\n"
+msgstr "      但是请注意，当使用 CSV 文件时这样的函数会很有用，因为它允许我们将表示为"
+"行（元组向量）的表转换到表示为列（向量元组）的表。\n"
 
 #. type: Bullet: '9. '
 #: ../src/Tutorial/Functor.md:1069
-#, fuzzy
 msgid ""
 "Show, that the composition of two applicative functors is again an "
 "applicative functor by implementing `Applicative` for `Comp f g`."
-msgstr ""
-"通过为 `Comp f g` 实现 `Applicative` 来证明两个应用函子的组合再次是一个应用函"
-"子。"
+msgstr "通过为 `Comp f g` 实现 `Applicative` "
+"来证明两个应用函子的组合再次是一个应用函子。"
 
 #. type: Bullet: '10. '
 #: ../src/Tutorial/Functor.md:1073
-#, fuzzy
 msgid ""
 "Show, that the product of two applicative functors is again an applicative "
 "functor by implementing `Applicative` for `Prod f g`."
-msgstr ""
-"通过为 `Prod f g` 实现 `Applicative` 证明两个应用函子的乘积再次是一个应用函"
-"子。"
+msgstr "通过为 `Prod f g` 实现 `Applicative` "
+"证明两个应用函子的乘积再次是一个应用函子。"
 
 #. type: Title ##
 #: ../src/Tutorial/Functor.md:1074
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Monad"
-msgstr "## 单子"
+msgstr "单子"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1081
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, `Monad`. A lot of ink has been spilled about this one.\n"
 "However, after what we already saw in the [chapter about `IO`](IO.md),\n"
 "there is not much left to discuss here. `Monad` extends\n"
 "`Applicative` and adds two new related functions: The *bind*\n"
 "operator (`(>>=)`) and function `join`. Here is its definition:\n"
-msgstr "最后，`Monad`。关于这一点已经泼了很多墨水。然而，在我们已经在 [关于 `IO`](IO.md) 的章节中看到之后，这里就没有太多要讨论的内容了。 `Monad` 扩展了 `Applicative` 并添加了两个新的相关函数：*bind* 运算符 (`(>>=)`) 和函数 `join `。这是它的定义："
+msgstr ""
+"最后，`Monad`。关于这一点已经泼了很多墨水。然而，在我们已经在 [关于 `IO`](IO."
+"md) 的章节中看到之后，这里就没有太多要讨论的内容了。`Monad` 扩展了 "
+"`Applicative` 并添加了两个新的相关函数：*bind* 运算符 (`(>>=)`) 和函数 `join "
+"`。这是它的定义：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1082
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Applicative' m => Monad' m where\n"
 "  bind  : m a -> (a -> m b) -> m b\n"
 "  join' : m (m a) -> m a\n"
 msgstr ""
-"```伊德里斯\n"
-"接口 Applicative' m => Monad' m 其中\n"
-"  绑定：m a -> (a -> m b) -> m b\n"
-"  加入' : m (m a) -> m a\n"
-"```\n"
+"interface Applicative' m => Monad' m where\n"
+"  bind  : m a -> (a -> m b) -> m b\n"
+"  join' : m (m a) -> m a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1091
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Implementers of `Monad` are free to choose to either implement\n"
 "`(>>=)` or `join` or both. You will show in an exercise, how\n"
 "`join` can be implemented in terms of *bind* and vice versa.\n"
-msgstr "`Monad` 的实现者可以自由选择实现 `(>>=)` 或 `join` 或两者。您将在练习中展示如何根据 *bind* 来实现 `join`，反之亦然。"
+msgstr ""
+"`Monad` 的实现者可以自由选择实现 `(>>=)` 或 `join` 或两者。"
+"您将在练习中展示如何根据 *bind* 来实现 `join`，反之亦然。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1099
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The big difference between `Monad` and `Applicative` is, that the\n"
 "former allows a computation to depend on the result of an\n"
@@ -2841,17 +2843,21 @@ msgid ""
 "or play a song. The result of the first `IO` action\n"
 "(reading some user input) will affect, which `IO` action to run next.\n"
 "This is not possible with the *apply* operator:\n"
-msgstr "`Monad` 和 `Applicative` 之间的最大区别在于，前者允许计算依赖于早期计算的结果。例如，我们可以根据从标准输入中读取的字符串来决定是删除文件还是播放歌曲。第一个 `IO` 动作（读取一些用户输入）的结果将影响下一个要运行的 `IO` 动作。这对于 *apply* 运算符是不可能的："
+msgstr ""
+"`Monad` 和 `Applicative` 之间的最大区别在于，前者允许计算依赖于早期计算的结果"
+"。例如，我们可以根据从标准输入中读取的字符串来决定是删除文件还是播放歌曲。"
+"第一个 `IO` 动作（读取一些用户输入）的结果将影响下一个要运行的 `IO` 动作。"
+"这对于 *apply* 运算符是不可能的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1100
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "(<*>) : IO (a -> b) -> IO a -> IO b\n"
-msgstr "```repl (<*>) : IO (a -> b) -> IO a -> IO b ```"
+msgstr "```repl (<*>) : IO (a -> b) -> IO a -> IO b ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1115
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The two `IO` actions have already been decided on when they\n"
 "are being passed as arguments to `(<*>)`. The result of the first\n"
@@ -2864,22 +2870,31 @@ msgid ""
 "of `IO`, not of applicative functors in general. If the functor in\n"
 "question was `Maybe`, `List`, or `Vector`, no such thing\n"
 "would be possible.)\n"
-msgstr "两个 `IO` 动作在作为参数传递给 `(<*>)` 时已经确定。在一般情况下，第一个结果不能影响在第二个中运行哪个计算。 （实际上，使用 `IO` 理论上可以通过副作用实现：第一个操作可以将某些命令写入文件或覆盖某些可变状态，而第二个操作可以从该文件或状态读取，从而决定接下来要做的事情。但这是 `IO` 的特长，而不是一般的应用函子。如果有问题的函子是 `Maybe`，`List`，或 `Vector`，这是不可能的。）"
+msgstr ""
+"两个 `IO` 动作在作为参数传递给 `(<*>)` "
+"时已经确定。在一般情况下，第一个结果不能影响在第二个中运行哪个计算。 "
+"（实际上，使用 `IO` 理论上可以通过副作用实现：第一个操作可以将某些命令写入文"
+"件或覆盖某些可变状态，而第二个操作可以从该文件或状态读取，从而决定接下来要做"
+"的事情。但这是 `IO` 的特长，而不是一般的应用函子。如果有问题的函子是 "
+"`Maybe`，`List`，或 `Vector`，这是不可能的。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1121
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's demonstrate the difference with an example. Assume\n"
 "we'd like to enhance our CSV-reader with the ability to\n"
 "decode a line of tokens to a sum type. For instance,\n"
 "we'd like to decode CRUD requests from the lines of a\n"
 "CSV-file:\n"
-msgstr "让我们用一个例子来演示一下区别。假设我们想增强我们的 CSV 阅读器，使其能够将一行标记解码为 sum 类型。例如，我们想从 CSV 文件的行中解码 CRUD 请求："
+msgstr ""
+"让我们用一个例子来演示一下区别。假设我们想增强我们的 CSV "
+"阅读器，使其能够将一行标记解码为和型。例如，我们想从 CSV 文件的行中解码 CRUD "
+"请求：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1122
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Crud : (i : Type) -> (a : Type) -> Type where\n"
 "  Create : (value : a) -> Crud i a\n"
@@ -2887,27 +2902,27 @@ msgid ""
 "  Read   : (id : i) -> Crud i a\n"
 "  Delete : (id : i) -> Crud i a\n"
 msgstr ""
-"```伊德里斯\n"
-"数据 Crud : (i : Type) -> (a : Type) -> Type where\n"
-"  创建：（值：a）-> Crud i a\n"
-"  更新：（id：i）->（value：a）-> Crud i a\n"
-"  阅读：（id：i）-> Crud i a\n"
-"  删除 : (id : i) -> Crud i a\n"
-"```\n"
+"data Crud : (i : Type) -> (a : Type) -> Type where\n"
+"  Create : (value : a) -> Crud i a\n"
+"  Update : (id : i) -> (value : a) -> Crud i a\n"
+"  Read   : (id : i) -> Crud i a\n"
+"  Delete : (id : i) -> Crud i a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1134
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We need a way to on each line decide, which data constructor\n"
 "to choose for our decoding. One way to do this is to\n"
 "put the name of the data constructor (or some other\n"
 "tag of identification) in the first column of the CSV-file:\n"
-msgstr "我们需要一种方法来在每一行上决定为我们的解码选择哪个数据构造函数。一种方法是将数据构造函数的名称（或其他标识标签）放在 CSV 文件的第一列中："
+msgstr ""
+"我们需要一种方法来在每一行上决定为我们的解码选择哪个数据构造函数。一种方法是"
+"将数据构造函数的名称（或其他标识标签）放在 CSV 文件的第一列中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1135
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hlift : (a -> b) -> HList [a] -> b\n"
 "hlift f [x] = f x\n"
@@ -2931,22 +2946,27 @@ msgid ""
 "       \"Delete\" => hlift  Delete  <$> decodeAt l 2 t\n"
 "       _        => Left (FieldError l 1 n)\n"
 msgstr ""
-"decodeCRUD : CSV 字段我\n"
-"           => CSV 字段\n"
-"           =>（行：Nat）\n"
-"           ->（s：字符串）\n"
-"           -> CSVError (Crud i a)\n"
-"解码CRUD l s =\n"
-"  让 h ::: t = split (',' ==) s\n"
-"   在做\n"
+"hlift : (a -> b) -> HList [a] -> b\n"
+"hlift f [x] = f x\n"
+"\n"
+"hlift2 : (a -> b -> c) -> HList [a,b] -> c\n"
+"hlift2 f [x,y] = f x y\n"
+"\n"
+"decodeCRUD :  CSVField i\n"
+"           => CSVField a\n"
+"           => (line : Nat)\n"
+"           -> (s    : String)\n"
+"           -> Either CSVError (Crud i a)\n"
+"decodeCRUD l s =\n"
+"  let h ::: t = split (',' ==) s\n"
+"   in do\n"
 "     MkName n <- readField l 1 h\n"
-"     案例 n 的\n"
-"       “创建” => hlift 创建 <$> decodeAt l 2 t\n"
-"       “更新” => hlift2 更新 <$> decodeAt l 2 t\n"
-"       \"Read\" => hlift Read <$> decodeAt l 2 t\n"
-"       “删除” => hlift 删除 <$> decodeAt l 2 t\n"
-"       _ => 左 (FieldError l 1 n)\n"
-"```\n"
+"     case n of\n"
+"       \"Create\" => hlift  Create  <$> decodeAt l 2 t\n"
+"       \"Update\" => hlift2 Update  <$> decodeAt l 2 t\n"
+"       \"Read\"   => hlift  Read    <$> decodeAt l 2 t\n"
+"       \"Delete\" => hlift  Delete  <$> decodeAt l 2 t\n"
+"       _        => Left (FieldError l 1 n)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1164
