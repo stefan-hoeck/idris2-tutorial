@@ -698,7 +698,7 @@ implement these in a tail recursive way.
 
 When looking back at all the exercises we solved
 in the section about recursion, most tail recursive functions
-on lists where of the following pattern: Iterate
+on lists were of the following pattern: Iterate
 over all list elements from head to tail while
 passing along some state for accumulating intermediate
 results. At the end of the list,
