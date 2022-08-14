@@ -972,7 +972,7 @@ it consists of six essential functions:
 * `foldr`, for folds from the right
 * `foldl`, for folds from the left
 * `null`, for testing if the container is empty or not
-* `foldM`, for effectful folds in a monad
+* `foldlM`, for effectful folds in a monad
 * `toList`, for converting the container to a list of values
 * `foldMap`, for folding over a monoid
 
