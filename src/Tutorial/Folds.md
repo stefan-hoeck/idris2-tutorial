@@ -816,7 +816,7 @@ the first argument is `True` and the second is returned as the function's
 
 There are two utility functions for working with lazy evaluation:
 Function `delay` wraps a value in the `Lazy` data type. Note, that
-the argument of `lazy` is strict, so the following might take
+the argument of `delay` is strict, so the following might take
 several seconds to print its result:
 
 ```repl
