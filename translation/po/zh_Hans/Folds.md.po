@@ -1834,7 +1834,7 @@ msgstr "左折叠"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:719
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is functional programming, and we'd like to abstract\n"
 "over such reoccurring patterns. In order to tail recursively\n"
@@ -1845,25 +1845,23 @@ msgid ""
 "state: `state -> elem -> state`. Surely, we can come\n"
 "up with a higher-order function to encapsulate this\n"
 "behavior:\n"
-msgstr "这是函数式编程，我们想抽象出这种重复出现的模式。为了对列表进行递归迭代，我们只需要一个累加器函数和一些初始状态。但是蓄能器的类型应该是什么？好吧，它将当前状态与列表的下一个元素组合并返回更新状态：`state -> elem -> state`。当然，我们可以提出一个高阶函数来封装这种行为："
+msgstr "这是函数式编程，我们想抽象出这种重复出现的模式。为了对列表进行递归迭代，我们只需要一个累加器函数和一些初始状态。但是累加器的类型应该是什么？好吧，它将当前状态与列表的下一个元素组合并返回更新状态：`state -> elem -> state`。当然，我们可以提出一个高阶函数来封装这种行为：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:720
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "leftFold : (acc : state -> el -> state) -> (st : state) -> List el -> state\n"
 "leftFold _   st []        = st\n"
 "leftFold acc st (x :: xs) = leftFold acc (acc st x) xs\n"
 msgstr ""
-"```伊德里斯\n"
 "leftFold : (acc : state -> el -> state) -> (st : state) -> List el -> state\n"
-"左折叠_st [] = st\n"
+"leftFold _   st []        = st\n"
 "leftFold acc st (x :: xs) = leftFold acc (acc st x) xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:734
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We call this function a *left fold*, as it iterates over\n"
 "the list from left to right (head to tail), collapsing (or\n"
@@ -1873,17 +1871,17 @@ msgid ""
 "Note how `leftFold` is tail recursive, and therefore all\n"
 "functions implemented in terms of `leftFold` are\n"
 "tail recursive (and thus, stack safe!) as well.\n"
-msgstr "我们将此函数称为 *left fold*，因为它从左到右（从头到尾）迭代列表，折叠（或 *folding*）列表直到只剩下一个值。这个新值可能仍然是一个列表或其他容器类型，但原来的列表已经从头到尾被消耗掉了。请注意 `leftFold` 是如何尾递归的，因此根据 `leftFold` 实现的所有函数也是尾递归的（因此，堆栈安全！）。"
+msgstr "我们将此函数称为 *左折叠*，因为它从左到右（从头到尾）迭代列表，折叠（或 *folding*）列表直到只剩下一个值。这个新值可能仍然是一个列表或其他容器类型，但原来的列表已经从头到尾被消耗掉了。请注意 `leftFold` 是如何尾递归的，因此根据 `leftFold` 实现的所有函数也是尾递归的（因此，堆栈安全！）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:736
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here are a few examples:\n"
-msgstr "这里有一些例子："
+msgstr "这里有一些例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:737
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "sumLF : Num a => List a -> a\n"
 "sumLF = leftFold (+) 0\n"
@@ -1894,17 +1892,26 @@ msgid ""
 "-- this is more natural than `reverseLF`!\n"
 "toSnocListLF : List a -> SnocList a\n"
 "toSnocListLF = leftFold (:<) Lin\n"
-msgstr "-- 这比 `reverseLF` 更自然！ toSnocListLF : List a -> SnocList a toSnocListLF = leftFold (:<) Lin ```"
+msgstr ""
+"sumLF : Num a => List a -> a\n"
+"sumLF = leftFold (+) 0\n"
+"\n"
+"reverseLF : List a -> List a\n"
+"reverseLF = leftFold (flip (::)) Nil\n"
+"\n"
+"-- this is more natural than `reverseLF`!\n"
+"toSnocListLF : List a -> SnocList a\n"
+"toSnocListLF = leftFold (:<) Lin\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:749
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Right Folds"
-msgstr "### 右折叠"
+msgstr "右折叠"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:760
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The example functions we implemented in terms of `leftFold` had\n"
 "to always completely traverse the whole list, as every single\n"
@@ -1915,50 +1922,48 @@ msgid ""
 "this more efficient behavior in terms of `leftFold`: There,\n"
 "the result will only be returned when our pattern match reaches\n"
 "the `Nil` case.\n"
-msgstr "我们根据 `leftFold` 实现的示例函数必须始终完全遍历整个列表，因为需要每个元素来计算结果。然而，这并不总是必要的。例如，如果您查看练习中的 `findList`，我们可以在搜索成功后立即中止迭代列表。在 `leftFold` 方面，*not* 可能实现这种更有效的行为：在那里，只有当我们的模式匹配达到 `Nil` 情况时才会返回结果。"
+msgstr "我们根据 `leftFold` 实现的示例函数必须始终完全遍历整个列表，因为需要每个元素来计算结果。然而，这并不总是必要的。例如，如果您查看练习中的 `findList`，我们可以在搜索成功后立即中止迭代列表。在 `leftFold` 方面，*不* 可能实现这种更有效的行为：在那里，只有当我们的模式匹配达到 `Nil` 情况时才会返回结果。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:765
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Interestingly, there is another, non-tail recursive fold, which\n"
 "reflects the list structure more naturally, we can use for\n"
 "breaking out early from an iteration. We call this a\n"
 "*right fold*. Here is its implementation:\n"
-msgstr "有趣的是，还有另一种非尾递归折叠，它更自然地反映了列表结构，我们可以用于从迭代的早期突破。我们称之为 * 右折叠 *。这是它的实现："
+msgstr "有趣的是，还有另一种非尾递归折叠，它更自然地反映了列表结构，我们可以用于从迭代的早期突破。我们称之为 *右折叠*。这是它的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:766
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "rightFold : (acc : el -> state -> state) -> state -> List el -> state\n"
 "rightFold acc st []        = st\n"
 "rightFold acc st (x :: xs) = acc x (rightFold acc st xs)\n"
 msgstr ""
-"```伊德里斯\n"
 "rightFold : (acc : el -> state -> state) -> state -> List el -> state\n"
-"rightFold acc st [] = st\n"
+"rightFold acc st []        = st\n"
 "rightFold acc st (x :: xs) = acc x (rightFold acc st xs)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:775
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, it might not immediately be obvious how this differs from `leftFold`.\n"
 "In order to see this, we will have to talk about lazy evaluation\n"
 "first.\n"
-msgstr "现在，它与 `leftFold` 的区别可能不是很明显。为了看到这一点，我们必须先谈谈惰性评估。"
+msgstr "现在，它与 `leftFold` 的区别可能不是很明显。为了看到这一点，我们必须先谈谈惰性求值。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Folds.md:776
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Lazy Evaluation in Idris"
-msgstr "#### Idris 中的惰性评估"
+msgstr "Idris 中的惰性求值"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:784
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For some computations, it is not necessary to evaluate all function\n"
 "arguments in order to return a result. For instance, consider\n"
@@ -1966,40 +1971,44 @@ msgid ""
 "we already know that the result is `False` without even looking at\n"
 "the second argument. In such a case, we don't want to unnecessarily evaluate\n"
 "the second argument, as this might include a lengthy computation.\n"
-msgstr "对于某些计算，无需评估所有函数参数即可返回结果。例如，考虑布尔运算符 `(&&)`：如果第一个参数的计算结果为 `False`，我们甚至无需查看第二个参数就已经知道结果是 `False`争论。在这种情况下，我们不想不必要地评估第二个参数，因为这可能包括冗长的计算。"
+msgstr "对于某些计算，无需求值所有函数参数即可返回结果。例如，考虑布尔运算符 `(&&)`：如果第一个参数的计算结果为 `False`，我们甚至无需查看第二个参数就已经知道争论结果是 `False`。在这种情况下，我们不想也不需要地求值第二个参数，因为这可能包括冗长的计算。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:786
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Consider the following REPL session:\n"
-msgstr "考虑以下 REPL 会话："
+msgstr "考虑以下 REPL 会话：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:787
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Folds> False && (length [1..10000000000] > 100)\n"
 "False\n"
-msgstr "```repl Tutorial.Folds> False && (长度 [1..10000000000] > 100) False ```"
+msgstr ""
+"Tutorial.Folds> False && (length [1..10000000000] > 100)\n"
+"False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:797
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If the second argument were evaluated, this computation would most\n"
 "certainly blow up your computer's memory, or at least take a very long\n"
 "time to run to completion. However, in this case, the result `False` is\n"
 "printed immediately. If you look at the type of `(&&)`, you'll see\n"
 "the following:\n"
-msgstr "如果计算第二个参数，这个计算肯定会炸毁你的计算机内存，或者至少需要很长时间才能完成。但是，在这种情况下，会立即打印结果 `False`。如果查看 `(&&)` 的类型，您将看到以下内容："
+msgstr "如果计算第二个参数，这个计算肯定会炸毁你的计算机内存，或者至少需要很长时间才能完成。但是，在这种情况下，会立即打印结果 `False`。如果查看 `(&&)` 的类型，您将看到以下内容：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:798
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Folds> :t (&&)\n"
 "Prelude.&& : Bool -> Lazy Bool -> Bool\n"
-msgstr "```repl Tutorial.Folds> :t (&&) Prelude.&& : Bool -> Lazy Bool -> Bool ```"
+msgstr ""
+"Tutorial.Folds> :t (&&)\n"
+"Prelude.&& : Bool -> Lazy Bool -> Bool\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:816
