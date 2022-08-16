@@ -463,11 +463,7 @@ msgid ""
 "and tail recursion as an important optimization technique\n"
 "in particular. Most recursive functions in this part\n"
 "will describe pure iterations over lists.\n"
-msgstr ""
-"在本章中，我们将仔细研究我们通常使用 *容器类型* 执行的计算：参数化数据类型，"
-"如 `List`、`Maybe` 或 `Identity`，保存参数类型的零个或多个值。其中许多函数本"
-"质上是递归的，因此我们首先讨论一般的递归，特别是尾递归作为一种重要的优化技术"
-"。这部分中的大多数递归函数将描述列表上的纯迭代。\n"
+msgstr "在本章中，我们将仔细研究我们通常使用 *容器类型* 执行的计算：参数化数据类型，如 `List`、`Maybe` 或 `Identity`，保存参数类型的零个或多个值。其中许多函数本质上是递归的，因此我们首先讨论一般的递归，特别是尾递归作为一种重要的优化技术。这部分中的大多数递归函数将描述列表上的纯迭代。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:17
@@ -477,8 +473,7 @@ msgid ""
 "to determine, so we will next have a quick look at the\n"
 "totality checker and learn, when it will refuse to\n"
 "accept a function as being total and what to do about this.\n"
-msgstr "它是递归函数，其完全性很难确定，因此我们接下来将快速查看完全性检查器并了解它"
-"何时会拒绝接受一个函数作为完全函数以及如何处理。\n"
+msgstr "它是递归函数，其完全性很难确定，因此我们接下来将快速查看完全性检查器并了解它何时会拒绝接受一个函数作为完全函数以及如何处理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:22
@@ -488,8 +483,7 @@ msgid ""
 "the recursive functions from the first part and will\n"
 "eventually introduce a new interface for consuming\n"
 "container types: Interface `Foldable`.\n"
-msgstr "最后，我们将从第一部分开始寻找递归函数中的常见模式，并最终引入一个用于消费容"
-"器类型的新接口：接口 `Foldable`。\n"
+msgstr "最后，我们将从第一部分开始寻找递归函数中的常见模式，并最终引入一个用于消费容器类型的新接口：接口 `Foldable`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:23
@@ -539,11 +533,7 @@ msgid ""
 "which are *covering* (they cover all possible cases in their\n"
 "pattern matches) are automatically total if they only invoke\n"
 "other total functions.\n"
-msgstr ""
-"递归函数是函数，它们调用自己来重复任务或计算，直到某个中止条件（称为 "
-"*基本情况*）成立。请注意，它是递归函数，因此很难验证完全性：非递归函数，即 *"
-"全覆盖*（它们涵盖了模式匹配中的所有可能情况）如果它们只调用其他函数，它们就会"
-"自动为完全的。\n"
+msgstr "递归函数是函数，它们调用自己来重复任务或计算，直到某个中止条件（称为 *基本情况*）成立。请注意，它是递归函数，因此很难验证完全性：非递归函数，即 *全覆盖*（它们涵盖了模式匹配中的所有可能情况）如果它们只调用其他函数，它们就会自动为完全的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:50
@@ -575,11 +565,7 @@ msgid ""
 "function *must* eventually come to an end. Of course, we can do the\n"
 "same thing for `Vect`, where we can even show that the length of the\n"
 "resulting vector matches the given natural number:\n"
-msgstr ""
-"正如你所看到的（这个模块在顶部有 `%default total` "
-"pragma），这个函数可以证明是完全的。 Idris 验证 `Nat` 参数在每次递归调用中 "
-"*严格缩小*，因此，函数 *肯定会* 最终结束。当然，我们可以对 `Vect` "
-"做同样的事情，我们甚至可以证明结果向量的长度与给定的自然数匹配：\n"
+msgstr "正如你所看到的（这个模块在顶部有 `%default total` pragma），这个函数可以证明是完全的。 Idris 验证 `Nat` 参数在每次递归调用中 *严格缩小*，因此，函数 *肯定会* 最终结束。当然，我们可以对 `Vect` 做同样的事情，我们甚至可以证明结果向量的长度与给定的自然数匹配：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:64
@@ -600,9 +586,7 @@ msgid ""
 "While we often use recursion to *create* values of data types like\n"
 "`List` or `Vect`, we also use recursion, when we *consume* such values.\n"
 "For instance, here is a function for calculating the length of a list:\n"
-msgstr ""
-"虽然我们经常使用递归来 *创建* 数据类型的值，例如 `List` 或 `Vect`，当我们 "
-"*使用* 此类值时，我们也会使用递归，例如，这是一个计算列表长度的函数：\n"
+msgstr "虽然我们经常使用递归来 *创建* 数据类型的值，例如 `List` 或 `Vect`，当我们 *使用* 此类值时，我们也会使用递归，例如，这是一个计算列表长度的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:74
@@ -622,8 +606,7 @@ msgstr ""
 msgid ""
 "Again, Idris can verify that `len` is total, as the list we pass in\n"
 "the recursive case is strictly smaller than the original list argument.\n"
-msgstr "同样，Idris 可以验证 `len` "
-"是完全的，因为我们在递归情况下传递的列表严格小于原始列表参数。\n"
+msgstr "同样，Idris 可以验证 `len` 是完全的，因为我们在递归情况下传递的列表严格小于原始列表参数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:88
@@ -634,10 +617,7 @@ msgid ""
 "generation function (`gen`) returns a `Nothing`. Note, how we use\n"
 "a *state* value (of generic type `s`) and use `gen` to calculate\n"
 "a value together with the next state:\n"
-msgstr ""
-"但是什么时候递归函数是非全部的？这是一个示例：以下函数创建一系列值，"
-"直到给定的生成函数 (`gen`) 返回 `Nothing`。请注意，我们如何使用 *状态* 值（"
-"通用类型 `s`）并使用 `gen` 来计算一个值以及下一个状态：\n"
+msgstr "但是什么时候递归函数是非全部的？这是一个示例：以下函数创建一系列值，直到给定的生成函数 (`gen`) 返回 `Nothing`。请注意，我们如何使用 *状态* 值（通用类型 `s`）并使用 `gen` 来计算一个值以及下一个状态：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:89
@@ -665,11 +645,7 @@ msgid ""
 "function produces an infinite list (so please, don't try to inspect\n"
 "this at the REPL, as doing so will consume all your computer's\n"
 "memory):\n"
-msgstr ""
-"使用 `unfold`，Idris 无法验证其任何论点是否收敛于基本情况。因此，"
-"它理所当然地拒绝接受 `unfold` "
-"是完全的。事实上，下面的函数会生成一个无限列表（所以请不要尝试在 REPL "
-"中检查它，因为这样做会消耗您计算机的所有内存）：\n"
+msgstr "使用 `unfold`，Idris 无法验证其任何论点是否收敛于基本情况。因此，它理所当然地拒绝接受 `unfold` 是完全的。事实上，下面的函数会生成一个无限列表（所以请不要尝试在 REPL 中检查它，因为这样做会消耗您计算机的所有内存）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:104
@@ -697,8 +673,7 @@ msgid ""
 "we need to make sure the function generating the sequence will\n"
 "stop after a finite number of steps, for instance by limiting\n"
 "the length of the list:\n"
-msgstr "为了安全地创建一个（有限）斐波那契数列，我们需要确保生成该序列的函数将在有限"
-"步数后停止，例如通过限制列表的长度：\n"
+msgstr "为了安全地创建一个（有限）斐波那契数列，我们需要确保生成该序列的函数将在有限步数后停止，例如通过限制列表的长度：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:118
@@ -755,10 +730,7 @@ msgid ""
 "module using the *Node.js* backend of Idris instead of the default\n"
 "*Chez Scheme* backend and run the resulting JavaScript source file\n"
 "with the Node.js binary:\n"
-msgstr ""
-"如果您的系统上安装了 [Node.js](https://nodejs.org/en/)，您可以尝试以下实验。"
-"使用 Idris 的 *Node.js* 后端而不是默认的 *Chez Scheme* 后端编译并运行此模块，"
-"并使用 Node.js 二进制文件运行生成的 JavaScript 源文件：\n"
+msgstr "如果您的系统上安装了 [Node.js](https://nodejs.org/en/)，您可以尝试以下实验。使用 Idris 的 *Node.js* 后端而不是默认的 *Chez Scheme* 后端编译并运行此模块，并使用 Node.js 二进制文件运行生成的 JavaScript 源文件：\n"
 
 #. type: Code fence info string
 #: ../src/Tutorial/Folds.md:145 ../src/Tutorial/Folds.md:241
@@ -787,10 +759,7 @@ msgid ""
 "stack trace: `RangeError: Maximum call stack size exceeded`.\n"
 "What's going on here? How can it be that `main` fails with an\n"
 "exception although it is provably total?\n"
-msgstr ""
-"Node.js 将失败并显示以下错误消息和冗长的堆栈跟踪：`RangeError: Maximum call "
-"stack size exceeded`。这里发生了什么？ `main` "
-"怎么会失败并出现异常，尽管它可以证明是完全的？\n"
+msgstr "Node.js 将失败并显示以下错误消息和冗长的堆栈跟踪：`RangeError: Maximum call stack size exceeded`。这里发生了什么？ `main` 怎么会失败并出现异常，尽管它可以证明是完全的？\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:169
@@ -810,15 +779,7 @@ msgid ""
 "at least 10'000 function calls before they are being invoked\n"
 "and the stack's size is reduced again. This exceeds Node.js's\n"
 "stack size limit by far, hence the overflow error.\n"
-msgstr ""
-"首先，记住一个函数是完全的意味着它最终会在有限的时间内产生一个给定类型的值，*"
-"给定足够的资源，比如计算机内存*。在这里，`main` 没有获得足够的资源，因为 "
-"Node.js 在其调用堆栈上的大小限制非常小。 *调用堆栈* 可以被认为是一个堆栈数据"
-"结构（先进后出），其中放置了嵌套的函数调用。在递归函数的情况下，堆栈大小随着"
-"每个递归函数调用而增加一。对于我们的 `main` 函数，我们创建并使用长度为 "
-"10'000 的列表，因此调用堆栈将在调用之前至少保存 10'000 个函数调用，"
-"并且堆栈的大小再次减小.这远远超出了 Node.js "
-"的堆栈大小限制，因此出现了溢出错误。\n"
+msgstr "首先，记住一个函数是完全的意味着它最终会在有限的时间内产生一个给定类型的值，*给定足够的资源，比如计算机内存*。在这里，`main` 没有获得足够的资源，因为 Node.js 在其调用堆栈上的大小限制非常小。 *调用堆栈* 可以被认为是一个堆栈数据结构（先进后出），其中放置了嵌套的函数调用。在递归函数的情况下，堆栈大小随着每个递归函数调用而增加一。对于我们的 `main` 函数，我们创建并使用长度为 10'000 的列表，因此调用堆栈将在调用之前至少保存 10'000 个函数调用，并且堆栈的大小再次减小.这远远超出了 Node.js 的堆栈大小限制，因此出现了溢出错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:180
@@ -834,13 +795,7 @@ msgid ""
 "the Scheme backends don't have this issue, as their stack size\n"
 "limit is much larger and they perform all kinds of optimizations\n"
 "internally to prevent the call stack from overflowing.\n"
-msgstr ""
-"现在，在我们研究如何规避此问题的解决方案之前，请注意，在使用 Idris 的 "
-"JavaScript 后端时，这是一个非常严重且限制性的错误来源。在 Idris 中，"
-"由于无法访问 `for` 或 `while` 循环等控制结构，我们 *总是* 必须求助于递归来描"
-"述迭代计算。幸运的是（或者我应该说“不幸”，否则这个问题已经得到了严肃的解决）"
-"，Scheme 后端没有这个问题，因为它们的堆栈大小限制要大得多，并且它们在内部执行"
-"各种优化以防止调用堆栈溢出。\n"
+msgstr "现在，在我们研究如何规避此问题的解决方案之前，请注意，在使用 Idris 的 JavaScript 后端时，这是一个非常严重且限制性的错误来源。在 Idris 中，由于无法访问 `for` 或 `while` 循环等控制结构，我们 *总是* 必须求助于递归来描述迭代计算。幸运的是（或者我应该说“不幸”，否则这个问题已经得到了严肃的解决），Scheme 后端没有这个问题，因为它们的堆栈大小限制要大得多，并且它们在内部执行各种优化以防止调用堆栈溢出。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:181
@@ -856,10 +811,7 @@ msgid ""
 "all recursive calls occur at *tail position*: The last\n"
 "function call in a (sub)expression. For instance, the following\n"
 "version of `len` is tail recursive:\n"
-msgstr ""
-"如果所有递归调用都发生在 *尾部位置* 处，则称递归函数为 "
-"*尾递归*：（子）表达式中的最后一个函数调用。例如，以下版本的 `len` "
-"是尾递归的：\n"
+msgstr "如果所有递归调用都发生在 *尾部位置* 处，则称递归函数为 *尾递归*：（子）表达式中的最后一个函数调用。例如，以下版本的 `len` 是尾递归的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:188
@@ -880,8 +832,7 @@ msgid ""
 "Compare this to `len` as defined above: There, the last\n"
 "function call is an invocation of operator `(+)`, and\n"
 "the recursive call happens in one of its arguments:\n"
-msgstr "将此与上面定义的 `len` 进行比较：最后一个函数调用是对运算符 `(+)` "
-"的调用，递归调用发生在它的一个参数中：\n"
+msgstr "将此与上面定义的 `len` 进行比较：最后一个函数调用是对运算符 `(+)` 的调用，递归调用发生在它的一个参数中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:198
@@ -895,8 +846,7 @@ msgstr "len (_ :: xs) = 1 + len xs\n"
 msgid ""
 "We can use `lenOnto` as a utility to implement a tail recursive\n"
 "version of `len` without the additional `Nat` argument:\n"
-msgstr "我们可以使用 `lenOnto` 作为实用程序来实现 `len` 的尾递归版本，而无需额外的 "
-"`Nat` 参数：\n"
+msgstr "我们可以使用 `lenOnto` 作为实用程序来实现 `len` 的尾递归版本，而无需额外的 `Nat` 参数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:205
@@ -917,9 +867,7 @@ msgid ""
 "intermediary results, which is then passed on explicitly at each\n"
 "recursive call. For instance, here is a tail recursive version\n"
 "of `replicateList`:\n"
-msgstr ""
-"这是编写尾递归函数时的常见模式：我们通常添加一个额外的函数参数来累积中间结果"
-"，然后在每次递归调用时显式传递。例如，这里是 `replicateList` 的尾递归版本：\n"
+msgstr "这是编写尾递归函数时的常见模式：我们通常添加一个额外的函数参数来累积中间结果，然后在每次递归调用时显式传递。例如，这里是 `replicateList` 的尾递归版本：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:216
@@ -946,10 +894,7 @@ msgid ""
 "compiler, an are thus *stack safe*: Recursive function calls\n"
 "are *not* added to the call stack, thus avoiding the dreaded\n"
 "stack overflow errors.\n"
-msgstr ""
-"尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，"
-"因此是 *堆栈安全* 的：递归函数调用 *不会* "
-"添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
+msgstr "尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 *堆栈安全* 的：递归函数调用 *不会* 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:230
@@ -970,10 +915,7 @@ msgid ""
 "`main` (Remember: The dollar prefix is only there to distinghish\n"
 "a terminal command from its output. It is not part of the\n"
 "command you enter in a terminal sesssion.):\n"
-msgstr ""
-"我们可以使用 *Node.js* 后端再次运行 `main1`。这一次，"
-"我们使用稍有不同的语法来执行除 `main` 以外的函数（请记住：美元前缀仅用于将终"
-"端命令与其输出区分开来。它不是您在终端会话输入的命令的一部分。）：\n"
+msgstr "我们可以使用 *Node.js* 后端再次运行 `main1`。这一次，我们使用稍有不同的语法来执行除 `main` 以外的函数（请记住：美元前缀仅用于将终端命令与其输出区分开来。它不是您在终端会话输入的命令的一部分。）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:241
@@ -1001,8 +943,7 @@ msgid ""
 "(possibly nested) pattern matches, with recursive\n"
 "calls at tail position in several of the branches.\n"
 "Here is an example:\n"
-msgstr "尾递归函数允许由（可能是嵌套的）模式匹配组成，在几个分支的尾位置进行递归调用"
-"。这是一个例子：\n"
+msgstr "尾递归函数允许由（可能是嵌套的）模式匹配组成，在几个分支的尾位置进行递归调用。这是一个例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:254
@@ -1054,12 +995,7 @@ msgid ""
 "compiler. Our first option is to write down the functions' declarations\n"
 "first with the implementations following after. Here's a\n"
 "silly example:\n"
-msgstr ""
-"有时可以方便地实现几个相关的函数，它们以递归方式相互调用。在 Idris "
-"中，与许多其他编程语言不同，函数必须在源文件中声明 *之后* "
-"才能被其他函数调用，因为通常函数的实现必须在类型检查期间可用（因为 Idris 有依"
-"赖类型）。有两种方法可以解决这个问题，它们实际上会在编译器中产生相同的内部表"
-"示。我们的第一个选择是先写下函数的声明，然后是实现。这是一个愚蠢的例子：\n"
+msgstr "有时可以方便地实现几个相关的函数，它们以递归方式相互调用。在 Idris 中，与许多其他编程语言不同，函数必须在源文件中声明 *之后* 才能被其他函数调用，因为通常函数的实现必须在类型检查期间可用（因为 Idris 有依赖类型）。有两种方法可以解决这个问题，它们实际上会在编译器中产生相同的内部表示。我们的第一个选择是先写下函数的声明，然后是实现。这是一个愚蠢的例子：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:282
@@ -1092,8 +1028,7 @@ msgid ""
 "As you can see, function `even` is allowed to call function `odd` in\n"
 "its implementation, since `odd` has already been declared (but not yet\n"
 "implemented).\n"
-msgstr "如您所见，函数 `even` 被允许在其实现中调用函数 `odd`，因为 `odd` "
-"已经被声明（但尚未实现）。\n"
+msgstr "如您所见，函数 `even` 被允许在其实现中调用函数 `odd`，因为 `odd` 已经被声明（但尚未实现）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:302
@@ -1103,10 +1038,7 @@ msgid ""
 "next to each other, you can introduce a `mutual` block, which has\n"
 "the same effect. Like with other code blocks, functions in a `mutual`\n"
 "block must all be indented by the same amount of whitespace:\n"
-msgstr ""
-"如果你和我一样，想保持声明和实现彼此相邻，你可以引入一个 `mutual` "
-"块，它具有相同的效果。与其他代码块一样，`mutual` "
-"块中的函数必须全部缩进相同数量的空格：\n"
+msgstr "如果你和我一样，想保持声明和实现彼此相邻，你可以引入一个 `mutual` 块，它具有相同的效果。与其他代码块一样，`mutual` 块中的函数必须全部缩进相同数量的空格：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:303
@@ -1139,10 +1071,7 @@ msgid ""
 "recursive calls occur at tail position. This is the case\n"
 "with functions `even` and `odd`, as can again be\n"
 "verified at the *Node.js* backend:\n"
-msgstr ""
-"就像单个递归函数一样，如果所有递归调用都发生在尾部位置，则可以将相互递归函数"
-"优化为命令式循环。函数 `even` 和 `odd` 就是这种情况，可以在 *Node.js* "
-"后端再次验证：\n"
+msgstr "就像单个递归函数一样，如果所有递归调用都发生在尾部位置，则可以将相互递归函数优化为命令式循环。函数 `even` 和 `odd` 就是这种情况，可以在 *Node.js* 后端再次验证：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:320
@@ -1194,7 +1123,8 @@ msgstr "在纯函数式编程中，递归是实现迭代过程的方式。"
 msgid ""
 "Recursive functions pass the totality checker, if it can verify that one of "
 "the arguments is getting strictly smaller in every recursive function call."
-msgstr "递归函数通过完全性检查器的条件为，如果它可以验证每个递归函数调用中的参数之一"
+msgstr ""
+"递归函数通过完全性检查器的条件为，如果它可以验证每个递归函数调用中的参数之一"
 "严格变小。"
 
 #. type: Bullet: '* '
@@ -1209,8 +1139,9 @@ msgstr "任意递归可能会导致堆栈大小限制较小的后端出现堆栈
 msgid ""
 "The JavaScript backends of Idris perform mutual tail call optimization: Tail "
 "recursive functions are converted to stack safe, imperative loops."
-msgstr "Idris 的 JavaScript "
-"后端执行相互尾调用优化：尾递归函数被转换为堆栈安全的命令式循环。"
+msgstr ""
+"Idris 的 JavaScript 后端执行相互尾调用优化：尾递归函数被转换为堆栈安全的命令"
+"式循环。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:354
@@ -1219,8 +1150,7 @@ msgid ""
 "Note, that not all Idris backends you will come across in the wild\n"
 "will perform tail call optimization. Please check the corresponding\n"
 "documentation.\n"
-msgstr "请注意，并非您在野外遇到的所有 Idris "
-"后端都会执行尾调用优化。请检查相应的文档。\n"
+msgstr "请注意，并非您在野外遇到的所有 Idris 后端都会执行尾调用优化。请检查相应的文档。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:372
@@ -1243,16 +1173,7 @@ msgid ""
 "written for functions `pack` and `unpack` (which use\n"
 "`fastPack` and `fastUnpack` at runtime; see the corresponding\n"
 "rules in [the following source file](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)).\n"
-msgstr ""
-"还要注意，核心库中的大多数递归函数（*prelude* 和 *base*）还没有使用尾递归。这"
-"有一个重要原因：在许多情况下，非尾递归函数更容易在编译时证明中使用，因为它们"
-"比尾递归对应物更自然地统一。编译时证明是 Idris 编程的一个重要方面（我们将在后"
-"面的章节中看到），因此在运行时表现良好和编译时表现良好之间需要做出折衷。最终"
-"，要走的路可能是为大多数递归函数提供两种实现，使用 *转换规则* "
-"告诉编译器在运行时使用优化版本，只要程序员在其代码中使用非优化版本。例如，"
-"已经为函数 `pack` 和 `unpack` 编写了这样的转换规则（它们在运行时使用 "
-"`fastPack` 和 `fastUnpack`；参见[以下源文件](https://github.com/idris-lang/"
-"Idris2/blob/main/libs/prelude/Prelude/Types.idr)中的相应规则。\n"
+msgstr "还要注意，核心库中的大多数递归函数（*prelude* 和 *base*）还没有使用尾递归。这有一个重要原因：在许多情况下，非尾递归函数更容易在编译时证明中使用，因为它们比尾递归对应物更自然地统一。编译时证明是 Idris 编程的一个重要方面（我们将在后面的章节中看到），因此在运行时表现良好和编译时表现良好之间需要做出折衷。最终，要走的路可能是为大多数递归函数提供两种实现，使用 *转换规则* 告诉编译器在运行时使用优化版本，只要程序员在其代码中使用非优化版本。例如，已经为函数 `pack` 和 `unpack` 编写了这样的转换规则（它们在运行时使用 `fastPack` 和 `fastUnpack`；参见[以下源文件](https://github.com/idris-lang/Idris2/blob/main/libs/prelude/Prelude/Types.idr)中的相应规则。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:379
@@ -1262,8 +1183,7 @@ msgid ""
 "recursive functions. Make sure to use tail recursion\n"
 "whenever possible and quickly verify the correct\n"
 "behavior of all functions at the REPL.\n"
-msgstr "在这些练习中，您将实现几个递归函数。确保尽可能使用尾递归，并快速验证 REPL "
-"中所有函数的正确行为。\n"
+msgstr "在这些练习中，您将实现几个递归函数。确保尽可能使用尾递归，并快速验证 REPL 中所有函数的正确行为。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Folds.md:383
@@ -1271,8 +1191,9 @@ msgid ""
 "Implement functions `anyList` and `allList`, which return `True` if any "
 "element (or all elements in case of `allList`) in a list fulfills the given "
 "predicate:"
-msgstr "实现函数 `anyList` 和 `allList`，如果列表中的任何元素（或 `allList` "
-"的所有元素）满足给定谓词："
+msgstr ""
+"实现函数 `anyList` 和 `allList`，如果列表中的任何元素（或 `allList` 的所有元"
+"素）满足给定谓词："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:384
@@ -1304,7 +1225,8 @@ msgstr "   findList : (a -> Bool) -> List a -> Maybe a\n"
 msgid ""
 "Implement function `collectList`, which returns the first value (if any), "
 "for which the given function returns a `Just`:"
-msgstr "实现函数 `collectList`，它返回第一个值（如果有），给定函数为此返回一个 "
+msgstr ""
+"实现函数 `collectList`，它返回第一个值（如果有），给定函数为此返回一个 "
 "`Just`："
 
 #. type: Plain text
@@ -1339,12 +1261,11 @@ msgid ""
 "all new data constructors and operators before continuing with the exercise."
 msgstr ""
 "对于像 `map` 或 `filter` 这样的函数，它们必须在不影响元素顺序的情况下循环遍历"
-"列表，因此很难编写尾递归实现。最安全的方法是使用 `SnocList`（一种 *反转* "
-"类型的列表，从头到尾而不是从尾到头构建）来累积中间结果。它的两个构造函数是 "
-"`Lin` 和 `(:<)`（称为 *snoc* 运算符）。模块 `Data.SnocList` "
-"导出两个尾递归运算符，称为 *fish* 和 *chips* (`(<><)` 和 `(<>>)`) 用于从 "
-"`SnocList` 到 `List` "
-"，反之亦然。在继续练习之前，请查看所有新数据构造函数和运算符的类型。"
+"列表，因此很难编写尾递归实现。最安全的方法是使用 `SnocList`（一种 *反转* 类型"
+"的列表，从头到尾而不是从尾到头构建）来累积中间结果。它的两个构造函数是 `Lin` "
+"和 `(:<)`（称为 *snoc* 运算符）。模块 `Data.SnocList` 导出两个尾递归运算符，"
+"称为 *fish* 和 *chips* (`(<><)` 和 `(<>>)`) 用于从 `SnocList` 到 `List` ，反"
+"之亦然。在继续练习之前，请查看所有新数据构造函数和运算符的类型。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:428
@@ -1372,8 +1293,9 @@ msgid ""
 "Implement a tail recursive version of `filter`, which only keeps those "
 "values in a list, which fulfill the given predicate. Use the same technique "
 "as described in exercise 4."
-msgstr "实现 `filter` 的尾递归版本，它只将那些值保存在列表中，满足给定的谓词。"
-"使用练习 4 中描述的相同技术。"
+msgstr ""
+"实现 `filter` 的尾递归版本，它只将那些值保存在列表中，满足给定的谓词。使用练"
+"习 4 中描述的相同技术。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:438
@@ -1386,7 +1308,8 @@ msgstr "   filterTR : (a -> Bool) -> List a -> List a\n"
 msgid ""
 "Implement a tail recursive version of `mapMaybe`, which only keeps those "
 "values in a list, for which the given function argument returns a `Just`:"
-msgstr "实现 `mapMaybe` 的尾递归版本，它只将这些值保存在列表中，给定函数参数返回 "
+msgstr ""
+"实现 `mapMaybe` 的尾递归版本，它只将这些值保存在列表中，给定函数参数返回 "
 "`Just`："
 
 #. type: Plain text
@@ -1454,12 +1377,7 @@ msgid ""
 "and therefore the recursive call must converge towards a base case.\n"
 "Exactly the same reasoning is used when pattern matching on a list\n"
 "and continuing only with its tail in the recursive call.\n"
-msgstr ""
-"Idris 中的完全性检查器验证递归调用中的至少一个（可能已删除！）参数收敛于基本"
-"情况。例如，对于自然数，如果基本情况为零（对应于数据构造函数 `Z`），我们在 `"
-"S k` 上进行模式匹配后继续 `k` , Idris 可以从 `Nat` 的构造函数派生，即 `k` "
-"严格小于 `S k`，因此递归调用必须收敛于基本情况。当对列表进行模式匹配并仅在递"
-"归调用中继续其尾部时，使用完全相同的推理。\n"
+msgstr "Idris 中的完全性检查器验证递归调用中的至少一个（可能已删除！）参数收敛于基本情况。例如，对于自然数，如果基本情况为零（对应于数据构造函数 `Z`），我们在 `S k` 上进行模式匹配后继续 `k` , Idris 可以从 `Nat` 的构造函数派生，即 `k` 严格小于 `S k`，因此递归调用必须收敛于基本情况。当对列表进行模式匹配并仅在递归调用中继续其尾部时，使用完全相同的推理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:487
@@ -1469,9 +1387,7 @@ msgid ""
 "Below, I'll show you a couple of examples where totality checking\n"
 "fails, although *we* know, that the functions in question are definitely\n"
 "total.\n"
-msgstr ""
-"虽然这在许多情况下都有效，但并不总是按预期进行。下面，我将向您展示几个完全性"
-"检查失败的示例，尽管 *我们* 知道，所讨论的函数肯定是完全的。\n"
+msgstr "虽然这在许多情况下都有效，但并不总是按预期进行。下面，我将向您展示几个完全性检查失败的示例，尽管 *我们* 知道，所讨论的函数肯定是完全的。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:488
@@ -1487,8 +1403,7 @@ msgid ""
 "primitive data types. So the following function, although\n"
 "being obviously total, will not be accepted by the totality\n"
 "checker:\n"
-msgstr "Idris 对原语数据类型的内部结构一无所知。因此，以下函数虽然显然是完全的，但不"
-"会被完全性检查器接受：\n"
+msgstr "Idris 对原语数据类型的内部结构一无所知。因此，以下函数虽然显然是完全的，但不会被完全性检查器接受：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:495
@@ -1520,15 +1435,7 @@ msgid ""
 "implemented at the backends. While it is theoretically possible to\n"
 "also define and use laws for primitive and foreign functions, this hasn't yet\n"
 "been done for most of them.)\n"
-msgstr ""
-"与自然数 (`Nat`) "
-"不同，自然数被定义为归纳数据类型并且仅在编译期间转换为整数原语，Idris "
-"无法判断 `x - 1` 严格小于比 `x`，因此它无法验证这必须收敛到基本情况。 （"
-"原因是 `x - 1` 是根据原始函数 `prim__sub_Bits32` "
-"实现的，它内置在编译器中，必须由每个后端单独实现。完全性检查器知道Idris 中定"
-"义的数据类型、构造函数和函数，但与后端实现的（原语）函数和外部函数无关。虽然"
-"理论上也可以为原语函数和外部函数定义和使用定律，但这还没有完成对于他们中的大"
-"多数情况。）\n"
+msgstr "与自然数 (`Nat`) 不同，自然数被定义为归纳数据类型并且仅在编译期间转换为整数原语，Idris 无法判断 `x - 1` 严格小于比 `x`，因此它无法验证这必须收敛到基本情况。 （原因是 `x - 1` 是根据原始函数 `prim__sub_Bits32` 实现的，它内置在编译器中，必须由每个后端单独实现。完全性检查器知道Idris 中定义的数据类型、构造函数和函数，但与后端实现的（原语）函数和外部函数无关。虽然理论上也可以为原语函数和外部函数定义和使用定律，但这还没有完成对于他们中的大多数情况。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:520
@@ -1539,10 +1446,7 @@ msgid ""
 "totality checker), there is utility function `assert_smaller`, which\n"
 "we can use to convince the totality checker and still annotate our\n"
 "functions with the `total` keyword:\n"
-msgstr ""
-"由于非完全性具有高度传染性（所有调用偏函数的函数本身都被完全性检查器认为是部"
-"分的），所以有实用函数 `assert_smaller`，"
-"我们可以使用它来说服完全性检查器并我们仍然使用 `total` 关键字注释函数：\n"
+msgstr "由于非完全性具有高度传染性（所有调用偏函数的函数本身都被完全性检查器认为是部分的），所以有实用函数 `assert_smaller`，我们可以使用它来说服完全性检查器并我们仍然使用 `total` 关键字注释函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:521
@@ -1565,10 +1469,7 @@ msgid ""
 "on your shoulders. Failing to do so can lead to arbitrary and\n"
 "unpredictable program behavior (which is the default with most\n"
 "other programming languages).\n"
-msgstr ""
-"但是请注意，每当您使用 `assert_smaller` 来使完全性检查器静音时，证明完全性的"
-"重任就落在了您的肩上。不这样做可能会导致任意和不可预测的程序行为（这是大多数"
-"其他编程语言的默认设置）。\n"
+msgstr "但是请注意，每当您使用 `assert_smaller` 来使完全性检查器静音时，证明完全性的重任就落在了您的肩上。不这样做可能会导致任意和不可预测的程序行为（这是大多数其他编程语言的默认设置）。\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Folds.md:533
@@ -1588,12 +1489,7 @@ msgid ""
 "such value. Doing so allows us to completely\n"
 "disable the type system together with all the guarantees it provides.\n"
 "Here's the code and its dire consequences:\n"
-msgstr ""
-"下面 - 作为演示 - 是 `Void` 的简单证明。 "
-"`Void`是*无人居住的类型*：没有值的类型。 *证明 `Void`* "
-"意味着，我们实现了一个被完全性检查器接受的函数，它返回一个类型为 `Void` "
-"的值，尽管这应该是不可能的，因为没有这样的值.这样做可以让我们完全禁用类型系统"
-"以及它提供的所有保证。这是代码及其可怕的后果：\n"
+msgstr "下面 - 作为演示 - 是 `Void` 的简单证明。 `Void`是*无人居住的类型*：没有值的类型。 *证明 `Void`* 意味着，我们实现了一个被完全性检查器接受的函数，它返回一个类型为 `Void` 的值，尽管这应该是不可能的，因为没有这样的值.这样做可以让我们完全禁用类型系统以及它提供的所有保证。这是代码及其可怕的后果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:544
@@ -1658,10 +1554,7 @@ msgid ""
 "And it is completely safe, as it only uses total functions in its\n"
 "implementation. The problem is - of course - that `proofOfVoid` should\n"
 "never ever have been a total function.\n"
-msgstr ""
-"请花点时间惊叹于可证明的完全函数 `coerce`：它声称将 *any* 值转换为 *any* "
-"其他类型的值。而且它是完全安全的，因为它在实现中只使用了完全函数。问题是 - "
-"当然 - `proofOfVoid` 永远不应该是一个完全的函数。\n"
+msgstr "请花点时间惊叹于可证明的完全函数 `coerce`：它声称将 *any* 值转换为 *any* 其他类型的值。而且它是完全安全的，因为它在实现中只使用了完全函数。问题是 - 当然 - `proofOfVoid` 永远不应该是一个完全的函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:581
@@ -1671,10 +1564,7 @@ msgid ""
 "In the end, we get what we deserve: The program crashes with an error.\n"
 "While things could have been much worse, it can still be quite\n"
 "time consuming and annoying to localize the source of such an error.\n"
-msgstr ""
-"在 `pain` 中，我们使用 `coerce` 从整数变出一个字符串。最后，我们得到了我们应"
-"得的：程序因错误而崩溃。尽管情况可能会更糟，但定位此类错误的来源仍然非常耗时"
-"且令人讨厌。\n"
+msgstr "在 `pain` 中，我们使用 `coerce` 从整数变出一个字符串。最后，我们得到了我们应得的：程序因错误而崩溃。尽管情况可能会更糟，但定位此类错误的来源仍然非常耗时且令人讨厌。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:582
@@ -1693,9 +1583,7 @@ msgid ""
 "So, with a single thoughtless placement of `assert_smaller` we wrought\n"
 "havoc within our pure and total codebase sacrificing totality and\n"
 "type safety in one fell swoop. Therefore: Use at your own risk!\n"
-msgstr ""
-"因此，通过 `assert_smaller` 的一次轻率放置，我们在我们的纯代码库中造成了严重"
-"破坏，一举牺牲了完全性和类型安全性。因此：使用风险自负！\n"
+msgstr "因此，通过 `assert_smaller` 的一次轻率放置，我们在我们的纯代码库中造成了严重破坏，一举牺牲了完全性和类型安全性。因此：使用风险自负！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:594
@@ -1704,8 +1592,7 @@ msgid ""
 "Note: I do not expect you to understand all the dark magic at\n"
 "work in the code above. I'll explain the details in due time\n"
 "in another chapter.\n"
-msgstr "注意：我不希望你理解上面代码中所有的黑魔法。我将在适当的时候在另一章中解释细"
-"节。\n"
+msgstr "注意：我不希望你理解上面代码中所有的黑魔法。我将在适当的时候在另一章中解释细节。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:602
@@ -1718,13 +1605,7 @@ msgid ""
 "a total function producing such a value, although `Void` is an uninhabited type.\n"
 "You can verify this by inspecting `Void` at the REPL with `:doc Void`: It\n"
 "has no data constructors.\n"
-msgstr ""
-"第二注：*Ex falso quodlibet*，也称为[爆炸原理](https://en.wikipedia.org/wiki/"
-"Principle_of_explosion) "
-"是经典逻辑中的一条定律：从矛盾中，任何陈述都可以被证明。在我们的例子中，"
-"矛盾在于我们对 `Void` 的证明：声称我们编写了一个产生这样一个值的完全函数，"
-"尽管 `Void` 是一种无人居住的类型。您可以通过在 REPL 中使用 `:doc Void` 检查 "
-"`Void` 来验证这一点：它没有数据构造函数。\n"
+msgstr "第二注：*Ex falso quodlibet*，也称为[爆炸原理](https://en.wikipedia.org/wiki/Principle_of_explosion) 是经典逻辑中的一条定律：从矛盾中，任何陈述都可以被证明。在我们的例子中，矛盾在于我们对 `Void` 的证明：声称我们编写了一个产生这样一个值的完全函数，尽管 `Void` 是一种无人居住的类型。您可以通过在 REPL 中使用 `:doc Void` 检查 `Void` 来验证这一点：它没有数据构造函数。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:603
@@ -1739,9 +1620,7 @@ msgid ""
 "Below is an implementation of a [*rose tree*](https://en.wikipedia.org/wiki/Rose_tree).\n"
 "Rose trees can represent search paths in computer algorithms,\n"
 "for instance in graph theory.\n"
-msgstr ""
-"下面是 [*玫瑰树*](https://en.wikipedia.org/wiki/Rose_tree) "
-"的实现。玫瑰树可以表示计算机算法中的搜索路径，例如在图论中。\n"
+msgstr "下面是 [*玫瑰树*](https://en.wikipedia.org/wiki/Rose_tree) 的实现。玫瑰树可以表示计算机算法中的搜索路径，例如在图论中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:609
@@ -1790,11 +1669,7 @@ msgid ""
 "is implemented for `List`), but Idris can't know this (teaching a totality\n"
 "checker how to figure this out on its own seems to be an open research\n"
 "question). So it will refuse to accept the function as being total.\n"
-msgstr ""
-"在上面的代码中，递归调用发生在 `map` 中。 *我们* "
-"知道我们在递归调用中只使用子树（因为我们知道 `map` 是如何为 `List` 实现的），"
-"但 Idris 不知道这一点（教一个完全性检查器如何自己解决这个问题似乎是一个开放的"
-"研究问题）。所以它会拒绝接受这个函数是完全的。\n"
+msgstr "在上面的代码中，递归调用发生在 `map` 中。 *我们* 知道我们在递归调用中只使用子树（因为我们知道 `map` 是如何为 `List` 实现的），但 Idris 不知道这一点（教一个完全性检查器如何自己解决这个问题似乎是一个开放的研究问题）。所以它会拒绝接受这个函数是完全的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:637
@@ -1804,10 +1679,7 @@ msgid ""
 "a bit of otherwise unneeded boilerplate code, we can use explicit recursion.\n"
 "In fact, since we often also work with search *forests*, this is\n"
 "the preferable way here.\n"
-msgstr ""
-"有两种方法可以处理上述情况。如果我们不介意编写一些其他不需要的样板代码，我们"
-"可以使用显式递归。事实上，由于我们也经常使用搜索 "
-"*森林*，因此这是这里的首选方式。\n"
+msgstr "有两种方法可以处理上述情况。如果我们不介意编写一些其他不需要的样板代码，我们可以使用显式递归。事实上，由于我们也经常使用搜索 *森林*，因此这是这里的首选方式。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:638
@@ -1837,10 +1709,7 @@ msgid ""
 "its back as we are explicit about what happens in each recursive step.\n"
 "This is the safe, preferable way of going about this, especially if you are\n"
 "new to the language and totality checking in general.\n"
-msgstr ""
-"在上面的例子中，Idris 可以验证我们不会在它背后炸毁我们的树，因为我们清楚地知"
-"道每个递归步骤中发生的事情。这是解决此问题的安全、可取的方法，特别是如果您不"
-"熟悉语言和完全性检查。\n"
+msgstr "在上面的例子中，Idris 可以验证我们不会在它背后炸毁我们的树，因为我们清楚地知道每个递归步骤中发生的事情。这是解决此问题的安全、可取的方法，特别是如果您不熟悉语言和完全性检查。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:655
@@ -1848,8 +1717,7 @@ msgstr ""
 msgid ""
 "However, sometimes the solution presented above is just too cumbersome to\n"
 "write. For instance, here is an implementation of `Show` for rose trees:\n"
-msgstr "但是，有时上面提出的解决方案写起来太麻烦了。例如，这里是玫瑰树的 `Show` "
-"的实现：\n"
+msgstr "但是，有时上面提出的解决方案写起来太麻烦了。例如，这里是玫瑰树的 `Show` 的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:656
@@ -1872,10 +1740,7 @@ msgid ""
 "mighty sledgehammer of totality checking: `assert_total`. Needless to say\n"
 "that this comes with the same risks as `assert_smaller`, so be very\n"
 "careful.\n"
-msgstr ""
-"在这种情况下，我们必须为树列表手动重新实现 `Show`：这是一项乏味的任务——而且它"
-"本身很容易出错。相反，我们求助于使用强大的完全性检查大锤：`assert_total`。不"
-"用说，这会带来与 `assert_smaller` 相同的风险，所以要非常小心。\n"
+msgstr "在这种情况下，我们必须为树列表手动重新实现 `Show`：这是一项乏味的任务——而且它本身很容易出错。相反，我们求助于使用强大的完全性检查大锤：`assert_total`。不用说，这会带来与 `assert_smaller` 相同的风险，所以要非常小心。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:673
@@ -1884,8 +1749,7 @@ msgid ""
 "Implement the following functions in a provably total\n"
 "way without \"cheating\". Note: It is not necessary to\n"
 "implement these in a tail recursive way.\n"
-msgstr "以可证明的完整方式实现以下功能，而不会“作弊”。注意：没有必要以尾递归的方式实"
-"现这些。\n"
+msgstr "以可证明的完整方式实现以下功能，而不会“作弊”。注意：没有必要以尾递归的方式实现这些。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:682
@@ -1929,8 +1793,9 @@ msgid ""
 "In order not to forget how to program with dependent types, implement "
 "function `treeToVect` for converting a rose tree to a vector of the correct "
 "size."
-msgstr "为了不忘记如何使用依赖类型进行编程，请实现函数 `treeToVect` "
-"以将玫瑰树转换为正确大小的向量。"
+msgstr ""
+"为了不忘记如何使用依赖类型进行编程，请实现函数 `treeToVect` 以将玫瑰树转换为"
+"正确大小的向量。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:696
@@ -1939,8 +1804,7 @@ msgid ""
 "   Hint: Make sure to follow the same recursion scheme as in\n"
 "   the implementation of `treeSize`. Otherwise, this might be\n"
 "   very hard to get to work.\n"
-msgstr "   提示：确保遵循与`treeSize` "
-"的实现中相同的递归方案。否则，这可能是很难工作。\n"
+msgstr "   提示：确保遵循与`treeSize` 的实现中相同的递归方案。否则，这可能是很难工作。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Folds.md:697
@@ -1960,10 +1824,7 @@ msgid ""
 "results. At the end of the list,\n"
 "return the final state or convert it with an\n"
 "additional function call.\n"
-msgstr ""
-"当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式"
-"：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返"
-"回最终状态或使用附加函数调用对其进行转换。\n"
+msgstr "当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返回最终状态或使用附加函数调用对其进行转换。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:708

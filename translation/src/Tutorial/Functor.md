@@ -1,19 +1,8 @@
-# Functor and Friends
+# 函子和它的朋友们
 
-Programming, like mathematics, is about abstraction. We
-try to model parts of the real world, reusing recurring
-patterns by abstracting over them.
+编程，就像数学一样，是关于抽象的。我们尝试对现实世界的某些部分进行建模，通过对它们进行抽象来重用重复出现的模式。
 
-In this chapter, we will learn about several related interfaces,
-which are all about abstraction and therefore can be hard to
-understand at the beginning. Especially figuring out
-*why* they are useful and *when* to use them will take
-time and experience. This chapter therefore comes
-with tons of exercises, most of which can be solved
-with only a few short lines of code. Don't skip them.
-Come back to them several times until these things start
-feeling natural to you. You will then realize that their
-initial complexity has vanished.
+在本章中，我们将学习几个相关的接口，它们都是关于抽象的，因此一开始可能很难理解。尤其是弄清楚 *为什么* 有用以及 *何时* 使用它们需要时间和经验。因此，本章包含大量练习，其中大部分练习只需几行代码即可解决。不要跳过它们。回到他们身边几次，直到这些事情开始对你来说很自然。然后你会意识到它们最初的复杂性已经消失了。
 
 ```idris
 module Tutorial.Functor
@@ -25,31 +14,13 @@ import Data.Vect
 %default total
 ```
 
-## Functor
+## 函子
 
-What do type constructors like `List`, `List1`, `Maybe`, or
-`IO` have in common? First, all of them are of type
-`Type -> Type`. Second, they all put values of a given type
-in a certain *context*. With `List`,
-the *context* is *non-determinism*: We know there to
-be zero or more values, but we don't know the exact number
-until we start taking the list apart by pattern matching
-on it. Likewise for `List1`, though we know for sure that
-there is at least one value. For `Maybe`, we are still not
-sure about how many values there are, but the possibilities
-are much smaller: Zero or one. With `IO`, the context is a different one:
-Arbitrary side effects.
+`List`、`List1`、`Maybe` 或 `IO` 等类型构造函数有什么共同点？首先，它们都是类型 `Type -> Type`。其次，它们都将给定类型的值放在某个 *上下文* 中。对于 `List`，*上下文* 是 *不确定性*：我们知道有零个或多个值，但在开始之前我们不知道确切的数字通过对其进行模式匹配将列表分开。对于 `List1` 也是如此，尽管我们确定至少有一个值。对于 `Maybe`，我们仍然不确定有多少个值，但可能性要小得多：零或一。使用 `IO`，上下文是不同的：任意副作用。
 
-Although the type constructors discussed above are quite
-different in how they behave and when they are useful,
-there are certain operations that keep coming up
-when working with them. The first such operation
-is *mapping a pure function over the data type, without
-affecting its underlying structure*.
+尽管上面讨论的类型构造函数在它们的行为方式和何时有用方面有很大不同，但在使用它们时会不断出现某些操作。第一个这样的操作是 *在数据类型上映射一个纯函数，而不影响其底层结构*。
 
-For instance, given a list of numbers, we'd like to multiply
-each number by two, without changing their order or removing
-any values:
+例如，给定一个数字列表，我们希望将每个数字乘以 2，而不更改它们的顺序或删除任何值：
 
 ```idris
 multBy2List : Num a => List a -> List a
@@ -57,8 +28,7 @@ multBy2List []        = []
 multBy2List (x :: xs) = 2 * x :: multBy2List xs
 ```
 
-But we might just as well convert every string in a
-list of strings to upper case characters:
+但是我们也可以将字符串列表中的每个字符串都转换为大写字符：
 
 ```idris
 toUpperList : List String -> List String
@@ -66,9 +36,7 @@ toUpperList []        = []
 toUpperList (x :: xs) = toUpper x :: toUpperList xs
 ```
 
-Sometimes, the type of the stored value changes. In the
-next example, we calculate the lengths of the strings stored
-in a list:
+有时，存储值的类型会发生变化。在下一个示例中，我们计算存储在列表中的字符串的长度：
 
 ```idris
 toLengthList : List String -> List Nat
@@ -76,10 +44,7 @@ toLengthList []        = []
 toLengthList (x :: xs) = length x :: toLengthList xs
 ```
 
-I'd like you to appreciate, just how boring these functions are. They
-are almost identical, with the only interesting part being
-the function we apply to each element. Surely, there must be a
-pattern to abstract over:
+我希望你能体会到，这些功能是多么无聊。它们几乎相同，唯一有趣的部分是我们应用于每个元素的函数。当然，必须有一个抽象的模式：
 
 ```idris
 mapList : (a -> b) -> List a -> List b
@@ -87,10 +52,7 @@ mapList f []        = []
 mapList f (x :: xs) = f x :: mapList f xs
 ```
 
-This is often the first step of abstraction in functional
-programming: Write a (possibly generic) higher-order function.
-We can now concisely implement all examples shown above in
-terms of `mapList`:
+这通常是函数式编程中抽象的第一步：编写一个（可能是通用的）高阶函数。我们现在可以根据 `mapList` 简洁地实现上面显示的所有示例：
 
 ```idris
 multBy2List' : Num a => List a -> List a
@@ -103,10 +65,7 @@ toLengthList' : List String -> List Nat
 toLengthList' = mapList length
 ```
 
-But surely we'd like to do the same kind of thing with
-`List1` and `Maybe`! After all, they are just container
-types like `List`, the only difference being some detail
-about the number of values they can or can't hold:
+但我们肯定想对 `List1` 和 `Maybe` 做同样的事情！毕竟，它们只是像 `List` 这样的容器类型，唯一的区别是关于它们可以或不可以保存的值的数量的一些细节：
 
 ```idris
 mapMaybe : (a -> b) -> Maybe a -> Maybe b
@@ -114,14 +73,7 @@ mapMaybe f Nothing  = Nothing
 mapMaybe f (Just v) = Just (f v)
 ```
 
-Even with `IO`, we'd like to be able to map pure functions
-over effectful computations. The implementation is
-a bit more involved, due to the nested layers of
-data constructors, but if in doubt, the types will surely
-guide us. Note, however, that `IO` is not publicly exported,
-so its data constructor is unavailable to us. We can use
-functions `toPrim` and `fromPrim`, however, for converting
-`IO` from and to `PrimIO`, which we can freely dissect:
+即使使用 `IO`，我们也希望能够将纯函数映射到副作用的计算上。由于数据构造函数的嵌套层，实现有点复杂，但如果有疑问，类型肯定会指导我们。但是请注意，`IO` 不是公开导出的，因此我们无法使用它的数据构造函数。我们可以使用函数 `toPrim` 和 `fromPrim`，但是，将 `IO` 与 `PrimIO` 相互转换，我们可以自由剖析：
 
 ```idris
 mapIO : (a -> b) -> IO a -> IO b
@@ -132,9 +84,7 @@ mapIO f io = fromPrim $ mapPrimIO (toPrim io)
            in MkIORes (f va) w2
 ```
 
-From the concept of *mapping a pure function over
-values in a context* follow some derived functions, which are
-often useful. Here are some of them for `IO`:
+从 *将纯函数映射到上下文中的值的概念* 遵循一些派生函数，这些函数通常很有用。以下是 `IO` 中的一些：
 
 ```idris
 mapConstIO : b -> IO a -> IO b
@@ -144,25 +94,11 @@ forgetIO : IO a -> IO ()
 forgetIO = mapConstIO ()
 ```
 
-Of course, we'd want to implement `mapConst` and `forget` as well
-for `List`, `List1`, and `Maybe` (and dozens of other type
-constructors with some kind of mapping function), and they'd
-all look the same and be equally boring.
+当然，我们也想为 `List`、`List1` 和 `Maybe` 实现 `mapConst` 和 `forget` ]（以及其他几十个具有某种映射函数的类型构造函数），它们看起来都一样并且同样无聊。
 
-When we come upon a recurring class of functions with
-several useful derived functions, we should consider defining
-an interface. But how should we go about this here?
-When you look at the types of `mapList`, `mapMaybe`, and `mapIO`,
-you'll see that it's the `List`, `List1`, and `IO` types we
-need to get rid of. These are not of type `Type` but of type
-`Type -> Type`. Luckily, there is nothing preventing us
-from parametrizing an interface over something else than
-a `Type`.
+当我们遇到具有几个有用的派生函数的重复函数类时，我们应该考虑定义一个接口。但是我们应该怎么做呢？当您查看 `mapList`、`mapMaybe` 和 `mapIO` 的类型时，您会发现它是 `List`、`我们需要去掉 List1` 和 `IO` 类型。这些不是 `Type` 类型，而是 `Type -> Type` 类型。幸运的是，除了 `Type` 之外，没有什么能阻止我们对接口进行参数化。
 
-The interface we are looking for is called `Functor`.
-Here is its definition and an example implementation (I appended
-a tick at the end of the names for them not to overlap with
-the interface and functions exported by the *Prelude*):
+我们要找的接口叫做`Functor`。这是它的定义和一个示例实现（我在名称末尾附加了一个引号，以免它们与 *Prelude* 导出的接口和函数重叠）：
 
 ```idris
 interface Functor' (0 f : Type -> Type) where
@@ -173,16 +109,9 @@ implementation Functor' Maybe where
   map' f (Just v) = Just $ f v
 ```
 
-Note, that we had to give the type of parameter `f` explicitly,
-and in that case it needs to be annotated with quantity zero if
-you want it to be erased at runtime (which you almost always want).
+请注意，我们必须明确给出参数 `f` 的类型，在这种情况下，如果您希望它在运行时被擦除（您几乎总是想要），则需要用定量零进行注释。
 
-Now, reading type signatures consisting only of type parameters
-like the one of `map'` can take some time to get used to, especially
-when some type parameters are applied to other parameters as in
-`f a`. It can be very helpful to inspect these signatures together
-with all implicit arguments at the REPL (I formatted the output to
-make it more readable):
+现在，读取仅包含类型参数（如 `map'` 中的某个）的类型签名可能需要一些时间来适应，尤其是当某些类型参数应用于其他参数时，例如 `f a` .检查这些签名以及 REPL 中的所有隐式参数会非常有帮助（我对输出进行了格式化以使其更具可读性）：
 
 ```repl
 Tutorial.Functor> :ti map'
@@ -195,23 +124,18 @@ Tutorial.Functor.map' :  {0 b : Type}
                       -> f b
 ```
 
-It can also be helpful to replace type parameter `f` with a concrete
-value of the same type:
+将类型参数 `f` 替换为相同类型的具体值也很有帮助：
 
 ```repl
 Tutorial.Functor> :t map' {f = Maybe}
 map' : (?a -> ?b) -> Maybe ?a -> Maybe ?b
 ```
 
-Remember, being able to interpret type signatures is paramount to
-understanding what's going on in an Idris declaration. You *must*
-practice this and make use of the tools and utilities given to you.
+请记住，能够解释类型签名对于理解 Idris 声明中发生的事情至关重要。您 *必须* 练习这一点，并利用提供给您的工具和实用程序。
 
-### Derived Functions
+### 派生函数
 
-There are several functions and operators directly derivable from interface
-`Functor`. Eventually, you should know and remember all of them as
-they are highly useful. Here they are together with their types:
+有几个函数和运算符可以直接从接口 `Functor` 派生。最终，您应该知道并记住所有这些，因为它们非常有用。在这里，它们与它们的类型一起：
 
 ```repl
 Tutorial.Functor> :t (<$>)
@@ -230,8 +154,7 @@ Tutorial.Functor> :t ignore
 Prelude.ignore : Functor f => f a -> f ()
 ```
 
-`(<$>)` is an operator alias for `map` and allows you to sometimes
-drop some parentheses. For instance:
+`(<$>)` 是 `map` 的运算符别名，有时您可以去掉一些括号。例如：
 
 ```idris
 tailShowReversNoOp : Show a => List1 a -> List String
@@ -241,21 +164,11 @@ tailShowReverse : Show a => List1 a -> List String
 tailShowReverse xs = reverse . show <$> tail xs
 ```
 
-`(<&>)` is an alias for `(<$>)` with the arguments flipped.
-The other three (`ignore`, `($>)`, and `(<$)`) are all used
-to replace the values in a context with a constant. They are often useful
-when you don't care about the values themselves but
-want to keep the underlying structure.
+`(<&>)` 是 `(<$>)` 参数被翻转后的别名，。其他三个（`ignore`、`($>)` 和 `(<$)`）都用于将上下文中的值替换为常量。当您不关心值本身但想要保留底层结构时，它们通常很有用。
 
-### Functors with more than one Type Parameter
+### 具有多个类型参数的函子
 
-The type constructors we looked at so far where all
-of type `Type -> Type`. However, we can also implement `Functor`
-for other type constructors. The only prerequisite is that
-the type parameter we'd like to change with function `map` must
-be the last in the argument list. For instance, here is the
-`Functor` implementation for `Either e` (note, that `Either e`
-has of course type `Type -> Type` as required):
+到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 `map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 `Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必要条件）：
 
 ```idris
 implementation Functor' (Either e) where
@@ -263,9 +176,7 @@ implementation Functor' (Either e) where
   map' f (Right va) = Right $ f va
 ```
 
-Here is another example, this time for a type constructor of
-type `Bool -> Type -> Type` (you might remember this from
-the exercises in the [last chapter](IO.md)):
+这是另一个例子，这次是一个类型为 `Bool -> Type -> Type` 的类型构造函数（你可能还记得 [上一章](IO.md) 的练习中的这个）：
 
 ```idris
 data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -277,10 +188,9 @@ implementation Functor (List01 ne) where
   map f (x :: xs) = f x :: map f xs
 ```
 
-### Functor Composition
+### 函子组合
 
-The nice thing about functors is how they can be paired and
-nested with other functors and the results are functors again:
+函子的好处是它们可以如何与其他函子配对和嵌套，结果又是函子：
 
 ```idris
 record Product (f,g : Type -> Type) (a : Type) where
@@ -292,8 +202,7 @@ implementation Functor f => Functor g => Functor (Product f g) where
   map f (MkProduct l r) = MkProduct (map f l) (map f r)
 ```
 
-The above allows us to conveniently map over a pair of functors. Note,
-however, that Idris needs some help with inferring the types involved:
+以上允许我们方便地映射一对函子。但是请注意，Idris 需要一些帮助来推断所涉及的类型：
 
 ```idris
 toPair : Product f g a -> (f a, g a)
@@ -308,8 +217,7 @@ productExample :  Show a
 productExample = toPair . map show . fromPair {f = Either e, g = List}
 ```
 
-More often, we'd like to map over several layers of nested functors
-at once. Here's how to do this with an example:
+更多时候，我们想一次映射多层嵌套函子。以下是如何通过示例执行此操作：
 
 ```idris
 record Comp (f,g : Type -> Type) (a : Type) where
@@ -323,71 +231,47 @@ compExample :  Show a => List (Either e a) -> List (Either e String)
 compExample = unComp . map show . MkComp {f = List, g = Either e}
 ```
 
-#### Named Implementations
+#### 命名实现
 
-Sometimes, there are more ways to implement an interface for
-a given type. For instance, for numeric types we can have
-a `Monoid` representing addition and one representing multiplication.
-Likewise, for nested functors, `map` can be interpreted as a mapping
-over only the first layer of values, or a mapping over several layers
-of values.
+有时，有更多方法可以为给定类型实现接口。例如，对于数字类型，我们可以有一个 `Monoid` 代表加法和一个代表乘法。同样，对于嵌套函子，`map` 可以解释为仅对第一层值的映射，或对若干层值的映射。
 
-One way to go about this is to define single-field wrappers as
-shown with data type `Comp` above. However, Idris also allows us
-to define additional interface implementations, which must then
-be given a name. For instance:
+解决此问题的一种方法是定义单字段包装器，如上面的数据类型 `Comp` 所示。然而，Idris 也允许我们定义额外的接口实现，然后必须给它一个名字。例如：
 
 ```idris
 [Compose'] Functor f => Functor g => Functor (f . g) where
   map f = (map . map) f
 ```
 
-Note, that this defines a new implementation of `Functor`, which will
-*not* be considered during implicit resolution in order
-to avoid ambiguities. However,
-it is possible to explicitly choose to use this implementation
-by passing it as an explicit argument to `map`, prefixed with an `@`:
+请注意，这定义了 `Functor` 的新实现，在隐式解析期间将 *不* 细化以避免歧义。但是，可以通过将其作为显式参数传递给 `map` 来显式选择使用此实现，并以 `@` 为前缀：
 
 ```idris
 compExample2 :  Show a => List (Either e a) -> List (Either e String)
 compExample2 = map @{Compose} show
 ```
 
-In the example above, we used `Compose` instead of `Compose'`, since
-the former is already exported by the *Prelude*.
+在上面的示例中，我们使用 `Compose` 代替 `Compose'`，因为前者已经由 *Prelude* 导出。
 
-### Functor Laws
+### 函子定律
 
-Implementations of `Functor` are supposed to adhere to certain laws,
-just like implementations of `Eq` or `Ord`. Again, these laws are
-not verified by Idris, although it would be possible (and
-often cumbersome) to do so.
+`Functor` 的实现应该遵守某些规律，就像 `Eq` 或 `Ord` 的实现一样。同样，这些法律并未得到 Idris 的验证，尽管这样做是可能的（而且通常很麻烦）。
 
-1. `map id = id`: Mapping the identity function over a functor
-    must not have any visible effect such as changing a container's
-    structure or affecting the side effects perfomed when
-    running an `IO` action.
+1. `map id = id`：将恒等函数映射到函子上
+    不得有任何可见的副作用，例如更改容器的
+    结构或影响运行 `IO` 动作的副作用
+    。
 
-2. `map (f . g) = map f . map g`: Sequencing two mappings must be identical
-   to a single mapping using the composition of the two functions.
+2. `map (f . g) = map f . map g`: 两个映射的顺序必须与使用两个函数组合后的单个映射相同。
 
-Both of these laws request, that `map` is preserving the *structure*
-of values. This is easier to understand with container types like
-`List`, `Maybe`, or `Either e`, where `map` is not allowed to
-add or remove any wrapped value, nor - in case of `List` -
-change their order. With `IO`, this can best be described as `map`
-not performing additional side effects.
+这两条定律都要求 `map` 保留值的 *结构*。使用 `List`、`Maybe` 或 `Either e` 等容器类型更容易理解，其中 `map` 不允许添加或删除任何包装的值，也不 - 在 `List` 的情况下 - 更改它们的顺序。对于使用 `IO`，最好地描述为 `map` 没有执行额外的副作用。
 
 ### 练习第 1 部分
 
-1. Write your own implementations of `Functor'` for `Maybe`, `List`,
-   `List1`, `Vect n`, `Either e`, and `Pair a`.
+1. 为 `Maybe`、`List`、`List1`、`Vect n`、`Either e` 和 `Pair a` `编写自己的 `Functor'`
+   实现。
 
-2. Write a named implementation of `Functor` for pairs of functors (similar
-   to the one implemented for `Product`).
+2. 为 pairs 函数编写 `Functor` 的命名实现（类似于为 `Product` 实现的实现）。
 
-3. Implement `Functor` for data type `Identity` (which is available from
-   `Control.Monad.Identity` in *base*):
+3. 为数据类型 `Identity` 实现 `Functor`（可从 *base* 中的 `Control.Monad.Identity` 获得）：
 
    ```idris
    record Identity a where
@@ -395,15 +279,13 @@ not performing additional side effects.
      value : a
    ```
 
-4. Here is a curious one: Implement `Functor` for `Const e` (which is also
-   available from `Control.Applicative.Const` in *base*). You might be
-   confused about the fact that the second type parameter has absolutely no
-   relevance at runtime, as there is no value of that type. Such types are
-   sometimes called *phantom types*. They can be quite useful for tagging
-   values with additional typing information.
+4. 这是一个奇怪的问题：为 `Const e` 实现 `Functor`（也可以从 *base* 中的
+   `Control.Applicative.Const`
+   获得）。您可能会对第二个类型参数在运行时绝对没有相关性这一事实感到困惑，因为没有该类型的值。这种类型有时被称为
+   *幻像类型*。它们对于使用附加类型信息标记值非常有用。
 
-   Don't let the above confuse you: There is only one possible implementation.
-   As usual, use holes and let the compiler guide you if you get lost.
+   不要让上述内容使您感到困惑：只有一种可能的实现。
+   像往常一样，使用孔，如果你迷路了，让编译器指导你。
 
    ```idris
    record Const (e,a : Type) where
@@ -411,8 +293,7 @@ not performing additional side effects.
      value : e
    ```
 
-5. Here is a sum type for describing CRUD operations (Create, Read, Update,
-   and Delete) in a data store:
+5. 这是用于描述数据存储中的 CRUD 操作（创建、读取、更新和删除）的求和类型：
 
    ```idris
    data Crud : (i : Type) -> (a : Type) -> Type where
@@ -422,9 +303,9 @@ not performing additional side effects.
      Delete : (id : i) -> Crud i a
    ```
 
-   Implement `Functor` for `Crud i`.
+   为 `Crud i` 实现 `Functor`。
 
-6. Here is a sum type for describing responses from a data server:
+6. 以下是用于描述来自数据服务器的响应的和类型：
 
    ```idris
    data Response : (e, i, a : Type) -> Type where
@@ -435,9 +316,9 @@ not performing additional side effects.
      Error   : (err : e) -> Response e i a
    ```
 
-   Implement `Functor` for `Repsonse e i`.
+   为 `Repsonse e i` 实现 `Functor`。
 
-7. Implement `Functor` for `Validated e`:
+7. 为 `Validated e` 实现 `Functor`：
 
    ```idris
    data Validated : (e,a : Type) -> Type where
@@ -445,13 +326,11 @@ not performing additional side effects.
      Valid   : (val : a) -> Validated e a
    ```
 
-## Applicative
+## 应用子
 
-While `Functor` allows us to map a pure, unary function
-over a value in a context, it doesn't allow us to combine
-n such values under an n-ary function.
+虽然 `Functor` 允许我们将纯的一元函数映射到上下文中的值上，但它不允许我们在 n 元函数下组合 n 个这样的值。
 
-For instance, consider the following functions:
+例如，考虑以下函数：
 
 ```idris
 liftMaybe2 : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
@@ -471,10 +350,7 @@ liftIO2 f ioa iob = fromPrim $ go (toPrim ioa) (toPrim iob)
            in MkIORes (f va vb) w3
 ```
 
-This behavior is not covered by `Functor`, yet it is a very
-common thing to do. For instance, we might want to read two numbers
-from standard input (both operations might fail), calculating the
-product of the two. Here's the code:
+`Functor` 没有涵盖这种行为，但这是很常见的事情。例如，我们可能想从标准输入中读取两个数字（这两个操作都可能失败），计算两者的乘积。这是代码：
 
 ```idris
 multNumbers : Num a => Neg a => IO (Maybe a)
@@ -484,12 +360,9 @@ multNumbers = do
   pure $ liftMaybe2 (*) (parseInteger s1) (parseInteger s2)
 ```
 
-And it won't stop here. We might just as well want to have
-`liftMaybe3` for ternary functions and three `Maybe` arguments
-and so on, for arbitrary numbers of arguments.
+它不会止步于此。对于三元函数，我们可能还希望有 `liftMaybe3` 和三个 `Maybe` 参数等等，对于任意数量的参数。
 
-But there is more: We'd also like to lift pure values into
-the context in question. With this, we could do the following:
+但还有更多：我们还想将纯的值提升到所讨论的上下文中。有了这个，我们可以做以下事情：
 
 ```idris
 liftMaybe3 : (a -> b -> c -> d) -> Maybe a -> Maybe b -> Maybe c -> Maybe d
@@ -505,9 +378,7 @@ multAdd100 s t = liftMaybe3 calc (parseInteger s) (parseInteger t) (pure 100)
         calc x y z = x * y + z
 ```
 
-As you'll of course already know, I am now going to present a new
-interface to encapsulate this behavior. It's called `Applicative`.
-Here is its definition and an example implementation:
+正如您当然已经知道的那样，我现在将提供一个新接口来封装这种行为。它被称为 `Applicative`。这是它的定义和示例实现：
 
 ```idris
 interface Functor' f => Applicative' f where
@@ -521,12 +392,9 @@ implementation Applicative' Maybe where
   pure' = Just
 ```
 
-Interface `Applicative` is of course already exported by the *Prelude*.
-There, function `app` is an operator sometimes called *app* or *apply*:
-`(<*>)`.
+接口 `Applicative` 当然已经由 *Prelude* 导出。在那里，函数 `app` 是一个有时称为 *app* 或 *apply* 的运算符：`(<*>)`。
 
-You may wonder, how functions like `liftMaybe2` or `liftIO3` are related
-to operator *apply*. Let me demonstrate this:
+您可能想知道，像 `liftMaybe2` 或 `liftIO3` 这样的函数如何与运算符 *apply* 相关联。让我演示一下：
 
 ```idris
 liftA2 : Applicative f => (a -> b -> c) -> f a -> f b -> f c
@@ -536,17 +404,9 @@ liftA3 : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc
 ```
 
-It is really important for you to understand what's going on here, so let's
-break these down. If we specialize `liftA2` to use `Maybe` for `f`,
-`pure fun` is of type `Maybe (a -> b -> c)`. Likewise, `pure fun <*> fa`
-is of type `Maybe (b -> c)`, as `(<*>)` will apply the value stored
-in `fa` to the function stored in `pure fun` (currying!).
+了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 `liftA2` 中的 `f` 用于 `Maybe`，则 `pure fun` 的类型为 `Maybe (a -> b -> c)`。同样，`pure fun <*> fa` 是 ` 类型为 `Maybe  (b -> c)`，因为 `(<*>)` 将应用存储在 `f a` 到存储在 `pure fun` 中的函数（柯里化！）。
 
-You'll often see such chains of applications of *apply*, the number
-of *applies* corresponding to the arity of the function we lift.
-You'll sometimes also see the following, which allows us to drop
-the initial call to `pure`, and use the operator version of `map`
-instead:
+你会经常看到 *apply* 这样的应用链，*applies* 的数量对应于我们提升的函数的数量。您有时还会看到以下内容，这使我们可以放弃对 `pure` 的初始调用，并改用 `map` 的运算符版本：
 
 ```idris
 liftA2' : Applicative f => (a -> b -> c) -> f a -> f b -> f c
@@ -556,22 +416,13 @@ liftA3' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc
 ```
 
-So, interface `Applicative` allows us to lift values (and functions!)
-into computational contexts and apply them to values in the same
-contexts. Before we will see an extended example why this is
-useful, I'll quickly introduce some syntactic sugar for working
-with applicative functors.
+因此，接口 `Applicative` 允许我们将值（和函数！）提升到计算上下文中，并将它们应用于相同上下文中的值。在我们将看到一个扩展示例为什么这很有用之前，我将快速介绍一些用于使用应用函子的语法糖。
 
-### Idiom Brackets
+### 习语括号
 
-The programming style used for implementing `liftA2'` and `liftA3'`
-is also referred to as *applicative style* and is used a lot
-in Haskell for combining several effectful computations
-with a single pure function.
+用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *applicative 风格*，在 Haskell 中被大量用于将几个有效的计算与单一的纯函数。
 
-In Idris, there is an alternative to using such chains of
-operator applications: Idiom brackets. Here's another
-reimplementation of `liftA2` and `liftA3`:
+在 Idris 中，有一个替代使用这种运算符应用程序链的方法：习语括号。这是 `liftA2` 和 `liftA3` 的另一个重新实现：
 
 ```idris
 liftA2'' : Applicative f => (a -> b -> c) -> f a -> f b -> f c
@@ -581,31 +432,13 @@ liftA3'' : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 liftA3'' fun fa fb fc = [| fun fa fb fc |]
 ```
 
-The above implementations will be desugared to the one given
-for `liftA2` and `liftA3`, again *before disambiguating,
-type checking, and filling in of implicit values*. Like with the
-*bind* operator, we can therefore write custom implementations
-for `pure` and `(<*>)`, and Idris will use these if it
-can disambiguate between the overloaded function names.
+在消除歧义、类型检查和填充隐式值 *之前*，上述实现将被简化为 `liftA2` 和 `liftA3` 给定的实现。与 *bind* 运算符一样，我们因此可以为 `pure` 和 `(<*>)` 编写自定义实现，如果 Idris 可以消除重载函数名称之间的歧义，它将使用这些名称。。
 
-### Use Case: CSV Reader
+### 用例：CSV 阅读器
 
-In order to understand the power and versatility that comes
-with applicative functors, we will look at a slightly
-extended example. We are going to write some utilities
-for parsing and decoding content from CSV files. These
-are files where each line holds a list of values separated
-by commas (or some other delimiter). Typically, they are
-used to store tabular data, for instance from spread sheet
-applications. What we would like to do is convert
-lines in a CSV file and store the result in custom
-records, where each record field corresponds to a column
-in the table.
+为了理解应用函子的强大功能和多功能性，我们将看一个稍微扩展的示例。我们将编写一些实用程序来解析和解码 CSV 文件中的内容。这些文件的每一行都包含一个由逗号（或其他分隔符）分隔的值列表。通常，它们用于存储表格数据，例如来自电子表格应用程序的数据。我们想要做的是转换 CSV 文件中的行并将结果存储在自定义记录中，其中每个记录字段对应于表中的一列。
 
-For instance, here is a simple example
-file, containing tabular user information from a web
-store: First name, last name, age (optional), email address,
-gender, and password.
+例如，这是一个简单的示例文件，其中包含来自网络商店的表格用户信息：名字、姓氏、年龄（可选）、电子邮件地址、性别和密码。
 
 ```repl
 Jon,Doe,42,jon@doe.ch,m,weijr332sdk
@@ -613,11 +446,7 @@ Jane,Doe,,jane@doe.ch,f,aa433sd112
 Stefan,Hoeck,,nope@goaway.ch,m,password123
 ```
 
-And here are the Idris data types necessary to hold
-this information at runtime. We use again custom
-string wrappers for increased type safety and
-because it will allow us to define for each data type
-what we consider to be valid input:
+以下是在运行时保存此信息所必需的 Idris 数据类型。我们再次使用自定义字符串包装器来提高类型安全性，因为它允许我们为每种数据类型定义我们认为是有效输入的内容：
 
 ```idris
 data Gender = Male | Female | Other
@@ -644,18 +473,14 @@ record User where
   password  : Password
 ```
 
-We start by defining an interface for reading fields
-in a CSV file and writing implementations for
-the data types we'd like to read:
+我们首先定义一个用于读取 CSV 文件中的字段的接口，并为我们想要读取的数据类型编写实现：
 
 ```idris
 interface CSVField a where
   read : String -> Maybe a
 ```
 
-Below are implementations for `Gender` and `Bool`. I decided
-to in these cases encode each value with a single lower
-case character:
+下面是 `Gender` 和 `Bool` 的实现。在这些情况下，我决定使用单个小写字符对每个值进行编码：
 
 ```idris
 CSVField Gender where
@@ -670,8 +495,7 @@ CSVField Bool where
   read _   = Nothing
 ```
 
-For numeric types, we can use the parsing functions
-from `Data.String`:
+对于数值类型，我们可以使用 `Data.String` 中的解析函数：
 
 ```idris
 CSVField Nat where
@@ -684,11 +508,7 @@ CSVField Double where
   read = parseDouble
 ```
 
-For optional values, the stored type must itself
-come with an instance of `CSVField`. We can then treat
-the empty string `""` as `Nothing`, while a non-empty
-string will be passed to the encapsulated type's field reader.
-(Remember that `(<$>)` is an alias for `map`.)
+对于可选值，存储的类型本身必须带有 `CSVField` 的实例。然后我们可以将空字符串 `""` 视为 `Nothing`，而将非空字符串传递给封装类型的字段读取器。 （记住 `(<$>)` 是 `map` 的别名。）
 
 ```idris
 CSVField a => CSVField (Maybe a) where
@@ -696,10 +516,7 @@ CSVField a => CSVField (Maybe a) where
   read s  = Just <$> read s
 ```
 
-Finally, for our string wrappers, we need to decide what
-we consider to be valid values. For simplicity, I decided
-to limit the length of allowed strings and the set of
-valid characters.
+最后，对于我们的字符串包装器，我们需要决定我们认为什么是有效值。为简单起见，我决定限制允许的字符串长度和有效字符集。
 
 ```idris
 readIf : (String -> Bool) -> (String -> a) -> String -> Maybe a
@@ -739,13 +556,9 @@ CSVField Password where
   read = readIf isValidPassword MkPassword
 ```
 
-In a later chapter, we will learn about refinement types and
-how to store an erased proof of validity together with
-a validated value.
+在后面的章节中，我们将学习细化类型以及如何将已擦除的有效性证明与验证值一起存储。
 
-We can now start to decode whole lines in a CSV file.
-In order to do so, we first introduce a custom error
-type encapsulating how things can go wrong:
+我们现在可以开始解码 CSV 文件中的整行。为了做到这一点，我们首先引入一个自定义错误类型来封装事情是如何出错的：
 
 ```idris
 data CSVError : Type where
@@ -754,9 +567,7 @@ data CSVError : Type where
   ExpectedEndOfInput   : (line, column : Nat) -> CSVError
 ```
 
-We can now use `CSVField` to read a single field at a given
-line and position in a CSV file, and return a `FieldError` in case
-of a failure.
+我们现在可以使用 `CSVField` 读取 CSV 文件中给定行和位置的单个字段，并在失败的情况下返回 `FieldError`。
 
 ```idris
 readField : CSVField a => (line, column : Nat) -> String -> Either CSVError a
@@ -764,11 +575,7 @@ readField line col str =
   maybe (Left $ FieldError line col str) Right (read str)
 ```
 
-If we know in advance the number of fields we need to read,
-we can try and convert a list of strings to a `Vect` of
-the given length. This facilitates reading record values of
-a known number of fields, as we get the correct number
-of string variables when pattern matching on the vector:
+如果我们事先知道需要读取的字段数量，我们可以尝试将字符串列表转换为给定长度的 `Vect`。这有助于读取已知数量字段的记录值，因为我们在向量上进行模式匹配时得到正确数量的字符串变量：
 
 ```idris
 toVect : (n : Nat) -> (line, col : Nat) -> List a -> Either CSVError (Vect n a)
@@ -778,8 +585,7 @@ toVect (S k) line col []        = Left (UnexpectedEndOfInput line col)
 toVect (S k) line col (x :: xs) = (x ::) <$> toVect k line (S col) xs
 ```
 
-Finally, we can implement function `readUser` to try and convert
-a single line in a CSV-file to a value of type `User`:
+最后，我们可以实现函数 `readUser` 来尝试将 CSV 文件中的一行转换为 `User` 类型的值：
 
 ```idris
 readUser' : (line : Nat) -> List String -> Either CSVError User
@@ -796,7 +602,7 @@ readUser : (line : Nat) -> String -> Either CSVError User
 readUser line = readUser' line . forget . split (',' ==)
 ```
 
-Let's give this a go at the REPL:
+让我们在 REPL 上试一试：
 
 ```repl
 Tutorial.Functor> readUser 1 "Joe,Foo,46,j@f.ch,m,pw1234567"
@@ -806,24 +612,13 @@ Tutorial.Functor> readUser 7 "Joe,Foo,46,j@f.ch,m,shortPW"
 Left (FieldError 7 6 "shortPW")
 ```
 
-Note, how in the implementation of `readUser'` we used
-an idiom bracket to map a function of six arguments (`MkUser`)
-over six values of type `Either CSVError`. This will automatically
-succeed, if and only if all of the parsings have
-succeeded. It would have been notoriously cumbersome resulting
-in much less readable code to implement
-`readUser'` with a succession of six nested pattern matches.
+请注意，在 `readUser'` 的实现中，我们如何使用习语括号将六个参数 (`MkUser`) 的函数映射到 `Either CSVError` 类型的六个值上。当且仅当所有解析都成功时，这将自动成功。众所周知，使用连续六个嵌套模式匹配来实现 `readUser'` 的代码的可读性会大大降低。
 
-However, the idiom bracket above looks still quite repetitive.
-Surely, we can do better?
+但是，上面的习语括号看起来仍然非常重复。当然，我们可以做得更好吗？
 
-#### A Case for Heterogeneous Lists
+#### 异构列表的案例
 
-It is time to learn about a family of types, which can
-be used as a generic representation for record types, and
-which will allow us to represent and read rows in
-heterogeneous tables with a minimal amount of code: Heterogeneous
-lists.
+是时候学习一组类型了，它们可以用作记录类型的通用表示，并且允许我们用最少的代码表示和读取异构表中的行：异构列表。
 
 ```idris
 namespace HList
@@ -833,41 +628,23 @@ namespace HList
     (::) : (v : t) -> (vs : HList ts) -> HList (t :: ts)
 ```
 
-A heterogeneous list is a list type indexed over a *list of types*.
-This allows us to at each position store a value of the
-type at the same position in the list index. For instance,
-here is a variant, which stores three values of types
-`Bool`, `Nat`, and `Maybe String` (in that order):
+异构列表是在 *类型列表* 上索引的列表类型。这允许我们在每个位置将类型的值存储在列表索引中的相同位置。例如，这里有一个变体，它存储了 `Bool`、`Nat` 和 `Maybe String` 类型的三个值（按此顺序）：
 
 ```idris
 hlist1 : HList [Bool, Nat, Maybe String]
 hlist1 = [True, 12, Nothing]
 ```
 
-You could argue that heterogeneous lists are just tuples
-storing values of the given types. That's right, of course,
-however, as you'll learn the hard way in the exercises,
-we can use the list index to perform compile-time computations
-on `HList`, for instance when concatenating two such lists
-to keep track of the types stored in the result at the
-same time.
+您可能会争辩说，异构列表只是存储给定类型值的元组。没错，当然，但是，因为您将在练习中学习困难的方法，我们可以使用列表索引对 `HList` 执行编译时计算，例如连接两个这样的列表以保持同时跟踪结果中存储的类型。
 
-But first, we'll make use of `HList` as a means to
-concisely parse CSV-lines. In order to do that, we
-need to introduce a new interface for types corresponding
-to whole lines in a CSV-file:
+但首先，我们将使用 `HList` 作为简洁解析 CSV 行的方法。为此，我们需要为对应于 CSV 文件中整行的类型引入一个新接口：
 
 ```idris
 interface CSVLine a where
   decodeAt : (line, col : Nat) -> List String -> Either CSVError a
 ```
 
-We'll now write two implementations of `CSVLine` for `HList`:
-One for the `Nil` case, which will succeed if and only if
-the current list of strings is empty. The other for the *cons*
-case, which will try and read a single field from the head
-of the list and the remainder from its tail. We use
-again an idiom bracket to concatenate the results:
+现在，我们将为 `HList` 编写 `CSVLine` 的两个实现：一个针对 `Nil` 的情况，当且仅当当前字符串列表为空时才会成功.另一个用于 *cons* 的情况，它将尝试从列表的头部读取单个字段，并从其尾部读取剩余部分。我们再次使用惯用括号来连接结果：
 
 ```idris
 CSVLine (HList []) where
@@ -879,11 +656,7 @@ CSVField t => CSVLine (HList ts) => CSVLine (HList (t :: ts)) where
   decodeAt l c (s :: ss) = [| readField l c s :: decodeAt l (S c) ss |]
 ```
 
-And that's it! All we need to add is two utility function
-for decoding whole lines before they have been split into
-tokens, one of which is specialized to `HList` and takes an
-erased list of types as argument to make it more convenient to
-use at the REPL:
+就是这样！我们需要添加的是两个实用函数，用于在将整行拆分为标记之前对其进行解码，其中一个专用于 `HList` 并将已擦除的类型列表作为参数，以使其更方便使用在 REPL：
 
 ```idris
 decode : CSVLine a => (line : Nat) -> String -> Either CSVError a
@@ -897,8 +670,7 @@ hdecode :  (0 ts : List Type)
 hdecode _ = decode
 ```
 
-It's time to reap the fruits of our labour and give this a go at
-the REPL:
+是时候收获我们的劳动成果并在 REPL 上试一试了：
 
 ```repl
 Tutorial.Functor> hdecode [Bool,Nat,Double] 1 "f,100,12.123"
@@ -907,20 +679,16 @@ Tutorial.Functor> hdecode [Name,Name,Gender] 3 "Idris,,f"
 Left (FieldError 3 2 "")
 ```
 
-### Applicative Laws
+### 应用函子法律
 
-Again, `Applicative` implementations must follow certain
-laws. Here they are:
+同样，`Applicative` 的实现必须遵循一定的规律。他们来了：
 
-* `pure id <*> fa = fa`: Lifting and applying the identity function has no
-  visible effect.
+* `pure id <*> fa = fa`：提升和应用恒等函数没有可见作用。
 
-* `[| f . g |] <*> v = f <*> (g <*> v)`: I must not matter, whether we
-  compose our functions first and then apply them, or whether we apply our
-  functions first and then compose them.
+* `[| F 。 g |] <*> v = f <*> (g <*> v)`：不管是先组合函数然后应用它们，还是先应用函数然后组合它们，结果应该相同。
 
-  The above might be hard to understand, so here
-  they are again with explicit types and implementations:
+  上面的可能很难理解，所以这里
+  它们再次具有显式类型和实现：
 
   ```idris
   compL : Maybe (b -> c) -> Maybe (a -> b) -> Maybe a -> Maybe c
@@ -930,16 +698,14 @@ laws. Here they are:
   compR f g v = f <*> (g <*> v)
   ```
 
-  The second applicative law states, that the two implementations
-  `compL` and `compR` should behave identically.
+  第二个应用函子法律规定，这两个实施
+  `compL` 和 `compR` 的行为应该相同。
 
-* `pure f <*> pure x = pure (f x)`. This is also called the *homomorphism*
-  law. It should be pretty self-explaining.
+* `pure f <*> pure x = pure (f x)`。这也称为 *同态* 定律。这应该是不言自明的。
 
-* `f <*> pure v = pure ($ v) <*> f`. This is called the law of
-  *interchange*.
+* `f <*> pure v = pure ($ v) <*> f`.。这称为*交换* 律。
 
-  This should again be explained with a concrete example:
+  这应该再次用一个具体的例子来解释：
 
   ```idris
   interL : Maybe (a -> b) -> a -> Maybe b
@@ -949,50 +715,39 @@ laws. Here they are:
   interR f v = pure ($ v) <*> f
   ```
 
-  Note, that `($ v)` has type `(a -> b) -> b`, so this
-  is a function type being applied to `f`, which has
-  a function of type `a -> b` wrapped in a `Maybe`
-  context.
+  注意，`($ v)` 的类型是 `(a -> b) -> b`，所以这个
+  是应用于 `f` 的函数类型，它有一个
+  `a -> b` 类型的函数，被包裹在 `Maybe` 上下文中。
 
-  The law of interchange states that it must not matter
-  whether we apply a pure value from the left or
-  right of the *apply* operator.
+  交换律指出， 我们是从左边应用一个纯值还是 *apply* 运算符的右侧。它必须无关紧要
 
 ### 练习第 2 部分
 
-1. Implement `Applicative'` for `Either e` and `Identity`.
+1. 为 `Either e` 和 `Identity` 实现 `Applicative'`。
 
-2. Implement `Applicative'` for `Vect n`. Note: In order to implement
-   `pure`, the length must be known at runtime.  This can be done by passing
-   it as an unerased implicit to the interface implementation:
+2. 为 `Vect n` 实现 `Applicative'`。注意：为了实现
+   `pure`，必须在运行时知道长度。这可以通过将其作为未擦除的隐式传递给接口实现来完成：
 
    ```idris
    implementation {n : _} -> Applicative' (Vect n) where
    ```
 
-3. Implement `Applicative'` for `Pair e`, with `e` having a `Monoid`
-   constraint.
+3. 为 `Pair e` 实现 `Applicative'`，其中 `e` 具有 `Monoid` 约束。
 
-4. Implement `Applicative` for `Const e`, with `e` having a `Monoid`
-   constraint.
+4. 为 `Const e` 实现 `Applicative`，其中 `e` 具有 `Monoid` 约束。
 
-5. Implement `Applicative` for `Validated e`, with `e` having a `Semigroup`
-   constraint. This will allow us to use `(<+>)` to accumulate errors in
-   case of two `Invalid` values in the implementation of *apply*.
+5. 为 `Validated e` 实现 `Applicative`，其中 `e` 具有 `Semigroup` 约束。这将允许我们在 *apply*
+   的实现中使用 `(<+>)` 来累积两个 `Invalid` 值的错误。
 
-6. Add an additional data constructor of type `CSVError -> CSVError ->
-   CSVError` to `CSVError` and use this to implement `Semigroup` for
-   `CSVError`.
+6. 添加一个 `CSVError -> CSVError -> CSVError` 到 `CSVError` 类型的附加数据构造函数，并使用它为
+   `CSVError` 实现 `Semigroup`。
 
-7. Refactor our CSV-parsers and all related functions so that they return
-   `Validated` instead of `Either`. This will only work, if you solved
-   exercise 6.
+7. 重构我们的 CSV 解析器和所有相关函数，使它们返回 `Validated` 而不是 `Either`。这只有在你解决了练习 6 的情况下才有效。
 
-   Two things to note: You will have to adjust very little of
-   the existing code, as we can still use applicative syntax
-   with `Validated`. Also, with this change, we enhanced our CSV-parsers
-   with the ability of error accumulation. Here are some examples
-   from a REPL session:
+   需要注意的两件事：您将不得不调整很少的
+   现有代码，因为我们仍然可以通过使用 `Validated`使用应用语法
+   。此外，通过此更改，我们增强了 CSV 解析器
+   具有累积误差的能力。这里有些来自 REPL 会话的例子：
 
    ```repl
    Solutions.Functor> hdecode [Bool,Nat,Gender] 1 "t,12,f"
@@ -1004,74 +759,52 @@ laws. Here they are:
      (App (FieldError 1 2 "-12") (FieldError 1 3 "foo")))
    ```
 
-   Behold the power of applicative functors and heterogeneous lists: With
-   only a few lines of code we wrote a pure, type-safe, and total
-   parser with error accumulation for lines in CSV-files, which is
-   very convenient to use at the same time!
+   看看应用函子和异构列表的力量：
+   仅仅几行代码，我们就编写了一个纯粹的、类型安全的、完全的
+   对 CSV 文件中的行进行错误累积的解析器，同时使用非常方便！
 
-8. Since we introduced heterogeneous lists in this chapter, it would be a
-   pity not to experiment with them a little.
+8. 由于我们在本章中介绍了异构列表，很遗憾没有对它们进行一些实验。
 
-   This exercise is meant to sharpen your skills in type wizardry.
-   It therefore comes with very few hints. Try to decide yourself
-   what behavior you'd expect from a given function, how to express
-   this in the types, and how to implement it afterwards.
-   If your types are correct and precise enough, the implementations
-   will almost come for free. Don't give up too early if you get stuck.
-   Only if you truly run out of ideas should you have a glance
-   at the solutions (and then, only at the types at first!)
+   这个练习旨在提高你的类型技巧的技能。
+   因此，它带有很少的提示。您期望从给定函数中获得什么行为试着自己做决定
+   ，这在类型中如何表达，以及之后如何实现它。
+   如果您的类型足够正确和精确，那么实现
+   几乎是轻而易举的。如果遇到困难，不要过早放弃。
+   只有当你真的没有想法时，你才应该瞥一眼
+   在解决方案上（然后，首先只在类型上！）
 
-   1. Implement `head` for `HList`.
+   1. 为 `HList` 实现 `head`。
 
-   2. Implement `tail` for `HList`.
+   2. 为 `HList` 实现 `tail`。
 
-   3. Implement `(++)` for `HList`.
+   3. 为 `HList` 实现 `(++)`。
 
-   4. Implement `index` for `HList`. This might be harder than the other
-      three.  Go back and look how we implemented `indexList` in an [earlier
-      exercise](Dependent.md) and start from there.
+   4. 为 `HList` 实现 `index`。这可能比其他三个更难。回过头来看看我们如何在 [早期练习](Dependent.md) 中实现
+      `indexList` 并从那里开始。
 
-   5. Package *contrib*, which is part of the Idris project, provides
-      `Data.HVect.HVect`, a data type for heterogeneous vectors. The only
-      difference to our own `HList` is, that `HVect` is indexed over a
-      vector of types instead of a list of types. This makes it easier to
-      express certain operations at the type level.
+   5. 包 *contrib* 是 Idris 项目的一部分，它提供了 `Data.HVect.HVect`，一种异构向量的数据类型。与我们自己的
+      `HList` 的唯一区别是，`HVect` 是通过类型向量而不是类型列表来索引的。这使得在类型级别表达某些操作变得更容易。
 
-      Write your own implementation of `HVect` together with functions
-      `head`, `tail`, `(++)`, and `index`.
+      编写您自己的 `HVect` 实现以及函数
+      `head`、`tail`、`(++)` 和 `index`。
 
-   6. For a real challenge, try implementing a function for transposing a
-      `Vect m (HVect ts)`. You'll first have to be creative about how to
-      even express this in the types.
+   6. 对于真正的挑战，尝试实现一个函数来转置 `Vect m (HVect ts)`。您首先必须对如何在类型中表达这一点有创意。
 
-      Note: In order to implement this, you'll need to pattern match
-      on an erased argument in at least one case to help Idris with
-      type inference. Pattern matching on erased arguments is forbidden
-      (they are erased after all, so we can't inspect them at runtime),
-      *unless* the structure of the value being matched on can be derived
-      from another, un-erased argument.
+      注意：为了实现这一点，您需要在至少一个案例中的一个被抹去的参数上进行模式匹配，以帮助 Idris 进行类型推断。禁止对已擦除参数进行模式匹配
+      （它们毕竟被删除了，所以我们不能在运行时检查它们），
+      *除非* 可以通过另一个未被抹去的参数推导出被匹配的值的结构。
 
-      Also, don't worry if you get stuck on this one. It took me several
-      tries to figure it out. But I enjoyed the experience, so I just *had*
-      to include it here. :-)
+      另外，如果您卡在这个上，请不要担心。我花了好几次才试图把他弄清楚。但是我很享受这种体验，所以我 *必须* 把它包括在这里。 :-)
 
-      Note, however, that such a function might be useful when working with
-      CSV-files, as it allows us to convert a table represented as
-      rows (a vector of tuples) to one represented as columns (a tuple of vectors).
+      但是请注意，当使用 CSV 文件时这样的函数会很有用，因为它允许我们将表示为行（元组向量）的表转换到表示为列（向量元组）的表。
 
-9. Show, that the composition of two applicative functors is again an
-   applicative functor by implementing `Applicative` for `Comp f g`.
+9. 通过为 `Comp f g` 实现 `Applicative` 来证明两个应用函子的组合再次是一个应用函子。
 
-10. Show, that the product of two applicative functors is again an
-    applicative functor by implementing `Applicative` for `Prod f g`.
+10. 通过为 `Prod f g` 实现 `Applicative` 证明两个应用函子的乘积再次是一个应用函子。
 
-## Monad
+## 单子
 
-Finally, `Monad`. A lot of ink has been spilled about this one.
-However, after what we already saw in the [chapter about `IO`](IO.md),
-there is not much left to discuss here. `Monad` extends
-`Applicative` and adds two new related functions: The *bind*
-operator (`(>>=)`) and function `join`. Here is its definition:
+最后，`Monad`。关于这一点已经泼了很多墨水。然而，在我们已经在 [关于 `IO`](IO.md) 的章节中看到之后，这里就没有太多要讨论的内容了。`Monad` 扩展了 `Applicative` 并添加了两个新的相关函数：*bind* 运算符 (`(>>=)`) 和函数 `join `。这是它的定义：
 
 ```idris
 interface Applicative' m => Monad' m where
@@ -1079,39 +812,17 @@ interface Applicative' m => Monad' m where
   join' : m (m a) -> m a
 ```
 
-Implementers of `Monad` are free to choose to either implement
-`(>>=)` or `join` or both. You will show in an exercise, how
-`join` can be implemented in terms of *bind* and vice versa.
+`Monad` 的实现者可以自由选择实现 `(>>=)` 或 `join` 或两者。您将在练习中展示如何根据 *bind* 来实现 `join`，反之亦然。
 
-The big difference between `Monad` and `Applicative` is, that the
-former allows a computation to depend on the result of an
-earlier computation. For instance, we could decide based on
-a string read from standard input whether to delete a file
-or play a song. The result of the first `IO` action
-(reading some user input) will affect, which `IO` action to run next.
-This is not possible with the *apply* operator:
+`Monad` 和 `Applicative` 之间的最大区别在于，前者允许计算依赖于早期计算的结果。例如，我们可以根据从标准输入中读取的字符串来决定是删除文件还是播放歌曲。第一个 `IO` 动作（读取一些用户输入）的结果将影响下一个要运行的 `IO` 动作。这对于 *apply* 运算符是不可能的：
 
 ```repl
-(<*>) : IO (a -> b) -> IO a -> IO b
+```repl (<*>) : IO (a -> b) -> IO a -> IO b ```
 ```
 
-The two `IO` actions have already been decided on when they
-are being passed as arguments to `(<*>)`. The result of the first
-cannot - in the general case - affect which computation to
-run in the second. (Actually, with `IO` this would theoretically be
-possible via side effects: The first action could write some
-command to a file or overwrite some mutable state, and the
-second action could read from that file or state, thus
-deciding on the next thing to do. But this is a speciality
-of `IO`, not of applicative functors in general. If the functor in
-question was `Maybe`, `List`, or `Vector`, no such thing
-would be possible.)
+两个 `IO` 动作在作为参数传递给 `(<*>)` 时已经确定。在一般情况下，第一个结果不能影响在第二个中运行哪个计算。 （实际上，使用 `IO` 理论上可以通过副作用实现：第一个操作可以将某些命令写入文件或覆盖某些可变状态，而第二个操作可以从该文件或状态读取，从而决定接下来要做的事情。但这是 `IO` 的特长，而不是一般的应用函子。如果有问题的函子是 `Maybe`，`List`，或 `Vector`，这是不可能的。）
 
-Let's demonstrate the difference with an example. Assume
-we'd like to enhance our CSV-reader with the ability to
-decode a line of tokens to a sum type. For instance,
-we'd like to decode CRUD requests from the lines of a
-CSV-file:
+让我们用一个例子来演示一下区别。假设我们想增强我们的 CSV 阅读器，使其能够将一行标记解码为和型。例如，我们想从 CSV 文件的行中解码 CRUD 请求：
 
 ```idris
 data Crud : (i : Type) -> (a : Type) -> Type where
@@ -1121,10 +832,7 @@ data Crud : (i : Type) -> (a : Type) -> Type where
   Delete : (id : i) -> Crud i a
 ```
 
-We need a way to on each line decide, which data constructor
-to choose for our decoding. One way to do this is to
-put the name of the data constructor (or some other
-tag of identification) in the first column of the CSV-file:
+我们需要一种方法来在每一行上决定为我们的解码选择哪个数据构造函数。一种方法是将数据构造函数的名称（或其他标识标签）放在 CSV 文件的第一列中：
 
 ```idris
 hlift : (a -> b) -> HList [a] -> b
@@ -1150,13 +858,9 @@ decodeCRUD l s =
        _        => Left (FieldError l 1 n)
 ```
 
-I added two utility function for helping with type inference
-and to get slightly nicer syntax. The important thing to note
-is, how we pattern match on the result of the first
-parsing function to decide on the data constructor
-and thus the next parsing function to use.
+我添加了两个实用函数来帮助进行类型推断并获得更好的语法。需要注意的重要一点是，我们如何对第一个解析函数的结果进行模式匹配，以决定数据构造函数，从而决定下一个要使用的解析函数。
 
-Here's how this works at the REPL:
+在 REPL 中看一下工作原理：
 
 ```repl
 Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 "Create,jon@doe.ch"
@@ -1167,27 +871,15 @@ Tutorial.Functor> decodeCRUD {i = Nat} {a = Email} 1 "Delete,jon@doe.ch"
 Left (FieldError 1 2 "jon@doe.ch")
 ```
 
-To conclude, `Monad`, unlike `Applicative`, allows us to
-chain computations sequentially, where intermediary
-results can affect the behavior of later computations.
-So, if you have n unrelated effectful computations and want
-to combine them under a pure, n-ary function, `Applicative`
-will be sufficient. If, however, you want to decide
-based on the result of an effectful computation what
-computation to run next, you need a `Monad`.
+总而言之，`Monad` 与 `Applicative` 不同，它允许我们按顺序链接计算，其中中间结果会影响后续计算的行为。因此，如果您有 n 个不相关的有效计算并希望将它们组合在一个纯 n 元函数下，`Applicative` 就足够了。但是，如果您想根据有效计算的结果来决定接下来要运行什么计算，则需要 `Monad`。
 
-Note, however, that `Monad` has one important drawback
-compared to `Applicative`: In general, monads don't compose.
-For instance, there is no `Monad` instance for `Either e . IO`.
-We will later learn about monad transformers, which can
-be composed with other monads.
+但是请注意，与 `Applicative` 相比，`Monad` 有一个重要的缺点：通常，monad 不能组合。例如， `Either e . IO` 没有 `Monad` 实例。稍后我们将了解可以与其他 monad 组合的 monad 转换器。
 
-### Monad Laws
+### 单子定律
 
-Without further ado, here are the laws for `Monad`:
+事不宜迟，以下是 `Monad` 的定律：
 
-* `ma >>= pure = ma` and `pure v >>= f = f v`.  These are monad's identity
-  laws. Here they are as concrete examples:
+* `ma >>= pure = ma` 和 `pure v >>= f = f v`。这些是 monad 的恒等律。下面是具体的例子：
 
   ```idris
   id1L : Maybe a -> Maybe a
@@ -1200,59 +892,47 @@ Without further ado, here are the laws for `Monad`:
   id2R v f = f v
   ```
 
-  These two laws state that `pure` should behave
-  neutrally w.r.t. *bind*.
+  这两条定律规定 `pure` 在 *bind* 中应该表现为中立。
 
-* (m >>= f) >>= g = m >>= (f >=> g)  This is the law of associativity for
-  monad.  You might not have seen the second operator `(>=>)`.  It can be
-  used to sequence effectful computations and has the following type:
+* (m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。您可能没有见过第二个运算符
+  `(>=>)`。它可用于对有效计算进行排序，并具有以下类型：
 
   ```repl
   Tutorial.Functor> :t (>=>)
   Prelude.>=> : Monad m => (a -> m b) -> (b -> m c) -> a -> m c
   ```
 
-The above are the *official* monad laws. However, we need to
-consider a third one, given that in Idris (and Haskell)
-`Monad` extends `Applicative`: As `(<*>)` can be implemented
-in terms of `(>>=)`, the actual implementation of `(<*>)`
-must behave the same as the implementation in terms of `(>>=)`:
+以上是 *官方的* monad 定律。但是，我们需要考虑第三个，因为在 Idris（和 Haskell）中，`Monad` 扩展自 `Applicative`: 由于 `(<*>)` 可以由 `(>>=)` 实现，`(<*>)` 的实际实现必须与 `(>>=)` 的实现表现相同：
 
 * `mf <*> ma = mf >>= (\fun => map (fun $) ma)`.
 
 ### 练习第 3 部分
 
-1. `Applicative` extends `Functor`, because every `Applicative` is also a
-   `Functor`. Proof this by implementing `map` in terms of `pure` and
-   `(<*>)`.
+1. `Applicative` 扩展了 `Functor`，因为每个 `Applicative` 也是一个 `Functor`。通过根据 `pure`
+   和 `(<*>)` 实现 `map` 来证明这一点。
 
-2. `Monad` extends `Applicative`, because every `Monad` is also an
-   `Applicative`. Proof this by implementing `(<*>)` in terms of `(>>=)` and
-   `pure`.
+2. `Monad` 扩展了 `Applicative`，因为每个 `Monad` 也是一个 `Applicative`。通过根据 `(>>=)` 和
+   `pure` 实现 `(<*>)` 来证明这一点。
 
-3. Implement `(>>=)` in terms of `join` and other functions in the `Monad`
-   hierarchy.
+3. 根据 `join` 和 `Monad` 层次结构中的其他函数实现 `(>>=)`。
 
-4. Implement `join` in terms of `(>>=)` and other functions in the `Monad`
-   hierarchy.
+4. 根据 `(>>=)` 和 `Monad` 层次结构中的其他函数实现 `join`。
 
-5. There is no lawful `Monad` implementation for `Validated e`.  Why?
+5. `Validated e` 没有合法的 `Monad` 实现。为什么？
 
-6. In this slightly extended exercise, we are going to simulate CRUD
-   operations on a data store. We will use a mutable reference (imported
-   from `Data.IORef` from the *base* library)  holding a list of `User`s
-   paired with a unique ID of type `Nat` as our user data base:
+6. 在这个稍微扩展的练习中，我们将在数据存储上模拟 CRUD 操作。我们将使用一个可变引用（从 *base* 库中的 `Data.IORef`
+   导入），其中包含一个 `User` 列表和一个类型为 `Nat` 的唯一 ID 作为我们的用户数据库：
 
    ```idris
    DB : Type
    DB = IORef (List (Nat,User))
    ```
 
-   Most operations on a database come with a risk of failure:
-   When we try to update or delete a user, the entry in question
-   might no longer be there. When we add a new user, a user
-   with the given email address might already exist. Here is
-   a custom error type to deal with this:
+   数据库上的大多数操作都有失败的风险：
+   当我们尝试更新或删除用户时，有问题的条目
+   可能不再存在。当我们添加一个新用户时，一个用户
+   与给定的电子邮件地址可能已经存在。这是
+   处理此问题的自定义错误类型：
 
    ```idris
    data DBError : Type where
@@ -1261,15 +941,15 @@ must behave the same as the implementation in terms of `(>>=)`:
      SizeLimitExceeded : DBError
    ```
 
-   In general, our functions will therefore have a
-   type similar to the following:
+   一般来说，我们的函数因此会有一个
+   类似于以下内容的类型：
 
    ```idris
    someDBProg : arg1 -> arg2 -> DB -> IO (Either DBError a)
    ```
 
-   We'd like to abstract over this, by introducing a new wrapper
-   type:
+   我们想通过引入一个新的包装器来抽象这个
+   类型：
 
    ```idris
    record Prog a where
@@ -1277,28 +957,26 @@ must behave the same as the implementation in terms of `(>>=)`:
      runProg : DB -> IO (Either DBError a)
    ```
 
-   We are now ready to write us some utility functions. Make sure
-   to follow the following business rules when implementing the
-   functions below:
+   我们现在准备为我们编写一些实用函数。确保
+   在实施时遵循以下业务规则
+   以下功能：
 
-   * Email addresses in the DB must be unique. (Consider implementing `Eq
-     Email` to verify this).
+   * 数据库中的电子邮件地址必须是唯一的。 （考虑实现 `Eq Email` 来验证这一点）。
 
-   * The size limit of 1000 entries must not be exceeded.
+   * 不得超过 1000 个条目的大小限制。
 
-   * Operations trying to lookup a user by their ID must fail with
-     `UserNotFound` in case no entry was found in the DB.
+   * 如果在 DB 中找不到条目，则尝试通过 ID 查找用户的操作必须失败并显示 `UserNotFound`。
 
-   You'll need the following functions from `Data.IORef` when working
-   with mutable references: `newIORef`, `readIORef`, and `writeIORef`.
-   In addition, functions `Data.List.lookup` and `Data.List.find` might
-   be useful to implement some of the functions below.
+   工作时需要 `Data.IORef` 中的以下功能
+   具有可变引用：`newIORef`、`readIORef` 和 `writeIORef`。
+   此外，函数 `Data.List.lookup` 和 `Data.List.find` 可能
+   对实现以下某些功能很有用。
 
-   1. Implement interfaces `Functor`, `Applicative`, and `Monad` for `Prog`.
+   1. 为 `Prog` 实现接口 `Functor`、`Applicative` 和 `Monad`。
 
-   2. Implement interface `HasIO` for `Prog`.
+   2. 为 `Prog` 实现接口 `HasIO`。
 
-   3. Implement the following utility functions:
+   3. 实现以下实用功能：
 
       ```idris
       throw : DBError -> Prog a
@@ -1312,40 +990,33 @@ must behave the same as the implementation in terms of `(>>=)`:
       modifyDB : (List (Nat,User) -> List (Nat,User)) -> Prog ()
       ```
 
-   4. Implement function `lookupUser`. This should fail with an appropriate
-      error, if a user with the given ID cannot be found.
+   4. 实现函数`lookupUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的错误。
 
       ```idris
       lookupUser : (id : Nat) -> Prog User
       ```
 
-   5. Implement function `deleteUser`. This should fail with an appropriate
-      error, if a user with the given ID cannot be found. Make use of
-      `lookupUser` in your implementation.
+   5. 实现函数 `deleteUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的错误。在您的实现中使用
+      `lookupUser`。
 
       ```idris
       deleteUser : (id : Nat) -> Prog ()
       ```
 
-   6. Implement function `addUser`. This should fail, if a user with the
-      given `Email` already exists, or if the data banks size limit of 1000
-      entries is exceeded.  In addition, this should create and return a
-      unique ID for the new user entry.
+   6. 实现函数 `addUser`。如果具有给定 `Email` 的用户已经存在，或者超过了 1000
+      个条目的数据库大小限制，这应该会失败。此外，这应该为新用户条目创建并返回一个唯一 ID。
 
       ```idris
       addUser : (new : User) -> Prog Nat
       ```
 
-   7. Implement function `updateUser`. This should fail, if the user in
-      question cannot be found or a user with the updated user's `Email`
-      already exists.  The returned value should be the updated user.
+   7. 实现函数`updateUser`。如果找不到相关用户或更新用户的 `Email` 的用户已经存在，这应该会失败。返回的值应该是更新的用户。
 
       ```idris
       updateUser : (id : Nat) -> (mod : User -> User) -> Prog User
       ```
 
-   8. Data type `Prog` is actually too specific. We could just as well
-      abstract over the error type and the `DB` environment:
+   8. 数据类型 `Prog` 实际上太具体了。我们也可以抽象出错误类型和 `DB` 环境：
 
       ```idris
       record Prog' env err a where
@@ -1353,57 +1024,36 @@ must behave the same as the implementation in terms of `(>>=)`:
         runProg' : env -> IO (Either err a)
       ```
 
-      Verify, that all interface implementations you wrote
-      for `Prog` can be used verbatim to implement the same
-      interfaces for `Prog' env err`. The same goes for
-      `throw` with only a slight adjustment in the function's
-      type.
+      验证您编写的所有接口实现
+      对于 `Prog` 可以逐字使用来实现相同的
+      `Prog' env err` 的接口。这同样适用于
+      `throw` 只需稍微调整函数的
+      类型。
 
-## Background and further Reading
+## 背景和延伸阅读
 
-Concepts like *functor* and *monad* have their origin in *category theory*,
-a branch of mathematics. That is also where their laws come from.
-Category theory was found to have applications in
-programming language theory, especially functional programming.
-It is a highly abstract topic, but there is a pretty accessible
-introduction for programmers, written by
-[Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).
+*functor* 和 *monad* 等概念起源于数学分支 *范畴论*。这也是他们的定律的来源。范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/ ）。
 
-The usefulness of applicative functors as a middle ground between
-functor and monad was discovered several years after monads had
-already been in use in Haskell. They where introduced in the
-article [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html),
-which is freely available online and a highly recommended read.
+应用函子作为函子和单子之间的中间地带的有用性是在单子已经在 Haskell 中使用几年之后才发现的。它们在文章 [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html) 中进行了介绍，该文章可在线免费获得，并且强烈推荐阅读。
 
 ## 结论
 
-* Interfaces `Functor`, `Applicative`, and `Monad` abstract over programming
-  patterns that come up when working with type constructors of type `Type ->
-  Type`. Such data types are also referred to as *values in a context*, or
-  *effectful computations*.
+* 接口 `Functor`、`Applicative` 和 `Monad` 抽象了使用 `Type -> Type`
+  类型的类型构造函数时出现的编程模式。此类数据类型也称为上下文中的 *值 *，或 * 有效计算 *。
 
-* `Functor` allows us to *map* over values in a context without affecting
-  the context's underlying structure.
+* `Functor` 允许我们在上下文中的值上 *map* 而不影响上下文的底层结构。
 
-* `Applicative` allows us to apply n-ary functions to n effectful
-  computations and to lift pure values into a context.
+* `Applicative` 允许我们将 n 元函数应用于 n 个有效计算，并将纯值提升到上下文中。
 
-* `Monad` allows us to chain effectful computations, where the intermediary
-  results can affect, which computation to run further down the chain.
+* `Monad` 允许我们链接有效的计算，其中中间结果可能会影响，哪些计算在链中运行得更远。
 
-* Unlike `Monad`, `Functor` and `Applicative` compose: The product and
-  composition of two functors or applicatives are again functors or
-  applicatives, respectively.
+* 与 `Monad` 不同，`Functor` 和 `Applicative` 组合：两个函子或应用程序的乘积和组合再次分别是函子或应用程序。
 
-* Idris provides syntactic sugar for working with some of the interfaces
-  presented here: Idiom brackets for `Applicative`, *do blocks* and the bang
-  operator for `Monad`.
+* Idris 为使用此处介绍的一些接口提供了语法糖：`Applicative`、*do blocks* 的习语括号和 `Monad` 的感叹号运算符。
 
 ### 下一步是什么？
 
-In the [next chapter](Folds.md) we get to learn more about
-recursion, totality checking, and an interface for
-collapsing container types: `Foldable`.
+在[下一章](Folds.md) 中，我们将了解更多关于递归、完全性检查和折叠容器类型的接口：`Foldable`。
 
 <!-- vi: filetype=idris2
 -->

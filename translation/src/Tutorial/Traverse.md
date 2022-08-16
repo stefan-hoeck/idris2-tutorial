@@ -118,7 +118,7 @@ Note, how the implementation of `traverseList` is exactly the same
 as the one of `traverseValidatedList`, but the types are more general
 and therefore, `traverseList` is much more powerful.
 
-Let's give this a go at the REPL:
+让我们在 REPL 上试一试：
 
 ```repl
 Tutorial.Traverse> hreadTable3 [Bool,Bits8] ["f,12","t,0"]
