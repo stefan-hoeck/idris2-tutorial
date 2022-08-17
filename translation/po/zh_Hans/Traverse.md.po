@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-17 05:27+0000\n"
+"PO-Revision-Date: 2022-08-17 07:28+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/traverse/zh_Hans/>\n"
@@ -506,13 +506,13 @@ msgstr "让我们在 REPL 上试一试：\n"
 
 #. type: Title #
 #: ../src/Tutorial/Traverse.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Effectful Traversals"
-msgstr "# 有效遍历"
+msgstr "遍历副作用"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:11
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In this chapter, we are going to bring our treatment\n"
 "of the higher-kinded interfaces in the *Prelude* to an\n"
@@ -522,21 +522,28 @@ msgid ""
 "the data types and interfaces from that chapter to\n"
 "their own modules, so we can import them here without\n"
 "the need to start from scratch.\n"
-msgstr "在本章中，我们将结束对 *Prelude* 中高级接口的处理。为此，我们将继续开发我们在 [Functor and Friends](Functor.md) 一章中开始实施的 CSV 阅读器。我将那一章的一些数据类型和接口移到了它们自己的模块中，所以我们可以在这里导入它们，而无需从头开始。"
+msgstr ""
+"在本章中，我们将带来 *Prelude* 中更高种类的接口。为此，我们将继续开发\n"
+"我们在 [函子和朋友](Functor.md) 章节中开始实现的 CSV 阅读器。我移动了一些\n"
+"该章的数据类型和接口到他们自己的模块，所以我们可以在这里导入它们而无需从头开"
+"始。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:16
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note that unlike in our original CSV reader, we will use\n"
 "`Validated` instead of `Either` for handling exceptions,\n"
 "since this will allow us to accumulate all errors\n"
 "when reading a CSV file.\n"
-msgstr "请注意，与我们最初的 CSV 阅读器不同，我们将使用 `Validated` 而不是 `Either` 来处理异常，因为这将允许我们在读取 CSV 文件时累积所有错误。"
+msgstr ""
+"请注意，与我们原来的 CSV 阅读器不同，我们将使用 `Validated` 而不是 `Either` "
+"处理异常，\n"
+"因为这将使我们能够累积读取 CSV 文件时的所有错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:17
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Traverse\n"
 "\n"
@@ -549,35 +556,51 @@ msgid ""
 "import Text.CSV\n"
 "\n"
 "%default total\n"
-msgstr "导入 Data.HList 导入 Data.IORef 导入 Data.List1 导入 Data.String 导入 Data.Validated 导入 Data.Vect 导入 Text.CSV"
+msgstr ""
+"module Tutorial.Traverse\n"
+"\n"
+"import Data.HList\n"
+"import Data.IORef\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Validated\n"
+"import Data.Vect\n"
+"import Text.CSV\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Traverse.md:31
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Reading CSV Tables"
-msgstr "## 读取 CSV 表"
+msgstr "读取 CSV 表"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:37
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We stopped developing our CSV reader with function\n"
 "`hdecode`, which allows us to read a single line\n"
 "in a CSV file and decode it to a heterogeneous list.\n"
 "As a reminder, here is how to use `hdecode` at the REPL:\n"
-msgstr "我们停止使用函数 `hdecode` 开发 CSV 阅读器，它允许我们读取 CSV 文件中的单行并将其解码为异构列表。提醒一下，这里是如何在 REPL 中使用 `hdecode` ："
+msgstr ""
+"我们停止开发具有 `hdecode` 函数—的 CSV 阅读器，它允许我们在 CSV "
+"文件中读取单行并将其解码为异构列表。\n"
+"提醒一下，这里是如何在 REPL 中使用 `hdecode` ：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:38
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 \"f,foo,12\"\n"
 "Valid [False, \"foo\", 12]\n"
-msgstr "```repl Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 \"f,foo,12\" 有效 [False, \"foo\", 12] ```"
+msgstr ""
+"Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 \"f,foo,12\"\n"
+"Valid [False, \"foo\", 12]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:51
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The next step will be to parse a whole CSV table, represented\n"
 "as a list of strings, where each string corresponds to one\n"
@@ -587,7 +610,11 @@ msgid ""
 "is a function of the following type (we are going to\n"
 "implement several versions of this function, hence the\n"
 "numbering):\n"
-msgstr "下一步将解析整个 CSV 表，表示为字符串列表，其中每个字符串对应于表中的一个行。我们将逐步进行，因为正确执行此操作有几个方面。我们正在寻找 - 最终 - 是以下类型的函数（我们将实现此函数的多个版本，因此编号）："
+msgstr ""
+"下一步将解析整个 CSV 表作为字符串列表，其中每个字符串对应一个\n"
+"表的一行。\n"
+"我们将逐步进行，因为正确地做到这一点有几个方面。我们正在寻找的——最终—— "
+"是以下类型的函数（我们将实现这个函数的几个版本，因此我们给它了编号）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:52
@@ -598,12 +625,10 @@ msgid ""
 "            => List String\n"
 "            -> Validated CSVError (List $ HList ts)\n"
 msgstr ""
-"```伊德里斯\n"
 "readTable1 : (0 ts : 列表类型)\n"
 "            -> CSVLine (HList ts)\n"
 "            => 列表字符串\n"
 "            -> Validated CSVError (List $HList ts)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:61
@@ -611,7 +636,9 @@ msgstr ""
 msgid ""
 "In our first implementation, we are not going to care\n"
 "about line numbers:\n"
-msgstr "在我们的第一个实现中，我们不会关心行号："
+msgstr ""
+"在我们的第一个实现中，我们不会关心\n"
+"关于行号：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:62
@@ -620,10 +647,8 @@ msgid ""
 "hreadTable1 _  []        = pure []\n"
 "hreadTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
 msgstr ""
-"```伊德里斯\n"
 "readTable1 _ [] = 纯 []\n"
 "readTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:72
@@ -634,7 +659,12 @@ msgid ""
 "line instead of the more specific `Valid []`. In fact, if we used\n"
 "`Either` or `Maybe` instead of `Validated` for error handling,\n"
 "the implementation of `hreadTable1` would look exactly the same.\n"
-msgstr "注意，我们如何在 `hreadTable1` 的实现中使用应用语法。为了更清楚地说明这一点，我在第一行使用了 `pure []` 而不是更具体的 `Valid []`。事实上，如果我们使用 `Either` 或 `Maybe` 而不是 `Validated` 进行错误处理，则 `hreadTable1` 的实现看起来完全一样。"
+msgstr ""
+"注意，我们如何在实现中使用应用语法\n"
+"` 读表 1 `。为了更清楚，我在第一个使用 `pure []`\n"
+"行而不是更具体的 `Valid []`。事实上，如果我们使用\n"
+"`Either` 或 `Maybe` 而不是 `Validated` 用于错误处理，\n"
+"`hreadTable1` 的实现看起来完全一样。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:81
@@ -648,7 +678,15 @@ msgid ""
 "should be to use type parameters for the input and output:\n"
 "Run a computation of type `a -> Validated CSVError b` over a\n"
 "list `List a`:\n"
-msgstr "问题是：我们可以从这个观察中提取一个模式来抽象吗？我们在 `hreadTable1` 中所做的是对字符串列表运行 `String -> Validated CSVError (HList ts)` 类型的有效计算，因此结果是 ` 的列表HList ts` 包裹在 `Validated CSVError` 中。抽象的第一步应该是对输入和输出使用类型参数：在列表 `List a` 上运行类型为 `a -> Validated CSVError b` 的计算："
+msgstr ""
+"问题是：我们可以提取一个模式来抽象\n"
+"从这个观察？我们在 `hreadTable1` 中所做的正在运行\n"
+"`String 类型的有效计算 -> Validated CSVError (HList ts)`\n"
+"在字符串列表上，因此结果是 `HList ts` 的列表\n"
+"包裹在 `Validated CSVError` 中。抽象的第一步\n"
+"应该是对输入和输出使用类型参数：\n"
+"在 a 上运行 `a -> Validated CSVError b` 类型的计算\n"
+"列出 ` 列出 `：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:82
@@ -666,12 +704,17 @@ msgid ""
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable2 ts = traverseValidatedList (hdecode ts 0)\n"
 msgstr ""
-"```伊德里斯\n"
 "traverseValidatedList : (a -> Validated CSVError b)\n"
 "                      -> 列出一个\n"
 "                      -> 已验证的 CSVError（列表 b）\n"
 "traverseValidatedList _ [] = 纯 []\n"
 "traverseValidatedList f (x :: xs) = [| f x :: traverseValidatedList f xs |]\n"
+"\n"
+"readTable2 : (0 ts : 列表类型)\n"
+"            -> CSVLine (HList ts)\n"
+"            => 列表字符串\n"
+"            -> Validated CSVError (List $HList ts)\n"
+"hdTable2 ts = traverseValidatedList (hdecode ts 0)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:104
@@ -685,7 +728,15 @@ msgid ""
 "`pure`) in our implementation, so we will need to write\n"
 "a function with an `Applicative` constraint\n"
 "on the effect type:\n"
-msgstr "但我们的观察是，如果我们使用 ` CSVError` 或 `Maybe` 作为我们的效果类型而不是 `Validated，则 `hreadTable1` 的实现将完全相同CSV 错误 `。所以，下一步应该是对*效果类型*进行抽象。我们注意到，我们在实现中使用了应用语法（成语方括号和 `pure`），因此我们需要编写一个对效果类型具有 `Applicative` 约束的函数："
+msgstr ""
+"但我们的观察是，`hreadTable1` 的实现\n"
+"如果我们使用 `Either CSVError` 或 `Maybe` 将完全相同\n"
+"作为我们的效果类型，而不是 `Validated CSVError`。\n"
+"所以，下一步应该是对*效果类型*进行抽象。\n"
+"我们注意到，我们使用了应用语法（成语方括号和\n"
+"`pure`) 在我们的实现中，所以我们需要编写\n"
+"具有 `Applicative` 约束的函数\n"
+"关于效果类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:105
@@ -701,13 +752,15 @@ msgid ""
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable3 ts = traverseList (hdecode ts 0)\n"
 msgstr ""
-"```伊德里斯\n"
-"readTable4 : (0 ts : 列表类型)\n"
+"traverseList : 应用 f => (a -> f b) -> List a -> f (List b)\n"
+"traverseList _ [] = 纯 []\n"
+"遍历列表 f (x :: xs) = [| f x :: traverseList f xs |]\n"
+"\n"
+"readTable3 : (0 ts : 列表类型)\n"
 "            -> CSVLine (HList ts)\n"
-"            => 列表（Nat，字符串）\n"
+"            => 列表字符串\n"
 "            -> Validated CSVError (List $HList ts)\n"
-"hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
-"```\n"
+"hdTable3 ts = traverseList (hdecode ts 0)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:120
@@ -716,7 +769,10 @@ msgid ""
 "Note, how the implementation of `traverseList` is exactly the same\n"
 "as the one of `traverseValidatedList`, but the types are more general\n"
 "and therefore, `traverseList` is much more powerful.\n"
-msgstr "注意，`traverseList`的实现方式与`traverseValidatedList`的实现方式完全相同，但类型更通用，因此`traverseList`功能更强大。"
+msgstr ""
+"注意，`traverseList`的实现是完全一样的\n"
+"作为 `traverseValidatedList` 之一，但类型更通用\n"
+"因此，`traverseList` 更强大。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:123
@@ -728,7 +784,13 @@ msgid ""
 "Invalid (FieldError 0 2 \"1000\")\n"
 "Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"]\n"
 "Invalid (Append (FieldError 0 1 \"1\") (FieldError 0 2 \"1000\"))\n"
-msgstr "```repl Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"] 有效 [[False, 12], [True, 0]] Tutorial.Traverse> hreadTable3 [Bool,Bits8 ] [\"f,12\",\"t,1000\"] 无效 (FieldError 0 2 \"1000\") Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"] 无效（追加 ( FieldError 0 1 \"1\") (FieldError 0 2 \"1000\")) ```"
+msgstr ""
+"Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"]\n"
+"有效 [[False, 12], [True, 0]]\n"
+"Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,1000\"]\n"
+"无效 (FieldError 0 2 \"1000\")\n"
+"Tutorial.Traverse>hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"]\n"
+"无效（追加（FieldError 0 1“1”）（FieldError 0 2“1000”））\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:139
@@ -741,7 +803,14 @@ msgid ""
 "fly when we talk about stateful computations later in this chapter.\n"
 "For now, we could just manually annotate the lines with their\n"
 "numbers and pass a list of pairs to `hreadTable`:\n"
-msgstr "这已经很好地工作了，但请注意我们的错误消息尚未打印正确的行号。这并不奇怪，因为我们在调用 `hdecode` 时使用了一个虚拟常量。当我们在本章后面讨论有状态计算时，我们将看看如何快速得出行号。现在，我们可以手动用它们的数字注释这些行，并将一个对列表传递给 `hreadTable`："
+msgstr ""
+"这已经很好用了，但请注意我们的错误消息是如何做的\n"
+"尚未打印正确的行号。这并不奇怪，\n"
+"因为我们在调用 `hdecode` 时使用了一个虚拟常量。\n"
+"我们将研究如何得出行号\n"
+"当我们在本章后面讨论有状态计算时会飞起来。\n"
+"现在，我们可以手动注释这些行\n"
+"数字并将一对列表传递给 `hreadTable`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:140
@@ -753,13 +822,11 @@ msgid ""
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
 msgstr ""
-"```伊德里斯\n"
 "readTable4 : (0 ts : 列表类型)\n"
 "            -> CSVLine (HList ts)\n"
 "            => 列表（Nat，字符串）\n"
 "            -> Validated CSVError (List $HList ts)\n"
 "hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:154
@@ -771,7 +838,13 @@ msgid ""
 "in the *Prelude*, such as `curry`, `uncurry`, `flip`, or even\n"
 "`id`, all of which can be very useful when working with higher-order\n"
 "functions.\n"
-msgstr "如果这是您第一次遇到函数 `uncurry`，请确保您查看了它的类型并尝试找出这里使用它的原因。 *Prelude*中有几个类似这样的实用函数，例如`curry`、`uncurry`、`flip`，甚至是`id[ X254X]，所有这些在处理高阶函数时都非常有用。"
+msgstr ""
+"如果这是你第一次遇到函数 `uncurry`，\n"
+"确保您查看了它的类型并尝试找出它的原因\n"
+"在这里使用。有几个这样的实用功能\n"
+"在*Prelude*中，如`curry`、`uncurry`、`flip`，甚至\n"
+"`id`，所有这些在处理高阶时都非常有用\n"
+"功能。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:157
@@ -779,7 +852,9 @@ msgstr "如果这是您第一次遇到函数 `uncurry`，请确保您查看了�
 msgid ""
 "While not perfect, this version at least allows us to verify at the REPL\n"
 "that the line numbers are passed to the error messages correctly:\n"
-msgstr "虽然并不完美，但这个版本至少允许我们在 REPL 中验证行号是否正确传递给错误消息："
+msgstr ""
+"虽然不完美，但这个版本至少允许我们在 REPL 进行验证\n"
+"行号正确传递给错误消息：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:158
@@ -787,13 +862,15 @@ msgstr "虽然并不完美，但这个版本至少允许我们在 REPL 中验证
 msgid ""
 "Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")]\n"
 "Invalid (Append (FieldError 1 2 \"1000\") (FieldError 2 1 \"1\"))\n"
-msgstr "```repl Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")] 无效（追加 (FieldError 1 2 \"1000\") (FieldError 2 1 \"1 \")) ```"
+msgstr ""
+"Tutorial.Traverse>hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")]\n"
+"无效（追加（FieldError 1 2“1000”）（FieldError 2 1“1”））\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:163
 #, fuzzy, no-wrap
 msgid "Interface Traversable"
-msgstr "### 接口可遍历"
+msgstr "接口可遍历"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:172
@@ -806,7 +883,14 @@ msgid ""
 "via `List` might be feasible in some occasions, it is undesirable in\n"
 "general, as we loose typing information. For instance, here\n"
 "is such a function for `Vect`:\n"
-msgstr "现在，这里有一个有趣的观察：我们也可以为其他容器类型实现类似 `traverseList` 的函数。您可能认为这很明显，因为我们可以通过接口 `Foldable` 中的函数 `toList` 将容器类型转换为列表。然而，虽然通过 `List` 在某些情况下可能是可行的，但一般来说这是不可取的，因为我们会丢失输入信息。例如，下面是 `Vect` 的这样一个函数："
+msgstr ""
+"现在，这里有一个有趣的观察：我们可以实现一个函数\n"
+"像其他容器类型的 `traverseList` 也是如此。你可能认为那是\n"
+"很明显，鉴于我们可以通过以下方式将容器类型转换为列表\n"
+"来自接口 `Foldable` 的函数 `toList`。然而，在去的时候\n"
+"通过 `List` 在某些情况下可能是可行的，在\n"
+"一般来说，因为我们丢失了打字信息。例如，这里\n"
+"`Vect` 是这样的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:173
@@ -814,7 +898,9 @@ msgstr "现在，这里有一个有趣的观察：我们也可以为其他容器
 msgid ""
 "traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List b)\n"
 "traverseVect' fun = traverseList fun . toList\n"
-msgstr "```idris traverseVect' : 应用 f => (a -> f b) -> Vect n a -> f (List b) traverseVect' fun = traverseList fun 。 toList ```"
+msgstr ""
+"traverseVect' : 应用 f => (a -> f b) -> Vect n a -> f (List b)\n"
+"traverseVect' 乐趣 = traverseList 乐趣。列表\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:182
@@ -824,7 +910,11 @@ msgid ""
 "original container type. What we are looking for is a function\n"
 "like `traverseVect'`, which keeps this type level information:\n"
 "The result should be a vector of the same length as the input.\n"
-msgstr "请注意我们如何丢失有关原始容器类型结构的所有信息。我们要找的是像`traverseVect'`这样的函数，它保留了这种类型级别的信息：结果应该是一个与输入长度相同的向量。"
+msgstr ""
+"注意我们是如何丢失了所有关于结构的信息的\n"
+"原始容器类型。我们要找的是一个函数\n"
+"像`traverseVect'`，它保留了这个类型级别的信息：\n"
+"结果应该是与输入长度相同的向量。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:183
@@ -834,11 +924,9 @@ msgid ""
 "traverseVect _   []        = pure []\n"
 "traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]\n"
 msgstr ""
-"```伊德里斯\n"
 "traverseVect : 应用 f => (a -> f b) -> Vect n a -> f (Vect n b)\n"
 "traverseVect _ [] = 纯 []\n"
 "traverseVect fun (x :: xs) = [|有趣的 x :: traverseVect 有趣的 xs |]\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:193
@@ -848,7 +936,11 @@ msgid ""
 "for other container types like `List1`, `SnocList`, `Maybe`, and so on.\n"
 "As usual, some derived functions will follow immediately from `traverseXY`.\n"
 "For instance:\n"
-msgstr "那好多了！正如我上面写的，我们可以很容易地为其他容器类型获得相同的结果，例如 `List1`、`SnocList`、`Maybe` 等等。像往常一样，一些派生函数将紧跟在 `traverseXY` 之后。例如："
+msgstr ""
+"那好多了！正如我上面写的，我们可以很容易地得到相同的\n"
+"对于其他容器类型，如 `List1`、`SnocList`、`Maybe` 等。\n"
+"像往常一样，一些派生函数将紧跟在 `traverseXY` 之后。\n"
+"例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:194
@@ -856,7 +948,9 @@ msgstr "那好多了！正如我上面写的，我们可以很容易地为其他
 msgid ""
 "sequenceList : Applicative f => List (f a) -> f (List a)\n"
 "sequenceList = traverseList id\n"
-msgstr "```idris sequenceList : Applicative f => List (f a) -> f (List a) sequenceList = traverseList id ```"
+msgstr ""
+"sequenceList : 应用 f => List (f a) -> f (List a)\n"
+"sequenceList = traverseList id\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:202
@@ -865,7 +959,10 @@ msgid ""
 "All of this calls for a new interface, which is called\n"
 "`Traversable` and is exported from the *Prelude*. Here is\n"
 "its definition (with primes for disambiguation):\n"
-msgstr "所有这些都需要一个名为 `Traversable` 的新接口，它是从 *Prelude* 导出的。这是它的定义（带有用于消歧的素数）："
+msgstr ""
+"所有这些都需要一个新的接口，它被称为\n"
+"`Traversable` 并从 *Prelude* 导出。这是\n"
+"它的定义（用素数来消除歧义）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:203
@@ -874,10 +971,8 @@ msgid ""
 "interface Functor t => Foldable t => Traversable' t where\n"
 "  traverse' : Applicative f => (a -> f b) -> t a -> f (t b)\n"
 msgstr ""
-"```伊德里斯\n"
 "interface Functor t => Foldable t => Traversable' t 在哪里\n"
 "  traverse' : 应用 f => (a -> f b) -> t a -> f (t b)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:214
@@ -889,7 +984,13 @@ msgid ""
 "over and over again in your code. However, it will be the\n"
 "goal of the remainder of this chapter to show you several\n"
 "diverse and interesting use cases.\n"
-msgstr "函数 `traverse` 是 *Prelude* 中最抽象和通用的函数之一。只有在您开始在代码中一遍又一遍地使用它时，它的强大程度才会变得清晰。但是，本章剩余部分的目标是向您展示几个不同且有趣的用例。"
+msgstr ""
+"函数 `traverse` 是最抽象和通用的函数之一\n"
+"*Prelude* 提供的功能。到底有多强大\n"
+"只有开始使用它才会变得清晰\n"
+"在你的代码中一遍又一遍。然而，这将是\n"
+"本章剩余部分的目标是向您展示几个\n"
+"多样而有趣的用例。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:229
@@ -909,19 +1010,33 @@ msgid ""
 "that traversable containers - like applicative functors -\n"
 "are closed under composition (see the exercises and\n"
 "the final section in this chapter).\n"
-msgstr "现在，我们将快速关注抽象程度。函数 `traverse` 参数化不少于四个参数： 容器类型 `t` (`List`, `Vect n`, `Maybe[ X182X]，仅举几例），效果类型（`Validated e`，`IO`，`Maybe`，等等），输入元素类型 [X288X ]a`，输出元素类型`b`。考虑到与 Idris 项目捆绑在一起的库导出了 30 多种数据类型，实现了 `Applicative` 和十多种可遍历容器类型，实际上有数百种组合可用于遍历具有有效计算的容器。一旦我们意识到可遍历的容器——比如应用函子——在组合下是封闭的（参见本章的练习和最后一节），这个数字就会变得更大。"
+msgstr ""
+"现在，我们将快速关注抽象程度。\n"
+"函数 `traverse` 参数化不小于\n"
+"四个参数：容器类型 `t` (`List`, `Vect n`,\n"
+"`可能是`，仅举几例），效果类型（`Validated e`，\n"
+"`IO`、`Maybe` 等），输入元素类型 `a` 和\n"
+"输出元素类型 `b`。考虑到图书馆\n"
+"与 Idris 项目捆绑导出 30 多种数据类型\n"
+"具有 `Applicative` 的实现和十多个\n"
+"可遍历的容器类型，实际上有数百个\n"
+"有效遍历容器的组合\n"
+"计算。一旦我们意识到这个数字会变得更大\n"
+"可遍历的容器——比如应用函子——\n"
+"在作文下闭合（见练习和\n"
+"本章的最后一节）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:230
 #, fuzzy, no-wrap
 msgid "Traversable Laws"
-msgstr "### 可遍历的定律"
+msgstr "可遍历的定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:233
 #, fuzzy, no-wrap
 msgid "There are two laws function `traverse` must obey:\n"
-msgstr "函数`traverse`必须遵守两个规律："
+msgstr "函数`traverse`必须遵守两个规律：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:241
@@ -952,7 +1067,11 @@ msgid ""
 "from the first law that `traverse Id = Id`. This means, that\n"
 "`traverse` must not change the size or shape of the container\n"
 "type, nor is it allowed to change the order of elements.\n"
-msgstr "由于`map id = id`（函子恒等律），我们可以从第一定律推导出`遍历Id = Id`。这意味着，`traverse` 不能改变容器类型的大小或形状，也不能改变元素的顺序。"
+msgstr ""
+"由于`map id = id`（函子恒等律），我们可以推导出\n"
+"从第一定律`遍历Id = Id`。这意味着\n"
+"`遍历`不得改变容器的大小或形状\n"
+"类型，也不允许改变元素的顺序。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:253
@@ -1018,12 +1137,10 @@ msgid ""
 "     value  : a\n"
 "     forest : List (Tree a)\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   记录 Tree a where\n"
 "     构造器节点\n"
 "     值：一个\n"
 "     森林：列表（树一）\n"
-"   ```\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Traverse.md:284
@@ -1052,7 +1169,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:319
 #, fuzzy, no-wrap
 msgid "Programming with State"
-msgstr "## 使用状态编程"
+msgstr "用状态编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:324
@@ -1061,13 +1178,16 @@ msgid ""
 "Let's go back to our CSV reader. In order to get reasonable\n"
 "error messages, we'd like to tag each line with its\n"
 "index:\n"
-msgstr "让我们回到我们的 CSV 阅读器。为了得到合理的错误信息，我们想用它的索引标记每一行："
+msgstr ""
+"让我们回到我们的 CSV 阅读器。为了合理\n"
+"错误消息，我们想用它来标记每一行\n"
+"指数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:325
 #, fuzzy, no-wrap
 msgid "zipWithIndex : List a -> List (Nat, a)\n"
-msgstr "```idris zipWithIndex : 列表 a -> 列表 (Nat, a) ```"
+msgstr "zipWithIndex : 列表 a -> 列表 (Nat, a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:331
@@ -1075,7 +1195,9 @@ msgstr "```idris zipWithIndex : 列表 a -> 列表 (Nat, a) ```"
 msgid ""
 "It is, of course, very easy to come up with an ad hoc\n"
 "implementation for this:\n"
-msgstr "当然，很容易为此提出一个临时实现："
+msgstr ""
+"当然，很容易想出一个临时的\n"
+"为此的实施：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:332
@@ -1086,12 +1208,10 @@ msgid ""
 "        go _ []        = []\n"
 "        go n (x :: xs) = (n,x) :: go (S n) xs\n"
 msgstr ""
-"```伊德里斯\n"
 "zipWithIndex = 去 1\n"
 "  去哪里： Nat -> List a -> List (Nat,a)\n"
 "        去_ [] = []\n"
 "        去 n (x :: xs) = (n,x) :: 去 (S n) xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:344
@@ -1102,13 +1222,18 @@ msgid ""
 "trees, vectors, non-empty lists and so on.\n"
 "And again, we are interested in whether there is some\n"
 "form of abstraction we can use to describe such computations.\n"
-msgstr "虽然这很好，但我们仍然应该注意，我们可能希望对树、向量、非空列表等元素做同样的事情。再一次，我们感兴趣的是是否有某种形式的抽象我们可以用来描述这样的计算。"
+msgstr ""
+"虽然这很好，但我们仍然应该注意到\n"
+"我们可能想对元素做同样的事情\n"
+"树、向量、非空列表等。\n"
+"再一次，我们感兴趣的是是否有一些\n"
+"我们可以使用抽象形式来描述此类计算。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:345
 #, fuzzy, no-wrap
 msgid "Mutable References in Idris"
-msgstr "### Idris 中的可变引用"
+msgstr "Idris 中的可变引用"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:352
@@ -1119,7 +1244,12 @@ msgid ""
 "a local (mutable) variable to keep track of the current\n"
 "index, which would then be increased while iterating over the list\n"
 "in a `for`- or `while`-loop.\n"
-msgstr "让我们考虑一下如何用命令式语言来做这样的事情。在那里，我们可能会定义一个局部（可变）变量来跟踪当前索引，然后在迭代 `for`- 或 `while`- 中的列表时增加该变量环形。"
+msgstr ""
+"让我们考虑一下我们会如何做这样的事情\n"
+"在命令式语言中。在那里，我们可能会定义\n"
+"一个本地（可变）变量，用于跟踪当前\n"
+"索引，然后在遍历列表时增加\n"
+"在 `for`- 或 `while`-循环中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:363
@@ -1135,7 +1265,17 @@ msgid ""
 "Other than that, nothing keeps us from using mutable\n"
 "variables in our code. The necessary functionality is\n"
 "available from module `Data.IORef` from the *base* library.\n"
-msgstr "在 Idris 中，没有可变状态之类的东西。或者有吗？请记住，我们在前面的练习中如何使用可变引用来模拟数据库连接。在那里，我们实际上使用了一些真正可变的状态。但是，由于访问或修改可变变量不是引用透明操作，因此必须在 `IO` 内执行此类操作。除此之外，没有什么能阻止我们在代码中使用可变变量。 *base* 库中的模块 `Data.IORef` 提供了必要的功能。"
+msgstr ""
+"在 Idris 中，没有可变状态之类的东西。\n"
+"或者有吗？请记住，我们如何使用可变引用\n"
+"在早期模拟数据库连接\n"
+"锻炼。在那里，我们实际上使用了一些真正可变的\n"
+"状态。但是，由于访问或修改一个可变\n"
+"变量不是引用透明操作，\n"
+"此类操作必须在 `IO` 内执行。\n"
+"除此之外，没有什么能阻止我们使用 mutable\n"
+"我们代码中的变量。必要的功能是\n"
+"可从 *base* 库中的模块 `Data.IORef` 获得。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:367
@@ -1144,13 +1284,16 @@ msgid ""
 "As a quick exercise, try to implement a function, which -\n"
 "given an `IORef Nat` - pairs a value with the current\n"
 "index and increases the index afterwards.\n"
-msgstr "作为一个快速练习，尝试实现一个函数，该函数 - 给定一个 `IORef Nat` - 将一个值与当前索引配对，然后增加索引。"
+msgstr ""
+"作为一个快速练习，尝试实现一个函数，它 -\n"
+"给定 `IORef Nat` - 将值与当前值配对\n"
+"索引并在之后增加索引。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:369
 #, fuzzy, no-wrap
 msgid "Here's how I would do this:\n"
-msgstr "这是我将如何做到这一点："
+msgstr "这是我将如何做到这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:370
@@ -1162,13 +1305,11 @@ msgid ""
 "  writeIORef ref (S ix)\n"
 "  pure (ix,va)\n"
 msgstr ""
-"```伊德里斯\n"
 "pairWithIndexIO : IORef Nat -> a -> IO (Nat,a)\n"
 "pairWithIndexIO 参考 va = 做\n"
 "  ix <- readIORef ref\n"
 "  writeIORef ref (六)\n"
 "  纯 (ix,va)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:387
@@ -1183,7 +1324,16 @@ msgid ""
 "effects. But this is *exactly* what function `traverse` does: Our\n"
 "input type is `a`, our output type is `(Nat,a)`, our\n"
 "container type is `List`, and the effect type is `IO`!\n"
-msgstr "请注意，每次我们 *run* `pairWithIndexIO ref` 时，存储在 `ref` 中的自然数都会加一。另外，查看 `pairWithIndexIO ref` 的类型：`a -> IO (Nat,a)`。我们希望将这种有效的计算应用于列表中的每个元素，这应该会导致一个新列表包含在 `IO` 中，因为所有这些都描述了具有副作用的单个计算。但这正是 ** 函数 `traverse` 的作用：我们的输入类型是 `a`，我们的输出类型是 `(Nat,a)`，我们的容器类型为`List`，效果类型为`IO`！"
+msgstr ""
+"注意，每次我们 *run* `pairWithIndexIO ref`，\n"
+"`ref` 中存储的自然数加一。\n"
+"另外，查看 `pairWithIndexIO ref` 的类型：`a -> IO (Nat,a)`。\n"
+"我们希望将这种有效的计算应用于每个元素\n"
+"在一个列表中，这应该会导致一个包含在 `IO` 中的新列表，\n"
+"因为所有这些都描述了一个单一的计算\n"
+"效果。但这正是 ** `traverse` 的作用：我们的\n"
+"输入类型是 `a`，我们的输出类型是 `(Nat,a)`，我们的\n"
+"容器类型为`List`，效果类型为`IO`！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:388
@@ -1191,7 +1341,9 @@ msgstr "请注意，每次我们 *run* `pairWithIndexIO ref` 时，存储在 `re
 msgid ""
 "zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))\n"
 "zipListWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
-msgstr "```idris zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a)) zipListWithIndexIO ref = traverse (pairWithIndexIO ref) ```"
+msgstr ""
+"zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))\n"
+"zipListWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:397
@@ -1201,7 +1353,11 @@ msgid ""
 "to *any* traversable data structure. It therefore makes\n"
 "absolutely no sense to specialize `zipListWithIndexIO` to\n"
 "lists only:\n"
-msgstr "现在 *this* 真的很强大：我们可以将相同的功能应用于 *any* 可遍历的数据结构。因此，仅将 `zipListWithIndexIO` 专门用于列表是绝对没有意义的："
+msgstr ""
+"现在 *this* 真的很强大：我们可以应用相同的功能\n"
+"到 *any* 可遍历的数据结构。因此它使\n"
+"将 `zipListWithIndexIO` 专门用于\n"
+"仅列出：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:398
@@ -1209,7 +1365,9 @@ msgstr "现在 *this* 真的很强大：我们可以将相同的功能应用于 
 msgid ""
 "zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
 "zipWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
-msgstr "```idris zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,a)) zipWithIndexIO ref = traverse (pairWithIndexIO ref) ```"
+msgstr ""
+"zipWithIndexIO : 可遍历 t => IORef Nat -> t a -> IO (t (Nat,a))\n"
+"zipWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:405
@@ -1217,7 +1375,9 @@ msgstr "```idris zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Na
 msgid ""
 "To please our intellectual minds even more, here is the\n"
 "same function in point-free style:\n"
-msgstr "为了更加取悦我们的智力，这里是无点风格的相同功能："
+msgstr ""
+"为了更取悦我们的智力，这里是\n"
+"无点风格的相同功能：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:406
@@ -1225,7 +1385,9 @@ msgstr "为了更加取悦我们的智力，这里是无点风格的相同功能
 msgid ""
 "zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
 "zipWithIndexIO' = traverse . pairWithIndexIO\n"
-msgstr "```idris zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a)) zipWithIndexIO' = traverse 。 pairWithIndexIO ```"
+msgstr ""
+"zipWithIndexIO' : 可遍历 t => IORef Nat -> t a -> IO (t (Nat,a))\n"
+"zipWithIndexIO' = 遍历。 pairWithIndexIO\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:413
@@ -1233,7 +1395,9 @@ msgstr "```idris zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (N
 msgid ""
 "All that's left to do now is to initialize a new mutable variable\n"
 "before passing it to `zipWithIndexIO`:\n"
-msgstr "现在剩下要做的就是在将它传递给 `zipWithIndexIO` 之前初始化一个新的可变变量："
+msgstr ""
+"现在剩下要做的就是初始化一个新的可变变量\n"
+"在将其传递给 `zipWithIndexIO` 之前：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:414
@@ -1241,13 +1405,15 @@ msgstr "现在剩下要做的就是在将它传递给 `zipWithIndexIO` 之前初
 msgid ""
 "zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))\n"
 "zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)\n"
-msgstr "```idris zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a)) zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta) ```"
+msgstr ""
+"zipFromZeroIO : 可遍历 t => t a -> IO (t (Nat,a))\n"
+"zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:420
 #, fuzzy, no-wrap
 msgid "Quickly, let's give this a go at the REPL:\n"
-msgstr "很快，让我们在 REPL 上试一试："
+msgstr "很快，让我们在 REPL 上试一试：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:421
@@ -1259,7 +1425,13 @@ msgid ""
 "Just (0, 12)\n"
 "> :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= printLn\n"
 "[(0, \"hello\"), (1, \"world\")]\n"
-msgstr "```repl > :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn [(0, \"hello\"), (1, \"world\")] > :exec zipFromZeroIO (只有 12 ) >>= printLn Just (0, 12) > :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= printLn [(0, \"hello\"), (1, \"world\") ] ```"
+msgstr ""
+"> :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn\n"
+"[(0, \"你好\"), (1, \"世界\")]\n"
+"> :exec zipFromZeroIO (只有 12) >>= printLn\n"
+"只是 (0, 12)\n"
+"> :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= printLn\n"
+"[(0, \"你好\"), (1, \"世界\")]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:432
@@ -1267,13 +1439,15 @@ msgstr "```repl > :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= prin
 msgid ""
 "Thus, we solved the problem of tagging each element with its\n"
 "index once and for all for all traversable container types.\n"
-msgstr "因此，我们解决了为所有可遍历的容器类型一劳永逸地用索引标记每个元素的问题。"
+msgstr ""
+"因此，我们解决了使用其标记每个元素的问题\n"
+"为所有可遍历的容器类型一劳永逸地索引。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:433
 #, fuzzy, no-wrap
 msgid "The State Monad"
-msgstr "### 状态单子"
+msgstr "国家单子"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:441
@@ -1285,7 +1459,13 @@ msgid ""
 "otherwise. We do not want to make our otherwise pure functions\n"
 "much harder to test and reason about just for a simple\n"
 "case of stateful element tagging.\n"
-msgstr "唉，虽然上面介绍的解决方案很优雅并且性能非常好，但它仍然带有 `IO` 污点，如果我们已经在 `IO` 土地上，这很好，但在其他情况下是不可接受的。我们不希望仅仅为了一个简单的有状态元素标记案例而使我们原本纯函数的测试和推理变得更加困难。"
+msgstr ""
+"唉，虽然上面提出的解决方案很优雅，但\n"
+"表现非常好，它仍然带有 `IO` 污渍，\n"
+"如果我们已经在 `IO` 土地上就好了，但不可接受\n"
+"否则。我们不想让我们原本纯粹的功能\n"
+"只是为了一个简单的测试和推理要困难得多\n"
+"有状态元素标记的情况。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:450
@@ -1299,7 +1479,15 @@ msgid ""
 "We first need to ask ourselves what the essence of a\n"
 "\"stateful\" but otherwise pure computation is. There\n"
 "are two essential ingredients:\n"
-msgstr "幸运的是，有一个使用可变引用的替代方法，它允许我们保持我们的计算纯粹和不受污染。但是，自己想出这个替代方案并不容易，而且很难弄清楚这里发生了什么，所以我将尝试慢慢介绍。我们首先需要问自己，“有状态”但纯粹的计算的本质是什么。有两个基本成分："
+msgstr ""
+"幸运的是，有一个使用可变引用的替代方法，\n"
+"这使我们能够保持我们的计算纯粹和\n"
+"未受污染。然而，要做到这一点并不容易\n"
+"自己的替代方案，而且很难弄清楚\n"
+"这是怎么回事，所以我会尝试慢慢介绍。\n"
+"我们首先需要问自己一个人的本质是什么\n"
+"“有状态”，但在其他方面是纯计算。那里\n"
+"是两个基本成分：\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:458
@@ -1327,7 +1515,10 @@ msgid ""
 "These two prerequisites lead to the following generic\n"
 "type for a pure, stateful computation operating on state\n"
 "type `st` and producing values of type `a`:\n"
-msgstr "这两个先决条件导致以下泛型类型，用于在状态类型 `st` 上运行并生成 `a` 类型的值的纯有状态计算："
+msgstr ""
+"这两个先决条件导致以下通用\n"
+"用于在状态上运行的纯有状态计算的类型\n"
+"输入 `st` 并生成 `a` 类型的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:463
@@ -1335,7 +1526,9 @@ msgstr "这两个先决条件导致以下泛型类型，用于在状态类型 `s
 msgid ""
 "Stateful : (st : Type) -> (a : Type) -> Type\n"
 "Stateful st a = st -> (st, a)\n"
-msgstr "```idris Stateful : (st : Type) -> (a : Type) -> Type Stateful st a = st -> (st, a) ```"
+msgstr ""
+"有状态的：（st：类型）->（a：类型）->类型\n"
+"有状态的 st a = st -> (st, a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:470
@@ -1343,7 +1536,9 @@ msgstr "```idris Stateful : (st : Type) -> (a : Type) -> Type Stateful st a = st
 msgid ""
 "Our use case is pairing elements with indices, which\n"
 "can be implemented as a pure, stateful computation like so:\n"
-msgstr "我们的用例是将元素与索引配对，它可以实现为纯粹的有状态计算，如下所示："
+msgstr ""
+"我们的用例是将元素与索引配对，\n"
+"可以实现为纯粹的、有状态的计算，如下所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:471
@@ -1351,7 +1546,9 @@ msgstr "我们的用例是将元素与索引配对，它可以实现为纯粹的
 msgid ""
 "pairWithIndex' : a -> Stateful Nat (Nat,a)\n"
 "pairWithIndex' v index = (S index, (index,v))\n"
-msgstr "```idris pairWithIndex' : a -> Stateful Nat (Nat,a) pairWithIndex' v index = (S index, (index,v)) ```"
+msgstr ""
+"pairWithIndex' : a -> 有状态的 Nat (Nat,a)\n"
+"pairWithIndex' v index = (S index, (index,v))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:479
@@ -1360,7 +1557,10 @@ msgid ""
 "Note, how we at the same time increment the index, returning\n"
 "the incremented value as the new state, while pairing\n"
 "the first argument with the original index.\n"
-msgstr "请注意，我们如何同时增加索引，将增加的值作为新状态返回，同时将第一个参数与原始索引配对。"
+msgstr ""
+"注意，我们如何同时增加索引，返回\n"
+"增加的值作为新状态，同时配对\n"
+"第一个参数与原始索引。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:488
@@ -1374,7 +1574,15 @@ msgid ""
 "use this as our building block for writing more complex\n"
 "computations. We therefore introduce record `State` as\n"
 "a wrapper for pure, stateful computations:\n"
-msgstr "现在，需要注意一件重要的事情：虽然 `Stateful` 是一个有用的类型别名，但 Idris 通常不会 *not* 解析函数类型的接口实现。如果我们想围绕这种类型编写一个小型实用函数库，那么最好将其包装在单构造函数数据类型中，并将其用作编写更复杂计算的构建块。因此，我们引入记录 `State` 作为纯有状态计算的包装器："
+msgstr ""
+"现在，需要注意一件重要的事情：虽然 `Stateful` 是\n"
+"一个有用的类型别名，Idris 通常不会 *not* 解析\n"
+"函数类型的接口实现。如果我们想\n"
+"围绕这种类型编写一个小型实用函数库，\n"
+"因此，最好将其包装在单构造函数数据类型中，并且\n"
+"使用它作为我们编写更复杂的构建块\n"
+"计算。因此，我们将记录 `State` 引入为\n"
+"纯粹的有状态计算的包装器：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:489
@@ -1384,17 +1592,15 @@ msgid ""
 "  constructor ST\n"
 "  runST : st -> (st,a)\n"
 msgstr ""
-"```伊德里斯\n"
 "记录状态 st a where\n"
 "  构造函数 ST\n"
 "  runST : st -> (st,a)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:496
 #, fuzzy, no-wrap
 msgid "We can now implement `pairWithIndex` in terms of `State` like so:\n"
-msgstr "我们现在可以用 `State` 来实现 `pairWithIndex` ，如下所示："
+msgstr "我们现在可以用 `State` 来实现 `pairWithIndex` ，如下所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:497
@@ -1402,7 +1608,9 @@ msgstr "我们现在可以用 `State` 来实现 `pairWithIndex` ，如下所示�
 msgid ""
 "pairWithIndex : a -> State Nat (Nat,a)\n"
 "pairWithIndex v = ST $ \\index => (S index, (index, v))\n"
-msgstr "```idris pairWithIndex : a -> State Nat (Nat,a) pairWithIndex v = ST $ \\index => (S index, (index, v)) ```"
+msgstr ""
+"pairWithIndex : a -> State Nat (Nat,a)\n"
+"pairWithIndex v = ST $ \\index => (S 索引, (index, v))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:505
@@ -1411,7 +1619,10 @@ msgid ""
 "In addition, we can define some more utility functions. Here's\n"
 "one for getting the current state without modifying it\n"
 "(this corresponds to `readIORef`):\n"
-msgstr "此外，我们还可以定义更多的效用函数。这是一种无需修改即可获取当前状态的方法（这对应于 `readIORef`）："
+msgstr ""
+"此外，我们还可以定义更多的效用函数。这里是\n"
+"一种用于获取当前状态而不修改它\n"
+"（这对应于 `readIORef`）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:506
@@ -1419,7 +1630,9 @@ msgstr "此外，我们还可以定义更多的效用函数。这是一种无需
 msgid ""
 "get : State st st\n"
 "get = ST $ \\s => (s,s)\n"
-msgstr "```idris get : 状态 st st get = ST $ \\s => (s,s) ```"
+msgstr ""
+"得到：状态 st st\n"
+"得到 = ST $ \\s => (s,s)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:513
@@ -1427,7 +1640,9 @@ msgstr "```idris get : 状态 st st get = ST $ \\s => (s,s) ```"
 msgid ""
 "Here are two others, for overwriting the current state. These\n"
 "corresponds to `writeIORef` and `modifyIORef`:\n"
-msgstr "这是另外两个，用于覆盖当前状态。这些对应于 `writeIORef` 和 `modifyIORef`："
+msgstr ""
+"这是另外两个，用于覆盖当前状态。这些\n"
+"对应 `writeIORef` 和 `modifyIORef`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:514
@@ -1438,7 +1653,12 @@ msgid ""
 "\n"
 "modify : (st -> st) -> State st ()\n"
 "modify f = ST $ \\v => (f v,())\n"
-msgstr "修改 : (st -> st) -> 状态 st () 修改 f = ST $ \\v => (f v,()) ```"
+msgstr ""
+"put : st -> 状态 st ()\n"
+"把 v = ST $ \\_ => (v,())\n"
+"\n"
+"修改 : (st -> st) -> 状态 st ()\n"
+"修改 f = ST $ \\v => (f v,())\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:524
@@ -1446,7 +1666,9 @@ msgstr "修改 : (st -> st) -> 状态 st () 修改 f = ST $ \\v => (f v,()) ```"
 msgid ""
 "Finally, we can define three functions in addition to `runST`\n"
 "for running stateful computations\n"
-msgstr "最后，除了 `runST` 之外，我们还可以定义三个函数来运行有状态计算"
+msgstr ""
+"最后，我们可以定义除`runST`之外的三个函数\n"
+"用于运行有状态计算\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:525
@@ -1480,7 +1702,13 @@ msgid ""
 "`Functor`, `Applicative`, and `Monad` for `State s` yourself.\n"
 "Even if you don't succeed, you will have an easier time\n"
 "understanding how the implementations below work.\n"
-msgstr "所有这些本身都是有用的，但 `State s` 的真正威力来自于观察到它是一个单子。在继续之前，请花一些时间尝试自己实现 `State s` 的 `Functor`、`Applicative` 和 `Monad`。即使你没有成功，你也会更容易理解下面的实现是如何工作的。"
+msgstr ""
+"所有这些都是单独有用的，但真正的力量\n"
+"`State s` 来自观察它是一个单子。\n"
+"在继续之前，请花一些时间尝试实施\n"
+"`Functor`、`Applicative` 和 `Monad` 用于 `State s` 自己。\n"
+"即使你没有成功，你也会过得更轻松\n"
+"了解下面的实现是如何工作的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:543
@@ -1534,7 +1762,19 @@ msgid ""
 "again return an updated state, `s3`, which is passed on to\n"
 "later stateful computations together with the result of\n"
 "applying `f` to `va`.\n"
-msgstr "这可能需要一些时间来消化，所以我们在一个稍微高级的练习中回到它。需要注意的最重要的事情是，我们只使用一次每个状态值。我们 * 必须 * 确保将更新后的状态传递给以后的计算，否则有关状态更新的信息将丢失。这可以在 `Applicative` 的实现中得到最好的体现：初始状态 `s` 用于计算函数值，它也将返回更新状态 ` s2`，然后用于计算函数参数。这将再次返回一个更新的状态 `s3`，它与将 `f` 应用到 `va` 的结果一起传递给以后的有状态计算。"
+msgstr ""
+"这可能需要一些时间来消化，所以我们稍后会回到它\n"
+"稍微高级的练习。最需要注意的是，\n"
+"我们只使用一次每个状态值。我们*必须*确保\n"
+"将更新后的状态传递给以后的计算，否则\n"
+"有关状态更新的信息正在丢失。这个可以\n"
+"最好在 `Applicative` 的实现中看到：初始\n"
+"状态 `s` 用于计算函数值，\n"
+"这也将返回一个更新的状态，`s2`，然后\n"
+"用于计算函数参数。这将\n"
+"再次返回一个更新的状态，`s3`，它被传递给\n"
+"以后的有状态计算连同结果\n"
+"将 `f` 应用于 `va`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:583
@@ -1547,7 +1787,14 @@ msgid ""
 "In the second exercise, we will look at an indexed version of\n"
 "a state monad, which allows us to not only change the\n"
 "state's value but also its *type* during computations.\n"
-msgstr "本节包括两个扩展练习，目的是增加你对状态单子的理解。在第一个练习中，我们将研究随机值生成，这是有状态计算的经典应用。在第二个练习中，我们将查看状态 monad 的索引版本，它不仅允许我们在计算期间更改状态的值，还可以更改其 * 类型 *。"
+msgstr ""
+"本节包括两个扩展练习，目的是\n"
+"其中是为了增加你对状态单子的理解。\n"
+"在第一个练习中，我们将研究随机值生成，\n"
+"有状态计算的经典应用。\n"
+"在第二个练习中，我们将看一个索引版本的\n"
+"一个状态单子，它允许我们不仅改变\n"
+"在计算过程中状态的值以及它的 *type*。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:590
@@ -1571,11 +1818,9 @@ msgid ""
 "   rnd seed = fromInteger\n"
 "            $ (437799614237992725 * cast seed) `mod` 2305843009213693951\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   rnd：Bits64 -> Bits64\n"
 "   rnd 种子 = fromInteger\n"
-"            $（437799614237992725 * 播种）`mod` 2305843009213693951\n"
-"   ```\n"
+"            $ (437799614237992725 * 播种) `mod` 2305843009213693951\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:604
@@ -1604,10 +1849,8 @@ msgid ""
 "   Gen : Type -> Type\n"
 "   Gen = State Bits64\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   Gen : 类型 -> 类型\n"
 "   Gen = 状态位 64\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:617
@@ -1974,7 +2217,6 @@ msgid ""
 "    [True, '5', 67],\n"
 "    [False, '8', 9]]\n"
 msgstr ""
-"   ```repl\n"
 "   > testGen 100 $ hlist [bool, printableAscii, interval 0 127]\n"
 "   [[真，';'，5]，\n"
 "    [真，'^'，39]，\n"
@@ -1986,7 +2228,6 @@ msgstr ""
 "    [错误，'P'，107]，\n"
 "    [真，'5'，67]，\n"
 "    [假，'8'，9]]\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:764
@@ -2040,10 +2281,8 @@ msgid ""
 "   uncons : Vect (S n) a -> (Vect n a, a)\n"
 "   uncons (x :: xs) = (xs, x)\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   uncons : Vect (S n) a -> (Vect n a, a)\n"
 "   uncons (x :: xs) = (xs, x)\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:784
@@ -2166,7 +2405,7 @@ msgstr ""
 #: ../src/Tutorial/Traverse.md:822
 #, fuzzy, no-wrap
 msgid "The Power of Composition"
-msgstr "## 组合的力量"
+msgstr "组合的力量"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:830
@@ -2178,7 +2417,13 @@ msgid ""
 "defined `pairWithIndex` for tagging lines with their indices.\n"
 "We also have `uncurry $ hdecode ts` for decoding single tagged lines.\n"
 "We can now combine the two effects in a single computation:\n"
-msgstr "在我们进入有状态计算领域之后，我们将返回并将可变状态与错误累积结合起来，在一次遍历中标记和读取 CSV 行。我们已经定义了 `pairWithIndex` 用于标记行及其索引。我们还有 `uncurry $ hdecode ts` 用于解码单个标记行。我们现在可以在一次计算中结合这两种效果："
+msgstr ""
+"在进入有状态计算领域之后，我们\n"
+"将返回并将可变状态与错误累积结合起来\n"
+"在一次遍历中标记和读取 CSV 行。我们已经\n"
+"定义 `pairWithIndex` 用于标记行及其索引。\n"
+"我们还有 `uncurry $ hdecode ts` 用于解码单个标记行。\n"
+"我们现在可以在一次计算中结合这两种效果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:831
@@ -2190,13 +2435,11 @@ msgid ""
 "             -> State Nat (Validated CSVError (HList ts))\n"
 "tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s\n"
 msgstr ""
-"```伊德里斯\n"
 "tagAndDecode : (0 ts : 列表类型)\n"
 "             -> CSVLine (HList ts)\n"
 "             => 字符串\n"
 "             -> 状态 Nat（已验证的 CSVError (HList ts)）\n"
 "tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:851
@@ -2214,7 +2457,19 @@ msgid ""
 "constraint (`Traversable`) explicitly. But this\n"
 "is going to be the unnamed default implementation! To get our hands on such\n"
 "a value, we can use the `%search` pragma:\n"
-msgstr "现在，正如我们之前所了解的，应用函子在组合下是封闭的，`tagAndDecode` 的结果是两个应用程序的嵌套：`State Nat` 和 `Validated CSVError`。 *Prelude* 导出相应的命名接口实现（`Prelude.Applicative.Compose`），我们可以用它来遍历带有 `tagAndDecode` 的字符串列表。请记住，我们必须明确提供命名实现。由于 `traverse` 具有应用函子作为其第二个约束，我们还需要显式提供第一个约束 (`Traversable`)。但这将是未命名的默认实现！要获得这样的值，我们可以使用 `%search` pragma："
+msgstr ""
+"现在，正如我们之前所了解的，应用函子是封闭的\n"
+"组合，`tagAndDecode` 的结果是嵌套\n"
+"两个应用程序：`State Nat` 和 `Validated CSVError`。\n"
+"*Prelude* 导出相应的命名接口实现\n"
+"(`Prelude.Applicative.Compose`)，我们可以用来遍历\n"
+"带有 `tagAndDecode` 的字符串列表。\n"
+"请记住，我们必须明确提供命名实现。\n"
+"由于 `traverse` 有应用函子作为它的\n"
+"第二个约束，我们还需要提供第一个\n"
+"显式约束 (`Traversable`)。但是这个\n"
+"将是未命名的默认实现！为了得到我们的手\n"
+"一个值，我们可以使用 `%search` pragma：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:852
@@ -2226,13 +2481,11 @@ msgid ""
 "          -> Validated CSVError (List $ HList ts)\n"
 "readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)\n"
 msgstr ""
-"```伊德里斯\n"
 "readTable : (0 ts : 列表类型)\n"
 "          -> CSVLine (HList ts)\n"
 "          => 列表字符串\n"
 "          -> Validated CSVError (List $HList ts)\n"
 "读表 ts = evalState 1 。遍历@{%search} @{Compose} (tagAndDecode ts)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:866
@@ -2244,7 +2497,13 @@ msgid ""
 "While this syntax is not very nice, it doesn't come up too often, and\n"
 "if it does, we can improve things by providing custom functions\n"
 "for better readability:\n"
-msgstr "这告诉 Idris 对 `Traversable` 约束使用默认实现，对 `Applicative` 约束使用 `Prelude.Applicatie.Compose`。虽然这种语法不是很好，但它不会经常出现，如果出现这种情况，我们可以通过提供自定义函数来改进事情以提高可读性："
+msgstr ""
+"这告诉 Idris 使用默认实现\n"
+"`Traversable` 约束和 `Prelude.Applicatie.Compose`\n"
+"`Applicative` 约束。\n"
+"虽然这种语法不是很好，但它不会经常出现，并且\n"
+"如果是这样，我们可以通过提供自定义函数来改进\n"
+"为了更好的可读性：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:867
@@ -2264,7 +2523,6 @@ msgid ""
 "           -> Validated CSVError (List $ HList ts)\n"
 "readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)\n"
 msgstr ""
-"```伊德里斯\n"
 "traverseComp : 可遍历 t\n"
 "             => 应用 f\n"
 "             => 应用 g\n"
@@ -2272,6 +2530,12 @@ msgstr ""
 "             -> 吨\n"
 "             -> f (g (t b))\n"
 "traverseComp = 遍历 @{%search} @{Compose}\n"
+"\n"
+"readTable'：（0 ts：列表类型）\n"
+"           -> CSVLine (HList ts)\n"
+"           => 列表字符串\n"
+"           -> Validated CSVError (List $HList ts)\n"
+"readTable' ts = evalState 1 。 traverseComp (tagAndDecode ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:885
@@ -2279,7 +2543,9 @@ msgstr ""
 msgid ""
 "Note, how this allows us to combine two computational effects\n"
 "(mutable state and error accumulation) in a single list traversal.\n"
-msgstr "请注意，这如何让我们在单个列表遍历中结合两种计算效果（可变状态和错误累积）。"
+msgstr ""
+"请注意，这如何让我们结合两种计算效果\n"
+"（可变状态和错误累积）在单个列表遍历中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:898
@@ -2297,7 +2563,19 @@ msgid ""
 "We want to keep track of these optional annotations\n"
 "so we come up with a custom data type encapsulating\n"
 "this distinction:\n"
-msgstr "但我还没有完成展示组合的力量。正如您在其中一个练习中所展示的，`Traversable` 在组合下也是封闭的，因此可遍历的嵌套再次成为可遍历。考虑以下用例：读取 CSV 文件时，我们希望允许使用附加信息对行进行注释。此类注释可能只是注释，但一些格式说明或其他自定义数据标签也可能是可行的。注释应该通过单个哈希字符 (`#`) 与其余内容分开。我们希望跟踪这些可选注释，因此我们提出了一个自定义数据类型来封装这种区别："
+msgstr ""
+"但我还没有完成展示组合的力量。正如你所展示的\n"
+"在其中一个练习中，`Traversable` 在合成下也是闭合的，\n"
+"所以可遍历的嵌套又是可遍历的。考虑以下\n"
+"用例：读取 CSV 文件时，我们希望允许行\n"
+"附有附加信息的注释。这样的注释可以是\n"
+"仅仅是评论，还有一些格式说明或其他\n"
+"自定义数据标签可能是可行的。\n"
+"注释应该与其他注释分开\n"
+"单个哈希字符 (`#`) 的内容。\n"
+"我们希望跟踪这些可选注释\n"
+"所以我们想出了一个自定义数据类型封装\n"
+"这种区别：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:899
@@ -2307,11 +2585,9 @@ msgid ""
 "  Annotated : String -> a -> Line a\n"
 "  Clean     : a -> Line a\n"
 msgstr ""
-"```伊德里斯\n"
 "数据行：类型 -> 输入位置\n"
 "  注释：字符串 -> a -> 行 a\n"
 "  清洁：a -> 线 a\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:908
@@ -2320,7 +2596,10 @@ msgid ""
 "This is just another container type and we can\n"
 "easily implement `Traversable` for `Line` (do this yourself as\n"
 "a quick exercise):\n"
-msgstr "这只是另一种容器类型，我们可以轻松地为 `Line` 实现 `Traversable`（作为一个快速练习自己做）："
+msgstr ""
+"这只是另一种容器类型，我们可以\n"
+"为 `Line` 轻松实现 `Traversable` （自己做\n"
+"快速练习）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:909
@@ -2359,7 +2638,12 @@ msgid ""
 "If the result consists of exactly two strings, we treat the second\n"
 "part as an annotation, otherwise we treat the whole line as untagged\n"
 "CSV content.\n"
-msgstr "下面是一个用于解析一行并将其放入正确类别的函数。为简单起见，我们只是将行拆分为散列：如果结果正好包含两个字符串，我们将第二部分视为注释，否则我们将整行视为未标记的 CSV 内容。"
+msgstr ""
+"下面是一个用于解析一行并将其放入其中的函数\n"
+"正确的类别。为简单起见，我们只是将行拆分为散列：\n"
+"如果结果正好由两个字符串组成，我们处理第二个\n"
+"部分作为注释，否则我们将整行视为未标记\n"
+"CSV 内容。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:929
@@ -2370,12 +2654,10 @@ msgid ""
 "  h ::: [t] => Annotated t h\n"
 "  _         => Clean s\n"
 msgstr ""
-"```伊德里斯\n"
 "readLine : 字符串 -> 行字符串\n"
 "readLine s = case split('#' ==) s of\n"
 "  h ::: [t] => 带注释的 t h\n"
 "  _ => 清洁\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:938
@@ -2383,7 +2665,9 @@ msgstr ""
 msgid ""
 "We are now going to implement a function for reading whole\n"
 "CSV tables, keeping track of line annotations:\n"
-msgstr "我们现在要实现一个函数来读取整个 CSV 表，跟踪行注释："
+msgstr ""
+"我们现在要实现一个读取整个函数的函数\n"
+"CSV 表，跟踪行注释：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:939
@@ -2398,7 +2682,6 @@ msgid ""
 "           . map readLine\n"
 "           . lines\n"
 msgstr ""
-"```伊德里斯\n"
 "readCSV : (0 ts : 列表类型)\n"
 "        -> CSVLine (HList ts)\n"
 "        => 字符串\n"
@@ -2407,7 +2690,6 @@ msgstr ""
 "           .遍历@{Compose} @{Compose} (tagAndDecode ts)\n"
 "           .地图读取线\n"
 "           .线条\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:966
@@ -2429,7 +2711,23 @@ msgid ""
 "constraint (again without need of an explicit\n"
 "prefix, which would be `Prelude.Applicative` here).\n"
 "Finally, we evaluate the stateful computation with `evalState 1`.\n"
-msgstr "让我们消化这个怪物。这是以无点风格编写的，因此我们必须从头到尾阅读它。首先，我们在换行符处拆分整个字符串，得到一个字符串列表（函数 `Data.String.lines`）。接下来，我们分析每一行，跟踪可选注释（`map readLine`）。这给了我们一个 `List (Line String)` 类型的值。由于这是可遍历的嵌套，我们使用 *Prelude* 中的命名实例调用 `traverse`：`Prelude.Traversable.Compose`。 Idris 可以根据类型消除歧义，因此我们可以删除命名空间前缀。但是我们在行列表上运行的有效计算导致了应用函子的组合，因此我们还需要在第二个约束中应用程序组合的命名实现（同样不需要显式前缀，即 `Prelude .Applicative` 这里）。最后，我们使用 `evalState 1` 评估有状态计算。"
+msgstr ""
+"让我们消化这个怪物。这是用无点写的\n"
+"风格，所以我们必须从头到尾阅读它。首先，我们\n"
+"在换行符处拆分整个字符串，得到一个字符串列表\n"
+"（函数 `Data.String.lines`）。接下来，我们分析每一行，\n"
+"跟踪可选注释（`map readLine`）。\n"
+"这给了我们一个 `List (Line String)` 类型的值。自从\n"
+"这是可遍历的嵌套，我们调用 `traverse`\n"
+"使用来自 *Prelude* 的命名实例：`Prelude.Traversable.Compose`。\n"
+"Idris 可以根据类型消除歧义，因此我们可以\n"
+"删除命名空间前缀。但有效的计算\n"
+"我们遍历行列表会产生一个组合\n"
+"的应用函子，所以我们还需要命名的实现\n"
+"对于第二个中的应用程序组合\n"
+"约束（同样不需要明确的\n"
+"前缀，此处为 `Prelude.Applicative`）。\n"
+"最后，我们使用 `evalState 1` 评估有状态计算。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:974
@@ -2442,7 +2740,14 @@ msgid ""
 "I'll talk in more detail in a later chapter. For the moment,\n"
 "note that these allow us to conveniently enter string literals\n"
 "with line breaks:\n"
-msgstr "老实说，我写了所有这些都没有验证它是否有效，所以让我们在 REPL 中试一试。我将为此提供两个示例字符串，一个没有错误的有效字符串和一个无效字符串。我在这里使用*多行字符串文字*，我将在后面的章节中更详细地讨论。目前，请注意，这些允许我们方便地输入带有换行符的字符串文字："
+msgstr ""
+"老实说，我写了所有这些都没有验证它是否有效，\n"
+"所以让我们在 REPL 上试一试吧。我会提供两个\n"
+"示例字符串，一个没有错误的有效字符串，以及\n"
+"一个无效的。我在这里使用 * 多行字符串文字 * ，关于\n"
+"我将在后面的章节中更详细地讨论。暂时，\n"
+"请注意，这些允许我们方便地输入字符串文字\n"
+"带换行符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:975
@@ -2466,7 +2771,6 @@ msgid ""
 "  f,24,1.12e17\n"
 "  \"\"\"\n"
 msgstr ""
-"```伊德里斯\n"
 "有效输入：字符串\n"
 "有效输入 = \"\"\"\n"
 "  f,12,-13.01#这是一条评论\n"
@@ -2475,12 +2779,21 @@ msgstr ""
 "  f,255,0.0\n"
 "  f,24,1.12e17\n"
 "  \"\"\"\n"
+"\n"
+"无效输入：字符串\n"
+"无效输入 = \"\"\"\n"
+"  o,12,-13.01#another comment\n"
+"  t,100,0.0017\n"
+"  t,1,abc\n"
+"  f,256,0.0\n"
+"  f,24,1.12e17\n"
+"  \"\"\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:996
 #, fuzzy, no-wrap
 msgid "And here's how it goes at the REPL:\n"
-msgstr "以下是 REPL 的情况："
+msgstr "以下是 REPL 的情况：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:997
@@ -2497,13 +2810,16 @@ msgid ""
 "Invalid (Append (FieldError 1 1 \"o\")\n"
 "  (Append (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Traverse> readCSV [Bool,Bits8,Double] 有效输入\n"
 "有效[注解“这是一条评论”[False, 12, -13.01],\n"
 "       清洁 [True, 100, 0.0017],\n"
 "       注释“颜色：红色”[True, 1, 100.8]，\n"
 "       清洁 [False, 255, 0.0],\n"
 "       清洁 [错误，24，1.12e17]]\n"
+"\n"
+"Tutorial.Traverse> readCSV [Bool,Bits8,Double] 无效输入\n"
+"无效（追加（FieldError 1 1“o”）\n"
+"  (追加 (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1015
@@ -2514,7 +2830,12 @@ msgid ""
 "checkers, arriving eventually at a function for parsing\n"
 "properly typed CSV tables with automatic line numbering and\n"
 "error accumulation, all of which just worked on first try.\n"
-msgstr "令人惊奇的是，我们如何编写数十行代码，始终由类型和整体检查器指导，最终实现了一个函数，用于解析具有自动行编号和错误累积的正确类型的 CSV 表，所有这些都首先工作尝试。"
+msgstr ""
+"我们写了几十行代码真是太神奇了\n"
+"代码，总是以类型和整体为导向\n"
+"检查器，最终到达解析函数\n"
+"正确键入带有自动行编号的 CSV 表和\n"
+"错误累积，所有这些都在第一次尝试时起作用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1025
@@ -2527,7 +2848,14 @@ msgid ""
 "some hands-one experience working with these. You are\n"
 "supposed to look up what functions they provide\n"
 "and how to implement and use them yourself.\n"
-msgstr "*Prelude* 为通过 *two* 类型参数（例如 `Either` 或 `Pair`）参数化的容器类型提供三个附加接口： `Bifunctor[X150X ]、`Bifoldable` 和 `Bitraversable`。在接下来的练习中，我们将获得一些使用这些工具的亲身体验。您应该查看它们提供的功能以及如何自己实现和使用它们。"
+msgstr ""
+"*Prelude* 提供三个附加接口\n"
+"通过 * 两个* 类型参数参数化的容器类型\n"
+"比如`或者`或者`对`：`Bifunctor`，`Bifoldable`，\n"
+"和 `Bitraversable`。在下面的练习中，我们得到\n"
+"一些与这些一起工作的亲身体验。你是\n"
+"应该查找它们提供的功能\n"
+"以及如何自己实施和使用它们。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:1029
@@ -2548,11 +2876,9 @@ msgid ""
 "     Tag  : tag -> value -> Tagged tag value\n"
 "     Pure : value -> Tagged tag value\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   数据标记：（标签，值：类型）-> 类型在哪里\n"
 "     标签：标签->值->标记的标签值\n"
 "     纯：值 -> 标记的标记值\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1039
@@ -2616,11 +2942,12 @@ msgid ""
 "\n"
 "   Semigroup TagError where (<+>) = Append\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   数据 TagError : 键入 where\n"
 "     CE : CSVError -> TagError\n"
 "     InvalidTag : (line : Nat) -> (tag : String) -> TagError\n"
 "     附加：TagError -> TagError -> TagError\n"
+"\n"
+"   Semigroup TagError where (<+>) = Append\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1066
@@ -2632,10 +2959,7 @@ msgstr "   为了测试，我们还为颜色标签定义了一个简单的数据
 #: ../src/Tutorial/Traverse.md:1067
 #, fuzzy, no-wrap
 msgid "   data Color = Red | Green | Blue\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   数据颜色 = 红色 |绿色 |蓝色的\n"
-"   ```\n"
+msgstr "   数据颜色 = 红色 |绿色 |蓝色的\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1076
@@ -2666,12 +2990,14 @@ msgid ""
 "                  => String\n"
 "                  -> State Nat (Validated TagError (HList ts))\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   readTagged : (0 ts : 列表类型)\n"
-"              -> CSVLine (HList ts)\n"
-"              => 字符串\n"
-"              -> Validated TagError (List $Tagged Color $ HList ts)\n"
-"   ```\n"
+"   readColor : String -> State Nat (Validated TagError Color)\n"
+"\n"
+"   readTaggedLine : 字符串 -> 标记字符串字符串\n"
+"\n"
+"   tagAndDecodeTE : (0 ts : 列表类型)\n"
+"                  -> CSVLine (HList ts)\n"
+"                  => 字符串\n"
+"                  -> 状态 Nat（已验证的 TagError (HList ts)）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1094
@@ -2700,12 +3026,10 @@ msgid ""
 "              => String\n"
 "              -> Validated TagError (List $ Tagged Color $ HList ts)\n"
 msgstr ""
-"   ```伊德里斯\n"
 "   readTagged : (0 ts : 列表类型)\n"
 "              -> CSVLine (HList ts)\n"
 "              => 字符串\n"
 "              -> Validated TagError (List $Tagged Color $ HList ts)\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1103
@@ -2720,7 +3044,10 @@ msgid ""
 "You can find more examples for functor/bifunctor compositions\n"
 "in Haskell's [bifunctors](https://hackage.haskell.org/package/bifunctors)\n"
 "package.\n"
-msgstr "您可以在 Haskell 的 [bifunctors](https://hackage.haskell.org/package/bifunctors) 包中找到更多关于 functor/bifunctor 组合的示例。"
+msgstr ""
+"您可以找到更多关于函子/双函子组合的示例\n"
+"在 Haskell 的 [bifunctors](https://hackage.haskell.org/package/bifunctors)\n"
+"包裹。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1117
@@ -2732,7 +3059,14 @@ msgid ""
 "in additional use cases, the publication, which\n"
 "introduced `Traversable` to Haskell, is a highly recommended read:\n"
 "[The Essence of the Iterator Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)\n"
-msgstr "接口 `Traversable` 及其主要功能 `traverse` 是非常强大的抽象形式 - 更是如此，因为 `Applicative` 和 `Traversable` 都在作品。如果您对其他用例感兴趣，强烈推荐阅读将 `Traversable` 引入 Haskell 的出版物：[迭代器模式的本质](https://www.cs.ox.ac .uk/jeremy.gibbons/publications/iterator.pdf)"
+msgstr ""
+"接口`Traversable`及其主函数`traverse`令人难以置信\n"
+"强大的抽象形式 - 更是如此，因为 `Applicative`\n"
+"和 `Traversable` 在组合下是闭合的。如果你感兴趣\n"
+"在其他用例中，该出版物，其中\n"
+"向 Haskell 介绍了 `Traversable`，强烈推荐阅读：\n"
+"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/"
+"iterator.pdf)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1124
@@ -2744,13 +3078,19 @@ msgid ""
 "Please note also, that `IO` itself is implemented as a\n"
 "[simple state monad](IO.md#how-io-is-implemented)\n"
 "over an abstract, primitive state type: `%World`.\n"
-msgstr "*base* 库在模块 `Control.Monad.State` 中提供了状态单子的扩展版本。当我们讨论 monad 转换器时，我们将更详细地讨论这一点。另请注意，`IO` 本身是作为抽象的原始状态类型上的 [simple state monad](IO.md#how-io-is-implemented) 实现的：`%World[X329X ]。"
+msgstr ""
+"*base* 库提供了\n"
+"模块 `Control.Monad.State` 中的状态单子。我们会看\n"
+"当我们谈论 monad 转换器时，会更详细地介绍这一点。\n"
+"另请注意，`IO` 本身被实现为\n"
+"[简单状态单子](IO.md#how-io-is-implemented)\n"
+"在抽象的原始状态类型上：`%World`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1126
 #, fuzzy, no-wrap
 msgid "Here's a short summary of what we learned in this chapter:\n"
-msgstr "以下是我们在本章中学到的内容的简短摘要："
+msgstr "以下是我们在本章中学到的内容的简短摘要：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
@@ -2806,4 +3146,11 @@ msgid ""
 "There's one still missing - `Alternative` - but this will\n"
 "have to wait a bit longer, because we need to first make\n"
 "our brains smoke with some more type-level wizardry.\n"
-msgstr "至此，我们对 *Prelude* 的高级接口的介绍到此结束，首先介绍了 `Functor`、`Applicative` 和 `Monad `，在继续 `Foldable` 之前，以及 - 最后但同样重要的是 - `Traversable`。仍然缺少一个 - `Alternative` - 但这将不得不等待更长的时间，因为我们需要首先让我们的大脑冒出更多类型级别的魔法。"
+msgstr ""
+"至此，我们对 *Prelude* 的介绍到此结束\n"
+"更高级的接口，从引入\n"
+"`Functor`、`Applicative` 和 `Monad`，在继续 `Foldable` 之前，\n"
+"和 - 最后但同样重要的是 - `Traversable`。\n"
+"仍然缺少一个 - `Alternative` - 但这会\n"
+"必须等待更长的时间，因为我们需要先使\n"
+"我们的大脑会冒出更多类型级别的魔法。\n"
