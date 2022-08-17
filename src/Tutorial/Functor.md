@@ -249,7 +249,7 @@ want to keep the underlying structure.
 
 ### Functors with more than one Type Parameter
 
-The type constructors we looked at so far where all
+The type constructors we looked at so far were all
 of type `Type -> Type`. However, we can also implement `Functor`
 for other type constructors. The only prerequisite is that
 the type parameter we'd like to change with function `map` must
@@ -1210,7 +1210,7 @@ Without further ado, here are the laws for `Monad`:
   These two laws state that `pure` should behave
   neutrally w.r.t. *bind*.
 
-* (m >>= f) >>= g = m >>= (f >=> g)
+* `(m >>= f) >>= g = m >>= (f >=> g)`.
   This is the law of associativity for monad.
   You might not have seen the second operator `(>=>)`.
   It can be used to sequence effectful computations
@@ -1366,7 +1366,7 @@ must behave the same as the implementation in terms of `(>>=)`:
 
       ```idris
       record Prog' env err a where
-        constructor MkProg
+        constructor MkProg'
         runProg' : env -> IO (Either err a)
       ```
 

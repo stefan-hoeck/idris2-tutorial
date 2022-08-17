@@ -223,7 +223,7 @@ replicateListTR n v = go Nil n
 
 The big advantage of tail recursive functions is, that they
 can be easily converted to efficient, imperative loops by the Idris
-compiler, an are thus *stack safe*: Recursive function calls
+compiler, and are thus *stack safe*: Recursive function calls
 are *not* added to the call stack, thus avoiding the dreaded
 stack overflow errors.
 
@@ -698,7 +698,7 @@ implement these in a tail recursive way.
 
 When looking back at all the exercises we solved
 in the section about recursion, most tail recursive functions
-on lists where of the following pattern: Iterate
+on lists were of the following pattern: Iterate
 over all list elements from head to tail while
 passing along some state for accumulating intermediate
 results. At the end of the list,
@@ -816,7 +816,7 @@ the first argument is `True` and the second is returned as the function's
 
 There are two utility functions for working with lazy evaluation:
 Function `delay` wraps a value in the `Lazy` data type. Note, that
-the argument of `lazy` is strict, so the following might take
+the argument of `delay` is strict, so the following might take
 several seconds to print its result:
 
 ```repl
@@ -972,7 +972,7 @@ it consists of six essential functions:
 * `foldr`, for folds from the right
 * `foldl`, for folds from the left
 * `null`, for testing if the container is empty or not
-* `foldM`, for effectful folds in a monad
+* `foldlM`, for effectful folds in a monad
 * `toList`, for converting the container to a list of values
 * `foldMap`, for folding over a monoid
 

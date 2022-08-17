@@ -423,7 +423,7 @@ replicate : (n : Nat) -> a -> Vect n a
 ```
 
 Now, `replicate` is a *dependent function type*: The output type
-*depends* on the value of one the arguments. It is straight forward
+*depends* on the value of one of the arguments. It is straight forward
 to implement `replicate` by pattern matching on `n`:
 
 ```idris
@@ -464,6 +464,7 @@ this, which constructor(s) of the type family to use.
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
+   ```
 
 4. Declare and implement a function `foldSemi`
    for accumulating the values stored

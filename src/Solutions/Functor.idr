@@ -136,14 +136,14 @@ Functor' Maybe where
 
 Functor' List where
   map' _ []        = []
-  map' f (x :: xs) = f x :: map f xs
+  map' f (x :: xs) = f x :: map' f xs
 
 Functor' List1 where
   map' f (h ::: t) = f h ::: map' f t
 
 Functor' (Vect n) where
   map' _ []        = []
-  map' f (x :: xs) = f x :: map f xs
+  map' f (x :: xs) = f x :: map' f xs
 
 Functor' (Either e) where
   map' _ (Left ve)  = Left ve
