@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-17 13:30+0800\n"
-"PO-Revision-Date: 2022-08-17 04:46+0000\n"
+"PO-Revision-Date: 2022-08-17 07:58+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functor/zh_Hans/>\n"
@@ -960,15 +960,7 @@ msgstr "具有多个类型参数的函子"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:259
-#, fuzzy, no-wrap
-#| msgid ""
-#| "The type constructors we looked at so far where all\n"
-#| "of type `Type -> Type`. However, we can also implement `Functor`\n"
-#| "for other type constructors. The only prerequisite is that\n"
-#| "the type parameter we'd like to change with function `map` must\n"
-#| "be the last in the argument list. For instance, here is the\n"
-#| "`Functor` implementation for `Either e` (note, that `Either e`\n"
-#| "has of course type `Type -> Type` as required):\n"
+#, no-wrap
 msgid ""
 "The type constructors we looked at so far were all\n"
 "of type `Type -> Type`. However, we can also implement `Functor`\n"
@@ -977,7 +969,11 @@ msgid ""
 "be the last in the argument list. For instance, here is the\n"
 "`Functor` implementation for `Either e` (note, that `Either e`\n"
 "has of course type `Type -> Type` as required):\n"
-msgstr "到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 `map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 `Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必要条件）：\n"
+msgstr ""
+"到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，"
+"我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 "
+"`map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 "
+"`Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必要条件）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:260
@@ -1612,7 +1608,9 @@ msgid ""
 "is also referred to as *applicative style* and is used a lot\n"
 "in Haskell for combining several effectful computations\n"
 "with a single pure function.\n"
-msgstr "用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *applicative 风格*，在 Haskell 中被大量用于将几个有效的计算与单一的纯函数。\n"
+msgstr ""
+"用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *应用函子风格*，在 Haskell "
+"中被大量用于将单一的纯函数应用于几个副作用计算。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:575
@@ -2931,18 +2929,14 @@ msgstr "  这两条定律规定 `pure` 在 *bind* 中应该表现为中立。\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1218
-#, fuzzy
-#| msgid ""
-#| "(m >>= f) >>= g = m >>= (f >=> g)  This is the law of associativity for "
-#| "monad.  You might not have seen the second operator `(>=>)`.  It can be "
-#| "used to sequence effectful computations and has the following type:"
 msgid ""
 "`(m >>= f) >>= g = m >>= (f >=> g)`.  This is the law of associativity for "
 "monad.  You might not have seen the second operator `(>=>)`.  It can be used "
 "to sequence effectful computations and has the following type:"
 msgstr ""
-"(m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。您可能没有见过第二个运"
-"算符 `(>=>)`。它可用于对有效计算进行排序，并具有以下类型："
+"`(m >>= f) >>= g = m >>= (f >=> g)` 是 monad 的结合律。"
+"您可能没有见过第二个运算符 "
+"`(>=>)`。它可用于对副作用计算进行排序，并具有以下类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1219
@@ -3297,13 +3291,7 @@ msgstr "数据类型 `Prog` 实际上太具体了。我们也可以抽象出错�
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1372
-#, fuzzy, no-wrap
-#| msgid ""
-#| "      ```idris\n"
-#| "      record Prog' env err a where\n"
-#| "        constructor MkProg\n"
-#| "        runProg' : env -> IO (Either err a)\n"
-#| "      ```\n"
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      record Prog' env err a where\n"
@@ -3313,7 +3301,7 @@ msgid ""
 msgstr ""
 "      ```idris\n"
 "      record Prog' env err a where\n"
-"        constructor MkProg\n"
+"        constructor MkProg'\n"
 "        runProg' : env -> IO (Either err a)\n"
 "      ```\n"
 
@@ -3350,7 +3338,12 @@ msgid ""
 "It is a highly abstract topic, but there is a pretty accessible\n"
 "introduction for programmers, written by\n"
 "[Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/).\n"
-msgstr "*functor* 和 *monad* 等概念起源于数学分支 *范畴论*。这也是他们的定律的来源。范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/ ）。\n"
+msgstr ""
+"*functor* 和 *monad* 等概念起源于数学分支 *范畴论*。这也是他们的定律的来源。"
+"范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度"
+"抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz "
+"Milewski](https://bartoszmilewski.com/2014/10/28/"
+"category-theory-for-programmers-the-preface/) 编写。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1394
