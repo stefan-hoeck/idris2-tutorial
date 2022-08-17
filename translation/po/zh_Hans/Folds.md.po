@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-17 13:30+0800\n"
-"PO-Revision-Date: 2022-08-17 05:27+0000\n"
+"PO-Revision-Date: 2022-08-17 07:28+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/folds/zh_Hans/>\n"
@@ -887,20 +887,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:229
-#, fuzzy, no-wrap
-#| msgid ""
-#| "The big advantage of tail recursive functions is, that they\n"
-#| "can be easily converted to efficient, imperative loops by the Idris\n"
-#| "compiler, an are thus *stack safe*: Recursive function calls\n"
-#| "are *not* added to the call stack, thus avoiding the dreaded\n"
-#| "stack overflow errors.\n"
+#, no-wrap
 msgid ""
 "The big advantage of tail recursive functions is, that they\n"
 "can be easily converted to efficient, imperative loops by the Idris\n"
 "compiler, and are thus *stack safe*: Recursive function calls\n"
 "are *not* added to the call stack, thus avoiding the dreaded\n"
 "stack overflow errors.\n"
-msgstr "尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 *堆栈安全* 的：递归函数调用 *不会* 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
+msgstr ""
+"尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，"
+"因此是 *堆栈安全* 的：递归函数调用 *不会* "
+"添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:230
@@ -1820,16 +1817,7 @@ msgstr "Foldable 接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:707
-#, fuzzy, no-wrap
-#| msgid ""
-#| "When looking back at all the exercises we solved\n"
-#| "in the section about recursion, most tail recursive functions\n"
-#| "on lists where of the following pattern: Iterate\n"
-#| "over all list elements from head to tail while\n"
-#| "passing along some state for accumulating intermediate\n"
-#| "results. At the end of the list,\n"
-#| "return the final state or convert it with an\n"
-#| "additional function call.\n"
+#, no-wrap
 msgid ""
 "When looking back at all the exercises we solved\n"
 "in the section about recursion, most tail recursive functions\n"
@@ -1839,7 +1827,10 @@ msgid ""
 "results. At the end of the list,\n"
 "return the final state or convert it with an\n"
 "additional function call.\n"
-msgstr "当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返回最终状态或使用附加函数调用对其进行转换。\n"
+msgstr ""
+"当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式"
+"：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返"
+"回最终状态或使用附加函数调用对其进行转换。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:708
@@ -2046,18 +2037,16 @@ msgstr "如您所见，第二个参数包装在 `Lazy` 类型构造函数中。�
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:821
-#, fuzzy, no-wrap
-#| msgid ""
-#| "There are two utility functions for working with lazy evaluation:\n"
-#| "Function `delay` wraps a value in the `Lazy` data type. Note, that\n"
-#| "the argument of `lazy` is strict, so the following might take\n"
-#| "several seconds to print its result:\n"
+#, no-wrap
 msgid ""
 "There are two utility functions for working with lazy evaluation:\n"
 "Function `delay` wraps a value in the `Lazy` data type. Note, that\n"
 "the argument of `delay` is strict, so the following might take\n"
 "several seconds to print its result:\n"
-msgstr "有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` 数据类型中。请注意，`lazy` 的参数是严格的，因此以下可能需要几秒钟才能打印其结果：\n"
+msgstr ""
+"有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` "
+"数据类型中。请注意，`delay` "
+"的参数是严格的，因此以下可能需要几秒钟才能打印其结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:822
@@ -2372,10 +2361,8 @@ msgstr "`null`，用于测试容器是否为空"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Folds.md:978
-#, fuzzy
-#| msgid "`foldM`, for effectful folds in a monad"
 msgid "`foldlM`, for effectful folds in a monad"
-msgstr "`foldM`，用于单子中的副作用折叠"
+msgstr "`foldlM`，用于单子中的副作用折叠"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Folds.md:978
