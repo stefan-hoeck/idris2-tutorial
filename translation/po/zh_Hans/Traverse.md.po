@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-12 00:19+0000\n"
+"PO-Revision-Date: 2022-08-17 05:27+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/traverse/zh_Hans/>\n"
@@ -478,7 +478,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1040 ../src/Tutorial/Traverse.md:308
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   record Comp (f,g : Type -> Type) (a : Type) where\n"
 "     constructor MkComp\n"
@@ -489,12 +489,14 @@ msgid ""
 "     fst : f a\n"
 "     snd : g a\n"
 msgstr ""
-"```伊德里斯\n"
-"记录 DPair' (a : Type) (p : a -> Type) 其中\n"
-"  构造函数 MkDPair'\n"
-"  fst：一个\n"
-"  snd : p fst\n"
-"```\n"
+"   record Comp (f,g : Type -> Type) (a : Type) where\n"
+"     constructor MkComp\n"
+"     unComp  : f (g a)\n"
+"\n"
+"   record Product (f,g : Type -> Type) (a : Type) where\n"
+"     constructor MkProduct\n"
+"     fst : f a\n"
+"     snd : g a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:800 ../src/Tutorial/Traverse.md:122
