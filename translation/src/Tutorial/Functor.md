@@ -168,7 +168,13 @@ tailShowReverse xs = reverse . show <$> tail xs
 
 ### 具有多个类型参数的函子
 
-到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 `map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 `Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必要条件）：
+The type constructors we looked at so far were all
+of type `Type -> Type`. However, we can also implement `Functor`
+for other type constructors. The only prerequisite is that
+the type parameter we'd like to change with function `map` must
+be the last in the argument list. For instance, here is the
+`Functor` implementation for `Either e` (note, that `Either e`
+has of course type `Type -> Type` as required):
 
 ```idris
 implementation Functor' (Either e) where
@@ -404,7 +410,7 @@ liftA3 : Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 liftA3 fun fa fb fc = pure fun <*> fa <*> fb <*> fc
 ```
 
-了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 `liftA2` 中的 `f` 用于 `Maybe`，则 `pure fun` 的类型为 `Maybe (a -> b -> c)`。同样，`pure fun <*> fa` 是 ` 类型为 `Maybe  (b -> c)`，因为 `(<*>)` 将应用存储在 `f a` 到存储在 `pure fun` 中的函数（柯里化！）。
+了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 `liftA2` 中的 `f` 用于 `Maybe`，则 `pure fun` 的类型为 `Maybe (a -> b -> c)`。同样，`pure fun <*> fa` 是 ` 类型为 `Maybe (b -> c)`，因为 `(<*>)` 将应用存储在 `f a` 到存储在 `pure fun` 中的函数（柯里化！）。
 
 你会经常看到 *apply* 这样的应用链，*applies* 的数量对应于我们提升的函数的数量。您有时还会看到以下内容，这使我们可以放弃对 `pure` 的初始调用，并改用 `map` 的运算符版本：
 
@@ -817,7 +823,7 @@ interface Applicative' m => Monad' m where
 `Monad` 和 `Applicative` 之间的最大区别在于，前者允许计算依赖于早期计算的结果。例如，我们可以根据从标准输入中读取的字符串来决定是删除文件还是播放歌曲。第一个 `IO` 动作（读取一些用户输入）的结果将影响下一个要运行的 `IO` 动作。这对于 *apply* 运算符是不可能的：
 
 ```repl
-```repl (<*>) : IO (a -> b) -> IO a -> IO b ```
+(<*>) : IO (a -> b) -> IO a -> IO b
 ```
 
 两个 `IO` 动作在作为参数传递给 `(<*>)` 时已经确定。在一般情况下，第一个结果不能影响在第二个中运行哪个计算。 （实际上，使用 `IO` 理论上可以通过副作用实现：第一个操作可以将某些命令写入文件或覆盖某些可变状态，而第二个操作可以从该文件或状态读取，从而决定接下来要做的事情。但这是 `IO` 的特长，而不是一般的应用函子。如果有问题的函子是 `Maybe`，`List`，或 `Vector`，这是不可能的。）
@@ -894,8 +900,9 @@ Left (FieldError 1 2 "jon@doe.ch")
 
   这两条定律规定 `pure` 在 *bind* 中应该表现为中立。
 
-* (m >>= f) >>= g = m >>= (f >=> g) 这是 monad 的结合律。您可能没有见过第二个运算符
-  `(>=>)`。它可用于对有效计算进行排序，并具有以下类型：
+* `(m >>= f) >>= g = m >>= (f >=> g)`.  This is the law of associativity for
+  monad.  You might not have seen the second operator `(>=>)`.  It can be
+  used to sequence effectful computations and has the following type:
 
   ```repl
   Tutorial.Functor> :t (>=>)
@@ -1020,7 +1027,7 @@ Left (FieldError 1 2 "jon@doe.ch")
 
       ```idris
       record Prog' env err a where
-        constructor MkProg
+        constructor MkProg'
         runProg' : env -> IO (Either err a)
       ```
 

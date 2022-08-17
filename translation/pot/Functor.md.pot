@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 13:26+0800\n"
+"POT-Creation-Date: 2022-08-17 13:30+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,16 +55,16 @@ msgstr ""
 #: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
 #: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
 #: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
-#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
-#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
-#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
-#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
-#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
-#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
-#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
-#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
-#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
-#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:508
+#: ../src/Tutorial/Dependent.md:518 ../src/Tutorial/Dependent.md:532
+#: ../src/Tutorial/Dependent.md:565 ../src/Tutorial/Dependent.md:580
+#: ../src/Tutorial/Dependent.md:601 ../src/Tutorial/Dependent.md:608
+#: ../src/Tutorial/Dependent.md:618 ../src/Tutorial/Dependent.md:691
+#: ../src/Tutorial/Dependent.md:706 ../src/Tutorial/Dependent.md:728
+#: ../src/Tutorial/Dependent.md:749 ../src/Tutorial/Dependent.md:790
+#: ../src/Tutorial/Dependent.md:798 ../src/Tutorial/Dependent.md:807
+#: ../src/Tutorial/Dependent.md:821 ../src/Tutorial/Dependent.md:837
+#: ../src/Tutorial/Dependent.md:847 ../src/Tutorial/DPair.md:19
 #: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
 #: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
 #: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
@@ -302,65 +302,65 @@ msgstr ""
 #: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
 #: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
 #: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
-#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
-#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
-#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
-#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
-#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
-#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
-#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
-#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
-#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
-#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
-#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
-#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
-#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
-#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
-#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
-#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
-#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
-#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
-#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
-#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
-#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
-#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
-#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
-#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
-#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
-#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
-#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
-#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
-#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
-#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
-#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
-#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
-#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
-#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
-#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
-#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
-#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
-#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
-#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
-#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
-#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
-#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
-#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
-#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
-#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
-#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
-#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
-#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
-#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
-#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
-#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
-#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
-#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
-#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
-#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
-#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
-#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
-#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
-#: ../src/Tutorial/Traverse.md:997
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:499
+#: ../src/Tutorial/Dependent.md:632 ../src/Tutorial/Dependent.md:867
+#: ../src/Tutorial/DPair.md:66 ../src/Tutorial/DPair.md:234
+#: ../src/Tutorial/DPair.md:713 ../src/Tutorial/Eq.md:74
+#: ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153 ../src/Tutorial/Eq.md:397
+#: ../src/Tutorial/Eq.md:404 ../src/Tutorial/Eq.md:436
+#: ../src/Tutorial/Eq.md:505 ../src/Tutorial/Eq.md:518
+#: ../src/Tutorial/Eq.md:679 ../src/Tutorial/Eq.md:778
+#: ../src/Tutorial/Eq.md:984 ../src/Tutorial/Eq.md:1014
+#: ../src/Tutorial/Folds.md:198 ../src/Tutorial/Folds.md:787
+#: ../src/Tutorial/Folds.md:798 ../src/Tutorial/Folds.md:822
+#: ../src/Tutorial/Folds.md:839 ../src/Tutorial/Folds.md:880
+#: ../src/Tutorial/Folds.md:904 ../src/Tutorial/Functions1.md:37
+#: ../src/Tutorial/Functions1.md:143 ../src/Tutorial/Functions1.md:165
+#: ../src/Tutorial/Functions1.md:204 ../src/Tutorial/Functions1.md:228
+#: ../src/Tutorial/Functions1.md:253 ../src/Tutorial/Functions1.md:261
+#: ../src/Tutorial/Functions1.md:312 ../src/Tutorial/Functions1.md:333
+#: ../src/Tutorial/Functions1.md:358 ../src/Tutorial/Functions1.md:366
+#: ../src/Tutorial/Functions1.md:378 ../src/Tutorial/Functions1.md:488
+#: ../src/Tutorial/Functions1.md:519 ../src/Tutorial/Functions1.md:568
+#: ../src/Tutorial/Functions2.md:42 ../src/Tutorial/Functions2.md:63
+#: ../src/Tutorial/Functions2.md:74 ../src/Tutorial/Functions2.md:114
+#: ../src/Tutorial/Functions2.md:528 ../src/Tutorial/Functions2.md:541
+#: ../src/Tutorial/Functions2.md:553 ../src/Tutorial/Functions2.md:560
+#: ../src/Tutorial/Functions2.md:567 ../src/Tutorial/Functions2.md:719
+#: ../src/Tutorial/Functions2.md:726 ../src/Tutorial/Functions2.md:735
+#: ../src/Tutorial/Functions2.md:755 ../src/Tutorial/Functions2.md:763
+#: ../src/Tutorial/Functions2.md:787 ../src/Tutorial/Functions2.md:811
+#: ../src/Tutorial/Functions2.md:819 ../src/Tutorial/Functions2.md:835
+#: ../src/Tutorial/Functions2.md:848 ../src/Tutorial/Functions2.md:899
+#: ../src/Tutorial/Functor.md:187 ../src/Tutorial/Functor.md:201
+#: ../src/Tutorial/Functor.md:216 ../src/Tutorial/Functor.md:610
+#: ../src/Tutorial/Functor.md:801 ../src/Tutorial/Functor.md:903
+#: ../src/Tutorial/Functor.md:1001 ../src/Tutorial/Functor.md:1100
+#: ../src/Tutorial/Functor.md:1167 ../src/Tutorial/Functor.md:1219
+#: ../src/Tutorial/Interfaces.md:36 ../src/Tutorial/Interfaces.md:140
+#: ../src/Tutorial/Interfaces.md:505 ../src/Tutorial/Intro.md:122
+#: ../src/Tutorial/Intro.md:134 ../src/Tutorial/Intro.md:148
+#: ../src/Tutorial/Intro.md:158 ../src/Tutorial/Intro.md:167
+#: ../src/Tutorial/Intro.md:227 ../src/Tutorial/Intro.md:270
+#: ../src/Tutorial/Intro.md:279 ../src/Tutorial/Intro.md:300
+#: ../src/Tutorial/Intro.md:326 ../src/Tutorial/Intro.md:337
+#: ../src/Tutorial/Intro.md:349 ../src/Tutorial/IO.md:33
+#: ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433 ../src/Tutorial/IO.md:442
+#: ../src/Tutorial/IO.md:539 ../src/Tutorial/IO.md:621
+#: ../src/Tutorial/IO.md:634 ../src/Tutorial/IO.md:1020
+#: ../src/Tutorial/IO.md:1040 ../src/Tutorial/IO.md:1050
+#: ../src/Tutorial/IO.md:1060 ../src/Tutorial/Predicates.md:428
+#: ../src/Tutorial/Predicates.md:462 ../src/Tutorial/Predicates.md:926
+#: ../src/Tutorial/Predicates.md:1337 ../src/Tutorial/Prim.md:124
+#: ../src/Tutorial/Prim.md:312 ../src/Tutorial/Prim.md:527
+#: ../src/Tutorial/Prim.md:550 ../src/Tutorial/Prim.md:574
+#: ../src/Tutorial/Prim.md:584 ../src/Tutorial/Prim.md:596
+#: ../src/Tutorial/Prim.md:611 ../src/Tutorial/Prim.md:622
+#: ../src/Tutorial/Prim.md:638 ../src/Tutorial/Prim.md:647
+#: ../src/Tutorial/Prim.md:703 ../src/Tutorial/Prim.md:1129
+#: ../src/Tutorial/Traverse.md:38 ../src/Tutorial/Traverse.md:123
+#: ../src/Tutorial/Traverse.md:158 ../src/Tutorial/Traverse.md:421
+#: ../src/Tutorial/Traverse.md:737 ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid "repl"
 msgstr ""
@@ -377,7 +377,7 @@ msgid "Exercises part 1"
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:623
 #: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
 #: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
 #: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
@@ -388,7 +388,7 @@ msgid "Exercises part 2"
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:843
 #: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
 #: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
 #: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
@@ -399,7 +399,7 @@ msgid "Exercises part 3"
 msgstr ""
 
 #. type: Title ##
-#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:872
 #: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
 #: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
 #: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
@@ -410,7 +410,7 @@ msgid "Conclusion"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:910
 #: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
 #: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
 #: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
@@ -871,7 +871,7 @@ msgstr ""
 #: ../src/Tutorial/Functor.md:259
 #, no-wrap
 msgid ""
-"The type constructors we looked at so far where all\n"
+"The type constructors we looked at so far were all\n"
 "of type `Type -> Type`. However, we can also implement `Functor`\n"
 "for other type constructors. The only prerequisite is that\n"
 "the type parameter we'd like to change with function `map` must\n"
@@ -2460,7 +2460,7 @@ msgstr ""
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functor.md:1218
 msgid ""
-"(m >>= f) >>= g = m >>= (f >=> g)  This is the law of associativity for "
+"`(m >>= f) >>= g = m >>= (f >=> g)`.  This is the law of associativity for "
 "monad.  You might not have seen the second operator `(>=>)`.  It can be used "
 "to sequence effectful computations and has the following type:"
 msgstr ""
@@ -2757,7 +2757,7 @@ msgstr ""
 msgid ""
 "      ```idris\n"
 "      record Prog' env err a where\n"
-"        constructor MkProg\n"
+"        constructor MkProg'\n"
 "        runProg' : env -> IO (Either err a)\n"
 "      ```\n"
 msgstr ""

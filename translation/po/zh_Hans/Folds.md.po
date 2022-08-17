@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
-"POT-Creation-Date: 2022-08-03 13:28+0800\n"
+"POT-Creation-Date: 2022-08-17 13:30+0800\n"
 "PO-Revision-Date: 2022-08-17 05:27+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
@@ -57,16 +57,16 @@ msgstr ""
 #: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
 #: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
 #: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
-#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
-#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
-#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
-#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
-#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
-#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
-#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
-#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
-#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
-#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:508
+#: ../src/Tutorial/Dependent.md:518 ../src/Tutorial/Dependent.md:532
+#: ../src/Tutorial/Dependent.md:565 ../src/Tutorial/Dependent.md:580
+#: ../src/Tutorial/Dependent.md:601 ../src/Tutorial/Dependent.md:608
+#: ../src/Tutorial/Dependent.md:618 ../src/Tutorial/Dependent.md:691
+#: ../src/Tutorial/Dependent.md:706 ../src/Tutorial/Dependent.md:728
+#: ../src/Tutorial/Dependent.md:749 ../src/Tutorial/Dependent.md:790
+#: ../src/Tutorial/Dependent.md:798 ../src/Tutorial/Dependent.md:807
+#: ../src/Tutorial/Dependent.md:821 ../src/Tutorial/Dependent.md:837
+#: ../src/Tutorial/Dependent.md:847 ../src/Tutorial/DPair.md:19
 #: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
 #: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
 #: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
@@ -304,65 +304,65 @@ msgstr "idris"
 #: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
 #: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
 #: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
-#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
-#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
-#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
-#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
-#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
-#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
-#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
-#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
-#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
-#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
-#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
-#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
-#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
-#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
-#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
-#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
-#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
-#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
-#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
-#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
-#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
-#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
-#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
-#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
-#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
-#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
-#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
-#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
-#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
-#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
-#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
-#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
-#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
-#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
-#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
-#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
-#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
-#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
-#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
-#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
-#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
-#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
-#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
-#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
-#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
-#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
-#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
-#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
-#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
-#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
-#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
-#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
-#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
-#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
-#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
-#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
-#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
-#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
-#: ../src/Tutorial/Traverse.md:997
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:499
+#: ../src/Tutorial/Dependent.md:632 ../src/Tutorial/Dependent.md:867
+#: ../src/Tutorial/DPair.md:66 ../src/Tutorial/DPair.md:234
+#: ../src/Tutorial/DPair.md:713 ../src/Tutorial/Eq.md:74
+#: ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153 ../src/Tutorial/Eq.md:397
+#: ../src/Tutorial/Eq.md:404 ../src/Tutorial/Eq.md:436
+#: ../src/Tutorial/Eq.md:505 ../src/Tutorial/Eq.md:518
+#: ../src/Tutorial/Eq.md:679 ../src/Tutorial/Eq.md:778
+#: ../src/Tutorial/Eq.md:984 ../src/Tutorial/Eq.md:1014
+#: ../src/Tutorial/Folds.md:198 ../src/Tutorial/Folds.md:787
+#: ../src/Tutorial/Folds.md:798 ../src/Tutorial/Folds.md:822
+#: ../src/Tutorial/Folds.md:839 ../src/Tutorial/Folds.md:880
+#: ../src/Tutorial/Folds.md:904 ../src/Tutorial/Functions1.md:37
+#: ../src/Tutorial/Functions1.md:143 ../src/Tutorial/Functions1.md:165
+#: ../src/Tutorial/Functions1.md:204 ../src/Tutorial/Functions1.md:228
+#: ../src/Tutorial/Functions1.md:253 ../src/Tutorial/Functions1.md:261
+#: ../src/Tutorial/Functions1.md:312 ../src/Tutorial/Functions1.md:333
+#: ../src/Tutorial/Functions1.md:358 ../src/Tutorial/Functions1.md:366
+#: ../src/Tutorial/Functions1.md:378 ../src/Tutorial/Functions1.md:488
+#: ../src/Tutorial/Functions1.md:519 ../src/Tutorial/Functions1.md:568
+#: ../src/Tutorial/Functions2.md:42 ../src/Tutorial/Functions2.md:63
+#: ../src/Tutorial/Functions2.md:74 ../src/Tutorial/Functions2.md:114
+#: ../src/Tutorial/Functions2.md:528 ../src/Tutorial/Functions2.md:541
+#: ../src/Tutorial/Functions2.md:553 ../src/Tutorial/Functions2.md:560
+#: ../src/Tutorial/Functions2.md:567 ../src/Tutorial/Functions2.md:719
+#: ../src/Tutorial/Functions2.md:726 ../src/Tutorial/Functions2.md:735
+#: ../src/Tutorial/Functions2.md:755 ../src/Tutorial/Functions2.md:763
+#: ../src/Tutorial/Functions2.md:787 ../src/Tutorial/Functions2.md:811
+#: ../src/Tutorial/Functions2.md:819 ../src/Tutorial/Functions2.md:835
+#: ../src/Tutorial/Functions2.md:848 ../src/Tutorial/Functions2.md:899
+#: ../src/Tutorial/Functor.md:187 ../src/Tutorial/Functor.md:201
+#: ../src/Tutorial/Functor.md:216 ../src/Tutorial/Functor.md:610
+#: ../src/Tutorial/Functor.md:801 ../src/Tutorial/Functor.md:903
+#: ../src/Tutorial/Functor.md:1001 ../src/Tutorial/Functor.md:1100
+#: ../src/Tutorial/Functor.md:1167 ../src/Tutorial/Functor.md:1219
+#: ../src/Tutorial/Interfaces.md:36 ../src/Tutorial/Interfaces.md:140
+#: ../src/Tutorial/Interfaces.md:505 ../src/Tutorial/Intro.md:122
+#: ../src/Tutorial/Intro.md:134 ../src/Tutorial/Intro.md:148
+#: ../src/Tutorial/Intro.md:158 ../src/Tutorial/Intro.md:167
+#: ../src/Tutorial/Intro.md:227 ../src/Tutorial/Intro.md:270
+#: ../src/Tutorial/Intro.md:279 ../src/Tutorial/Intro.md:300
+#: ../src/Tutorial/Intro.md:326 ../src/Tutorial/Intro.md:337
+#: ../src/Tutorial/Intro.md:349 ../src/Tutorial/IO.md:33
+#: ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433 ../src/Tutorial/IO.md:442
+#: ../src/Tutorial/IO.md:539 ../src/Tutorial/IO.md:621
+#: ../src/Tutorial/IO.md:634 ../src/Tutorial/IO.md:1020
+#: ../src/Tutorial/IO.md:1040 ../src/Tutorial/IO.md:1050
+#: ../src/Tutorial/IO.md:1060 ../src/Tutorial/Predicates.md:428
+#: ../src/Tutorial/Predicates.md:462 ../src/Tutorial/Predicates.md:926
+#: ../src/Tutorial/Predicates.md:1337 ../src/Tutorial/Prim.md:124
+#: ../src/Tutorial/Prim.md:312 ../src/Tutorial/Prim.md:527
+#: ../src/Tutorial/Prim.md:550 ../src/Tutorial/Prim.md:574
+#: ../src/Tutorial/Prim.md:584 ../src/Tutorial/Prim.md:596
+#: ../src/Tutorial/Prim.md:611 ../src/Tutorial/Prim.md:622
+#: ../src/Tutorial/Prim.md:638 ../src/Tutorial/Prim.md:647
+#: ../src/Tutorial/Prim.md:703 ../src/Tutorial/Prim.md:1129
+#: ../src/Tutorial/Traverse.md:38 ../src/Tutorial/Traverse.md:123
+#: ../src/Tutorial/Traverse.md:158 ../src/Tutorial/Traverse.md:421
+#: ../src/Tutorial/Traverse.md:737 ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid "repl"
 msgstr "repl"
@@ -379,7 +379,7 @@ msgid "Exercises part 1"
 msgstr "练习第 1 部分"
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:623
 #: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
 #: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
 #: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
@@ -390,7 +390,7 @@ msgid "Exercises part 2"
 msgstr "练习第 2 部分"
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:843
 #: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
 #: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
 #: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
@@ -401,7 +401,7 @@ msgid "Exercises part 3"
 msgstr "练习第 3 部分"
 
 #. type: Title ##
-#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:872
 #: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
 #: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
 #: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
@@ -412,7 +412,7 @@ msgid "Conclusion"
 msgstr "结论"
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:910
 #: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
 #: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
 #: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
@@ -887,11 +887,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:229
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "The big advantage of tail recursive functions is, that they\n"
+#| "can be easily converted to efficient, imperative loops by the Idris\n"
+#| "compiler, an are thus *stack safe*: Recursive function calls\n"
+#| "are *not* added to the call stack, thus avoiding the dreaded\n"
+#| "stack overflow errors.\n"
 msgid ""
 "The big advantage of tail recursive functions is, that they\n"
 "can be easily converted to efficient, imperative loops by the Idris\n"
-"compiler, an are thus *stack safe*: Recursive function calls\n"
+"compiler, and are thus *stack safe*: Recursive function calls\n"
 "are *not* added to the call stack, thus avoiding the dreaded\n"
 "stack overflow errors.\n"
 msgstr "尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 *堆栈安全* 的：递归函数调用 *不会* 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
@@ -1814,11 +1820,20 @@ msgstr "Foldable 接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:707
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "When looking back at all the exercises we solved\n"
+#| "in the section about recursion, most tail recursive functions\n"
+#| "on lists where of the following pattern: Iterate\n"
+#| "over all list elements from head to tail while\n"
+#| "passing along some state for accumulating intermediate\n"
+#| "results. At the end of the list,\n"
+#| "return the final state or convert it with an\n"
+#| "additional function call.\n"
 msgid ""
 "When looking back at all the exercises we solved\n"
 "in the section about recursion, most tail recursive functions\n"
-"on lists where of the following pattern: Iterate\n"
+"on lists were of the following pattern: Iterate\n"
 "over all list elements from head to tail while\n"
 "passing along some state for accumulating intermediate\n"
 "results. At the end of the list,\n"
@@ -2027,27 +2042,22 @@ msgid ""
 "on the first argument, so the second will only be evaluated if\n"
 "the first argument is `True` and the second is returned as the function's\n"
 "(strict) result.\n"
-msgstr ""
-"如您所见，第二个参数包装在 `Lazy` 类型构造函数中。这是一个内置类型，"
-"大部分时间细节由 Idris 自动处理。例如，当将参数传递给 `(&&)` "
-"时，我们不必手动将值包装在某些数据构造函数中。惰性函数参数仅在函数实现中为 "
-"*required* "
-"时才被评估，例如，因为它正在被模式匹配，或者它作为严格参数传递给另一个函数。"
-"在 `(&&)` 的实现中，模式匹配发生在第一个参数上，因此只有当第一个参数是 `True`"
-" 并且第二个参数作为函数返回时才会计算第二个参数（严格）结果。\n"
+msgstr "如您所见，第二个参数包装在 `Lazy` 类型构造函数中。这是一个内置类型，大部分时间细节由 Idris 自动处理。例如，当将参数传递给 `(&&)` 时，我们不必手动将值包装在某些数据构造函数中。惰性函数参数仅在函数实现中为 *required* 时才被评估，例如，因为它正在被模式匹配，或者它作为严格参数传递给另一个函数。在 `(&&)` 的实现中，模式匹配发生在第一个参数上，因此只有当第一个参数是 `True` 并且第二个参数作为函数返回时才会计算第二个参数（严格）结果。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:821
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "There are two utility functions for working with lazy evaluation:\n"
+#| "Function `delay` wraps a value in the `Lazy` data type. Note, that\n"
+#| "the argument of `lazy` is strict, so the following might take\n"
+#| "several seconds to print its result:\n"
 msgid ""
 "There are two utility functions for working with lazy evaluation:\n"
 "Function `delay` wraps a value in the `Lazy` data type. Note, that\n"
-"the argument of `lazy` is strict, so the following might take\n"
+"the argument of `delay` is strict, so the following might take\n"
 "several seconds to print its result:\n"
-msgstr ""
-"有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` "
-"数据类型中。请注意，`lazy` "
-"的参数是严格的，因此以下可能需要几秒钟才能打印其结果：\n"
+msgstr "有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` 数据类型中。请注意，`lazy` 的参数是严格的，因此以下可能需要几秒钟才能打印其结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:822
@@ -2083,11 +2093,7 @@ msgid ""
 "folding over the remainder of the list is passed as an argument\n"
 "to the accumulator (instead of the result of invoking the accumulator\n"
 "being used in the recursive call):\n"
-msgstr ""
-"我们现在将学习如何利用 `rightFold` "
-"和惰性求值来实现折叠，它可以在迭代早期中断迭代。请注意，在 `rightFold` 的实现"
-"中，折叠列表剩余部分的结果作为参数传递给累加器（而不是在递归调用中调用累加器"
-"的结果）：\n"
+msgstr "我们现在将学习如何利用 `rightFold` 和惰性求值来实现折叠，它可以在迭代早期中断迭代。请注意，在 `rightFold` 的实现中，折叠列表剩余部分的结果作为参数传递给累加器（而不是在递归调用中调用累加器的结果）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:839
@@ -2102,8 +2108,7 @@ msgid ""
 "If the second argument of `acc` were lazily evaluated, it would be possible\n"
 "to abort the computation of `acc`'s result without having to iterate\n"
 "till the end of the list:\n"
-msgstr "如果 `acc` 的第二个参数被延迟求值，则可以中止 `acc` "
-"的结果的计算，而不必迭代到列表末尾：\n"
+msgstr "如果 `acc` 的第二个参数被延迟求值，则可以中止 `acc` 的结果的计算，而不必迭代到列表末尾：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:847
@@ -2127,10 +2132,7 @@ msgid ""
 "doesn't handle the curried invocation of `rightFold` correctly, though, so we\n"
 "either must pass on the list argument of `foldHead` explicitly, or compose\n"
 "the curried function with `force` to get the types right.)\n"
-msgstr ""
-"请注意，Idris 在大多数情况下是如何处理懒惰的。 （但是，它不能正确处理 "
-"`rightFold` 的柯里化调用，因此我们要么必须显式传递 `foldHead` 的列表参数，"
-"要么使用 `force` 组合柯里化函数获得正确的类型。）\n"
+msgstr "请注意，Idris 在大多数情况下是如何处理懒惰的。 （但是，它不能正确处理 `rightFold` 的柯里化调用，因此我们要么必须显式传递 `foldHead` 的列表参数，要么使用 `force` 组合柯里化函数获得正确的类型。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:865
@@ -2142,11 +2144,7 @@ msgid ""
 "code. Please note, that this is for debugging purposes only and should\n"
 "never be left lying around in production code, as, strictly speaking,\n"
 "printing stuff to the console breaks referential transparency.\n"
-msgstr ""
-"为了验证它是否正常工作，我们需要一个来自模块 `Debug.Trace` 的名为 `trace` 的"
-"调试实用程序。这个“函数”允许我们在纯代码中的某些点将调试消息打印到控制台。请"
-"注意，这仅用于调试目的，绝不应留在生产代码中，因为严格来说，将内容打印到控制"
-"台会破坏引用透明度。\n"
+msgstr "为了验证它是否正常工作，我们需要一个来自模块 `Debug.Trace` 的名为 `trace` 的调试实用程序。这个“函数”允许我们在纯代码中的某些点将调试消息打印到控制台。请注意，这仅用于调试目的，绝不应留在生产代码中，因为严格来说，将内容打印到控制台会破坏引用透明度。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:868
@@ -2154,8 +2152,7 @@ msgstr ""
 msgid ""
 "Here is an adjusted version of `foldHead`, which prints \"folded\" to\n"
 "standard output every time utility function `first` is being invoked:\n"
-msgstr "这是 `foldHead` 的调整版本，每次调用实用函数 `first` "
-"时都会将“折叠”打印到标准输出：\n"
+msgstr "这是 `foldHead` 的调整版本，每次调用实用函数 `first` 时都会将“折叠”打印到标准输出：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:869
@@ -2178,10 +2175,7 @@ msgid ""
 "In order to test this at the REPL, we need to know that `trace` uses `unsafePerformIO`\n"
 "internally and therefore will not reduce during evaluation. We have to\n"
 "resort to the `:exec` command to see this in action at the REPL:\n"
-msgstr ""
-"为了在 REPL 上进行测试，我们需要知道 `trace` 在内部使用 "
-"`unsafePerformIO`，因此在求值期间不会缩减「译者注：不会执行副作用」。"
-"我们必须求助于 `:exec` 命令才能在 REPL 中看到这一点：\n"
+msgstr "为了在 REPL 上进行测试，我们需要知道 `trace` 在内部使用 `unsafePerformIO`，因此在求值期间不会缩减「译者注：不会执行副作用」。我们必须求助于 `:exec` 命令才能在 REPL 中看到这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:880
@@ -2201,8 +2195,7 @@ msgstr ""
 msgid ""
 "As you can see, although the list holds ten elements, `first` is only called\n"
 "once resulting in a considerable increase of efficiency.\n"
-msgstr "如您所见，虽然列表包含十个元素，但 `first` 仅被调用一次，从而大大提高了效率。"
-"\n"
+msgstr "如您所见，虽然列表包含十个元素，但 `first` 仅被调用一次，从而大大提高了效率。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:891
@@ -2234,10 +2227,7 @@ msgid ""
 "it is still being evaluated before evaluating the body of `first`, because\n"
 "Idris - unlike Haskell! - defaults to use strict semantics. Here's how this\n"
 "behaves at the REPL:\n"
-msgstr ""
-"虽然我们在 `first` 的实现中没有使用第二个参数，但它仍然在评估 `first` "
-"的主体之前被评估，因为 Idris - 不像 Haskell！ - 默认使用严格的语义。"
-"以下是它在 REPL 中的行为方式：\n"
+msgstr "虽然我们在 `first` 的实现中没有使用第二个参数，但它仍然在评估 `first` 的主体之前被评估，因为 Idris - 不像 Haskell！ - 默认使用严格的语义。以下是它在 REPL 中的行为方式：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:904
@@ -2279,11 +2269,7 @@ msgid ""
 "not too many iterations, consider implementing your function\n"
 "tail recursively with an explicit pattern match. Your code will be\n"
 "slightly more verbose, but with the guaranteed benefit of stack safety.\n"
-msgstr ""
-"虽然这种技术有时会产生非常优雅的代码，但请始终记住 `rightFold` 在一般情况下不"
-"是堆栈安全的。因此，除非您的累加器不能保证在没有太多迭代后返回结果，否则请考"
-"虑使用显式模式匹配的尾递归地实现您的函数。您的代码会稍微冗长一些，但可以保证"
-"堆栈安全。\n"
+msgstr "虽然这种技术有时会产生非常优雅的代码，但请始终记住 `rightFold` 在一般情况下不是堆栈安全的。因此，除非您的累加器不能保证在没有太多迭代后返回结果，否则请考虑使用显式模式匹配的尾递归地实现您的函数。您的代码会稍微冗长一些，但可以保证堆栈安全。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:926
@@ -2301,11 +2287,7 @@ msgid ""
 "of *combining values* after starting from an *initial value* lies\n"
 "at the heart of an interface we've already learned about: `Monoid`.\n"
 "It therefore makes sense to fold a list over a monoid:\n"
-msgstr ""
-"左右折叠有一个共同的模式：在这两种情况下，我们从初始 *state* "
-"值开始，并使用累加器函数将当前状态与当前元素相结合。从 *初始值* 开始后 "
-"*组合值* 的原理是我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺"
-"半群上是有意义的：\n"
+msgstr "左右折叠有一个共同的模式：在这两种情况下，我们从初始 *state* 值开始，并使用累加器函数将当前状态与当前元素相结合。从 *初始值* 开始后 *组合值* 的原理是我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺半群上是有意义的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:935
@@ -2327,11 +2309,7 @@ msgid ""
 "in the chapter about [interfaces](Interfaces.md), there are *many*\n"
 "monoids in functional programming, and therefore, `foldMapList` is\n"
 "an incredibly useful function.\n"
-msgstr ""
-"请注意，使用 `foldMapList`，我们不再需要传递累加器函数。"
-"我们所需要的只是将元素类型转换为具有 `Monoid` 实现的类型。正如我们在关于 "
-"[接口](Interfaces.md) 的章节中已经看到的，在函数式编程中有 *很多* "
-"幺半群，因此，`foldMapList` 是一个非常有用的函数。\n"
+msgstr "请注意，使用 `foldMapList`，我们不再需要传递累加器函数。我们所需要的只是将元素类型转换为具有 `Monoid` 实现的类型。正如我们在关于 [接口](Interfaces.md) 的章节中已经看到的，在函数式编程中有 *很多* 幺半群，因此，`foldMapList` 是一个非常有用的函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:950
@@ -2340,8 +2318,7 @@ msgid ""
 "We could make this even shorter: If the elements in our list already\n"
 "are of a type with a monoid implementation, we don't even need a\n"
 "conversion function to collapse the list:\n"
-msgstr "我们可以让这个更短：如果我们列表中的元素已经是具有 monoid "
-"实现的类型，我们甚至不需要转换函数来折叠列表：\n"
+msgstr "我们可以让这个更短：如果我们列表中的元素已经是具有 monoid 实现的类型，我们甚至不需要转换函数来折叠列表：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:951
@@ -2376,15 +2353,7 @@ msgid ""
 "is called `Foldable`, and is available from the `Prelude`. When you\n"
 "look at its definition in the REPL (`:doc Foldable`), you'll see that\n"
 "it consists of six essential functions:\n"
-msgstr ""
-"最后，我们在这里查看一大堆实用函数，它们都以某种方式处理将值列表折叠（或折叠"
-"）为单个结果的概念。但是所有这些折叠函数在处理向量、非空列表、玫瑰树，甚至是"
-"单值容器（如 `Maybe`、`e` 或`Identity`。哎呀，为了完整起见，"
-"它们甚至在使用诸如 `Control.Applicative.Const e` 之类的零值容器时很有用！而且"
-"由于这些功能有很多，我们最好找出其中的一组基本功能，我们可以根据这些功能实现"
-"所有其他功能，并将所有功能封装在一个接口中。此接口称为 `Foldable`，可从 "
-"`Prelude` 获得。当你在 REPL (`:doc Foldable`) "
-"中查看它的定义时，你会发现它包含六个基本函数：\n"
+msgstr "最后，我们在这里查看一大堆实用函数，它们都以某种方式处理将值列表折叠（或折叠）为单个结果的概念。但是所有这些折叠函数在处理向量、非空列表、玫瑰树，甚至是单值容器（如 `Maybe`、`e` 或`Identity`。哎呀，为了完整起见，它们甚至在使用诸如 `Control.Applicative.Const e` 之类的零值容器时很有用！而且由于这些功能有很多，我们最好找出其中的一组基本功能，我们可以根据这些功能实现所有其他功能，并将所有功能封装在一个接口中。此接口称为 `Foldable`，可从 `Prelude` 获得。当你在 REPL (`:doc Foldable`) 中查看它的定义时，你会发现它包含六个基本函数：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Folds.md:978
@@ -2403,7 +2372,9 @@ msgstr "`null`，用于测试容器是否为空"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Folds.md:978
-msgid "`foldM`, for effectful folds in a monad"
+#, fuzzy
+#| msgid "`foldM`, for effectful folds in a monad"
+msgid "`foldlM`, for effectful folds in a monad"
 msgstr "`foldM`，用于单子中的副作用折叠"
 
 #. type: Bullet: '* '
@@ -2428,12 +2399,7 @@ msgid ""
 "just makes no sense, as this is a non-tail recursive function\n"
 "running in linear time complexity, while a hand-written implementation\n"
 "can just return its argument without any modifications.\n"
-msgstr ""
-"对于 `Foldable` 的最小实现，仅实现 `foldr` 就足够了。但是，请考虑手动实现所有"
-"六个函数，因为对容器类型的折叠通常是性能关键操作，并且应相应地优化它们中的每"
-"一个。例如，根据 `List` 的 `foldr` 来实现 `toList` 是没有意义的，因为这是一个"
-"以线性时间复杂度运行的非尾递归函数，而一个手写的实现可以只返回它的参数而不做"
-"任何修改。\n"
+msgstr "对于 `Foldable` 的最小实现，仅实现 `foldr` 就足够了。但是，请考虑手动实现所有六个函数，因为对容器类型的折叠通常是性能关键操作，并且应相应地优化它们中的每一个。例如，根据 `List` 的 `foldr` 来实现 `toList` 是没有意义的，因为这是一个以线性时间复杂度运行的非尾递归函数，而一个手写的实现可以只返回它的参数而不做任何修改。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:993
@@ -2442,8 +2408,7 @@ msgid ""
 "In these exercises, you are going to implement `Foldable`\n"
 "for different data types. Make sure to try and manually\n"
 "implement all six functions of the interface.\n"
-msgstr "在这些练习中，您将为不同的数据类型实现 "
-"`Foldable`。确保尝试手动实现接口中的所有六个函数。\n"
+msgstr "在这些练习中，您将为不同的数据类型实现 `Foldable`。确保尝试手动实现接口中的所有六个函数。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Folds.md:995
@@ -2479,8 +2444,9 @@ msgstr ""
 msgid ""
 "Implement `Foldable` for `List01`. Use tail recursion in the implementations "
 "of `toList`, `foldMap`, and `foldl`."
-msgstr "为 `List01` 实现 `Foldable`。在 `toList`、`foldMap` 和 `foldl` "
-"的实现中使用尾递归。"
+msgstr ""
+"为 `List01` 实现 `Foldable`。在 `toList`、`foldMap` 和 `foldl` 的实现中使用尾"
+"递归。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1019 ../src/Tutorial/IO.md:753
@@ -2503,9 +2469,8 @@ msgid ""
 "checker, and you are not allowed to cheat by using `assert_smaller` or "
 "`assert_total`."
 msgstr ""
-"为 `Tree` 实现 "
-"`Foldable`。在你的实现中不需要使用尾递归，但你的函数必须被完全性检查器接受，"
-"并且你不能使用 `assert_smaller` 或 `assert_total` 作弊。"
+"为 `Tree` 实现 `Foldable`。在你的实现中不需要使用尾递归，但你的函数必须被完全"
+"性检查器接受，并且你不能使用 `assert_smaller` 或 `assert_total` 作弊。"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1034
@@ -2525,9 +2490,9 @@ msgid ""
 "composition of two foldable container types are again foldable container "
 "types. Proof this by implementing `Foldable` for `Comp` and `Product`:"
 msgstr ""
-"与 `Functor` 和 `Applicative` 一样，`Foldable` 组合： "
-"两种可折叠容器类型的乘积和组合又是可折叠容器类型。通过为 `Comp` 和 `Product` "
-"实现 `Foldable` 来证明这一点："
+"与 `Functor` 和 `Applicative` 一样，`Foldable` 组合： 两种可折叠容器类型的乘"
+"积和组合又是可折叠容器类型。通过为 `Comp` 和 `Product` 实现 `Foldable` 来证明"
+"这一点："
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1040 ../src/Tutorial/Traverse.md:308
@@ -2560,10 +2525,7 @@ msgid ""
 "functional programming in general. Wrapping one's head\n"
 "around recursion takes time and experience. Therefore - as\n"
 "usual - try to solve as many exercises as you can.\n"
-msgstr ""
-"我们在本章中学到了很多关于递归、完全性检查和折叠的知识，所有这些都是纯函数式"
-"编程中的重要概念。围绕递归进行思考需要时间和经验。因此 - 像往常一样 - "
-"尝试尽可能多地解决练习。\n"
+msgstr "我们在本章中学到了很多关于递归、完全性检查和折叠的知识，所有这些都是纯函数式编程中的重要概念。围绕递归进行思考需要时间和经验。因此 - 像往常一样 - 尝试尽可能多地解决练习。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:1062

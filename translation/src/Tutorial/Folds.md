@@ -138,7 +138,11 @@ replicateListTR n v = go Nil n
         go xs (S k) = go (v :: xs) k
 ```
 
-尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 *堆栈安全* 的：递归函数调用 *不会* 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。
+The big advantage of tail recursive functions is, that they
+can be easily converted to efficient, imperative loops by the Idris
+compiler, and are thus *stack safe*: Recursive function calls
+are *not* added to the call stack, thus avoiding the dreaded
+stack overflow errors.
 
 ```idris
 main1 : IO ()
@@ -453,19 +457,18 @@ Show a => Show (Tree a) where
 
 ## Foldable 接口
 
-当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返回最终状态或使用附加函数调用对其进行转换。
+When looking back at all the exercises we solved
+in the section about recursion, most tail recursive functions
+on lists were of the following pattern: Iterate
+over all list elements from head to tail while
+passing along some state for accumulating intermediate
+results. At the end of the list,
+return the final state or convert it with an
+additional function call.
 
 ### 左折叠
 
-This is functional programming, and we'd like to abstract
-over such reoccurring patterns. In order to tail recursively
-iterate over a list, all we need is an accumulator function
-and some initial state. But what should be the type of
-the accumulator? Well, it combines the current state
-with the list's next element and returns an updated
-state: `state -> elem -> state`. Surely, we can come
-up with a higher-order function to encapsulate this
-behavior:
+这是函数式编程，我们想抽象出这种重复出现的模式。为了对列表进行递归迭代，我们只需要一个累加器函数和一些初始状态。但是累加器的类型应该是什么？好吧，它将当前状态与列表的下一个元素组合并返回更新状态：`state -> elem -> state`。当然，我们可以提出一个高阶函数来封装这种行为：
 
 ```idris
 leftFold : (acc : state -> el -> state) -> (st : state) -> List el -> state
@@ -473,16 +476,9 @@ leftFold _   st []        = st
 leftFold acc st (x :: xs) = leftFold acc (acc st x) xs
 ```
 
-We call this function a *left fold*, as it iterates over
-the list from left to right (head to tail), collapsing (or
-*folding*) the list until just a single value remains.
-This new value might still be a list or other container type,
-but the original list has been consumed from head to tail.
-Note how `leftFold` is tail recursive, and therefore all
-functions implemented in terms of `leftFold` are
-tail recursive (and thus, stack safe!) as well.
+我们将此函数称为 *左折叠*，因为它从左到右（从头到尾）迭代列表，折叠（或 *folding*）列表直到只剩下一个值。这个新值可能仍然是一个列表或其他容器类型，但原来的列表已经从头到尾被消耗掉了。请注意 `leftFold` 是如何尾递归的，因此根据 `leftFold` 实现的所有函数也是尾递归的（因此，堆栈安全！）。
 
-Here are a few examples:
+这里有一些例子：
 
 ```idris
 sumLF : Num a => List a -> a
@@ -496,22 +492,11 @@ toSnocListLF : List a -> SnocList a
 toSnocListLF = leftFold (:<) Lin
 ```
 
-### Right Folds
+### 右折叠
 
-The example functions we implemented in terms of `leftFold` had
-to always completely traverse the whole list, as every single
-element was required to compute the result. This is not always
-necessary, however. For instance, if you look at `findList` from
-the exercises, we could abort iterating over the list as soon
-as our search was successful. It is *not* possible to implement
-this more efficient behavior in terms of `leftFold`: There,
-the result will only be returned when our pattern match reaches
-the `Nil` case.
+我们根据 `leftFold` 实现的示例函数必须始终完全遍历整个列表，因为需要每个元素来计算结果。然而，这并不总是必要的。例如，如果您查看练习中的 `findList`，我们可以在搜索成功后立即中止迭代列表。在 `leftFold` 方面，*不* 可能实现这种更有效的行为：在那里，只有当我们的模式匹配达到 `Nil` 情况时才会返回结果。
 
-Interestingly, there is another, non-tail recursive fold, which
-reflects the list structure more naturally, we can use for
-breaking out early from an iteration. We call this a
-*right fold*. Here is its implementation:
+有趣的是，还有另一种非尾递归折叠，它更自然地反映了列表结构，我们可以用于从迭代的早期突破。我们称之为 *右折叠*。这是它的实现：
 
 ```idris
 rightFold : (acc : el -> state -> state) -> state -> List el -> state
@@ -519,54 +504,31 @@ rightFold acc st []        = st
 rightFold acc st (x :: xs) = acc x (rightFold acc st xs)
 ```
 
-Now, it might not immediately be obvious how this differs from `leftFold`.
-In order to see this, we will have to talk about lazy evaluation
-first.
+现在，它与 `leftFold` 的区别可能不是很明显。为了看到这一点，我们必须先谈谈惰性求值。
 
-#### Lazy Evaluation in Idris
+#### Idris 中的惰性求值
 
-For some computations, it is not necessary to evaluate all function
-arguments in order to return a result. For instance, consider
-boolean operator `(&&)`: If the first argument evaluates to `False`,
-we already know that the result is `False` without even looking at
-the second argument. In such a case, we don't want to unnecessarily evaluate
-the second argument, as this might include a lengthy computation.
+对于某些计算，无需求值所有函数参数即可返回结果。例如，考虑布尔运算符 `(&&)`：如果第一个参数的计算结果为 `False`，我们甚至无需查看第二个参数就已经知道争论结果是 `False`。在这种情况下，我们不想也不需要地求值第二个参数，因为这可能包括冗长的计算。
 
-Consider the following REPL session:
+考虑以下 REPL 会话：
 
 ```repl
 Tutorial.Folds> False && (length [1..10000000000] > 100)
 False
 ```
 
-If the second argument were evaluated, this computation would most
-certainly blow up your computer's memory, or at least take a very long
-time to run to completion. However, in this case, the result `False` is
-printed immediately. If you look at the type of `(&&)`, you'll see
-the following:
+如果计算第二个参数，这个计算肯定会炸毁你的计算机内存，或者至少需要很长时间才能完成。但是，在这种情况下，会立即打印结果 `False`。如果查看 `(&&)` 的类型，您将看到以下内容：
 
 ```repl
 Tutorial.Folds> :t (&&)
 Prelude.&& : Bool -> Lazy Bool -> Bool
 ```
 
-As you can see, the second argument is wrapped in a `Lazy` type
-constructor. This is a built-in type, and the details are handled
-by Idris automatically most of the time. For instance, when passing
-arguments to `(&&)`, we don't have to manually wrap the values in
-some data constructor.
-A lazy function argument will only be evaluated at the moment it
-is *required* in the function's implementation, for instance,
-because it is being pattern matched on, or it is being passed
-as a strict argument to another function. In the implementation
-of `(&&)`, the pattern match happens
-on the first argument, so the second will only be evaluated if
-the first argument is `True` and the second is returned as the function's
-(strict) result.
+如您所见，第二个参数包装在 `Lazy` 类型构造函数中。这是一个内置类型，大部分时间细节由 Idris 自动处理。例如，当将参数传递给 `(&&)` 时，我们不必手动将值包装在某些数据构造函数中。惰性函数参数仅在函数实现中为 *required* 时才被评估，例如，因为它正在被模式匹配，或者它作为严格参数传递给另一个函数。在 `(&&)` 的实现中，模式匹配发生在第一个参数上，因此只有当第一个参数是 `True` 并且第二个参数作为函数返回时才会计算第二个参数（严格）结果。
 
 There are two utility functions for working with lazy evaluation:
 Function `delay` wraps a value in the `Lazy` data type. Note, that
-the argument of `lazy` is strict, so the following might take
+the argument of `delay` is strict, so the following might take
 several seconds to print its result:
 
 ```repl
@@ -574,25 +536,17 @@ Tutorial.Folds> False && (delay $ length [1..10000] > 100)
 False
 ```
 
-In addition, there is function `force`, which forces evaluation
-of a `Lazy` value.
+此外，还有一个函数 `force`，它强制对 `Lazy` 值进行求值。
 
-#### Lazy Evaluation and Right Folds
+#### 惰性求值和右折叠
 
-We will now learn how to make use of `rightFold` and lazy evaluation
-to implement folds, which can break out from iteration early.
-Note, that in the implementation of `rightFold` the result of
-folding over the remainder of the list is passed as an argument
-to the accumulator (instead of the result of invoking the accumulator
-being used in the recursive call):
+我们现在将学习如何利用 `rightFold` 和惰性求值来实现折叠，它可以在迭代早期中断迭代。请注意，在 `rightFold` 的实现中，折叠列表剩余部分的结果作为参数传递给累加器（而不是在递归调用中调用累加器的结果）：
 
 ```repl
 rightFold acc st (x :: xs) = acc x (rightFold acc st xs)
 ```
 
-If the second argument of `acc` were lazily evaluated, it would be possible
-to abort the computation of `acc`'s result without having to iterate
-till the end of the list:
+如果 `acc` 的第二个参数被延迟求值，则可以中止 `acc` 的结果的计算，而不必迭代到列表末尾：
 
 ```idris
 foldHead : List a -> Maybe a
@@ -601,20 +555,11 @@ foldHead = force . rightFold first Nothing
         first v _ = Just v
 ```
 
-Note, how Idris takes care of the bookkeeping of laziness most of the time. (It
-doesn't handle the curried invocation of `rightFold` correctly, though, so we
-either must pass on the list argument of `foldHead` explicitly, or compose
-the curried function with `force` to get the types right.)
+请注意，Idris 在大多数情况下是如何处理懒惰的。 （但是，它不能正确处理 `rightFold` 的柯里化调用，因此我们要么必须显式传递 `foldHead` 的列表参数，要么使用 `force` 组合柯里化函数获得正确的类型。）
 
-In order to verify that this works correctly, we need a debugging utility
-called `trace` from module `Debug.Trace`. This "function" allows us to
-print debugging messages to the console at certain points in our pure
-code. Please note, that this is for debugging purposes only and should
-never be left lying around in production code, as, strictly speaking,
-printing stuff to the console breaks referential transparency.
+为了验证它是否正常工作，我们需要一个来自模块 `Debug.Trace` 的名为 `trace` 的调试实用程序。这个“函数”允许我们在纯代码中的某些点将调试消息打印到控制台。请注意，这仅用于调试目的，绝不应留在生产代码中，因为严格来说，将内容打印到控制台会破坏引用透明度。
 
-Here is an adjusted version of `foldHead`, which prints "folded" to
-standard output every time utility function `first` is being invoked:
+这是 `foldHead` 的调整版本，每次调用实用函数 `first` 时都会将“折叠”打印到标准输出：
 
 ```idris
 foldHeadTraced : List a -> Maybe a
@@ -623,9 +568,7 @@ foldHeadTraced = force . rightFold first Nothing
         first v _ = trace "folded" (Just v)
 ```
 
-In order to test this at the REPL, we need to know that `trace` uses `unsafePerformIO`
-internally and therefore will not reduce during evaluation. We have to
-resort to the `:exec` command to see this in action at the REPL:
+为了在 REPL 上进行测试，我们需要知道 `trace` 在内部使用 `unsafePerformIO`，因此在求值期间不会缩减「译者注：不会执行副作用」。我们必须求助于 `:exec` 命令才能在 REPL 中看到这一点：
 
 ```repl
 Tutorial.Folds> :exec printLn $ foldHeadTraced [1..10]
@@ -633,11 +576,9 @@ folded
 Just 1
 ```
 
-As you can see, although the list holds ten elements, `first` is only called
-once resulting in a considerable increase of efficiency.
+如您所见，虽然列表包含十个元素，但 `first` 仅被调用一次，从而大大提高了效率。
 
-Let's see what happens, if we change the implementation of `first` to
-use strict evaluation:
+让我们看看会发生什么，如果我们将 `first` 的实现更改为使用严格求值：
 
 ```idris
 foldHeadTracedStrict : List a -> Maybe a
@@ -646,10 +587,7 @@ foldHeadTracedStrict = rightFold first Nothing
         first v _ = trace "folded" (Just v)
 ```
 
-Although we don't use the second argument in the implementation of `first`,
-it is still being evaluated before evaluating the body of `first`, because
-Idris - unlike Haskell! - defaults to use strict semantics. Here's how this
-behaves at the REPL:
+虽然我们在 `first` 的实现中没有使用第二个参数，但它仍然在评估 `first` 的主体之前被评估，因为 Idris - 不像 Haskell！ - 默认使用严格的语义。以下是它在 REPL 中的行为方式：
 
 ```repl
 Tutorial.Folds> :exec printLn $ foldHeadTracedStrict [1..10]
@@ -666,82 +604,44 @@ folded
 Just 1
 ```
 
-While this technique can sometimes lead to very elegant code, always
-remember that `rightFold` is not stack safe in the general case. So,
-unless your accumulator is not guaranteed to return a result after
-not too many iterations, consider implementing your function
-tail recursively with an explicit pattern match. Your code will be
-slightly more verbose, but with the guaranteed benefit of stack safety.
+虽然这种技术有时会产生非常优雅的代码，但请始终记住 `rightFold` 在一般情况下不是堆栈安全的。因此，除非您的累加器不能保证在没有太多迭代后返回结果，否则请考虑使用显式模式匹配的尾递归地实现您的函数。您的代码会稍微冗长一些，但可以保证堆栈安全。
 
-### Folds and Monoids
+### 折叠和幺半群
 
-Left and right folds share a common pattern: In both cases, we start
-with an initial *state* value and use an accumulator function for
-combining the current state with the current element. This principle
-of *combining values* after starting from an *initial value* lies
-at the heart of an interface we've already learned about: `Monoid`.
-It therefore makes sense to fold a list over a monoid:
+左右折叠有一个共同的模式：在这两种情况下，我们从初始 *state* 值开始，并使用累加器函数将当前状态与当前元素相结合。从 *初始值* 开始后 *组合值* 的原理是我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺半群上是有意义的：
 
 ```idris
 foldMapList : Monoid m => (a -> m) -> List a -> m
 foldMapList f = leftFold (\vm,va => vm <+> f va) neutral
 ```
 
-Note how, with `foldMapList`, we no longer need to pass an accumulator
-function. All we need is a conversion from the element type to
-a type with an implementation of `Monoid`. As we have already seen
-in the chapter about [interfaces](Interfaces.md), there are *many*
-monoids in functional programming, and therefore, `foldMapList` is
-an incredibly useful function.
+请注意，使用 `foldMapList`，我们不再需要传递累加器函数。我们所需要的只是将元素类型转换为具有 `Monoid` 实现的类型。正如我们在关于 [接口](Interfaces.md) 的章节中已经看到的，在函数式编程中有 *很多* 幺半群，因此，`foldMapList` 是一个非常有用的函数。
 
-We could make this even shorter: If the elements in our list already
-are of a type with a monoid implementation, we don't even need a
-conversion function to collapse the list:
+我们可以让这个更短：如果我们列表中的元素已经是具有 monoid 实现的类型，我们甚至不需要转换函数来折叠列表：
 
 ```idris
 concatList : Monoid m => List m -> m
 concatList = foldMapList id
 ```
 
-### Stop Using `List` for Everything
+### 停止对所有内容使用 `List`
 
-And here we are, finally, looking at a large pile of utility functions
-all dealing in some way with the concept of collapsing (or folding)
-a list of values into a single result. But all of these folding functions
-are just as useful when working with vectors, with non-empty lists, with
-rose trees, even with single-value containers like `Maybe`, `Either e`,
-or `Identity`. Heck, for the sake of completeness, they are even useful
-when working with zero-value containers like `Control.Applicative.Const e`!
-And since there are so many of these functions, we'd better look out for
-an essential set of them in terms of which we can implement all
-the others, and wrap up the whole bunch in an interface. This interface
-is called `Foldable`, and is available from the `Prelude`. When you
-look at its definition in the REPL (`:doc Foldable`), you'll see that
-it consists of six essential functions:
+最后，我们在这里查看一大堆实用函数，它们都以某种方式处理将值列表折叠（或折叠）为单个结果的概念。但是所有这些折叠函数在处理向量、非空列表、玫瑰树，甚至是单值容器（如 `Maybe`、`e` 或`Identity`。哎呀，为了完整起见，它们甚至在使用诸如 `Control.Applicative.Const e` 之类的零值容器时很有用！而且由于这些功能有很多，我们最好找出其中的一组基本功能，我们可以根据这些功能实现所有其他功能，并将所有功能封装在一个接口中。此接口称为 `Foldable`，可从 `Prelude` 获得。当你在 REPL (`:doc Foldable`) 中查看它的定义时，你会发现它包含六个基本函数：
 
-* `foldr`, for folds from the right
-* `foldl`, for folds from the left
-* `null`, for testing if the container is empty or not
-* `foldM`, for effectful folds in a monad
-* `toList`, for converting the container to a list of values
-* `foldMap`, for folding over a monoid
+* `foldr`，用于从右侧折叠
+* `foldl`，用于从左侧折叠
+* `null`，用于测试容器是否为空
+* `foldlM`, for effectful folds in a monad
+* `toList`，用于将容器转换为值列表
+* `foldMap`，用于折叠一个幺半群
 
-For a minimal implementation of `Foldable`, it is sufficient to only
-implement `foldr`. However, consider implementing all six functions
-manually, because folds over container types are often performance
-critical operations, and each of them should be optimized accordingly.
-For instance, implementing `toList` in terms of `foldr` for `List`
-just makes no sense, as this is a non-tail recursive function
-running in linear time complexity, while a hand-written implementation
-can just return its argument without any modifications.
+对于 `Foldable` 的最小实现，仅实现 `foldr` 就足够了。但是，请考虑手动实现所有六个函数，因为对容器类型的折叠通常是性能关键操作，并且应相应地优化它们中的每一个。例如，根据 `List` 的 `foldr` 来实现 `toList` 是没有意义的，因为这是一个以线性时间复杂度运行的非尾递归函数，而一个手写的实现可以只返回它的参数而不做任何修改。
 
 ### 练习第 3 部分
 
-In these exercises, you are going to implement `Foldable`
-for different data types. Make sure to try and manually
-implement all six functions of the interface.
+在这些练习中，您将为不同的数据类型实现 `Foldable`。确保尝试手动实现接口中的所有六个函数。
 
-1. Implement `Foldable` for `Crud i`:
+1. 为 `Crud i` 实现 `Foldable`：
 
    ```idris
    data Crud : (i : Type) -> (a : Type) -> Type where
@@ -751,7 +651,7 @@ implement all six functions of the interface.
      Delete : (id : i) -> Crud i a
    ```
 
-2. Implement `Foldable` for `Response e i`:
+2. 为 `Response e i` 实现 `Foldable`：
 
    ```idris
    data Response : (e, i, a : Type) -> Type where
@@ -762,8 +662,7 @@ implement all six functions of the interface.
      Error   : (err : e) -> Response e i a
    ```
 
-3. Implement `Foldable` for `List01`. Use tail recursion in the
-   implementations of `toList`, `foldMap`, and `foldl`.
+3. 为 `List01` 实现 `Foldable`。在 `toList`、`foldMap` 和 `foldl` 的实现中使用尾递归。
 
    ```idris
    data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -771,18 +670,14 @@ implement all six functions of the interface.
      (::) : a -> List01 False a -> List01 ne a
    ```
 
-4. Implement `Foldable` for `Tree`. There is no need to use tail recursion
-   in your implementations, but your functions must be accepted by the
-   totality checker, and you are not allowed to cheat by using
-   `assert_smaller` or `assert_total`.
+4. 为 `Tree` 实现 `Foldable`。在你的实现中不需要使用尾递归，但你的函数必须被完全性检查器接受，并且你不能使用
+   `assert_smaller` 或 `assert_total` 作弊。
 
-   Hint: You can test the correct behavior of your implementations
-   by running the same folds on the result of `treeToVect` and
-   verify that the outcome is the same.
+   提示：您可以测试实现的正确行为
+   通过对 `treeToVect` 的结果运行相同的折叠并且验证结果是否相同。
 
-5. Like `Functor` and `Applicative`, `Foldable` composes: The product and
-   composition of two foldable container types are again foldable container
-   types. Proof this by implementing `Foldable` for `Comp` and `Product`:
+5. 与 `Functor` 和 `Applicative` 一样，`Foldable` 组合：
+   两种可折叠容器类型的乘积和组合又是可折叠容器类型。通过为 `Comp` 和 `Product` 实现 `Foldable` 来证明这一点：
 
    ```idris
    record Comp (f,g : Type -> Type) (a : Type) where
@@ -797,15 +692,9 @@ implement all six functions of the interface.
 
 ## 结论
 
-We learned a lot about recursion, totality checking, and folds
-in this chapter, all of which are important concepts in pure
-functional programming in general. Wrapping one's head
-around recursion takes time and experience. Therefore - as
-usual - try to solve as many exercises as you can.
+我们在本章中学到了很多关于递归、完全性检查和折叠的知识，所有这些都是纯函数式编程中的重要概念。围绕递归进行思考需要时间和经验。因此 - 像往常一样 - 尝试尽可能多地解决练习。
 
-In the next chapter, we are taking the concept of iterating
-over container types one step further and look at
-effectful data traversals.
+在下一章中，我们将迭代容器类型的概念更进一步，并研究有效的数据遍历。
 
 <!-- vi: filetype=idris2
 -->

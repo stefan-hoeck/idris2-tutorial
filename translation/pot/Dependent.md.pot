@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-03 13:28+0800\n"
+"POT-Creation-Date: 2022-08-17 13:30+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,16 +55,16 @@ msgstr ""
 #: ../src/Tutorial/Dependent.md:388 ../src/Tutorial/Dependent.md:396
 #: ../src/Tutorial/Dependent.md:404 ../src/Tutorial/Dependent.md:421
 #: ../src/Tutorial/Dependent.md:429 ../src/Tutorial/Dependent.md:448
-#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:507
-#: ../src/Tutorial/Dependent.md:517 ../src/Tutorial/Dependent.md:531
-#: ../src/Tutorial/Dependent.md:564 ../src/Tutorial/Dependent.md:579
-#: ../src/Tutorial/Dependent.md:600 ../src/Tutorial/Dependent.md:607
-#: ../src/Tutorial/Dependent.md:617 ../src/Tutorial/Dependent.md:690
-#: ../src/Tutorial/Dependent.md:705 ../src/Tutorial/Dependent.md:727
-#: ../src/Tutorial/Dependent.md:748 ../src/Tutorial/Dependent.md:789
-#: ../src/Tutorial/Dependent.md:797 ../src/Tutorial/Dependent.md:806
-#: ../src/Tutorial/Dependent.md:820 ../src/Tutorial/Dependent.md:836
-#: ../src/Tutorial/Dependent.md:846 ../src/Tutorial/DPair.md:19
+#: ../src/Tutorial/Dependent.md:465 ../src/Tutorial/Dependent.md:508
+#: ../src/Tutorial/Dependent.md:518 ../src/Tutorial/Dependent.md:532
+#: ../src/Tutorial/Dependent.md:565 ../src/Tutorial/Dependent.md:580
+#: ../src/Tutorial/Dependent.md:601 ../src/Tutorial/Dependent.md:608
+#: ../src/Tutorial/Dependent.md:618 ../src/Tutorial/Dependent.md:691
+#: ../src/Tutorial/Dependent.md:706 ../src/Tutorial/Dependent.md:728
+#: ../src/Tutorial/Dependent.md:749 ../src/Tutorial/Dependent.md:790
+#: ../src/Tutorial/Dependent.md:798 ../src/Tutorial/Dependent.md:807
+#: ../src/Tutorial/Dependent.md:821 ../src/Tutorial/Dependent.md:837
+#: ../src/Tutorial/Dependent.md:847 ../src/Tutorial/DPair.md:19
 #: ../src/Tutorial/DPair.md:47 ../src/Tutorial/DPair.md:76
 #: ../src/Tutorial/DPair.md:93 ../src/Tutorial/DPair.md:116
 #: ../src/Tutorial/DPair.md:132 ../src/Tutorial/DPair.md:148
@@ -302,65 +302,65 @@ msgstr ""
 #: ../src/Tutorial/Dependent.md:197 ../src/Tutorial/Dependent.md:204
 #: ../src/Tutorial/Dependent.md:239 ../src/Tutorial/Dependent.md:245
 #: ../src/Tutorial/Dependent.md:309 ../src/Tutorial/Dependent.md:346
-#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:631
-#: ../src/Tutorial/Dependent.md:866 ../src/Tutorial/DPair.md:66
-#: ../src/Tutorial/DPair.md:234 ../src/Tutorial/DPair.md:713
-#: ../src/Tutorial/Eq.md:74 ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153
-#: ../src/Tutorial/Eq.md:397 ../src/Tutorial/Eq.md:404
-#: ../src/Tutorial/Eq.md:436 ../src/Tutorial/Eq.md:505
-#: ../src/Tutorial/Eq.md:518 ../src/Tutorial/Eq.md:679
-#: ../src/Tutorial/Eq.md:778 ../src/Tutorial/Eq.md:984
-#: ../src/Tutorial/Eq.md:1014 ../src/Tutorial/Folds.md:198
-#: ../src/Tutorial/Folds.md:787 ../src/Tutorial/Folds.md:798
-#: ../src/Tutorial/Folds.md:822 ../src/Tutorial/Folds.md:839
-#: ../src/Tutorial/Folds.md:880 ../src/Tutorial/Folds.md:904
-#: ../src/Tutorial/Functions1.md:37 ../src/Tutorial/Functions1.md:143
-#: ../src/Tutorial/Functions1.md:165 ../src/Tutorial/Functions1.md:204
-#: ../src/Tutorial/Functions1.md:228 ../src/Tutorial/Functions1.md:253
-#: ../src/Tutorial/Functions1.md:261 ../src/Tutorial/Functions1.md:312
-#: ../src/Tutorial/Functions1.md:333 ../src/Tutorial/Functions1.md:358
-#: ../src/Tutorial/Functions1.md:366 ../src/Tutorial/Functions1.md:378
-#: ../src/Tutorial/Functions1.md:488 ../src/Tutorial/Functions1.md:519
-#: ../src/Tutorial/Functions1.md:568 ../src/Tutorial/Functions2.md:42
-#: ../src/Tutorial/Functions2.md:63 ../src/Tutorial/Functions2.md:74
-#: ../src/Tutorial/Functions2.md:114 ../src/Tutorial/Functions2.md:528
-#: ../src/Tutorial/Functions2.md:541 ../src/Tutorial/Functions2.md:553
-#: ../src/Tutorial/Functions2.md:560 ../src/Tutorial/Functions2.md:567
-#: ../src/Tutorial/Functions2.md:719 ../src/Tutorial/Functions2.md:726
-#: ../src/Tutorial/Functions2.md:735 ../src/Tutorial/Functions2.md:755
-#: ../src/Tutorial/Functions2.md:763 ../src/Tutorial/Functions2.md:787
-#: ../src/Tutorial/Functions2.md:811 ../src/Tutorial/Functions2.md:819
-#: ../src/Tutorial/Functions2.md:835 ../src/Tutorial/Functions2.md:848
-#: ../src/Tutorial/Functions2.md:899 ../src/Tutorial/Functor.md:187
-#: ../src/Tutorial/Functor.md:201 ../src/Tutorial/Functor.md:216
-#: ../src/Tutorial/Functor.md:610 ../src/Tutorial/Functor.md:801
-#: ../src/Tutorial/Functor.md:903 ../src/Tutorial/Functor.md:1001
-#: ../src/Tutorial/Functor.md:1100 ../src/Tutorial/Functor.md:1167
-#: ../src/Tutorial/Functor.md:1219 ../src/Tutorial/Interfaces.md:36
-#: ../src/Tutorial/Interfaces.md:140 ../src/Tutorial/Interfaces.md:505
-#: ../src/Tutorial/Intro.md:122 ../src/Tutorial/Intro.md:134
-#: ../src/Tutorial/Intro.md:148 ../src/Tutorial/Intro.md:158
-#: ../src/Tutorial/Intro.md:167 ../src/Tutorial/Intro.md:227
-#: ../src/Tutorial/Intro.md:270 ../src/Tutorial/Intro.md:279
-#: ../src/Tutorial/Intro.md:300 ../src/Tutorial/Intro.md:326
-#: ../src/Tutorial/Intro.md:337 ../src/Tutorial/Intro.md:349
-#: ../src/Tutorial/IO.md:33 ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433
-#: ../src/Tutorial/IO.md:442 ../src/Tutorial/IO.md:539
-#: ../src/Tutorial/IO.md:621 ../src/Tutorial/IO.md:634
-#: ../src/Tutorial/IO.md:1020 ../src/Tutorial/IO.md:1040
-#: ../src/Tutorial/IO.md:1050 ../src/Tutorial/IO.md:1060
-#: ../src/Tutorial/Predicates.md:428 ../src/Tutorial/Predicates.md:462
-#: ../src/Tutorial/Predicates.md:926 ../src/Tutorial/Predicates.md:1337
-#: ../src/Tutorial/Prim.md:124 ../src/Tutorial/Prim.md:312
-#: ../src/Tutorial/Prim.md:527 ../src/Tutorial/Prim.md:550
-#: ../src/Tutorial/Prim.md:574 ../src/Tutorial/Prim.md:584
-#: ../src/Tutorial/Prim.md:596 ../src/Tutorial/Prim.md:611
-#: ../src/Tutorial/Prim.md:622 ../src/Tutorial/Prim.md:638
-#: ../src/Tutorial/Prim.md:647 ../src/Tutorial/Prim.md:703
-#: ../src/Tutorial/Prim.md:1129 ../src/Tutorial/Traverse.md:38
-#: ../src/Tutorial/Traverse.md:123 ../src/Tutorial/Traverse.md:158
-#: ../src/Tutorial/Traverse.md:421 ../src/Tutorial/Traverse.md:737
-#: ../src/Tutorial/Traverse.md:997
+#: ../src/Tutorial/Dependent.md:364 ../src/Tutorial/Dependent.md:499
+#: ../src/Tutorial/Dependent.md:632 ../src/Tutorial/Dependent.md:867
+#: ../src/Tutorial/DPair.md:66 ../src/Tutorial/DPair.md:234
+#: ../src/Tutorial/DPair.md:713 ../src/Tutorial/Eq.md:74
+#: ../src/Tutorial/Eq.md:93 ../src/Tutorial/Eq.md:153 ../src/Tutorial/Eq.md:397
+#: ../src/Tutorial/Eq.md:404 ../src/Tutorial/Eq.md:436
+#: ../src/Tutorial/Eq.md:505 ../src/Tutorial/Eq.md:518
+#: ../src/Tutorial/Eq.md:679 ../src/Tutorial/Eq.md:778
+#: ../src/Tutorial/Eq.md:984 ../src/Tutorial/Eq.md:1014
+#: ../src/Tutorial/Folds.md:198 ../src/Tutorial/Folds.md:787
+#: ../src/Tutorial/Folds.md:798 ../src/Tutorial/Folds.md:822
+#: ../src/Tutorial/Folds.md:839 ../src/Tutorial/Folds.md:880
+#: ../src/Tutorial/Folds.md:904 ../src/Tutorial/Functions1.md:37
+#: ../src/Tutorial/Functions1.md:143 ../src/Tutorial/Functions1.md:165
+#: ../src/Tutorial/Functions1.md:204 ../src/Tutorial/Functions1.md:228
+#: ../src/Tutorial/Functions1.md:253 ../src/Tutorial/Functions1.md:261
+#: ../src/Tutorial/Functions1.md:312 ../src/Tutorial/Functions1.md:333
+#: ../src/Tutorial/Functions1.md:358 ../src/Tutorial/Functions1.md:366
+#: ../src/Tutorial/Functions1.md:378 ../src/Tutorial/Functions1.md:488
+#: ../src/Tutorial/Functions1.md:519 ../src/Tutorial/Functions1.md:568
+#: ../src/Tutorial/Functions2.md:42 ../src/Tutorial/Functions2.md:63
+#: ../src/Tutorial/Functions2.md:74 ../src/Tutorial/Functions2.md:114
+#: ../src/Tutorial/Functions2.md:528 ../src/Tutorial/Functions2.md:541
+#: ../src/Tutorial/Functions2.md:553 ../src/Tutorial/Functions2.md:560
+#: ../src/Tutorial/Functions2.md:567 ../src/Tutorial/Functions2.md:719
+#: ../src/Tutorial/Functions2.md:726 ../src/Tutorial/Functions2.md:735
+#: ../src/Tutorial/Functions2.md:755 ../src/Tutorial/Functions2.md:763
+#: ../src/Tutorial/Functions2.md:787 ../src/Tutorial/Functions2.md:811
+#: ../src/Tutorial/Functions2.md:819 ../src/Tutorial/Functions2.md:835
+#: ../src/Tutorial/Functions2.md:848 ../src/Tutorial/Functions2.md:899
+#: ../src/Tutorial/Functor.md:187 ../src/Tutorial/Functor.md:201
+#: ../src/Tutorial/Functor.md:216 ../src/Tutorial/Functor.md:610
+#: ../src/Tutorial/Functor.md:801 ../src/Tutorial/Functor.md:903
+#: ../src/Tutorial/Functor.md:1001 ../src/Tutorial/Functor.md:1100
+#: ../src/Tutorial/Functor.md:1167 ../src/Tutorial/Functor.md:1219
+#: ../src/Tutorial/Interfaces.md:36 ../src/Tutorial/Interfaces.md:140
+#: ../src/Tutorial/Interfaces.md:505 ../src/Tutorial/Intro.md:122
+#: ../src/Tutorial/Intro.md:134 ../src/Tutorial/Intro.md:148
+#: ../src/Tutorial/Intro.md:158 ../src/Tutorial/Intro.md:167
+#: ../src/Tutorial/Intro.md:227 ../src/Tutorial/Intro.md:270
+#: ../src/Tutorial/Intro.md:279 ../src/Tutorial/Intro.md:300
+#: ../src/Tutorial/Intro.md:326 ../src/Tutorial/Intro.md:337
+#: ../src/Tutorial/Intro.md:349 ../src/Tutorial/IO.md:33
+#: ../src/Tutorial/IO.md:94 ../src/Tutorial/IO.md:433 ../src/Tutorial/IO.md:442
+#: ../src/Tutorial/IO.md:539 ../src/Tutorial/IO.md:621
+#: ../src/Tutorial/IO.md:634 ../src/Tutorial/IO.md:1020
+#: ../src/Tutorial/IO.md:1040 ../src/Tutorial/IO.md:1050
+#: ../src/Tutorial/IO.md:1060 ../src/Tutorial/Predicates.md:428
+#: ../src/Tutorial/Predicates.md:462 ../src/Tutorial/Predicates.md:926
+#: ../src/Tutorial/Predicates.md:1337 ../src/Tutorial/Prim.md:124
+#: ../src/Tutorial/Prim.md:312 ../src/Tutorial/Prim.md:527
+#: ../src/Tutorial/Prim.md:550 ../src/Tutorial/Prim.md:574
+#: ../src/Tutorial/Prim.md:584 ../src/Tutorial/Prim.md:596
+#: ../src/Tutorial/Prim.md:611 ../src/Tutorial/Prim.md:622
+#: ../src/Tutorial/Prim.md:638 ../src/Tutorial/Prim.md:647
+#: ../src/Tutorial/Prim.md:703 ../src/Tutorial/Prim.md:1129
+#: ../src/Tutorial/Traverse.md:38 ../src/Tutorial/Traverse.md:123
+#: ../src/Tutorial/Traverse.md:158 ../src/Tutorial/Traverse.md:421
+#: ../src/Tutorial/Traverse.md:737 ../src/Tutorial/Traverse.md:997
 #, no-wrap
 msgid "repl"
 msgstr ""
@@ -377,7 +377,7 @@ msgid "Exercises part 1"
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:622
+#: ../src/Tutorial/DataTypes.md:436 ../src/Tutorial/Dependent.md:623
 #: ../src/Tutorial/DPair.md:653 ../src/Tutorial/Eq.md:555
 #: ../src/Tutorial/Folds.md:668 ../src/Tutorial/Functor.md:962
 #: ../src/Tutorial/Interfaces.md:352 ../src/Tutorial/IO.md:728
@@ -388,7 +388,7 @@ msgid "Exercises part 2"
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:842
+#: ../src/Tutorial/DataTypes.md:742 ../src/Tutorial/Dependent.md:843
 #: ../src/Tutorial/DPair.md:1128 ../src/Tutorial/Eq.md:826
 #: ../src/Tutorial/Folds.md:988 ../src/Tutorial/Functor.md:1232
 #: ../src/Tutorial/Interfaces.md:624 ../src/Tutorial/IO.md:949
@@ -399,7 +399,7 @@ msgid "Exercises part 3"
 msgstr ""
 
 #. type: Title ##
-#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:871
+#: ../src/Tutorial/DataTypes.md:1319 ../src/Tutorial/Dependent.md:872
 #: ../src/Tutorial/DPair.md:1191 ../src/Tutorial/Eq.md:1085
 #: ../src/Tutorial/Folds.md:1051 ../src/Tutorial/Functions1.md:524
 #: ../src/Tutorial/Functions2.md:924 ../src/Tutorial/Functor.md:1395
@@ -410,7 +410,7 @@ msgid "Conclusion"
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:903
+#: ../src/Tutorial/DataTypes.md:1362 ../src/Tutorial/Dependent.md:904
 #: ../src/Tutorial/Functions1.md:575 ../src/Tutorial/Functions2.md:954
 #: ../src/Tutorial/Interfaces.md:813 ../src/Tutorial/IO.md:1118
 #, no-wrap
@@ -418,7 +418,7 @@ msgid "What's next"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:909
+#: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:910
 #: ../src/Tutorial/DPair.md:1206 ../src/Tutorial/Eq.md:1098
 #: ../src/Tutorial/Folds.md:1064 ../src/Tutorial/Functions1.md:583
 #: ../src/Tutorial/Functions2.md:964 ../src/Tutorial/Functor.md:1427
@@ -1154,7 +1154,7 @@ msgstr ""
 #, no-wrap
 msgid ""
 "Now, `replicate` is a *dependent function type*: The output type\n"
-"*depends* on the value of one the arguments. It is straight forward\n"
+"*depends* on the value of one of the arguments. It is straight forward\n"
 "to implement `replicate` by pattern matching on `n`:\n"
 msgstr ""
 
@@ -1221,59 +1221,90 @@ msgstr ""
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:465
 #, no-wrap
+msgid "   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
+msgstr ""
+
+#. type: Bullet: '4. '
+#: ../src/Tutorial/Dependent.md:474
 msgid ""
-"   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
-"\n"
-"4. Declare and implement a function `foldSemi`\n"
-"   for accumulating the values stored\n"
-"   in a `List` through `Semigroup`s append operator (`(<+>)`).\n"
-"   (Make sure to only use a `Semigroup` constraint, as opposed to\n"
-"   a `Monoid` constraint.)\n"
-"\n"
-"5. Do the same as in Exercise 4, but for non-empty vectors. How\n"
-"   does a vector's non-emptiness affect the output type?\n"
-"\n"
-"6. Given an initial value of type `a` and a function `a -> a`,\n"
-"   we'd like to generate `Vect`s of `a`s, the first value of\n"
-"   which is `a`, the second value being `f a`, the third\n"
-"   being `f (f a)` and so on.\n"
-"\n"
+"Declare and implement a function `foldSemi` for accumulating the values "
+"stored in a `List` through `Semigroup`s append operator (`(<+>)`).  (Make "
+"sure to only use a `Semigroup` constraint, as opposed to a `Monoid` "
+"constraint.)"
+msgstr ""
+
+#. type: Bullet: '5. '
+#: ../src/Tutorial/Dependent.md:477
+msgid ""
+"Do the same as in Exercise 4, but for non-empty vectors. How does a vector's "
+"non-emptiness affect the output type?"
+msgstr ""
+
+#. type: Bullet: '6. '
+#: ../src/Tutorial/Dependent.md:482
+msgid ""
+"Given an initial value of type `a` and a function `a -> a`, we'd like to "
+"generate `Vect`s of `a`s, the first value of which is `a`, the second value "
+"being `f a`, the third being `f (f a)` and so on."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:485
+#, no-wrap
+msgid ""
 "   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like\n"
 "   to get results similar to the following: `[1,2,4,8,16,...]`.\n"
-"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:489
+#, no-wrap
+msgid ""
 "   Declare and implement function `iterate`, which should\n"
 "   encapsulate this behavior. Get some inspiration from `replicate`\n"
 "   if you don't know where to start.\n"
-"\n"
-"7. Given an initial value of a state type `s` and\n"
-"   a function `fun : s -> (s,a)`,\n"
-"   we'd like to generate `Vect`s of `a`s. Declare and implement\n"
-"   function `generate`, which should encapsulate this behavior. Make sure to use\n"
-"   the updated state in every new invocation of `fun`.\n"
-"\n"
+msgstr ""
+
+#. type: Bullet: '7. '
+#: ../src/Tutorial/Dependent.md:495
+msgid ""
+"Given an initial value of a state type `s` and a function `fun : s -> (s,"
+"a)`, we'd like to generate `Vect`s of `a`s. Declare and implement function "
+"`generate`, which should encapsulate this behavior. Make sure to use the "
+"updated state in every new invocation of `fun`."
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:498
+#, no-wrap
+msgid ""
 "   Here's an example how this can be used to generate the first\n"
 "   `n` Fibonacci numbers:\n"
-"\n"
-"   ```repl\n"
+msgstr ""
+
+#. type: Plain text
+#: ../src/Tutorial/Dependent.md:499
+#, no-wrap
+msgid ""
 "   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
 "   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
 msgstr ""
 
 #. type: Bullet: '8. '
-#: ../src/Tutorial/Dependent.md:506
+#: ../src/Tutorial/Dependent.md:507
 msgid ""
 "Implement function `fromList`, which converts a list of values to a `Vect` "
 "of the same length. Use holes if you get stuck:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:507
+#: ../src/Tutorial/Dependent.md:508
 #, no-wrap
 msgid "   fromList : (as : List a) -> Vect (length as) a\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:514
+#: ../src/Tutorial/Dependent.md:515
 #, no-wrap
 msgid ""
 "   Note how, in the type of `fromList`, we can *calculate* the\n"
@@ -1282,12 +1313,12 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '9. '
-#: ../src/Tutorial/Dependent.md:516
+#: ../src/Tutorial/Dependent.md:517
 msgid "Consider the following declarations:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:517
+#: ../src/Tutorial/Dependent.md:518
 #, no-wrap
 msgid ""
 "   maybeSize : Maybe a -> Nat\n"
@@ -1296,7 +1327,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:525
+#: ../src/Tutorial/Dependent.md:526
 #, no-wrap
 msgid ""
 "   Choose a reasonable implementation for `maybeSize` and\n"
@@ -1304,13 +1335,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../src/Tutorial/Dependent.md:526
+#: ../src/Tutorial/Dependent.md:527
 #, no-wrap
 msgid "`Fin`: Safe Indexing into Vectors"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:530
+#: ../src/Tutorial/Dependent.md:531
 #, no-wrap
 msgid ""
 "Consider function `index`, which tries to extract a value from\n"
@@ -1318,7 +1349,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:531
+#: ../src/Tutorial/Dependent.md:532
 #, no-wrap
 msgid ""
 "indexList : (pos : Nat) -> List a -> Maybe a\n"
@@ -1328,7 +1359,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:552
+#: ../src/Tutorial/Dependent.md:553
 #, no-wrap
 msgid ""
 "Now, here is a thing to consider when writing functions like `indexList`:\n"
@@ -1348,7 +1379,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:557
+#: ../src/Tutorial/Dependent.md:558
 #, no-wrap
 msgid ""
 "Languages without dependent types (like Haskell), can often only take\n"
@@ -1358,7 +1389,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:563
+#: ../src/Tutorial/Dependent.md:564
 #, no-wrap
 msgid ""
 "Assume, as an example, we'd like to extract a value from a `Vect n a`\n"
@@ -1369,7 +1400,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:564
+#: ../src/Tutorial/Dependent.md:565
 #, no-wrap
 msgid ""
 "data Fin : (n : Nat) -> Type where\n"
@@ -1378,7 +1409,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:576
+#: ../src/Tutorial/Dependent.md:577
 #, no-wrap
 msgid ""
 "`Fin n` is the type of natural numbers strictly smaller than `n`.\n"
@@ -1390,13 +1421,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:578
+#: ../src/Tutorial/Dependent.md:579
 #, no-wrap
 msgid "Let's come up with some values of type `Fin`:\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:579
+#: ../src/Tutorial/Dependent.md:580
 #, no-wrap
 msgid ""
 "fin0_5 : Fin 5\n"
@@ -1413,7 +1444,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:596
+#: ../src/Tutorial/Dependent.md:597
 #, no-wrap
 msgid ""
 "Note, that there is no value of type `Fin 0`. We will learn\n"
@@ -1422,7 +1453,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:599
+#: ../src/Tutorial/Dependent.md:600
 #, no-wrap
 msgid ""
 "Let us now check, whether we can use `Fin` to safely index\n"
@@ -1430,13 +1461,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:600
+#: ../src/Tutorial/Dependent.md:601
 #, no-wrap
 msgid "index : Fin n -> Vect n a -> a\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:606
+#: ../src/Tutorial/Dependent.md:607
 #, no-wrap
 msgid ""
 "Before you continue, try to implement `index` yourself, making use\n"
@@ -1444,7 +1475,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:607
+#: ../src/Tutorial/Dependent.md:608
 #, no-wrap
 msgid ""
 "index FZ     (x :: _) = x\n"
@@ -1452,7 +1483,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:616
+#: ../src/Tutorial/Dependent.md:617
 #, no-wrap
 msgid ""
 "Note, how there is no `Nil` case and the totality checker is still\n"
@@ -1462,7 +1493,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:617
+#: ../src/Tutorial/Dependent.md:618
 #, no-wrap
 msgid ""
 "index FZ     Nil impossible\n"
@@ -1470,14 +1501,14 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../src/Tutorial/Dependent.md:626
+#: ../src/Tutorial/Dependent.md:627
 msgid ""
 "Implement function `update`, which, given a function of type `a -> a`, "
 "updates the value in a`Vect n a` at position `k < n`."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../src/Tutorial/Dependent.md:630
+#: ../src/Tutorial/Dependent.md:631
 msgid ""
 "Implement function `insert`, which inserts a value of type `a` at position "
 "`k <= n` in a `Vect n a`. Note, that `k` is the index of the freshly "
@@ -1485,20 +1516,20 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:631
+#: ../src/Tutorial/Dependent.md:632
 #, no-wrap
 msgid "   index k (insert k v vs) = v\n"
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../src/Tutorial/Dependent.md:637
+#: ../src/Tutorial/Dependent.md:638
 msgid ""
 "Implement function `delete`, which deletes a value from a vector at the "
 "given index."
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:640
+#: ../src/Tutorial/Dependent.md:641
 #, no-wrap
 msgid ""
 "   This is trickier than Exercises 1 and 2, as we have to properly\n"
@@ -1506,14 +1537,14 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '4. '
-#: ../src/Tutorial/Dependent.md:643
+#: ../src/Tutorial/Dependent.md:644
 msgid ""
 "We can use `Fin` to implement safe indexing into `List`s as well. Try to "
 "come up with a type and implementation for `safeIndexList`."
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:647
+#: ../src/Tutorial/Dependent.md:648
 #, no-wrap
 msgid ""
 "   Note: If you don't know how to start, look at the type of `fromList`\n"
@@ -1522,7 +1553,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '5. '
-#: ../src/Tutorial/Dependent.md:652
+#: ../src/Tutorial/Dependent.md:653
 msgid ""
 "Implement function `finToNat`, which converts a `Fin n` to the corresponding "
 "natural number, and use this to declare and implement function `take` for "
@@ -1530,34 +1561,34 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '6. '
-#: ../src/Tutorial/Dependent.md:655
+#: ../src/Tutorial/Dependent.md:656
 msgid ""
 "Implement function `minus` for subtracting a value `k` from a natural number "
 "`n` with `k <= n`."
 msgstr ""
 
 #. type: Bullet: '7. '
-#: ../src/Tutorial/Dependent.md:659
+#: ../src/Tutorial/Dependent.md:660
 msgid ""
 "Use `minus` from Exercise 6 to declare and implement function `drop`, for "
 "dropping the first `k` values from a `Vect n a`, with `k <= n`."
 msgstr ""
 
 #. type: Bullet: '8. '
-#: ../src/Tutorial/Dependent.md:663
+#: ../src/Tutorial/Dependent.md:664
 msgid ""
 "Implement function `splitAt` for splitting a `Vect n a` at position `k <= "
 "n`, returning the prefix and suffix of the vector wrapped in a pair."
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:665
+#: ../src/Tutorial/Dependent.md:666
 #, no-wrap
 msgid "   Hint: Use `take` and `drop` in your implementation.\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:669
+#: ../src/Tutorial/Dependent.md:670
 #, no-wrap
 msgid ""
 "Hint: Since `Fin n` consists of the values strictly smaller\n"
@@ -1566,7 +1597,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:674
+#: ../src/Tutorial/Dependent.md:675
 #, no-wrap
 msgid ""
 "Note: Functions `take`, `drop`, and `splitAt`, while correct and\n"
@@ -1576,13 +1607,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../src/Tutorial/Dependent.md:675
+#: ../src/Tutorial/Dependent.md:676
 #, no-wrap
 msgid "Compile-Time Computations"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:682
+#: ../src/Tutorial/Dependent.md:683
 #, no-wrap
 msgid ""
 "In the last section - especially in some of the exercises - we\n"
@@ -1593,7 +1624,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:689
+#: ../src/Tutorial/Dependent.md:690
 #, no-wrap
 msgid ""
 "It is possible to concatenate two `List`s with the `(++)`\n"
@@ -1605,7 +1636,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:690
+#: ../src/Tutorial/Dependent.md:691
 #, no-wrap
 msgid ""
 "(++) : Vect m a -> Vect n a -> Vect (m + n) a\n"
@@ -1614,7 +1645,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:699
+#: ../src/Tutorial/Dependent.md:700
 #, no-wrap
 msgid ""
 "Note, how we keep track of the lengths at the type-level, again\n"
@@ -1623,7 +1654,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:704
+#: ../src/Tutorial/Dependent.md:705
 #, no-wrap
 msgid ""
 "We can also use type-level computations as patterns\n"
@@ -1633,7 +1664,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:705
+#: ../src/Tutorial/Dependent.md:706
 #, no-wrap
 msgid ""
 "drop' : (m : Nat) -> Vect (m + n) a -> Vect n a\n"
@@ -1642,13 +1673,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/Dependent.md:711
+#: ../src/Tutorial/Dependent.md:712
 #, no-wrap
 msgid "Limitations"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:717
+#: ../src/Tutorial/Dependent.md:718
 #, no-wrap
 msgid ""
 "After all the examples and exercises in this section\n"
@@ -1658,7 +1689,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:723
+#: ../src/Tutorial/Dependent.md:724
 #, no-wrap
 msgid ""
 "I'm afraid that's not even close to the truth. The examples\n"
@@ -1669,7 +1700,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:726
+#: ../src/Tutorial/Dependent.md:727
 #, no-wrap
 msgid ""
 "For instance, here is the implementation of addition of\n"
@@ -1677,7 +1708,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:727
+#: ../src/Tutorial/Dependent.md:728
 #, no-wrap
 msgid ""
 "add : Nat -> Nat -> Nat\n"
@@ -1686,7 +1717,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:744
+#: ../src/Tutorial/Dependent.md:745
 #, no-wrap
 msgid ""
 "As you can see, `add` is implemented via a pattern match\n"
@@ -1703,7 +1734,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:747
+#: ../src/Tutorial/Dependent.md:748
 #, no-wrap
 msgid ""
 "Here is a simple example, where Idris will not longer\n"
@@ -1711,7 +1742,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:748
+#: ../src/Tutorial/Dependent.md:749
 #, no-wrap
 msgid ""
 "failing \"Can't solve constraint\"\n"
@@ -1721,7 +1752,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:767
+#: ../src/Tutorial/Dependent.md:768
 #, no-wrap
 msgid ""
 "When we type-check the above,\n"
@@ -1739,7 +1770,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:779
+#: ../src/Tutorial/Dependent.md:780
 #, no-wrap
 msgid ""
 "As you can see from the above, Idris can't verify on\n"
@@ -1756,13 +1787,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../src/Tutorial/Dependent.md:780
+#: ../src/Tutorial/Dependent.md:781
 #, no-wrap
 msgid "Unrestricted Implicits"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:788
+#: ../src/Tutorial/Dependent.md:789
 #, no-wrap
 msgid ""
 "In functions like `replicate`, we pass a natural number `n`\n"
@@ -1774,7 +1805,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:789
+#: ../src/Tutorial/Dependent.md:790
 #, no-wrap
 msgid ""
 "ex4 : Vect 3 Integer\n"
@@ -1782,7 +1813,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:796
+#: ../src/Tutorial/Dependent.md:797
 #, no-wrap
 msgid ""
 "The value `n` is clearly derivable from the context, which\n"
@@ -1790,7 +1821,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:797
+#: ../src/Tutorial/Dependent.md:798
 #, no-wrap
 msgid ""
 "ex5 : Vect 3 Integer\n"
@@ -1798,7 +1829,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:805
+#: ../src/Tutorial/Dependent.md:806
 #, no-wrap
 msgid ""
 "We therefore can implement an alternative version of `replicate`,\n"
@@ -1807,7 +1838,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:806
+#: ../src/Tutorial/Dependent.md:807
 #, no-wrap
 msgid ""
 "replicate' : {n : _} -> a -> Vect n a\n"
@@ -1815,7 +1846,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:813
+#: ../src/Tutorial/Dependent.md:814
 #, no-wrap
 msgid ""
 "Note how, in the implementation of `replicate'`, we can refer to `n`\n"
@@ -1823,7 +1854,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:819
+#: ../src/Tutorial/Dependent.md:820
 #, no-wrap
 msgid ""
 "Deciding whether to pass potentially inferable arguments to a function implicitly\n"
@@ -1834,7 +1865,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:820
+#: ../src/Tutorial/Dependent.md:821
 #, no-wrap
 msgid ""
 "ex6 : Vect ? Bool\n"
@@ -1842,7 +1873,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:828
+#: ../src/Tutorial/Dependent.md:829
 #, no-wrap
 msgid ""
 "In the type signature above, the question mark (`?`) means, that Idris\n"
@@ -1851,13 +1882,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ####
-#: ../src/Tutorial/Dependent.md:829
+#: ../src/Tutorial/Dependent.md:830
 #, no-wrap
 msgid "Pattern Matching on Implicits"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:835
+#: ../src/Tutorial/Dependent.md:836
 #, no-wrap
 msgid ""
 "The implementation of `replicate'` makes use of function `replicate`,\n"
@@ -1867,7 +1898,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:836
+#: ../src/Tutorial/Dependent.md:837
 #, no-wrap
 msgid ""
 "replicate'' : {n : _} -> a -> Vect n a\n"
@@ -1876,18 +1907,18 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../src/Tutorial/Dependent.md:845
+#: ../src/Tutorial/Dependent.md:846
 msgid "Here is a function declaration for flattening a `List` of `List`s:"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:846
+#: ../src/Tutorial/Dependent.md:847
 #, no-wrap
 msgid "   flattenList : List (List a) -> List a\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:852
+#: ../src/Tutorial/Dependent.md:853
 #, no-wrap
 msgid ""
 "   Implement `flattenList` and declare and implement a similar\n"
@@ -1895,21 +1926,21 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../src/Tutorial/Dependent.md:856
+#: ../src/Tutorial/Dependent.md:857
 msgid ""
 "Implement functions `take'` and `splitAt'` like in the exercises of the "
 "previous section but using the technique shown for `drop'`."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../src/Tutorial/Dependent.md:860
+#: ../src/Tutorial/Dependent.md:861
 msgid ""
 "Implement function `transpose` for converting an `m x n`-matrix (represented "
 "as a `Vect m (Vect n a)`)  to an `n x m`-matrix."
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:863
+#: ../src/Tutorial/Dependent.md:864
 #, no-wrap
 msgid ""
 "   Note: This might be a challenging exercise, but make sure\n"
@@ -1917,13 +1948,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:865
+#: ../src/Tutorial/Dependent.md:866
 #, no-wrap
 msgid "   Here is an example how this should work in action:\n"
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:866
+#: ../src/Tutorial/Dependent.md:867
 #, no-wrap
 msgid ""
 "   Solutions.Dependent> transpose [[1,2,3],[4,5,6]]\n"
@@ -1931,7 +1962,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../src/Tutorial/Dependent.md:877
+#: ../src/Tutorial/Dependent.md:878
 msgid ""
 "Dependent types allow us to calculate types from values.  This makes it "
 "possible to encode properties of values at the type-level and verify these "
@@ -1939,7 +1970,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../src/Tutorial/Dependent.md:881
+#: ../src/Tutorial/Dependent.md:882
 msgid ""
 "Length-indexed lists (vectors) let us rule out certain implementation "
 "errors, by forcing us to be precise about the lengths of input and output "
@@ -1947,14 +1978,14 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../src/Tutorial/Dependent.md:885
+#: ../src/Tutorial/Dependent.md:886
 msgid ""
 "We can use patterns in type signatures, for instance to express that the "
 "length of a vector is non-zero and therefore, the vector is non-empty."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../src/Tutorial/Dependent.md:890
+#: ../src/Tutorial/Dependent.md:891
 msgid ""
 "When creating values of a type family, the values of the indices need to be "
 "known at compile time, or they need to be passed as arguments to the "
@@ -1963,14 +1994,14 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../src/Tutorial/Dependent.md:893
+#: ../src/Tutorial/Dependent.md:894
 msgid ""
 "We can use `Fin n`, the type of natural numbers strictly smaller than `n`, "
 "to safely index into a vector of length `n`."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../src/Tutorial/Dependent.md:898
+#: ../src/Tutorial/Dependent.md:899
 msgid ""
 "Sometimes, it is convenient to pass inferable arguments as non-erased "
 "implicits, in which case we can still inspect them by pattern matching or "
@@ -1979,7 +2010,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:902
+#: ../src/Tutorial/Dependent.md:903
 #, no-wrap
 msgid ""
 "Note, that data type `Vect` together with many of the functions we\n"
@@ -1988,7 +2019,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../src/Tutorial/Dependent.md:907
+#: ../src/Tutorial/Dependent.md:908
 #, no-wrap
 msgid ""
 "In the [next section](IO.md), it is time to learn how to write effectful programs\n"

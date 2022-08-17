@@ -268,7 +268,9 @@ fill' : {0 a : Type} -> {0 n : Nat} -> a -> Vect n a
 replicate : (n : Nat) -> a -> Vect n a
 ```
 
-现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 一个参数的值。通过 `n` 上的模式匹配来实现 `replicate` 很简单：
+Now, `replicate` is a *dependent function type*: The output type
+*depends* on the value of one of the arguments. It is straight forward
+to implement `replicate` by pattern matching on `n`:
 
 ```idris
 replicate 0     _  = []
@@ -293,36 +295,36 @@ replicate (S k) va = va :: replicate k va
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
+   ```
 
-4. 声明并实现一个函数`foldSemi`
-   用于累积存储的值
-   在 `List` 到 `Semigroup` 的附加运算符 (`(<+>)`) 中。
-   （确保只使用 `Semigroup` 约束，而不是
-   `Monoid` 约束。）
+4. Declare and implement a function `foldSemi` for accumulating the values
+   stored in a `List` through `Semigroup`s append operator (`(<+>)`).  (Make
+   sure to only use a `Semigroup` constraint, as opposed to a `Monoid`
+   constraint.)
 
-5. 做与练习 4 相同的操作，但对于非空向量。向量的非空性会影响输出类型吗？
+5. Do the same as in Exercise 4, but for non-empty vectors. How does a
+   vector's non-emptiness affect the output type?
 
-6. 给定一个 `a` 类型的初始值和一个函数 `a -> a`，
-   我们想生成 `a` 类型的 `Vect`，第一个值
-   即 `a`，第二个值为 `f a`，第三个
-   是 `f (f a)` 等等。
+6. Given an initial value of type `a` and a function `a -> a`, we'd like to
+   generate `Vect`s of `a`s, the first value of which is `a`, the second
+   value being `f a`, the third being `f (f a)` and so on.
 
-   例如，如果 `a` 是 1 并且 `f` 是 `(* 2)`，我们希望
-   获得类似于以下的结果：`[1,2,4,8,16,...]`。
+   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like
+   to get results similar to the following: `[1,2,4,8,16,...]`.
 
-   声明并实现函数 `iterate`，它应该
-   封装这种行为。从 `replicate` 中获得一些灵感，
-   如果你不知道从哪里开始。
+   Declare and implement function `iterate`, which should
+   encapsulate this behavior. Get some inspiration from `replicate`
+   if you don't know where to start.
 
-7. 给定类型为 `s` 的初始值和
-   一个函数 `fun : s -> (s,a)`,
-   我们想生成元素类型为 `a` 的 `Vect`。声明并实现
-   函数 `generate`，它应该封装这个行为。确保使用
-   每次新调用 `fun` 时的更新状态。
+7. Given an initial value of a state type `s` and a function `fun : s ->
+   (s,a)`, we'd like to generate `Vect`s of `a`s. Declare and implement
+   function `generate`, which should encapsulate this behavior. Make sure to
+   use the updated state in every new invocation of `fun`.
 
-   这是一个示例如何使用它来生成第一个
-   `n` 斐波那契数：
-    ```repl
+   Here's an example how this can be used to generate the first
+   `n` Fibonacci numbers:
+
+   ```repl
    generate 10 (\(x,y) => let z = x + y in ((y,z),z)) (0,1)
    [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
    ```
