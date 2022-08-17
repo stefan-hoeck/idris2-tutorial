@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-10 00:12+0000\n"
+"PO-Revision-Date: 2022-08-17 07:58+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functions2/zh_Hans/>\n"
@@ -1555,12 +1555,12 @@ msgstr "最后，我们需要谈谈在本节的几个类型签名中出现的零
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions2.md:598
 msgid "`0`, meaning that the variable is *erased* at runtime."
-msgstr "`0` ，表示变量在运行时被 *擦除*"
+msgstr "`0` ，表示变量在运行时被 *擦除*。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Functions2.md:598
 msgid "`1`, meaning that the variable is used *exactly once* at runtime."
-msgstr "`1` ，表示变量在运行时 *正好使用一次*"
+msgstr "`1` ，表示变量在运行时 *正好使用一次* 。"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions2.md:598
