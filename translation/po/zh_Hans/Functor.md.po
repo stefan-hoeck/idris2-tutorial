@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-12 13:55+0000\n"
+"PO-Revision-Date: 2022-08-17 04:46+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/functor/zh_Hans/>\n"
@@ -1550,7 +1550,11 @@ msgid ""
 "`pure fun` is of type `Maybe (a -> b -> c)`. Likewise, `pure fun <*> fa`\n"
 "is of type `Maybe (b -> c)`, as `(<*>)` will apply the value stored\n"
 "in `fa` to the function stored in `pure fun` (currying!).\n"
-msgstr "了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 `liftA2` 中的 `f` 用于 `Maybe`，则 `pure fun` 的类型为 `Maybe (a -> b -> c)`。同样，`pure fun <*> fa` 是 ` 类型为 `Maybe  (b -> c)`，因为 `(<*>)` 将应用存储在 `f a` 到存储在 `pure fun` 中的函数（柯里化！）。\n"
+msgstr ""
+"了解这里发生的事情对您来说非常重要，所以让我们分解这些内容。如果我们将 "
+"`liftA2` 中的 `f` 用于 `Maybe`，则 `pure fun` 的类型为 `Maybe (a -> b -> "
+"c)`。同样，`pure fun <*> fa` 是 ` 类型为 `Maybe (b -> c)`，因为 `(<*>)` "
+"将应用存储在 `f a` 到存储在 `pure fun` 中的函数（柯里化！）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:550
@@ -2706,7 +2710,7 @@ msgstr "`Monad` 和 `Applicative` 之间的最大区别在于，前者允许计�
 #: ../src/Tutorial/Functor.md:1100
 #, no-wrap
 msgid "(<*>) : IO (a -> b) -> IO a -> IO b\n"
-msgstr "```repl (<*>) : IO (a -> b) -> IO a -> IO b ```\n"
+msgstr "(<*>) : IO (a -> b) -> IO a -> IO b\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functor.md:1115
