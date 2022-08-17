@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-17 13:30+0800\n"
-"PO-Revision-Date: 2022-08-17 07:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-17 07:58+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dependent/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -897,7 +897,7 @@ msgstr "第二种情况更有趣。我们注意到，`xs` 是 `Vect n a` 类型�
 #: ../src/Tutorial/Dependent.md:239
 #, no-wrap
 msgid "mapVect f (x :: xs) = f x :: ?rest\n"
-msgstr "```repl mapVect f (x :: xs) = f x :: ?rest ```\n"
+msgstr "mapVect f (x :: xs) = f x :: ?rest\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:244
@@ -1241,16 +1241,14 @@ msgstr "replicate : (n : Nat) -> a -> Vect n a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:428
-#, fuzzy, no-wrap
-#| msgid ""
-#| "Now, `replicate` is a *dependent function type*: The output type\n"
-#| "*depends* on the value of one the arguments. It is straight forward\n"
-#| "to implement `replicate` by pattern matching on `n`:\n"
+#, no-wrap
 msgid ""
 "Now, `replicate` is a *dependent function type*: The output type\n"
 "*depends* on the value of one of the arguments. It is straight forward\n"
 "to implement `replicate` by pattern matching on `n`:\n"
-msgstr "现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 一个参数的值。通过 `n` 上的模式匹配来实现 `replicate` 很简单：\n"
+msgstr ""
+"现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 参数的一个值。"
+"通过 `n` 上的模式匹配来实现 `replicate` 很简单：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:429
@@ -1319,14 +1317,14 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:465
-#, fuzzy, no-wrap
-#| msgid "mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b\n"
+#, no-wrap
 msgid "   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
-msgstr "mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b\n"
+msgstr ""
+"   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect "
+"n d\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Dependent.md:474
-#, fuzzy
 msgid ""
 "Declare and implement a function `foldSemi` for accumulating the values "
 "stored in a `List` through `Semigroup`s append operator (`(<+>)`).  (Make "
@@ -1339,7 +1337,6 @@ msgstr ""
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Dependent.md:477
-#, fuzzy
 msgid ""
 "Do the same as in Exercise 4, but for non-empty vectors. How does a vector's "
 "non-emptiness affect the output type?"
@@ -1347,7 +1344,6 @@ msgstr "做与练习 4 相同的操作，但对于非空向量。向量的非空
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Dependent.md:482
-#, fuzzy
 msgid ""
 "Given an initial value of type `a` and a function `a -> a`, we'd like to "
 "generate `Vect`s of `a`s, the first value of which is `a`, the second value "
@@ -1358,7 +1354,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:485
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like\n"
 "   to get results similar to the following: `[1,2,4,8,16,...]`.\n"
@@ -1368,47 +1364,43 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:489
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Declare and implement function `iterate`, which should\n"
 "   encapsulate this behavior. Get some inspiration from `replicate`\n"
 "   if you don't know where to start.\n"
-msgstr ""
-"   声明并实现函数 `iterate`，它应该\n"
-"   封装这种行为。从 `replicate` 中获得一些灵感\n"
-"   如果你不知道从哪里开始。\n"
+msgstr "   声明并实现函数 `iterate`，它应该封装这种行为。如果你不知道从哪里开始，"
+"可以从 `replicate` 中获得一些灵感。\n"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Dependent.md:495
-#, fuzzy
 msgid ""
 "Given an initial value of a state type `s` and a function `fun : s -> (s,"
 "a)`, we'd like to generate `Vect`s of `a`s. Declare and implement function "
 "`generate`, which should encapsulate this behavior. Make sure to use the "
 "updated state in every new invocation of `fun`."
 msgstr ""
-"给定状态类型 `s` 的初始值和函数 `fun : s -> (s,a)`，我们希望生成 `Vect`s "
-"`a`s。声明并实现函数`generate`，它应该封装这个行为。确保在每次新调用 `fun` "
-"时使用更新后的状态。"
+"给定状态类型 `s` 的初始值和函数 `fun : s -> (s,a)`，我们希望生成 `a` 的 "
+"`Vect`。声明并实现函数 `generate`，它应该封装这个行为。确保在每次新调用 `fun`"
+" 时使用更新后的状态。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:498
-#, fuzzy, no-wrap
-#| msgid "   Here is an example how this should work in action:\n"
+#, no-wrap
 msgid ""
 "   Here's an example how this can be used to generate the first\n"
 "   `n` Fibonacci numbers:\n"
-msgstr "   这是一个示例，它应该如何在行动中发挥作用：\n"
+msgstr "   这是一个示例，它被用来生成前 `n` 个斐波那契数列：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:499
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
 "   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
 msgstr ""
-"   生成 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
-"   [1、2、3、5、8、13、21、34、55、89]\n"
+"   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
+"   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Dependent.md:507
