@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-17 13:30+0800\n"
-"PO-Revision-Date: 2022-08-10 14:14+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-17 07:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dependent/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -1326,53 +1326,70 @@ msgstr "mapVect : {0 a,b : _} -> {0 n : Nat} -> (a -> b) -> Vect n a -> Vect n b
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Dependent.md:474
+#, fuzzy
 msgid ""
 "Declare and implement a function `foldSemi` for accumulating the values "
 "stored in a `List` through `Semigroup`s append operator (`(<+>)`).  (Make "
 "sure to only use a `Semigroup` constraint, as opposed to a `Monoid` "
 "constraint.)"
 msgstr ""
+"声明并实现一个函数 `foldSemi` 用于通过 `Semigroup` 的附加运算符 (`(<+>)`) "
+"累加存储在 `List` 中的值. （确保只使用 `Semigroup` 约束，而不是 `Monoid` "
+"约束。）"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Dependent.md:477
+#, fuzzy
 msgid ""
 "Do the same as in Exercise 4, but for non-empty vectors. How does a vector's "
 "non-emptiness affect the output type?"
-msgstr ""
+msgstr "做与练习 4 相同的操作，但对于非空向量。向量的非空性如何影响输出类型？"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Dependent.md:482
+#, fuzzy
 msgid ""
 "Given an initial value of type `a` and a function `a -> a`, we'd like to "
 "generate `Vect`s of `a`s, the first value of which is `a`, the second value "
 "being `f a`, the third being `f (f a)` and so on."
 msgstr ""
+"给定 `a` 类型的初始值和函数 `a -> a`，我们想生成 `a`s 的 `Vect`s ，"
+"其中第一个值为 `a`，第二个值为 `f a`，第三个值为 `f (fa)`，以此类推。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:485
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   For instance, if `a` is 1 and `f` is `(* 2)`, we'd like\n"
 "   to get results similar to the following: `[1,2,4,8,16,...]`.\n"
 msgstr ""
+"   例如，如果 `a` 是 1 并且 `f` 是 `(* 2)`，我们希望\n"
+"   获得类似于以下的结果：`[1,2,4,8,16,...]`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:489
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   Declare and implement function `iterate`, which should\n"
 "   encapsulate this behavior. Get some inspiration from `replicate`\n"
 "   if you don't know where to start.\n"
 msgstr ""
+"   声明并实现函数 `iterate`，它应该\n"
+"   封装这种行为。从 `replicate` 中获得一些灵感\n"
+"   如果你不知道从哪里开始。\n"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Dependent.md:495
+#, fuzzy
 msgid ""
 "Given an initial value of a state type `s` and a function `fun : s -> (s,"
 "a)`, we'd like to generate `Vect`s of `a`s. Declare and implement function "
 "`generate`, which should encapsulate this behavior. Make sure to use the "
 "updated state in every new invocation of `fun`."
 msgstr ""
+"给定状态类型 `s` 的初始值和函数 `fun : s -> (s,a)`，我们希望生成 `Vect`s "
+"`a`s。声明并实现函数`generate`，它应该封装这个行为。确保在每次新调用 `fun` "
+"时使用更新后的状态。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:498
@@ -1385,11 +1402,13 @@ msgstr "   这是一个示例，它应该如何在行动中发挥作用：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:499
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "   generate 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
 "   [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
 msgstr ""
+"   生成 10 (\\(x,y) => let z = x + y in ((y,z),z)) (0,1)\n"
+"   [1、2、3、5、8、13、21、34、55、89]\n"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Dependent.md:507
