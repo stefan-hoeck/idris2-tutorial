@@ -525,8 +525,7 @@ msgid ""
 msgstr ""
 "在本章中，我们将带来 *Prelude* 中更高种类的接口。为此，我们将继续开发\n"
 "我们在 [函子和朋友](Functor.md) 章节中开始实现的 CSV 阅读器。我移动了一些\n"
-"该章的数据类型和接口到他们自己的模块，所以我们可以在这里导入它们而无需从头开"
-"始。\n"
+"该章的数据类型和接口到他们自己的模块，所以我们可以在这里导入它们而无需从头开始。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:16
@@ -537,8 +536,7 @@ msgid ""
 "since this will allow us to accumulate all errors\n"
 "when reading a CSV file.\n"
 msgstr ""
-"请注意，与我们原来的 CSV 阅读器不同，我们将使用 `Validated` 而不是 `Either` "
-"处理异常，\n"
+"请注意，与我们原来的 CSV 阅读器不同，我们将使用 `Validated` 而不是 `Either` 处理异常，\n"
 "因为这将使我们能够累积读取 CSV 文件时的所有错误。\n"
 
 #. type: Plain text
@@ -584,8 +582,7 @@ msgid ""
 "in a CSV file and decode it to a heterogeneous list.\n"
 "As a reminder, here is how to use `hdecode` at the REPL:\n"
 msgstr ""
-"我们停止开发具有 `hdecode` 函数—的 CSV 阅读器，它允许我们在 CSV "
-"文件中读取单行并将其解码为异构列表。\n"
+"我们停止开发具有 `hdecode` 函数—的 CSV 阅读器，它允许我们在 CSV 文件中读取单行并将其解码为异构列表。\n"
 "提醒一下，这里是如何在 REPL 中使用 `hdecode` ：\n"
 
 #. type: Plain text
@@ -613,8 +610,7 @@ msgid ""
 msgstr ""
 "下一步将解析整个 CSV 表作为字符串列表，其中每个字符串对应一个\n"
 "表的一行。\n"
-"我们将逐步进行，因为正确地做到这一点有几个方面。我们正在寻找的——最终—— "
-"是以下类型的函数（我们将实现这个函数的几个版本，因此我们给它了编号）：\n"
+"我们将逐步进行，因为正确地做到这一点有几个方面。我们正在寻找的——最终—— 是以下类型的函数（我们将实现这个函数的几个版本，因此我们给它了编号）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:52
@@ -3065,8 +3061,7 @@ msgstr ""
 "和 `Traversable` 在组合下是闭合的。如果你感兴趣\n"
 "在其他用例中，该出版物，其中\n"
 "向 Haskell 介绍了 `Traversable`，强烈推荐阅读：\n"
-"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/"
-"iterator.pdf)\n"
+"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1124

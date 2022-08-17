@@ -138,11 +138,7 @@ replicateListTR n v = go Nil n
         go xs (S k) = go (v :: xs) k
 ```
 
-The big advantage of tail recursive functions is, that they
-can be easily converted to efficient, imperative loops by the Idris
-compiler, and are thus *stack safe*: Recursive function calls
-are *not* added to the call stack, thus avoiding the dreaded
-stack overflow errors.
+尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 *堆栈安全* 的：递归函数调用 *不会* 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。
 
 ```idris
 main1 : IO ()
@@ -457,14 +453,7 @@ Show a => Show (Tree a) where
 
 ## Foldable 接口
 
-When looking back at all the exercises we solved
-in the section about recursion, most tail recursive functions
-on lists were of the following pattern: Iterate
-over all list elements from head to tail while
-passing along some state for accumulating intermediate
-results. At the end of the list,
-return the final state or convert it with an
-additional function call.
+当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返回最终状态或使用附加函数调用对其进行转换。
 
 ### 左折叠
 
@@ -526,10 +515,7 @@ Prelude.&& : Bool -> Lazy Bool -> Bool
 
 如您所见，第二个参数包装在 `Lazy` 类型构造函数中。这是一个内置类型，大部分时间细节由 Idris 自动处理。例如，当将参数传递给 `(&&)` 时，我们不必手动将值包装在某些数据构造函数中。惰性函数参数仅在函数实现中为 *required* 时才被评估，例如，因为它正在被模式匹配，或者它作为严格参数传递给另一个函数。在 `(&&)` 的实现中，模式匹配发生在第一个参数上，因此只有当第一个参数是 `True` 并且第二个参数作为函数返回时才会计算第二个参数（严格）结果。
 
-There are two utility functions for working with lazy evaluation:
-Function `delay` wraps a value in the `Lazy` data type. Note, that
-the argument of `delay` is strict, so the following might take
-several seconds to print its result:
+有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` 数据类型中。请注意，`delay` 的参数是严格的，因此以下可能需要几秒钟才能打印其结果：
 
 ```repl
 Tutorial.Folds> False && (delay $ length [1..10000] > 100)
@@ -631,7 +617,7 @@ concatList = foldMapList id
 * `foldr`，用于从右侧折叠
 * `foldl`，用于从左侧折叠
 * `null`，用于测试容器是否为空
-* `foldlM`, for effectful folds in a monad
+* `foldlM`，用于单子中的副作用折叠
 * `toList`，用于将容器转换为值列表
 * `foldMap`，用于折叠一个幺半群
 

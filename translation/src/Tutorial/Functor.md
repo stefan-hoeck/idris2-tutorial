@@ -168,13 +168,7 @@ tailShowReverse xs = reverse . show <$> tail xs
 
 ### 具有多个类型参数的函子
 
-The type constructors we looked at so far were all
-of type `Type -> Type`. However, we can also implement `Functor`
-for other type constructors. The only prerequisite is that
-the type parameter we'd like to change with function `map` must
-be the last in the argument list. For instance, here is the
-`Functor` implementation for `Either e` (note, that `Either e`
-has of course type `Type -> Type` as required):
+到目前为止，我们看到的类型构造函数都是 `Type -> Type`。但是，我们也可以为其他类型的构造函数实现 `Functor`。唯一的先决条件是我们想用函数 `map` 更改的类型参数必须是参数列表中的最后一个。例如，这里是 `Either e` 的 `Functor` 实现（注意， `Either e` 当然有类型 `Type -> Type` 为必要条件）：
 
 ```idris
 implementation Functor' (Either e) where
@@ -426,7 +420,7 @@ liftA3' fun fa fb fc = fun <$> fa <*> fb <*> fc
 
 ### 习语括号
 
-用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *applicative 风格*，在 Haskell 中被大量用于将几个有效的计算与单一的纯函数。
+用于实现 `liftA2'` 和 `liftA3'` 的编程风格也称为 *应用函子风格*，在 Haskell 中被大量用于将单一的纯函数应用于几个副作用计算。
 
 在 Idris 中，有一个替代使用这种运算符应用程序链的方法：习语括号。这是 `liftA2` 和 `liftA3` 的另一个重新实现：
 
@@ -900,9 +894,8 @@ Left (FieldError 1 2 "jon@doe.ch")
 
   这两条定律规定 `pure` 在 *bind* 中应该表现为中立。
 
-* `(m >>= f) >>= g = m >>= (f >=> g)`.  This is the law of associativity for
-  monad.  You might not have seen the second operator `(>=>)`.  It can be
-  used to sequence effectful computations and has the following type:
+* `(m >>= f) >>= g = m >>= (f >=> g)` 是 monad 的结合律。您可能没有见过第二个运算符
+  `(>=>)`。它可用于对副作用计算进行排序，并具有以下类型：
 
   ```repl
   Tutorial.Functor> :t (>=>)
@@ -1039,7 +1032,7 @@ Left (FieldError 1 2 "jon@doe.ch")
 
 ## 背景和延伸阅读
 
-*functor* 和 *monad* 等概念起源于数学分支 *范畴论*。这也是他们的定律的来源。范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/ ）。
+*functor* 和 *monad* 等概念起源于数学分支 *范畴论*。这也是他们的定律的来源。范畴理论被发现在程序设计语言理论，特别是函数式程序设计中有应用。这是一个高度抽象的主题，但有一个非常容易理解的程序员介绍，由 [Bartosz Milewski](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/) 编写。
 
 应用函子作为函子和单子之间的中间地带的有用性是在单子已经在 Haskell 中使用几年之后才发现的。它们在文章 [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html) 中进行了介绍，该文章可在线免费获得，并且强烈推荐阅读。
 

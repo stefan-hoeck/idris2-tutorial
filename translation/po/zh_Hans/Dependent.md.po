@@ -1246,9 +1246,7 @@ msgid ""
 "Now, `replicate` is a *dependent function type*: The output type\n"
 "*depends* on the value of one of the arguments. It is straight forward\n"
 "to implement `replicate` by pattern matching on `n`:\n"
-msgstr ""
-"现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 参数的一个值。"
-"通过 `n` 上的模式匹配来实现 `replicate` 很简单：\n"
+msgstr "现在，`replicate` 是一个 *依赖函数类型 *：输出类型 *取决于* 参数的一个值。通过 `n` 上的模式匹配来实现 `replicate` 很简单：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:429
@@ -1319,9 +1317,7 @@ msgstr ""
 #: ../src/Tutorial/Dependent.md:465
 #, no-wrap
 msgid "   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
-msgstr ""
-"   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect "
-"n d\n"
+msgstr "   zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Dependent.md:474
@@ -1331,9 +1327,9 @@ msgid ""
 "sure to only use a `Semigroup` constraint, as opposed to a `Monoid` "
 "constraint.)"
 msgstr ""
-"声明并实现一个函数 `foldSemi` 用于通过 `Semigroup` 的附加运算符 (`(<+>)`) "
-"累加存储在 `List` 中的值. （确保只使用 `Semigroup` 约束，而不是 `Monoid` "
-"约束。）"
+"声明并实现一个函数 `foldSemi` 用于通过 `Semigroup` 的附加运算符 (`(<+>)`) 累"
+"加存储在 `List` 中的值. （确保只使用 `Semigroup` 约束，而不是 `Monoid` 约"
+"束。）"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Dependent.md:477
@@ -1349,8 +1345,8 @@ msgid ""
 "generate `Vect`s of `a`s, the first value of which is `a`, the second value "
 "being `f a`, the third being `f (f a)` and so on."
 msgstr ""
-"给定 `a` 类型的初始值和函数 `a -> a`，我们想生成 `a`s 的 `Vect`s ，"
-"其中第一个值为 `a`，第二个值为 `f a`，第三个值为 `f (fa)`，以此类推。"
+"给定 `a` 类型的初始值和函数 `a -> a`，我们想生成 `a`s 的 `Vect`s ，其中第一个"
+"值为 `a`，第二个值为 `f a`，第三个值为 `f (fa)`，以此类推。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:485
@@ -1369,8 +1365,7 @@ msgid ""
 "   Declare and implement function `iterate`, which should\n"
 "   encapsulate this behavior. Get some inspiration from `replicate`\n"
 "   if you don't know where to start.\n"
-msgstr "   声明并实现函数 `iterate`，它应该封装这种行为。如果你不知道从哪里开始，"
-"可以从 `replicate` 中获得一些灵感。\n"
+msgstr "   声明并实现函数 `iterate`，它应该封装这种行为。如果你不知道从哪里开始，可以从 `replicate` 中获得一些灵感。\n"
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Dependent.md:495
@@ -1381,8 +1376,8 @@ msgid ""
 "updated state in every new invocation of `fun`."
 msgstr ""
 "给定状态类型 `s` 的初始值和函数 `fun : s -> (s,a)`，我们希望生成 `a` 的 "
-"`Vect`。声明并实现函数 `generate`，它应该封装这个行为。确保在每次新调用 `fun`"
-" 时使用更新后的状态。"
+"`Vect`。声明并实现函数 `generate`，它应该封装这个行为。确保在每次新调用 "
+"`fun` 时使用更新后的状态。"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:498

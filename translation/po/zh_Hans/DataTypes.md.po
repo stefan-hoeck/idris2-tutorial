@@ -1188,7 +1188,12 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
+#| "\"Hello, Dr. Hck!\"\n"
+#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
+#| "\"Hello, Mrs. Smith!\"\n"
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"
@@ -1662,8 +1667,7 @@ msgid ""
 "composition (`(.)`).\n"
 msgstr ""
 "我们可以通过使用字段名称来访问记录字段，\n"
-"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u."
-"age`。这个特殊语法与函数组合的点运算符（`(.)`） *不*相关。\n"
+"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u.age`。这个特殊语法与函数组合的点运算符（`(.)`） *不*相关。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:616

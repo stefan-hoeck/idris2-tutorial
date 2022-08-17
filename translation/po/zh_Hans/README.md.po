@@ -26,12 +26,10 @@ msgstr "> 这里是中文版！  \n"
 
 #. type: Plain text
 #: ../README.md:3
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
 msgid "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
-msgstr ""
-"> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-"
-"badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)"
-"\n"
+msgstr "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
 
 #. type: Title #
 #: ../README.md:4

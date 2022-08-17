@@ -894,10 +894,7 @@ msgid ""
 "compiler, and are thus *stack safe*: Recursive function calls\n"
 "are *not* added to the call stack, thus avoiding the dreaded\n"
 "stack overflow errors.\n"
-msgstr ""
-"尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，"
-"因此是 *堆栈安全* 的：递归函数调用 *不会* "
-"添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
+msgstr "尾递归函数的一大优点是，它们可以通过 Idris 编译器轻松转换为高效的命令式循环，因此是 *堆栈安全* 的：递归函数调用 *不会* 添加到调用堆栈，从而避免了可怕的堆栈溢出错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:230
@@ -1827,10 +1824,7 @@ msgid ""
 "results. At the end of the list,\n"
 "return the final state or convert it with an\n"
 "additional function call.\n"
-msgstr ""
-"当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式"
-"：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返"
-"回最终状态或使用附加函数调用对其进行转换。\n"
+msgstr "当回顾我们在递归部分解决的所有练习时，列表中的大多数尾递归函数都遵循以下模式：从头到尾迭代所有列表元素，同时传递一些状态以累积中间结果。在列表的末尾，返回最终状态或使用附加函数调用对其进行转换。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Folds.md:708
@@ -2043,10 +2037,7 @@ msgid ""
 "Function `delay` wraps a value in the `Lazy` data type. Note, that\n"
 "the argument of `delay` is strict, so the following might take\n"
 "several seconds to print its result:\n"
-msgstr ""
-"有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` "
-"数据类型中。请注意，`delay` "
-"的参数是严格的，因此以下可能需要几秒钟才能打印其结果：\n"
+msgstr "有两个实用函数用于处理惰性求值： 函数 `delay` 将值包装在 `Lazy` 数据类型中。请注意，`delay` 的参数是严格的，因此以下可能需要几秒钟才能打印其结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Folds.md:822

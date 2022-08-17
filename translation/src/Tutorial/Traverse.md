@@ -1,18 +1,11 @@
-# Effectful Traversals
+# 遍历副作用
 
-In this chapter, we are going to bring our treatment
-of the higher-kinded interfaces in the *Prelude* to an
-end. In order to do so, we will continue developing the
-CSV reader we started implementing in chapter
-[Functor and Friends](Functor.md). I moved some of
-the data types and interfaces from that chapter to
-their own modules, so we can import them here without
-the need to start from scratch.
+在本章中，我们将带来 *Prelude* 中更高种类的接口。为此，我们将继续开发
+我们在 [函子和朋友](Functor.md) 章节中开始实现的 CSV 阅读器。我移动了一些
+该章的数据类型和接口到他们自己的模块，所以我们可以在这里导入它们而无需从头开始。
 
-Note that unlike in our original CSV reader, we will use
-`Validated` instead of `Either` for handling exceptions,
-since this will allow us to accumulate all errors
-when reading a CSV file.
+请注意，与我们原来的 CSV 阅读器不同，我们将使用 `Validated` 而不是 `Either` 处理异常，
+因为这将使我们能够累积读取 CSV 文件时的所有错误。
 
 ```idris
 module Tutorial.Traverse
@@ -28,26 +21,19 @@ import Text.CSV
 %default total
 ```
 
-## Reading CSV Tables
+## 读取 CSV 表
 
-We stopped developing our CSV reader with function
-`hdecode`, which allows us to read a single line
-in a CSV file and decode it to a heterogeneous list.
-As a reminder, here is how to use `hdecode` at the REPL:
+我们停止开发具有 `hdecode` 函数—的 CSV 阅读器，它允许我们在 CSV 文件中读取单行并将其解码为异构列表。
+提醒一下，这里是如何在 REPL 中使用 `hdecode` ：
 
 ```repl
 Tutorial.Traverse> hdecode [Bool,String,Bits8] 1 "f,foo,12"
 Valid [False, "foo", 12]
 ```
 
-The next step will be to parse a whole CSV table, represented
-as a list of strings, where each string corresponds to one
-of the table's rows.
-We will go about this stepwise as there are several aspects
-about doing this properly. What we are looking for - eventually -
-is a function of the following type (we are going to
-implement several versions of this function, hence the
-numbering):
+下一步将解析整个 CSV 表作为字符串列表，其中每个字符串对应一个
+表的一行。
+我们将逐步进行，因为正确地做到这一点有几个方面。我们正在寻找的——最终—— 是以下类型的函数（我们将实现这个函数的几个版本，因此我们给它了编号）：
 
 ```idris
 hreadTable1 :  (0 ts : List Type)
