@@ -610,45 +610,45 @@ msgid ""
 msgstr ""
 "下一步将解析整个 CSV 表作为字符串列表，其中每个字符串对应一个\n"
 "表的一行。\n"
-"我们将逐步进行，因为正确地做到这一点有几个方面。我们正在寻找的——最终—— 是以下类型的函数（我们将实现这个函数的几个版本，因此我们给它了编号）：\n"
+"我们将逐步进行，因为有几个方面可以正确地做到这一点。我们正在寻找的——最终—— 是以下类型的函数（我们将实现这个函数的几个版本，因此我们给它了编号）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:52
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hreadTable1 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
 "            => List String\n"
 "            -> Validated CSVError (List $ HList ts)\n"
 msgstr ""
-"readTable1 : (0 ts : 列表类型)\n"
+"hreadTable1 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
-"            => 列表字符串\n"
-"            -> Validated CSVError (List $HList ts)\n"
+"            => List String\n"
+"            -> Validated CSVError (List $ HList ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:61
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In our first implementation, we are not going to care\n"
 "about line numbers:\n"
 msgstr ""
 "在我们的第一个实现中，我们不会关心\n"
-"关于行号：\n"
+"关于行号的事情：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:62
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hreadTable1 _  []        = pure []\n"
 "hreadTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
 msgstr ""
-"readTable1 _ [] = 纯 []\n"
-"readTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
+"hreadTable1 _  []        = pure []\n"
+"hreadTable1 ts (s :: ss) = [| hdecode ts 0 s :: hreadTable1 ts ss |]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:72
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how we can just use applicative syntax in the implementation\n"
 "of `hreadTable1`. To make this clearer, I used `pure []` on the first\n"
@@ -656,15 +656,13 @@ msgid ""
 "`Either` or `Maybe` instead of `Validated` for error handling,\n"
 "the implementation of `hreadTable1` would look exactly the same.\n"
 msgstr ""
-"注意，我们如何在实现中使用应用语法\n"
-"` 读表 1 `。为了更清楚，我在第一个使用 `pure []`\n"
-"行而不是更具体的 `Valid []`。事实上，如果我们使用\n"
+"注意，我们如何在 `hreadTable1` 的实现中使用应用函子语法。为了更清楚，我优先使用 `pure []` 而不是更具体的 `Valid []`。事实上，如果我们使用\n"
 "`Either` 或 `Maybe` 而不是 `Validated` 用于错误处理，\n"
 "`hreadTable1` 的实现看起来完全一样。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:81
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The question is: Can we extract a pattern to abstract over\n"
 "from this observation? What we do in `hreadTable1` is running\n"
@@ -675,18 +673,14 @@ msgid ""
 "Run a computation of type `a -> Validated CSVError b` over a\n"
 "list `List a`:\n"
 msgstr ""
-"问题是：我们可以提取一个模式来抽象\n"
-"从这个观察？我们在 `hreadTable1` 中所做的正在运行\n"
-"`String 类型的有效计算 -> Validated CSVError (HList ts)`\n"
-"在字符串列表上，因此结果是 `HList ts` 的列表\n"
-"包裹在 `Validated CSVError` 中。抽象的第一步\n"
+"问题是：我们从这个观察中可以提取一个模式来抽象吗？我们在 `hreadTable1` 中运行字符串列表上的副作用计算，类型为 `String -> Validated CSVError (HList ts)`，因此结果是 `HList ts` 的列表\n"
+"且包裹在 `Validated CSVError` 中。抽象的第一步\n"
 "应该是对输入和输出使用类型参数：\n"
-"在 a 上运行 `a -> Validated CSVError b` 类型的计算\n"
-"列出 ` 列出 `：\n"
+"在列表 `List a` 上运行 `a -> Validated CSVError b` 类型的计算：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:82
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseValidatedList :  (a -> Validated CSVError b)\n"
 "                      -> List a\n"
@@ -700,21 +694,21 @@ msgid ""
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable2 ts = traverseValidatedList (hdecode ts 0)\n"
 msgstr ""
-"traverseValidatedList : (a -> Validated CSVError b)\n"
-"                      -> 列出一个\n"
-"                      -> 已验证的 CSVError（列表 b）\n"
-"traverseValidatedList _ [] = 纯 []\n"
+"traverseValidatedList :  (a -> Validated CSVError b)\n"
+"                      -> List a\n"
+"                      -> Validated CSVError (List b)\n"
+"traverseValidatedList _ []        = pure []\n"
 "traverseValidatedList f (x :: xs) = [| f x :: traverseValidatedList f xs |]\n"
 "\n"
-"readTable2 : (0 ts : 列表类型)\n"
+"hreadTable2 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
-"            => 列表字符串\n"
-"            -> Validated CSVError (List $HList ts)\n"
-"hdTable2 ts = traverseValidatedList (hdecode ts 0)\n"
+"            => List String\n"
+"            -> Validated CSVError (List $ HList ts)\n"
+"hreadTable2 ts = traverseValidatedList (hdecode ts 0)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:104
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But our observation was, that the implementation of `hreadTable1`\n"
 "would be exactly the same if we used `Either CSVError` or `Maybe`\n"
@@ -725,18 +719,15 @@ msgid ""
 "a function with an `Applicative` constraint\n"
 "on the effect type:\n"
 msgstr ""
-"但我们的观察是，`hreadTable1` 的实现\n"
-"如果我们使用 `Either CSVError` 或 `Maybe` 将完全相同\n"
-"作为我们的效果类型，而不是 `Validated CSVError`。\n"
-"所以，下一步应该是对*效果类型*进行抽象。\n"
-"我们注意到，我们使用了应用语法（成语方括号和\n"
+"但我们的观察是，如果我们使用 `Either CSVError` 或 `Maybe` 代替 `Validated CSVError`作为我们的副作用类型，`hreadTable1` 的实现将完全相同。\n"
+"所以，下一步应该是对*副作用类型*进行抽象。\n"
+"我们注意到，我们使用了应用函子语法（习语括号和\n"
 "`pure`) 在我们的实现中，所以我们需要编写\n"
-"具有 `Applicative` 约束的函数\n"
-"关于效果类型：\n"
+"关于副作用类型具有 `Applicative` 约束的函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:105
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseList :  Applicative f => (a -> f b) -> List a -> f (List b)\n"
 "traverseList _ []        = pure []\n"
@@ -748,31 +739,30 @@ msgid ""
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable3 ts = traverseList (hdecode ts 0)\n"
 msgstr ""
-"traverseList : 应用 f => (a -> f b) -> List a -> f (List b)\n"
-"traverseList _ [] = 纯 []\n"
-"遍历列表 f (x :: xs) = [| f x :: traverseList f xs |]\n"
+"traverseList :  Applicative f => (a -> f b) -> List a -> f (List b)\n"
+"traverseList _ []        = pure []\n"
+"traverseList f (x :: xs) = [| f x :: traverseList f xs |]\n"
 "\n"
-"readTable3 : (0 ts : 列表类型)\n"
+"hreadTable3 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
-"            => 列表字符串\n"
-"            -> Validated CSVError (List $HList ts)\n"
-"hdTable3 ts = traverseList (hdecode ts 0)\n"
+"            => List String\n"
+"            -> Validated CSVError (List $ HList ts)\n"
+"hreadTable3 ts = traverseList (hdecode ts 0)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:120
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how the implementation of `traverseList` is exactly the same\n"
 "as the one of `traverseValidatedList`, but the types are more general\n"
 "and therefore, `traverseList` is much more powerful.\n"
 msgstr ""
-"注意，`traverseList`的实现是完全一样的\n"
-"作为 `traverseValidatedList` 之一，但类型更通用\n"
+"注意，`traverseList`的实现和 `traverseValidatedList` 完全一样的，但类型更通用\n"
 "因此，`traverseList` 更强大。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:123
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"]\n"
 "Valid [[False, 12], [True, 0]]\n"
@@ -782,15 +772,15 @@ msgid ""
 "Invalid (Append (FieldError 0 1 \"1\") (FieldError 0 2 \"1000\"))\n"
 msgstr ""
 "Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,0\"]\n"
-"有效 [[False, 12], [True, 0]]\n"
+"Valid [[False, 12], [True, 0]]\n"
 "Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"f,12\",\"t,1000\"]\n"
-"无效 (FieldError 0 2 \"1000\")\n"
-"Tutorial.Traverse>hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"]\n"
-"无效（追加（FieldError 0 1“1”）（FieldError 0 2“1000”））\n"
+"Invalid (FieldError 0 2 \"1000\")\n"
+"Tutorial.Traverse> hreadTable3 [Bool,Bits8] [\"1,12\",\"t,1000\"]\n"
+"Invalid (Append (FieldError 0 1 \"1\") (FieldError 0 2 \"1000\"))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:139
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This works very well already, but note how our error messages do\n"
 "not yet print the correct line numbers. That's not surprising,\n"
@@ -800,17 +790,16 @@ msgid ""
 "For now, we could just manually annotate the lines with their\n"
 "numbers and pass a list of pairs to `hreadTable`:\n"
 msgstr ""
-"这已经很好用了，但请注意我们的错误消息是如何做的\n"
+"这已经很好用了，但请注意我们的错误消息是如何做的，\n"
 "尚未打印正确的行号。这并不奇怪，\n"
 "因为我们在调用 `hdecode` 时使用了一个虚拟常量。\n"
 "我们将研究如何得出行号\n"
 "当我们在本章后面讨论有状态计算时会飞起来。\n"
-"现在，我们可以手动注释这些行\n"
-"数字并将一对列表传递给 `hreadTable`：\n"
+"现在，我们可以手动注释这些行号并将一对列表传递给 `hreadTable`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:140
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hreadTable4 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
@@ -818,15 +807,15 @@ msgid ""
 "            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
 msgstr ""
-"readTable4 : (0 ts : 列表类型)\n"
+"hreadTable4 :  (0 ts : List Type)\n"
 "            -> CSVLine (HList ts)\n"
-"            => 列表（Nat，字符串）\n"
-"            -> Validated CSVError (List $HList ts)\n"
+"            => List (Nat, String)\n"
+"            -> Validated CSVError (List $ HList ts)\n"
 "hreadTable4 ts = traverseList (uncurry $ hdecode ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:154
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If this is the first time you came across function `uncurry`,\n"
 "make sure you have a look at its type and try to figure out why it is\n"
@@ -836,41 +825,35 @@ msgid ""
 "functions.\n"
 msgstr ""
 "如果这是你第一次遇到函数 `uncurry`，\n"
-"确保您查看了它的类型并尝试找出它的原因\n"
-"在这里使用。有几个这样的实用功能\n"
-"在*Prelude*中，如`curry`、`uncurry`、`flip`，甚至\n"
-"`id`，所有这些在处理高阶时都非常有用\n"
-"功能。\n"
+"确保您查看了它的类型并尝试找出它在这里被使用的原因。在 *Prelude* 中有几个这样的实用函数，如`curry`、`uncurry`、`flip`，还有 `id`，所有这些在处理高阶函数时都非常有用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:157
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While not perfect, this version at least allows us to verify at the REPL\n"
 "that the line numbers are passed to the error messages correctly:\n"
-msgstr ""
-"虽然不完美，但这个版本至少允许我们在 REPL 进行验证\n"
-"行号正确传递给错误消息：\n"
+msgstr "虽然不完美，但这个版本至少允许我们在 REPL 进行验证行号正确传递的错误消息：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:158
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")]\n"
 "Invalid (Append (FieldError 1 2 \"1000\") (FieldError 2 1 \"1\"))\n"
 msgstr ""
-"Tutorial.Traverse>hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")]\n"
-"无效（追加（FieldError 1 2“1000”）（FieldError 2 1“1”））\n"
+"Tutorial.Traverse> hreadTable4 [Bool,Bits8] [(1,\"t,1000\"),(2,\"1,100\")]\n"
+"Invalid (Append (FieldError 1 2 \"1000\") (FieldError 2 1 \"1\"))\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:163
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interface Traversable"
-msgstr "接口可遍历"
+msgstr "Traversable 接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:172
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, here is an interesting observation: We can implement a function\n"
 "like `traverseList` for other container types as well. You might think that's\n"
@@ -880,77 +863,67 @@ msgid ""
 "general, as we loose typing information. For instance, here\n"
 "is such a function for `Vect`:\n"
 msgstr ""
-"现在，这里有一个有趣的观察：我们可以实现一个函数\n"
-"像其他容器类型的 `traverseList` 也是如此。你可能认为那是\n"
-"很明显，鉴于我们可以通过以下方式将容器类型转换为列表\n"
-"来自接口 `Foldable` 的函数 `toList`。然而，在去的时候\n"
-"通过 `List` 在某些情况下可能是可行的，在\n"
-"一般来说，因为我们丢失了打字信息。例如，这里\n"
-"`Vect` 是这样的函数：\n"
+"现在，这里有一个有趣的现象：我们可以实现一个函数，\n"
+"像其他容器类型的 `traverseList` 那样。你可能认为那是很简单的，鉴于我们可以通过以下方式将容器类型转换为列表\n"
+"来自接口 `Foldable` 的函数 `toList`。然而，通过 `List` 来处理在某些情况下可能是可行的，一般来说，我们会丢失了类型信息。例如，这里 `Vect` 的函数是这样的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:173
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List b)\n"
 "traverseVect' fun = traverseList fun . toList\n"
 msgstr ""
-"traverseVect' : 应用 f => (a -> f b) -> Vect n a -> f (List b)\n"
-"traverseVect' 乐趣 = traverseList 乐趣。列表\n"
+"traverseVect' : Applicative f => (a -> f b) -> Vect n a -> f (List b)\n"
+"traverseVect' fun = traverseList fun . toList\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:182
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note how we lost all information about the structure of the\n"
 "original container type. What we are looking for is a function\n"
 "like `traverseVect'`, which keeps this type level information:\n"
 "The result should be a vector of the same length as the input.\n"
-msgstr ""
-"注意我们是如何丢失了所有关于结构的信息的\n"
-"原始容器类型。我们要找的是一个函数\n"
-"像`traverseVect'`，它保留了这个类型级别的信息：\n"
-"结果应该是与输入长度相同的向量。\n"
+msgstr "注意我们是如何丢失了所有关于原始容器类型结构的信息的。我们要找的是像`traverseVect'` 的一个函数，它保留了这个类型级别的信息：结果应该是与输入长度相同的向量。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:183
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseVect : Applicative f => (a -> f b) -> Vect n a -> f (Vect n b)\n"
 "traverseVect _   []        = pure []\n"
 "traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]\n"
 msgstr ""
-"traverseVect : 应用 f => (a -> f b) -> Vect n a -> f (Vect n b)\n"
-"traverseVect _ [] = 纯 []\n"
-"traverseVect fun (x :: xs) = [|有趣的 x :: traverseVect 有趣的 xs |]\n"
+"traverseVect : Applicative f => (a -> f b) -> Vect n a -> f (Vect n b)\n"
+"traverseVect _   []        = pure []\n"
+"traverseVect fun (x :: xs) = [| fun x :: traverseVect fun xs |]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:193
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "That's much better! And as I wrote above, we can easily get the same\n"
 "for other container types like `List1`, `SnocList`, `Maybe`, and so on.\n"
 "As usual, some derived functions will follow immediately from `traverseXY`.\n"
 "For instance:\n"
 msgstr ""
-"那好多了！正如我上面写的，我们可以很容易地得到相同的\n"
-"对于其他容器类型，如 `List1`、`SnocList`、`Maybe` 等。\n"
-"像往常一样，一些派生函数将紧跟在 `traverseXY` 之后。\n"
-"例如：\n"
+"那好多了！正如我上面写的，我们可以很容易地得到相同的对于其他容器类型，如 `List1`、`SnocList`、`Maybe` 等。\n"
+"像往常一样，一些派生函数将紧跟在 `traverseXY` 之后。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:194
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "sequenceList : Applicative f => List (f a) -> f (List a)\n"
 "sequenceList = traverseList id\n"
 msgstr ""
-"sequenceList : 应用 f => List (f a) -> f (List a)\n"
+"sequenceList : Applicative f => List (f a) -> f (List a)\n"
 "sequenceList = traverseList id\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:202
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "All of this calls for a new interface, which is called\n"
 "`Traversable` and is exported from the *Prelude*. Here is\n"
@@ -958,21 +931,21 @@ msgid ""
 msgstr ""
 "所有这些都需要一个新的接口，它被称为\n"
 "`Traversable` 并从 *Prelude* 导出。这是\n"
-"它的定义（用素数来消除歧义）：\n"
+"它的定义（用单引号来消除歧义）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:203
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interface Functor t => Foldable t => Traversable' t where\n"
 "  traverse' : Applicative f => (a -> f b) -> t a -> f (t b)\n"
 msgstr ""
-"interface Functor t => Foldable t => Traversable' t 在哪里\n"
-"  traverse' : 应用 f => (a -> f b) -> t a -> f (t b)\n"
+"interface Functor t => Foldable t => Traversable' t where\n"
+"  traverse' : Applicative f => (a -> f b) -> t a -> f (t b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:214
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Function `traverse` is one of the most abstract and versatile\n"
 "functions available from the *Prelude*. Just how powerful\n"
@@ -981,16 +954,12 @@ msgid ""
 "goal of the remainder of this chapter to show you several\n"
 "diverse and interesting use cases.\n"
 msgstr ""
-"函数 `traverse` 是最抽象和通用的函数之一\n"
-"*Prelude* 提供的功能。到底有多强大\n"
-"只有开始使用它才会变得清晰\n"
-"在你的代码中一遍又一遍。然而，这将是\n"
-"本章剩余部分的目标是向您展示几个\n"
-"多样而有趣的用例。\n"
+"函数 `traverse` 是*Prelude* 提供的函数中最抽象和通用的函数之一。到底有多强大\n"
+"只有在你的代码中一遍又一遍开始使用它才会变得清晰。然而，这将是本章剩余部分的目标，会向您展示几个多样而有趣的用例。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:229
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For now, we will quickly focus on the degree of abstraction.\n"
 "Function `traverse` is parameterized over no less than\n"
@@ -1008,70 +977,65 @@ msgid ""
 "the final section in this chapter).\n"
 msgstr ""
 "现在，我们将快速关注抽象程度。\n"
-"函数 `traverse` 参数化不小于\n"
-"四个参数：容器类型 `t` (`List`, `Vect n`,\n"
-"`可能是`，仅举几例），效果类型（`Validated e`，\n"
-"`IO`、`Maybe` 等），输入元素类型 `a` 和\n"
-"输出元素类型 `b`。考虑到图书馆\n"
-"与 Idris 项目捆绑导出 30 多种数据类型\n"
+"函数 `traverse` 参数化不小于四个参数：容器类型 `t` (`List`, `Vect n`,\n"
+"`Maybe`，仅举几例），副作用类型（`Validated e`，\n"
+"`IO`、`Maybe` 等），输入元素类型 `a` 和输出元素类型 `b`。考虑到库\n"
+"与 Idris 基础库导出 30 多种数据类型\n"
 "具有 `Applicative` 的实现和十多个\n"
 "可遍历的容器类型，实际上有数百个\n"
-"有效遍历容器的组合\n"
-"计算。一旦我们意识到这个数字会变得更大\n"
-"可遍历的容器——比如应用函子——\n"
-"在作文下闭合（见练习和\n"
+"副作用遍历容器的组合计算。一旦我们意识到可遍历的容器——比如应用函子——\n"
+"可以在组合下闭合，这个数字会变得更大\n"
+"（见练习和\n"
 "本章的最后一节）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:230
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Traversable Laws"
-msgstr "可遍历的定律"
+msgstr "Traversable 定律"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:233
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "There are two laws function `traverse` must obey:\n"
-msgstr "函数`traverse`必须遵守两个规律：\n"
+msgstr "函数 `traverse` 必须遵守两个定律：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:241
-#, fuzzy
 msgid ""
 "`traverse (Id . f) = Id . map f`: Traversing over the `Identity` monad is "
 "just functor `map`."
 msgstr ""
-"` 遍历 (Id . f) = Id 。 map f`：遍历 `Identity` monad 只是仿函数 `map`。"
+"`traverse (Id . f) = Id . map f`: 遍历 `Identity` 单子等同于使用 `map`."
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:241
-#, fuzzy
 msgid ""
 "`traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`: "
 "Traversing with a composition of effects must be the same when being done in "
 "a single traversal (left hand side) or a sequence of two traversals (right "
 "hand side)."
 msgstr ""
-"` 遍历 (MkComp.map f.g) = MkComp.地图（遍历 f）。遍历 g`：在单个遍历（左侧）"
-"或两个遍历序列（右侧）中完成时，具有效果组合的遍历必须相同。"
+"`traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`：在"
+"单个遍历（左侧）或两个遍历序列（右侧）中完成时，具有副作用组合的遍历必须相"
+"同。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:246
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since `map id = id` (functor's identity law), we can derive\n"
 "from the first law that `traverse Id = Id`. This means, that\n"
 "`traverse` must not change the size or shape of the container\n"
 "type, nor is it allowed to change the order of elements.\n"
 msgstr ""
-"由于`map id = id`（函子恒等律），我们可以推导出\n"
-"从第一定律`遍历Id = Id`。这意味着\n"
-"`遍历`不得改变容器的大小或形状\n"
+"由于`map id = id`（函子恒等律），我们可以从第一定律推导出\n"
+"`traverse Id = Id`。这意味着\n"
+"`traverse`不得改变容器的大小或形状\n"
 "类型，也不允许改变元素的顺序。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:253
-#, fuzzy
 msgid ""
 "It is interesting that `Traversable` has a `Functor` constraint. Proof that "
 "every `Traversable` is automatically a `Functor` by implementing `map` in "
@@ -1082,13 +1046,12 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:255
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Hint: Remember `Control.Monad.Identity`.\n"
 msgstr "   提示：记住 `Control.Monad.Identity`。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Traverse.md:259
-#, fuzzy
 msgid ""
 "Likewise, proof that every `Traversable` is a `Foldable` by implementing "
 "`foldMap` in terms of `Traverse`."
@@ -1098,61 +1061,55 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:261
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Hint: Remember `Control.Applicative.Const`.\n"
 msgstr "   提示：记住 `Control.Applicative.Const`。\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Traverse.md:264
-#, fuzzy
 msgid ""
 "To gain some routine, implement `Traversable'` for `List1`, `Either e`, and "
 "`Maybe`."
-msgstr "要获得一些常规，请为 `List1`、`Ei` 和 `Maybe` 实现 `Traversable'`。"
+msgstr "开始一些例行程序，请为 `List1`、`Ei` 和 `Maybe` 实现 `Traversable'`。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Traverse.md:266
-#, fuzzy
 msgid "Implement `Traversable` for `List01 ne`:"
 msgstr "为 `List01 ne` 实现 `Traversable`："
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Traverse.md:275
-#, fuzzy
 msgid ""
 "Implement `Traversable` for rose trees. Try to satisfy the totality checker "
 "without cheating."
-msgstr "为玫瑰树实现 `Traversable`。尝试在不作弊的情况下满足整体检查器。"
+msgstr "为玫瑰树实现 `Traversable`。尝试在不作弊的情况下满足完全性检查器。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:276
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   record Tree a where\n"
 "     constructor Node\n"
 "     value  : a\n"
 "     forest : List (Tree a)\n"
 msgstr ""
-"   记录 Tree a where\n"
-"     构造器节点\n"
-"     值：一个\n"
-"     森林：列表（树一）\n"
+"   record Tree a where\n"
+"     constructor Node\n"
+"     value  : a\n"
+"     forest : List (Tree a)\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Traverse.md:284
-#, fuzzy
 msgid "Implement `Traversable` for `Crud i`:"
 msgstr "为 `Crud i` 实现 `Traversable`："
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Traverse.md:294
-#, fuzzy
 msgid "Implement `Traversable` for `Response e i`:"
 msgstr "为 `Response e i` 实现 `Traversable`："
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Traverse.md:307
-#, fuzzy
 msgid ""
 "Like `Functor`, `Applicative` and `Foldable`, `Traversable` is closed under "
 "composition. Proof this by implementing `Traversable` for `Comp` and "
@@ -1163,55 +1120,52 @@ msgstr ""
 
 #. type: Title ##
 #: ../src/Tutorial/Traverse.md:319
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Programming with State"
 msgstr "用状态编程"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:324
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's go back to our CSV reader. In order to get reasonable\n"
 "error messages, we'd like to tag each line with its\n"
 "index:\n"
 msgstr ""
 "让我们回到我们的 CSV 阅读器。为了合理\n"
-"错误消息，我们想用它来标记每一行\n"
-"指数：\n"
+"错误消息，我们想用索引来标记每一行：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:325
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "zipWithIndex : List a -> List (Nat, a)\n"
-msgstr "zipWithIndex : 列表 a -> 列表 (Nat, a)\n"
+msgstr "zipWithIndex : List a -> List (Nat, a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:331
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is, of course, very easy to come up with an ad hoc\n"
 "implementation for this:\n"
-msgstr ""
-"当然，很容易想出一个临时的\n"
-"为此的实施：\n"
+msgstr "当然，很容易想出一个临时的实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:332
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipWithIndex = go 1\n"
 "  where go : Nat -> List a -> List (Nat,a)\n"
 "        go _ []        = []\n"
 "        go n (x :: xs) = (n,x) :: go (S n) xs\n"
 msgstr ""
-"zipWithIndex = 去 1\n"
-"  去哪里： Nat -> List a -> List (Nat,a)\n"
-"        去_ [] = []\n"
-"        去 n (x :: xs) = (n,x) :: 去 (S n) xs\n"
+"zipWithIndex = go 1\n"
+"  where go : Nat -> List a -> List (Nat,a)\n"
+"        go _ []        = []\n"
+"        go n (x :: xs) = (n,x) :: go (S n) xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:344
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While this is perfectly fine, we should still note that\n"
 "we might want to do the same thing with the elements of\n"
@@ -1220,20 +1174,19 @@ msgid ""
 "form of abstraction we can use to describe such computations.\n"
 msgstr ""
 "虽然这很好，但我们仍然应该注意到\n"
-"我们可能想对元素做同样的事情\n"
-"树、向量、非空列表等。\n"
+"我们可能想对树、向量、非空列表等的元素做同样的事情。\n"
 "再一次，我们感兴趣的是是否有一些\n"
 "我们可以使用抽象形式来描述此类计算。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:345
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Mutable References in Idris"
 msgstr "Idris 中的可变引用"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:352
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let us for a moment think about how we'd do such a thing\n"
 "in an imperative language. There, we'd probably define\n"
@@ -1243,13 +1196,13 @@ msgid ""
 msgstr ""
 "让我们考虑一下我们会如何做这样的事情\n"
 "在命令式语言中。在那里，我们可能会定义\n"
-"一个本地（可变）变量，用于跟踪当前\n"
+"一个局部（可变）变量，用于跟踪当前\n"
 "索引，然后在遍历列表时增加\n"
 "在 `for`- 或 `while`-循环中。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:363
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In Idris, there is no such thing as mutable state.\n"
 "Or is there? Remember, how we used a mutable reference\n"
@@ -1263,37 +1216,32 @@ msgid ""
 "available from module `Data.IORef` from the *base* library.\n"
 msgstr ""
 "在 Idris 中，没有可变状态之类的东西。\n"
-"或者有吗？请记住，我们如何使用可变引用\n"
-"在早期模拟数据库连接\n"
-"锻炼。在那里，我们实际上使用了一些真正可变的\n"
+"或者有吗？请记住，我们如何在早期模拟数据库连接练习中使用可变引用。在那里，我们实际上使用了一些真正可变的\n"
 "状态。但是，由于访问或修改一个可变\n"
 "变量不是引用透明操作，\n"
 "此类操作必须在 `IO` 内执行。\n"
-"除此之外，没有什么能阻止我们使用 mutable\n"
-"我们代码中的变量。必要的功能是\n"
-"可从 *base* 库中的模块 `Data.IORef` 获得。\n"
+"除此之外，没有什么能阻止我们在我们代码中使用可变变量。必要的函数可从 *base* 库中的模块 `Data.IORef` 获得。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:367
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As a quick exercise, try to implement a function, which -\n"
 "given an `IORef Nat` - pairs a value with the current\n"
 "index and increases the index afterwards.\n"
 msgstr ""
-"作为一个快速练习，尝试实现一个函数，它 -\n"
-"给定 `IORef Nat` - 将值与当前值配对\n"
+"作为一个快速练习，尝试实现一个函数，它 - 给定 `IORef Nat` - 将值与当前值配对\n"
 "索引并在之后增加索引。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:369
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here's how I would do this:\n"
-msgstr "这是我将如何做到这一点：\n"
+msgstr "下面看我将如何做到这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:370
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "pairWithIndexIO : IORef Nat -> a -> IO (Nat,a)\n"
 "pairWithIndexIO ref va = do\n"
@@ -1302,14 +1250,14 @@ msgid ""
 "  pure (ix,va)\n"
 msgstr ""
 "pairWithIndexIO : IORef Nat -> a -> IO (Nat,a)\n"
-"pairWithIndexIO 参考 va = 做\n"
+"pairWithIndexIO ref va = do\n"
 "  ix <- readIORef ref\n"
-"  writeIORef ref (六)\n"
-"  纯 (ix,va)\n"
+"  writeIORef ref (S ix)\n"
+"  pure (ix,va)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:387
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that every time we *run* `pairWithIndexIO ref`, the\n"
 "natural number stored in `ref` is incremented by one.\n"
@@ -1321,19 +1269,18 @@ msgid ""
 "input type is `a`, our output type is `(Nat,a)`, our\n"
 "container type is `List`, and the effect type is `IO`!\n"
 msgstr ""
-"注意，每次我们 *run* `pairWithIndexIO ref`，\n"
+"注意，每次我们 *运行* `pairWithIndexIO ref`，\n"
 "`ref` 中存储的自然数加一。\n"
 "另外，查看 `pairWithIndexIO ref` 的类型：`a -> IO (Nat,a)`。\n"
-"我们希望将这种有效的计算应用于每个元素\n"
-"在一个列表中，这应该会导致一个包含在 `IO` 中的新列表，\n"
+"我们希望将这种副作用的计算应用于在一个列表中每个元素，这应该会导致一个包含在 `IO` 中的新列表，\n"
 "因为所有这些都描述了一个单一的计算\n"
-"效果。但这正是 ** `traverse` 的作用：我们的\n"
+"副作用。但这 *正是* `traverse` 的作用：我们的\n"
 "输入类型是 `a`，我们的输出类型是 `(Nat,a)`，我们的\n"
-"容器类型为`List`，效果类型为`IO`！\n"
+"容器类型为`List`，副作用类型为`IO`！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:388
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipListWithIndexIO : IORef Nat -> List a -> IO (List (Nat,a))\n"
 "zipListWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
@@ -1343,77 +1290,75 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:397
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now *this* is really powerful: We could apply the same function\n"
 "to *any* traversable data structure. It therefore makes\n"
 "absolutely no sense to specialize `zipListWithIndexIO` to\n"
 "lists only:\n"
 msgstr ""
-"现在 *this* 真的很强大：我们可以应用相同的功能\n"
-"到 *any* 可遍历的数据结构。因此它使\n"
+"现在 *这个* 真的很强大：我们可以应用相同的函数\n"
+"到 *任意* 可遍历的数据结构。因此它使\n"
 "将 `zipListWithIndexIO` 专门用于\n"
 "仅列出：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:398
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
 "zipWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
 msgstr ""
-"zipWithIndexIO : 可遍历 t => IORef Nat -> t a -> IO (t (Nat,a))\n"
+"zipWithIndexIO : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
 "zipWithIndexIO ref = traverse (pairWithIndexIO ref)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:405
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "To please our intellectual minds even more, here is the\n"
 "same function in point-free style:\n"
 msgstr ""
 "为了更取悦我们的智力，这里是\n"
-"无点风格的相同功能：\n"
+"无参风格的相同函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:406
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
 "zipWithIndexIO' = traverse . pairWithIndexIO\n"
 msgstr ""
-"zipWithIndexIO' : 可遍历 t => IORef Nat -> t a -> IO (t (Nat,a))\n"
-"zipWithIndexIO' = 遍历。 pairWithIndexIO\n"
+"zipWithIndexIO' : Traversable t => IORef Nat -> t a -> IO (t (Nat,a))\n"
+"zipWithIndexIO' = traverse . pairWithIndexIO\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:413
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "All that's left to do now is to initialize a new mutable variable\n"
 "before passing it to `zipWithIndexIO`:\n"
-msgstr ""
-"现在剩下要做的就是初始化一个新的可变变量\n"
-"在将其传递给 `zipWithIndexIO` 之前：\n"
+msgstr "现在剩下要做的就是在将其传递给 `zipWithIndexIO` 之前初始化一个新的可变变量：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:414
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))\n"
 "zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)\n"
 msgstr ""
-"zipFromZeroIO : 可遍历 t => t a -> IO (t (Nat,a))\n"
+"zipFromZeroIO : Traversable t => t a -> IO (t (Nat,a))\n"
 "zipFromZeroIO ta = newIORef 0 >>= (`zipWithIndexIO` ta)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:420
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Quickly, let's give this a go at the REPL:\n"
 msgstr "很快，让我们在 REPL 上试一试：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:421
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "> :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn\n"
 "[(0, \"hello\"), (1, \"world\")]\n"
@@ -1423,31 +1368,29 @@ msgid ""
 "[(0, \"hello\"), (1, \"world\")]\n"
 msgstr ""
 "> :exec zipFromZeroIO {t = List} [\"hello\", \"world\"] >>= printLn\n"
-"[(0, \"你好\"), (1, \"世界\")]\n"
-"> :exec zipFromZeroIO (只有 12) >>= printLn\n"
-"只是 (0, 12)\n"
+"[(0, \"hello\"), (1, \"world\")]\n"
+"> :exec zipFromZeroIO (Just 12) >>= printLn\n"
+"Just (0, 12)\n"
 "> :exec zipFromZeroIO {t = Vect 2} [\"hello\", \"world\"] >>= printLn\n"
-"[(0, \"你好\"), (1, \"世界\")]\n"
+"[(0, \"hello\"), (1, \"world\")]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:432
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Thus, we solved the problem of tagging each element with its\n"
 "index once and for all for all traversable container types.\n"
-msgstr ""
-"因此，我们解决了使用其标记每个元素的问题\n"
-"为所有可遍历的容器类型一劳永逸地索引。\n"
+msgstr "因此，对于所有可遍历的容器类型，我们解决了用索引一次性标记每个元素的问题。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Traverse.md:433
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The State Monad"
-msgstr "国家单子"
+msgstr "状态单子"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:441
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Alas, while the solution presented above is elegant and\n"
 "performs very well, it still carries its `IO` stain, which\n"
@@ -1456,16 +1399,12 @@ msgid ""
 "much harder to test and reason about just for a simple\n"
 "case of stateful element tagging.\n"
 msgstr ""
-"唉，虽然上面提出的解决方案很优雅，但\n"
-"表现非常好，它仍然带有 `IO` 污渍，\n"
-"如果我们已经在 `IO` 土地上就好了，但不可接受\n"
-"否则。我们不想让我们原本纯粹的功能\n"
-"只是为了一个简单的测试和推理要困难得多\n"
-"有状态元素标记的情况。\n"
+"唉，虽然上面提出的解决方案很优雅，表现也非常好，但它仍然带有 `IO` 污渍，\n"
+"如果我们已经在 `IO` 土地上就还好，否则这是不可接受的。我们不想让我们原本纯粹的函数只是为了一个简单有状态元素标记的情况就让测试和推理变得困难。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:450
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Luckily, there is an alternative to using a mutable reference,\n"
 "which allows us to keep our computations pure and\n"
@@ -1478,24 +1417,19 @@ msgid ""
 msgstr ""
 "幸运的是，有一个使用可变引用的替代方法，\n"
 "这使我们能够保持我们的计算纯粹和\n"
-"未受污染。然而，要做到这一点并不容易\n"
-"自己的替代方案，而且很难弄清楚\n"
-"这是怎么回事，所以我会尝试慢慢介绍。\n"
-"我们首先需要问自己一个人的本质是什么\n"
-"“有状态”，但在其他方面是纯计算。那里\n"
-"是两个基本成分：\n"
+"不受污染。然而，自己的替代方案要做到这一点并不容易，而且很难弄清楚这是怎么回事，所以我会尝试慢慢介绍。\n"
+"我们首先需要问自己 “有状态” 的本质是什么，否则什么是纯计算。那是两个基本成分：\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:458
-#, fuzzy
 msgid ""
 "Access to the *current* state. In case of a pure function, this means that "
 "the function should take the current state as one of its arguments."
-msgstr "访问*当前*状态。对于纯函数，这意味着该函数应将当前状态作为其参数之一。"
+msgstr ""
+"访问 *当前* 状态。对于纯函数，这意味着该函数应将当前状态作为其参数之一。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Traverse.md:458
-#, fuzzy
 msgid ""
 "Ability to communicate the updated state to later stateful computations. In "
 "case of a pure function this means, that the function will return a pair of "
@@ -1506,29 +1440,28 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:462
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "These two prerequisites lead to the following generic\n"
 "type for a pure, stateful computation operating on state\n"
 "type `st` and producing values of type `a`:\n"
 msgstr ""
-"这两个先决条件导致以下通用\n"
-"用于在状态上运行的纯有状态计算的类型\n"
-"输入 `st` 并生成 `a` 类型的值：\n"
+"这两个先决条件导致以泛型，\n"
+"用于在状态上运行的纯的有状态计算的类型，输入 `st` 并生成 `a` 类型的值 ：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:463
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Stateful : (st : Type) -> (a : Type) -> Type\n"
 "Stateful st a = st -> (st, a)\n"
 msgstr ""
-"有状态的：（st：类型）->（a：类型）->类型\n"
-"有状态的 st a = st -> (st, a)\n"
+"Stateful : (st : Type) -> (a : Type) -> Type\n"
+"Stateful st a = st -> (st, a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:470
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Our use case is pairing elements with indices, which\n"
 "can be implemented as a pure, stateful computation like so:\n"
@@ -1538,29 +1471,28 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:471
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "pairWithIndex' : a -> Stateful Nat (Nat,a)\n"
 "pairWithIndex' v index = (S index, (index,v))\n"
 msgstr ""
-"pairWithIndex' : a -> 有状态的 Nat (Nat,a)\n"
+"pairWithIndex' : a -> Stateful Nat (Nat,a)\n"
 "pairWithIndex' v index = (S index, (index,v))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:479
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how we at the same time increment the index, returning\n"
 "the incremented value as the new state, while pairing\n"
 "the first argument with the original index.\n"
 msgstr ""
 "注意，我们如何同时增加索引，返回\n"
-"增加的值作为新状态，同时配对\n"
-"第一个参数与原始索引。\n"
+"增加的值作为新状态，同时配对第一个参数与原始索引。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:488
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, here is an important thing to note: While `Stateful` is\n"
 "a useful type alias, Idris in general does *not* resolve\n"
@@ -1571,68 +1503,61 @@ msgid ""
 "computations. We therefore introduce record `State` as\n"
 "a wrapper for pure, stateful computations:\n"
 msgstr ""
-"现在，需要注意一件重要的事情：虽然 `Stateful` 是\n"
-"一个有用的类型别名，Idris 通常不会 *not* 解析\n"
-"函数类型的接口实现。如果我们想\n"
-"围绕这种类型编写一个小型实用函数库，\n"
+"现在，需要注意一件重要的事情：虽然 `Stateful` 是一个有用的类型别名，Idris 通常 *不会* 解析函数类型的接口实现。如果我们想围绕这种类型编写一个小型实用函数库，\n"
 "因此，最好将其包装在单构造函数数据类型中，并且\n"
-"使用它作为我们编写更复杂的构建块\n"
-"计算。因此，我们将记录 `State` 引入为\n"
+"使用它作为我们编写更复杂计算的构建块。因此，我们将记录 `State` 引入为\n"
 "纯粹的有状态计算的包装器：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:489
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record State st a where\n"
 "  constructor ST\n"
 "  runST : st -> (st,a)\n"
 msgstr ""
-"记录状态 st a where\n"
-"  构造函数 ST\n"
+"record State st a where\n"
+"  constructor ST\n"
 "  runST : st -> (st,a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:496
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "We can now implement `pairWithIndex` in terms of `State` like so:\n"
 msgstr "我们现在可以用 `State` 来实现 `pairWithIndex` ，如下所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:497
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "pairWithIndex : a -> State Nat (Nat,a)\n"
 "pairWithIndex v = ST $ \\index => (S index, (index, v))\n"
 msgstr ""
 "pairWithIndex : a -> State Nat (Nat,a)\n"
-"pairWithIndex v = ST $ \\index => (S 索引, (index, v))\n"
+"pairWithIndex v = ST $ \\index => (S index, (index, v))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:505
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In addition, we can define some more utility functions. Here's\n"
 "one for getting the current state without modifying it\n"
 "(this corresponds to `readIORef`):\n"
-msgstr ""
-"此外，我们还可以定义更多的效用函数。这里是\n"
-"一种用于获取当前状态而不修改它\n"
-"（这对应于 `readIORef`）：\n"
+msgstr "此外，我们还可以定义更多的工具函数。这里是一个用于获取当前状态而不修改它的函数（这对应于 `readIORef`）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:506
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "get : State st st\n"
 "get = ST $ \\s => (s,s)\n"
 msgstr ""
-"得到：状态 st st\n"
-"得到 = ST $ \\s => (s,s)\n"
+"get : State st st\n"
+"get = ST $ \\s => (s,s)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:513
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here are two others, for overwriting the current state. These\n"
 "corresponds to `writeIORef` and `modifyIORef`:\n"
@@ -1642,7 +1567,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:514
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "put : st -> State st ()\n"
 "put v = ST $ \\_ => (v,())\n"
@@ -1650,25 +1575,23 @@ msgid ""
 "modify : (st -> st) -> State st ()\n"
 "modify f = ST $ \\v => (f v,())\n"
 msgstr ""
-"put : st -> 状态 st ()\n"
-"把 v = ST $ \\_ => (v,())\n"
+"put : st -> State st ()\n"
+"put v = ST $ \\_ => (v,())\n"
 "\n"
-"修改 : (st -> st) -> 状态 st ()\n"
-"修改 f = ST $ \\v => (f v,())\n"
+"modify : (st -> st) -> State st ()\n"
+"modify f = ST $ \\v => (f v,())\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:524
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, we can define three functions in addition to `runST`\n"
 "for running stateful computations\n"
-msgstr ""
-"最后，我们可以定义除`runST`之外的三个函数\n"
-"用于运行有状态计算\n"
+msgstr "最后，我们可以定义除用于运行有状态计算 `runST` 之外的三个函数\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:525
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "runState : st -> State st a -> (st, a)\n"
 "runState = flip runST\n"
@@ -1679,18 +1602,18 @@ msgid ""
 "execState : st -> State st a -> st\n"
 "execState s = fst . runState s\n"
 msgstr ""
-"runState : st -> 状态 st a -> (st, a)\n"
-"runState = 翻转 runST\n"
+"runState : st -> State st a -> (st, a)\n"
+"runState = flip runST\n"
 "\n"
-"evalState : st -> 状态 st a -> a\n"
-"evalState s = snd 。运行状态\n"
+"evalState : st -> State st a -> a\n"
+"evalState s = snd . runState s\n"
 "\n"
-"execState : st -> 状态 st a -> st\n"
-"执行状态 s = fst 。运行状态\n"
+"execState : st -> State st a -> st\n"
+"execState s = fst . runState s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:542
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "All of these are useful on their own, but the real power of\n"
 "`State s` comes from the observation that it is a monad.\n"
@@ -1701,14 +1624,12 @@ msgid ""
 msgstr ""
 "所有这些都是单独有用的，但真正的力量\n"
 "`State s` 来自观察它是一个单子。\n"
-"在继续之前，请花一些时间尝试实施\n"
-"`Functor`、`Applicative` 和 `Monad` 用于 `State s` 自己。\n"
-"即使你没有成功，你也会过得更轻松\n"
-"了解下面的实现是如何工作的。\n"
+"在继续之前，请花一些时间尝试自己实现 `Functor`、`Applicative` 和 `Monad` 用于 `State s`。\n"
+"即使你没有成功，你也会过得更轻松了解下面的实现是如何工作的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:543
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Functor (State st) where\n"
 "  map f (ST run) = ST $ \\s => let (s2,va) = run s in (s2, f va)\n"
@@ -1726,25 +1647,25 @@ msgid ""
 "    let (s2, va) = val s\n"
 "     in runST (f va) s2\n"
 msgstr ""
-"函子（State st）\n"
+"Functor (State st) where\n"
 "  map f (ST run) = ST $ \\s => let (s2,va) = run s in (s2, f va)\n"
 "\n"
-"适用（State st）\n"
-"  纯 v = ST $ \\s => (s,v)\n"
+"Applicative (State st) where\n"
+"  pure v = ST $ \\s => (s,v)\n"
 "\n"
-"  ST 乐趣 <*> ST val = ST $ \\s =>\n"
-"    让 (s2, f) = 乐趣 s\n"
+"  ST fun <*> ST val = ST $ \\s =>\n"
+"    let (s2, f)  = fun s\n"
 "        (s3, va) = val s2\n"
-"     在 (s3, f va)\n"
+"     in (s3, f va)\n"
 "\n"
-"Monad (State st) 在哪里\n"
+"Monad (State st) where\n"
 "  ST val >>= f = ST $ \\s =>\n"
-"    让 (s2, va) = val s\n"
-"     在 runST (f va) s2\n"
+"    let (s2, va) = val s\n"
+"     in runST (f va) s2\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:573
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This may take some time to digest, so we come back to it in a\n"
 "slightly advanced exercise. The most important thing to note is,\n"
@@ -1759,22 +1680,12 @@ msgid ""
 "later stateful computations together with the result of\n"
 "applying `f` to `va`.\n"
 msgstr ""
-"这可能需要一些时间来消化，所以我们稍后会回到它\n"
-"稍微高级的练习。最需要注意的是，\n"
-"我们只使用一次每个状态值。我们*必须*确保\n"
-"将更新后的状态传递给以后的计算，否则\n"
-"有关状态更新的信息正在丢失。这个可以\n"
-"最好在 `Applicative` 的实现中看到：初始\n"
-"状态 `s` 用于计算函数值，\n"
-"这也将返回一个更新的状态，`s2`，然后\n"
-"用于计算函数参数。这将\n"
-"再次返回一个更新的状态，`s3`，它被传递给\n"
-"以后的有状态计算连同结果\n"
-"将 `f` 应用于 `va`。\n"
+"这可能需要一些时间来消化，所以我们稍后稍微高级的练习时会回顾它。最需要注意的是，\n"
+"我们每个状态值只使用一次。我们*必须*确保将更新后的状态传递给以后的计算，否则有关状态更新的信息就会丢失。这个可以最好在 `Applicative` 的实现中看到：初始状态 `s` 用于计算函数值，这也将返回一个更新的状态，`s2` 用于计算函数参数。这将再次返回一个更新的状态，`s3`，它连同将 `f` 应用于 `va` 的结果被传递给以后的有状态计算。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:583
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This sections consists of two extended exercise, the aim\n"
 "of which is to increase your understanding of the state monad.\n"
@@ -1788,13 +1699,10 @@ msgstr ""
 "其中是为了增加你对状态单子的理解。\n"
 "在第一个练习中，我们将研究随机值生成，\n"
 "有状态计算的经典应用。\n"
-"在第二个练习中，我们将看一个索引版本的\n"
-"一个状态单子，它允许我们不仅改变\n"
-"在计算过程中状态的值以及它的 *type*。\n"
+"在第二个练习中，我们将看基于状态单子的一个索引版本，它允许我们在计算过程中不仅改变状态的值以及它的 *类型*。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:590
-#, fuzzy
 msgid ""
 "Below is the implementation of a simple pseudo-random number generator. We "
 "call this a *pseudo-random* number generator, because the numbers look "
@@ -1802,25 +1710,25 @@ msgid ""
 "such computations with a truly random seed, most users of our library will "
 "not be able to predict the outcome of our computations."
 msgstr ""
-"下面是一个简单的伪随机数生成器的实现。我们称其为 * 伪随机 * 数字生成器，因为"
-"这些数字看起来非常随机，但生成是可预测的。如果我们用真正的随机种子初始化一系"
-"列这样的计算，我们库的大多数用户将无法预测我们的计算结果。"
+"下面是一个简单的伪随机数生成器的实现。我们称其为 *伪随机* 数字生成器，因为这"
+"些数字看起来非常随机，但生成是可预测的。如果我们用真正的随机种子初始化一系列"
+"这样的计算，我们库的大多数用户将无法预测我们的计算结果。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:591
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   rnd : Bits64 -> Bits64\n"
 "   rnd seed = fromInteger\n"
 "            $ (437799614237992725 * cast seed) `mod` 2305843009213693951\n"
 msgstr ""
-"   rnd：Bits64 -> Bits64\n"
-"   rnd 种子 = fromInteger\n"
-"            $ (437799614237992725 * 播种) `mod` 2305843009213693951\n"
+"   rnd : Bits64 -> Bits64\n"
+"   rnd seed = fromInteger\n"
+"            $ (437799614237992725 * cast seed) `mod` 2305843009213693951\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:604
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   The idea here is that the next pseudo-random number gets\n"
 "   calculated from the previous one. But once we think about\n"
@@ -1829,28 +1737,21 @@ msgid ""
 "   just stateful computations. We can therefore write\n"
 "   down an alias for random value generators as stateful\n"
 "   computations:\n"
-msgstr ""
-"   这里的想法是下一个伪随机数得到\n"
-"   从上一个计算。但是一旦我们想到\n"
-"   我们如何将这些数字用作计算的种子\n"
-"   其他类型的随机值，我们意识到这些是\n"
-"   只是有状态的计算。因此我们可以写\n"
-"   将随机值生成器的别名设为有状态\n"
-"   计算：\n"
+msgstr "   这里的意思是，下一个伪随机数是从上一个伪随机数计算出来的。但一旦我们考虑如何使用这些数字作为种子来计算其他类型的随机值，我们就会意识到这些只是有状态的计算。因此，我们可以将随机值生成器的别名写为有状态计算：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:605
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Gen : Type -> Type\n"
 "   Gen = State Bits64\n"
 msgstr ""
-"   Gen : 类型 -> 类型\n"
-"   Gen = 状态位 64\n"
+"   Gen : Type -> Type\n"
+"   Gen = State Bits64\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:617
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Before we begin, please note that `rnd` is not a very strong\n"
 "   pseudo-random number generator. It will not generate values in\n"
@@ -1860,17 +1761,14 @@ msgid ""
 "   generator without any changes to the functions you will implement\n"
 "   as part of this exercise.\n"
 msgstr ""
-"   在开始之前，请注意 `rnd` 不是很强\n"
-"   伪随机数发生器。它不会在\n"
-"   完整的 64 位范围，在密码学中使用也不安全\n"
-"   应用程序。对我们本章的目的来说就足够了，\n"
-"   然而。另请注意，我们可以将 `rnd` 替换为更强的\n"
-"   生成器，无需对您将实现的功能进行任何更改\n"
-"   作为本练习的一部分。\n"
+"   在开始之前，请注意 `rnd` 不是很强的\n"
+"   伪随机数发生器。它不会在完整的 64 位区间生成值，在密码应用程序中使用也不安全 。然而对我们本章的目的来说足够了，\n"
+"   。另请注意，我们可以将 `rnd` 替换为更强的\n"
+"   生成器，无需对您将作为本练习的一部分实现的函数进行任何更改\n"
+"   。\n"
 
 #. type: Bullet: '   1. '
 #: ../src/Tutorial/Traverse.md:622
-#, fuzzy
 msgid ""
 "Implement `bits64` in terms of `rnd`. This should return the current state, "
 "updating it afterwards by invoking function `rnd`. Make sure the state is "
@@ -1881,33 +1779,32 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:626
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      bits64 : Gen Bits64\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      bits64 : Gen Bits64\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:631
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      This will be our *only* primitive generator, from which\n"
 "      we will derived all the others. Therefore,\n"
 "      before you continue, quickly test your implementation of\n"
 "      `bits64` at the REPL:\n"
 msgstr ""
-"      这将是我们的 *only* 原始生成器，从中\n"
+"      这将是我们的 *仅限* 原语的生成器，从中\n"
 "      我们将推导出所有其他的。所以，\n"
-"      在你继续之前，快速测试你的实现\n"
-"      REPL 中的 `bits64`：\n"
+"      在你继续之前， 在 REPL 中快速测试你的 `bits64` 实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:636
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```repl\n"
 "      Solutions.Traverse> runState 100 bits64\n"
@@ -1921,88 +1818,82 @@ msgstr ""
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/Traverse.md:642
-#, fuzzy
 msgid ""
 "Implement `range64` for generating random values in the range `[0,upper]`. "
 "Hint: Use `bits64` and `mod` in your implementation but make sure to deal "
 "with the fact that `mod x upper` produces values in the range `[0,upper)`."
 msgstr ""
 "实现 `range64` 以在 `[0,upper]` 范围内生成随机值。提示：在你的实现中使用 "
-"`bits64` 和 `mod` 但确保处理 `mod x upper` 产生范围 `[0,上）`。"
+"`bits64` 和 `mod` 但确保处理 `mod x upper` 在 `[0,upper)` 区间生成。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:646
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      range64 : (upper : Bits64) -> Gen Bits64\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      range64：（上：Bits64）-> Gen Bits64\n"
+"      ```idris\n"
+"      range64 : (upper : Bits64) -> Gen Bits64\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:649
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Likewise, implement `interval64` for generating values\n"
 "      in the range `[min a b, max a b]`:\n"
-msgstr ""
-"      同样，实现 `interval64` 以生成值\n"
-"      在 `[min a b, max a b]` 范围内：\n"
+msgstr "      同样的, 实现 `interval64` 来生成区间为 `[min a b, max a b]` 的值:\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:653
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      interval64 : (a,b : Bits64) -> Gen Bits64\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      interval64 : (a,b : Bits64) -> Gen Bits64\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:655
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "      Finally, implement `interval` for arbitrary integral types.\n"
 msgstr "      最后，为任意整数类型实现 `interval`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:659
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      interval : Num n => Cast n Bits64 => (a,b : n) -> Gen n\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      间隔：Num n => Cast n Bits64 => (a,b : n) -> Gen n\n"
+"      ```idris\n"
+"      interval : Num n => Cast n Bits64 => (a,b : n) -> Gen n\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:663
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Note, that `interval` will not generate all possible values in\n"
 "      the given interval but only such values with a `Bits64`\n"
 "      representation in the the range `[0,2305843009213693950]`.\n"
 msgstr ""
-"      请注意， `interval` 不会生成所有可能的值\n"
-"      给定的间隔，但只有具有 `Bits64` 的值\n"
-"      `[0,2305843009213693950]` 范围内的表示。\n"
+"      请注意， `interval` 不会生成给定的间隔所有可能的值\n"
+"      ，只会生成`[0,2305843009213693950]` 范围内 `Bits64` 的值。\n"
 
 #. type: Bullet: '   3. '
 #: ../src/Tutorial/Traverse.md:665
-#, fuzzy
 msgid "Implement a generator for random boolean values."
 msgstr "实现随机布尔值的生成器。"
 
 #. type: Bullet: '   4. '
 #: ../src/Tutorial/Traverse.md:670
-#, fuzzy
 msgid ""
 "Implement a generator for `Fin n`. You'll have to think carefully about "
 "getting this one to typecheck and be accepted by the totality checker "
@@ -2013,7 +1904,6 @@ msgstr ""
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/Traverse.md:674
-#, fuzzy
 msgid ""
 "Implement a generator for selecting a random element from a vector of "
 "values. Use the generator from exercise 4 in your implementation."
@@ -2023,7 +1913,6 @@ msgstr ""
 
 #. type: Bullet: '   6. '
 #: ../src/Tutorial/Traverse.md:678
-#, fuzzy
 msgid ""
 "Implement `vect` and `list`. In case of `list`, the first argument should be "
 "used to randomly determine the length of the list."
@@ -2033,85 +1922,82 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:681
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      vect : {n : _} -> Gen a -> Gen (Vect n a)\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      vect : {n : _} -> Gen a -> Gen (Vect n a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:684
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      list : Gen Nat -> Gen a -> Gen (List a)\n"
 "      ```\n"
 msgstr ""
-"      列表：Gen Nat -> Gen a -> Gen（列表 a）\n"
+"      list : Gen Nat -> Gen a -> Gen (List a)\n"
 "      ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:687
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Use `vect` to implement utility function `testGen` for\n"
 "      testing your generators at the REPL:\n"
 msgstr ""
-"      使用`vect`实现效用函数`testGen`\n"
-"      在 REPL 测试你的生成器：\n"
+"      使用`vect`实现工具函数`testGen` ，\n"
+"      并在 REPL 测试你的生成器：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:691
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      testGen : Bits64 -> Gen a -> Vect 10 a\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
+"      ```idris\n"
 "      testGen : Bits64 -> Gen a -> Vect 10 a\n"
 "      ```\n"
 
 #. type: Bullet: '   7. '
 #: ../src/Tutorial/Traverse.md:693
-#, fuzzy
 msgid "Implement `choice`."
-msgstr "执行 ` 选择 `。"
+msgstr "实现 `choice`."
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:697
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      choice : {n : _} -> Vect (S n) (Gen a) -> Gen a\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      选择：{n : _} -> Vect (S n) (Gen a) -> Gen a\n"
+"      ```idris\n"
+"      choice : {n : _} -> Vect (S n) (Gen a) -> Gen a\n"
 "      ```\n"
 
 #. type: Bullet: '   8. '
 #: ../src/Tutorial/Traverse.md:699
-#, fuzzy
 msgid "Implement `either`."
-msgstr "实施 ` 或 `。"
+msgstr "实现 `either`."
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:703
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      ```idris\n"
 "      either : Gen a -> Gen b -> Gen (Either a b)\n"
 "      ```\n"
 msgstr ""
-"      ```伊德里斯\n"
-"      要么：Gen a -> Gen b -> Gen（要么 a b）\n"
+"      ```idris\n"
+"      either : Gen a -> Gen b -> Gen (Either a b)\n"
 "      ```\n"
 
 #. type: Bullet: '   9. '
 #: ../src/Tutorial/Traverse.md:708
-#, fuzzy
 msgid ""
 "Implement a generator for printable ASCII characters.  These are characters "
 "with ASCII codes in the interval `[32,126]`. Hint: Function `chr` from the "
@@ -2122,7 +2008,6 @@ msgstr ""
 
 #. type: Bullet: '   10. '
 #: ../src/Tutorial/Traverse.md:711
-#, fuzzy
 msgid ""
 "Implement a generator for strings. Hint: Function `pack` from the *Prelude* "
 "might be useful for this."
@@ -2130,19 +2015,18 @@ msgstr "实现一个字符串生成器。提示：*Prelude* 中的函数 `pack` 
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:715
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "       ```idris\n"
 "       string : Gen Nat -> Gen Char -> Gen String\n"
 "       ```\n"
 msgstr ""
-"       ```伊德里斯\n"
-"       字符串：Gen Nat -> Gen Char -> Gen String\n"
+"       ```idris\n"
+"       string : Gen Nat -> Gen Char -> Gen String\n"
 "       ```\n"
 
 #. type: Bullet: '   11. '
 #: ../src/Tutorial/Traverse.md:722
-#, fuzzy
 msgid ""
 "We shouldn't forget about our ability to encode interesting things in the "
 "types in Idris, so, for a challenge and without further ado, implement "
@@ -2151,26 +2035,26 @@ msgid ""
 "forget to use holes."
 msgstr ""
 "我们不应该忘记我们在 Idris 的类型中编码有趣事物的能力，因此，为了挑战，事不宜"
-"迟，实现 `hlist`（注意 `HListF` 和 [ X196X]HList`）。如果您对依赖类型比较陌"
-"生，这可能需要一点时间来消化，所以不要忘记使用孔。"
+"迟，实现 `hlist`（注意 `HListF` 和 `HList`）。如果您对依赖类型比较陌生，这可"
+"能需要一点时间来消化，所以不要忘记使用孔。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:727
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "       ```idris\n"
 "       data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where\n"
 "         Nil  : HListF f []\n"
 "         (::) : (x : f t) -> (xs : HLift f ts) -> HListF f (t :: ts)\n"
 msgstr ""
-"       ```伊德里斯\n"
-"       数据 HListF : (f : Type -> Type) -> (ts : List Type) -> Type where\n"
-"         无：HListF f []\n"
+"       ```idris\n"
+"       data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where\n"
+"         Nil  : HListF f []\n"
 "         (::) : (x : f t) -> (xs : HLift f ts) -> HListF f (t :: ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:730
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "       hlist : HListF Gen ts -> Gen (HList ts)\n"
 "       ```\n"
@@ -2180,26 +2064,24 @@ msgstr ""
 
 #. type: Bullet: '   12. '
 #: ../src/Tutorial/Traverse.md:732
-#, fuzzy
 msgid ""
 "Generalize `hlist` to work with any applicative functor, not just `Gen`."
 msgstr "泛化 `hlist` 以与任何应用函子一起工作，而不仅仅是 `Gen`."
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:736
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   If you arrived here, please realize how we can now generate pseudo-random\n"
 "   values for most primitives, as well as regular sum- and product types.\n"
 "   Here is an example REPL session:\n"
 msgstr ""
-"   如果你到了这里，请意识到我们现在如何生成伪随机\n"
-"   大多数原语的值，以及常规的 sum- 和 product 类型。\n"
+"   如果你到了这里，请意识到我们现在如何生成大多数原语的伪随机值，以及常规的 sum- 和 product 类型。\n"
 "   这是一个示例 REPL 会话：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:737
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   > testGen 100 $ hlist [bool, printableAscii, interval 0 127]\n"
 "   [[True, ';', 5],\n"
@@ -2214,20 +2096,20 @@ msgid ""
 "    [False, '8', 9]]\n"
 msgstr ""
 "   > testGen 100 $ hlist [bool, printableAscii, interval 0 127]\n"
-"   [[真，';'，5]，\n"
-"    [真，'^'，39]，\n"
-"    [假，'o'，106]，\n"
-"    [真，'k'，127]，\n"
-"    [假，''，11]，\n"
-"    [错误，'~'，76]，\n"
-"    [真，'M'，11]，\n"
-"    [错误，'P'，107]，\n"
-"    [真，'5'，67]，\n"
-"    [假，'8'，9]]\n"
+"   [[True, ';', 5],\n"
+"    [True, '^', 39],\n"
+"    [False, 'o', 106],\n"
+"    [True, 'k', 127],\n"
+"    [False, ' ', 11],\n"
+"    [False, '~', 76],\n"
+"    [True, 'M', 11],\n"
+"    [False, 'P', 107],\n"
+"    [True, '5', 67],\n"
+"    [False, '8', 9]]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:764
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Final remarks: Pseudo-random value generators play an important role\n"
 "   in property based testing libraries like [QuickCheck](https://hackage.haskell.org/package/QuickCheck)\n"
@@ -2243,23 +2125,16 @@ msgid ""
 "   such as foreign function calls or functions not publicly exported from\n"
 "   other modules.\n"
 msgstr ""
-"   最后的评论：伪随机值生成器起着重要作用\n"
-"   在基于属性的测试库中，如 [QuickCheck](https://hackage.haskell.org/package/QuickCheck)\n"
-"   或 [刺猬](https://github.com/stefan-hoeck/idris2-hedgehog)。\n"
-"   基于属性的测试的思想是测试预定义的*属性*\n"
-"   针对大量随机生成的参数的纯函数，\n"
-"   为 *all* 获得有关这些属性的有力保证\n"
-"   可能的论点。一个例子是验证测试\n"
-"   将列表反转两次的结果等于原始列表。\n"
-"   虽然可以证明 Idris 中的许多更简单的属性\n"
-"   直接不需要测试，这不再可能\n"
-"   一旦涉及功能，在统一期间不会减少\n"
-"   例如外部函数调用或未公开导出的函数\n"
-"   其他模块。\n"
+"   最后的评论：伪随机值生成器在基于属性的测试库中起着重要作用，如 [QuickCheck](https://hackage.haskell.org/package/QuickCheck)\n"
+"   或 [Hedgehog](https://github.com/stefan-hoeck/idris2-hedgehog)。\n"
+"   基于属性的测试的思想是针对大量随机生成的参数的纯函数测试预定义的*属性*，\n"
+"   为 *所有* 可能的参数获得有关这些属性的有力保证。一个例子是验证\n"
+"   将列表反转两次的结果等于原始列表的测试。\n"
+"   虽然不需要测试可以直接证明 Idris 中的许多更简单的属性，一旦涉及函数这不再可能，因为在统一期间不会减少，\n"
+"   例如外部函数调用或其他模块未公开导出的函数。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Traverse.md:770
-#, fuzzy
 msgid ""
 "While `State s a` gives us a convenient way to talk about stateful "
 "computations, it only allows us to mutate the state's *value* but not its "
@@ -2267,12 +2142,12 @@ msgid ""
 "`State` because the type of the state changes:"
 msgstr ""
 "虽然 `State s a` 为我们提供了一种讨论有状态计算的便捷方式，但它只允许我们改变"
-"状态的 * 值 * 而不是它的 * 类型 *。例如，下面的函数不能封装在 `State` 中，因"
-"为状态的类型发生了变化："
+"状态的 *值* 而不是它的 *类型*。例如，下面的函数不能封装在 `State` 中，因为状"
+"态的类型发生了变化："
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:771
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   uncons : Vect (S n) a -> (Vect n a, a)\n"
 "   uncons (x :: xs) = (xs, x)\n"
