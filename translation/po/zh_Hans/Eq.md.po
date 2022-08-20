@@ -1080,13 +1080,13 @@ msgstr "稍后我们将学习如何使用 *重写规则* 来规避编写自定�
 
 #. type: Title ##
 #: ../src/Tutorial/Eq.md:324
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Programs as Proofs"
-msgstr "## 程序作为证明"
+msgstr "程序作为证明"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:333
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "A famous observation by mathematician *Haskell Curry* and\n"
 "logician *William Alvin Howard* leads to the conclusion,\n"
@@ -1095,150 +1095,152 @@ msgid ""
 "and a total program calculating a *value* of this type as a\n"
 "proof that the proposition holds. This is also known as the\n"
 "[Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).\n"
-msgstr "数学家 *Haskell Curry* 和逻辑学家 *William Alvin Howard* 的著名观察得出的结论是，我们可以在具有足够丰富类型的编程语言中查看 * 类型 *系统作为一个数学命题和一个计算这种类型的*值*的总程序作为命题成立的证明。这也称为 [Curry-Howard 同构](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)。"
+msgstr "数学家 *Haskell Curry* 和逻辑学家 *William Alvin Howard* 的著名观察得出的结论是，我们可以在具有足够丰富类型的编程语言中查看 *类型*系统作为一个数学命题和一个计算这种类型的*值*的完全程序作为命题成立的证明。这也称为 [Curry-Howard 同构](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:336
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, here is a simple proof that one plus one\n"
 "equals two:\n"
-msgstr "例如，这里有一个简单的证明，证明一加一等于二："
+msgstr "例如，这里有一个简单的证明，证明一加一等于二：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:337
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "onePlusOne : the Nat 1 + 1 = 2\n"
 "onePlusOne = Refl\n"
-msgstr "```idris onePlusOne : Nat 1 + 1 = 2 onePlusOne = Refl ```"
+msgstr ""
+"onePlusOne : the Nat 1 + 1 = 2\n"
+"onePlusOne = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:346
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The above proof is trivial, as Idris solves this by unification.\n"
 "But we already stated some more interesting things in the\n"
 "exercises. For instance, the symmetry and transitivity of\n"
 "`SameColType`:\n"
-msgstr "上面的证明是微不足道的，因为 Idris 通过统一解决了这个问题。但是我们已经在练习中陈述了一些更有趣的事情。例如 `SameColType` 的对称性和传递性："
+msgstr "上面的证明是微不足道的，因为 Idris 通过统一解决了这个问题。但是我们已经在练习中陈述了一些更有趣的事情。例如 `SameColType` 的对称性和传递性：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:347
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "sctSymmetric : SameColType c1 c2 -> SameColType c2 c1\n"
 "sctSymmetric SameCT = SameCT\n"
 "\n"
 "sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3\n"
 "sctTransitive SameCT SameCT = SameCT\n"
-msgstr "sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3 sctTransitive SameCT SameCT = SameCT ```"
+msgstr ""
+"sctSymmetric : SameColType c1 c2 -> SameColType c2 c1\n"
+"sctSymmetric SameCT = SameCT\n"
+"\n"
+"sctTransitive : SameColType c1 c2 -> SameColType c2 c3 -> SameColType c1 c3\n"
+"sctTransitive SameCT SameCT = SameCT\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:357
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that a type alone is not a proof. For instance, we are free\n"
 "to state that one plus one equals three:\n"
-msgstr "请注意，单独的类型不是证明。例如，我们可以自由地说一加一等于三："
+msgstr "请注意，单独的类型不是证明。例如，我们可以自由地说一加一等于三：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:358
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "onePlusOneWrong : the Nat 1 + 1 = 3\n"
-msgstr "```idris onePlusOneWrong : Nat 1 + 1 = 3 ```"
+msgstr "onePlusOneWrong : the Nat 1 + 1 = 3\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:365
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We will, however, have a hard time implementing this in a provably\n"
 "total way. We say: \"The type `the Nat 1 + 1 = 3` is *uninhabited*\",\n"
 "meaning, that there is no value of this type.\n"
-msgstr "然而，我们将很难以可证明的整体方式实现这一点。我们说：“类型 `the Nat 1 + 1 = 3` 是 *uninhabited*”，意思是这个类型没有值。"
+msgstr "然而，我们将很难以可证明的整体方式实现这一点。我们说：“类型 `the Nat 1 + 1 = 3` 是 *uninhabited*”，意思是这个类型没有值。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Eq.md:366
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "When Proofs replace Tests"
-msgstr "### 当证明取代测试时"
+msgstr "当证明取代测试时"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:373
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We will see several different use cases for compile time proofs, a\n"
 "very straight forward one being to show that our functions behave\n"
 "as they should by proofing some properties about them. For instance,\n"
 "here is a proposition that `map` on list does not change the number of\n"
 "elements in the list:\n"
-msgstr "我们将看到几个不同的编译时证明用例，一个非常直接的用例是通过证明我们的函数的一些属性来证明我们的函数行为应该如此。例如，这里有一个命题，列表上的 `map` 不会改变列表中元素的数量："
+msgstr "我们将看到几个不同的编译时证明用例，一个非常直接的用例是通过证明我们的函数的一些属性来证明我们的函数行为应该如此。例如，这里有一个命题，列表上的 `map` 不会改变列表中元素的数量：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:374
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "mapListLength : (f : a -> b) -> (as : List a) -> length as = length (map f as)\n"
-msgstr "```idris mapListLength : (f : a -> b) -> (as : List a) -> length as = length (map f as) ```"
+msgstr "mapListLength : (f : a -> b) -> (as : List a) -> length as = length (map f as)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:381
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Read this as a universally quantified statement: For all functions `f`\n"
 "from `a` to `b` and for all lists `as` holding values of type `a`,\n"
 "the length of `map f as` is the same the as the length of the original list.\n"
-msgstr "将此视为一个普遍量化的陈述：对于从 `a` 到 `b` 的所有函数 `f` 以及所有包含 `as` 类型值的列表 [ X133X]a`，`map f as`的长度与原始列表的长度相同。"
+msgstr "将此视为一个普遍量化的陈述：对于从 `a` 到 `b` 的所有函数 `f` 以及所有包含 `as` 类型值的列表 `a`，`map f as`的长度与原始列表的长度相同。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:387
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can implement `mapListLength` by pattern matching on `as`. The `Nil` case\n"
 "will be trivial: Idris solves this by unification. It knows the value of the\n"
 "input list (`Nil`), and since `map` is implemented by pattern matching on\n"
 "the input as well, it follows immediately that the result will be `Nil` as\n"
 "well:\n"
-msgstr "我们可以通过在 ` as` 上进行模式匹配来实现 `mapListLength`。 `Nil` 的情况很简单：Idris 通过统一解决了这个问题。它知道输入列表的值 (`Nil`)，并且由于 `map` 也是通过对输入的模式匹配实现的，因此立即得出结果将为 `Nil ` 以及："
+msgstr "我们可以通过在 `as` 上进行模式匹配来实现 `mapListLength`。 `Nil` 的情况很简单：Idris 通过统一解决了这个问题。它知道输入列表的值 (`Nil`)，并且由于 `map` 也是通过对输入的模式匹配实现的，因此立即得出结果将为 `Nil ` ，所以：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:388
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "mapListLength f []        = Refl\n"
-msgstr ""
-"```伊德里斯\n"
-"mapListLength f [] = Refl\n"
-"```\n"
+msgstr "mapListLength f []        = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:395
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The `cons` case is more involved, and we will do this stepwise.\n"
 "First, note that we can proof that the length of a map over the\n"
 "tail will stay the same by means of recursion:\n"
-msgstr "`cons` 的情况比较复杂，我们将逐步进行。首先，请注意，我们可以通过递归证明地图尾部的长度将保持不变："
+msgstr "`cons` 的情况比较复杂，我们将逐步进行。首先，请注意，我们可以通过递归证明映射在尾部的长度将保持不变：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:397
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapListLength f (x :: xs) = case mapListLength f xs of\n"
 "  prf => ?mll1\n"
 msgstr ""
-"```repl\n"
 "mapListLength f (x :: xs) = case mapListLength f xs of\n"
 "  prf => ?mll1\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:403
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Let's inspect the types and context we have here:\n"
-msgstr "让我们检查一下我们在这里拥有的类型和上下文："
+msgstr "让我们检查一下我们在这里拥有的类型和上下文：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:404
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 " 0 b : Type\n"
 " 0 a : Type\n"
@@ -1249,14 +1251,14 @@ msgid ""
 "------------------------------\n"
 "mll1 : S (length xs) = S (length (map f xs))\n"
 msgstr ""
-"```回复\n"
-" 0 b : 类型\n"
-" 0 a : 类型\n"
-"   xs ：列出一个\n"
+" 0 b : Type\n"
+" 0 a : Type\n"
+"   xs : List a\n"
 "   f : a -> b\n"
-"   x：一个\n"
-"   prf : 长度 xs = 长度（映射 f xs）\n"
+"   x : a\n"
+"   prf : length xs = length (map f xs)\n"
 "------------------------------\n"
+"mll1 : S (length xs) = S (length (map f xs))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:422
@@ -1269,48 +1271,46 @@ msgid ""
 "function `cong` from the *Prelude* is for (\"cong\" is an abbreviation\n"
 "for *congruence*). We can thus implement the *cons* case\n"
 "concisely like so:\n"
-msgstr "所以，我们有一个类型 `length xs = length (map f xs)` 的证明，并且从 `map` 的实现 Idris 得出结论，我们真正要寻找的是类型的结果`S（长度 xs）=S（长度（地图 f xs））`。这正是 *Prelude* 中的函数 `cong` 的用途（“cong”是 *congruence* 的缩写）。因此，我们可以像这样简洁地实现 *cons* 案例："
+msgstr "`````所以，我们有一个类型 `length xs = length (map f xs)` 的证明，并且从 `map` 的实现 Idris 得出结论，我们真正要寻找的是类型的结果`S（长度 xs）=S（长度（地图 f xs））`。这正是 *Prelude* 中的函数 `cong` 的用途（“cong”是 *congruence* 的缩写）。因此，我们可以像这样简洁地实现 *cons* 案例：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:423
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "mapListLength f (x :: xs) = cong S $ mapListLength f xs\n"
-msgstr "```idris mapListLength f (x :: xs) = con S $ mapListLength f xs ```"
+msgstr "mapListLength f (x :: xs) = cong S $ mapListLength f xs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:431
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Please take a moment to appreciate what we achieved here:\n"
 "A *proof* in the mathematical sense that our function will not\n"
 "affect the length of our list. We no longer need a unit test\n"
 "or similar program to verify this.\n"
-msgstr "请花点时间欣赏一下我们在这里取得的成就：数学意义上的 *proof*，我们的函数不会影响列表的长度。我们不再需要单元测试或类似程序来验证这一点。"
+msgstr "请花点时间欣赏一下我们在这里取得的成就：数学意义上的 *证明*，我们的函数不会影响列表的长度。我们不再需要单元测试或类似程序来验证这一点。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:435
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Before we continue, please note an important thing: In our\n"
 "case expression, we used a *variable* for the result from the\n"
 "recursive call:\n"
-msgstr "在我们继续之前，请注意一件重要的事情：在我们的 case 表达式中，我们使用 * 变量 * 来表示递归调用的结果："
+msgstr "在我们继续之前，请注意一件重要的事情：在我们的 case 表达式中，我们使用 *变量* 来表示递归调用的结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:436
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapListLength f (x :: xs) = case mapListLength f xs of\n"
 "  prf => cong S prf\n"
 msgstr ""
-"```repl\n"
 "mapListLength f (x :: xs) = case mapListLength f xs of\n"
-"  prf => 丛 S prf\n"
-"```\n"
+"  prf => cong S prf\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:448
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here, we did not want the two lengths to unify, because we\n"
 "needed the distinction in our call to `cong`. Therefore: If\n"
@@ -1319,21 +1319,21 @@ msgid ""
 "If, on the other hand, you need to run further computations on\n"
 "such a proof, use a variable and the left and right-hand sides\n"
 "will remain distinct.\n"
-msgstr "在这里，我们不希望这两个长度统一，因为我们需要在调用 `cong` 时加以区分。因此：如果您需要 `x = y` 类型的证明来统一两个变量，请在模式匹配中使用 `Refl` 数据构造函数。另一方面，如果您需要对这样的证明进行进一步的计算，请使用变量，并且左侧和右侧将保持不同。"
+msgstr "在这里，我们不希望这两个长度统一，因为我们需要在调用 `cong` 时加以区分。因此：如果您需要 `x = y` 类型的证明来统一两个变量，请在模式匹配中使用 `Refl` 数据构造函数。另一方面，如果您需要对这样的证明进行进一步的计算，请使用变量，并且左侧和右侧将保持不同。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:453
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here is another example from the last chapter: We want to show\n"
 "that parsing and printing column types behaves correctly.\n"
 "Writing proofs about parsers can be very hard in general, but\n"
 "here it can be done with a mere pattern match:\n"
-msgstr "这是上一章的另一个例子：我们想证明解析和打印列类型的行为是正确的。一般来说，编写关于解析器的证明可能非常困难，但在这里可以仅通过模式匹配来完成："
+msgstr "这是上一章的另一个例子：我们想证明解析和打印列类型的行为是正确的。一般来说，编写关于解析器的证明可能非常困难，但在这里可以仅通过模式匹配来完成：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:454
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "showColType : ColType -> String\n"
 "showColType I64      = \"i64\"\n"
@@ -1354,36 +1354,36 @@ msgid ""
 "showReadColType Boolean = Refl\n"
 "showReadColType Float   = Refl\n"
 msgstr ""
-"showColType : ColType -> 字符串\n"
-"showColType I64 = \"i64\"\n"
-"showColType Str = \"str\"\n"
-"showColType Boolean = \"布尔\"\n"
-"showColType Float = \"浮动\"\n"
+"showColType : ColType -> String\n"
+"showColType I64      = \"i64\"\n"
+"showColType Str      = \"str\"\n"
+"showColType Boolean  = \"boolean\"\n"
+"showColType Float    = \"float\"\n"
 "\n"
-"readColType : String -> 也许 ColType\n"
-"readColType \"i64\" = 只是 I64\n"
-"readColType \"str\" = 只是 Str\n"
-"readColType \"boolean\" = 只是布尔值\n"
-"readColType \"float\" = 只是浮动\n"
-"readColType s = 无\n"
+"readColType : String -> Maybe ColType\n"
+"readColType \"i64\"      = Just I64\n"
+"readColType \"str\"      = Just Str\n"
+"readColType \"boolean\"  = Just Boolean\n"
+"readColType \"float\"    = Just Float\n"
+"readColType s          = Nothing\n"
 "\n"
-"showReadColType : (c : ColType) -> readColType (showColType c) = 只是 c\n"
-"showReadColType I64 = 参考\n"
-"showReadColType Str = Refl\n"
+"showReadColType : (c : ColType) -> readColType (showColType c) = Just c\n"
+"showReadColType I64     = Refl\n"
+"showReadColType Str     = Refl\n"
 "showReadColType Boolean = Refl\n"
-"showReadColType Float = Refl\n"
+"showReadColType Float   = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:477
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Such simple proofs give us quick but strong guarantees\n"
 "that we did not make any stupid mistakes.\n"
-msgstr "这样简单的证明给了我们快速但有力的保证，我们没有犯任何愚蠢的错误。"
+msgstr "这样简单的证明给了我们快速但有力的保证，我们没有犯任何愚蠢的错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:485
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The examples we saw so far were very easy to implement. In general,\n"
 "this is not the case, and we will have to learn about several\n"
@@ -1392,17 +1392,17 @@ msgid ""
 "programming language and not as a proof assistant, we are free\n"
 "to choose whether some aspect of our code needs such strong\n"
 "guarantees or not.\n"
-msgstr "到目前为止，我们看到的示例非常容易实现。一般来说，情况并非如此，我们将不得不学习一些额外的技术来证明我们程序的有趣之处。但是，当我们将 Idris 用作通用编程语言而不是用作证明助手时，我们可以自由选择代码的某些方面是否需要这种强有力的保证。"
+msgstr "到目前为止，我们看到的示例非常容易实现。一般来说，情况并非如此，我们将不得不学习一些额外的技术来证明我们程序的有趣之处。但是，当我们将 Idris 用作通用编程语言而不是用作证明助手时，我们可以自由选择代码的某些方面是否需要这种强有力的保证。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Eq.md:486
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "A Note of Caution: Lowercase Identifiers in Function Types"
-msgstr "### 注意事项：函数类型中的小写标识符"
+msgstr "注意事项：函数类型中的小写标识符"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:494
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When writing down the types of proofs as we did above, one\n"
 "has to be very careful not to fall into the following trap:\n"
@@ -1410,29 +1410,32 @@ msgid ""
 "function types as type parameters (erased implicit arguments).\n"
 "For instance, here is a try at proofing the identity functor\n"
 "law for `Maybe`:\n"
-msgstr "在写下我们上面所做的证明类型时，必须非常小心不要落入以下陷阱：通常，Idris 会将函数类型中的小写标识符视为类型参数（已删除的隐式参数）。例如，这里尝试证明 `Maybe` 的恒等函子定律："
+msgstr "在写下我们上面所做的证明类型时，必须非常小心不要落入以下陷阱：通常，Idris 会将函数类型中的小写标识符视为类型参数（已删除的隐式参数）。例如，这里尝试证明 `Maybe` 的恒等函子定律：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:495
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapMaybeId1 : (ma : Maybe a) -> map id ma = ma\n"
 "mapMaybeId1 Nothing  = Refl\n"
 "mapMaybeId1 (Just x) = ?mapMaybeId1_rhs\n"
-msgstr "```idris mapMaybeId1 : (ma : Maybe a) -> map id ma = ma mapMaybeId1 Nothing = Refl mapMaybeId1 (Just x) = ?mapMaybeId1_rhs ```"
+msgstr ""
+"mapMaybeId1 : (ma : Maybe a) -> map id ma = ma\n"
+"mapMaybeId1 Nothing  = Refl\n"
+"mapMaybeId1 (Just x) = ?mapMaybeId1_rhs\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:504
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You will not be able to implement the `Just` case, because\n"
 "Idris treats `id` as an implicit argument as can easily be\n"
 "seen when inspecting the context of `mapMaybeId1_rhs`:\n"
-msgstr "您将无法实现 `Just` 案例，因为 Idris 将 `id` 视为隐式参数，这在检查 `mapMaybeId1_rhs` 的上下文时很容易看出："
+msgstr "您将无法实现 `Just` 案例，因为 Idris 将 `id` 视为隐式参数，这在检查 `mapMaybeId1_rhs` 的上下文时很容易看出：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:505
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Relations> :t mapMaybeId1_rhs\n"
 " 0 a : Type\n"
@@ -1441,56 +1444,54 @@ msgid ""
 "------------------------------\n"
 "mapMaybeId1_rhs : Just (id x) = Just x\n"
 msgstr ""
-"```回复\n"
 "Tutorial.Relations> :t mapMaybeId1_rhs\n"
-" 0 a : 类型\n"
+" 0 a : Type\n"
 " 0 id : a -> a\n"
-"   x：一个\n"
+"   x : a\n"
 "------------------------------\n"
+"mapMaybeId1_rhs : Just (id x) = Just x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:517
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, `id` is an erased argument of type `a -> a`. And in\n"
 "fact, when type-checking this module, Idris will issue a warning that\n"
 "parameter `id` is shadowing an existing function:\n"
-msgstr "如您所见，`id` 是 `a -> a` 类型的已擦除参数。事实上，在对该模块进行类型检查时，Idris 会发出警告，指出参数 `id` 正在隐藏现有函数："
+msgstr "如您所见，`id` 是 `a -> a` 类型的已擦除参数。事实上，在对该模块进行类型检查时，Idris 会发出警告，指出参数 `id` 正在隐藏现有函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:518
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Warning: We are about to implicitly bind the following lowercase names.\n"
 "You may be unintentionally shadowing the associated global definitions:\n"
 "  id is shadowing Prelude.Basics.id\n"
 msgstr ""
-"```repl\n"
 "警告：我们即将隐式绑定以下小写名称。\n"
 "您可能无意中隐藏了相关的全局定义：\n"
 "  id 正在影响 Prelude.Basics.id\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:527
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The same is not true for `map`: Since we explicitly pass arguments\n"
 "to `map`, Idris treats this as a function name and not as an\n"
 "implicit argument.\n"
-msgstr "`map` 的情况并非如此：由于我们将参数显式传递给 `map`，Idris 将其视为函数名而不是隐式参数。"
+msgstr "`map` 的情况并非如此：由于我们将参数显式传递给 `map`，Idris 将其视为函数名而不是隐式参数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:530
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You have several options here. For instance, you could use an uppercase\n"
 "identifier, as these will never be treated as implicit arguments:\n"
-msgstr "您在这里有几个选择。例如，您可以使用大写标识符，因为这些标识符永远不会被视为隐式参数："
+msgstr "您在这里有几个选择。例如，您可以使用大写标识符，因为这些标识符永远不会被视为隐式参数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:531
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Id : a -> a\n"
 "Id = id\n"
@@ -1498,35 +1499,44 @@ msgid ""
 "mapMaybeId2 : (ma : Maybe a) -> map Id ma = ma\n"
 "mapMaybeId2 Nothing  = Refl\n"
 "mapMaybeId2 (Just x) = Refl\n"
-msgstr "```idris mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma mapMaybeId Nothing = Refl mapMaybeId (Just x) = Refl ```"
+msgstr ""
+"Id : a -> a\n"
+"Id = id\n"
+"\n"
+"mapMaybeId2 : (ma : Maybe a) -> map Id ma = ma\n"
+"mapMaybeId2 Nothing  = Refl\n"
+"mapMaybeId2 (Just x) = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:543
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As an alternative - and this is the preferred way to handle this case -\n"
 "you can prefix `id` with part of its namespace, which will immediately\n"
 "resolve the issue:\n"
-msgstr "作为替代方案 - 这是处理这种情况的首选方式 - 您可以在 `id` 前加上其命名空间的一部分，这将立即解决问题："
+msgstr "作为替代方案 - 这是处理这种情况的首选方式 - 您可以在 `id` 前加上其命名空间的一部分，这将立即解决问题：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:544
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma\n"
 "mapMaybeId Nothing  = Refl\n"
 "mapMaybeId (Just x) = Refl\n"
-msgstr "```idris mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma mapMaybeId Nothing = Refl mapMaybeId (Just x) = Refl ```"
+msgstr ""
+"mapMaybeId : (ma : Maybe a) -> map Prelude.id ma = ma\n"
+"mapMaybeId Nothing  = Refl\n"
+"mapMaybeId (Just x) = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:554
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note: If you have semantic highlighting turned on in your editor\n"
 "(for instance, by using the [idris2-lsp plugin](https://github.com/idris-community/idris2-lsp)),\n"
 "you will note that `map` and `id` in `mapMaybeId1` get\n"
 "highlighted differently: `map` as a function name, `id` as a bound variable.\n"
-msgstr "注意：如果您在编辑器中打开了语义突出显示（例如，通过使用 [idris2-lsp 插件](https://github.com/idris-community/idris2-lsp)），您会注意到 [X181X `mapMaybeId1` 中的 ]map` 和 `id` 以不同的方式突出显示：`map` 作为函数名称，`id` 作为绑定变量。"
+msgstr "注意：如果您在编辑器中打开了语义突出显示（例如，通过使用 [idris2-lsp 插件](https://github.com/idris-community/idris2-lsp)），您会注意到 `mapMaybeId1` 中的 `map` 和 `id` 以不同的方式突出显示：`map` 作为函数名称，`id` 作为绑定变量。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:562
