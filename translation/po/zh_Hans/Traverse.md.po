@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-17 07:28+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-20 09:20+0000\n"
+"Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/traverse/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -2157,7 +2157,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:784
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Your task is to come up with a new state type allowing for\n"
 "   such changes (sometimes referred to as an *indexed* state data type).\n"
@@ -2169,7 +2169,7 @@ msgid ""
 "   at first.\n"
 msgstr ""
 "   你的任务是提出一个新的状态类型，允许\n"
-"   此类更改（有时称为 *indexed* 状态数据类型）。\n"
+"   此类更改（有时称为 *索引* 状态数据类型）。\n"
 "   这个练习的目的也是为了提高你的技能\n"
 "   在类型级别表达事物，包括派生函数\n"
 "   类型和接口。因此，我只会付出一点点\n"
