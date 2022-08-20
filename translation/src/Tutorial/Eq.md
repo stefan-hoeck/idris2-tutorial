@@ -114,7 +114,7 @@ concatTables2 (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of
   Nothing   => Nothing
 ```
 
-At the REPL, we get the following context for `almost_there`:
+在 REPL 中，我们得到 `almost_there` 的以下上下文：
 
 ```repl
 Tutorial.Relations> :t almost_there
@@ -128,21 +128,16 @@ Tutorial.Relations> :t almost_there
 almost_there : Maybe Table
 ```
 
-See, how the types of `rs1` and `rs2` unify? Value `Same`, coming as the
-result of `sameSchema s1 s2`, is a *witness* that `s1` and `s2` are actually
-identical, because this is what we specified in the definition of `Same`.
+看看，`rs1` 和 `rs2` 的类型是怎么统一的？值 `Same`，作为 `sameSchema s1 s2` 的结果， `s1` 和 `s2` 是实际上相同的 *见证*，因为这是我们在 `Same` 的定义中指定的。
 
-All that remains to do is to implement `sameSchema`. For this, we will write
-another data type for specifying when two values of type `ColType` are
-identical:
+剩下要做的就是实现`sameSchema`。为此，我们将编写另一种数据类型，用于指定 `ColType` 类型的两个值何时相同：
 
 ```idris
 data SameColType : (c1, c2 : ColType) -> Type where
   SameCT : SameColType c1 c1
 ```
 
-We can now define several utility functions. First, one for figuring out
-if two column types are identical:
+我们现在可以定义几个工具函数。首先，用于确定两个列类型是否相同：
 
 ```idris
 sameColType : (c1, c2 : ColType) -> Maybe (SameColType c1 c2)
@@ -153,19 +148,9 @@ sameColType Float   Float   = Just SameCT
 sameColType _ _             = Nothing
 ```
 
-This will convince Idris, because in each pattern match, the return
-type will be adjusted according to the values we matched on. For instance,
-on the first line, the output type is `Maybe (SameColType I64 I64)` as
-you can easily verify yourself by inserting a hole and checking its
-type at the REPL.
+这将说服 Idris，因为在每个模式匹配中，返回类型将根据我们匹配的值进行调整。例如，在第一行，输出类型是 `Maybe (SameColType I64 I64)`，因为您可以自己通过插入一个孔并在 REPL 中检查其类型来轻松验证。
 
-We will need two additional utilities: Functions for creating values
-of type `SameSchema` for the nil and cons cases. Please note, how
-the implementations are trivial. Still, we often have to quickly
-write such small proofs (I'll explain in the next section, why I
-call them *proofs*), which will then be used to convince the
-type checker about some fact we already take for granted but Idris
-does not.
+我们将需要两个额外的实用程序： 用于为 nil 和 cons 情况创建 `SameSchema` 类型值的函数。请注意，实现是多么微不足道。尽管如此，我们还是经常不得不快速写出这么小的证明（我将在下一节解释，为什么我称它们为 *证明*），然后用来让类型检查器相信我们已经采取的一些事实是理所当然但 Idris 不知道的。
 
 ```idris
 sameNil : SameSchema [] []
@@ -177,13 +162,7 @@ sameCons :  SameColType c1 c2
 sameCons SameCT Same = Same
 ```
 
-As usual, it can help understanding what's going on by replacing
-the right hand side of `sameCons` with a hole an check out its
-type and context at the REPL. The presence of values `SameCT`
-and `Same` on the left hand side forces Idris to unify `c1` and `c2`
-as well as `s1` and `s2`, from which the unification of
-`c1 :: s1` and `c2 :: s2` immediately follows.
-With these, we can finally implement `sameSchema`:
+像往常一样，它可以通过将 `sameCons` 的右侧替换为一个孔并在 REPL 中检查其类型和上下文来帮助理解发生了什么。左侧存在值 `SameCT` 和 `Same` 迫使 Idris 统一 `c1` 和 `c2` 以及 `s1 ` 和 `s2`，紧接着是 `c1 :: s1` 和 `c2 :: s2` 的统一。有了这些，我们终于可以实现`sameSchema`：
 
 ```idris
 sameSchema []        []        = Just sameNil
@@ -193,29 +172,13 @@ sameSchema (x :: xs) []        = Nothing
 sameSchema []        (x :: xs) = Nothing
 ```
 
-What we described here is a far stronger form of equality
-than what is provided by interface `Eq` and the `(==)`
-operator: Equality of values that is accepted by the
-type checker when trying to unify type level indices.
-This is also called *propositional equality*: We will see
-below, that we can view types as mathematical *propositions*,
-and values of these types a *proofs* that these propositions
-hold.
+我们在这里描述的是一种比接口 `Eq` 和 `(==)` 运算符提供的更强大的相等形式：类型检查器在尝试时接受的值相等统一类型级索引。这也称为 *命题等式*：我们将在下面看到，我们可以将类型视为数学 *命题*，这些类型的值是这些命题所持有的 *证明* .
 
-### Type `Equal`
+### `Equal` 类型
 
-Propositional equality is such a fundamental concept, that the *Prelude*
-exports a general data type for this already: `Equal`, with its only
-data constructor `Refl`. In addition, there is a built-in operator
-for expressing propositional equality, which gets desugared to `Equal`:
-`(=)`. This can sometimes lead to some confusion, because the equals
-symbol is also used for *definitional equality*: Describing in function
-implementations that the left-hand side and right-hand side are
-defined to be equal. If you want to disambiguate propositional from
-definitional equality, you can also use operator `(===)` for the
-former.
+命题等式是一个基本概念，以至于 *Prelude* 已经为此导出了一个通用数据类型：`Equal`，以及它唯一的数据构造函数 `Refl`。此外，还有一个用于表达命题相等的内置运算符，它被脱糖为 `Equal`：`(=)`。这有时会导致一些混淆，因为等号也用于*相等定义*：在函数实现中描述左侧和右侧被定义为相等。如果您想从定义相等中消除命题的歧义，您还可以使用运算符 `(===)` 来表示前者。
 
-Here is another implementation of `concatTables`:
+这是 `concatTables` 的另一个实现：
 
 ```idris
 eqColType : (c1,c2 : ColType) -> Maybe (c1 = c2)
@@ -244,47 +207,34 @@ concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of
 
 ### 练习第 1 部分
 
-In the following exercises, you are going to implement
-some very basic properties of equality proofs. You'll
-have to come up with the types of the functions yourself,
-as the implementations will be incredibly simple.
+在接下来的练习中，您将实现等式证明的一些非常基本的属性。您必须自己提出函数的类型，因为实现将非常简单。
 
-Note: If you can't remember what the terms "reflexive",
-"symmetric", and "transitive" mean, quickly read about
-equivalence relations [here](https://en.wikipedia.org/wiki/Equivalence_relation).
+注意：如果您不记得术语“自反”、“对称”和“传递”的含义，请快速阅读关于等价关系的内容 [此处](https://en.wikipedia.org/wiki/Equivalence_relation)。
 
-1. Show that `SameColType` is a reflexive relation.
+1. 证明 `SameColType` 是自反关系。
 
-2. Show that `SameColType` is a symmetric relation.
+2. 证明 `SameColType` 是一个对称关系。
 
-3. Show that `SameColType` is a transitive relation.
+3. 证明 `SameColType` 是传递关系。
 
-4. Let `f` be a function of type `ColType -> a` for an arbitrary type
-   `a`. Show that from a value of type `SameColType c1 c2` follows that `f
-   c1` and `f c2` are equal.
+4. 对于任意类型 `a`，令 `f` 为 `ColType -> a` 类型的函数。证明从 `SameColType c1 c2` 类型的值得出 `f
+   c1` 和 `f c2` 相等。
 
-For `(=)` the above properties are available from the *Prelude*
-as functions `sym`, `trans`, and `cong`. Reflexivity comes
-from the data constructor `Refl` itself.
+对于 `(=)`，上述属性可从 *Prelude* 作为函数 `sym`、`trans` 和 `cong` 获得.自反性来自数据构造函数 `Refl` 本身。
 
-5. Implement a function for verifying that two natural numbers are
-   identical. Try using `cong` in your implementation.
+5. 实现一个函数来验证两个自然数是否相同。尝试在您的实现中使用 `cong`。
 
-6. Use the function from exercise 5 for zipping two `Table`s if they have
-   the same number of rows.
+6. 如果两个 `Table` 的行数相同，请使用练习 5 中的函数压缩它们。
 
-   Hint: Use `Vect.zipWith`. You will need to implement
-   custom function `appRows` for this, since Idris will
-   not automatically figure out that the types unify when
-   using `HList.(++)`:
+   提示：使用 `Vect.zipWith`。您将需要为此实现
+   自定义函数 `appRows`，因为使用 `HList.(++)` 时 Idris 将
+   不会自动确定类型何时统一 ：
 
    ```idris
    appRows : {ts1 : _} -> Row ts1 -> Row ts2 -> Row (ts1 ++ ts2)
    ```
 
-We will later learn how to use *rewrite rules* to circumvent
-the need of writing custom functions like `appRows` and use
-`(++)` in `zipWith` directly.
+稍后我们将学习如何使用 *重写规则* 来规避编写自定义函数的需要，例如 `appRows` ，并在 `zipWith` 中直接使用 `(++)` 。
 
 ## Programs as Proofs
 

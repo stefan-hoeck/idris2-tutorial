@@ -626,14 +626,14 @@ Monad (State st) where
    uncons (x :: xs) = (xs, x)
    ```
 
-   Your task is to come up with a new state type allowing for
-   such changes (sometimes referred to as an *indexed* state data type).
-   The goal of this exercise is to also sharpen your skills in
-   expressing things at the type level including derived function
-   types and interfaces. Therefore, I will give only little
-   guidance on how to go about this. If you get stuck, feel free to
-   peek at the solutions but make sure to only look at the types
-   at first.
+   你的任务是提出一个新的状态类型，允许
+   此类更改（有时称为 *索引* 状态数据类型）。
+   这个练习的目的也是为了提高你的技能
+   在类型级别表达事物，包括派生函数
+   类型和接口。因此，我只会付出一点点
+   指导如何去做。如果您遇到困难，请随时
+   查看解决方案，但确保只查看类型
+   首先。
 
 
    1. Come up with a parameterized data type for encapsulating stateful
