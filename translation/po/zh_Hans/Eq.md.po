@@ -449,11 +449,7 @@ msgid ""
 "at how we can describe relations - or *contracts* - between\n"
 "values as types, and how we can use values of these types as\n"
 "proofs that the contracts hold.\n"
-msgstr ""
-"在 [上一章](DPair.md) 中，我们了解了如何使用依赖对和记录来计算 "
-"*类型*，这些值仅在运行时通过对这些值进行模式匹配而已知。现在，"
-"我们将研究如何将值之间的关系或 *契约* "
-"描述为类型，以及如何使用这些类型的值作为契约持有的证明。\n"
+msgstr "在 [上一章](DPair.md) 中，我们了解了如何使用依赖对和记录来计算 *类型*，这些值仅在运行时通过对这些值进行模式匹配而已知。现在，我们将研究如何将值之间的关系或 *契约* 描述为类型，以及如何使用这些类型的值作为契约持有的证明。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:10
@@ -490,8 +486,7 @@ msgid ""
 "Imagine, we'd like to concatenate the contents of two CSV files,\n"
 "both of which we stored on disk as tables together with their schemata\n"
 "as shown in our discussion about dependent pairs:\n"
-msgstr "想象一下，我们想要连接两个 CSV 文件的内容，我们将这两个文件作为表连同它们的模"
-"式一起存储在磁盘上，如我们关于依赖对的讨论中所示：\n"
+msgstr "想象一下，我们想要连接两个 CSV 文件的内容，我们将这两个文件作为表连同它们的模式一起存储在磁盘上，如我们关于依赖对的讨论中所示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:27
@@ -549,11 +544,7 @@ msgid ""
 "two row vectors, unless we can somehow verify that the two schemata\n"
 "are identical. \"Well,\" I hear you say, \"that shouldn't be a big issue!\n"
 "Just implement `Eq` for `ColType`\". Let's give this a try:\n"
-msgstr ""
-"我们将无法通过附加两个行向量来实现 "
-"`concatTables`，除非我们能够以某种方式验证两个模式是否相同。 "
-"“好吧，”我听到你说，“这应该不是什么大问题！只需为 `ColType` 实现 "
-"`Eq`”。让我们试一试：\n"
+msgstr "我们将无法通过附加两个行向量来实现 `concatTables`，除非我们能够以某种方式验证两个模式是否相同。 “好吧，”我听到你说，“这应该不是什么大问题！只需为 `ColType` 实现 `Eq`”。让我们试一试：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:56
@@ -589,10 +580,7 @@ msgid ""
 "`what_now`, Idris still thinks that `s1` and `s2` are different, and\n"
 "if we go ahead and invoke `Vect.(++)` anyway in the `True` case,\n"
 "Idris will respond with a type error.\n"
-msgstr ""
-"不知何故，这似乎不起作用。如果我们检查孔 `what_now` 的上下文，Idris 仍然认为 "
-"`s1` 和 `s2` 是不同的，如果我们继续调用 `Vect.( ++)` ，在 `True` 的情况下，"
-"Idris 将响应类型错误。\n"
+msgstr "不知何故，这似乎不起作用。如果我们检查孔 `what_now` 的上下文，Idris 仍然认为 `s1` 和 `s2` 是不同的，如果我们继续调用 `Vect.( ++)` ，在 `True` 的情况下，Idris 将响应类型错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:74
@@ -628,11 +616,7 @@ msgid ""
 "if this is `True` the two values should be identical, but Idris is not\n"
 "convinced. In fact, the following implementation of `Eq ColType`\n"
 "would be perfectly fine as far as the type checker is concerned:\n"
-msgstr ""
-"问题是，Idris 没有理由统一这两个值，即使 `(==)` 返回 `True` 因为 `(==)` "
-"的结果除了类型为 `Bool` 之外没有其他信息。 *我们* 认为，如果这是 `True` "
-"那么两个值应该是相同的，但 Idris 不相信。事实上，就类型检查器而言，以下 `Eq "
-"ColType` 的实现会非常好：\n"
+msgstr "问题是，Idris 没有理由统一这两个值，即使 `(==)` 返回 `True` 因为 `(==)` 的结果除了类型为 `Bool` 之外没有其他信息。 *我们* 认为，如果这是 `True` 那么两个值应该是相同的，但 Idris 不相信。事实上，就类型检查器而言，以下 `Eq ColType` 的实现会非常好：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:93
@@ -656,12 +640,7 @@ msgid ""
 "unification, but it will not trace back information about function\n"
 "arguments from a function's result for us. We can do so manually, however,\n"
 "as we will see later.\n"
-msgstr ""
-"所以伊德里斯不信任我们是对的。您可能希望它检查 `(==)` 的实现并自行弄清楚 "
-"`True` 结果的含义，但这并不是这些事情通常的工作方式，因为大多数时候，要检查的"
-"计算路径的数量会太大。因此，Idris 能够在统一期间求值函数，但它不会为我们从函"
-"数结果中追溯有关函数参数的信息。但是，我们可以手动执行此操作，稍后我们将看到"
-"。\n"
+msgstr "所以伊德里斯不信任我们是对的。您可能希望它检查 `(==)` 的实现并自行弄清楚 `True` 结果的含义，但这并不是这些事情通常的工作方式，因为大多数时候，要检查的计算路径的数量会太大。因此，Idris 能够在统一期间求值函数，但它不会为我们从函数结果中追溯有关函数参数的信息。但是，我们可以手动执行此操作，稍后我们将看到。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Eq.md:107
@@ -678,10 +657,7 @@ msgid ""
 "The types are not precise enough. What we are going to do now,\n"
 "is something we'll repeat time again for different use cases:\n"
 "We encode a contract between values in an indexed data type:\n"
-msgstr ""
-"上面描述的问题类似于我们在谈到[singleton types](DPair.md#erased-existentials)"
-"的好处时看到的：类型不够精确。我们现在要做的是，我们将针对不同的用例再次重复"
-"：我们对索引数据类型中的值之间的契约进行编码：\n"
+msgstr "上面描述的问题类似于我们在谈到[singleton types](DPair.md#erased-existentials)的好处时看到的：类型不够精确。我们现在要做的是，我们将针对不同的用例再次重复：我们对索引数据类型中的值之间的契约进行编码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:115
@@ -701,10 +677,7 @@ msgid ""
 "values of type `Schema`. But note also that the sole constructor\n"
 "restricts the values we allow for `s1` and `s2`: The two indices\n"
 "*must* be identical.\n"
-msgstr ""
-"首先，请注意 `SameSchema` 是通过两个 `Schema` "
-"类型的值索引的类型族。但还要注意，唯一的构造函数限制了我们允许 `s1` 和 `s2` "
-"的值：两个索引 *必须* 相同。\n"
+msgstr "首先，请注意 `SameSchema` 是通过两个 `Schema` 类型的值索引的类型族。但还要注意，唯一的构造函数限制了我们允许 `s1` 和 `s2` 的值：两个索引 *必须* 相同。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:128
@@ -713,9 +686,7 @@ msgid ""
 "Why is this useful? Well, imagine we had a function for checking\n"
 "the equality of two schemata, which would try and return a value\n"
 "of type `SameSchema s1 s2`:\n"
-msgstr ""
-"为什么这很有用？好吧，假设我们有一个检查两个 schemata 是否相等的函数，"
-"它会尝试返回一个类型为 `SameSchema s1 s2` 的值：\n"
+msgstr "为什么这很有用？好吧，假设我们有一个检查两个 schemata 是否相等的函数，它会尝试返回一个类型为 `SameSchema s1 s2` 的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:129
@@ -739,8 +710,7 @@ msgid ""
 "  Nothing   => Nothing\n"
 msgstr ""
 "concatTables : Table -> Table -> Maybe Table\n"
-"concatTables (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 "
-"of\n"
+"concatTables (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of\n"
 "  Just Same => Just $ MkTable s1 _ (rs1 ++ rs2)\n"
 "  Nothing   => Nothing\n"
 

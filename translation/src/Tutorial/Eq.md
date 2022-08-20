@@ -1,11 +1,6 @@
-# Propositional Equality
+# 命题等式
 
-In the [last chapter](DPair.md) we learned, how dependent pairs
-and records can be used to calculate *types* from values only known
-at runtime by pattern matching on these values. We will now look
-at how we can describe relations - or *contracts* - between
-values as types, and how we can use values of these types as
-proofs that the contracts hold.
+在 [上一章](DPair.md) 中，我们了解了如何使用依赖对和记录来计算 *类型*，这些值仅在运行时通过对这些值进行模式匹配而已知。现在，我们将研究如何将值之间的关系或 *契约* 描述为类型，以及如何使用这些类型的值作为契约持有的证明。
 
 ```idris
 module Tutorial.Eq
@@ -18,11 +13,9 @@ import Data.String
 %default total
 ```
 
-## Equality as a Type
+## 等式作为一种类型
 
-Imagine, we'd like to concatenate the contents of two CSV files,
-both of which we stored on disk as tables together with their schemata
-as shown in our discussion about dependent pairs:
+想象一下，我们想要连接两个 CSV 文件的内容，我们将这两个文件作为表连同它们的模式一起存储在磁盘上，如我们关于依赖对的讨论中所示：
 
 ```idris
 data ColType = I64 | Str | Boolean | Float
@@ -48,10 +41,7 @@ record Table where
 concatTables1 : Table -> Table -> Maybe Table
 ```
 
-We will not be able to implement `concatTables` by appending the
-two row vectors, unless we can somehow verify that the two schemata
-are identical. "Well," I hear you say, "that shouldn't be a big issue!
-Just implement `Eq` for `ColType`". Let's give this a try:
+我们将无法通过附加两个行向量来实现 `concatTables`，除非我们能够以某种方式验证两个模式是否相同。 “好吧，”我听到你说，“这应该不是什么大问题！只需为 `ColType` 实现 `Eq`”。让我们试一试：
 
 ```idris
 Eq ColType where
@@ -66,10 +56,7 @@ concatTables1 (MkTable s1 m rs1) (MkTable s2 n rs2) = case s1 == s2 of
   False => Nothing
 ```
 
-Somehow, this doesn't seem to work. If we inspect the context of hole
-`what_now`, Idris still thinks that `s1` and `s2` are different, and
-if we go ahead and invoke `Vect.(++)` anyway in the `True` case,
-Idris will respond with a type error.
+不知何故，这似乎不起作用。如果我们检查孔 `what_now` 的上下文，Idris 仍然认为 `s1` 和 `s2` 是不同的，如果我们继续调用 `Vect.( ++)` ，在 `True` 的情况下，Idris 将响应类型错误。
 
 ```repl
 Tutorial.Relations> :t what_now
@@ -83,54 +70,33 @@ Tutorial.Relations> :t what_now
 what_now : Maybe Table
 ```
 
-The problem is, that there is no reason for Idris to unify the two
-values, even though `(==)` returned `True` because the result of `(==)`
-holds no other information than the type being a `Bool`. *We* think,
-if this is `True` the two values should be identical, but Idris is not
-convinced. In fact, the following implementation of `Eq ColType`
-would be perfectly fine as far as the type checker is concerned:
+问题是，Idris 没有理由统一这两个值，即使 `(==)` 返回 `True` 因为 `(==)` 的结果除了类型为 `Bool` 之外没有其他信息。 *我们* 认为，如果这是 `True` 那么两个值应该是相同的，但 Idris 不相信。事实上，就类型检查器而言，以下 `Eq ColType` 的实现会非常好：
 
 ```repl
 Eq ColType where
   _       == _       = True
 ```
 
-So Idris is right in not trusting us. You might expect it to inspect the
-implementation of `(==)` and figure out on its own, what the `True` result
-means, but this is not how these things work in general, because most of the
-time the number of computational paths to check would be far too large.
-As a consequence, Idris is able to evaluate functions during
-unification, but it will not trace back information about function
-arguments from a function's result for us. We can do so manually, however,
-as we will see later.
+所以伊德里斯不信任我们是对的。您可能希望它检查 `(==)` 的实现并自行弄清楚 `True` 结果的含义，但这并不是这些事情通常的工作方式，因为大多数时候，要检查的计算路径的数量会太大。因此，Idris 能够在统一期间求值函数，但它不会为我们从函数结果中追溯有关函数参数的信息。但是，我们可以手动执行此操作，稍后我们将看到。
 
-### A Type for equal Schemata
+### 相等 schemata 的类型
 
-The problem described above is similar to what we saw when
-we talked about the benefit of [singleton types](DPair.md#erased-existentials):
-The types are not precise enough. What we are going to do now,
-is something we'll repeat time again for different use cases:
-We encode a contract between values in an indexed data type:
+上面描述的问题类似于我们在谈到[singleton types](DPair.md#erased-existentials)的好处时看到的：类型不够精确。我们现在要做的是，我们将针对不同的用例再次重复：我们对索引数据类型中的值之间的契约进行编码：
 
 ```idris
 data SameSchema : (s1 : Schema) -> (s2 : Schema) -> Type where
   Same : SameSchema s s
 ```
 
-First, note how `SameSchema` is a family of types indexed over two
-values of type `Schema`. But note also that the sole constructor
-restricts the values we allow for `s1` and `s2`: The two indices
-*must* be identical.
+首先，请注意 `SameSchema` 是通过两个 `Schema` 类型的值索引的类型族。但还要注意，唯一的构造函数限制了我们允许 `s1` 和 `s2` 的值：两个索引 *必须* 相同。
 
-Why is this useful? Well, imagine we had a function for checking
-the equality of two schemata, which would try and return a value
-of type `SameSchema s1 s2`:
+为什么这很有用？好吧，假设我们有一个检查两个 schemata 是否相等的函数，它会尝试返回一个类型为 `SameSchema s1 s2` 的值：
 
 ```idris
 sameSchema : (s1, s2 : Schema) -> Maybe (SameSchema s1 s2)
 ```
 
-We could then use this function to implement `concatTables`:
+然后我们可以使用这个函数来实现 `concatTables`：
 
 ```idris
 concatTables : Table -> Table -> Maybe Table
@@ -139,7 +105,7 @@ concatTables (MkTable s1 m rs1) (MkTable s2 n rs2) = case sameSchema s1 s2 of
   Nothing   => Nothing
 ```
 
-It worked! What's going on here? Well, let's inspect the types involved:
+有效！这里发生了什么？好吧，让我们检查一下所涉及的类型：
 
 ```idris
 concatTables2 : Table -> Table -> Maybe Table
