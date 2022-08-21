@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-20 09:20+0000\n"
+"PO-Revision-Date: 2022-08-22 02:52+0000\n"
 "Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/eq/zh_Hans/>\n"
@@ -1262,7 +1262,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:422
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So, we have a proof of type `length xs = length (map f xs)`,\n"
 "and from the implementation of `map` Idris concludes that what\n"
@@ -1271,7 +1271,11 @@ msgid ""
 "function `cong` from the *Prelude* is for (\"cong\" is an abbreviation\n"
 "for *congruence*). We can thus implement the *cons* case\n"
 "concisely like so:\n"
-msgstr "`````所以，我们有一个类型 `length xs = length (map f xs)` 的证明，并且从 `map` 的实现 Idris 得出结论，我们真正要寻找的是类型的结果`S（长度 xs）=S（长度（地图 f xs））`。这正是 *Prelude* 中的函数 `cong` 的用途（“cong”是 *congruence* 的缩写）。因此，我们可以像这样简洁地实现 *cons* 案例：\n"
+msgstr ""
+"所以，我们有一个类型 `length xs = length (map f xs)` 的证明，并且从 `map` "
+"的实现 Idris 得出结论，我们真正要寻找的是类型的结果`S (length xs) = S ("
+"length (map f xs))`。这正是 *Prelude* 中的函数 `cong` 的用途（“cong”是 "
+"*congruence* 的缩写）。因此，我们可以像这样简洁地实现 *cons* 案例：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:423
@@ -1540,67 +1544,60 @@ msgstr "注意：如果您在编辑器中打开了语义突出显示（例如，
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:562
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In these exercises, you are going to proof several simple properties\n"
 "of small functions. When writing proofs, it is even more important\n"
 "to use holes to figure out what Idris expects from you next. Use\n"
 "the tools given to you, instead of trying to find your way in the\n"
 "dark!\n"
-msgstr "在这些练习中，您将证明小函数的几个简单属性。在编写证明时，更重要的是利用漏洞来弄清楚 Idris 下一步对你的期望。使用提供给您的工具，而不是试图在黑暗中找到自己的方式！"
+msgstr ""
+"在这些练习中，您将证明小函数的几个简单属性。在编写证明时，"
+"更重要的是利用漏洞来弄清楚 Idris "
+"下一步对你的期望。使用提供给您的工具，而不是试图在黑暗中找到自己的方式！\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Eq.md:564
-#, fuzzy
 msgid "Proof that `map id` on an `Either e` returns the value unmodified."
-msgstr "证明 ` 上的 `map id` 要么 e` 返回未修改的值。"
+msgstr "证明 `Either e` 上的 `map id` 返回未修改的值。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Eq.md:566
-#, fuzzy
 msgid "Proof that `map id` on a list returns the list unmodified."
 msgstr "证明列表上的 `map id` 返回未修改的列表。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Eq.md:570
-#, fuzzy
 msgid ""
 "Proof that complementing a strand of a nucleobase (see the [previous chapter]"
 "(DPair.md#use-case-nucleic-acids))  twice leads to the original strand."
-msgstr ""
-"证明补充一条核碱基链（参见[上一章]（DPair.md#use-case-nucleic-acids））两次导"
-"致原始链。"
+msgstr "证明补充一条核碱基链（参见 [上一章](DPair.md#use-case-nucleic-acids)）两次 "
+"leads 为原来的链。"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:574
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Hint: Proof this for single bases first, and use `cong2`\n"
 "   from the *Prelude* in your implementation for sequences\n"
 "   of nucleic acids.\n"
-msgstr ""
-"   提示：首先对单碱基进行证明，然后使用 `cong2`\n"
-"   来自序列实现中的 *Prelude*\n"
-"   的核酸。\n"
+msgstr "   提示：首先对单碱基进行证明，然后在核酸序列的实现中使用 *Prelude* "
+"中的`cong2`。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Eq.md:576
-#, fuzzy
 msgid "Implement function `replaceVect`:"
 msgstr "实现函数`replaceVect`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:577
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a\n"
-"   ```\n"
+msgstr "   replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:584
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Now proof, that after replacing an element in a vector\n"
 "   using `replaceAt` accessing the same element using\n"
@@ -1612,22 +1609,18 @@ msgstr ""
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Eq.md:586
-#, fuzzy
 msgid "Implement function `insertVect`:"
 msgstr "实现函数`insertVect`："
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:587
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a\n"
-msgstr ""
-"   ```伊德里斯\n"
-"   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a\n"
-"   ```\n"
+msgstr "   insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:593
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Use a similar proof as in exercise 4 to show that this\n"
 "   behaves correctly.\n"
@@ -1637,21 +1630,23 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:596
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note: Functions `replaceVect` and `insertVect` are available\n"
 "from `Data.Vect` as `replaceAt` and `insertAt`.\n"
-msgstr "注意：函数 `replaceVect` 和 `insertVect` 可从 `Data.Vect` 作为 `replaceAt` 和 `insertAt` 获得。"
+msgstr ""
+"注意：函数 `replaceVect` 和 `insertVect` 可从 `Data.Vect` 作为 `replaceAt` "
+"和 `insertAt` 获得。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Eq.md:597
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Into the Void"
-msgstr "＃＃ 进入虚空"
+msgstr "进入虚空"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:612
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Remember function `onePlusOneWrong` from above? This was definitely\n"
 "a wrong statement: One plus one does not equal three. Sometimes,\n"
@@ -1666,117 +1661,146 @@ msgid ""
 "type, that is a logical contradiction and from this, anything\n"
 "follows (remember\n"
 "[ex falso quodlibet](https://en.wikipedia.org/wiki/Principle_of_explosion)).\n"
-msgstr "还记得上面的函数 `onePlusOneWrong` 吗？这绝对是一个错误的说法：一加一不等于三。有时，我们想准确地表达这一点：某个陈述是错误的并且不成立。考虑一下在 Idris 中证明一个陈述意味着什么：这样一个陈述（或命题）是一种类型，并且该陈述的证明是这种类型的一个值或表达式：该类型被称为 *inhabited *。如果陈述不正确，则不能有给定类型的值。我们说，给定的类型是 *uninhabited*。如果我们仍然设法获得一个无人居住类型的值，这是一个逻辑矛盾，因此，任何事情都会随之而来（记住 [ex falso quodlibet](https://en.wikipedia.org/wiki/Principle_of_explosion)） ."
+msgstr ""
+"还记得上面的函数 `onePlusOneWrong` 吗？这绝对是一个错误的说法：一加一不等于三"
+"。有时，我们想准确地表达这一点：某个陈述是错误的并且不成立。考虑一下在 Idris "
+"中证明一个陈述意味着什么：这样一个陈述（或命题）是一种类型，并且该陈述的证明"
+"是这种类型的一个值或表达式：该类型被称为 "
+"*有人居住的*。如果陈述不正确，则不能有给定类型的值。我们说，给定的类型是 *无"
+"人居住的*。如果我们仍然设法获得一个无人居住类型的值，这是一个逻辑矛盾，因此，"
+"任何事情都会随之而来（记住 [ex falso quodlibet](https://en.wikipedia.org/"
+"wiki/Principle_of_explosion)） .\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:617
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So this is how to express that a proposition does not hold: We\n"
 "state that if it *would* hold, this would lead to a contradiction.\n"
 "The most natural way to express a contradiction in Idris is\n"
 "to return a value of type `Void`:\n"
-msgstr "所以这就是如何表达一个命题不成立：我们声明如果它*会*成立，这将导致矛盾。在 Idris 中表达矛盾最自然的方式是返回一个 `Void` 类型的值："
+msgstr ""
+"所以这就是如何表达一个命题不成立：我们声明如果它 *会* 成立，这将导致矛盾。在 "
+"Idris 中表达矛盾最自然的方式是返回一个 `Void` 类型的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:618
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "onePlusOneWrongProvably : the Nat 1 + 1 = 3 -> Void\n"
 "onePlusOneWrongProvably Refl impossible\n"
-msgstr "```idris onePlusOneWrongProvably : Nat 1 + 1 = 3 -> Void onePlusOneWrongProvably Refl 不可能 ```"
+msgstr ""
+"onePlusOneWrongProvably : the Nat 1 + 1 = 3 -> Void\n"
+"onePlusOneWrongProvably Refl impossible\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:628
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "See how this is a provably total implementation of the\n"
 "given type: A function from `1 + 1 = 3` to `Void`. We\n"
 "implement this by pattern matching, and there is only\n"
 "one constructor to match on, which leads to an impossible\n"
 "case.\n"
-msgstr "看看这是如何证明给定类型的完整实现：从 `1 + 1 = 3` 到 `Void` 的函数。我们通过模式匹配来实现这一点，并且只有一个构造函数可以匹配，这导致了一种不可能的情况。"
+msgstr ""
+"看看这是如何证明给定类型的完整实现：从 `1 + 1 = 3` 到 `Void` 的函数。我们通过"
+"模式匹配来实现这一点，并且只有一个构造函数可以匹配，这导致了一种不可能的情况"
+"。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:633
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can also use contradictory statements to proof other such\n"
 "statements. For instance, here is a proof that if the lengths\n"
 "of two lists are not the same, then the two list can't be\n"
 "the same either:\n"
-msgstr "我们还可以使用相互矛盾的陈述来证明其他此类陈述。例如，这是一个证明，如果两个列表的长度不同，那么这两个列表也不可能相同："
+msgstr "我们还可以使用相互矛盾的陈述来证明其他此类陈述。例如，这是一个证明，如果两个"
+"列表的长度不同，那么这两个列表也不可能相同：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:634
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> Void\n"
 "notSameLength1 f prf = f (cong length prf)\n"
-msgstr "```idris notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> Void notSameLength1 f prf = f (cong length prf) ```"
+msgstr ""
+"notSameLength1 : (List.length as = length bs -> Void) -> as = bs -> Void\n"
+"notSameLength1 f prf = f (cong length prf)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:642
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is cumbersome to write and pretty hard to read, so there\n"
 "is function `Not` in the prelude to express the same thing\n"
 "more naturally:\n"
-msgstr "这写起来很麻烦，读起来也很难，所以前奏中有函数`Not`可以更自然地表达同样的事情："
+msgstr "这写起来很麻烦，读起来也很难，所以 prelude 中有函数`Not` "
+"可以更自然地表达同样的事情：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:643
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "notSameLength : Not (List.length as = length bs) -> Not (as = bs)\n"
 "notSameLength f prf = f (cong length prf)\n"
-msgstr "```idris notSameLength : Not (List.length as = length bs) -> NotSameLength f prf = f (cong length prf) ```"
+msgstr ""
+"notSameLength : Not (List.length as = length bs) -> Not (as = bs)\n"
+"notSameLength f prf = f (cong length prf)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:651
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Actually, this is just a specialized version of the contraposition of\n"
 "`cong`: If from `a = b` follows `f a = f b`, then from\n"
 "`not (f a = f b)` follows `not (a = b)`:\n"
-msgstr "实际上，这只是 `cong` 对位的一个特殊版本：如果从 `a = b` 遵循 `f a = f b`，那么从 `not (f a = f b)` 遵循 `not (a = b)`："
+msgstr ""
+"实际上，这只是 `cong` 对偶的一个特殊版本：如果从 `a = b` 遵循 `f a = f b`，"
+"那么从 `not (f a = f b)` 遵循 `not (a = b)`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:652
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)\n"
 "contraCong fun = fun . cong f\n"
-msgstr "```idris contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b) contraCong fun = fun 。从 f ```"
+msgstr ""
+"contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)\n"
+"contraCong fun = fun . cong f\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Eq.md:657
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Interface `Uninhabited`"
-msgstr "###界面`无人`"
+msgstr "`Uninhabited` 接口"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:664
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There is an interface in the *Prelude* for uninhabited types: `Uninhabited`\n"
 "with its sole function `uninhabited`. Have a look at its documentation at\n"
 "the REPL. You will see, that there is already an impressive number\n"
 "of implementations available, many of which involve data type\n"
 "`Equal`.\n"
-msgstr "*Prelude*中有一个接口用于无人居住类型：`无人居住`，其唯一功能是`无人居住`。在 REPL 中查看它的文档。您会看到，已经有大量可用的实现，其中许多涉及数据类型 `Equal`。"
+msgstr ""
+"*Prelude* "
+"中有一个接口用于无人居住类型：`Uninhabited`，其唯一函数是`uninhabited`。在 "
+"REPL 中查看它的文档。您会看到，已经有大量可用的实现，其中许多涉及数据类型 "
+"`Equal`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:667
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can use `Uninhabited`, to for instance express that\n"
 "the empty schema is not equal to a non-empty schema:\n"
-msgstr "我们可以使用 `Uninhabited`，例如表示空模式不等于非空模式："
+msgstr "我们可以使用 `Uninhabited`，例如表示空模式不等于非空模式：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:668
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Uninhabited (SameSchema [] (h :: t)) where\n"
 "  uninhabited Same impossible\n"
@@ -1784,33 +1808,37 @@ msgid ""
 "Uninhabited (SameSchema (h :: t) []) where\n"
 "  uninhabited Same impossible\n"
 msgstr ""
-"无人居住 (InSchema n [] c) 其中\n"
-"  无人居住 IsHere 不可能\n"
-"  无人居住 (IsThere _) 不可能\n"
-"```\n"
+"Uninhabited (SameSchema [] (h :: t)) where\n"
+"  uninhabited Same impossible\n"
+"\n"
+"Uninhabited (SameSchema (h :: t) []) where\n"
+"  uninhabited Same impossible\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:678
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There is a related function you need to know about: `absurd`, which\n"
 "combines `uninhabited` with `void`:\n"
-msgstr "有一个相关的函数你需要知道：`absurd`，它结合了`uninhabited`和`void`："
+msgstr "有一个相关的函数你需要知道：`absurd`，它结合了`uninhabited`和`void`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:679
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Eq> :printdef absurd\n"
 "Prelude.absurd : Uninhabited t => t -> a\n"
 "absurd h = void (uninhabited h)\n"
-msgstr "```repl Tutorial.Eq> :printdef absurd Prelude.absurd : Uninhabited t => t -> a荒谬 h = void (uninhabited h) ```"
+msgstr ""
+"Tutorial.Eq> :printdef absurd\n"
+"Prelude.absurd : Uninhabited t => t -> a\n"
+"absurd h = void (uninhabited h)\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Eq.md:685
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Decidable Equality"
-msgstr "### 可判定的平等"
+msgstr "可判定等式"
 
 #. type: Plain text
 #: ../src/Tutorial/Eq.md:703
