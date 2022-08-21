@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-05 09:41+0800\n"
-"PO-Revision-Date: 2022-08-17 07:28+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-22 02:52+0000\n"
+"Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/readme/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -26,10 +26,12 @@ msgstr "> 这里是中文版！  \n"
 
 #. type: Plain text
 #: ../README.md:3
-#, fuzzy, no-wrap
-#| msgid "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
+#, no-wrap
 msgid "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
-msgstr "> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)\n"
+msgstr ""
+"> [![](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-"
+"badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)"
+"\n"
 
 #. type: Title #
 #: ../README.md:4
