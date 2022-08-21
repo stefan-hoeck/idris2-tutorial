@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-17 07:58+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-22 02:52+0000\n"
+"Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/datatypes/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -1188,12 +1188,7 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, fuzzy, no-wrap
-#| msgid ""
-#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
-#| "\"Hello, Dr. Hck!\"\n"
-#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
-#| "\"Hello, Mrs. Smith!\"\n"
+#, no-wrap
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"
