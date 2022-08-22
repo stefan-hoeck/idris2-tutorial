@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-23 05:29+0000\n"
+"Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dpair/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -429,13 +429,13 @@ msgstr ""
 
 #. type: Title #
 #: ../src/Tutorial/DPair.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Sigma Types"
-msgstr "# 西格玛类型"
+msgstr "Sigma 类型"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:18
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So far in our examples of dependently typed programming,\n"
 "type indices such as the length of vectors were known at\n"
@@ -452,11 +452,19 @@ msgid ""
 "To express these dependencies, we need so called\n"
 "[*sigma types*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A3_type):\n"
 "Dependent pairs and their generalization, dependent records.\n"
-msgstr "到目前为止，在我们的依赖类型编程示例中，类型索引（例如向量的长度）在编译时是已知的，或者可以从编译时已知的值中计算出来。然而，在实际应用中，此类信息通常在运行时才可用，其中值取决于用户做出的决定或周围世界的状态。例如，如果我们将文件的内容存储为文本行向量，则该向量的长度通常在文件加载到内存之前是未知的。因此，我们使用的值的类型依赖于仅在运行时才知道的其他值，并且我们通常只能通过对它们所依赖的值进行模式匹配来找出这些类型。为了表达这些依赖关系，我们需要所谓的 [*sigma types*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A3_type)：依赖对及其泛化，依赖记录。"
+msgstr ""
+"到目前为止，在我们的依赖类型编程示例中，类型索引（例如向量的长度）在编译时是"
+"已知的，或者可以从编译时已知的值中计算出来。然而，在实际应用中，此类信息通常"
+"在运行时才可用，其中值取决于用户做出的决定或周围世界的状态。例如，如果我们将"
+"文件的内容存储为文本行向量，则该向量的长度通常在文件加载到内存之前是未知的。"
+"因此，我们使用的值的类型依赖于仅在运行时才知道的其他值，并且我们通常只能通过"
+"对它们所依赖的值进行模式匹配来找出这些类型。为了表达这些依赖关系，"
+"我们需要所谓的 [*sigma types*](https://en.wikipedia.org/wiki/"
+"Dependent_type#%CE%A3_type)：依赖对及其泛化，依赖记录。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:19
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.DPair\n"
 "\n"
@@ -474,13 +482,29 @@ msgid ""
 "import Text.CSV\n"
 "\n"
 "%default total\n"
-msgstr "导入 Data.DPair 导入 Data.Either 导入 Data.HList 导入 Data.List 导入 Data.List1 导入 Data.Singleton 导入 Data.String 导入 Data.Vect"
+msgstr ""
+"module Tutorial.DPair\n"
+"\n"
+"import Control.Monad.State\n"
+"\n"
+"import Data.DPair\n"
+"import Data.Either\n"
+"import Data.HList\n"
+"import Data.List\n"
+"import Data.List1\n"
+"import Data.Singleton\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"\n"
+"import Text.CSV\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/DPair.md:38
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Dependent Pairs"
-msgstr "## 依赖对"
+msgstr "依赖对"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:46
