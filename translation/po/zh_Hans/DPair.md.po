@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-23 05:29+0000\n"
-"Last-Translator: grass <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-24 23:52+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dpair/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -508,7 +508,7 @@ msgstr "依赖对"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:46
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We've already seen several examples of how useful the length\n"
 "index of a vector is to describe more precisely in the types what\n"
@@ -516,19 +516,25 @@ msgid ""
 "operating on a vector will return a vector of exactly\n"
 "the same length. The types guarantee that this is true, therefore\n"
 "the following function is perfectly safe and provably total:\n"
-msgstr "我们已经看到了几个例子，说明向量的长度索引在更精确地描述函数可以做什么和不能做什么的类型中是多么有用。例如，对向量进行操作的 `map` 或 `traverse` 将返回长度完全相同的向量。这些类型保证这是真的，因此以下函数是完全安全的并且可以证明是完全的："
+msgstr ""
+"我们已经看到了几个例子，说明向量的长度索引在更精确地描述函数可以做什么和不能"
+"做什么的类型中是多么有用。例如，对向量进行操作的 `map` 或 `traverse` 将返回长"
+"度完全相同的向量。这些类型保证这是真的，因此以下函数是完全安全的并且可以证明"
+"是完全的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:47
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat)\n"
 "parseAndDrop = map (drop 3) . traverse parsePositive\n"
-msgstr "```idris parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat) parseAndDrop = map (drop 3) 。遍历 parsePositive ```"
+msgstr ""
+"parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat)\n"
+"parseAndDrop = map (drop 3) . traverse parsePositive\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:60
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Since the argument of `traverse parsePositive`\n"
 "is of type `Vect (3 + n) String`, its result will be of\n"
@@ -538,49 +544,58 @@ msgid ""
 "that the first argument is a vector of at least three elements\n"
 "in the length index and could derive the length\n"
 "of the result from this.\n"
-msgstr "由于 `traverse parsePositive` 的参数是 `Vect (3 + n) String` 类型，其结果将是 `Maybe (Vect (3 + n) Nat)` 类型]。因此在调用 `drop 3` 时使用它是安全的。请注意，所有这些在编译时是如何知道的：我们编码的先决条件是第一个参数是长度索引中至少三个元素的向量，并且可以从中得出结果的长度。"
+msgstr ""
+"由于 `traverse parsePositive` 的参数是 `Vect (3 + n) String` 类型，"
+"其结果将是 `Maybe (Vect (3 + n) Nat)` 类型]。因此在调用 `drop 3` 时使用它是安"
+"全的。请注意，所有这些在编译时是如何知道的：我们编码的先决条件是第一个参数是"
+"长度索引中至少三个元素的向量，并且可以从中得出结果的长度。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DPair.md:61
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Vectors of Unknown Length"
-msgstr "### 未知长度的向量"
+msgstr "未知长度的向量"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:65
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "However, this is not always possible. Consider the following function,\n"
 "defined on `List` and exported by `Data.List`:\n"
 msgstr "然而，这并不总是可能的。考虑以下函数，在 `List` 上定义并由 `Data.List` 导出："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:66
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Relations> :t takeWhile\n"
 "Data.List.takeWhile : (a -> Bool) -> List a -> List a\n"
-msgstr "```repl Tutorial.Relations> :t takeWhile Data.List.takeWhile : (a -> Bool) -> List a -> List a ```"
+msgstr ""
+"Tutorial.Relations> :t takeWhile\n"
+"Data.List.takeWhile : (a -> Bool) -> List a -> List a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:75
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This will take the longest prefix of the list argument, for which\n"
 "the given predicate returns `True`. In this case, it depends on\n"
 "the list elements and the predicate, how long this prefix will be.\n"
 "Can we write such a function for vectors? Let's give it a try:\n"
-msgstr "这将采用列表参数的最长前缀，给定谓词为此返回 `True`。在这种情况下，它取决于列表元素和谓词，这个前缀有多长。我们可以为向量编写这样的函数吗？试一试吧："
+msgstr ""
+"这将采用列表参数的最长前缀，给定谓词为此返回 `True`。在这种情况下，它取决于列"
+"表元素和谓词，这个前缀有多长。我们可以为向量编写这样的函数吗？试一试吧：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:76
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "takeWhile' : (a -> Bool) -> Vect n a -> Vect m a\n"
-msgstr "```idris takeWhile' : (a -> Bool) -> Vect n a -> Vect m a ```"
+msgstr "takeWhile' : (a -> Bool) -> Vect n a -> Vect m a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:92
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Go ahead, and try to implement this. Don't try too long, as you will not\n"
 "be able to do so in a provably total way. The question is: What is the\n"
@@ -594,11 +609,19 @@ msgid ""
 "The caller of our function is free to choose the predicate,\n"
 "the input vector, the type of values the vector holds,\n"
 "and *the length of the output vector*. Don't believe me? See here:\n"
-msgstr "继续，并尝试实现这一点。不要尝试太久，因为您将无法以可证明的整体方式这样做。问题是：这里有什么问题？为了理解这一点，我们必须了解 `takeWhile'` 的类型所承诺的内容：“对于所有对 `a` 类型的值进行操作的谓词，以及所有包含此类型值的向量，对于所有长度 `m`，我给你一个长度为 `m` 的向量，其中包含 `a`\" 类型的值。所有三个参数都被称为 [*universally quantified*]（https://en.wikipedia.org/wiki/Universal_quantification）：我们函数的调用者可以自由选择谓词、输入向量、向量持有的值的类型，以及 * 输出向量的长度 *。不相信我？看这里："
+msgstr ""
+"继续，并尝试实现这一点。不要尝试太久，因为您将无法以可证明的整体方式这样做。"
+"问题是：这里有什么问题？为了理解这一点，我们必须了解 `takeWhile'` "
+"的类型所承诺的内容：“对于所有对 `a` "
+"类型的值进行操作的谓词，以及所有包含此类型值的向量，对于所有长度 `m`，"
+"我给你一个长度为 `m` 的向量，其中包含 `a`\" 类型的值。所有三个参数都被称为 [*"
+"universally quantified*](https://en.wikipedia.org/wiki/Universal_quantificati"
+"on)：我们函数的调用者可以自由选择谓词、输入向量、向量持有的值的类型，以及 "
+"*输出向量的长度*。不相信我？看这里：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:93
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "-- This looks like trouble: We got a non-empty vector of `Void`...\n"
 "voids : Vect 7 Void\n"
@@ -607,22 +630,33 @@ msgid ""
 "-- ...from which immediately follows a proof of `Void`\n"
 "proofOfVoid : Void\n"
 "proofOfVoid = head voids\n"
-msgstr "```idris -- 这看起来很麻烦：我们有一个 `Void` 的非空向量... voids : Vect 7 Void voids = takeWhile' (const True) []"
+msgstr ""
+"-- This looks like trouble: We got a non-empty vector of `Void`...\n"
+"voids : Vect 7 Void\n"
+"voids = takeWhile' (const True) []\n"
+"\n"
+"-- ...from which immediately follows a proof of `Void`\n"
+"proofOfVoid : Void\n"
+"proofOfVoid = head voids\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:108
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "See how I could freely decide on the value of `m` when invoking `takeWhile'`?\n"
 "Although I passed `takeWhile'` an empty vector (the only existing vector\n"
 "holding values of type `Void`), the function's type promises me\n"
 "to return a possibly non-empty vector holding values of the same\n"
 "type, from which I freely extracted the first one.\n"
-msgstr "看看我在调用 `takeWhile'` 时如何自由决定 `m` 的值？尽管我将 `takeWhile'` 传递给了一个空向量（唯一的现有向量包含 `Void` 类型的值），但该函数的类型保证我返回一个可能非空的向量，该向量包含相同的值type，我从中自由地提取了第一个。"
+msgstr ""
+"看看我在调用 `takeWhile'` 时如何自由决定 `m` 的值？尽管我将 `takeWhile'` "
+"传递给了一个空向量（唯一的现有向量包含 `Void` 类型的值），但该函数的类型保证"
+"我返回一个可能非空的向量，该向量包含相同类型的值，我从中自由地提取了第一个。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:115
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Luckily, Idris doesn't allow this: We won't be able to\n"
 "implement `takeWhile'` without cheating (for instance, by\n"
@@ -630,27 +664,29 @@ msgid ""
 "So, the question remains, how to express the result of `takeWhile'`\n"
 "in a type. The answer to this is: \"Use a *dependent pair*\", a vector\n"
 "paired with a value corresponding to its length.\n"
-msgstr "幸运的是，Idris 不允许这样做：我们将无法在不作弊的情况下实现 `takeWhile'`（例如，通过关闭整体检查并永远循环）。所以，问题仍然存在，如何在一个类型中表达 `takeWhile'` 的结果。对此的答案是：“使用 * 依赖对 *”，一个向量与与其长度对应的值配对。"
+msgstr ""
+"幸运的是，Idris 不允许这样做：我们将无法在不作弊的情况下实现 "
+"`takeWhile'`（例如，通过关闭完全性检查并永远循环）。所以，问题仍然存在，"
+"如何在一个类型中表达 `takeWhile'` 的结果。对此的答案是：“使用 "
+"*依赖对*”，一个向量与与其长度对应的值配对。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:116
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record AnyVect a where\n"
 "  constructor MkAnyVect\n"
 "  length : Nat\n"
 "  vect   : Vect length a\n"
 msgstr ""
-"```伊德里斯\n"
-"在哪里记录 AnyVect\n"
-"  构造函数 MkAnyVect\n"
-"  长度：自然\n"
-"  vect : 向量长度 a\n"
-"```\n"
+"record AnyVect a where\n"
+"  constructor MkAnyVect\n"
+"  length : Nat\n"
+"  vect   : Vect length a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:131
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This corresponds to [*existential quantification*](https://en.wikipedia.org/wiki/Existential_quantification)\n"
 "in predicate logic: There is a natural number, which corresponds to\n"
@@ -660,11 +696,16 @@ msgid ""
 "something about it at runtime, since it is wrapped up together\n"
 "with the actual vector. We can implement `takeWhile` in such\n"
 "a way that it returns a value of type `AnyVect a`:\n"
-msgstr "这对应于谓词逻辑中的[*存在量化*](https://en.wikipedia.org/wiki/Existential_quantification)：有一个自然数，对应于我这里的向量的长度。请注意，从 `AnyVect a` 的外部，包装矢量的长度在类型级别不再可见，但我们仍然可以检查它并在运行时了解它，因为它被包装在一起与实际向量。我们可以实现 `takeWhile`，使其返回 `AnyVect a` 类型的值："
+msgstr ""
+"这对应于谓词逻辑中的[*存在量化*](https://en.wikipedia.org/wiki/"
+"Existential_quantification)：有一个自然数，对应于我这里的向量的长度。请注意，"
+"从 `AnyVect a` 的外部，包装矢量的长度在类型级别不再可见，但我们仍然可以检查它"
+"并在运行时了解它，因为它被包装在一起与实际向量。我们可以实现 `takeWhile`，"
+"使其返回 `AnyVect a` 类型的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:132
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "takeWhile : (a -> Bool) -> Vect n a -> AnyVect a\n"
 "takeWhile f []        = MkAnyVect 0 []\n"
@@ -672,17 +713,15 @@ msgid ""
 "  False => MkAnyVect 0 []\n"
 "  True  => let MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)\n"
 msgstr ""
-"```伊德里斯\n"
 "takeWhile : (a -> Bool) -> Vect n a -> AnyVect a\n"
-"takeWhile f [] = MkAnyVect 0 []\n"
+"takeWhile f []        = MkAnyVect 0 []\n"
 "takeWhile f (x :: xs) = case f x of\n"
-"  错误 => MkAnyVect 0 []\n"
-"  True => 让 MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)\n"
-"```\n"
+"  False => MkAnyVect 0 []\n"
+"  True  => let MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:147
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This works in a provably total way, because callers of this function\n"
 "can no longer choose the length of the resulting vector themselves. Our\n"
@@ -691,11 +730,15 @@ msgid ""
 "make no mistakes when pairing the two values. In fact,\n"
 "the length can be inferred automatically by Idris, so we can replace\n"
 "it with underscores, if we so desire:\n"
-msgstr "这可以证明是完全可行的，因为这个函数的调用者不能再自己选择结果向量的长度。我们的函数 `takeWhile` 决定这个长度并将它与向量一起返回，类型检查器验证我们在配对两个值时没有错误。事实上，长度可以由 Idris 自动推断，所以如果我们愿意，我们可以用下划线替换它："
+msgstr ""
+"这可以证明是完全可行的，因为这个函数的调用者不能再自己选择结果向量的长度。"
+"我们的函数 `takeWhile` 决定这个长度并将它与向量一起返回，类型检查器验证我们在"
+"配对两个值时没有错误。事实上，长度可以由 Idris "
+"自动推断，所以如果我们愿意，我们可以用下划线替换它：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:148
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a\n"
 "takeWhile2 f []        = MkAnyVect _ []\n"
@@ -703,52 +746,55 @@ msgid ""
 "  False => MkAnyVect 0 []\n"
 "  True  => let MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)\n"
 msgstr ""
-"```伊德里斯\n"
 "takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a\n"
-"takeWhile2 f [] = MkAnyVect _ []\n"
+"takeWhile2 f []        = MkAnyVect _ []\n"
 "takeWhile2 f (x :: xs) = case f x of\n"
-"  错误 => MkAnyVect 0 []\n"
-"  True => 让 MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)\n"
-"```\n"
+"  False => MkAnyVect 0 []\n"
+"  True  => let MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:161
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "To summarize: Parameters in generic function types are\n"
 "universally quantified, and their values can be decided on at the\n"
 "call site of such functions. Dependent record types allow us\n"
 "to describe existentially quantified values. Callers cannot choose\n"
 "such values freely: They are returned as part of a function's result.\n"
-msgstr "总结：泛型函数类型中的参数是通用量化的，它们的值可以在此类函数的调用处确定。依赖记录类型允许我们描述存在量化的值。调用者不能自由选择这些值：它们作为函数结果的一部分返回。"
+msgstr ""
+"总结：泛型函数类型中的参数是通用量化的，它们的值可以在此类函数的调用处确定。"
+"依赖记录类型允许我们描述存在量化的值。调用者不能自由选择这些值：它们作为函数"
+"结果的一部分返回。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:164
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that Idris allows us to be explicit about universal quantification.\n"
 "The type of `takeWhile'` can also be written like so:\n"
 msgstr "请注意，Idris 允许我们明确地进行全称量化。 `takeWhile'` 的类型也可以这样写："
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:165
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a\n"
-msgstr "```idris takeWhile'' : forall a, n, m 。 (a -> Bool) -> Vect n a -> Vect m a ```"
+msgstr "takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:173
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Universally quantified arguments are desugared to implicit\n"
 "erased arguments by Idris. The above is a less verbose version\n"
 "of the following function type, the likes of which we have seen\n"
 "before:\n"
-msgstr "普遍量化的论点被 Idris 简化为隐含的擦除论点。上面是以下函数类型的一个不那么冗长的版本，我们之前已经看到过类似的函数类型："
+msgstr "普遍量化的参数被 Idris 脱糖为隐式的已擦除参数。上面是以下函数类型的一个不那么"
+"冗长的版本，我们之前已经看到过类似的函数类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:174
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "takeWhile''' :  {0 a : _}\n"
 "             -> {0 n : _}\n"
@@ -757,18 +803,16 @@ msgid ""
 "             -> Vect n a\n"
 "             -> Vect m a\n"
 msgstr ""
-"```伊德里斯\n"
-"takeWhile''' : {0 a : _}\n"
-"             -> {0 n: _}\n"
-"             -> {0 米：_}\n"
-"             -> (a -> 布尔)\n"
+"takeWhile''' :  {0 a : _}\n"
+"             -> {0 n : _}\n"
+"             -> {0 m : _}\n"
+"             -> (a -> Bool)\n"
 "             -> Vect n a\n"
 "             -> Vect m a\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:189
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In Idris, we are free to choose whether we want to be explicit\n"
 "about universal quantification. Sometimes it can help understanding\n"
@@ -776,17 +820,22 @@ msgid ""
 "[PureScript](https://www.purescript.org/) - are more strict about\n"
 "this: There, explicit annotations on universally quantified parameters\n"
 "are [mandatory](https://github.com/purescript/documentation/blob/master/language/Differences-from-Haskell.md#explicit-forall).\n"
-msgstr "在 Idris 中，我们可以自由选择是否要明确全称量化。有时它可以帮助理解在类型级别上发生了什么。其他语言 - 例如 [PureScript](https://www.purescript.org/) - 对此更为严格：在那里，对普遍量化参数的显式注释是 [强制性](https://github.com/purescript/文档/blob/master/language/Differences-from-Haskell.md#explicit-forall）。"
+msgstr ""
+"在 Idris 中，我们可以自由选择是否要明确全称量化。有时它可以帮助理解在类型级别"
+"上发生了什么。其他语言 - 例如 [PureScript](https://www.purescript.org/) - "
+"对此更为严格：在那里，对普遍量化参数的显式注释是 [强制性](https://github.com/"
+"purescript/documentation/blob/master/language/Differences-from-Haskell.md"
+"#explicit-forall)的。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DPair.md:190
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The Essence of Dependent Pairs"
-msgstr "### 依赖对的本质"
+msgstr "依赖对的本质"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:202
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It can take some time and experience to understand what's going on here. At\n"
 "least in my case, it took many sessions programming in Idris, before I figured\n"
@@ -798,97 +847,118 @@ msgid ""
 "This is such a fundamental concept of programming with dependent types, that\n"
 "a general dependent pair type is provided by the *Prelude*. Here is its\n"
 "implementation (primed for disambiguation):\n"
-msgstr "了解这里发生的事情可能需要一些时间和经验。至少在我的情况下，在 Idris 中进行了许多会话编程，然后我才弄清楚依赖对的含义：它们将某种类型的 *value* 与从第一个值计算的类型的第二个值配对。例如，自然数 `n`（值）与长度为 `n` 的向量配对（第二个值，其类型 * 取决于 * 第一个值）。这是使用依赖类型进行编程的基本概念，*Prelude* 提供了一个通用的依赖对类型。这是它的实现（准备消除歧义）："
+msgstr ""
+"了解这里发生的事情可能需要一些时间和经验。至少在我的情况下，在 Idris "
+"中进行了许多会话编程，然后我才弄清楚依赖对的含义：它们将某种类型的 *value* "
+"与从第一个值计算的类型的第二个值配对。例如，自然数 `n`（值）与长度为 `n` "
+"的向量对（第二个值，其类型 *取决于* "
+"第一个值）。这是使用依赖类型进行编程的基本概念，*Prelude* "
+"提供了一个通用的依赖对类型。这是它的实现（准备消除歧义）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:203
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record DPair' (a : Type) (p : a -> Type) where\n"
 "  constructor MkDPair'\n"
 "  fst : a\n"
 "  snd : p fst\n"
 msgstr ""
-"```伊德里斯\n"
-"记录 DPair' (a : Type) (p : a -> Type) 其中\n"
-"  构造函数 MkDPair'\n"
-"  fst：一个\n"
+"record DPair' (a : Type) (p : a -> Type) where\n"
+"  constructor MkDPair'\n"
+"  fst : a\n"
 "  snd : p fst\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:215
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is essential to understand what's going on here. There are two\n"
 "parameters: A type `a`, and a function `p`, calculating a *type*\n"
 "from a *value* of type `a`. Such a value (`fst`) is then used\n"
 "to calculate the *type* of the second value (`snd`).\n"
 "For instance, here is `AnyVect a` represented as a `DPair`:\n"
-msgstr "必须了解这里发生了什么。有两个参数：类型 `a` 和函数 `p`，从 * 值 * 类型 `a 计算 *type* `。然后使用这样的值 (`fst`) 来计算第二个值 (`snd`) 的 *type*。例如，这里是 `AnyVect a` 表示为 `DPair`："
+msgstr ""
+"必须了解这里发生了什么。有两个参数：类型 `a` 和函数 `p`，从类型 `a` 的 *值* "
+"计算出一个 *类型* 。这个值 (`fst`) 被用来计算第二个值 (`snd`) 的 "
+"*类型*。例如，这里是 `AnyVect a` 使用 `DPair` 的表示：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:216
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "AnyVect' : (a : Type) -> Type\n"
 "AnyVect' a = DPair Nat (\\n => Vect n a)\n"
-msgstr "```idris AnyVect' : (a : Type) -> Type AnyVect' a = DPair Nat (\\n => Vect n a) ```"
+msgstr ""
+"AnyVect' : (a : Type) -> Type\n"
+"AnyVect' a = DPair Nat (\\n"
+" => Vect n a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:225
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how `\\n => Vect n a` is a function from `Nat` to `Type`.\n"
 "Idris provides special syntax for describing dependent pairs, as\n"
 "they are important building blocks for programming in languages\n"
 "with first class types:\n"
-msgstr "请注意，`\\n => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于描述依赖对的特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块："
+msgstr ""
+"请注意，`\\n"
+" => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于描述依赖对的"
+"特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:226
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "AnyVect'' : (a : Type) -> Type\n"
 "AnyVect'' a = (n : Nat ** Vect n a)\n"
-msgstr "```idris AnyVect'' : (a : Type) -> Type AnyVect'' a = (n : Nat ** Vect n a) ```"
+msgstr ""
+"AnyVect'' : (a : Type) -> Type\n"
+"AnyVect'' a = (n : Nat ** Vect n a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:233
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can inspect at the REPL, that the right hand side of `AnyVect''`\n"
 "get's desugared to the right hand side of `AnyVect'`:\n"
-msgstr "我们可以在 REPL 中检查，`AnyVect''` 的右侧被脱糖到 `AnyVect'` 的右侧："
+msgstr "我们可以在 REPL 中检查，`AnyVect''` 的右侧被脱糖到 `AnyVect'` 的右侧：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:234
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Relations> (n : Nat ** Vect n Int)\n"
 "DPair Nat (\\n => Vect n Int)\n"
-msgstr "```repl Tutorial.Relations> (n : Nat ** Vect n Int) DPair Nat (\\n => Vect n Int) ```"
+msgstr ""
+"Tutorial.Relations> (n : Nat ** Vect n Int)\n"
+"DPair Nat (\\n"
+" => Vect n Int)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:242
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Idris can infer, that `n` must be of type `Nat`, so we can drop\n"
 "this information. (We still need to put the whole expression in\n"
 "parentheses.)\n"
-msgstr "Idris 可以推断，`n` 必须是 `Nat` 类型，因此我们可以删除此信息。 （我们仍然需要将整个表达式放在括号中。）"
+msgstr "Idris 可以推断，`n` 必须是 `Nat` 类型，因此我们可以删除此信息。 "
+"（我们仍然需要将整个表达式放在括号中。）\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:243
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "AnyVect3 : (a : Type) -> Type\n"
 "AnyVect3 a = (n ** Vect n a)\n"
-msgstr "```idris AnyVect3 : (a : Type) -> Type AnyVect3 a = (n ** Vect n a) ```"
+msgstr ""
+"AnyVect3 : (a : Type) -> Type\n"
+"AnyVect3 a = (n ** Vect n a)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:254
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This allows us to pair a natural number `n` with a vector of\n"
 "length `n`, which is exactly what we did with `AnyVect`. We can\n"
@@ -896,11 +966,15 @@ msgid ""
 "our custom type `AnyVect`. Note, that like with regular pairs,\n"
 "we can use the same syntax `(x ** y)` for creating and\n"
 "pattern matching on dependent pairs:\n"
-msgstr "这允许我们将自然数 `n` 与长度为 `n` 的向量配对，这正是我们对 `AnyVect` 所做的。因此，我们可以重写 `takeWhile` 以返回 `DPair` 而不是我们的自定义类型 `AnyVect`。请注意，与常规对一样，我们可以使用相同的语法 `(x ** y)` 在依赖对上创建和模式匹配："
+msgstr ""
+"这允许我们将自然数 `n` 与长度为 `n` 的向量配对，这正是我们对 `AnyVect` "
+"所做的。因此，我们可以重写 `takeWhile` 以返回 `DPair` 而不是我们的自定义类型 "
+"`AnyVect`。请注意，与常规对一样，我们可以使用相同的语法 `(x ** y)` "
+"在依赖对上创建和模式匹配：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:255
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "takeWhile3 : (a -> Bool) -> Vect m a -> (n ** Vect n a)\n"
 "takeWhile3 f []        = (_ ** [])\n"
@@ -908,21 +982,19 @@ msgid ""
 "  False => (_ ** [])\n"
 "  True  => let (_  ** ys) = takeWhile3 f xs in (_ ** x :: ys)\n"
 msgstr ""
-"```伊德里斯\n"
 "takeWhile3 : (a -> Bool) -> Vect m a -> (n ** Vect n a)\n"
-"takeWhile3 f [] = (_ ** [])\n"
+"takeWhile3 f []        = (_ ** [])\n"
 "takeWhile3 f (x :: xs) = case f x of\n"
-"  错误 => (_ ** [])\n"
-"  True => let (_ ** ys) = takeWhile3 f xs in (_ ** x :: ys)\n"
-"```\n"
+"  False => (_ ** [])\n"
+"  True  => let (_  ** ys) = takeWhile3 f xs in (_ ** x :: ys)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:265
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Just like with regular pairs, we can use the dependent pair\n"
 "syntax to define dependent triples and larger tuples:\n"
-msgstr "就像常规对一样，我们可以使用依赖对语法来定义依赖三元组和更大的元组："
+msgstr "就像常规对一样，我们可以使用依赖对语法来定义依赖三元组和更大的元组：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:266
@@ -954,15 +1026,15 @@ msgstr "有时，可以通过对索引类型的值进行模式匹配来确定索
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:284
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As an example, here is a version of `takeWhile` returning\n"
 "a value of type `Exists`:\n"
-msgstr "例如，下面是 `takeWhile` 的一个版本，返回一个 `Exists` 类型的值："
+msgstr "例如，下面是 `takeWhile` 的一个版本，返回一个 `Exists` 类型的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:285
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n => Vect n a)\n"
 "takeWhileExists f []        = Evidence _ []\n"
@@ -971,127 +1043,141 @@ msgid ""
 "            in Evidence _ (x :: ys)\n"
 "  False => takeWhileExists f xs\n"
 msgstr ""
-"```伊德里斯\n"
-"takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n => Vect n a)\n"
-"takeWhileExists f [] = 证据 _ []\n"
+"takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\\n"
+" => Vect n a)\n"
+"takeWhileExists f []        = Evidence _ []\n"
 "takeWhileExists f (x :: xs) = case f x of\n"
-"  True => 让 Evidence _ ys = takeWhileExists f xs\n"
-"            证据_（x :: ys）\n"
+"  True  => let Evidence _ ys = takeWhileExists f xs\n"
+"            in Evidence _ (x :: ys)\n"
 "  False => takeWhileExists f xs\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:297
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to restore an erased value, data type `Singleton`\n"
 "from *base* module `Data.Singleton` can be useful: It is\n"
 "parameterized by the *value* it stores:\n"
-msgstr "为了恢复已擦除的值，来自 *base* 模块 `Data.Singleton` 的数据类型 `Singleton` 可能很有用：它由 *value* 参数化] 它存储："
+msgstr ""
+"为了恢复已擦除的值，来自 *base* 模块 `Data.Singleton` 的数据类型 `Singleton` "
+"可能很有用：它由参数化 *值* 来存储：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:298
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "true : Singleton True\n"
 "true = Val True\n"
-msgstr "```idris true : Singleton True true = Val True ```"
+msgstr ""
+"true : Singleton True\n"
+"true = Val True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:306
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is called a *singleton* type: A type corresponding to\n"
 "exactly one value. It is a type error to return any other\n"
 "value for constant `true`, and Idris knows this:\n"
-msgstr "这称为 *singleton* 类型：与一个值对应的类型。返回常量 `true` 的任何其他值都是类型错误，Idris 知道这一点："
+msgstr "这称为 *singleton* 类型：与一个值对应的类型。返回常量 `true` "
+"的任何其他值都是类型错误，Idris 知道这一点：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:307
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "true' : Singleton True\n"
 "true' = Val _\n"
-msgstr "```idris true' : Singleton True true' = Val _ ```"
+msgstr ""
+"true' : Singleton True\n"
+"true' = Val _\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:314
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can use this to conjure the (erased!) length of a vector\n"
 "out of thin air:\n"
-msgstr "我们可以使用它凭空变出一个向量的（擦除的！）长度："
+msgstr "我们可以使用它凭空变出一个向量的（擦除的！）长度：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:315
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "vectLength : Vect n a -> Singleton n\n"
 "vectLength []        = Val 0\n"
 "vectLength (x :: xs) = let Val k = vectLength xs in Val (S k)\n"
 msgstr ""
-"```伊德里斯\n"
 "vectLength : Vect n a -> Singleton n\n"
-"vectLength [] = 值 0\n"
-"vectLength (x :: xs) = 让 Val k = vectLength xs in Val (S k)\n"
-"```\n"
+"vectLength []        = Val 0\n"
+"vectLength (x :: xs) = let Val k = vectLength xs in Val (S k)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:326
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This function comes with much stronger guarantees\n"
 "than `Data.Vect.length`: The latter claims to just return\n"
 "*any* natural number, while `vectLength` *must* return\n"
 "exactly `n` in order to type check. As a demonstration,\n"
 "here is a well-typed bogus implementation of `length`:\n"
-msgstr "此函数提供比 `Data.Vect.length` 更强的保证：后者声称只返回 *any* 自然数，而 `vectLength` * 必须 [X154X ] 准确返回 `n` 以便进行类型检查。作为演示，这里是 `length` 的类型良好的虚假实现："
+msgstr ""
+"此函数提供比 `Data.Vect.length` 更强的保证：后者声称只返回 *任意* 自然数，而 "
+"`vectLength` *必须*准确返回 `n` 以便进行类型检查。作为演示，这里是 `length` "
+"的良类型的虚假实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:327
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "bogusLength : Vect n a -> Nat\n"
 "bogusLength = const 0\n"
-msgstr "```idris bogusLength : Vect n a -> Nat bogusLength = const 0 ```"
+msgstr ""
+"bogusLength : Vect n a -> Nat\n"
+"bogusLength = const 0\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:334
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This would not be accepted as a valid implementation of\n"
 "`vectLength`, as you may quickly verify yourself.\n"
-msgstr "这不会被接受为 `vectLength` 的有效实现，因为您可以快速验证自己。"
+msgstr "这不会被接受为 `vectLength` 的有效实现，因为您可以快速验证自己。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:338
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "With the help of `vectLength` (but not with `Data.Vect.length`)\n"
 "we can convert an erased existential to a proper dependent\n"
 "pair:\n"
-msgstr "在 `vectLength` 的帮助下（但不是 `Data.Vect.length`），我们可以将已擦除的存在转换为正确的依赖对："
+msgstr "在 `vectLength` 的帮助下（但不是 `Data.Vect."
+"length`），我们可以将已擦除的存在转换为正确的依赖对：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:339
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a)\n"
 "toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)\n"
-msgstr "```idris toDPair : Exists (\\n => Vect n a) -> (m ** Vect m a) toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as) ```"
+msgstr ""
+"toDPair : Exists (\\n"
+" => Vect n a) -> (m ** Vect m a)\n"
+"toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:347
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Again, as a quick exercise, try implementing `toDPair` in terms\n"
 "of `length`, and note how Idris will fail to unify the\n"
 "result of `length` with the actual length of the vector.\n"
-msgstr "同样，作为一个快速练习，尝试根据 `length` 实现 `toDPair`，并注意 Idris 如何无法将 `length` 的结果与实际长度向量。"
+msgstr ""
+"同样，作为一个快速练习，尝试根据 `length` 实现 `toDPair`，并注意 Idris "
+"无法将 `length` 的结果与实际长度向量统一。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/DPair.md:352
-#, fuzzy
 msgid ""
 "Declare and implement a function for filtering a vector similar to `Data."
 "List.filter`."
@@ -1099,27 +1185,22 @@ msgstr "声明并实现一个过滤向量的函数，类似于 `Data.List.filter
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/DPair.md:356
-#, fuzzy
 msgid ""
 "Declare and implement a function for mapping a partial function over the "
 "values of a vector similar to `Data.List.mapMaybe`."
-msgstr ""
-"声明并实现一个函数，用于将偏函数映射到类似于 `Data.List.mapMaybe` 的向量的值"
-"上。"
+msgstr "声明并实现一个函数，用于将偏函数映射到类似于 `Data.List.mapMaybe` "
+"的向量的值上。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/DPair.md:360
-#, fuzzy
 msgid ""
 "Declare and implement a function similar to `Data.List.dropWhile` for "
 "vectors. Use `Data.DPair.Exists` as your return type."
-msgstr ""
-"为向量声明并实现类似于 `Data.List.dropWhile` 的函数。使用 `Data.DPair."
-"Exists` 作为您的返回类型。"
+msgstr "为向量声明并实现类似于 `Data.List.dropWhile` 的函数。使用 `Data.DPair.Exists`"
+" 作为您的返回类型。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/DPair.md:363
-#, fuzzy
 msgid ""
 "Repeat exercise 3 but return a proper dependent pair. Use the function from "
 "exercise 3 in your implementation."
@@ -1127,13 +1208,13 @@ msgstr "重复练习 3，但返回正确的依赖对。在您的实现中使用�
 
 #. type: Title ##
 #: ../src/Tutorial/DPair.md:364
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Use Case: Nucleic Acids"
-msgstr "## 用例：核酸"
+msgstr "用例：核酸"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:372
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We'd like to come up with a small, simplified library for running computations\n"
 "on nucleic acids: RNA and DNA. These are built from five types of\n"
@@ -1141,7 +1222,10 @@ msgid ""
 "acids and two bases specific for each type of acid. We'd like\n"
 "to make sure that only valid bases are in strands of nucleic acids.\n"
 "Here's a possible encoding:\n"
-msgstr "我们想提出一个小型、简化的库，用于运行核酸计算：RNA 和 DNA。它们由五种类型的核碱基构成，其中三种用于两种类型的核酸中，两种碱基对每种类型的酸具有特异性。我们想确保只有有效的碱基存在于核酸链中。这是一种可能的编码："
+msgstr ""
+"我们想提出一个小型、简化的库，用于运行核酸计算：RNA 和 DNA。它们由五种类型的"
+"核碱基构成，其中三种用于两种类型的核酸中，两种碱基对每种类型的酸具有特异性。"
+"我们想确保只有有效的碱基存在于核酸链中。这是一种可能的编码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DPair.md:373
