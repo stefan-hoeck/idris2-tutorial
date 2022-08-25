@@ -1,20 +1,6 @@
-# Sigma Types
+# Sigma 类型
 
-So far in our examples of dependently typed programming,
-type indices such as the length of vectors were known at
-compile time or could be calculated from values known at
-compile time. In real applications, however, such information is
-often not available until runtime, where values depend on
-the decisions made by users or the state of the surrounding world.
-For instance, if we store a file's content as a vector of lines
-of text, the length of this vector is in general unknown until
-the file has been loaded into memory.
-As a consequence, the types of values we work with depend on
-other values only known at runtime, and we can often only figure out
-these types by pattern matching on the values they depend on.
-To express these dependencies, we need so called
-[*sigma types*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A3_type):
-Dependent pairs and their generalization, dependent records.
+到目前为止，在我们的依赖类型编程示例中，类型索引（例如向量的长度）在编译时是已知的，或者可以从编译时已知的值中计算出来。然而，在实际应用中，此类信息通常在运行时才可用，其中值取决于用户做出的决定或周围世界的状态。例如，如果我们将文件的内容存储为文本行向量，则该向量的长度通常在文件加载到内存之前是未知的。因此，我们使用的值的类型依赖于仅在运行时才知道的其他值，并且我们通常只能通过对它们所依赖的值进行模式匹配来找出这些类型。为了表达这些依赖关系，我们需要所谓的 [*sigma types*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A3_type)：依赖对及其泛化，依赖记录。
 
 ```idris
 module Tutorial.DPair
@@ -35,60 +21,33 @@ import Text.CSV
 %default total
 ```
 
-## Dependent Pairs
+## 依赖对
 
-We've already seen several examples of how useful the length
-index of a vector is to describe more precisely in the types what
-a function can and can't do. For instance, `map` or `traverse`
-operating on a vector will return a vector of exactly
-the same length. The types guarantee that this is true, therefore
-the following function is perfectly safe and provably total:
+我们已经看到了几个例子，说明向量的长度索引在更精确地描述函数可以做什么和不能做什么的类型中是多么有用。例如，对向量进行操作的 `map` 或 `traverse` 将返回长度完全相同的向量。这些类型保证这是真的，因此以下函数是完全安全的并且可以证明是完全的：
 
 ```idris
 parseAndDrop : Vect (3 + n) String -> Maybe (Vect n Nat)
 parseAndDrop = map (drop 3) . traverse parsePositive
 ```
 
-Since the argument of `traverse parsePositive`
-is of type `Vect (3 + n) String`, its result will be of
-type `Maybe (Vect (3 + n) Nat)`. It is therefore
-safe to use this in a call to `drop 3`. Note, how all of this
-is known at compile time: We encoded the prerequisite
-that the first argument is a vector of at least three elements
-in the length index and could derive the length
-of the result from this.
+由于 `traverse parsePositive` 的参数是 `Vect (3 + n) String` 类型，其结果将是 `Maybe (Vect (3 + n) Nat)` 类型]。因此在调用 `drop 3` 时使用它是安全的。请注意，所有这些在编译时是如何知道的：我们编码的先决条件是第一个参数是长度索引中至少三个元素的向量，并且可以从中得出结果的长度。
 
-### Vectors of Unknown Length
+### 未知长度的向量
 
-However, this is not always possible. Consider the following function,
-defined on `List` and exported by `Data.List`:
+然而，这并不总是可能的。考虑以下函数，在 `List` 上定义并由 `Data.List` 导出：
 
 ```repl
 Tutorial.Relations> :t takeWhile
 Data.List.takeWhile : (a -> Bool) -> List a -> List a
 ```
 
-This will take the longest prefix of the list argument, for which
-the given predicate returns `True`. In this case, it depends on
-the list elements and the predicate, how long this prefix will be.
-Can we write such a function for vectors? Let's give it a try:
+这将采用列表参数的最长前缀，给定谓词为此返回 `True`。在这种情况下，它取决于列表元素和谓词，这个前缀有多长。我们可以为向量编写这样的函数吗？试一试吧：
 
 ```idris
 takeWhile' : (a -> Bool) -> Vect n a -> Vect m a
 ```
 
-Go ahead, and try to implement this. Don't try too long, as you will not
-be able to do so in a provably total way. The question is: What is the
-problem here?
-In order to understand this, we have to realize what the type of `takeWhile'`
-promises: "For all predicates operating on values on type `a`, and for
-all vectors holding values of this type, and for all lengths `m`, I
-give you a vector of length `m` holding values of type `a`".
-All three arguments are said to be
-[*universally quantified*](https://en.wikipedia.org/wiki/Universal_quantification):
-The caller of our function is free to choose the predicate,
-the input vector, the type of values the vector holds,
-and *the length of the output vector*. Don't believe me? See here:
+继续，并尝试实现这一点。不要尝试太久，因为您将无法以可证明的整体方式这样做。问题是：这里有什么问题？为了理解这一点，我们必须了解 `takeWhile'` 的类型所承诺的内容：“对于所有对 `a` 类型的值进行操作的谓词，以及所有包含此类型值的向量，对于所有长度 `m`，我给你一个长度为 `m` 的向量，其中包含 `a`" 类型的值。所有三个参数都被称为 [*universally quantified*](https://en.wikipedia.org/wiki/Universal_quantification)：我们函数的调用者可以自由选择谓词、输入向量、向量持有的值的类型，以及 *输出向量的长度*。不相信我？看这里：
 
 ```idris
 -- This looks like trouble: We got a non-empty vector of `Void`...
@@ -100,18 +59,9 @@ proofOfVoid : Void
 proofOfVoid = head voids
 ```
 
-See how I could freely decide on the value of `m` when invoking `takeWhile'`?
-Although I passed `takeWhile'` an empty vector (the only existing vector
-holding values of type `Void`), the function's type promises me
-to return a possibly non-empty vector holding values of the same
-type, from which I freely extracted the first one.
+看看我在调用 `takeWhile'` 时如何自由决定 `m` 的值？尽管我将 `takeWhile'` 传递给了一个空向量（唯一的现有向量包含 `Void` 类型的值），但该函数的类型保证我返回一个可能非空的向量，该向量包含相同类型的值，我从中自由地提取了第一个。
 
-Luckily, Idris doesn't allow this: We won't be able to
-implement `takeWhile'` without cheating (for instance, by
-turning totality checking off and looping forever).
-So, the question remains, how to express the result of `takeWhile'`
-in a type. The answer to this is: "Use a *dependent pair*", a vector
-paired with a value corresponding to its length.
+幸运的是，Idris 不允许这样做：我们将无法在不作弊的情况下实现 `takeWhile'`（例如，通过关闭完全性检查并永远循环）。所以，问题仍然存在，如何在一个类型中表达 `takeWhile'` 的结果。对此的答案是：“使用 *依赖对*”，一个向量与与其长度对应的值配对。
 
 ```idris
 record AnyVect a where
@@ -120,14 +70,7 @@ record AnyVect a where
   vect   : Vect length a
 ```
 
-This corresponds to [*existential quantification*](https://en.wikipedia.org/wiki/Existential_quantification)
-in predicate logic: There is a natural number, which corresponds to
-the length of the vector I have here. Note, how from the outside
-of `AnyVect a`, the length of the wrapped vector is no longer
-visible at the type level but we can still inspect it and learn
-something about it at runtime, since it is wrapped up together
-with the actual vector. We can implement `takeWhile` in such
-a way that it returns a value of type `AnyVect a`:
+这对应于谓词逻辑中的[*存在量化*](https://en.wikipedia.org/wiki/Existential_quantification)：有一个自然数，对应于我这里的向量的长度。请注意，从 `AnyVect a` 的外部，包装矢量的长度在类型级别不再可见，但我们仍然可以检查它并在运行时了解它，因为它被包装在一起与实际向量。我们可以实现 `takeWhile`，使其返回 `AnyVect a` 类型的值：
 
 ```idris
 takeWhile : (a -> Bool) -> Vect n a -> AnyVect a
@@ -137,13 +80,7 @@ takeWhile f (x :: xs) = case f x of
   True  => let MkAnyVect n ys = takeWhile f xs in MkAnyVect (S n) (x :: ys)
 ```
 
-This works in a provably total way, because callers of this function
-can no longer choose the length of the resulting vector themselves. Our
-function, `takeWhile`, decides on this length and returns it together
-with the vector, and the type checker verifies that we
-make no mistakes when pairing the two values. In fact,
-the length can be inferred automatically by Idris, so we can replace
-it with underscores, if we so desire:
+这可以证明是完全可行的，因为这个函数的调用者不能再自己选择结果向量的长度。我们的函数 `takeWhile` 决定这个长度并将它与向量一起返回，类型检查器验证我们在配对两个值时没有错误。事实上，长度可以由 Idris 自动推断，所以如果我们愿意，我们可以用下划线替换它：
 
 ```idris
 takeWhile2 : (a -> Bool) -> Vect n a -> AnyVect a
@@ -153,23 +90,15 @@ takeWhile2 f (x :: xs) = case f x of
   True  => let MkAnyVect _ ys = takeWhile2 f xs in MkAnyVect _ (x :: ys)
 ```
 
-To summarize: Parameters in generic function types are
-universally quantified, and their values can be decided on at the
-call site of such functions. Dependent record types allow us
-to describe existentially quantified values. Callers cannot choose
-such values freely: They are returned as part of a function's result.
+总结：泛型函数类型中的参数是通用量化的，它们的值可以在此类函数的调用处确定。依赖记录类型允许我们描述存在量化的值。调用者不能自由选择这些值：它们作为函数结果的一部分返回。
 
-Note, that Idris allows us to be explicit about universal quantification.
-The type of `takeWhile'` can also be written like so:
+请注意，Idris 允许我们明确地进行全称量化。 `takeWhile'` 的类型也可以这样写：
 
 ```idris
 takeWhile'' : forall a, n, m . (a -> Bool) -> Vect n a -> Vect m a
 ```
 
-Universally quantified arguments are desugared to implicit
-erased arguments by Idris. The above is a less verbose version
-of the following function type, the likes of which we have seen
-before:
+普遍量化的参数被 Idris 脱糖为隐式的已擦除参数。上面是以下函数类型的一个不那么冗长的版本，我们之前已经看到过类似的函数类型：
 
 ```idris
 takeWhile''' :  {0 a : _}
@@ -180,25 +109,11 @@ takeWhile''' :  {0 a : _}
              -> Vect m a
 ```
 
-In Idris, we are free to choose whether we want to be explicit
-about universal quantification. Sometimes it can help understanding
-what's going on at the type level. Other languages - for instance
-[PureScript](https://www.purescript.org/) - are more strict about
-this: There, explicit annotations on universally quantified parameters
-are [mandatory](https://github.com/purescript/documentation/blob/master/language/Differences-from-Haskell.md#explicit-forall).
+在 Idris 中，我们可以自由选择是否要明确全称量化。有时它可以帮助理解在类型级别上发生了什么。其他语言 - 例如 [PureScript](https://www.purescript.org/) - 对此更为严格：在那里，对普遍量化参数的显式注释是 [强制性](https://github.com/purescript/documentation/blob/master/language/Differences-from-Haskell.md#explicit-forall)的。
 
-### The Essence of Dependent Pairs
+### 依赖对的本质
 
-It can take some time and experience to understand what's going on here. At
-least in my case, it took many sessions programming in Idris, before I figured
-out what dependent pairs are about: They pair a *value* of some type with
-a second value of a type calculated from the first value.
-For instance, a natural number `n` (the value)
-paired with a vector of length `n` (the second value, the type
-of which *depends* on the first value).
-This is such a fundamental concept of programming with dependent types, that
-a general dependent pair type is provided by the *Prelude*. Here is its
-implementation (primed for disambiguation):
+了解这里发生的事情可能需要一些时间和经验。至少在我的情况下，在 Idris 中进行了许多会话编程，然后我才弄清楚依赖对的含义：它们将某种类型的 *value* 与从第一个值计算的类型的第二个值配对。例如，自然数 `n`（值）与长度为 `n` 的向量对（第二个值，其类型 *取决于* 第一个值）。这是使用依赖类型进行编程的基本概念，*Prelude* 提供了一个通用的依赖对类型。这是它的实现（准备消除歧义）：
 
 ```idris
 record DPair' (a : Type) (p : a -> Type) where
@@ -207,50 +122,35 @@ record DPair' (a : Type) (p : a -> Type) where
   snd : p fst
 ```
 
-It is essential to understand what's going on here. There are two
-parameters: A type `a`, and a function `p`, calculating a *type*
-from a *value* of type `a`. Such a value (`fst`) is then used
-to calculate the *type* of the second value (`snd`).
-For instance, here is `AnyVect a` represented as a `DPair`:
+必须了解这里发生了什么。有两个参数：类型 `a` 和函数 `p`，从类型 `a` 的 *值* 计算出一个 *类型* 。这个值 (`fst`) 被用来计算第二个值 (`snd`) 的 *类型*。例如，这里是 `AnyVect a` 使用 `DPair` 的表示：
 
 ```idris
 AnyVect' : (a : Type) -> Type
 AnyVect' a = DPair Nat (\n => Vect n a)
 ```
 
-Note, how `\n => Vect n a` is a function from `Nat` to `Type`.
-Idris provides special syntax for describing dependent pairs, as
-they are important building blocks for programming in languages
-with first class types:
+请注意，`\n => Vect n a` 如何是从 `Nat` 到 `Type` 的函数。 Idris 提供了用于描述依赖对的特殊语法，因为它们是使用一流类型的语言进行编程的重要构建块：
 
 ```idris
 AnyVect'' : (a : Type) -> Type
 AnyVect'' a = (n : Nat ** Vect n a)
 ```
 
-We can inspect at the REPL, that the right hand side of `AnyVect''`
-get's desugared to the right hand side of `AnyVect'`:
+我们可以在 REPL 中检查，`AnyVect''` 的右侧被脱糖到 `AnyVect'` 的右侧：
 
 ```repl
 Tutorial.Relations> (n : Nat ** Vect n Int)
 DPair Nat (\n => Vect n Int)
 ```
 
-Idris can infer, that `n` must be of type `Nat`, so we can drop
-this information. (We still need to put the whole expression in
-parentheses.)
+Idris 可以推断，`n` 必须是 `Nat` 类型，因此我们可以删除此信息。 （我们仍然需要将整个表达式放在括号中。）
 
 ```idris
 AnyVect3 : (a : Type) -> Type
 AnyVect3 a = (n ** Vect n a)
 ```
 
-This allows us to pair a natural number `n` with a vector of
-length `n`, which is exactly what we did with `AnyVect`. We can
-therefore rewrite `takeWhile` to return a `DPair` instead of
-our custom type `AnyVect`. Note, that like with regular pairs,
-we can use the same syntax `(x ** y)` for creating and
-pattern matching on dependent pairs:
+这允许我们将自然数 `n` 与长度为 `n` 的向量配对，这正是我们对 `AnyVect` 所做的。因此，我们可以重写 `takeWhile` 以返回 `DPair` 而不是我们的自定义类型 `AnyVect`。请注意，与常规对一样，我们可以使用相同的语法 `(x ** y)` 在依赖对上创建和模式匹配：
 
 ```idris
 takeWhile3 : (a -> Bool) -> Vect m a -> (n ** Vect n a)
@@ -260,27 +160,18 @@ takeWhile3 f (x :: xs) = case f x of
   True  => let (_  ** ys) = takeWhile3 f xs in (_ ** x :: ys)
 ```
 
-Just like with regular pairs, we can use the dependent pair
-syntax to define dependent triples and larger tuples:
+就像常规对一样，我们可以使用依赖对语法来定义依赖三元组和更大的元组：
 
 ```idris
 AnyMatrix : (a : Type) -> Type
 AnyMatrix a = (m ** n ** Vect m (Vect n a))
 ```
 
-### Erased Existentials
+### 已删除的存在
 
-Sometimes, it is possible to determine the value of an
-index by pattern matching on a value of the indexed type.
-For instance, by pattern matching on a vector, we can learn
-about its length index. In these cases, it is not strictly
-necessary to carry around the index at runtime,
-and we can write a special version of a dependent pair
-where the first argument has quantity zero. Module `Data.DPair`
-from *base* exports data type `Exists` for this use case.
+有时，可以通过对索引类型的值进行模式匹配来确定索引的值。例如，通过对向量进行模式匹配，我们可以了解它的长度索引。在这些情况下，不一定要在运行时携带索引，我们可以编写一个特殊版本的依赖对，其中第一个参数的数量为零。 *base* 中的模块 `Data.DPair` 为此用例导出数据类型 `Exists`。
 
-As an example, here is a version of `takeWhile` returning
-a value of type `Exists`:
+例如，下面是 `takeWhile` 的一个版本，返回一个 `Exists` 类型的值：
 
 ```idris
 takeWhileExists : (a -> Bool) -> Vect m a -> Exists (\n => Vect n a)
@@ -291,26 +182,21 @@ takeWhileExists f (x :: xs) = case f x of
   False => takeWhileExists f xs
 ```
 
-In order to restore an erased value, data type `Singleton`
-from *base* module `Data.Singleton` can be useful: It is
-parameterized by the *value* it stores:
+为了恢复已擦除的值，来自 *base* 模块 `Data.Singleton` 的数据类型 `Singleton` 可能很有用：它由参数化 *值* 来存储：
 
 ```idris
 true : Singleton True
 true = Val True
 ```
 
-This is called a *singleton* type: A type corresponding to
-exactly one value. It is a type error to return any other
-value for constant `true`, and Idris knows this:
+这称为 *singleton* 类型：与一个值对应的类型。返回常量 `true` 的任何其他值都是类型错误，Idris 知道这一点：
 
 ```idris
 true' : Singleton True
 true' = Val _
 ```
 
-We can use this to conjure the (erased!) length of a vector
-out of thin air:
+我们可以使用它凭空变出一个向量的（擦除的！）长度：
 
 ```idris
 vectLength : Vect n a -> Singleton n
@@ -318,55 +204,37 @@ vectLength []        = Val 0
 vectLength (x :: xs) = let Val k = vectLength xs in Val (S k)
 ```
 
-This function comes with much stronger guarantees
-than `Data.Vect.length`: The latter claims to just return
-*any* natural number, while `vectLength` *must* return
-exactly `n` in order to type check. As a demonstration,
-here is a well-typed bogus implementation of `length`:
+此函数提供比 `Data.Vect.length` 更强的保证：后者声称只返回 *任意* 自然数，而 `vectLength` *必须*准确返回 `n` 以便进行类型检查。作为演示，这里是 `length` 的良类型的虚假实现：
 
 ```idris
 bogusLength : Vect n a -> Nat
 bogusLength = const 0
 ```
 
-This would not be accepted as a valid implementation of
-`vectLength`, as you may quickly verify yourself.
+这不会被接受为 `vectLength` 的有效实现，因为您可以快速验证自己。
 
-With the help of `vectLength` (but not with `Data.Vect.length`)
-we can convert an erased existential to a proper dependent
-pair:
+在 `vectLength` 的帮助下（但不是 `Data.Vect.length`），我们可以将已擦除的存在转换为正确的依赖对：
 
 ```idris
 toDPair : Exists (\n => Vect n a) -> (m ** Vect m a)
 toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)
 ```
 
-Again, as a quick exercise, try implementing `toDPair` in terms
-of `length`, and note how Idris will fail to unify the
-result of `length` with the actual length of the vector.
+同样，作为一个快速练习，尝试根据 `length` 实现 `toDPair`，并注意 Idris 无法将 `length` 的结果与实际长度向量统一。
 
 ### 练习第 1 部分
 
-1. Declare and implement a function for filtering a vector similar to
-   `Data.List.filter`.
+1. 声明并实现一个过滤向量的函数，类似于 `Data.List.filter`。
 
-2. Declare and implement a function for mapping a partial function over the
-   values of a vector similar to `Data.List.mapMaybe`.
+2. 声明并实现一个函数，用于将偏函数映射到类似于 `Data.List.mapMaybe` 的向量的值上。
 
-3. Declare and implement a function similar to `Data.List.dropWhile` for
-   vectors. Use `Data.DPair.Exists` as your return type.
+3. 为向量声明并实现类似于 `Data.List.dropWhile` 的函数。使用 `Data.DPair.Exists` 作为您的返回类型。
 
-4. Repeat exercise 3 but return a proper dependent pair. Use the function
-   from exercise 3 in your implementation.
+4. 重复练习 3，但返回正确的依赖对。在您的实现中使用练习 3 中的函数。
 
-## Use Case: Nucleic Acids
+## 用例：核酸
 
-We'd like to come up with a small, simplified library for running computations
-on nucleic acids: RNA and DNA. These are built from five types of
-nucleobases, three of which are used in both types of nucleic
-acids and two bases specific for each type of acid. We'd like
-to make sure that only valid bases are in strands of nucleic acids.
-Here's a possible encoding:
+我们想提出一个小型、简化的库，用于运行核酸计算：RNA 和 DNA。它们由五种类型的核碱基构成，其中三种用于两种类型的核酸中，两种碱基对每种类型的酸具有特异性。我们想确保只有有效的碱基存在于核酸链中。这是一种可能的编码：
 
 ```idris
 data BaseType = DNABase | RNABase
@@ -398,7 +266,7 @@ encode : NucleicAcid b -> String
 encode = pack . map encodeBase
 ```
 
-It is a type error to use `Uracile` in a strand of DNA:
+在 DNA 链中使用 `Uracile` 是一个类型错误：
 
 ```idris
 failing "Mismatch between: RNABase and DNABase."
@@ -406,10 +274,7 @@ failing "Mismatch between: RNABase and DNABase."
   errDNA = [Uracile, Adenine]
 ```
 
-Note, how we used a variable for nucleobases `Adenine`, `Cytosine`, and
-`Guanine`: These are again universally quantified,
-and client code is free to choose a value here. This allows us
-to use these bases in strands of DNA *and* RNA:
+请注意，我们如何为核碱基 `Adenine`、`Cytosine` 和 `Guanine` 使用变量：这些又是普遍量化的，客户代码可以在这里自由选择一个值.这使我们能够在 DNA *和* RNA 链中使用这些碱基：
 
 ```idris
 dna1 : DNA
@@ -419,9 +284,7 @@ rna1 : RNA
 rna1 = [Adenine, Cytosine, Guanine]
 ```
 
-With `Thymine` and `Uracile`, we are more restrictive: `Thymine` is only
-allowed in DNA, while `Uracile` is restricted to be used in RNA strands.
-Let's write parsers for strands of DNA and RNA:
+对于 `Thymine` 和 `Uracile`，我们的限制性更强：`Thymine` 仅允许用于 DNA，而 `Uracile` 仅限用于 RNA。让我们为 DNA 和 RNA 链编写解析器：
 
 ```idris
 readAnyBase : Char -> Maybe (Nucleobase b)
@@ -445,14 +308,9 @@ readDNA : String -> Maybe DNA
 readDNA = traverse readDNABase . unpack
 ```
 
-Again, in case of the bases appearing in both kinds of strands,
-users of the universally quantified `readAnyBase`
-are free to choose what base type they want, but they will
-never get a `Thymine` or `Uracile` value.
+同样，如果碱基出现在两种链中，通用量化的 `readAnyBase` 的用户可以自由选择他们想要的碱基类型，但他们永远不会得到 `Thymine` 或`Uracile`值。
 
-We can now implement some simple calculations on sequences of
-nucleobases. For instance, we can come up with the complementary
-strand:
+我们现在可以对核碱基序列进行一些简单的计算。例如，我们可以提出互补链：
 
 ```idris
 complementRNA' : RNA -> RNA
@@ -472,9 +330,7 @@ complementDNA' = map calc
         calc Thymine  = Adenine
 ```
 
-Ugh, code repetition! Not too bad here, but imagine there were
-dozens of bases with only few specialized ones. Surely, we can
-do better? Unfortunately, the following won't work:
+呃，代码重复！这里还不错，但想象一下有几十个基础的，只有几个特殊的。那么，我们可以做得更好吗？不幸的是，以下方法不起作用：
 
 ```idris
 complementBase' : Nucleobase b -> Nucleobase b
@@ -485,13 +341,7 @@ complementBase' Thymine  = Adenine
 complementBase' Uracile  = Adenine
 ```
 
-All goes well with the exception of the `Adenine` case. Remember:
-Parameter `b` is universally quantified, and the *callers* of
-our function can decide what `b` is supposed to
-be. We therefore can't just return `Thymine`: Idris will respond
-with a type error since callers might want a `Nucleobase RNABase` instead.
-One way to go about this is to take an additional unerased argument
-(explicit or implicit) representing the base type:
+除了 `Adenine` 情况外，一切都很顺利。请记住：参数 `b` 是通用量化的，我们函数的 *callers* 可以决定 `b` 应该是什么。因此，我们不能只返回 `Thymine`：Idris 将响应类型错误，因为调用者可能需要 `Nucleobase RNABase` 代替。解决此问题的一种方法是采用表示基本类型的附加未擦除参数（显式或隐式）：
 
 ```idris
 complementBase : (b : BaseType) -> Nucleobase b -> Nucleobase b
@@ -503,29 +353,16 @@ complementBase _       Thymine  = Adenine
 complementBase _       Uracile  = Adenine
 ```
 
-This is again an example of a dependent *function* type (also called a
-[*pi type*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A0_type)):
-The input and output types both *depend* on the *value* of the first argument.
-We can now use this to calculate the complement of any nucleic acid:
+这又是一个依赖 *函数* 类型（也称为 [*pi 类型*](https://en.wikipedia.org/wiki/Dependent_type#%CE%A0_type)）的示例 : 输入和输出类型都 *取决于* 第一个参数的 *值*。我们现在可以使用它来计算任何核酸的互补链：
 
 ```idris
 complement : (b : BaseType) -> NucleicAcid b -> NucleicAcid b
 complement b = map (complementBase b)
 ```
 
-Now, here is an interesting use case: We'd like to read a sequence
-of nucleobases from user input, accepting two strings: The first
-telling us, whether the user plans to enter a DNA or RNA sequence,
-the second being the sequence itself. What should be the type of
-such a function? Well, we're describing computations with side effects,
-so something involving `IO` seems about right. User input almost
-always needs to be validated or translated, so something might go wrong
-and we need an error type for this case. Finally, our users can
-decide whether they want to enter a strand of RNA or DNA, so this
-distinction should be encoded as well.
+现在，这是一个有趣的用例：我们想从用户输入中读取一个核碱基序列，接受两个字符串：第一个告诉我们，用户打算输入 DNA 还是 RNA 序列，第二个是序列本身.这种函数的类型应该是什么？好吧，我们正在描述具有副作用的计算，因此涉及 `IO` 的东西似乎是正确的。用户输入几乎总是需要验证或翻译，因此可能会出现问题，我们需要针对这种情况的错误类型。最后，我们的用户可以决定是否要输入一条 RNA 或 DNA，因此也应该对这种区别进行编码。
 
-Of course, it is always possible to write a custom sum type for
-such a use case:
+当然，总是可以为这样的用例编写自定义和类型：
 
 ```idris
 data Result : Type where
@@ -535,20 +372,15 @@ data Result : Type where
   GotRNA          : RNA -> Result
 ```
 
-This has all possible outcomes encoded in a single data type.
-However, it is lacking in terms of flexibility. If we want to handle
-errors early on and just extract a strand of RNA or DNA, we need
-yet another data type:
+这具有以单一数据类型编码的所有可能结果。但是，它缺乏灵活性。如果我们想及早处理错误并只提取一条 RNA 或 DNA，我们需要另一种数据类型：
 
 ```idris
 data RNAOrDNA = ItsRNA RNA | ItsDNA DNA
 ```
 
-This might be the way to go, but for results with many options, this
-can get cumbersome quickly. Also: Why come up with a custom data type when
-we already have the tools to deal with this at our hands?
+这可能是要走的路，但对于有很多选项的结果，这很快就会变得很麻烦。另外：当我们已经拥有处理这个问题的工具时，为什么还要提出自定义数据类型？
 
-Here is how we can encode this with a dependent pair:
+以下是我们如何使用依赖对对其进行编码：
 
 ```idris
 namespace InputError
@@ -573,11 +405,7 @@ getNucleicAcid = do
     _     => pure $ Left (UnknownBaseType baseString)
 ```
 
-Note, how we paired the type of nucleobases with the nucleic acid
-sequence. Assume now we implement a function for transcribing
-a strand of DNA to RNA, and we'd like to convert a sequence of
-nucleobases from user input to the corresponding RNA sequence.
-Here's how to do this:
+请注意，我们如何将核碱基类型与核酸序列配对。假设现在我们实现了一个将 DNA 链转录为 RNA 的函数，并且我们希望将用户输入的核碱基序列转换为相应的 RNA 序列。以下是如何执行此操作：
 
 ```idris
 transcribeBase : Nucleobase DNABase -> Nucleobase RNABase
@@ -602,29 +430,13 @@ transcribeProg = do
     RNABase => printRNA seq
 ```
 
-By pattern matching on the first value of the dependent pair we could
-determine, whether the second value is an RNA or DNA sequence.
-In the first case, we had to transcribe the
-sequence first, in the second case, we could invoke `printRNA` directly.
+通过对依赖对的第一个值的模式匹配，我们可以确定第二个值是 RNA 还是 DNA 序列。在第一种情况下，我们必须先转录序列，在第二种情况下，我们可以直接调用 `printRNA`。
 
-In a more interesting scenario, we would *translate* the RNA sequence
-to the corresponding protein sequence. Still, this example shows
-how to deal with a simplified real world scenario: Data may be
-encoded differently and coming from different sources. By using precise
-types, we are forced to first convert values to the correct
-format. Failing to do so leads to a compile time exception instead of
-an error at runtime or - even worse - the program silently running
-a bogus computation.
+在一个更有趣的场景中，我们将 RNA 序列 *翻译* 成相应的蛋白质序列。尽管如此，这个例子展示了如何处理一个简化的现实世界场景：数据可能以不同的方式编码并且来自不同的来源。通过使用精确类型，我们被迫首先将值转换为正确的格式。不这样做会导致编译时异常，而不是运行时错误，或者 - 更糟糕的是 - 程序静默运行虚假计算。
 
-### Dependent Records vs Sum Types
+### 依赖记录与和类型
 
-Dependent records as shown for `AnyVect a` are a generalization
-of dependent pairs: We can have an arbitrary number of fields
-and use the values stored therein to calculate the types of
-other values. For very simple cases like the example with nucleobases,
-it doesn't matter too much, whether we use a `DPair`, a custom
-dependent record, or even a sum type. In fact, the three encodings
-are equally expressive:
+`AnyVect a` 所示的依赖记录是依赖对的概括：我们可以有任意数量的字段并使用其中存储的值来计算其他值的类型。对于非常简单的情况，例如带有核碱基的示例，无论我们使用 `DPair`、自定义相关记录还是和类型都没有太大关系。事实上，这三种编码同样具有表现力：
 
 ```idris
 Acid1 : Type
@@ -640,71 +452,41 @@ data Acid3 : Type where
   SomeDNA : DNA -> Acid3
 ```
 
-It is trivial to write lossless conversions between these
-encodings, and with each encoding we can decide with a simple
-pattern match, whether we currently have a sequence of
-RNA or DNA. However, dependent types can depend on more than
-one value, as we will see in the exercises. In such cases,
-sum types and dependent pairs quickly become unwieldy, and
-you should go for an encoding as a dependent record.
+在这些编码之间编写无损转换是微不足道的，并且对于每种编码，我们可以通过简单的模式匹配来决定我们当前是否具有 RNA 或 DNA 序列。然而，依赖类型可以依赖多个值，正如我们将在练习中看到的那样。在这种情况下，和类型和依赖对很快就会变得笨拙，您应该将编码作为依赖记录。
 
 ### 练习第 2 部分
 
-Sharpen your skills in using dependent pairs and dependent
-records! In exercises 2 to 7 you have to decide yourself,
-when a function should return a dependent pair or record,
-when a function requires additional arguments, on which you
-can pattern match, and what other utility functions might be
-necessary.
+提高您使用依赖对和依赖记录的技能！在练习 2 到 7 中，你必须自己决定什么时候函数应该返回一个依赖对或记录，什么时候函数需要额外的参数，你可以在这些参数上进行模式匹配，以及可能需要哪些其他实用函数。
 
-1. Proof that the three encodings for nucleobases are *isomorphic* (meaning:
-   of the same structure) by writing lossless conversion functions from
-   `Acid1` to `Acid2` and back. Likewise for `Acid1` and `Acid3`.
+1. 通过编写从 `Acid1` 到 `Acid2` 并返回的无损转换函数，证明核碱基的三种编码是 *同构的*（意思是：结构相同）。同样适用于
+   `Acid1` 和 `Acid3`。
 
-2. Sequences of nucleobases can be encoded in one of two directions:
-   [*Sense* and
-   *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology)).
-   Declare a new data type to describe the sense of a sequence of
-   nucleobases, and add this as an additional parameter to type `Nucleobase`
-   and types `DNA` and `RNA`.
+2. 核碱基序列可以在以下两个方向之一编码：[*Sense* 和
+   *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology))。声明一个新的数据类型来描述核碱基序列的意义，并将其作为附加参数添加到类型
+   `Nucleobase` 和类型 `DNA` 和 `RNA`。
 
-3. Refine the types of `complement` and `transcribe`, so that they reflect
-   the changing of *sense*. In case of `transcribe`, a strand of antisense
-   DNA is converted to a strand of sense RNA.
+3. 细化`complement`和`transcribe`的类型，使其反映*sense*的变化。在 `transcribe` 的情况下，反义 DNA
+   链被转化为 sense RNA 链。
 
-4. Define a dependent record storing the base type and sense together with a
-   sequence of nucleobases.
+4. 定义一个依赖记录，将碱基类型和 sense 与一系列核碱基一起存储。
 
 5. Adjust `readRNA` and `readDNA` in such a way that the *sense* of a
    sequence is read from the input string.  Sense strands are encoded like
    so: "5Â´-CGGTAG-3Â´". Antisense strands are encoded like so:
    "3Â´-CGGTAG-5Â´".
 
-6. Adjust `encode` in such a way that it includes the sense in its output.
+6. 调整 `encode` 使其在输出中包含 sense。
 
-7. Enhance `getNucleicAcid` and `transcribeProg` in such a way that the
-   sense and base type are stored together with the sequence, and that
-   `transcribeProg` always prints the *sense* RNA strand (after
-   transcription, if necessary).
+7. 增强 `getNucleicAcid` 和 `transcribeProg` 以使 sense 和碱基类型与序列一起存储，并且
+   `transcribeProg` 始终打印 *sense* RNA 链（转录后，如有必要）。
 
-8. Enjoy the fruits of your labour and test your program at the REPL.
+8. 享受您的劳动成果并在 REPL 测试您的程序。
 
-Note: Instead of using a dependent record, we could again
-have used a sum type of four constructors to encode the different
-types of sequences. However, the number of constructors
-required corresponds to the *product* of the number of values
-of each type level index. Therefore, this number can grow quickly
-and sum type encodings can lead to lengthy blocks of pattern matches
-in these cases.
+注意：我们可以再次使用四个构造函数的和类型来编码不同类型的序列，而不是使用依赖记录。但是，所需的构造函数数量对应于每个类型级别索引的值数量的 *积*。因此，这个数字会快速增长，并且在这些情况下，和类型编码会导致模式匹配的块很长。
 
-## Use Case: CSV Files with a Schema
+## 用例：带有模式的 CSV 文件
 
-In this section, we are going to look at an extended example
-based on our previous work on CSV parsers. We'd like to
-write a small command-line program, where users can specify a
-schema for the CSV tables they'd like to parse and load into
-memory. Before we begin, here is a REPL session running
-the final program, which you will complete in the exercises:
+在本节中，我们将看一个基于我们之前在 CSV 解析器上的工作的扩展示例。我们想编写一个小型命令行程序，用户可以在其中为他们想要解析并加载到内存中的 CSV 表指定模式。在我们开始之前，这是一个运行最终程序的 REPL 会话，您将在练习中完成它：
 
 ```repl
 Solutions.DPair> :exec main
@@ -744,35 +526,20 @@ Enter a command: quit
 Goodbye.
 ```
 
-This example was inspired by a similar program used as an example
-in the [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris)
-book.
+这个例子的灵感来自于 [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris) 一书中用作示例的类似程序。
 
-We'd like to focus on several things here:
+我们想在这里重点关注几件事：
 
-* Purity: With the exception of the main program loop, all functions used in
-  the implementation should be pure, which in this context means "not
-  running in any monad with side effects such as `IO`".
-* Fail early: With the exception of the command parser, all functions
-  updating the table and handling queries should be typed and implemented in
-  such a way that they cannot fail.
+* 纯度：除了主程序循环之外，实现中使用的所有函数都应该是纯函数，在这种情况下，这意味着“不在任何具有副作用的 monad 中运行，例如 `IO`”。
+* 尽早失败：除了命令解析器之外，所有更新表和处理查询的函数都应该以不会失败的方式输入和实现。
 
-We are often well advised to adhere to these two guidelines, as they can
-make the majority of our functions easier to implement and test.
+我们经常被建议遵守这两个准则，因为它们可以使我们的大多数函数更容易实现和测试。
 
-Since we allow users of our library to specify a schema (order and
-types of columns) for the table they work with, this information is
-not known until runtime. The same goes for the current size of the
-table. We will therefore store both values as fields in a
-dependent record.
+由于我们允许我们库的用户为他们使用的表指定模式（列的顺序和类型），因此直到运行时才知道此信息。表的当前大小也是如此。因此，我们会将这两个值作为字段存储在依赖记录中。
 
-### Encoding the Schema
+### 为模式编码
 
-We need to inspect the table schema at runtime. Although theoretically
-possible, it is not advisable to operate on Idris types directly here.
-We'd rather use a closed custom data type describing the types of
-columns we understand. In a first try, we only support some Idris
-primitives:
+我们需要在运行时检查表模式。尽管理论上可行，但不建议在此处直接对 Idris 类型进行操作。我们宁愿使用封闭的自定义数据类型来描述我们理解的列类型。在第一次尝试中，我们只支持一些 Idris 原语：
 
 ```idris
 data ColType = I64 | Str | Boolean | Float
@@ -781,9 +548,7 @@ Schema : Type
 Schema = List ColType
 ```
 
-Next, we need a way to convert a `Schema` to a list of Idris
-types, which we will then use as the index of a heterogeneous
-list representing the rows in our table:
+接下来，我们需要一种将 `Schema` 转换为 Idris 类型列表的方法，然后将其用作表示表中行的异构列表的索引：
 
 ```idris
 IdrisType : ColType -> Type
@@ -796,10 +561,7 @@ Row : Schema -> Type
 Row = HList . map IdrisType
 ```
 
-We can now describe a table as a dependent record storing
-the table's content as a vector of rows. In order to safely
-index rows of the table and parse new rows to be added, the
-current schema and size of the table must be known at runtime:
+我们现在可以将表描述为将表内容存储为行向量的依赖记录。为了安全地索引表的行并解析要添加的新行，必须在运行时知道表的当前模式和大小：
 
 ```idris
 record Table where
@@ -809,13 +571,7 @@ record Table where
   rows   : Vect size (Row schema)
 ```
 
-Finally, we define an indexed data type describing commands
-operating on the current table. Using the current table as
-the command's index allows us to make sure that indices for
-accessing and deleting rows are within bounds and that
-new rows agree with the current schema. This is necessary
-to uphold our second design principle: All functions
-operating on tables must do so without the possibility of failure.
+最后，我们定义了一个索引数据类型来描述对当前表进行操作的命令。使用当前表作为命令的索引允许我们确保访问和删除行的索引在界限内，并且新行与当前模式一致。这对于维护我们的第二个设计原则是必要的：所有在表上操作的函数都必须这样做，并且没有失败的可能性。
 
 ```idris
 data Command : (t : Table) -> Type where
@@ -828,10 +584,7 @@ data Command : (t : Table) -> Type where
   Quit        : Command t
 ```
 
-We can now implement the main application logic: How user
-entered commands affect the application's current state. As promised,
-this comes without the risk of failure, so we don't have to
-wrap the return type in an `Either`:
+我们现在可以实现主要的应用程序逻辑：用户输入的命令如何影响应用程序的当前状态。正如所承诺的那样，这没有失败的风险，因此我们不必将返回类型包装在 `Either` 中：
 
 ```idris
 applyCommand : (t : Table) -> Command t -> Table
@@ -846,63 +599,23 @@ applyCommand (MkTable ts n rs) (Delete x)  = case n of
   Z   => absurd x
 ```
 
-Please understand, that the constructors of `Command t` are typed
-in such a way that indices are always within bounds (constructors
-`Get` and `Delete`), and new rows adhere to the table's
-current schema (constructor `Prepend`).
+请理解，`Command t` 的构造函数的类型使得索引始终在范围内（构造函数 `Get` 和 `Delete`），并且新行遵循到表的当前模式（构造函数 `Prepend`）。`
 
-One thing you might not have seen so far is the call to `absurd`
-on the last line. This is a derived function of the
-`Uninhabited` interface, which is used to describe types such
-as `Void` or - in the case above - `Fin 0`, of which there can
-be no value. Function `absurd` is then just another manifestation
-of the principle of explosion. If this doesn't make too much sense
-yet, don't worry. We will look at `Void` and its uses in the
-next chapter.
+到目前为止你可能没有看到的一件事是最后一行对 `absurd` 的调用。这是 `Uninhabited` 接口的派生函数，用于描述诸如 `Void` 或 - 在上述情况下 - `Fin 0` 等类型，其中有可以没有价值。函数`absurd` 则只是爆炸原理的另一种表现。如果这还没有太大意义，请不要担心。我们将在下一章中介绍 `Void` 及其用法。
 
-### Parsing Commands
+### 解析命令
 
-User input validation is an important topic when writing
-applications. If it happens early, you can keep larger parts
-of your application pure (which - in this context - means:
-"without the possibility of failure") and provably total.
-If done properly, this step encodes and handles most if not all
-ways in which things can go wrong in your program, allowing
-you to come up with clear error messages telling users exactly what caused
-an issue. As you surely have experienced yourself, there are few
-things more frustrating than a non-trivial computer program terminating
-with an unhelpful "There was an error" message.
+用户输入验证是编写应用程序时的一个重要主题。如果它发生得早，您可以保持应用程序的大部分纯净（在这种情况下，这意味着：“没有失败的可能性”）并且可以证明是完全的。如果操作正确，此步骤将编码和处理程序中可能出现问题的大部分（可能不是全部）方式，从而使您能够提出明确的错误消息，告诉用户究竟是什么导致了问题。正如您自己所经历的那样，没有什么比一个有意义的计算机程序以无用的“发生错误”消息终止更令人沮丧的了。
 
-So, in order to treat this important topic with all due respect,
-we are first going to implement a custom error type. This is
-not *strictly* necessary for small programs, but once your software
-gets more complex, it can be tremendously helpful for keeping track
-of what can go wrong where. In order to figure out what can possibly
-go wrong, we first need to decide on how the commands should be entered.
-Here, we use a single keyword for each command, together with an
-optional number of arguments separated from the keyword by a single
-space character. For instance: `"new i64,boolean,str,str"`,
-for initializing an empty table with a new schema. With this settled,
-here is a list of things that can go wrong, and the messages we'd
-like to print:
+因此，为了以应有的尊重对待这个重要的话题，我们首先要实现一个自定义错误类型。这对于小程序来说 *严格* 不是所必需的，但是一旦您的软件变得更加复杂，它对于跟踪可能出错的地方非常有帮助。为了找出可能出错的地方，我们首先需要决定如何输入命令。在这里，我们为每个命令使用一个关键字，以及由单个空格字符与关键字分隔的可选数量的参数。例如：`"new i64,boolean,str,str"`，用于使用新模式初始化空表。解决了这个问题，这里列出了可能出错的地方，以及我们想要打印的消息：
 
-* A bogus command is entered. We repeat the input with a message that we
-  don't know the command plus a list of commands we know about.
-* An invalid schema was entered. In this case, we list the position of the
-  first unknown type, the string we found there, and a list of types we know
-  about.
-* An invalid CSV encoding of a row was entered. We list the erroneous
-  position, the string encountered there, plus the expected type. In case of
-  a too small or too large number of fields, we also print a corresponding
-  error message.
-* An index was out of bounds. This can happen, when users try to access or
-  delete specific rows. We print the current number of rows plus the value
-  entered.
-* A value not representing a natural number was entered as an index.  We
-  print an according error message.
+* 输入了虚假命令。我们使用我们不知道命令的消息以及我们知道的命令列表重复输入。
+* 输入了无效的模式。在这种情况下，我们列出了第一个未知类型的位置、我们在那里找到的字符串以及我们知道的类型列表。
+* 输入的行的 CSV 编码无效。我们列出了错误的位置、在那里遇到的字符串以及预期的类型。如果字段数量过少或过多，我们也会打印相应的错误消息。
+* 索引超出范围。当用户尝试访问或删除特定行时，可能会发生这种情况。我们打印当前行数加上输入的值。
+* 输入了不代表自然数的值作为索引。我们打印相应的错误消息。
 
-That's a lot of stuff to keep track off, so let's encode this in
-a sum type:
+有很多东西需要跟踪，所以让我们将其编码为和类型：
 
 ```idris
 data Error : Type where
@@ -915,13 +628,7 @@ data Error : Type where
   NoNat          : String -> Error
 ```
 
-In order to conveniently construct our error messages, it is best
-to use Idris' string interpolation facilities: We can enclose
-arbitrary string expressions in a string literal by enclosing
-them in curly braces, the first of which must be escaped with
-a backslash. Like so: `"foo \{myExpr a b c}"`.
-We can pair this with multiline string literals to get
-nicely formatted error messages.
+为了方便地构造我们的错误消息，最好使用 Idris 的字符串插值工具：我们可以通过将任意字符串表达式括在花括号中，将它们括在字符串文字中，第一个必须用反斜杠转义。像这样：`"foo \{myExpr a b c}"`。我们可以将它与多行字符串文字配对以获得格式良好的错误消息。
 
 ```idris
 showColType : ColType -> String
@@ -978,11 +685,7 @@ showError (OutOfBounds size index) = """
 showError (NoNat x) = "Not a natural number: \{x}"
 ```
 
-We can now write parsers for the different commands. We need facilities
-to parse vector indices, schemata, and CSV rows.
-Since we are using a CSV format for encoding
-and decoding rows, it makes sense to also encode the schema
-as a comma-separated list of values:
+我们现在可以为不同的命令编写解析器。我们需要工具来解析向量索引、模式和 CSV 行。由于我们使用 CSV 格式对行进行编码和解码，因此也可以将模式编码为逗号分隔的值列表：
 
 ```idris
 zipWithIndex : Traversable t => t a -> t (Nat, a)
@@ -1004,13 +707,7 @@ readSchema : String -> Either Error Schema
 readSchema = traverse (uncurry readColType) . zipWithIndex . fromCSV
 ```
 
-We also need to decode CSV content based on the current schema.
-Note, how we can do so in a type safe manner by pattern matching
-on the schema, which will not be known until runtime. Unfortunately,
-we need to reimplement CSV-parsing, because we want to add the
-expected type to the error messages (a thing that would be
-much harder to do with interface `CSVLine`
-and error type `CSVError`).
+我们还需要根据当前模式解码 CSV 内容。请注意，我们如何通过模式上的模式匹配以类型安全的方式做到这一点，直到运行时才知道。不幸的是，我们需要重新实现 CSV 解析，因为我们想将预期的类型添加到错误消息中（使用接口 `CSVLine` 和错误类型 `CSVError`）。
 
 ```idris
 decodeField : Nat -> (c : ColType) -> String -> Either Error (IdrisType c)
@@ -1031,20 +728,13 @@ decodeRow s = go 1 ts $ fromCSV s
         go k (c :: cs) (s :: ss) = [| decodeField k c s :: go (S k) cs ss |]
 ```
 
-There is no hard and fast rule about whether to pass an index as an
-implicit argument or not. Some considerations:
+关于是否将索引作为隐式参数传递没有硬性规定。一些考虑：
 
-* Pattern matching on explicit arguments comes with less syntactic overhead.
-* If an argument can be inferred from the context most of the time, consider
-  passing it as an implicit to make your function nicer to use in client
-  code.
-* Use explicit (possibly erased) arguments for values that can't be inferred
-  by Idris most of the time.
+* 显式参数的模式匹配具有较少的语法开销。
+* 如果大多数时候可以从上下文中推断出参数，请考虑将其作为隐式传递，以使您的函数更好地在客户端代码中使用。
+* 对于大多数时候 Idris 无法推断的值，请使用显式（可能已删除）参数。
 
-All that is missing now is a way to parse indices for accessing
-the current table's rows. We use the conversion for indices to
-start at one instead of zero, which feels more natural for most
-non-programmers.
+现在缺少的只是一种解析索引以访问当前表行的方法。我们使用索引的转换从 1 而不是 0 开始，这对于大多数非程序员来说感觉更自然。
 
 ```idris
 readFin : {n : _} -> String -> Either Error (Fin n)
@@ -1054,12 +744,7 @@ readFin s = do
   maybeToEither (OutOfBounds n $ S k) $ natToFin k n
 ```
 
-We are finally able to implement a parser for user commands.
-Function `Data.String.words` is used for splitting a string
-at space characters. In most cases, we expect the name of
-the command plus a single argument without additional spaces.
-CSV rows can have additional space characters, however, so we
-use `Data.String.unwords` on the split string.
+我们终于能够为用户命令实现解析器。函数 `Data.String.words` 用于在空格字符处分割字符串。在大多数情况下，我们期望命令的名称加上一个没有额外空格的参数。但是，CSV 行可以有额外的空格字符，因此我们在拆分字符串上使用 `Data.String.unwords`。
 
 ```idris
 readCommand :  (t : Table) -> String -> Either Error (Command t)
@@ -1074,12 +759,9 @@ readCommand (MkTable ts n _) s         = case words s of
   _               => Left $ UnknownCommand s
 ```
 
-### Running the Application
+### 运行应用程序
 
-All that's left to do is to write functions for
-printing the results of commands to users and run
-the application in a loop until command `"quit"`
-is entered.
+剩下要做的就是编写用于向用户打印命令结果的函数并循环运行应用程序，直到输入命令 `"quit"`。
 
 ```idris
 encodeField : (t : ColType) -> IdrisType t -> String
@@ -1123,77 +805,49 @@ main = runProg $ MkTable [] _ []
 
 ### 练习第 3 部分
 
-The challenges presented here all deal with enhancing our
-table editor in several interesting ways. Some of them are
-more a matter of style and less a matter of learning to write
-dependently typed programs, so feel free to solve these as you
-please. Exercises 1 to 3 should be considered to be
-mandatory.
+这里提出的挑战都涉及以几种有趣的方式增强我们的表格编辑器。其中一些更多的是风格问题，而不是学习编写依赖类型程序的问题，所以请随意解决这些问题。练习 1 到 3 应该被认为是强制性的。
 
-1. Add support for storing Idris types `Integer` and `Nat` in CSV columns
+1. 添加对在 CSV 列中存储 Idris 类型 `Integer` 和 `Nat` 的支持
 
-2. Add support for `Fin n` to CSV columns. Note: We need runtime access to
-   `n` in order for this to work.
+2. 添加对 `Fin n` 到 CSV 列的支持。注意：我们需要运行时访问 `n` 才能使其工作。
 
-3. Add support for optional types to CSV columns. Since missing values
-   should be encoded by empty strings, it makes no sense to allow for nested
-   optional types, meaning that types like `Maybe Nat` should be allowed
-   while `Maybe (Maybe Nat)` should not.
+3. 向 CSV 列添加对可选类型的支持。由于缺失值应该由空字符串编码，因此允许嵌套可选类型没有意义，这意味着应该允许 `Maybe Nat`
+   等类型，而 `Maybe (Maybe Nat)` 不被允许.
 
-   Hint: There are several ways to encode these, one being
-   to add a boolean index to `ColType`.
+   提示：有几种编码方式，一种是
+   为 `ColType` 添加一个布尔索引。
 
-4. Add a command for printing the whole table. Bonus points if all columns
-   are properly aligned.
+4. 添加用于打印整个表格的命令。如果所有列都正确对齐，则加分。
 
-5. Add support for simple queries: Given a column number and a value, list
-   all rows where entries match the given value.
+5. 添加对简单查询的支持：给定列号和值，列出条目与给定值匹配的所有行。
 
-   This might be a challenge, as the types get pretty interesting.
+   这可能是一个挑战，因为类型变得非常有趣。
 
-6. Add support for loading and saving tables from and to disk.  A table
-   should be stored in two files: One for the schema and one for the CSV
-   content.
+6. 添加对从磁盘加载和保存表的支持。表应存储在两个文件中：一个用于模式，一个用于 CSV 内容。
 
-   Note: Reading files in a provably total way can be pretty
-   hard and will be a topic for another day. For now,
-   just use function `readFile` exported from
-   `System.File` in base for reading a file as a whole.
-   This function is partial, because
-   it will not terminate when used with an infinite input
-   stream such as `/dev/urandom` or `/dev/zero`.
-   It is important to *not* use `assert_total` here.
-   Using partial functions like `readFile` might well impose
-   a security risk in a real world application, so eventually,
-   we'd have to deal with this and allow for some way to
-   limit the size of accepted input. It is therefore best
-   to make this partiality visible and annotate all downstream
-   functions accordingly.
+   注意：以可证明的全部方式读取文件可能很困难，这将成为另一天的话题。目前，
+   只需使用从 `System.File` 导出的函数 `readFile`
+   用于读取整个文件。
+   这是一个偏函数，因为
+   与无限输入一起使用时不会终止
+   流，例如 `/dev/urandom` 或 `/dev/zero`。
+   重要的是 *不能* 在此处使用 `assert_total`。
+   使用像 `readFile` 这样的部分函数可能会强加
+   现实世界应用程序中的安全风险，所以最终，
+   我们必须处理这个问题并允许某种方式
+   限制接受输入的大小。因此最好
+   使这种偏见可见并注释所有下游
+   相应地函数。
 
-You can find an implementation of these additions in the
-solutions. A small example table can be found in folder
-`resources`.
+您可以在解决方案中找到这些添加的实现。可以在文件夹 `resources` 中找到一个小示例表。
 
-Note: There are of course tons of projects to pursue from
-here, such as writing a proper query language, calculating
-new rows from existing ones, accumulating values in a
-column, concatenating and zipping tables, and so on.
-We will stop for now, probably coming back to this in
-later examples.
+注意：当然还有大量的项目要从这里开始，例如编写适当的查询语言、从现有行计算新行、在列中累积值、连接和压缩表等等。我们现在将停止，可能会在后面的示例中回到这一点。
 
 ## 结论
 
-Dependent pairs and records are necessary to at runtime
-inspect the values defining the types we work with. By pattern
-matching on these values, we learn about the types and
-possible shapes of other values, allowing us to reduce
-the number of potential bugs in our programs.
+依赖对和记录对于在运行时检查定义我们使用的类型的值是必要的。通过对这些值进行模式匹配，我们可以了解其他值的类型和可能的形状，从而减少程序中潜在错误的数量。
 
-In the [next chapter](Eq.md) we start learning about how
-to write data types, which we use as proofs that certain
-contracts between values hold. These will eventually allow
-us to define pre- and post conditions for our function
-arguments and output types.
+在[下一章](Eq.md)中，我们开始学习如何编写数据类型，我们将其用作值之间某些契约成立的证据。这些最终将允许我们为函数参数和输出类型定义前置和后置条件。
 
 <!-- vi: filetype=idris2
 -->
