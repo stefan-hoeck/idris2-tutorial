@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-20 09:20+0000\n"
-"Last-Translator: grass <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-25 15:08+0000\n"
+"Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/traverse/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -2179,88 +2179,76 @@ msgstr ""
 
 #. type: Bullet: '   1. '
 #: ../src/Tutorial/Traverse.md:790
-#, fuzzy
 msgid ""
 "Come up with a parameterized data type for encapsulating stateful "
 "computations where the input and output state type can differ. It must be "
 "possible to wrap `uncons` in a value of this type."
-msgstr ""
-"提出一种参数化数据类型，用于封装输入和输出状态类型可能不同的有状态计算。必须"
-"可以将 `uncons` 包装在这种类型的值中。"
+msgstr "提出一种参数化数据类型，用于封装输入和输出状态类型可能不同的有状态计算。"
+"必须可以将 `uncons` 包装在这种类型的值中。"
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/Traverse.md:792
-#, fuzzy
 msgid "Implement `Functor` for your indexed state type."
 msgstr "为您的索引状态类型实现 `Functor`。"
 
 #. type: Bullet: '   3. '
 #: ../src/Tutorial/Traverse.md:797
-#, fuzzy
 msgid ""
 "It is not possible to implement `Applicative` for this *indexed* state type "
 "(but see also exercise 2.vii).  Still, implement the necessary functions to "
 "use it with idom brackets."
 msgstr ""
-"对于这种 *indexed* 状态类型，无法实现 `Applicative`（但另请参见练习 2.vii）。"
-"尽管如此，实现必要的功能以将其与 idom 括号一起使用。"
+"对于这种 *索引* 状态类型，无法实现 `Applicative`（但另请参见练习 2."
+"vii）。尽管如此，实现必要的函数以将其与 idom 括号一起使用。"
 
 #. type: Bullet: '   4. '
 #: ../src/Tutorial/Traverse.md:801
-#, fuzzy
 msgid ""
 "It is not possible to implement `Monad` for this indexed state type. Still, "
 "implement the necessary functions to use it in do blocks."
-msgstr ""
-"无法为此索引状态类型实现 `Monad`。不过，实现必要的功能以在 do 块中使用它。"
+msgstr "无法为此索引状态类型实现 `Monad`。不过，实现必要的功能以在 do 块中使用它。"
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/Traverse.md:805
-#, fuzzy
 msgid ""
 "Generalize the functions from exercises 3 and 4 with two new interfaces "
 "`IxApplicative` and `IxMonad` and provide implementations of these for your "
 "indexed state data type."
-msgstr ""
-"使用两个新接口 `IxApplicative` 和 `IxMonad` 概括练习 3 和 4 中的函数，并为您"
-"的索引状态数据类型提供这些实现。"
+msgstr "使用两个新接口 `IxApplicative` 和 `IxMonad` 概括练习 3 和 4 "
+"中的函数，并为您的索引状态数据类型提供这些实现。"
 
 #. type: Bullet: '   6. '
 #: ../src/Tutorial/Traverse.md:809
-#, fuzzy
 msgid ""
 "Implement functions `get`, `put`, `modify`, `runState`, `evalState`, and "
 "`execState` for the indexed state data type. Make sure to adjust the type "
 "parameters where necessary."
 msgstr ""
-"实现函数 `get`、`put`、`modify`、`runState`、`evalState` 和 `execState`对于索"
-"引状态数据类型。确保在必要时调整类型参数。"
+"实现函数 `get`、`put`、`modify`、`runState`、`evalState` 和 "
+"`execState`对于索引状态数据类型。确保在必要时调整类型参数。"
 
 #. type: Bullet: '   7. '
 #: ../src/Tutorial/Traverse.md:812
-#, fuzzy
 msgid ""
 "Show that your indexed state type is strictly more powerful than `State` by "
 "implementing `Applicative` and `Monad` for it."
-msgstr ""
-"通过为它实现 `Applicative` 和 `Monad` 来证明你的索引状态类型比 `State` 更强"
-"大。"
+msgstr "通过为它实现 `Applicative` 和 `Monad` 来证明你的索引状态类型比 `State` "
+"更强大。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:816
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "      Hint: Keep the input and output state identical. Note also,\n"
 "      that you might need to implement `join` manually if Idris\n"
 "      has trouble inferring the types correctly.\n"
 msgstr ""
 "      提示：保持输入和输出状态相同。另请注意，\n"
-"      如果 Idris，您可能需要手动实施 `join`\n"
-"      无法正确推断类型。\n"
+"      如果 Idris 无法正确推断类型，您可能需要手动实施 `join`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:821
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Indexed state types can be useful when we want to make sure that\n"
 "   stateful computations are combined in the correct sequence, or\n"
@@ -2269,18 +2257,17 @@ msgid ""
 msgstr ""
 "   当我们想要确保\n"
 "   有状态的计算以正确的顺序组合，或者\n"
-"   稀缺资源得到妥善清理。我们可能会回来\n"
-"   在后面的示例中使用此类用例。\n"
+"   稀缺资源得到妥善清理。我们可能会在后面的示例中使用此类用例。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Traverse.md:822
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The Power of Composition"
 msgstr "组合的力量"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:830
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "After our excursion into the realms of stateful computations, we\n"
 "will go back and combine mutable state with error accumulation\n"
@@ -2298,7 +2285,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:831
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "tagAndDecode :  (0 ts : List Type)\n"
 "             -> CSVLine (HList ts)\n"
@@ -2306,15 +2293,15 @@ msgid ""
 "             -> State Nat (Validated CSVError (HList ts))\n"
 "tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s\n"
 msgstr ""
-"tagAndDecode : (0 ts : 列表类型)\n"
+"tagAndDecode :  (0 ts : List Type)\n"
 "             -> CSVLine (HList ts)\n"
-"             => 字符串\n"
-"             -> 状态 Nat（已验证的 CSVError (HList ts)）\n"
+"             => String\n"
+"             -> State Nat (Validated CSVError (HList ts))\n"
 "tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:851
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Now, as we learned before, applicative functors are closed under\n"
 "composition, and the result of `tagAndDecode` is a nesting\n"
@@ -2339,12 +2326,11 @@ msgstr ""
 "由于 `traverse` 有应用函子作为它的\n"
 "第二个约束，我们还需要提供第一个\n"
 "显式约束 (`Traversable`)。但是这个\n"
-"将是未命名的默认实现！为了得到我们的手\n"
-"一个值，我们可以使用 `%search` pragma：\n"
+"将是未命名的默认实现！为了得到这样的一个值，我们可以使用 `%search` pragma：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:852
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readTable :  (0 ts : List Type)\n"
 "          -> CSVLine (HList ts)\n"
@@ -2352,15 +2338,16 @@ msgid ""
 "          -> Validated CSVError (List $ HList ts)\n"
 "readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)\n"
 msgstr ""
-"readTable : (0 ts : 列表类型)\n"
+"readTable :  (0 ts : List Type)\n"
 "          -> CSVLine (HList ts)\n"
-"          => 列表字符串\n"
-"          -> Validated CSVError (List $HList ts)\n"
-"读表 ts = evalState 1 。遍历@{%search} @{Compose} (tagAndDecode ts)\n"
+"          => List String\n"
+"          -> Validated CSVError (List $ HList ts)\n"
+"readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:866
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This tells Idris to use the default implementation for the\n"
 "`Traversable` constraint, and `Prelude.Applicatie.Compose` for the\n"
@@ -2370,15 +2357,14 @@ msgid ""
 "for better readability:\n"
 msgstr ""
 "这告诉 Idris 使用默认实现\n"
-"`Traversable` 约束和 `Prelude.Applicatie.Compose`\n"
-"`Applicative` 约束。\n"
+"`Traversable` 约束和 `Applicative` 约束的 `Prelude.Applicatie.Compose` 。\n"
 "虽然这种语法不是很好，但它不会经常出现，并且\n"
 "如果是这样，我们可以通过提供自定义函数来改进\n"
 "为了更好的可读性：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:867
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "traverseComp : Traversable t\n"
 "             => Applicative f\n"
@@ -2394,23 +2380,23 @@ msgid ""
 "           -> Validated CSVError (List $ HList ts)\n"
 "readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)\n"
 msgstr ""
-"traverseComp : 可遍历 t\n"
-"             => 应用 f\n"
-"             => 应用 g\n"
+"traverseComp : Traversable t\n"
+"             => Applicative f\n"
+"             => Applicative g\n"
 "             => (a -> f (g b))\n"
-"             -> 吨\n"
+"             -> t a\n"
 "             -> f (g (t b))\n"
-"traverseComp = 遍历 @{%search} @{Compose}\n"
+"traverseComp = traverse @{%search} @{Compose}\n"
 "\n"
-"readTable'：（0 ts：列表类型）\n"
+"readTable' :  (0 ts : List Type)\n"
 "           -> CSVLine (HList ts)\n"
-"           => 列表字符串\n"
-"           -> Validated CSVError (List $HList ts)\n"
-"readTable' ts = evalState 1 。 traverseComp (tagAndDecode ts)\n"
+"           => List String\n"
+"           -> Validated CSVError (List $ HList ts)\n"
+"readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:885
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how this allows us to combine two computational effects\n"
 "(mutable state and error accumulation) in a single list traversal.\n"
@@ -2420,7 +2406,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:898
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But I am not yet done demonstrating the power of composition. As you showed\n"
 "in one of the exercises, `Traversable` is also closed under composition,\n"
@@ -2435,13 +2421,12 @@ msgid ""
 "so we come up with a custom data type encapsulating\n"
 "this distinction:\n"
 msgstr ""
-"但我还没有完成展示组合的力量。正如你所展示的\n"
-"在其中一个练习中，`Traversable` 在合成下也是闭合的，\n"
-"所以可遍历的嵌套又是可遍历的。考虑以下\n"
-"用例：读取 CSV 文件时，我们希望允许行\n"
-"附有附加信息的注释。这样的注释可以是\n"
-"仅仅是评论，还有一些格式说明或其他\n"
-"自定义数据标签可能是可行的。\n"
+"但我还没有完成展示组合的力量。正如你在其中一个练习中所展示的，`Traversable` "
+"在组合下也是闭合的，\n"
+"所以可遍历的嵌套又是可遍历的。考虑以下用例：读取 CSV "
+"文件时，我们希望允许行附有附加信息的注释。这样的注释可以仅仅是评论，"
+"还有一些格式说明或其他\n"
+"可选的自定义数据标签。\n"
 "注释应该与其他注释分开\n"
 "单个哈希字符 (`#`) 的内容。\n"
 "我们希望跟踪这些可选注释\n"
@@ -2450,19 +2435,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:899
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Line : Type -> Type where\n"
 "  Annotated : String -> a -> Line a\n"
 "  Clean     : a -> Line a\n"
 msgstr ""
-"数据行：类型 -> 输入位置\n"
-"  注释：字符串 -> a -> 行 a\n"
-"  清洁：a -> 线 a\n"
+"data Line : Type -> Type where\n"
+"  Annotated : String -> a -> Line a\n"
+"  Clean     : a -> Line a\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:908
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is just another container type and we can\n"
 "easily implement `Traversable` for `Line` (do this yourself as\n"
@@ -2474,7 +2459,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:909
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Functor Line where\n"
 "  map f (Annotated s x) = Annotated s $ f x\n"
@@ -2488,21 +2473,21 @@ msgid ""
 "  traverse f (Annotated s x) = Annotated s <$> f x\n"
 "  traverse f (Clean x)       = Clean <$> f x\n"
 msgstr ""
-"函子线在哪里\n"
-"  映射 f(带注释的 s x) = 带注释的 s $ f x\n"
-"  地图 f (清洁 x) = 清洁 $ f x\n"
+"Functor Line where\n"
+"  map f (Annotated s x) = Annotated s $ f x\n"
+"  map f (Clean x)       = Clean $ f x\n"
 "\n"
-"可折叠线在哪里\n"
-"  foldr f acc (注释 _ x) = f x acc\n"
-"  foldr f acc (清洁 x) = f x acc\n"
+"Foldable Line where\n"
+"  foldr f acc (Annotated _ x) = f x acc\n"
+"  foldr f acc (Clean x)       = f x acc\n"
 "\n"
-"可遍历的线\n"
-"  遍历 f(Annotated s x) = Annotated s <$> f x\n"
-"  遍历 f (Clean x) = Clean <$> f x\n"
+"Traversable Line where\n"
+"  traverse f (Annotated s x) = Annotated s <$> f x\n"
+"  traverse f (Clean x)       = Clean <$> f x\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:928
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Below is a function for parsing a line and putting it in its\n"
 "correct category. For simplicity, we just split the line on hashes:\n"
@@ -2518,21 +2503,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:929
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readLine : String -> Line String\n"
 "readLine s = case split ('#' ==) s of\n"
 "  h ::: [t] => Annotated t h\n"
 "  _         => Clean s\n"
 msgstr ""
-"readLine : 字符串 -> 行字符串\n"
-"readLine s = case split('#' ==) s of\n"
-"  h ::: [t] => 带注释的 t h\n"
-"  _ => 清洁\n"
+"readLine : String -> Line String\n"
+"readLine s = case split ('#' ==) s of\n"
+"  h ::: [t] => Annotated t h\n"
+"  _         => Clean s\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:938
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We are now going to implement a function for reading whole\n"
 "CSV tables, keeping track of line annotations:\n"
@@ -2542,7 +2527,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:939
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "readCSV :  (0 ts : List Type)\n"
 "        -> CSVLine (HList ts)\n"
@@ -2553,18 +2538,18 @@ msgid ""
 "           . map readLine\n"
 "           . lines\n"
 msgstr ""
-"readCSV : (0 ts : 列表类型)\n"
+"readCSV :  (0 ts : List Type)\n"
 "        -> CSVLine (HList ts)\n"
-"        => 字符串\n"
+"        => String\n"
 "        -> Validated CSVError (List $ Line $ HList ts)\n"
 "readCSV ts = evalState 1\n"
-"           .遍历@{Compose} @{Compose} (tagAndDecode ts)\n"
-"           .地图读取线\n"
-"           .线条\n"
+"           . traverse @{Compose} @{Compose} (tagAndDecode ts)\n"
+"           . map readLine\n"
+"           . lines\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:966
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let's digest this monstrosity. This is written in point-free\n"
 "style, so we have to read it from end to beginning. First, we\n"
@@ -2583,26 +2568,24 @@ msgid ""
 "prefix, which would be `Prelude.Applicative` here).\n"
 "Finally, we evaluate the stateful computation with `evalState 1`.\n"
 msgstr ""
-"让我们消化这个怪物。这是用无点写的\n"
-"风格，所以我们必须从头到尾阅读它。首先，我们\n"
+"让我们消化这个怪物。这是用无点的\n"
+"风格写的，所以我们必须从头到尾阅读它。首先，我们\n"
 "在换行符处拆分整个字符串，得到一个字符串列表\n"
 "（函数 `Data.String.lines`）。接下来，我们分析每一行，\n"
 "跟踪可选注释（`map readLine`）。\n"
-"这给了我们一个 `List (Line String)` 类型的值。自从\n"
-"这是可遍历的嵌套，我们调用 `traverse`\n"
+"这给了我们一个 `List (Line String)` 类型的值。这是可遍历的嵌套，我们调用 "
+"`traverse`\n"
 "使用来自 *Prelude* 的命名实例：`Prelude.Traversable.Compose`。\n"
 "Idris 可以根据类型消除歧义，因此我们可以\n"
-"删除命名空间前缀。但有效的计算\n"
-"我们遍历行列表会产生一个组合\n"
-"的应用函子，所以我们还需要命名的实现\n"
-"对于第二个中的应用程序组合\n"
-"约束（同样不需要明确的\n"
-"前缀，此处为 `Prelude.Applicative`）。\n"
+"删除命名空间前缀。但我们在行列表上有效的计算会产生一个应用函子的组合，"
+"所以对于第二个中的应用程序组合\n"
+"约束我们还需要命名的实现（同样不需要明确的前缀，此处为 `Prelude."
+"Applicative`）。\n"
 "最后，我们使用 `evalState 1` 评估有状态计算。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:974
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Honestly, I wrote all of this without verifying if it works,\n"
 "so let's give it a go at the REPL. I'll provide two\n"
@@ -2615,14 +2598,14 @@ msgstr ""
 "老实说，我写了所有这些都没有验证它是否有效，\n"
 "所以让我们在 REPL 上试一试吧。我会提供两个\n"
 "示例字符串，一个没有错误的有效字符串，以及\n"
-"一个无效的。我在这里使用 * 多行字符串文字 * ，关于\n"
+"一个无效的。我在这里使用 *多行字符串文字* ，关于\n"
 "我将在后面的章节中更详细地讨论。暂时，\n"
 "请注意，这些允许我们方便地输入字符串文字\n"
 "带换行符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:975
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "validInput : String\n"
 "validInput = \"\"\"\n"
@@ -2642,17 +2625,17 @@ msgid ""
 "  f,24,1.12e17\n"
 "  \"\"\"\n"
 msgstr ""
-"有效输入：字符串\n"
-"有效输入 = \"\"\"\n"
-"  f,12,-13.01#这是一条评论\n"
+"validInput : String\n"
+"validInput = \"\"\"\n"
+"  f,12,-13.01#this is a comment\n"
 "  t,100,0.0017\n"
 "  t,1,100.8#color: red\n"
 "  f,255,0.0\n"
 "  f,24,1.12e17\n"
 "  \"\"\"\n"
 "\n"
-"无效输入：字符串\n"
-"无效输入 = \"\"\"\n"
+"invalidInput : String\n"
+"invalidInput = \"\"\"\n"
 "  o,12,-13.01#another comment\n"
 "  t,100,0.0017\n"
 "  t,1,abc\n"
@@ -2662,13 +2645,13 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:996
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "And here's how it goes at the REPL:\n"
 msgstr "以下是 REPL 的情况：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:997
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput\n"
 "Valid [Annotated \"this is a comment\" [False, 12, -13.01],\n"
@@ -2681,20 +2664,20 @@ msgid ""
 "Invalid (Append (FieldError 1 1 \"o\")\n"
 "  (Append (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
 msgstr ""
-"Tutorial.Traverse> readCSV [Bool,Bits8,Double] 有效输入\n"
-"有效[注解“这是一条评论”[False, 12, -13.01],\n"
-"       清洁 [True, 100, 0.0017],\n"
-"       注释“颜色：红色”[True, 1, 100.8]，\n"
-"       清洁 [False, 255, 0.0],\n"
-"       清洁 [错误，24，1.12e17]]\n"
+"Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput\n"
+"Valid [Annotated \"this is a comment\" [False, 12, -13.01],\n"
+"       Clean [True, 100, 0.0017],\n"
+"       Annotated \"color: red\" [True, 1, 100.8],\n"
+"       Clean [False, 255, 0.0],\n"
+"       Clean [False, 24, 1.12e17]]\n"
 "\n"
-"Tutorial.Traverse> readCSV [Bool,Bits8,Double] 无效输入\n"
-"无效（追加（FieldError 1 1“o”）\n"
-"  (追加 (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
+"Tutorial.Traverse> readCSV [Bool,Bits8,Double] invalidInput\n"
+"Invalid (Append (FieldError 1 1 \"o\")\n"
+"  (Append (FieldError 3 3 \"abc\") (FieldError 4 2 \"256\")))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1015
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is pretty amazing how we wrote dozens of lines of\n"
 "code, always being guided by the type- and totality\n"
@@ -2702,15 +2685,14 @@ msgid ""
 "properly typed CSV tables with automatic line numbering and\n"
 "error accumulation, all of which just worked on first try.\n"
 msgstr ""
-"我们写了几十行代码真是太神奇了\n"
-"代码，总是以类型和整体为导向\n"
-"检查器，最终到达解析函数\n"
+"我们写了几十行代码，这真是太神奇了，始终遵循类型和完全性检查器，"
+"最终到达解析函数\n"
 "正确键入带有自动行编号的 CSV 表和\n"
 "错误累积，所有这些都在第一次尝试时起作用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1025
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The *Prelude* provides three additional interfaces for\n"
 "container types parameterized over *two* type parameters\n"
@@ -2721,8 +2703,8 @@ msgid ""
 "and how to implement and use them yourself.\n"
 msgstr ""
 "*Prelude* 提供三个附加接口\n"
-"通过 * 两个* 类型参数参数化的容器类型\n"
-"比如`或者`或者`对`：`Bifunctor`，`Bifoldable`，\n"
+"通过 *两个* 类型参数参数化的容器类型\n"
+"比如`Either`或者`Pair`：`Bifunctor`，`Bifoldable`，\n"
 "和 `Bitraversable`。在下面的练习中，我们得到\n"
 "一些与这些一起工作的亲身体验。你是\n"
 "应该查找它们提供的功能\n"
@@ -2730,42 +2712,38 @@ msgstr ""
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Traverse.md:1029
-#, fuzzy
 msgid ""
 "Assume we'd like to not only interpret CSV content but also the optional "
 "comment tags in our CSV files.  For this, we could use a data type such as "
 "`Tagged`:"
-msgstr ""
-"假设我们不仅要解释 CSV 内容，还要解释 CSV 文件中的可选注释标签。为此，我们可"
-"以使用诸如 `Tagged` 之类的数据类型："
+msgstr "假设我们不仅要解释 CSV 内容，还要解释 CSV 文件中的可选注释标签。为此，"
+"我们可以使用诸如 `Tagged` 之类的数据类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1030
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Tagged : (tag, value : Type) -> Type where\n"
 "     Tag  : tag -> value -> Tagged tag value\n"
 "     Pure : value -> Tagged tag value\n"
 msgstr ""
-"   数据标记：（标签，值：类型）-> 类型在哪里\n"
-"     标签：标签->值->标记的标签值\n"
-"     纯：值 -> 标记的标记值\n"
+"   data Tagged : (tag, value : Type) -> Type where\n"
+"     Tag  : tag -> value -> Tagged tag value\n"
+"     Pure : value -> Tagged tag value\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1039
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Implement interfaces `Functor`, `Foldable`, and `Traversable`\n"
 "   but also `Bifunctor`, `Bifoldable`, and `Bitraversable`\n"
 "   for `Tagged`.\n"
 msgstr ""
-"   实现接口 `Functor`、`Foldable` 和 `Traversable`\n"
-"   还有 `Bifunctor`、`Bifoldable` 和 `Bitraversable`\n"
-"   对于 ` 标记 `。\n"
+"   为 `Tagged` 实现接口 `Functor`、`Foldable` 和 `Traversable`\n"
+"   还有 `Bifunctor`、`Bifoldable` 和 `Bitraversable`。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Traverse.md:1045
-#, fuzzy
 msgid ""
 "Show that the composition of a bifunctor with two functors such as `Either "
 "(List a) (Maybe b)` is again a bifunctor by defining a dedicated wrapper "
@@ -2773,13 +2751,13 @@ msgid ""
 "`Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/"
 "`Traversable`."
 msgstr ""
-"通过为此类组合定义专用包装器类型并编写 `Bifunctor 的相应实现，证明具有两个仿"
-"函数（例如 `Either (List a) (Maybe b)`）的双函子的组合再次成为双函子`。同样适"
-"用于 `Bifoldable`/`Foldable` 和 `Bitraversable`/`Traversable`。"
+"通过为此类组合定义专用包装器类型并编写 `Bifunctor` "
+"的相应实现，证明具有两个函子（例如 `Either (List a) (Maybe "
+"b)`）的二元函子的组合再次成为二元函子`。同样适用于 `Bifoldable`/`Foldable` "
+"和 `Bitraversable`/`Traversable`。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Traverse.md:1051
-#, fuzzy
 msgid ""
 "Show that the composition of a functor with a bifunctor such as `List "
 "(Either a b)` is again a bifunctor by defining a dedicated wrapper type for "
@@ -2787,24 +2765,23 @@ msgid ""
 "`Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/"
 "`Traversable`."
 msgstr ""
-"通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有双函子"
-"（如 `List (Either a b)`）的函子的组合再次是双函子。同样适用于 `Bifoldable`/"
-"`Foldable` 和 `Bitraversable`/`Traversable`。"
+"通过为此类组合定义专用包装器类型并编写 `Bifunctor` "
+"的相应实现，证明具有二元函子（如 `List (Either a "
+"b)`）的函子的组合再次是二元函子。同样适用于 `Bifoldable`/`Foldable` 和 "
+"`Bitraversable`/`Traversable`。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Traverse.md:1055
-#, fuzzy
 msgid ""
 "We are now going to adjust `readCSV` in such a way that it decodes comment "
 "tags and CSV content in a single traversal.  We need a new error type to "
 "include invalid tags for this:"
-msgstr ""
-"我们现在将调整 `readCSV` 使其在一次遍历中解码评论标签和 CSV 内容。我们需要一"
-"个新的错误类型来包含无效的标签："
+msgstr "我们现在将调整 `readCSV` 使其在一次遍历中解码评论标签和 CSV "
+"内容。我们需要一个新的错误类型来包含无效的标签："
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1056
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data TagError : Type where\n"
 "     CE         : CSVError -> TagError\n"
@@ -2813,28 +2790,28 @@ msgid ""
 "\n"
 "   Semigroup TagError where (<+>) = Append\n"
 msgstr ""
-"   数据 TagError : 键入 where\n"
-"     CE : CSVError -> TagError\n"
+"   data TagError : Type where\n"
+"     CE         : CSVError -> TagError\n"
 "     InvalidTag : (line : Nat) -> (tag : String) -> TagError\n"
-"     附加：TagError -> TagError -> TagError\n"
+"     Append     : TagError -> TagError -> TagError\n"
 "\n"
 "   Semigroup TagError where (<+>) = Append\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1066
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   For testing, we also define a simple data type for color tags:\n"
 msgstr "   为了测试，我们还为颜色标签定义了一个简单的数据类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1067
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   data Color = Red | Green | Blue\n"
-msgstr "   数据颜色 = 红色 |绿色 |蓝色的\n"
+msgstr "   data Color = Red | Green | Blue\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1076
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   You should now implement the following functions, but\n"
 "   please note that while `readColor` will need to\n"
@@ -2845,12 +2822,12 @@ msgstr ""
 "   您现在应该实现以下功能，但是\n"
 "   请注意，虽然 `readColor` 需要\n"
 "   出现错误时访问当前行号，\n"
-"   它必须 *not* 增加它，否则行号\n"
+"   它必须 *不* 增加它，否则行号\n"
 "   调用 `tagAndDecodeTE` 会出错。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1077
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   readColor : String -> State Nat (Validated TagError Color)\n"
 "\n"
@@ -2863,16 +2840,16 @@ msgid ""
 msgstr ""
 "   readColor : String -> State Nat (Validated TagError Color)\n"
 "\n"
-"   readTaggedLine : 字符串 -> 标记字符串字符串\n"
+"   readTaggedLine : String -> Tagged String String\n"
 "\n"
-"   tagAndDecodeTE : (0 ts : 列表类型)\n"
+"   tagAndDecodeTE :  (0 ts : List Type)\n"
 "                  -> CSVLine (HList ts)\n"
-"                  => 字符串\n"
-"                  -> 状态 Nat（已验证的 TagError (HList ts)）\n"
+"                  => String\n"
+"                  -> State Nat (Validated TagError (HList ts))\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1094
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Finally, implement `readTagged` by using the wrapper type\n"
 "   from exercise 3 as well as `readColor` and `tagAndDecodeTE`\n"
@@ -2885,44 +2862,43 @@ msgstr ""
 "   来自练习 3 以及 `readColor` 和 `tagAndDecodeTE`\n"
 "   在对 `bitraverse` 的调用中。\n"
 "   该实现看起来与 `readCSV` 非常相似，但是\n"
-"   在右侧有一些额外的包装和展开\n"
-"   地方。\n"
+"   在右侧有一些额外的包装和展开。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1095
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   readTagged :  (0 ts : List Type)\n"
 "              -> CSVLine (HList ts)\n"
 "              => String\n"
 "              -> Validated TagError (List $ Tagged Color $ HList ts)\n"
 msgstr ""
-"   readTagged : (0 ts : 列表类型)\n"
+"   readTagged :  (0 ts : List Type)\n"
 "              -> CSVLine (HList ts)\n"
-"              => 字符串\n"
-"              -> Validated TagError (List $Tagged Color $ HList ts)\n"
+"              => String\n"
+"              -> Validated TagError (List $ Tagged Color $ HList ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1103
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Test your implementation with some example strings at the REPL.\n"
 msgstr "   使用 REPL 中的一些示例字符串测试您的实现。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1108
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "You can find more examples for functor/bifunctor compositions\n"
 "in Haskell's [bifunctors](https://hackage.haskell.org/package/bifunctors)\n"
 "package.\n"
 msgstr ""
-"您可以找到更多关于函子/双函子组合的示例\n"
+"您可以找到更多关于函子/二元函子组合的示例\n"
 "在 Haskell 的 [bifunctors](https://hackage.haskell.org/package/bifunctors)\n"
-"包裹。\n"
+"包装。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1117
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Interface `Traversable` and its main function `traverse` are incredibly\n"
 "powerful forms of abstraction - even more so, because both `Applicative`\n"
@@ -2936,11 +2912,12 @@ msgstr ""
 "和 `Traversable` 在组合下是闭合的。如果你感兴趣\n"
 "在其他用例中，该出版物，其中\n"
 "向 Haskell 介绍了 `Traversable`，强烈推荐阅读：\n"
-"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)\n"
+"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/"
+"iterator.pdf)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1124
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The *base* library provides an extended version of the\n"
 "state monad in module `Control.Monad.State`. We will look\n"
@@ -2958,22 +2935,19 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1126
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here's a short summary of what we learned in this chapter:\n"
 msgstr "以下是我们在本章中学到的内容的简短摘要：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
-#, fuzzy
 msgid ""
 "Function `traverse` is used to run effectful computations over container "
 "types without affecting their size or shape."
-msgstr ""
-"函数 `traverse` 用于对容器类型运行有效的计算，而不影响它们的大小或形状。"
+msgstr "函数 `traverse` 用于对容器类型运行有效的计算，而不影响它们的大小或形状。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
-#, fuzzy
 msgid ""
 "We can use `IORef` as mutable references in stateful computations running in "
 "`IO`."
@@ -2981,7 +2955,6 @@ msgstr "我们可以使用 `IORef` 作为在 `IO` 中运行的有状态计算中
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
-#, fuzzy
 msgid ""
 "For referentially transparent computations with \"mutable\" state, the "
 "`State` monad is extremely useful."
@@ -2989,7 +2962,6 @@ msgstr "对于具有“可变”状态的引用透明计算，`State` monad 非�
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
-#, fuzzy
 msgid ""
 "Applicative functors are closed under composition, so we can run several "
 "effectful computations in a single traversal."
@@ -2997,17 +2969,15 @@ msgstr "应用函子在组合下是封闭的，因此我们可以在一次遍历
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
-#, fuzzy
 msgid ""
 "Traversables are also closed under composition, so we can use `traverse` to "
 "operate on a nesting of containers."
-msgstr ""
-"Traversables 在组合下也是封闭的，所以我们可以使用 `traverse` 对容器的嵌套进行"
-"操作。"
+msgstr "Traversables 在组合下也是封闭的，所以我们可以使用 `traverse` "
+"对容器的嵌套进行操作。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1146
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For now, this concludes our introduction of the *Prelude*'s\n"
 "higher-kinded interfaces, which started with the introduction of\n"
