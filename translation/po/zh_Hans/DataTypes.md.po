@@ -1188,7 +1188,12 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "Tutorial.DataTypes> greet dr \"Hck\"\n"
+#| "\"Hello, Dr. Hck!\"\n"
+#| "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
+#| "\"Hello, Mrs. Smith!\"\n"
 msgid ""
 "Tutorial.DataTypes> greet dr \"Hck\"\n"
 "\"Hello, Dr. Hck!\"\n"

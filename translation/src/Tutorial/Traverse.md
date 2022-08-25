@@ -636,47 +636,38 @@ Monad (State st) where
    首先。
 
 
-   1. Come up with a parameterized data type for encapsulating stateful
-      computations where the input and output state type can differ. It must
-      be possible to wrap `uncons` in a value of this type.
+   1. 提出一种参数化数据类型，用于封装输入和输出状态类型可能不同的有状态计算。必须可以将 `uncons` 包装在这种类型的值中。
 
-   2. Implement `Functor` for your indexed state type.
+   2. 为您的索引状态类型实现 `Functor`。
 
-   3. It is not possible to implement `Applicative` for this *indexed* state
-      type (but see also exercise 2.vii).  Still, implement the necessary
-      functions to use it with idom brackets.
+   3. 对于这种 *索引* 状态类型，无法实现 `Applicative`（但另请参见练习 2.vii）。尽管如此，实现必要的函数以将其与 idom
+      括号一起使用。
 
-   4. It is not possible to implement `Monad` for this indexed state
-      type. Still, implement the necessary functions to use it in do blocks.
+   4. 无法为此索引状态类型实现 `Monad`。不过，实现必要的功能以在 do 块中使用它。
 
-   5. Generalize the functions from exercises 3 and 4 with two new
-      interfaces `IxApplicative` and `IxMonad` and provide implementations
-      of these for your indexed state data type.
+   5. 使用两个新接口 `IxApplicative` 和 `IxMonad` 概括练习 3 和 4
+      中的函数，并为您的索引状态数据类型提供这些实现。
 
-   6. Implement functions `get`, `put`, `modify`, `runState`, `evalState`,
-      and `execState` for the indexed state data type. Make sure to adjust
-      the type parameters where necessary.
+   6. 实现函数 `get`、`put`、`modify`、`runState`、`evalState` 和
+      `execState`对于索引状态数据类型。确保在必要时调整类型参数。
 
-   7. Show that your indexed state type is strictly more powerful than
-      `State` by implementing `Applicative` and `Monad` for it.
+   7. 通过为它实现 `Applicative` 和 `Monad` 来证明你的索引状态类型比 `State` 更强大。
 
-      Hint: Keep the input and output state identical. Note also,
-      that you might need to implement `join` manually if Idris
-      has trouble inferring the types correctly.
+      提示：保持输入和输出状态相同。另请注意，
+      如果 Idris 无法正确推断类型，您可能需要手动实施 `join`。
 
-   Indexed state types can be useful when we want to make sure that
-   stateful computations are combined in the correct sequence, or
-   that scarce resources get cleaned up properly. We might get back
-   to such use cases in later examples.
+   当我们想要确保
+   有状态的计算以正确的顺序组合，或者
+   稀缺资源得到妥善清理。我们可能会在后面的示例中使用此类用例。
 
-## The Power of Composition
+## 组合的力量
 
-After our excursion into the realms of stateful computations, we
-will go back and combine mutable state with error accumulation
-to tag and read CSV lines in a single traversal. We already
-defined `pairWithIndex` for tagging lines with their indices.
-We also have `uncurry $ hdecode ts` for decoding single tagged lines.
-We can now combine the two effects in a single computation:
+在进入有状态计算领域之后，我们
+将返回并将可变状态与错误累积结合起来
+在一次遍历中标记和读取 CSV 行。我们已经
+定义 `pairWithIndex` 用于标记行及其索引。
+我们还有 `uncurry $ hdecode ts` 用于解码单个标记行。
+我们现在可以在一次计算中结合这两种效果：
 
 ```idris
 tagAndDecode :  (0 ts : List Type)
@@ -686,18 +677,17 @@ tagAndDecode :  (0 ts : List Type)
 tagAndDecode ts s = uncurry (hdecode ts) <$> pairWithIndex s
 ```
 
-Now, as we learned before, applicative functors are closed under
-composition, and the result of `tagAndDecode` is a nesting
-of two applicatives: `State Nat` and `Validated CSVError`.
-The *Prelude* exports a corresponding named interface implementation
-(`Prelude.Applicative.Compose`), which we can use for traversing
-a list of strings with `tagAndDecode`.
-Remember, that we have to provide named implementations explicitly.
-Since `traverse` has the applicative functor as its
-second constraint, we also need to provide the first
-constraint (`Traversable`) explicitly. But this
-is going to be the unnamed default implementation! To get our hands on such
-a value, we can use the `%search` pragma:
+现在，正如我们之前所了解的，应用函子是封闭的
+组合，`tagAndDecode` 的结果是嵌套
+两个应用程序：`State Nat` 和 `Validated CSVError`。
+*Prelude* 导出相应的命名接口实现
+(`Prelude.Applicative.Compose`)，我们可以用来遍历
+带有 `tagAndDecode` 的字符串列表。
+请记住，我们必须明确提供命名实现。
+由于 `traverse` 有应用函子作为它的
+第二个约束，我们还需要提供第一个
+显式约束 (`Traversable`)。但是这个
+将是未命名的默认实现！为了得到这样的一个值，我们可以使用 `%search` pragma：
 
 ```idris
 readTable :  (0 ts : List Type)
@@ -707,12 +697,11 @@ readTable :  (0 ts : List Type)
 readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)
 ```
 
-This tells Idris to use the default implementation for the
-`Traversable` constraint, and `Prelude.Applicatie.Compose` for the
-`Applicative` constraint.
-While this syntax is not very nice, it doesn't come up too often, and
-if it does, we can improve things by providing custom functions
-for better readability:
+这告诉 Idris 使用默认实现
+`Traversable` 约束和 `Applicative` 约束的 `Prelude.Applicatie.Compose` 。
+虽然这种语法不是很好，但它不会经常出现，并且
+如果是这样，我们可以通过提供自定义函数来改进
+为了更好的可读性：
 
 ```idris
 traverseComp : Traversable t
@@ -730,21 +719,17 @@ readTable' :  (0 ts : List Type)
 readTable' ts = evalState 1 . traverseComp (tagAndDecode ts)
 ```
 
-Note, how this allows us to combine two computational effects
-(mutable state and error accumulation) in a single list traversal.
+请注意，这如何让我们结合两种计算效果
+（可变状态和错误累积）在单个列表遍历中。
 
-But I am not yet done demonstrating the power of composition. As you showed
-in one of the exercises, `Traversable` is also closed under composition,
-so a nesting of traversables is again a traversable. Consider the following
-use case: When reading a CSV file, we'd like to allow lines to be
-annotated with additional information. Such annotations could be
-mere comments but also some formatting instructions or other
-custom data tags might be feasible.
-Annotations are supposed to be separated from the rest of the
-content by a single hash character (`#`).
-We want to keep track of these optional annotations
-so we come up with a custom data type encapsulating
-this distinction:
+但我还没有完成展示组合的力量。正如你在其中一个练习中所展示的，`Traversable` 在组合下也是闭合的，
+所以可遍历的嵌套又是可遍历的。考虑以下用例：读取 CSV 文件时，我们希望允许行附有附加信息的注释。这样的注释可以仅仅是评论，还有一些格式说明或其他
+可选的自定义数据标签。
+注释应该与其他注释分开
+单个哈希字符 (`#`) 的内容。
+我们希望跟踪这些可选注释
+所以我们想出了一个自定义数据类型封装
+这种区别：
 
 ```idris
 data Line : Type -> Type where
@@ -752,9 +737,9 @@ data Line : Type -> Type where
   Clean     : a -> Line a
 ```
 
-This is just another container type and we can
-easily implement `Traversable` for `Line` (do this yourself as
-a quick exercise):
+这只是另一种容器类型，我们可以
+为 `Line` 轻松实现 `Traversable` （自己做
+快速练习）：
 
 ```idris
 Functor Line where
@@ -770,11 +755,11 @@ Traversable Line where
   traverse f (Clean x)       = Clean <$> f x
 ```
 
-Below is a function for parsing a line and putting it in its
-correct category. For simplicity, we just split the line on hashes:
-If the result consists of exactly two strings, we treat the second
-part as an annotation, otherwise we treat the whole line as untagged
-CSV content.
+下面是一个用于解析一行并将其放入其中的函数
+正确的类别。为简单起见，我们只是将行拆分为散列：
+如果结果正好由两个字符串组成，我们处理第二个
+部分作为注释，否则我们将整行视为未标记
+CSV 内容。
 
 ```idris
 readLine : String -> Line String
@@ -783,8 +768,8 @@ readLine s = case split ('#' ==) s of
   _         => Clean s
 ```
 
-We are now going to implement a function for reading whole
-CSV tables, keeping track of line annotations:
+我们现在要实现一个读取整个函数的函数
+CSV 表，跟踪行注释：
 
 ```idris
 readCSV :  (0 ts : List Type)
@@ -797,30 +782,25 @@ readCSV ts = evalState 1
            . lines
 ```
 
-Let's digest this monstrosity. This is written in point-free
-style, so we have to read it from end to beginning. First, we
-split the whole string at line breaks, getting a list of strings
-(function `Data.String.lines`). Next, we analyze each line,
-keeping track of optional annotations (`map readLine`).
-This gives us a value of type `List (Line String)`. Since
-this is a nesting of traversables, we invoke `traverse`
-with a named instance from the *Prelude*: `Prelude.Traversable.Compose`.
-Idris can disambiguate this based on the types, so we can
-drop the namespace prefix. But the effectful computation
-we run over the list of lines results in a composition
-of applicative functors, so we also need the named implementation
-for compositions of applicatives in the second
-constraint (again without need of an explicit
-prefix, which would be `Prelude.Applicative` here).
-Finally, we evaluate the stateful computation with `evalState 1`.
+让我们消化这个怪物。这是用无点的
+风格写的，所以我们必须从头到尾阅读它。首先，我们
+在换行符处拆分整个字符串，得到一个字符串列表
+（函数 `Data.String.lines`）。接下来，我们分析每一行，
+跟踪可选注释（`map readLine`）。
+这给了我们一个 `List (Line String)` 类型的值。这是可遍历的嵌套，我们调用 `traverse`
+使用来自 *Prelude* 的命名实例：`Prelude.Traversable.Compose`。
+Idris 可以根据类型消除歧义，因此我们可以
+删除命名空间前缀。但我们在行列表上有效的计算会产生一个应用函子的组合，所以对于第二个中的应用程序组合
+约束我们还需要命名的实现（同样不需要明确的前缀，此处为 `Prelude.Applicative`）。
+最后，我们使用 `evalState 1` 评估有状态计算。
 
-Honestly, I wrote all of this without verifying if it works,
-so let's give it a go at the REPL. I'll provide two
-example strings for this, a valid one without errors, and
-an invalid one. I use *multiline string literals* here, about which
-I'll talk in more detail in a later chapter. For the moment,
-note that these allow us to conveniently enter string literals
-with line breaks:
+老实说，我写了所有这些都没有验证它是否有效，
+所以让我们在 REPL 上试一试吧。我会提供两个
+示例字符串，一个没有错误的有效字符串，以及
+一个无效的。我在这里使用 *多行字符串文字* ，关于
+我将在后面的章节中更详细地讨论。暂时，
+请注意，这些允许我们方便地输入字符串文字
+带换行符：
 
 ```idris
 validInput : String
@@ -842,7 +822,7 @@ invalidInput = """
   """
 ```
 
-And here's how it goes at the REPL:
+以下是 REPL 的情况：
 
 ```repl
 Tutorial.Traverse> readCSV [Bool,Bits8,Double] validInput
@@ -857,25 +837,21 @@ Invalid (Append (FieldError 1 1 "o")
   (Append (FieldError 3 3 "abc") (FieldError 4 2 "256")))
 ```
 
-It is pretty amazing how we wrote dozens of lines of
-code, always being guided by the type- and totality
-checkers, arriving eventually at a function for parsing
-properly typed CSV tables with automatic line numbering and
-error accumulation, all of which just worked on first try.
+我们写了几十行代码，这真是太神奇了，始终遵循类型和完全性检查器，最终到达解析函数
+正确键入带有自动行编号的 CSV 表和
+错误累积，所有这些都在第一次尝试时起作用。
 
 ### 练习第 3 部分
 
-The *Prelude* provides three additional interfaces for
-container types parameterized over *two* type parameters
-such as `Either` or `Pair`: `Bifunctor`, `Bifoldable`,
-and `Bitraversable`. In the following exercises we get
-some hands-one experience working with these. You are
-supposed to look up what functions they provide
-and how to implement and use them yourself.
+*Prelude* 提供三个附加接口
+通过 *两个* 类型参数参数化的容器类型
+比如`Either`或者`Pair`：`Bifunctor`，`Bifoldable`，
+和 `Bitraversable`。在下面的练习中，我们得到
+一些与这些一起工作的亲身体验。你是
+应该查找它们提供的功能
+以及如何自己实施和使用它们。
 
-1. Assume we'd like to not only interpret CSV content but also the optional
-   comment tags in our CSV files.  For this, we could use a data type such
-   as `Tagged`:
+1. 假设我们不仅要解释 CSV 内容，还要解释 CSV 文件中的可选注释标签。为此，我们可以使用诸如 `Tagged` 之类的数据类型：
 
    ```idris
    data Tagged : (tag, value : Type) -> Type where
@@ -883,25 +859,18 @@ and how to implement and use them yourself.
      Pure : value -> Tagged tag value
    ```
 
-   Implement interfaces `Functor`, `Foldable`, and `Traversable`
-   but also `Bifunctor`, `Bifoldable`, and `Bitraversable`
-   for `Tagged`.
+   为 `Tagged` 实现接口 `Functor`、`Foldable` 和 `Traversable`
+   还有 `Bifunctor`、`Bifoldable` 和 `Bitraversable`。
 
-2. Show that the composition of a bifunctor with two functors such as
-   `Either (List a) (Maybe b)` is again a bifunctor by defining a dedicated
-   wrapper type for such compositions and writing a corresponding
-   implementation of `Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and
-   `Bitraversable`/`Traversable`.
+2. 通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有两个函子（例如 `Either (List a) (Maybe
+   b)`）的二元函子的组合再次成为二元函子`。同样适用于 `Bifoldable`/`Foldable` 和
+   `Bitraversable`/`Traversable`。
 
-3. Show that the composition of a functor with a bifunctor such as `List
-   (Either a b)` is again a bifunctor by defining a dedicated wrapper type
-   for such compositions and writing a corresponding implementation of
-   `Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and
-   `Bitraversable`/`Traversable`.
+3. 通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有二元函子（如 `List (Either a
+   b)`）的函子的组合再次是二元函子。同样适用于 `Bifoldable`/`Foldable` 和
+   `Bitraversable`/`Traversable`。
 
-4. We are now going to adjust `readCSV` in such a way that it decodes
-   comment tags and CSV content in a single traversal.  We need a new error
-   type to include invalid tags for this:
+4. 我们现在将调整 `readCSV` 使其在一次遍历中解码评论标签和 CSV 内容。我们需要一个新的错误类型来包含无效的标签：
 
    ```idris
    data TagError : Type where
@@ -912,17 +881,17 @@ and how to implement and use them yourself.
    Semigroup TagError where (<+>) = Append
    ```
 
-   For testing, we also define a simple data type for color tags:
+   为了测试，我们还为颜色标签定义了一个简单的数据类型：
 
    ```idris
    data Color = Red | Green | Blue
    ```
 
-   You should now implement the following functions, but
-   please note that while `readColor` will need to
-   access the current line number in case of an error,
-   it must *not* increase it, as otherwise line numbers
-   will be wrong in the invocation of `tagAndDecodeTE`.
+   您现在应该实现以下功能，但是
+   请注意，虽然 `readColor` 需要
+   出现错误时访问当前行号，
+   它必须 *不* 增加它，否则行号
+   调用 `tagAndDecodeTE` 会出错。
 
    ```idris
    readColor : String -> State Nat (Validated TagError Color)
@@ -935,12 +904,11 @@ and how to implement and use them yourself.
                   -> State Nat (Validated TagError (HList ts))
    ```
 
-   Finally, implement `readTagged` by using the wrapper type
-   from exercise 3 as well as `readColor` and `tagAndDecodeTE`
-   in a call to `bitraverse`.
-   The implementation will look very similar to `readCSV` but
-   with some additional wrapping and unwrapping at the right
-   places.
+   最后，使用 wrapper 类型实现 `readTagged`
+   来自练习 3 以及 `readColor` 和 `tagAndDecodeTE`
+   在对 `bitraverse` 的调用中。
+   该实现看起来与 `readCSV` 非常相似，但是
+   在右侧有一些额外的包装和展开。
 
    ```idris
    readTagged :  (0 ts : List Type)
@@ -949,49 +917,44 @@ and how to implement and use them yourself.
               -> Validated TagError (List $ Tagged Color $ HList ts)
    ```
 
-   Test your implementation with some example strings at the REPL.
+   使用 REPL 中的一些示例字符串测试您的实现。
 
 
-You can find more examples for functor/bifunctor compositions
-in Haskell's [bifunctors](https://hackage.haskell.org/package/bifunctors)
-package.
+您可以找到更多关于函子/二元函子组合的示例
+在 Haskell 的 [bifunctors](https://hackage.haskell.org/package/bifunctors)
+包装。
 
 ## 结论
 
-Interface `Traversable` and its main function `traverse` are incredibly
-powerful forms of abstraction - even more so, because both `Applicative`
-and `Traversable` are closed under composition. If you are interested
-in additional use cases, the publication, which
-introduced `Traversable` to Haskell, is a highly recommended read:
-[The Essence of the Iterator Pattern](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
+接口`Traversable`及其主函数`traverse`令人难以置信
+强大的抽象形式 - 更是如此，因为 `Applicative`
+和 `Traversable` 在组合下是闭合的。如果你感兴趣
+在其他用例中，该出版物，其中
+向 Haskell 介绍了 `Traversable`，强烈推荐阅读：
+[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)
 
-The *base* library provides an extended version of the
-state monad in module `Control.Monad.State`. We will look
-at this in more detail when we talk about monad transformers.
-Please note also, that `IO` itself is implemented as a
-[simple state monad](IO.md#how-io-is-implemented)
-over an abstract, primitive state type: `%World`.
+*base* 库提供了
+模块 `Control.Monad.State` 中的状态单子。我们会看
+当我们谈论 monad 转换器时，会更详细地介绍这一点。
+另请注意，`IO` 本身被实现为
+[简单状态单子](IO.md#how-io-is-implemented)
+在抽象的原始状态类型上：`%World`。
 
-Here's a short summary of what we learned in this chapter:
+以下是我们在本章中学到的内容的简短摘要：
 
-* Function `traverse` is used to run effectful computations over container
-  types without affecting their size or shape.
-* We can use `IORef` as mutable references in stateful computations running
-  in `IO`.
-* For referentially transparent computations with "mutable" state, the
-  `State` monad is extremely useful.
-* Applicative functors are closed under composition, so we can run several
-  effectful computations in a single traversal.
-* Traversables are also closed under composition, so we can use `traverse`
-  to operate on a nesting of containers.
+* 函数 `traverse` 用于对容器类型运行有效的计算，而不影响它们的大小或形状。
+* 我们可以使用 `IORef` 作为在 `IO` 中运行的有状态计算中的可变引用。
+* 对于具有“可变”状态的引用透明计算，`State` monad 非常有用。
+* 应用函子在组合下是封闭的，因此我们可以在一次遍历中运行多个有效的计算。
+* Traversables 在组合下也是封闭的，所以我们可以使用 `traverse` 对容器的嵌套进行操作。
 
-For now, this concludes our introduction of the *Prelude*'s
-higher-kinded interfaces, which started with the introduction of
-`Functor`, `Applicative`, and `Monad`, before moving on to `Foldable`,
-and - last but definitely not least - `Traversable`.
-There's one still missing - `Alternative` - but this will
-have to wait a bit longer, because we need to first make
-our brains smoke with some more type-level wizardry.
+至此，我们对 *Prelude* 的介绍到此结束
+更高级的接口，从引入
+`Functor`、`Applicative` 和 `Monad`，在继续 `Foldable` 之前，
+和 - 最后但同样重要的是 - `Traversable`。
+仍然缺少一个 - `Alternative` - 但这会
+必须等待更长的时间，因为我们需要先使
+我们的大脑会冒出更多类型级别的魔法。
 
 <!-- vi: filetype=idris2
 -->

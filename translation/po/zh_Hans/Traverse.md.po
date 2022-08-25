@@ -2183,8 +2183,9 @@ msgid ""
 "Come up with a parameterized data type for encapsulating stateful "
 "computations where the input and output state type can differ. It must be "
 "possible to wrap `uncons` in a value of this type."
-msgstr "提出一种参数化数据类型，用于封装输入和输出状态类型可能不同的有状态计算。"
-"必须可以将 `uncons` 包装在这种类型的值中。"
+msgstr ""
+"提出一种参数化数据类型，用于封装输入和输出状态类型可能不同的有状态计算。必须"
+"可以将 `uncons` 包装在这种类型的值中。"
 
 #. type: Bullet: '   2. '
 #: ../src/Tutorial/Traverse.md:792
@@ -2198,15 +2199,16 @@ msgid ""
 "(but see also exercise 2.vii).  Still, implement the necessary functions to "
 "use it with idom brackets."
 msgstr ""
-"对于这种 *索引* 状态类型，无法实现 `Applicative`（但另请参见练习 2."
-"vii）。尽管如此，实现必要的函数以将其与 idom 括号一起使用。"
+"对于这种 *索引* 状态类型，无法实现 `Applicative`（但另请参见练习 2.vii）。尽"
+"管如此，实现必要的函数以将其与 idom 括号一起使用。"
 
 #. type: Bullet: '   4. '
 #: ../src/Tutorial/Traverse.md:801
 msgid ""
 "It is not possible to implement `Monad` for this indexed state type. Still, "
 "implement the necessary functions to use it in do blocks."
-msgstr "无法为此索引状态类型实现 `Monad`。不过，实现必要的功能以在 do 块中使用它。"
+msgstr ""
+"无法为此索引状态类型实现 `Monad`。不过，实现必要的功能以在 do 块中使用它。"
 
 #. type: Bullet: '   5. '
 #: ../src/Tutorial/Traverse.md:805
@@ -2214,8 +2216,9 @@ msgid ""
 "Generalize the functions from exercises 3 and 4 with two new interfaces "
 "`IxApplicative` and `IxMonad` and provide implementations of these for your "
 "indexed state data type."
-msgstr "使用两个新接口 `IxApplicative` 和 `IxMonad` 概括练习 3 和 4 "
-"中的函数，并为您的索引状态数据类型提供这些实现。"
+msgstr ""
+"使用两个新接口 `IxApplicative` 和 `IxMonad` 概括练习 3 和 4 中的函数，并为您"
+"的索引状态数据类型提供这些实现。"
 
 #. type: Bullet: '   6. '
 #: ../src/Tutorial/Traverse.md:809
@@ -2224,16 +2227,17 @@ msgid ""
 "`execState` for the indexed state data type. Make sure to adjust the type "
 "parameters where necessary."
 msgstr ""
-"实现函数 `get`、`put`、`modify`、`runState`、`evalState` 和 "
-"`execState`对于索引状态数据类型。确保在必要时调整类型参数。"
+"实现函数 `get`、`put`、`modify`、`runState`、`evalState` 和 `execState`对于索"
+"引状态数据类型。确保在必要时调整类型参数。"
 
 #. type: Bullet: '   7. '
 #: ../src/Tutorial/Traverse.md:812
 msgid ""
 "Show that your indexed state type is strictly more powerful than `State` by "
 "implementing `Applicative` and `Monad` for it."
-msgstr "通过为它实现 `Applicative` 和 `Monad` 来证明你的索引状态类型比 `State` "
-"更强大。"
+msgstr ""
+"通过为它实现 `Applicative` 和 `Monad` 来证明你的索引状态类型比 `State` 更强"
+"大。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:816
@@ -2342,8 +2346,7 @@ msgstr ""
 "          -> CSVLine (HList ts)\n"
 "          => List String\n"
 "          -> Validated CSVError (List $ HList ts)\n"
-"readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)"
-"\n"
+"readTable ts = evalState 1 . traverse @{%search} @{Compose} (tagAndDecode ts)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:866
@@ -2421,11 +2424,8 @@ msgid ""
 "so we come up with a custom data type encapsulating\n"
 "this distinction:\n"
 msgstr ""
-"但我还没有完成展示组合的力量。正如你在其中一个练习中所展示的，`Traversable` "
-"在组合下也是闭合的，\n"
-"所以可遍历的嵌套又是可遍历的。考虑以下用例：读取 CSV "
-"文件时，我们希望允许行附有附加信息的注释。这样的注释可以仅仅是评论，"
-"还有一些格式说明或其他\n"
+"但我还没有完成展示组合的力量。正如你在其中一个练习中所展示的，`Traversable` 在组合下也是闭合的，\n"
+"所以可遍历的嵌套又是可遍历的。考虑以下用例：读取 CSV 文件时，我们希望允许行附有附加信息的注释。这样的注释可以仅仅是评论，还有一些格式说明或其他\n"
 "可选的自定义数据标签。\n"
 "注释应该与其他注释分开\n"
 "单个哈希字符 (`#`) 的内容。\n"
@@ -2573,14 +2573,11 @@ msgstr ""
 "在换行符处拆分整个字符串，得到一个字符串列表\n"
 "（函数 `Data.String.lines`）。接下来，我们分析每一行，\n"
 "跟踪可选注释（`map readLine`）。\n"
-"这给了我们一个 `List (Line String)` 类型的值。这是可遍历的嵌套，我们调用 "
-"`traverse`\n"
+"这给了我们一个 `List (Line String)` 类型的值。这是可遍历的嵌套，我们调用 `traverse`\n"
 "使用来自 *Prelude* 的命名实例：`Prelude.Traversable.Compose`。\n"
 "Idris 可以根据类型消除歧义，因此我们可以\n"
-"删除命名空间前缀。但我们在行列表上有效的计算会产生一个应用函子的组合，"
-"所以对于第二个中的应用程序组合\n"
-"约束我们还需要命名的实现（同样不需要明确的前缀，此处为 `Prelude."
-"Applicative`）。\n"
+"删除命名空间前缀。但我们在行列表上有效的计算会产生一个应用函子的组合，所以对于第二个中的应用程序组合\n"
+"约束我们还需要命名的实现（同样不需要明确的前缀，此处为 `Prelude.Applicative`）。\n"
 "最后，我们使用 `evalState 1` 评估有状态计算。\n"
 
 #. type: Plain text
@@ -2685,8 +2682,7 @@ msgid ""
 "properly typed CSV tables with automatic line numbering and\n"
 "error accumulation, all of which just worked on first try.\n"
 msgstr ""
-"我们写了几十行代码，这真是太神奇了，始终遵循类型和完全性检查器，"
-"最终到达解析函数\n"
+"我们写了几十行代码，这真是太神奇了，始终遵循类型和完全性检查器，最终到达解析函数\n"
 "正确键入带有自动行编号的 CSV 表和\n"
 "错误累积，所有这些都在第一次尝试时起作用。\n"
 
@@ -2716,8 +2712,9 @@ msgid ""
 "Assume we'd like to not only interpret CSV content but also the optional "
 "comment tags in our CSV files.  For this, we could use a data type such as "
 "`Tagged`:"
-msgstr "假设我们不仅要解释 CSV 内容，还要解释 CSV 文件中的可选注释标签。为此，"
-"我们可以使用诸如 `Tagged` 之类的数据类型："
+msgstr ""
+"假设我们不仅要解释 CSV 内容，还要解释 CSV 文件中的可选注释标签。为此，我们可"
+"以使用诸如 `Tagged` 之类的数据类型："
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1030
@@ -2751,10 +2748,9 @@ msgid ""
 "`Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/"
 "`Traversable`."
 msgstr ""
-"通过为此类组合定义专用包装器类型并编写 `Bifunctor` "
-"的相应实现，证明具有两个函子（例如 `Either (List a) (Maybe "
-"b)`）的二元函子的组合再次成为二元函子`。同样适用于 `Bifoldable`/`Foldable` "
-"和 `Bitraversable`/`Traversable`。"
+"通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有两个函"
+"子（例如 `Either (List a) (Maybe b)`）的二元函子的组合再次成为二元函子`。同样"
+"适用于 `Bifoldable`/`Foldable` 和 `Bitraversable`/`Traversable`。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Traverse.md:1051
@@ -2765,10 +2761,9 @@ msgid ""
 "`Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/"
 "`Traversable`."
 msgstr ""
-"通过为此类组合定义专用包装器类型并编写 `Bifunctor` "
-"的相应实现，证明具有二元函子（如 `List (Either a "
-"b)`）的函子的组合再次是二元函子。同样适用于 `Bifoldable`/`Foldable` 和 "
-"`Bitraversable`/`Traversable`。"
+"通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有二元函"
+"子（如 `List (Either a b)`）的函子的组合再次是二元函子。同样适用于 "
+"`Bifoldable`/`Foldable` 和 `Bitraversable`/`Traversable`。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Traverse.md:1055
@@ -2776,8 +2771,9 @@ msgid ""
 "We are now going to adjust `readCSV` in such a way that it decodes comment "
 "tags and CSV content in a single traversal.  We need a new error type to "
 "include invalid tags for this:"
-msgstr "我们现在将调整 `readCSV` 使其在一次遍历中解码评论标签和 CSV "
-"内容。我们需要一个新的错误类型来包含无效的标签："
+msgstr ""
+"我们现在将调整 `readCSV` 使其在一次遍历中解码评论标签和 CSV 内容。我们需要一"
+"个新的错误类型来包含无效的标签："
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1056
@@ -2912,8 +2908,7 @@ msgstr ""
 "和 `Traversable` 在组合下是闭合的。如果你感兴趣\n"
 "在其他用例中，该出版物，其中\n"
 "向 Haskell 介绍了 `Traversable`，强烈推荐阅读：\n"
-"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/"
-"iterator.pdf)\n"
+"[迭代器模式的本质](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1124
@@ -2944,7 +2939,8 @@ msgstr "以下是我们在本章中学到的内容的简短摘要：\n"
 msgid ""
 "Function `traverse` is used to run effectful computations over container "
 "types without affecting their size or shape."
-msgstr "函数 `traverse` 用于对容器类型运行有效的计算，而不影响它们的大小或形状。"
+msgstr ""
+"函数 `traverse` 用于对容器类型运行有效的计算，而不影响它们的大小或形状。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Traverse.md:1138
@@ -2972,8 +2968,9 @@ msgstr "应用函子在组合下是封闭的，因此我们可以在一次遍历
 msgid ""
 "Traversables are also closed under composition, so we can use `traverse` to "
 "operate on a nesting of containers."
-msgstr "Traversables 在组合下也是封闭的，所以我们可以使用 `traverse` "
-"对容器的嵌套进行操作。"
+msgstr ""
+"Traversables 在组合下也是封闭的，所以我们可以使用 `traverse` 对容器的嵌套进行"
+"操作。"
 
 #. type: Plain text
 #: ../src/Tutorial/Traverse.md:1146
