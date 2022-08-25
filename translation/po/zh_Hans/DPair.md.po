@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:28+0800\n"
-"PO-Revision-Date: 2022-08-25 00:54+0000\n"
+"PO-Revision-Date: 2022-08-25 15:08+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/dpair/zh_Hans/>\n"
@@ -1749,18 +1749,13 @@ msgstr "定义一个依赖记录，将碱基类型和 sense 与一系列核碱�
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/DPair.md:685
-#, fuzzy
-#| msgid ""
-#| "Adjust `readRNA` and `readDNA` in such a way that the *sense* of a "
-#| "sequence is read from the input string.  Sense strands are encoded like "
-#| "so: \"5-CGGTAG-3\". Antisense strands are encoded like so: \"3-CGGTAG-5\"."
 msgid ""
 "Adjust `readRNA` and `readDNA` in such a way that the *sense* of a sequence "
 "is read from the input string.  Sense strands are encoded like so: \"5-"
 "CGGTAG-3\". Antisense strands are encoded like so: \"3-CGGTAG-5\"."
 msgstr ""
-"调整 `readRNA` 和 `readDNA` 使得从输入字符串中读取序列的 *sense*。 Sense 链编"
-"码如下：“5-CGGTAG-3”。反义链编码如下：“3-CGGTAG-5”。"
+"调整 `readRNA` 和 `readDNA` 使得从输入字符串中读取序列的 *sense*。 Sense "
+"链编码如下：“5-CGGTAG-3”。反义链编码如下：“3-CGGTAG-5”。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/DPair.md:688
