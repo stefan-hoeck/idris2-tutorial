@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
+"PO-Revision-Date: 2022-08-25 23:50+0000\n"
 "Last-Translator: admin <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/predicates/zh_Hans/>\n"
@@ -437,13 +437,13 @@ msgstr "在 REPL 试一下：\n"
 
 #. type: Title #
 #: ../src/Tutorial/Predicates.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Predicates and Proof Search"
-msgstr "# 谓词和证明搜索"
+msgstr "谓词和证明搜索"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:12
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the [last chapter](Eq.md) we learned about propositional\n"
 "equality, which allowed us to proof that two values are\n"
@@ -454,11 +454,15 @@ msgid ""
 "can encode this way. This will allow us to restrict the\n"
 "values we accept as a function's arguments or the values\n"
 "returned by functions.\n"
-msgstr "在[最后一章]（Eq.md）中，我们了解了命题相等性，这使我们能够证明两个值相等。相等是值之间的关系，我们使用索引数据类型通过限制唯一数据构造函数中索引的自由度来编码这种关系。我们可以用这种方式编码其他关系和契约。这将允许我们限制我们接受作为函数参数的值或函数返回的值。"
+msgstr ""
+"在[最上章](Eq.md)中，我们了解了命题相等式，这使我们能够证明两个值相等。相等是"
+"值之间的关系，我们使用索引数据类型通过限制唯一数据构造函数中索引的自由度来编"
+"码这种关系。我们可以用这种方式编码其他关系和契约。这将允许我们限制我们接受作"
+"为函数参数的值或函数返回的值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:13
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Predicates\n"
 "\n"
@@ -473,17 +477,30 @@ msgid ""
 "import System.File\n"
 "\n"
 "%default total\n"
-msgstr "导入 Data.Either 导入 Data.List1 导入 Data.String 导入 Data.Vect 导入 Data.HList 导入 Decidable.Equality"
+msgstr ""
+"module Tutorial.Predicates\n"
+"\n"
+"import Data.Either\n"
+"import Data.List1\n"
+"import Data.String\n"
+"import Data.Vect\n"
+"import Data.HList\n"
+"import Decidable.Equality\n"
+"\n"
+"import Text.CSV\n"
+"import System.File\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Predicates.md:29
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Preconditions"
-msgstr "## 前提条件"
+msgstr "前置条件"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:38
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Often, when we implement functions operating on values\n"
 "of a given type, not all values are considered to be\n"
@@ -492,11 +509,15 @@ msgid ""
 "is undefined in the general case. This concept of putting\n"
 "a *precondition* on a function argument comes up pretty often,\n"
 "and there are several ways to go about this.\n"
-msgstr "通常，当我们实现对给定类型的值进行操作的函数时，并非所有值都被认为是所讨论函数的有效参数。例如，我们通常不允许除以零，因为在一般情况下结果是未定义的。这种将 * 前置条件 * 放在函数参数上的概念经常出现，并且有几种方法可以解决这个问题。"
+msgstr ""
+"通常，当我们实现对给定类型的值进行操作的函数时，并非所有值都被认为是所讨论函"
+"数的有效参数。例如，我们通常不允许除以零，因为在一般情况下结果是未定义的。"
+"这种将 *前置条件* "
+"放在函数参数上的概念经常出现，并且有几种方法可以解决这个问题。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:45
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "A very common operation when working with lists or other\n"
 "container types is to extract the first value in the sequence.\n"
@@ -504,11 +525,13 @@ msgid ""
 "in order to extract a value from a list, the list must not\n"
 "be empty. Here are a couple of ways to encode and implement\n"
 "this, each with its own advantages and disadvantages:\n"
-msgstr "使用列表或其他容器类型时，一个非常常见的操作是提取序列中的第一个值。然而，这个函数不能在一般情况下工作，因为为了从列表中提取值，列表不能为空。这里有几种编码和实现它的方法，每种方法都有自己的优点和缺点："
+msgstr ""
+"使用列表或其他容器类型时，一个非常常见的操作是提取序列中的第一个值。然而，这"
+"个函数不能在一般情况下工作，因为为了从列表中提取值，列表不能为空。这里有几种"
+"编码和实现它的方法，每种方法都有自己的优点和缺点：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:57
-#, fuzzy
 msgid ""
 "Wrap the result in a failure type, such as a `Maybe` or `Either e` with some "
 "custom error type `e`. This makes it immediately clear that the function "
@@ -520,15 +543,15 @@ msgid ""
 "value in such a way that we can be sure it is not empty (due to an earlier "
 "pattern match, for instance)."
 msgstr ""
-"将结果包装在故障类型中，例如带有一些自定义错误类型 `e` 的 `Maybe` 或 `e`。这"
-"立即清楚地表明该函数可能无法返回结果。这是处理来自未知来源的未经验证的输入的"
-"自然方式。这种方法的缺点是结果会带有 `Maybe` 污点，即使在我们 * 知道 * 不可"
-"能 *nil* 的情况下，例如因为我们知道list 参数在编译时的值，或者因为我们已经 * "
-"改进了 * 输入值，以确保它不为空（例如，由于较早的模式匹配）。"
+"将结果包装在故障类型中，例如 `Maybe` 或带有一些自定义错误类型 `e` 的 `Either "
+"e`。这立即清楚地表明该函数可能无法返回结果。这是处理来自未知来源的未经验证的"
+"输入的自然方式。这种方法的缺点是结果会带有 `Maybe` 污点，即使在我们 *知道 *"
+"不可能为 *nil* 的情况下，例如因为我们知道list 参数在编译时的值，"
+"或者因为我们已经 *改进了* "
+"输入值，以确保它不为空（例如，由于较早的模式匹配）。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:67
-#, fuzzy
 msgid ""
 "Define a new data type for non-empty lists and use this as the function's "
 "argument. This is the approach taken in module `Data.List1`. It allows us to "
@@ -540,13 +563,12 @@ msgid ""
 msgstr ""
 "为非空列表定义一个新的数据类型并将其用作函数的参数。这是在模块 `Data.List1` "
 "中采用的方法。它允许我们返回一个纯值（这里的意思是“不包含在失败类型中”），因"
-"为函数不可能失败，但它带来了重新实现我们已经为 ` 实现的许多实用函数和接口的负"
-"担列表`。对于非常常见的数据结构，这可能是一个有效的选项，但对于罕见的用例，它"
-"通常太麻烦了。"
+"为函数不可能失败，但它带来了重新实现我们已经为 `List` 实现的许多实用函数和接"
+"口的负担。对于非常常见的数据结构，这可能是一个有效的选项，但对于罕见的用例，"
+"它通常太麻烦了。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:81
-#, fuzzy
 msgid ""
 "Use an index to keep track of the property we are interested in. This was "
 "the approach we took with type family `List01`, which we saw in several "
@@ -567,7 +589,6 @@ msgstr ""
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:87
-#, fuzzy
 msgid ""
 "Fail with a runtime exception. This is a popular solution in many "
 "programming languages (even Haskell), but in Idris we try to avoid this, "
@@ -575,13 +596,12 @@ msgid ""
 "Luckily, we can make use of our powerful type system to avoid this situation "
 "in general."
 msgstr ""
-"失败并出现运行时异常。这是许多编程语言（甚至是 Haskell）中流行的解决方案，但"
-"在 Idris 中我们尽量避免这种情况，因为它在某种程度上破坏了整体性，这也会影响客"
-"户端代码。幸运的是，我们可以利用我们强大的类型系统来避免这种情况。"
+"失败并出现运行时异常。这是许多编程语言（甚至是 Haskell）中流行的解决方案，"
+"但在 Idris 中我们尽量避免这种情况，因为它在某种程度上破坏了完全性，这也会影响"
+"客户端代码。幸运的是，我们可以利用我们强大的类型系统来避免这种情况。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Predicates.md:94
-#, fuzzy
 msgid ""
 "Take an additional (possibly erased) argument of a type we can use as a "
 "witness that the input value is of the correct kind or shape. This is the "
@@ -595,103 +615,118 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:100
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There is a time and place for most if not all of the solutions\n"
 "listed above in Idris, but we will often turn to the last one and\n"
 "refine function arguments with predicates (so called\n"
 "*preconditions*), because it makes our functions nice to use at\n"
 "runtime *and* compile time.\n"
-msgstr "Idris 中列出的大多数（如果不是全部）解决方案都有时间和地点，但我们经常会转向最后一个并使用谓词（所谓的 *preconditions*）优化函数参数，因为它使我们的在运行时 * 和 * 编译时很好用的函数。"
+msgstr ""
+"Idris 中列出的大多数（如果不是全部）解决方案都有时间和地点，但我们经常会转向"
+"最后一个并使用谓词（所谓的 *前置条件*）优化函数参数，"
+"因为它使我们的函数在运行时 *和* 编译时更好用。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Predicates.md:101
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Example: Non-empty Lists"
-msgstr "### 示例：非空列表"
+msgstr "示例：非空列表"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:107
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Remember how we implemented an indexed data type for\n"
 "propositional equality: We restricted the valid\n"
 "values of the indices in the constructors. We can do\n"
 "the same thing for a predicate for non-empty lists:\n"
-msgstr "记住我们是如何实现命题相等的索引数据类型的：我们限制了构造函数中索引的有效值。我们可以对非空列表的谓词做同样的事情："
+msgstr "记住我们是如何实现命题相等的索引数据类型的：我们限制了构造函数中索引的有效值"
+"。我们可以对非空列表的谓词做同样的事情：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:108
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data NotNil : (as : List a) -> Type where\n"
 "  IsNotNil : NotNil (h :: t)\n"
 msgstr ""
-"```伊德里斯\n"
 "data NotNil : (as : List a) -> Type where\n"
 "  IsNotNil : NotNil (h :: t)\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:117
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is a single-value data type, so we can always use it\n"
 "as an erased function argument and still pattern match on\n"
 "it. We can now use this to implement a safe and pure `head`\n"
 "function:\n"
-msgstr "这是一种单值数据类型，因此我们始终可以将其用作已擦除的函数参数并仍然对其进行模式匹配。我们现在可以使用它来实现一个安全且纯粹的 `head` 函数："
+msgstr ""
+"这是一种单值数据类型，因此我们始终可以将其用作已擦除的函数参数并仍然对其进行"
+"模式匹配。我们现在可以使用它来实现一个安全且纯粹的 `head` 函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:118
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "head1 : (as : List a) -> (0 _ : NotNil as) -> a\n"
 "head1 (h :: _) _ = h\n"
 "head1 [] IsNotNil impossible\n"
-msgstr "```idris head1 : (as : List a) -> (0 _ : NotNil as) -> a head1 (h :: _) _ = h head1 [] IsNotNil 不可能 ```"
+msgstr ""
+"head1 : (as : List a) -> (0 _ : NotNil as) -> a\n"
+"head1 (h :: _) _ = h\n"
+"head1 [] IsNotNil impossible\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:129
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how value `IsNotNil` is a *witness* that its index,\n"
 "which corresponds to our list argument, is indeed non-empty,\n"
 "because this is what we specified in its type.\n"
 "The impossible case in the implementation of `head1` is not\n"
 "strictly necessary here. It was given above for completeness.\n"
-msgstr "请注意，值 `IsNotNil` 是 *witness* 的值，它对应于我们的列表参数，它的索引确实是非空的，因为这是我们在它的类型中指定的。 `head1` 实现中的不可能的情况在这里不是绝对必要的。上面给出的完整性。"
+msgstr ""
+"请注意，值 `IsNotNil` 是 *witness* 的值，它对应于我们的列表参数，它的索引确实"
+"是非空的，因为这是我们在它的类型中指定的。 `head1` "
+"实现中的不可能的情况在这里不是绝对必要的。上面给出的遵循完全性。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:134
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We call `NotNil` a *predicate* on lists, as it restricts\n"
 "the values allowed in the index. We can express a function's\n"
 "preconditions by adding additional (possibly erased) predicates\n"
 "to the function's list of arguments.\n"
-msgstr "我们将 `NotNil` 称为列表上的 *predicate*，因为它限制了索引中允许的值。我们可以通过在函数的参数列表中添加额外的（可能被删除的）谓词来表达函数的前提条件。"
+msgstr ""
+"我们将 `NotNil` 称为列表上的 *谓词*，因为它限制了索引中允许的值。我们可以通过"
+"在函数的参数列表中添加额外的（可能被删除的）谓词来表达函数的前置条件。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:138
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The first really cool thing is how we can safely use `head1`,\n"
 "if we can at compile-time show that our list argument is\n"
 "indeed non-empty:\n"
-msgstr "第一个非常酷的事情是我们如何安全地使用 `head1`，如果我们可以在编译时显示我们的列表参数确实是非空的："
+msgstr "第一个非常酷的事情是我们如何安全地使用 "
+"`head1`，如果我们可以在编译时显示我们的列表参数确实是非空的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:139
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "headEx1 : Nat\n"
 "headEx1 = head1 [1,2,3] IsNotNil\n"
-msgstr "``` idris headEx1 : Nat headEx1 = head1 [1,2,3] IsNotNil ```"
+msgstr ""
+"headEx1 : Nat\n"
+"headEx1 = head1 [1,2,3] IsNotNil\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:152
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is a bit cumbersome that we have to pass the `IsNotNil` proof\n"
 "manually. Before we scratch that itch, we will first discuss what\n"
@@ -701,11 +736,16 @@ msgid ""
 "list value. In the most simple case, we can wrap the proof\n"
 "in a `Maybe`, but if we can show that our predicate is *decidable*,\n"
 "we can get even stronger guarantees by returning a `Dec`:\n"
-msgstr "我们必须手动通过 `IsNotNil` 证明有点麻烦。在我们解决这个问题之前，我们将首先讨论如何处理列表，其值直到运行时才知道。对于这些情况，我们必须通过检查运行时列表值来尝试以编程方式生成谓词的值。在最简单的情况下，我们可以将证明包装在 `Maybe` 中，但是如果我们可以证明我们的谓词是 * 可判定的*，我们可以通过返回 ` 来获得更强的保证十二月`："
+msgstr ""
+"我们必须手动通过 `IsNotNil` 证明有点麻烦。在我们解决这个问题之前，我们将首先"
+"讨论如何处理列表，其值直到运行时才知道。对于这些情况，我们必须通过检查运行时"
+"列表值来尝试以编程方式生成谓词的值。在最简单的情况下，我们可以将证明包装在 "
+"`Maybe` 中，但是如果我们可以证明我们的谓词是 *可判定的*，我们可以通过返回 "
+"`Dec` 来获得更强的保证：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:153
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Uninhabited (NotNil []) where\n"
 "  uninhabited IsNotNil impossible\n"
@@ -714,54 +754,56 @@ msgid ""
 "nonEmpty (x :: xs) = Yes IsNotNil\n"
 "nonEmpty []        = No uninhabited\n"
 msgstr ""
+"Uninhabited (NotNil []) where\n"
+"  uninhabited IsNotNil impossible\n"
+"\n"
 "nonEmpty : (as : List a) -> Dec (NotNil as)\n"
-"nonEmpty (x :: xs) = 是 IsNotNil\n"
-"nonEmpty [] = 没有无人居住\n"
-"```\n"
+"nonEmpty (x :: xs) = Yes IsNotNil\n"
+"nonEmpty []        = No uninhabited\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:164
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "With this, we can implement function `headMaybe`, which\n"
 "is to be used with lists of unknown origin:\n"
-msgstr "有了这个，我们可以实现函数 `headMaybe`，它可以用于未知来源的列表："
+msgstr "有了这个，我们可以实现函数 `headMaybe`，它可以用于未知来源的列表：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:165
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "headMaybe1 : List a -> Maybe a\n"
 "headMaybe1 as = case nonEmpty as of\n"
 "  Yes prf => Just $ head1 as prf\n"
 "  No  _   => Nothing\n"
 msgstr ""
-"```伊德里斯\n"
-"headMaybe1 : 列出一个 -> 也许一个\n"
+"headMaybe1 : List a -> Maybe a\n"
 "headMaybe1 as = case nonEmpty as of\n"
-"  是的 prf => 只是 $ head1 作为 prf\n"
-"  没有 _ => 没有\n"
-"```\n"
+"  Yes prf => Just $ head1 as prf\n"
+"  No  _   => Nothing\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:176
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Of course, for trivial functions like `headMaybe` it makes\n"
 "more sense to implement them directly by pattern matching on\n"
 "the list argument, but we will soon see examples of predicates\n"
 "the values of which are more cumbersome to create.\n"
-msgstr "当然，对于像 `headMaybe` 这样的微不足道的函数，直接通过 list 参数上的模式匹配来实现它们更有意义，但是我们很快就会看到谓词的示例，其值创建起来更麻烦。"
+msgstr ""
+"当然，对于像 `headMaybe` 这样的小函数，直接通过 list 参数上的模式匹配来实现它"
+"们更有意义，但是我们很快就会看到谓词的示例，其值创建起来更麻烦。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Predicates.md:177
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Auto Implicits"
-msgstr "### 自动隐式"
+msgstr "自动隐式"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:187
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Having to manually pass a proof of being non-empty to\n"
 "`head1` makes this function unnecessarily verbose to\n"
@@ -771,69 +813,79 @@ msgid ""
 "to be confused with type inference, which means inferring\n"
 "values or types from the surrounding context. It's best\n"
 "to look at some examples to explain the difference.\n"
-msgstr "必须手动将非空证明传递给 `head1` 使得这个函数在编译时使用起来不必要地冗长。 Idris 允许我们定义隐式函数参数，它试图通过一种称为 * 证明搜索 * 的技术自行组装其值。这不要与类型推断混淆，类型推断意味着从周围的上下文推断值或类型。最好看一些例子来解释差异。"
+msgstr ""
+"必须手动将非空证明传递给 `head1` 使得这个函数在编译时使用起来不必要地冗长。 "
+"Idris 允许我们定义隐式函数参数，它试图通过一种称为 *证明搜索* 的技术自行组装"
+"其值。这不要与类型推断混淆，类型推断意味着从周围的上下文推断值或类型。最好看"
+"一些例子来解释差异。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:190
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Let us first have a look at the following implementation of\n"
 "`replicate` for vectors:\n"
-msgstr "让我们首先看一下向量的 `replicate` 的以下实现："
+msgstr "让我们首先看一下向量的 `replicate` 的以下实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:191
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "replicate' : {n : _} -> a -> Vect n a\n"
 "replicate' {n = 0}   _ = []\n"
 "replicate' {n = S _} v = v :: replicate' v\n"
 msgstr ""
-"```伊德里斯\n"
-"复制' : {n : _} -> a -> Vect n a\n"
-"复制' {n = 0} _ = []\n"
-"复制' {n = S _} v = v :: 复制' v\n"
-"```\n"
+"replicate' : {n : _} -> a -> Vect n a\n"
+"replicate' {n = 0}   _ = []\n"
+"replicate' {n = S _} v = v :: replicate' v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:202
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Function `replicate'` takes an unerased implicit argument.\n"
 "The *value* of this argument must be derivable from the surrounding\n"
 "context. For instance, in the following example it is\n"
 "immediately clear that `n` equals three, because that is\n"
 "the length of the vector we want:\n"
-msgstr "函数 `replicate'` 采用未擦除的隐式参数。此参数的 * 值 * 必须可从周围的上下文中派生。例如，在下面的示例中，很明显 `n` 等于 3，因为这是我们想要的向量的长度："
+msgstr ""
+"函数 `replicate'` 采用未擦除的隐式参数。此参数的 *值* "
+"必须可从周围的上下文中派生。例如，在下面的示例中，很明显 `n` 等于 "
+"3，因为这是我们想要的向量的长度：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:203
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "replicateEx1 : Vect 3 Nat\n"
 "replicateEx1 = replicate' 12\n"
-msgstr "```idris replicateEx1 : Vect 3 Nat replicateEx1 = replicate' 12 ```"
+msgstr ""
+"replicateEx1 : Vect 3 Nat\n"
+"replicateEx1 = replicate' 12\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:211
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the next example, the value of `n` is not known at compile time,\n"
 "but it is available as an unerased implicit, so this can again\n"
 "be passed as is to `replicate'`:\n"
-msgstr "在下一个示例中，`n` 的值在编译时是未知的，但它可以作为未擦除的隐式使用，因此可以再次将其按原样传递给 `replicate'`："
+msgstr "在下一个示例中，`n` 的值在编译时是未知的，但它可以作为未擦除的隐式使用，"
+"因此可以再次将其按原样传递给 `replicate'`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:212
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "replicateEx2 : {n : _} -> Vect n Nat\n"
 "replicateEx2 = replicate' 12\n"
-msgstr "```idris replicateEx2 : {n : _} -> Vect n Nat replicateEx2 = replicate' 12 ```"
+msgstr ""
+"replicateEx2 : {n : _} -> Vect n Nat\n"
+"replicateEx2 = replicate' 12\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:223
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "However, in the following example, the value of `n` can't\n"
 "be inferred, as the intermediary vector is immediately converted\n"
@@ -841,39 +893,51 @@ msgid ""
 "any value for `n` here, it won't do so, because it can't be\n"
 "sure that this is the length we want. We therefore have to pass the\n"
 "length explicitly:\n"
-msgstr "但是，在以下示例中，无法推断 `n` 的值，因为中间向量会立即转换为未知长度的列表。尽管 Idris 可以尝试在这里为 `n` 插入任何值，但它不会这样做，因为它不能确定这是我们想要的长度。因此，我们必须明确地传递长度："
+msgstr ""
+"但是，在以下示例中，无法推断 `n` "
+"的值，因为中间向量会立即转换为未知长度的列表。尽管 Idris 可以尝试在这里为 `n`"
+" 插入任何值，但它不会这样做，因为它不能确定这是我们想要的长度。因此，我们必须"
+"明确地传递长度：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:224
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "replicateEx3 : List Nat\n"
 "replicateEx3 = toList $ replicate' {n = 17} 12\n"
-msgstr "```idris replicateEx3 : List Nat replicateEx3 = toList $ replicate' {n = 17} 12 ```"
+msgstr ""
+"replicateEx3 : List Nat\n"
+"replicateEx3 = toList $ replicate' {n = 17} 12\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:234
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how the *value* of `n` had to be inferable in\n"
 "these examples, which means it had to make an appearance\n"
 "in the surrounding context. With auto implicit arguments,\n"
 "this works differently. Here is the `head` example, this\n"
 "time with an auto implicit:\n"
-msgstr "请注意，在这些示例中，`n` 的 * 值* 必须是可推断的，这意味着它必须出现在周围的上下文中。使用自动隐式参数，这会有所不同。这是 `head` 示例，这次使用自动隐式："
+msgstr ""
+"请注意，在这些示例中，`n` 的 *值* 必须是可推断的，这意味着它必须出现在周围的"
+"上下文中。使用自动隐式参数，这会有所不同。这是 `head` "
+"示例，这次使用自动隐式：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:235
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "head : (as : List a) -> {auto 0 prf : NotNil as} -> a\n"
 "head (x :: _) = x\n"
 "head [] impossible\n"
-msgstr "```idris head : (as : List a) -> {auto 0 prf : NotNil as} -> a head (x :: _) = x head [] 不可能 ```"
+msgstr ""
+"head : (as : List a) -> {auto 0 prf : NotNil as} -> a\n"
+"head (x :: _) = x\n"
+"head [] impossible\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:249
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note the `auto` keyword before the quantity of implicit argument\n"
 "`prf`. This means, we want Idris to construct this value\n"
@@ -883,45 +947,51 @@ msgid ""
 "such a value from the data type's constructors. If it succeeds,\n"
 "this value will then be automatically filled in as the desired argument,\n"
 "otherwise, Idris will fail with a type error.\n"
-msgstr "注意隐式参数 `prf` 的数量之前的 `auto` 关键字。这意味着，我们希望 Idris 自己构造这个值，而不是在周围的上下文中可见。为此，Idris 必须在编译时知道列表参数 ` 和 ` 的结构。然后它将尝试从数据类型的构造函数中构建这样的值。如果成功，该值将自动填充为所需的参数，否则，Idris 将失败并出现类型错误。"
+msgstr ""
+"注意隐式参数 `prf` 的数量之前的 `auto` 关键字。这意味着，我们希望 Idris "
+"自己构造这个值，而不是在周围的上下文中可见。为此，Idris "
+"必须在编译时知道列表参数 `as` 的结构。然后它将尝试从数据类型的构造函数中构建"
+"这样的值。如果成功，该值将自动填充为所需的参数，否则，Idris "
+"将失败并出现类型错误。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:251
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Let's see this in action:\n"
-msgstr "让我们看看它的实际效果："
+msgstr "让我们看看它的实际效果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:252
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "headEx3 : Nat\n"
 "headEx3 = Predicates.head [1,2,3]\n"
-msgstr "```idris headEx3 : Nat headEx3 = Predicates.head [1,2,3] ```"
+msgstr ""
+"headEx3 : Nat\n"
+"headEx3 = Predicates.head [1,2,3]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:258
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The following example fails with an error:\n"
-msgstr "以下示例因错误而失败："
+msgstr "以下示例因错误而失败：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:259
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "failing \"Can't find an implementation\\nfor NotNil [].\"\n"
 "  errHead : Nat\n"
 "  errHead = Predicates.head []\n"
 msgstr ""
-"```伊德里斯\n"
-"失败“找不到 NotNil [] 的实现\\n。”\n"
-"  错误头：Nat\n"
-"  errHead = 谓词.head []\n"
-"```\n"
+"failing \"Can't find an implementation\\n"
+"for NotNil [].\"\n"
+"  errHead : Nat\n"
+"  errHead = Predicates.head []\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:276
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Wait! \"Can't find an implementation for...\"? Is this not the\n"
 "error message we get for missing interface implementations?\n"
@@ -934,30 +1004,42 @@ msgid ""
 "constraint. As usual, we can then access a constraint in the\n"
 "function body by its name (if any). Here is another implementation\n"
 "of `head`:\n"
-msgstr "等待！ “找不到...的实现”？这不是我们因缺少接口实现而得到的错误消息吗？没错，我将在本章末尾向您展示接口解析只是证明搜索。我已经可以向您展示的是，一直编写冗长的 `{auto prf : t} ->` 可能很麻烦。因此，Idris 允许我们使用与约束函数相同的语法：`(prf : t) =>`，或者甚至 `t =>`，如果我们不需要命名约束。像往常一样，我们可以通过名称（如果有的话）访问函数体中的约束。这是 `head` 的另一个实现："
+msgstr ""
+"等待！ “找不到...的实现”？这不是我们因缺少接口实现而得到的错误消息吗？没错，"
+"我将在本章末尾向您展示接口解析只是证明搜索。我已经可以向您展示的是，"
+"一直编写冗长的 `{auto prf : t} ->` 可能很麻烦。因此，Idris "
+"允许我们使用与约束函数相同的语法：`(prf : t) =>`，"
+"或者如果我们不需要命名约束甚至可以写成 `t "
+"=>`。像往常一样，我们可以通过名称（如果有的话）访问函数体中的约束。这是 "
+"`head` 的另一个实现：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:277
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "head' : (as : List a) -> (0 _ : NotNil as) => a\n"
 "head' (x :: _) = x\n"
 "head' [] impossible\n"
-msgstr "```idris head' : (as : List a) -> (0 _ : NotNil as) => a head' (x :: _) = x head' [] 不可能 ```"
+msgstr ""
+"head' : (as : List a) -> (0 _ : NotNil as) => a\n"
+"head' (x :: _) = x\n"
+"head' [] impossible\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:287
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "During proof search, Idris will also look for values of\n"
 "the required type in the current function context. This allows\n"
 "us to implement `headMaybe` without having to pass on\n"
 "the `NotNil` proof manually:\n"
-msgstr "在证明搜索期间，Idris 还将在当前函数上下文中查找所需类型的值。这允许我们实现 `headMaybe` 而无需手动传递 `NotNil` 证明："
+msgstr ""
+"在证明搜索期间，Idris 还将在当前函数上下文中查找所需类型的值。这允许我们实现 "
+"`headMaybe` 而无需手动传递 `NotNil` 证明：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:288
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "headMaybe : List a -> Maybe a\n"
 "headMaybe as = case nonEmpty as of\n"
@@ -965,17 +1047,15 @@ msgid ""
 "  Yes prf => Just $ Predicates.head as\n"
 "  No  _   => Nothing\n"
 msgstr ""
-"```伊德里斯\n"
-"headMaybe : 列出一个 -> 也许一个\n"
+"headMaybe : List a -> Maybe a\n"
 "headMaybe as = case nonEmpty as of\n"
-"  -- `prf` 在证明搜索期间可用\n"
+"  -- `prf` is available during proof seach\n"
 "  Yes prf => Just $ Predicates.head as\n"
-"  没有 _ => 没有\n"
-"```\n"
+"  No  _   => Nothing\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:304
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "To conclude: Predicates allow us to restrict the values\n"
 "a function accepts as arguments. At runtime, we need to\n"
@@ -985,83 +1065,83 @@ msgid ""
 "using a technique called *proof search*. This allows us\n"
 "to make functions safe and convenient to use at the same\n"
 "time.\n"
-msgstr "总结：谓词允许我们限制函数接受作为参数的值。在运行时，我们需要通过函数参数的模式匹配来构建这样的 *witnesses*。这些操作通常会失败。在编译时，我们可以让 Idris 尝试使用称为 *proof search* 的技术为我们构建这些值。这使我们能够同时使功能安全和方便地使用。"
+msgstr ""
+"总结：谓词允许我们限制函数接受作为参数的值。在运行时，"
+"我们需要通过函数参数的模式匹配来构建这样的 "
+"*witnesses*。这些操作通常会失败。在编译时，我们可以让 Idris 尝试使用称为 "
+"*证明搜索* 的技术为我们构建这些值。这使我们能够同时使函数安全和方便地使用。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:312
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In these exercises, you'll have to implement several\n"
 "functions making use of auto implicits, to constrain\n"
 "the values accepted as function arguments. The results\n"
 "should be *pure*, that is, not wrapped in a failure type\n"
 "like `Maybe`.\n"
-msgstr "在这些练习中，您必须使用自动隐式实现几个函数，以约束作为函数参数接受的值。结果应该是*pure*，也就是说，没有包裹在像`Maybe`这样的失败类型中。"
+msgstr ""
+"在这些练习中，您必须使用自动隐式实现几个函数，以约束作为函数参数接受的值。"
+"结果应该是 *纯的*，也就是说，没有包裹在像 `Maybe` 这样的失败类型中。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Predicates.md:314
-#, fuzzy
 msgid "Implement `tail` for lists."
 msgstr "为列表实现 `tail`。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Predicates.md:318
-#, fuzzy
 msgid ""
 "Implement `concat1` and `foldMap1` for lists. These should work like "
 "`concat` and `foldMap`, but taking only a `Semigroup` constraint on the "
 "element type."
 msgstr ""
-"为列表实现 `concat1` 和 `foldMap1`。这些应该像 `concat` 和 `foldMap` 一样工"
-"作，但对元素类型仅采用 `Semigroup` 约束。"
+"为列表实现 `concat1` 和 `foldMap1`。这些应该像 `concat` 和 `foldMap` "
+"一样工作，但对元素类型仅采用 `Semigroup` 约束。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Predicates.md:321
-#, fuzzy
 msgid ""
 "Implement functions for returning the largest and smallest element in a list."
 msgstr "实现用于返回列表中最大和最小元素的函数。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Predicates.md:325
-#, fuzzy
 msgid ""
 "Define a predicate for strictly positive natural numbers and use it to "
 "implement a safe and provably total division function on natural numbers."
-msgstr ""
-"为严格的正自然数定义一个谓词，并用它来实现一个安全且可证明的自然数全除函数。"
+msgstr "为严格的正自然数定义一个谓词，并用它来实现一个安全且可证明的自然数全除函数。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Predicates.md:330
-#, fuzzy
 msgid ""
 "Define a predicate for a non-empty `Maybe` and use it to safely extract the "
 "value stored in a `Just`. Show that this predicate is decidable by "
 "implementing a corresponding conversion function."
-msgstr ""
-"为非空 `Maybe` 定义一个谓词，并使用它安全地提取存储在 `Just` 中的值。通过实现"
-"相应的转换函数来证明这个谓词是可判定的。"
+msgstr "为非空 `Maybe` 定义一个谓词，并使用它安全地提取存储在 `Just` "
+"中的值。通过实现相应的转换函数来证明这个谓词是可判定的。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Predicates.md:334
-#, fuzzy
 msgid ""
 "Define and implement functions for safely extracting values from a `Left` "
 "and a `Right` by using suitable predicates.  Show again that these "
 "predicates are decidable."
-msgstr ""
-"使用合适的谓词定义和实现从 `Left` 和 `Right` 安全地提取值的函数。再次证明这些"
-"谓词是可判定的。"
+msgstr "使用合适的谓词定义和实现从 `Left` 和 `Right` "
+"安全地提取值的函数。再次证明这些谓词是可判定的。"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:339
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The predicates you implemented in these exercises are already\n"
 "available in the *base* library: `Data.List.NonEmpty`,\n"
 "`Data.Maybe.IsJust`, `Data.Either.IsLeft`, `Data.Either.IsRight`,\n"
 "and `Data.Nat.IsSucc`.\n"
-msgstr "您在这些练习中实现的谓词已经在 *base* 库中可用：`Data.List.NonEmpty`、`Data.Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat.IsSucc`。"
+msgstr ""
+"您在这些练习中实现的谓词已经在 *base* 库中可用：`Data.List.NonEmpty`、`Data."
+"Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat."
+"IsSucc`。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Predicates.md:340
