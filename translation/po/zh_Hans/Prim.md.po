@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-05 00:28+0000\n"
-"Last-Translator: admin <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-08-27 01:15+0000\n"
+"Last-Translator: 刘世华 <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/prim/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -435,23 +435,26 @@ msgstr "在 REPL 试一下：\n"
 
 #. type: Title #
 #: ../src/Tutorial/Prim.md:1
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Primitives"
-msgstr "# 原语"
+msgstr "原语"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:7
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In the topics we covered so far, we hardly ever talked about primitive\n"
 "types in Idris. They where around and we used them in some computations,\n"
 "but I never really explained how they work and where they come from,\n"
 "nor did I show in detail what we can and can't do with them.\n"
-msgstr "到目前为止，在我们讨论的主题中，我们几乎从未讨论过 Idris 中的原始类型。它们在哪里，我们在一些计算中使用它们，但我从来没有真正解释过它们是如何工作的以及它们来自哪里，我也没有详细说明我们可以用它们做什么和不能做什么。"
+msgstr ""
+"到目前为止，在我们讨论的主题中，我们几乎从未讨论过 Idris 中的原始类型。它们在"
+"哪里，我们在一些计算中使用它们，但我从来没有真正解释过它们是如何工作的以及它"
+"们来自哪里，我也没有详细说明我们可以用它们做什么和不能做什么。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:8
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "module Tutorial.Prim\n"
 "\n"
@@ -459,23 +462,29 @@ msgid ""
 "import Data.String\n"
 "\n"
 "%default total\n"
-msgstr "导入 Data.Bits 导入 Data.String"
+msgstr ""
+"module Tutorial.Prim\n"
+"\n"
+"import Data.Bits\n"
+"import Data.String\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Prim.md:17
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "How Primitives are Implemented"
-msgstr "## 基元是如何实现的"
+msgstr "原语是如何实现的"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:19
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "A Short Note on Backends"
-msgstr "### 关于后端的简短说明"
+msgstr "关于后端的简短说明"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:30
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "According to [Wikipedia](https://en.wikipedia.org/wiki/Compiler),\n"
 "a compiler is \"a computer program that translates computer code\n"
@@ -486,11 +495,16 @@ msgid ""
 "parsed and interpreted by a Chez Scheme interpreter, which must\n"
 "be installed on the computers we use to run compiled Idris\n"
 "programs.\n"
-msgstr "根据 [Wikipedia]（https://en.wikipedia.org/wiki/Compiler），编译器是“一种计算机程序，它将以一种编程语言（源语言）编写的计算机代码翻译成另一种语言（目标语言） ”。 Idris 编译器就是这样：一个将 Idris 编写的程序翻译成 Chez Scheme 编写的程序的程序。然后这个方案代码由 Chez Scheme 解释器解析和解释，它必须安装在我们用来运行已编译 Idris 程序的计算机上。"
+msgstr ""
+"根据 [Wikipedia](https://en.wikipedia.org/wiki/Compiler)，编译器是“一种计算机"
+"程序，它将以一种编程语言（源语言）编写的计算机代码翻译成另一种语言（目标语言"
+"） ”。 Idris 编译器就是这样：一个将 Idris 编写的程序翻译成 Chez Scheme "
+"编写的程序的程序。然后这个 Scheme 代码由 Chez Scheme 解释器解析和解释，"
+"它必须安装在我们用来运行已编译 Idris 程序的计算机上。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:37
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "But that's only part of the story. Idris 2 was from the beginning\n"
 "designed to support different code generators (so called *backends*),\n"
@@ -498,53 +512,53 @@ msgid ""
 "and your Idris installation comes with several additional\n"
 "backends available. You can specify the backend to use with the `--cg` command\n"
 "line argument (`cg` stands for *code generator*). For instance:\n"
-msgstr "但这只是故事的一部分。 Idris 2 从一开始就设计为支持不同的代码生成器（所谓的 * 后端 *），这允许我们编写 Idris 代码以针对不同的平台，并且您的 Idris 安装附带了几个可用的附加后端。您可以指定要与 `--cg` 命令行参数一起使用的后端（`cg` 代表 * 代码生成器 *）。例如："
+msgstr ""
+"但这只是故事的一部分。 Idris 2 从一开始就设计为支持不同的代码生成器（所谓的 "
+"*后端*），这允许我们编写 Idris 代码以针对不同的平台，并且您的 Idris "
+"安装附带了几个可用的附加后端。您可以指定要与 `--cg` "
+"命令行参数一起使用的后端（`cg` 代表 *代码生成器*）。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:38
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "idris2 --cg racket\n"
-msgstr "```sh idris2 --cg 球拍 ```"
+msgstr "idris2 --cg racket\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:45
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here is a non-comprehensive list of the backends available with a\n"
 "standard Idris installation (the name to be used in the command line\n"
 "argument is given in parentheses):\n"
-msgstr "以下是标准 Idris 安装可用的后端的非全面列表（在括号中给出命令行参数中使用的名称）："
+msgstr "以下是标准 Idris "
+"安装可用的后端的非全面列表（在括号中给出命令行参数中使用的名称）：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
-#, fuzzy
 msgid ""
 "Racket Scheme (`racket`): This is a different flavour of the scheme "
 "programming language, which can be useful to use when Chez Scheme is not "
 "available on your operating system."
 msgstr ""
-"Racket Scheme (`racket`)：这是方案编程语言的另一种风格，当 Chez Scheme 在您的"
-"操作系统上不可用时，它很有用。"
+"Racket Scheme (`racket`)：这是 Scheme 编程语言的另一种方言，当 Chez Scheme "
+"在您的操作系统上不可用时，它很有用。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
-#, fuzzy
 msgid "Node.js (`node`): This converts an Idris program to JavaScript."
 msgstr "Node.js (`node`)：这会将 Idris 程序转换为 JavaScript。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
-#, fuzzy
 msgid ""
 "Browser (`javascript`): Another JavaScript backend which allows you to write "
 "web applications which run in the browser in Idris."
-msgstr ""
-"浏览器 (`javascript`)：另一个 JavaScript 后端，允许您编写在 Idris 的浏览器中"
-"运行的 Web 应用程序。"
+msgstr "浏览器 (`javascript`)：另一个 JavaScript 后端，允许您编写在 Idris "
+"的浏览器中运行的 Web 应用程序。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:54
-#, fuzzy
 msgid ""
 "RefC (`refc`): A backend compiling Idris to C code, which is then further "
 "compiled by a C compiler."
@@ -552,47 +566,54 @@ msgstr "RefC (`refc`)：后端将 Idris 编译为 C 代码，然后由 C 编译�
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:57
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "I plan to at least cover the JavaScript backends in some more detail\n"
 "in another part of this Idris guide, as I use them pretty often myself.\n"
-msgstr "我计划至少在本 Idris 指南的另一部分中更详细地介绍 JavaScript 后端，因为我自己也经常使用它们。"
+msgstr "我计划至少在本 Idris 指南的另一部分中更详细地介绍 JavaScript "
+"后端，因为我自己也经常使用它们。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:62
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There are also several external backends not officially supported by\n"
 "the Idris project, amongst which are backends for compiling Idris code\n"
 "to Java and Python. You can find a list of external backends on\n"
 "the [Idris Wiki](https://github.com/idris-lang/Idris2/wiki/1-%5BLanguage%5D-External-backends).\n"
-msgstr "Idris 项目还没有正式支持几个外部后端，其中包括将 Idris 代码编译为 Java 和 Python 的后端。您可以在 [Idris Wiki](https://github.com/idris-lang/Idris2/wiki/1-%5BLanguage%5D-External-backends) 上找到外部后端列表。"
+msgstr ""
+"Idris 项目还没有正式支持几个外部后端，其中包括将 Idris 代码编译为 Java 和 "
+"Python 的后端。您可以在 [Idris Wiki](https://github.com/idris-lang/Idris2/"
+"wiki/1-%5BLanguage%5D-External-backends) 上找到外部后端列表。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:63
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "The Idris Primitives"
-msgstr "### 伊德里斯原语"
+msgstr "Idris 原语"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:69
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "A *primitive data type* is a type that is built into the Idris compiler\n"
 "together with a set of *primitive functions*, which are used to perform\n"
 "calculations on the primitives. You will therefore not find a definition\n"
 "of a primitive type or function in the source code of the *Prelude*.\n"
-msgstr "* 原始数据类型* 是与一组 * 原始函数* 一起内置到 Idris 编译器中的类型，这些函数用于对原始数据执行计算。因此，您不会在 *Prelude* 的源代码中找到原始类型或函数的定义。"
+msgstr ""
+"*原语数据类型* 是与一组 *原语函数* 一起内置到 Idris "
+"编译器中的类型，这些函数用于对原始数据执行计算。因此，您不会在 *Prelude* "
+"的源代码中找到原语类型或函数的定义。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:71
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Here is again the list of primitive types in Idris:\n"
-msgstr "这是 Idris 中的原始类型列表："
+msgstr "这是 Idris 中的原语类型列表：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:98
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "* Signed, fixed precision integers:\n"
 "  * `Int8`: Integer in the range [-128,127]\n"
@@ -637,48 +658,50 @@ msgstr ""
 "* `String`：Unicode 字符序列。\n"
 "* `%World`：当前世界状态的符号表示。\n"
 "  当我向您展示如何实现 IO 时，我们了解了这一点。\n"
-"  大多数时候，您不会自己处理这种类型的值\n"
-"  代码。\n"
+"  大多数时候，您不会自己处理这种类型的值的代码。\n"
 "* `Int`：这个比较特殊。它是一个固定精度的有符号整数，\n"
 "   但位大小在某种程度上取决于后端和\n"
 "   （也许）我们使用的平台。\n"
 "   例如，如果您使用默认 Chez Scheme 后端，则 `Int` 是\n"
-"   一个 64 位有符号整数，而在 JavaScript 后端它是一个\n"
-"   出于性能原因，32 位有符号整数。因此，`Int` 来了\n"
-"   很少有保证，你应该使用其中一个\n"
-"   尽可能指定上面列出的整数类型。\n"
+"   一个 64 位有符号整数，而在 JavaScript 后端出于性能原因它是一个32 "
+"位有符号整数。因此，`Int` "
+"没有太多的保证，你应该尽可能指定使用上面列出的整数类型其中一个。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:104
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It can be instructive to learn, where in the compiler's source\n"
 "code the primitive types and functions are defined. This source\n"
 "code can be found in folder `src` of the [Idris project](https://github.com/idris-lang/Idris2)\n"
 "and the primitive types are the constant constructors of\n"
 "data type `Core.TT.Constant`.\n"
-msgstr "学习在编译器源代码中定义原始类型和函数的位置可能具有指导意义。此源代码可以在 [Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，原始类型是数据类型 ` 的常量构造函数Core.TT.Constant`。"
+msgstr ""
+"学习在编译器源代码中定义原语类型和函数的位置可能具有指导意义。此源代码可以在 "
+"[Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，"
+"原语类型是数据类型 `Core.TT.Constant` 的常量构造函数。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:105
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Primitive Functions"
-msgstr "### 原始函数"
+msgstr "原语函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:112
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "All calculations operating on primitives are based on two\n"
 "kinds of primitive functions: The ones built into the compiler\n"
 "(see below) and the ones defined by programmers via the\n"
 "foreign function interface (FFI), about which I'll talk in\n"
 "another chapter.\n"
-msgstr "所有对原语进行的计算都基于两种原语函数：编译器内置的（见下文）和程序员通过外部函数接口（FFI）定义的函数，我将在另一章中讨论。"
+msgstr "所有对原语进行的计算都基于两种原语函数：编译器内置的（见下文）和程序员通过外"
+"部函数接口（FFI）定义的函数，我将在另一章中讨论。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:119
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Built-in primitive functions are functions known to the compiler\n"
 "the definition of which can not be found in the *Prelude*. They\n"
@@ -686,30 +709,38 @@ msgid ""
 "types. Typically, you do not invoke these directly (although\n"
 "it is perfectly fine to do so in most cases) but via functions\n"
 "and interfaces exported by the *Prelude* or the *base* library.\n"
-msgstr "内置原始函数是编译器已知的函数，其定义在 *Prelude* 中找不到。它们定义了可用于原始类型的核心功能。通常，您不会直接调用它们（尽管在大多数情况下这样做非常好），而是通过 *Prelude* 或 *base* 库导出的函数和接口。"
+msgstr ""
+"内置原语函数是编译器已知的函数，其定义在 *Prelude* 中找不到。它们定义了可用于"
+"原语类型的核心函数。通常，您不会直接调用它们（尽管在大多数情况下这样做非常好"
+"），而是通过 *Prelude* 或 *base* 库导出的函数和接口。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:123
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, the primitive function for adding two eight bit\n"
 "unsigned integers is `prim__add_Bits8`. You can inspect its\n"
 "type and behavior at the REPL:\n"
-msgstr "例如，将两个八位无符号整数相加的原始函数是 `prim__add_Bits8`。您可以在 REPL 中检查其类型和行为："
+msgstr "例如，将两个八位无符号整数相加的原语函数是 `prim__add_Bits8`。您可以在 REPL "
+"中检查其类型和行为：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:124
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> :t prim__add_Bits8\n"
 "prim__add_Bits8 : Bits8 -> Bits8 -> Bits8\n"
 "Tutorial.Prim> prim__add_Bits8 12 100\n"
 "112\n"
-msgstr "```repl Tutorial.Prim> :t prim__add_Bits8 prim__add_Bits8 : Bits8 -> Bits8 -> Bits8 Tutorial.Prim> prim__add_Bits8 12 100 112 ```"
+msgstr ""
+"Tutorial.Prim> :t prim__add_Bits8\n"
+"prim__add_Bits8 : Bits8 -> Bits8 -> Bits8\n"
+"Tutorial.Prim> prim__add_Bits8 12 100\n"
+"112\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:148
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "If you look at the source code implementing interface `Num`\n"
 "for `Bits8`, you will see that the plus operator just invokes\n"
@@ -728,26 +759,37 @@ msgid ""
 "and might therefore perform slightly better in performance\n"
 "critical code (which you can only identify after some\n"
 "serious profiling).\n"
-msgstr "如果查看 `Bits8` 的实现接口 `Num` 的源代码，您会看到加号运算符只是在内部调用 `prim__add_Bits8`。原始接口实现中的大多数其他功能也是如此。例如，除了 `%World` 之外的每个原始类型都带有原始比较函数。对于 `Bits8`，它们是：`prim__eq_Bits8`、`prim__gt_Bits8`、`prim__lt_Bits8`、`prim__gte_Bits8` 和 `prim__lte_Bits8 X466X]。请注意，这些函数不返回 `Bool`（在 Idris 中 * 不是 * 原始类型），而是 `Int`。因此，它们不像接口 `Eq` 和 `Comp` 中的相应运算符实现那样安全或方便。另一方面，它们不会通过转换为 `Bool` 并且因此在性能关键代码中的性能可能会稍好一些（您只能在经过一些认真的分析后才能识别）。"
+msgstr ""
+"如果查看 `Bits8` 的实现接口 `Num` 的源代码，您会看到加号运算符只是在内部调用 "
+"`prim__add_Bits8`。原语接口实现中的大多数其他函数也是如此。例如，除了 "
+"`%World` 之外的每个原语类型都带有原语比较函数。对于 `Bits8`，它们是：`prim__e"
+"q_Bits8`、`prim__gt_Bits8`、`prim__lt_Bits8`、`prim__gte_Bits8` 和 "
+"`prim__lte_Bits8`。请注意，这些函数不返回 `Bool`（在 Idris 中 *不是* "
+"原语类型），而是 `Int`。因此，它们不像接口 `Eq` 和 `Comp` "
+"中的相应运算符实现那样安全或方便。另一方面，它们不会通过转换为 `Bool` 并且因"
+"此在性能关键代码中的性能可能会稍好一些（您只能在经过一些认真的分析后才能识别"
+"）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:152
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As with primitive types, the primitive functions are listed as\n"
 "constructors in a data type (`Core.TT.PrimFn`) in the compiler\n"
 "sources. We will look at most of these in the following sections.\n"
-msgstr "与原始类型一样，原始函数在编译器源代码中被列为数据类型 (`Core.TT.PrimFn`) 中的构造函数。我们将在以下部分中介绍其中的大部分内容。"
+msgstr ""
+"与原语类型一样，原语函数在编译器源代码中被列为数据类型 (`Core.TT.PrimFn`) "
+"中的构造函数。我们将在以下部分中介绍其中的大部分内容。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:153
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Consequences of being Primitive"
-msgstr "### 原始的后果"
+msgstr "原语的重要性"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:163
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Primitive functions and types are opaque to the compiler\n"
 "in most regards: They have to be defined and implemented by each\n"
@@ -757,132 +799,148 @@ msgid ""
 "function, *we* know that the argument in the recursive call\n"
 "must be converging towards the base case (unless there is a bug\n"
 "in the backend we use), but the compiler does not:\n"
-msgstr "在大多数情况下，原始函数和类型对编译器是不透明的：它们必须由每个后端单独定义和实现，因此，编译器对原始值的内部结构和原始函数的内部工作一无所知。例如，在下面的递归函数中，*we* 知道递归调用中的参数必须收敛到基本情况（除非我们使用的后端存在错误），但编译器不知道："
+msgstr ""
+"在大多数情况下，原语函数和类型对编译器是不透明的：它们必须由每个后端单独定义"
+"和实现，因此，编译器对原语值的内部结构和原语函数的内部工作一无所知。例如，在"
+"下面的递归函数中，*我们* 知道递归调用中的参数必须收敛到基本情况（除非我们使用"
+"的后端存在错误），但编译器不知道：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:164
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "covering\n"
 "replicateBits8' : Bits8 -> a -> List a\n"
 "replicateBits8' 0 _ = []\n"
 "replicateBits8' n v = v :: replicateBits8' (n - 1) v\n"
-msgstr "```idris 覆盖 replicateBits8' : Bits8 -> a -> List a replicateBits8' 0 _ = [] replicateBits8' n v = v :: replicateBits8' (n - 1) v ```"
+msgstr ""
+"covering\n"
+"replicateBits8' : Bits8 -> a -> List a\n"
+"replicateBits8' 0 _ = []\n"
+"replicateBits8' n v = v :: replicateBits8' (n - 1) v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:174
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In these cases, we either must be content with just a\n"
 "*covering* function, or we use `assert_smaller` to\n"
 "convince the totality checker (the preferred way):\n"
-msgstr "在这些情况下，我们要么只满足于 *covering* 函数，要么使用 `assert_smaller` 来说服整体检查器（首选方式）："
+msgstr "在这些情况下，我们要么只满足于 *covering* 函数，要么使用 `assert_smaller` "
+"来说服整体检查器（首选方式）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:175
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "replicateBits8 : Bits8 -> a -> List a\n"
 "replicateBits8 0 _ = []\n"
 "replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v\n"
-msgstr "```idris replicateBits8 : Bits8 -> a -> List a replicateBits8 0 _ = [] replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v ```"
+msgstr ""
+"replicateBits8 : Bits8 -> a -> List a\n"
+"replicateBits8 0 _ = []\n"
+"replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:184
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "I have shown you the risks of using `assert_smaller` before, so we\n"
 "must be extra careful in making sure that the new function argument\n"
 "is indeed smaller with relation to the base case.\n"
-msgstr "我之前已经向您展示了使用 `assert_smaller` 的风险，因此我们必须格外小心，以确保新函数参数相对于基本情况确实更小。"
+msgstr "我之前已经向您展示了使用 `assert_smaller` "
+"的风险，因此我们必须格外小心，以确保新函数参数相对于基本情况确实更小。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:189
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "While Idris knows nothing about the internal workings of primitives\n"
 "and related functions, most of these functions still reduce during\n"
 "evaluation when fed with values known at compile time. For instance,\n"
 "we can trivially proof that for `Bits8` the following equation holds:\n"
-msgstr "虽然 Idris 对原语和相关函数的内部工作原理一无所知，但当输入编译时已知的值时，这些函数中的大多数在评估期间仍然会减少。例如，我们可以简单地证明对于 `Bits8`，以下等式成立："
+msgstr ""
+"虽然 Idris 对原语和相关函数的内部工作原理一无所知，但当输入编译时已知的值时，"
+"这些函数中的大多数在求值期间仍然会减少。例如，我们可以简单地证明对于 "
+"`Bits8`，以下等式成立：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:190
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "zeroBits8 : the Bits8 0 = 255 + 1\n"
 "zeroBits8 = Refl\n"
-msgstr "```idris zeroBits8 : Bits8 0 = 255 + 1 zeroBits8 = Refl ```"
+msgstr ""
+"zeroBits8 : the Bits8 0 = 255 + 1\n"
+"zeroBits8 = Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:200
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Having no clue about the internal structure of a primitive\n"
 "nor about the implementations of primitive functions,\n"
 "Idris can't help us proofing any *general* properties of such functions\n"
 "and values. Here is an example to demonstrate this. Assume we'd\n"
 "like to wrap a list in a data type indexed by the list's length:\n"
-msgstr "由于不了解原始的内部结构或原始函数的实现，Idris 无法帮助我们证明此类函数和值的任何 *general* 属性。这是一个例子来证明这一点。假设我们想将一个列表包装在一个由列表长度索引的数据类型中："
+msgstr ""
+"由于不了解原语的内部结构或原语函数的实现，Idris "
+"无法帮助我们证明此类函数和值的任何 *泛型* 属性。这是一个例子来证明这一点。假"
+"设我们想将一个列表包装在一个由列表长度索引的数据类型中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:201
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data LenList : (n : Nat) -> Type -> Type where\n"
 "  MkLenList : (as : List a) -> LenList (length as) a\n"
 msgstr ""
-"```伊德里斯\n"
-"数据 LenList : (n : Nat) -> 类型 -> 类型\n"
+"data LenList : (n : Nat) -> Type -> Type where\n"
 "  MkLenList : (as : List a) -> LenList (length as) a\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:209
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "When we concatenate two `LenList`s, the length indices\n"
 "should be added. That's how list concatenation affects the\n"
 "length of lists. We can safely teach Idris that this is true:\n"
-msgstr "当我们连接两个 `LenList` 时，应该添加长度索引。这就是列表连接影响列表长度的方式。我们可以安全地告诉伊德里斯这是真的："
+msgstr "当我们连接两个 `LenList` 时，应该累加长度索引。这就是列表连接影响列表长度的方"
+"式。我们可以安全地告诉伊德里斯这是真的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:210
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "0 concatLen : (xs,ys : List a) -> length xs + length ys = length (xs ++ ys)\n"
 "concatLen []        ys = Refl\n"
 "concatLen (x :: xs) ys = cong S $ concatLen xs ys\n"
 msgstr ""
-"```伊德里斯\n"
-"0 concatLen : (xs,ys : 列表 a) -> 长度 xs + 长度 ys = 长度 (xs ++ ys)\n"
-"concatLen [] ys = Refl\n"
+"0 concatLen : (xs,ys : List a) -> length xs + length ys = length (xs ++ ys)\n"
+"concatLen []        ys = Refl\n"
 "concatLen (x :: xs) ys = cong S $ concatLen xs ys\n"
-"```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:217
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "With the above lemma, we can implement concatenation of `LenList`:\n"
-msgstr "通过上述引理，我们可以实现 `LenList` 的串联："
+msgstr "通过上述引理，我们可以实现 `LenList` 的串联：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:218
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "(++) : LenList m a -> LenList n a -> LenList (m + n) a\n"
 "MkLenList xs ++ MkLenList ys =\n"
 "  rewrite concatLen xs ys in MkLenList (xs ++ ys)\n"
 msgstr ""
-"```伊德里斯\n"
 "(++) : LenList m a -> LenList n a -> LenList (m + n) a\n"
 "MkLenList xs ++ MkLenList ys =\n"
-"  在 MkLenList (xs ++ ys) 中重写 concatLen xs ys\n"
-"```\n"
+"  rewrite concatLen xs ys in MkLenList (xs ++ ys)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:231
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The same is not possible for strings. There are applications where\n"
 "pairing a string with its length would be useful (for instance, if we\n"
@@ -891,48 +949,55 @@ msgid ""
 "consumed), but Idris cannot help us getting these things right.\n"
 "There is no way to implement and thus proof the following\n"
 "lemma in a safe way:\n"
-msgstr "字符串也是不可能的。在某些应用程序中，将字符串与其长度配对会很有用（例如，如果我们想确保字符串在解析过程中严格缩短，因此最终会被完全消耗掉），但 Idris 无法帮助我们正确处理这些事情。没有办法以安全的方式实现并证明以下引理："
+msgstr ""
+"字符串也是不可能的。在某些应用程序中，将字符串与其长度配对会很有用（例如，如"
+"果我们想确保字符串在解析过程中严格缩短，因此最终会被完全消耗掉），但 Idris "
+"无法帮助我们正确处理这些事情。没有办法以安全的方式实现并证明以下引理：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:232
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "0 concatLenStr : (a,b : String) -> length a + length b = length (a ++ b)\n"
-msgstr "```idris 0 concatLenStr : (a,b : String) -> 长度 a + 长度 b = 长度 (a ++ b) ```"
+msgstr ""
+"0 concatLenStr : (a,b : String) -> length a + length b = length (a ++ b)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:237
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "<!-- markdownlint-disable MD026 -->\n"
 msgstr "<!-- markdownlint-disable MD026 -->\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:237
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Believe Me!"
 msgstr "相信我！"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:239
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "<!-- markdownlint-enable MD026 -->\n"
-msgstr "<!-- markdownlint-disable MD026 -->\n"
+msgstr "<!-- markdownlint-enable MD026 -->\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:245
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to implement `concatLenStr`, we have to abandon all\n"
 "safety and use the ten ton wrecking ball of type coercion:\n"
 "`believe_me`. This primitive function allows us to freely\n"
 "coerce a value of any type into a value of any other type.\n"
 "Needless to say, this is only safe if we *really* know what we are doing:\n"
-msgstr "为了实现`concatLenStr`，我们必须放弃所有安全，使用强制类型的十吨破坏球：`believe_me`。这个原始函数允许我们自由地将任何类型的值强制转换为任何其他类型的值。不用说，只有当我们 * 真的 * 知道我们在做什么时，这才是安全的："
+msgstr ""
+"为了实现 `concatLenStr`，我们必须放弃所有安全，使用强制类型的十吨破坏球：`bel"
+"ieve_me`。这个原语函数允许我们自由地将任何类型的值强制转换为任何其他类型的值"
+"。不用说，只有当我们 *真的* 知道我们在做什么时，这才是安全的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:246
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "concatLenStr a b = believe_me $ Refl {x = length a + length b}\n"
-msgstr "```idris concatLenStr a b = believe_me $ Refl {x = 长度 a + 长度 b} ```"
+msgstr "concatLenStr a b = believe_me $ Refl {x = length a + length b}\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:257
