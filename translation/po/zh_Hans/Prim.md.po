@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-27 01:15+0000\n"
+"PO-Revision-Date: 2022-08-27 11:21+0000\n"
 "Last-Translator: 刘世华 <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/prim/zh_Hans/>\n"
@@ -1001,7 +1001,7 @@ msgstr "concatLenStr a b = believe_me $ Refl {x = length a + length b}\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:257
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The explicit assignment of variable `x` in `{x = length a + length b}`\n"
 "is necessary, because otherwise Idris will complain about an *unsolved\n"
@@ -1010,37 +1010,44 @@ msgid ""
 "are passing the result to `believe_me` anyway, but I consider it\n"
 "to be good practice to assign one of the two sides of the equality\n"
 "to make our intention clear.\n"
-msgstr "在 `{x = 长度 a + 长度 b}` 中显式分配变量 `x` 是必要的，否则 Idris 会抱怨 * 未解决的孔 *：它可以' t 在 `Refl` 构造函数中推断参数 `x` 的类型。我们可以在这里为 `x` 分配任何类型，因为无论如何我们都将结果传递给 `believe_me`，但我认为将等式的两侧之一分配给明确我们的意图。"
+msgstr ""
+"在 `x = length a + length b}` 中显式分配变量 `x` 是必要的，否则 Idris 会抱怨 "
+"*未解决的孔*：它可以在 `Refl` 构造函数中推断参数 `x` 的类型。"
+"我们可以在这里为 `x` 分配任何类型，因为无论如何我们都将结果传递给 "
+"`believe_me`，但我认为将等式的两侧之一分配给明确我们的意图。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:262
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The higher the complexity of a primitive type, the riskier\n"
 "it is to assume even the most basic properties for it to hold.\n"
 "For instance, we might act under the delusion that floating\n"
 "point addition is associative:\n"
-msgstr "原始类型的复杂性越高，假设它拥有最基本的属性的风险就越大。例如，我们可能会误以为浮点加法是关联的："
+msgstr "原始类型的复杂性越高，假设它拥有最基本的属性的风险就越大。例如，我们可能会误"
+"以为浮点加法具有结合性：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:263
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z\n"
 "doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)}\n"
-msgstr "```idris 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)} ```"
+msgstr ""
+"0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z\n"
+"doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)}\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:270
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Well, guess what: That's a lie. And lies lead us straight\n"
 "into the `Void`:\n"
-msgstr "好吧，你猜怎么着：那是个谎言。谎言将我们直接带入 `Void`："
+msgstr "好吧，你猜怎么着：那是个谎言。谎言将我们直接带入 `Void`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:271
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tiny : Double\n"
 "Tiny = 0.0000000000000001\n"
@@ -1054,21 +1061,21 @@ msgid ""
 "boom : Void\n"
 "boom = wrong (doubleAddAssoc One Tiny Tiny)\n"
 msgstr ""
-"小：双\n"
-"微小 = 0.0000000000000001\n"
+"Tiny : Double\n"
+"Tiny = 0.0000000000000001\n"
 "\n"
-"一：双人间\n"
-"一 = 1.0\n"
+"One : Double\n"
+"One = 1.0\n"
 "\n"
-"错误：（0 _：1.0000000000000002 = 1.0）-> 无效\n"
-"错误的 Refl 不可能\n"
+"wrong : (0 _ : 1.0000000000000002 = 1.0) -> Void\n"
+"wrong Refl impossible\n"
 "\n"
-"繁荣：无效\n"
-"繁荣 = 错误（doubleAddAssoc One Tiny Tiny）\n"
+"boom : Void\n"
+"boom = wrong (doubleAddAssoc One Tiny Tiny)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:291
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here's what happens in the code above: The call to `doubleAddAssoc`\n"
 "returns a proof that `One + (Tiny + Tiny)` is equal to\n"
@@ -1076,114 +1083,125 @@ msgid ""
 "`1.0000000000000002`, while `(One + Tiny) + Tiny` equals `1.0`.\n"
 "We can therefore pass our (wrong) proof to `wrong`, because it\n"
 "is of the correct type, and from this follows a proof of `Void`.\n"
-msgstr "下面是上面代码中发生的情况：对 `doubleAddAssoc` 的调用返回一个证明 `One + (Tiny + Tiny)` 等于 `(One + Tiny) + Tiny[X143X ]。但是 `One + (Tiny + Tiny)` 等于 `1.0000000000000002`，而 `(One + Tiny) + Tiny` 等于 `1.0`。因此，我们可以将我们的（错误的）证明传递给 `wrong`，因为它是正确的类型，并由此得出 `Void` 的证明。"
+msgstr ""
+"下面是上面代码中发生的情况：对 `doubleAddAssoc` 的调用返回一个证明 `One + ("
+"Tiny + Tiny)` 等于 `(One + Tiny) + Tiny`。但是 `One + (Tiny + Tiny)` 等于 `1."
+"0000000000000002`，而 `(One + Tiny) + Tiny` 等于 `1."
+"0`。因此，我们可以将我们的（错误的）证明传递给 `wrong`，因为它是正确的类型，"
+"并由此得出 `Void` 的证明。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Prim.md:292
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Working with Strings"
-msgstr "## 使用字符串"
+msgstr "使用字符串"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:297
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Module `Data.String` in *base* offers a rich set of functions\n"
 "for working with strings. All these are based on the following\n"
 "primitive operations built into the compiler:\n"
-msgstr "*base* 中的模块 `Data.String` 提供了一组丰富的函数来处理字符串。所有这些都基于编译器内置的以下原始操作："
+msgstr "*base* 中的模块 `Data.String` "
+"提供了一组丰富的函数来处理字符串。所有这些都基于编译器内置的以下原语操作：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid "`prim__strLength`: Returns the length of a string."
 msgstr "`prim__strLength`：返回字符串的长度。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid "`prim__strHead`: Extracts the first character from a string."
 msgstr "`prim__strHead`：从字符串中提取第一个字符。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid "`prim__strTail`: Removes the first character from a string."
 msgstr "`prim__strTail`：从字符串中删除第一个字符。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid "`prim__strCons`: Prepends a character to a string."
 msgstr "`prim__strCons`：在字符串前面添加一个字符。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid "`prim__strAppend`: Appends two strings."
 msgstr "`prim__strAppend`：追加两个字符串。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid ""
 "`prim__strIndex`: Extracts a character at the given position from a string."
 msgstr "`prim__strIndex`：从字符串中提取给定位置的字符。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:305
-#, fuzzy
 msgid "`prim__strSubstr`: Extracts the substring between the given positions."
 msgstr "`prim__strSubstr`：提取给定位置之间的子字符串。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:311
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Needless to say, not all of these functions are total. Therefore, Idris\n"
 "must make sure that invalid calls do not reduce during compile time, as\n"
 "otherwise the compiler would crash. If, however we force the evaluation\n"
 "of a partial primitive function by compiling and running the corresponding\n"
 "program, this program will crash with an error:\n"
-msgstr "不用说，并非所有这些功能都是完整的。因此，Idris 必须确保在编译期间不会减少无效调用，否则编译器会崩溃。但是，如果我们通过编译和运行相应的程序来强制对部分原始函数求值，则该程序将崩溃并出现错误："
+msgstr ""
+"不用说，并非所有这些功能都是完整的。因此，Idris 必须确保在编译期间不会减少无"
+"效调用，否则编译器会崩溃。但是，如果我们通过编译和运行相应的程序来强制对部分"
+"原语函数求值，则该程序将崩溃并出现错误：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:312
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> prim__strTail \"\"\n"
 "prim__strTail \"\"\n"
 "Tutorial.Prim> :exec putStrLn (prim__strTail \"\")\n"
 "Exception in substring: 1 and 0 are not valid start/end indices for \"\"\n"
-msgstr "```repl Tutorial.Prim> prim__strTail \"\" prim__strTail \"\" Tutorial.Prim> :exec putStrLn (prim__strTail \"\") 子字符串中的异常：1 和 0 不是“”的有效开始/结束索引 ```"
+msgstr ""
+"Tutorial.Prim> prim__strTail \"\"\n"
+"prim__strTail \"\"\n"
+"Tutorial.Prim> :exec putStrLn (prim__strTail \"\")\n"
+"Exception in substring: 1 and 0 are not valid start/end indices for \"\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:323
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, how `prim__strTail \"\"` is not reduced at the REPL and how the\n"
 "same expression leads to a runtime exception if we compile and\n"
 "execute the program. Valid calls to `prim__strTail` are reduced\n"
 "just fine, however:\n"
-msgstr "请注意，`prim__strTail \"\"` 如何在 REPL 中没有减少，以及如果我们编译和执行程序，相同的表达式如何导致运行时异常。对 `prim__strTail` 的有效调用减少得很好，但是："
+msgstr ""
+"请注意，`prim__strTail \"\"` 在 REPL "
+"中没有减少，以及如果我们编译和执行程序，相同的表达式如何导致运行时异常。对 "
+"`prim__strTail` 的有效调用减少得很好，但是：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:324
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "tailExample : prim__strTail \"foo\" = \"oo\"\n"
 "tailExample = Refl\n"
-msgstr "```idris tailExample : prim__strTail \"foo\" = \"oo\" tailExample = Refl ```"
+msgstr ""
+"tailExample : prim__strTail \"foo\" = \"oo\"\n"
+"tailExample = Refl\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:329
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Pack and Unpack"
-msgstr "### 打包和解包"
+msgstr "打包和解包"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:339
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Two of the most important functions for working with strings\n"
 "are `unpack` and `pack`, which convert a string to a list\n"
@@ -1193,45 +1211,54 @@ msgid ""
 "be the most efficient thing to do, but unless you plan to\n"
 "handle very large amounts of text, they work and perform\n"
 "reasonably well.\n"
-msgstr "处理字符串的两个最重要的函数是 `unpack` 和 `pack`，它们将字符串转换为字符列表，反之亦然。这允许我们通过迭代或折叠字符列表来方便地实现许多字符串操作。这可能并不总是最有效的做法，但除非您计划处理大量文本，否则它们的工作和性能相当不错。"
+msgstr ""
+"处理字符串的两个最重要的函数是 `unpack` 和 `pack`，它们将字符串转换为字符列表"
+"，以及反过来。这允许我们通过迭代或折叠字符列表来方便地实现许多字符串操作。这"
+"可能并不总是最有效的做法，但除非您计划处理大量文本，否则它们的工作和性能相当"
+"不错。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:340
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "String Interpolation"
-msgstr "### 字符串插值"
+msgstr "字符串插值"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:345
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Idris allows us to include arbitrary string expressions in\n"
 "a string literal by wrapping them in curly braces, the first\n"
 "of which has to be escaped with a backslash. For instance:\n"
-msgstr "Idris 允许我们将任意字符串表达式包含在字符串文字中，方法是将它们包裹在花括号中，第一个必须用反斜杠转义。例如："
+msgstr "Idris 允许我们将任意字符串表达式包含在字符串文字中，方法是将它们包裹在花括号"
+"中，第一个必须用反斜杠转义。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:346
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "interpEx1 : Bits64 -> Bits64 -> String\n"
 "interpEx1 x y = \"\\{show x} + \\{show y} = \\{show $ x + y}\"\n"
-msgstr "```idris interpEx1 : Bits64 -> Bits64 -> 字符串 interpEx1 x y = \"\\{show x} + \\{show y} = \\{show $ x + y}\" ```"
+msgstr ""
+"interpEx1 : Bits64 -> Bits64 -> String\n"
+"interpEx1 x y = \"\\{show x} + \\{show y} = \\{show $ x + y}\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:356
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is a very convenient way to assemble complex strings\n"
 "from values of different types.\n"
 "In addition, there is interface `Interpolation`, which\n"
 "allows us to use values in interpolated strings without\n"
 "having to convert them to strings first:\n"
-msgstr "这是从不同类型的值组装复杂字符串的一种非常方便的方法。此外，还有接口`Interpolation`，它允许我们在插值字符串中使用值，而不必先将它们转换为字符串："
+msgstr ""
+"这是从不同类型的值组装复杂字符串的一种非常方便的方法。此外，还有接口`Interpol"
+"ation`，它允许我们在插值字符串中使用值，而不必先将它们转换为字符串：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:357
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data Element = H | He | C | N | O | F | Ne\n"
 "\n"
@@ -1258,95 +1285,108 @@ msgid ""
 "ethanol : String\n"
 "ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
 msgstr ""
-"数据元素 = H |他 | C | N | ○ | F |氖\n"
+"data Element = H | He | C | N | O | F | Ne\n"
 "\n"
-"公式：类型\n"
-"公式 = 列表（元素，Nat）\n"
+"Formula : Type\n"
+"Formula = List (Element,Nat)\n"
 "\n"
-"插值元素 where\n"
-"  插值 H = \"H\"\n"
-"  插值 He = \"He\"\n"
-"  插值 C = \"C\"\n"
-"  插值 N = \"N\"\n"
-"  插值 O = \"O\"\n"
-"  插值 F = \"F\"\n"
-"  插值 Ne = \"Ne\"\n"
+"Interpolation Element where\n"
+"  interpolate H  = \"H\"\n"
+"  interpolate He = \"He\"\n"
+"  interpolate C  = \"C\"\n"
+"  interpolate N  = \"N\"\n"
+"  interpolate O  = \"O\"\n"
+"  interpolate F  = \"F\"\n"
+"  interpolate Ne = \"Ne\"\n"
 "\n"
-"插值 (Element,Nat) 其中\n"
-"  插值 (_, 0) = \"\"\n"
-"  插值 (x, 1) = \"\\{x}\"\n"
-"  插值 (x, k) = \"\\{x}\\{显示 k}\"\n"
+"Interpolation (Element,Nat) where\n"
+"  interpolate (_, 0) = \"\"\n"
+"  interpolate (x, 1) = \"\\{x}\"\n"
+"  interpolate (x, k) = \"\\{x}\\{show k}\"\n"
 "\n"
-"插值公式\n"
-"  插值 = foldMap 插值\n"
+"Interpolation Formula where\n"
+"  interpolate = foldMap interpolate\n"
 "\n"
-"乙醇：字符串\n"
-"乙醇 = \"乙醇的公式为：\\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
+"ethanol : String\n"
+"ethanol = \"The formulat of ethanol is: \\{[(C,2),(H,6),(O, the Nat 1)]}\"\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:384
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Raw and Multiline String Literals"
-msgstr "### 原始和多行字符串文字"
+msgstr "原始和多行字符串字面量"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:388
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In string literals, we have to escape certain characters\n"
 "like quotes, backslashes or new line characters. For instance:\n"
-msgstr "在字符串文字中，我们必须转义某些字符，如引号、反斜杠或换行符。例如："
+msgstr "在字符串文字中，我们必须转义某些字符，如引号、反斜杠或换行符。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:389
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "escapeExample : String\n"
 "escapeExample = \"A quote: \\\". \\nThis is on a new line.\\nA backslash: \\\\\"\n"
-msgstr "```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n这是一个新行。\\n反斜杠：\\\\\" ```"
+msgstr ""
+"escapeExample : String\n"
+"escapeExample = \"A quote: \\\". \\n"
+"This is on a new line.\\n"
+"A backslash: \\\\\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:398
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Idris allows us to enter raw string literals, where there\n"
 "is no need to escape quotes and backslashes, by pre- and\n"
 "postfixing the wrapping quote characters with the same number\n"
 "of hash characters. For instance:\n"
-msgstr "Idris 允许我们输入原始字符串文字，无需转义引号和反斜杠，方法是使用相同数量的散列字符前后加环绕引号字符。例如："
+msgstr "Idris 允许我们输入原始字符串文字，无需转义引号和反斜杠，方法是在引号前后使用"
+"相同数量的井号进行包裹。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:399
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "rawExample : String\n"
 "rawExample = #\"A quote: \". A blackslash: \\\"#\n"
 "\n"
 "rawExample2 : String\n"
 "rawExample2 = ##\"A quote: \". A blackslash: \\\"##\n"
-msgstr "```idris escapeExample : String escapeExample = \"A quote: \\\"。 \\n这是一个新行。\\n反斜杠：\\\\\" ```"
+msgstr ""
+"rawExample : String\n"
+"rawExample = #\"A quote: \". A blackslash: \\\"#\n"
+"\n"
+"rawExample2 : String\n"
+"rawExample2 = ##\"A quote: \". A blackslash: \\\"##\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:411
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "With raw string literals, it is still possible to use string\n"
 "interpolation, but the opening curly brace has to be prefixed\n"
 "with a backslash and the same number of hashes as are being used\n"
 "for opening and closing the string literal:\n"
-msgstr "对于原始字符串文字，仍然可以使用字符串插值，但开始的花括号必须以反斜杠为前缀，并且散列数与用于打开和关闭字符串文字的哈希数相同："
+msgstr "对于原始字符串字面量，仍然可以使用字符串插值，但开始的花括号必须以反斜杠为前"
+"缀，并且加上和用于打开关闭字符串字面量的相同数据的井号：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:412
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "rawInterpolExample : String\n"
 "rawInterpolExample = ##\"An interpolated \"string\": \\##{rawExample}\"##\n"
-msgstr "```idris rawInterpolExample : String rawInterpolExample = ##\"一个内插的“字符串”：\\##{rawExample}\"## ```"
+msgstr ""
+"rawInterpolExample : String\n"
+"rawInterpolExample = ##\"An interpolated \"string\": \\##{rawExample}\"##\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:424
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, Idris also allows us to conveniently write multiline\n"
 "strings. These can be pre- and postfixed with hashes if we want\n"
@@ -1355,11 +1395,15 @@ msgid ""
 "triple quote characters. Indenting the closing triple quotes\n"
 "allows us to indent the whole multiline literal. Whitespace used\n"
 "for indentation will not appear in the resulting string. For instance:\n"
-msgstr "最后，Idris 还允许我们方便地编写多行字符串。如果我们想要原始的多行字符串文字，这些可以用哈希前缀和后缀，它们也可以与字符串插值结合使用。多行文字用三引号字符打开和关闭。缩进结束的三引号允许我们缩进整个多行文字。用于缩进的空格不会出现在结果字符串中。例如："
+msgstr ""
+"最后，Idris 还允许我们方便地编写多行字符串。如果我们想要原始的多行字符串字面"
+"量，这些可以用井号前缀和后缀，它们也可以与字符串插值结合使用。多行文字用三引"
+"号字符打开和关闭。缩进结束的三引号允许我们缩进整个多行文字。用于缩进的空格不"
+"会出现在结果字符串中。例如：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:425
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "multiline1 : String\n"
 "multiline1 = \"\"\"\n"
@@ -1378,55 +1422,59 @@ msgid ""
 "  This is reduced to \"\\#{\"foo\" ++ \"bar\"}\".\n"
 "  \"\"\"#\n"
 msgstr ""
-"```伊德里斯\n"
-"多行1：字符串\n"
-"多行 1 = \"\"\"\n"
-"  我抬起头凝视\n"
-"  在陌生人的眼中\n"
-"  我一直都知道镜子从不说谎\n"
-"  人们总是转身离开\n"
-"  从陌生人的眼中\n"
-"  害怕看到凝视背后隐藏的东西\n"
+"multiline1 : String\n"
+"multiline1 = \"\"\"\n"
+"  And I raise my head and stare\n"
+"  Into the eyes of a stranger\n"
+"  I've always known that the mirror never lies\n"
+"  People always turn away\n"
+"  From the eyes of a stranger\n"
+"  Afraid to see what hides behind the stare\n"
 "  \"\"\"\n"
+"\n"
+"multiline2 : String\n"
+"multiline2 = #\"\"\"\n"
+"  An example for a simple expression:\n"
+"  \"foo\" ++ \"bar\".\n"
+"  This is reduced to \"\\#{\"foo\" ++ \"bar\"}\".\n"
+"  \"\"\"#\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:447
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Make sure to look at the example strings at the\n"
 "REPL to see the effect of interpolation and raw string\n"
 "literals and compare it with the syntax we used.\n"
-msgstr "请务必查看 REPL 中的示例字符串，以了解插值和原始字符串文字的效果，并将其与我们使用的语法进行比较。"
+msgstr "请务必查看 REPL 中的示例字符串，以了解插值和原始字符串文字的效果，并将其与我"
+"们使用的语法进行比较。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:454
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In these exercises, you are supposed to implement a bunch\n"
 "of utility functions for consuming and converting strings.\n"
 "I don't give the expected types here, because you are\n"
 "supposed to come up with those yourself.\n"
-msgstr "在这些练习中，你应该实现一堆用于消费和转换字符串的实用函数。我在这里没有给出预期的类型，因为你应该自己想出那些。"
+msgstr "在这些练习中，你应该实现一堆用于消费和转换字符串的实用函数。我在这里没有给出"
+"预期的类型，因为你应该自己想出那些。\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Prim.md:458
-#, fuzzy
 msgid ""
 "Implement functions similar to `map`, `filter`, and `mapMaybe` for strings. "
 "The output type of these should always be a string."
-msgstr ""
-"为字符串实现类似于 `map`、`filter` 和 `mapMaybe` 的函数。这些的输出类型应该始"
-"终是一个字符串。"
+msgstr "为字符串实现类似于 `map`、`filter` 和 `mapMaybe` "
+"的函数。这些的输出类型应该始终是一个字符串。"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Prim.md:461
-#, fuzzy
 msgid "Implement functions similar to `foldl` and `foldMap` for strings."
 msgstr "为字符串实现类似于 `foldl` 和 `foldMap` 的函数。"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Prim.md:464
-#, fuzzy
 msgid ""
 "Implement a function similar to `traverse` for strings. The output type "
 "should be a wrapped string."
@@ -1434,7 +1482,6 @@ msgstr "为字符串实现类似于 `traverse` 的函数。输出类型应该是
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Prim.md:467
-#, fuzzy
 msgid ""
 "Implement the bind operator for strings. The output type should again be a "
 "string."
@@ -1442,20 +1489,23 @@ msgstr "为字符串实现绑定运算符。输出类型应该再次是字符串
 
 #. type: Title ##
 #: ../src/Tutorial/Prim.md:468
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Integers"
-msgstr "## 整数"
+msgstr "整数"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:475
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As listed at the beginning of this chapter, Idris provides different\n"
 "fixed-precision signed and unsigned integer types as well as `Integer`,\n"
 "an arbitrary precision signed integer type.\n"
 "All of them come with the following primitive functions (given\n"
 "here for `Bits8` as an example):\n"
-msgstr "正如本章开头所列出的，Idris 提供了不同的固定精度有符号和无符号整数类型以及 `Integer`，一种任意精度的有符号整数类型。它们都带有以下原始函数（此处以 `Bits8` 为例）："
+msgstr ""
+"正如本章开头所列出的，Idris 提供了不同的固定精度有符号和无符号整数类型以及 "
+"`Integer`，一种任意精度的有符号整数类型。它们都带有以下原语函数（此处以 "
+"`Bits8` 为例）：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
@@ -1465,61 +1515,52 @@ msgstr "`prim__add_Bits8`：整数加法。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__sub_Bits8`: Integer subtraction."
 msgstr "`prim__sub_Bits8`：整数减法。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__mul_Bits8`: Integer multiplication."
 msgstr "`prim__mul_Bits8`：整数乘法。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__div_Bits8`: Integer division."
 msgstr "`prim__div_Bits8`：整数除法。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__mod_Bits8`: Modulo function."
 msgstr "`prim__mod_Bits8`：模函数。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__shl_Bits8`: Bitwise left shift."
 msgstr "`prim__shl_Bits8`：按位左移。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__shr_Bits8`: Bitwise right shift."
 msgstr "`prim__shr_Bits8`：按位右移。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__and_Bits8`: Bitwise *and*."
-msgstr "`prim__and_Bits8`：按位 * 和 *。"
+msgstr "`prim__and_Bits8`：按位 *与*。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__or_Bits8`: Bitwise *or*."
-msgstr "`prim__or_Bits8`：按位 * 或 *。"
+msgstr "`prim__or_Bits8`：按位 *或*。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__xor_Bits8`: Bitwise *xor*."
-msgstr "`prim__xor_Bits8`：按位 *xor*。"
+msgstr "`prim__xor_Bits8`：按位 *异或*。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:493
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Typically, you use the functions for addition and multiplication\n"
 "through the operators from interface `Num`, the function\n"
@@ -1527,74 +1568,69 @@ msgid ""
 "for division (`div` and `mod`) through interface `Integral`.\n"
 "The bitwise operations are available through interfaces\n"
 "`Data.Bits.Bits` and `Data.Bits.FiniteBits`.\n"
-msgstr "通常，您可以通过接口 `Num` 中的运算符使用加法和乘法函数，通过接口 `Neg` 使用减法函数，以及除法函数 (`div`和 `mod`) 通过接口 `Integral`。位运算可通过接口 `Data.Bits.Bits` 和 `Data.Bits.FiniteBits` 获得。"
+msgstr ""
+"通常，您可以通过接口 `Num` 中的运算符使用加法和乘法函数，通过接口 `Neg` "
+"使用减法函数，以及除法函数 (`div`和 `mod`) 通过接口 `Integral`。"
+"位运算可通过接口 `Data.Bits.Bits` 和 `Data.Bits.FiniteBits` 获得。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:497
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For all integral types, the following laws are assumed to\n"
 "hold for numeric operations (`x`, `y`, and `z` are\n"
 "arbitrary value of the same primitive integral type):\n"
-msgstr "对于所有整数类型，假设以下定律适用于数值运算（`x`、`y` 和 `z` 是相同原始整数类型的任意值） ："
+msgstr "对于所有整数类型，假设以下定律适用于数值运算（`x`、`y` 和 `z` "
+"是相同原始整数类型的任意值） ：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x + y = y + x`: Addition is commutative."
 msgstr "`x + y = y + x`：加法是可交换的。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x + (y + z) = (x + y) + z`: Addition is associative."
 msgstr "`x + (y + z) = (x + y) + z`：加法是结合的。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x + 0 = x`: Zero is the neutral element of addition."
 msgstr "`x + 0 = x`：零是加法的中性元素。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x - x = x + (-x) = 0`: `-x` is the additive inverse of `x`."
 msgstr "`x - x = x + (-x) = 0`：`-x` 是 `x` 的加法逆。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x * y = y * x`: Multiplication is commutative."
 msgstr "`x * y = y * x`：乘法是可交换的。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x * (y * z) = (x * y) * z`: Multiplication is associative."
 msgstr "`x * (y * z) = (x * y) * z`：乘法是结合的。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x * 1 = x`: One is the neutral element of multiplication."
-msgstr "`x * 1 = x`：一个是乘法的中性元素。"
+msgstr "`x * 1 = x`：1 是乘法的中性元素。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "`x * (y + z) = x * y + x * z`: The distributive law holds."
 msgstr "`x * (y + z) = x * y + x * z`：分配律成立。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:507
-#, fuzzy
 msgid "``y * (x `div` y) + (x `mod` y) = x`` (for `y /= 0`)."
 msgstr "``y * (x `div` y) + (x `mod` y) = x``（对于 `y /= 0`）。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:515
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Please note, that the officially supported backends use\n"
 "*Euclidian modulus* for calculating `mod`:\n"
@@ -1603,17 +1639,22 @@ msgid ""
 "does hold. If `x` or `y` are negative numbers, this is different\n"
 "to what many other languages do but for good reasons as explained\n"
 "in the following [article](https://www.microsoft.com/en-us/research/publication/division-and-modulus-for-computer-scientists/).\n"
-msgstr "请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x `mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 `x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下[文章](https://www.microsoft. com/en-us/research/publication/division-and-modulus-for-computer-scientists/）。"
+msgstr ""
+"请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x "
+"`mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 "
+"`x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://"
+"www.microsoft. com/en-us/research/publication/"
+"division-and-modulus-for-computer-scientists/)。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:516
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Unsigned Integers"
-msgstr "### 无符号整数"
+msgstr "无符号整数"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:526
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The unsigned fixed precision integer types (`Bits8`, `Bits16`,\n"
 "`Bits32`, and `Bits64`) come with implementations of all\n"
@@ -1623,11 +1664,16 @@ msgid ""
 "total. Overflows are handled by calculating the remainder\n"
 "modulo `2^bitsize`. For instance, for `Bits8`, all operations\n"
 "calculate their results modulo 256:\n"
-msgstr "无符号固定精度整数类型（`Bits8`、`Bits16`、`Bits32` 和 `Bits64`）带有所有积分接口的实现（[X141X ]Num`、`Neg` 和 `Integral`）以及用于按位运算的两个接口（`Bits` 和 `FiniteBits`）。除了 `div` 和 `mod` 之外的所有函数都是总计的。通过计算余数模 `2^bitsize` 来处理溢出。例如，对于 `Bits8`，所有操作都以 256 为模计算其结果："
+msgstr ""
+"无符号固定精度整数类型（`Bits8`、`Bits16`、`Bits32` 和 "
+"`Bits64`）带有所有整数接口的实现（`Num`、`Neg` 和 "
+"`Integral`）以及用于按位运算的两个接口（`Bits` 和 `FiniteBits`）。除了 `div` "
+"和 `mod` 之外的所有函数都是总计的。通过计算余数模 `2^bitsize` "
+"来处理溢出。例如，对于 `Bits8`，所有操作都以 256 为模计算其结果：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:527
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> the Bits8 255 + 1\n"
 "0\n"
@@ -1637,17 +1683,25 @@ msgid ""
 "7\n"
 "Main> the Bits8 12 - 13\n"
 "255\n"
-msgstr "```repl Main> Bits8 255 + 1 0 Main> Bits8 255 + 255 254 Main> Bits8 128 * 2 + 7 7 Main> Bits8 12 - 13 255 ```"
+msgstr ""
+"Main> the Bits8 255 + 1\n"
+"0\n"
+"Main> the Bits8 255 + 255\n"
+"254\n"
+"Main> the Bits8 128 * 2 + 7\n"
+"7\n"
+"Main> the Bits8 12 - 13\n"
+"255\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:538
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Signed Integers"
-msgstr "### 有符号整数"
+msgstr "有符号整数"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:549
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Like the unsigned integer types, the signed fixed precision\n"
 "integer types (`Int8`, `Int16`, `Int32`, and `Int64`) come with\n"
@@ -1658,27 +1712,36 @@ msgid ""
 "if the result is still out of range. For instance, for `Int8`, all operations\n"
 "calculate their results modulo 256, subtracting 128 if the\n"
 "result is still out of bounds:\n"
-msgstr "与无符号整数类型一样，有符号固定精度整数类型（`Int8`、`Int16`、`Int32` 和 `Int64`）具有以下实现所有积分接口和用于按位运算的两个接口（`Bits` 和 `FiniteBits`）。如果结果仍然超出范围，则通过计算余数模 `2^bitsize` 并添加下限（负数）来处理溢出。例如，对于 `Int8`，所有操作都以 256 为模计算结果，如果结果仍然超出范围，则减去 128："
+msgstr ""
+"与无符号整数类型一样，有符号固定精度整数类型（`Int8`、`Int16`、`Int32` 和 "
+"`Int64`）具有以下实现所有整数接口和用于按位运算的两个接口（`Bits` 和 "
+"`FiniteBits`）。如果结果仍然超出范围，则通过计算余数模 `2^bitsize` "
+"并添加下限（负数）来处理溢出。例如，对于 `Int8`，所有操作都以 256 "
+"为模计算结果，如果结果仍然超出范围，则减去 128：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:550
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Main> the Int8 2 * 127\n"
 "-2\n"
 "Main> the Int8 3 * 127\n"
 "125\n"
-msgstr "```repl Main> Int8 2 * 127 -2 Main> Int8 3 * 127 125 ```"
+msgstr ""
+"Main> the Int8 2 * 127\n"
+"-2\n"
+"Main> the Int8 3 * 127\n"
+"125\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:557
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Bitwise Operations"
-msgstr "### 位运算"
+msgstr "位运算"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:568
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Module `Data.Bits` exports interfaces for performing bitwise\n"
 "operations on integral types. I'm going to show a couple of\n"
@@ -1689,42 +1752,51 @@ msgid ""
 "bit pattern, and it is assumed that signed integers in Idris use\n"
 "a [two's complement representation](https://en.wikipedia.org/wiki/Two%27s_complement),\n"
 "about which I will not go into the details here.\n"
-msgstr "模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。那些必须在其位模式中包含有关数字的 * 符号 * 的信息，并且假设 Idris 中的有符号整数使用 [二进制补码表示]（https://en.wikipedia.org/wiki/ 2%27s_complement)，这里不再赘述。"
+msgstr ""
+"模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。"
+"我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解"
+"释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。"
+"那些必须在其位模式中包含有关数字的 *符号* 的信息，并且假设 Idris "
+"中的有符号整数使用 [二进制补码表示](https://en.wikipedia.org/wiki/ "
+"2%27s_complement)，这里不再赘述。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:573
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "An unsigned 8-bit binary number is represented internally as\n"
 "a sequence of eight bits (with values 0 or 1), each of which\n"
 "corresponds to a power of 2. For instance,\n"
 "the number 23 (= 16 + 4 + 2 + 1) is represented as `0001 0111`:\n"
-msgstr "无符号 8 位二进制数在内部表示为 8 位序列（值为 0 或 1），每个位对应于 2 的幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`："
+msgstr ""
+"无符号 8 位二进制数在内部表示为 8 位序列（值为 0 或 1），每个位对应于 2 "
+"的幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:574
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "23 in binary:    0  0  0  1    0  1  1  1\n"
 "\n"
 "Bit number:      7  6  5  4    3  2  1  0\n"
 "Decimal value: 128 64 32 16    8  4  2  1\n"
 msgstr ""
-"位数：7 6 5 4 3 2 1 0\n"
-"十进制值：128 64 32 16 8 4 2 1\n"
-"```\n"
+"23 in binary:    0  0  0  1    0  1  1  1\n"
+"\n"
+"Bit number:      7  6  5  4    3  2  1  0\n"
+"Decimal value: 128 64 32 16    8  4  2  1\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:583
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can use function `testBit` to check if the bit at the given\n"
 "position is set or not:\n"
-msgstr "我们可以使用函数 `testBit` 来检查给定位置的位是否已设置："
+msgstr "我们可以使用函数 `testBit` 来检查给定位置的位是否已设置：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:584
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> testBit (the Bits8 23) 0\n"
 "True\n"
@@ -1732,29 +1804,39 @@ msgid ""
 "True\n"
 "Tutorial.Prim> testBit (the Bits8 23) 3\n"
 "False\n"
-msgstr "```repl Tutorial.Prim> testBit(Bits8 23) 0 True Tutorial.Prim> testBit(Bits8 23) 1 True Tutorial.Prim> testBit(Bits8 23) 3 False ```"
+msgstr ""
+"Tutorial.Prim> testBit (the Bits8 23) 0\n"
+"True\n"
+"Tutorial.Prim> testBit (the Bits8 23) 1\n"
+"True\n"
+"Tutorial.Prim> testBit (the Bits8 23) 3\n"
+"False\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:595
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Likewise, we can use functions `setBit` and `clearBit` to\n"
 "set or unset a bit at a certain position:\n"
-msgstr "同样，我们可以使用函数 `setBit` 和 `clearBit` 在某个位置设置或取消设置位："
+msgstr "同样，我们可以使用函数 `setBit` 和 `clearBit` 在某个位置设置或取消设置位：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:596
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> setBit (the Bits8 23) 3\n"
 "31\n"
 "Tutorial.Prim> clearBit (the Bits8 23) 2\n"
 "19\n"
-msgstr "```repl Tutorial.Prim>setBit(Bits8 23) 3 31 Tutorial.Prim>clearBit(Bits8 23)2 19 ```"
+msgstr ""
+"Tutorial.Prim> setBit (the Bits8 23) 3\n"
+"31\n"
+"Tutorial.Prim> clearBit (the Bits8 23) 2\n"
+"19\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:610
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "There are also operators `(.&.)` (bitwise *and*) and `(.|.)`\n"
 "(bitwise *or*) as well as function `xor` (bitwise *exclusive or*)\n"
@@ -1763,11 +1845,16 @@ msgid ""
 "and `y` have set, while `x .|. y` has all bits set that are either\n"
 "set in `x` or `y` (or both), and ``x `xor` y`` has those bits\n"
 "set that are set in exactly one of the two values:\n"
-msgstr "还有运算符 `(.&.)`（按位 * 和 *）和 `(.|.)`（按位 * 或 *）以及用于对整数值执行布尔运算的函数 `xor`（按位 * 互斥或 *）。例如 `x .&。 y` 正好设置了那些位，`x` 和 `y` 都设置了，而 `x .|。 y` 设置了在 `x` 或 `y`（或两者）中设置的所有位，并且 ``x `xor` y`` 设置了那些位设置为以下两个值之一："
+msgstr ""
+"还有运算符 `(.&.)`（按位 *与*）和 `(.|.)`（按位 *或*）"
+"以及用于对整数值执行布尔运算的函数 `xor`（按位 *异或*）。例如 `x .&. y` "
+"正好设置了那些位，`x` 和 `y` 都设置了，而 `x .|. y` 设置了在 `x` 或 "
+"`y`（或两者）中设置的所有位，并且 ``x `xor` y`` "
+"设置了那些位设置为以下两个值之一：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:611
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "23 in binary:          0  0  0  1    0  1  1  1\n"
 "11 in binary:          0  0  0  0    1  0  1  1\n"
@@ -1776,19 +1863,22 @@ msgid ""
 "23 .|. 11 in binary:   0  0  0  1    1  1  1  1\n"
 "23 `xor` 11 in binary: 0  0  0  1    1  1  0  0\n"
 msgstr ""
-"22 `shiftL` 2 二进制：0 1 0 1 1 0 0 0\n"
-"22 `shiftR` 1 二进制：0 0 0 0 1 0 1 1\n"
-"```\n"
+"23 in binary:          0  0  0  1    0  1  1  1\n"
+"11 in binary:          0  0  0  0    1  0  1  1\n"
+"\n"
+"23 .&. 11 in binary:   0  0  0  0    0  0  1  1\n"
+"23 .|. 11 in binary:   0  0  0  1    1  1  1  1\n"
+"23 `xor` 11 in binary: 0  0  0  1    1  1  0  0\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:621
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "And here are the examples at the REPL:\n"
-msgstr "以下是 REPL 上的示例："
+msgstr "以下是 REPL 上的示例：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:622
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> the Bits8 23 .&. 11\n"
 "3\n"
@@ -1796,11 +1886,17 @@ msgid ""
 "31\n"
 "Tutorial.Prim> the Bits8 23 `xor` 11\n"
 "28\n"
-msgstr "```repl Tutorial.Prim> Bits8 23 .&. 11 3 Tutorial.Prim> Bits8 23 .|. 11 31 Tutorial.Prim> Bits8 23 `xor` 11 28 ```"
+msgstr ""
+"Tutorial.Prim> the Bits8 23 .&. 11\n"
+"3\n"
+"Tutorial.Prim> the Bits8 23 .|. 11\n"
+"31\n"
+"Tutorial.Prim> the Bits8 23 `xor` 11\n"
+"28\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:637
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, it is possible to shift all bits to the right or left\n"
 "by a certain number of steps by using functions `shiftR` and\n"
@@ -1808,49 +1904,58 @@ msgid ""
 "A left shift can therefore be viewed as a multiplication by a\n"
 "power of two, while a right shift can be seen as a division\n"
 "by a power of two:\n"
-msgstr "最后，可以分别使用函数 `shiftR` 和 `shiftL` 将所有位向右或向左移动一定步数（溢出的位将被丢弃）。因此，左移可以看作是乘以 2 的幂，而右移可以看作是除以 2 的幂："
+msgstr ""
+"最后，可以分别使用函数 `shiftR` 和 `shiftL` "
+"将所有位向右或向左移动一定步数（溢出的位将被丢弃）。因此，左移可以看作是乘以 "
+"2 的幂，而右移可以看作是除以 2 的幂：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:638
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "22 in binary:            0  0  0  1    0  1  1  0\n"
 "\n"
 "22 `shiftL` 2 in binary: 0  1  0  1    1  0  0  0\n"
 "22 `shiftR` 1 in binary: 0  0  0  0    1  0  1  1\n"
 msgstr ""
-"22 `shiftL` 2 二进制：0 1 0 1 1 0 0 0\n"
-"22 `shiftR` 1 二进制：0 0 0 0 1 0 1 1\n"
-"```\n"
+"22 in binary:            0  0  0  1    0  1  1  0\n"
+"\n"
+"22 `shiftL` 2 in binary: 0  1  0  1    1  0  0  0\n"
+"22 `shiftR` 1 in binary: 0  0  0  0    1  0  1  1\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:647
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> the Bits8 22 `shiftL` 2\n"
 "88\n"
 "Tutorial.Prim> the Bits8 22 `shiftR` 1\n"
 "11\n"
-msgstr "```repl Tutorial.Prim> Bits8 22 `shiftL` 2 88 Tutorial.Prim> Bits8 22 `shiftR` 1 11 ```"
+msgstr ""
+"Tutorial.Prim> the Bits8 22 `shiftL` 2\n"
+"88\n"
+"Tutorial.Prim> the Bits8 22 `shiftR` 1\n"
+"11\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:657
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Bitwise operations are often used in specialized code or\n"
 "certain high-performance applications. As programmers, we\n"
 "have to know they exist and how they work.\n"
-msgstr "按位运算通常用于专用代码或某些高性能应用程序中。作为程序员，我们必须知道它们的存在以及它们是如何工作的。"
+msgstr "按位运算通常用于专用代码或某些高性能应用程序中。作为程序员，我们必须知道它们"
+"的存在以及它们是如何工作的。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:658
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Integer Literals"
-msgstr "### 整数字面量"
+msgstr "整数字面量"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:666
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So far, we always required an implementation of `Num` in order to\n"
 "be able to use integer literals for a given type. However,\n"
@@ -1858,46 +1963,51 @@ msgid ""
 "converting an `Integer` to the type in question. As we will\n"
 "see in the last section, such a function can even restrict\n"
 "the values allowed as valid literals.\n"
-msgstr "到目前为止，我们总是需要 `Num` 的实现，以便能够对给定类型使用整数文字。然而，实际上只需要实现一个函数 `fromInteger` 将 `Integer` 转换为相关类型。正如我们将在最后一节中看到的，这样的函数甚至可以限制允许作为有效文字的值。"
+msgstr ""
+"到目前为止，我们总是需要 `Num` 的实现，以便能够对给定类型使用整数文字。然而，"
+"实际上只需要实现一个函数 `fromInteger` 将 `Integer` 转换为相关类型。正如我们"
+"将在最后一节中看到的，这样的函数甚至可以限制允许作为有效字面量的值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:671
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, assume we'd like to define a data type for\n"
 "representing the charge of a chemical molecule. Such a value\n"
 "can be positive or negative and (theoretically) of almost\n"
 "arbitrary magnitude:\n"
-msgstr "例如，假设我们想定义一个数据类型来表示化学分子的电荷。这样的值可以是正值或负值，并且（理论上）几乎是任意大小："
+msgstr "例如，假设我们想定义一个数据类型来表示化学分子的电荷。这样的值可以是正值或负"
+"值，并且（理论上）几乎是任意大小：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:672
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Charge where\n"
 "  constructor MkCharge\n"
 "  value : Integer\n"
 msgstr ""
-"```伊德里斯\n"
-"记录充电地点\n"
-"  构造函数 MkCharge\n"
-"  值：整数\n"
-"```\n"
+"record Charge where\n"
+"  constructor MkCharge\n"
+"  value : Integer\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:683
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It makes sense to be able to sum up charges, but not to\n"
 "multiply them. They should therefore have an implementation\n"
 "of `Monoid` but not of `Num`. Still, we'd like to have\n"
 "the convenience of integer literals when using constant\n"
 "charges at compile time. Here's how to do this:\n"
-msgstr "能够对费用求和是有意义的，但不能将它们相乘。因此，它们应该有 `Monoid` 的实现，而不是 `Num` 的实现。尽管如此，我们还是希望在编译时使用常量费用时能够方便地使用整数文字。以下是如何执行此操作："
+msgstr ""
+"能够对费用求和是有意义的，但不能将它们相乘。因此，它们应该有 `Monoid` "
+"的实现，而不是 `Num` 的实现。尽管如此，我们还是希望在编译时使用常量费用时能够"
+"方便地使用整数字面量。以下是如何执行此操作：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:684
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "fromInteger : Integer -> Charge\n"
 "fromInteger = MkCharge\n"
@@ -1908,35 +2018,37 @@ msgid ""
 "Monoid Charge where\n"
 "  neutral = 0\n"
 msgstr ""
-"fromInteger : 整数 -> 电荷\n"
+"fromInteger : Integer -> Charge\n"
 "fromInteger = MkCharge\n"
 "\n"
-"半群电荷在哪里\n"
+"Semigroup Charge where\n"
 "  x <+> y = MkCharge $ x.value + y.value\n"
 "\n"
-"Monoid Charge 在哪里\n"
-"  中性 = 0\n"
+"Monoid Charge where\n"
+"  neutral = 0\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Prim.md:695
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Alternative Bases"
-msgstr "#### 替代基地"
+msgstr "可供选择的基础"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:702
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In addition to the well known decimal literals, it is also\n"
 "possible to use integer literals in binary, octal, or\n"
 "hexadecimal representation. These have to be prefixed\n"
 "with a zero following by a `b`, `o`, or `x` for\n"
 "binary, octal, and hexadecimal, respectively:\n"
-msgstr "除了众所周知的十进制文字外，还可以使用二进制、八进制或十六进制表示的整数文字。对于二进制、八进制和十六进制，它们必须以零为前缀，后跟 `b`、`o` 或 `x`："
+msgstr ""
+"除了众所周知的十进制文字外，还可以使用二进制、八进制或十六进制表示的整数文字"
+"。对于二进制、八进制和十六进制，它们必须以零为前缀，后跟 `b`、`o` 或 `x`：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:703
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.Prim> 0b1101\n"
 "13\n"
@@ -1944,11 +2056,16 @@ msgid ""
 "507\n"
 "Tutorial.Prim> 0xffa2\n"
 "65442\n"
-msgstr "```repl Tutorial.Prim> 0b1101 13 Tutorial.Prim> 0o773 507 Tutorial.Prim> 0xffa2 65442 ```"
+msgstr ""
+"Tutorial.Prim> 0b1101\n"
+"13\n"
+"Tutorial.Prim> 0o773\n"
+"507\n"
+"Tutorial.Prim> 0xffa2\n"
+"65442\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Prim.md:716
-#, fuzzy
 msgid ""
 "Define a wrapper record for integral values and implement `Monoid` so that "
 "`(<+>)` corresponds to `(.&.)`."
@@ -1956,17 +2073,16 @@ msgstr "定义整数值的包装记录并实现 `Monoid` 以便 `(<+>)` 对应�
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:719
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Hint: Have a look at the functions available from interface\n"
 "   `Bits` to find a value suitable as the neutral element.\n"
 msgstr ""
-"   提示：查看界面中可用的功能\n"
-"   `Bits` 找到适合作为中性元素的值。\n"
+"   提示：查看 `Bits` 接口中可用的函数\n"
+"   找到适合作为中性元素的值。\n"
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Prim.md:722
-#, fuzzy
 msgid ""
 "Define a wrapper record for integral values and implement `Monoid` so that "
 "`(<+>)` corresponds to `(.|.)`."
@@ -1974,45 +2090,39 @@ msgstr "定义整数值的包装记录并实现 `Monoid` 以便 `(<+>)` 对应�
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Prim.md:725
-#, fuzzy
 msgid ""
 "Use bitwise operations to implement a function, which tests if a given value "
 "of type `Bits64` is even or not."
-msgstr ""
-"使用按位运算来实现一个函数，该函数测试 `Bits64` 类型的给定值是否为偶数。"
+msgstr "使用按位运算来实现一个函数，该函数测试 `Bits64` 类型的给定值是否为偶数。"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Prim.md:727
-#, fuzzy
 msgid "Convert a value of type `Bits64` to a string in binary representation."
 msgstr "将 `Bits64` 类型的值转换为二进制表示的字符串。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Prim.md:729
-#, fuzzy
 msgid ""
 "Convert a value of type `Bits64` to a string in hexadecimal representation."
 msgstr "将 `Bits64` 类型的值转换为十六进制表示的字符串。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:732
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Hint: Use `shiftR` and `(.&. 15)` to access subsequent packages of\n"
 "   four bits.\n"
-msgstr ""
-"   提示：使用 `shiftR` 和 `(.&. 15)` 访问后续包\n"
-"   四位。\n"
+msgstr "   提示：使用 `shiftR` 和 `(.&. 15)` 访问四位的后续包。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Prim.md:733
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Refined Primitives"
-msgstr "## 精炼的基元"
+msgstr "精炼原语"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:741
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We often do not want to allow all values of a type in a certain\n"
 "context. For instance, `String` as an arbitrary sequence of\n"
@@ -2020,11 +2130,14 @@ msgid ""
 "too general most of the time. Therefore, it is usually advisable\n"
 "to rule out invalid values early on, by pairing a value with\n"
 "an erased proof of validity.\n"
-msgstr "我们通常不希望在某个上下文中允许某个类型的所有值。例如，`String` 作为 UTF-8 字符的任意序列（其中有几个甚至无法打印），在大多数情况下都过于笼统。因此，通常建议通过将值与已擦除的有效性证明配对，尽早排除无效值。"
+msgstr ""
+"我们通常不希望在某个上下文中允许某个类型的所有值。例如，`String` 作为 UTF-8 "
+"字符的任意序列（其中有几个甚至无法打印），在大多数情况下都过于笼统。因此，通"
+"常建议通过将值与已擦除的有效性证明配对，尽早排除无效值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:749
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We have learned how we can write elegant predicates, with\n"
 "which we can proof our functions to be total, and from which we\n"
@@ -2033,80 +2146,95 @@ msgid ""
 "doomed to live in isolation, unless we come up with a set of\n"
 "primitive axioms (implemented most likely using `believe_me`), with\n"
 "which we can manipulate our predicates.\n"
-msgstr "我们已经学会了如何编写优雅的谓词，用它我们可以证明我们的函数是完全的，并且我们可以从它——在理想情况下——推导出其他相关的谓词。然而，当我们在原语上定义谓词时，它们在某种程度上注定要孤立存在，除非我们提出一组原语公理（最有可能使用 `believe_me` 实现），我们可以用它来操纵我们的谓词。"
+msgstr ""
+"我们已经学会了如何编写优雅的谓词，用它我们可以证明我们的函数是完全的，并且我"
+"们可以从它——在理想情况下——推导出其他相关的谓词。然而，当我们在原语上定义谓词"
+"时，它们在某种程度上注定要孤立存在，除非我们提出一组原语公理（最有可能使用 "
+"`believe_me` 实现），我们可以用它来操纵我们的谓词。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:750
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Use Case: ASCII Strings"
-msgstr "### 用例：ASCII 字符串"
+msgstr "用例：ASCII 字符串"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:756
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "String encodings is a difficult topic, so in many low level routines\n"
 "it makes sense to rule out most characters from the beginning. Assume\n"
 "therefore, we'd like to make sure the strings we accept in our\n"
 "application only consist of ASCII characters:\n"
-msgstr "字符串编码是一个困难的话题，因此在许多低级例程中，从一开始就排除大多数字符是有意义的。因此，假设我们希望确保我们在应用程序中接受的字符串仅包含 ASCII 字符："
+msgstr ""
+"字符串编码是一个困难的话题，因此在许多低级例程中，从一开始就排除大多数字符是"
+"有意义的。因此，假设我们希望确保我们在应用程序中接受的字符串仅包含 ASCII "
+"字符：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:757
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "isAsciiChar : Char -> Bool\n"
 "isAsciiChar c = ord c <= 127\n"
 "\n"
 "isAsciiString : String -> Bool\n"
 "isAsciiString = all isAsciiChar . unpack\n"
-msgstr "isAsciiString : String -> Bool isAsciiString = all isAsciiChar 。解压```"
+msgstr ""
+"isAsciiChar : Char -> Bool\n"
+"isAsciiChar c = ord c <= 127\n"
+"\n"
+"isAsciiString : String -> Bool\n"
+"isAsciiString = all isAsciiChar . unpack\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:767
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We can now *refine* a string value by pairing it with an erased\n"
 "proof of validity:\n"
-msgstr "我们现在可以 * 细化 * 一个字符串值，方法是将其与已擦除的有效性证明配对："
+msgstr "我们现在可以 *细化* 一个字符串值，方法是将其与已擦除的有效性证明配对：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:768
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Ascii where\n"
 "  constructor MkAscii\n"
 "  value : String\n"
 "  0 prf : isAsciiString value === True\n"
 msgstr ""
-"```伊德里斯\n"
-"在哪里记录 Ascii\n"
-"  构造函数 MkAscii\n"
-"  值：字符串\n"
-"  0 prf : isAsciiString 值 === 真\n"
-"```\n"
+"record Ascii where\n"
+"  constructor MkAscii\n"
+"  value : String\n"
+"  0 prf : isAsciiString value === True\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:779
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "It is now *impossible* to at runtime or compile time create\n"
 "a value of type `Ascii` without first validating the wrapped\n"
 "string. With this, it is already pretty easy to safely wrap strings at\n"
 "compile time in a value of type `Ascii`:\n"
-msgstr "现在 * 不可能 * 在运行时或编译时创建 `Ascii` 类型的值，而无需首先验证包装的字符串。有了这个，在编译时将字符串安全地包装成 `Ascii` 类型的值已经很容易了："
+msgstr ""
+"现在在运行时或编译时创建 `Ascii` 类型的值，而无需首先验证包装的字符串是 "
+"*不可能* 的。有了这个，在编译时将字符串安全地包装成 `Ascii` "
+"类型的值已经很容易了：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:780
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hello : Ascii\n"
 "hello = MkAscii \"Hello World!\" Refl\n"
-msgstr "```idris hello : Ascii hello = MkAscii \"Hello World!\"反射 ```"
+msgstr ""
+"hello : Ascii\n"
+"hello = MkAscii \"Hello World!\" Refl\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:800
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "And yet, it would be much more convenient to still use string\n"
 "literals for this, without having to sacrifice the comfort of\n"
@@ -2123,44 +2251,60 @@ msgid ""
 "values. It is therefore perfectly fine, to define a custom `fromString`\n"
 "function with an erased auto implicit argument as a proof of\n"
 "validity:\n"
-msgstr "然而，为此仍然使用字符串文字会更方便，而不必牺牲安全的舒适性。为此，我们不能使用接口 `FromString`，因为它的函数 `fromString` 会强制我们转换 *any* 字符串，即使是无效字符串。但是，我们实际上不需要实现 `FromString` 来支持字符串文字，就像我们不需要实现 `Num` 来支持整数文字一样。我们真正需要的是一个名为 `fromString` 的函数。现在，当字符串文字被脱糖时，它们被转换为以给定字符串值作为参数的 `fromString` 的调用。例如，文字 `\"Hello\"` 被脱糖为 `fromString \"Hello\"`。这发生在类型检查和填充（自动）隐式值之前。因此，使用已擦除的自动隐式参数定义自定义 `fromString` 函数作为有效性证明是非常好的："
+msgstr ""
+"然而，为此仍然使用字符串字面量会更方便，而不必牺牲安全的舒适性。为此，"
+"我们不能使用接口 `FromString`，因为它的函数 `fromString` 会强制我们转换 "
+"*任意* 字符串，即使是无效字符串。但是，我们实际上不需要实现 `FromString` "
+"来支持字符串文字，就像我们不需要实现 `Num` 来支持整数字面量一样。"
+"我们真正需要的是一个名为 `fromString` 的函数。现在，当字符字面量字被脱糖时，"
+"它们被转换为以给定字符串值作为参数的 `fromString` 的调用。例如，文字 `\"Hello"
+"\"` 被脱糖为 `fromString \"Hello\""
+"`。这发生在类型检查和填充（自动）隐式值之前。因此，"
+"使用已擦除的自动隐式参数定义自定义 `fromString` "
+"函数作为有效性证明是非常好的：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:801
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii\n"
 "fromString s = MkAscii s prf\n"
-msgstr "```idris fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii fromString s = MkAscii s prf ```"
+msgstr ""
+"fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> "
+"Ascii\n"
+"fromString s = MkAscii s prf\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:808
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "With this, we can us (valid) string literals for coming up with\n"
 "values of type `Ascii` directly:\n"
-msgstr "有了这个，我们可以使用（有效的）字符串文字直接得出 `Ascii` 类型的值："
+msgstr "有了这个，我们可以使用（有效的）字符串文字直接得出 `Ascii` 类型的值：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:809
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "hello2 : Ascii\n"
 "hello2 = \"Hello World!\"\n"
-msgstr "```idris hello2 : Ascii hello2 = \"Hello World!\" ```"
+msgstr ""
+"hello2 : Ascii\n"
+"hello2 = \"Hello World!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:817
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In order to at runtime create values of type `Ascii` from strings\n"
 "of an unknown source, we can use a refinement function returning\n"
 "some kind of failure type:\n"
-msgstr "为了在运行时从未知来源的字符串中创建 `Ascii` 类型的值，我们可以使用返回某种故障类型的细化函数："
+msgstr "为了在运行时从未知来源的字符串中创建 `Ascii` "
+"类型的值，我们可以使用返回某种故障类型的细化函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:818
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "test : (b : Bool) -> Dec (b === True)\n"
 "test True  = Yes Refl\n"
@@ -2171,40 +2315,46 @@ msgid ""
 "  Yes prf   => Just $ MkAscii x prf\n"
 "  No contra => Nothing\n"
 msgstr ""
-"ascii : 字符串 -> 也许是 Ascii\n"
+"test : (b : Bool) -> Dec (b === True)\n"
+"test True  = Yes Refl\n"
+"test False = No absurd\n"
+"\n"
+"ascii : String -> Maybe Ascii\n"
 "ascii x = case test (isAsciiString x) of\n"
-"  是的 prf => 只是 $ MkAscii x prf\n"
-"  没有反对 => 没有\n"
-"```\n"
+"  Yes prf   => Just $ MkAscii x prf\n"
+"  No contra => Nothing\n"
 
 #. type: Title ####
 #: ../src/Tutorial/Prim.md:829
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Disadvantages of Boolean Proofs"
-msgstr "#### 布尔证明的缺点"
+msgstr "布尔证明的缺点"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:834
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For many use cases, what we described above for ASCII strings can\n"
 "take us very far. However, one drawback of this approach is that we\n"
 "can't safely perform any computations with the proofs at hand.\n"
-msgstr "对于许多用例，我们上面描述的 ASCII 字符串可以让我们走得很远。然而，这种方法的一个缺点是我们不能使用手头的证明安全地执行任何计算。"
+msgstr "对于许多用例，我们上面描述的 ASCII 字符串可以让我们走得很远。然而，这种方法的"
+"一个缺点是我们不能使用手头的证明安全地执行任何计算。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:839
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "For instance, we know it will be perfectly fine to concatenate\n"
 "two ASCII strings, but in order to convince Idris of this, we\n"
 "will have to use `believe_me`, because we will not be able to\n"
 "proof the following lemma otherwise:\n"
-msgstr "例如，我们知道连接两个 ASCII 字符串会非常好，但是为了让 Idris 相信这一点，我们必须使用 `believe_me`，否则我们将无法证明以下引理："
+msgstr ""
+"例如，我们知道连接两个 ASCII 字符串会非常好，但是为了让 Idris 相信这一点，"
+"我们必须使用 `believe_me`，否则我们将无法证明以下引理：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:840
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "0 allAppend :  (f : Char -> Bool)\n"
 "            -> (s1,s2 : String)\n"
@@ -2219,17 +2369,22 @@ msgid ""
 "  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
 "    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
 msgstr ""
-"```伊德里斯\n"
-"0 allAppend : (f : Char -> Bool)\n"
-"            -> (s1,s2 : 字符串)\n"
+"0 allAppend :  (f : Char -> Bool)\n"
+"            -> (s1,s2 : String)\n"
 "            -> (p1 : all f (unpack s1) === True)\n"
 "            -> (p2 : all f (unpack s2) === True)\n"
-"            ->所有f（解包（s1 ++ s2））===真\n"
+"            -> all f (unpack (s1 ++ s2)) === True\n"
 "allAppend f s1 s2 p1 p2 = believe_me $ Refl {x = True}\n"
+"\n"
+"namespace Ascii\n"
+"  export\n"
+"  (++) : Ascii -> Ascii -> Ascii\n"
+"  MkAscii s1 p1 ++ MkAscii s2 p2 =\n"
+"    MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:861
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "The same goes for all operations extracting a substring from\n"
 "a given string: We will have to implement according rules using\n"
@@ -2237,7 +2392,10 @@ msgid ""
 "deal with refined primitives can therefore be challenging at times,\n"
 "and whether such axioms are even required very much depends\n"
 "on the use case at hand.\n"
-msgstr "从给定字符串中提取子字符串的所有操作也是如此：我们必须使用 `believe_me` 来实现相应的规则。因此，找到一组合理的公理来方便地处理精炼的原语有时可能具有挑战性，而且是否需要这样的公理在很大程度上取决于手头的用例。"
+msgstr ""
+"从给定字符串中提取子字符串的所有操作也是如此：我们必须使用 `believe_me` 来实"
+"现相应的规则。因此，找到一组合理的公理来方便地处理精炼的原语有时可能具有挑战"
+"性，而且是否需要这样的公理在很大程度上取决于手头的用例。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:862
