@@ -1,14 +1,6 @@
-# Predicates and Proof Search
+# 谓词和证明搜索
 
-In the [last chapter](Eq.md) we learned about propositional
-equality, which allowed us to proof that two values are
-equal. Equality is a relation between values, and we used
-an indexed data type to encode this relation by limiting
-the degrees of freedom of the indices in the sole data
-constructor. There are other relations and contracts we
-can encode this way. This will allow us to restrict the
-values we accept as a function's arguments or the values
-returned by functions.
+在[最上章](Eq.md)中，我们了解了命题相等式，这使我们能够证明两个值相等。相等是值之间的关系，我们使用索引数据类型通过限制唯一数据构造函数中索引的自由度来编码这种关系。我们可以用这种方式编码其他关系和契约。这将允许我们限制我们接受作为函数参数的值或函数返回的值。
 
 ```idris
 module Tutorial.Predicates
@@ -26,86 +18,41 @@ import System.File
 %default total
 ```
 
-## Preconditions
+## 前置条件
 
-Often, when we implement functions operating on values
-of a given type, not all values are considered to be
-valid arguments for the function in question. For instance,
-we typically do not allow division by zero, as the result
-is undefined in the general case. This concept of putting
-a *precondition* on a function argument comes up pretty often,
-and there are several ways to go about this.
+通常，当我们实现对给定类型的值进行操作的函数时，并非所有值都被认为是所讨论函数的有效参数。例如，我们通常不允许除以零，因为在一般情况下结果是未定义的。这种将 *前置条件* 放在函数参数上的概念经常出现，并且有几种方法可以解决这个问题。
 
-A very common operation when working with lists or other
-container types is to extract the first value in the sequence.
-This function, however, cannot work in the general case, because
-in order to extract a value from a list, the list must not
-be empty. Here are a couple of ways to encode and implement
-this, each with its own advantages and disadvantages:
+使用列表或其他容器类型时，一个非常常见的操作是提取序列中的第一个值。然而，这个函数不能在一般情况下工作，因为为了从列表中提取值，列表不能为空。这里有几种编码和实现它的方法，每种方法都有自己的优点和缺点：
 
-* Wrap the result in a failure type, such as a `Maybe` or `Either e` with
-  some custom error type `e`. This makes it immediately clear that the
-  function might not be able to return a result. It is a natural way to deal
-  with unvalidated input from unknown sources. The drawback of this approach
-  is that results will carry the `Maybe` stain, even in situations when we
-  *know* that the *nil* case is impossible, for instance because we know the
-  value of the list argument at compile-time, or because we already
-  *refined* the input value in such a way that we can be sure it is not
-  empty (due to an earlier pattern match, for instance).
+* 将结果包装在故障类型中，例如 `Maybe` 或带有一些自定义错误类型 `e` 的 `Either
+  e`。这立即清楚地表明该函数可能无法返回结果。这是处理来自未知来源的未经验证的输入的自然方式。这种方法的缺点是结果会带有 `Maybe`
+  污点，即使在我们 *知道 *不可能为 *nil* 的情况下，例如因为我们知道list 参数在编译时的值，或者因为我们已经 *改进了*
+  输入值，以确保它不为空（例如，由于较早的模式匹配）。
 
-* Define a new data type for non-empty lists and use this as the function's
-  argument. This is the approach taken in module `Data.List1`. It allows us
-  to return a pure value (meaning "not wrapped in a failure type" here),
-  because the function cannot possibly fail, but it comes with the burden of
-  reimplementing many of the utility functions and interfaces we already
-  implemented for `List`. For a very common data structure this can be a
-  valid option, but for rare use cases it is often too cumbersome.
+* 为非空列表定义一个新的数据类型并将其用作函数的参数。这是在模块 `Data.List1`
+  中采用的方法。它允许我们返回一个纯值（这里的意思是“不包含在失败类型中”），因为函数不可能失败，但它带来了重新实现我们已经为 `List`
+  实现的许多实用函数和接口的负担。对于非常常见的数据结构，这可能是一个有效的选项，但对于罕见的用例，它通常太麻烦了。
 
-* Use an index to keep track of the property we are interested in. This was
-  the approach we took with type family `List01`, which we saw in several
-  examples and exercises in this guide so far. This is also the approach
-  taken with vectors, where we use the exact length as our index, which is
-  even more expressive. While this allows us to implement many functions
-  only once and with greater precision at the type level, it also comes with
-  the burden of keeping track of changes in the types, making for more
-  complex function types and forcing us to at times return existentially
-  quantified wrappers (for instance, dependent pairs), because the outcome
-  of a computation is not known until runtime.
+* 使用索引来跟踪我们感兴趣的属性。这是我们对类型族 `List01`
+  采用的方法，到目前为止，我们在本指南的几个示例和练习中看到了这种方法。这也是向量采用的方法，我们使用精确的长度作为索引，这样更有表现力。虽然这允许我们在类型级别以更高的精度实现许多函数，但它也带来了跟踪类型变化的负担，产生更复杂的函数类型并迫使我们有时返回存在量化的包装器（例如，依赖对），因为直到运行时才知道计算的结果。
 
-* Fail with a runtime exception. This is a popular solution in many
-  programming languages (even Haskell), but in Idris we try to avoid this,
-  because it breaks totality in a way, which also affects client
-  code. Luckily, we can make use of our powerful type system to avoid this
-  situation in general.
+* 失败并出现运行时异常。这是许多编程语言（甚至是 Haskell）中流行的解决方案，但在 Idris
+  中我们尽量避免这种情况，因为它在某种程度上破坏了完全性，这也会影响客户端代码。幸运的是，我们可以利用我们强大的类型系统来避免这种情况。
 
-* Take an additional (possibly erased) argument of a type we can use as a
-  witness that the input value is of the correct kind or shape. This is the
-  solution we will discuss in this chapter in great detail. It is an
-  incredibly powerful way to talk about restrictions on values without
-  having to replicate a lot of already existing functionality.
+* 取一个类型的附加（可能已删除）参数，我们可以将其用作输入值的类型或形状正确的见证。这是我们将在本章中详细讨论的解决方案。这是一种非常强大的方式来讨论对值的限制，而无需复制许多已经存在的功能。
 
-There is a time and place for most if not all of the solutions
-listed above in Idris, but we will often turn to the last one and
-refine function arguments with predicates (so called
-*preconditions*), because it makes our functions nice to use at
-runtime *and* compile time.
+Idris 中列出的大多数（如果不是全部）解决方案都有时间和地点，但我们经常会转向最后一个并使用谓词（所谓的 *前置条件*）优化函数参数，因为它使我们的函数在运行时 *和* 编译时更好用。
 
-### Example: Non-empty Lists
+### 示例：非空列表
 
-Remember how we implemented an indexed data type for
-propositional equality: We restricted the valid
-values of the indices in the constructors. We can do
-the same thing for a predicate for non-empty lists:
+记住我们是如何实现命题相等的索引数据类型的：我们限制了构造函数中索引的有效值。我们可以对非空列表的谓词做同样的事情：
 
 ```idris
 data NotNil : (as : List a) -> Type where
   IsNotNil : NotNil (h :: t)
 ```
 
-This is a single-value data type, so we can always use it
-as an erased function argument and still pattern match on
-it. We can now use this to implement a safe and pure `head`
-function:
+这是一种单值数据类型，因此我们始终可以将其用作已擦除的函数参数并仍然对其进行模式匹配。我们现在可以使用它来实现一个安全且纯粹的 `head` 函数：
 
 ```idris
 head1 : (as : List a) -> (0 _ : NotNil as) -> a
@@ -113,34 +60,18 @@ head1 (h :: _) _ = h
 head1 [] IsNotNil impossible
 ```
 
-Note, how value `IsNotNil` is a *witness* that its index,
-which corresponds to our list argument, is indeed non-empty,
-because this is what we specified in its type.
-The impossible case in the implementation of `head1` is not
-strictly necessary here. It was given above for completeness.
+请注意，值 `IsNotNil` 是 *witness* 的值，它对应于我们的列表参数，它的索引确实是非空的，因为这是我们在它的类型中指定的。 `head1` 实现中的不可能的情况在这里不是绝对必要的。上面给出的遵循完全性。
 
-We call `NotNil` a *predicate* on lists, as it restricts
-the values allowed in the index. We can express a function's
-preconditions by adding additional (possibly erased) predicates
-to the function's list of arguments.
+我们将 `NotNil` 称为列表上的 *谓词*，因为它限制了索引中允许的值。我们可以通过在函数的参数列表中添加额外的（可能被删除的）谓词来表达函数的前置条件。
 
-The first really cool thing is how we can safely use `head1`,
-if we can at compile-time show that our list argument is
-indeed non-empty:
+第一个非常酷的事情是我们如何安全地使用 `head1`，如果我们可以在编译时显示我们的列表参数确实是非空的：
 
 ```idris
 headEx1 : Nat
 headEx1 = head1 [1,2,3] IsNotNil
 ```
 
-It is a bit cumbersome that we have to pass the `IsNotNil` proof
-manually. Before we scratch that itch, we will first discuss what
-to do with lists, the values of which are not known until
-runtime. For these cases, we have to try and produce a value
-of the predicate programmatically by inspecting the runtime
-list value. In the most simple case, we can wrap the proof
-in a `Maybe`, but if we can show that our predicate is *decidable*,
-we can get even stronger guarantees by returning a `Dec`:
+我们必须手动通过 `IsNotNil` 证明有点麻烦。在我们解决这个问题之前，我们将首先讨论如何处理列表，其值直到运行时才知道。对于这些情况，我们必须通过检查运行时列表值来尝试以编程方式生成谓词的值。在最简单的情况下，我们可以将证明包装在 `Maybe` 中，但是如果我们可以证明我们的谓词是 *可判定的*，我们可以通过返回 `Dec` 来获得更强的保证：
 
 ```idris
 Uninhabited (NotNil []) where
@@ -151,8 +82,7 @@ nonEmpty (x :: xs) = Yes IsNotNil
 nonEmpty []        = No uninhabited
 ```
 
-With this, we can implement function `headMaybe`, which
-is to be used with lists of unknown origin:
+有了这个，我们可以实现函数 `headMaybe`，它可以用于未知来源的列表：
 
 ```idris
 headMaybe1 : List a -> Maybe a
@@ -161,24 +91,13 @@ headMaybe1 as = case nonEmpty as of
   No  _   => Nothing
 ```
 
-Of course, for trivial functions like `headMaybe` it makes
-more sense to implement them directly by pattern matching on
-the list argument, but we will soon see examples of predicates
-the values of which are more cumbersome to create.
+当然，对于像 `headMaybe` 这样的小函数，直接通过 list 参数上的模式匹配来实现它们更有意义，但是我们很快就会看到谓词的示例，其值创建起来更麻烦。
 
-### Auto Implicits
+### 自动隐式
 
-Having to manually pass a proof of being non-empty to
-`head1` makes this function unnecessarily verbose to
-use at compile time. Idris allows us to define implicit
-function arguments, the values of which it tries to assemble
-on its own by means of a technique called *proof search*. This is not
-to be confused with type inference, which means inferring
-values or types from the surrounding context. It's best
-to look at some examples to explain the difference.
+必须手动将非空证明传递给 `head1` 使得这个函数在编译时使用起来不必要地冗长。 Idris 允许我们定义隐式函数参数，它试图通过一种称为 *证明搜索* 的技术自行组装其值。这不要与类型推断混淆，类型推断意味着从周围的上下文推断值或类型。最好看一些例子来解释差异。
 
-Let us first have a look at the following implementation of
-`replicate` for vectors:
+让我们首先看一下向量的 `replicate` 的以下实现：
 
 ```idris
 replicate' : {n : _} -> a -> Vect n a
@@ -186,43 +105,28 @@ replicate' {n = 0}   _ = []
 replicate' {n = S _} v = v :: replicate' v
 ```
 
-Function `replicate'` takes an unerased implicit argument.
-The *value* of this argument must be derivable from the surrounding
-context. For instance, in the following example it is
-immediately clear that `n` equals three, because that is
-the length of the vector we want:
+函数 `replicate'` 采用未擦除的隐式参数。此参数的 *值* 必须可从周围的上下文中派生。例如，在下面的示例中，很明显 `n` 等于 3，因为这是我们想要的向量的长度：
 
 ```idris
 replicateEx1 : Vect 3 Nat
 replicateEx1 = replicate' 12
 ```
 
-In the next example, the value of `n` is not known at compile time,
-but it is available as an unerased implicit, so this can again
-be passed as is to `replicate'`:
+在下一个示例中，`n` 的值在编译时是未知的，但它可以作为未擦除的隐式使用，因此可以再次将其按原样传递给 `replicate'`：
 
 ```idris
 replicateEx2 : {n : _} -> Vect n Nat
 replicateEx2 = replicate' 12
 ```
 
-However, in the following example, the value of `n` can't
-be inferred, as the intermediary vector is immediately converted
-to a list of unknown length. Although Idris could try and insert
-any value for `n` here, it won't do so, because it can't be
-sure that this is the length we want. We therefore have to pass the
-length explicitly:
+但是，在以下示例中，无法推断 `n` 的值，因为中间向量会立即转换为未知长度的列表。尽管 Idris 可以尝试在这里为 `n` 插入任何值，但它不会这样做，因为它不能确定这是我们想要的长度。因此，我们必须明确地传递长度：
 
 ```idris
 replicateEx3 : List Nat
 replicateEx3 = toList $ replicate' {n = 17} 12
 ```
 
-Note, how the *value* of `n` had to be inferable in
-these examples, which means it had to make an appearance
-in the surrounding context. With auto implicit arguments,
-this works differently. Here is the `head` example, this
-time with an auto implicit:
+请注意，在这些示例中，`n` 的 *值* 必须是可推断的，这意味着它必须出现在周围的上下文中。使用自动隐式参数，这会有所不同。这是 `head` 示例，这次使用自动隐式：
 
 ```idris
 head : (as : List a) -> {auto 0 prf : NotNil as} -> a
@@ -230,23 +134,16 @@ head (x :: _) = x
 head [] impossible
 ```
 
-Note the `auto` keyword before the quantity of implicit argument
-`prf`. This means, we want Idris to construct this value
-on its own, without it being visible in the surrounding context.
-In order to do so, Idris will have to at compile time know the
-structure of the list argument `as`. It will then try and build
-such a value from the data type's constructors. If it succeeds,
-this value will then be automatically filled in as the desired argument,
-otherwise, Idris will fail with a type error.
+注意隐式参数 `prf` 的数量之前的 `auto` 关键字。这意味着，我们希望 Idris 自己构造这个值，而不是在周围的上下文中可见。为此，Idris 必须在编译时知道列表参数 `as` 的结构。然后它将尝试从数据类型的构造函数中构建这样的值。如果成功，该值将自动填充为所需的参数，否则，Idris 将失败并出现类型错误。
 
-Let's see this in action:
+让我们看看它的实际效果：
 
 ```idris
 headEx3 : Nat
 headEx3 = Predicates.head [1,2,3]
 ```
 
-The following example fails with an error:
+以下示例因错误而失败：
 
 ```idris
 failing "Can't find an implementation\nfor NotNil []."
@@ -254,17 +151,7 @@ failing "Can't find an implementation\nfor NotNil []."
   errHead = Predicates.head []
 ```
 
-Wait! "Can't find an implementation for..."? Is this not the
-error message we get for missing interface implementations?
-That's correct, and I'll show you that interface resolution
-is just proof search at the end of this chapter. What I can
-show you already, is that writing the lengthy `{auto prf : t} ->`
-all the times can be cumbersome. Idris therefore allows us
-to use the same syntax as for constrained functions instead:
-`(prf : t) =>`, or even `t =>`, if we don't need to name the
-constraint. As usual, we can then access a constraint in the
-function body by its name (if any). Here is another implementation
-of `head`:
+等待！ “找不到...的实现”？这不是我们因缺少接口实现而得到的错误消息吗？没错，我将在本章末尾向您展示接口解析只是证明搜索。我已经可以向您展示的是，一直编写冗长的 `{auto prf : t} ->` 可能很麻烦。因此，Idris 允许我们使用与约束函数相同的语法：`(prf : t) =>`，或者如果我们不需要命名约束甚至可以写成 `t =>`。像往常一样，我们可以通过名称（如果有的话）访问函数体中的约束。这是 `head` 的另一个实现：
 
 ```idris
 head' : (as : List a) -> (0 _ : NotNil as) => a
@@ -272,10 +159,7 @@ head' (x :: _) = x
 head' [] impossible
 ```
 
-During proof search, Idris will also look for values of
-the required type in the current function context. This allows
-us to implement `headMaybe` without having to pass on
-the `NotNil` proof manually:
+在证明搜索期间，Idris 还将在当前函数上下文中查找所需类型的值。这允许我们实现 `headMaybe` 而无需手动传递 `NotNil` 证明：
 
 ```idris
 headMaybe : List a -> Maybe a
@@ -285,75 +169,47 @@ headMaybe as = case nonEmpty as of
   No  _   => Nothing
 ```
 
-To conclude: Predicates allow us to restrict the values
-a function accepts as arguments. At runtime, we need to
-build such *witnesses* by pattern matching on the function
-arguments. These operations can typically fail. At compile
-time, we can let Idris try and build these values for us
-using a technique called *proof search*. This allows us
-to make functions safe and convenient to use at the same
-time.
+总结：谓词允许我们限制函数接受作为参数的值。在运行时，我们需要通过函数参数的模式匹配来构建这样的 *witnesses*。这些操作通常会失败。在编译时，我们可以让 Idris 尝试使用称为 *证明搜索* 的技术为我们构建这些值。这使我们能够同时使函数安全和方便地使用。
 
 ### 练习第 1 部分
 
-In these exercises, you'll have to implement several
-functions making use of auto implicits, to constrain
-the values accepted as function arguments. The results
-should be *pure*, that is, not wrapped in a failure type
-like `Maybe`.
+在这些练习中，您必须使用自动隐式实现几个函数，以约束作为函数参数接受的值。结果应该是 *纯的*，也就是说，没有包裹在像 `Maybe` 这样的失败类型中。
 
-1. Implement `tail` for lists.
+1. 为列表实现 `tail`。
 
-2. Implement `concat1` and `foldMap1` for lists. These should work like
-   `concat` and `foldMap`, but taking only a `Semigroup` constraint on the
-   element type.
+2. 为列表实现 `concat1` 和 `foldMap1`。这些应该像 `concat` 和 `foldMap` 一样工作，但对元素类型仅采用
+   `Semigroup` 约束。
 
-3. Implement functions for returning the largest and smallest element in a
-   list.
+3. 实现用于返回列表中最大和最小元素的函数。
 
-4. Define a predicate for strictly positive natural numbers and use it to
-   implement a safe and provably total division function on natural numbers.
+4. 为严格的正自然数定义一个谓词，并用它来实现一个安全且可证明的自然数全除函数。
 
-5. Define a predicate for a non-empty `Maybe` and use it to safely extract
-   the value stored in a `Just`. Show that this predicate is decidable by
-   implementing a corresponding conversion function.
+5. 为非空 `Maybe` 定义一个谓词，并使用它安全地提取存储在 `Just` 中的值。通过实现相应的转换函数来证明这个谓词是可判定的。
 
-6. Define and implement functions for safely extracting values from a `Left`
-   and a `Right` by using suitable predicates.  Show again that these
-   predicates are decidable.
+6. 使用合适的谓词定义和实现从 `Left` 和 `Right` 安全地提取值的函数。再次证明这些谓词是可判定的。
 
-The predicates you implemented in these exercises are already
-available in the *base* library: `Data.List.NonEmpty`,
-`Data.Maybe.IsJust`, `Data.Either.IsLeft`, `Data.Either.IsRight`,
-and `Data.Nat.IsSucc`.
+您在这些练习中实现的谓词已经在 *base* 库中可用：`Data.List.NonEmpty`、`Data.Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat.IsSucc`。
 
-## Contracts between Values
+## 值之间的契约
 
-The predicates we saw so far restricted the values of
-a single type, but it is also possible to define predicates
-describing contracts between several values of possibly
-distinct types.
+到目前为止，我们看到的谓词限制了单一类型的值，但也可以定义谓词来描述可能不同类型的多个值之间的契约。
 
-### The `Elem` Predicate
+### `Elem` 谓词
 
-Assume we'd like to extract a value of a given type from
-a heterogeneous list:
+假设我们想从异构列表中提取给定类型的值：
 
 ```idris
 get' : (0 t : Type) -> HList ts -> t
 ```
 
-This can't work in general: If we could implement this we would
-immediately have a proof of void:
+这在一般情况下是行不通的：如果我们可以实现这一点，我们将立即获得无效证明：
 
 ```idris
 voidAgain : Void
 voidAgain = get' Void []
 ```
 
-The problem is obvious: The type of which we'd like to extract
-a value must be an element of the index of the heterogeneous list.
-Here is a predicate, with which we can express this:
+问题很明显：我们要提取值的类型必须是异构列表索引的元素。这是一个谓词，我们可以用它来表达：
 
 ```idris
 data Elem : (elem : a) -> (as : List a) -> Type where
@@ -361,18 +217,7 @@ data Elem : (elem : a) -> (as : List a) -> Type where
   There : Elem x xs -> Elem x (y :: xs)
 ```
 
-This is a predicate describing a contract between two values:
-A value of type `a` and a list of `a`s. Values of this predicate
-are witnesses that the value is an element of the list.
-Note, how this is defined recursively: The case
-where the value we look for is at the head of the list is
-handled by the `Here` constructor, where the same variable (`x`) is used
-for the element and the head of the list. The case where the value
-is deeper within  the list is handled by the `There`
-constructor. This can be read as follows: If `x` is and element
-of `xs`, then `x` is also an element of `y :: xs` for any
-value `y`. Let's write down some examples to get a feel
-for these:
+这是一个描述两个值之间的契约的谓词：一个 `a` 类型的值和一个 `a` 的列表。该谓词的值是该值是列表元素的见证。请注意，这是如何递归定义的：我们查找的值位于列表头部的情况由 `Here` 构造函数处理，其中相同的变量 (`x`) 是用于元素和列表的头部。值在列表中更深的情况由 `There` 构造函数处理。可以这样理解：如果 `x` 是 `xs` 的元素，那么 `x` 也是 `y :: xs` 的元素对于任何值 `y`。让我们写一些例子来感受一下：
 
 ```idris
 MyList : List Nat
@@ -385,23 +230,15 @@ sevenElemMyList : Elem 7 MyList
 sevenElemMyList = There $ There Here
 ```
 
-Now, `Elem` is just another way of indexing into a list
-of values. Instead of using a `Fin` index, which is limited
-by the list's length, we use a proof that a value can be found
-at a certain position.
+现在，`Elem` 只是索引到值列表的另一种方式。我们不使用受列表长度限制的 `Fin` 索引，而是使用可以在特定位置找到值的证明。
 
-We can use the `Elem` predicate to extract a value from
-the desired type of a heterogeneous list:
+我们可以使用 `Elem` 谓词从所需类型的异构列表中提取值：
 
 ```idris
 get : (0 t : Type) -> HList ts -> (prf : Elem t ts) => t
 ```
 
-It is important to note that the auto implicit must not be
-erased in this case. This is no longer a single value data type,
-and we must be able to pattern match on this value in order to
-figure out, how far within the heterogeneous list our value
-is stored:
+重要的是要注意在这种情况下不能删除自动隐式。这不再是单值数据类型，我们必须能够对这个值进行模式匹配，以便弄清楚我们的值在异构列表中存储多远：
 
 ```idris
 get t (v :: vs) {prf = Here}    = v
@@ -409,11 +246,9 @@ get t (v :: vs) {prf = There p} = get t vs
 get _ [] impossible
 ```
 
-It can be instructive to implement `get` yourself, using holes on
-the right hand side to see the context and types of values Idris
-infers based on the value of the `Elem` predicate.
+自己实现 `get` 可能很有启发性，使用右侧的孔查看 Idris 根据 `Elem` 谓词的值推断的值的上下文和类型。
 
-Let's give this a spin at the REPL:
+让我们在 REPL 上试一试：
 
 ```repl
 Tutorial.Predicates> get Nat ["foo", Just "bar", S Z]
@@ -426,13 +261,7 @@ Error: Can't find an implementation for Elem Nat [String, Maybe String].
      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-With this example we start to appreciate what *proof search*
-actually means: Given a value `v` and a list of values `vs`, Idris tries
-to find a proof that `v` is an element of `vs`.
-Now, before we continue, please note that proof search is
-not a silver bullet. The search algorithm has a reasonably limited
-*search depth*, and will fail with the search if this limit
-is exceeded. For instance:
+通过这个例子，我们开始理解 *证明搜索* 的实际含义：给定一个值 `v` 和一个值列表 `vs`，Idris 试图找到一个 `v` 是 `vs` 中的元素的证明。现在，在我们继续之前，请注意证明搜索不是灵丹妙药。搜索算法具有合理限制的 *搜索深度*，如果超过此限制，搜索将失败。例如：
 
 ```idris
 Tps : List Type
@@ -454,13 +283,7 @@ Tutorial.Predicates> get (Maybe String) hlist
 Error: Can't find an implementation for Elem (Maybe String) [Nat,...
 ```
 
-As you can see, Idris fails to find a proof that `Maybe String`
-is an element of `Tps`. The search depth can be increased with
-the `%auto_implicit_depth` directive, which will hold for the
-rest of the source file or until set to a different value.
-The default value is set at 25. In general, it is not advisable
-to set this to a too large value as this can drastically increase
-compile times.
+如您所见，Idris 未能找到 `Maybe String` 是 `Tps` 的一个元素的证明。可以使用 `%auto_implicit_depth` 指令增加搜索深度，该指令将保留源文件的其余部分或直到设置为不同的值。默认值设置为 25。通常，不建议将其设置为太大的值，因为这会大大增加编译时间。
 
 ```idris
 %auto_implicit_depth 100
@@ -470,15 +293,9 @@ aMaybe = get _ hlist
 %auto_implicit_depth 25
 ```
 
-### Use Case: A nicer Schema
+### 用例：更好的模式
 
-In the chapter about [sigma types](DPair.md), we introduced
-a schema for CSV files. This was not very nice to use, because
-we had to use natural numbers to access a certain column. Even
-worse, users of our small library had to do the same. There was
-no way to define a name for each column and access columns by
-name. We are going to change this. Here is an encoding
-for this use case:
+在关于 [sigma 类型](DPair.md) 的章节中，我们介绍了 CSV 文件的模式。这不是很好用，因为我们必须使用自然数来访问某个列。更糟糕的是，我们小型图书馆的用户也必须这样做。无法为每个列定义名称并按名称访问列。我们将改变这一点。这是此用例的编码：
 
 ```idris
 data ColType = I64 | Str | Boolean | Float
@@ -515,9 +332,7 @@ showSchema : Schema -> String
 showSchema = concat . intersperse "," . map show
 ```
 
-As you can see, in a schema we now pair a column's type
-with its name. Here is an example schema for a CSV file
-holding information about employees in a company:
+如您所见，在模式中，我们现在将列的类型与其名称配对。以下是保存公司员工信息的 CSV 文件的示例架构：
 
 ```idris
 EmployeeSchema : Schema
@@ -530,12 +345,7 @@ EmployeeSchema = [ "firstName"  :> Str
                  ]
 ```
 
-Such a schema could of course again be read from user
-input, but we will wait with implementing a parser until
-later in this chapter.
-Using this new schema with an `HList` directly led to issues
-with type inference, therefore I quickly wrote a custom
-row type: A heterogeneous list indexed over a schema.
+这样的模式当然可以再次从用户输入中读取，但我们将等到本章稍后再实现解析器。将这个新模式与 `HList` 一起使用会直接导致类型推断问题，因此我很快编写了一个自定义行类型：基于模式索引的异构列表。
 
 ```idris
 data Row : Schema -> Type where
@@ -548,12 +358,9 @@ data Row : Schema -> Type where
        -> Row (name :> type :: ss)
 ```
 
-In the signature of *cons*, I list the erased implicit arguments
-explicitly. This is good practice, as otherwise Idris will often
-issue shadowing warnings when using such data constructors in client
-code.
+在 *cons* 的签名中，我明确列出了已删除的隐式参数。这是一种很好的做法，否则 Idris 在客户端代码中使用此类数据构造函数时会经常发出阴影警告。
 
-We can now define a type alias for CSV rows representing employees:
+我们现在可以为代表员工的 CSV 行定义一个类型别名：
 
 ```idris
 0 Employee : Type
@@ -563,32 +370,9 @@ hock : Employee
 hock = [ "Stefan", "HÃ¶ck", "hock@foo.com", 46, 5443.2, False ]
 ```
 
-Note, how I gave `Employee` a zero quantity. This means, we are
-only ever allowed to use this function at compile time
-but never at runtime. This is a safe way to make sure
-our type-level functions and aliases do not leak into the
-executable when we build our application. We are allowed
-to use zero-quantity functions and values in type signatures
-and when computing other erased values, but not for runtime-relevant
-computations.
+请注意，我如何给 `Employee` 一个定量 0。这意味着，我们只被允许在编译时使用这个函数，但绝不允许在运行时使用。这是一种确保我们的类型级函数和别名在构建应用程序时不会泄漏到可执行文件中的安全方法。我们可以在类型签名和计算其他擦除值时使用零数量的函数和值，但不能用于与运行时相关的计算。
 
-We would now like to access a value in a row based on
-the name given. For this, we write a custom predicate, which
-serves as a witness that a column with the given name is
-part of the schema. Now, here is an important thing to note:
-In this predicate we include an index for the *type* of the
-column with the given name. We need this, because when we
-access a column by name, we need a way to figure out
-the return type. But during proof search, this type will
-have to be derived by Idris based on the column name and
-schema in question (otherwise, the proof search will fail
-unless the return type is known in advance).
-We therefore *must* tell Idris, that
-it can't include this type in the list of search criteria,
-otherwise it will try and infer the column type from the
-context (using type inference) before running the proof
-search. This can be done by listing the indices to be used in
-the search like so: `[search name schema]`.
+我们现在想根据给定的名称访问一行中的值。为此，我们编写了一个自定义谓词，它可以证明具有给定名称的列是模式的一部分。现在，有一件重要的事情需要注意：在这个谓词中，我们包含一个索引，用于给定名称的列的 *类型*。我们需要这个，因为当我们按名称访问列时，我们需要一种方法来确定返回类型。但是在证明搜索期间，Idris 必须根据所讨论的列名和模式派生这种类型（否则，除非事先知道返回类型，否则证明搜索将失败）。因此，我们 *必须* 告诉 Idris，它不能将此类型包含在搜索条件列表中，否则它会在运行证明搜索之前尝试从上下文中推断列类型（使用类型推断）。这可以通过列出要在搜索中使用的索引来完成，如下所示：`[search name schema]`。
 
 ```idris
 data InSchema :  (name    : String)
@@ -604,8 +388,7 @@ Uninhabited (InSchema n [] c) where
   uninhabited (IsThere _) impossible
 ```
 
-With this, we are now ready to access the value
-at a given column based on the column's name:
+有了这个，我们现在可以根据列的名称访问给定列的值：
 
 ```idris
 getAt :  {0 ss : Schema}
@@ -617,14 +400,7 @@ getAt name (v :: vs) {prf = IsHere}    = v
 getAt name (_ :: vs) {prf = IsThere p} = getAt name vs
 ```
 
-Below is an example how to use this at compile time. Note
-the amount of work Idris performs for us: It first comes
-up with proofs that `firstName`, `lastName`, and `age`
-are indeed valid names in the `Employee` schema. From
-these proofs it automatically figures out the return types
-of the calls to `getAt` and extracts the corresponding values
-from the row. All of this happens in a provably total and type
-safe way.
+下面是一个如何在编译时使用它的示例。请注意 Idris 为我们执行的工作量：首先证明 `firstName`、`lastName` 和 `age` 确实是 `Employee` 模式中的有效名称。从这些证明中，它会自动计算出对 `getAt` 的调用的返回类型，并从行中提取相应的值。所有这些都以可证明的完全性和类型安全的方式发生。
 
 ```idris
 shoeck : String
@@ -636,14 +412,7 @@ shoeck =  getAt "firstName" hock
        ++ " years old."
 ```
 
-In order to at runtime specify a column name, we need a way
-for computing values of type `InSchema` by comparing
-the column names with the schema in question. Since we have
-to compare two string values for being propositionally equal,
-we use the `DecEq` implementation for `String` here (Idris provides `DecEq`
-implementations for all primitives). We extract the column type
-at the same time and pair this (as a dependent pair) with
-the `InSchema` proof:
+为了在运行时指定列名，我们需要一种通过将列名与相关架构进行比较来计算 `InSchema` 类型值的方法。因为我们必须比较两个字符串值是否在命题上相等，所以我们在这里为 `String` 使用 `DecEq` 实现（Idris 为所有原语提供 `DecEq` 实现）。我们同时提取列类型并将其（作为依赖对）与 `InSchema` 证明配对：
 
 ```idris
 inSchema : (ss : Schema) -> (n : String) -> Maybe (c ** InSchema n ss c)
@@ -655,54 +424,27 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
     Nothing         => Nothing
 ```
 
-At the end of this chapter we will use `InSchema` in
-our CSV command-line application to list all values
-in a column.
+在本章的最后，我们将在 CSV 命令行应用程序中使用 `InSchema` 来列出列中的所有值。
 
 ### 练习第 2 部分
 
-1. Show that `InSchema` is decidable by changing the output type of
-   `inSchema` to `Dec (c ** InSchema n ss c)`.
+1. 通过将 `inSchema` 的输出类型更改为 `Dec (c ** InSchema n ss c)` 来证明 `InSchema`
+   是可判定的。
 
-2. Declare and implement a function for modifying a field in a row based on
-   the column name given.
+2. 声明并实现一个函数，用于根据给定的列名修改行中的字段。
 
-3. Define a predicate to be used as a witness that one list contains only
-   elements in the second list in the same order and use this predicate to
-   extract several columns from a row at once.
+3. 定义一个谓词用作见证一个列表仅包含第二个列表中相同顺序的元素，并使用此谓词一次从一行中提取几列。
 
-   For instance, `[2,4,5]` contains elements from
-   `[1,2,3,4,5,6]` in the correct order, but `[4,2,5]`
-   does not.
+   例如，`[1,2,3,4,5,6]` 包含的 `[2,4,5]` 顺序是正确的，但是 `[4,2,5]` 不是。
 
-4. Improve the functionality from exercise 3 by defining a new predicate,
-   witnessing that all strings in a list correspond to column names in a
-   schema (in arbitrary order).  Use this to extract several columns from a
-   row at once in arbitrary order.
+4. 通过定义一个新的谓词来改进练习 3 的功能，见证列表中的所有字符串都对应于模式中的列名（以任意顺序）。使用它可以以任意顺序一次从一行中提取几列。
 
-   Hint: Make sure to include the resulting schema as an index,
-   but search only based on the list of names and the input
-   schema.
+   提示：确保包含生成的模式作为索引，
+   仅根据名称列表和输入模式进行搜索。
 
-## Use Case: Flexible Error Handling
+## 用例：灵活的错误处理
 
-A recurring pattern when writing larger applications is
-the combination of different parts of a program each with
-their own failure types in a larger effectful computation.
-We saw this, for instance, when implementing a command-line
-tool for handling CSV files. There, we read and wrote data
-from and to files, we parsed column types and schemata,
-we parsed row and column indices and command-line commands.
-All these operations came with the potential of failure and
-might be implemented in different parts of our application.
-In order to unify these different failure types, we wrote
-a custom sum type encapsulating each of them, and wrote a
-single handler for this sum type. This approach was alright
-then, but it does not scale well and is lacking in terms of
-flexibility. We are therefore trying a different
-approach here. Before we continue, we quickly implement a
-couple of functions with the potential of failure plus
-some custom error types:
+编写大型应用程序时反复出现的模式是在更大的有效计算中组合程序的不同部分，每个部分都有自己的故障类型。例如，我们在实现用于处理 CSV 文件的命令行工具时就看到了这一点。在那里，我们从文件读取和写入数据，我们解析列类型和模式，我们解析行和列索引以及命令行命令。所有这些操作都有失败的可能性，并且可能在我们应用程序的不同部分中实现。为了统一这些不同的失败类型，我们编写了一个自定义的和类型来封装它们中的每一个，并为这个和类型编写了一个单独的处理程序。这种方法当时还可以，但它不能很好地扩展，并且缺乏灵活性。因此，我们在这里尝试不同的方法。在继续之前，我们快速实现了几个可能失败的函数以及一些自定义错误类型：
 
 ```idris
 record NoNat where
@@ -724,13 +466,7 @@ readColType' "Float"   = Right Float
 readColType' s         = Left $ MkNoColType s
 ```
 
-However, if we wanted to parse a `Fin n`, there'd be already
-two ways how this could fail: The string in question could not
-represent a natural number (leading to a `NoNat` error), or it
-could be out of bounds (leading to an `OutOfBounds` error).
-We have to somehow encode these two possibilities in the
-return type, for instance, by using an `Either` as the error
-type:
+但是，如果我们想解析 `Fin n`，已经有两种方法会导致失败：有问题的字符串不能表示自然数（导致 `NoNat`错误），或者它可能超出范围（导致 `OutOfBounds` 错误）。我们必须以某种方式在返回类型中编码这两种可能性，例如，通过使用 `Either` 作为错误类型：
 
 ```idris
 record OutOfBounds where
@@ -744,30 +480,14 @@ readFin' s = do
   maybeToEither (Right $ MkOutOfBounds n ix) $ natToFin ix n
 ```
 
-This is incredibly ugly. A custom sum type might have been slightly better,
-but we still would have to use `mapFst` when invoking `readNat'`, and
-writing custom sum types for every possible combination of errors
-will get cumbersome very quickly as well.
-What we are looking for, is a generalized sum type: A type
-indexed by a list of types (the possible choices) holding
-a single value of exactly one of the types in question.
-Here is a first naive try:
+这是难以置信的丑陋。自定义和类型可能会稍微好一些，但是在调用 `readNat'` 时我们仍然必须使用 `mapFst`，并且为每个可能的错误组合编写自定义和类型也会很快变得非常麻烦。我们正在寻找的是一种广义的和类型：一种由类型列表（可能的选择）索引的类型，其中包含所讨论类型之一的单个值。这是第一次天真的尝试：
 
 ```idris
 data Sum : List Type -> Type where
   MkSum : (val : t) -> Sum ts
 ```
 
-However, there is a crucial piece of information missing:
-We have not verified that `t` is an element of `ts`, nor
-*which* type it actually is. In fact, this is another case
-of an erased existential, and we will have no way to at runtime
-learn something about `t`. What we need to do is to pair the value
-with a proof, that its type `t` is an element of `ts`.
-We could use `Elem` again for this, but for some use cases
-we will require access to the number of types in the list.
-We will therefore use a vector instead of a list as our index.
-Here is a predicate similar to `Elem` but for vectors:
+但是，缺少一条关键信息：我们尚未验证 `t` 是 `ts` 的元素，也没有验证它实际上是 *哪个* 类型。事实上，这是另一种被抹去的存在，我们将无法在运行时了解 `t`。我们需要做的是将值与证明配对，证明其类型 `t` 是 `ts` 的元素。为此，我们可以再次使用 `Elem`，但对于某些用例，我们将需要访问列表中的类型数量。因此，我们将使用向量而不是列表作为索引。这是一个类似于 `Elem` 的谓词，但用于向量：
 
 ```idris
 data Has :  (v : a) -> (vs  : Vect n a) -> Type where
@@ -779,9 +499,7 @@ Uninhabited (Has v []) where
   uninhabited (S _) impossible
 ```
 
-A value of type `Has v vs` is a witness that `v` is an
-element of `vs`. With this, we can now implement an indexed
-sum type (also called an *open union*):
+`Has v vs` 类型的值证明 `v` 是 `vs` 的一个元素。有了这个，我们现在可以实现一个索引和类型（也称为 *开放联合*）：
 
 ```idris
 data Union : Vect n Type -> Type where
@@ -791,20 +509,14 @@ Uninhabited (Union []) where
   uninhabited (U ix _) = absurd ix
 ```
 
-Note the difference between `HList` and `Union`. `HList` is
-a *generalized product type*: It holds a value for each type
-in its index. `Union` is a *generalized sum type*: It holds
-only a single value, which must be of a type listed in the index.
-With this we can now define a much more flexible error type:
+注意 `HList` 和 `Union` 之间的区别。 `HList` 是 * 广义积类型*：它在其索引中为每个类型保存一个值。 `Union` 是 * 广义和类型*：它只保存一个值，该值必须是索引中列出的类型。有了这个，我们现在可以定义一个更灵活的错误类型：
 
 ```idris
 0 Err : Vect n Type -> Type -> Type
 Err ts t = Either (Union ts) t
 ```
 
-A function returning an `Err ts a` describes a computation, which
-can fail with one of the errors listed in `ts`.
-We first need some utility functions.
+返回 `Err ts a` 的函数描述了一个计算，该计算可能会因 `ts` 中列出的错误之一而失败。我们首先需要一些实用函数。
 
 ```idris
 inject : (prf : Has t ts) => (v : t) -> Union ts
@@ -817,8 +529,7 @@ failMaybe : Has t ts => (err : Lazy t) -> Maybe a -> Err ts a
 failMaybe err = maybeToEither (inject err)
 ```
 
-Next, we can write more flexible versions of the
-parsers we wrote above:
+接下来，我们可以为上面编写的解析器编写更灵活的版本：
 
 ```idris
 readNat : Has NoNat ts => String -> Err ts Nat
@@ -832,8 +543,7 @@ readColType "Float"   = Right Float
 readColType s         = fail $ MkNoColType s
 ```
 
-Before we implement `readFin`, we introduce a short cut for
-specifying that several error types must be present:
+在我们实现 `readFin` 之前，我们引入一个快捷方式来指定必须存在几种错误类型：
 
 ```idris
 0 Errs : List Type -> Vect n Type -> Type
@@ -841,10 +551,7 @@ Errs []        _  = ()
 Errs (x :: xs) ts = (Has x ts, Errs xs ts)
 ```
 
-Function `Errs` returns a tuple of constraints. This can
-be used as a witness that all listed types are present
-in the vector of types: Idris will automatically extract
-the proofs from the tuple as needed.
+函数 `Errs` 返回一个约束元组。这可以用作所有列出的类型都存在于类型向量中的见证：Idris 将根据需要自动从元组中提取证明。
 
 
 ```idris
@@ -854,8 +561,7 @@ readFin s = do
   failMaybe (MkOutOfBounds n (S ix)) $ natToFin ix n
 ```
 
-As a last example, here are parsers for schemata and
-CSV rows:
+作为最后一个示例，这里是模式和 CSV 行的解析器：
 
 ```idris
 fromCSV : String -> List String
@@ -905,11 +611,7 @@ decodeRow row = go 1 s . fromCSV
           [| decodeField row k c s :: go (S k) cs ss |]
 ```
 
-Here is an example REPL session, where I test `readSchema`. I defined
-variable `ts` using the `:let` command to make this more convenient.
-Note, how the order of error types is of no importance, as long
-as types `InvalidColumn` and `NoColType` are present in the list of
-errors:
+这是一个示例 REPL 会话，我在其中测试 `readSchema`。我使用 `:let` 命令定义了变量 `ts` 以使其更方便。请注意，错误类型的顺序并不重要，只要错误列表中存在 `InvalidColumn` 和 `NoColType` 类型：
 
 ```repl
 Tutorial.Predicates> :let ts = the (Vect 3 _) [NoColType,NoNat,InvalidColumn]
@@ -921,20 +623,11 @@ Tutorial.Predicates> readSchema {ts} "foo Float"
 Left (U (S (S Z)) (MkInvalidColumn "foo Float"))
 ```
 
-### Error Handling
+### 错误处理
 
-There are several techniques for handling errors, all of which
-are useful at times. For instance, we might want to handle some
-errors early on and individually, while dealing with others
-much later in our application. Or we might want to handle
-them all in one fell swoop. We look at both approaches here.
+有几种处理错误的技术，所有这些技术有时都很有用。例如，我们可能希望在早期单独处理一些错误，而在我们的应用程序中处理其他错误。或者我们可能想一举解决所有问题。我们在这里看看这两种方法。
 
-First, in order to handle a single error individually, we need
-to *split* a union into one of two possibilities: A value of
-the error type in question or a new union, holding one of the
-other error types. We need a new predicate for this, which
-not only encodes the presence of a value in a vector
-but also the result of removing that value:
+首先，为了单独处理单个错误，我们需要将联合 *拆分* 为以下两种可能性之一：所讨论的错误类型的值或新联合，包含其他错误类型之一。为此我们需要一个新的谓词，它不仅编码向量中值的存在，还编码删除该值的结果：
 
 ```idris
 data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where
@@ -943,10 +636,7 @@ data Rem : (v : a) -> (vs : Vect (S n) a) -> (rem : Vect n a) -> Type where
   RS : Rem v vs rem -> Rem v (w :: vs) (w :: rem)
 ```
 
-Once again, we want to use one of the indices (`rem`) in our
-functions' return types, so we only use the other indices during
-proof search. Here is a function for splitting off a value from
-an open union:
+再一次，我们希望在函数的返回类型中使用其中一个索引 (`rem`)，因此我们只在证明搜索期间使用其他索引。这是一个从开放联合中分离值的函数：
 
 ```idris
 split : (prf : Rem t ts rem) => Union ts -> Either t (Union rem)
@@ -958,15 +648,9 @@ split {prf = RS p} (U (S x) val) = case split {prf = p} (U x val) of
   Right (U ix y) => Right $ U (S ix) y
 ```
 
-This tries to extract a value of type `t` from a union. If it works,
-the result is wrapped in a `Left`, otherwise a new union is returned
-in a `Right`, but this one has `t` removed from its list of possible
-types.
+这试图从联合中提取 `t` 类型的值。如果有效，则将结果包装在 `Left` 中，否则将在 `Right` 中返回一个新联合，但此联合已从其列表中删除了 `t`可能的类型。
 
-With this, we can implement a handler for single errors.
-Error handling often happens in an effectful context (we might want to
-print a message to the console or write the error to a log file), so
-we use an applicative effect type to handle errors in.
+有了这个，我们可以实现单个错误的处理程序。错误处理通常发生在有效的上下文中（我们可能希望将消息打印到控制台或将错误写入日志文件），因此我们使用应用效果类型来处理错误。
 
 ```idris
 handle :  Applicative f
@@ -980,9 +664,7 @@ handle h (Left x)  = case split x of
 handle _ (Right x) = pure $ Right x
 ```
 
-For handling all errors at once, we can use a handler type
-indexed by the vector of errors, and parameterized by the
-output type:
+为了一次处理所有错误，我们可以使用由错误向量索引并由输出类型参数化的处理程序类型：
 
 ```idris
 namespace Handler
@@ -1001,13 +683,11 @@ handleAll _ (Right v)       = pure v
 handleAll h (Left $ U ix v) = extract h ix v
 ```
 
-Below, we will see an additional way of handling all
-errors at once by defining a custom interface for
-error handling.
+下面，我们将看到另一种通过定义用于错误处理的自定义接口来一次处理所有错误的方法。
 
 ### 练习第 3 部分
 
-1. Implement the following utility functions for `Union`:
+1. 为 `Union` 实现以下实用函数：
 
    ```idris
    project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t
@@ -1016,8 +696,7 @@ error handling.
 
    safe : Err [] a -> a
    ```
-2. Implement the following two functions for embedding an open union in a
-   larger set of possibilities.  Note the unerased implicit in `extend`!
+2. 实现以下两个函数，以便在更大的可能性集合中嵌入开放联合。请注意 `extend` 中的未擦除隐式！
 
    ```idris
    weaken : Union ts -> Union (ts ++ ss)
@@ -1025,8 +704,7 @@ error handling.
    extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)
    ```
 
-3. Find a general way to embed a `Union ts` in a `Union ss`, so that the
-   following is possible:
+3. 找到一种将 `Union ts` 嵌入到 `Union ss` 中的通用方法，以便可以进行以下操作：
 
    ```idris
    embedTest :  Err [NoNat,NoColType] a
@@ -1034,21 +712,11 @@ error handling.
    embedTest = mapFst embed
    ```
 
-4. Make `handle` more powerful, by letting the handler convert the error in
-   question to an `f (Err rem a)`.
+4. 通过让处理程序将有问题的错误转换为 `f (Err rem a)`，使 `handle` 更强大。
 
-## The Truth about Interfaces
+## 关于接口的真相
 
-Well, here it finally is: The truth about interfaces. Internally,
-an interface is just a record data type, with its fields corresponding
-to the members of the interface. An interface implementation is
-a *value* of such a record, annotated with a `%hint` pragma (see
-below) to make the value available during proof search. Finally,
-a constrained function is just a function with one or more auto implicit
-arguments. For instance, here is the same function for looking up
-an element in a list, once with the known syntax for constrained
-functions, and once with an auto implicit argument. The code
-produced by Idris is the same in both cases:
+好吧，终于到了：关于接口的真相。在内部，接口只是一种记录数据类型，其字段对应于接口的成员。接口实现是此类记录的 *值*，使用 `%hint` pragma 注解（见下文）以使值在证明搜索期间可用。最后，受约束的函数只是具有一个或多个自动隐式参数的函数。例如，这里是在列表中查找元素的相同函数，一次使用已知语法的约束函数，一次使用自动隐式参数。 Idris 生成的代码在两种情况下都是相同的：
 
 ```idris
 isElem1 : Eq a => a -> List a -> Bool
@@ -1060,23 +728,16 @@ isElem2 v []        = False
 isElem2 v (x :: xs) = x == v || isElem2 v xs
 ```
 
-Being mere records, we can also take interfaces as
-regular function arguments and dissect them with a pattern
-match:
+作为单纯的记录，我们还可以将接口作为常规函数参数，并使用模式匹配对其进行剖析：
 
 ```idris
 eq : Eq a -> a -> a -> Bool
 eq (MkEq feq fneq) = feq
 ```
 
-### A manual Interface Definition
+### 手动接口定义
 
-I'll now demonstrate how we can achieve the same behavior
-with proof search as with a regular interface definition
-plus implementations. Since I want to finish the CSV
-example with our new error handling tools, we are
-going to implement some error handlers.
-First, an interface is just a record:
+我现在将演示我们如何使用证明搜索实现与使用常规接口定义和实现相同的行为。由于我想用我们的新错误处理工具完成 CSV 示例，我们将实现一些错误处理程序。首先，一个接口只是一个记录：
 
 ```idris
 record Print a where
@@ -1084,39 +745,30 @@ record Print a where
   print' : a -> String
 ```
 
-In order to access the record in a constrained function,
-we use the `%search` keyword, which will try to conjure a
-value of the desired type (`Print a` in this case) by
-means of a proof search:
+为了在受约束的函数中访问记录，我们使用 `%search` 关键字，它将尝试通过以下方式变出所需类型的值（在这种情况下为 `Print a`）证明搜索：
 
 ```idris
 print : Print a => a -> String
 print = print' %search
 ```
 
-As an alternative, we could use a named constraint, and access
-it directly via its name:
+作为替代方案，我们可以使用命名约束，并通过其名称直接访问它：
 
 ```idris
 print2 : (impl : Print a) => a -> String
 print2 = print' impl
 ```
 
-As yet another alternative, we could use the syntax for auto
-implicit arguments:
+作为另一种选择，我们可以使用自动隐式参数的语法：
 
 ```idris
 print3 : {auto impl : Print a} -> a -> String
 print3 = print' impl
 ```
 
-All three versions of `print` behave exactly the same at runtime.
-So, whenever we write `{auto x : Foo} ->` we can just as well
-write `(x : Foo) =>` and vice versa.
+`print` 的所有三个版本在运行时的行为完全相同。所以，每当我们写 `{auto x : Foo} ->` 时，我们也可以写成 `(x : Foo) =>` ，反之亦然。
 
-Interface implementations are just values of the given
-record type, but in order to be available during proof search,
-these need to be annotated with a `%hint` pragma:
+接口实现只是给定记录类型的值，但为了在证明搜索期间可用，这些需要用 `%hint` pragma 注解：
 
 ```idris
 %hint
@@ -1142,10 +794,7 @@ rowErrorPrint = MkPrint $
           "Expected end of input in row \{show r}, column \{show c}."
 ```
 
-We can also write an implementation of `Print` for
-a union or errors. For this, we first come up with a
-proof that all types in the union's index come with an
-implementation of `Print`:
+我们还可以为联合或错误编写 `Print` 的实现。为此，我们首先要证明联合索引中的所有类型都带有 `Print` 的实现：
 
 ```idris
 0 All : (f : a -> Type) -> Vect n a -> Type
@@ -1161,27 +810,13 @@ unionPrint : All Print ts => Print (Union ts)
 unionPrint = MkPrint unionPrintImpl
 ```
 
-Defining interfaces this way can be an advantage, as there
-is much less magic going on, and we have more fine grained
-control over the types and values of our fields. Note also,
-that all of the magic comes from the search hints, with
-which our "interface implementations" were annotated.
-These made the corresponding values and functions available
-during proof search.
+以这种方式定义接口可能是一个优势，因为发生的魔法要少得多，而且我们对字段的类型和值有更细粒度的控制。还要注意，所有的魔法都来自搜索提示，我们的“接口实现” 带有注解。这会使相应的值和功能在证明搜索期间可用。
 
-#### Parsing CSV Commands
+#### 解析 CSV 命令
 
-To conclude this chapter, we reimplement our CSV command
-parser, using the flexible error handling approach from
-the last section. While not necessarily less verbose than
-the original parser, this approach decouples the handling
-of errors and printing of error messages from the rest
-of the application: Functions with a possibility of failure
-are reusable in different contexts, as are the pretty
-printers we use for the error messages.
+为了结束本章，我们使用上一节中灵活的错误处理方法重新实现了 CSV 命令解析器。虽然不一定比原始解析器更冗长，但这种方法将错误处理和错误消息打印与应用程序的其余部分分离：可能失败的函数可以在不同的上下文中重用，就像我们使用的美观打印器一样错误信息。
 
-First, we repeat some stuff from earlier chapters. I sneaked
-in a new command for printing all values in a column:
+首先，我们重复前面章节中的一些内容。我偷偷输入了一个新命令来打印列中的所有值：
 
 ```idris
 record Table where
@@ -1216,9 +851,7 @@ applyCommand (MkTable ts n rs) (Delete x)  = case n of
   Z   => absurd x
 ```
 
-Next, below is the command parser reimplemented. In total,
-it can fail in seven different was, at least some of which
-might also be possible in other parts of a larger application.
+接下来，下面是重新实现的命令解析器。总的来说，它可能在七种不同的情况下失败，至少其中一些可能在更大应用程序的其他部分中也可能出现。
 
 ```idris
 record UnknownCommand where
@@ -1261,15 +894,9 @@ readCommand (MkTable ts n _) s         = case words s of
   _               => fail $ MkUnknownCommand s
 ```
 
-Note, how we could invoke functions like `readFin` or
-`readSchema` directly, because the necessary error types
-are part of our list of possible errors.
+请注意，我们如何直接调用像 `readFin` 或 `readSchema` 这样的函数，因为必要的错误类型是我们可能的错误列表的一部分。
 
-To conclude this sections, here is the functionality
-for printing the result of a command plus the application's
-main loop. Most of this is repeated from earlier chapters,
-but note how we can handle all errors at once with a single
-call to `print`:
+总结本节，这里是打印命令结果和应用程序主循环的函数。其中大部分内容从前面的章节中重复，但请注意我们如何通过一次调用 `print` 来一次处理所有错误：
 
 ```idris
 encodeField : (t : ColType) -> IdrisType t -> String
@@ -1319,7 +946,7 @@ main : IO ()
 main = runProg $ MkTable [] _ []
 ```
 
-Here is an example REPL session:
+这是一个示例 REPL 会话：
 
 ```repl
 Tutorial.Predicates> :exec main
@@ -1344,13 +971,7 @@ Goodbye.
 
 ## 结论
 
-Predicates allow us to describe contracts between types
-and to refine the values we accept as valid function arguments.
-They allow us to make a function safe and convenient to use
-at runtime *and* compile time by using them as auto implicit
-arguments, which Idris should try to construct on its own if
-it has enough information about the structure of a function's
-arguments.
+谓词允许我们描述类型之间的契约并细化我们接受为有效函数参数的值。它们允许我们通过将它们用作自动隐式参数来使函数在运行时 *和* 编译时安全且方便地使用 ，如果Idris有足够的关于函数参数结构的信息，Idris 应该尝试自己构造它。
 
 <!-- vi: filetype=idris2
 -->
