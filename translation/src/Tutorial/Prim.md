@@ -314,7 +314,7 @@ multiline2 = #"""
 
 正如本章开头所列出的，Idris 提供了不同的固定精度有符号和无符号整数类型以及 `Integer`，一种任意精度的有符号整数类型。它们都带有以下原语函数（此处以 `Bits8` 为例）：
 
-* `prim__add_Bits8`: Integer addition.
+* `prim__add_Bits8`：整数加法。
 * `prim__sub_Bits8`：整数减法。
 * `prim__mul_Bits8`：整数乘法。
 * `prim__div_Bits8`：整数除法。
@@ -581,35 +581,19 @@ namespace Ascii
 
 从给定字符串中提取子字符串的所有操作也是如此：我们必须使用 `believe_me` 来实现相应的规则。因此，找到一组合理的公理来方便地处理精炼的原语有时可能具有挑战性，而且是否需要这样的公理在很大程度上取决于手头的用例。
 
-### Use Case: Sanitized HTML
+### 用例：净化的 HTML
 
-Assume you write a simple web application for scientific
-discourse between registered users. To keep things simple, we
-only consider unformatted text input here. Users can write arbitrary
-text in a text field and upon hitting Enter, the message is
-displayed to all other registered users.
+假设您为注册用户之间的科学讨论编写了一个简单的 Web 应用程序。为了简单起见，我们在这里只考虑未格式化的文本输入。用户可以在文本字段中写入任意文本，然后按 Enter 键，该消息将显示给所有其他注册用户。
 
-Assume now a user decides to enter the following text:
+假设现在用户决定输入以下文本：
 
 ```html
 <script>alert("Hello World!")</script>
 ```
 
-Well, it could have been (much) worse. Still, unless we take measures
-to prevent this from happening, this might embed a JavaScript
-program in our web page we never intended to have there!
-What I described here, is a well known security vulnerability called
-[cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).
-It allows users of web pages to enter malicious JavaScript code in
-text fields, which will then be included in the page's HTML structure
-and executed when it is being displayed to other users.
+好吧，它本来可以（非常）更糟。尽管如此，除非我们采取措施防止这种情况发生，否则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript 程序！我在这里描述的是一个众所周知的安全漏洞，称为 [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)。它允许网页用户在文本字段中输入恶意 JavaScript 代码，然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时执行。
 
-We want to make sure, that this cannot happen on our own web page.
-In order to protect us from this attack, we could for instance disallow
-certain characters like `'<'` or `'>'` completely (although this might not
-be enough!), but if our chat service is targeted at programmers,
-this will be overly restrictive. An alternative
-is to escape certain characters before rendering them on the page.
+我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上之前对其进行转义。
 
 ```idris
 escape : String -> String
@@ -623,12 +607,7 @@ escape = concat . map esc . unpack
         esc c    = singleton c
 ```
 
-What we now want to do is to store a string together with
-a proof that is was properly escaped. This is another form
-of existential quantification: "Here is a string, and there
-once existed another string, which we passed to `escape`
-and arrived at the string we have now". Here's how to encode
-this:
+我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形式：“这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` 并到达我们现在拥有的字符串”。以下是如何对此进行编码：
 
 ```idris
 record Escaped where
@@ -638,12 +617,7 @@ record Escaped where
   0 prf    : escape origin === value
 ```
 
-Whenever we now embed a string of unknown origin in our web page,
-we can request a value of type `Escaped` and have the very
-strong guarantee that we are no longer vulnerable to cross-site
-scripting attacks. Even better, it is also possible to safely
-embed string literals known at compile time without the need
-to escape them first:
+每当我们现在在我们的网页中嵌入一个未知来源的字符串时，我们都可以请求一个类型为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨站点脚本攻击。更好的是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义它们：
 
 ```idris
 namespace Escaped
@@ -657,50 +631,17 @@ escaped = "Hello World!"
 
 ### 练习第 3 部分
 
-In this massive set of exercises, you are going to build
-a small library for working with predicates on primitives.
-We want to keep the following goals in mind:
+在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下目标：
 
-* We want to use the usual operations of propositional logic to combine
-  predicates: Negation, conjuction (logical *and*), and disjunction (logical
-  *or*).
-* All predicates should be erased at runtime. If we proof something about a
-  primitive number, we want to make sure not to carry around a huge proof of
-  validity.
-* Calculations on predicates should make no appearance at runtime (with the
-  exception of `decide`; see below).
-* Recursive calculations on predicates should be tail recursive if they are
-  used in implementations of `decide`. This might be tough to achieve. If
-  you can't find a tail recursive solution for a given problem, use what
-  feels most natural instead.
+* 我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 *与*）和析取（逻辑 *或*）。
+* 所有谓词都应在运行时擦除。如果我们证明一些关于原语数字的东西，我们要确保不携带大量的有效性证明。
+* 谓词的计算不应在运行时出现（`decide` 除外；见下文）。
+* 如果谓词用于 `decide`
+  的实现，则谓词的递归计算应该是尾递归的。这可能很难实现。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。
 
-A note on efficiency: In order to be able to run
-computations on our predicates, we try to convert primitive
-values to algebraic data types as often and as soon as possible:
-Unsigned integers will be converted to `Nat` using `cast`,
-and strings will be converted to `List Char` using `unpack`.
-This allows us to work with proofs on `Nat` and `List` most
-of the time, and such proofs can be implemented without
-resorting to `believe_me` or other cheats. However, the one
-advantage of primitive types over algebraic data types is
-that they often perform much better. This is especially
-critical when comparing integral types with `Nat`: Operations
-on natural numbers often run with `O(n)` time complexity,
-where `n` is the size of one of the natural numbers involved,
-while with `Bits64`, for instance, many operations run in fast constant
-time (`O(1)`). Luckily, the Idris compiler optimizes many
-functions on natural number to use the corresponding `Integer`
-operations at runtime. This has the advantage that we can
-still use proper induction to proof stuff about natural
-numbers at compile time, while getting the benefit of fast
-integer operations at runtime. However, operations on `Nat` do
-run with `O(n)` time complexity and *compile time*. Proofs
-working on large natural number will therefore drastically
-slow down the compiler. A way out of this is discussed at
-the end of this section of exercises.
+关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原语值转换为代数数据类型：无符号整数将转换为 `Nat` 使用 `cast`，字符串将使用 `unpack` 转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使用证明，并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然而，原语类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 `Nat` 进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运行，其中 `n` 是所涉及的自然数其中之一的大小，而对于 `Bits64`，例如，许多操作在常数时间内（`O(1)`）快速运行。幸运的是，Idris 编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度在 *编译期* 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练习的末尾讨论了解决此问题的方法。
 
-Enough talk, let's begin!
-To start with, you are given the following utilities:
+废话不多说，开始吧！首先，您将获得以下实用程序：
 
 ```idris
 -- Like `Dec` but with erased proofs. Constructors `Yes0`
@@ -738,11 +679,7 @@ test0 True  = Yes0 Refl
 test0 False = No0 absurd
 ```
 
-We also want to run decidable computations at compile time. This
-is often much more efficient than running a direct proof search on
-an inductive type. We therefore come up with a predicate witnessing
-that a `Dec0` value is actually a `Yes0` together with two
-utility functions:
+我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` 以及两个实用函数：
 
 ```idris
 data IsYes0 : (d : Dec0 prop) -> Type where
@@ -760,9 +697,7 @@ fromYes0 (No0 contra) impossible
 safeDecideOn p v = fromYes0 $ decideOn p v
 ```
 
-Finally, as we are planning to refine mostly primitives, we will
-at times require some sledge hammer to convince Idris that
-we know what we are doing:
+最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris 我们知道我们在做什么：
 
 ```idris
 -- only use this if you are sure that `decideOn p v`
@@ -774,35 +709,32 @@ unsafeDecideOn p v = case decideOn p v of
     assert_total $ idris_crash "Unexpected refinement failure in `unsafeRefineOn`"
 ```
 
-1. We start with equality proofs. Implement `Decidable` for `Equal v`.
+1. 我们从等式证明开始。为 `Equal v` 实现 `Decidable`。
 
-   Hint: Use `DecEq` from module `Decidable.Equality` as a constraint
-         and make sure that `v` is available at runtime.
+   提示：使用模块 `Decidable.Equality` 中的 `DecEq` 作为约束
+         并确保 `v` 在运行时可用。
 
-2. We want to be able to negate a predicate:
+2. 我们希望能够否定一个谓词：
 
    ```idris
    data Neg : (p : a -> Type) -> a -> Type where
      IsNot : {0 p : a -> Type} -> (contra : p v -> Void) -> Neg p v
    ```
 
-   Implement `Decidable` for `Neg p` using a suitable constraint.
+   使用合适的约束为 `Neg p` 实现 `Decidable`。
 
-3. We want to describe the conjunction of two predicates:
+3. 我们要描述两个谓词的合取：
 
    ```idris
    data (&&) : (p,q : a -> Type) -> a -> Type where
      Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v
    ```
 
-   Implement `Decidable` for `(p && q)` using suitable constraints.
+   使用合适的约束为 `(p && q)` 实现 `Decidable`。
 
-4. Come up with a data type called `(||)` for the disjunction (logical *or*)
-   of two predicates and implement `Decidable` using suitable constraints.
+4. 提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 *或*），并使用合适的约束实现 `Decidable`。
 
-5. Proof [De Morgan's
-   laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)  by implementing
-   the following propositions:
+5. 通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)：
 
    ```idris
    negOr : Neg (p || q) v -> (Neg p && Neg q) v
@@ -812,11 +744,11 @@ unsafeDecideOn p v = case decideOn p v of
    orNeg : (Neg p || Neg q) v -> Neg (p && q) v
    ```
 
-   The last of De Morgan's implications is harder to type and proof
-   as we need a way to come up with values of type `p v` and `q v`
-   and show that not both can exist. Here is a way to encode this
-   (annotated with quantity 0 as we will need to access an erased
-   contraposition):
+   德摩根的最后一个含义更难输入和证明
+   因为我们需要一种方法来得出 `p v` 和 `q v` 类型的值
+   并表明并非两者都可以存在。这是一种对此进行编码的方法
+   （用定量 0 注释，因为我们需要访问已擦除的
+   对偶）：
 
    ```idris
    0 negAnd :  Decidable a p
@@ -825,15 +757,11 @@ unsafeDecideOn p v = case decideOn p v of
             -> (Neg p || Neg q) v
    ```
 
-   When you implement `negAnd`, remember that you can freely access
-   erased (implicit) arguments, because `negAnd` itself can only be
-   used in an erased context.
+   当你实现`negAnd`时，记住你可以自由访问
+   擦除（隐式）参数，因为 `negAnd` 本身只能是
+   在已删除的上下文中使用。
 
-So far, we implemented the tools to algebraically describe
-and combine several predicate. It is now time to come up
-with some examples. As a first use case, we will focus on
-limiting the valid range of natural numbers. For this,
-we use the following data type:
+到目前为止，我们实现了代数描述和组合几个谓词的工具。现在是提出一些例子的时候了。作为第一个用例，我们将专注于限制自然数的有效范围。为此，我们使用以下数据类型：
 
 ```idris
 -- Proof that m <= n
@@ -842,9 +770,7 @@ data (<=) : (m,n : Nat) -> Type where
   SLTE : m <= n -> S m <= S n
 ```
 
-This is similar to `Data.Nat.LTE` but I find operator
-notation often to be clearer.
-We also can define and use the following aliases:
+这类似于 `Data.Nat.LTE` 但我发现运算符符号通常更清晰。我们还可以定义和使用以下别名：
 
 ```repl
 (>=) : (m,n : Nat) -> Type
@@ -875,20 +801,15 @@ Between : (lower,upper : Nat) -> Nat -> Type
 Between l u = GreaterThan l && LessThan u
 ```
 
-6. Coming up with a value of type `m <= n` by pattern matching on `m` and
-   `n` is highly inefficient for large values of `m`, as it will require `m`
-   iterations to do so. However, while in an erased context, we don't need
-   to hold a value of type `m <= n`. We only need to show, that such a value
-   follows from a more efficient computation. Such a computation is
-   `compare` for natural numbers: Although this is implemented in the
-   *Prelude* with a pattern match on its arguments, it is optimized by the
-   compiler to a comparison of integers which runs in constant time even for
-   very large numbers.  Since `Prelude.(<=)` for natural numbers is
-   implemented in terms of `compare`, it runs just as efficiently.
+6. 通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` 值非常低效，因为这样做需要 `m`
+   次迭代。但是，在擦除上下文中，我们不需要保存 `m <= n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，这样的计算是
+   `compare`：尽管这是在 *Prelude*
+   中实现的，其参数的模式匹配，但编译器将其优化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 `Prelude.(<=)` 是根据
+   `compare` 实现的，因此它的运行效率同样高。
 
-   We therefore need to proof the following two lemmas (make
-   sure to not confuse `Prelude.(<=)` with `Prim.(<=)` in
-   these declarations):
+   因此，我们需要证明以下两个引理（使
+   确保不要将 `Prelude.(<=)` 与 `Prim.(<=)` 混淆
+   这些声明）：
 
    ```idris
    0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2
@@ -896,30 +817,25 @@ Between l u = GreaterThan l && LessThan u
    0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True
    ```
 
-   They come with a quantity of 0, because they are just as inefficient
-   as the other computations we discussed above. We therefore want
-   to make absolutely sure that they will never be used at runtime!
+   它们的定量为 0，因为它们同样低效
+   正如我们上面讨论的其他计算。因此我们想要
+   绝对确保它们永远不会在运行时使用！
 
-   Now, implement `Decidable Nat (<= n)`, making use of `test0`,
-   `fromLTE`, and `toLTE`.
-   Likewise, implement `Decidable Nat (m <=)`, because we require
-   both kinds of predicates.
+   现在，利用 `test0` 实现 `Decidable Nat (<= n)`，
+   `从LTE` 和 `到LTE`。
+   同样，实现 `Decidable Nat (m <=)`，因为我们需要
+   两种谓词。
 
-   Note: You should by know figure out yourself that `n` must be
-   available at runtime and how to make sure that this is the case.
+   注意：您应该自己知道 `n` 必须是
+   在运行时可用以及如何确保是这种情况。
 
-7. Proof that `(<=)` is reflexive and transitive by declaring and
-   implementing corresponding propositions. As we might require the proof of
-   transitivity to chain several values of type `(<=)`, it makes sense to
-   also define a short operator alias for this.
+7. 通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。由于我们可能需要传递性证明来链接多个类型为 `(<=)`
+   的值，因此也可以为此定义一个简短的运算符别名。
 
-8. Proof that from `n > 0` follows `IsSucc n` and vise versa.
+8. 证明从 `n > 0` 遵循 `IsSucc n`，反之亦然。
 
-9. Declare and implement safe division and modulo functions for `Bits64`, by
-   requesting an erased proof that the denominator is strictly positive when
-   cast to a natural number. In case of the modulo function, return a
-   refined value carrying an erased proof that the result is strictly
-   smaller than the modulus:
+9. 声明并实现 `Bits64`
+   的安全除法和模函数，方法是请求删除证明，证明分母在转换为自然数时严格为正。在模函数的情况下，返回一个精确的值，带有一个删除的证明，证明结果严格小于模数：
 
    ```idris
    safeMod :  (x,y : Bits64)
@@ -927,9 +843,8 @@ Between l u = GreaterThan l && LessThan u
            => Subset Bits64 (\v => cast v < cast y)
    ```
 
-10. We will use the predicates and utilities we defined so far to convert a
-    value of type `Bits64` to a string of digits in base `b` with `2 <= b &&
-    b <= 16`.  To do so, implement the following skeleton definitions:
+10. 我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` 中的数字字符串，其中 `2 <= b && b <=
+    16`。为此，请实现以下骨架定义：
 
     ```idris
     -- this will require some help from `assert_total`
@@ -948,31 +863,23 @@ Between l u = GreaterThan l && LessThan u
       fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base
     ```
 
-    Finally, implement `digits`, using `safeDiv` and `safeMod`
-    in your implementation. This might be challenging, as you will
-    have to manually transform some proofs to satisfy the type
-    checker. You might also require `assert_smaller` in the
-    recursive step.
+    最后，使用 `safeDiv` 和 `safeMod` 实现 `digits`
+    在您的实现中。这可能具有挑战性，因为您将
+    必须手动转换一些证明以满足类型
+    检查器。您可能还需要 `assert_smaller` 在
+    递归步骤。
 
     ```idris
     digits : Bits64 -> Base -> String
     ```
 
-We will now turn our focus on strings. Two of the most
-obvious ways in which we can restrict the strings we
-accept are by limiting the set of characters and
-limiting their lengths. More advanced refinements might
-require strings to match a certain pattern or regular
-expression. In such cases, we might either go for a
-boolean check or use a custom data type representing the
-different parts of the pattern, but we will not cover
-these topics here.
+我们现在将注意力转向字符串。我们可以限制我们接受的字符串的两种最明显的方法是限制字符集和限制它们的长度。更高级的改进可能需要字符串匹配某个模式或正则表达式。在这种情况下，我们可能会进行布尔检查或使用自定义数据类型来表示模式的不同部分，但我们不会在这里讨论这些主题。
 
-11. Implement the following aliases for useful predicates on characters.
+11. 为字符上的有用谓词实现以下别名。
 
-    Hint: Use `cast` to convert characters to natural numbers,
-    use `(<=)` and `InRange` to specify regions of characters,
-    and use `(||)` to combine regions of characters.
+    提示：使用 `cast` 将字符转换为自然数，
+    使用 `(<=)` 和 `InRange` 指定字符区域，
+    并使用 `(||)` 组合字符区域。
 
     ```idris
     -- Characters <= 127
@@ -1006,11 +913,8 @@ these topics here.
     IsPlainLatin : Char -> Type
     ```
 
-12. The advantage of this more modular approach to predicates on primitives
-    is that we can safely run calculations on our predicates and get the
-    strong guarantees from the existing proofs on inductive types like `Nat`
-    and `List`. Here are some examples of such calculations and conversions,
-    all of which can be implemented without cheating:
+12. 这种更模块化的原语谓词方法的优势在于，我们可以安全地对谓词运行计算，并从现有的关于归纳类型（如 `Nat` 和
+    `List`）的证明中获得强有力的保证。以下是此类计算和转换的一些示例，所有这些都可以在不作弊的情况下实现：
 
     ```idris
     0 plainToAscii : IsPlainAscii c -> IsAscii c
@@ -1028,12 +932,12 @@ these topics here.
     0 upperToAlphaNum : IsUpper c -> IsAlphaNum c
     ```
 
-    The following (`asciiToLatin`) is trickier. Remember that
-    `(<=)` is transitive. However, in your invocation of the proof
-    of transitivity, you will not be able to apply direct proof search using
-    `%search` because the search depth is too small. You could
-    increase the search depth, but it is much more efficient
-    to use `safeDecideOn` instead.
+    以下 (`asciiToLatin`) 比较棘手。请记住
+    `(<=)` 是传递的。但是，在您调用证明时
+    传递性，您将无法使用直接证明搜索
+    `%search` 因为搜索深度太小。你可以
+    增加搜索深度，但
+    改为使用 `safeDecideOn` 效率更高。
 
     ```idris
     0 asciiToLatin : IsAscii c -> IsLatin c
@@ -1041,18 +945,16 @@ these topics here.
     0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c
     ```
 
-Before we turn our full attention to predicates on strings,
-we have to cover lists first, because we will often treat
-strings as lists of characters.
+在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符串视为字符列表。
 
-13. Implement `Decidable` for `Head`:
+13. 为 `Head` 实现 `Decidable`：
 
     ```idris
     data Head : (p : a -> Type) -> List a -> Type where
       AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)
     ```
 
-14. Implement `Decidable` for `Length`:
+14. 为 `Length` 实现 `Decidable`：
 
     ```idris
     data Length : (p : Nat -> Type) -> List a -> Type where
@@ -1061,9 +963,7 @@ strings as lists of characters.
                 -> Length p vs
     ```
 
-15. The following predicate is a proof that all values in a list of values
-    fulfill the given predicate. We will use this to limit the valid set of
-    characters in a string.
+15. 以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效字符集。
 
     ```idris
     data All : (p : a -> Type) -> (as : List a) -> Type where
@@ -1074,21 +974,16 @@ strings as lists of characters.
            -> All p (v :: vs)
     ```
 
-    Implement `Decidable` for `All`.
+    为 `All` 实现 `Decidable`。
 
-    For a real challenge, try to make your implementation of
-    `decide` tail recursive. This will be important for real world
-    applications on the JavaScript backends, where we might want to
-    refine strings of thousands of characters without overflowing the
-    stack at runtime. In order to come up with a tail recursive implementation,
-    you will need an additional data type `AllSnoc` witnessing that a predicate
-    holds for all elements in a `SnocList`.
+    对于真正的挑战，请尝试使您的
+    `decide`  实现尾递归。这对JavaScript 后端上的现实世界应用程序很重要，我们可能想要精炼数千个字符的字符串的地方
+    而不会在运行时堆栈溢出。为了提出尾递归实现，
+    您将需要一个额外的数据类型 `AllSnoc` 来见证谓词
+    适用于 `SnocList` 中的所有元素。
 
-16. It's time to come to an end here. An identifier in Idris is a sequence
-    of alphanumeric characters, possibly separated by underscore characters
-    (`_`). In addition, all identifiers must start with a letter.  Given
-    this specification, implement predicate `IdentChar`, from which we can
-    define a new wrapper type for identifiers:
+16. 是时候在这里结束了。 Idris 中的标识符是一系列字母数字字符，可能由下划线字符 (`_`)
+    分隔。此外，所有标识符都必须以字母开头。给定这个规范，实现谓词 `IdentChar`，我们可以从中为标识符定义一个新的包装器类型：
 
     ```idris
     0 IdentChars : List Char -> Type
@@ -1099,26 +994,21 @@ strings as lists of characters.
       0 prf : IdentChars (unpack value)
     ```
 
-    Implement a factory method `identifier` for converting strings
-    of unknown source at runtime:
+    实现一个工厂方法 `identifier` 来转换运行时未知来源的字符串 ：
 
     ```idris
     identifier : String -> Maybe Identifier
     ```
 
-    In addition, implement `fromString` for `Identifier` and verify,
-    that the following is a valid identifier:
+    此外，为 `Identifier` 实现 `fromString` 并验证，
+    以下是有效的标识符：
 
     ```idris
     testIdent : Identifier
     testIdent = "fooBar_123"
     ```
 
-Final remarks: Proofing stuff about the primitives can be challenging,
-both when deciding on what axioms to use and when trying to make
-things perform well at runtime and compile time. I'm experimenting
-with a library, which deals with these issues. It is not yet finished,
-but you can have a look at it [here](https://github.com/stefan-hoeck/idris2-prim).
+最后的评论：在决定使用什么公理以及试图使事情在运行时和编译时表现良好时，证明关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，但您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。
 
 <!-- vi: filetype=idris2
 -->

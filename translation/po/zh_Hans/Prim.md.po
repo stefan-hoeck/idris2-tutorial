@@ -2240,10 +2240,7 @@ msgid ""
 "only consider unformatted text input here. Users can write arbitrary\n"
 "text in a text field and upon hitting Enter, the message is\n"
 "displayed to all other registered users.\n"
-msgstr ""
-"假设您为注册用户之间的科学讨论编写了一个简单的 Web 应用程序。为了简单起见，我"
-"们在这里只考虑未格式化的文本输入。用户可以在文本字段中写入任意文本，然后按 "
-"Enter 键，该消息将显示给所有其他注册用户。\n"
+msgstr "假设您为注册用户之间的科学讨论编写了一个简单的 Web 应用程序。为了简单起见，我们在这里只考虑未格式化的文本输入。用户可以在文本字段中写入任意文本，然后按 Enter 键，该消息将显示给所有其他注册用户。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:871
@@ -2275,13 +2272,7 @@ msgid ""
 "It allows users of web pages to enter malicious JavaScript code in\n"
 "text fields, which will then be included in the page's HTML structure\n"
 "and executed when it is being displayed to other users.\n"
-msgstr ""
-"好吧，它本来可以（非常）更糟。尽管如此，除非我们采取措施防止这种情况发生，"
-"否则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript "
-"程序！我在这里描述的是一个众所周知的安全漏洞，称为 [cross-site "
-"scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)。"
-"它允许网页用户在文本字段中输入恶意 JavaScript 代码，"
-"然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时执行。\n"
+msgstr "好吧，它本来可以（非常）更糟。尽管如此，除非我们采取措施防止这种情况发生，否则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript 程序！我在这里描述的是一个众所周知的安全漏洞，称为 [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)。它允许网页用户在文本字段中输入恶意 JavaScript 代码，然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时执行。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:891
@@ -2293,11 +2284,7 @@ msgid ""
 "be enough!), but if our chat service is targeted at programmers,\n"
 "this will be overly restrictive. An alternative\n"
 "is to escape certain characters before rendering them on the page.\n"
-msgstr ""
-"我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例"
-"如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的"
-"聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上"
-"之前对其进行转义。\n"
+msgstr "我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上之前对其进行转义。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:892
@@ -2333,10 +2320,7 @@ msgid ""
 "once existed another string, which we passed to `escape`\n"
 "and arrived at the string we have now\". Here's how to encode\n"
 "this:\n"
-msgstr ""
-"我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形式：“"
-"这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` "
-"并到达我们现在拥有的字符串”。以下是如何对此进行编码：\n"
+msgstr "我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形式：“这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` 并到达我们现在拥有的字符串”。以下是如何对此进行编码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:911
@@ -2364,11 +2348,7 @@ msgid ""
 "scripting attacks. Even better, it is also possible to safely\n"
 "embed string literals known at compile time without the need\n"
 "to escape them first:\n"
-msgstr ""
-"每当我们现在在我们的网页中嵌入一个未知来源的字符串时，"
-"我们都可以请求一个类型为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨"
-"站点脚本攻击。更好的是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义"
-"它们：\n"
+msgstr "每当我们现在在我们的网页中嵌入一个未知来源的字符串时，我们都可以请求一个类型为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨站点脚本攻击。更好的是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义它们：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:926
@@ -2397,8 +2377,7 @@ msgid ""
 "In this massive set of exercises, you are going to build\n"
 "a small library for working with predicates on primitives.\n"
 "We want to keep the following goals in mind:\n"
-msgstr "在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下"
-"目标：\n"
+msgstr "在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下目标：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
@@ -2406,8 +2385,9 @@ msgid ""
 "We want to use the usual operations of propositional logic to combine "
 "predicates: Negation, conjuction (logical *and*), and disjunction (logical "
 "*or*)."
-msgstr "我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 *与*）和析取（逻辑 "
-"*或*）。"
+msgstr ""
+"我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 *与*）和析取（逻辑 *"
+"或*）。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
@@ -2415,7 +2395,8 @@ msgid ""
 "All predicates should be erased at runtime. If we proof something about a "
 "primitive number, we want to make sure not to carry around a huge proof of "
 "validity."
-msgstr "所有谓词都应在运行时擦除。如果我们证明一些关于原语数字的东西，我们要确保不携"
+msgstr ""
+"所有谓词都应在运行时擦除。如果我们证明一些关于原语数字的东西，我们要确保不携"
 "带大量的有效性证明。"
 
 #. type: Bullet: '* '
@@ -2433,8 +2414,8 @@ msgid ""
 "can't find a tail recursive solution for a given problem, use what feels "
 "most natural instead."
 msgstr ""
-"如果谓词用于 `decide` 的实现，则谓词的递归计算应该是尾递归的。这可能很难实现"
-"。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。"
+"如果谓词用于 `decide` 的实现，则谓词的递归计算应该是尾递归的。这可能很难实"
+"现。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:980
@@ -2464,20 +2445,7 @@ msgid ""
 "working on large natural number will therefore drastically\n"
 "slow down the compiler. A way out of this is discussed at\n"
 "the end of this section of exercises.\n"
-msgstr ""
-"关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原语值转换为代"
-"数数据类型：无符号整数将转换为 `Nat` 使用 `cast`，字符串将使用 `unpack` "
-"转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使用证明，"
-"并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然而，原语"
-"类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 `Nat` "
-"进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运行，其中 "
-"`n` 是所涉及的自然数其中之一的大小，而对于 "
-"`Bits64`，例如，许多操作在常数时间内（`O(1)`）快速运行。幸运的是，Idris "
-"编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好"
-"处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获"
-"得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度在 *编译期*"
-" 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练习的末尾讨"
-"论了解决此问题的方法。\n"
+msgstr "关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原语值转换为代数数据类型：无符号整数将转换为 `Nat` 使用 `cast`，字符串将使用 `unpack` 转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使用证明，并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然而，原语类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 `Nat` 进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运行，其中 `n` 是所涉及的自然数其中之一的大小，而对于 `Bits64`，例如，许多操作在常数时间内（`O(1)`）快速运行。幸运的是，Idris 编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度在 *编译期* 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练习的末尾讨论了解决此问题的方法。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:983
@@ -2548,10 +2516,7 @@ msgid ""
 "an inductive type. We therefore come up with a predicate witnessing\n"
 "that a `Dec0` value is actually a `Yes0` together with two\n"
 "utility functions:\n"
-msgstr ""
-"我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有"
-"效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` "
-"以及两个实用函数：\n"
+msgstr "我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` 以及两个实用函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1026
@@ -2592,8 +2557,7 @@ msgid ""
 "Finally, as we are planning to refine mostly primitives, we will\n"
 "at times require some sledge hammer to convince Idris that\n"
 "we know what we are doing:\n"
-msgstr "最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris "
-"我们知道我们在做什么：\n"
+msgstr "最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris 我们知道我们在做什么：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1046
@@ -2613,8 +2577,7 @@ msgstr ""
 "unsafeDecideOn p v = case decideOn p v of\n"
 "  Yes0 prf => prf\n"
 "  No0  _   =>\n"
-"    assert_total $ idris_crash \"Unexpected refinement failure in "
-"`unsafeRefineOn`\"\n"
+"    assert_total $ idris_crash \"Unexpected refinement failure in `unsafeRefineOn`\"\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Prim.md:1058
@@ -2665,8 +2628,7 @@ msgid ""
 "     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
 msgstr ""
 "   data (&&) : (p,q : a -> Type) -> a -> Type where\n"
-"     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q "
-"v\n"
+"     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1079
@@ -2679,15 +2641,17 @@ msgstr "   使用合适的约束为 `(p && q)` 实现 `Decidable`。\n"
 msgid ""
 "Come up with a data type called `(||)` for the disjunction (logical *or*) of "
 "two predicates and implement `Decidable` using suitable constraints."
-msgstr "提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 *或*），"
-"并使用合适的约束实现 `Decidable`。"
+msgstr ""
+"提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 *或*），并使用合适的"
+"约束实现 `Decidable`。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Prim.md:1086
 msgid ""
 "Proof [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)  "
 "by implementing the following propositions:"
-msgstr "通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan"
+msgstr ""
+"通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan"
 "%27s_laws)："
 
 #. type: Plain text
@@ -2757,10 +2721,7 @@ msgid ""
 "with some examples. As a first use case, we will focus on\n"
 "limiting the valid range of natural numbers. For this,\n"
 "we use the following data type:\n"
-msgstr ""
-"到目前为止，我们实现了代数描述和组合几个谓词的工具。现在是提出一些例子的时候"
-"了。作为第一个用例，我们将专注于限制自然数的有效范围。为此，我们使用以下数据"
-"类型：\n"
+msgstr "到目前为止，我们实现了代数描述和组合几个谓词的工具。现在是提出一些例子的时候了。作为第一个用例，我们将专注于限制自然数的有效范围。为此，我们使用以下数据类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1118
@@ -2783,8 +2744,7 @@ msgid ""
 "This is similar to `Data.Nat.LTE` but I find operator\n"
 "notation often to be clearer.\n"
 "We also can define and use the following aliases:\n"
-msgstr "这类似于 `Data.Nat.LTE` "
-"但我发现运算符符号通常更清晰。我们还可以定义和使用以下别名：\n"
+msgstr "这类似于 `Data.Nat.LTE` 但我发现运算符符号通常更清晰。我们还可以定义和使用以下别名：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1129
@@ -2858,12 +2818,12 @@ msgid ""
 "numbers.  Since `Prelude.(<=)` for natural numbers is implemented in terms "
 "of `compare`, it runs just as efficiently."
 msgstr ""
-"通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` "
-"值非常低效，因为这样做需要 `m` 次迭代。但是，在擦除上下文中，我们不需要保存 `"
-"m <= n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，"
-"这样的计算是 `compare`：尽管这是在 *Prelude* 中实现的，其参数的模式匹配，但编"
-"译器将其优化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 "
-"`Prelude.(<=)` 是根据 `compare` 实现的，因此它的运行效率同样高。"
+"通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` 值非常"
+"低效，因为这样做需要 `m` 次迭代。但是，在擦除上下文中，我们不需要保存 `m <= "
+"n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，这样的计算"
+"是 `compare`：尽管这是在 *Prelude* 中实现的，其参数的模式匹配，但编译器将其优"
+"化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 `Prelude.(<=)` 是"
+"根据 `compare` 实现的，因此它的运行效率同样高。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1175
@@ -2933,9 +2893,8 @@ msgid ""
 "chain several values of type `(<=)`, it makes sense to also define a short "
 "operator alias for this."
 msgstr ""
-"通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。"
-"由于我们可能需要传递性证明来链接多个类型为 `(<=)` "
-"的值，因此也可以为此定义一个简短的运算符别名。"
+"通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。由于我们可能需要传递性证"
+"明来链接多个类型为 `(<=)` 的值，因此也可以为此定义一个简短的运算符别名。"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Prim.md:1200
@@ -2974,8 +2933,8 @@ msgid ""
 "value of type `Bits64` to a string of digits in base `b` with `2 <= b && b "
 "<= 16`.  To do so, implement the following skeleton definitions:"
 msgstr ""
-"我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` "
-"中的数字字符串，其中 `2 <= b && b <= 16`。为此，请实现以下骨架定义："
+"我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` 中"
+"的数字字符串，其中 `2 <= b && b <= 16`。为此，请实现以下骨架定义："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1223
@@ -3022,8 +2981,7 @@ msgid ""
 msgstr ""
 "    namespace Base\n"
 "      public export\n"
-"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> "
-"Base\n"
+"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base\n"
 "    ```\n"
 
 #. type: Plain text
@@ -3067,11 +3025,7 @@ msgid ""
 "boolean check or use a custom data type representing the\n"
 "different parts of the pattern, but we will not cover\n"
 "these topics here.\n"
-msgstr ""
-"我们现在将注意力转向字符串。我们可以限制我们接受的字符串的两种最明显的方法是"
-"限制字符集和限制它们的长度。更高级的改进可能需要字符串匹配某个模式或正则表达"
-"式。在这种情况下，我们可能会进行布尔检查或使用自定义数据类型来表示模式的不同"
-"部分，但我们不会在这里讨论这些主题。\n"
+msgstr "我们现在将注意力转向字符串。我们可以限制我们接受的字符串的两种最明显的方法是限制字符集和限制它们的长度。更高级的改进可能需要字符串匹配某个模式或正则表达式。在这种情况下，我们可能会进行布尔检查或使用自定义数据类型来表示模式的不同部分，但我们不会在这里讨论这些主题。\n"
 
 #. type: Bullet: '11. '
 #: ../src/Tutorial/Prim.md:1258
@@ -3302,8 +3256,7 @@ msgid ""
 "Before we turn our full attention to predicates on strings,\n"
 "we have to cover lists first, because we will often treat\n"
 "strings as lists of characters.\n"
-msgstr "在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符"
-"串视为字符列表。\n"
+msgstr "在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符串视为字符列表。\n"
 
 #. type: Bullet: '13. '
 #: ../src/Tutorial/Prim.md:1336
@@ -3353,7 +3306,8 @@ msgid ""
 "The following predicate is a proof that all values in a list of values "
 "fulfill the given predicate. We will use this to limit the valid set of "
 "characters in a string."
-msgstr "以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效"
+msgstr ""
+"以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效"
 "字符集。"
 
 #. type: Plain text
@@ -3397,8 +3351,7 @@ msgid ""
 "    holds for all elements in a `SnocList`.\n"
 msgstr ""
 "    对于真正的挑战，请尝试使您的\n"
-"    `decide`  实现尾递归。这对JavaScript 后端上的现实世界应用程序很重要，"
-"我们可能想要精炼数千个字符的字符串的地方\n"
+"    `decide`  实现尾递归。这对JavaScript 后端上的现实世界应用程序很重要，我们可能想要精炼数千个字符的字符串的地方\n"
 "    而不会在运行时堆栈溢出。为了提出尾递归实现，\n"
 "    您将需要一个额外的数据类型 `AllSnoc` 来见证谓词\n"
 "    适用于 `SnocList` 中的所有元素。\n"
@@ -3495,7 +3448,4 @@ msgid ""
 "things perform well at runtime and compile time. I'm experimenting\n"
 "with a library, which deals with these issues. It is not yet finished,\n"
 "but you can have a look at it [here](https://github.com/stefan-hoeck/idris2-prim).\n"
-msgstr ""
-"最后的评论：在决定使用什么公理以及试图使事情在运行时和编译时表现良好时，证明"
-"关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，"
-"但您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。\n"
+msgstr "最后的评论：在决定使用什么公理以及试图使事情在运行时和编译时表现良好时，证明关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，但您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。\n"
