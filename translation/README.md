@@ -1,5 +1,4 @@
-> 这里是中文版！  
-> [![ç¿»è¯ç¶æ](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)
+> [Chinese Translation](translation/README.md)
 
 # Idris 2 中的函数式编程
 

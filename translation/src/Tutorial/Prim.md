@@ -339,7 +339,7 @@ multiline2 = #"""
 * `x * (y + z) = x * y + x * z`：分配律成立。
 * ``y * (x `div` y) + (x `mod` y) = x``（对于 `y /= 0`）。
 
-请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x `mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 `x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://www.microsoft. com/en-us/research/publication/division-and-modulus-for-computer-scientists/)。
+请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x `mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 `x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://www.microsoft.com/en-us/research/publication/division-and-modulus-for-computer-scientists/) 。
 
 ### 无符号整数
 
@@ -369,7 +369,7 @@ Main> the Int8 3 * 127
 
 ### 位运算
 
-模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。那些必须在其位模式中包含有关数字的 *符号* 的信息，并且假设 Idris 中的有符号整数使用 [二进制补码表示](https://en.wikipedia.org/wiki/ 2%27s_complement)，这里不再赘述。
+模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。那些必须在其位模式中包含有关数字的 *符号* 的信息，并且假设 Idris 中的有符号整数使用 [二进制补码表示](https://en.wikipedia.org/wiki/2%27s_complement) ，这里不再赘述。
 
 无符号 8 位二进制数在内部表示为 8 位序列（值为 0 或 1），每个位对应于 2 的幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`：
 

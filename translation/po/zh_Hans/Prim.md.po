@@ -1538,12 +1538,7 @@ msgid ""
 "does hold. If `x` or `y` are negative numbers, this is different\n"
 "to what many other languages do but for good reasons as explained\n"
 "in the following [article](https://www.microsoft.com/en-us/research/publication/division-and-modulus-for-computer-scientists/).\n"
-msgstr ""
-"请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x "
-"`mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 "
-"`x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://www."
-"microsoft.com/en-us/research/publication/"
-"division-and-modulus-for-computer-scientists/) 。\n"
+msgstr "请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x `mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 `x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://www.microsoft.com/en-us/research/publication/division-and-modulus-for-computer-scientists/) 。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:516
@@ -1641,13 +1636,7 @@ msgid ""
 "bit pattern, and it is assumed that signed integers in Idris use\n"
 "a [two's complement representation](https://en.wikipedia.org/wiki/Two%27s_complement),\n"
 "about which I will not go into the details here.\n"
-msgstr ""
-"模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。"
-"我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解"
-"释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。"
-"那些必须在其位模式中包含有关数字的 *符号* 的信息，并且假设 Idris "
-"中的有符号整数使用 [二进制补码表示](https://en.wikipedia.org/wiki/"
-"2%27s_complement) ，这里不再赘述。\n"
+msgstr "模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。那些必须在其位模式中包含有关数字的 *符号* 的信息，并且假设 Idris 中的有符号整数使用 [二进制补码表示](https://en.wikipedia.org/wiki/2%27s_complement) ，这里不再赘述。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:573
