@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-03 13:26+0800\n"
-"PO-Revision-Date: 2022-08-27 11:21+0000\n"
+"PO-Revision-Date: 2022-08-28 04:28+0000\n"
 "Last-Translator: 刘世华 <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris2-tutorial/prim/zh_Hans/>\n"
@@ -1509,7 +1509,6 @@ msgstr ""
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:486
-#, fuzzy
 msgid "`prim__add_Bits8`: Integer addition."
 msgstr "`prim__add_Bits8`：整数加法。"
 
@@ -2399,42 +2398,45 @@ msgstr ""
 
 #. type: Title ###
 #: ../src/Tutorial/Prim.md:862
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Use Case: Sanitized HTML"
-msgstr "### 用例：净化的 HTML"
+msgstr "用例：净化的 HTML"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:869
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Assume you write a simple web application for scientific\n"
 "discourse between registered users. To keep things simple, we\n"
 "only consider unformatted text input here. Users can write arbitrary\n"
 "text in a text field and upon hitting Enter, the message is\n"
 "displayed to all other registered users.\n"
-msgstr "假设您为注册用户之间的科学讨论编写了一个简单的 Web 应用程序。为了简单起见，我们在这里只考虑未格式化的文本输入。用户可以在文本字段中写入任意文本，然后按 Enter 键，该消息将显示给所有其他注册用户。"
+msgstr ""
+"假设您为注册用户之间的科学讨论编写了一个简单的 Web 应用程序。为了简单起见，我"
+"们在这里只考虑未格式化的文本输入。用户可以在文本字段中写入任意文本，然后按 "
+"Enter 键，该消息将显示给所有其他注册用户。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:871
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Assume now a user decides to enter the following text:\n"
-msgstr "假设现在用户决定输入以下文本："
+msgstr "假设现在用户决定输入以下文本：\n"
 
 #. type: Code fence info string
 #: ../src/Tutorial/Prim.md:872
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "html"
 msgstr "html"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:872
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "<script>alert(\"Hello World!\")</script>\n"
-msgstr "```html <script>alert(\"Hello World!\")</script> ```"
+msgstr "<script>alert(\"Hello World!\")</script>\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:884
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Well, it could have been (much) worse. Still, unless we take measures\n"
 "to prevent this from happening, this might embed a JavaScript\n"
@@ -2444,11 +2446,17 @@ msgid ""
 "It allows users of web pages to enter malicious JavaScript code in\n"
 "text fields, which will then be included in the page's HTML structure\n"
 "and executed when it is being displayed to other users.\n"
-msgstr "好吧，它本来可以（很多）更糟。尽管如此，除非我们采取措施防止这种情况发生，否则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript 程序！我在这里描述的是一个众所周知的安全漏洞，称为 [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)。它允许网页用户在文本字段中输入恶意 JavaScript 代码，然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时执行。"
+msgstr ""
+"好吧，它本来可以（非常）更糟。尽管如此，除非我们采取措施防止这种情况发生，"
+"否则这可能会在我们的网页中嵌入我们从未打算拥有的 JavaScript "
+"程序！我在这里描述的是一个众所周知的安全漏洞，称为 [cross-site "
+"scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)。"
+"它允许网页用户在文本字段中输入恶意 JavaScript 代码，"
+"然后这些代码将包含在页面的 HTML 结构中，并在向其他用户显示时执行。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:891
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We want to make sure, that this cannot happen on our own web page.\n"
 "In order to protect us from this attack, we could for instance disallow\n"
@@ -2456,11 +2464,15 @@ msgid ""
 "be enough!), but if our chat service is targeted at programmers,\n"
 "this will be overly restrictive. An alternative\n"
 "is to escape certain characters before rendering them on the page.\n"
-msgstr "我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上之前对其进行转义。"
+msgstr ""
+"我们想确保这不会发生在我们自己的网页上。为了保护我们免受这种攻击，我们可以例"
+"如完全禁止某些字符，例如 `'<'` 或 `'>'`（尽管这可能还不够！），但是如果我们的"
+"聊天服务是针对程序员的，这将是过度限制。另一种方法是在将某些字符呈现在页面上"
+"之前对其进行转义。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:892
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "escape : String -> String\n"
 "escape = concat . map esc . unpack\n"
@@ -2472,21 +2484,19 @@ msgid ""
 "        esc '\\'' = \"&apos;\"\n"
 "        esc c    = singleton c\n"
 msgstr ""
-"```伊德里斯\n"
-"转义：字符串->字符串\n"
-"转义 = 连接。地图 ESC。打开包装\n"
-"  其中 esc : 字符 -> 字符串\n"
-"        esc '<' = \"&lt;\"\n"
-"        esc '>' = \"&gt;\"\n"
-"        esc '\"' = \"&quot;\"\n"
-"        esc '&' = \"&amp;\"\n"
+"escape : String -> String\n"
+"escape = concat . map esc . unpack\n"
+"  where esc : Char -> String\n"
+"        esc '<'  = \"&lt;\"\n"
+"        esc '>'  = \"&gt;\"\n"
+"        esc '\"'  = \"&quot;\"\n"
+"        esc '&'  = \"&amp;\"\n"
 "        esc '\\'' = \"&apos;\"\n"
-"        esc c = 单例 c\n"
-"```\n"
+"        esc c    = singleton c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:910
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "What we now want to do is to store a string together with\n"
 "a proof that is was properly escaped. This is another form\n"
@@ -2494,11 +2504,14 @@ msgid ""
 "once existed another string, which we passed to `escape`\n"
 "and arrived at the string we have now\". Here's how to encode\n"
 "this:\n"
-msgstr "我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形式：“这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` 并到达我们现在拥有的字符串”。以下是如何对此进行编码："
+msgstr ""
+"我们现在要做的是将字符串与正确转义的证明一起存储。这是存在量化的另一种形式：“"
+"这是一个字符串，曾经存在另一个字符串，我们将其传递给 `escape` "
+"并到达我们现在拥有的字符串”。以下是如何对此进行编码：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:911
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "record Escaped where\n"
 "  constructor MkEscaped\n"
@@ -2506,17 +2519,15 @@ msgid ""
 "  0 origin : String\n"
 "  0 prf    : escape origin === value\n"
 msgstr ""
-"```伊德里斯\n"
-"记录逃到哪里\n"
-"  构造函数 MkEscaped\n"
-"  值：字符串\n"
-"  0 来源：字符串\n"
-"  0 prf : 转义原点 === 值\n"
-"```\n"
+"record Escaped where\n"
+"  constructor MkEscaped\n"
+"  value    : String\n"
+"  0 origin : String\n"
+"  0 prf    : escape origin === value\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:925
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Whenever we now embed a string of unknown origin in our web page,\n"
 "we can request a value of type `Escaped` and have the very\n"
@@ -2524,11 +2535,15 @@ msgid ""
 "scripting attacks. Even better, it is also possible to safely\n"
 "embed string literals known at compile time without the need\n"
 "to escape them first:\n"
-msgstr "每当我们现在在我们的网页中嵌入一个未知来源的字符串时，我们都可以请求一个类型为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨站点脚本攻击。更好的是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义它们："
+msgstr ""
+"每当我们现在在我们的网页中嵌入一个未知来源的字符串时，"
+"我们都可以请求一个类型为 `Escaped` 的值，并且非常有力地保证我们不再容易受到跨"
+"站点脚本攻击。更好的是，还可以安全地嵌入编译时已知的字符串文字，而无需先转义"
+"它们：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:926
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "namespace Escaped\n"
 "  export\n"
@@ -2538,46 +2553,44 @@ msgid ""
 "escaped : Escaped\n"
 "escaped = \"Hello World!\"\n"
 msgstr ""
-"```伊德里斯\n"
-"命名空间转义\n"
-"  出口\n"
-"  fromString : (s : String) -> {auto 0 prf : 转义 s === s} -> 转义\n"
+"namespace Escaped\n"
+"  export\n"
+"  fromString : (s : String) -> {auto 0 prf : escape s === s} -> Escaped\n"
 "  fromString s = MkEscaped s s prf\n"
+"\n"
+"escaped : Escaped\n"
+"escaped = \"Hello World!\"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:941
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "In this massive set of exercises, you are going to build\n"
 "a small library for working with predicates on primitives.\n"
 "We want to keep the following goals in mind:\n"
-msgstr "在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下目标："
+msgstr "在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下"
+"目标：\n"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
-#, fuzzy
 msgid ""
 "We want to use the usual operations of propositional logic to combine "
 "predicates: Negation, conjuction (logical *and*), and disjunction (logical "
 "*or*)."
-msgstr ""
-"我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 * 和 *）和析取（逻"
-"辑 * 或 *）。"
+msgstr "我们想使用命题逻辑的常用运算来组合谓词：否定、合取（逻辑 *与*）和析取（逻辑 "
+"*或*）。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
-#, fuzzy
 msgid ""
 "All predicates should be erased at runtime. If we proof something about a "
 "primitive number, we want to make sure not to carry around a huge proof of "
 "validity."
-msgstr ""
-"所有谓词都应在运行时擦除。如果我们证明一些关于原始数字的东西，我们要确保不携"
+msgstr "所有谓词都应在运行时擦除。如果我们证明一些关于原语数字的东西，我们要确保不携"
 "带大量的有效性证明。"
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
-#, fuzzy
 msgid ""
 "Calculations on predicates should make no appearance at runtime (with the "
 "exception of `decide`; see below)."
@@ -2585,19 +2598,18 @@ msgstr "谓词的计算不应在运行时出现（`decide` 除外；见下文）
 
 #. type: Bullet: '* '
 #: ../src/Tutorial/Prim.md:955
-#, fuzzy
 msgid ""
 "Recursive calculations on predicates should be tail recursive if they are "
 "used in implementations of `decide`. This might be tough to achieve. If you "
 "can't find a tail recursive solution for a given problem, use what feels "
 "most natural instead."
 msgstr ""
-"如果谓词用于 `decide` 的实现，则谓词的递归计算应该是尾递归的。这可能很难实"
-"现。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。"
+"如果谓词用于 `decide` 的实现，则谓词的递归计算应该是尾递归的。这可能很难实现"
+"。如果您找不到给定问题的尾递归解决方案，请改用感觉最自然的方法。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:980
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "A note on efficiency: In order to be able to run\n"
 "computations on our predicates, we try to convert primitive\n"
@@ -2623,15 +2635,28 @@ msgid ""
 "working on large natural number will therefore drastically\n"
 "slow down the compiler. A way out of this is discussed at\n"
 "the end of this section of exercises.\n"
-msgstr "关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原始值转换为代数数据类型：无符号整数将转换为 `Nat` 使用 [ X225X]cast`，字符串将使用 `unpack` 转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使用证明，并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然而，原始类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 `Nat` 进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运行，其中 `n` 是 1 的大小所涉及的自然数，而对于 `Bits64`，例如，许多操作在快速常数时间内运行（`O(1)`）。幸运的是，Idris 编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度和 * 编译时间* 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练习的末尾讨论了解决此问题的方法。"
+msgstr ""
+"关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原语值转换为代"
+"数数据类型：无符号整数将转换为 `Nat` 使用 `cast`，字符串将使用 `unpack` "
+"转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使用证明，"
+"并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然而，原语"
+"类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 `Nat` "
+"进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运行，其中 "
+"`n` 是所涉及的自然数其中之一的大小，而对于 "
+"`Bits64`，例如，许多操作在常数时间内（`O(1)`）快速运行。幸运的是，Idris "
+"编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好"
+"处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获"
+"得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度在 *编译期*"
+" 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练习的末尾讨"
+"论了解决此问题的方法。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:983
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Enough talk, let's begin!\n"
 "To start with, you are given the following utilities:\n"
-msgstr "废话不多说，开始吧！首先，您将获得以下实用程序："
+msgstr "废话不多说，开始吧！首先，您将获得以下实用程序：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:984
@@ -2673,7 +2698,7 @@ msgid ""
 msgstr ""
 "-- 对于具有多个参数的接口（`a` 和 `p`\n"
 "-- 在本例中）有时可以确定一个参数\n"
-"——通过了解对方。例如，如果我们知道 `p` 是什么，\n"
+"-- 通过了解对方。例如，如果我们知道 `p` 是什么，\n"
 "-- 我们肯定也知道 `a` 是什么。因此我们\n"
 "-- 指定在 `Decidable` 上的证明搜索应该只\n"
 "-- 基于 `p`，在竖线后列出 `p`：`| p`。\n"
@@ -2687,18 +2712,21 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1025
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We also want to run decidable computations at compile time. This\n"
 "is often much more efficient than running a direct proof search on\n"
 "an inductive type. We therefore come up with a predicate witnessing\n"
 "that a `Dec0` value is actually a `Yes0` together with two\n"
 "utility functions:\n"
-msgstr "我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` 以及两个实用函数："
+msgstr ""
+"我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有"
+"效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` "
+"以及两个实用函数：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1026
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "data IsYes0 : (d : Dec0 prop) -> Type where\n"
 "  ItIsYes0 : IsYes0 (Yes0 prf)\n"
@@ -2714,26 +2742,33 @@ msgid ""
 "               => p v\n"
 "safeDecideOn p v = fromYes0 $ decideOn p v\n"
 msgstr ""
-"0 safeDecideOn : (0 p : a -> 类型)\n"
-"               -> 可判定的 p\n"
-"               => (v:a)\n"
+"data IsYes0 : (d : Dec0 prop) -> Type where\n"
+"  ItIsYes0 : IsYes0 (Yes0 prf)\n"
+"\n"
+"0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop\n"
+"fromYes0 (Yes0 x) = x\n"
+"fromYes0 (No0 contra) impossible\n"
+"\n"
+"0 safeDecideOn :  (0 p : a -> Type)\n"
+"               -> Decidable a p\n"
+"               => (v : a)\n"
 "               -> (0 prf : IsYes0 (decideOn p v))\n"
 "               => p v\n"
-"safeDecideOn p v = fromYes0 $ 决定 p v\n"
-"```\n"
+"safeDecideOn p v = fromYes0 $ decideOn p v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1045
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Finally, as we are planning to refine mostly primitives, we will\n"
 "at times require some sledge hammer to convince Idris that\n"
 "we know what we are doing:\n"
-msgstr "最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris 我们知道我们在做什么："
+msgstr "最后，由于我们计划主要改进原语，我们有时需要一些大锤来说服 Idris "
+"我们知道我们在做什么：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1046
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "-- only use this if you are sure that `decideOn p v`\n"
 "-- will return a `Yes0`!\n"
@@ -2743,25 +2778,23 @@ msgid ""
 "  No0  _   =>\n"
 "    assert_total $ idris_crash \"Unexpected refinement failure in `unsafeRefineOn`\"\n"
 msgstr ""
-"```伊德里斯\n"
-"-- 仅当您确定 `decideOn p v` 时才使用它\n"
-"-- 将返回一个 `Yes0`！\n"
-"0 unsafeDecideOn : (0 p : a -> Type) -> 可判定 a p => (v : a) -> p v\n"
-"unsafeDecideOn p v = case decisionOn p v of\n"
-"  是0 prf => prf\n"
-"  No0 _ =>\n"
-"    assert_total $ idris_crash \"`unsafeRefineOn` 中的意外优化失败\"\n"
-"```\n"
+"-- only use this if you are sure that `decideOn p v`\n"
+"-- will return a `Yes0`!\n"
+"0 unsafeDecideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> p v\n"
+"unsafeDecideOn p v = case decideOn p v of\n"
+"  Yes0 prf => prf\n"
+"  No0  _   =>\n"
+"    assert_total $ idris_crash \"Unexpected refinement failure in "
+"`unsafeRefineOn`\"\n"
 
 #. type: Bullet: '1. '
 #: ../src/Tutorial/Prim.md:1058
-#, fuzzy
 msgid "We start with equality proofs. Implement `Decidable` for `Equal v`."
 msgstr "我们从等式证明开始。为 `Equal v` 实现 `Decidable`。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1061
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Hint: Use `DecEq` from module `Decidable.Equality` as a constraint\n"
 "         and make sure that `v` is available at runtime.\n"
@@ -2771,75 +2804,66 @@ msgstr ""
 
 #. type: Bullet: '2. '
 #: ../src/Tutorial/Prim.md:1063
-#, fuzzy
 msgid "We want to be able to negate a predicate:"
 msgstr "我们希望能够否定一个谓词："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1064
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data Neg : (p : a -> Type) -> a -> Type where\n"
 "     IsNot : {0 p : a -> Type} -> (contra : p v -> Void) -> Neg p v\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   数据 Neg : (p : a -> Type) -> a -> Type where\n"
+"   data Neg : (p : a -> Type) -> a -> Type where\n"
 "     IsNot : {0 p : a -> Type} -> (contra : p v -> Void) -> Neg p v\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1070
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Implement `Decidable` for `Neg p` using a suitable constraint.\n"
 msgstr "   使用合适的约束为 `Neg p` 实现 `Decidable`。\n"
 
 #. type: Bullet: '3. '
 #: ../src/Tutorial/Prim.md:1072
-#, fuzzy
 msgid "We want to describe the conjunction of two predicates:"
 msgstr "我们要描述两个谓词的合取："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1073
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   data (&&) : (p,q : a -> Type) -> a -> Type where\n"
 "     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   数据 (&&) : (p,q : a -> Type) -> a -> Type where\n"
-"     两者：{0 p,q : a -> 类型} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v\n"
-"   ```\n"
+"   data (&&) : (p,q : a -> Type) -> a -> Type where\n"
+"     Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q "
+"v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1079
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "   Implement `Decidable` for `(p && q)` using suitable constraints.\n"
 msgstr "   使用合适的约束为 `(p && q)` 实现 `Decidable`。\n"
 
 #. type: Bullet: '4. '
 #: ../src/Tutorial/Prim.md:1083
-#, fuzzy
 msgid ""
 "Come up with a data type called `(||)` for the disjunction (logical *or*) of "
 "two predicates and implement `Decidable` using suitable constraints."
-msgstr ""
-"提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 * 或 *），并使用合适"
-"的约束实现 `Decidable`。"
+msgstr "提出一个名为 `(||)` 的数据类型，用于两个谓词的析取（逻辑 *或*），"
+"并使用合适的约束实现 `Decidable`。"
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/Prim.md:1086
-#, fuzzy
 msgid ""
 "Proof [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)  "
 "by implementing the following propositions:"
-msgstr ""
-"通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan"
+msgstr "通过实施以下命题证明 [德摩根定律](https://en.wikipedia.org/wiki/De_Morgan"
 "%27s_laws)："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1087
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   negOr : Neg (p || q) v -> (Neg p && Neg q) v\n"
 "\n"
@@ -2847,7 +2871,7 @@ msgid ""
 "\n"
 "   orNeg : (Neg p || Neg q) v -> Neg (p && q) v\n"
 msgstr ""
-"   negOr : 否定 (p || q) v -> (否定 p && 否定 q) v\n"
+"   negOr : Neg (p || q) v -> (Neg p && Neg q) v\n"
 "\n"
 "   andNeg : (Neg p && Neg q) v -> Neg (p || q) v\n"
 "\n"
@@ -2855,7 +2879,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1100
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   The last of De Morgan's implications is harder to type and proof\n"
 "   as we need a way to come up with values of type `p v` and `q v`\n"
@@ -2863,31 +2887,29 @@ msgid ""
 "   (annotated with quantity 0 as we will need to access an erased\n"
 "   contraposition):\n"
 msgstr ""
-"   德摩根的最后一个含义更难打字和证明\n"
+"   德摩根的最后一个含义更难输入和证明\n"
 "   因为我们需要一种方法来得出 `p v` 和 `q v` 类型的值\n"
 "   并表明并非两者都可以存在。这是一种对此进行编码的方法\n"
-"   （用数量 0 注释，因为我们需要访问已擦除的\n"
-"   对立）：\n"
+"   （用定量 0 注释，因为我们需要访问已擦除的\n"
+"   对偶）：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1101
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   0 negAnd :  Decidable a p\n"
 "            => Decidable a q\n"
 "            => Neg (p && q) v\n"
 "            -> (Neg p || Neg q) v\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   0 negAnd : 可判定的 p\n"
-"            => 可判定的 q\n"
-"            => 否定 (p && q) v\n"
-"            -> (否定 p || 否定 q) v\n"
-"   ```\n"
+"   0 negAnd :  Decidable a p\n"
+"            => Decidable a q\n"
+"            => Neg (p && q) v\n"
+"            -> (Neg p || Neg q) v\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1111
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   When you implement `negAnd`, remember that you can freely access\n"
 "   erased (implicit) arguments, because `negAnd` itself can only be\n"
@@ -2899,43 +2921,45 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1117
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "So far, we implemented the tools to algebraically describe\n"
 "and combine several predicate. It is now time to come up\n"
 "with some examples. As a first use case, we will focus on\n"
 "limiting the valid range of natural numbers. For this,\n"
 "we use the following data type:\n"
-msgstr "到目前为止，我们实现了代数描述和组合几个谓词的工具。现在是提出一些例子的时候了。作为第一个用例，我们将专注于限制自然数的有效范围。为此，我们使用以下数据类型："
+msgstr ""
+"到目前为止，我们实现了代数描述和组合几个谓词的工具。现在是提出一些例子的时候"
+"了。作为第一个用例，我们将专注于限制自然数的有效范围。为此，我们使用以下数据"
+"类型：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1118
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "-- Proof that m <= n\n"
 "data (<=) : (m,n : Nat) -> Type where\n"
 "  ZLTE : 0 <= n\n"
 "  SLTE : m <= n -> S m <= S n\n"
 msgstr ""
-"```伊德里斯\n"
-"-- 证明 m <= n\n"
-"数据 (<=) : (m,n : Nat) -> 输入其中\n"
-"  ZLTE：0 <= n\n"
-"  SLTE：m <= n -> S m <= S n\n"
-"```\n"
+"-- Proof that m <= n\n"
+"data (<=) : (m,n : Nat) -> Type where\n"
+"  ZLTE : 0 <= n\n"
+"  SLTE : m <= n -> S m <= S n\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1128
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This is similar to `Data.Nat.LTE` but I find operator\n"
 "notation often to be clearer.\n"
 "We also can define and use the following aliases:\n"
-msgstr "这类似于 `Data.Nat.LTE` 但我发现运算符符号通常更清晰。我们还可以定义和使用以下别名："
+msgstr "这类似于 `Data.Nat.LTE` "
+"但我发现运算符符号通常更清晰。我们还可以定义和使用以下别名：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1129
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "(>=) : (m,n : Nat) -> Type\n"
 "m >= n = n <= m\n"
@@ -2964,36 +2988,35 @@ msgid ""
 "Between : (lower,upper : Nat) -> Nat -> Type\n"
 "Between l u = GreaterThan l && LessThan u\n"
 msgstr ""
-"(>=) : (m,n : Nat) -> 类型\n"
+"(>=) : (m,n : Nat) -> Type\n"
 "m >= n = n <= m\n"
 "\n"
-"(<) : (m,n : Nat) -> 类型\n"
+"(<) : (m,n : Nat) -> Type\n"
 "m < n = S m <= n\n"
 "\n"
-"(>) : (m,n : Nat) -> 类型\n"
+"(>) : (m,n : Nat) -> Type\n"
 "m > n = n < m\n"
 "\n"
-"小于 : (m,n : Nat) -> 类型\n"
-"小于 m = (< m)\n"
+"LessThan : (m,n : Nat) -> Type\n"
+"LessThan m = (< m)\n"
 "\n"
-"To : (m,n : Nat) -> 输入\n"
-"至 m = (<= m)\n"
+"To : (m,n : Nat) -> Type\n"
+"To m = (<= m)\n"
 "\n"
-"大于 : (m,n : Nat) -> 类型\n"
-"大于 m = (> m)\n"
+"GreaterThan : (m,n : Nat) -> Type\n"
+"GreaterThan m = (> m)\n"
 "\n"
-"从 : (m,n : Nat) -> 类型\n"
-"从 m = (>= m)\n"
+"From : (m,n : Nat) -> Type\n"
+"From m = (>= m)\n"
 "\n"
-"FromTo : (lower,upper : Nat) -> Nat -> 类型\n"
-"FromTo l u = 从 l && 到你\n"
+"FromTo : (lower,upper : Nat) -> Nat -> Type\n"
+"FromTo l u = From l && To u\n"
 "\n"
-"之间 : (lower,upper : Nat) -> Nat -> 类型\n"
-"介于 l u = 大于 l && 小于 u\n"
+"Between : (lower,upper : Nat) -> Nat -> Type\n"
+"Between l u = GreaterThan l && LessThan u\n"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/Prim.md:1171
-#, fuzzy
 msgid ""
 "Coming up with a value of type `m <= n` by pattern matching on `m` and `n` "
 "is highly inefficient for large values of `m`, as it will require `m` "
@@ -3006,16 +3029,16 @@ msgid ""
 "numbers.  Since `Prelude.(<=)` for natural numbers is implemented in terms "
 "of `compare`, it runs just as efficiently."
 msgstr ""
-"通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` 值非常"
-"低效，因为这样做需要 `m` 次迭代。但是，在擦除上下文中，我们不需要保存 `m <= "
-"n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，这样的计算"
-"是 `compare`：尽管这是在 *Prelude* 中实现的，其参数的模式匹配，但编译器将其优"
-"化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 `Prelude.(<=)` 是"
-"根据 `compare` 实现的，因此它的运行效率同样高。"
+"通过在 `m` 和 `n` 上进行模式匹配来得出 `m <= n` 类型的值对于较大的 `m` "
+"值非常低效，因为这样做需要 `m` 次迭代。但是，在擦除上下文中，我们不需要保存 `"
+"m <= n` 类型的值。我们只需要证明，这样的值来自更有效的计算。对于自然数，"
+"这样的计算是 `compare`：尽管这是在 *Prelude* 中实现的，其参数的模式匹配，但编"
+"译器将其优化为运行在即使对于非常大的数字也是恒定的时间。由于自然数的 "
+"`Prelude.(<=)` 是根据 `compare` 实现的，因此它的运行效率同样高。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1175
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   We therefore need to proof the following two lemmas (make\n"
 "   sure to not confuse `Prelude.(<=)` with `Prim.(<=)` in\n"
@@ -3027,30 +3050,31 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1176
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2\n"
 "\n"
 "   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True\n"
 msgstr ""
+"   0 fromLTE : (n1,n2 : Nat) -> (n1 <= n2) === True -> n1 <= n2\n"
+"\n"
 "   0 toLTE : (n1,n2 : Nat) -> n1 <= n2 -> (n1 <= n2) === True\n"
-"   ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1185
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   They come with a quantity of 0, because they are just as inefficient\n"
 "   as the other computations we discussed above. We therefore want\n"
 "   to make absolutely sure that they will never be used at runtime!\n"
 msgstr ""
-"   它们的数量为 0，因为它们同样低效\n"
+"   它们的定量为 0，因为它们同样低效\n"
 "   正如我们上面讨论的其他计算。因此我们想要\n"
 "   绝对确保它们永远不会在运行时使用！\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1190
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Now, implement `Decidable Nat (<= n)`, making use of `test0`,\n"
 "   `fromLTE`, and `toLTE`.\n"
@@ -3058,13 +3082,13 @@ msgid ""
 "   both kinds of predicates.\n"
 msgstr ""
 "   现在，利用 `test0` 实现 `Decidable Nat (<= n)`，\n"
-"   `从LTE`和`到LTE`。\n"
+"   `从LTE` 和 `到LTE`。\n"
 "   同样，实现 `Decidable Nat (m <=)`，因为我们需要\n"
 "   两种谓词。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1193
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   Note: You should by know figure out yourself that `n` must be\n"
 "   available at runtime and how to make sure that this is the case.\n"
@@ -3074,25 +3098,23 @@ msgstr ""
 
 #. type: Bullet: '7. '
 #: ../src/Tutorial/Prim.md:1198
-#, fuzzy
 msgid ""
 "Proof that `(<=)` is reflexive and transitive by declaring and implementing "
 "corresponding propositions. As we might require the proof of transitivity to "
 "chain several values of type `(<=)`, it makes sense to also define a short "
 "operator alias for this."
 msgstr ""
-"通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。由于我们可能需要传递性证"
-"明来链接多个类型为 `(<=)` 的值，因此也可以为此定义一个简短的运算符别名。"
+"通过声明和实现相应的命题证明 `(<=)` 是自反和传递的。"
+"由于我们可能需要传递性证明来链接多个类型为 `(<=)` "
+"的值，因此也可以为此定义一个简短的运算符别名。"
 
 #. type: Bullet: '8. '
 #: ../src/Tutorial/Prim.md:1200
-#, fuzzy
 msgid "Proof that from `n > 0` follows `IsSucc n` and vise versa."
 msgstr "证明从 `n > 0` 遵循 `IsSucc n`，反之亦然。"
 
 #. type: Bullet: '9. '
 #: ../src/Tutorial/Prim.md:1207
-#, fuzzy
 msgid ""
 "Declare and implement safe division and modulo functions for `Bits64`, by "
 "requesting an erased proof that the denominator is strictly positive when "
@@ -3106,80 +3128,78 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1208
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "   safeMod :  (x,y : Bits64)\n"
 "           -> (0 prf : cast y > 0)\n"
 "           => Subset Bits64 (\\v => cast v < cast y)\n"
 msgstr ""
-"   ```伊德里斯\n"
-"   safeMod : (x,y : Bits64)\n"
+"   safeMod :  (x,y : Bits64)\n"
 "           -> (0 prf : cast y > 0)\n"
-"           => 子集 Bits64 (\\v => cast v < cast y)\n"
-"   ```\n"
+"           => Subset Bits64 (\\v => cast v < cast y)\n"
 
 #. type: Bullet: '10. '
 #: ../src/Tutorial/Prim.md:1218
-#, fuzzy
 msgid ""
 "We will use the predicates and utilities we defined so far to convert a "
 "value of type `Bits64` to a string of digits in base `b` with `2 <= b && b "
 "<= 16`.  To do so, implement the following skeleton definitions:"
 msgstr ""
-"我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` 中"
-"的数字字符串，其中 `2 <= b && b <= 16`。为此，请实现以下骨架定义："
+"我们将使用到目前为止定义的谓词和实用程序将 `Bits64` 类型的值转换为基数 `b` "
+"中的数字字符串，其中 `2 <= b && b <= 16`。为此，请实现以下骨架定义："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1223
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    -- this will require some help from `assert_total`\n"
 "    -- and `idris_crash`.\n"
 "    digit : (v : Bits64) -> (0 prf : cast v < 16) => Char\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    -- 这需要 `assert_total` 的帮助\n"
-"    -- 和 `idris_crash`。\n"
-"    数字 : (v : Bits64) -> (0 prf : cast v < 16) => Char\n"
+"    ```idris\n"
+"    -- this will require some help from `assert_total`\n"
+"    -- and `idris_crash`.\n"
+"    digit : (v : Bits64) -> (0 prf : cast v < 16) => Char\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1228
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    record Base where\n"
 "      constructor MkBase\n"
 "      value : Bits64\n"
 "      0 prf : FromTo 2 16 (cast value)\n"
 msgstr ""
-"    记录基地在哪里\n"
-"      构造函数 MkBase\n"
-"      值：Bits64\n"
-"      0 prf：FromTo 2 16（转换值）\n"
+"    record Base where\n"
+"      constructor MkBase\n"
+"      value : Bits64\n"
+"      0 prf : FromTo 2 16 (cast value)\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1230
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    base : Bits64 -> Maybe Base\n"
-msgstr "    基数：Bits64 -> 也许基数\n"
+msgstr "    base : Bits64 -> Maybe Base\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1235
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    namespace Base\n"
 "      public export\n"
 "      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base\n"
 "    ```\n"
 msgstr ""
-"    命名空间基础\n"
-"      公共出口\n"
-"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> Base\n"
+"    namespace Base\n"
+"      public export\n"
+"      fromInteger : (v : Integer) -> {auto 0 _ : IsJust (base $ cast v)} -> "
+"Base\n"
 "    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1241
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    Finally, implement `digits`, using `safeDiv` and `safeMod`\n"
 "    in your implementation. This might be challenging, as you will\n"
@@ -3188,26 +3208,26 @@ msgid ""
 "    recursive step.\n"
 msgstr ""
 "    最后，使用 `safeDiv` 和 `safeMod` 实现 `digits`\n"
-"    在您的实施中。这可能具有挑战性，因为您将\n"
+"    在您的实现中。这可能具有挑战性，因为您将\n"
 "    必须手动转换一些证明以满足类型\n"
 "    检查器。您可能还需要 `assert_smaller` 在\n"
 "    递归步骤。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1245
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    digits : Bits64 -> Base -> String\n"
 "    ```\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    数字：Bits64 -> 基数 -> 字符串\n"
+"    ```idris\n"
+"    digits : Bits64 -> Base -> String\n"
 "    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1255
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "We will now turn our focus on strings. Two of the most\n"
 "obvious ways in which we can restrict the strings we\n"
@@ -3218,17 +3238,20 @@ msgid ""
 "boolean check or use a custom data type representing the\n"
 "different parts of the pattern, but we will not cover\n"
 "these topics here.\n"
-msgstr "我们现在将注意力转向字符串。我们可以限制我们接受的字符串的两种最明显的方法是限制字符集和限制它们的长度。更高级的改进可能需要字符串匹配某个模式或正则表达式。在这种情况下，我们可能会进行布尔检查或使用自定义数据类型来表示模式的不同部分，但我们不会在这里讨论这些主题。"
+msgstr ""
+"我们现在将注意力转向字符串。我们可以限制我们接受的字符串的两种最明显的方法是"
+"限制字符集和限制它们的长度。更高级的改进可能需要字符串匹配某个模式或正则表达"
+"式。在这种情况下，我们可能会进行布尔检查或使用自定义数据类型来表示模式的不同"
+"部分，但我们不会在这里讨论这些主题。\n"
 
 #. type: Bullet: '11. '
 #: ../src/Tutorial/Prim.md:1258
-#, fuzzy
 msgid "Implement the following aliases for useful predicates on characters."
 msgstr "为字符上的有用谓词实现以下别名。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1262
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    Hint: Use `cast` to convert characters to natural numbers,\n"
 "    use `(<=)` and `InRange` to specify regions of characters,\n"
@@ -3240,111 +3263,110 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1266
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    -- Characters <= 127\n"
 "    IsAscii : Char -> Type\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    -- 字符 <= 127\n"
-"    IsAscii : 字符 -> 类型\n"
+"    ```idris\n"
+"    -- Characters <= 127\n"
+"    IsAscii : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1269
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Characters <= 255\n"
 "    IsLatin : Char -> Type\n"
 msgstr ""
-"    -- 字符 <= 255\n"
-"    IsLatin : 字符 -> 类型\n"
+"    -- Characters <= 255\n"
+"    IsLatin : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1272
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Characters in the interval ['A','Z']\n"
 "    IsUpper : Char -> Type\n"
 msgstr ""
-"    -- 区间 ['A','Z'] 中的字符\n"
-"    IsUpper : 字符 -> 类型\n"
+"    -- Characters in the interval ['A','Z']\n"
+"    IsUpper : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1275
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Characters in the interval ['a','z']\n"
 "    IsLower : Char -> Type\n"
 msgstr ""
-"    -- 区间 ['a','z'] 中的字符\n"
-"    IsLower : 字符 -> 类型\n"
+"    -- Characters in the interval ['a','z']\n"
+"    IsLower : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1278
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Lower or upper case characters\n"
 "    IsAlpha : Char -> Type\n"
 msgstr ""
-"    -- 小写或大写字符\n"
-"    IsAlpha : 字符 -> 类型\n"
+"    -- Lower or upper case characters\n"
+"    IsAlpha : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1281
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Characters in the range ['0','9']\n"
 "    IsDigit : Char -> Type\n"
 msgstr ""
-"    -- ['0','9'] 范围内的字符\n"
-"    IsDigit : 字符 -> 类型\n"
+"    -- Characters in the range ['0','9']\n"
+"    IsDigit : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1284
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Digits or characters from the alphabet\n"
 "    IsAlphaNum : Char -> Type\n"
 msgstr ""
-"    -- 字母表中的数字或字符\n"
-"    IsAlphaNum : 字符 -> 类型\n"
+"    -- Digits or characters from the alphabet\n"
+"    IsAlphaNum : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1287
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- Characters in the ranges [0,31] or [127,159]\n"
 "    IsControl : Char -> Type\n"
 msgstr ""
-"    -- [0,31] 或 [127,159] 范围内的字符\n"
-"    IsControl : 字符 -> 类型\n"
+"    -- Characters in the ranges [0,31] or [127,159]\n"
+"    IsControl : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1290
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- An ASCII character that is not a control character\n"
 "    IsPlainAscii : Char -> Type\n"
 msgstr ""
-"    -- 非控制字符的 ASCII 字符\n"
-"    IsPlainAscii : 字符 -> 类型\n"
+"    -- An ASCII character that is not a control character\n"
+"    IsPlainAscii : Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1294
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    -- A latin character that is not a control character\n"
 "    IsPlainLatin : Char -> Type\n"
 "    ```\n"
 msgstr ""
-"    -- 不是控制字符的拉丁字符\n"
-"    IsPlainLatin : 字符 -> 类型\n"
+"    -- A latin character that is not a control character\n"
+"    IsPlainLatin : Char -> Type\n"
 "    ```\n"
 
 #. type: Bullet: '12. '
 #: ../src/Tutorial/Prim.md:1301
-#, fuzzy
 msgid ""
 "The advantage of this more modular approach to predicates on primitives is "
 "that we can safely run calculations on our predicates and get the strong "
@@ -3358,47 +3380,47 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1304
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    0 plainToAscii : IsPlainAscii c -> IsAscii c\n"
 msgstr ""
-"    ```伊德里斯\n"
+"    ```idris\n"
 "    0 plainToAscii : IsPlainAscii c -> IsAscii c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1306
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    0 digitToAlphaNum : IsDigit c -> IsAlphaNum c\n"
 msgstr "    0 digitToAlphaNum : IsDigit c -> IsAlphaNum c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1308
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c\n"
 msgstr "    0 alphaToAlphaNum : IsAlpha c -> IsAlphaNum c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1310
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    0 lowerToAlpha : IsLower c -> IsAlpha c\n"
 msgstr "    0 lowerToAlpha : IsLower c -> IsAlpha c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1312
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    0 upperToAlpha : IsUpper c -> IsAlpha c\n"
 msgstr "    0 upperToAlpha : IsUpper c -> IsAlpha c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1314
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    0 lowerToAlphaNum : IsLower c -> IsAlphaNum c\n"
 msgstr "    0 lowerToAlphaNum : IsLower c -> IsAlphaNum c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1317
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    0 upperToAlphaNum : IsUpper c -> IsAlphaNum c\n"
 "    ```\n"
@@ -3408,7 +3430,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1324
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    The following (`asciiToLatin`) is trickier. Remember that\n"
 "    `(<=)` is transitive. However, in your invocation of the proof\n"
@@ -3421,22 +3443,22 @@ msgstr ""
 "    `(<=)` 是传递的。但是，在您调用证明时\n"
 "    传递性，您将无法使用直接证明搜索\n"
 "    `%search` 因为搜索深度太小。你可以\n"
-"    增加搜索深度，但效率更高\n"
-"    改为使用 `safeDecideOn`。\n"
+"    增加搜索深度，但\n"
+"    改为使用 `safeDecideOn` 效率更高。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1327
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    0 asciiToLatin : IsAscii c -> IsLatin c\n"
 msgstr ""
-"    ```伊德里斯\n"
+"    ```idris\n"
 "    0 asciiToLatin : IsAscii c -> IsLatin c\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1330
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    0 plainAsciiToPlainLatin : IsPlainAscii c -> IsPlainLatin c\n"
 "    ```\n"
@@ -3446,42 +3468,41 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1334
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Before we turn our full attention to predicates on strings,\n"
 "we have to cover lists first, because we will often treat\n"
 "strings as lists of characters.\n"
-msgstr "在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符串视为字符列表。"
+msgstr "在我们将全部注意力转向字符串谓词之前，我们必须先介绍列表，因为我们经常将字符"
+"串视为字符列表。\n"
 
 #. type: Bullet: '13. '
 #: ../src/Tutorial/Prim.md:1336
-#, fuzzy
 msgid "Implement `Decidable` for `Head`:"
 msgstr "为 `Head` 实现 `Decidable`："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1341
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    data Head : (p : a -> Type) -> List a -> Type where\n"
 "      AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)\n"
 "    ```\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    数据头 : (p : a -> Type) -> List a -> Type where\n"
+"    ```idris\n"
+"    data Head : (p : a -> Type) -> List a -> Type where\n"
 "      AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)\n"
 "    ```\n"
 
 #. type: Bullet: '14. '
 #: ../src/Tutorial/Prim.md:1343
-#, fuzzy
 msgid "Implement `Decidable` for `Length`:"
 msgstr "为 `Length` 实现 `Decidable`："
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1350
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    data Length : (p : Nat -> Type) -> List a -> Type where\n"
@@ -3490,27 +3511,25 @@ msgid ""
 "                -> Length p vs\n"
 "    ```\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    数据长度 : (p : Nat -> Type) -> List a -> Type where\n"
-"      HasLength : {0 p : Nat -> 类型}\n"
+"    ```idris\n"
+"    data Length : (p : Nat -> Type) -> List a -> Type where\n"
+"      HasLength :  {0 p : Nat -> Type}\n"
 "                -> (0 prf : p (List.length vs))\n"
-"                -> 长度 p 与\n"
+"                -> Length p vs\n"
 "    ```\n"
 
 #. type: Bullet: '15. '
 #: ../src/Tutorial/Prim.md:1354
-#, fuzzy
 msgid ""
 "The following predicate is a proof that all values in a list of values "
 "fulfill the given predicate. We will use this to limit the valid set of "
 "characters in a string."
-msgstr ""
-"以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效"
+msgstr "以下谓词证明值列表中的所有值都满足给定谓词。我们将使用它来限制字符串中的有效"
 "字符集。"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1363
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    data All : (p : a -> Type) -> (as : List a) -> Type where\n"
@@ -3521,24 +3540,24 @@ msgid ""
 "           -> All p (v :: vs)\n"
 "    ```\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    数据全部 : (p : a -> Type) -> (as : List a) -> Type where\n"
-"      无：所有 p []\n"
-"      (::) : {0 p : a -> 类型}\n"
+"    ```idris\n"
+"    data All : (p : a -> Type) -> (as : List a) -> Type where\n"
+"      Nil  : All p []\n"
+"      (::) :  {0 p : a -> Type}\n"
 "           -> (0 h : p v)\n"
-"           -> (0 t : 所有 p vs)\n"
-"           -> 所有 p (v :: vs)\n"
+"           -> (0 t : All p vs)\n"
+"           -> All p (v :: vs)\n"
 "    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1365
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "    Implement `Decidable` for `All`.\n"
 msgstr "    为 `All` 实现 `Decidable`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1373
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    For a real challenge, try to make your implementation of\n"
 "    `decide` tail recursive. This will be important for real world\n"
@@ -3548,17 +3567,15 @@ msgid ""
 "    you will need an additional data type `AllSnoc` witnessing that a predicate\n"
 "    holds for all elements in a `SnocList`.\n"
 msgstr ""
-"    对于真正的挑战，请尝试使您的实施\n"
-"    `决定`尾递归。这对现实世界很重要\n"
-"    JavaScript 后端上的应用程序，我们可能想要的地方\n"
-"    精炼数千个字符的字符串而不会溢出\n"
-"    在运行时堆栈。为了提出尾递归实现，\n"
+"    对于真正的挑战，请尝试使您的\n"
+"    `decide`  实现尾递归。这对JavaScript 后端上的现实世界应用程序很重要，"
+"我们可能想要精炼数千个字符的字符串的地方\n"
+"    而不会在运行时堆栈溢出。为了提出尾递归实现，\n"
 "    您将需要一个额外的数据类型 `AllSnoc` 来见证谓词\n"
 "    适用于 `SnocList` 中的所有元素。\n"
 
 #. type: Bullet: '16. '
 #: ../src/Tutorial/Prim.md:1379
-#, fuzzy
 msgid ""
 "It's time to come to an end here. An identifier in Idris is a sequence of "
 "alphanumeric characters, possibly separated by underscore characters (`_`). "
@@ -3572,17 +3589,17 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1382
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    0 IdentChars : List Char -> Type\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    0 IdentChars：列表字符->类型\n"
+"    ```idris\n"
+"    0 IdentChars : List Char -> Type\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1388
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    record Identifier where\n"
 "      constructor MkIdentifier\n"
@@ -3590,37 +3607,35 @@ msgid ""
 "      0 prf : IdentChars (unpack value)\n"
 "    ```\n"
 msgstr ""
-"    记录标识符在哪里\n"
-"      构造函数 MkIdentifier\n"
-"      值：字符串\n"
-"      0 prf：IdentChars（解包值）\n"
+"    record Identifier where\n"
+"      constructor MkIdentifier\n"
+"      value : String\n"
+"      0 prf : IdentChars (unpack value)\n"
 "    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1391
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    Implement a factory method `identifier` for converting strings\n"
 "    of unknown source at runtime:\n"
-msgstr ""
-"    实现一个工厂方法 `identifier` 来转换字符串\n"
-"    运行时未知来源：\n"
+msgstr "    实现一个工厂方法 `identifier` 来转换运行时未知来源的字符串 ：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1395
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    identifier : String -> Maybe Identifier\n"
 "    ```\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    标识符：字符串->可能标识符\n"
+"    ```idris\n"
+"    identifier : String -> Maybe Identifier\n"
 "    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1398
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    In addition, implement `fromString` for `Identifier` and verify,\n"
 "    that the following is a valid identifier:\n"
@@ -3630,25 +3645,28 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1403
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "    ```idris\n"
 "    testIdent : Identifier\n"
 "    testIdent = \"fooBar_123\"\n"
 "    ```\n"
 msgstr ""
-"    ```伊德里斯\n"
-"    testIdent : 标识符\n"
+"    ```idris\n"
+"    testIdent : Identifier\n"
 "    testIdent = \"fooBar_123\"\n"
 "    ```\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Prim.md:1409
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Final remarks: Proofing stuff about the primitives can be challenging,\n"
 "both when deciding on what axioms to use and when trying to make\n"
 "things perform well at runtime and compile time. I'm experimenting\n"
 "with a library, which deals with these issues. It is not yet finished,\n"
 "but you can have a look at it [here](https://github.com/stefan-hoeck/idris2-prim).\n"
-msgstr "最后的评论：在决定使用什么公理以及试图使事情在运行时和编译时表现良好时，证明关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，但您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。"
+msgstr ""
+"最后的评论：在决定使用什么公理以及试图使事情在运行时和编译时表现良好时，证明"
+"关于原语的东西可能具有挑战性。我正在尝试一个处理这些问题的库。它尚未完成，"
+"但您可以在 [这里](https://github.com/stefan-hoeck/idris2-prim) 看看它。\n"
