@@ -1,5 +1,4 @@
-> [Chinese Translation](translation/README.md)  
-> [![翻译状态](https://weblate.grass.work:30443/widgets/idris2-tutorial/zh_Hans/svg-badge.svg)](https://weblate.grass.work:30443/engage/idris2-tutorial/zh_Hans/)
+> [Chinese Translation](translation/README.md)
 
 # Functional Programming in Idris 2
 
