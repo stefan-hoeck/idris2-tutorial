@@ -1,9 +1,6 @@
-# Primitives
+# 原语
 
-In the topics we covered so far, we hardly ever talked about primitive
-types in Idris. They where around and we used them in some computations,
-but I never really explained how they work and where they come from,
-nor did I show in detail what we can and can't do with them.
+到目前为止，在我们讨论的主题中，我们几乎从未讨论过 Idris 中的原始类型。它们在哪里，我们在一些计算中使用它们，但我从来没有真正解释过它们是如何工作的以及它们来自哪里，我也没有详细说明我们可以用它们做什么和不能做什么。
 
 ```idris
 module Tutorial.Prim
@@ -14,112 +11,68 @@ import Data.String
 %default total
 ```
 
-## How Primitives are Implemented
+## 原语是如何实现的
 
-### A Short Note on Backends
+### 关于后端的简短说明
 
-According to [Wikipedia](https://en.wikipedia.org/wiki/Compiler),
-a compiler is "a computer program that translates computer code
-written in one programming language (the source language) into
-another language (the target language)". The Idris compiler is
-exactly that: A program translating programs written in Idris
-into programs written in Chez Scheme. This scheme code is then
-parsed and interpreted by a Chez Scheme interpreter, which must
-be installed on the computers we use to run compiled Idris
-programs.
+根据 [Wikipedia](https://en.wikipedia.org/wiki/Compiler)，编译器是“一种计算机程序，它将以一种编程语言（源语言）编写的计算机代码翻译成另一种语言（目标语言） ”。 Idris 编译器就是这样：一个将 Idris 编写的程序翻译成 Chez Scheme 编写的程序的程序。然后这个 Scheme 代码由 Chez Scheme 解释器解析和解释，它必须安装在我们用来运行已编译 Idris 程序的计算机上。
 
-But that's only part of the story. Idris 2 was from the beginning
-designed to support different code generators (so called *backends*),
-which allows us to write Idris code to target different platforms,
-and your Idris installation comes with several additional
-backends available. You can specify the backend to use with the `--cg` command
-line argument (`cg` stands for *code generator*). For instance:
+但这只是故事的一部分。 Idris 2 从一开始就设计为支持不同的代码生成器（所谓的 *后端*），这允许我们编写 Idris 代码以针对不同的平台，并且您的 Idris 安装附带了几个可用的附加后端。您可以指定要与 `--cg` 命令行参数一起使用的后端（`cg` 代表 *代码生成器*）。例如：
 
 ```sh
 idris2 --cg racket
 ```
 
-Here is a non-comprehensive list of the backends available with a
-standard Idris installation (the name to be used in the command line
-argument is given in parentheses):
+以下是标准 Idris 安装可用的后端的非全面列表（在括号中给出命令行参数中使用的名称）：
 
-* Racket Scheme (`racket`): This is a different flavour of the scheme
-  programming language, which can be useful to use when Chez Scheme is not
-  available on your operating system.
-* Node.js (`node`): This converts an Idris program to JavaScript.
-* Browser (`javascript`): Another JavaScript backend which allows you to
-  write web applications which run in the browser in Idris.
-* RefC (`refc`): A backend compiling Idris to C code, which is then further
-  compiled by a C compiler.
+* Racket Scheme (`racket`)：这是 Scheme 编程语言的另一种方言，当 Chez Scheme
+  在您的操作系统上不可用时，它很有用。
+* Node.js (`node`)：这会将 Idris 程序转换为 JavaScript。
+* 浏览器 (`javascript`)：另一个 JavaScript 后端，允许您编写在 Idris 的浏览器中运行的 Web 应用程序。
+* RefC (`refc`)：后端将 Idris 编译为 C 代码，然后由 C 编译器进一步编译。
 
-I plan to at least cover the JavaScript backends in some more detail
-in another part of this Idris guide, as I use them pretty often myself.
+我计划至少在本 Idris 指南的另一部分中更详细地介绍 JavaScript 后端，因为我自己也经常使用它们。
 
-There are also several external backends not officially supported by
-the Idris project, amongst which are backends for compiling Idris code
-to Java and Python. You can find a list of external backends on
-the [Idris Wiki](https://github.com/idris-lang/Idris2/wiki/1-%5BLanguage%5D-External-backends).
+Idris 项目还没有正式支持几个外部后端，其中包括将 Idris 代码编译为 Java 和 Python 的后端。您可以在 [Idris Wiki](https://github.com/idris-lang/Idris2/wiki/1-%5BLanguage%5D-External-backends) 上找到外部后端列表。
 
-### The Idris Primitives
+### Idris 原语
 
-A *primitive data type* is a type that is built into the Idris compiler
-together with a set of *primitive functions*, which are used to perform
-calculations on the primitives. You will therefore not find a definition
-of a primitive type or function in the source code of the *Prelude*.
+*原语数据类型* 是与一组 *原语函数* 一起内置到 Idris 编译器中的类型，这些函数用于对原始数据执行计算。因此，您不会在 *Prelude* 的源代码中找到原语类型或函数的定义。
 
-Here is again the list of primitive types in Idris:
+这是 Idris 中的原语类型列表：
 
-* Signed, fixed precision integers:
-  * `Int8`: Integer in the range [-128,127]
-  * `Int16`: Integer in the range [-32768,32767]
-  * `Int32`: Integer in the range [-2147483648,2147483647]
-  * `Int64`: Integer in the range [-9223372036854775808,9223372036854775807]
-* Unsigned, fixed precision integers:
-  * `Bits8`: Integer in the range [0,255]
-  * `Bits16`: Integer in the range [0,65535]
-  * `Bits32`: Integer in the range [0,4294967295]
-  * `Bits64`: Integer in the range [0,18446744073709551615]
-* `Integer`: A signed, arbitrary precision integer.
-* `Double`: A double precision (64 bit) floating point number.
-* `Char`: A unicode character.
-* `String`: A sequence of unicode characters.
-* `%World`: A symbolic representation of the current world state.
-  We learned about this when I showed you how `IO` is implemented.
-  Most of the time, you will not handle values of this type in your own
-  code.
-* `Int`: This one is special. It is a fixed precision, signed integer,
-   but the bit size is somewhat dependent on the backend and
-   (maybe) platform we use.
-   For instance, if you use the default Chez Scheme backend, `Int` is
-   a 64 bit signed integer, while on the JavaScript backends it is a
-   32 bit signed integer for performance reasons. Therefore, `Int` comes
-   with very few guarantees, and you should use one of the well
-   specified integer types listed above whenever possible.
+* 有符号、固定精度整数：
+  * `Int8`：[-128,127] 范围内的整数
+  * `Int16`：[-32768,32767] 范围内的整数
+  * `Int32`：[-2147483648,2147483647] 范围内的整数
+  *`Int64`：范围内的整数 [-9223372036854775808,9223372036854775807]
+* 无符号、固定精度整数：
+  * `Bits8`：[0,255] 范围内的整数
+  * `Bits16`：[0,65535] 范围内的整数
+  * `Bits32`：[0,4294967295] 范围内的整数
+  * `Bits64`：[0,18446744073709551615] 范围内的整数
+* `Integer`：有符号的任意精度整数。
+* `Double`：双精度（64 位）浮点数。
+* `Char`：一个 unicode 字符。
+* `String`：Unicode 字符序列。
+* `%World`：当前世界状态的符号表示。
+  当我向您展示如何实现 IO 时，我们了解了这一点。
+  大多数时候，您不会自己处理这种类型的值的代码。
+* `Int`：这个比较特殊。它是一个固定精度的有符号整数，
+   但位大小在某种程度上取决于后端和
+   （也许）我们使用的平台。
+   例如，如果您使用默认 Chez Scheme 后端，则 `Int` 是
+   一个 64 位有符号整数，而在 JavaScript 后端出于性能原因它是一个32 位有符号整数。因此，`Int` 没有太多的保证，你应该尽可能指定使用上面列出的整数类型其中一个。
 
-It can be instructive to learn, where in the compiler's source
-code the primitive types and functions are defined. This source
-code can be found in folder `src` of the [Idris project](https://github.com/idris-lang/Idris2)
-and the primitive types are the constant constructors of
-data type `Core.TT.Constant`.
+学习在编译器源代码中定义原语类型和函数的位置可能具有指导意义。此源代码可以在 [Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，原语类型是数据类型 `Core.TT.Constant` 的常量构造函数。
 
-### Primitive Functions
+### 原语函数
 
-All calculations operating on primitives are based on two
-kinds of primitive functions: The ones built into the compiler
-(see below) and the ones defined by programmers via the
-foreign function interface (FFI), about which I'll talk in
-another chapter.
+所有对原语进行的计算都基于两种原语函数：编译器内置的（见下文）和程序员通过外部函数接口（FFI）定义的函数，我将在另一章中讨论。
 
-Built-in primitive functions are functions known to the compiler
-the definition of which can not be found in the *Prelude*. They
-define the core functionality available for the primitive
-types. Typically, you do not invoke these directly (although
-it is perfectly fine to do so in most cases) but via functions
-and interfaces exported by the *Prelude* or the *base* library.
+内置原语函数是编译器已知的函数，其定义在 *Prelude* 中找不到。它们定义了可用于原语类型的核心函数。通常，您不会直接调用它们（尽管在大多数情况下这样做非常好），而是通过 *Prelude* 或 *base* 库导出的函数和接口。
 
-For instance, the primitive function for adding two eight bit
-unsigned integers is `prim__add_Bits8`. You can inspect its
-type and behavior at the REPL:
+例如，将两个八位无符号整数相加的原语函数是 `prim__add_Bits8`。您可以在 REPL 中检查其类型和行为：
 
 ```repl
 Tutorial.Prim> :t prim__add_Bits8
@@ -128,38 +81,13 @@ Tutorial.Prim> prim__add_Bits8 12 100
 112
 ```
 
-If you look at the source code implementing interface `Num`
-for `Bits8`, you will see that the plus operator just invokes
-`prim__add_Bits8` internally. The same goes for most of the other
-functions in primitive interface implementations.
-For instance, every primitive type with the exception of
-`%World` comes with primitive comparison functions.
-For `Bits8`, these are:
-`prim__eq_Bits8`, `prim__gt_Bits8`, `prim__lt_Bits8`,
-`prim__gte_Bits8`, and `prim__lte_Bits8`.
-Note, that these functions do not return a `Bool` (which
-is *not* a primitive type in Idris), but an `Int`. They are
-therefore not as safe or convenient to use as the corresponding
-operator implementations form interfaces `Eq` and `Comp`.
-On the other hand, they do not go via a conversion to `Bool`
-and might therefore perform slightly better in performance
-critical code (which you can only identify after some
-serious profiling).
+如果查看 `Bits8` 的实现接口 `Num` 的源代码，您会看到加号运算符只是在内部调用 `prim__add_Bits8`。原语接口实现中的大多数其他函数也是如此。例如，除了 `%World` 之外的每个原语类型都带有原语比较函数。对于 `Bits8`，它们是：`prim__eq_Bits8`、`prim__gt_Bits8`、`prim__lt_Bits8`、`prim__gte_Bits8` 和 `prim__lte_Bits8`。请注意，这些函数不返回 `Bool`（在 Idris 中 *不是* 原语类型），而是 `Int`。因此，它们不像接口 `Eq` 和 `Comp` 中的相应运算符实现那样安全或方便。另一方面，它们不会通过转换为 `Bool` 并且因此在性能关键代码中的性能可能会稍好一些（您只能在经过一些认真的分析后才能识别）。
 
-As with primitive types, the primitive functions are listed as
-constructors in a data type (`Core.TT.PrimFn`) in the compiler
-sources. We will look at most of these in the following sections.
+与原语类型一样，原语函数在编译器源代码中被列为数据类型 (`Core.TT.PrimFn`) 中的构造函数。我们将在以下部分中介绍其中的大部分内容。
 
-### Consequences of being Primitive
+### 原语的重要性
 
-Primitive functions and types are opaque to the compiler
-in most regards: They have to be defined and implemented by each
-backend individually, therefore, the compiler knows nothing about the inner
-structure of a primitive value nor about the inner workings
-of primitive functions. For instance, in the following recursive
-function, *we* know that the argument in the recursive call
-must be converging towards the base case (unless there is a bug
-in the backend we use), but the compiler does not:
+在大多数情况下，原语函数和类型对编译器是不透明的：它们必须由每个后端单独定义和实现，因此，编译器对原语值的内部结构和原语函数的内部工作一无所知。例如，在下面的递归函数中，*我们* 知道递归调用中的参数必须收敛到基本情况（除非我们使用的后端存在错误），但编译器不知道：
 
 ```idris
 covering
@@ -168,9 +96,7 @@ replicateBits8' 0 _ = []
 replicateBits8' n v = v :: replicateBits8' (n - 1) v
 ```
 
-In these cases, we either must be content with just a
-*covering* function, or we use `assert_smaller` to
-convince the totality checker (the preferred way):
+在这些情况下，我们要么只满足于 *covering* 函数，要么使用 `assert_smaller` 来说服整体检查器（首选方式）：
 
 ```idris
 replicateBits8 : Bits8 -> a -> List a
@@ -178,34 +104,23 @@ replicateBits8 0 _ = []
 replicateBits8 n v = v :: replicateBits8 (assert_smaller n $ n - 1) v
 ```
 
-I have shown you the risks of using `assert_smaller` before, so we
-must be extra careful in making sure that the new function argument
-is indeed smaller with relation to the base case.
+我之前已经向您展示了使用 `assert_smaller` 的风险，因此我们必须格外小心，以确保新函数参数相对于基本情况确实更小。
 
-While Idris knows nothing about the internal workings of primitives
-and related functions, most of these functions still reduce during
-evaluation when fed with values known at compile time. For instance,
-we can trivially proof that for `Bits8` the following equation holds:
+虽然 Idris 对原语和相关函数的内部工作原理一无所知，但当输入编译时已知的值时，这些函数中的大多数在求值期间仍然会减少。例如，我们可以简单地证明对于 `Bits8`，以下等式成立：
 
 ```idris
 zeroBits8 : the Bits8 0 = 255 + 1
 zeroBits8 = Refl
 ```
 
-Having no clue about the internal structure of a primitive
-nor about the implementations of primitive functions,
-Idris can't help us proofing any *general* properties of such functions
-and values. Here is an example to demonstrate this. Assume we'd
-like to wrap a list in a data type indexed by the list's length:
+由于不了解原语的内部结构或原语函数的实现，Idris 无法帮助我们证明此类函数和值的任何 *泛型* 属性。这是一个例子来证明这一点。假设我们想将一个列表包装在一个由列表长度索引的数据类型中：
 
 ```idris
 data LenList : (n : Nat) -> Type -> Type where
   MkLenList : (as : List a) -> LenList (length as) a
 ```
 
-When we concatenate two `LenList`s, the length indices
-should be added. That's how list concatenation affects the
-length of lists. We can safely teach Idris that this is true:
+当我们连接两个 `LenList` 时，应该累加长度索引。这就是列表连接影响列表长度的方式。我们可以安全地告诉伊德里斯这是真的：
 
 ```idris
 0 concatLen : (xs,ys : List a) -> length xs + length ys = length (xs ++ ys)
@@ -213,7 +128,7 @@ concatLen []        ys = Refl
 concatLen (x :: xs) ys = cong S $ concatLen xs ys
 ```
 
-With the above lemma, we can implement concatenation of `LenList`:
+通过上述引理，我们可以实现 `LenList` 的串联：
 
 ```idris
 (++) : LenList m a -> LenList n a -> LenList (m + n) a
@@ -221,52 +136,32 @@ MkLenList xs ++ MkLenList ys =
   rewrite concatLen xs ys in MkLenList (xs ++ ys)
 ```
 
-The same is not possible for strings. There are applications where
-pairing a string with its length would be useful (for instance, if we
-wanted to make sure that strings are getting strictly shorter
-during parsing and will therefore eventually be wholly
-consumed), but Idris cannot help us getting these things right.
-There is no way to implement and thus proof the following
-lemma in a safe way:
+字符串也是不可能的。在某些应用程序中，将字符串与其长度配对会很有用（例如，如果我们想确保字符串在解析过程中严格缩短，因此最终会被完全消耗掉），但 Idris 无法帮助我们正确处理这些事情。没有办法以安全的方式实现并证明以下引理：
 
 ```idris
 0 concatLenStr : (a,b : String) -> length a + length b = length (a ++ b)
 ```
 
 <!-- markdownlint-disable MD026 -->
-### Believe Me!
+### 相信我！
 <!-- markdownlint-enable MD026 -->
 
-In order to implement `concatLenStr`, we have to abandon all
-safety and use the ten ton wrecking ball of type coercion:
-`believe_me`. This primitive function allows us to freely
-coerce a value of any type into a value of any other type.
-Needless to say, this is only safe if we *really* know what we are doing:
+为了实现 `concatLenStr`，我们必须放弃所有安全，使用强制类型的十吨破坏球：`believe_me`。这个原语函数允许我们自由地将任何类型的值强制转换为任何其他类型的值。不用说，只有当我们 *真的* 知道我们在做什么时，这才是安全的：
 
 ```idris
 concatLenStr a b = believe_me $ Refl {x = length a + length b}
 ```
 
-The explicit assignment of variable `x` in `{x = length a + length b}`
-is necessary, because otherwise Idris will complain about an *unsolved
-hole*: It can't infer the type of parameter `x` in the `Refl`
-constructor. We could assign any type to `x` here, because we
-are passing the result to `believe_me` anyway, but I consider it
-to be good practice to assign one of the two sides of the equality
-to make our intention clear.
+在 `x = length a + length b}` 中显式分配变量 `x` 是必要的，否则 Idris 会抱怨 *未解决的孔*：它可以在 `Refl` 构造函数中推断参数 `x` 的类型。我们可以在这里为 `x` 分配任何类型，因为无论如何我们都将结果传递给 `believe_me`，但我认为将等式的两侧之一分配给明确我们的意图。
 
-The higher the complexity of a primitive type, the riskier
-it is to assume even the most basic properties for it to hold.
-For instance, we might act under the delusion that floating
-point addition is associative:
+原始类型的复杂性越高，假设它拥有最基本的属性的风险就越大。例如，我们可能会误以为浮点加法具有结合性：
 
 ```idris
 0 doubleAddAssoc : (x,y,z : Double) -> x + (y + z) = (x + y) + z
 doubleAddAssoc x y z = believe_me $ Refl {x = x + (y + z)}
 ```
 
-Well, guess what: That's a lie. And lies lead us straight
-into the `Void`:
+好吧，你猜怎么着：那是个谎言。谎言将我们直接带入 `Void`：
 
 ```idris
 Tiny : Double
@@ -282,33 +177,21 @@ boom : Void
 boom = wrong (doubleAddAssoc One Tiny Tiny)
 ```
 
-Here's what happens in the code above: The call to `doubleAddAssoc`
-returns a proof that `One + (Tiny + Tiny)` is equal to
-`(One + Tiny) + Tiny`. But `One + (Tiny + Tiny)` equals
-`1.0000000000000002`, while `(One + Tiny) + Tiny` equals `1.0`.
-We can therefore pass our (wrong) proof to `wrong`, because it
-is of the correct type, and from this follows a proof of `Void`.
+下面是上面代码中发生的情况：对 `doubleAddAssoc` 的调用返回一个证明 `One + (Tiny + Tiny)` 等于 `(One + Tiny) + Tiny`。但是 `One + (Tiny + Tiny)` 等于 `1.0000000000000002`，而 `(One + Tiny) + Tiny` 等于 `1.0`。因此，我们可以将我们的（错误的）证明传递给 `wrong`，因为它是正确的类型，并由此得出 `Void` 的证明。
 
-## Working with Strings
+## 使用字符串
 
-Module `Data.String` in *base* offers a rich set of functions
-for working with strings. All these are based on the following
-primitive operations built into the compiler:
+*base* 中的模块 `Data.String` 提供了一组丰富的函数来处理字符串。所有这些都基于编译器内置的以下原语操作：
 
-* `prim__strLength`: Returns the length of a string.
-* `prim__strHead`: Extracts the first character from a string.
-* `prim__strTail`: Removes the first character from a string.
-* `prim__strCons`: Prepends a character to a string.
-* `prim__strAppend`: Appends two strings.
-* `prim__strIndex`: Extracts a character at the given position from a
-  string.
-* `prim__strSubstr`: Extracts the substring between the given positions.
+* `prim__strLength`：返回字符串的长度。
+* `prim__strHead`：从字符串中提取第一个字符。
+* `prim__strTail`：从字符串中删除第一个字符。
+* `prim__strCons`：在字符串前面添加一个字符。
+* `prim__strAppend`：追加两个字符串。
+* `prim__strIndex`：从字符串中提取给定位置的字符。
+* `prim__strSubstr`：提取给定位置之间的子字符串。
 
-Needless to say, not all of these functions are total. Therefore, Idris
-must make sure that invalid calls do not reduce during compile time, as
-otherwise the compiler would crash. If, however we force the evaluation
-of a partial primitive function by compiling and running the corresponding
-program, this program will crash with an error:
+不用说，并非所有这些功能都是完整的。因此，Idris 必须确保在编译期间不会减少无效调用，否则编译器会崩溃。但是，如果我们通过编译和运行相应的程序来强制对部分原语函数求值，则该程序将崩溃并出现错误：
 
 ```repl
 Tutorial.Prim> prim__strTail ""
@@ -317,43 +200,27 @@ Tutorial.Prim> :exec putStrLn (prim__strTail "")
 Exception in substring: 1 and 0 are not valid start/end indices for ""
 ```
 
-Note, how `prim__strTail ""` is not reduced at the REPL and how the
-same expression leads to a runtime exception if we compile and
-execute the program. Valid calls to `prim__strTail` are reduced
-just fine, however:
+请注意，`prim__strTail ""` 在 REPL 中没有减少，以及如果我们编译和执行程序，相同的表达式如何导致运行时异常。对 `prim__strTail` 的有效调用减少得很好，但是：
 
 ```idris
 tailExample : prim__strTail "foo" = "oo"
 tailExample = Refl
 ```
 
-### Pack and Unpack
+### 打包和解包
 
-Two of the most important functions for working with strings
-are `unpack` and `pack`, which convert a string to a list
-of characters and vice versa. This allows us to conveniently
-implement many string operations by iterating or folding
-over the list of characters instead. This might not always
-be the most efficient thing to do, but unless you plan to
-handle very large amounts of text, they work and perform
-reasonably well.
+处理字符串的两个最重要的函数是 `unpack` 和 `pack`，它们将字符串转换为字符列表，以及反过来。这允许我们通过迭代或折叠字符列表来方便地实现许多字符串操作。这可能并不总是最有效的做法，但除非您计划处理大量文本，否则它们的工作和性能相当不错。
 
-### String Interpolation
+### 字符串插值
 
-Idris allows us to include arbitrary string expressions in
-a string literal by wrapping them in curly braces, the first
-of which has to be escaped with a backslash. For instance:
+Idris 允许我们将任意字符串表达式包含在字符串文字中，方法是将它们包裹在花括号中，第一个必须用反斜杠转义。例如：
 
 ```idris
 interpEx1 : Bits64 -> Bits64 -> String
 interpEx1 x y = "\{show x} + \{show y} = \{show $ x + y}"
 ```
 
-This is a very convenient way to assemble complex strings
-from values of different types.
-In addition, there is interface `Interpolation`, which
-allows us to use values in interpolated strings without
-having to convert them to strings first:
+这是从不同类型的值组装复杂字符串的一种非常方便的方法。此外，还有接口`Interpolation`，它允许我们在插值字符串中使用值，而不必先将它们转换为字符串：
 
 ```idris
 data Element = H | He | C | N | O | F | Ne
@@ -382,20 +249,16 @@ ethanol : String
 ethanol = "The formulat of ethanol is: \{[(C,2),(H,6),(O, the Nat 1)]}"
 ```
 
-### Raw and Multiline String Literals
+### 原始和多行字符串字面量
 
-In string literals, we have to escape certain characters
-like quotes, backslashes or new line characters. For instance:
+在字符串文字中，我们必须转义某些字符，如引号、反斜杠或换行符。例如：
 
 ```idris
 escapeExample : String
 escapeExample = "A quote: \". \nThis is on a new line.\nA backslash: \\"
 ```
 
-Idris allows us to enter raw string literals, where there
-is no need to escape quotes and backslashes, by pre- and
-postfixing the wrapping quote characters with the same number
-of hash characters. For instance:
+Idris 允许我们输入原始字符串文字，无需转义引号和反斜杠，方法是在引号前后使用相同数量的井号进行包裹。例如：
 
 ```idris
 rawExample : String
@@ -405,23 +268,14 @@ rawExample2 : String
 rawExample2 = ##"A quote: ". A blackslash: \"##
 ```
 
-With raw string literals, it is still possible to use string
-interpolation, but the opening curly brace has to be prefixed
-with a backslash and the same number of hashes as are being used
-for opening and closing the string literal:
+对于原始字符串字面量，仍然可以使用字符串插值，但开始的花括号必须以反斜杠为前缀，并且加上和用于打开关闭字符串字面量的相同数据的井号：
 
 ```idris
 rawInterpolExample : String
 rawInterpolExample = ##"An interpolated "string": \##{rawExample}"##
 ```
 
-Finally, Idris also allows us to conveniently write multiline
-strings. These can be pre- and postfixed with hashes if we want
-raw multiline string literals, and they also can be combined with
-string interpolation. Multiline literals are opened and closed with
-triple quote characters. Indenting the closing triple quotes
-allows us to indent the whole multiline literal. Whitespace used
-for indentation will not appear in the resulting string. For instance:
+最后，Idris 还允许我们方便地编写多行字符串。如果我们想要原始的多行字符串字面量，这些可以用井号前缀和后缀，它们也可以与字符串插值结合使用。多行文字用三引号字符打开和关闭。缩进结束的三引号允许我们缩进整个多行文字。用于缩进的空格不会出现在结果字符串中。例如：
 
 ```idris
 multiline1 : String
@@ -442,86 +296,54 @@ multiline2 = #"""
   """#
 ```
 
-Make sure to look at the example strings at the
-REPL to see the effect of interpolation and raw string
-literals and compare it with the syntax we used.
+请务必查看 REPL 中的示例字符串，以了解插值和原始字符串文字的效果，并将其与我们使用的语法进行比较。
 
 ### 练习第 1 部分
 
-In these exercises, you are supposed to implement a bunch
-of utility functions for consuming and converting strings.
-I don't give the expected types here, because you are
-supposed to come up with those yourself.
+在这些练习中，你应该实现一堆用于消费和转换字符串的实用函数。我在这里没有给出预期的类型，因为你应该自己想出那些。
 
-1. Implement functions similar to `map`, `filter`, and `mapMaybe` for
-   strings. The output type of these should always be a string.
+1. 为字符串实现类似于 `map`、`filter` 和 `mapMaybe` 的函数。这些的输出类型应该始终是一个字符串。
 
-2. Implement functions similar to `foldl` and `foldMap` for strings.
+2. 为字符串实现类似于 `foldl` 和 `foldMap` 的函数。
 
-3. Implement a function similar to `traverse` for strings. The output type
-   should be a wrapped string.
+3. 为字符串实现类似于 `traverse` 的函数。输出类型应该是一个包装的字符串。
 
-4. Implement the bind operator for strings. The output type should again be
-   a string.
+4. 为字符串实现绑定运算符。输出类型应该再次是字符串。
 
-## Integers
+## 整数
 
-As listed at the beginning of this chapter, Idris provides different
-fixed-precision signed and unsigned integer types as well as `Integer`,
-an arbitrary precision signed integer type.
-All of them come with the following primitive functions (given
-here for `Bits8` as an example):
+正如本章开头所列出的，Idris 提供了不同的固定精度有符号和无符号整数类型以及 `Integer`，一种任意精度的有符号整数类型。它们都带有以下原语函数（此处以 `Bits8` 为例）：
 
 * `prim__add_Bits8`: Integer addition.
-* `prim__sub_Bits8`: Integer subtraction.
-* `prim__mul_Bits8`: Integer multiplication.
-* `prim__div_Bits8`: Integer division.
-* `prim__mod_Bits8`: Modulo function.
-* `prim__shl_Bits8`: Bitwise left shift.
-* `prim__shr_Bits8`: Bitwise right shift.
-* `prim__and_Bits8`: Bitwise *and*.
-* `prim__or_Bits8`: Bitwise *or*.
-* `prim__xor_Bits8`: Bitwise *xor*.
+* `prim__sub_Bits8`：整数减法。
+* `prim__mul_Bits8`：整数乘法。
+* `prim__div_Bits8`：整数除法。
+* `prim__mod_Bits8`：模函数。
+* `prim__shl_Bits8`：按位左移。
+* `prim__shr_Bits8`：按位右移。
+* `prim__and_Bits8`：按位 *与*。
+* `prim__or_Bits8`：按位 *或*。
+* `prim__xor_Bits8`：按位 *异或*。
 
-Typically, you use the functions for addition and multiplication
-through the operators from interface `Num`, the function
-for subtraction through interface `Neg`, and the functions
-for division (`div` and `mod`) through interface `Integral`.
-The bitwise operations are available through interfaces
-`Data.Bits.Bits` and `Data.Bits.FiniteBits`.
+通常，您可以通过接口 `Num` 中的运算符使用加法和乘法函数，通过接口 `Neg` 使用减法函数，以及除法函数 (`div`和 `mod`) 通过接口 `Integral`。位运算可通过接口 `Data.Bits.Bits` 和 `Data.Bits.FiniteBits` 获得。
 
-For all integral types, the following laws are assumed to
-hold for numeric operations (`x`, `y`, and `z` are
-arbitrary value of the same primitive integral type):
+对于所有整数类型，假设以下定律适用于数值运算（`x`、`y` 和 `z` 是相同原始整数类型的任意值） ：
 
-* `x + y = y + x`: Addition is commutative.
-* `x + (y + z) = (x + y) + z`: Addition is associative.
-* `x + 0 = x`: Zero is the neutral element of addition.
-* `x - x = x + (-x) = 0`: `-x` is the additive inverse of `x`.
-* `x * y = y * x`: Multiplication is commutative.
-* `x * (y * z) = (x * y) * z`: Multiplication is associative.
-* `x * 1 = x`: One is the neutral element of multiplication.
-* `x * (y + z) = x * y + x * z`: The distributive law holds.
-* ``y * (x `div` y) + (x `mod` y) = x`` (for `y /= 0`).
+* `x + y = y + x`：加法是可交换的。
+* `x + (y + z) = (x + y) + z`：加法是结合的。
+* `x + 0 = x`：零是加法的中性元素。
+* `x - x = x + (-x) = 0`：`-x` 是 `x` 的加法逆。
+* `x * y = y * x`：乘法是可交换的。
+* `x * (y * z) = (x * y) * z`：乘法是结合的。
+* `x * 1 = x`：1 是乘法的中性元素。
+* `x * (y + z) = x * y + x * z`：分配律成立。
+* ``y * (x `div` y) + (x `mod` y) = x``（对于 `y /= 0`）。
 
-Please note, that the officially supported backends use
-*Euclidian modulus* for calculating `mod`:
-For `y /= 0`, ``x `mod` y`` is always a non-negative value
-strictly smaller than `abs y`, so that the law given above
-does hold. If `x` or `y` are negative numbers, this is different
-to what many other languages do but for good reasons as explained
-in the following [article](https://www.microsoft.com/en-us/research/publication/division-and-modulus-for-computer-scientists/).
+请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x `mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 `x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://www.microsoft. com/en-us/research/publication/division-and-modulus-for-computer-scientists/)。
 
-### Unsigned Integers
+### 无符号整数
 
-The unsigned fixed precision integer types (`Bits8`, `Bits16`,
-`Bits32`, and `Bits64`) come with implementations of all
-integral interfaces (`Num`, `Neg`, and `Integral`) and
-the two interfaces for bitwise operations (`Bits` and `FiniteBits`).
-All functions with the exception of `div` and `mod` are
-total. Overflows are handled by calculating the remainder
-modulo `2^bitsize`. For instance, for `Bits8`, all operations
-calculate their results modulo 256:
+无符号固定精度整数类型（`Bits8`、`Bits16`、`Bits32` 和 `Bits64`）带有所有整数接口的实现（`Num`、`Neg` 和 `Integral`）以及用于按位运算的两个接口（`Bits` 和 `FiniteBits`）。除了 `div` 和 `mod` 之外的所有函数都是总计的。通过计算余数模 `2^bitsize` 来处理溢出。例如，对于 `Bits8`，所有操作都以 256 为模计算其结果：
 
 ```repl
 Main> the Bits8 255 + 1
@@ -534,17 +356,9 @@ Main> the Bits8 12 - 13
 255
 ```
 
-### Signed Integers
+### 有符号整数
 
-Like the unsigned integer types, the signed fixed precision
-integer types (`Int8`, `Int16`, `Int32`, and `Int64`) come with
-implementations of all integral interfaces and
-the two interfaces for bitwise operations (`Bits` and `FiniteBits`).
-Overflows are handled by calculating the remainder
-modulo `2^bitsize` and adding the lower bound (a negative number)
-if the result is still out of range. For instance, for `Int8`, all operations
-calculate their results modulo 256, subtracting 128 if the
-result is still out of bounds:
+与无符号整数类型一样，有符号固定精度整数类型（`Int8`、`Int16`、`Int32` 和 `Int64`）具有以下实现所有整数接口和用于按位运算的两个接口（`Bits` 和 `FiniteBits`）。如果结果仍然超出范围，则通过计算余数模 `2^bitsize` 并添加下限（负数）来处理溢出。例如，对于 `Int8`，所有操作都以 256 为模计算结果，如果结果仍然超出范围，则减去 128：
 
 ```repl
 Main> the Int8 2 * 127
@@ -553,22 +367,11 @@ Main> the Int8 3 * 127
 125
 ```
 
-### Bitwise Operations
+### 位运算
 
-Module `Data.Bits` exports interfaces for performing bitwise
-operations on integral types. I'm going to show a couple of
-examples on unsigned 8-bit numbers (`Bits8`) to explain the concept
-to readers new to bitwise arithmetics. Note, that this is much easier
-to grasp for unsigned integer types than for the signed versions.
-Those have to include information about the *sign* of numbers in their
-bit pattern, and it is assumed that signed integers in Idris use
-a [two's complement representation](https://en.wikipedia.org/wiki/Two%27s_complement),
-about which I will not go into the details here.
+模块 `Data.Bits` 导出用于对整数类型执行按位运算的接口。我将展示几个关于无符号 8 位数字 (`Bits8`) 的示例，以向不熟悉按位算术的读者解释这个概念。请注意，对于无符号整数类型，这比有符号版本更容易掌握。那些必须在其位模式中包含有关数字的 *符号* 的信息，并且假设 Idris 中的有符号整数使用 [二进制补码表示](https://en.wikipedia.org/wiki/ 2%27s_complement)，这里不再赘述。
 
-An unsigned 8-bit binary number is represented internally as
-a sequence of eight bits (with values 0 or 1), each of which
-corresponds to a power of 2. For instance,
-the number 23 (= 16 + 4 + 2 + 1) is represented as `0001 0111`:
+无符号 8 位二进制数在内部表示为 8 位序列（值为 0 或 1），每个位对应于 2 的幂。例如，数字 23 (= 16 + 4 + 2 + 1)表示为 `0001 0111`：
 
 ```repl
 23 in binary:    0  0  0  1    0  1  1  1
@@ -577,8 +380,7 @@ Bit number:      7  6  5  4    3  2  1  0
 Decimal value: 128 64 32 16    8  4  2  1
 ```
 
-We can use function `testBit` to check if the bit at the given
-position is set or not:
+我们可以使用函数 `testBit` 来检查给定位置的位是否已设置：
 
 ```repl
 Tutorial.Prim> testBit (the Bits8 23) 0
@@ -589,8 +391,7 @@ Tutorial.Prim> testBit (the Bits8 23) 3
 False
 ```
 
-Likewise, we can use functions `setBit` and `clearBit` to
-set or unset a bit at a certain position:
+同样，我们可以使用函数 `setBit` 和 `clearBit` 在某个位置设置或取消设置位：
 
 ```repl
 Tutorial.Prim> setBit (the Bits8 23) 3
@@ -599,13 +400,7 @@ Tutorial.Prim> clearBit (the Bits8 23) 2
 19
 ```
 
-There are also operators `(.&.)` (bitwise *and*) and `(.|.)`
-(bitwise *or*) as well as function `xor` (bitwise *exclusive or*)
-for performing boolean operations on integral values.
-For instance `x .&. y` has exactly those bits set, which both `x`
-and `y` have set, while `x .|. y` has all bits set that are either
-set in `x` or `y` (or both), and ``x `xor` y`` has those bits
-set that are set in exactly one of the two values:
+还有运算符 `(.&.)`（按位 *与*）和 `(.|.)`（按位 *或*）以及用于对整数值执行布尔运算的函数 `xor`（按位 *异或*）。例如 `x .&. y` 正好设置了那些位，`x` 和 `y` 都设置了，而 `x .|. y` 设置了在 `x` 或 `y`（或两者）中设置的所有位，并且 ``x `xor` y`` 设置了那些位设置为以下两个值之一：
 
 ```repl
 23 in binary:          0  0  0  1    0  1  1  1
@@ -616,7 +411,7 @@ set that are set in exactly one of the two values:
 23 `xor` 11 in binary: 0  0  0  1    1  1  0  0
 ```
 
-And here are the examples at the REPL:
+以下是 REPL 上的示例：
 
 ```repl
 Tutorial.Prim> the Bits8 23 .&. 11
@@ -627,12 +422,7 @@ Tutorial.Prim> the Bits8 23 `xor` 11
 28
 ```
 
-Finally, it is possible to shift all bits to the right or left
-by a certain number of steps by using functions `shiftR` and
-`shiftL`, respectively (overflowing bits will just be dropped).
-A left shift can therefore be viewed as a multiplication by a
-power of two, while a right shift can be seen as a division
-by a power of two:
+最后，可以分别使用函数 `shiftR` 和 `shiftL` 将所有位向右或向左移动一定步数（溢出的位将被丢弃）。因此，左移可以看作是乘以 2 的幂，而右移可以看作是除以 2 的幂：
 
 ```repl
 22 in binary:            0  0  0  1    0  1  1  0
@@ -650,23 +440,13 @@ Tutorial.Prim> the Bits8 22 `shiftR` 1
 11
 ```
 
-Bitwise operations are often used in specialized code or
-certain high-performance applications. As programmers, we
-have to know they exist and how they work.
+按位运算通常用于专用代码或某些高性能应用程序中。作为程序员，我们必须知道它们的存在以及它们是如何工作的。
 
-### Integer Literals
+### 整数字面量
 
-So far, we always required an implementation of `Num` in order to
-be able to use integer literals for a given type. However,
-it is actually only necessary to implement a function `fromInteger`
-converting an `Integer` to the type in question. As we will
-see in the last section, such a function can even restrict
-the values allowed as valid literals.
+到目前为止，我们总是需要 `Num` 的实现，以便能够对给定类型使用整数文字。然而，实际上只需要实现一个函数 `fromInteger` 将 `Integer` 转换为相关类型。正如我们将在最后一节中看到的，这样的函数甚至可以限制允许作为有效字面量的值。
 
-For instance, assume we'd like to define a data type for
-representing the charge of a chemical molecule. Such a value
-can be positive or negative and (theoretically) of almost
-arbitrary magnitude:
+例如，假设我们想定义一个数据类型来表示化学分子的电荷。这样的值可以是正值或负值，并且（理论上）几乎是任意大小：
 
 ```idris
 record Charge where
@@ -674,11 +454,7 @@ record Charge where
   value : Integer
 ```
 
-It makes sense to be able to sum up charges, but not to
-multiply them. They should therefore have an implementation
-of `Monoid` but not of `Num`. Still, we'd like to have
-the convenience of integer literals when using constant
-charges at compile time. Here's how to do this:
+能够对费用求和是有意义的，但不能将它们相乘。因此，它们应该有 `Monoid` 的实现，而不是 `Num` 的实现。尽管如此，我们还是希望在编译时使用常量费用时能够方便地使用整数字面量。以下是如何执行此操作：
 
 ```idris
 fromInteger : Integer -> Charge
@@ -691,13 +467,9 @@ Monoid Charge where
   neutral = 0
 ```
 
-#### Alternative Bases
+#### 可供选择的基础
 
-In addition to the well known decimal literals, it is also
-possible to use integer literals in binary, octal, or
-hexadecimal representation. These have to be prefixed
-with a zero following by a `b`, `o`, or `x` for
-binary, octal, and hexadecimal, respectively:
+除了众所周知的十进制文字外，还可以使用二进制、八进制或十六进制表示的整数文字。对于二进制、八进制和十六进制，它们必须以零为前缀，后跟 `b`、`o` 或 `x`：
 
 ```repl
 Tutorial.Prim> 0b1101
@@ -710,49 +482,30 @@ Tutorial.Prim> 0xffa2
 
 ### 练习第 2 部分
 
-1. Define a wrapper record for integral values and implement `Monoid` so
-   that `(<+>)` corresponds to `(.&.)`.
+1. 定义整数值的包装记录并实现 `Monoid` 以便 `(<+>)` 对应于 `(.&.)`。
 
-   Hint: Have a look at the functions available from interface
-   `Bits` to find a value suitable as the neutral element.
+   提示：查看 `Bits` 接口中可用的函数
+   找到适合作为中性元素的值。
 
-2. Define a wrapper record for integral values and implement `Monoid` so
-   that `(<+>)` corresponds to `(.|.)`.
+2. 定义整数值的包装记录并实现 `Monoid` 以便 `(<+>)` 对应于 `(.|.)`。
 
-3. Use bitwise operations to implement a function, which tests if a given
-   value of type `Bits64` is even or not.
+3. 使用按位运算来实现一个函数，该函数测试 `Bits64` 类型的给定值是否为偶数。
 
-4. Convert a value of type `Bits64` to a string in binary representation.
+4. 将 `Bits64` 类型的值转换为二进制表示的字符串。
 
-5. Convert a value of type `Bits64` to a string in hexadecimal
-   representation.
+5. 将 `Bits64` 类型的值转换为十六进制表示的字符串。
 
-   Hint: Use `shiftR` and `(.&. 15)` to access subsequent packages of
-   four bits.
+   提示：使用 `shiftR` 和 `(.&. 15)` 访问四位的后续包。
 
-## Refined Primitives
+## 精炼原语
 
-We often do not want to allow all values of a type in a certain
-context. For instance, `String` as an arbitrary sequence of
-UTF-8 characters (several of which are not even printable), is
-too general most of the time. Therefore, it is usually advisable
-to rule out invalid values early on, by pairing a value with
-an erased proof of validity.
+我们通常不希望在某个上下文中允许某个类型的所有值。例如，`String` 作为 UTF-8 字符的任意序列（其中有几个甚至无法打印），在大多数情况下都过于笼统。因此，通常建议通过将值与已擦除的有效性证明配对，尽早排除无效值。
 
-We have learned how we can write elegant predicates, with
-which we can proof our functions to be total, and from which we
-can - in the ideal case - derive other, related predicates. However,
-when we define predicates on primitives they are to a certain degree
-doomed to live in isolation, unless we come up with a set of
-primitive axioms (implemented most likely using `believe_me`), with
-which we can manipulate our predicates.
+我们已经学会了如何编写优雅的谓词，用它我们可以证明我们的函数是完全的，并且我们可以从它——在理想情况下——推导出其他相关的谓词。然而，当我们在原语上定义谓词时，它们在某种程度上注定要孤立存在，除非我们提出一组原语公理（最有可能使用 `believe_me` 实现），我们可以用它来操纵我们的谓词。
 
-### Use Case: ASCII Strings
+### 用例：ASCII 字符串
 
-String encodings is a difficult topic, so in many low level routines
-it makes sense to rule out most characters from the beginning. Assume
-therefore, we'd like to make sure the strings we accept in our
-application only consist of ASCII characters:
+字符串编码是一个困难的话题，因此在许多低级例程中，从一开始就排除大多数字符是有意义的。因此，假设我们希望确保我们在应用程序中接受的字符串仅包含 ASCII 字符：
 
 ```idris
 isAsciiChar : Char -> Bool
@@ -762,8 +515,7 @@ isAsciiString : String -> Bool
 isAsciiString = all isAsciiChar . unpack
 ```
 
-We can now *refine* a string value by pairing it with an erased
-proof of validity:
+我们现在可以 *细化* 一个字符串值，方法是将其与已擦除的有效性证明配对：
 
 ```idris
 record Ascii where
@@ -772,48 +524,28 @@ record Ascii where
   0 prf : isAsciiString value === True
 ```
 
-It is now *impossible* to at runtime or compile time create
-a value of type `Ascii` without first validating the wrapped
-string. With this, it is already pretty easy to safely wrap strings at
-compile time in a value of type `Ascii`:
+现在在运行时或编译时创建 `Ascii` 类型的值，而无需首先验证包装的字符串是 *不可能* 的。有了这个，在编译时将字符串安全地包装成 `Ascii` 类型的值已经很容易了：
 
 ```idris
 hello : Ascii
 hello = MkAscii "Hello World!" Refl
 ```
 
-And yet, it would be much more convenient to still use string
-literals for this, without having to sacrifice the comfort of
-safety. To do so, we can't use interface `FromString`, as its
-function `fromString` would force us to convert *any* string,
-even an invalid one. However, we actually don't need an implementation of
-`FromString` to support string literals, just like we didn't
-require an implementation of `Num` to support integer literals.
-What we really need is a function named `fromString`. Now, when
-string literals are desugared, they are converted to invocations
-of `fromString` with the given string value as its argument.
-For instance, literal `"Hello"` gets desugared to `fromString "Hello"`.
-This happens before type checking and filling in of (auto) implicit
-values. It is therefore perfectly fine, to define a custom `fromString`
-function with an erased auto implicit argument as a proof of
-validity:
+然而，为此仍然使用字符串字面量会更方便，而不必牺牲安全的舒适性。为此，我们不能使用接口 `FromString`，因为它的函数 `fromString` 会强制我们转换 *任意* 字符串，即使是无效字符串。但是，我们实际上不需要实现 `FromString` 来支持字符串文字，就像我们不需要实现 `Num` 来支持整数字面量一样。我们真正需要的是一个名为 `fromString` 的函数。现在，当字符字面量字被脱糖时，它们被转换为以给定字符串值作为参数的 `fromString` 的调用。例如，文字 `"Hello"` 被脱糖为 `fromString "Hello"`。这发生在类型检查和填充（自动）隐式值之前。因此，使用已擦除的自动隐式参数定义自定义 `fromString` 函数作为有效性证明是非常好的：
 
 ```idris
 fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii
 fromString s = MkAscii s prf
 ```
 
-With this, we can us (valid) string literals for coming up with
-values of type `Ascii` directly:
+有了这个，我们可以使用（有效的）字符串文字直接得出 `Ascii` 类型的值：
 
 ```idris
 hello2 : Ascii
 hello2 = "Hello World!"
 ```
 
-In order to at runtime create values of type `Ascii` from strings
-of an unknown source, we can use a refinement function returning
-some kind of failure type:
+为了在运行时从未知来源的字符串中创建 `Ascii` 类型的值，我们可以使用返回某种故障类型的细化函数：
 
 ```idris
 test : (b : Bool) -> Dec (b === True)
@@ -826,16 +558,11 @@ ascii x = case test (isAsciiString x) of
   No contra => Nothing
 ```
 
-#### Disadvantages of Boolean Proofs
+#### 布尔证明的缺点
 
-For many use cases, what we described above for ASCII strings can
-take us very far. However, one drawback of this approach is that we
-can't safely perform any computations with the proofs at hand.
+对于许多用例，我们上面描述的 ASCII 字符串可以让我们走得很远。然而，这种方法的一个缺点是我们不能使用手头的证明安全地执行任何计算。
 
-For instance, we know it will be perfectly fine to concatenate
-two ASCII strings, but in order to convince Idris of this, we
-will have to use `believe_me`, because we will not be able to
-proof the following lemma otherwise:
+例如，我们知道连接两个 ASCII 字符串会非常好，但是为了让 Idris 相信这一点，我们必须使用 `believe_me`，否则我们将无法证明以下引理：
 
 ```idris
 0 allAppend :  (f : Char -> Bool)
@@ -852,12 +579,7 @@ namespace Ascii
     MkAscii (s1 ++ s2) (allAppend isAsciiChar s1 s2 p1 p2)
 ```
 
-The same goes for all operations extracting a substring from
-a given string: We will have to implement according rules using
-`believe_me`. Finding a reasonable set of axioms to conveniently
-deal with refined primitives can therefore be challenging at times,
-and whether such axioms are even required very much depends
-on the use case at hand.
+从给定字符串中提取子字符串的所有操作也是如此：我们必须使用 `believe_me` 来实现相应的规则。因此，找到一组合理的公理来方便地处理精炼的原语有时可能具有挑战性，而且是否需要这样的公理在很大程度上取决于手头的用例。
 
 ### Use Case: Sanitized HTML
 

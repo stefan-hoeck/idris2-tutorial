@@ -454,11 +454,7 @@ msgid ""
 "can encode this way. This will allow us to restrict the\n"
 "values we accept as a function's arguments or the values\n"
 "returned by functions.\n"
-msgstr ""
-"在[上一章](Eq.md)中，我们了解了命题相等式，这使我们能够证明两个值相等。相等是"
-"值之间的关系，我们使用索引数据类型通过限制唯一数据构造函数中索引的自由度来编"
-"码这种关系。我们可以用这种方式编码其他关系和契约。这将允许我们限制我们接受作"
-"为函数参数的值或函数返回的值。\n"
+msgstr "在[上一章](Eq.md)中，我们了解了命题相等式，这使我们能够证明两个值相等。相等是值之间的关系，我们使用索引数据类型通过限制唯一数据构造函数中索引的自由度来编码这种关系。我们可以用这种方式编码其他关系和契约。这将允许我们限制我们接受作为函数参数的值或函数返回的值。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:13
