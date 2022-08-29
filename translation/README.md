@@ -1,4 +1,4 @@
-> [Chinese Translation](translation/README.md)
+> 这里是中文版！
 
 # Idris 2 中的函数式编程
 
