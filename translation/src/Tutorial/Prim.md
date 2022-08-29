@@ -644,19 +644,39 @@ escaped = "Hello World!"
 废话不多说，开始吧！首先，您将获得以下实用程序：
 
 ```idris
--- 对于具有多个参数的接口（`a` 和 `p`
--- 在本例中）有时可以确定一个参数
--- 通过了解对方。例如，如果我们知道 `p` 是什么，
--- 我们肯定也知道 `a` 是什么。因此我们
--- 指定在 `Decidable` 上的证明搜索应该只
--- 基于 `p`，在竖线后列出 `p`：`| p`。
--- 这就像指定搜索参数
--- 如本章所示，具有 `[search p]` 的数据类型
-——关于谓词。
--- 指定单个搜索参数，如这里所示可以
-- 极大地帮助类型推断。
-interface Decidable (0 a : Type) (0 p : a -> Type) | p 在哪里
-  决定 : (v : a) -> Dec0 (p v)
+-- Like `Dec` but with erased proofs. Constructors `Yes0`
+-- and `No0` will be converted to constants `0` and `1` by
+-- the compiler!
+data Dec0 : (prop : Type) -> Type where
+  Yes0 : (0 prf : prop) -> Dec0 prop
+  No0  : (0 contra : prop -> Void) -> Dec0 prop
+
+-- For interfaces with more than one parameter (`a` and `p`
+-- in this example) sometimes one parameter can be determined
+-- by knowing the other. For instance, if we know what `p` is,
+-- we will most certainly also know what `a` is. We therefore
+-- specify that proof search on `Decidable` should only be
+-- based on `p` by listing `p` after a vertical bar: `| p`.
+-- This is like specifing the search parameter(s) of
+-- a data type with `[search p]` as was shown in the chapter
+-- about predicates.
+-- Specifying a single search parameter as shown here can
+-- drastically help with type inference.
+interface Decidable (0 a : Type) (0 p : a -> Type) | p where
+  decide : (v : a) -> Dec0 (p v)
+
+-- We often have to pass `p` explicitly in order to help Idris with
+-- type inference. In such cases, it is more convenient to use
+-- `decideOn pred` instead of `decide {p = pred}`.
+decideOn : (0 p : a -> Type) -> Decidable a p => (v : a) -> Dec0 (p v)
+decideOn _ = decide
+
+-- Some primitive predicates can only be reasonably implemented
+-- using boolean functions. This utility helps with decidability
+-- on such proofs.
+test0 : (b : Bool) -> Dec0 (b === True)
+test0 True  = Yes0 Refl
+test0 False = No0 absurd
 ```
 
 我们还希望在编译时运行可判定的计算。这通常比在归纳类型上运行直接证明搜索更有效。因此，我们提出了一个谓词，证明 `Dec0` 值实际上是 `Yes0` 以及两个实用函数：
