@@ -168,7 +168,7 @@ Tutorial.Intro> maxBits8 - 100
 我将 `maxBits8` 称为 *空函数*，它只是 *常量* 的一个花哨的同义词。让我们编写并测试我们的第一个 *real* 函数：
 
 ```idris
-distanceToMax：Bits8 -> Bits8
+distanceToMax : Bits8 -> Bits8
 distanceToMax n = maxBits8 - n
 ```
 

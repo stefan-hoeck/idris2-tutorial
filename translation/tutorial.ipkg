@@ -1,0 +1,43 @@
+package tutorial
+
+authors    = "stefan-hoeck"
+version    = 0.1.0
+sourcedir  = "src"
+depends    = base         >= 0.5.1
+
+modules = Appendices.Neovim
+
+        , Data.HList
+        , Data.Union
+        , Data.Validated
+
+        , Solutions.DataTypes
+        , Solutions.Dependent
+        , Solutions.DPair
+        , Solutions.Eq
+        , Solutions.Folds
+        , Solutions.Functions1
+        , Solutions.Functions2
+        , Solutions.Functor
+        , Solutions.IO
+        , Solutions.Interfaces
+        , Solutions.Predicates
+        , Solutions.Prim
+        , Solutions.Traverse
+
+        , Text.CSV
+
+        , Tutorial.DataTypes
+        , Tutorial.Dependent
+        , Tutorial.DPair
+        , Tutorial.Eq
+        , Tutorial.Folds
+        , Tutorial.Functions1
+        , Tutorial.Functions2
+        , Tutorial.Functor
+        , Tutorial.IO
+        , Tutorial.Interfaces
+        , Tutorial.Intro
+        , Tutorial.Predicates
+        , Tutorial.Prim
+        , Tutorial.Traverse
