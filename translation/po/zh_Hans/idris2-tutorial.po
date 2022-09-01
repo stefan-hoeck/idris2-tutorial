@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-28 19:51+0800\n"
-"PO-Revision-Date: 2022-08-30 01:41+0000\n"
-"Last-Translator: running-grass <467195537@qq.com>\n"
+"PO-Revision-Date: 2022-09-01 12:03+0000\n"
+"Last-Translator: leo liu <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris-lang/idris2-tutorial/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -61,7 +61,8 @@ msgid ""
 "yet finished, but is being actively developed and tried on\n"
 "several of my own students, some of which are completely\n"
 "new to functional programming.\n"
-msgstr "目前，甚至关于核心语言特性的部分还没有完成，但正在积极开发并在我自己的几个学生身上进行尝试，其中一些对函数式编程来说是纯萌新。\n"
+msgstr "目前，虽然关于核心语言特性的部分还没有完成，但正在积极开发中，并在我自己的几"
+"个学生身上进行尝试，其中一些甚至是函数式编程的萌新。\n"
 
 #. type: Title ##
 #: ../README.md:25
@@ -73,7 +74,7 @@ msgstr "目录"
 #: ../README.md:27
 #, no-wrap
 msgid "Part 1: Core Language Features"
-msgstr "第 1 部分：核心语言功能"
+msgstr "第 1 部分：核心语言特性"
 
 #. type: Plain text
 #: ../README.md:33
@@ -262,7 +263,7 @@ msgstr "[Neovim 中的交互式编辑](src/Appendices/Neovim.md)"
 #: ../README.md:117
 #, no-wrap
 msgid "Prerequisites"
-msgstr "先决条件"
+msgstr "前置条件"
 
 #. type: Plain text
 #: ../README.md:123
@@ -1451,15 +1452,15 @@ msgstr "在 REPL 中：\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:390
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Tutorial.DataTypes> greet dr \"Höck\"\n"
 "\"Hello, Dr. Höck!\"\n"
 "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
 "\"Hello, Mrs. Smith!\"\n"
 msgstr ""
-"Tutorial.DataTypes> greet dr \"Hck\"\n"
-"\"Hello, Dr. Hck!\"\n"
+"Tutorial.DataTypes> greet dr \"Höck\"\n"
+"\"Hello, Dr. Höck!\"\n"
 "Tutorial.DataTypes> greet Mrs \"Smith\"\n"
 "\"Hello, Mrs. Smith!\"\n"
 
@@ -6663,14 +6664,13 @@ msgstr "定义一个依赖记录，将碱基类型和 sense 与一系列核碱�
 
 #. type: Bullet: '5. '
 #: ../src/Tutorial/DPair.md:685
-#, fuzzy
 msgid ""
 "Adjust `readRNA` and `readDNA` in such a way that the *sense* of a sequence "
 "is read from the input string.  Sense strands are encoded like so: \"5´-"
 "CGGTAG-3´\". Antisense strands are encoded like so: \"3´-CGGTAG-5´\"."
 msgstr ""
-"调整 `readRNA` 和 `readDNA` 使得从输入字符串中读取序列的 *sense*。 Sense 链编"
-"码如下：“5-CGGTAG-3”。反义链编码如下：“3-CGGTAG-5”。"
+"调整 `readRNA` 和 `readDNA` 使得从输入字符串中读取 *sense* 的序列。 Sense "
+"链编码如下：\"3´-CGGTAG-5´\"。反义链编码如下：\"3´-CGGTAG-5´\"。"
 
 #. type: Bullet: '6. '
 #: ../src/Tutorial/DPair.md:688
@@ -19748,7 +19748,16 @@ msgid ""
 "tutorial, you'll have to solve some exercises, the solutions of\n"
 "which can be found in the `src/Solutions` subfolder. There, I\n"
 "use regular `.idr` files.\n"
-msgstr "欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 编程语言的各个方面。这里的所有 `.md` 文件都是一个识字的 Idris 文件：它们由 Markdown 组成（因此以 `.md` 结尾），由 GitHub 与 Idris 代码块一起打印出来，可以由 Idris 编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 Idris 源文件使用 `.idr` 结尾，并且除非您最终编写的代码比我现在所做的更啰嗦，否则您将使用该文件类型。在本教程的后面，您将需要解决一些练习，这些练习的答案可以在 `src/Solutions` 子文件夹中找到。在那里，我使用常规的 `.idr` 文件。\n"
+msgstr ""
+"欢迎来到我的 Idris 2 教程。我将在这里尽可能多地处理 Idris 2 "
+"编程语言的各个方面。这里的每个 `.md` 文件都是一个 Idris 的文学编程文件："
+"它们由 Markdown 组成（因此以 `.md` 结尾），Idris 代码块会被 GitHub "
+"美观的打印出来，同时也可以由 Idris "
+"编译器进行类型检查和构建（稍后会详细介绍）。但是请注意，常规的 Idris "
+"源文件使用 `.idr` 结尾，并且除非您最终编写的代码比我现在所做的更复杂，否则您"
+"将继续使用本文件类型。在本教程的后面，您将需要解答一些习题，"
+"这些习题的答案可以在 `src/Solutions` 文件夹中找到。在那里，我会使用常规的 `."
+"idr` 文件。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:19
@@ -19787,7 +19796,8 @@ msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional*\n"
 "programming language. I'll quickly explain each of these adjectives\n"
 "in this section.\n"
-msgstr "Idris 是一种*纯的*、*依赖类型*、具有*完全**函数* 的编程语言。我将在本节中快速解释这些形容词。\n"
+msgstr "Idris 是一种具有*依赖类型*的、*完全* 的 *纯* *函数式* "
+"编程语言。我将在本节中快速解释这些形容词。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:34
@@ -19834,7 +19844,11 @@ msgid ""
 "the same input, they will *always* generate the same output.\n"
 "This property is known as\n"
 "[referential transparency](https://en.wikipedia.org/wiki/Referential_transparency).\n"
-msgstr "纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这样的副作用。他们只能通过调用其他纯函数，给定参数来获取计算结果，*而没有其他获取数据的途径*。因此，给定相同的输入，它们将*总是*生成相同的输出。此属性称为 [引用透明](https://en.wikipedia.org/wiki/Referential_transparency)。\n"
+msgstr ""
+"纯函数式编程语言有一个额外的重要保证：函数不会产生像写入文件或改变全局状态这"
+"样的副作用。他们只能通过调用其他纯函数，给定参数来获取计算结果，*而没有其它的"
+"途径*。因此，给定相同的输入，它们将*总是*生成相同的输出。此属性称为 "
+"[引用透明](https://en.wikipedia.org/wiki/Referential_transparency)。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:59
@@ -19899,7 +19913,10 @@ msgid ""
 "is a *type error* to invoke this function with an argument of\n"
 "type `Integer`, and the Idris compiler will refuse to\n"
 "generate an executable from such an ill-typed program.\n"
-msgstr "例如，如果一个函数需要 `String` 类型的参数（Unicode 字符序列，例如 `\"Hello123\"`），使用 `Integer` 类型的参数调用此函数则它是*类型错误*的，Idris 编译器将拒绝从此类错误类型的程序生成可执行文件。\n"
+msgstr ""
+"例如，如果一个函数需要 `String` 类型的参数（Unicode 字符序列，例如 `"
+"\"Hello123\"`），使用 `Integer` 类型的参数调用此函数是*类型错误*的，Idris "
+"编译器将拒绝从此类错误类型的程序生成可执行文件。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:97
@@ -19912,13 +19929,17 @@ msgid ""
 "their results. Even more, types can *depend* on other *values*.\n"
 "What this means, and why this is incredibly useful, we'll explore\n"
 "in due time.\n"
-msgstr "更重要的是，Idris 具有*依赖类型*，这是它在编程语言领域中最具特色的属性之一。在 Idris 中，类型是* 一等*的：类型可以作为参数传递给函数，函数可以返回类型作为结果。更重要的是，类型可以*依赖于*其他*值*。这意味着什么，以及为什么这非常有用，我们将在适当的时候进行探索。\n"
+msgstr ""
+"更重要的是，Idris 具有*依赖类型*，这是它在编程语言领域中最具特色的属性之一。"
+"在 Idris 中，类型是*一等*的：类型可以作为参数传递给函数，函数可以返回类型作为"
+"结果。更重要的是，类型可以*依赖于*其他*值*。这意味着什么，以及为什么这非常有"
+"用，我们将在适当的时候进行探索。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:98
 #, no-wrap
 msgid "Total Functions"
-msgstr "完全函数"
+msgstr "全函数"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:104
@@ -19928,7 +19949,8 @@ msgid ""
 "a value of the expected return type for every possible input in\n"
 "a finite amount of time. A total function will never fail with an\n"
 "exception or loop infinitely.\n"
-msgstr "*完全*函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返回类型的值。一个完全函数永远不会因异常或无限循环而失败。\n"
+msgstr "*全*函数是一个纯函数，它保证在有限的时间内为每个可能的输入返回一个预期返回类"
+"型的值。一个全函数永远不会因异常或无限循环而失败。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:113
@@ -23888,7 +23910,7 @@ msgstr "我们现在可以为代表员工的 CSV 行定义一个类型别名：\
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:568
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "0 Employee : Type\n"
 "Employee = Row EmployeeSchema\n"
@@ -23900,7 +23922,7 @@ msgstr ""
 "Employee = Row EmployeeSchema\n"
 "\n"
 "hock : Employee\n"
-"hock = [ \"Stefan\", \"Hck\", \"hock@foo.com\", 46, 5443.2, False ]\n"
+"hock = [ \"Stefan\", \"Höck\", \"hock@foo.com\", 46, 5443.2, False ]\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Predicates.md:584
@@ -30977,7 +30999,7 @@ msgstr ""
 #: ../src/Appendices/Neovim.md:1
 #, no-wrap
 msgid "Interactive Editing in Neovim"
-msgstr ""
+msgstr "Neovim 中的交互式编辑"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:10
@@ -30991,6 +31013,11 @@ msgid ""
 "Since I am a Neovim user, I explain the Idris related parts of\n"
 "my own setup in detail here.\n"
 msgstr ""
+"Idris 提供了广泛的交互功能\n"
+"来分析我们程序中的值和表达式的类型\n"
+"并填写骨架实现，有时甚至根据提供的类型为我们提供完整的的程序。这些交互\n"
+"编辑功能可通过不同编辑器中的插件获得。\n"
+"由于我是 Neovim 用户，我会详细解释一下我自己的设置中 Idris 的相关部分。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:20
@@ -31006,6 +31033,13 @@ msgid ""
 "is setup through the [idris2-nvim](https://github.com/ShinKage/idris2-nvim)\n"
 "plugin.\n"
 msgstr ""
+"Neovim 中运行所有这些功能所需的主要组件是由 [idris2-lsp](https://github.com/"
+"idris-community/idris2-lsp) 项目提供的可执行文件。\n"
+"此可执行文件内部使用 Idris 编译器 API（应用程序编程接口），可以检查语法和\n"
+"我们正在处理的源代码的类型。它与\n"
+"Neovim 通过语言服务器协议 (LSP)。这种沟通由 [idris2-nvim](https://github.com/"
+"ShinKage/idris2-nvim) \n"
+"插件来完成 。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:31
@@ -31022,6 +31056,15 @@ msgid ""
 "gets highlighted differently than the name of a top level function,\n"
 "although syntactically these are both just identifiers.\n"
 msgstr ""
+"正如我们将在本教程中看到的，`idris2-lsp` 可执行文件不仅\n"
+"支持语法和类型检查，但还附带额外的\n"
+"交互式编辑功能。最后，Idris 编译器 API 支持\n"
+"Idris 源代码的语义高亮：标识符和关键字\n"
+"突出显示不仅基于语言的语法（这将\n"
+"成为 *语法高亮*，所有现代编程环境和编辑器都预期会有的功能），也基于它们的\n"
+"*语义*。例如，函数实现中的局部变量\n"
+"以不同于顶级函数名称的方式突出显示，\n"
+"尽管从语法上讲，它们都只是标识符。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:32
@@ -31033,12 +31076,17 @@ msgid ""
 "\n"
 "%default total\n"
 msgstr ""
+"module Appendices.Neovim\n"
+"\n"
+"import Data.Vect\n"
+"\n"
+"%default total\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:40
 #, no-wrap
 msgid "Setup"
-msgstr ""
+msgstr "设置"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:44
@@ -31047,27 +31095,29 @@ msgid ""
 "In order to make full use of interactive Idris editing in\n"
 "Neovim, at least the following tools need to be installed:\n"
 msgstr ""
+"为了充分利用交互式 Idris 编辑\n"
+"Neovim，至少需要安装以下工具：\n"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:52
 msgid "A recent version of Neovim (version 0.5 or later)."
-msgstr ""
+msgstr "Neovim 的最新版本（0.5 版或更高版本）。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:52
 msgid "A recent version of the Idris compiler (at least version 0.5.1)."
-msgstr ""
+msgstr "Idris 编译器的最新版本（至少版本 0.5.1）。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:52
 msgid "The Idris compiler API."
-msgstr ""
+msgstr "Idris 编译器 API。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:52
 msgid ""
 "The [idris2-lsp](https://github.com/idris-community/idris2-lsp) package."
-msgstr ""
+msgstr "[idris2-lsp](https://github.com/idris-community/idris2-lsp) 包。"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:52
@@ -31077,6 +31127,9 @@ msgid ""
 "  * [idris2-nvim](https://github.com/ShinKage/idris2-nvim)\n"
 "  * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)\n"
 msgstr ""
+"* 以下 Neovim 插件：\n"
+"  * [idris2-nvim](https://github.com/ShinKage/idris2-nvim)\n"
+"  * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:57
@@ -31087,6 +31140,9 @@ msgid ""
 "API. Make sure to follow these instructions so that your compiler\n"
 "and `idris2-lsp` executable are in sync.\n"
 msgstr ""
+"`idris2-lsp` 项目提供了有关如何使用的详细说明\n"
+"安装 Idris 2 及其标准库和编译器\n"
+"API。确保遵循这些说明，以便您的编译器和 `idris2-lsp` 可执行文件是同步的。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:67
@@ -31102,12 +31158,21 @@ msgid ""
 "file, restart Neovim and run `:PlugUpdate` to install the\n"
 "necessary plugins.\n"
 msgstr ""
+"如果你是 Neovim 的新手，你可能想要使用 `resource` 文件夹中提供的 `init.vim` "
+"文件。在这种情况下，\n"
+"已经包含了必要的 Neovim 插件，但您需要安装\n"
+"[vim-plug](https://github.com/junegunn/vim-plug)，一个插件管理器。\n"
+"之后，将 `resources/init.vim` 的全部或部分复制到你自己的 `init.vim`\n"
+"文件。 （在 Neovim 中使用 `:help init.vim` 来查找\n"
+"在哪里可以找到这个文件。）。设置好 `init.vim` 文件后，重启 Neovim 并运行 "
+"`:PlugUpdate` 安装\n"
+"必要的插件。\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:68
 #, no-wrap
 msgid "A Typical Workflow"
-msgstr ""
+msgstr "常见的工作流程"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:77
@@ -31121,6 +31186,13 @@ msgid ""
 "parts of [Algebraic Data Types](../Tutorial/DataTypes.md), otherwise\n"
 "it will be hard to understand what's going on here.\n"
 msgstr ""
+"为了检查可供我们使用的交互式编辑功能\n"
+"，我们将重新实现一些来自 *Prelude* "
+"的小型实用程序。跟随我到这一步，你应该已经完成了[介绍](../Tutorial/Intro."
+"md)，\n"
+"[函数第 1 部分](../Tutorial/Functions1.md)，并且至少\n"
+"[代数数据类型](../Tutorial/DataTypes.md) "
+"的一部分，否则很难理解这里发生了什么。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:83
@@ -31132,18 +31204,21 @@ msgid ""
 "you should try if the things described here do not work, is to\n"
 "quickly save the current file (`:w`).\n"
 msgstr ""
+"在开始之前，请注意这里显示的命令和操作在编辑源文件后教程可能无法正常工作\n"
+"引用没有将您的更改写入磁盘。因此，第一件事是\n"
+"如果这里描述的东西不起作用，你应该尝试，快速保存当前文件（`:w`）。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:85
 #, no-wrap
 msgid "Let's start with negation of a boolean value:\n"
-msgstr ""
+msgstr "让我们从布尔值的否定开始：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:86
 #, no-wrap
 msgid "negate1 : Bool -> Bool\n"
-msgstr ""
+msgstr "negate1 : Bool -> Bool\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:102
@@ -31162,6 +31237,12 @@ msgid ""
 "so we probably should ask it for guidance instead of trying\n"
 "to do everything on our own.\n"
 msgstr ""
+"通常，在编写 Idris 代码时，我们遵循“类型优先”准则。虽然您可能已经知道如何实现"
+"某一功能，但在开始编写实现之前，仍然需要提供准确的类型。这意味着，在 Idris 中"
+"编程时，我们需要在脑海中跟踪算法的实现以及同时涉及的类型，两者都有可能会变得"
+"异常复杂。我们还可以吗？请记住，请记住，Idris 至少和我们一样了解当前函数实现"
+"上下文中可用的变量及其类型，因此我们可能应该向Idris寻求指导，而不是尝试自己做"
+"所有事情。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:112
@@ -31177,6 +31258,12 @@ msgid ""
 "consists of a comma quickly followed by the lowercase letter \"a\".\n"
 "See also `:help leader` and `:help localleader` in Neovim\n"
 msgstr ""
+"所以，为了继续，我们向 Idris 请求一个骨架函数体：在普通编辑器模式下，"
+"将光标移动到 `negate1` 声明并快速输入 `<LocalLeader>a`。 `<LocalLeader>` "
+"是可以在 `init.vim` 文件中指定的特殊键。如果你使用 `resources` 文件夹中的 "
+"`init.vim`，它被设置为\n"
+"逗号字符 (`,`)，在这种情况下，上面的命令由一个逗号后跟小写字母“a”组成。\n"
+"另见 Neovim 中的 `:help leader` 和 `:help localleader`\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:115
@@ -31184,7 +31271,7 @@ msgstr ""
 msgid ""
 "Idris will generate a skeleton implementation similar to the\n"
 "following:\n"
-msgstr ""
+msgstr "Idris 将生成一个类似于下面的代码：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:116
@@ -31193,10 +31280,12 @@ msgid ""
 "negate2 : Bool -> Bool\n"
 "negate2 x = ?negate2_rhs\n"
 msgstr ""
+"negate2 : Bool -> Bool\n"
+"negate2 x = ?negate2_rhs\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:139
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Note, that on the left hand side a new variable with name\n"
 "`x` was introduced, while on the right hand side Idris\n"
@@ -31217,10 +31306,28 @@ msgid ""
 "this window again. Go ahead and checkout the type and\n"
 "context of `?negate2_rhs`.\n"
 msgstr ""
+"请注意，在左侧有一个名称为新的变量\n"
+"`x` 被引入，而在右手边 Idris\n"
+"添加了一个*元变量*（也称为*孔*）。这是个\n"
+"以问号为前缀的标识符。它向伊德里斯发出信号，\n"
+"我们将在稍后实现这部分功能。\n"
+"洞的好处在于，我们可以*悬停*\n"
+"并检查它们的类型和值的类型\n"
+"周围的语境。您可以通过放置光标来做到这一点\n"
+"在孔的标识符上输入 `K`（大写字母）\n"
+"正常模式。这将打开一个弹出窗口，显示类型\n"
+"光标下的变量加上变量的类型和数量\n"
+"在周围的环境中。你也可以拥有这些信息\n"
+"在单独的窗口中显示：输入 `<LocalLeader>so` 以\n"
+"打开此窗口并重复悬停。该信息将\n"
+"出现在新窗口中，作为额外的好处，它将\n"
+"在语义上突出显示。输入`<LocalLeader>sc`关闭\n"
+"又是这个窗口。继续检查类型和\n"
+"`?negate2_rhs` 的上下文。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:148
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Most functions in Idris are implemented by pattern matching\n"
 "on one or more of the arguments. Idris,\n"
@@ -31231,28 +31338,42 @@ msgid ""
 "`<LocalLeader>c` in normal mode. The result will look as\n"
 "follows:\n"
 msgstr ""
+"Idris 中的大部分功能都是通过模式匹配实现的\n"
+"关于一个或多个论点。伊德里斯，\n"
+"了解所有非原始数据类型的数据构造函数，\n"
+"可以为我们编写这样的模式匹配（这个过程也称为\n"
+"*案例拆分*）。要尝试一下，请将光标移动到 `x`\n"
+"在`negate2`的骨架实现中，输入\n"
+"`<LocalLeader>c` 在正常模式下。结果将如下所示\n"
+"如下：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:149
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "negate3 : Bool -> Bool\n"
 "negate3 False = ?negate3_rhs_0\n"
 "negate3 True = ?negate3_rhs_1\n"
 msgstr ""
+"negate3 : 布尔 -> 布尔\n"
+"negate3 False = ?negate3_rhs_0\n"
+"negate3 True = ?negate3_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:158
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "As you can see, Idris inserted a hole for each of the cases on the\n"
 "right hand side. We can again inspect their types or\n"
 "replace them with a proper implementation directly.\n"
 msgstr ""
+"如您所见，伊德里斯为每个表壳插入了一个孔\n"
+"右手边。我们可以再次检查它们的类型或\n"
+"直接用适当的实现替换它们。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:164
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "This concludes the introduction of the (in my opinion) core\n"
 "features of interactive editing: Hovering on metavariables,\n"
@@ -31260,16 +31381,21 @@ msgid ""
 "(which also works in case blocks and for nested pattern\n"
 "matches). You should start using these all the time *now*!\n"
 msgstr ""
+"（在我看来）核心的介绍到此结束\n"
+"交互式编辑的特点：悬停在元变量上，\n"
+"添加骨架函数实现和案例拆分\n"
+"（这也适用于案例块和嵌套模式\n"
+"火柴）。你应该开始使用这些 *now*！\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:165
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "Expression Search"
-msgstr ""
+msgstr "表达式搜索"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:173
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Sometimes, Idris knows enough about the types involved to\n"
 "come up with a function implementation on its own. For instance,\n"
@@ -31278,19 +31404,28 @@ msgid ""
 "and case splitting on the `Either` argument, we arrive at\n"
 "something similar to the following:\n"
 msgstr ""
+"有时，伊德里斯对所涉及的类型有足够的了解\n"
+"自己想出一个功能实现。例如，\n"
+"让我们从 *Prelude* 中实现函数 `either`。\n"
+"在给出它的类型之后，创建一个骨架实现，\n"
+"和 `Either` 论点的大小写分割，我们得出\n"
+"类似于以下内容：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:174
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "either2 : (a -> c) -> (b -> c) -> Either a b -> c\n"
 "either2 f g (Left x) = ?either2_rhs_0\n"
 "either2 f g (Right x) = ?either2_rhs_1\n"
 msgstr ""
+"任一个 2 : (a -> c) -> (b -> c) -> 任一个 b -> c\n"
+"要么2 f g（左x）= ?either2_rhs_0\n"
+"要么2 f g（右x）= ?either2_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:186
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Idris can come up with expressions for the two metavariables\n"
 "on its own, because the types are specific enough. Move\n"
@@ -31299,28 +31434,40 @@ msgid ""
 "a selection of possible expressions (only one in this case),\n"
 "of which you can choose a fitting one (or abort with `q`).\n"
 msgstr ""
+"Idris 可以提出两个元变量的表达式\n"
+"就其本身而言，因为类型足够具体。移动\n"
+"将光标移到其中一个元变量上并输入\n"
+"`<LocalLeader>o` 在正常模式下。你会得到\n"
+"一组可能的表达式（在这种情况下只有一个），\n"
+"您可以从中选择一个合适的（或使用 `q` 中止）。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:190
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Here is another example: A reimplementation of function `maybe`.\n"
 "If you run an expression search on `?maybe2_rhs1`, you will\n"
 "get a larger list of choices.\n"
 msgstr ""
+"这是另一个例子：函数 `maybe` 的重新实现。\n"
+"如果您在 `?maybe2_rhs1` 上运行表达式搜索，您将\n"
+"获得更大的选择列表。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:191
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "maybe2 : b -> (a -> b) -> Maybe a -> b\n"
 "maybe2 x f Nothing = x\n"
 "maybe2 x f (Just y) = ?maybe2_rhs_1\n"
 msgstr ""
+"也许2：b->（a->b）->也许a->b\n"
+"也许2 x f 什么都没有 = x\n"
+"Maybe2 x f (Just y) = ?maybe2_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:208
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Idris is also sometimes capable of coming up with complete function\n"
 "implementations based on a function's type. For this to work well\n"
@@ -31334,16 +31481,27 @@ msgid ""
 "This will automatically generate the whole function body including\n"
 "case splits and implementations.\n"
 msgstr ""
+"伊德里斯有时也能够提出完整的功能\n"
+"基于函数类型的实现。为了让它运作良好\n"
+"在实践中，可能实现的数量满足\n"
+"类型检查器必须非常小。例如，这里是\n"
+"函数 `zipWith` 用于向量。你可能没听说过\n"
+"关于向量：它们将在关于向量的章节中介绍\n"
+"[依赖类型](../Tutorial/Dependent.md)。你仍然可以给\n"
+"这是一个去检查它的效果。只需将光标移到\n"
+"声明 `zipWithV` 的行，输入 `<LocalLeader>gd` 并选择第一个选项。\n"
+"这将自动生成整个函数体，包括\n"
+"案例拆分和实现。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:209
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "zipWithV : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c\n"
-msgstr ""
+msgstr "zipWithV : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:218
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Expression search only works well if the types are specific\n"
 "enough. If you feel like that might be the case, go ahead\n"
@@ -31351,24 +31509,31 @@ msgid ""
 "a metavariable, or by trying `<LocalLeader>gd` on a\n"
 "function declaration.\n"
 msgstr ""
+"表达式搜索仅在类型特定时才有效\n"
+"足够的。如果您觉得可能是这种情况，请继续\n"
+"试一试，方法是在 `<LocalLeader>o` 上运行\n"
+"元变量，或通过尝试 `<LocalLeader>gd`\n"
+"函数声明。\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:219
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "More Code Actions"
-msgstr ""
+msgstr "更多代码操作"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:223
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "There are other shortcuts available for generating part of your code,\n"
 "two of which I'll explain here.\n"
 msgstr ""
+"还有其他快捷方式可用于生成部分代码，\n"
+"其中两个我将在这里解释。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:231
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "First, it is possible to add a new case block by entering\n"
 "`<LocalLeader>mc` in normal mode when on a metavariable.\n"
@@ -31378,19 +31543,29 @@ msgid ""
 "generate a skeleton implementation followed by a case split\n"
 "and an expression search on the first metavariable:\n"
 msgstr ""
+"首先，可以通过输入添加一个新的案例块\n"
+"`<LocalLeader>mc` 在元变量上时处于正常模式。\n"
+"例如，这里是 `filterList` 实现的一部分，\n"
+"它出现在关于\n"
+"代数数据类型。我让伊德里斯达到了这个目的\n"
+"生成一个骨架实现，然后是一个案例拆分\n"
+"以及对第一个元变量的表达式搜索：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:232
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "filterList : (a -> Bool) -> List a -> List a\n"
 "filterList f [] = []\n"
 "filterList f (x :: xs) = ?filterList_rhs_1\n"
 msgstr ""
+"filterList : (a -> Bool) -> 列出一个 -> 列出一个\n"
+"过滤列表 f [] = []\n"
+"过滤器列表 f (x :: xs) = ?filterList_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:247
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "We will next have to pattern match on the result of applying\n"
 "`x` to `f`. Idris can introduce a new case block for us,\n"
@@ -31402,10 +31577,19 @@ msgid ""
 "This will lead us to an implementation similar to the following\n"
 "(I had to fix the indentation, though):\n"
 msgstr ""
+"接下来我们必须对应用的结果进行模式匹配\n"
+"`x` 到 `f`。 Idris 可以为我们介绍一个新的案例块，\n"
+"如果我们将光标移动到元变量 `?filterList_rhs_1`\n"
+"并在正常模式下输入 `<LocalLeader>mc`。那么我们可以\n"
+"继续我们的实施，首先给出\n"
+"在 case 块中使用的表达式 (`f x`) 后跟一个\n"
+"对 case 块中的新变量进行 case 拆分。\n"
+"这将导致我们实现类似于以下的实现\n"
+"（不过，我必须修复缩进）：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:248
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "filterList2 : (a -> Bool) -> List a -> List a\n"
 "filterList2 f [] = []\n"
@@ -31413,10 +31597,15 @@ msgid ""
 "  False => ?filterList2_rhs_2\n"
 "  True => ?filterList2_rhs_3\n"
 msgstr ""
+"filterList2 : (a -> Bool) -> 列出一个 -> 列出一个\n"
+"过滤器列表2 f [] = []\n"
+"filterList2 f (x :: xs) = case f x of\n"
+"  假 => ?filterList2_rhs_2\n"
+"  真 => ?filterList2_rhs_3\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:266
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Sometimes, we want to extract a utility function from\n"
 "an implementation we are working on. For instance, this is often\n"
@@ -31429,19 +31618,32 @@ msgid ""
 "in a regular Idris source file instead of the literate\n"
 "file I use for this tutorial):\n"
 msgstr ""
+"有时，我们想从\n"
+"我们正在努力的实现。例如，这通常是\n"
+"当我们编写代码证明时有用甚至是必要的\n"
+"（参见章节 [命题平等](../Tutorial/Eq.md)\n"
+"和 [谓词]（例如../Tutorial/Predicates.md））。\n"
+"为此，我们可以将光标移动到元变量上，\n"
+"并输入 `<LocalLeader>ml`。试试这个\n"
+"`?whatNow` 在下面的例子中（这会更好\n"
+"在常规的 Idris 源文件中，而不是 literate\n"
+"我用于本教程的文件）：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:267
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "traverseEither : (a -> Either e b) -> List a -> Either e (List b)\n"
 "traverseEither f [] = Right []\n"
 "traverseEither f (x :: xs) = ?whatNow x xs f (f x) (traverseEither f xs)\n"
 msgstr ""
+"traverseEither : (a -> Either e b) -> List a -> Either e (List b)\n"
+"traverseEither f [] = Right []\n"
+"traverseEither f (x :: xs) = ?whatNow x xs f (f x) (traverseEither f xs)\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:279
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Idris will create a new function declaration with the\n"
 "type and name of `?whatNow`, which takes as arguments\n"
@@ -31450,10 +31652,16 @@ msgid ""
 "you will have to manually remove unneeded arguments\n"
 "afterwards. This led me to the following version:\n"
 msgstr ""
+"Idris 将创建一个新的函数声明\n"
+"`?whatNow` 的类型和名称，作为参数\n"
+"当前范围内的所有变量。它也取代了孔\n"
+"`traverseEither` 调用这个新函数。通常，\n"
+"您将不得不手动删除不需要的参数\n"
+"然后。这导致我得到以下版本：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:280
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "whatNow2 : Either e b -> Either e (List b) -> Either e (List b)\n"
 "\n"
@@ -31461,25 +31669,35 @@ msgid ""
 "traverseEither2 f [] = Right []\n"
 "traverseEither2 f (x :: xs) = whatNow2 (f x) (traverseEither f xs)\n"
 msgstr ""
+"whatNow2 : 要么 e b -> 要么 e (列表 b) -> 要么 e (列表 b)\n"
+"\n"
+"traverseEither2 : (a -> Either e b) -> List a -> Either e (List b)\n"
+"traverseEither2 f [] = 右 []\n"
+"traverseEither2 f (x :: xs) = whatNow2 (f x) (traverseEither f xs)\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:288
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "Getting Information"
-msgstr ""
+msgstr "获取资讯"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:294
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "The `idris2-lsp` executable and through it, the `idris2-nvim` plugin,\n"
 "not only supports the code actions described above. Here is a\n"
 "non-comprehensive list of other capabilities. I suggest you try\n"
 "out each of them from within this source file.\n"
 msgstr ""
+"`idris2-lsp` 可执行文件并通过它， `idris2-nvim` 插件，\n"
+"不仅支持上述代码操作。这里有一个\n"
+"其他功能的非全面列表。我建议你试试\n"
+"从这个源文件中取出它们中的每一个。\n"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `K` when on an identifier or operator in normal mode shows its type "
 "and namespace (if any). In case of a metavariable, variables in the current "
@@ -31489,33 +31707,49 @@ msgid ""
 "window where this information is displayed and semantically highlighted "
 "instead."
 msgstr ""
+"在正常模式下的标识符或运算符上键入 `K` 会显示其类型和命名空间（如果有）。在元"
+"变量的情况下，当前上下文中的变量也会连同它们的类型和数量一起显示（数量将在 ["
+"Functions Part 2](../Tutorial/Functions2.md) 中解释）。如果您不喜欢弹出窗口，"
+"请输入 `<LocalLeader>so` "
+"以打开一个新窗口，该窗口将显示此信息并在语义上突出显示。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `gd` on a function, operator, data constructor or type constructor in "
 "normal mode jumps to the item's definition.  For external modules, this "
 "works only if the module in question has been installed together with its "
 "source code (by using the `idris2 --install-with-src` command)."
 msgstr ""
+"在正常模式下在函数、运算符、数据构造函数或类型构造函数上键入 `gd` "
+"会跳转到项目的定义。对于外部模块，仅当相关模块与其源代码一起安装时才有效（"
+"通过使用 `idris2 --install-with-src` 命令）。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `<LocalLeader>mm` opens a popup window listing all metavariables in "
 "the current module. You can place the cursor on an entry and jump to its "
 "location by pressing `<Enter>`."
 msgstr ""
+"键入 `<LocalLeader>mm` "
+"打开一个弹出窗口，列出当前模块中的所有元变量。您可以将光标放在一个条目上，"
+"然后按 `<Enter>` 跳转到它的位置。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `<LocalLeader>mn` (or `<LocalLeader>mp`) jumps to the next (or "
 "previous) metavariable in the current module."
-msgstr ""
+msgstr "键入 `<LocalLeader>mn`（或 "
+"`<LocalLeader>mp`）跳转到当前模块中的下一个（或上一个）元变量。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `<LocalLeader>br` opens a popup where you can enter a namespace. "
 "Idris will then show all functions (plus their types)  exported from that "
@@ -31523,18 +31757,27 @@ msgid ""
 "pressing enter on one of the entries. Note: The module in question must be "
 "imported in the current source file."
 msgstr ""
+"键入 `<LocalLeader>br` 会打开一个弹出窗口，您可以在其中输入名称空间。然后 "
+"Idris 将在弹出窗口中显示从该命名空间导出的所有函数（以及它们的类型），"
+"您可以通过在其中一个条目上按 enter "
+"来跳转到函数的定义。注意：有问题的模块必须在当前源文件中导入。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `<LocalLeader>x` opens a popup where you can enter a REPL command or "
 "Idris expression, and the plugin will reply with a response from the REPL. "
 "Whenever REPL examples are shown in the main part of this guide, you can try "
 "them from within Neovim with this shortcut if you like."
 msgstr ""
+"键入 `<LocalLeader>x` 会打开一个弹出窗口，您可以在其中输入 REPL 命令或 Idris "
+"表达式，插件将回复来自 REPL 的响应。每当本指南的主要部分显示 REPL "
+"示例时，如果您愿意，可以使用此快捷方式在 Neovim 中尝试它们。"
 
 #. type: Bullet: '* '
 #: ../src/Appendices/Neovim.md:329
+#, fuzzy
 msgid ""
 "Typing `<LocalLeader><LocalLeader>e` will display the error message from the "
 "current line in a popup window. This can be highly useful, if error messages "
@@ -31543,24 +31786,31 @@ msgid ""
 "buffer in a new window. You can then select an error message and jump to its "
 "origin by pressing `<Enter>`."
 msgstr ""
+"键入 `<LocalLeader><LocalLeader>e` 将在弹出窗口中显示当前行的错误消息。如果错"
+"误消息太长而无法放在一行中，这将非常有用。同样， "
+"`<LocalLeader><LocalLeader>el` "
+"将在新窗口中列出当前缓冲区中的所有错误消息。然后，您可以通过按 `<Enter>` "
+"选择错误消息并跳转到其原点。"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:332
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Other use cases and examples are described on the GitHub page\n"
 "of the `idris2-nvim` plugin and can be included as described there.\n"
 msgstr ""
+"其他用例和示例在 GitHub 页面上进行了描述\n"
+"`idris2-nvim` 插件的版本，可以按照那里的描述包含在内。\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:333
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "The `%name` Pragma"
-msgstr ""
+msgstr "`%name` 编译指示"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:345
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "When you ask Idris for a skeleton implementation with `<LocalLeader>a`\n"
 "or a case split with `<LocalLeader>c`,\n"
@@ -31573,43 +31823,62 @@ msgid ""
 "specifying a list of names to use for such occasions for any\n"
 "data type.\n"
 msgstr ""
+"当您向 Idris 询问带有 `<LocalLeader>a` 的框架实现时\n"
+"或用 `<LocalLeader>c` 拆分的情况，\n"
+"它必须决定为它引入的新变量使用什么名称。\n"
+"如果这些变量已经有预定义的名称（来自函数的\n"
+"签名、记录字段或命名数据构造函数参数），\n"
+"这些名称将被使用，但\n"
+"否则 Idris 将默认使用名称 `x`、`y` 和 `z`，然后\n"
+"通过其他字母。您可以通过以下方式更改此默认行为\n"
+"指定用于此类场合的名称列表\n"
+"数据类型。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:347
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "For instance:\n"
-msgstr ""
+msgstr "例如：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:348
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "data Element = H | He | C | N | O | F | Ne\n"
 "\n"
 "%name Element e,f\n"
 msgstr ""
+"数据元素 = H |他 | C | N | ○ | F |氖\n"
+"\n"
+"%name 元素 e,f\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:358
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Idris will then use these names (followed by these names postfixed\n"
 "with increasing integers), when it has to come up with variable names of this\n"
 "type on its own. For instance, here is a test function and the\n"
 "result of adding a skeleton definition to it:\n"
 msgstr ""
+"然后 Idris 将使用这些名称（后跟这些名称后缀\n"
+"随着整数的增加），当它必须想出这个的变量名时\n"
+"自己打字。例如，这是一个测试函数和\n"
+"向其添加骨架定义的结果：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:359
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "test : Element -> Element -> Element -> Element -> Element -> Element\n"
 "test e f e1 f1 e2 = ?test_rhs\n"
 msgstr ""
+"测试：元素->元素->元素->元素->元素->元素\n"
+"测试 e f e1 f1 e2 = ?test_rhs\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:372
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 "Neovim, together with the `idris2-lsp` executable and the\n"
 "`idris2-nvim` editor plugin, provides extensive utilities for\n"
@@ -31618,6 +31887,12 @@ msgid ""
 "available for your editor of choice, for instance on the\n"
 "[Idris 2 Discord channel](https://discord.gg/UX68fDs2jc).\n"
 msgstr ""
+"Neovim，连同 `idris2-lsp` 可执行文件和\n"
+"`idris2-nvim` 编辑器插件，为\n"
+"在 Idris 中编程时的交互式编辑。类似的功能\n"
+"其他一些编辑也可以使用，所以请随时询问是什么\n"
+"可供您选择的编辑器使用，例如\n"
+"[Idris 2 Discord 频道](https://discord.gg/UX68fDs2jc)。\n"
 
 #~ msgid ""
 #~ "Tutorial.DataTypes> greet dr \"Hck\"\n"
