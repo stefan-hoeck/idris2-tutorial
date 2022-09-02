@@ -189,11 +189,22 @@ Bar = foo
 
 ### 练习第 1 部分
 
-1. 使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` 和 `or`。
+1. Use pattern matching to implement your own
+   versions of boolean operators
+   `(&&)` and `(||)` calling them `and` and `or`
+   respectively.
+
 
    注意：解决此问题的一种方法是枚举两个布尔值的所有四种可能组合值并给出每个结果。然而，有一种更短、更聪明的方式，两个函数每个只需要两个模式匹配。
 
-2. 定义您自己的数据类型来表示不同的时间单位（秒、分钟、小时、天、周），并实现以下函数以使用不同的单位在时间跨度之间进行转换。提示：当从秒到一些更大的单位（如小时）时，使用整数除法（`div`）。
+2. Define your own data type representing different
+   units of time (seconds, minutes,
+   hours, days, weeks), and implement the following
+   functions for converting between time spans using
+   different units. Hint: Use integer division (`div`)
+   when going from seconds to some larger unit like
+   hours).
+
 
    ```idris
    data UnitOfTime = Second -- add additional values
@@ -215,7 +226,10 @@ Bar = foo
    convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
    ```
 
-3. 定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。
+3. Define a data type for representing a subset of the
+   chemical elements: Hydrogen (H), Carbon (C), Nitrogen (N),
+   Oxygen (O), and Fluorine (F).
+
 
    声明并实现函数 `atomicMass`，它对每个元素返回以道尔顿为单位的原子质量：
 
@@ -284,8 +298,8 @@ greet t name = "Hello, " ++ showTitle t ++ " " ++ name ++ "!"
 在 REPL 中：
 
 ```repl
-Tutorial.DataTypes> greet dr "HÃ¶ck"
-"Hello, Dr. HÃ¶ck!"
+Tutorial.DataTypes> greet dr "Höck"
+"Hello, Dr. Höck!"
 Tutorial.DataTypes> greet Mrs "Smith"
 "Hello, Mrs. Smith!"
 ```
@@ -325,29 +339,42 @@ Tutorial.DataTypes> login (Key "Y" "foo")
 
 ### 练习第 2 部分
 
-1. 为 `Title` 实现相等测试（您可以使用相等运算符 `(==)` 比较两个 `String`）：
+1. Implement an equality test for `Title` (you can use the
+   equality operator `(==)` for comparing two `String`s):
+
 
    ```idris
    total
    eqTitle : Title -> Title -> Bool
    ```
 
-2. 对于 `Title`，实现一个简单的测试来检查是否正在使用自定义标题：
+2. For `Title`, implement a simple test to check, whether
+   a custom title is being used:
+
 
    ```idris
    total
    isOther : Title -> Bool
    ```
 
-3. 鉴于我们简单的 `Credentials` 类型，身份验证失败的三种方式：
+3. Given our simple `Credentials` type, there are three
+   ways for authentication to fail:
 
-   * 使用了未知的用户名。
-   * 给定的密码与与用户名关联的密码不匹配。
-   * 使用了无效的密钥。
+
+   * An unknown username was used.
+
+   * The password given does not match the one associated with
+     the username.
+
+   * An invalid key was used.
+
 
    将这三种可能性封装在叫做 `LoginError` 的和类型中，但请确保不要泄露任何机密信息：无效的用户名应存储相应的错误值，但不应该存储无效的密码或密钥。
 
-4. 实现函数 `showError : LoginError -> String`，可用于向尝试登录我们的 Web 应用程序失败的用户显示错误消息。
+4. Implement function `showError : LoginError -> String`, which
+   can be used to display an error message to the user who
+   unsuccessfully tried to login into our web application.
+
 
 ## 记录
 
@@ -750,43 +777,59 @@ intSum (n :: ns) = n + intSum ns
 第一个模式被匹配并且函数立即返回零。
 但是，如果我们使用非空列表调用 `intSum` - `[7,5,9]` - 会发生以下情况：
 
-1. 第二个模式被匹配并将列表分成两部分：它的头部（`7`）绑定到变量 `n` 和它的尾部（`[5,9]`）绑定到 `ns`：
+1. The second pattern matches and splits the list into two
+   parts: Its head (`7`) is bound to variable `n` and its tail
+   (`[5,9]`) is bound to `ns`:
+
 
    ```repl
    7 + intSum [5,9]
    ```
-2. 在第二次调用中，`intSum` 被一个新列表调用：`[5,9]`。第二个模式被匹配并且 `n` 绑定到 `5` 并且 `ns` 绑定到
-   `[9]`：
+2. In a second invocation, `intSum` is called with a new list: `[5,9]`.
+   The second pattern matches and `n` is bound to `5` and `ns` is bound
+   to `[9]`:
+
 
    ```repl
    7 + (5 + intSum [9])
    ```
 
-3. 在第三次调用中，`intSum` 用列表 `[9]` 调用。第二个模式被匹配并且 `n` 绑定到 `9` 并且 `ns` 绑定到 `[]`：
+3. In a third invocation `intSum` is called with list `[9]`.
+   The second pattern matches and `n` is bound to `9` and `ns` is bound
+   to `[]`:
+
 
    ```repl
    7 + (5 + (9 + intSum [])
    ```
 
-4. 在第四次调用中，使用列表 `[]` 调用 `intSum` 并立即返回 `0`：
+4. In a fourth invocation, `intSum` is called with list `[]` and
+   returns `0` immediately:
+
 
    ```repl
    7 + (5 + (9 + 0)
    ```
 
-5. 在第三次调用中，累加 `9` 和 `0` 并返回 `9`：
+5. In the third invocation, `9` and `0` are added and `9` is
+   returned:
+
 
    ```repl
    7 + (5 + 9)
    ```
 
-6. 在第二次调用中，累加 `5` 和 `9` 并返回 `14`：
+6. In the second invocation, `5` and `9` are added and `14` is
+   returned:
+
 
    ```repl
    7 + 14
    ```
 
-7. 最后，我们对 `intSum` 的初始调用累加 `7` 和 `14` 并返回 `21`。
+7. Finally, our initial invocation of `intSum` adds `7` and `14`
+   and returns `21`.
+
 
 因此，`intSum` 的递归实现导致了一个嵌套调用 `intSum` 的序列，一旦参数是
 空列表也会终止嵌套。
@@ -853,7 +896,8 @@ handleBool = option "Not a boolean value." show
 请记住，函数中的小写标识符
 签名被视为类型参数。
 
-1. 为 `Maybe` 实现以下通用函数：
+1. Implement the following generic functions for `Maybe`:
+
 
    ```idris
    -- make sure to map a `Just` to a `Just`.
@@ -888,7 +932,8 @@ handleBool = option "Not a boolean value." show
    foldMaybe : (acc -> el -> acc) -> acc -> Maybe el -> acc
    ```
 
-2. 为 `Either` 实现以下通用函数：
+2. Implement the following generic functions for `Either`:
+
 
    ```idris
    total
@@ -918,7 +963,8 @@ handleBool = option "Not a boolean value." show
    fromEither : (e -> c) -> (a -> c) -> Either e a -> c
    ```
 
-3. 为 `List` 实现以下通用函数：
+3. Implement the following generic functions for `List`:
+
 
    ```idris
    total
@@ -955,7 +1001,9 @@ handleBool = option "Not a boolean value." show
    foldList : (acc -> el -> acc) -> acc -> List el -> acc
    ```
 
-4. 假设我们将 Web 应用程序的用户数据存储在以下记录中：
+4. Assume we store user data for our web application in
+   the following record:
+
 
    ```idris
    record Client where
@@ -969,7 +1017,10 @@ handleBool = option "Not a boolean value." show
    使用前面练习中的 `LoginError` 实现函数 `login`，给定 `Client` 的列表加上 `Credentials` 类型的值。如果没有提供有效凭据将会返回 `LoginError`，
    ，或者第一个凭据匹配的 `Client` 对象。
 
-5. 使用前面练习中化学元素的数据类型，实现一个计算分子式摩尔质量的函数。
+5. Using your data type for chemical elements from an
+   earlier exercise, implement a function for calculating
+   the molar mass of a molecular formula.
+
 
    使用一个元素列表，每个元素都与其计数（自然数）对「pair」用于表示公式。例如：
 

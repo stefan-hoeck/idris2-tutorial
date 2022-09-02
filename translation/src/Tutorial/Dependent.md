@@ -279,7 +279,8 @@ replicate (S k) va = va :: replicate k va
 
 ### 练习第 1 部分
 
-1. 为非空向量实现函数 `head`：
+1. Implement function `head` for non-empty vectors:
+
 
    ```idris
    head : Vect (S n) a -> a
@@ -287,29 +288,47 @@ replicate (S k) va = va :: replicate k va
 
    请注意，我们如何使用 *模式* 来描述在 `Vect` 的长度上的非空性。这排除了 `Nil` 的情况，我们可以返回一个 `a` 类型的值，而不必将其包装在一个`Maybe` 中！确保为 `Nil` 添加一个 `impossible` 子句分支（尽管这不是绝对必要的）。
 
-2. 以`head`为参考，为非空向量声明并实现函数`tail`。类型应该反映输出恰好比输入短一个元素。
+2. Using `head` as a reference, declare and implement function `tail`
+   for non-empty vectors. The types should reflect that the output
+   is exactly one element shorter than the input.
 
-3. 实现 `zipWith3`。如果可能，请尝试在不查看 `zipWith` 的实现的情况下这样做：
+
+3. Implement `zipWith3`. If possible, try to doing so without looking at
+   the implementation of `zipWith`:
+
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
    ```
 
-4. 声明并实现一个函数 `foldSemi` 用于通过 `Semigroup` 的附加运算符 (`(<+>)`) 累加存储在 `List`
-   中的值. （确保只使用 `Semigroup` 约束，而不是 `Monoid` 约束。）
+4. Declare and implement a function `foldSemi`
+   for accumulating the values stored
+   in a `List` through `Semigroup`s append operator (`(<+>)`).
+   (Make sure to only use a `Semigroup` constraint, as opposed to
+   a `Monoid` constraint.)
 
-5. 做与练习 4 相同的操作，但对于非空向量。向量的非空性如何影响输出类型？
 
-6. 给定 `a` 类型的初始值和函数 `a -> a`，我们想生成 `a`s 的 `Vect`s ，其中第一个值为 `a`，第二个值为 `f
-   a`，第三个值为 `f (fa)`，以此类推。
+5. Do the same as in Exercise 4, but for non-empty vectors. How
+   does a vector's non-emptiness affect the output type?
+
+
+6. Given an initial value of type `a` and a function `a -> a`,
+   we'd like to generate `Vect`s of `a`s, the first value of
+   which is `a`, the second value being `f a`, the third
+   being `f (f a)` and so on.
+
 
    例如，如果 `a` 是 1 并且 `f` 是 `(* 2)`，我们希望
    获得类似于以下的结果：`[1,2,4,8,16,...]`。
 
    声明并实现函数 `iterate`，它应该封装这种行为。如果你不知道从哪里开始，可以从 `replicate` 中获得一些灵感。
 
-7. 给定状态类型 `s` 的初始值和函数 `fun : s -> (s,a)`，我们希望生成 `a` 的 `Vect`。声明并实现函数
-   `generate`，它应该封装这个行为。确保在每次新调用 `fun` 时使用更新后的状态。
+7. Given an initial value of a state type `s` and
+   a function `fun : s -> (s,a)`,
+   we'd like to generate `Vect`s of `a`s. Declare and implement
+   function `generate`, which should encapsulate this behavior. Make sure to use
+   the updated state in every new invocation of `fun`.
+
 
    这是一个示例，它被用来生成前 `n` 个斐波那契数列：
 
@@ -318,7 +337,10 @@ replicate (S k) va = va :: replicate k va
    [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
    ```
 
-8. 实现函数 `fromList`，它将值列表转换为相同长度的 `Vect`。如果卡住，请使用孔：
+8. Implement function `fromList`, which converts a list of
+   values to a `Vect` of the same length. Use holes if you
+   get stuck:
+
 
    ```idris
    fromList : (as : List a) -> Vect (length as) a
@@ -326,7 +348,8 @@ replicate (S k) va = va :: replicate k va
 
    请注意，在 `fromList` 的类型中，我们如何通过 `length` 函数*计算* list 参数得到向量的长度。
 
-9. 考虑以下声明：
+9. Consider the following declarations:
+
 
    ```idris
    maybeSize : Maybe a -> Nat
@@ -402,31 +425,50 @@ index (FS _) Nil impossible
 
 ### 练习第 2 部分
 
-1. 实现函数 `update`，给定一个类型为 `a -> a` 的函数，在 `Vect n a` 中 `k < n` 处的位置更新值。
+1. Implement function `update`, which, given a function of
+   type `a -> a`, updates the value in a`Vect n a` at position `k < n`.
 
-2. 实现函数 `insert`，它在 `Vect n a` 中的 `k <= n` 位置插入 `a` 类型的值。请注意，`k`
-   是新插入值的索引，因此以下成立：
+
+2. Implement function `insert`, which inserts a value of type `a`
+   at position `k <= n` in a `Vect n a`. Note, that `k` is the
+   index of the freshly inserted value, so that the following holds:
+
 
    ```repl
    index k (insert k v vs) = v
    ```
 
-3. 实现函数 `delete`，它从向量中的给定索引处删除一个值。
+3. Implement function `delete`, which deletes a value from a
+   vector at the given index.
+
 
    这比练习 1 和练习 2 更棘手，因为我们必须正确编码向量正在缩短一个元素的类型。
 
-4. 我们也可以使用 `Fin` 来实现对 `List` 的安全索引。尝试为 `safeIndexList` 提出一个类型和实现。
+4. We can use `Fin` to implement safe indexing into `List`s as well. Try to
+   come up with a type and implementation for `safeIndexList`.
+
 
    注意：如果不知道怎么下手，看`fromList`的类型找一些灵感。您可能还需要与 `index`  不同的顺序给出参数。
 
-5. 实现函数`finToNat`，将一个`Fin n`转换为对应的自然数，并用它来声明和实现函数 `take` ，通过对 `Vect n a` 的前
-   `k` 个元素进行拆分 ，其中 `k <= n`。
+5. Implement function `finToNat`, which converts a `Fin n` to the
+   corresponding natural number, and use this to declare and
+   implement function `take` for splitting of the first `k`
+   elements of a `Vect n a` with `k <= n`.
 
-6. 实现函数 `minus` 用于从 `k <= n` 的自然数 `n` 中减去值 `k`。
 
-7. 使用练习 6 中的 `minus` 声明和实现函数 `drop`，用于从 `Vect n a` 中删除第一个 `k` 值，其中 `k <= n`。
+6. Implement function `minus` for subtracting a value `k` from
+   a natural number `n` with `k <= n`.
 
-8. 实现函数 `splitAt` 用于在位置 `k <= n` 处拆分 `Vect n a`，返回包装成对的向量的前缀和后缀。
+
+7. Use `minus` from Exercise 6 to declare and implement function
+   `drop`, for dropping the first `k` values from a `Vect n a`,
+   with `k <= n`.
+
+
+8. Implement function `splitAt` for splitting a `Vect n a` at
+   position `k <= n`, returning the prefix and suffix of the
+   vector wrapped in a pair.
+
 
    提示：在你的实现中使用 `take` 和 `drop`。
 
@@ -531,7 +573,8 @@ replicate'' {n = S _} v = v :: replicate'' v
 
 ### 练习第 3 部分
 
-1. 这是一个用于扁平化 `List` 中的 `List` 的函数声明：
+1. Here is a function declaration for flattening a `List` of `List`s:
+
 
    ```idris
    flattenList : List (List a) -> List a
@@ -539,9 +582,15 @@ replicate'' {n = S _} v = v :: replicate'' v
 
    实现 `flattenList` 并声明和实现一个类似的函数 `flattenVect` 用于扁平化向量的向量。
 
-2. 像上一节的练习一样实现函数 `take'` 和 `splitAt'`，但使用 `drop'` 所示的技术。
+2. Implement functions `take'` and `splitAt'` like in
+   the exercises of the previous section but using the
+   technique shown for `drop'`.
 
-3. 实现函数 `transpose` 用于将 `m x n` 矩阵（表示为 `Vect m (Vect n a)`）转换为 `n x m` 矩阵。
+
+3. Implement function `transpose` for converting an
+   `m x n`-matrix (represented as a `Vect m (Vect n a)`)
+   to an `n x m`-matrix.
+
 
    注意：这可能是一项具有挑战性的练习，但请确保试一试。像往常一样，如果你被卡住了，就利用洞！
 
@@ -554,18 +603,37 @@ replicate'' {n = S _} v = v :: replicate'' v
 
 ## 结论
 
-* 依赖类型允许我们根据值计算类型。这使得在类型级别对值的属性进行编码并在编译时验证这些属性成为可能。
+* Dependent types allow us to calculate types from values.
+  This makes it possible to encode properties of values
+  at the type-level and verify these properties at compile
+  time.
 
-* 长度索引列表（向量）通过强制我们准确了解输入和输出向量的长度，让我们排除了某些实现错误。
 
-* 我们可以在类型签名中使用模式，例如表示向量的长度非零，因此向量非空。
+* Length-indexed lists (vectors) let us rule out certain implementation
+  errors, by forcing us to be precise about the lengths of input
+  and output vectors.
 
-* 创建类型族的值时，索引的值需要在编译时知道，或者它们需要作为参数传递给创建值的函数，我们可以对它们进行模式匹配以确定哪些构造函数利用。
 
-* 我们可以使用严格小于 `n` 的自然数类型 `Fin n` 来安全地索引长度为 `n` 的向量。
+* We can use patterns in type signatures, for instance to
+  express that the length of a vector is non-zero and therefore,
+  the vector is non-empty.
 
-* 有时，将可推断参数作为非擦除隐式传递很方便，在这种情况下，我们仍然可以通过模式匹配检查它们或将它们传递给其他函数，而 Idris
-  会尝试为我们填充值。
+
+* When creating values of a type family, the values of the indices
+  need to be known at compile time, or they need to be passed as
+  arguments to the function creating the values, where we can
+  pattern match on them to figure out, which constructors to use.
+
+
+* We can use `Fin n`, the type of natural numbers strictly smaller
+  than `n`, to safely index into a vector of length `n`.
+
+
+* Sometimes, it is convenient to pass inferable arguments as
+  non-erased implicits, in which case we can still inspect them
+  by pattern matching or pass them to other functions, while Idris
+  will try and fill in the values for us.
+
 
 请注意，数据类型 `Vect` 以及我们在此处实现的许多功能可从 *base* 库中的模块 `Data.Vect` 获得。同样，`Fin` 可从 `Data.Fin` 从 *base* 获得。
 

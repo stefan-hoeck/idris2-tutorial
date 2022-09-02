@@ -260,18 +260,25 @@ compExample2 = map @{Compose} show
     结构或影响运行 `IO` 动作的副作用
     。
 
-2. `map (f . g) = map f . map g`: 两个映射的顺序必须与使用两个函数组合后的单个映射相同。
+2. `map (f . g) = map f . map g`: Sequencing two mappings must be identical
+   to a single mapping using the composition of the two functions.
+
 
 这两条定律都要求 `map` 保留值的 *结构*。使用 `List`、`Maybe` 或 `Either e` 等容器类型更容易理解，其中 `map` 不允许添加或删除任何包装的值，也不 - 在 `List` 的情况下 - 更改它们的顺序。对于使用 `IO`，最好地描述为 `map` 没有执行额外的副作用。
 
 ### 练习第 1 部分
 
-1. 为 `Maybe`、`List`、`List1`、`Vect n`、`Either e` 和 `Pair a` `编写自己的 `Functor'`
-   实现。
+1. Write your own implementations of `Functor'` for `Maybe`, `List`,
+   `List1`, `Vect n`, `Either e`, and `Pair a`.
 
-2. 为 pairs 函数编写 `Functor` 的命名实现（类似于为 `Product` 实现的实现）。
 
-3. 为数据类型 `Identity` 实现 `Functor`（可从 *base* 中的 `Control.Monad.Identity` 获得）：
+2. Write a named implementation of `Functor` for pairs of functors
+   (similar to the one implemented for `Product`).
+
+
+3. Implement `Functor` for data type `Identity` (which is available
+   from `Control.Monad.Identity` in *base*):
+
 
    ```idris
    record Identity a where
@@ -279,10 +286,13 @@ compExample2 = map @{Compose} show
      value : a
    ```
 
-4. 这是一个奇怪的问题：为 `Const e` 实现 `Functor`（也可以从 *base* 中的
-   `Control.Applicative.Const`
-   获得）。您可能会对第二个类型参数在运行时绝对没有相关性这一事实感到困惑，因为没有该类型的值。这种类型有时被称为
-   *幻像类型*。它们对于使用附加类型信息标记值非常有用。
+4. Here is a curious one: Implement `Functor` for `Const e` (which is also
+   available from `Control.Applicative.Const` in *base*). You might be
+   confused about the fact that the second type parameter has absolutely
+   no relevance at runtime, as there is no value of that type. Such
+   types are sometimes called *phantom types*. They can be quite useful
+   for tagging values with additional typing information.
+
 
    不要让上述内容使您感到困惑：只有一种可能的实现。
    像往常一样，使用孔，如果你迷路了，让编译器指导你。
@@ -293,7 +303,9 @@ compExample2 = map @{Compose} show
      value : e
    ```
 
-5. 这是用于描述数据存储中的 CRUD 操作（创建、读取、更新和删除）的求和类型：
+5. Here is a sum type for describing CRUD operations
+   (Create, Read, Update, and Delete) in a data store:
+
 
    ```idris
    data Crud : (i : Type) -> (a : Type) -> Type where
@@ -305,7 +317,8 @@ compExample2 = map @{Compose} show
 
    为 `Crud i` 实现 `Functor`。
 
-6. 以下是用于描述来自数据服务器的响应的和类型：
+6. Here is a sum type for describing responses from a data server:
+
 
    ```idris
    data Response : (e, i, a : Type) -> Type where
@@ -318,7 +331,8 @@ compExample2 = map @{Compose} show
 
    为 `Repsonse e i` 实现 `Functor`。
 
-7. 为 `Validated e` 实现 `Functor`：
+7. Implement `Functor` for `Validated e`:
+
 
    ```idris
    data Validated : (e,a : Type) -> Type where
@@ -683,9 +697,15 @@ Left (FieldError 3 2 "")
 
 同样，`Applicative` 的实现必须遵循一定的规律。他们来了：
 
-* `pure id <*> fa = fa`：提升和应用恒等函数没有可见作用。
+* `pure id <*> fa = fa`: Lifting and applying the identity
+  function has no visible effect.
 
-* `[| F 。 g |] <*> v = f <*> (g <*> v)`：不管是先组合函数然后应用它们，还是先应用函数然后组合它们，结果应该相同。
+
+* `[| f . g |] <*> v = f <*> (g <*> v)`:
+  I must not matter, whether we compose our functions
+  first and then apply them, or whether we apply
+  our functions first and then compose them.
+
 
   上面的可能很难理解，所以这里
   它们再次具有显式类型和实现：
@@ -701,9 +721,13 @@ Left (FieldError 3 2 "")
   第二个应用函子法律规定，这两个实施
   `compL` 和 `compR` 的行为应该相同。
 
-* `pure f <*> pure x = pure (f x)`。这也称为 *同态* 定律。这应该是不言自明的。
+* `pure f <*> pure x = pure (f x)`. This is also called the
+  *homomorphism* law. It should be pretty self-explaining.
 
-* `f <*> pure v = pure ($ v) <*> f`.。这称为*交换* 律。
+
+* `f <*> pure v = pure ($ v) <*> f`. This is called the law
+  of *interchange*.
+
 
   这应该再次用一个具体的例子来解释：
 
@@ -723,26 +747,43 @@ Left (FieldError 3 2 "")
 
 ### 练习第 2 部分
 
-1. 为 `Either e` 和 `Identity` 实现 `Applicative'`。
+1. Implement `Applicative'` for `Either e` and `Identity`.
 
-2. 为 `Vect n` 实现 `Applicative'`。注意：为了实现
-   `pure`，必须在运行时知道长度。这可以通过将其作为未擦除的隐式传递给接口实现来完成：
+
+2. Implement `Applicative'` for `Vect n`. Note: In order to
+   implement `pure`, the length must be known at runtime.
+   This can be done by passing it as an unerased implicit
+   to the interface implementation:
+
 
    ```idris
    implementation {n : _} -> Applicative' (Vect n) where
    ```
 
-3. 为 `Pair e` 实现 `Applicative'`，其中 `e` 具有 `Monoid` 约束。
+3. Implement `Applicative'` for `Pair e`, with `e` having
+   a `Monoid` constraint.
 
-4. 为 `Const e` 实现 `Applicative`，其中 `e` 具有 `Monoid` 约束。
 
-5. 为 `Validated e` 实现 `Applicative`，其中 `e` 具有 `Semigroup` 约束。这将允许我们在 *apply*
-   的实现中使用 `(<+>)` 来累积两个 `Invalid` 值的错误。
+4. Implement `Applicative` for `Const e`, with `e` having
+   a `Monoid` constraint.
 
-6. 添加一个 `CSVError -> CSVError -> CSVError` 到 `CSVError` 类型的附加数据构造函数，并使用它为
-   `CSVError` 实现 `Semigroup`。
 
-7. 重构我们的 CSV 解析器和所有相关函数，使它们返回 `Validated` 而不是 `Either`。这只有在你解决了练习 6 的情况下才有效。
+5. Implement `Applicative` for `Validated e`, with `e` having
+   a `Semigroup` constraint. This will allow us to use `(<+>)`
+   to accumulate errors in case of two `Invalid` values in
+   the implementation of *apply*.
+
+
+6. Add an additional data constructor of
+   type `CSVError -> CSVError -> CSVError`
+   to `CSVError` and use this to implement `Semigroup` for
+   `CSVError`.
+
+
+7. Refactor our CSV-parsers and all related functions so that
+   they return `Validated` instead of `Either`. This will only
+   work, if you solved exercise 6.
+
 
    需要注意的两件事：您将不得不调整很少的
    现有代码，因为我们仍然可以通过使用 `Validated`使用应用语法
@@ -763,7 +804,9 @@ Left (FieldError 3 2 "")
    仅仅几行代码，我们就编写了一个纯粹的、类型安全的、完全的
    对 CSV 文件中的行进行错误累积的解析器，同时使用非常方便！
 
-8. 由于我们在本章中介绍了异构列表，很遗憾没有对它们进行一些实验。
+8. Since we introduced heterogeneous lists in this chapter, it
+   would be a pity not to experiment with them a little.
+
 
    这个练习旨在提高你的类型技巧的技能。
    因此，它带有很少的提示。您期望从给定函数中获得什么行为试着自己做决定
@@ -773,22 +816,34 @@ Left (FieldError 3 2 "")
    只有当你真的没有想法时，你才应该瞥一眼
    在解决方案上（然后，首先只在类型上！）
 
-   1. 为 `HList` 实现 `head`。
+   1. Implement `head` for `HList`.
 
-   2. 为 `HList` 实现 `tail`。
 
-   3. 为 `HList` 实现 `(++)`。
+   2. Implement `tail` for `HList`.
 
-   4. 为 `HList` 实现 `index`。这可能比其他三个更难。回过头来看看我们如何在 [早期练习](Dependent.md) 中实现
-      `indexList` 并从那里开始。
 
-   5. 包 *contrib* 是 Idris 项目的一部分，它提供了 `Data.HVect.HVect`，一种异构向量的数据类型。与我们自己的
-      `HList` 的唯一区别是，`HVect` 是通过类型向量而不是类型列表来索引的。这使得在类型级别表达某些操作变得更容易。
+   3. Implement `(++)` for `HList`.
+
+
+   4. Implement `index` for `HList`. This might be harder than the other three.
+      Go back and look how we implemented `indexList` in an
+      [earlier exercise](Dependent.md) and start from there.
+
+
+   5. Package *contrib*, which is part of the Idris project, provides
+      `Data.HVect.HVect`, a data type for heterogeneous vectors. The only difference
+      to our own `HList` is, that `HVect` is indexed over a vector of
+      types instead of a list of types. This makes it easier to express certain
+      operations at the type level.
+
 
       编写您自己的 `HVect` 实现以及函数
       `head`、`tail`、`(++)` 和 `index`。
 
-   6. 对于真正的挑战，尝试实现一个函数来转置 `Vect m (HVect ts)`。您首先必须对如何在类型中表达这一点有创意。
+   6. For a real challenge, try implementing a function for
+      transposing a `Vect m (HVect ts)`. You'll first have to
+      be creative about how to even express this in the types.
+
 
       注意：为了实现这一点，您需要在至少一个案例中的一个被抹去的参数上进行模式匹配，以帮助 Idris 进行类型推断。禁止对已擦除参数进行模式匹配
       （它们毕竟被删除了，所以我们不能在运行时检查它们），
@@ -798,9 +853,15 @@ Left (FieldError 3 2 "")
 
       但是请注意，当使用 CSV 文件时这样的函数会很有用，因为它允许我们将表示为行（元组向量）的表转换到表示为列（向量元组）的表。
 
-9. 通过为 `Comp f g` 实现 `Applicative` 来证明两个应用函子的组合再次是一个应用函子。
+9. Show, that the composition of two applicative functors is
+   again an applicative functor by implementing `Applicative`
+   for `Comp f g`.
 
-10. 通过为 `Prod f g` 实现 `Applicative` 证明两个应用函子的乘积再次是一个应用函子。
+
+10. Show, that the product of two applicative functors is
+    again an applicative functor by implementing `Applicative`
+    for `Prod f g`.
+
 
 ## 单子
 
@@ -879,7 +940,10 @@ Left (FieldError 1 2 "jon@doe.ch")
 
 事不宜迟，以下是 `Monad` 的定律：
 
-* `ma >>= pure = ma` 和 `pure v >>= f = f v`。这些是 monad 的恒等律。下面是具体的例子：
+* `ma >>= pure = ma` and `pure v >>= f = f v`.
+  These are monad's identity laws. Here they are as
+  concrete examples:
+
 
   ```idris
   id1L : Maybe a -> Maybe a
@@ -894,8 +958,12 @@ Left (FieldError 1 2 "jon@doe.ch")
 
   这两条定律规定 `pure` 在 *bind* 中应该表现为中立。
 
-* `(m >>= f) >>= g = m >>= (f >=> g)` 是 monad 的结合律。您可能没有见过第二个运算符
-  `(>=>)`。它可用于对副作用计算进行排序，并具有以下类型：
+* `(m >>= f) >>= g = m >>= (f >=> g)`.
+  This is the law of associativity for monad.
+  You might not have seen the second operator `(>=>)`.
+  It can be used to sequence effectful computations
+  and has the following type:
+
 
   ```repl
   Tutorial.Functor> :t (>=>)
@@ -906,22 +974,37 @@ Left (FieldError 1 2 "jon@doe.ch")
 
 * `mf <*> ma = mf >>= (\fun => map (fun $) ma)`.
 
+
 ### 练习第 3 部分
 
-1. `Applicative` 扩展了 `Functor`，因为每个 `Applicative` 也是一个 `Functor`。通过根据 `pure`
-   和 `(<*>)` 实现 `map` 来证明这一点。
+1. `Applicative` extends `Functor`, because every `Applicative`
+   is also a `Functor`. Proof this by implementing `map` in
+   terms of `pure` and `(<*>)`.
 
-2. `Monad` 扩展了 `Applicative`，因为每个 `Monad` 也是一个 `Applicative`。通过根据 `(>>=)` 和
-   `pure` 实现 `(<*>)` 来证明这一点。
 
-3. 根据 `join` 和 `Monad` 层次结构中的其他函数实现 `(>>=)`。
+2. `Monad` extends `Applicative`, because every `Monad` is
+   also an `Applicative`. Proof this by implementing
+   `(<*>)` in terms of `(>>=)` and `pure`.
 
-4. 根据 `(>>=)` 和 `Monad` 层次结构中的其他函数实现 `join`。
 
-5. `Validated e` 没有合法的 `Monad` 实现。为什么？
+3. Implement `(>>=)` in terms of `join` and other functions
+   in the `Monad` hierarchy.
 
-6. 在这个稍微扩展的练习中，我们将在数据存储上模拟 CRUD 操作。我们将使用一个可变引用（从 *base* 库中的 `Data.IORef`
-   导入），其中包含一个 `User` 列表和一个类型为 `Nat` 的唯一 ID 作为我们的用户数据库：
+
+4. Implement `join` in terms of `(>>=)` and other functions
+   in the `Monad` hierarchy.
+
+
+5. There is no lawful `Monad` implementation for `Validated e`.
+   Why?
+
+
+6. In this slightly extended exercise, we are going to simulate
+   CRUD operations on a data store. We will use a mutable
+   reference (imported from `Data.IORef` from the *base* library)
+   holding a list of `User`s paired with a unique ID
+   of type `Nat` as our user data base:
+
 
    ```idris
    DB : Type
@@ -961,22 +1044,31 @@ Left (FieldError 1 2 "jon@doe.ch")
    在实施时遵循以下业务规则
    以下功能：
 
-   * 数据库中的电子邮件地址必须是唯一的。 （考虑实现 `Eq Email` 来验证这一点）。
+   * Email addresses in the DB must be unique. (Consider
+     implementing `Eq Email` to verify this).
 
-   * 不得超过 1000 个条目的大小限制。
 
-   * 如果在 DB 中找不到条目，则尝试通过 ID 查找用户的操作必须失败并显示 `UserNotFound`。
+   * The size limit of 1000 entries must not be exceeded.
+
+
+   * Operations trying to lookup a user by their ID must
+     fail with `UserNotFound` in case no entry was found
+     in the DB.
+
 
    工作时需要 `Data.IORef` 中的以下功能
    具有可变引用：`newIORef`、`readIORef` 和 `writeIORef`。
    此外，函数 `Data.List.lookup` 和 `Data.List.find` 可能
    对实现以下某些功能很有用。
 
-   1. 为 `Prog` 实现接口 `Functor`、`Applicative` 和 `Monad`。
+   1. Implement interfaces `Functor`, `Applicative`, and `Monad` for `Prog`.
 
-   2. 为 `Prog` 实现接口 `HasIO`。
 
-   3. 实现以下实用功能：
+   2. Implement interface `HasIO` for `Prog`.
+
+
+   3. Implement the following utility functions:
+
 
       ```idris
       throw : DBError -> Prog a
@@ -990,33 +1082,50 @@ Left (FieldError 1 2 "jon@doe.ch")
       modifyDB : (List (Nat,User) -> List (Nat,User)) -> Prog ()
       ```
 
-   4. 实现函数`lookupUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的错误。
+   4. Implement function `lookupUser`. This should fail
+      with an appropriate error, if a user with the given ID
+      cannot be found.
+
 
       ```idris
       lookupUser : (id : Nat) -> Prog User
       ```
 
-   5. 实现函数 `deleteUser`。如果找不到具有给定 ID 的用户，这应该会失败并出现适当的错误。在您的实现中使用
-      `lookupUser`。
+   5. Implement function `deleteUser`. This should fail
+      with an appropriate error, if a user with the given ID
+      cannot be found. Make use of `lookupUser` in your
+      implementation.
+
 
       ```idris
       deleteUser : (id : Nat) -> Prog ()
       ```
 
-   6. 实现函数 `addUser`。如果具有给定 `Email` 的用户已经存在，或者超过了 1000
-      个条目的数据库大小限制，这应该会失败。此外，这应该为新用户条目创建并返回一个唯一 ID。
+   6. Implement function `addUser`. This should fail, if
+      a user with the given `Email` already exists, or
+      if the data banks size limit of 1000 entries is exceeded.
+      In addition, this should create and return a unique
+      ID for the new user entry.
+
 
       ```idris
       addUser : (new : User) -> Prog Nat
       ```
 
-   7. 实现函数`updateUser`。如果找不到相关用户或更新用户的 `Email` 的用户已经存在，这应该会失败。返回的值应该是更新的用户。
+   7. Implement function `updateUser`. This should fail, if
+      the user in question cannot be found or
+      a user with the updated user's `Email` already exists.
+      The returned value should be the updated user.
+
 
       ```idris
       updateUser : (id : Nat) -> (mod : User -> User) -> Prog User
       ```
 
-   8. 数据类型 `Prog` 实际上太具体了。我们也可以抽象出错误类型和 `DB` 环境：
+   8. Data type `Prog` is actually too specific. We could just
+      as well abstract over the error type and the `DB`
+      environment:
+
 
       ```idris
       record Prog' env err a where
@@ -1038,18 +1147,34 @@ Left (FieldError 1 2 "jon@doe.ch")
 
 ## 结论
 
-* 接口 `Functor`、`Applicative` 和 `Monad` 抽象了使用 `Type -> Type`
-  类型的类型构造函数时出现的编程模式。此类数据类型也称为上下文中的 *值 *，或 * 有效计算 *。
+* Interfaces `Functor`, `Applicative`, and `Monad` abstract over
+  programming patterns that come up when working with type
+  constructors of type `Type -> Type`. Such data types are also
+  referred to as *values in a context*, or *effectful computations*.
 
-* `Functor` 允许我们在上下文中的值上 *map* 而不影响上下文的底层结构。
 
-* `Applicative` 允许我们将 n 元函数应用于 n 个有效计算，并将纯值提升到上下文中。
+* `Functor` allows us to *map* over values in a context without
+  affecting the context's underlying structure.
 
-* `Monad` 允许我们链接有效的计算，其中中间结果可能会影响，哪些计算在链中运行得更远。
 
-* 与 `Monad` 不同，`Functor` 和 `Applicative` 组合：两个函子或应用程序的乘积和组合再次分别是函子或应用程序。
+* `Applicative` allows us to apply n-ary functions to n effectful
+  computations and to lift pure values into a context.
 
-* Idris 为使用此处介绍的一些接口提供了语法糖：`Applicative`、*do blocks* 的习语括号和 `Monad` 的感叹号运算符。
+
+* `Monad` allows us to chain effectful computations, where the
+  intermediary results can affect, which computation to run
+  further down the chain.
+
+
+* Unlike `Monad`, `Functor` and `Applicative` compose: The
+  product and composition of two functors or applicatives
+  are again functors or applicatives, respectively.
+
+
+* Idris provides syntactic sugar for working with some of
+  the interfaces presented here: Idiom brackets for `Applicative`,
+  *do blocks* and the bang operator for `Monad`.
+
 
 ### 下一步是什么？
 
