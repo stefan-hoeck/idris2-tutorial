@@ -17,3 +17,14 @@ clean:
 .PHONY: develop
 develop:
 	find -name "*.md" | entr -d idris2 --typecheck ${lib_pkg}
+
+
+.PHONY: build-docker
+build-docker:
+	docker build -t idris2-tutorial .
+
+.PHONY: update
+update: build-docker
+	docker run --rm -it -v /data/project/idris2-tutorial:/work idris2-tutorial
+
+
