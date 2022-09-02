@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-08-28 19:51+0800\n"
-"PO-Revision-Date: 2022-09-01 12:03+0000\n"
+"PO-Revision-Date: 2022-09-02 17:23+0000\n"
 "Last-Translator: leo liu <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris-lang/idris2-tutorial/zh_Hans/>\n"
@@ -31285,7 +31285,7 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:139
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Note, that on the left hand side a new variable with name\n"
 "`x` was introduced, while on the right hand side Idris\n"
@@ -31306,28 +31306,21 @@ msgid ""
 "this window again. Go ahead and checkout the type and\n"
 "context of `?negate2_rhs`.\n"
 msgstr ""
-"请注意，在左侧有一个名称为新的变量\n"
-"`x` 被引入，而在右手边 Idris\n"
+"请注意，在左边有一个名称为 `x` 的新变量被引入，而在右边 Idris "
 "添加了一个*元变量*（也称为*孔*）。这是个\n"
-"以问号为前缀的标识符。它向伊德里斯发出信号，\n"
-"我们将在稍后实现这部分功能。\n"
-"洞的好处在于，我们可以*悬停*\n"
-"并检查它们的类型和值的类型\n"
-"周围的语境。您可以通过放置光标来做到这一点\n"
-"在孔的标识符上输入 `K`（大写字母）\n"
-"正常模式。这将打开一个弹出窗口，显示类型\n"
-"光标下的变量加上变量的类型和数量\n"
-"在周围的环境中。你也可以拥有这些信息\n"
-"在单独的窗口中显示：输入 `<LocalLeader>so` 以\n"
-"打开此窗口并重复悬停。该信息将\n"
-"出现在新窗口中，作为额外的好处，它将\n"
-"在语义上突出显示。输入`<LocalLeader>sc`关闭\n"
-"又是这个窗口。继续检查类型和\n"
-"`?negate2_rhs` 的上下文。\n"
+"以问号为前缀的标识符。它向 Idris 发出信号，\n"
+"我们将在稍后实现函数的这一部分。\n"
+"孔的好处在于，我们可以*悬停*来检查它们的类型和上下文中所有值的类型。在正常模"
+"式下，您可以通过放置光标在孔的标识符上然后输入 `K`（大写字母）来做到。这将打"
+"开一个弹窗，显示光标下的变量类型和上下文中变量的类型和定量。你也可以让这些信"
+"息在单独的窗口中显示：输入 `<LocalLeader>so` 以打开此窗口并重复悬停。"
+"该信息将\n"
+"出现在新窗口中，作为额外的好处，它将在语义上突出显示。输入`<LocalLeader>sc`关"
+"闭这个窗口。继续检查`?negate2_rhs` 的类型和上下文。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:148
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Most functions in Idris are implemented by pattern matching\n"
 "on one or more of the arguments. Idris,\n"
@@ -31338,42 +31331,38 @@ msgid ""
 "`<LocalLeader>c` in normal mode. The result will look as\n"
 "follows:\n"
 msgstr ""
-"Idris 中的大部分功能都是通过模式匹配实现的\n"
-"关于一个或多个论点。伊德里斯，\n"
-"了解所有非原始数据类型的数据构造函数，\n"
-"可以为我们编写这样的模式匹配（这个过程也称为\n"
-"*案例拆分*）。要尝试一下，请将光标移动到 `x`\n"
-"在`negate2`的骨架实现中，输入\n"
-"`<LocalLeader>c` 在正常模式下。结果将如下所示\n"
+"Idris 中的大部分函数都是通过模式匹配一个或多个参数实现的。\n"
+"Idris 了解所有非原语数据类型的数据构造函数，\n"
+"可以为我们编写这样的模式匹配（这个过程也称为*案例拆分*）。要尝试一下，请将光"
+"标移动到在`negate2`的骨架实现中的 `x` 上，在常规模式下输入 `<LocalLeader>c` "
+"。结果将如下所示\n"
 "如下：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:149
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "negate3 : Bool -> Bool\n"
 "negate3 False = ?negate3_rhs_0\n"
 "negate3 True = ?negate3_rhs_1\n"
 msgstr ""
-"negate3 : 布尔 -> 布尔\n"
+"negate3 : Bool -> Bool\n"
 "negate3 False = ?negate3_rhs_0\n"
 "negate3 True = ?negate3_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:158
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "As you can see, Idris inserted a hole for each of the cases on the\n"
 "right hand side. We can again inspect their types or\n"
 "replace them with a proper implementation directly.\n"
-msgstr ""
-"如您所见，伊德里斯为每个表壳插入了一个孔\n"
-"右手边。我们可以再次检查它们的类型或\n"
-"直接用适当的实现替换它们。\n"
+msgstr "如您所见，Idris 为每个情况的右侧插入了一个孔。我们可以再次检查它们的类型或直"
+"接用适当的实现替换它们。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:164
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "This concludes the introduction of the (in my opinion) core\n"
 "features of interactive editing: Hovering on metavariables,\n"
@@ -31381,21 +31370,19 @@ msgid ""
 "(which also works in case blocks and for nested pattern\n"
 "matches). You should start using these all the time *now*!\n"
 msgstr ""
-"（在我看来）核心的介绍到此结束\n"
-"交互式编辑的特点：悬停在元变量上，\n"
+"（在我看来）对于交互式编辑的核心特点的介绍到此结束：悬停在元变量上，\n"
 "添加骨架函数实现和案例拆分\n"
-"（这也适用于案例块和嵌套模式\n"
-"火柴）。你应该开始使用这些 *now*！\n"
+"（这也适用于案例块和嵌套模式匹配）。你应该开始使用这些 *now*！\n"
 
 #. type: Title ##
 #: ../src/Appendices/Neovim.md:165
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Expression Search"
 msgstr "表达式搜索"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:173
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Sometimes, Idris knows enough about the types involved to\n"
 "come up with a function implementation on its own. For instance,\n"
@@ -31404,28 +31391,26 @@ msgid ""
 "and case splitting on the `Either` argument, we arrive at\n"
 "something similar to the following:\n"
 msgstr ""
-"有时，伊德里斯对所涉及的类型有足够的了解\n"
-"自己想出一个功能实现。例如，\n"
-"让我们从 *Prelude* 中实现函数 `either`。\n"
+"有时，Idris 对所涉及的类型有足够的了解但能自己想出一个函数的实现。例如，"
+"让我们实现 *Prelude* 中 `either` 函数。\n"
 "在给出它的类型之后，创建一个骨架实现，\n"
-"和 `Either` 论点的大小写分割，我们得出\n"
-"类似于以下内容：\n"
+"然后 `Either` 的参数上进行案例分割，我们得出类似于以下内容：\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:174
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "either2 : (a -> c) -> (b -> c) -> Either a b -> c\n"
 "either2 f g (Left x) = ?either2_rhs_0\n"
 "either2 f g (Right x) = ?either2_rhs_1\n"
 msgstr ""
-"任一个 2 : (a -> c) -> (b -> c) -> 任一个 b -> c\n"
-"要么2 f g（左x）= ?either2_rhs_0\n"
-"要么2 f g（右x）= ?either2_rhs_1\n"
+"either2 : (a -> c) -> (b -> c) -> Either a b -> c\n"
+"either2 f g (Left x) = ?either2_rhs_0\n"
+"either2 f g (Right x) = ?either2_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:186
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Idris can come up with expressions for the two metavariables\n"
 "on its own, because the types are specific enough. Move\n"
@@ -31434,16 +31419,14 @@ msgid ""
 "a selection of possible expressions (only one in this case),\n"
 "of which you can choose a fitting one (or abort with `q`).\n"
 msgstr ""
-"Idris 可以提出两个元变量的表达式\n"
-"就其本身而言，因为类型足够具体。移动\n"
-"将光标移到其中一个元变量上并输入\n"
-"`<LocalLeader>o` 在正常模式下。你会得到\n"
-"一组可能的表达式（在这种情况下只有一个），\n"
+"Idris 可以仅凭自己就可以提取出两个元变量的表达式，因为类型足够具体。\n"
+"将光标移到其中一个元变量上并在常规模式下输入 "
+"`<LocalLeader>o`。你会得到一组可能的表达式（在这种情况下只有一个），\n"
 "您可以从中选择一个合适的（或使用 `q` 中止）。\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:190
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "Here is another example: A reimplementation of function `maybe`.\n"
 "If you run an expression search on `?maybe2_rhs1`, you will\n"
@@ -31455,15 +31438,15 @@ msgstr ""
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:191
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "maybe2 : b -> (a -> b) -> Maybe a -> b\n"
 "maybe2 x f Nothing = x\n"
 "maybe2 x f (Just y) = ?maybe2_rhs_1\n"
 msgstr ""
-"也许2：b->（a->b）->也许a->b\n"
-"也许2 x f 什么都没有 = x\n"
-"Maybe2 x f (Just y) = ?maybe2_rhs_1\n"
+"maybe2 : b -> (a -> b) -> Maybe a -> b\n"
+"maybe2 x f Nothing = x\n"
+"maybe2 x f (Just y) = ?maybe2_rhs_1\n"
 
 #. type: Plain text
 #: ../src/Appendices/Neovim.md:208
