@@ -1,6 +1,7 @@
 export IDRIS2 ?= idris2
 
 lib_pkg = tutorial.ipkg
+pwd :=$(shell pwd)
 
 .PHONY: all
 all: lib
@@ -25,4 +26,4 @@ build-docker:
 
 .PHONY: update
 update: build-docker
-	docker run --rm -it -v /data/project/idris2-tutorial:/work idris2-tutorial:dev
+	docker run --rm -it -v ${pwd}:/work idris2-tutorial:dev
