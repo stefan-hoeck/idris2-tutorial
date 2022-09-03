@@ -26,4 +26,4 @@ build-docker:
 
 .PHONY: update
 update: build-docker
-	docker run --rm -it -v ${pwd}:/work idris2-tutorial:dev
+	docker run --rm -v ${pwd}:/work idris2-tutorial:dev
