@@ -35,15 +35,15 @@ import Data.Vect
 为了充分利用交互式 Idris 编辑
 Neovim，至少需要安装以下工具：
 
-* A recent version of Neovim (version 0.5 or later).
+* Neovim 的最新版本（0.5 版或更高版本）。
 
-* A recent version of the Idris compiler (at least version 0.5.1).
+* Idris 编译器的最新版本（至少版本 0.5.1）。
 
-* The Idris compiler API.
+* Idris 编译器 API。
 
-* The [idris2-lsp](https://github.com/idris-community/idris2-lsp) package.
+* [idris2-lsp](https://github.com/idris-community/idris2-lsp) 包。
 
-* The following Neovim plugins:
+* 以下 Neovim 插件：
 
   * [idris2-nvim](https://github.com/ShinKage/idris2-nvim)
 
@@ -141,40 +141,28 @@ maybe2 x f Nothing = x
 maybe2 x f (Just y) = ?maybe2_rhs_1
 ```
 
-Idris is also sometimes capable of coming up with complete function
-implementations based on a function's type. For this to work well
-in practice, the number of possible implementations satisfying
-the type checker must be pretty small. As an example, here is
-function `zipWith` for vectors. You might not have heard
-about vectors yet: They will be introduced in the chapter about
-[dependent types](../Tutorial/Dependent.md). You can still give
-this a go to check out its effect. Just move the cursor on the
-line declaring `zipWithV`, enter `<LocalLeader>gd` and select the first option.
-This will automatically generate the whole function body including
-case splits and implementations.
+Idris 有时也能够基于函数类型提出完整的函数实现。为了让它在实践中运作良好，
+满足类型检查器的可能实现的数量必须非常小。
+例如，这里是用于向量的函数 `zipWith`。你可能没听说过向量：它们将在[依赖类型](../Tutorial/Dependent.md)的章节中介绍。
+你仍然可以去检查一下它的效果。只需将光标移到声明 `zipWithV` 的行，输入 `<LocalLeader>gd` 并选择第一个选项。
+这将自动生成整个函数体，包括案例拆分和实现。
 
 ```idris
 zipWithV : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
 ```
 
-Expression search only works well if the types are specific
-enough. If you feel like that might be the case, go ahead
-and give it a go, either by running `<LocalLeader>o` on
-a metavariable, or by trying `<LocalLeader>gd` on a
-function declaration.
+表达式搜索仅在类型足够特定时才有效。如果您觉得可能是这种情况，请继续
+试一试，方法是在元变量上运行 `<LocalLeader>o`，或在函数声明处尝试 `<LocalLeader>gd`。
 
-## More Code Actions
+## 更多代码操作
 
-There are other shortcuts available for generating part of your code,
-two of which I'll explain here.
+还有其他快捷方式可用于生成部分代码，
+其中两个我将在这里解释。
 
-First, it is possible to add a new case block by entering
-`<LocalLeader>mc` in normal mode when on a metavariable.
-For instance, here is part of an implementation of `filterList`,
-which appears in an exercise in the chapter about
-algebraic data types. I arrived at this by letting Idris
-generate a skeleton implementation followed by a case split
-and an expression search on the first metavariable:
+首先，处于正常模式是可以通过在元变量上按下 `<LocalLeader>mc` 添加一个新的案例块。
+例如，这里是 `filterList` 实现的一部分，
+它出现在代数数据类型一章中。让 Idris 先生成骨架实现，然后是进行一次案例拆分
+以及对第一个元变量的表达式搜索：
 
 ```idris
 filterList : (a -> Bool) -> List a -> List a
@@ -182,15 +170,15 @@ filterList f [] = []
 filterList f (x :: xs) = ?filterList_rhs_1
 ```
 
-We will next have to pattern match on the result of applying
-`x` to `f`. Idris can introduce a new case block for us,
-if we move the cursor onto metavariable `?filterList_rhs_1`
-and enter `<LocalLeader>mc` in normal mode. We can then
-continue with our implementation by first giving the
-expression to use in the case block (`f x`) followed by a
-case split on the new variable in the case block.
-This will lead us to an implementation similar to the following
-(I had to fix the indentation, though):
+接下来我们必须对应用 `x` 到 `f` 的结果进行模式匹配。
+Idris 可以为我们介绍一个新的案例块，
+如果我们将光标移动到元变量 `?filterList_rhs_1`
+并在正常模式下输入 `<LocalLeader>mc`。那么我们可以
+继续我们的实现，首先给出
+在 case 块中使用的表达式 (`f x`) 后跟一个
+对 case 块中的新变量进行 case 拆分。
+这将导致我们实现类似于以下的实现
+（不过，我必须修复缩进）：
 
 ```idris
 filterList2 : (a -> Bool) -> List a -> List a
@@ -200,16 +188,14 @@ filterList2 f (x :: xs) = case f x of
   True => ?filterList2_rhs_3
 ```
 
-Sometimes, we want to extract a utility function from
-an implementation we are working on. For instance, this is often
-useful or even necessary when we write proofs about our code
-(see chapters [Propositional Equality](../Tutorial/Eq.md)
-and [Predicates](../Tutorial/Predicates.md), for instance).
-In order to do so, we can move the cursor on a metavariable,
-and enter `<LocalLeader>ml`. Give this a try with
-`?whatNow` in the following example (this will work better
-in a regular Idris source file instead of the literate
-file I use for this tutorial):
+有时，我们想从正在工作的实现中提取一个工具函数。例如，
+当我们编写代码证明时通常是有用甚至是必要的
+（参见章节 [命题等式](../Tutorial/Eq.md)
+和 [谓词](../Tutorial/Predicates.md)）。
+为此，我们可以将光标移动到元变量上，
+并输入 `<LocalLeader>ml`。试试这个
+`?whatNow` 在下面的例子中（这在常规的 Idris 源文件中会更好，
+而不是我用于本教程的文学编程文件）：
 
 ```idris
 traverseEither : (a -> Either e b) -> List a -> Either e (List b)
@@ -217,12 +203,9 @@ traverseEither f [] = Right []
 traverseEither f (x :: xs) = ?whatNow x xs f (f x) (traverseEither f xs)
 ```
 
-Idris will create a new function declaration with the
-type and name of `?whatNow`, which takes as arguments
-all variables currently in scope. It also replaces the hole in
-`traverseEither` with a call to this new function. Typically,
-you will have to manually remove unneeded arguments
-afterwards. This led me to the following version:
+Idris 将创建一个新的带有类型的函数声明，其名称为 `?whatNow`，
+可以把当前作用域内的所有变量作为参数。它也取代了 `traverseEither` 中的孔来调用这个新函数。通常，
+您将不得不手动删除不需要的参数。这导致我得到以下版本：
 
 ```idris
 whatNow2 : Either e b -> Either e (List b) -> Either e (List b)
@@ -232,72 +215,41 @@ traverseEither2 f [] = Right []
 traverseEither2 f (x :: xs) = whatNow2 (f x) (traverseEither f xs)
 ```
 
-## Getting Information
+## 获取资讯
 
-The `idris2-lsp` executable and through it, the `idris2-nvim` plugin,
-not only supports the code actions described above. Here is a
-non-comprehensive list of other capabilities. I suggest you try
-out each of them from within this source file.
+`idris2-nvim` 通过`idris2-lsp` 可执行文件并通过它不仅支持上述代码操作。
+这里有一个其他功能的非全面列表。
+我建议你从这个源文件中取出它们中的每一个去试试。
 
-* Typing `K` when on an identifier or operator in normal mode shows its type
-  and namespace (if any). In case of a metavariable, variables
-  in the current context are displayed as well together with their
-  types and quantities (quantities will be explained in
-  [Functions Part 2](../Tutorial/Functions2.md)).
-  If you don't like popups, enter `<LocalLeader>so` to open a new window where
-  this information is displayed and semantically highlighted instead.
+* 在正常模式下的标识符或运算符上键入 `K` 会显示其类型和命名空间（如果有）。在元变量的情况下，当前上下文中的变量也会连同它们的类型和定量一起显示（定量将在 [Functions Part 2](../Tutorial/Functions2.md) 中解释）。如果您不喜欢弹出窗口，请输入 `<LocalLeader>so` 以打开一个新窗口，该窗口将显示此信息并在语义上突出显示。
 
-* Typing `gd` on a function, operator, data constructor or type
-  constructor in normal mode jumps to the item's definition.
-  For external modules, this works only if the
-  module in question has been installed together with its source code
-  (by using the `idris2 --install-with-src` command).
+* 在正常模式下在函数、运算符、数据构造函数或类型构造函数上输入 `gd` 会跳转到项目的定义。对于外部模块，仅当相关模块与其源代码一起安装时才有效（通过使用 `idris2 --install-with-src` 命令）。
 
-* Typing `<LocalLeader>mm` opens a popup window listing all metavariables
-  in the current module. You can place the cursor on an entry and
-  jump to its location by pressing `<Enter>`.
+* 输入 `<LocalLeader>mm` 打开一个弹出窗口，列出当前模块中的所有元变量。您可以将光标放在一个条目上，然后按 `<Enter>` 跳转到它的位置。
 
-* Typing `<LocalLeader>mn` (or `<LocalLeader>mp`) jumps to the next
-  (or previous) metavariable in the current module.
+* 输入 `<LocalLeader>mn`（或 `<LocalLeader>mp`）跳转到当前模块中的下一个（或上一个）元变量。
 
-* Typing `<LocalLeader>br` opens a popup where you can enter a
-  namespace. Idris will then show all functions (plus their types)
-  exported from that namespace in a popup window, and you can
-  jump to a function's definition by pressing enter on one of the
-  entries. Note: The module in question must be imported in the
-  current source file.
+* 键入 `<LocalLeader>br` 会打开一个弹出窗口，您可以在其中输入名称空间。然后 Idris 将在弹出窗口中显示从该命名空间导出的所有函数（以及它们的类型），您可以通过在其中一个条目上按 enter 来跳转到函数的定义。注意：有问题的模块必须在当前源文件中导入。
 
-* Typing `<LocalLeader>x` opens a popup where you can enter
-  a REPL command or Idris expression, and the plugin will reply
-  with a response from the REPL. Whenever REPL examples are shown
-  in the main part of this guide, you can try them from within
-  Neovim with this shortcut if you like.
+* 输入 `<LocalLeader>x` 会打开一个弹出窗口，您可以在其中输入 REPL 命令或 Idris 表达式，插件将回复来自 REPL 的响应。每当本指南的主要部分显示 REPL 示例时，如果您愿意，可以使用此快捷方式在 Neovim 中尝试它们。
 
-* Typing `<LocalLeader><LocalLeader>e` will display the error message
-  from the current line in a popup window. This can be highly useful,
-  if error messages are too long to fit on a single line. Likewise,
-  `<LocalLeader><LocalLeader>el` will list all error messages from the current
-  buffer in a new window. You can then select an error message and
-  jump to its origin by pressing `<Enter>`.
+* 键入 `<LocalLeader><LocalLeader>e` 将在弹出窗口中显示当前行的错误消息。如果错误消息太长而无法放在一行中，这将非常有用。同样， `<LocalLeader><LocalLeader>el` 将在新窗口中列出当前缓冲区中的所有错误消息。然后，您可以通过按 `<Enter>` 选择错误消息并跳转到其原点。
 
 
-Other use cases and examples are described on the GitHub page
-of the `idris2-nvim` plugin and can be included as described there.
+`idris2-nvim` 插件其他用例和示例在 GitHub 页面上进行了描述，这些描述也包含在内。
 
-## The `%name` Pragma
+## `%name` 编译指示
 
-When you ask Idris for a skeleton implementation with `<LocalLeader>a`
-or a case split with `<LocalLeader>c`,
-it has to decide on what names to use for the new variables it introduces.
-If these variables already have predefined names (from the function's
-signature, record fields, or named data constructor arguments),
-those names will be used, but
-otherwise Idris will as a default use names `x`, `y`, and `z`, followed
-by other letters. You can change this default behavior by
-specifying a list of names to use for such occasions for any
-data type.
+当您向 Idris 询问使用 `<LocalLeader>a` 的框架实现
+或用 `<LocalLeader>c` 案例拆分时，
+它必须决定为它引入的新变量使用什么名称。
+如果这些变量已经有预定义的名称（来自函数的
+签名、记录字段或命名数据构造函数参数），
+这些名称将被使用，否则 Idris 将默认使用名称 `x`、`y` 和 `z`，然后
+或其他字母。您可以更改此默认行为，
+只要指定用于此类数据类型场合的名称列表。
 
-For instance:
+例如：
 
 ```idris
 data Element = H | He | C | N | O | F | Ne
@@ -305,10 +257,9 @@ data Element = H | He | C | N | O | F | Ne
 %name Element e,f
 ```
 
-Idris will then use these names (followed by these names postfixed
-with increasing integers), when it has to come up with variable names of this
-type on its own. For instance, here is a test function and the
-result of adding a skeleton definition to it:
+然后 Idris 将使用这些名称（这些名称后跟自增数字的后缀），
+当它必须想出这个类型的自己变量名时。
+例如，这是一个测试函数和向其添加骨架定义的结果：
 
 ```idris
 test : Element -> Element -> Element -> Element -> Element -> Element
@@ -317,12 +268,11 @@ test e f e1 f1 e2 = ?test_rhs
 
 ## 结论
 
-Neovim, together with the `idris2-lsp` executable and the
-`idris2-nvim` editor plugin, provides extensive utilities for
-interactive editing when programming in Idris. Similar functionality
-is available for some other editors, so feel free to ask what's
-available for your editor of choice, for instance on the
-[Idris 2 Discord channel](https://discord.gg/UX68fDs2jc).
+Neovim，连同 `idris2-lsp` 可执行文件和 `idris2-nvim` 编辑器插件，
+为在 Idris 中编程时的交互式编辑。
+其他一些编辑也可以使用类似的功能，
+所以请随时询问可供您选择使用的编辑器有什么，
+例如在 [Idris 2 Discord 频道](https://discord.gg/UX68fDs2jc) 上。
 
 <!-- vi: filetype=idris2
 -->

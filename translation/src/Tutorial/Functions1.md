@@ -281,62 +281,45 @@ arithTest' = 5 + 10 * 12
 
 以下是 *Prelude* 导出的重要运算符列表。其中大多数具有 * 约束 *，也就是说它们仅适用于实现了某个 * 接口 * 的类型。现在不要担心这个。我们将在适当的时候了解接口，运算符会按照直觉行事。例如，加法和乘法适用于所有数字类型，比较运算符适用于 *Prelude* 中的几乎所有类型，但函数除外。
 
-* `(.)`: Function composition
+* `(.)`：函数组合
 
-* `(+)`: Addition
+* `(+)`：加法
 
-* `(*)`: Multiplication
+* `(*)`：乘法
 
-* `(-)`: Subtraction
+* `(-)`：减法
 
-* `(/)`: Division
+* `(/)`：除法
 
-* `(==)` : True, if two values are equal
+* `(==)` ：判断两个值是否相等
 
-* `(/=)` : True, if two values are not equal
+* `(/=)` ：如果两个值不相等则结果为真
 
-* `(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators
+* `(<=)`、`(>=)`、`(<)` 和 `(>)` ：比较运算符
 
-* `($)`: Function application
+* `($)`：函数应用
 
 
 上面最特别的是最后一个。它的优先级为 0，所有其他运算符都比他绑定得更紧密。因此可以使用它来减少所需的括号数量。例如，不写 `isTriple 3 4 (2 + 3 * 1)` 我们可以写成 `isTriple 3 4 $ 2 + 3 * 1`，这完全一样。有时，这有助于提高可读性，虽然有时并不会。要记住的重要一点是 `fun $ x y` 与 `fun (x y)` 相同。
 
 ## 练习
 
-1. Reimplement functions `testSquare` and `twice` by using the dot
-   operator and dropping the second arguments (have a look at the
-   implementation of `squareTimes2` to get an idea where this should
-   lead you). This highly concise
-   way of writing function implementations is sometimes called
-   *point-free style* and is often the preferred way of writing
-   small utility functions.
+1. 通过使用点运算符并删除第二个参数重新实现函数 `testSquare` 和 `twice`（查看 `squareTimes2` 的实现应该可以让你更加了解）。这种编写函数实现的高度简洁的方式有时被称为*无值风格*，并且通常是编写小型实用函数的首选方式。
 
 
-2. Declare and implement function `isOdd` by combining functions `isEven`
-   from above and `not` (from the Idris *Prelude*). Use point-free style.
+2. 通过组合上面的函数 `isEven` 和 `not`（来自 Idris *Prelude*）来声明和实现函数 `isOdd`。使用无值风格。
 
 
-3. Declare and implement function `isSquareOf`, which checks whether
-   its first `Integer` argument is the square of the second argument.
+3. 声明并实现函数 `isSquareOf`，检查它的第一个 `Integer` 参数是否是第二个参数的平方。
 
 
-4. Declare and implement function `isSmall`, which checks whether
-   its `Integer` argument is less than or equal to 100. Use one of the
-   comparison operators `<=` or `>=` in your implementation.
+4. 声明并实现函数 `isSmall`，检查其 `Integer` 参数是否小于或等于 100。在你的实现中使用比较运算符 `<=` 或 `>=` 之一。
 
 
-5. Declare and implement function `absIsSmall`, which checks whether
-   the absolute value of its `Integer` argument is less than or equal to 100.
-   Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your implementation,
-   which should be in point-free style.
+5. 声明并实现函数 `absIsSmall`，检查其 `Integer` 参数的绝对值是否小于等于100。在你的实现中使用函数 `isSmall` 和 `abs `（来自 Idris *Prelude*），最好是无值风格的。
 
 
-6. In this slightly extended exercise we are going to implement
-   some utilities for working with `Integer` predicates (functions
-   from `Integer` to `Bool`). Implement the following higher-order
-   functions (use boolean operators `&&`, `||`, and function `not` in
-   your implementations):
+6. 在这个稍微扩展的练习中，我们将实现一些实用程序来处理 `Integer` 谓词（从 `Integer` 到 `Bool` 的函数）。实现以下高阶函数（在您的实现中使用布尔运算符 `&&`、`||` 和函数 `not`）：
 
 
    ```idris
@@ -358,13 +341,7 @@ arithTest' = 5 + 10 * 12
    False
    ```
 
-7. As explained above, Idris allows us to define our own infix operators.
-   Even better, Idris supports *overloading* of function names,
-   that is, two functions or operators can have the same
-   name, but different types and implementations.
-   Idris will make use of the
-   types to distinguish between equally named operators and
-   functions.
+7. 如上所述，Idris 允许我们定义自己的中缀运算符。更好的是，Idris 支持函数名的*重载*，即两个函数或运算符可以有相同的名称，但类型和实现不同。 Idris 将使用类型来区分同名的运算符和函数。
 
 
    这允许我们重新实现函数 `and`、`or` 和 `negate`，在练习 6 中，使用布尔代数中现有的运算符和函数：

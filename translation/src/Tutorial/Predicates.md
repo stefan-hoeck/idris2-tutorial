@@ -24,58 +24,19 @@ import System.File
 
 使用列表或其他容器类型时，一个非常常见的操作是提取序列中的第一个值。然而，这个函数不能在一般情况下工作，因为为了从列表中提取值，列表不能为空。这里有几种编码和实现它的方法，每种方法都有自己的优点和缺点：
 
-* Wrap the result in a failure type, such as a `Maybe` or
-  `Either e` with some custom error type `e`. This makes it
-  immediately clear that the function might not be able to
-  return a result. It is a natural way to deal with unvalidated
-  input from unknown sources. The drawback of this approach is
-  that results will carry the `Maybe` stain, even in situations
-  when we *know* that the *nil* case is impossible, for instance because we
-  know the value of the list argument at compile-time,
-  or because we already *refined* the input value in such a
-  way that we can be sure it is not empty (due to an earlier
-  pattern match, for instance).
+* 将结果包装在故障类型中，例如 `Maybe` 或带有一些自定义错误类型 `e` 的 `Either e`。这立即清楚地表明该函数可能无法返回结果。这是处理来自未知来源的未经验证的输入的自然方式。这种方法的缺点是结果会带有 `Maybe` 污点，即使在我们 *知道 *不可能为 *nil* 的情况下，例如因为我们知道list 参数在编译时的值，或者因为我们已经 *改进了* 输入值，以确保它不为空（例如，由于较早的模式匹配）。
 
 
-* Define a new data type for non-empty lists and use this
-  as the function's argument. This is the approach taken in
-  module `Data.List1`. It allows us to return a pure value
-  (meaning "not wrapped in a failure type" here), because the
-  function cannot possibly fail, but it comes with the
-  burden of reimplementing many of the utility functions and
-  interfaces we already implemented for `List`. For a very common
-  data structure this can be a valid option, but for rare use cases
-  it is often too cumbersome.
+* 为非空列表定义一个新的数据类型并将其用作函数的参数。这是在模块 `Data.List1` 中采用的方法。它允许我们返回一个纯值（这里的意思是“不包含在失败类型中”），因为函数不可能失败，但它带来了重新实现我们已经为 `List` 实现的许多实用函数和接口的负担。对于非常常见的数据结构，这可能是一个有效的选项，但对于罕见的用例，它通常太麻烦了。
 
 
-* Use an index to keep track of the property we are interested
-  in. This was the approach we took with type family `List01`,
-  which we saw in several examples and exercises in this guide
-  so far. This is also the approach taken with vectors,
-  where we use the exact length as our index, which is even
-  more expressive. While this allows us to implement many functions
-  only once and with greater precision at the type level, it
-  also comes with the burden of keeping track of changes
-  in the types, making for more complex function types
-  and forcing us to at times return existentially quantified
-  wrappers (for instance, dependent pairs),
-  because the outcome of a computation is not known until
-  runtime.
+* 使用索引来跟踪我们感兴趣的属性。这是我们对类型族 `List01` 采用的方法，到目前为止，我们在本指南的几个示例和练习中看到了这种方法。这也是向量采用的方法，我们使用精确的长度作为索引，这样更有表现力。虽然这允许我们在类型级别以更高的精度实现许多函数，但它也带来了跟踪类型变化的负担，产生更复杂的函数类型并迫使我们有时返回存在量化的包装器（例如，依赖对），因为直到运行时才知道计算的结果。
 
 
-* Fail with a runtime exception. This is a popular solution
-  in many programming languages (even Haskell), but in Idris
-  we try to avoid this, because it breaks totality in a way,
-  which also affects client code. Luckily, we can make use of
-  our powerful type system to avoid this situation in general.
+* 失败并出现运行时异常。这是许多编程语言（甚至是 Haskell）中流行的解决方案，但在 Idris 中我们尽量避免这种情况，因为它在某种程度上破坏了完全性，这也会影响客户端代码。幸运的是，我们可以利用我们强大的类型系统来避免这种情况。
 
 
-* Take an additional (possibly erased) argument of a type
-  we can use as a witness that the input value is of the
-  correct kind or shape. This is the solution we will discuss
-  in this chapter in great detail. It is an incredibly powerful way
-  to talk about restrictions on values without having to
-  replicate a lot of already existing functionality.
+* 取一个类型的附加（可能已删除）参数，我们可以将其用作输入值的类型或形状正确的见证。这是我们将在本章中详细讨论的解决方案。这是一种非常强大的方式来讨论对值的限制，而无需复制许多已经存在的功能。
 
 
 Idris 中列出的大多数（如果不是全部）解决方案都有时间和地点，但我们经常会转向最后一个并使用谓词（所谓的 *前置条件*）优化函数参数，因为它使我们的函数在运行时 *和* 编译时更好用。
@@ -212,32 +173,22 @@ headMaybe as = case nonEmpty as of
 
 在这些练习中，您必须使用自动隐式实现几个函数，以约束作为函数参数接受的值。结果应该是 *纯的*，也就是说，没有包裹在像 `Maybe` 这样的失败类型中。
 
-1. Implement `tail` for lists.
+1. 为列表实现 `tail`。
 
 
-2. Implement `concat1` and `foldMap1` for lists. These
-   should work like `concat` and `foldMap`, but taking only
-   a `Semigroup` constraint on the element type.
+2. 为列表实现 `concat1` 和 `foldMap1`。这些应该像 `concat` 和 `foldMap` 一样工作，但对元素类型仅采用 `Semigroup` 约束。
 
 
-3. Implement functions for returning the largest and smallest
-   element in a list.
+3. 实现用于返回列表中最大和最小元素的函数。
 
 
-4. Define a predicate for strictly positive natural numbers
-   and use it to implement a safe and provably total division
-   function on natural numbers.
+4. 为严格的正自然数定义一个谓词，并用它来实现一个安全且可证明的自然数全除函数。
 
 
-5. Define a predicate for a non-empty `Maybe` and use it to
-   safely extract the value stored in a `Just`. Show that this
-   predicate is decidable by implementing a corresponding
-   conversion function.
+5. 为非空 `Maybe` 定义一个谓词，并使用它安全地提取存储在 `Just` 中的值。通过实现相应的转换函数来证明这个谓词是可判定的。
 
 
-6. Define and implement functions for safely extracting values
-   from a `Left` and a `Right` by using suitable predicates.
-   Show again that these predicates are decidable.
+6. 使用合适的谓词定义和实现从 `Left` 和 `Right` 安全地提取值的函数。再次证明这些谓词是可判定的。
 
 
 您在这些练习中实现的谓词已经在 *base* 库中可用：`Data.List.NonEmpty`、`Data.Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat.IsSucc`。
@@ -480,27 +431,18 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
 
 ### 练习第 2 部分
 
-1. Show that `InSchema` is decidable by changing the output type
-   of `inSchema` to `Dec (c ** InSchema n ss c)`.
+1. 通过将 `inSchema` 的输出类型更改为 `Dec (c ** InSchema n ss c)` 来证明 `InSchema` 是可判定的。
 
 
-2. Declare and implement a function for modifying a field
-   in a row based on the column name given.
+2. 声明并实现一个函数，用于根据给定的列名修改行中的字段。
 
 
-3. Define a predicate to be used as a witness that one
-   list contains only elements in the second list in the
-   same order and use this predicate to extract several columns
-   from a row at once.
+3. 定义一个谓词用作见证一个列表仅包含第二个列表中相同顺序的元素，并使用此谓词一次从一行中提取几列。
 
 
    例如，`[1,2,3,4,5,6]` 包含的 `[2,4,5]` 顺序是正确的，但是 `[4,2,5]` 不是。
 
-4. Improve the functionality from exercise 3 by defining a new
-   predicate, witnessing that all strings in a list correspond
-   to column names in a schema (in arbitrary order).
-   Use this to extract several columns from a row at once in
-   arbitrary order.
+4. 通过定义一个新的谓词来改进练习 3 的功能，见证列表中的所有字符串都对应于模式中的列名（以任意顺序）。使用它可以以任意顺序一次从一行中提取几列。
 
 
    提示：确保包含生成的模式作为索引，
@@ -751,7 +693,7 @@ handleAll h (Left $ U ix v) = extract h ix v
 
 ### 练习第 3 部分
 
-1. Implement the following utility functions for `Union`:
+1. 为 `Union` 实现以下实用函数：
 
 
    ```idris
@@ -761,9 +703,7 @@ handleAll h (Left $ U ix v) = extract h ix v
 
    safe : Err [] a -> a
    ```
-2. Implement the following two functions for embedding
-   an open union in a larger set of possibilities.
-   Note the unerased implicit in `extend`!
+2. 实现以下两个函数，以便在更大的可能性集合中嵌入开放联合。请注意 `extend` 中的未擦除隐式！
 
 
    ```idris
@@ -772,8 +712,7 @@ handleAll h (Left $ U ix v) = extract h ix v
    extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)
    ```
 
-3. Find a general way to embed a `Union ts` in a `Union ss`,
-   so that the following is possible:
+3. 找到一种将 `Union ts` 嵌入到 `Union ss` 中的通用方法，以便可以进行以下操作：
 
 
    ```idris
@@ -782,8 +721,7 @@ handleAll h (Left $ U ix v) = extract h ix v
    embedTest = mapFst embed
    ```
 
-4. Make `handle` more powerful, by letting the handler convert
-   the error in question to an `f (Err rem a)`.
+4. 通过让处理程序将有问题的错误转换为 `f (Err rem a)`，使 `handle` 更强大。
 
 
 ## 关于接口的真相

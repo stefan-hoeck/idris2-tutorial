@@ -99,29 +99,19 @@ readHellos = runActions actions
 
 从这个例子中，我们学到了几件事：
 
-* Values of type `IO a` are *pure descriptions* of programs, which,
-  when being *executed*, perform arbitrary side effects before
-  returning a value of type `a`.
+* `IO a` 类型的值是程序的*纯描述*，当被*执行*时，在返回 `a` 类型的值之前执行任意副作用。
 
 
-* Values of type `IO a` can be safely returned from functions and
-  passed around as arguments or in data structures, without
-  the risk of them being executed.
+* `IO a` 类型的值可以安全地从函数返回并作为参数或在数据结构中传递，而不会有被执行的风险。
 
 
-* Values of type `IO a` can be safely combined in *do blocks* to
-  *describe* new `IO` actions.
+* `IO a` 类型的值可以安全地在 *do 块* 中组合到*描述* `IO` 的新动作中。
 
 
-* An `IO` action will only ever get executed when it's passed to
-  `:exec` at the REPL, or when it is the `main` function of
-  a compiled Idris program that is being executed.
+* 一个 `IO` 动作只会在它被传递给 REPL 的 `:exec` 或者当它是已编译的 Idris 程序的 `main` 函数时才会被执行。
 
 
-* It is not possible to ever break out of the `IO` context: There
-  is no function of type `IO a -> a`, as such a function would
-  need to execute its argument in order to extract the final
-  result, and this would break referential transparency.
+* 永远不可能跳出 `IO` 上下文：没有 `IO a -> a` 类型的函数，因为这样的函数需要执行它的参数才能提取最终结果，这将破坏引用透明。
 
 
 ### 组合纯代码和 `IO` 动作
@@ -197,18 +187,14 @@ exprProg = do
 
 在这些练习中，您将实现一些小型命令行应用程序。其中一些可能会永远运行，因为它们只会在用户输入退出应用程序的关键字时停止。这样的程序不再是可证明的全部。如果您在源文件的顶部添加了 `%default total` 杂注，则需要使用 `covering` 注释这些函数，这意味着您涵盖了所有模式匹配中的所有情况，但由于不受限制的递归，您的程序可能仍会循环。
 
-1. Implement function `rep`, which will read a line
-   of input from the terminal, evaluate it using the
-   given function, and print the result to standard output:
+1. 实现函数 `rep`，它将从终端读取一行输入，使用给定函数对其进行求值，并将结果打印到标准输出：
 
 
    ```idris
    rep : (String -> String) -> IO ()
    ```
 
-2. Implement function `repl`, which behaves just like `rep`
-   but will repeat itself forever (or until being forcefully
-   terminated):
+2. 实现函数 `repl`，其行为类似于 `rep`，但会永远重复（或直到被强制终止）：
 
 
    ```idris
@@ -216,10 +202,7 @@ exprProg = do
    repl : (String -> String) -> IO ()
    ```
 
-3. Implement function `replTill`, which behaves just like `repl`
-   but will only continue looping if the given function returns
-   a `Right`. If it returns a `Left`, `replTill` should print
-   the final message wrapped in the `Left` and then stop.
+3. 实现函数 `replTill`，其行为类似于 `repl`，但只有在给定函数返回 `Right` 时才会继续循环。如果它返回 `Left`，`replTill` 应该打印包装在 `Left` 中的最终消息，然后停止。
 
 
    ```idris
@@ -227,23 +210,10 @@ exprProg = do
    replTill : (String -> Either String String) -> IO ()
    ```
 
-4. Write a program, which reads arithmetic
-   expressions from standard input, evaluates them
-   using `eval`, and prints the result to standard
-   output. The program should loop until
-   users stops it by entering "done", in which case
-   the program should terminate with a friendly greeting.
-   Use `replTill` in your implementation.
+4. 编写一个程序，从标准输入读取算术表达式，使用 `eval` 计算它们，并将结果打印到标准输出。程序应该循环，直到用户通过输入“完成” 停止它，在这种情况下，程序应该以友好的问候终止。在您的实现中使用 `replTill`。
 
 
-5. Implement function `replWith`, which behaves just like `repl`
-   but uses some internal state to accumulate values.
-   At each iteration (including the very first one!),
-   the current state should be printed
-   to standard output using function `dispState`, and
-   the next state should be computed using function `next`.
-   The loop should terminate in case of a `Left` and
-   print a final message using `dispResult`:
+5. 实现函数 `replWith`，其行为类似于 `repl`，但使用一些内部状态来累积值。在每次迭代中（包括第一次迭代！），当前状态应该使用函数 `dispState` 打印到标准输出，并且应该使用函数 `next` 计算下一个状态。如果出现 `Left`，循环应该终止，并使用 `dispResult` 打印最终消息：
 
 
    ```idris
@@ -255,11 +225,7 @@ exprProg = do
             -> IO ()
    ```
 
-6. Use `replWith` from Exercise 5 to write a program
-   for reading natural numbers from standard input and
-   printing the accumulated sum of these numbers.
-   The program should terminate in case of invalid input
-   and if a user enters "done".
+6. 使用练习 5 中的 `replWith` 编写一个程序，用于从标准输入读取自然数并打印这些数字的累加和。如果输入无效并且用户输入“完成”，程序应该终止。
 
 
 ## Do 语法块，脱糖
@@ -487,9 +453,7 @@ bangExpr' s1 s2 s3 = do
 
 ### 练习第 2 部分
 
-1. Reimplement the following *do blocks*, once by using
-   *bang notation*, and once by writing them in their
-   desugared form with nested *bind*s:
+1. 重新实现以下 *do 块*，一次使用*感叹号*，一次通过嵌套*绑定*以脱糖形式编写它们：
 
 
    ```idris
@@ -507,9 +471,7 @@ bangExpr' s1 s2 s3 = do
      Just $ n1 + n2 * 100
    ```
 
-2. Below is the definition of an indexed family of types,
-   the index of which keeps track of whether the value in
-   question is possibly empty or provably non-empty:
+2. 下面是索引类型族的定义，其索引跟踪所讨论的值是否可能为空或可证明非空：
 
 
    ```idris
@@ -521,37 +483,27 @@ bangExpr' s1 s2 s3 = do
    请注意，`Nil` 分支 *必须* 有一个值为 `False` 的 `nonEmpty` 标签，而在 *cons* 的情况下，这是可选的。因此，`List01 False a` 可以为空或非空，
    我们只会通过模式找出匹配它的情况。 另一方面， `List01 True a` *必须* 是 *cons*，对于 `Nil` 的情况， `nonEmpty` 标签应始终设置为 `False`。
 
-   1. Declare and implement function `head` for non-empty lists:
+   1. 为非空列表声明并实现函数 `head`：
 
 
       ```idris
       head : List01 True a -> a
       ```
 
-   2. Declare and implement function `weaken` for converting any `List01 ne a`
-      to a `List01 False a` of the same length and order
-      of values.
+   2. 声明并实现函数 `weaken` 用于将任何 `List01 ne a` 转换为具有相同长度和值顺序的 `List01 False a`。
 
 
-   3. Declare and implement function `tail` for extracting the possibly
-      empty tail from a non-empty list.
+   3. 声明并实现函数 `tail` 用于从非空列表中提取可能为空的尾部。
 
 
-   4. Implement function `(++)` for concatenating two
-      values of type `List01`. Note, how we use a type-level computation
-      to make sure the result is non-empty if and only if
-      at least one of the two arguments is non-empty:
+   4. 实现函数 `(++)` 以连接两个 `List01` 类型的值。请注意，当且仅当两个参数中的至少一个非空时，我们如何使用类型级计算来确保结果非空：
 
 
       ```idris
       (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a
       ```
 
-   5. Implement utility function `concat'` and use it in
-      the implementation of `concat`. Note, that in `concat` the
-      two boolean tags are passed as unrestricted implicits,
-      since you will need to pattern match on these to determine
-      whether the result is provably non-empty or not:
+   5. 实现实用函数 `concat'` 并在 `concat` 的实现中使用它。请注意，在 `concat` 中，两个布尔标记作为不受限制的隐式传递，因为您需要对它们进行模式匹配以确定结果是否可证明为非空：
 
 
       ```idris
@@ -562,15 +514,14 @@ bangExpr' s1 s2 s3 = do
              -> List01 (ne1 && ne2) a
       ```
 
-   6. Implement `map01`:
+   6. 实现 `map01`：
 
 
       ```idris
       map01 : (a -> b) -> List01 ne a -> List01 ne b
       ```
 
-   7. Implement a custom *bind* operator in namespace `List01`
-      for sequencing computations returning `List01`s.
+   7. 在命名空间 `List01` 中实现自定义*绑定*运算符，用于对返回 `List01`s 的计算进行排序。
 
 
       提示：在你的实现中使用 `map01` 和 `concat`
@@ -657,14 +608,7 @@ countEmpty' path = withFile path Read pure (go 0)
 
 ### 练习第 3 部分
 
-1. As we have seen in the examples above, `IO` actions
-   working with file handles often come with the risk
-   of failure. We can therefore simplify things by
-   writing some utility functions and a custom *bind*
-   operator to work with these nested effects. In
-   a new namespace `IOErr`, implement the following
-   utility functions and use these to further cleanup
-   the implementation of `countEmpty'`:
+1. 正如我们在上面的示例中所看到的，使用文件句柄的 `IO` 操作通常会带来失败的风险。因此，我们可以通过编写一些实用函数和自定义 *bind* 运算符来处理这些嵌套效果来简化事情。在新的命名空间 `IOErr` 中，实现以下实用函数并使用它们进一步清理 `countEmpty'` 的实现：
 
 
    ```idris
@@ -681,16 +625,10 @@ countEmpty' path = withFile path Read pure (go 0)
    (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)
    ```
 
-2. Write a function `countWords` for counting the words in a file.
-   Consider using `Data.String.words` and the utilities from
-   exercise 1 in your implementation.
+2. 编写一个函数 `countWords` 用于计算文件中的单词。考虑在您的实现中使用 `Data.String.words` 和练习 1 中的实用程序。
 
 
-3. We can generalize the functionality used in `countEmpty`
-   and `countWords`, by implementing a helper function for
-   iterating over the lines in a file and accumulating some
-   state along the way. Implement `withLines` and use it to
-   reimplement `countEmpty` and `countWords`:
+3. 我们可以概括 `countEmpty` 和 `countWords` 中使用的功能，通过实现一个辅助函数来迭代文件中的行并在此过程中累积一些状态。实现 `withLines` 并用它重新实现 `countEmpty` 和 `countWords`：
 
 
    ```idris
@@ -701,10 +639,7 @@ countEmpty' path = withFile path Read pure (go 0)
              -> IO (Either FileError s)
    ```
 
-4. We often use a `Monoid` for accumulating values.
-   It is therefore convenient to specialize `withLines`
-   for this case. Use `withLines` to implement
-   `foldLines` according to the type given below:
+4. 我们经常使用 `Monoid` 来累加值。因此在这种情况下特化 `withLines` 很方便。使用 `withLines` 根据下面给出的类型实现 `foldLines`：
 
 
    ```idris
@@ -715,13 +650,7 @@ countEmpty' path = withFile path Read pure (go 0)
              -> IO (Either FileError s)
    ```
 
-5. Implement function `wordCount` for counting
-   the number of lines, words, and characters in
-   a text document. Define a custom record type
-   together with an implementation of `Monoid`
-   for storing and accumulating these values
-   and use `foldLines` in your implementation of
-   `wordCount`.
+5. 实现函数 `wordCount` 用于计算文本文档中的行数、单词数和字符数。定义自定义记录类型以及 `Monoid` 的实现，用于存储和累积这些值，并在 `wordCount` 的实现中使用 `foldLines`。
 
 
 ## `IO` 是如何实现的
@@ -773,31 +702,22 @@ data PrimIO.IORes : Type -> Type
 
 ## 结论
 
-* Values of type `IO a` describe programs with side effects,
-  which will eventually result in a value of type `a`.
+* `IO a` 类型的值描述了具有副作用的程序，最终将导致 `a` 类型的值。
 
 
-* While we cannot safely extract a value of type `a`
-  from an `IO a`, we can use several combinators and
-  syntactic constructs to combine `IO` actions and
-  build more-complex programs.
+* 虽然我们不能安全地从 `IO a` 中提取 `a` 类型的值，但我们可以使用多个组合子和句法结构来组合 `IO` 动作并构建更复杂的程式。
 
 
-* *Do blocks* offer a convenient way to run and combine
-  `IO` actions sequentially.
+* *Do 语法块* 提供了一种方便的方式来顺序运行和组合 `IO` 动作。
 
 
-* *Do blocks* are desugared to nested applications of
-  *bind* operators (`(>>=)`).
+* *Do 语法块* 对*绑定*运算符 (`(>>=)`) 的嵌套应用程序进行去糖化。
 
 
-* *Bind* operators, and thus *do blocks*, can be overloaded
-  to achieve custom behavior instead of the default
-  (monadic) *bind*.
+* *绑定*运算符和 *do 语法块* 可以被重载以实现自定义行为，而不是默认的（单子）*绑定*。
 
 
-* Under the hood, `IO` actions are stateful computations
-  operating on a symbolic `%World` state.
+* 在底层，`IO` 动作是在符号 `%World` 状态上运行的有状态计算。
 
 
 ### 下一步是什么

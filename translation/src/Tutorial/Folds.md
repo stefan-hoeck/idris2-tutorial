@@ -217,22 +217,16 @@ False
 
 在本节中，我们了解了递归和完全性检查的几个重要方面，总结如下：
 
-* In pure functional programming, recursion is the
-  way to implement iterative procedures.
+* 在纯函数式编程中，递归是实现迭代过程的方式。
 
 
-* Recursive functions pass the totality checker, if it can
-  verify that one of the arguments is getting strictly smaller
-  in every recursive function call.
+* 递归函数通过完全性检查器的条件为，如果它可以验证每个递归函数调用中的参数之一严格收敛。
 
 
-* Arbitrary recursion can lead to stack overflow exceptions on
-  backends with small stack size limits.
+* 任意递归可能会导致堆栈大小限制较小的后端出现堆栈溢出异常。
 
 
-* The JavaScript backends of Idris perform mutual tail call
-  optimization: Tail recursive functions are converted to
-  stack safe, imperative loops.
+* Idris 的 JavaScript 后端执行相互尾调用优化：尾递归函数被转换为堆栈安全的命令式循环。
 
 
 请注意，并非您在野外遇到的所有 Idris 后端都会执行尾调用优化。请检查相应的文档。
@@ -243,9 +237,7 @@ False
 
 在这些练习中，您将实现几个递归函数。确保尽可能使用尾递归，并快速验证 REPL 中所有函数的正确行为。
 
-1. Implement functions `anyList` and `allList`, which return
-   `True` if any element (or all elements in case of `allList`) in
-   a list fulfills the given predicate:
+1. 实现函数 `anyList` 和 `allList`，如果列表中的任何元素（或 `allList` 的所有元素）满足给定谓词：
 
 
    ```idris
@@ -254,16 +246,14 @@ False
    allList : (a -> Bool) -> List a -> Bool
    ```
 
-2. Implement function `findList`, which returns the first value
-   (if any) fulfilling the given predicate:
+2. 实现函数 `findList`，它返回满足给定谓词的第一个值（如果有）：
 
 
    ```idris
    findList : (a -> Bool) -> List a -> Maybe a
    ```
 
-3. Implement function `collectList`, which returns the first value
-   (if any), for which the given function returns a `Just`:
+3. 实现函数 `collectList`，它返回第一个值（如果有），给定函数为此返回一个 `Just`：
 
 
    ```idris
@@ -276,19 +266,7 @@ False
    lookupList : Eq a => a -> List (a,b) -> Maybe b
    ```
 
-4. For functions like `map` or `filter`, which must
-   loop over a list without affecting the order of elements,
-   it is harder to write a tail recursive implementation.
-   The safest way to do so is by using a `SnocList` (a
-   *reverse* kind of list that's built from head to tail
-   instead of from tail to head) to accumulate intermediate
-   results. Its two constructors
-   are `Lin` and `(:<)` (called the *snoc* operator).
-   Module `Data.SnocList` exports two tail recursive operators
-   called *fish* and *chips* (`(<><)` and `(<>>)`) for going
-   from `SnocList` to `List` and vice versa. Have a look
-   at the types of all new data constructors and operators
-   before continuing with the exercise.
+4. 对于像 `map` 或 `filter` 这样的函数，它们必须在不影响元素顺序的情况下循环遍历列表，因此很难编写尾递归实现。最安全的方法是使用 `SnocList`（一种*反转*类别的列表，从头到尾而不是从尾到头构建）来累积中间结果。它的两个构造函数是 `Lin` 和 `(:<)` （称为 *snoc* 运算符）。模块 `Data.SnocList` 导出两个尾递归运算符，称为 *鱼* 和 *船* (`(<><)` 和 `(<>>)`) 用于从 `SnocList` 到 `List` ，反之亦然。在继续练习之前，请查看所有新数据构造函数和运算符的类型。
 
 
    为 `List` 实现 `map` 的尾递归版本
@@ -300,19 +278,14 @@ False
    mapTR : (a -> b) -> List a -> List b
    ```
 
-5. Implement a tail recursive version of `filter`, which
-   only keeps those values in a list, which fulfill the
-   given predicate. Use the same technique as described in
-   exercise 4.
+5. 实现 `filter` 的尾递归版本，它只将那些值保存在列表中，满足给定的谓词。使用练习 4 中描述的相同技术。
 
 
    ```idris
    filterTR : (a -> Bool) -> List a -> List a
    ```
 
-6. Implement a tail recursive version of `mapMaybe`, which
-   only keeps those values in a list, for which the given
-   function argument returns a `Just`:
+6. 实现 `mapMaybe` 的尾递归版本，它只将这些值保存在列表中，给定函数参数返回 `Just`：
 
 
    ```idris
@@ -325,15 +298,14 @@ False
    catMaybesTR : List (Maybe a) -> List a
    ```
 
-7. Implement a tail recursive version of list concatenation:
+7. 实现列表连接的尾递归版本：
 
 
    ```idris
    concatTR : List a -> List a -> List a
    ```
 
-8. Implement tail recursive versions of *bind* and `join`
-   for `List`:
+8. 为 `List` 实现 *绑定* 和 `join` 的尾递归版本：
 
 
    ```idris
@@ -477,18 +449,16 @@ Show a => Show (Tree a) where
    深度三的直接子节点，依此类推。
 <!-- textlint-enable -->
 
-2. Implement interface `Eq` for rose trees.
+2. 为玫瑰树实现接口 `Eq`。
 
 
-3. Implement interface `Functor` for rose trees.
+3. 为玫瑰树实现接口 `Functor`。
 
 
-4. For the fun of it: Implement interface `Show` for rose trees.
+4. 为了乐趣：为玫瑰树实现接口`Show`。
 
 
-5. In order not to forget how to program with dependent types,
-   implement function `treeToVect` for converting a rose
-   tree to a vector of the correct size.
+5. 为了不忘记如何使用依赖类型进行编程，请实现函数 `treeToVect` 以将玫瑰树转换为正确大小的向量。
 
 
    提示：确保遵循与`treeSize` 的实现中相同的递归方案。否则，这可能是很难工作。
@@ -656,17 +626,17 @@ concatList = foldMapList id
 
 最后，我们在这里查看一大堆实用函数，它们都以某种方式处理将值列表折叠（或折叠）为单个结果的概念。但是所有这些折叠函数在处理向量、非空列表、玫瑰树，甚至是单值容器（如 `Maybe`、`e` 或`Identity`。哎呀，为了完整起见，它们甚至在使用诸如 `Control.Applicative.Const e` 之类的零值容器时很有用！而且由于这些功能有很多，我们最好找出其中的一组基本功能，我们可以根据这些功能实现所有其他功能，并将所有功能封装在一个接口中。此接口称为 `Foldable`，可从 `Prelude` 获得。当你在 REPL (`:doc Foldable`) 中查看它的定义时，你会发现它包含六个基本函数：
 
-* `foldr`, for folds from the right
+* `foldr`，用于从右侧折叠
 
-* `foldl`, for folds from the left
+* `foldl`，用于从左侧折叠
 
-* `null`, for testing if the container is empty or not
+* `null`，用于测试容器是否为空
 
-* `foldlM`, for effectful folds in a monad
+* `foldlM`，用于单子中的副作用折叠
 
-* `toList`, for converting the container to a list of values
+* `toList`，用于将容器转换为值列表
 
-* `foldMap`, for folding over a monoid
+* `foldMap`，用于折叠一个幺半群
 
 
 对于 `Foldable` 的最小实现，仅实现 `foldr` 就足够了。但是，请考虑手动实现所有六个函数，因为对容器类型的折叠通常是性能关键操作，并且应相应地优化它们中的每一个。例如，根据 `List` 的 `foldr` 来实现 `toList` 是没有意义的，因为这是一个以线性时间复杂度运行的非尾递归函数，而一个手写的实现可以只返回它的参数而不做任何修改。
@@ -675,7 +645,7 @@ concatList = foldMapList id
 
 在这些练习中，您将为不同的数据类型实现 `Foldable`。确保尝试手动实现接口中的所有六个函数。
 
-1. Implement `Foldable` for `Crud i`:
+1. 为 `Crud i` 实现 `Foldable`：
 
 
    ```idris
@@ -686,7 +656,7 @@ concatList = foldMapList id
      Delete : (id : i) -> Crud i a
    ```
 
-2. Implement `Foldable` for `Response e i`:
+2. 为 `Response e i` 实现 `Foldable`：
 
 
    ```idris
@@ -698,9 +668,7 @@ concatList = foldMapList id
      Error   : (err : e) -> Response e i a
    ```
 
-3. Implement `Foldable` for `List01`. Use tail recursion
-   in the implementations of `toList`, `foldMap`, and
-   `foldl`.
+3. 为 `List01` 实现 `Foldable`。在 `toList`、`foldMap` 和 `foldl` 的实现中使用尾递归。
 
 
    ```idris
@@ -709,20 +677,13 @@ concatList = foldMapList id
      (::) : a -> List01 False a -> List01 ne a
    ```
 
-4. Implement `Foldable` for `Tree`. There is no need
-   to use tail recursion in your implementations, but
-   your functions must be accepted by the totality
-   checker, and you are not allowed to cheat by using
-   `assert_smaller` or `assert_total`.
+4. 为 `Tree` 实现 `Foldable`。在你的实现中不需要使用尾递归，但你的函数必须被完全性检查器接受，并且你不能使用 `assert_smaller` 或 `assert_total` 作弊。
 
 
    提示：您可以测试实现的正确行为
    通过对 `treeToVect` 的结果运行相同的折叠并且验证结果是否相同。
 
-5. Like `Functor` and `Applicative`, `Foldable` composes:
-   The product and composition of two foldable container
-   types are again foldable container types. Proof
-   this by implementing `Foldable` for `Comp` and `Product`:
+5. 与 `Functor` 和 `Applicative` 一样，`Foldable` 组合： 两种可折叠容器类型的乘积和组合又是可折叠容器类型。通过为 `Comp` 和 `Product` 实现 `Foldable` 来证明这一点：
 
 
    ```idris

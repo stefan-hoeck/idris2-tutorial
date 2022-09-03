@@ -211,29 +211,24 @@ concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of
 
 注意：如果您不记得术语“自反”、“对称”和“传递”的含义，请快速阅读关于等价关系的内容 [此处](https://en.wikipedia.org/wiki/Equivalence_relation)。
 
-1. Show that `SameColType` is a reflexive relation.
+1. 证明 `SameColType` 是自反关系。
 
 
-2. Show that `SameColType` is a symmetric relation.
+2. 证明 `SameColType` 是一个对称关系。
 
 
-3. Show that `SameColType` is a transitive relation.
+3. 证明 `SameColType` 是传递关系。
 
 
-4. Let `f` be a function of type `ColType -> a` for an
-   arbitrary type `a`. Show that from a value of type
-   `SameColType c1 c2` follows that `f c1` and `f c2` are equal.
+4. 对于任意类型 `a`，令 `f` 为 `ColType -> a` 类型的函数。证明从 `SameColType c1 c2` 类型的值得出 `f c1` 和 `f c2` 相等。
 
 
 对于 `(=)`，上述属性可从 *Prelude* 作为函数 `sym`、`trans` 和 `cong` 获得.自反性来自数据构造函数 `Refl` 本身。
 
-5. Implement a function for verifying that two natural
-   numbers are identical. Try using `cong` in your
-   implementation.
+5. 实现一个函数来验证两个自然数是否相同。尝试在您的实现中使用 `cong`。
 
 
-6. Use the function from exercise 5 for zipping two
-   `Table`s if they have the same number of rows.
+6. 如果两个 `Table` 的行数相同，请使用练习 5 中的函数压缩它们。
 
 
    提示：使用 `Vect.zipWith`。您将需要为此实现
@@ -412,20 +407,18 @@ mapMaybeId (Just x) = Refl
 
 在这些练习中，您将证明小函数的几个简单属性。在编写证明时，更重要的是利用漏洞来弄清楚 Idris 下一步对你的期望。使用提供给您的工具，而不是试图在黑暗中找到自己的方式！
 
-1. Proof that `map id` on an `Either e` returns the value unmodified.
+1. 证明 `Either e` 上的 `map id` 返回未修改的值。
 
 
-2. Proof that `map id` on a list returns the list unmodified.
+2. 证明列表上的 `map id` 返回未修改的列表。
 
 
-3. Proof that complementing a strand of a nucleobase
-   (see the [previous chapter](DPair.md#use-case-nucleic-acids))
-   twice leads to the original strand.
+3. 证明补充一条核碱基链（参见 [上一章](DPair.md#use-case-nucleic-acids)）两次 leads 为原来的链。
 
 
    提示：首先对单碱基进行证明，然后在核酸序列的实现中使用 *Prelude* 中的`cong2`。
 
-4. Implement function `replaceVect`:
+4. 实现函数 `replaceVect`：
 
 
    ```idris
@@ -436,7 +429,7 @@ mapMaybeId (Just x) = Refl
    使用 `replaceAt` 访问相同的元素
    `index` 将返回我们刚刚添加的值。
 
-5. Implement function `insertVect`:
+5. 实现函数 `insertVect`：
 
 
    ```idris
@@ -595,23 +588,19 @@ decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of
 
 ### 练习第 3 部分
 
-1. Show that there can be no non-empty vector of `Void`
-   by writing a corresponding implementation of uninhabited
+1. 通过编写 uninhabited 的对应实现，证明 `Void` 不存在非空向量
 
 
-2. Generalize exercise 1 for all uninhabited element types.
+2. 将练习 1 推广到所有无人居住的元素类型。
 
 
-3. Show that if `a = b` cannot hold, then `b = a` cannot hold
-   either.
+3. 证明如果 `a = b` 不能成立，那么 `b = a` 也不能成立。
 
 
-4. Show that if `a = b` holds, and `b = c` cannot hold, then
-   `a = c` cannot hold either.
+4. 证明如果 `a = b` 成立，而 `b = c` 不能成立，那么 `a = c` 也不能成立。
 
 
-5. Implement `Uninhabited` for `Crud i a`. Try to be
-   as general as possible.
+5. 为 `Crud i a` 实现 `Uninhabited`。尽量笼统。
 
 
    ```idris
@@ -622,29 +611,19 @@ decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of
      Delete : (id : i) -> Crud i a
    ```
 
-6. Implement `DecEq` for `ColType`.
+6. 为 `ColType` 实现 `DecEq`。
 
 
-7. Implementations such as the one from exercise 6 are cumbersome
-   to write as they require a quadratic number of pattern matches
-   with relation to the number of data constructors. Here is a
-   trick how to make this more bearable.
+7. 练习 6 中的实现这样的实现写起来很麻烦，因为它们需要与数据构造函数的数量相关的二次模式匹配。这是一个技巧，如何使它更容易忍受。
 
 
-   1. Implement a function `ctNat`, which assigns every value
-      of type `ColType` a unique natural number.
+   1. 实现一个函数 `ctNat`，它为每个 `ColType` 类型的值分配一个唯一的自然数。
 
 
-   2. Proof that `ctNat` is injective.
-      Hint: You will need to pattern match on the `ColType`
-      values, but four matches should be enough to satisfy the
-      coverage checker.
+   2. 证明 `ctNat` 是单射的。提示：您将需要对 `ColType` 值进行模式匹配，但四个匹配应该足以满足覆盖检查器的要求。
 
 
-   3. In your implementation of `DecEq` for `ColType`,
-      use `decEq` on the result of applying both column
-      types to `ctNat`, thus reducing it to only two lines of
-      code.
+   3. 在为 `ColType` 实现 `DecEq` 时，在将两种列类型应用于 `ctNat` 的结果上使用 `decEq`，从而将其减少到仅两行代码。
 
 
    我们稍后会讨论 `with` 规则：
@@ -676,10 +655,9 @@ rightZero' :  List (Vect n Nat)
 
 可能是我们第一次意识到，Idris 对算术定律知之甚少。Idris 能够统一值
 
-* all values in a computation are known at compile time
+* 计算中的所有值在编译期都是已知的
 
-* one expression follows directly from the other due
-  to the pattern matches used in a function's implementation.
+* 由于函数实现中使用的模式匹配，一个表达式直接跟随另一个表达式。
 
 
 在表达式 `n + 0` 中，并非所有值都是已知的（`n` 是一个变量），并且 `(+)` 是通过第一个参数的模式匹配来实现的，我们在这里一无所知。
@@ -760,27 +738,25 @@ reverseOnto {n = S len} xs (x :: ys) =
 
 ### 练习第 4 部分
 
-1. Implement `plusSuccRightSucc` yourself.
+1. 自己实现 `plusSuccRightSucc`。
 
 
-2. Proof that `minus n n` equals zero for all natural numbers `n`.
+2. 证明 `minus n n` 对于所有自然数 `n` 等于 0。
 
 
-3. Proof that `minus n 0` equals n for all natural numbers `n`
+3. 证明 `minus n 0` 等于 n 对于所有自然数 `n`
 
 
-4. Proof that `n * 1 = n` and `1 * n = n`
-   for all natural numbers `n`.
+4. 证明对于所有自然数 `n`，都有 `n * 1 = n` 和 `1 * n = n` 。
 
 
-5. Proof that addition of natural numbers is
-   commutative.
+5. 证明自然数的加法是可交换的。
 
 
-6. Implement a tail-recursive version of `map` for vectors.
+6. 为向量实现 `map` 的尾递归版本。
 
 
-7. Proof the following proposition:
+7. 证明以下命题：
 
 
    ```idris
@@ -790,9 +766,7 @@ reverseOnto {n = S len} xs (x :: ys) =
              -> map f (xs ++ ys) = map f xs ++ map f ys
    ```
 
-8. Use the proof from exercise 7 to implement again a function
-   for  zipping two `Table`s, this time using a rewrite rule
-   plus `Data.HList.(++)` instead of custom function `appRows`.
+8. 使用练习 7 中的证明再次实现压缩两个 `Table` 的函数，这次使用重写规则加上 `Data.HList.(++)` 而不是自定义函数 `appRows`。
 
 
 ## 结论
