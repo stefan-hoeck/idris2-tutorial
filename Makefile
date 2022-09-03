@@ -21,10 +21,8 @@ develop:
 
 .PHONY: build-docker
 build-docker:
-	docker build -t idris2-tutorial .
+	docker build -t idris2-tutorial:dev .
 
 .PHONY: update
 update: build-docker
-	docker run --rm -it -v /data/project/idris2-tutorial:/work idris2-tutorial
-
-
+	docker run --rm -it -v /data/project/idris2-tutorial:/work idris2-tutorial:dev
