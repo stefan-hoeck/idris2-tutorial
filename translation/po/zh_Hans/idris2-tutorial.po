@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-09-03 02:48+0000\n"
-"PO-Revision-Date: 2022-09-10 08:27+0000\n"
+"PO-Revision-Date: 2022-09-10 08:34+0000\n"
 "Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris-lang/idris2-tutorial/zh_Hans/>\n"
@@ -626,7 +626,7 @@ msgid ""
 "several new *values* (`Monday` to `Sunday`) of the given\n"
 "type. Go ahead, and verify this at the REPL:\n"
 msgstr ""
-"上面的声明定义了一个新的 *类型* (`Weekday`) 和\n"
+"上面的声明定义了一个新的*类型*(`Weekday`)和\n"
 "该类型给定的几个*值*(`Monday` 到 `Sunday`)。继续，并在 REPL 上验证这一点：\n"
 
 #. type: Fenced code block (repl)
@@ -759,7 +759,10 @@ msgid ""
 "a result of the given type in a finite amount of time\n"
 "(*resources* here meaning computational resources like\n"
 "memory or, in case of recursive functions, stack space).\n"
-msgstr "请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内将 *总是* 返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。\n"
+msgstr ""
+"请记住，这些来自类型检查器：给定足够的资源，一个可证明的完全函数在有限时间内"
+"将*总是*返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函"
+"数情况下的堆栈空间）。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:106
@@ -859,9 +862,9 @@ msgid ""
 "we can use pattern matching when implementing functions\n"
 "on these types:\n"
 msgstr ""
-"`Weekday` 等数据类型由有限集组成\n"
-"的值有时称为 *枚举*。Idris 的\n"
-"*Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday` 一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
+"`Weekday` 等数据类型由有限集组成的值有时称为*枚举*。Idris 的 *Prelude* "
+"为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday` "
+"一样，我们可以在实现函数时使用模式匹配在这些类型上：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:152
@@ -915,8 +918,8 @@ msgid ""
 "the second.\n"
 msgstr ""
 "这里，`LT` 表示第一个参数是*小于*\n"
-"第二个，`EQ`表示两个参数是*相等*\n"
-"， `GT` 表示第一个参数是 *大于*\n"
+"第二个，`EQ`表示两个参数是*相等*，\n"
+"`GT` 表示第一个参数是*大于*\n"
 "第二个。\n"
 
 #. type: Title ###
@@ -1281,7 +1284,9 @@ msgid ""
 "So, `Other` is a *function* from `String` to `Title`. This\n"
 "means, that we can pass `Other` a `String` argument and get\n"
 "a `Title` as the result:\n"
-msgstr "所以，`Other` 是从 `String` 到 `Title` 的 *函数*。这意味着，我们可以传递给 `Other` 一个 `String` 参数并得到结果 `Title`：\n"
+msgstr ""
+"所以，`Other` 是从 `String` 到 `Title` 的*函数*。这意味着，我们可以传递给 "
+"`Other` 一个 `String` 参数并得到结果 `Title`：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:348
@@ -1393,7 +1398,9 @@ msgid ""
 "Data types like `Title` are called *sum types* as they consist\n"
 "of the sum of their different parts: A value of type `Title`\n"
 "is either a `Mr`, a `Mrs`, or a `String` wrapped up in `Other`.\n"
-msgstr "像 `Title` 这样的数据类型被称为 *和类型* 因为它们由不同部分的和组成：`Title` 类型的值是 `Mr`、`Mrs` 或包裹在 `Other` 中的 `String`。\n"
+msgstr ""
+"像 `Title` 这样的数据类型被称为*和类型* 因为它们由不同部分的和组成：`Title` "
+"类型的值是 `Mr`、`Mrs` 或包裹在 `Other` 中的 `String`。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:407
@@ -1584,8 +1591,10 @@ msgid ""
 "The most common and convenient way to\n"
 "define them is the `record` construct:\n"
 msgstr ""
-"将几个值组合在一起作为一个逻辑单元通常很有用。例如，在我们的 Web 应用程序中，我们可能想要对用户的信息进行分组\n"
-"在单一数据类型中。这种数据类型通常被称为 *积类型*（见下文解释）。最常见和最方便义方式是通过 `record` 构造进行定义：\n"
+"将几个值组合在一起作为一个逻辑单元通常很有用。例如，在我们的 Web 应用程序中，"
+"我们可能想要对用户的信息进行分组\n"
+"在单一数据类型中。这种数据类型通常被称为*积类型*（见下文解释）。"
+"最常见和最方便义方式是通过 `record` 构造进行定义：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:482
@@ -1782,14 +1791,14 @@ msgid ""
 "guarantees, which makes it drastically easier to reason\n"
 "about our code.\n"
 msgstr ""
-"正如在 [介绍](Intro.md) 中已经提到的，Idris是一种 *纯* "
-"函数式编程语言。在纯函数中，\n"
+"正如在 [介绍](Intro.md) "
+"中已经提到的，Idris是一种*纯*函数式编程语言。在纯函数中，\n"
 "我们不允许修改全局可变状态。像这样，\n"
-"如果我们想修改记录值，我们总是创建一个 *新* 值，保留原始值不变：记录和其他 "
-"Idris 值是 *不可变的*。\n"
-"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数"
-"会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们"
-"的代码推理变得更加容易。\n"
+"如果我们想修改记录值，我们总是创建一个*新*值，保留原始值不变：记录和其他 "
+"Idris 值是*不可变的*。\n"
+"虽然这个*可能会*对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数会"
+"带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们的"
+"代码推理变得更加容易。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:586
@@ -1825,7 +1834,7 @@ msgid ""
 "field of a value:\n"
 msgstr ""
 "这么简单的事情有很多代码，所以 Idris 为此提供了几种语法糖。例如，\n"
-"使用 *记录* 语法，我们可以访问和更新 `age` 字段的值：\n"
+"使用*记录*语法，我们可以访问和更新 `age` 字段的值：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:598
@@ -1859,7 +1868,8 @@ msgid ""
 "composition (`(.)`).\n"
 msgstr ""
 "我们可以通过使用字段名称来访问记录字段，\n"
-"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u.age`。这个特殊语法与函数组合的点运算符（`(.)`） *不*相关。\n"
+"作为投影函数 (`age u`; 在 REPL 中看看 `:t age`），或使用点语法：`u."
+"age`。这个特殊语法与函数组合的点运算符（`(.)`）*不*相关。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:616
@@ -1892,7 +1902,7 @@ msgid ""
 "As an alternative to an operator section,\n"
 "we could have used an anonymous function like so:\n"
 msgstr ""
-"在这里，我使用了 *运算符块* (`(+ 1)`) 来使代码更简洁。\n"
+"在这里，我使用了*运算符块*(`(+ 1)`)来使代码更简洁。\n"
 "作为运算符块的替代方案，\n"
 "我们可以像这样使用匿名函数：\n"
 
@@ -2010,7 +2020,8 @@ msgid ""
 msgstr ""
 "`Foo` 类型的可能值有多少？答案是`7 * 2 = 14`，\n"
 "因为我们可以将所有可能的 `Weekday`（总共七个）与所有可能的\n"
-"`Bool`（共两个）相乘。因此，记录类型的可能值的数量是每个字段可能值的数量的 *积*。\n"
+"`Bool`（共两个）相乘。因此，记录类型的可能值的数量是每个字段可能值的数量的*积"
+"*。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:680
@@ -2223,8 +2234,11 @@ msgid ""
 "by the type of values it stores. This section explains how\n"
 "to define and use generic types.\n"
 msgstr ""
-"有时，我们会喜欢一个概念足够笼统，不仅适用于单一类型，而且适用于所有类型。例如，我们可能不想定义整数列表、字符串列表和布尔列表，因为这会导致大量代码重复。\n"
-"相反，我们希望有一个通用列表类型，根据它存储的值的类型 *参数化*。本节说明如何定义和使用泛型类型。\n"
+"有时，我们会喜欢一个概念足够笼统，不仅适用于单一类型，而且适用于所有类型。例"
+"如，我们可能不想定义整数列表、字符串列表和布尔列表，因为这会导致大量代码重复"
+"。\n"
+"相反，我们希望有一个通用列表类型，根据它存储的值的类型*参数化*。本节说明如何"
+"定义和使用泛型类型。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/DataTypes.md:773
@@ -2337,7 +2351,7 @@ msgid ""
 "types*. Here's an example:\n"
 msgstr ""
 "与许多其他编程语言一样，Idris 允许我们\n"
-"通过使用 *通用数据类型* 来概括此行为。这是一个例子：\n"
+"通过使用*泛型数据类型*来概括此行为。这是一个例子：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:828
@@ -2396,12 +2410,14 @@ msgid ""
 "`Some` and `None` are `Option`s *data constructors*: The functions\n"
 "used to create values of type `Option a` for a type `a`.\n"
 msgstr ""
-"我们需要在这里介绍一些行话。 `Option`就是我们所说的 *类型构造函数*。它还不是饱和类型：它是从 `Type` 到 `Type` 的函数。\n"
+"我们需要在这里介绍一些行话。 `Option`就是我们所说的 "
+"*类型构造函数*。它还不是饱和类型：它是从 `Type` 到 `Type` 的函数。\n"
 "但是，`Option Bool` 是一种类型，`Option Weekday` 也是一种类型。\n"
 "甚至 `Option (Option Bool)` 也是有效类型。\n"
 "`Option`是\n"
-"`Type` 类型的 *参数* 上的 *参数化* 类型构造函数。\n"
-"`Some` 和 `None` 是 `Option` 的 *数据构造函数*：用于为类型 `a` 创建 `Option a` 类型值的函数。\n"
+"`Type` 类型的*参数*上的*参数化*类型构造函数。\n"
+"`Some` 和 `None` 是 `Option` 的 *数据构造函数*：用于为类型 `a` 创建 `Option "
+"a` 类型值的函数。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:860
@@ -2969,7 +2985,7 @@ msgid ""
 "be in scope.\n"
 msgstr ""
 "在 Idris 中，函数类型中的小写标识符是\n"
-"被视为 *类型参数*，而大写标识符\n"
+"被视为*类型参数*，而大写标识符\n"
 "被视为类型或类型构造函数，且必须\n"
 "在作用域内。\n"
 
@@ -3471,7 +3487,8 @@ msgid ""
 "certain concepts and make them available for many\n"
 "types by using *type parameters* instead of\n"
 "concrete types in function and type signatures.\n"
-msgstr "* 泛型类型和函数允许我们泛化某些概念并使它们可供许多人使用，通过使用 *类型参数* 而不是函数和类型签名中的具体类型。\n"
+msgstr "* 泛型类型和函数允许我们泛化某些概念并使它们可供许多人使用，通过使用*类型参数"
+"*而不是函数和类型签名中的具体类型。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1361
@@ -3501,7 +3518,8 @@ msgstr "下一步是什么"
 msgid ""
 "In the [next section](Interfaces.md), we will introduce\n"
 "*interfaces*, another approach to *function overloading*.\n"
-msgstr "在 [下一节](Interfaces.md) 中，我们将介绍 *接口*，这是*函数重载*的另一种方法。\n"
+msgstr "在 [下一节](Interfaces.md) 中，我们将介绍*接口*，这是*函数重载*的另一种方法。"
+"\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:1368 ../src/Tutorial/Dependent.md:910
@@ -3727,7 +3745,10 @@ msgid ""
 "we can learn about the *value* of an index by pattern matching\n"
 "on a *value* of the type family, while this is not possible\n"
 "with a type parameter.\n"
-msgstr "类型参数和索引之间的区别在于，后者可以并且确实在数据构造函数中发生变化，而前者对于所有数据构造函数都是相同的。或者，换句话说，我们可以通过对类型族的 *值* 进行模式匹配来了解索引的 *值，而对于类型参数，这是不可能的。\n"
+msgstr ""
+"类型参数和索引之间的区别在于，后者可以并且确实在数据构造函数中发生变化，而前"
+"者对于所有数据构造函数都是相同的。或者，换句话说，我们可以通过对类型族的*值*"
+"进行模式匹配来了解索引的*值*，而对于类型参数，这是不可能的。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Dependent.md:110
@@ -3820,7 +3841,11 @@ msgid ""
 "types here. If we map over a `Vect`, the argument *and* output type\n"
 "contain a length index, and these length indices will tell us\n"
 "*exactly*, if and how the lengths of our vectors are modified:\n"
-msgstr "函数 `bogusMapList` 表现异常，因为它总是返回空列表。对于 `Vect`，我们需要忠实于这里的类型。如果我们在 `Vect` 上映射，参数 *和* 输出类型包含一个长度索引，这些长度索引将 *确切的* 告诉我们，我们的向量长度如何被修改：\n"
+msgstr ""
+"函数 `bogusMapList` 表现异常，因为它总是返回空列表。对于 "
+"`Vect`，我们需要忠实于这里的类型。如果我们在 `Vect` 上映射，参数 *和* "
+"输出类型包含一个长度索引，这些长度索引将*确切的* "
+"告诉我们，我们的向量长度如何被修改：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/Dependent.md:155
@@ -3855,7 +3880,11 @@ msgid ""
 "Instead of using concrete lengths in type signatures,\n"
 "we can also use *variables* as already seen in the definition of `Vect`.\n"
 "This allows us to declare the general case:\n"
-msgstr "虽然这些例子很有趣，但它们并不是真的有用，不是吗？那是因为他们太专业了。我们想要一个 *通用* 函数来映射任意长度的向量。除了在类型签名中使用具体的长度，我们还可以使用 *变量*，正如在 `Vect` 的定义中已经看到的那样。这允许我们声明一般情况：\n"
+msgstr ""
+"虽然这些例子很有趣，但它们并不是真的有用，不是吗？那是因为他们太专业了。"
+"我们想要一个 *通用* 函数来映射任意长度的向量。除了在类型签名中使用具体的长度"
+"，我们还可以使用*变量*，正如在 `Vect` "
+"的定义中已经看到的那样。这允许我们声明一般情况：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/Dependent.md:174
