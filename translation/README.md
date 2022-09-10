@@ -20,7 +20,7 @@
 
 1. [介绍](src/Tutorial/Intro.md)
 
-   1. [关于 Idris 函数式编程](src/Tutorial/Intro.md#关于-Idris-函数式编程)
+   1. [关于 Idris 编程语言](src/Tutorial/Intro.md#关于-Idris-编程语言)
 
    2. [使用 REPL](src/Tutorial/Intro.md#使用-REPL)
 
