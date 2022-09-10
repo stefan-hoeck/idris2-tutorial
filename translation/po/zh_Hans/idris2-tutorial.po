@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-09-03 02:48+0000\n"
-"PO-Revision-Date: 2022-09-10 08:34+0000\n"
+"PO-Revision-Date: 2022-09-11 15:08+0000\n"
 "Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris-lang/idris2-tutorial/zh_Hans/>\n"
@@ -20842,7 +20842,7 @@ msgstr "使用 `:ti` 检查包含隐式参数的函数类型：`:ti foldl`,\n"
 #: ../src/Tutorial/Intro.md:417
 #, no-wrap
 msgid "use `:m` to list all meta variables (holes) in scope,\n"
-msgstr "使用 `:m` 列出范围内的所有元变量（孔），\n"
+msgstr "使用 `:m` 列出作用域内的所有元变量（孔），\n"
 
 #. type: Bullet: '  * '
 #: ../src/Tutorial/Intro.md:417
@@ -20855,8 +20855,8 @@ msgid ""
 "or even `:doc ?`), or an interface (`:doc Uninhabited`),\n"
 msgstr ""
 "使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，"
-"一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特征（`:doc case`"
-", `:doc let`, `:doc interface`, `:doc record`，甚至 `:doc "
+"一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特性（`:doc case`"
+", `:doc let`, `:doc interface`, `:doc record`，甚至是 `:doc "
 "?`)，或者一个接口（`:doc Uninhabited`），\n"
 
 #. type: Bullet: '  * '
@@ -22651,7 +22651,12 @@ msgid ""
 "you have a file path (for instance \"/home/hock/idris/tutorial/tutorial.ipkg\"),\n"
 "the first thing we will typically do is to try and create a file handle\n"
 "(of type `System.File.File` by calling `fileOpen`).\n"
-msgstr "*base* 库中的模块 `System.File` 导出处理文件句柄和读取和写入文件所需的实用程序。当您有一个文件路径（例如“/home/hock/idris/tutorial/tutorial.ipkg”）时，我们通常会做的第一件事是尝试创建一个文件句柄（类型为 `System.File. File` 通过调用 `fileOpen`）。\n"
+msgstr ""
+"*base* 库中的模块 `System.File` "
+"导出处理文件句柄和读取和写入文件所需的实用程序。当您有一个文件路径（例如“/"
+"home/hock/idris/tutorial/tutorial."
+"ipkg”）时，我们通常会做的第一件事是尝试创建一个文件句柄（类型为 `System.File."
+"File` ，可以通过通过调用 `fileOpen` 获得）。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/IO.md:874
