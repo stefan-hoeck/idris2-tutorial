@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: idris 2-tutorial\n"
 "POT-Creation-Date: 2022-09-03 02:48+0000\n"
-"PO-Revision-Date: 2022-09-04 08:01+0000\n"
+"PO-Revision-Date: 2022-09-10 08:27+0000\n"
 "Last-Translator: grass <467195537@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.grass.work:30443/"
 "projects/idris-lang/idris2-tutorial/zh_Hans/>\n"
@@ -106,7 +106,7 @@ msgstr "[介绍](src/Tutorial/Intro.md)\n"
 #: ../README.md:107
 #, no-wrap
 msgid "[About the Idris Programming Language](src/Tutorial/Intro.md#about-the-idris-programming-language)\n"
-msgstr "[关于 Idris 函数式编程](src/Tutorial/Intro.md#关于-Idris-函数式编程)\n"
+msgstr "[关于 Idris 编程语言](src/Tutorial/Intro.md#关于-Idris-编程语言)\n"
 
 #. type: Bullet: '   2. '
 #: ../README.md:107
@@ -1782,11 +1782,14 @@ msgid ""
 "guarantees, which makes it drastically easier to reason\n"
 "about our code.\n"
 msgstr ""
-"正如在 [介绍](Intro.md) 中已经提到的，Idris是一种 *纯* 函数式编程语言。在纯函数中，\n"
+"正如在 [介绍](Intro.md) 中已经提到的，Idris是一种 *纯* "
+"函数式编程语言。在纯函数中，\n"
 "我们不允许修改全局可变状态。像这样，\n"
-"如果我们想修改记录值，我们总是\n"
-"创建一个 *新* 值，保留原始值不变：记录和其他 Idris 值是 *不可变的*。\n"
-"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们的代码推理变得更加容易。\n"
+"如果我们想修改记录值，我们总是创建一个 *新* 值，保留原始值不变：记录和其他 "
+"Idris 值是 *不可变的*。\n"
+"虽然这个 *可能会* 对性能有轻微影响，但我们可以自由地将记录值传递给不同的函数"
+"会带来一些好处，不用担心函数会修改参数值。这些是非常强大的保证，这使得对我们"
+"的代码推理变得更加容易。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:586
@@ -20012,7 +20015,8 @@ msgid ""
 "Idris is a *pure*, *dependently typed*, *total* *functional*\n"
 "programming language. I'll quickly explain each of these adjectives\n"
 "in this section.\n"
-msgstr "Idris 是一种具有*依赖类型*的、*完全* 的 *纯* *函数式* 编程语言。我将在本节中快速解释这些形容词。\n"
+msgstr "Idris 是一种具有*依赖类型*的、*完全*的*纯**函数式*编程语言。我将在本节中快速"
+"解释这些形容词。\n"
 
 #. type: Title ###
 #: ../src/Tutorial/Intro.md:34
@@ -20264,7 +20268,7 @@ msgstr ""
 msgid ""
 "Since every expression in Idris has an associated *type*,\n"
 "we might want to inspect these as well:\n"
-msgstr "由于 Idris 中的每个表达式都有一个关联的* 类型 *，我们可能还想检查这些：\n"
+msgstr "由于 Idris 中的每个表达式都有一个关联的*类型*，我们可能还想检查这些：\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/Intro.md:158
@@ -20309,7 +20313,13 @@ msgid ""
 "precision (64 bit) floating point numbers (`Double`), unicode\n"
 "characters (`Char`) and strings of unicode characters (`String`).\n"
 "We will use many of these in due time.\n"
-msgstr "每当我们使用整数字面量执行计算而没有明确说明我们想要使用的类型时，Idris 将使用 `Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。它是语言中内置的*原语类型*之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、`Bits16`、`Bits32` `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度（64 位）浮点数（`Double`）、Unicode 字符（`Char`) 和 unicode 字符串 (`String`)。我们将在适当的时候使用其中的大多数。\n"
+msgstr ""
+"每当我们使用整数字面量执行计算而没有明确说明我们想要使用的类型时，Idris "
+"将使用 `Integer` 作为默认值。 `Integer` 是任意精度的有符号整数类型。它是语言"
+"中内置的*原语类型*之一。其他原语包括固定精度有符号和无符号整数类型（`Bits8`、"
+"`Bits16`、`Bits32` `Bits64`、`Int8`、 `Int16`、`Int32` 和 `Int64`）、双精度（"
+"64 位）浮点数（`Double`）、Unicode 字符（`Char`) 和 Unicode 字符串 "
+"(`String`)。我们将在适当的时候会使用到大多数。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:183
@@ -20425,13 +20435,16 @@ msgid ""
 "You will get an error message about the module name `Tutorial.Intro`\n"
 "not matching the file path `src/Tutorial/Intro.md`. You can\n"
 "also use option `--source-dir src` to silence this error.\n"
-msgstr "注意：省略 `--find-ipkg` 选项可能是有益的。您将收到有关模块名称 `Tutorial.Intro` 与文件路径 `src/Tutorial/Intro.md` 不匹配的错误消息。您还可以使用选项 `--source-dir src` 来消除此错误。\n"
+msgstr ""
+"注意：省略 `--find-ipkg` 选项可能会有帮助。因为您将收到有关模块名称 `Tutorial"
+".Intro` 与文件路径 `src/Tutorial/Intro.md` 不匹配的错误信息。"
+"您还可以使用选项 `--source-dir src` 来消除此错误。\n"
 
 #. type: Title ##
 #: ../src/Tutorial/Intro.md:240
 #, no-wrap
 msgid "The Shape of an Idris Definition"
-msgstr "一个 Idris 定义包含什么"
+msgstr "如何声明一个 Idris 定义"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:244
@@ -20439,7 +20452,8 @@ msgstr "一个 Idris 定义包含什么"
 msgid ""
 "Now that we executed our first Idris program, we will talk\n"
 "a bit more about the code we had to write to define it.\n"
-msgstr "现在我们执行了第一个 Idris 程序，我们将更多地讨论我们必须编写的代码来定义它。\n"
+msgstr "现在我们执行了第一个 Idris "
+"程序，接下来我们将更多地讨论我们如何编写代码来定义它。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:251
@@ -20476,7 +20490,13 @@ msgid ""
 "types than just `Integer`.) This is called the *function definition*:\n"
 "Function `maxBits8` should behave as described here when being\n"
 "evaluated.\n"
-msgstr "第一行可以读作：“我们想声明（空）函数 `maxBits8`。它的类型是 `Bits8`”。这称为*函数声明*：我们声明，应该有一个给定名称和类型的函数。第二行显示：“调用 `maxBits8` 的结果应该是 `255`。” （如您所见，我们可以将整数字面量用于其他整数类型，而不仅仅是 `Integer`。）第二行称为*函数定义*：函数 `maxBits8` 应该在求值时的表现在此处描述。\n"
+msgstr ""
+"第一行可以读作：“我们想声明（零元）函数 `maxBits8`。它的类型是 `Bits8`”。这称"
+"为*函数声明*：我们声明，应该有一个给定名称和类型的函数。第二行读作：“调用 "
+"`maxBits8` 的结果应该是 `255`。” "
+"（如您所见，我们可以将整数字面量用于其他整数类型，而不仅仅是 "
+"`Integer`。）第二行称为*函数定义*：此处应该描述函数 `maxBits8` "
+"在求值时的表现。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Intro.md:269
@@ -20484,7 +20504,8 @@ msgstr "第一行可以读作：“我们想声明（空）函数 `maxBits8`。�
 msgid ""
 "We can inspect this at the REPL. Load this source file into\n"
 "an Idris REPL (as described above), and run the following tests.\n"
-msgstr "我们可以在 REPL 进行检查。将此源文件加载到 Idris REPL（如上所述）中，然后运行以下测试。\n"
+msgstr "我们可以在 REPL 进行检查。将此源文件加载到 Idris REPL "
+"中（如上所述），然后运行以下测试。\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/Intro.md:270
@@ -20522,7 +20543,8 @@ msgstr ""
 msgid ""
 "I called `maxBits8` a *nullary function*, which is just a fancy\n"
 "word for *constant*. Let's write and test our first *real* function:\n"
-msgstr "我将 `maxBits8` 称为 *空函数*，它只是 *常量* 的一个花哨的同义词。让我们编写并测试我们的第一个 *real* 函数：\n"
+msgstr "我将 `maxBits8` 称为*零元函数*，它只是*常量*的一个花哨的同义词。让我们编写并"
+"测试我们的第一个*真实*的函数：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/Intro.md:287
@@ -20531,7 +20553,7 @@ msgid ""
 "distanceToMax : Bits8 -> Bits8\n"
 "distanceToMax n = maxBits8 - n\n"
 msgstr ""
-"distanceToMax：Bits8 -> Bits8\n"
+"distanceToMax : Bits8 -> Bits8\n"
 "distanceToMax n = maxBits8 - n\n"
 
 #. type: Plain text
@@ -20545,7 +20567,11 @@ msgid ""
 "is given a local identifier `n`, which is then used in the\n"
 "calculation on the right hand side. Again, go ahead and try this\n"
 "function at the REPL:\n"
-msgstr "这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` 可以这样读：“`distanceToMax` 是 具有一个`Bits8` 类型参数的函数，它返回 `Bits8`\" 类型的结果。在实现中，参数给定一个本地标识符 `n`，然后在右侧计算。再次继续尝试 REPL 的功能：\n"
+msgstr ""
+"这引入了一些新语法和一种新类型：函数类型。 `distanceToMax : Bits8 -> Bits8` "
+"可以这样读：“`distanceToMax` 是具有一个 `Bits8` 类型参数的函数，它返回 "
+"`Bits8` 类型的结果”。在实现中，参数给定一个本地标识符 `n`，然后在右侧计算。"
+"再次在 REPL 中尝试函数：\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/Intro.md:300
@@ -20595,7 +20621,11 @@ msgid ""
 "(which is part of the compilation process of Idris).\n"
 "For instance, if we try the following at the REPL,\n"
 "we will get a type error:\n"
-msgstr "我们现在学习 Idris 编程的一个非常重要的方面：Idris 是一种 *静态类型* 编程语言。我们不允许随意混合类型。这样做会导致来自类型检查器的错误消息（这是 Idris 编译过程的一部分）。例如，如果我们在 REPL 中尝试以下操作，我们将收到类型错误：\n"
+msgstr ""
+"我们现在学习 Idris 编程的一个非常重要的方面：Idris 是一种*静态类型*的编程语言"
+"。我们不允许随意混合类型。这样做会导致来自类型检查器的错误消息（这是 Idris "
+"编译过程的一部分）。例如，如果我们在 REPL "
+"中尝试以下操作，我们将收到类型错误：\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/Intro.md:326
@@ -20638,7 +20668,10 @@ msgid ""
 "then squared. If on the other hand we squared `maxBits8`\n"
 "directly, the result would be truncated to still fit the\n"
 "valid range of `Bits8`:\n"
-msgstr "请注意，在上面的示例中，结果比 `maxBits8` 大得多。原因是，首先将 `maxBits8` 转换为相同值的 `Integer`，然后对其进行平方。另一方面，如果我们直接将 `maxBits8` 平方，结果将被截断以仍然适合 `Bits8` 的有效范围：\n"
+msgstr ""
+"请注意，在上面的示例中，结果比 `maxBits8` 大得多。原因是，首先将 `maxBits8` "
+"转换为相同值的 `Integer`，然后对其进行平方。另一方面，如果我们直接将 "
+"`maxBits8` 平方，结果将被截断以适应 `Bits8` 的有效范围：\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/Intro.md:349
