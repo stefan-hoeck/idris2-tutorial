@@ -841,7 +841,7 @@ It is important to go to the REPL and look at the types:
 Tutorial.DataTypes> :t Some
 Tutorial.DataTypes.Some : a -> Option a
 Tutorial.DataTypes> :t None
-Tutorial.DataTypes.None : Optin a
+Tutorial.DataTypes.None : Option a
 Tutorial.DataTypes> :t Option
 Tutorial.DataTypes.Option : Type -> Type
 ```
