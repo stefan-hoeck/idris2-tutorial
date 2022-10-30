@@ -44,24 +44,24 @@ lookupList va = collectList (\(k,v) => toMaybe (k == va) v)
 
 -- 4
 
-mapTR : (a -> b) -> List a -> List b
-mapTR f = go Lin
+mapTR' : (a -> b) -> List a -> List b
+mapTR' f = go Lin
   where go : SnocList b -> List a -> List b
         go sx []        = sx <>> Nil
         go sx (x :: xs) = go (sx :< f x) xs
 
 -- 5
 
-filterTR : (a -> Bool) -> List a -> List a
-filterTR f = go Lin
+filterTR' : (a -> Bool) -> List a -> List a
+filterTR' f = go Lin
   where go : SnocList a -> List a -> List a
         go sx []        = sx <>> Nil
         go sx (x :: xs) = if f x then go (sx :< x) xs else go sx xs
 
 -- 6
 
-mapMaybeTR : (a -> Maybe b) -> List a -> List b
-mapMaybeTR f = go Lin
+mapMayTR : (a -> Maybe b) -> List a -> List b
+mapMayTR f = go Lin
   where go : SnocList b -> List a -> List b
         go sx []        = sx <>> Nil
         go sx (x :: xs) = case f x of
@@ -69,7 +69,7 @@ mapMaybeTR f = go Lin
           Nothing => go sx xs
 
 catMaybesTR : List (Maybe a) -> List a
-catMaybesTR = mapMaybeTR id
+catMaybesTR = mapMayTR id
 
 -- 7
 
@@ -393,8 +393,8 @@ values = iterateTR 100000 (+1) 0
 
 main : IO ()
 main = do
-  printLn . length $ mapTR (*2)  values
-  printLn . length $ filterTR (\n => n `mod` 2 == 0)  values
-  printLn . length $ mapMaybeTR (\n => toMaybe (n `mod` 2 == 1) "foo")  values
+  printLn . length $ mapTR' (*2)  values
+  printLn . length $ filterTR' (\n => n `mod` 2 == 0)  values
+  printLn . length $ mapMayTR (\n => toMaybe (n `mod` 2 == 1) "foo")  values
   printLn . length $ concatTR values values
   printLn . length $ bindTR [1..500] (\n => iterateTR n (+1) n)

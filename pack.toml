@@ -1,0 +1,4 @@
+[custom.all.tutorial]
+type = "local"
+path = "."
+ipkg = "tutorial.ipkg"

@@ -3,7 +3,7 @@ package tutorial
 authors    = "stefan-hoeck"
 version    = 0.1.0
 sourcedir  = "src"
-depends    = base         >= 0.5.1
+depends    = base         >= 0.6.0
 
 modules = Appendices.Neovim
 
