@@ -76,8 +76,9 @@ the modules a package makes available to other projects, and a list of packages
 the project itself depends on. Finally, the `pack.toml` file informs pack about
 the local packages in the current project.
 
-With this, here is a bunch of things you can do (make sure you are in the
-project's root directory (called `tut` if you followed my suggestion)
+With this, here is a bunch of things you can do, but first,
+make sure you are in the project's root directory
+(called `tut` if you followed my suggestion)
 or one of its child folders when running these commands.
 
 To typecheck the library sources, run
@@ -100,8 +101,9 @@ pack repl src/Tut.idr
 
 ## Conclusion
 
-In this very short tutorial you set up an environment to work on
-Idris projects and follow along with this tutorial. You are now ready
+In this very short tutorial you set up an environment for working on
+Idris projects and following along with the main part of the tutorial.
+You are now ready
 to start with the [first chapter](../Tutorial/Intro.md), or - if you
 already wrote some Idris code - to learn about the details of the
 [Idris module system](Modules.md).
