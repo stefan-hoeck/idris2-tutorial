@@ -125,7 +125,7 @@ a finite number of computational steps. A total function will never fail with an
 exception or loop infinitely, although it can still take arbitrarily
 long to compute its result
 
-Idris comes with a totality checker built in, which enables us to
+Idris comes with a totality checker built-in, which enables us to
 verify the functions we write to be provably total. Totality
 in Idris is opt-in, as in general, checking the totality of
 an arbitrary computer program is undecidable
