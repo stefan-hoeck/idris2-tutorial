@@ -108,12 +108,15 @@ hand. I plan to eventually have a concise reference on Idris
 syntax, typical error messages, the module system, interactive
 editing and possibly others.
 
-1. [Interactive Editing in Neovim](src/Appendices/Neovim.md)
+1. [Getting Started with pack and Idris2](src/Appendices/Install.md)
+2. [Interactive Editing in Neovim](src/Appendices/Neovim.md)
 
 ## Prerequisites
 
 At the moment, this project is being actively developed and
 evolved against the main branch of the Idris 2 repository.
 It is being tested nightly on GitHub and built against
-the latest commit of the Idris 2 main branch as well as the
-Idris 2 commit listed in file `.idris-version`.
+the latest version of [pack's package collection](https://github.com/stefan-hoeck/idris2-pack-db).
+
+In order to follow along with this tutorial, it is strongly suggested to install
+Idris via the pack package manager as described [here](src/Appendices/Install.md).

@@ -13,6 +13,14 @@ tutorial, you'll have to solve some exercises, the solutions of
 which can be found in the `src/Solutions` subfolder. There, I
 use regular `.idr` files.
 
+Before we begin, make sure to install the Idris compiler on your system.
+Throughout this tutorial, I assume you installed the *pack* package
+manager and setup a skeleton package as described
+[here](../Appendices/Install.md). It is
+certainly possible to follow along with just the Idris compiler installed
+by other means, but some adjustments will be necessary
+when starting REPL sessions or building executables.
+
 Every Idris source file should typically start with a module
 name plus some necessary imports, and this document is no
 exception:
@@ -38,7 +46,13 @@ constructs, meaning that they can be assigned to variables,
 passed as arguments to other functions, and returned as results
 from functions. Unlike for instance in
 object-oriented programming languages, in functional programming,
-functions are the main form of abstraction.
+functions are the main form of abstraction. This means that whenever
+we find a common pattern or (almost) identical code in several
+parts of a project, we try to abstract over this in order to
+have to write the corresponding code only once.
+We do this by introducing one or more new functions
+implementing this behavior. Doing so, we often try to be as general
+as possible to make our functions as versatile to use as possible.
 
 Functional programming languages are concerned with the evaluation
 of functions, unlike classical imperative languages, which are
@@ -76,7 +90,7 @@ There are, of course, also some disadvantages:
 ### Dependent Types
 
 Idris is a strongly, statically typed programming language. This
-means, that ever Idris expression is given a *type* (for instance:
+means, that every Idris expression is given a *type* (for instance:
 integer, list of strings, boolean, function from integer to boolean, etc.)
 and types are verified at compile time to rule out certain
 common programming errors.
@@ -86,6 +100,14 @@ For instance, if a function expects an argument of type `String`
 is a *type error* to invoke this function with an argument of
 type `Integer`, and the Idris compiler will refuse to
 generate an executable from such an ill-typed program.
+
+Being *statically typed* means that the Idris compiler will catch
+type errors at *compile time*, that is, before it generates an executable
+program that can be run. The opposite to this are *dynamically typed*
+languages such as Python, which check for type errors at *runtime*, that is,
+when a program is being executed. It is the philosophy of statically typed
+languages to catch as many type errors as possible before there even is
+a program that can be run.
 
 Even more, Idris is *dependently typed*, which is one of its most
 characteristic properties in the landscape of programming
@@ -99,8 +121,9 @@ in due time.
 
 A *total* function is a pure function, that is guaranteed to return
 a value of the expected return type for every possible input in
-a finite amount of time. A total function will never fail with an
-exception or loop infinitely.
+a finite number of computational steps. A total function will never fail with an
+exception or loop infinitely, although it can still take arbitrarily
+long to compute its result
 
 Idris comes with a totality checker built in, which enables us to
 verify the functions we write to be provably total. Totality
@@ -117,17 +140,11 @@ Idris comes with a useful REPL (an acronym for *Read Evaluate
 Print Loop*), which we will use for tinkering with small
 ideas, and for quickly experimenting with the code we just wrote.
 In order to start a REPL session, run the following command
-in a terminal.
+in a terminal:
 
 ```repl
-rlwrap idris2
+pack repl
 ```
-
-(Using command-line utility `rlwrap` is optional. It
-leads to a somewhat nicer user experience, as it allows us
-to use the up and down arrow keys to scroll through a history
-of commands and expressions we entered. It should be available
-for most Linux distributions.)
 
 Idris should now be ready to accept you commands:
 
@@ -197,7 +214,7 @@ We will inspect the code above in some detail in a moment,
 but first we'd like to compile and run it. From this project's
 root directory, run the following:
 ```sh
-idris2 --find-ipkg -o hello src/Tutorial/Intro.md
+pack -o hello exec src/Tutorial/Intro.md
 ```
 
 This will create executable `hello` in directory `build/exec`,
@@ -210,18 +227,20 @@ $ build/exec/hello
 Hello World!
 ```
 
-The `--find-ipkg` option will look for an `.ipkg` file in the
-current directory or one of its parent directories, from which
+The pack program requires an `.ipkg` to be in scope (in the current
+directory or one of its parent directories) from which
 it will get other settings like the source directory to use
-(`src` in our case). The `-o` option gives the name of the
-executable to be generated. Type `idris2 --help` for a list
-of available command-line options and environment variables.
+(`src` in our case). The optional `-o` option gives the name of the
+executable to be generated. Pack comes up with a name of its own
+it this is missing. Type `pack help` for a list
+of available command-line options and commands, and `pack help <cmd>`
+for getting help for a specific command.
 
 As an alternative, you can also load this source file in a REPL
 session and invoke function `main` from there:
 
 ```sh
-rlwrap idris2 --find-ipkg src/Tutorial/Intro.md
+pack repl src/Tutorial/Intro.md
 ```
 
 ```repl
@@ -231,11 +250,6 @@ Hello World!
 
 Go ahead and try both ways of building and running function `main`
 on your system!
-
-Note: It might be instructive to omit the `--find-ipkg` option.
-You will get an error message about the module name `Tutorial.Intro`
-not matching the file path `src/Tutorial/Intro.md`. You can
-also use option `--source-dir src` to silence this error.
 
 ## The Shape of an Idris Definition
 
