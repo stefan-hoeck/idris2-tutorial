@@ -64,7 +64,7 @@ pack new lib tut
 
 This will setup a minimal Idris package in directory `tut` together with an
 `.ipkg` file called `tut.ipkg`, a directory to put your Idris sources called
-`src`, and a minimal Idris module at `src/Playground.idr`.
+`src`, and a minimal Idris module at `src/Tut.idr`.
 
 In addition, it sets up a minimal test suite in directory `test`. All of this is
 put together and made accessible to pack in a `pack.toml` file in the project's
@@ -92,10 +92,10 @@ To build and execute the test suite, run
 pack test tut
 ```
 
-To start a REPL session with `src/Playground.idr` loaded, run
+To start a REPL session with `src/Tut.idr` loaded, run
 
 ```sh
-pack repl src/Playground.idr
+pack repl src/Tut.idr
 ```
 
 ## Conclusion
