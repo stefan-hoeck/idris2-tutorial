@@ -6,8 +6,10 @@ sourcedir  = "src"
 depends    = base         >= 0.6.0
 
 modules = Appendices.Neovim
+        , Appendices.Projects
 
         , Data.HList
+        , Data.List.Magic
         , Data.Union
         , Data.Validated
 

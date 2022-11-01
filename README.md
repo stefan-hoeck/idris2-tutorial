@@ -110,6 +110,7 @@ editing and possibly others.
 
 1. [Getting Started with pack and Idris2](src/Appendices/Install.md)
 2. [Interactive Editing in Neovim](src/Appendices/Neovim.md)
+3. [Structuring Idris Projects](src/Appendices/Projects.md)
 
 ## Prerequisites
 
