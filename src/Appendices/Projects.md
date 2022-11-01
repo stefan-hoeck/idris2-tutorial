@@ -1,11 +1,11 @@
 # Structuring Idris Projects
 
-In this tutorial I'll show you how to organize, install, and depend on
+In this section I'll show you how to organize, install, and depend on
 larger Idris projects. We will have a look at Idris packages,
 the module system, visibility of types and functions, writing
 comments and doc strings, and using pack for managing our libraries.
 
-This tutorial can be useful for all readers who have already
+This section can be useful for all readers who have already
 written a bit of Idris code. We will not do any fancy type level
 wizardry in here, but I'll demonstrate several concepts using
 `failing` code blocks. This rather new addition to the language
@@ -62,7 +62,7 @@ parent folder we consider to be our source directory. It is common
 practice to name the source directory `src`, although this is not
 mandatory (as I said above, the default is actually the directory,
 from which we run Idris). It is possible to change the source directory
-with the `--source-dir` command line option. The following works from
+with the `--source-dir` command-line option. The following works from
 within this project's root directory:
 
 ```sh
@@ -77,7 +77,7 @@ idris2 --source-dir tutorial/src tutorial/src/Appendices/Projects.md
 ```
 
 Most of the time, however, you will specify an `.ipkg` file for
-your project (see later in this tutorial) and define the source
+your project (see later in this section) and define the source
 directory there. Afterwards, you can use pack (instead of the `idris2`
 executable) to start REPL sessions and load your source files.
 
@@ -613,5 +613,6 @@ Entries like the ones given above are all that is needed to add support to
 custom libraries to pack. You can now list these libraries as dependencies
 in your project's `.ipkg` file(s) and pack will automatically install them
 for you.
+
 <!-- vi: filetype=idris2
 -->
