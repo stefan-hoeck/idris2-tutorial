@@ -493,7 +493,7 @@ For instance, here is a try at proofing the identity functor
 law for `Maybe`:
 
 ```idris
-mapMaybeId1 : (ma : Maybe a) -> map id ma = ma
+mapMaybeId1 : (ma : Maybe a) -> map Prelude.id ma = ma
 mapMaybeId1 Nothing  = Refl
 mapMaybeId1 (Just x) = ?mapMaybeId1_rhs
 ```
@@ -982,17 +982,17 @@ lists:
 
 
 ```repl
-reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a
-reverseOnto' xs []        = xs
-reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys
+revOnto' : Vect m a -> Vect n a -> Vect (m + n) a
+revOnto' xs []        = xs
+revOnto' xs (x :: ys) = revOnto' (x :: xs) ys
 
 
 reverseVect' : Vect n a -> Vect n a
-reverseVect' = reverseOnto' []
+reverseVect' = revOnto' []
 ```
 
 As you might have guessed, this will not compile as the
-length indices in the two clauses of `reverseOnto'` do
+length indices in the two clauses of `revOnto'` do
 not unify.
 
 The *nil* case is a case we've already seen above:
@@ -1000,8 +1000,8 @@ Here `n` is zero, because the second vector is empty,
 so we have to convince Idris once again that `m + 0 = m`:
 
 ```idris
-reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a
-reverseOnto xs [] = rewrite addZeroRight m in xs
+revOnto : Vect m a -> Vect n a -> Vect (m + n) a
+revOnto xs [] = rewrite addZeroRight m in xs
 ```
 
 The second case is more complex. Here, Idris fails to unify
@@ -1022,7 +1022,7 @@ In our case, we want to replace `S (m + len)` with `m + S len`,
 so we will need the version with arguments flipped. However, there
 is one more obstacle: We need to invoke `plusSuccRightSucc`
 with the length of `ys`, which is not given as an implicit
-function argument of `reverseOnto`. We therefore need to pattern
+function argument of `revOnto`. We therefore need to pattern
 match on `n` (the length of the second vector), in order to
 bind the length of the tail to a variable. Remember, that we
 are allowed to pattern match on an erased argument only if
@@ -1031,8 +1031,8 @@ argument (`ys` in this case). Here's the implementation of the
 second case:
 
 ```idris
-reverseOnto {n = S len} xs (x :: ys) =
-  rewrite sym (plusSuccRightSucc m len) in reverseOnto (x :: xs) ys
+revOnto {n = S len} xs (x :: ys) =
+  rewrite sym (plusSuccRightSucc m len) in revOnto (x :: xs) ys
 ```
 
 I know from my own experience that this can be highly confusing
