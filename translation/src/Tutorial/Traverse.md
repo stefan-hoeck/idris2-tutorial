@@ -185,12 +185,15 @@ interface Functor t => Foldable t => Traversable' t where
 
 函数 `traverse` 必须遵守两个定律：
 
-* `traverse (Id . f) = Id . map f`: Traversing over the `Identity` monad is
-  just functor `map`.
+* `traverse (Id . f) = Id . map f`: Traversing over
+  the `Identity` monad is just functor `map`.
+
 * `traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`:
-  Traversing with a composition of effects must be the same when being done
-  in a single traversal (left hand side) or a sequence of two traversals
-  (right hand side).
+  Traversing with a composition of effects
+  must be the same when being done in a single traversal
+  (left hand side) or a sequence of two traversals (right
+  hand side).
+
 
 由于`map id = id`（函子恒等律），我们可以从第一定律推导出
 `traverse Id = Id`。这意味着
@@ -199,21 +202,27 @@ interface Functor t => Foldable t => Traversable' t where
 
 ### 练习第 1 部分
 
-1. It is interesting that `Traversable` has a `Functor` constraint. Proof
-   that every `Traversable` is automatically a `Functor` by implementing
-   `map` in terms of `traverse`.
+1. It is interesting that `Traversable` has a `Functor`
+   constraint. Proof that every `Traversable` is
+   automatically a `Functor` by implementing `map`
+   in terms of `traverse`.
+
 
    提示：记住 `Control.Monad.Identity`。
 
-2. Likewise, proof that every `Traversable` is a `Foldable` by implementing
-   `foldMap` in terms of `Traverse`.
+2. Likewise, proof that every `Traversable` is
+   a `Foldable` by implementing `foldMap` in
+   terms of `Traverse`.
+
 
    提示：记住 `Control.Applicative.Const`。
 
-3. To gain some routine, implement `Traversable'` for `List1`, `Either e`,
-   and `Maybe`.
+3. To gain some routine, implement `Traversable'` for
+   `List1`, `Either e`, and `Maybe`.
+
 
 4. Implement `Traversable` for `List01 ne`:
+
 
    ```idris
    data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -221,8 +230,9 @@ interface Functor t => Foldable t => Traversable' t where
      (::) : a -> List01 False a -> List01 ne a
    ```
 
-5. Implement `Traversable` for rose trees. Try to satisfy the totality
-   checker without cheating.
+5. Implement `Traversable` for rose trees. Try to satisfy
+   the totality checker without cheating.
+
 
    ```idris
    record Tree a where
@@ -232,6 +242,7 @@ interface Functor t => Foldable t => Traversable' t where
    ```
 
 6. Implement `Traversable` for `Crud i`:
+
 
    ```idris
    data Crud : (i : Type) -> (a : Type) -> Type where
@@ -243,6 +254,7 @@ interface Functor t => Foldable t => Traversable' t where
 
 7. Implement `Traversable` for `Response e i`:
 
+
    ```idris
    data Response : (e, i, a : Type) -> Type where
      Created : (id : i) -> (value : a) -> Response e i a
@@ -252,9 +264,10 @@ interface Functor t => Foldable t => Traversable' t where
      Error   : (err : e) -> Response e i a
    ```
 
-8. Like `Functor`, `Applicative` and `Foldable`, `Traversable` is closed
-   under composition. Proof this by implementing `Traversable` for `Comp`
+8. Like `Functor`, `Applicative` and `Foldable`, `Traversable` is closed under
+   composition. Proof this by implementing `Traversable` for `Comp`
    and `Product`:
+
 
    ```idris
    record Comp (f,g : Type -> Type) (a : Type) where
@@ -380,12 +393,15 @@ Just (0, 12)
 不受污染。然而，自己的替代方案要做到这一点并不容易，而且很难弄清楚这是怎么回事，所以我会尝试慢慢介绍。
 我们首先需要问自己 “有状态” 的本质是什么，否则什么是纯计算。那是两个基本成分：
 
-1. Access to the *current* state. In case of a pure function, this means
-   that the function should take the current state as one of its arguments.
-2. Ability to communicate the updated state to later stateful
-   computations. In case of a pure function this means, that the function
-   will return a pair of values: The computation's result plus the updated
-   state.
+1. Access to the *current* state. In case of a pure
+   function, this means that the function should take
+   the current state as one of its arguments.
+
+2. Ability to communicate the updated state to later
+   stateful computations. In case of a pure function
+   this means, that the function will return a pair
+   of values: The computation's result plus the updated state.
+
 
 这两个先决条件导致以泛型，
 用于在状态上运行的纯的有状态计算的类型，输入 `st` 并生成 `a` 类型的值 ：
@@ -490,11 +506,12 @@ Monad (State st) where
 在第二个练习中，我们将看基于状态单子的一个索引版本，它允许我们在计算过程中不仅改变状态的值以及它的 *类型*。
 
 1. Below is the implementation of a simple pseudo-random number
-   generator. We call this a *pseudo-random* number generator, because the
-   numbers look pretty random but are generated predictably. If we
-   initialize a series of such computations with a truly random seed, most
-   users of our library will not be able to predict the outcome of our
-   computations.
+   generator. We call this a *pseudo-random* number generator,
+   because the numbers look pretty random but are generated
+   predictably. If we initialize a series of such computations
+   with a truly random seed, most users of our library will not
+   be able to predict the outcome of our computations.
+
 
    ```idris
    rnd : Bits64 -> Bits64
@@ -515,10 +532,11 @@ Monad (State st) where
    生成器，无需对您将作为本练习的一部分实现的函数进行任何更改
    。
 
-   1. Implement `bits64` in terms of `rnd`. This should return the current
-      state, updating it afterwards by invoking function `rnd`. Make sure
-      the state is properly updated, otherwise this won't behave as
-      expected.
+   1. Implement `bits64` in terms of `rnd`. This should return
+      the current state, updating it afterwards by invoking
+      function `rnd`. Make sure the state is properly updated,
+      otherwise this won't behave as expected.
+
 
       ```idris
       bits64 : Gen Bits64
@@ -533,10 +551,12 @@ Monad (State st) where
       (2274787257952781382, 100)
       ```
 
-   2. Implement `range64` for generating random values in the range
-      `[0,upper]`. Hint: Use `bits64` and `mod` in your implementation but
-      make sure to deal with the fact that `mod x upper` produces values in
-      the range `[0,upper)`.
+   2. Implement `range64` for generating random values in
+      the range `[0,upper]`. Hint: Use `bits64` and `mod`
+      in your implementation but make sure to deal with
+      the fact that `mod x upper` produces values in the
+      range `[0,upper)`.
+
 
       ```idris
       range64 : (upper : Bits64) -> Gen Bits64
@@ -559,16 +579,22 @@ Monad (State st) where
 
    3. Implement a generator for random boolean values.
 
-   4. Implement a generator for `Fin n`. You'll have to think carefully
-      about getting this one to typecheck and be accepted by the totality
-      checker without cheating.  Note: Have a look at function
-      `Data.Fin.natToFin`.
 
-   5. Implement a generator for selecting a random element from a vector of
-      values. Use the generator from exercise 4 in your implementation.
+   4. Implement a generator for `Fin n`. You'll have to think
+      carefully about getting this one to typecheck and be
+      accepted by the totality checker without cheating.
+      Note: Have a look at function `Data.Fin.natToFin`.
 
-   6. Implement `vect` and `list`. In case of `list`, the first argument
-      should be used to randomly determine the length of the list.
+
+   5. Implement a generator for selecting a random element
+      from a vector of values. Use the generator from
+      exercise 4 in your implementation.
+
+
+   6. Implement `vect` and `list`. In case of `list`, the
+      first argument should be used to randomly determine the length
+      of the list.
+
 
       ```idris
       vect : {n : _} -> Gen a -> Gen (Vect n a)
@@ -585,32 +611,39 @@ Monad (State st) where
 
    7. Implement `choice`.
 
+
       ```idris
       choice : {n : _} -> Vect (S n) (Gen a) -> Gen a
       ```
 
    8. Implement `either`.
 
+
       ```idris
       either : Gen a -> Gen b -> Gen (Either a b)
       ```
 
-   9. Implement a generator for printable ASCII characters.  These are
-      characters with ASCII codes in the interval `[32,126]`. Hint: Function
-      `chr` from the *Prelude* will be useful here.
+   9. Implement a generator for printable ASCII characters.
+      These are characters with ASCII codes in the interval
+      `[32,126]`. Hint: Function `chr` from the *Prelude*
+      will be useful here.
 
-   10. Implement a generator for strings. Hint: Function `pack` from the
-       *Prelude* might be useful for this.
+
+   10. Implement a generator for strings. Hint: Function `pack`
+       from the *Prelude* might be useful for this.
+
 
        ```idris
        string : Gen Nat -> Gen Char -> Gen String
        ```
 
-   11. We shouldn't forget about our ability to encode interesting things in
-       the types in Idris, so, for a challenge and without further ado,
-       implement `hlist` (note the distinction between `HListF` and
-       `HList`). If you are rather new to dependent types, this might take a
-       moment to digest, so don't forget to use holes.
+   11. We shouldn't forget about our ability to encode interesting
+       things in the types in Idris, so, for a challenge and without
+       further ado, implement `hlist` (note the distinction between
+       `HListF` and `HList`). If you are rather new to dependent types,
+       this might take a moment to digest, so don't forget to
+       use holes.
+
 
        ```idris
        data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where
@@ -620,8 +653,8 @@ Monad (State st) where
        hlist : HListF Gen ts -> Gen (HList ts)
        ```
 
-   12. Generalize `hlist` to work with any applicative functor, not just
-       `Gen`.
+   12. Generalize `hlist` to work with any applicative functor, not just `Gen`.
+
 
    如果你到了这里，请意识到我们现在如何生成大多数原语的伪随机值，以及常规的 sum- 和 product 类型。
    这是一个示例 REPL 会话：
@@ -648,10 +681,12 @@ Monad (State st) where
    虽然不需要测试可以直接证明 Idris 中的许多更简单的属性，一旦涉及函数这不再可能，因为在统一期间不会减少，
    例如外部函数调用或其他模块未公开导出的函数。
 
-2. While `State s a` gives us a convenient way to talk about stateful
-   computations, it only allows us to mutate the state's *value* but not its
-   *type*. For instance, the following function cannot be encapsulated in
-   `State` because the type of the state changes:
+2. While `State s a` gives us a convenient way to talk about
+   stateful computations, it only allows us to mutate the
+   state's *value* but not its *type*. For instance, the following
+   function cannot be encapsulated in `State` because the type
+   of the state changes:
+
 
    ```idris
    uncons : Vect (S n) a -> (Vect n a, a)
@@ -668,29 +703,39 @@ Monad (State st) where
    首先。
 
 
-   1. Come up with a parameterized data type for encapsulating stateful
-      computations where the input and output state type can differ. It must
-      be possible to wrap `uncons` in a value of this type.
+   1. Come up with a parameterized data type for encapsulating
+      stateful computations where the input and output state type can
+      differ. It must be possible to wrap `uncons` in a value of
+      this type.
+
 
    2. Implement `Functor` for your indexed state type.
 
-   3. It is not possible to implement `Applicative` for this *indexed* state
-      type (but see also exercise 2.vii).  Still, implement the necessary
-      functions to use it with idom brackets.
 
-   4. It is not possible to implement `Monad` for this indexed state
-      type. Still, implement the necessary functions to use it in do blocks.
+   3. It is not possible to implement `Applicative` for this
+      *indexed* state type (but see also exercise 2.vii).
+      Still, implement the necessary functions
+      to use it with idom brackets.
+
+
+   4. It is not possible to implement `Monad` for this
+      indexed state type. Still, implement the necessary functions
+      to use it in do blocks.
+
 
    5. Generalize the functions from exercises 3 and 4 with two new
       interfaces `IxApplicative` and `IxMonad` and provide implementations
       of these for your indexed state data type.
 
-   6. Implement functions `get`, `put`, `modify`, `runState`, `evalState`,
-      and `execState` for the indexed state data type. Make sure to adjust
-      the type parameters where necessary.
+
+   6. Implement functions `get`, `put`, `modify`, `runState`,
+      `evalState`, and `execState` for the indexed state data type. Make
+      sure to adjust the type parameters where necessary.
+
 
    7. Show that your indexed state type is strictly more powerful than
       `State` by implementing `Applicative` and `Monad` for it.
+
 
       提示：保持输入和输出状态相同。另请注意，
       如果 Idris 无法正确推断类型，您可能需要手动实施 `join`。
@@ -890,9 +935,10 @@ Invalid (Append (FieldError 1 1 "o")
 应该查找它们提供的功能
 以及如何自己实施和使用它们。
 
-1. Assume we'd like to not only interpret CSV content but also the optional
-   comment tags in our CSV files.  For this, we could use a data type such
-   as `Tagged`:
+1. Assume we'd like to not only interpret CSV content
+   but also the optional comment tags in our CSV files.
+   For this, we could use a data type such as `Tagged`:
+
 
    ```idris
    data Tagged : (tag, value : Type) -> Type where
@@ -903,21 +949,24 @@ Invalid (Append (FieldError 1 1 "o")
    为 `Tagged` 实现接口 `Functor`、`Foldable` 和 `Traversable`
    还有 `Bifunctor`、`Bifoldable` 和 `Bitraversable`。
 
-2. Show that the composition of a bifunctor with two functors such as
-   `Either (List a) (Maybe b)` is again a bifunctor by defining a dedicated
-   wrapper type for such compositions and writing a corresponding
-   implementation of `Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and
-   `Bitraversable`/`Traversable`.
+2. Show that the composition of a bifunctor with two functors
+   such as `Either (List a) (Maybe b)` is again a bifunctor
+   by defining a dedicated wrapper type for such compositions
+   and writing a corresponding implementation of `Bifunctor`.
+   Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/`Traversable`.
 
-3. Show that the composition of a functor with a bifunctor such as `List
-   (Either a b)` is again a bifunctor by defining a dedicated wrapper type
-   for such compositions and writing a corresponding implementation of
-   `Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and
-   `Bitraversable`/`Traversable`.
 
-4. We are now going to adjust `readCSV` in such a way that it decodes
-   comment tags and CSV content in a single traversal.  We need a new error
-   type to include invalid tags for this:
+3. Show that the composition of a functor with a bifunctor
+   such as `List (Either a b)` is again a bifunctor
+   by defining a dedicated wrapper type for such compositions
+   and writing a corresponding implementation of `Bifunctor`.
+   Likewise for `Bifoldable`/`Foldable` and `Bitraversable`/`Traversable`.
+
+
+4. We are now going to adjust `readCSV` in such a way that it
+   decodes comment tags and CSV content in a single traversal.
+   We need a new error type to include invalid tags for this:
+
 
    ```idris
    data TagError : Type where
@@ -989,16 +1038,22 @@ Invalid (Append (FieldError 1 1 "o")
 
 以下是我们在本章中学到的内容的简短摘要：
 
-* Function `traverse` is used to run effectful computations over container
-  types without affecting their size or shape.
-* We can use `IORef` as mutable references in stateful computations running
-  in `IO`.
-* For referentially transparent computations with "mutable" state, the
-  `State` monad is extremely useful.
-* Applicative functors are closed under composition, so we can run several
-  effectful computations in a single traversal.
-* Traversables are also closed under composition, so we can use `traverse`
-  to operate on a nesting of containers.
+* Function `traverse` is used to run effectful computations
+  over container types without affecting their size or shape.
+
+* We can use `IORef` as mutable references in stateful
+  computations running in `IO`.
+
+* For referentially transparent computations with "mutable"
+  state, the `State` monad is extremely useful.
+
+* Applicative functors are closed under composition,
+  so we can run several effectful computations in a single
+  traversal.
+
+* Traversables are also closed under composition, so we can
+  use `traverse` to operate on a nesting of containers.
+
 
 至此，我们对 *Prelude* 的介绍到此结束
 更高级的接口，从引入

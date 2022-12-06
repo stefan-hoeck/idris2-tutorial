@@ -24,46 +24,59 @@ import System.File
 
 使用列表或其他容器类型时，一个非常常见的操作是提取序列中的第一个值。然而，这个函数不能在一般情况下工作，因为为了从列表中提取值，列表不能为空。这里有几种编码和实现它的方法，每种方法都有自己的优点和缺点：
 
-* Wrap the result in a failure type, such as a `Maybe` or `Either e` with
-  some custom error type `e`. This makes it immediately clear that the
-  function might not be able to return a result. It is a natural way to deal
-  with unvalidated input from unknown sources. The drawback of this approach
-  is that results will carry the `Maybe` stain, even in situations when we
-  *know* that the *nil* case is impossible, for instance because we know the
-  value of the list argument at compile-time, or because we already
-  *refined* the input value in such a way that we can be sure it is not
-  empty (due to an earlier pattern match, for instance).
+* Wrap the result in a failure type, such as a `Maybe` or
+  `Either e` with some custom error type `e`. This makes it
+  immediately clear that the function might not be able to
+  return a result. It is a natural way to deal with unvalidated
+  input from unknown sources. The drawback of this approach is
+  that results will carry the `Maybe` stain, even in situations
+  when we *know* that the *nil* case is impossible, for instance because we
+  know the value of the list argument at compile-time,
+  or because we already *refined* the input value in such a
+  way that we can be sure it is not empty (due to an earlier
+  pattern match, for instance).
 
-* Define a new data type for non-empty lists and use this as the function's
-  argument. This is the approach taken in module `Data.List1`. It allows us
-  to return a pure value (meaning "not wrapped in a failure type" here),
-  because the function cannot possibly fail, but it comes with the burden of
-  reimplementing many of the utility functions and interfaces we already
-  implemented for `List`. For a very common data structure this can be a
-  valid option, but for rare use cases it is often too cumbersome.
 
-* Use an index to keep track of the property we are interested in. This was
-  the approach we took with type family `List01`, which we saw in several
-  examples and exercises in this guide so far. This is also the approach
-  taken with vectors, where we use the exact length as our index, which is
-  even more expressive. While this allows us to implement many functions
-  only once and with greater precision at the type level, it also comes with
-  the burden of keeping track of changes in the types, making for more
-  complex function types and forcing us to at times return existentially
-  quantified wrappers (for instance, dependent pairs), because the outcome
-  of a computation is not known until runtime.
+* Define a new data type for non-empty lists and use this
+  as the function's argument. This is the approach taken in
+  module `Data.List1`. It allows us to return a pure value
+  (meaning "not wrapped in a failure type" here), because the
+  function cannot possibly fail, but it comes with the
+  burden of reimplementing many of the utility functions and
+  interfaces we already implemented for `List`. For a very common
+  data structure this can be a valid option, but for rare use cases
+  it is often too cumbersome.
 
-* Fail with a runtime exception. This is a popular solution in many
-  programming languages (even Haskell), but in Idris we try to avoid this,
-  because it breaks totality in a way, which also affects client
-  code. Luckily, we can make use of our powerful type system to avoid this
-  situation in general.
 
-* Take an additional (possibly erased) argument of a type we can use as a
-  witness that the input value is of the correct kind or shape. This is the
-  solution we will discuss in this chapter in great detail. It is an
-  incredibly powerful way to talk about restrictions on values without
-  having to replicate a lot of already existing functionality.
+* Use an index to keep track of the property we are interested
+  in. This was the approach we took with type family `List01`,
+  which we saw in several examples and exercises in this guide
+  so far. This is also the approach taken with vectors,
+  where we use the exact length as our index, which is even
+  more expressive. While this allows us to implement many functions
+  only once and with greater precision at the type level, it
+  also comes with the burden of keeping track of changes
+  in the types, making for more complex function types
+  and forcing us to at times return existentially quantified
+  wrappers (for instance, dependent pairs),
+  because the outcome of a computation is not known until
+  runtime.
+
+
+* Fail with a runtime exception. This is a popular solution
+  in many programming languages (even Haskell), but in Idris
+  we try to avoid this, because it breaks totality in a way,
+  which also affects client code. Luckily, we can make use of
+  our powerful type system to avoid this situation in general.
+
+
+* Take an additional (possibly erased) argument of a type
+  we can use as a witness that the input value is of the
+  correct kind or shape. This is the solution we will discuss
+  in this chapter in great detail. It is an incredibly powerful way
+  to talk about restrictions on values without having to
+  replicate a lot of already existing functionality.
+
 
 Idris 中列出的大多数（如果不是全部）解决方案都有时间和地点，但我们经常会转向最后一个并使用谓词（所谓的 *前置条件*）优化函数参数，因为它使我们的函数在运行时 *和* 编译时更好用。
 
@@ -201,23 +214,31 @@ headMaybe as = case nonEmpty as of
 
 1. Implement `tail` for lists.
 
-2. Implement `concat1` and `foldMap1` for lists. These should work like
-   `concat` and `foldMap`, but taking only a `Semigroup` constraint on the
-   element type.
 
-3. Implement functions for returning the largest and smallest element in a
-   list.
+2. Implement `concat1` and `foldMap1` for lists. These
+   should work like `concat` and `foldMap`, but taking only
+   a `Semigroup` constraint on the element type.
 
-4. Define a predicate for strictly positive natural numbers and use it to
-   implement a safe and provably total division function on natural numbers.
 
-5. Define a predicate for a non-empty `Maybe` and use it to safely extract
-   the value stored in a `Just`. Show that this predicate is decidable by
-   implementing a corresponding conversion function.
+3. Implement functions for returning the largest and smallest
+   element in a list.
 
-6. Define and implement functions for safely extracting values from a `Left`
-   and a `Right` by using suitable predicates.  Show again that these
-   predicates are decidable.
+
+4. Define a predicate for strictly positive natural numbers
+   and use it to implement a safe and provably total division
+   function on natural numbers.
+
+
+5. Define a predicate for a non-empty `Maybe` and use it to
+   safely extract the value stored in a `Just`. Show that this
+   predicate is decidable by implementing a corresponding
+   conversion function.
+
+
+6. Define and implement functions for safely extracting values
+   from a `Left` and a `Right` by using suitable predicates.
+   Show again that these predicates are decidable.
+
 
 您在这些练习中实现的谓词已经在 *base* 库中可用：`Data.List.NonEmpty`、`Data.Maybe.IsJust`、`Data。 Either.IsLeft`、`Data.Either.IsRight` 和 `Data.Nat.IsSucc`。
 
@@ -398,7 +419,7 @@ data Row : Schema -> Type where
 Employee = Row EmployeeSchema
 
 hock : Employee
-hock = [ "Stefan", "HÃ¶ck", "hock@foo.com", 46, 5443.2, False ]
+hock = [ "Stefan", "Höck", "hock@foo.com", 46, 5443.2, False ]
 ```
 
 请注意，我如何给 `Employee` 一个定量 0。这意味着，我们只被允许在编译时使用这个函数，但绝不允许在运行时使用。这是一种确保我们的类型级函数和别名在构建应用程序时不会泄漏到可执行文件中的安全方法。我们可以在类型签名和计算其他擦除值时使用零数量的函数和值，但不能用于与运行时相关的计算。
@@ -459,22 +480,28 @@ inSchema (MkColumn cn t :: xs) n = case decEq cn n of
 
 ### 练习第 2 部分
 
-1. Show that `InSchema` is decidable by changing the output type of
-   `inSchema` to `Dec (c ** InSchema n ss c)`.
+1. Show that `InSchema` is decidable by changing the output type
+   of `inSchema` to `Dec (c ** InSchema n ss c)`.
 
-2. Declare and implement a function for modifying a field in a row based on
-   the column name given.
 
-3. Define a predicate to be used as a witness that one list contains only
-   elements in the second list in the same order and use this predicate to
-   extract several columns from a row at once.
+2. Declare and implement a function for modifying a field
+   in a row based on the column name given.
+
+
+3. Define a predicate to be used as a witness that one
+   list contains only elements in the second list in the
+   same order and use this predicate to extract several columns
+   from a row at once.
+
 
    例如，`[1,2,3,4,5,6]` 包含的 `[2,4,5]` 顺序是正确的，但是 `[4,2,5]` 不是。
 
-4. Improve the functionality from exercise 3 by defining a new predicate,
-   witnessing that all strings in a list correspond to column names in a
-   schema (in arbitrary order).  Use this to extract several columns from a
-   row at once in arbitrary order.
+4. Improve the functionality from exercise 3 by defining a new
+   predicate, witnessing that all strings in a list correspond
+   to column names in a schema (in arbitrary order).
+   Use this to extract several columns from a row at once in
+   arbitrary order.
+
 
    提示：确保包含生成的模式作为索引，
    仅根据名称列表和输入模式进行搜索。
@@ -726,6 +753,7 @@ handleAll h (Left $ U ix v) = extract h ix v
 
 1. Implement the following utility functions for `Union`:
 
+
    ```idris
    project : (0 t : Type) -> (prf : Has t ts) => Union ts -> Maybe t
 
@@ -733,8 +761,10 @@ handleAll h (Left $ U ix v) = extract h ix v
 
    safe : Err [] a -> a
    ```
-2. Implement the following two functions for embedding an open union in a
-   larger set of possibilities.  Note the unerased implicit in `extend`!
+2. Implement the following two functions for embedding
+   an open union in a larger set of possibilities.
+   Note the unerased implicit in `extend`!
+
 
    ```idris
    weaken : Union ts -> Union (ts ++ ss)
@@ -742,8 +772,9 @@ handleAll h (Left $ U ix v) = extract h ix v
    extend : {m : _} -> {0 pre : Vect m _} -> Union ts -> Union (pre ++ ts)
    ```
 
-3. Find a general way to embed a `Union ts` in a `Union ss`, so that the
-   following is possible:
+3. Find a general way to embed a `Union ts` in a `Union ss`,
+   so that the following is possible:
+
 
    ```idris
    embedTest :  Err [NoNat,NoColType] a
@@ -751,8 +782,9 @@ handleAll h (Left $ U ix v) = extract h ix v
    embedTest = mapFst embed
    ```
 
-4. Make `handle` more powerful, by letting the handler convert the error in
-   question to an `f (Err rem a)`.
+4. Make `handle` more powerful, by letting the handler convert
+   the error in question to an `f (Err rem a)`.
+
 
 ## 关于接口的真相
 

@@ -99,25 +99,30 @@ readHellos = runActions actions
 
 从这个例子中，我们学到了几件事：
 
-* Values of type `IO a` are *pure descriptions* of programs, which, when
-  being *executed*, perform arbitrary side effects before returning a value
-  of type `a`.
+* Values of type `IO a` are *pure descriptions* of programs, which,
+  when being *executed*, perform arbitrary side effects before
+  returning a value of type `a`.
 
-* Values of type `IO a` can be safely returned from functions and passed
-  around as arguments or in data structures, without the risk of them being
-  executed.
 
-* Values of type `IO a` can be safely combined in *do blocks* to *describe*
-  new `IO` actions.
+* Values of type `IO a` can be safely returned from functions and
+  passed around as arguments or in data structures, without
+  the risk of them being executed.
 
-* An `IO` action will only ever get executed when it's passed to `:exec` at
-  the REPL, or when it is the `main` function of a compiled Idris program
-  that is being executed.
 
-* It is not possible to ever break out of the `IO` context: There is no
-  function of type `IO a -> a`, as such a function would need to execute its
-  argument in order to extract the final result, and this would break
-  referential transparency.
+* Values of type `IO a` can be safely combined in *do blocks* to
+  *describe* new `IO` actions.
+
+
+* An `IO` action will only ever get executed when it's passed to
+  `:exec` at the REPL, or when it is the `main` function of
+  a compiled Idris program that is being executed.
+
+
+* It is not possible to ever break out of the `IO` context: There
+  is no function of type `IO a -> a`, as such a function would
+  need to execute its argument in order to extract the final
+  result, and this would break referential transparency.
+
 
 ### 组合纯代码和 `IO` 动作
 
@@ -192,44 +197,54 @@ exprProg = do
 
 在这些练习中，您将实现一些小型命令行应用程序。其中一些可能会永远运行，因为它们只会在用户输入退出应用程序的关键字时停止。这样的程序不再是可证明的全部。如果您在源文件的顶部添加了 `%default total` 杂注，则需要使用 `covering` 注释这些函数，这意味着您涵盖了所有模式匹配中的所有情况，但由于不受限制的递归，您的程序可能仍会循环。
 
-1. Implement function `rep`, which will read a line of input from the
-   terminal, evaluate it using the given function, and print the result to
-   standard output:
+1. Implement function `rep`, which will read a line
+   of input from the terminal, evaluate it using the
+   given function, and print the result to standard output:
+
 
    ```idris
    rep : (String -> String) -> IO ()
    ```
 
-2. Implement function `repl`, which behaves just like `rep` but will repeat
-   itself forever (or until being forcefully terminated):
+2. Implement function `repl`, which behaves just like `rep`
+   but will repeat itself forever (or until being forcefully
+   terminated):
+
 
    ```idris
    covering
    repl : (String -> String) -> IO ()
    ```
 
-3. Implement function `replTill`, which behaves just like `repl` but will
-   only continue looping if the given function returns a `Right`. If it
-   returns a `Left`, `replTill` should print the final message wrapped in
-   the `Left` and then stop.
+3. Implement function `replTill`, which behaves just like `repl`
+   but will only continue looping if the given function returns
+   a `Right`. If it returns a `Left`, `replTill` should print
+   the final message wrapped in the `Left` and then stop.
+
 
    ```idris
    covering
    replTill : (String -> Either String String) -> IO ()
    ```
 
-4. Write a program, which reads arithmetic expressions from standard input,
-   evaluates them using `eval`, and prints the result to standard
-   output. The program should loop until users stops it by entering "done",
-   in which case the program should terminate with a friendly greeting.  Use
-   `replTill` in your implementation.
+4. Write a program, which reads arithmetic
+   expressions from standard input, evaluates them
+   using `eval`, and prints the result to standard
+   output. The program should loop until
+   users stops it by entering "done", in which case
+   the program should terminate with a friendly greeting.
+   Use `replTill` in your implementation.
 
-5. Implement function `replWith`, which behaves just like `repl` but uses
-   some internal state to accumulate values.  At each iteration (including
-   the very first one!), the current state should be printed to standard
-   output using function `dispState`, and the next state should be computed
-   using function `next`.  The loop should terminate in case of a `Left` and
+
+5. Implement function `replWith`, which behaves just like `repl`
+   but uses some internal state to accumulate values.
+   At each iteration (including the very first one!),
+   the current state should be printed
+   to standard output using function `dispState`, and
+   the next state should be computed using function `next`.
+   The loop should terminate in case of a `Left` and
    print a final message using `dispResult`:
+
 
    ```idris
    covering
@@ -240,10 +255,12 @@ exprProg = do
             -> IO ()
    ```
 
-6. Use `replWith` from Exercise 5 to write a program for reading natural
-   numbers from standard input and printing the accumulated sum of these
-   numbers.  The program should terminate in case of invalid input and if a
-   user enters "done".
+6. Use `replWith` from Exercise 5 to write a program
+   for reading natural numbers from standard input and
+   printing the accumulated sum of these numbers.
+   The program should terminate in case of invalid input
+   and if a user enters "done".
+
 
 ## Do 语法块，脱糖
 
@@ -470,8 +487,10 @@ bangExpr' s1 s2 s3 = do
 
 ### 练习第 2 部分
 
-1. Reimplement the following *do blocks*, once by using *bang notation*, and
-   once by writing them in their desugared form with nested *bind*s:
+1. Reimplement the following *do blocks*, once by using
+   *bang notation*, and once by writing them in their
+   desugared form with nested *bind*s:
+
 
    ```idris
    ex1a : IO String
@@ -488,9 +507,10 @@ bangExpr' s1 s2 s3 = do
      Just $ n1 + n2 * 100
    ```
 
-2. Below is the definition of an indexed family of types, the index of which
-   keeps track of whether the value in question is possibly empty or
-   provably non-empty:
+2. Below is the definition of an indexed family of types,
+   the index of which keeps track of whether the value in
+   question is possibly empty or provably non-empty:
+
 
    ```idris
    data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -503,29 +523,36 @@ bangExpr' s1 s2 s3 = do
 
    1. Declare and implement function `head` for non-empty lists:
 
+
       ```idris
       head : List01 True a -> a
       ```
 
-   2. Declare and implement function `weaken` for converting any `List01 ne
-      a` to a `List01 False a` of the same length and order of values.
+   2. Declare and implement function `weaken` for converting any `List01 ne a`
+      to a `List01 False a` of the same length and order
+      of values.
+
 
    3. Declare and implement function `tail` for extracting the possibly
       empty tail from a non-empty list.
 
-   4. Implement function `(++)` for concatenating two values of type
-      `List01`. Note, how we use a type-level computation to make sure the
-      result is non-empty if and only if at least one of the two arguments
-      is non-empty:
+
+   4. Implement function `(++)` for concatenating two
+      values of type `List01`. Note, how we use a type-level computation
+      to make sure the result is non-empty if and only if
+      at least one of the two arguments is non-empty:
+
 
       ```idris
       (++) : List01 b1 a -> List01 b2 a -> List01 (b1 || b2) a
       ```
 
-   5. Implement utility function `concat'` and use it in the implementation
-      of `concat`. Note, that in `concat` the two boolean tags are passed as
-      unrestricted implicits, since you will need to pattern match on these
-      to determine whether the result is provably non-empty or not:
+   5. Implement utility function `concat'` and use it in
+      the implementation of `concat`. Note, that in `concat` the
+      two boolean tags are passed as unrestricted implicits,
+      since you will need to pattern match on these to determine
+      whether the result is provably non-empty or not:
+
 
       ```idris
       concat' : List01 ne1 (List01 ne2 a) -> List01 False a
@@ -537,12 +564,14 @@ bangExpr' s1 s2 s3 = do
 
    6. Implement `map01`:
 
+
       ```idris
       map01 : (a -> b) -> List01 ne a -> List01 ne b
       ```
 
-   7. Implement a custom *bind* operator in namespace `List01` for
-      sequencing computations returning `List01`s.
+   7. Implement a custom *bind* operator in namespace `List01`
+      for sequencing computations returning `List01`s.
+
 
       提示：在你的实现中使用 `map01` 和 `concat`
       确保在必要时使用不受限制的隐式。
@@ -628,12 +657,15 @@ countEmpty' path = withFile path Read pure (go 0)
 
 ### 练习第 3 部分
 
-1. As we have seen in the examples above, `IO` actions working with file
-   handles often come with the risk of failure. We can therefore simplify
-   things by writing some utility functions and a custom *bind* operator to
-   work with these nested effects. In a new namespace `IOErr`, implement the
-   following utility functions and use these to further cleanup the
-   implementation of `countEmpty'`:
+1. As we have seen in the examples above, `IO` actions
+   working with file handles often come with the risk
+   of failure. We can therefore simplify things by
+   writing some utility functions and a custom *bind*
+   operator to work with these nested effects. In
+   a new namespace `IOErr`, implement the following
+   utility functions and use these to further cleanup
+   the implementation of `countEmpty'`:
+
 
    ```idris
    pure : a -> IO (Either e a)
@@ -649,14 +681,17 @@ countEmpty' path = withFile path Read pure (go 0)
    (>>) : IO (Either e ()) -> Lazy (IO (Either e a)) -> IO (Either e a)
    ```
 
-2. Write a function `countWords` for counting the words in a file.  Consider
-   using `Data.String.words` and the utilities from exercise 1 in your
-   implementation.
+2. Write a function `countWords` for counting the words in a file.
+   Consider using `Data.String.words` and the utilities from
+   exercise 1 in your implementation.
 
-3. We can generalize the functionality used in `countEmpty` and
-   `countWords`, by implementing a helper function for iterating over the
-   lines in a file and accumulating some state along the way. Implement
-   `withLines` and use it to reimplement `countEmpty` and `countWords`:
+
+3. We can generalize the functionality used in `countEmpty`
+   and `countWords`, by implementing a helper function for
+   iterating over the lines in a file and accumulating some
+   state along the way. Implement `withLines` and use it to
+   reimplement `countEmpty` and `countWords`:
+
 
    ```idris
    covering
@@ -666,9 +701,11 @@ countEmpty' path = withFile path Read pure (go 0)
              -> IO (Either FileError s)
    ```
 
-4. We often use a `Monoid` for accumulating values.  It is therefore
-   convenient to specialize `withLines` for this case. Use `withLines` to
-   implement `foldLines` according to the type given below:
+4. We often use a `Monoid` for accumulating values.
+   It is therefore convenient to specialize `withLines`
+   for this case. Use `withLines` to implement
+   `foldLines` according to the type given below:
+
 
    ```idris
    covering
@@ -678,10 +715,14 @@ countEmpty' path = withFile path Read pure (go 0)
              -> IO (Either FileError s)
    ```
 
-5. Implement function `wordCount` for counting the number of lines, words,
-   and characters in a text document. Define a custom record type together
-   with an implementation of `Monoid` for storing and accumulating these
-   values and use `foldLines` in your implementation of `wordCount`.
+5. Implement function `wordCount` for counting
+   the number of lines, words, and characters in
+   a text document. Define a custom record type
+   together with an implementation of `Monoid`
+   for storing and accumulating these values
+   and use `foldLines` in your implementation of
+   `wordCount`.
+
 
 ## `IO` 是如何实现的
 
@@ -732,24 +773,32 @@ data PrimIO.IORes : Type -> Type
 
 ## 结论
 
-* Values of type `IO a` describe programs with side effects, which will
-  eventually result in a value of type `a`.
+* Values of type `IO a` describe programs with side effects,
+  which will eventually result in a value of type `a`.
 
-* While we cannot safely extract a value of type `a` from an `IO a`, we can
-  use several combinators and syntactic constructs to combine `IO` actions
-  and build more-complex programs.
 
-* *Do blocks* offer a convenient way to run and combine `IO` actions
-  sequentially.
+* While we cannot safely extract a value of type `a`
+  from an `IO a`, we can use several combinators and
+  syntactic constructs to combine `IO` actions and
+  build more-complex programs.
 
-* *Do blocks* are desugared to nested applications of *bind* operators
-  (`(>>=)`).
 
-* *Bind* operators, and thus *do blocks*, can be overloaded to achieve
-  custom behavior instead of the default (monadic) *bind*.
+* *Do blocks* offer a convenient way to run and combine
+  `IO` actions sequentially.
 
-* Under the hood, `IO` actions are stateful computations operating on a
-  symbolic `%World` state.
+
+* *Do blocks* are desugared to nested applications of
+  *bind* operators (`(>>=)`).
+
+
+* *Bind* operators, and thus *do blocks*, can be overloaded
+  to achieve custom behavior instead of the default
+  (monadic) *bind*.
+
+
+* Under the hood, `IO` actions are stateful computations
+  operating on a symbolic `%World` state.
+
 
 ### 下一步是什么
 

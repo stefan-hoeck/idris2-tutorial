@@ -26,13 +26,17 @@ idris2 --cg racket
 以下是标准 Idris 安装可用的后端的非全面列表（在括号中给出命令行参数中使用的名称）：
 
 * Racket Scheme (`racket`): This is a different flavour of the scheme
-  programming language, which can be useful to use when Chez Scheme is not
-  available on your operating system.
+  programming language, which can be useful to use when Chez Scheme
+  is not available on your operating system.
+
 * Node.js (`node`): This converts an Idris program to JavaScript.
+
 * Browser (`javascript`): Another JavaScript backend which allows you to
   write web applications which run in the browser in Idris.
-* RefC (`refc`): A backend compiling Idris to C code, which is then further
-  compiled by a C compiler.
+
+* RefC (`refc`): A backend compiling Idris to C code, which is then
+  further compiled by a C compiler.
+
 
 我计划至少在本 Idris 指南的另一部分中更详细地介绍 JavaScript 后端，因为我自己也经常使用它们。
 
@@ -44,28 +48,45 @@ Idris 项目还没有正式支持几个外部后端，其中包括将 Idris 代�
 
 这是 Idris 中的原语类型列表：
 
-* 有符号、固定精度整数：
+* 有符号、固定精度的整数：
+
   * `Int8`：[-128,127] 范围内的整数
+
   * `Int16`：[-32768,32767] 范围内的整数
+
   * `Int32`：[-2147483648,2147483647] 范围内的整数
-  *`Int64`：范围内的整数 [-9223372036854775808,9223372036854775807]
-* 无符号、固定精度整数：
+
+  * `Int64`：[-9223372036854775808,9223372036854775807] 范围内的整数
+
+* 无符号整数
+
   * `Bits8`：[0,255] 范围内的整数
+
   * `Bits16`：[0,65535] 范围内的整数
+
   * `Bits32`：[0,4294967295] 范围内的整数
+
   * `Bits64`：[0,18446744073709551615] 范围内的整数
-* `Integer`：有符号的任意精度整数。
+
+* `Integer`：带符号的任意精度整数。
+
 * `Double`：双精度（64 位）浮点数。
-* `Char`：一个 unicode 字符。
+
+* `Char`：Unicode 字符。
+
 * `String`：Unicode 字符序列。
+
 * `%World`：当前世界状态的符号表示。
-  当我向您展示如何实现 IO 时，我们了解了这一点。
-  大多数时候，您不会自己处理这种类型的值的代码。
+  当我向您展示如何实现 `IO` 时，我们了解了这一点。
+  大多数时候，您不会在自己的代码中处理这种类型的值。
+
 * `Int`：这个比较特殊。它是一个固定精度的有符号整数，
    但位大小在某种程度上取决于后端和
    （也许）我们使用的平台。
-   例如，如果您使用默认 Chez Scheme 后端，则 `Int` 是
-   一个 64 位有符号整数，而在 JavaScript 后端出于性能原因它是一个32 位有符号整数。因此，`Int` 没有太多的保证，你应该尽可能指定使用上面列出的整数类型其中一个。
+   例如，如果您使用默认的 Chez Scheme 后端，则 `Int` 是
+   一个 64 位有符号整数，而在 JavaScript 后端它是一个
+   出于性能原因，32 位有符号整数。所以，`Int` 带有很少的保证，
+   你应该尽可能使用上面列出的整数类型的其中一个。
 
 学习在编译器源代码中定义原语类型和函数的位置可能具有指导意义。此源代码可以在 [Idris 项目](https://github.com/idris-lang/Idris2) 的文件夹 `src` 中找到，原语类型是数据类型 `Core.TT.Constant` 的常量构造函数。
 
@@ -187,13 +208,19 @@ boom = wrong (doubleAddAssoc One Tiny Tiny)
 *base* 中的模块 `Data.String` 提供了一组丰富的函数来处理字符串。所有这些都基于编译器内置的以下原语操作：
 
 * `prim__strLength`: Returns the length of a string.
+
 * `prim__strHead`: Extracts the first character from a string.
+
 * `prim__strTail`: Removes the first character from a string.
+
 * `prim__strCons`: Prepends a character to a string.
+
 * `prim__strAppend`: Appends two strings.
-* `prim__strIndex`: Extracts a character at the given position from a
-  string.
+
+* `prim__strIndex`: Extracts a character at the given position from a string.
+
 * `prim__strSubstr`: Extracts the substring between the given positions.
+
 
 不用说，并非所有这些功能都是完整的。因此，Idris 必须确保在编译期间不会减少无效调用，否则编译器会崩溃。但是，如果我们通过编译和运行相应的程序来强制对部分原语函数求值，则该程序将崩溃并出现错误：
 
@@ -306,45 +333,70 @@ multiline2 = #"""
 
 在这些练习中，你应该实现一堆用于消费和转换字符串的实用函数。我在这里没有给出预期的类型，因为你应该自己想出那些。
 
-1. Implement functions similar to `map`, `filter`, and `mapMaybe` for
-   strings. The output type of these should always be a string.
+1. Implement functions similar to `map`, `filter`, and
+   `mapMaybe` for strings. The output type of these
+   should always be a string.
 
-2. Implement functions similar to `foldl` and `foldMap` for strings.
 
-3. Implement a function similar to `traverse` for strings. The output type
-   should be a wrapped string.
+2. Implement functions similar to `foldl` and `foldMap`
+   for strings.
 
-4. Implement the bind operator for strings. The output type should again be
-   a string.
+
+3. Implement a function similar to `traverse`
+   for strings. The output type should be a wrapped string.
+
+
+4. Implement the bind operator for strings. The output type
+   should again be a string.
+
 
 ## 整数
 
 正如本章开头所列出的，Idris 提供了不同的固定精度有符号和无符号整数类型以及 `Integer`，一种任意精度的有符号整数类型。它们都带有以下原语函数（此处以 `Bits8` 为例）：
 
 * `prim__add_Bits8`: Integer addition.
+
 * `prim__sub_Bits8`: Integer subtraction.
+
 * `prim__mul_Bits8`: Integer multiplication.
+
 * `prim__div_Bits8`: Integer division.
+
 * `prim__mod_Bits8`: Modulo function.
+
 * `prim__shl_Bits8`: Bitwise left shift.
+
 * `prim__shr_Bits8`: Bitwise right shift.
+
 * `prim__and_Bits8`: Bitwise *and*.
+
 * `prim__or_Bits8`: Bitwise *or*.
+
 * `prim__xor_Bits8`: Bitwise *xor*.
+
 
 通常，您可以通过接口 `Num` 中的运算符使用加法和乘法函数，通过接口 `Neg` 使用减法函数，以及除法函数 (`div`和 `mod`) 通过接口 `Integral`。位运算可通过接口 `Data.Bits.Bits` 和 `Data.Bits.FiniteBits` 获得。
 
 对于所有整数类型，假设以下定律适用于数值运算（`x`、`y` 和 `z` 是相同原始整数类型的任意值） ：
 
 * `x + y = y + x`: Addition is commutative.
+
 * `x + (y + z) = (x + y) + z`: Addition is associative.
+
 * `x + 0 = x`: Zero is the neutral element of addition.
+
 * `x - x = x + (-x) = 0`: `-x` is the additive inverse of `x`.
+
 * `x * y = y * x`: Multiplication is commutative.
+
 * `x * (y * z) = (x * y) * z`: Multiplication is associative.
+
 * `x * 1 = x`: One is the neutral element of multiplication.
+
 * `x * (y + z) = x * y + x * z`: The distributive law holds.
+
 * ``y * (x `div` y) + (x `mod` y) = x`` (for `y /= 0`).
+
 
 请注意，官方支持的后端使用 *欧几里得模数* 来计算 `mod`： For `y /= 0`, ``x `mod` y``始终是严格小于 `abs y` 的非负值，因此上面给出的定律确实成立。如果 `x` 或 `y` 是负数，这与许多其他语言所做的不同，但出于以下 [文章](https://www.microsoft.com/en-us/research/publication/division-and-modulus-for-computer-scientists/) 。
 
@@ -489,22 +541,26 @@ Tutorial.Prim> 0xffa2
 
 ### 练习第 2 部分
 
-1. Define a wrapper record for integral values and implement `Monoid` so
-   that `(<+>)` corresponds to `(.&.)`.
+1. Define a wrapper record for integral values and implement
+   `Monoid` so that `(<+>)` corresponds to `(.&.)`.
+
 
    提示：查看 `Bits` 接口中可用的函数
    找到适合作为中性元素的值。
 
-2. Define a wrapper record for integral values and implement `Monoid` so
-   that `(<+>)` corresponds to `(.|.)`.
+2. Define a wrapper record for integral values and implement
+   `Monoid` so that `(<+>)` corresponds to `(.|.)`.
 
-3. Use bitwise operations to implement a function, which tests if a given
-   value of type `Bits64` is even or not.
+
+3. Use bitwise operations to implement a function, which tests if
+   a given value of type `Bits64` is even or not.
+
 
 4. Convert a value of type `Bits64` to a string in binary representation.
 
-5. Convert a value of type `Bits64` to a string in hexadecimal
-   representation.
+
+5. Convert a value of type `Bits64` to a string in hexadecimal representation.
+
 
    提示：使用 `shiftR` 和 `(.&. 15)` 访问四位的后续包。
 
@@ -644,18 +700,23 @@ escaped = "Hello World!"
 
 在这组庞大的练习中，您将构建一个小型库，用于处理原语上的谓词。我们要牢记以下目标：
 
-* We want to use the usual operations of propositional logic to combine
-  predicates: Negation, conjuction (logical *and*), and disjunction (logical
-  *or*).
-* All predicates should be erased at runtime. If we proof something about a
-  primitive number, we want to make sure not to carry around a huge proof of
-  validity.
-* Calculations on predicates should make no appearance at runtime (with the
-  exception of `decide`; see below).
-* Recursive calculations on predicates should be tail recursive if they are
-  used in implementations of `decide`. This might be tough to achieve. If
-  you can't find a tail recursive solution for a given problem, use what
-  feels most natural instead.
+* We want to use the usual operations of propositional logic to
+  combine predicates: Negation, conjuction (logical *and*),
+  and disjunction (logical *or*).
+
+* All predicates should be erased at runtime. If we proof
+  something about a primitive number, we want to make sure
+  not to carry around a huge proof of validity.
+
+* Calculations on predicates should make no appearance
+  at runtime (with the exception of `decide`; see below).
+
+* Recursive calculations on predicates should be tail recursive if
+  they are used in implementations of `decide`. This might be tough
+  to achieve. If you can't find a tail recursive
+  solution for a given problem, use what feels most natural
+  instead.
+
 
 关于效率的说明：为了能够在我们的谓词上运行计算，我们尝试尽快将原语值转换为代数数据类型：无符号整数将转换为 `Nat` 使用 `cast`，字符串将使用 `unpack` 转换为 `List Char`。这使我们大部分时间都可以在 `Nat` 和 `List` 上使用证明，并且可以在不借助 `believe_me` 或其他作弊手段的情况下实现此类证明。然而，原语类型相对于代数数据类型的一个优势是它们通常执行得更好。在将整数类型与 `Nat` 进行比较时，这一点尤其重要：对自然数的运算通常以 `O(n)` 时间复杂度运行，其中 `n` 是所涉及的自然数其中之一的大小，而对于 `Bits64`，例如，许多操作在常数时间内（`O(1)`）快速运行。幸运的是，Idris 编译器优化了许多自然数函数，以便在运行时使用相应的 `Integer` 操作。这样做的好处是我们仍然可以在编译时使用适当的归纳来证明关于自然数的东西，同时在运行时获得快速整数运算的好处。但是，`Nat` 上的操作确实以 `O(n)` 时间复杂度在 *编译期* 运行。因此，在大自然数上工作的证明将大大减慢编译器的速度。在本节练习的末尾讨论了解决此问题的方法。
 
@@ -727,12 +788,15 @@ unsafeDecideOn p v = case decideOn p v of
     assert_total $ idris_crash "Unexpected refinement failure in `unsafeRefineOn`"
 ```
 
-1. We start with equality proofs. Implement `Decidable` for `Equal v`.
+1. We start with equality proofs. Implement `Decidable` for
+   `Equal v`.
+
 
    提示：使用模块 `Decidable.Equality` 中的 `DecEq` 作为约束
          并确保 `v` 在运行时可用。
 
 2. We want to be able to negate a predicate:
+
 
    ```idris
    data Neg : (p : a -> Type) -> a -> Type where
@@ -743,6 +807,7 @@ unsafeDecideOn p v = case decideOn p v of
 
 3. We want to describe the conjunction of two predicates:
 
+
    ```idris
    data (&&) : (p,q : a -> Type) -> a -> Type where
      Both : {0 p,q : a -> Type} -> (prf1 : p v) -> (prf2 : q v) -> (&&) p q v
@@ -750,12 +815,14 @@ unsafeDecideOn p v = case decideOn p v of
 
    使用合适的约束为 `(p && q)` 实现 `Decidable`。
 
-4. Come up with a data type called `(||)` for the disjunction (logical *or*)
-   of two predicates and implement `Decidable` using suitable constraints.
+4. Come up with a data type called `(||)` for the
+   disjunction (logical *or*) of two predicates and implement
+   `Decidable` using suitable constraints.
 
-5. Proof [De Morgan's
-   laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)  by implementing
-   the following propositions:
+
+5. Proof [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
+   by implementing the following propositions:
+
 
    ```idris
    negOr : Neg (p || q) v -> (Neg p && Neg q) v
@@ -822,16 +889,20 @@ Between : (lower,upper : Nat) -> Nat -> Type
 Between l u = GreaterThan l && LessThan u
 ```
 
-6. Coming up with a value of type `m <= n` by pattern matching on `m` and
-   `n` is highly inefficient for large values of `m`, as it will require `m`
-   iterations to do so. However, while in an erased context, we don't need
-   to hold a value of type `m <= n`. We only need to show, that such a value
-   follows from a more efficient computation. Such a computation is
-   `compare` for natural numbers: Although this is implemented in the
-   *Prelude* with a pattern match on its arguments, it is optimized by the
-   compiler to a comparison of integers which runs in constant time even for
-   very large numbers.  Since `Prelude.(<=)` for natural numbers is
-   implemented in terms of `compare`, it runs just as efficiently.
+6. Coming up with a value of type `m <= n` by pattern
+   matching on `m` and `n` is highly inefficient for
+   large values of `m`, as it will require `m` iterations
+   to do so. However, while in an erased context, we don't
+   need to hold a value of type `m <= n`. We only need to
+   show, that such a value follows from a more efficient
+   computation. Such a computation is `compare` for natural
+   numbers: Although this is implemented in the *Prelude* with
+   a pattern match on its arguments, it is optimized
+   by the compiler to a comparison of integers which runs
+   in constant time even for very large numbers.
+   Since `Prelude.(<=)` for natural numbers is implemented in terms of
+   `compare`, it runs just as efficiently.
+
 
    因此，我们需要证明以下两个引理（使
    确保不要将 `Prelude.(<=)` 与 `Prim.(<=)` 混淆
@@ -856,17 +927,21 @@ Between l u = GreaterThan l && LessThan u
    在运行时可用以及如何确保是这种情况。
 
 7. Proof that `(<=)` is reflexive and transitive by declaring and
-   implementing corresponding propositions. As we might require the proof of
-   transitivity to chain several values of type `(<=)`, it makes sense to
-   also define a short operator alias for this.
+   implementing corresponding propositions. As we might require
+   the proof of transitivity to chain several values of type `(<=)`,
+   it makes sense to also define a short operator alias for this.
+
 
 8. Proof that from `n > 0` follows `IsSucc n` and vise versa.
 
-9. Declare and implement safe division and modulo functions for `Bits64`, by
-   requesting an erased proof that the denominator is strictly positive when
-   cast to a natural number. In case of the modulo function, return a
-   refined value carrying an erased proof that the result is strictly
+
+9. Declare and implement safe division and modulo functions
+   for `Bits64`, by requesting an erased proof that
+   the denominator is strictly positive when cast to a natural
+   number. In case of the modulo function, return a refined
+   value carrying an erased proof that the result is strictly
    smaller than the modulus:
+
 
    ```idris
    safeMod :  (x,y : Bits64)
@@ -874,9 +949,11 @@ Between l u = GreaterThan l && LessThan u
            => Subset Bits64 (\v => cast v < cast y)
    ```
 
-10. We will use the predicates and utilities we defined so far to convert a
-    value of type `Bits64` to a string of digits in base `b` with `2 <= b &&
-    b <= 16`.  To do so, implement the following skeleton definitions:
+10. We will use the predicates and utilities we defined so
+    far to convert a value of type `Bits64` to a string
+    of digits in base `b` with `2 <= b && b <= 16`.
+    To do so, implement the following skeleton definitions:
+
 
     ```idris
     -- this will require some help from `assert_total`
@@ -907,7 +984,9 @@ Between l u = GreaterThan l && LessThan u
 
 我们现在将注意力转向字符串。我们可以限制我们接受的字符串的两种最明显的方法是限制字符集和限制它们的长度。更高级的改进可能需要字符串匹配某个模式或正则表达式。在这种情况下，我们可能会进行布尔检查或使用自定义数据类型来表示模式的不同部分，但我们不会在这里讨论这些主题。
 
-11. Implement the following aliases for useful predicates on characters.
+11. Implement the following aliases for useful predicates on
+    characters.
+
 
     提示：使用 `cast` 将字符转换为自然数，
     使用 `(<=)` 和 `InRange` 指定字符区域，
@@ -945,11 +1024,13 @@ Between l u = GreaterThan l && LessThan u
     IsPlainLatin : Char -> Type
     ```
 
-12. The advantage of this more modular approach to predicates on primitives
-    is that we can safely run calculations on our predicates and get the
-    strong guarantees from the existing proofs on inductive types like `Nat`
-    and `List`. Here are some examples of such calculations and conversions,
-    all of which can be implemented without cheating:
+12. The advantage of this more modular approach to predicates
+    on primitives is that we can safely run calculations on
+    our predicates and get the strong guarantees from the existing
+    proofs on inductive types like `Nat` and `List`. Here are
+    some examples of such calculations and conversions, all of which
+    can be implemented without cheating:
+
 
     ```idris
     0 plainToAscii : IsPlainAscii c -> IsAscii c
@@ -984,12 +1065,14 @@ Between l u = GreaterThan l && LessThan u
 
 13. Implement `Decidable` for `Head`:
 
+
     ```idris
     data Head : (p : a -> Type) -> List a -> Type where
       AtHead : {0 p : a -> Type} -> (0 prf : p v) -> Head p (v :: vs)
     ```
 
 14. Implement `Decidable` for `Length`:
+
 
     ```idris
     data Length : (p : Nat -> Type) -> List a -> Type where
@@ -998,9 +1081,10 @@ Between l u = GreaterThan l && LessThan u
                 -> Length p vs
     ```
 
-15. The following predicate is a proof that all values in a list of values
-    fulfill the given predicate. We will use this to limit the valid set of
-    characters in a string.
+15. The following predicate is a proof that all values in a list
+    of values fulfill the given predicate. We will use this to limit
+    the valid set of characters in a string.
+
 
     ```idris
     data All : (p : a -> Type) -> (as : List a) -> Type where
@@ -1021,9 +1105,10 @@ Between l u = GreaterThan l && LessThan u
 
 16. It's time to come to an end here. An identifier in Idris is a sequence
     of alphanumeric characters, possibly separated by underscore characters
-    (`_`). In addition, all identifiers must start with a letter.  Given
-    this specification, implement predicate `IdentChar`, from which we can
-    define a new wrapper type for identifiers:
+    (`_`). In addition, all identifiers must start with a letter.
+    Given this specification, implement predicate `IdentChar`, from
+    which we can define a new wrapper type for identifiers:
+
 
     ```idris
     0 IdentChars : List Char -> Type

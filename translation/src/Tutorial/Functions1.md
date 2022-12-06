@@ -282,45 +282,62 @@ arithTest' = 5 + 10 * 12
 以下是 *Prelude* 导出的重要运算符列表。其中大多数具有 * 约束 *，也就是说它们仅适用于实现了某个 * 接口 * 的类型。现在不要担心这个。我们将在适当的时候了解接口，运算符会按照直觉行事。例如，加法和乘法适用于所有数字类型，比较运算符适用于 *Prelude* 中的几乎所有类型，但函数除外。
 
 * `(.)`: Function composition
+
 * `(+)`: Addition
+
 * `(*)`: Multiplication
+
 * `(-)`: Subtraction
+
 * `(/)`: Division
+
 * `(==)` : True, if two values are equal
+
 * `(/=)` : True, if two values are not equal
+
 * `(<=)`, `(>=)`, `(<)`, and `(>)` : Comparison operators
+
 * `($)`: Function application
+
 
 上面最特别的是最后一个。它的优先级为 0，所有其他运算符都比他绑定得更紧密。因此可以使用它来减少所需的括号数量。例如，不写 `isTriple 3 4 (2 + 3 * 1)` 我们可以写成 `isTriple 3 4 $ 2 + 3 * 1`，这完全一样。有时，这有助于提高可读性，虽然有时并不会。要记住的重要一点是 `fun $ x y` 与 `fun (x y)` 相同。
 
 ## 练习
 
-1. Reimplement functions `testSquare` and `twice` by using the dot operator
-   and dropping the second arguments (have a look at the implementation of
-   `squareTimes2` to get an idea where this should lead you). This highly
-   concise way of writing function implementations is sometimes called
-   *point-free style* and is often the preferred way of writing small
-   utility functions.
+1. Reimplement functions `testSquare` and `twice` by using the dot
+   operator and dropping the second arguments (have a look at the
+   implementation of `squareTimes2` to get an idea where this should
+   lead you). This highly concise
+   way of writing function implementations is sometimes called
+   *point-free style* and is often the preferred way of writing
+   small utility functions.
+
 
 2. Declare and implement function `isOdd` by combining functions `isEven`
    from above and `not` (from the Idris *Prelude*). Use point-free style.
 
-3. Declare and implement function `isSquareOf`, which checks whether its
-   first `Integer` argument is the square of the second argument.
 
-4. Declare and implement function `isSmall`, which checks whether its
-   `Integer` argument is less than or equal to 100. Use one of the
+3. Declare and implement function `isSquareOf`, which checks whether
+   its first `Integer` argument is the square of the second argument.
+
+
+4. Declare and implement function `isSmall`, which checks whether
+   its `Integer` argument is less than or equal to 100. Use one of the
    comparison operators `<=` or `>=` in your implementation.
 
-5. Declare and implement function `absIsSmall`, which checks whether the
-   absolute value of its `Integer` argument is less than or equal to 100.
-   Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your
-   implementation, which should be in point-free style.
 
-6. In this slightly extended exercise we are going to implement some
-   utilities for working with `Integer` predicates (functions from `Integer`
-   to `Bool`). Implement the following higher-order functions (use boolean
-   operators `&&`, `||`, and function `not` in your implementations):
+5. Declare and implement function `absIsSmall`, which checks whether
+   the absolute value of its `Integer` argument is less than or equal to 100.
+   Use functions `isSmall` and `abs` (from the Idris *Prelude*) in your implementation,
+   which should be in point-free style.
+
+
+6. In this slightly extended exercise we are going to implement
+   some utilities for working with `Integer` predicates (functions
+   from `Integer` to `Bool`). Implement the following higher-order
+   functions (use boolean operators `&&`, `||`, and function `not` in
+   your implementations):
+
 
    ```idris
    -- return true, if and only if both predicates hold
@@ -342,10 +359,13 @@ arithTest' = 5 + 10 * 12
    ```
 
 7. As explained above, Idris allows us to define our own infix operators.
-   Even better, Idris supports *overloading* of function names, that is, two
-   functions or operators can have the same name, but different types and
-   implementations.  Idris will make use of the types to distinguish between
-   equally named operators and functions.
+   Even better, Idris supports *overloading* of function names,
+   that is, two functions or operators can have the same
+   name, but different types and implementations.
+   Idris will make use of the
+   types to distinguish between equally named operators and
+   functions.
+
 
    这允许我们重新实现函数 `and`、`or` 和 `negate`，在练习 6 中，使用布尔代数中现有的运算符和函数：
 

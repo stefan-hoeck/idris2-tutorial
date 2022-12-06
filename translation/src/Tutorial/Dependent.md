@@ -281,44 +281,54 @@ replicate (S k) va = va :: replicate k va
 
 1. Implement function `head` for non-empty vectors:
 
+
    ```idris
    head : Vect (S n) a -> a
    ```
 
    请注意，我们如何使用 *模式* 来描述在 `Vect` 的长度上的非空性。这排除了 `Nil` 的情况，我们可以返回一个 `a` 类型的值，而不必将其包装在一个`Maybe` 中！确保为 `Nil` 添加一个 `impossible` 子句分支（尽管这不是绝对必要的）。
 
-2. Using `head` as a reference, declare and implement function `tail` for
-   non-empty vectors. The types should reflect that the output is exactly
-   one element shorter than the input.
+2. Using `head` as a reference, declare and implement function `tail`
+   for non-empty vectors. The types should reflect that the output
+   is exactly one element shorter than the input.
 
-3. Implement `zipWith3`. If possible, try to doing so without looking at the
-   implementation of `zipWith`:
+
+3. Implement `zipWith3`. If possible, try to doing so without looking at
+   the implementation of `zipWith`:
+
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
    ```
 
-4. Declare and implement a function `foldSemi` for accumulating the values
-   stored in a `List` through `Semigroup`s append operator (`(<+>)`).  (Make
-   sure to only use a `Semigroup` constraint, as opposed to a `Monoid`
-   constraint.)
+4. Declare and implement a function `foldSemi`
+   for accumulating the values stored
+   in a `List` through `Semigroup`s append operator (`(<+>)`).
+   (Make sure to only use a `Semigroup` constraint, as opposed to
+   a `Monoid` constraint.)
 
-5. Do the same as in Exercise 4, but for non-empty vectors. How does a
-   vector's non-emptiness affect the output type?
 
-6. Given an initial value of type `a` and a function `a -> a`, we'd like to
-   generate `Vect`s of `a`s, the first value of which is `a`, the second
-   value being `f a`, the third being `f (f a)` and so on.
+5. Do the same as in Exercise 4, but for non-empty vectors. How
+   does a vector's non-emptiness affect the output type?
+
+
+6. Given an initial value of type `a` and a function `a -> a`,
+   we'd like to generate `Vect`s of `a`s, the first value of
+   which is `a`, the second value being `f a`, the third
+   being `f (f a)` and so on.
+
 
    例如，如果 `a` 是 1 并且 `f` 是 `(* 2)`，我们希望
    获得类似于以下的结果：`[1,2,4,8,16,...]`。
 
    声明并实现函数 `iterate`，它应该封装这种行为。如果你不知道从哪里开始，可以从 `replicate` 中获得一些灵感。
 
-7. Given an initial value of a state type `s` and a function `fun : s ->
-   (s,a)`, we'd like to generate `Vect`s of `a`s. Declare and implement
-   function `generate`, which should encapsulate this behavior. Make sure to
-   use the updated state in every new invocation of `fun`.
+7. Given an initial value of a state type `s` and
+   a function `fun : s -> (s,a)`,
+   we'd like to generate `Vect`s of `a`s. Declare and implement
+   function `generate`, which should encapsulate this behavior. Make sure to use
+   the updated state in every new invocation of `fun`.
+
 
    这是一个示例，它被用来生成前 `n` 个斐波那契数列：
 
@@ -327,8 +337,10 @@ replicate (S k) va = va :: replicate k va
    [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
    ```
 
-8. Implement function `fromList`, which converts a list of values to a
-   `Vect` of the same length. Use holes if you get stuck:
+8. Implement function `fromList`, which converts a list of
+   values to a `Vect` of the same length. Use holes if you
+   get stuck:
+
 
    ```idris
    fromList : (as : List a) -> Vect (length as) a
@@ -337,6 +349,7 @@ replicate (S k) va = va :: replicate k va
    请注意，在 `fromList` 的类型中，我们如何通过 `length` 函数*计算* list 参数得到向量的长度。
 
 9. Consider the following declarations:
+
 
    ```idris
    maybeSize : Maybe a -> Nat
@@ -412,40 +425,50 @@ index (FS _) Nil impossible
 
 ### 练习第 2 部分
 
-1. Implement function `update`, which, given a function of type `a -> a`,
-   updates the value in a`Vect n a` at position `k < n`.
+1. Implement function `update`, which, given a function of
+   type `a -> a`, updates the value in a`Vect n a` at position `k < n`.
 
-2. Implement function `insert`, which inserts a value of type `a` at
-   position `k <= n` in a `Vect n a`. Note, that `k` is the index of the
-   freshly inserted value, so that the following holds:
+
+2. Implement function `insert`, which inserts a value of type `a`
+   at position `k <= n` in a `Vect n a`. Note, that `k` is the
+   index of the freshly inserted value, so that the following holds:
+
 
    ```repl
    index k (insert k v vs) = v
    ```
 
-3. Implement function `delete`, which deletes a value from a vector at the
-   given index.
+3. Implement function `delete`, which deletes a value from a
+   vector at the given index.
+
 
    这比练习 1 和练习 2 更棘手，因为我们必须正确编码向量正在缩短一个元素的类型。
 
 4. We can use `Fin` to implement safe indexing into `List`s as well. Try to
    come up with a type and implementation for `safeIndexList`.
 
+
    注意：如果不知道怎么下手，看`fromList`的类型找一些灵感。您可能还需要与 `index`  不同的顺序给出参数。
 
 5. Implement function `finToNat`, which converts a `Fin n` to the
-   corresponding natural number, and use this to declare and implement
-   function `take` for splitting of the first `k` elements of a `Vect n a`
+   corresponding natural number, and use this to declare and
+   implement function `take` for splitting of the first `k`
+   elements of a `Vect n a` with `k <= n`.
+
+
+6. Implement function `minus` for subtracting a value `k` from
+   a natural number `n` with `k <= n`.
+
+
+7. Use `minus` from Exercise 6 to declare and implement function
+   `drop`, for dropping the first `k` values from a `Vect n a`,
    with `k <= n`.
 
-6. Implement function `minus` for subtracting a value `k` from a natural
-   number `n` with `k <= n`.
 
-7. Use `minus` from Exercise 6 to declare and implement function `drop`, for
-   dropping the first `k` values from a `Vect n a`, with `k <= n`.
+8. Implement function `splitAt` for splitting a `Vect n a` at
+   position `k <= n`, returning the prefix and suffix of the
+   vector wrapped in a pair.
 
-8. Implement function `splitAt` for splitting a `Vect n a` at position `k <=
-   n`, returning the prefix and suffix of the vector wrapped in a pair.
 
    提示：在你的实现中使用 `take` 和 `drop`。
 
@@ -552,17 +575,22 @@ replicate'' {n = S _} v = v :: replicate'' v
 
 1. Here is a function declaration for flattening a `List` of `List`s:
 
+
    ```idris
    flattenList : List (List a) -> List a
    ```
 
    实现 `flattenList` 并声明和实现一个类似的函数 `flattenVect` 用于扁平化向量的向量。
 
-2. Implement functions `take'` and `splitAt'` like in the exercises of the
-   previous section but using the technique shown for `drop'`.
+2. Implement functions `take'` and `splitAt'` like in
+   the exercises of the previous section but using the
+   technique shown for `drop'`.
 
-3. Implement function `transpose` for converting an `m x n`-matrix
-   (represented as a `Vect m (Vect n a)`)  to an `n x m`-matrix.
+
+3. Implement function `transpose` for converting an
+   `m x n`-matrix (represented as a `Vect m (Vect n a)`)
+   to an `n x m`-matrix.
+
 
    注意：这可能是一项具有挑战性的练习，但请确保试一试。像往常一样，如果你被卡住了，就利用洞！
 
@@ -575,29 +603,37 @@ replicate'' {n = S _} v = v :: replicate'' v
 
 ## 结论
 
-* Dependent types allow us to calculate types from values.  This makes it
-  possible to encode properties of values at the type-level and verify these
-  properties at compile time.
+* Dependent types allow us to calculate types from values.
+  This makes it possible to encode properties of values
+  at the type-level and verify these properties at compile
+  time.
+
 
 * Length-indexed lists (vectors) let us rule out certain implementation
-  errors, by forcing us to be precise about the lengths of input and output
-  vectors.
+  errors, by forcing us to be precise about the lengths of input
+  and output vectors.
 
-* We can use patterns in type signatures, for instance to express that the
-  length of a vector is non-zero and therefore, the vector is non-empty.
 
-* When creating values of a type family, the values of the indices need to
-  be known at compile time, or they need to be passed as arguments to the
-  function creating the values, where we can pattern match on them to figure
-  out, which constructors to use.
+* We can use patterns in type signatures, for instance to
+  express that the length of a vector is non-zero and therefore,
+  the vector is non-empty.
 
-* We can use `Fin n`, the type of natural numbers strictly smaller than `n`,
-  to safely index into a vector of length `n`.
 
-* Sometimes, it is convenient to pass inferable arguments as non-erased
-  implicits, in which case we can still inspect them by pattern matching or
-  pass them to other functions, while Idris will try and fill in the values
-  for us.
+* When creating values of a type family, the values of the indices
+  need to be known at compile time, or they need to be passed as
+  arguments to the function creating the values, where we can
+  pattern match on them to figure out, which constructors to use.
+
+
+* We can use `Fin n`, the type of natural numbers strictly smaller
+  than `n`, to safely index into a vector of length `n`.
+
+
+* Sometimes, it is convenient to pass inferable arguments as
+  non-erased implicits, in which case we can still inspect them
+  by pattern matching or pass them to other functions, while Idris
+  will try and fill in the values for us.
+
 
 请注意，数据类型 `Vect` 以及我们在此处实现的许多功能可从 *base* 库中的模块 `Data.Vect` 获得。同样，`Fin` 可从 `Data.Fin` 从 *base* 获得。
 

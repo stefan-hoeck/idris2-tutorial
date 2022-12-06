@@ -224,17 +224,23 @@ toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)
 
 ### 练习第 1 部分
 
-1. Declare and implement a function for filtering a vector similar to
-   `Data.List.filter`.
+1. Declare and implement a function for filtering a
+   vector similar to `Data.List.filter`.
 
-2. Declare and implement a function for mapping a partial function over the
-   values of a vector similar to `Data.List.mapMaybe`.
 
-3. Declare and implement a function similar to `Data.List.dropWhile` for
-   vectors. Use `Data.DPair.Exists` as your return type.
+2. Declare and implement a function for mapping a partial
+   function over the values of a vector similar
+   to `Data.List.mapMaybe`.
 
-4. Repeat exercise 3 but return a proper dependent pair. Use the function
-   from exercise 3 in your implementation.
+
+3. Declare and implement a function similar to
+   `Data.List.dropWhile` for vectors. Use `Data.DPair.Exists`
+   as your return type.
+
+
+4. Repeat exercise 3 but return a proper dependent pair. Use
+   the function from exercise 3 in your implementation.
+
 
 ## 用例：核酸
 
@@ -462,37 +468,47 @@ data Acid3 : Type where
 
 提高您使用依赖对和依赖记录的技能！在练习 2 到 7 中，你必须自己决定什么时候函数应该返回一个依赖对或记录，什么时候函数需要额外的参数，你可以在这些参数上进行模式匹配，以及可能需要哪些其他实用函数。
 
-1. Proof that the three encodings for nucleobases are *isomorphic* (meaning:
-   of the same structure) by writing lossless conversion functions from
-   `Acid1` to `Acid2` and back. Likewise for `Acid1` and `Acid3`.
+1. Proof that the three encodings for nucleobases are *isomorphic*
+   (meaning: of the same structure) by writing lossless conversion
+   functions from `Acid1` to `Acid2` and back. Likewise
+   for `Acid1` and `Acid3`.
+
 
 2. Sequences of nucleobases can be encoded in one of two directions:
-   [*Sense* and
-   *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology)).
-   Declare a new data type to describe the sense of a sequence of
-   nucleobases, and add this as an additional parameter to type `Nucleobase`
-   and types `DNA` and `RNA`.
+   [*Sense* and *antisense*](https://en.wikipedia.org/wiki/Sense_(molecular_biology)).
+   Declare a new data type to describe
+   the sense of a sequence of nucleobases, and add this as an
+   additional parameter to type `Nucleobase` and types `DNA` and
+   `RNA`.
 
-3. Refine the types of `complement` and `transcribe`, so that they reflect
-   the changing of *sense*. In case of `transcribe`, a strand of antisense
-   DNA is converted to a strand of sense RNA.
 
-4. Define a dependent record storing the base type and sense together with a
-   sequence of nucleobases.
+3. Refine the types of `complement` and `transcribe`, so that they
+   reflect the changing of *sense*. In case of `transcribe`, a
+   strand of antisense DNA is converted to a strand of sense RNA.
 
-5. Adjust `readRNA` and `readDNA` in such a way that the *sense* of a
-   sequence is read from the input string.  Sense strands are encoded like
-   so: "5Â´-CGGTAG-3Â´". Antisense strands are encoded like so:
-   "3Â´-CGGTAG-5Â´".
 
-6. Adjust `encode` in such a way that it includes the sense in its output.
+4. Define a dependent record storing the base type and sense
+   together with a sequence of nucleobases.
 
-7. Enhance `getNucleicAcid` and `transcribeProg` in such a way that the
-   sense and base type are stored together with the sequence, and that
-   `transcribeProg` always prints the *sense* RNA strand (after
-   transcription, if necessary).
+
+5. Adjust `readRNA` and `readDNA` in such a way that
+   the *sense* of a sequence is read from the input string.
+   Sense strands are encoded like so: "5´-CGGTAG-3´". Antisense
+   strands are encoded like so: "3´-CGGTAG-5´".
+
+
+6. Adjust `encode` in such a way that it includes the sense
+   in its output.
+
+
+7. Enhance `getNucleicAcid` and `transcribeProg` in such a way that
+   the sense and base type are stored together with the sequence,
+   and that `transcribeProg` always prints the *sense* RNA strand
+   (after transcription, if necessary).
+
 
 8. Enjoy the fruits of your labour and test your program at the REPL.
+
 
 注意：我们可以再次使用四个构造函数的和类型来编码不同类型的序列，而不是使用依赖记录。但是，所需的构造函数数量对应于每个类型级别索引的值数量的 *积*。因此，这个数字会快速增长，并且在这些情况下，和类型编码会导致模式匹配的块很长。
 
@@ -542,12 +558,14 @@ Goodbye.
 
 我们想在这里重点关注几件事：
 
-* Purity: With the exception of the main program loop, all functions used in
-  the implementation should be pure, which in this context means "not
-  running in any monad with side effects such as `IO`".
+* Purity: With the exception of the main program loop, all functions
+  used in the implementation should be pure, which in this context
+  means "not running in any monad with side effects such as `IO`".
+
 * Fail early: With the exception of the command parser, all functions
-  updating the table and handling queries should be typed and implemented in
-  such a way that they cannot fail.
+  updating the table and handling queries should be typed and
+  implemented in such a way that they cannot fail.
+
 
 我们经常被建议遵守这两个准则，因为它们可以使我们的大多数函数更容易实现和测试。
 
@@ -625,20 +643,25 @@ applyCommand (MkTable ts n rs) (Delete x)  = case n of
 
 因此，为了以应有的尊重对待这个重要的话题，我们首先要实现一个自定义错误类型。这对于小程序来说 *严格* 不是所必需的，但是一旦您的软件变得更加复杂，它对于跟踪可能出错的地方非常有帮助。为了找出可能出错的地方，我们首先需要决定如何输入命令。在这里，我们为每个命令使用一个关键字，以及由单个空格字符与关键字分隔的可选数量的参数。例如：`"new i64,boolean,str,str"`，用于使用新模式初始化空表。解决了这个问题，这里列出了可能出错的地方，以及我们想要打印的消息：
 
-* A bogus command is entered. We repeat the input with a message that we
-  don't know the command plus a list of commands we know about.
-* An invalid schema was entered. In this case, we list the position of the
-  first unknown type, the string we found there, and a list of types we know
-  about.
-* An invalid CSV encoding of a row was entered. We list the erroneous
-  position, the string encountered there, plus the expected type. In case of
-  a too small or too large number of fields, we also print a corresponding
-  error message.
-* An index was out of bounds. This can happen, when users try to access or
-  delete specific rows. We print the current number of rows plus the value
-  entered.
-* A value not representing a natural number was entered as an index.  We
-  print an according error message.
+* A bogus command is entered. We repeat the input with a message that
+  we don't know the command plus a list of commands we know about.
+
+* An invalid schema was entered. In this case, we list the position
+  of the first unknown type, the string we found there, and a list of
+  types we know about.
+
+* An invalid CSV encoding of a row was entered. We list the erroneous position,
+  the string encountered there, plus the expected type. In case
+  of a too small or too large number of fields, we also print
+  a corresponding error message.
+
+* An index was out of bounds. This can happen, when users try to access
+  or delete specific rows. We print the current number of rows plus
+  the value entered.
+
+* A value not representing a natural number was entered as an index.
+  We print an according error message.
+
 
 有很多东西需要跟踪，所以让我们将其编码为和类型：
 
@@ -756,11 +779,14 @@ decodeRow s = go 1 ts $ fromCSV s
 关于是否将索引作为隐式参数传递没有硬性规定。一些考虑：
 
 * Pattern matching on explicit arguments comes with less syntactic overhead.
+
 * If an argument can be inferred from the context most of the time, consider
   passing it as an implicit to make your function nicer to use in client
   code.
-* Use explicit (possibly erased) arguments for values that can't be inferred
-  by Idris most of the time.
+
+* Use explicit (possibly erased) arguments for values that can't
+  be inferred by Idris most of the time.
+
 
 现在缺少的只是一种解析索引以访问当前表行的方法。我们使用索引的转换从 1 而不是 0 开始，这对于大多数非程序员来说感觉更自然。
 
@@ -835,30 +861,39 @@ main = runProg $ MkTable [] _ []
 
 这里提出的挑战都涉及以几种有趣的方式增强我们的表格编辑器。其中一些更多的是风格问题，而不是学习编写依赖类型程序的问题，所以请随意解决这些问题。练习 1 到 3 应该被认为是强制性的。
 
-1. Add support for storing Idris types `Integer` and `Nat` in CSV columns
+1. Add support for storing Idris types `Integer` and `Nat`
+   in CSV columns
 
-2. Add support for `Fin n` to CSV columns. Note: We need runtime access to
-   `n` in order for this to work.
 
-3. Add support for optional types to CSV columns. Since missing values
-   should be encoded by empty strings, it makes no sense to allow for nested
-   optional types, meaning that types like `Maybe Nat` should be allowed
+2. Add support for `Fin n` to CSV columns. Note: We need
+   runtime access to `n` in order for this to work.
+
+
+3. Add support for optional types to CSV columns. Since
+   missing values should be encoded by empty strings,
+   it makes no sense to allow for nested optional types,
+   meaning that types like `Maybe Nat` should be allowed
    while `Maybe (Maybe Nat)` should not.
+
 
    提示：有几种编码方式，一种是
    为 `ColType` 添加一个布尔索引。
 
-4. Add a command for printing the whole table. Bonus points if all columns
-   are properly aligned.
+4. Add a command for printing the whole table. Bonus points
+   if all columns are properly aligned.
 
-5. Add support for simple queries: Given a column number and a value, list
-   all rows where entries match the given value.
+
+5. Add support for simple queries: Given a column number
+   and a value, list all rows where entries match the given
+   value.
+
 
    这可能是一个挑战，因为类型变得非常有趣。
 
-6. Add support for loading and saving tables from and to disk.  A table
-   should be stored in two files: One for the schema and one for the CSV
-   content.
+6. Add support for loading and saving tables from and to disk.
+   A table should be stored in two files: One for the schema
+   and one for the CSV content.
+
 
    注意：以可证明的全部方式读取文件可能很困难，这将成为另一天的话题。目前，
    只需使用从 `System.File` 导出的函数 `readFile`

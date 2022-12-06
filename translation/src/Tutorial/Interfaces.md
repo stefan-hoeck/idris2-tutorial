@@ -248,8 +248,9 @@ Equals Bool where
 
 1. 实现接口`Equals`、`Comp`、`Concat` 和 `Empty` 用于 pairs，根据需要限制您的实现。（请注意，可以按顺序给出多个约束，例如其他函数参数：`Comp a => Comp b => Comp (a,b)`。）
 
-2. Below is an implementation of a binary tree. Implement interfaces
-   `Equals` and `Concat` for this type.
+2. Below is an implementation of a binary tree. Implement
+   interfaces `Equals` and `Concat` for this type.
+
 
    ```idris
    data Tree : Type -> Type where
@@ -291,6 +292,7 @@ Idris *Prelude* 提供了几个接口和实现，它们在几乎所有重要的�
 我们期望以下定律适用于 `Ord` 的所有实现：
 
 * `(<=)` is *reflexive* and *transitive*.
+
 * `(<=)` 具有 *反对称性*：从 `x <= y = True` 和 `y <= x = True` 可以得到 `x == y = True`。
 * `x <= y = y >= x`。
 * `x < y = not (y <= x)`
@@ -335,8 +337,10 @@ Monoid Distance where
 
 * `(<+>)` is *associative*: `x <+> (y <+> z) = (x <+> y) <+> z`, for all
   values `x`, `y`, and `z`.
-* `neutral` is the *neutral element* with relation to `(<+>)`: `neutral <+>
-  x = x <+> neutral = x`, for all `x`.
+
+* `neutral` is the *neutral element* with relation to `(<+>)`:
+  `neutral <+> x = x <+> neutral = x`, for all `x`.
+
 
 ### `Show`
 
@@ -404,21 +408,34 @@ hock2 = MkUser "hock" "not telling"
 *Prelude* 还导出了几个提供常用算术运算的接口。下面是一个完整的接口列表和每个提供的函数：
 
 * `Num`
-  * `(+)` : Addition
-  * `(*)` : Multiplication
-  * `fromInteger` : Overloaded integer literals
+
+  * `(+)`：加法
+
+  * `(*)`：乘法
+
+  * `fromInteger` ：整数字面量的重载
+
 
 * `Neg`
-  * `negate` : Negation
-  * `(-)` : Subtraction
+
+  * `negate` : 否定
+
+  * `(-)`：减法
+
 
 * `Integral`
-  * `div` : Integer division
-  * `mod` : Modulo operation
+
+  * `div `：整数除法。
+
+  * `mod `：模运算
+
 
 * `Fractional`
-  * `(/)` : Division
+
+  * `(/)`：除法
+
   * `recip` : Calculates the reciprocal of a value
+
 
 如您所见：我们需要实现接口 `Num` 以对给定类型使用整数文字。为了使用像 `-12` 这样的负整数字面量，我们还必须实现接口 `Neg`。
 
@@ -436,17 +453,20 @@ hock2 = MkUser "hock" "not telling"
 
 虽然很清楚为什么像 `Eq`、`Ord` 或 `Num` 这样的接口很有用，但 `Semigroup` 和 `Monoid` 的可用性一开始可能更难欣赏。因此，有几个练习可以为这些练习实现不同的实例。
 
-1. Define a record type `Complex` for complex numbers, by pairing two values
-   of type `Double`.  Implement interfaces `Eq`, `Num`, `Neg`, and
-   `Fractional` for `Complex`.
+1. Define a record type `Complex` for complex numbers, by pairing
+   two values of type `Double`.
+   Implement interfaces `Eq`, `Num`, `Neg`, and `Fractional` for `Complex`.
+
 
 2. Implement interface `Show` for `Complex`. Have a look at data type `Prec`
-   and function `showPrec` and how these are used in the *Prelude* to
-   implement instances for `Either` and `Maybe`.
+   and function `showPrec` and how these are used in the
+   *Prelude* to implement instances for `Either` and `Maybe`.
+
 
    通过在 `Just` 和 `show` 中包装`Complex` 类型的值来实现，并在 REPL 中验证正确的行为。
 
 3. Consider the following wrapper for optional values:
+
 
    ```idris
    record First a where
@@ -464,13 +484,15 @@ hock2 = MkUser "hock" "not telling"
    mapFirst2 : (a -> b -> c) -> First a -> First b -> First c
    ```
 
-4. Implement interfaces `Semigroup` and `Monoid` for `First a` in such a
-   way, that `(<+>)` will return the first non-nothing argument and
-   `neutral` is the corresponding neutral element. There must be no
-   constraints on type parameter `a` in these implementations.
+4. Implement interfaces `Semigroup` and `Monoid` for `First a` in such a way,
+   that `(<+>)` will return the first non-nothing argument and `neutral` is
+   the corresponding neutral element. There must be no constraints on type
+   parameter `a` in these implementations.
 
-5. Repeat exercises 3 and 4 for record `Last`. The `Semigroup`
-   implementation should return the last non-nothing value.
+
+5. Repeat exercises 3 and 4 for record `Last`. The `Semigroup` implementation
+   should return the last non-nothing value.
+
 
    ```idris
    record Last a where
@@ -479,14 +501,15 @@ hock2 = MkUser "hock" "not telling"
    ```
 
 6. Function `foldMap` allows us to map a function returning a `Monoid` over
-   a list of values and accumulate the result using `(<+>)` at the same
-   time.  This is a very powerful way to accumulate the values stored in a
-   list.  Use `foldMap` and `Last` to extract the last element (if any) from
-   a list.
+   a list of values and accumulate the result using `(<+>)` at the same time.
+   This is a very powerful way to accumulate the values stored in a list.
+   Use `foldMap` and `Last` to extract the last element (if any) from a list.
+
 
    请注意，`foldMap` 的类型更通用，不是专门用于列表的。它也适用于 `Maybe`、`Either` 和到目前为止我们还没有看过的其它容器类型。在后面的部分我们将了解接口 `Foldable` 。
 
 7. Consider record wrappers `Any` and `All` for boolean values:
+
 
    ```idris
    record Any where
@@ -502,8 +525,9 @@ hock2 = MkUser "hock" "not telling"
 
    同样，为 `All` 实现 `Semigroup` 和 `Monoid`，当且仅当两个参数都是 `True`， `(<+>)` 的结果为 `True`，确保 `neutral` 确实是此操作的中性元素。
 
-8. Implement functions `anyElem` and `allElems` using `foldMap` and `Any` or
-   `All`, respectively:
+8. Implement functions `anyElem` and `allElems` using `foldMap` and
+   `Any` or `All`, respectively:
+
 
    ```idris
    -- True, if the predicate holds for at least one element
@@ -513,8 +537,9 @@ hock2 = MkUser "hock" "not telling"
    allElems : (a -> Bool) -> List a -> Bool
    ```
 
-9. Record wrappers `Sum` and `Product` are mainly used to hold numeric
-   types.
+9. Record wrappers `Sum` and `Product` are mainly used to hold
+   numeric types.
+
 
    ```idris
    record Sum a where
@@ -534,8 +559,9 @@ hock2 = MkUser "hock" "not telling"
 
    在实现 `neutral` 时，在处理数字类型时，可以使用整数字面量。
 
-10. Implement `sumList` and `productList` by using `foldMap` together with
-    the wrappers from Exercise 9:
+10. Implement `sumList` and `productList` by using `foldMap` together
+    with the wrappers from Exercise 9:
+
 
     ```idris
     sumList : Num a => List a -> a
@@ -543,11 +569,12 @@ hock2 = MkUser "hock" "not telling"
     productList : Num a => List a -> a
     ```
 
-11. To appreciate the power and versatility of `foldMap`, after solving
-    exercises 6 to 10 (or by loading `Solutions.Inderfaces` in a REPL
-    session), run the following at the REPL, which will - in a single list
-    traversal! - calculate the first and last element of the list as well as
-    the sum and product of all values.
+11. To appreciate the power and versatility of `foldMap`, after
+    solving exercises 6 to 10 (or by loading `Solutions.Inderfaces`
+    in a REPL session), run the following at the REPL, which will -
+    in a single list traversal! - calculate the first and last
+    element of the list as well as the sum and product of all values.
+
 
     ```repl
     > foldMap (\x => (pureFirst x, pureLast x, MkSum x, MkProduct x)) [3,7,4,12]
@@ -557,14 +584,16 @@ hock2 = MkUser "hock" "not telling"
     请注意，对于具有 `Ord` 实现，也有 `Semigroup` 实现的类型，它将返回两个值中的较小值或较大值。对于具有绝对最小值或最大值的类型（例如，自然数中的0，或 `Bits8` 中的 0 和 255），还可以可以被可以扩展到为 `Monoid`。
 
 12. In an earlier exercise, you implemented a data type representing
-    chemical elements and wrote a function for calculating their atomic
-    masses. Define a new single field record type for representing atomic
-    masses, and implement interfaces `Eq`, `Ord`, `Show`, `FromDouble`,
-    `Semigroup`, and `Monoid` for this.
+    chemical elements and wrote a function for calculating their
+    atomic masses. Define a new single field record type for
+    representing atomic masses, and implement interfaces
+    `Eq`, `Ord`, `Show`, `FromDouble`, `Semigroup`, and `Monoid` for this.
 
-13. Use the new data type from exercise 12 to calculate the atomic mass of
-    an element and compute the molecular mass of a molecule given by its
-    formula.
+
+13. Use the new data type from exercise 12 to calculate the atomic
+    mass of an element and compute the molecular mass
+    of a molecule given by its formula.
+
 
     提示：使用合适的实用程序函数，您可以再次使用 `foldMap` 来实现此目的。
 
@@ -572,18 +601,25 @@ hock2 = MkUser "hock" "not telling"
 
 ## 结论
 
-* Interfaces allow us to implement the same function with different behavior
-  for different types.
-* Functions taking one or more interface implementations as arguments are
-  called *constrained functions*.
-* Interfaces can be organized hierarchically by *extending* other
-  interfaces.
-* Interfaces implementations can themselves be *constrained* requiring other
-  implementations to be available.
-* Interface functions can be given a *default implementation*, which can be
-  overridden by implementers, for instance for reasons of efficiency.
-* Certain interfaces allow us to use literal values such as string or
-  integer literals for our own data types.
+* Interfaces allow us to implement the same function with different
+  behavior for different types.
+
+* Functions taking one or more interface implementations as
+  arguments are called *constrained functions*.
+
+* Interfaces can be organized hierarchically by *extending*
+  other interfaces.
+
+* Interfaces implementations can themselves be *constrained*
+  requiring other implementations to be available.
+
+* Interface functions can be given a *default implementation*,
+  which can be overridden by implementers, for instance for reasons
+  of efficiency.
+
+* Certain interfaces allow us to use literal values such as
+  string or integer literals for our own data types.
+
 
 请注意，我还没有在本节中讲述有关字面量的全部故事。关于使用只接受一组受限值的类型的字面量的更多细节可以在关于 [原语](Prim.md) 章节中找到。
 

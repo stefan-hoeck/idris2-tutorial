@@ -214,21 +214,27 @@ handleRequest' db (MkRequest (MkCredentials email pw) album) =
 
 1. Module `Data.List` in *base* exports functions `find` and `elem`.
    Inspect their types and use these in the implementation of
-   `handleRequest`. This should allow you to completely get rid of the
-   `where` block.
+   `handleRequest`. This should allow you to completely get rid
+   of the `where` block.
+
 
 2. Define an enumeration type listing the four
-   [nucleobases](https://en.wikipedia.org/wiki/Nucleobase)  occurring in DNA
-   strands. Define also a type alias `DNA` for lists of nucleobases.
-   Declare and implement function `readBase` for converting a single
-   character (type `Char`) to a nucleobase.  You can use character literals
-   in your implementation like so: `'A'`, `'a'`. Note, that this function
-   might fail, so adjust the result type accordingly.
+   [nucleobases](https://en.wikipedia.org/wiki/Nucleobase)
+   occurring in DNA strands. Define also a type alias
+   `DNA` for lists of nucleobases.
+   Declare and implement function `readBase`
+   for converting a single character (type `Char`) to a nucleobase.
+   You can use character literals in your implementation like so:
+   `'A'`, `'a'`. Note, that this function might fail, so adjust the
+   result type accordingly.
 
-3. Implement the following function, which tries to convert all values in a
-   list with a function, which might fail. The result should be a `Just`
-   holding the list of converted values in unmodified order, if and only if
-   every single conversion was successful.
+
+3. Implement the following function, which tries to convert all
+   values in a list with a function, which might fail. The
+   result should be a `Just` holding the list of converted
+   values in unmodified order, if and
+   only if every single conversion was successful.
+
 
    ```idris
    traverseList : (a -> Maybe b) -> List a -> Maybe (List b)
@@ -236,12 +242,14 @@ handleRequest' db (MkRequest (MkCredentials email pw) album) =
 
    您可以通过下面的测试验证该函数是否正确运行：`traverseList Just [1,2,3] = Just [1,2,3]`。
 
-4. Implement function `readDNA : String -> Maybe DNA` using the functions
-   and types defined in exercises 2 and 3.  You will also need function
-   `unpack` from the *Prelude*.
+4. Implement function `readDNA : String -> Maybe DNA`
+   using the functions and types defined in exercises 2 and 3.
+   You will also need function `unpack` from the *Prelude*.
 
-5. Implement function `complement : DNA -> DNA` to calculate the complement
-   of a strand of DNA.
+
+5. Implement function `complement : DNA -> DNA` to
+   calculate the complement of a strand of DNA.
+
 
 ## 关于函数参数的真相
 
@@ -388,7 +396,9 @@ Prelude.id : {0 a : Type} -> a -> a
 最后，我们需要谈谈在本节的几个类型签名中出现的零多重性。 Idris 2 与其前身 Idris 1 不同，它基于称为 *定量类型理论* (QTT) 的核心语言：Idris 2 中的每个变量都与三种可能的多重性之一相关联：
 
 * `0`, meaning that the variable is *erased* at runtime.
+
 * `1`, meaning that the variable is used *exactly once* at runtime.
+
 * *无限制*（默认），表示在运行时使用变量任意次数。
 
 我们不会在这里讨论三者中最复杂的，多重性 `1`。然而，我们经常对多重性 `0` 感兴趣：具有多重性 `0` 的变量仅在 *编译时* 相关。它不会在运行时出现，并且这样一个变量的计算永远不会影响程序的运行时性能。
@@ -630,6 +640,7 @@ Left ["Unknown nucleobase: 'F'", "Unknown nucleobase: 'Q'"]
 作为 *where 块*中的局部定义。
 
 * Use *let expressions* to define and reuse local variables.
+
 
 * 函数参数可以命名，可以作为文档，
 可用于以任意顺序传递参数，并用于引用

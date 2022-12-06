@@ -213,21 +213,28 @@ concatTables3 (MkTable s1 m rs1) (MkTable s2 n rs2) = case eqSchema s1 s2 of
 
 1. Show that `SameColType` is a reflexive relation.
 
+
 2. Show that `SameColType` is a symmetric relation.
+
 
 3. Show that `SameColType` is a transitive relation.
 
-4. Let `f` be a function of type `ColType -> a` for an arbitrary type
-   `a`. Show that from a value of type `SameColType c1 c2` follows that `f
-   c1` and `f c2` are equal.
+
+4. Let `f` be a function of type `ColType -> a` for an
+   arbitrary type `a`. Show that from a value of type
+   `SameColType c1 c2` follows that `f c1` and `f c2` are equal.
+
 
 对于 `(=)`，上述属性可从 *Prelude* 作为函数 `sym`、`trans` 和 `cong` 获得.自反性来自数据构造函数 `Refl` 本身。
 
-5. Implement a function for verifying that two natural numbers are
-   identical. Try using `cong` in your implementation.
+5. Implement a function for verifying that two natural
+   numbers are identical. Try using `cong` in your
+   implementation.
 
-6. Use the function from exercise 5 for zipping two `Table`s if they have
-   the same number of rows.
+
+6. Use the function from exercise 5 for zipping two
+   `Table`s if they have the same number of rows.
+
 
    提示：使用 `Vect.zipWith`。您将需要为此实现
    自定义函数 `appRows`，因为使用 `HList.(++)` 时 Idris 将
@@ -407,15 +414,19 @@ mapMaybeId (Just x) = Refl
 
 1. Proof that `map id` on an `Either e` returns the value unmodified.
 
+
 2. Proof that `map id` on a list returns the list unmodified.
 
-3. Proof that complementing a strand of a nucleobase (see the [previous
-   chapter](DPair.md#use-case-nucleic-acids))  twice leads to the original
-   strand.
+
+3. Proof that complementing a strand of a nucleobase
+   (see the [previous chapter](DPair.md#use-case-nucleic-acids))
+   twice leads to the original strand.
+
 
    提示：首先对单碱基进行证明，然后在核酸序列的实现中使用 *Prelude* 中的`cong2`。
 
 4. Implement function `replaceVect`:
+
 
    ```idris
    replaceVect : (ix : Fin n) -> a -> Vect n a -> Vect n a
@@ -426,6 +437,7 @@ mapMaybeId (Just x) = Refl
    `index` 将返回我们刚刚添加的值。
 
 5. Implement function `insertVect`:
+
 
    ```idris
    insertVect : (ix : Fin (S n)) -> a -> Vect n a -> Vect (S n) a
@@ -583,17 +595,24 @@ decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of
 
 ### 练习第 3 部分
 
-1. Show that there can be no non-empty vector of `Void` by writing a
-   corresponding implementation of uninhabited
+1. Show that there can be no non-empty vector of `Void`
+   by writing a corresponding implementation of uninhabited
+
 
 2. Generalize exercise 1 for all uninhabited element types.
 
-3. Show that if `a = b` cannot hold, then `b = a` cannot hold either.
 
-4. Show that if `a = b` holds, and `b = c` cannot hold, then `a = c` cannot
-   hold either.
+3. Show that if `a = b` cannot hold, then `b = a` cannot hold
+   either.
 
-5. Implement `Uninhabited` for `Crud i a`. Try to be as general as possible.
+
+4. Show that if `a = b` holds, and `b = c` cannot hold, then
+   `a = c` cannot hold either.
+
+
+5. Implement `Uninhabited` for `Crud i a`. Try to be
+   as general as possible.
+
 
    ```idris
    data Crud : (i : Type) -> (a : Type) -> Type where
@@ -605,21 +624,28 @@ decSameSchema (x :: xs) (y :: ys) = case decSameColType x y of
 
 6. Implement `DecEq` for `ColType`.
 
-7. Implementations such as the one from exercise 6 are cumbersome to write
-   as they require a quadratic number of pattern matches with relation to
-   the number of data constructors. Here is a trick how to make this more
-   bearable.
 
-   1. Implement a function `ctNat`, which assigns every value of type
-      `ColType` a unique natural number.
+7. Implementations such as the one from exercise 6 are cumbersome
+   to write as they require a quadratic number of pattern matches
+   with relation to the number of data constructors. Here is a
+   trick how to make this more bearable.
 
-   2. Proof that `ctNat` is injective.  Hint: You will need to pattern match
-      on the `ColType` values, but four matches should be enough to satisfy
-      the coverage checker.
 
-   3. In your implementation of `DecEq` for `ColType`, use `decEq` on the
-      result of applying both column types to `ctNat`, thus reducing it to
-      only two lines of code.
+   1. Implement a function `ctNat`, which assigns every value
+      of type `ColType` a unique natural number.
+
+
+   2. Proof that `ctNat` is injective.
+      Hint: You will need to pattern match on the `ColType`
+      values, but four matches should be enough to satisfy the
+      coverage checker.
+
+
+   3. In your implementation of `DecEq` for `ColType`,
+      use `decEq` on the result of applying both column
+      types to `ctNat`, thus reducing it to only two lines of
+      code.
+
 
    我们稍后会讨论 `with` 规则：
    依赖模式匹配，让我们学习一些东西
@@ -651,8 +677,10 @@ rightZero' :  List (Vect n Nat)
 可能是我们第一次意识到，Idris 对算术定律知之甚少。Idris 能够统一值
 
 * all values in a computation are known at compile time
-* one expression follows directly from the other due to the pattern matches
-  used in a function's implementation.
+
+* one expression follows directly from the other due
+  to the pattern matches used in a function's implementation.
+
 
 在表达式 `n + 0` 中，并非所有值都是已知的（`n` 是一个变量），并且 `(+)` 是通过第一个参数的模式匹配来实现的，我们在这里一无所知。
 
@@ -746,17 +774,26 @@ revOnto {n = S len} xs (x :: ys) =
 
 1. Implement `plusSuccRightSucc` yourself.
 
+
 2. Proof that `minus n n` equals zero for all natural numbers `n`.
+
 
 3. Proof that `minus n 0` equals n for all natural numbers `n`
 
-4. Proof that `n * 1 = n` and `1 * n = n` for all natural numbers `n`.
 
-5. Proof that addition of natural numbers is commutative.
+4. Proof that `n * 1 = n` and `1 * n = n`
+   for all natural numbers `n`.
+
+
+5. Proof that addition of natural numbers is
+   commutative.
+
 
 6. Implement a tail-recursive version of `map` for vectors.
 
+
 7. Proof the following proposition:
+
 
    ```idris
    mapAppend :  (f : a -> b)
@@ -765,9 +802,10 @@ revOnto {n = S len} xs (x :: ys) =
              -> map f (xs ++ ys) = map f xs ++ map f ys
    ```
 
-8. Use the proof from exercise 7 to implement again a function for zipping
-   two `Table`s, this time using a rewrite rule plus `Data.HList.(++)`
-   instead of custom function `appRows`.
+8. Use the proof from exercise 7 to implement again a function
+   for  zipping two `Table`s, this time using a rewrite rule
+   plus `Data.HList.(++)` instead of custom function `appRows`.
+
 
 ## 结论
 
