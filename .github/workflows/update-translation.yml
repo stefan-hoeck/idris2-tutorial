@@ -25,7 +25,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
       - name: 安装项目依赖
-        run: sudo apt-get install -y perl-yaml-tiny po4a
+        run: sudo apt-get update && sudo apt-get install -y perl-yaml-tiny po4a
 
       - name: 更新翻译
         run: cd translation && po4a -f -v ./po4a.cfg && cd ..
