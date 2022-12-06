@@ -16,8 +16,8 @@ jobs:
     steps:
       - name: 检出代码仓库
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.release_token }}
+        # with:
+        #   token: ${{ secrets.release_token }}
 
       - name: 配置git config
         run: |
