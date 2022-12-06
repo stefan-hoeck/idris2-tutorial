@@ -356,7 +356,7 @@ to its function argument. This works very well in the following
 example:
 
 ```repl
-Tutorial.Functions1> applyToThen (* 2)
+Tutorial.Functions1> applyToTen (* 2)
 20
 ```
 
