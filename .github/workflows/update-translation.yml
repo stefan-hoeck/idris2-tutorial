@@ -25,7 +25,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
       - name: 安装项目依赖
-        run: make udpate
+        run: make update
 
       - name: 提交修改
         run: git add . && git commit -m "更新翻译进度" && git push
