@@ -35,20 +35,13 @@ import Data.Vect
 为了充分利用交互式 Idris 编辑
 Neovim，至少需要安装以下工具：
 
-* Neovim 的最新版本（0.5 版或更高版本）。
-
-* Idris 编译器的最新版本（至少版本 0.5.1）。
-
-* Idris 编译器 API。
-
-* [idris2-lsp](https://github.com/idris-community/idris2-lsp) 包。
-
+* A recent version of Neovim (version 0.5 or later).
+* A recent version of the Idris compiler (at least version 0.5.1).
+* The Idris compiler API.
+* The [idris2-lsp](https://github.com/idris-community/idris2-lsp) package.
 * 以下 Neovim 插件：
-
   * [idris2-nvim](https://github.com/ShinKage/idris2-nvim)
-
   * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-
 
 `idris2-lsp` 项目提供了有关如何使用的详细说明
 安装 Idris 2 及其标准库和编译器
@@ -221,20 +214,37 @@ traverseEither2 f (x :: xs) = whatNow2 (f x) (traverseEither f xs)
 这里有一个其他功能的非全面列表。
 我建议你从这个源文件中取出它们中的每一个去试试。
 
-* 在正常模式下的标识符或运算符上键入 `K` 会显示其类型和命名空间（如果有）。在元变量的情况下，当前上下文中的变量也会连同它们的类型和定量一起显示（定量将在 [Functions Part 2](../Tutorial/Functions2.md) 中解释）。如果您不喜欢弹出窗口，请输入 `<LocalLeader>so` 以打开一个新窗口，该窗口将显示此信息并在语义上突出显示。
-
-* 在正常模式下在函数、运算符、数据构造函数或类型构造函数上输入 `gd` 会跳转到项目的定义。对于外部模块，仅当相关模块与其源代码一起安装时才有效（通过使用 `idris2 --install-with-src` 命令）。
-
-* 输入 `<LocalLeader>mm` 打开一个弹出窗口，列出当前模块中的所有元变量。您可以将光标放在一个条目上，然后按 `<Enter>` 跳转到它的位置。
-
-* 输入 `<LocalLeader>mn`（或 `<LocalLeader>mp`）跳转到当前模块中的下一个（或上一个）元变量。
-
-* 键入 `<LocalLeader>br` 会打开一个弹出窗口，您可以在其中输入名称空间。然后 Idris 将在弹出窗口中显示从该命名空间导出的所有函数（以及它们的类型），您可以通过在其中一个条目上按 enter 来跳转到函数的定义。注意：有问题的模块必须在当前源文件中导入。
-
-* 输入 `<LocalLeader>x` 会打开一个弹出窗口，您可以在其中输入 REPL 命令或 Idris 表达式，插件将回复来自 REPL 的响应。每当本指南的主要部分显示 REPL 示例时，如果您愿意，可以使用此快捷方式在 Neovim 中尝试它们。
-
-* 键入 `<LocalLeader><LocalLeader>e` 将在弹出窗口中显示当前行的错误消息。如果错误消息太长而无法放在一行中，这将非常有用。同样， `<LocalLeader><LocalLeader>el` 将在新窗口中列出当前缓冲区中的所有错误消息。然后，您可以通过按 `<Enter>` 选择错误消息并跳转到其原点。
-
+* Typing `K` when on an identifier or operator in normal mode shows its type
+  and namespace (if any). In case of a metavariable, variables in the
+  current context are displayed as well together with their types and
+  quantities (quantities will be explained in [Functions Part
+  2](../Tutorial/Functions2.md)).  If you don't like popups, enter
+  `<LocalLeader>so` to open a new window where this information is displayed
+  and semantically highlighted instead.
+* Typing `gd` on a function, operator, data constructor or type constructor
+  in normal mode jumps to the item's definition.  For external modules, this
+  works only if the module in question has been installed together with its
+  source code (by using the `idris2 --install-with-src` command).
+* Typing `<LocalLeader>mm` opens a popup window listing all metavariables in
+  the current module. You can place the cursor on an entry and jump to its
+  location by pressing `<Enter>`.
+* Typing `<LocalLeader>mn` (or `<LocalLeader>mp`) jumps to the next (or
+  previous) metavariable in the current module.
+* Typing `<LocalLeader>br` opens a popup where you can enter a
+  namespace. Idris will then show all functions (plus their types)  exported
+  from that namespace in a popup window, and you can jump to a function's
+  definition by pressing enter on one of the entries. Note: The module in
+  question must be imported in the current source file.
+* Typing `<LocalLeader>x` opens a popup where you can enter a REPL command
+  or Idris expression, and the plugin will reply with a response from the
+  REPL. Whenever REPL examples are shown in the main part of this guide, you
+  can try them from within Neovim with this shortcut if you like.
+* Typing `<LocalLeader><LocalLeader>e` will display the error message from
+  the current line in a popup window. This can be highly useful, if error
+  messages are too long to fit on a single line. Likewise,
+  `<LocalLeader><LocalLeader>el` will list all error messages from the
+  current buffer in a new window. You can then select an error message and
+  jump to its origin by pressing `<Enter>`.
 
 `idris2-nvim` 插件其他用例和示例在 GitHub 页面上进行了描述，这些描述也包含在内。
 

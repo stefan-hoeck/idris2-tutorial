@@ -26,19 +26,19 @@ Idris 是一种具有*依赖类型*的、*完全*的*纯**函数式*编程语言
 
 纯函数有几个优点：
 
-* 它们可以通过指定（可能是随机生成的）输入参数集以及预期结果来轻松测试。
+* They can easily be tested by specifying (possibly randomly generated)
+  sets of input arguments together with the expected results.
 
-
-* 它们是线程安全的，因为不会改变全局状态，因此可以在并行运行的多个计算中自由使用。
-
+* They are thread-safe, since the don't mutate global state, and as such can
+  be freely used in several computations running in parallel.
 
 当然，也有一些缺点：
 
-* 仅使用纯函数很难有效地实现某些算法。
+* Some algorithms are hard to implement efficiently using only pure
+  functions.
 
-
-* 编写实际上*做*某些事情（具有一些可观察到的效果）的程序有点棘手，但肯定是可能的。
-
+* Writing programs that actually *do* something (have some observable
+  effect) is a bit trickier but certainly possible.
 
 ### 依赖类型
 
@@ -219,18 +219,17 @@ Tutorial.Intro> maxBits8 * maxBits8
 
 有多种在线资源和印刷资源，您可以在其中找到有关 Idris 编程语言的帮助和文档。以下是它们的非全面列表：
 
-* [使用 Idris 进行类型驱动开发](https://www.manning.com/books/type-driven-development-with-idris)
-
+* [Type-Driven Development with
+  Idris](https://www.manning.com/books/type-driven-development-with-idris)
 
   *专门*讲 Idris 的书！这描述得很详细。使用 Idris 和依赖类型的核心概念编写健壮和简洁的代码。它使用 Idris 1 实现书中的例子，所以使用 Idris 2 时它的一部分必须稍微调整，有一个[所需更新列表](https://idris2.readthedocs.io/en/latest/typedd/typedd.html)。
 
-* [Idris 2 速成课程](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
-
+* [A Crash Course in Idris
+  2](https://idris2.readthedocs.io/en/latest/tutorial/index.html)
 
   Idris 2 官方教程。全面而密集的解释 Idris 2 的所有功能。我发现这作为参考很有用，因此它是高度可访问的。但是，它不是函数式编程或类型驱动开发的入门介绍
 
-* [Idris 2 GitHub 存储库](https://github.com/idris-lang/Idris2)
-
+* [The Idris 2 GitHub Repository](https://github.com/idris-lang/Idris2)
 
   在这里查看详细的安装说明和一些介绍材料。还有一个[wiki](https://github.com/idris-lang/Idris2/wiki)，
   在这里你可以找到[编辑器插件列表](https://github.com/idris-lang/Idris2/wiki/The-Idris-editor-experience)，
@@ -238,30 +237,29 @@ Tutorial.Intro> maxBits8 * maxBits8
   [外部后端列表](https://github.com/idris-lang/Idris2/wiki/External-backends),
 和其他有用的信息。
 
-* [Idris 2 Discord 频道](https://discord.gg/UX68fDs2jc)
-
+* [The Idris 2 Discord Channel](https://discord.gg/UX68fDs2jc)
 
   如果你被一段代码卡住了，想问一些晦涩的语言功能，想推广你的新库，或者想和其他 Idris 程序员一起出去玩，可以来这个地方。Discord 频道非常活跃且对新人*非常*友好。
 
-* Idris REPL
-
+* The Idris REPL
 
   最后，Idris 本身可以提供很多有用的信息。在 Idris 编程的时间我倾向于至少打开一个 REPL 会话。我的编辑器（neovim）已设置使用 [Idris 2 的语言服务器](https://github.com/idris-community/idris2-lsp)，在 REPL 中这非常有用。
 
-  * 使用 `:t` 检查表达式或元变量（孔）的类型：`:t foldl`,
-
-  * 使用 `:ti` 检查包含隐式参数的函数类型：`:ti foldl`,
-
-  * 使用 `:m` 列出作用域内的所有元变量（孔），
-
-  * 使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特性（`:doc case`, `:doc let`, `:doc interface`, `:doc record`，甚至是 `:doc ?`)，或者一个接口（`:doc Uninhabited`），
-
-  * 使用 `:module` 从可用包之一导入模块：`:module Data.Vect`,
-
-  * 使用 `:browse` 列出加载模块导出的所有函数的名称和类型： `:browse Data.Vect`,
-
-  * 使用 `:help` 获取其他命令的列表以及每个命令的简短描述。
-
+  * use `:t` to inspect the type of an expression or meta variable (hole):
+    `:t foldl`,
+  * use `:ti` to inspect the type of a function including implicit
+    arguments: `:ti foldl`,
+  * use `:m` to list all meta variables (holes) in scope,
+  * use `:doc` to access the documentation of a top level function (`:doc
+    the`), a data type plus all its constructors and available hints (`:doc
+    Bool`), a language feature (`:doc case`, `:doc let`, `:doc interface`,
+    `:doc record`, or even `:doc ?`), or an interface (`:doc Uninhabited`),
+  * use `:module` to import a module from one of the available packages:
+    `:module Data.Vect`,
+  * use `:browse` to list the names and types of all functions exported by a
+    loaded module: `:browse Data.Vect`,
+  * use `:help` to get a list of other commands plus a short description for
+    each.
 
 ## 概括
 

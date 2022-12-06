@@ -185,10 +185,12 @@ interface Functor t => Foldable t => Traversable' t where
 
 函数 `traverse` 必须遵守两个定律：
 
-* `traverse (Id . f) = Id . map f`: 遍历 `Identity` 单子等同于使用 `map`.
-
-* `traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`：在单个遍历（左侧）或两个遍历序列（右侧）中完成时，具有副作用组合的遍历必须相同。
-
+* `traverse (Id . f) = Id . map f`: Traversing over the `Identity` monad is
+  just functor `map`.
+* `traverse (MkComp . map f . g) = MkComp . map (traverse f) . traverse g`:
+  Traversing with a composition of effects must be the same when being done
+  in a single traversal (left hand side) or a sequence of two traversals
+  (right hand side).
 
 由于`map id = id`（函子恒等律），我们可以从第一定律推导出
 `traverse Id = Id`。这意味着
@@ -197,21 +199,21 @@ interface Functor t => Foldable t => Traversable' t where
 
 ### 练习第 1 部分
 
-1. 有趣的是 `Traversable` 有一个 `Functor` 约束。通过根据 `traverse` 实现 `map`，证明每个 `Traversable` 自动成为 `Functor`。
-
+1. It is interesting that `Traversable` has a `Functor` constraint. Proof
+   that every `Traversable` is automatically a `Functor` by implementing
+   `map` in terms of `traverse`.
 
    提示：记住 `Control.Monad.Identity`。
 
-2. 同样，通过根据 `Traverse` 实现 `foldMap` 来证明每个 `Traversable` 都是 `Foldable`。
-
+2. Likewise, proof that every `Traversable` is a `Foldable` by implementing
+   `foldMap` in terms of `Traverse`.
 
    提示：记住 `Control.Applicative.Const`。
 
-3. 开始一些例行程序，请为 `List1`、`Ei` 和 `Maybe` 实现 `Traversable'`。
+3. To gain some routine, implement `Traversable'` for `List1`, `Either e`,
+   and `Maybe`.
 
-
-4. 为 `List01 ne` 实现 `Traversable`：
-
+4. Implement `Traversable` for `List01 ne`:
 
    ```idris
    data List01 : (nonEmpty : Bool) -> Type -> Type where
@@ -219,8 +221,8 @@ interface Functor t => Foldable t => Traversable' t where
      (::) : a -> List01 False a -> List01 ne a
    ```
 
-5. 为玫瑰树实现 `Traversable`。尝试在不作弊的情况下满足完全性检查器。
-
+5. Implement `Traversable` for rose trees. Try to satisfy the totality
+   checker without cheating.
 
    ```idris
    record Tree a where
@@ -229,8 +231,7 @@ interface Functor t => Foldable t => Traversable' t where
      forest : List (Tree a)
    ```
 
-6. 为 `Crud i` 实现 `Traversable`：
-
+6. Implement `Traversable` for `Crud i`:
 
    ```idris
    data Crud : (i : Type) -> (a : Type) -> Type where
@@ -240,8 +241,7 @@ interface Functor t => Foldable t => Traversable' t where
      Delete : (id : i) -> Crud i a
    ```
 
-7. 为 `Response e i` 实现 `Traversable`：
-
+7. Implement `Traversable` for `Response e i`:
 
    ```idris
    data Response : (e, i, a : Type) -> Type where
@@ -252,8 +252,9 @@ interface Functor t => Foldable t => Traversable' t where
      Error   : (err : e) -> Response e i a
    ```
 
-8. 与 `Functor`、`Applicative` 和 `Foldable` 一样，`Traversable` 在组合下是封闭的。通过为 `Comp` 和 `Product` 实现 `Traversable` 来证明这一点：
-
+8. Like `Functor`, `Applicative` and `Foldable`, `Traversable` is closed
+   under composition. Proof this by implementing `Traversable` for `Comp`
+   and `Product`:
 
    ```idris
    record Comp (f,g : Type -> Type) (a : Type) where
@@ -379,10 +380,12 @@ Just (0, 12)
 不受污染。然而，自己的替代方案要做到这一点并不容易，而且很难弄清楚这是怎么回事，所以我会尝试慢慢介绍。
 我们首先需要问自己 “有状态” 的本质是什么，否则什么是纯计算。那是两个基本成分：
 
-1. 访问*当前*状态。对于纯函数，这意味着该函数应将当前状态作为其参数之一。
-
-2. 能够将更新的状态传达给以后的有状态计算。在纯函数的情况下，这意味着该函数将返回一对值：计算的结果加上更新的状态。
-
+1. Access to the *current* state. In case of a pure function, this means
+   that the function should take the current state as one of its arguments.
+2. Ability to communicate the updated state to later stateful
+   computations. In case of a pure function this means, that the function
+   will return a pair of values: The computation's result plus the updated
+   state.
 
 这两个先决条件导致以泛型，
 用于在状态上运行的纯的有状态计算的类型，输入 `st` 并生成 `a` 类型的值 ：
@@ -486,8 +489,12 @@ Monad (State st) where
 有状态计算的经典应用。
 在第二个练习中，我们将看基于状态单子的一个索引版本，它允许我们在计算过程中不仅改变状态的值以及它的 *类型*。
 
-1. 下面是一个简单的伪随机数生成器的实现。我们称其为*伪随机*数字生成器，因为这些数字看起来非常随机，但生成是可预测的。如果我们用真正的随机种子初始化一系列这样的计算，我们库的大多数用户将无法预测我们的计算结果。
-
+1. Below is the implementation of a simple pseudo-random number
+   generator. We call this a *pseudo-random* number generator, because the
+   numbers look pretty random but are generated predictably. If we
+   initialize a series of such computations with a truly random seed, most
+   users of our library will not be able to predict the outcome of our
+   computations.
 
    ```idris
    rnd : Bits64 -> Bits64
@@ -508,8 +515,10 @@ Monad (State st) where
    生成器，无需对您将作为本练习的一部分实现的函数进行任何更改
    。
 
-   1. 根据 `rnd` 实现 `bits64`。这应该返回当前状态，然后通过调用函数 `rnd` 对其进行更新。确保状态已正确更新，否则将无法按预期运行。
-
+   1. Implement `bits64` in terms of `rnd`. This should return the current
+      state, updating it afterwards by invoking function `rnd`. Make sure
+      the state is properly updated, otherwise this won't behave as
+      expected.
 
       ```idris
       bits64 : Gen Bits64
@@ -524,8 +533,10 @@ Monad (State st) where
       (2274787257952781382, 100)
       ```
 
-   2. 实现 `range64` 以在 `[0,upper]` 范围内生成随机值。提示：在你的实现中使用 `bits64` 和 `mod` 但确保处理 `mod x upper` 在 `[0,upper)` 区间生成。
-
+   2. Implement `range64` for generating random values in the range
+      `[0,upper]`. Hint: Use `bits64` and `mod` in your implementation but
+      make sure to deal with the fact that `mod x upper` produces values in
+      the range `[0,upper)`.
 
       ```idris
       range64 : (upper : Bits64) -> Gen Bits64
@@ -546,17 +557,18 @@ Monad (State st) where
       请注意， `interval` 不会生成给定的间隔所有可能的值
       ，只会生成`[0,2305843009213693950]` 范围内 `Bits64` 的值。
 
-   3. 实现随机布尔值的生成器。
+   3. Implement a generator for random boolean values.
 
+   4. Implement a generator for `Fin n`. You'll have to think carefully
+      about getting this one to typecheck and be accepted by the totality
+      checker without cheating.  Note: Have a look at function
+      `Data.Fin.natToFin`.
 
-   4. 为 `Fin n` 实现一个生成器。您必须仔细考虑如何让这个进行类型检查并在不作弊的情况下被整体检查器接受。注意：查看函数 `Data.Fin.natToFin`。
+   5. Implement a generator for selecting a random element from a vector of
+      values. Use the generator from exercise 4 in your implementation.
 
-
-   5. 实现一个生成器，用于从值向量中选择一个随机元素。在您的实现中使用练习 4 中的生成器。
-
-
-   6. 实现 `vect` 和 `list`。在 `list` 的情况下，第一个参数应该用于随机确定列表的长度。
-
+   6. Implement `vect` and `list`. In case of `list`, the first argument
+      should be used to randomly determine the length of the list.
 
       ```idris
       vect : {n : _} -> Gen a -> Gen (Vect n a)
@@ -571,32 +583,34 @@ Monad (State st) where
       testGen : Bits64 -> Gen a -> Vect 10 a
       ```
 
-   7. 实现 `choice`.
-
+   7. Implement `choice`.
 
       ```idris
       choice : {n : _} -> Vect (S n) (Gen a) -> Gen a
       ```
 
-   8. 实现 `either`.
-
+   8. Implement `either`.
 
       ```idris
       either : Gen a -> Gen b -> Gen (Either a b)
       ```
 
-   9. 为可打印的 ASCII 字符实现生成器。这些是 ASCII 码在区间 `[32,126]` 中的字符。提示：*Prelude* 中的函数 `chr` 在这里很有用。
+   9. Implement a generator for printable ASCII characters.  These are
+      characters with ASCII codes in the interval `[32,126]`. Hint: Function
+      `chr` from the *Prelude* will be useful here.
 
-
-   10. 实现一个字符串生成器。提示：*Prelude* 中的函数 `pack` 可能对此有用。
-
+   10. Implement a generator for strings. Hint: Function `pack` from the
+       *Prelude* might be useful for this.
 
        ```idris
        string : Gen Nat -> Gen Char -> Gen String
        ```
 
-   11. 我们不应该忘记我们在 Idris 的类型中编码有趣事物的能力，因此，为了挑战，事不宜迟，实现 `hlist`（注意 `HListF` 和 `HList`）。如果您对依赖类型比较陌生，这可能需要一点时间来消化，所以不要忘记使用孔。
-
+   11. We shouldn't forget about our ability to encode interesting things in
+       the types in Idris, so, for a challenge and without further ado,
+       implement `hlist` (note the distinction between `HListF` and
+       `HList`). If you are rather new to dependent types, this might take a
+       moment to digest, so don't forget to use holes.
 
        ```idris
        data HListF : (f : Type -> Type) -> (ts : List Type) -> Type where
@@ -606,8 +620,8 @@ Monad (State st) where
        hlist : HListF Gen ts -> Gen (HList ts)
        ```
 
-   12. 泛化 `hlist` 以与任何应用函子一起工作，而不仅仅是 `Gen`.
-
+   12. Generalize `hlist` to work with any applicative functor, not just
+       `Gen`.
 
    如果你到了这里，请意识到我们现在如何生成大多数原语的伪随机值，以及常规的 sum- 和 product 类型。
    这是一个示例 REPL 会话：
@@ -634,8 +648,10 @@ Monad (State st) where
    虽然不需要测试可以直接证明 Idris 中的许多更简单的属性，一旦涉及函数这不再可能，因为在统一期间不会减少，
    例如外部函数调用或其他模块未公开导出的函数。
 
-2. 虽然 `State s a` 为我们提供了一种讨论有状态计算的便捷方式，但它只允许我们改变状态的*值*而不是它的*类型*。例如，下面的函数不能封装在 `State` 中，因为状态的类型发生了变化：
-
+2. While `State s a` gives us a convenient way to talk about stateful
+   computations, it only allows us to mutate the state's *value* but not its
+   *type*. For instance, the following function cannot be encapsulated in
+   `State` because the type of the state changes:
 
    ```idris
    uncons : Vect (S n) a -> (Vect n a, a)
@@ -652,26 +668,29 @@ Monad (State st) where
    首先。
 
 
-   1. 提出一种参数化数据类型，用于封装输入和输出状态类型可能不同的有状态计算。必须可以将 `uncons` 包装在这种类型的值中。
+   1. Come up with a parameterized data type for encapsulating stateful
+      computations where the input and output state type can differ. It must
+      be possible to wrap `uncons` in a value of this type.
 
+   2. Implement `Functor` for your indexed state type.
 
-   2. 为您的索引状态类型实现 `Functor`。
+   3. It is not possible to implement `Applicative` for this *indexed* state
+      type (but see also exercise 2.vii).  Still, implement the necessary
+      functions to use it with idom brackets.
 
+   4. It is not possible to implement `Monad` for this indexed state
+      type. Still, implement the necessary functions to use it in do blocks.
 
-   3. 对于这种*索引*状态类型，无法实现 `Applicative`（但另请参见练习 2.vii）。尽管如此，实现必要的函数以将其与习语括号一起使用。
+   5. Generalize the functions from exercises 3 and 4 with two new
+      interfaces `IxApplicative` and `IxMonad` and provide implementations
+      of these for your indexed state data type.
 
+   6. Implement functions `get`, `put`, `modify`, `runState`, `evalState`,
+      and `execState` for the indexed state data type. Make sure to adjust
+      the type parameters where necessary.
 
-   4. 无法为此索引状态类型实现 `Monad`。不过，实现必要的功能以在 do 块中使用它。
-
-
-   5. 使用两个新接口 `IxApplicative` 和 `IxMonad` 概括练习 3 和 4 中的函数，并为您的索引状态数据类型提供这些实现。
-
-
-   6. 实现函数 `get`、`put`、`modify`、`runState`、`evalState` 和 `execState`对于索引状态数据类型。确保在必要时调整类型参数。
-
-
-   7. 通过为它实现 `Applicative` 和 `Monad` 来证明你的索引状态类型比 `State` 更强大。
-
+   7. Show that your indexed state type is strictly more powerful than
+      `State` by implementing `Applicative` and `Monad` for it.
 
       提示：保持输入和输出状态相同。另请注意，
       如果 Idris 无法正确推断类型，您可能需要手动实施 `join`。
@@ -871,8 +890,9 @@ Invalid (Append (FieldError 1 1 "o")
 应该查找它们提供的功能
 以及如何自己实施和使用它们。
 
-1. 假设我们不仅要解释 CSV 内容，还要解释 CSV 文件中的可选注释标签。为此，我们可以使用诸如 `Tagged` 之类的数据类型：
-
+1. Assume we'd like to not only interpret CSV content but also the optional
+   comment tags in our CSV files.  For this, we could use a data type such
+   as `Tagged`:
 
    ```idris
    data Tagged : (tag, value : Type) -> Type where
@@ -883,14 +903,21 @@ Invalid (Append (FieldError 1 1 "o")
    为 `Tagged` 实现接口 `Functor`、`Foldable` 和 `Traversable`
    还有 `Bifunctor`、`Bifoldable` 和 `Bitraversable`。
 
-2. 通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有两个函子（例如 `Either (List a) (Maybe b)`）的二元函子的组合再次成为二元函子`。同样适用于 `Bifoldable`/`Foldable` 和 `Bitraversable`/`Traversable`。
+2. Show that the composition of a bifunctor with two functors such as
+   `Either (List a) (Maybe b)` is again a bifunctor by defining a dedicated
+   wrapper type for such compositions and writing a corresponding
+   implementation of `Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and
+   `Bitraversable`/`Traversable`.
 
+3. Show that the composition of a functor with a bifunctor such as `List
+   (Either a b)` is again a bifunctor by defining a dedicated wrapper type
+   for such compositions and writing a corresponding implementation of
+   `Bifunctor`.  Likewise for `Bifoldable`/`Foldable` and
+   `Bitraversable`/`Traversable`.
 
-3. 通过为此类组合定义专用包装器类型并编写 `Bifunctor` 的相应实现，证明具有二元函子（如 `List (Either a b)`）的函子的组合再次是二元函子。同样适用于 `Bifoldable`/`Foldable` 和 `Bitraversable`/`Traversable`。
-
-
-4. 我们现在将调整 `readCSV` 使其在一次遍历中解码评论标签和 CSV 内容。我们需要一个新的错误类型来包含无效的标签：
-
+4. We are now going to adjust `readCSV` in such a way that it decodes
+   comment tags and CSV content in a single traversal.  We need a new error
+   type to include invalid tags for this:
 
    ```idris
    data TagError : Type where
@@ -962,16 +989,16 @@ Invalid (Append (FieldError 1 1 "o")
 
 以下是我们在本章中学到的内容的简短摘要：
 
-* 函数 `traverse` 用于对容器类型运行有效的计算，而不影响它们的大小或形状。
-
-* 我们可以使用 `IORef` 作为在 `IO` 中运行的有状态计算中的可变引用。
-
-* 对于具有“可变”状态的引用透明计算，`State` 单子非常有用。
-
-* 应用函子在组合下是封闭的，因此我们可以在一次遍历中运行多个有效的计算。
-
-* Traversables 在组合下也是封闭的，所以我们可以使用 `traverse` 对容器的嵌套进行操作。
-
+* Function `traverse` is used to run effectful computations over container
+  types without affecting their size or shape.
+* We can use `IORef` as mutable references in stateful computations running
+  in `IO`.
+* For referentially transparent computations with "mutable" state, the
+  `State` monad is extremely useful.
+* Applicative functors are closed under composition, so we can run several
+  effectful computations in a single traversal.
+* Traversables are also closed under composition, so we can use `traverse`
+  to operate on a nesting of containers.
 
 至此，我们对 *Prelude* 的介绍到此结束
 更高级的接口，从引入
