@@ -234,7 +234,7 @@ applyToTen f = f 10
 这只是一个将数字 10 应用于其函数参数的高阶函数。这在以下示例中非常有效：
 
 ```repl
-Tutorial.Functions1> applyToThen (* 2)
+Tutorial.Functions1> applyToTen (* 2)
 20
 ```
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-09-10 08:35+0000\n"
+"POT-Creation-Date: 2022-12-06 10:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -727,7 +727,7 @@ msgstr ""
 #, markdown-text, no-wrap
 msgid ""
 "For instance, if we invoke `next` with argument `Thursday`,\n"
-"the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)\n"
+"the first three patterns (`Monday`, `Tuesday`, and `Wednesday`)\n"
 "will be checked against the argument, but they do not match.\n"
 "The fourth pattern is a match, and result `Friday` is being\n"
 "returned. Later patterns are then ignored, even if they would\n"
@@ -2087,7 +2087,7 @@ msgid ""
 "Tutorial.DataTypes> :t Some\n"
 "Tutorial.DataTypes.Some : a -> Option a\n"
 "Tutorial.DataTypes> :t None\n"
-"Tutorial.DataTypes.None : Optin a\n"
+"Tutorial.DataTypes.None : Option a\n"
 "Tutorial.DataTypes> :t Option\n"
 "Tutorial.DataTypes.Option : Type -> Type\n"
 msgstr ""
@@ -7450,7 +7450,7 @@ msgstr ""
 #: ../src/Tutorial/Eq.md:495
 #, no-wrap
 msgid ""
-"mapMaybeId1 : (ma : Maybe a) -> map id ma = ma\n"
+"mapMaybeId1 : (ma : Maybe a) -> map Prelude.id ma = ma\n"
 "mapMaybeId1 Nothing  = Refl\n"
 "mapMaybeId1 (Just x) = ?mapMaybeId1_rhs\n"
 msgstr ""
@@ -8325,13 +8325,13 @@ msgstr ""
 #: ../src/Tutorial/Eq.md:984
 #, no-wrap
 msgid ""
-"reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a\n"
-"reverseOnto' xs []        = xs\n"
-"reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys\n"
+"revOnto' : Vect m a -> Vect n a -> Vect (m + n) a\n"
+"revOnto' xs []        = xs\n"
+"revOnto' xs (x :: ys) = revOnto' (x :: xs) ys\n"
 "\n"
 "\n"
 "reverseVect' : Vect n a -> Vect n a\n"
-"reverseVect' = reverseOnto' []\n"
+"reverseVect' = revOnto' []\n"
 msgstr ""
 
 #. type: Plain text
@@ -8339,7 +8339,7 @@ msgstr ""
 #, markdown-text, no-wrap
 msgid ""
 "As you might have guessed, this will not compile as the\n"
-"length indices in the two clauses of `reverseOnto'` do\n"
+"length indices in the two clauses of `revOnto'` do\n"
 "not unify.\n"
 msgstr ""
 
@@ -8356,8 +8356,8 @@ msgstr ""
 #: ../src/Tutorial/Eq.md:1002
 #, no-wrap
 msgid ""
-"reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a\n"
-"reverseOnto xs [] = rewrite addZeroRight m in xs\n"
+"revOnto : Vect m a -> Vect n a -> Vect (m + n) a\n"
+"revOnto xs [] = rewrite addZeroRight m in xs\n"
 msgstr ""
 
 #. type: Plain text
@@ -8390,7 +8390,7 @@ msgid ""
 "so we will need the version with arguments flipped. However, there\n"
 "is one more obstacle: We need to invoke `plusSuccRightSucc`\n"
 "with the length of `ys`, which is not given as an implicit\n"
-"function argument of `reverseOnto`. We therefore need to pattern\n"
+"function argument of `revOnto`. We therefore need to pattern\n"
 "match on `n` (the length of the second vector), in order to\n"
 "bind the length of the tail to a variable. Remember, that we\n"
 "are allowed to pattern match on an erased argument only if\n"
@@ -8403,8 +8403,8 @@ msgstr ""
 #: ../src/Tutorial/Eq.md:1033
 #, no-wrap
 msgid ""
-"reverseOnto {n = S len} xs (x :: ys) =\n"
-"  rewrite sym (plusSuccRightSucc m len) in reverseOnto (x :: xs) ys\n"
+"revOnto {n = S len} xs (x :: ys) =\n"
+"  rewrite sym (plusSuccRightSucc m len) in revOnto (x :: xs) ys\n"
 msgstr ""
 
 #. type: Plain text
@@ -11030,7 +11030,7 @@ msgstr ""
 #: ../src/Tutorial/Functions1.md:358
 #, no-wrap
 msgid ""
-"Tutorial.Functions1> applyToThen (* 2)\n"
+"Tutorial.Functions1> applyToTen (* 2)\n"
 "20\n"
 msgstr ""
 

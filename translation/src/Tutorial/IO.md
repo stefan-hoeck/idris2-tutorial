@@ -560,7 +560,7 @@ bangExpr' s1 s2 s3 = do
 
 ## 使用文件
 
-*base* 库中的模块 `System.File` 导出处理文件句柄和读取和写入文件所需的实用程序。当您有一个文件路径（例如“/home/hock/idris/tutorial/tutorial.ipkg”）时，我们通常会做的第一件事是尝试创建一个文件句柄（类型为 `System.File. File` 通过调用 `fileOpen`）。
+*base* 库中的模块 `System.File` 导出处理文件句柄和读取和写入文件所需的实用程序。当您有一个文件路径（例如“/home/hock/idris/tutorial/tutorial.ipkg”）时，我们通常会做的第一件事是尝试创建一个文件句柄（类型为 `System.File.File` ，可以通过通过调用 `fileOpen` 获得）。
 
 这是一个计算 Unix/Linux 文件中所有空行的程序：
 

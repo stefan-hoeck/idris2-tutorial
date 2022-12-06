@@ -356,7 +356,7 @@ showReadColType Float   = Refl
 在写下我们上面所做的证明类型时，必须非常小心不要落入以下陷阱：通常，Idris 会将函数类型中的小写标识符视为类型参数（已删除的隐式参数）。例如，这里尝试证明 `Maybe` 的恒等函子定律：
 
 ```idris
-mapMaybeId1 : (ma : Maybe a) -> map id ma = ma
+mapMaybeId1 : (ma : Maybe a) -> map Prelude.id ma = ma
 mapMaybeId1 Nothing  = Refl
 mapMaybeId1 (Just x) = ?mapMaybeId1_rhs
 ```
@@ -696,22 +696,24 @@ rewriteVect as = rewrite sym (addZeroRight n) in as
 
 
 ```repl
-reverseOnto' : Vect m a -> Vect n a -> Vect (m + n) a
-reverseOnto' xs []        = xs
-reverseOnto' xs (x :: ys) = reverseOnto' (x :: xs) ys
+revOnto' : Vect m a -> Vect n a -> Vect (m + n) a
+revOnto' xs []        = xs
+revOnto' xs (x :: ys) = revOnto' (x :: xs) ys
 
 
 reverseVect' : Vect n a -> Vect n a
-reverseVect' = reverseOnto' []
+reverseVect' = revOnto' []
 ```
 
-正如您可能已经猜到的那样，这不会通过编译，因为 `reverseOnto'` 的两个子句中的长度索引不统一。
+As you might have guessed, this will not compile as the
+length indices in the two clauses of `revOnto'` do
+not unify.
 
 *nil* 情况是我们在上面已经看到的情况：这里 `n` 为零，因为第二个向量是空的，所以我们必须再次说服 Idris `m + 0 = m`：
 
 ```idris
-reverseOnto : Vect m a -> Vect n a -> Vect (m + n) a
-reverseOnto xs [] = rewrite addZeroRight m in xs
+revOnto : Vect m a -> Vect n a -> Vect (m + n) a
+revOnto xs [] = rewrite addZeroRight m in xs
 ```
 
 第二种情况更复杂。这里，Idris 无法统一 `S (m + len)` 和 `m + S len`，其中 `len` 是 `ys` 的长度，第二个向量的尾部。模块 `Data.Nat` 提供了许多关于自然数算术运算的证明，其中之一是 `plusSuccRightSucc`。这是它的类型：
@@ -723,11 +725,21 @@ Data.Nat.plusSuccRightSucc :  (left : Nat)
                            -> S (left + right) = left + S right
 ```
 
-在我们的例子中，我们想用 `m + S len` 替换 `S (m + len)`，所以我们需要参数翻转的版本。但是，还有一个障碍：我们需要调用长度为 `ys` 的 `plusSuccRightSucc`，它没有作为 `reverseOnto` 的隐式函数参数给出。因此，我们需要对 `n`（第二个向量的长度）进行模式匹配，以便将尾部的长度绑定到一个变量。请记住，只有当使用的构造函数遵循另一个未擦除参数（在本例中为 `ys`）的匹配时，我们才允许对已擦除参数进行模式匹配。下面是第二种情况的实现：
+In our case, we want to replace `S (m + len)` with `m + S len`,
+so we will need the version with arguments flipped. However, there
+is one more obstacle: We need to invoke `plusSuccRightSucc`
+with the length of `ys`, which is not given as an implicit
+function argument of `revOnto`. We therefore need to pattern
+match on `n` (the length of the second vector), in order to
+bind the length of the tail to a variable. Remember, that we
+are allowed to pattern match on an erased argument only if
+the constructor used follows from a match on another, unerased,
+argument (`ys` in this case). Here's the implementation of the
+second case:
 
 ```idris
-reverseOnto {n = S len} xs (x :: ys) =
-  rewrite sym (plusSuccRightSucc m len) in reverseOnto (x :: xs) ys
+revOnto {n = S len} xs (x :: ys) =
+  rewrite sym (plusSuccRightSucc m len) in revOnto (x :: xs) ys
 ```
 
 我从我自己的经验中知道，起初这可能会让人非常困惑。如果您将 Idris 用作通用编程语言而不是证明助手，您可能不必经常使用重写规则。尽管如此，重要的是要知道它们的存在，因为它们允许我们向 Idris 教授复杂的等价性。

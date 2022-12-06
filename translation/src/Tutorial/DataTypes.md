@@ -59,7 +59,13 @@ next Sunday    = Monday
 这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况
 ，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是被求值。后面的模式将被忽略。
 
-例如，如果我们使用参数 `Thursday` 调用 `next`，前三个模式（`Monaday`、`Tuesday` 和 `Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 `Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，我们稍后会谈到）。
+For instance, if we invoke `next` with argument `Thursday`,
+the first three patterns (`Monday`, `Tuesday`, and `Wednesday`)
+will be checked against the argument, but they do not match.
+The fourth pattern is a match, and result `Friday` is being
+returned. Later patterns are then ignored, even if they would
+also match the input (this becomes relevant with catch-all patterns,
+which we will talk about in a moment).
 
 上面的函数可以证明是完全的。Idris 知道
 `Weekday` 类型的可能值，因此可以计算
@@ -640,7 +646,7 @@ readBool _         = None
 Tutorial.DataTypes> :t Some
 Tutorial.DataTypes.Some : a -> Option a
 Tutorial.DataTypes> :t None
-Tutorial.DataTypes.None : Optin a
+Tutorial.DataTypes.None : Option a
 Tutorial.DataTypes> :t Option
 Tutorial.DataTypes.Option : Type -> Type
 ```

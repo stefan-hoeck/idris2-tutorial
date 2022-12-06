@@ -252,9 +252,9 @@ Tutorial.Intro> maxBits8 * maxBits8
 
   * 使用 `:ti` 检查包含隐式参数的函数类型：`:ti foldl`,
 
-  * 使用 `:m` 列出范围内的所有元变量（孔），
+  * 使用 `:m` 列出作用域内的所有元变量（孔），
 
-  * 使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特征（`:doc case`, `:doc let`, `:doc interface`, `:doc record`，甚至 `:doc ?`)，或者一个接口（`:doc Uninhabited`），
+  * 使用 `:doc` 访问顶级函数 (`:doc the`) 的文档，一种数据类型及其所有构造函数和可用提示 (`:doc Bool` )，语言特性（`:doc case`, `:doc let`, `:doc interface`, `:doc record`，甚至是 `:doc ?`)，或者一个接口（`:doc Uninhabited`），
 
   * 使用 `:module` 从可用包之一导入模块：`:module Data.Vect`,
 
