@@ -113,10 +113,10 @@ module `Appendices.Neovim` will be imported as well without the need
 of an additional `import` statement. This is useful when
 we split some complex functionality across different modules and
 want to import the lot via a single catch-all module
-(for an example, see module `Control.Monad.State` in *base*; really,
-you should go to the [Idris2 project page](https://github.com/idris-lang/Idris2)
-and actually *look at the code*!). The base library can be found
-in the `libs` subfolder.
+See module `Control.Monad.State` in *base* for an example. You
+can look at the Idris sources on GitHub or locally after cloning
+the [Idris2 project](https://github.com/idris-lang/Idris2).
+The base library can be found in the `libs/base` subfolder.
 
 It often happens that in order to make use of functions from some module
 `A` we also require utilities from another module `B`, so `A` should
@@ -136,7 +136,7 @@ vectSum = sum $ V.fromList [1..10]
 Finally, on the fifth line we publicly import a module and give it
 a new name. This name will then be the one seen when we transitively
 import `Data.List1` via `Appendices.Projects`. To see this, start
-a REPL after session (after type checking the tutorial)
+a REPL session (after type checking the tutorial)
 without loading a source file from this project's root folder:
 
 ```sh
@@ -169,14 +169,13 @@ Main> L.singleton 12
 
 ### Namespaces
 
-Sometimes, we want to define several functions or data types
+At times we want to define several functions or data types
 with the same name in a single module. Idris does not allow this,
 because every name must be unique in its *namespace*, and the
 namespace of a module is just the fully qualified module name.
-
 However, it is possible to define additional namespaces within
 a module by using the `namespace` keyword followed by the name
-of the namespace. All functions, which should belong to this
+of the namespace. All functions which should belong to this
 namespace must then be indented by the same amount of whitespace.
 
 Here's an example:
@@ -430,19 +429,119 @@ namespace Inner
 As you can see, we can access function `nonEmpty` from
 within namespace `Appendices.Projects.Inner`, although it is a
 private function of module `Appendices.Projects`. This is
-even possible for modules: If you were to write a module
-`Data.List.Magic`, you'd have access to private utility functions
+even possible for modules: If we were to write a module
+`Data.List.Magic`, we'd have access to private utility functions
 defined in module `Data.List` in *base*. Actually, I did just that
 and added module `Data.List.Magic` demonstrating this quirk
 of the Idris module system (go have a look!).
 In general, this is a rather hacky way to work around visibility
 constraints, but it can be useful at times.
 
+## Documentation
+
+Documentation is key. Be it for other programmers using a library
+we write, or for people (including our future selves) trying to understand
+our code, it is important to annotate our code with comments explaining
+non-trivial implementations and docstrings describing the intent and
+functionality of exported data types and functions.
+
+### Comments
+
+Writing a comment in an Idris source file is a simple as
+adding some text after two hyphens:
+
+```idris
+-- this is a truly boring comment
+boring : Bits8 -> Bits8
+boring a = a -- probably I should just use `id` from the Prelude
+```
+
+Whenever a line contains two hyphens that are not part of
+a string literal, the remainder of the line will be interpreted
+as a comment by Idris.
+
+It is also possible to write multiline comments using delimiters
+`{-` and `-}`:
+
+```idris
+{-
+  This is a multiline comment. It can be used to comment
+  out whole blocks of code, for instance if we get several
+  type errors in a larger source file.
+-}
+```
+
+### Doc Strings
+
+While comments are targeted at programmers reading and trying to
+understand our source code, doc strings provide documentation for
+exported functions and data types, explaining their intent and
+behavior to others using a piece of functionality from a library
+in their own code base.
+
+Here's and example of a documented function:
+
+```idris
+||| Tries to extract the first two elements from the beginning
+||| of a list.
+|||
+||| Returns a pair of values wrapped in a `Just` if the list has
+||| two elements or more. Returns `Nothing` if the list has fewer
+||| than two elements.
+export
+firstTwo : List a -> Maybe (a,a)
+firstTwo (x :: y :: _) = Just (x,y)
+firstTwo _             = Nothing
+```
+
+We can view a doc string at the REPL:
+
+```repl
+Appendices.Projects> :doc firstTwo
+Appendices.Projects.firstTwo : List a -> Maybe (a,a)
+  Tries to extract the first two elements from the beginning
+  of a list.
+
+  Returns a pair of values wrapped in a `Just` if the list has
+  two elements or more. Returns `Nothing` if the list has fewer
+  than two elements.
+  Visibility: export
+```
+
+We can document data types and their constructors in a similar
+manner:
+
+```idris
+||| A binary tree index by the number of values it holds.
+|||
+||| @param `n` : Number of values stored in the `Tree`
+||| @param `a` : Type of values stored in the `Tree`
+public export
+data Tree : (n : Nat) -> (a : Type) -> Type where
+  ||| A single value stored at the leaf of a binary tree.
+  Leaf   : (v : a) -> Tree 1 a
+
+  ||| A branch unifying two subtrees.
+  Branch : Tree m a -> Tree n a -> Tree (m + n) a
+```
+
+Go ahead and have a look at the doc strings this generates at
+the REPL.
+
+### Conclusion
+
+Documenting your code is very important. You will realize this, once you
+try to understand other people's code,
+or when you come back to a non-trivial piece of source code you wrote yourself
+a couple of months a ago and since then haven't looked at. Idris provides
+you with the tools necessary to document and annotate your code,
+so take your time to do so. It is time well spent.
+
 ## Packages
 
 Idris packages allow us to assemble several modules into
 a logical unit and make them available to other Idris projects
-by *installing* the package. In this section we will learn
+by *installing* the package. In this section, we are going to learn
 about the structure of an Idris package and how to depend on
 other packages.
 
@@ -451,18 +550,33 @@ other packages.
 At the heart of an Idris package lies the package's `.ipkg` file,
 which is usually but not necessarily stored at a project's root directory.
 For instance, for this Idris tutorial, there is file
-`tutorial.ipkg` in the root directory. An `.ipkg` file consists
+`tutorial.ipkg` at the tutorial's root directory.
+
+An `.ipkg` file consists
 of several key-value pairs (most of them optional), the
 most important of which I'll describe here. By far the easiest
-way to setup a new Idris package is by letting pack (or Idris itself)
-do it for you. Just run `pack new lib pkgname` to create the skeleton
-of a new library or `pack new bin appname` to setup a new application.
+way to setup a new Idris project is by letting pack or Idris itself
+do it for you. Just run
+
+```sh
+pack new lib pkgname
+```
+
+to create the skeleton of a new library or
+
+```sh
+pack new bin appname
+```
+
+to setup a new application. In addition to creating a new directory plus
+a suitable `.ipkg` file, these commands will also add a `pack.toml` file,
+which we will discuss further below.
 
 ### Dependencies
 
-One of the most important fields in an `.ipkg` file is
-the `depends` fields, where dependencies on other
-packages are listed. Here is an example from the
+One of the most important aspects of an `.ipkg` file is
+listing the packages the library depends on in
+the `depends` field. Here is an example from the
 [*hedgehog* package](https://github.com/stefan-hoeck/idris2-hedgehog)
 a framework for writing property tests in Idris:
 
@@ -531,13 +645,19 @@ package tutorial
 version    = 0.1.0
 ```
 
+As I'll show below, package versions play a much less crucial role
+when using pack and its curated package collection. But even then
+you might want to consider restricting the versions of packages you
+accept in order to make sure you catch any braking changes introduced
+upstream.
+
 ### Library Modules
 
 Many if not most Idris packages available on GitHub are
 programming *libraries*: They implement some piece of
-functionality and make it available to all projects importing
+functionality and make it available to all projects depending on
 the given package. This is unlike Idris *applications*, which
-are supposed to be compiled to an executable, which can then
+are supposed to be compiled to an executable that can then
 be run on your computer. The Idris project itself provides
 both: The Idris compiler application, which we use to
 type check and build other Idris libraries and applications,
@@ -546,8 +666,8 @@ which provide basic data types and functions useful in
 most Idris projects.
 
 In order to type check and install the modules you wrote in a
-library, you must list them in the `modules` field. Here is
-an excerpt from the *sop* package:
+library, you must list them in the `.ipkg` file's `modules` field.
+Here is an excerpt from the *sop* package:
 
 ```ipkg
 modules = Data.Lazy
@@ -561,23 +681,24 @@ modules = Data.Lazy
 ```
 
 Modules missing from this list will *not* be installed and hence
-will not be available for other modules depending on the sop library.
+will not be available for other packages depending on the sop library.
 
 ### Pack and its curated Collection of Packages
 
-When the dependency graph of your project is large and complex, that is,
-when your project depends on many libraries that themselves depend on yet
+When the dependency graph of your project is getting large and complex, that is,
+when your project depends on many libraries, which themselves depend on yet
 other libraries, it can happen that two packages depend both on different
-(maybe incompatible) versions of a third package. This situation can be nigh to
-impossible to resolve, and can lead to a lot of frustration when working
-with conflicting libraries.
+- and, possibly, incompatible - versions of a third package.
+This situation can be nigh to impossible to resolve, and can lead to a lot
+of frustration when working with conflicting libraries.
 
 It is therefore the philosophy of the pack project to avoid such a situation
 from the very beginning by making use of *curated package collections*. A pack
-collections consists of a specific GitHub commit of the Idris compiler and a set
+collection consists of a specific GitHub commit of the Idris compiler and a set
 of packages, again each at a specific GitHub commit, all of which have been
 tested to work well and without issues together. You can see a list of
-packages available to pack [here](https://github.com/stefan-hoeck/idris2-pack-db/blob/main/STATUS.md).
+packages available to pack
+[here](https://github.com/stefan-hoeck/idris2-pack-db/blob/main/STATUS.md).
 
 Whenever a project you are working on depends on one of the libraries listed
 in pack's package collection, pack will automatically install it and all of its
