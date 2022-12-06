@@ -25,7 +25,10 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
       - name: 安装项目依赖
-        run: make update
+        run: apt-get install -y perl-yaml-tiny po4a
+
+      - name: 更新翻译
+        run: cd translation && po4a -f -v ./po4a.cfg && cd ..
 
       - name: 提交修改
         run: git add . && git commit -m "更新翻译进度" && git push
