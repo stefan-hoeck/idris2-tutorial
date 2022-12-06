@@ -80,7 +80,7 @@ computation on the right hand side of this pattern is
 evaluated. Later patterns are then ignored.
 
 For instance, if we invoke `next` with argument `Thursday`,
-the first three patterns (`Monaday`, `Tuesday`, and `Wednesday`)
+the first three patterns (`Monday`, `Tuesday`, and `Wednesday`)
 will be checked against the argument, but they do not match.
 The fourth pattern is a match, and result `Friday` is being
 returned. Later patterns are then ignored, even if they would
