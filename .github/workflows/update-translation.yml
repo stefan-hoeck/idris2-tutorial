@@ -1,0 +1,31 @@
+name: 更新翻译进度
+
+on:
+  schedule:
+    # 定时构建
+    - cron: '0 0 * * *'
+  # 手动触发
+  workflow_dispatch: {}
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码仓库
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.release_token }}
+
+      - name: 配置git config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: 安装项目依赖
+        run: make udpate
+
+      - name: 提交修改
+        run: git add . && git commit -m "更新翻译进度" && git push
