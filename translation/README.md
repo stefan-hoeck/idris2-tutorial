@@ -159,7 +159,7 @@
 
 附录可用作手头主题的参考。我计划最终对 Idris 语法、典型错误消息、模块系统、交互式编辑以及可能的其他内容有一个简明的参考。
 
-1. [Interactive Editing in Neovim](src/Appendices/Neovim.md)
+1. [Neovim 中的交互式编辑](src/Appendices/Neovim.md)
 
 
 ## 前置条件
