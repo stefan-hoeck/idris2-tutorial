@@ -227,7 +227,7 @@ toDPair (Evidence _ as) = let Val m = vectLength as in (m ** as)
 1. 声明并实现一个过滤向量的函数，类似于 `Data.List.filter`。
 
 
-2. 声明并实现一个函数，用于将偏函数映射到类似于 `Data.List.mapMaybe` 的向量的值上。
+2. 声明并实现一个函数，用于将偏应用函数映射到类似于 `Data.List.mapMaybe` 的向量的值上。
 
 
 3. 为向量声明并实现类似于 `Data.List.dropWhile` 的函数。使用 `Data.DPair.Exists` 作为您的返回类型。
