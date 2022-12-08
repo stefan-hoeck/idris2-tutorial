@@ -1,9 +1,9 @@
 name: 更新翻译进度
 
 on:
-  schedule:
+  # schedule:
     # 定时构建
-    - cron: '0 0 * * *'
+    # - cron: '0 0 * * *'
   # 手动触发
   workflow_dispatch: {}
   push:
