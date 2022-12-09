@@ -814,7 +814,7 @@ and pass it as an explicit argument to `replicate`.
 
 Deciding whether to pass potentially inferable arguments to a function implicitly
 or explicitly is a question of how often the arguments actually *are* inferable
-by Idris. Sometimes it might even be useful to have both verions
+by Idris. Sometimes it might even be useful to have both versions
 of a function. Remember, however, that even in case of an implicit argument
 we can still pass the value explicitly:
 
