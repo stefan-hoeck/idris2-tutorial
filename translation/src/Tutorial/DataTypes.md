@@ -11,8 +11,7 @@ module Tutorial.DataTypes
 
 ## 枚举
 
-让我们从一个星期几的数据类型开始
-例子。
+让我们从一个星期几的数据类型开始例子。
 
 ```idris
 data Weekday = Monday
@@ -24,8 +23,7 @@ data Weekday = Monday
              | Sunday
 ```
 
-上面的声明定义了一个新的*类型*(`Weekday`)和
-该类型给定的几个*值*(`Monday` 到 `Sunday`)。继续，并在 REPL 上验证这一点：
+上面的声明定义了一个新的*类型*(`Weekday`)和该类型给定的几个*值*(`Monday` 到 `Sunday`)。接下来在 REPL 上验证这一点：
 
 ```repl
 Tutorial.DataTypes> :t Monday
@@ -54,22 +52,17 @@ next Saturday  = Sunday
 next Sunday    = Monday
 ```
 
-为了检查 `Weekday` 参数，我们匹配
-不同的可能值并为每个值返回一个结果。
-这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况
-，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是被求值。后面的模式将被忽略。
+为了检查 `Weekday` 参数，我们匹配不同的可能值并为每个值返回一个结果。这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是会求值。后面的模式将被忽略。
 
-例如，如果我们使用参数 `Thursday` 调用 `next`，前三个模式（`Monday`、`Tuesday` 和 `Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 `Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，我们稍后会谈到）。
+例如，如果我们使用参数 `Thursday` 调用 `next`，前三个模式（`Monday`、`Tuesday` 和 `Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 `Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与全捕获模式有关，我们稍后会谈到）。
 
-上面的函数可以证明是完全的。Idris 知道
-`Weekday` 类型的可能值，因此可以计算
-我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆盖性检查器的错误消息长什么样。）
+上面的函数可以证明是完全的。Idris 知道`Weekday` 类型的可能值，因此可以计算我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆盖性检查器的错误消息长什么样。）
 
 请记住，这些来自类型检查器：给定足够的资源，一个可证明的全函数在有限时间内将*总是*返回给定类型的结果（*资源*的意思是计算资源，比如内存，或者，在递归函数情况下的堆栈空间）。
 
-### 任意模式
+### 全捕获模式
 
-有时比较实用的是只匹配一个可能子集的值，并收集剩余的可能性到任意模式中：
+有时比较实用的是只匹配一个可能子集的值，并收集剩余的可能性到全捕获模式中：
 
 ```idris
 total
@@ -79,11 +72,10 @@ isWeekend Sunday   = True
 isWeekend _        = False
 ```
 
-如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有任意模式的最后一行。记住：模式匹配中的模式匹配
+如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有全捕获模式的最后一行。记住：模式匹配中的模式匹配
 从上到下的输入和第一个匹配决定将采用右侧的哪条路径。
 
-我们可以使用任意模式来实现等式测试
-`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）：
+我们可以使用全捕获模式来实现等式测试`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）：
 
 ```idris
 total
@@ -103,8 +95,7 @@ eqWeekday _ _                  = False
 `Weekday` 等数据类型由有限集组成的值有时称为*枚举*。Idris 的 *Prelude* 为我们定义了一些常见的枚举，例如 `Bool` 和 `Ordering`。与 `Weekday` 一样，我们可以在实现函数时使用模式匹配在这些类型上：
 
 ```idris
--- this is how `not` is implemented in the *Prelude*
-total
+-- 这个是 *Prelude* 中的 `not` 函数的实现
 negate : Bool -> Bool
 negate False = True
 negate True  = False
@@ -121,17 +112,14 @@ compareBool True True   = EQ
 compareBool True False  = GT
 ```
 
-这里，`LT` 表示第一个参数是*小于*
-第二个，`EQ`表示两个参数是*相等*，
-`GT` 表示第一个参数是*大于*
-第二个。
+这里，`LT` 表示第一个参数是*小于*第二个，`EQ`表示两个参数是*相等*，`GT` 表示第一个参数是*大于*第二个。
 
 ### Case 表达式
 
-有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用*case 表达式*：
+有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用 *case 表达式*：
 
 ```idris
--- returns the larger of the two arguments
+-- 返回两个参数中的最大值
 total
 maxBits8 : Bits8 -> Bits8 -> Bits8
 maxBits8 x y =
@@ -140,7 +128,7 @@ maxBits8 x y =
     _  => x
 ```
 
-case 表达式的第一行 (`case compare x y of`)将使用参数 `x` 和 `y` 调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。这是 `Ordering` 类型，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，我们明确地处理 `LT` 的情况，而其他两种情况下划线作为任意模式处理。
+case 表达式的第一行(`case compare x y of`)将使用参数 `x` 和 `y` 调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。compare的返回类型为 `Ordering`，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，我们明确地处理 `LT` 的情况，而其他两种情况下划线作为全捕获模式处理。
 
 请注意，缩进在这里很重要：整个 Case 块必须缩进（如果它从新行开始），并且不同的 Case 也必须缩进相同数量的空格。
 
@@ -160,8 +148,7 @@ maxBits8' x y = if compare x y == LT then y else x
 
 ### 命名约定：标识符
 
-虽然我们可以自由使用小写和大写标识符
-函数名，但是类型和数据构造函数必须大写标识符，以免混淆 Idris（运算符也可以）。例如，以下数据定义无效，并且 Idris会抱怨它需要大写的标识符：
+虽然我们可以自由使用小写和大写函数名标识符，但是类型和数据构造函数必须为大写标识符，以免对 Idris 产生混淆（运算符也可以）。例如，以下数据定义无效，并且 Idris会抱怨它需要大写的标识符：
 
 ```repl
 data foo = bar | baz
@@ -170,7 +157,7 @@ data foo = bar | baz
 类似的数据定义（如记录与和类型）也是如此（两者都将在下面解释）：
 
 ```repl
--- not valid Idris
+-- 非法的 Idris 定义
 record Foo where
   constructor mkfoo
 ```
@@ -187,7 +174,7 @@ Bar = foo
 
 ### 练习第 1 部分
 
-1. 使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` 和 `or`。
+1. 使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别称为 `and` 和 `or`。
 
 
    注意：解决此问题的一种方法是枚举两个布尔值的所有四种可能组合值并给出每个结果。然而，有一种更短、更聪明的方式，两个函数每个只需要两个模式匹配。
@@ -196,21 +183,17 @@ Bar = foo
 
 
    ```idris
-   data UnitOfTime = Second -- add additional values
+   data UnitOfTime = Second -- 添加剩余的值
 
-   -- calculate the number of seconds from a
-   -- number of steps in the given unit of time
-   total
+   -- 给定一个数字及时间单位，计算出对应的秒数
    toSeconds : UnitOfTime -> Integer -> Integer
 
-   -- Given a number of seconds, calculate the
-   -- number of steps in the given unit of time
+   -- 给定一个秒数和时间单位，计算出对应的数字
    total
    fromSeconds : UnitOfTime -> Integer -> Integer
 
-   -- convert the number of steps in a given unit of time
-   -- to the number of steps in another unit of time.
-   -- use `fromSeconds` and `toSeconds` in your implementation
+   -- 给出待转换的时间单位及数字，然后给出要转换的时间单位，计算出结果数字
+   -- 在实现中使用 `fromSeconds` 和 `toSeconds`
    total
    convert : UnitOfTime -> Integer -> UnitOfTime -> Integer
    ```
@@ -403,8 +386,7 @@ greetUser (MkUser n t _) = greet t n
 
 在上面的示例中，`name` 和 `title` 字段
 绑定到两个新的局部变量（分别为 `n` 和 `t`），
-然后可以在 `greetUser` 的右侧实现使用
-。对于 `age` 字段，在右侧未使用，我们可以使用下划线作为任意模式。
+然后可以在 `greetUser` 的右侧实现使用。对于 `age` 字段，在右侧未使用，我们可以使用下划线作为全捕获模式。
 
 请注意，如果我们混淆了参数的顺序，Idris 将会阻止我们这个常见的错误：
 实现将不能通过行类型检查。我们可以验证这一点，通过将错误代码放入 `failing` 块中：这是缩进的代码块，在细化过程中（类型检查）会导致错误。我们可以给一部分预期的错误消息作为 failing 块的可选字符串参数。如果这不能匹配部分错误消息（或在类型检查中不会失败的整个代码块类）`failing` 块本身无法通过类型检查。下面是对类型安全有帮助的两个方向：通过 Idris 细化，我们可以证明有效代码类型检查，但拒绝无效代码：
