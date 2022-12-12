@@ -592,7 +592,7 @@ msgid ""
 "Let's start with a data type for the days of the week as an\n"
 "example.\n"
 msgstr ""
-"让我们从一个星期几的数据类型开始\n"
+"让我们从一个星期几的数据类型开始"
 "例子。\n"
 
 #. type: Fenced code block (idris)
@@ -623,8 +623,8 @@ msgid ""
 "several new *values* (`Monday` to `Sunday`) of the given\n"
 "type. Go ahead, and verify this at the REPL:\n"
 msgstr ""
-"上面的声明定义了一个新的*类型*(`Weekday`)和\n"
-"该类型给定的几个*值*(`Monday` 到 `Sunday`)。继续，并在 REPL 上验证这一点：\n"
+"上面的声明定义了一个新的*类型*(`Weekday`)和"
+"该类型给定的几个*值*(`Monday` 到 `Sunday`)。接下来在 REPL 上验证这一点：\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/DataTypes.md:39
@@ -711,10 +711,10 @@ msgid ""
 "computation on the right hand side of this pattern is\n"
 "evaluated. Later patterns are then ignored.\n"
 msgstr ""
-"为了检查 `Weekday` 参数，我们匹配\n"
-"不同的可能值并为每个值返回一个结果。\n"
-"这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况\n"
-"，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是被求值。后面的模式将被忽略。\n"
+"为了检查 `Weekday` 参数，我们匹配"
+"不同的可能值并为每个值返回一个结果。"
+"这是一个非常强大的概念，因为它允许我们匹配并从深度嵌套的数据结构中提取值。从上到下检查模式匹配中的不同情况"
+"，每个都与当前函数参数进行比较。一旦找到匹配的模式，该模式右侧的计算是会求值。后面的模式将被忽略。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:89
@@ -731,7 +731,7 @@ msgstr ""
 "例如，如果我们使用参数 `Thursday` 调用 "
 "`next`，前三个模式（`Monday`、`Tuesday` 和 "
 "`Wednesday`）将根据参数进行检查，但它们不匹配。第四个模式是匹配的，结果 "
-"`Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与任意模式有关，"
+"`Friday` 被返回。然后忽略后面的模式，即使它们还会匹配输入（这与全捕获模式有关，"
 "我们稍后会谈到）。\n"
 
 #. type: Plain text
@@ -747,8 +747,8 @@ msgid ""
 "the clauses in `next` to get an idea about how an error\n"
 "message from the coverage checker looks like.)\n"
 msgstr ""
-"上面的函数可以证明是完全的。Idris 知道\n"
-"`Weekday` 类型的可能值，因此可以计算\n"
+"上面的函数可以证明是完全的。Idris 知道"
+"`Weekday` 类型的可能值，因此可以计算"
 "我们的模式匹配涵盖了所有可能的情况。我们可以使用 `total` 关键字注释函数，如果 Idris 无法验证函数的完全性，会得到一个类型错误。 （继续，并尝试删除其中一个 `next` 中的子句来了解错误是如何产生的，并且可以看看来自覆盖性检查器的错误消息长什么样。）\n"
 
 #. type: Plain text
@@ -767,7 +767,7 @@ msgstr "请记住，这些来自类型检查器：给定足够的资源，一个
 #: ../src/Tutorial/DataTypes.md:106
 #, no-wrap
 msgid "Catch-all Patterns"
-msgstr "任意模式"
+msgstr "全捕获模式"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:111
@@ -776,7 +776,7 @@ msgid ""
 "Sometimes, it is convenient to only match on a subset\n"
 "of the possible values and collect the remaining possibilities\n"
 "in a catch-all clause:\n"
-msgstr "有时比较实用的是只匹配一个可能子集的值，并收集剩余的可能性到任意模式中：\n"
+msgstr "有时比较实用的是只匹配一个可能子集的值，并收集剩余的可能性到全捕获模式中：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:112
@@ -804,7 +804,7 @@ msgid ""
 "the input from top to bottom and the first match decides,\n"
 "which path on the right hand side will be taken.\n"
 msgstr ""
-"如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有任意模式的最后一行。记住：模式匹配中的模式匹配\n"
+"如果参数不等于 `Saturday` 或 `Sunday`，仅调用具有全捕获模式的最后一行。记住：模式匹配中的模式匹配\n"
 "从上到下的输入和第一个匹配决定将采用右侧的哪条路径。\n"
 
 #. type: Plain text
@@ -815,7 +815,7 @@ msgid ""
 "`Weekday` (we will not yet use the `==` operator for this; this will\n"
 "have to wait until we learn about *interfaces*):\n"
 msgstr ""
-"我们可以使用任意模式来实现等式测试\n"
+"我们可以使用全捕获模式来实现等式测试"
 "`Weekday`（我们还不会为此使用 `==` 运算符；这将必须等到我们了解*接口*以后）：\n"
 
 #. type: Fenced code block (idris)
@@ -872,8 +872,7 @@ msgid ""
 "negate False = True\n"
 "negate True  = False\n"
 msgstr ""
-"-- this is how `not` is implemented in the *Prelude*\n"
-"total\n"
+"-- 这个是 *Prelude* 中的 `not` 函数的实现\n"
 "negate : Bool -> Bool\n"
 "negate False = True\n"
 "negate True  = False\n"
@@ -913,9 +912,9 @@ msgid ""
 "and `GT` means, that the first argument is *greater than*\n"
 "the second.\n"
 msgstr ""
-"这里，`LT` 表示第一个参数是*小于*\n"
-"第二个，`EQ`表示两个参数是*相等*，\n"
-"`GT` 表示第一个参数是*大于*\n"
+"这里，`LT` 表示第一个参数是*小于*"
+"第二个，`EQ`表示两个参数是*相等*，"
+"`GT` 表示第一个参数是*大于*"
 "第二个。\n"
 
 #. type: Title ###
@@ -932,7 +931,7 @@ msgid ""
 "of the arguments and want to pattern match on the result\n"
 "of this computation. We can use *case expressions* in this\n"
 "situation:\n"
-msgstr "有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用*case 表达式*：\n"
+msgstr "有时我们需要对参数执行计算并希望对结果进行模式匹配。这种情况下我们可以使用 *case 表达式*：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/DataTypes.md:184
@@ -946,7 +945,7 @@ msgid ""
 "    LT => y\n"
 "    _  => x\n"
 msgstr ""
-"-- returns the larger of the two arguments\n"
+"-- 返回两个参数中的最大值\n"
 "total\n"
 "maxBits8 : Bits8 -> Bits8 -> Bits8\n"
 "maxBits8 x y =\n"
@@ -966,7 +965,7 @@ msgid ""
 "On the first line, we handle the `LT` case explicitly, while\n"
 "the other two cases are handled with an underscore as a catch-all\n"
 "pattern.\n"
-msgstr "case 表达式的第一行 (`case compare x y of`)将使用参数 `x` 和 `y` 调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。这是 `Ordering` 类型，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，我们明确地处理 `LT` 的情况，而其他两种情况下划线作为任意模式处理。\n"
+msgstr "case 表达式的第一行(`case compare x y of`)将使用参数 `x` 和 `y` 调用函数`compare`。后面的（缩进）行，我们对结果进行模式匹配。compare的返回类型为 `Ordering`，所以我们期望结果是三个构造函数 `LT`、`EQ` 或 `GT` 之一。在第一行，我们明确地处理 `LT` 的情况，而其他两种情况下划线作为全捕获模式处理。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:206
@@ -1037,8 +1036,8 @@ msgid ""
 "For instance, the following data definition is not valid, and Idris\n"
 "will complain that it expected upper-case identifiers:\n"
 msgstr ""
-"虽然我们可以自由使用小写和大写标识符\n"
-"函数名，但是类型和数据构造函数必须大写标识符，以免混淆 Idris（运算符也可以）。例如，以下数据定义无效，并且 Idris会抱怨它需要大写的标识符：\n"
+"虽然我们可以自由使用小写和大写函数名标识符，"
+"但是类型和数据构造函数必须为大写标识符，以免对 Idris 产生混淆（运算符也可以）。例如，以下数据定义无效，并且 Idris会抱怨它需要大写的标识符：\n"
 
 #. type: Fenced code block (repl)
 #: ../src/Tutorial/DataTypes.md:234
@@ -1062,7 +1061,7 @@ msgid ""
 "record Foo where\n"
 "  constructor mkfoo\n"
 msgstr ""
-"-- not valid Idris\n"
+"-- 非法的 Idris 定义\n"
 "record Foo where\n"
 "  constructor mkfoo\n"
 
@@ -1112,7 +1111,7 @@ msgid ""
 "versions of boolean operators\n"
 "`(&&)` and `(||)` calling them `and` and `or`\n"
 "respectively.\n"
-msgstr "使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别调用 `and` "
+msgstr "使用模式匹配来实现您自己版本的布尔运算符 `(&&)` 和 `(||)` ，分别称为 `and` "
 "和 `or`。\n"
 
 #. type: Plain text
@@ -1165,21 +1164,17 @@ msgid ""
 "   total\n"
 "   convert : UnitOfTime -> Integer -> UnitOfTime -> Integer\n"
 msgstr ""
-"   data UnitOfTime = Second -- add additional values\n"
+"   data UnitOfTime = Second -- 添加剩余的值\n"
 "\n"
-"   -- calculate the number of seconds from a\n"
-"   -- number of steps in the given unit of time\n"
-"   total\n"
+"   -- 给定一个数字及时间单位，计算出对应的秒数\n"
 "   toSeconds : UnitOfTime -> Integer -> Integer\n"
 "\n"
-"   -- Given a number of seconds, calculate the\n"
-"   -- number of steps in the given unit of time\n"
+"   -- 给定一个秒数和时间单位，计算出对应的数字\n"
 "   total\n"
 "   fromSeconds : UnitOfTime -> Integer -> Integer\n"
 "\n"
-"   -- convert the number of steps in a given unit of time\n"
-"   -- to the number of steps in another unit of time.\n"
-"   -- use `fromSeconds` and `toSeconds` in your implementation\n"
+"   -- 给出待转换的时间单位及数字，然后给出要转换的时间单位，计算出结果数字\n"
+"   -- 在实现中使用 `fromSeconds` 和 `toSeconds`\n"
 "   total\n"
 "   convert : UnitOfTime -> Integer -> UnitOfTime -> Integer\n"
 
@@ -1190,8 +1185,7 @@ msgid ""
 "Define a data type for representing a subset of the\n"
 "chemical elements: Hydrogen (H), Carbon (C), Nitrogen (N),\n"
 "Oxygen (O), and Fluorine (F).\n"
-msgstr "定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。"
-"\n"
+msgstr "定义用于表示化学元素子集的数据类型：氢 (H)、碳 (C)、氮 (N)、氧 (O) 和氟 (F)。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:309
@@ -1690,8 +1684,8 @@ msgid ""
 msgstr ""
 "在上面的示例中，`name` 和 `title` 字段\n"
 "绑定到两个新的局部变量（分别为 `n` 和 `t`），\n"
-"然后可以在 `greetUser` 的右侧实现使用\n"
-"。对于 `age` 字段，在右侧未使用，我们可以使用下划线作为任意模式。\n"
+"然后可以在 `greetUser` 的右侧实现使用"
+"。对于 `age` 字段，在右侧未使用，我们可以使用下划线作为全捕获模式。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/DataTypes.md:545
@@ -11768,7 +11762,7 @@ msgid ""
 "of *combining values* after starting from an *initial value* lies\n"
 "at the heart of an interface we've already learned about: `Monoid`.\n"
 "It therefore makes sense to fold a list over a monoid:\n"
-msgstr "左右折叠有一个共同的模式：在这两种情况下，我们从初始 *state* 值开始，并使用累加器函数将当前状态与当前元素相结合。从 *初始值* 开始后 *组合值* 的原理是我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺半群上是有意义的：\n"
+msgstr "左右折叠有一个共同的模式：在这两种情况下，我们从初始*状态*值开始，并使用累加器函数将当前状态与当前元素相结合。从*初始值*开始后*组合值*的原理是我们已经了解的接口的核心：`Monoid`。因此，将列表折叠在一个幺半群上是有意义的：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/Folds.md:935
@@ -12048,7 +12042,7 @@ msgid ""
 "functions. In fact, in Idris functions are *first class*:\n"
 "Functions can take other functions as arguments and\n"
 "can return functions as their results.\n"
-msgstr "Idris 是一种 *函数式* 编程语言。这意味着，函数是它的主要抽象形式（与 Java 等面向对象的语言不同，其中 *objects* 和 *classes* 是抽象的主要形式）。这也意味着我们希望 Idris 能够让我们非常轻松地组合函数以创建新函数。实际上，在 Idris 中，函数是*一等*的：函数可以将其他函数作为参数，并且可以将函数作为结果返回。\n"
+msgstr "Idris 是一种*函数式*编程语言。这意味着，函数是它的主要抽象形式（与 Java 等面向对象的语言不同，其中 *objects* 和 *classes* 是抽象的主要形式）。这也意味着我们希望 Idris 能够让我们非常轻松地组合函数以创建新函数。实际上，在 Idris 中，函数是*一等*的：函数可以将其他函数作为参数，并且可以将函数作为结果返回。\n"
 
 #. type: Plain text
 #: ../src/Tutorial/Functions1.md:16
@@ -14468,7 +14462,7 @@ msgid ""
 "we can't just drop it, as this would make it impossible for\n"
 "Idris, which of several arguments we were planning to drop,\n"
 "but we can use an underscore as a placeholder instead:\n"
-msgstr "通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情况：任意模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，因为这会使 Idris 无法使用，但我们可以使用下划线作为一个占位符，表明我们计划删除几个参数中的哪一个：\n"
+msgstr "通常希望只编写必要的代码，让 Idris 解决剩下的问题。我们已经了解了这样一种情况：全捕获模式。如果模式匹配中的变量未在右侧使用，我们不能直接删除它，因为这会使 Idris 无法使用，但我们可以使用下划线作为一个占位符，表明我们计划删除几个参数中的哪一个：\n"
 
 #. type: Fenced code block (idris)
 #: ../src/Tutorial/Functions2.md:624
