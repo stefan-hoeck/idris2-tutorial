@@ -445,17 +445,19 @@ to a function is by passing it as an additional argument. In object-orientied
 programming, this principle is sometimes called
 [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), and
 a lot of fuss is being made about it, and whole libraries and frameworks
-have been built around.
+have been built around it.
 
-In Idris, we can be incredibly relaxed about all of this: Need access to some
-configuration data for your application? Pass it as an additional
-(auto-implicit?) argument to your functions. Want to use some local
+In functional programming, we can be perfectly relaxed about all of this:
+Need access to some configuration data for your application? Pass it as an additional
+argument to your functions. Want to use some local
 mutable state? Pass the corresponding `IORef` as an additional
-(auto-implicit?) argument to your functions. This is both highly efficient
-and incredibly simple. The only drawback it has is, that it can blow
-up our function signatures. There even is a monad for abstracting over this
+argument to your functions. This is both highly efficient
+and incredibly simple. The only drawback it has: It can blow
+up our function signatures. There is even a monad for abstracting over this
 concept, called the `Reader` monad. It can be found in module `Control.Monad.Reader`,
-in the base library. In Idris, however, there is even a simpler approach:
+in the base library.
+
+In Idris, however, there is even a simpler approach:
 We can use proof search with auto implicit arguments for dependency
 injection. Here's some example code:
 
@@ -477,7 +479,7 @@ getCount' : (h : ErrorHandler) => (c : Console) => IO Nat
 getCount' = do
   str <- c.read
   case parsePositive str of
-    Nothing => h.handle (NoNat str) >> pure 0
+    Nothing => h.handle (NoNat str) $> 0
     Just n  => pure n
 
 getText' : (h : ErrorHandler) => (c : Console) => (n : Nat) -> IO (Vect n String)
@@ -498,8 +500,8 @@ function. This is a typical example of dependency injection: Our
 `IO` actions know nothing about how to read and write lines of text
 (they do, for instance, not invoke `putStrLn` or `getLine` directly),
 but rely on an external *object* to handle these tasks for us. This allows
-us to use a simple *mock object* during testing, while using two
-file handles or data base connections when running the application
+us to use a simple *mock object* during testing, while using - for instance -
+two file handles or data base connections when running the application
 for real. These are typical techniques often found in object-oriented
 programming, and in fact, this example emulates typical object-oriented
 patterns in a purely functional programming language: A type like
@@ -518,11 +520,11 @@ introduced two additional function arguments, and we can easily see
 how in a real-world application we might need many more of those
 and how this would quickly blow up our function signatures.
 Luckily, there is a very clean and simple solution to this in
-Idris: `parameter` blocks. These allow us to specify a list
+Idris: `parameter` blocks. These allow us to specify lists
 of *parameters* (unchanging function arguments) shared by all
-functions listed in the block. These arguments need then no longer
-be listed with each function in the block. Here's the example
-above in a parameter block:
+functions listed inside the block. These arguments need then no longer
+be listed with each function, thus decluttering our function signatures.
+Here's the example from above in a parameter block:
 
 ```idris
 parameters {auto c : Console} {auto h : ErrorHandler}
@@ -530,7 +532,7 @@ parameters {auto c : Console} {auto h : ErrorHandler}
   getCount = do
     str <- c.read
     case parsePositive str of
-      Nothing => h.handle (NoNat str) >> pure 0
+      Nothing => h.handle (NoNat str) $> 0
       Just n  => pure n
 
   getText : (n : Nat) -> IO (Vect n String)
@@ -550,7 +552,8 @@ named and unnamed, and of any quantity) as the parameters in a `parameters`
 block, but it works best with implicit and auto implicit arguments.
 
 To complete this example, here is a main function for running
-the program:
+the program. Note, how we explicitly assemble the `Console` and
+`ErrorHandler` to be used when invoking `prog`.
 
 ```idris
 main : IO ()
@@ -655,7 +658,7 @@ data Tree : (n : Nat) -> (a : Type) -> Type where
 Go ahead and have a look at the doc strings this generates at
 the REPL.
 
-### Conclusion
+### Final Remarks
 
 Documenting your code is very important. You will realize this, once you
 try to understand other people's code,
