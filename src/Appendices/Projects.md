@@ -607,7 +607,7 @@ While comments are targeted at programmers reading and trying to
 understand our source code, doc strings provide documentation for
 exported functions and data types, explaining their intent and
 behavior to others using a piece of functionality from a library
-in their own code base.
+in their own codebase.
 
 Here's and example of a documented function:
 
