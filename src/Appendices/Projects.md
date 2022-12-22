@@ -1,15 +1,16 @@
 # Structuring Idris Projects
 
-In this section I'll show you how to organize, install, and depend on
+In this section I'm going to show how to organize, install, and depend on
 larger Idris projects. We will have a look at Idris packages,
 the module system, visibility of types and functions, writing
 comments and doc strings, and using pack for managing our libraries.
 
-This section can be useful for all readers who have already
+This section should be useful for all readers who have already
 written a bit of Idris code. We will not do any fancy type level
 wizardry in here, but I'll demonstrate several concepts using
-`failing` code blocks. This rather new addition to the language
-allows us to show code that is expected to fail during elaboration
+`failing` code blocks, which you might not have seen before.
+This rather new addition to the language
+allows us to write code that is expected to fail during elaboration
 (type checking). For instance:
 
 ```repl
@@ -170,7 +171,7 @@ Main> L.singleton 12
 
 ### Namespaces
 
-At times we want to define several functions or data types
+At times, we want to define several functions or data types
 with the same name in a single module. Idris does not allow this,
 because every name must be unique in its *namespace*, and the
 namespace of a module is just the fully qualified module name.
@@ -297,8 +298,8 @@ checkOneHundredAgain : OneHundredAgain === 100
 checkOneHundredAgain = Refl
 ```
 
-Therefore, if you need a function to reduce during elaboration
-(type checking), annotate it with `public export` instead of `export`.
+Therefore, if you need a function to reduce during elaboration,
+annotate it with `public export` instead of `export`.
 This is especially important if you use a function to compute
 a type. Such function's *must* reduce during elaboration, otherwise they
 are completely useless:
@@ -438,7 +439,14 @@ of the Idris module system (go have a look!).
 In general, this is a rather hacky way to work around visibility
 constraints, but it can be useful at times.
 
-### Parameter Blocks
+## Parameter Blocks
+
+In this subsection, we are going to have a look at a language construct
+called a `parameters` block,
+which enables us to share a set of common read-only arguments (parameters)
+across several functions, thus allowing us to write more concise function
+signatures. I'm going to demonstrate their usability with a small
+example program.
 
 The most basic way to make some piece of external information available
 to a function is by passing it as an additional argument. In object-orientied
@@ -457,7 +465,7 @@ up our function signatures. There is even a monad for abstracting over this
 concept, called the `Reader` monad. It can be found in module `Control.Monad.Reader`,
 in the base library.
 
-In Idris, however, there is even a simpler approach:
+In Idris, however, there is an even simpler approach:
 We can use proof search with auto implicit arguments for dependency
 injection. Here's some example code:
 
@@ -507,7 +515,7 @@ programming, and in fact, this example emulates typical object-oriented
 patterns in a purely functional programming language: A type like
 `Console` can be viewed as a *class* providing pieces of functionality
 (*methods*  `read` and `put`), and a value of type `Console`
-can be viewed as an *object* of this class we can use to invoke
+can be viewed as an *object* of this class, on which we can invoke
 those methods.
 
 The same goes for error handling: Our error handler could just silently
@@ -548,8 +556,11 @@ parameters {auto c : Console} {auto h : ErrorHandler}
 ```
 
 We are free to list arbitrary arguments (implicit, explicit, auto-implicit,
-named and unnamed, and of any quantity) as the parameters in a `parameters`
-block, but it works best with implicit and auto implicit arguments.
+named and unnamed) of any quantity as the parameters in a `parameters`
+block, but it works best with implicit and auto implicit arguments. Explicit
+arguments will have to be passed explicitly to functions in a parameter
+block, even when invoking them from other parameter blocks with the
+same explicit argument. This can be rather confusing.
 
 To complete this example, here is a main function for running
 the program. Note, how we explicitly assemble the `Console` and
@@ -559,20 +570,20 @@ the program. Note, how we explicitly assemble the `Console` and
 main : IO ()
 main =
   let cons := MkConsole (trim <$> getLine) putStrLn
-      err  := MkHandler (\_ => putStrLn "It didn't work")
+      err  := MkHandler (const $ putStrLn "It didn't work")
    in prog
 ```
 
 Dependency injection via auto-implicit arguments is only one possible
 application of parameter blocks. They are useful in general whenever
-we hape repeating argument lists for several functions.
+we have repeating argument lists for several functions.
 
 ## Documentation
 
 Documentation is key. Be it for other programmers using a library
-we write, or for people (including our future selves) trying to understand
+we wrote, or for people (including our future selves) trying to understand
 our code, it is important to annotate our code with comments explaining
-non-trivial implementations and docstrings describing the intent and
+non-trivial implementation details and docstrings describing the intent and
 functionality of exported data types and functions.
 
 ### Comments
@@ -606,8 +617,7 @@ It is also possible to write multiline comments using delimiters
 While comments are targeted at programmers reading and trying to
 understand our source code, doc strings provide documentation for
 exported functions and data types, explaining their intent and
-behavior to others using a piece of functionality from a library
-in their own codebase.
+behavior to others.
 
 Here's and example of a documented function:
 
@@ -658,26 +668,25 @@ data Tree : (n : Nat) -> (a : Type) -> Type where
 Go ahead and have a look at the doc strings this generates at
 the REPL.
 
-### Final Remarks
-
-Documenting your code is very important. You will realize this, once you
+Documenting our code is very important. You will realize this, once you
 try to understand other people's code,
 or when you come back to a non-trivial piece of source code you wrote yourself
-a couple of months a ago and since then haven't looked at. Idris provides
-you with the tools necessary to document and annotate your code,
-so take your time to do so. It is time well spent.
+a couple of months a ago and since then haven't looked at. If it is not well
+documented, this can be an unpleasant experience. Idris provides
+us with the tools necessary to document and annotate our code,
+so should take our time and do so. It is time well spent.
 
 ## Packages
 
 Idris packages allow us to assemble several modules into
 a logical unit and make them available to other Idris projects
-by *installing* the package. In this section, we are going to learn
+by *installing* the packages. In this section, we are going to learn
 about the structure of an Idris package and how to depend on
-other packages.
+other packages in our projects.
 
 ### The `.ipkg` File
 
-At the heart of an Idris package lies the package's `.ipkg` file,
+At the heart of an Idris package lies its `.ipkg` file,
 which is usually but not necessarily stored at a project's root directory.
 For instance, for this Idris tutorial, there is file
 `tutorial.ipkg` at the tutorial's root directory.
@@ -707,7 +716,7 @@ which we will discuss further below.
 One of the most important aspects of an `.ipkg` file is
 listing the packages the library depends on in
 the `depends` field. Here is an example from the
-[*hedgehog* package](https://github.com/stefan-hoeck/idris2-hedgehog)
+[*hedgehog* package](https://github.com/stefan-hoeck/idris2-hedgehog),
 a framework for writing property tests in Idris:
 
 ```ipkg
@@ -737,8 +746,8 @@ use of this in case a test fails).
 So, before you actually can use *hedgehog* to write some
 property tests for your own project, you will need to
 install the packages it depends on before installing
-*hedgehog* itself. Since this can be a cumbersome thing to do manually,
-it is best to let a package manager like pack handle this tedious task
+*hedgehog* itself. Since this can be tedious to do manually,
+it is best let a package manager like pack handle this task
 for you.
 
 #### Dependency Versions
@@ -835,9 +844,10 @@ in pack's package collection, pack will automatically install it and all of its
 dependencies for you. However, you might also want to depend on a library that
 is not yet part of pack's collection. In that case, you must specify the
 library in question in one of your `pack.toml` files - the global
-one found at `$HOME/.pack/user/pack.toml`, or the one local to your
-current project (if any). There, you can either specify a dependency local
-to your system or a remote project on GitHub. An example for each is
+one found at `$HOME/.pack/user/pack.toml`, or one local to your
+current project or one of its parent directories (if any).
+There, you can either specify a dependency local
+to your system or a Git project (local or remote). An example for each is
 shown below:
 
 ```toml
@@ -862,19 +872,19 @@ commit hash.
 
 Entries like the ones given above are all that is needed to add support to
 custom libraries to pack. You can now list these libraries as dependencies
-in your project's `.ipkg` file(s) and pack will automatically install them
+in your own project's `.ipkg` file and pack will automatically install them
 for you.
 
 ## Conclusion
 
 This concludes our section about structuring Idris projects. We have learned
 about several types of code blocks - `failing` blocks for showing that a
-piece of code fails to compile, `namespace`s for having overloaded names
+piece of code fails to elaborate, `namespace`s for having overloaded names
 in the same source file, and parameter blocks for sharing lists of
 parameters between functions - and how to group several source files into
 an Idris library or application. Finally, we learned how to include
 external libraries in an Idris project and how to use pack to help us
-keeping track of these dependencies.
+keep track of these dependencies.
 
 <!-- vi: filetype=idris2
 -->
