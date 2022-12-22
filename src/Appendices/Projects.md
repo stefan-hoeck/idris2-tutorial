@@ -89,6 +89,7 @@ modules when writing Idris code. This can be done with an
 how these might look like:
 
 ```idris
+import Data.String
 import Data.List
 import Text.CSV
 import public Appendices.Neovim
@@ -96,7 +97,7 @@ import Data.Vect as V
 import public Data.List1 as L
 ```
 
-The first line imports a module from another *package* (we will learn
+The first two lines import modules from another *package* (we will learn
 about packages below): `Data.List` from the *base* package, which
 will be installed as part of your Idris installation.
 
@@ -437,6 +438,132 @@ of the Idris module system (go have a look!).
 In general, this is a rather hacky way to work around visibility
 constraints, but it can be useful at times.
 
+### Parameter Blocks
+
+The most basic way to make some piece of external information available
+to a function is by passing it as an additional argument. In object-orientied
+programming, this principle is sometimes called
+[dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), and
+a lot of fuss is being made about it, and whole libraries and frameworks
+have been built around.
+
+In Idris, we can be incredibly relaxed about all of this: Need access to some
+configuration data for your application? Pass it as an additional
+(auto-implicit?) argument to your functions. Want to use some local
+mutable state? Pass the corresponding `IORef` as an additional
+(auto-implicit?) argument to your functions. This is both highly efficient
+and incredibly simple. The only drawback it has is, that it can blow
+up our function signatures. There even is a monad for abstracting over this
+concept, called the `Reader` monad. It can be found in module `Control.Monad.Reader`,
+in the base library. In Idris, however, there is even a simpler approach:
+We can use proof search with auto implicit arguments for dependency
+injection. Here's some example code:
+
+```idris
+data Error : Type where
+  NoNat  : String -> Error
+  NoBool : String -> Error
+
+record Console where
+  constructor MkConsole
+  read : IO String
+  put  : String -> IO ()
+
+record ErrorHandler where
+  constructor MkHandler
+  handle : Error -> IO ()
+
+getCount' : (h : ErrorHandler) => (c : Console) => IO Nat
+getCount' = do
+  str <- c.read
+  case parsePositive str of
+    Nothing => h.handle (NoNat str) >> pure 0
+    Just n  => pure n
+
+getText' : (h : ErrorHandler) => (c : Console) => (n : Nat) -> IO (Vect n String)
+getText' n = sequence $ replicate n c.read
+
+prog' : ErrorHandler => (c : Console) => IO ()
+prog' = do
+  c.put "Please enter the number of lines to read."
+  n  <- getCount'
+  c.put "Please enter \{show n} lines of text."
+  ls <- getText' n
+  c.put "Read \{show n} lines and \{show . sum $ map length ls} characters."
+```
+
+The example program reads input from and prints output to some
+`Console` type, the implementation of which is left to the caller of the
+function. This is a typical example of dependency injection: Our
+`IO` actions know nothing about how to read and write lines of text
+(they do, for instance, not invoke `putStrLn` or `getLine` directly),
+but rely on an external *object* to handle these tasks for us. This allows
+us to use a simple *mock object* during testing, while using two
+file handles or data base connections when running the application
+for real. These are typical techniques often found in object-oriented
+programming, and in fact, this example emulates typical object-oriented
+patterns in a purely functional programming language: A type like
+`Console` can be viewed as a *class* providing pieces of functionality
+(*methods*  `read` and `put`), and a value of type `Console`
+can be viewed as an *object* of this class we can use to invoke
+those methods.
+
+The same goes for error handling: Our error handler could just silently
+ignore any error that occurs, or it could print it to `stderr` and write
+it to a log file at the same time. Whatever it does, our functions need
+not care.
+
+Note, however, that even in this very simple example we already
+introduced two additional function arguments, and we can easily see
+how in a real-world application we might need many more of those
+and how this would quickly blow up our function signatures.
+Luckily, there is a very clean and simple solution to this in
+Idris: `parameter` blocks. These allow us to specify a list
+of *parameters* (unchanging function arguments) shared by all
+functions listed in the block. These arguments need then no longer
+be listed with each function in the block. Here's the example
+above in a parameter block:
+
+```idris
+parameters {auto c : Console} {auto h : ErrorHandler}
+  getCount : IO Nat
+  getCount = do
+    str <- c.read
+    case parsePositive str of
+      Nothing => h.handle (NoNat str) >> pure 0
+      Just n  => pure n
+
+  getText : (n : Nat) -> IO (Vect n String)
+  getText n = sequence $ replicate n c.read
+
+  prog : IO ()
+  prog = do
+    c.put "Please enter the number of lines to read."
+    n  <- getCount
+    c.put "Please enter \{show n} lines of text."
+    ls <- getText n
+    c.put "Read \{show n} lines and \{show . sum $ map length ls} characters."
+```
+
+We are free to list arbitrary arguments (implicit, explicit, auto-implicit,
+named and unnamed, and of any quantity) as the parameters in a `parameters`
+block, but it works best with implicit and auto implicit arguments.
+
+To complete this example, here is a main function for running
+the program:
+
+```idris
+main : IO ()
+main =
+  let cons := MkConsole (trim <$> getLine) putStrLn
+      err  := MkHandler (\_ => putStrLn "It didn't work")
+   in prog
+```
+
+Dependency injection via auto-implicit arguments is only one possible
+application of parameter blocks. They are useful in general whenever
+we hape repeating argument lists for several functions.
+
 ## Documentation
 
 Documentation is key. Be it for other programmers using a library
@@ -447,7 +574,7 @@ functionality of exported data types and functions.
 
 ### Comments
 
-Writing a comment in an Idris source file is a simple as
+Writing a comment in an Idris source file is as simple as
 adding some text after two hyphens:
 
 ```idris
@@ -687,15 +814,15 @@ will not be available for other packages depending on the sop library.
 
 When the dependency graph of your project is getting large and complex, that is,
 when your project depends on many libraries, which themselves depend on yet
-other libraries, it can happen that two packages depend both on different
-- and, possibly, incompatible - versions of a third package.
+other libraries, it can happen that two packages depend both on different -
+and, possibly, incompatible - versions of a third package.
 This situation can be nigh to impossible to resolve, and can lead to a lot
 of frustration when working with conflicting libraries.
 
 It is therefore the philosophy of the pack project to avoid such a situation
 from the very beginning by making use of *curated package collections*. A pack
-collection consists of a specific GitHub commit of the Idris compiler and a set
-of packages, again each at a specific GitHub commit, all of which have been
+collection consists of a specific Git commit of the Idris compiler and a set
+of packages, again each at a specific Git commit, all of which have been
 tested to work well and without issues together. You can see a list of
 packages available to pack
 [here](https://github.com/stefan-hoeck/idris2-pack-db/blob/main/STATUS.md).
@@ -714,18 +841,18 @@ shown below:
 [custom.all.foo]
 type = "local"
 path = "/path/to/foo"
-ipkg = "foo.ipkg
+ipkg = "foo.ipkg"
 
 [custom.all.bar]
 type   = "github"
-url    = "//https://github.com/me/bar"
+url    = "https://github.com/me/bar"
 commit = "latest:main"
 ipkg   = "bar.ipkg"
 ```
 
 As you can see, in both cases you have to specify where the project can be
 found as well as the name and location of its `.ipkg` file. In case of
-a GitHub project, you also need to tell pack the commit it should use.
+a Git project, you also need to tell pack the commit it should use.
 In the example above, we want to use the latest commit from the `main`
 branch. We can use `pack fetch` to fetch and store the currently latest
 commit hash.
@@ -734,6 +861,17 @@ Entries like the ones given above are all that is needed to add support to
 custom libraries to pack. You can now list these libraries as dependencies
 in your project's `.ipkg` file(s) and pack will automatically install them
 for you.
+
+## Conclusion
+
+This concludes our section about structuring Idris projects. We have learned
+about several types of code blocks - `failing` blocks for showing that a
+piece of code fails to compile, `namespace`s for having overloaded names
+in the same source file, and parameter blocks for sharing lists of
+parameters between functions - and how to group several source files into
+an Idris library or application. Finally, we learned how to include
+external libraries in an Idris project and how to use pack to help us
+keeping track of these dependencies.
 
 <!-- vi: filetype=idris2
 -->
