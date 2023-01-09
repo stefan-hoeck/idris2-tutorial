@@ -331,7 +331,7 @@ data Title = Mr | Mrs | Other String
 This looks almost like an enumeration type, with the exception
 that there is a new thing, called a *data constructor*,
 which accepts a `String` argument (actually, the values
-in an enumeration are also called (nullary) data constructors).
+in an enumeration are also called (unary) data constructors).
 If we inspect the types at the REPL, we learn the following:
 
 ```repl
