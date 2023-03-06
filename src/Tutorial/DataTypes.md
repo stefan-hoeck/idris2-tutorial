@@ -46,7 +46,7 @@ Tutorial.DataTypes.Weekday : Type
 So, `Monday` is of type `Weekday`, while `Weekday` itself is of
 type `Type`.
 
-It is important to note, that a value of type `Weekday` can only
+It is important to note that a value of type `Weekday` can only
 ever be one of the values listed above. It is a *type error* to
 use anything else where a `Weekday` is expected.
 
@@ -54,7 +54,7 @@ use anything else where a `Weekday` is expected.
 
 In order to use our new data type as a function argument, we
 need to learn about an important concept in functional programming
-languages: Pattern matching. Let's implement a function, which calculates
+languages: Pattern matching. Let's implement a function which calculates
 the successor of a weekday:
 
 ```idris
@@ -91,12 +91,12 @@ The function above is provably total. Idris knows about the
 possible values of type `Weekday`, and can therefore figure
 out that our pattern match covers all possible cases. We can
 therefore annotate the function with the `total` keyword, and
-Idris will answer with a type error, if it can't verify the
+Idris will answer with a type error if it can't verify the
 function's totality. (Go ahead, and try removing one of
 the clauses in `next` to get an idea about how an error
 message from the coverage checker looks like.)
 
-Please remember, that these are very strong guarantees from
+Please remember that these are very strong guarantees from
 the type checker: Given enough resources,
 a provably total function will *always* return
 a result of the given type in a finite amount of time
@@ -117,10 +117,10 @@ isWeekend Sunday   = True
 isWeekend _        = False
 ```
 
-The final line with the catch-all pattern is only invoked,
+The final line with the catch-all pattern is only invoked
 if the argument is not equal to `Saturday` or `Sunday`.
 Remember: Patterns in a pattern match are matched against
-the input from top to bottom and the first match decides,
+the input from top to bottom, and the first match decides
 which path on the right hand side will be taken.
 
 We can use catch-all patterns to implement an equality test for
@@ -144,8 +144,8 @@ eqWeekday _ _                  = False
 
 Data types like `Weekday` consisting of a finite set
 of values are sometimes called *enumerations*. The Idris
-*Prelude* defines some common enumerations for us, for
-instance `Bool` and `Ordering`. As with `Weekday`,
+*Prelude* defines some common enumerations for us: for
+instance, `Bool` and `Ordering`. As with `Weekday`,
 we can use pattern matching when implementing functions
 on these types:
 
@@ -200,7 +200,7 @@ On the first line, we handle the `LT` case explicitly, while
 the other two cases are handled with an underscore as a catch-all
 pattern.
 
-Note, that indentation matters here: The case block as a whole
+Note that indentation matters here: The case block as a whole
 must be indented (if it starts on a new line), and the different
 cases must also be indented by the same amount of whitespace.
 
@@ -218,8 +218,8 @@ maxBits8' : Bits8 -> Bits8 -> Bits8
 maxBits8' x y = if compare x y == LT then y else x
 ```
 
-Note, that the `if then else` expression always returns a value
-and therefore, the `else` branch cannot be dropped. This is different
+Note that the `if then else` expression always returns a value
+and, therefore, the `else` branch cannot be dropped. This is different
 from the behavior in typical imperative languages, where `if` is
 a statement with possible side effects.
 
