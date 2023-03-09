@@ -960,5 +960,5 @@ Idris' type signatures will be of paramount importance there. Whenever
 you feel lost, add one or more holes and inspect their context to decide what to
 do next.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

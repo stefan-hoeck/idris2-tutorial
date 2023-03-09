@@ -448,3 +448,6 @@ in Idris for real. We learn how to write our own pure
 functions, how functions compose, and how we can treat
 functions just like other values and pass them around
 as arguments to other functions.
+
+<!-- vi: filetype=idris2:syntax=markdown
+-->

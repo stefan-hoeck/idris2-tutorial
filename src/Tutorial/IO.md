@@ -1121,5 +1121,5 @@ Now, that we had a glimpse at *monads* and the *bind* operator,
 it is time to in the [next chapter](Functor.md) introduce `Monad` and some
 related interfaces for real.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

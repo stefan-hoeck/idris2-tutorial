@@ -1060,5 +1060,5 @@ In the next chapter, we are taking the concept of iterating
 over container types one step further and look at
 effectful data traversals.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

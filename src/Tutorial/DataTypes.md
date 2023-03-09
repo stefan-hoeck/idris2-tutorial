@@ -1364,5 +1364,5 @@ already provided by the *Prelude*.
 In the [next section](Interfaces.md), we will introduce
 *interfaces*, another approach to *function overloading*.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

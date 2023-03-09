@@ -817,5 +817,5 @@ at functions and their types. We will learn about named arguments,
 implicit arguments, and erased arguments as well as some
 constructors for implementing more complex functions.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->
