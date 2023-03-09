@@ -3,7 +3,7 @@
 So far, we learned about the core features of the Idris
 language, which it has in common with several other
 pure, strongly typed programming languages like Haskell:
-(Higher order) Functions, algebraic data types, pattern matching,
+(Higher-order) Functions, algebraic data types, pattern matching,
 parametric polymorphism (generic types and functions), and
 ad hoc polymorphism (interfaces and constrained functions).
 

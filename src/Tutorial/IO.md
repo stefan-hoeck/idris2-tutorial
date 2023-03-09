@@ -645,7 +645,7 @@ additional namespaces to modules. For instance, in order
 to define another function called `eval`, we need to add
 it to its own namespace (note, that all definitions in a
 namespace must be indented by the same amount of
-white space):
+whitespace):
 
 ```idris
 namespace Foo
@@ -684,7 +684,7 @@ Sometimes, even *do blocks* are too noisy to express a
 combination of effectful computations. In this case, we
 can prefix the effectful parts with an exclamation mark
 (wrapping them in parentheses if they contain additional
-white space), while leaving pure expressions unmodified:
+whitespace), while leaving pure expressions unmodified:
 
 ```idris
 getHello : IO ()
