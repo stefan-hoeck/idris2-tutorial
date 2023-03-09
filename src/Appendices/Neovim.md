@@ -370,5 +370,5 @@ is available for some other editors, so feel free to ask what's
 available for your editor of choice, for instance on the
 [Idris 2 Discord channel](https://discord.gg/UX68fDs2jc).
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

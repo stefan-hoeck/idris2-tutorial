@@ -579,5 +579,5 @@ our own data types and how to construct and deconstruct
 values of these new types. We will also learn about
 generic types and functions.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

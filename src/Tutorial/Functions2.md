@@ -3,7 +3,7 @@
 So far, we learned about the core features of the Idris
 language, which it has in common with several other
 pure, strongly typed programming languages like Haskell:
-(Higher order) Functions, algebraic data types, pattern matching,
+(Higher-order) Functions, algebraic data types, pattern matching,
 parametric polymorphism (generic types and functions), and
 ad hoc polymorphism (interfaces and constrained functions).
 
@@ -960,5 +960,5 @@ Idris' type signatures will be of paramount importance there. Whenever
 you feel lost, add one or more holes and inspect their context to decide what to
 do next.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

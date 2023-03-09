@@ -906,5 +906,5 @@ library. Likewise, `Fin` is available from `Data.Fin` from *base*.
 In the [next section](IO.md), it is time to learn how to write effectful programs
 and how to do this while still staying *pure*.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

@@ -1423,5 +1423,5 @@ In the [next chapter](Folds.md) we get to learn more about
 recursion, totality checking, and an interface for
 collapsing container types: `Foldable`.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

@@ -1202,5 +1202,5 @@ contracts between values hold. These will eventually allow
 us to define pre- and post conditions for our function
 arguments and output types.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

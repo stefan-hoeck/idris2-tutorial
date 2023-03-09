@@ -1407,5 +1407,5 @@ things perform well at runtime and compile time. I'm experimenting
 with a library, which deals with these issues. It is not yet finished,
 but you can have a look at it [here](https://github.com/stefan-hoeck/idris2-prim).
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

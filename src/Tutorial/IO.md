@@ -645,7 +645,7 @@ additional namespaces to modules. For instance, in order
 to define another function called `eval`, we need to add
 it to its own namespace (note, that all definitions in a
 namespace must be indented by the same amount of
-white space):
+whitespace):
 
 ```idris
 namespace Foo
@@ -684,7 +684,7 @@ Sometimes, even *do blocks* are too noisy to express a
 combination of effectful computations. In this case, we
 can prefix the effectful parts with an exclamation mark
 (wrapping them in parentheses if they contain additional
-white space), while leaving pure expressions unmodified:
+whitespace), while leaving pure expressions unmodified:
 
 ```idris
 getHello : IO ()
@@ -1121,5 +1121,5 @@ Now, that we had a glimpse at *monads* and the *bind* operator,
 it is time to in the [next chapter](Functor.md) introduce `Monad` and some
 related interfaces for real.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

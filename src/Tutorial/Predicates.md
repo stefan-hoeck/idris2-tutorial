@@ -1365,5 +1365,5 @@ arguments, which Idris should try to construct on its own if
 it has enough information about the structure of a function's
 arguments.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->

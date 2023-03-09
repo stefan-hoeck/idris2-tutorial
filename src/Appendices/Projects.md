@@ -886,5 +886,5 @@ an Idris library or application. Finally, we learned how to include
 external libraries in an Idris project and how to use pack to help us
 keep track of these dependencies.
 
-<!-- vi: filetype=idris2
+<!-- vi: filetype=idris2:syntax=markdown
 -->
