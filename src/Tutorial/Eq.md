@@ -1094,5 +1094,7 @@ thus reducing the need to return a `Maybe` or other failure type,
 because due to the restricted input, our functions can no longer
 fail.
 
+[Next chapter](./Predicates.md)
+
 <!-- vi: filetype=idris2:syntax=markdown
 -->

@@ -1142,7 +1142,7 @@ higher-kinded interfaces, which started with the introduction of
 and - last but definitely not least - `Traversable`.
 There's one still missing - `Alternative` - but this will
 have to wait a bit longer, because we need to first make
-our brains smoke with some more type-level wizardry.
+our brains smoke with some more [type-level wizardry](./DPair.md).
 
 <!-- vi: filetype=idris2:syntax=markdown
 -->

@@ -1056,7 +1056,7 @@ functional programming in general. Wrapping one's head
 around recursion takes time and experience. Therefore - as
 usual - try to solve as many exercises as you can.
 
-In the next chapter, we are taking the concept of iterating
+In the [next chapter](./Traverse.md), we are taking the concept of iterating
 over container types one step further and look at
 effectful data traversals.
 
