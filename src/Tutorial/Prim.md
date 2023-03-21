@@ -1,7 +1,7 @@
 # Primitives
 
 In the topics we covered so far, we hardly ever talked about primitive
-types in Idris. They where around and we used them in some computations,
+types in Idris. They were around and we used them in some computations,
 but I never really explained how they work and where they come from,
 nor did I show in detail what we can and can't do with them.
 
@@ -140,7 +140,7 @@ For `Bits8`, these are:
 Note, that these functions do not return a `Bool` (which
 is *not* a primitive type in Idris), but an `Int`. They are
 therefore not as safe or convenient to use as the corresponding
-operator implementations form interfaces `Eq` and `Comp`.
+operator implementations from interfaces `Eq` and `Comp`.
 On the other hand, they do not go via a conversion to `Bool`
 and might therefore perform slightly better in performance
 critical code (which you can only identify after some
@@ -803,7 +803,7 @@ fromString : (s : String) -> {auto 0 prf : isAsciiString s === True} -> Ascii
 fromString s = MkAscii s prf
 ```
 
-With this, we can us (valid) string literals for coming up with
+With this, we can use (valid) string literals for coming up with
 values of type `Ascii` directly:
 
 ```idris
@@ -1188,7 +1188,7 @@ Between l u = GreaterThan l && LessThan u
    Likewise, implement `Decidable Nat (m <=)`, because we require
    both kinds of predicates.
 
-   Note: You should by know figure out yourself that `n` must be
+   Note: You should by now figure out yourself that `n` must be
    available at runtime and how to make sure that this is the case.
 
 7. Proof that `(<=)` is reflexive and transitive by declaring and

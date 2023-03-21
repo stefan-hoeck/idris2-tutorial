@@ -905,7 +905,7 @@ like to print:
 * A value not representing a natural number was entered as an index.
   We print an according error message.
 
-That's a lot of stuff to keep track off, so let's encode this in
+That's a lot of stuff to keep track of, so let's encode this in
 a sum type:
 
 ```idris

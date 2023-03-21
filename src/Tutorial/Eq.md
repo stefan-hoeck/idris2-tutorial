@@ -48,7 +48,7 @@ record Table where
 concatTables1 : Table -> Table -> Maybe Table
 ```
 
-We will not be able to implement `concatTables` by appending the
+We will not be able to implement `concatTables1` by appending the
 two row vectors, unless we can somehow verify that the two schemata
 are identical. "Well," I hear you say, "that shouldn't be a big issue!
 Just implement `Eq` for `ColType`". Let's give this a try:
