@@ -1,6 +1,7 @@
 # Functional Programming in Idris 2
 
-[中文翻译](https://github.com/running-grass/idris2-tutorial-zh/blob/main/translation/README.md)
+[中文翻译](https://github.com/running-grass/idris2-tutorial-zh/blob/main/translation/README.md),
+[日本語訳](https://github.com/gemmaro/idris2-tutorial/blob/ja/translation/ja/README.md)
 
 The goal of this project is quickly explained: To become a more
 or less comprehensive guide to the Idris programming language,
