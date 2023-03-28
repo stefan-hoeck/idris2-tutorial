@@ -1388,7 +1388,7 @@ introduction for programmers, written by
 
 The usefulness of applicative functors as a middle ground between
 functor and monad was discovered several years after monads had
-already been in use in Haskell. They where introduced in the
+already been in use in Haskell. They were introduced in the
 article [*Applicative Programming with Effects*](https://www.staff.city.ac.uk/~ross/papers/Applicative.html),
 which is freely available online and a highly recommended read.
 
