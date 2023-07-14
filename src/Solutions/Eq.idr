@@ -57,7 +57,7 @@ sctCong f SameCT = Refl
 
 natEq : (n1,n2 : Nat) -> Maybe (n1 = n2)
 natEq 0     0     = Just Refl
-natEq (S k) (S j) = cong S <$> natEq k j
+natEq (S k) (S j) = (\x => cong S x) <$> natEq k j
 natEq (S k) 0     = Nothing
 natEq 0     (S _) = Nothing
 
@@ -237,7 +237,7 @@ ctNatInjective Float   Float   Refl = Refl
 DecEq ColType where
   decEq c1 c2 = case decEq (ctNat c1) (ctNat c2) of
     Yes prf    => Yes $ ctNatInjective c1 c2 prf
-    No  contra => No $ contra . cong ctNat
+    No  contra => No $ \x => contra $ cong ctNat x
 
 --------------------------------------------------------------------------------
 --          Rewrite Rules

@@ -651,7 +651,7 @@ Actually, this is just a specialized version of the contraposition of
 
 ```idris
 contraCong : {0 f : _} -> Not (f a = f b) -> Not (a = b)
-contraCong fun = fun . cong f
+contraCong fun x = fun $ cong f x
 ```
 
 ### Interface `Uninhabited`
