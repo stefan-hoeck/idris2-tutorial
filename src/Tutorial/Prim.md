@@ -1025,7 +1025,7 @@ utility functions:
 
 ```idris
 data IsYes0 : (d : Dec0 prop) -> Type where
-  ItIsYes0 : IsYes0 (Yes0 prf)
+  ItIsYes0 : {0 prf : _} -> IsYes0 (Yes0 prf)
 
 0 fromYes0 : (d : Dec0 prop) -> (0 prf : IsYes0 d) => prop
 fromYes0 (Yes0 x) = x
