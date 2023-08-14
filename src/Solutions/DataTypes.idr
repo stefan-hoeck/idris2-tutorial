@@ -239,6 +239,7 @@ login Nil       (Key u _)      = Left (UnknownUser u)
 login (x :: xs) cs             = case login1 x cs of
   Right c               => Right c
   Left  InvalidPassword => Left InvalidPassword
+  Left  InvalidKey      => Left InvalidKey
   Left _                => login xs cs
 
 --5
