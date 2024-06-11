@@ -59,12 +59,13 @@ on the top:
 These operations behave mostly how you might expect, with `0` and `1`
 being the usual numbers and `ω` being a sort of "infinity" value. (We
 have `1 + 1 = ω` instead of `2` because there isn't a `2` quantity in
-our system.) There is one striking difference in our ordering, though:
-`0 ≤ 1` is false! We have that `0 ≤ ω` and `1 ≤ ω`, but not `0 ≤ 1`,
-or `1 ≤ 0` for that matter. In the language of mathematics, we say
-that `0` and `1` are *incomparable*. We'll get into why this is the
-case later, when we talk about what these operations mean and how
-they're used.
+our system.)
+
+There is one big difference in our ordering, though: `0 ≤ 1` is false!
+We have that `0 ≤ ω` and `1 ≤ ω`, but not `0 ≤ 1`, or `1 ≤ 0` for that
+matter. In the language of mathematics, we say that `0` and `1` are
+*incomparable*. We'll get into why this is the case later, when we
+talk about what these operations mean and how they're used.
 
 ## Variables and Contexts
 
@@ -152,7 +153,7 @@ operations.
 
 To illustrate how quantities evolve, I will provide Idris-style
 context diagrams showing the various cases. In these, capital-letter
-names such as `T` and `E` stand for any expression, and `q`, `r`, etc.
+names `T`, `E`, etc. stand for any expression, and `q`, `r`, etc.
 stand for any quantity.
 
 ### Variables and Literals
@@ -212,8 +213,8 @@ g x = id 1
 
 Here, `id` has type `a -> a`, where its input is unrestricted (`ω`).
 In the first function, we can see that `x` is used once in the input
-of `id`, so the quantity of `x` in the whole expression is `ω * 1 =
-ω`. In the second function, `x` is used zero times in the input of
+of `id`, so the quantity of `x` in the whole expression is `ω * 1 = ω`.
+In the second function, `x` is used zero times in the input of
 `id`, so its quantity in the whole expression is `ω * 0 = 0`. The
 function `g` will typecheck if you mark its input as erased, but not
 `f`.
@@ -228,7 +229,7 @@ ldup x = (#) x x
 ```
 
 The linear pair constructor `(#)` is linear in both arguments, so to
-find the quantity of `x` in the full expression we simply add up the
+find the quantity of `x` in the full expression we can just add up the
 quantities in each part. `x` is used zero times in `(#)` and one time
 in `x`, so the total quantity is `0 + 1 + 1 = ω`. If the second `x`
 were replaced by something else, like a literal, the quantity would
@@ -282,7 +283,7 @@ they wanted linearity to have the second meaning, not the first.
 
 ### Lambdas and Other Bindings
 
-```idris
+```repl
  q x : A
 ------------------------------
 E : B
@@ -372,7 +373,7 @@ as-pattern `x@...`). This prevents the quantity from being `0`.
 
 Earlier I stated that only variables in the context can have
 quantities, which in particular means top-level definitions cannot
-have them. This is *mostly* true, but there is an exception: a
+have them. This is *mostly* true, but there is one slight exception: a
 function can be marked as erased by placing a `0` before its name.
 
 ```idris
@@ -384,8 +385,8 @@ This tells the type system to define this function within the *erased
 fragment*, which is a fragment of the type system wherein all quantity
 checks are ignored. In the `erasedId` function above, we use the
 function's input `x` once despite labeling it as erased. This would
-normally result in a quantity error, but it this function is allowed
-due to being defined in the erased fragment.
+normally result in a quantity error, but this function is allowed due
+to being defined in the erased fragment.
 
 This quantity freedom the erased fragment gives us comes with a big
 drawback, though - erased functions are banned from being used at
@@ -403,8 +404,8 @@ erased2 : Int
 erased2 = constInt (erasedId 1)
 ```
 
-This restriction ensures that quantities are always handled correctly
-at run-time, which is where it matters!
+This makes sure that quantities are always handled correctly at
+run-time, which is where it matters!
 
 There is another important place where the erased fragment comes into
 play, and that's in type signatures. The type signatures of
@@ -417,8 +418,8 @@ erasedPrf = Refl
 ```
 
 For this reason, erased functions are sometimes thought of as
-"exclusively type-level functions", though as we've seen, that
-thinking is a bit inaccurate.
+"exclusively type-level functions", though as we've seen, that's not
+entirely accurate.
 
 ## Conclusion
 
@@ -434,7 +435,7 @@ we can define erased functions.
 
 In Idris 2's current state, most of this information is still entirely
 unnecessary for learning the language. That may not always be the
-case, however: there have been some discussions to change the quantity
+case, though: there have been some discussions to change the quantity
 semiring that Idris 2 uses, or even to allow the programmer to choose
 which set of quantities to use. Whether those discussions lead to
 anything or not, it can still useful to better understand how
