@@ -1,6 +1,6 @@
 # A Deep Dive into Quantitative Type Theory
 
-Earlier in the tutorial, when discussing functions, Idris 2's quantity system was introduced. The description was intentionally a bit simplified - the inner workings of quantities are complicated, and that complication would have only confused any newcomers to Idris 2.
+In the tutorial proper, when discussing functions, Idris 2's quantity system was introduced. The description was intentionally a bit simplified - the inner workings of quantities are complicated, and that complication would have only confused any newcomers to Idris 2.
 
 Here, I'll provide a more proper and thorough treatment of Quantitative Type Theory (QTT), including how quantity checking is performed and the theory behind it. Most of the information here will be unnecessary for understanding and writing Idris programs, and you are free to keep thinking about quantities like they were explained before. When working with quantities in their full complexity, however, a better understanding of how they work can be helpful to avoid misconceptions.
 
@@ -38,7 +38,7 @@ These operations behave mostly how you might expect, with `0` and `1` being the 
 
 ## Variables and Contexts
 
-In QTT, each variable in each context has an associated quantity. These quantities can be plainly seen when inspecting holes in the REPL. Here's an example from earlier in this tutorial:
+In QTT, each variable in each context has an associated quantity. These quantities can be plainly seen when inspecting holes in the REPL. Here's an example from the tutorial:
 
 ```repl
  0 b : Type
@@ -295,7 +295,7 @@ In Idris 2's current state, most of this information is still entirely unnecessa
 
 ### A Note on Mathematical Accuracy
 
-The information in this section is partially based on Robert Atkey's 2018 paper [Syntax and Semantics of Quantitative Type Theory](https://bentnib.org/quantitative-type-theory.pdf), which outlines QTT in the standard language of type theory. The QTT presented in Atkey's paper is roughly similar to Idris 2's type system except for these differences:
+The information in this appendix is partially based on Robert Atkey's 2018 paper [Syntax and Semantics of Quantitative Type Theory](https://bentnib.org/quantitative-type-theory.pdf), which outlines QTT in the standard language of type theory. The QTT presented in Atkey's paper is roughly similar to Idris 2's type system except for these differences:
 
 1. Atkey's theory does not have subusaging, and so the quantity semiring in Atkey's paper is not ordered.
 2. In Atkey's theory, types can only be constructed in the erased fragment, which means it is impossible to construct a type at run-time. Idris 2 allows constructing types at run-time, but still uses the erased fragment when inside of type signatures.
