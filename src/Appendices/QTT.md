@@ -1,5 +1,7 @@
 # A Deep Dive into Quantitative Type Theory
 
+*This section was guest-written by [Kiana Sheibani](https://github.com/kiana-S).*
+
 In the tutorial proper, when discussing functions, Idris 2's quantity system was introduced. The description was intentionally a bit simplified - the inner workings of quantities are complicated, and that complication would have only confused any newcomers to Idris 2.
 
 Here, I'll provide a more proper and thorough treatment of Quantitative Type Theory (QTT), including how quantity checking is performed and the theory behind it. Most of the information here will be unnecessary for understanding and writing Idris programs, and you are free to keep thinking about quantities like they were explained before. When working with quantities in their full complexity, however, a better understanding of how they work can be helpful to avoid misconceptions.
