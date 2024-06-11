@@ -345,7 +345,7 @@ That formula might look complicated, but it's just repeated use of the
 a quantity of `1` in this function's body.
 
 As a final note, pattern matching in Idris 2 is only allowed when the
-value in question exists at run-time, meaning that it isn't erased.
+value in question exists at runtime, meaning that it isn't erased.
 This is because in QTT, a value must be constructed before it can be
 pattern-matched: if you match on a variable `x`, the resources
 required to make that variable's value are added to the total count.
@@ -390,7 +390,7 @@ to being defined in the erased fragment.
 
 This quantity freedom the erased fragment gives us comes with a big
 drawback, though - erased functions are banned from being used at
-run-time. In terms of the type theory, what this means is that an
+runtime. In terms of the type theory, what this means is that an
 erased function can only ever be used in these two places:
 
 1. Inside of another erased-fragment function or expression;
@@ -405,7 +405,7 @@ erased2 = constInt (erasedId 1)
 ```
 
 This makes sure that quantities are always handled correctly at
-run-time, which is where it matters!
+runtime, which is where it matters!
 
 There is another important place where the erased fragment comes into
 play, and that's in type signatures. The type signatures of
@@ -455,7 +455,7 @@ except for these differences:
    semiring in Atkey's paper is not ordered.
 2. In Atkey's theory, types can only be constructed in the erased
    fragment, which means it is impossible to construct a type at
-   run-time. Idris 2 allows constructing types at run-time, but still
+   runtime. Idris 2 allows constructing types at runtime, but still
    uses the erased fragment when inside of type signatures.
 
 To resolve these differences, I directly observed how Idris 2's type
