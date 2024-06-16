@@ -924,10 +924,8 @@ embed string literals known at compile time without the need
 to escape them first:
 
 ```idris
-namespace Escaped
-  export
-  fromString : (s : String) -> {auto 0 prf : escape s === s} -> Escaped
-  fromString s = MkEscaped s s prf
+implementation FromString Escaped where
+  fromString s = MkEscaped (escape s) s Refl
 
 escaped : Escaped
 escaped = "Hello World!"
