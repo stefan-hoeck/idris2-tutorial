@@ -894,7 +894,7 @@ leftZero = (++)
 ```
 
 However, the example below can't be implemented as easily
-(try id!), because Idris can't figure out on its own
+(try it!), because Idris can't figure out on its own
 that the two lengths unify.
 
 ```idris
