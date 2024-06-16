@@ -542,10 +542,9 @@ integer types (`Int8`, `Int16`, `Int32`, and `Int64`) come with
 implementations of all integral interfaces and
 the two interfaces for bitwise operations (`Bits` and `FiniteBits`).
 Overflows are handled by calculating the remainder
-modulo `2^bitsize` and adding the lower bound (a negative number)
-if the result is still out of range. For instance, for `Int8`, all operations
-calculate their results modulo 256, subtracting 128 if the
-result is still out of bounds:
+modulo `2^bitsize` and subtracting `2^bitsize` if the result is still out of
+range. For instance, for `Int8`, all operations calculate their results modulo
+256, subtracting 256 if the result is still out of bounds:
 
 ```repl
 Main> the Int8 2 * 127
