@@ -493,7 +493,7 @@ For instance, here is a try at proofing the identity functor
 law for `Maybe`:
 
 ```idris
-mapMaybeId1 : (ma : Maybe a) -> map Prelude.id ma = ma
+mapMaybeId1 : (ma : Maybe a) -> map id ma = ma
 mapMaybeId1 Nothing  = Refl
 mapMaybeId1 (Just x) = ?mapMaybeId1_rhs
 ```
@@ -894,7 +894,7 @@ leftZero = (++)
 ```
 
 However, the example below can't be implemented as easily
-(try id!), because Idris can't figure out on its own
+(try it!), because Idris can't figure out on its own
 that the two lengths unify.
 
 ```idris
