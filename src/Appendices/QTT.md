@@ -268,8 +268,8 @@ The input `x` is used zero times, which would normally mean its
 quantity would have to be `0`; however, since `0 ≤ ω`, we can use
 subusaging to increase the quantity to `ω`.
 
-This also explains the mysterious fact we pointed out earlier, that `0
-≰ 1` in our quantity ordering. If it were true that `0 ≤ 1`, then we
+This also explains the mysterious fact we pointed out earlier, that
+`0 ≰ 1` in our quantity ordering. If it were true that `0 ≤ 1`, then we
 could also increase the quantity of `x` from `0` to `1`:
 
 ```idris
