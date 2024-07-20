@@ -42,7 +42,7 @@ stuff will already be familiar to you.
    4. [The Shape of an Idris Definition](src/Tutorial/Intro.md#the-shape-of-an-idris-definition)
    5. [Where to get Help](src/Tutorial/Intro.md#where-to-get-help)
 2. [Functions Part 1](src/Tutorial/Functions1.md)
-   1. [Functions with more that one Argument](src/Tutorial/Functions1.md#functions-with-more-that-one-argument)
+   1. [Functions with more than one Argument](src/Tutorial/Functions1.md#functions-with-more-that-one-argument)
    2. [Function Composition](src/Tutorial/Functions1.md#function-composition)
    3. [Higher-order Functions](src/Tutorial/Functions1.md#higher-order-functions)
    4. [Currying](src/Tutorial/Functions1.md#currying)
