@@ -340,9 +340,27 @@ func      (((#)      x)       y)
   0 + 1 * (( 0 + 1 * 1) + 1 * 0)  = 1
 ```
 
-That formula might look complicated, but it's just repeated use of the
-`qf + r*qe` formula we learned before. It tells us that `x` must have
-a quantity of `1` in this function's body.
+We start from the outside and work our way inwards, applying the
+`qf + r*qe` rule as we go. `x` is used zero times in the constant
+`func`, and its argument is linear. We know that `x` is used once
+inside of the linear pair `(x # y)` (aside from being obvious, we can
+compute this fact ourselves), so the number of times `x` must be used
+in `func`'s definition is `0 + 1 * 1 = 1`.
+
+The same argument applies to `y`, meaning that `y` should also be used
+once inside of `func` for this definition to pass quantity checking.
+And in fact, if we look at the context of the hole `?impl`, that's
+exactly what we see!
+
+```repl
+ 0 a : Type
+ 0 b : Type
+ 0 c : Type
+ 1 x : a
+ 1 y : b
+------------------------------
+impl : c
+```
 
 As a final note, pattern matching in Idris 2 is only allowed when the
 value in question exists at runtime, meaning that it isn't erased.
