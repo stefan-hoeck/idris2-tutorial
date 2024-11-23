@@ -308,7 +308,7 @@ only from the surrounding scope and from other functions
 defined later in the same `where` block. These need to
 be explicitly typed and indented by the same amount of whitespace.
 
-Local definitions can also be introduce *before* a function's
+Local definitions can also be introduced *before* a function's
 implementation by using the `let` keyword. This usage
 of `let` is not to be confused with *let bindings* described
 above, which are used to bind and reuse the results of intermediate
