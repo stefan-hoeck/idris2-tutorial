@@ -74,7 +74,7 @@ Pure functions have several advantages:
 * They can easily be tested by specifying (possibly randomly generated)
   sets of input arguments together with the expected results.
 
-* They are thread-safe, since the don't mutate global state, and
+* They are thread-safe, since they don't mutate global state, and
   as such can be freely used in several computations running
   in parallel.
 
