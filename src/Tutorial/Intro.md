@@ -2,7 +2,7 @@
 
 Welcome to my Idris 2 tutorial. I'll try and treat as many aspects
 of the Idris 2 programming language as possible here.
-All `.md` files in here a literate Idris files: They consist of
+All `.md` files in here are literate Idris files: They consist of
 Markdown (hence the `.md` ending), which is being pretty printed
 by GitHub together with Idris code blocks, which can be
 type checked and built by the Idris compiler (more on this later).
@@ -90,7 +90,7 @@ There are, of course, also some disadvantages:
 ### Dependent Types
 
 Idris is a strongly, statically typed programming language. This
-means, that every Idris expression is given a *type* (for instance:
+means that every Idris expression is given a *type* (for instance:
 integer, list of strings, boolean, function from integer to boolean, etc.)
 and types are verified at compile time to rule out certain
 common programming errors.
@@ -270,7 +270,7 @@ maxBits8 = 255
 
 The first line can be read as: "We'd like to declare  (nullary)
 function `maxBits8`. It is of type `Bits8`". This is
-called the *function declaration*: We declare, that there
+called the *function declaration*: we declare that there
 shall be a function of the given name and type. The second line
 reads: "The result of invoking `maxBits8` should be `255`."
 (As you can see, we can use integer literals for other integral
