@@ -299,7 +299,7 @@ single pattern match.
 Second, we defined two *local* functions in a `where` block: `lookupUser`,
 and `lookupAlbum`. Both of these have access to all variables
 in the surrounding scope. For instance, `lookupUser` uses the
-`album` variable from the pattern match in the implementation's
+`email` variable from the pattern match in the implementation's
 first line. Likewise, `lookupAlbum` makes use of the `album`
 variable.
 
@@ -618,7 +618,7 @@ and let Idris figure out the rest.
 We have already learned about one such occasion: Catch-all patterns.
 If a variable in a pattern match is not used on the right hand side,
 we can't just drop it, as this would make it impossible for
-Idris, which of several arguments we were planning to drop,
+Idris to know, which of several arguments we were planning to drop,
 but we can use an underscore as a placeholder instead:
 
 ```idris
