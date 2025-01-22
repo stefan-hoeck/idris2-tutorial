@@ -727,7 +727,6 @@ CSVField Email where
   read = readIf isValidEmail MkEmail
 
 isPasswordChar : Char -> Bool
-isPasswordChar ' ' = True
 isPasswordChar c   = not (isControl c) && not (isSpace c)
 
 isValidPassword : String -> Bool
