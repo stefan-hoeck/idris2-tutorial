@@ -728,6 +728,9 @@ CSVField Email where
 
 isPasswordChar : Char -> Bool
 isPasswordChar ' ' = True
+-- please note that isSpace holds as well for other characaters than ' '
+-- e.g. for non-breaking space: isSpace '\160' = True
+-- but only ' ' shall be llowed in passwords
 isPasswordChar c   = not (isControl c) && not (isSpace c)
 
 isValidPassword : String -> Bool
