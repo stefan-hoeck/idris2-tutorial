@@ -81,10 +81,7 @@ bindTR xs f = go Lin xs
         go sx (x :: xs) = go (sx <>< f x) xs
 
 joinTR : List (List a) -> List a
-joinTR = go Lin
-  where go : SnocList a -> List (List a) -> List a
-        go sx []        = sx <>> Nil
-        go sx (x :: xs) = go (sx <>< x) xs
+joinTR xss = bindTR xss id
 
 --------------------------------------------------------------------------------
 --          A few Notes on Totality Checking
