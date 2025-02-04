@@ -13,16 +13,12 @@ import Data.Vect
 -- 1
 
 anyList : (a -> Bool) -> List a -> Bool
-anyList p []        = False
-anyList p (x :: xs) = case p x of
-  False => anyList p xs
-  True  => True
+anyList p Nil       = False
+anyList p (x :: xs) = p x || anyList p xs
 
 allList : (a -> Bool) -> List a -> Bool
-allList p []        = True
-allList p (x :: xs) = case p x of
-  True  => allList p xs
-  False => False
+allList p Nil       = True
+allList p (x :: xs) = p x && allList p xs
 
 -- 2
 
