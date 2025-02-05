@@ -13,16 +13,12 @@ import Data.Vect
 -- 1
 
 anyList : (a -> Bool) -> List a -> Bool
-anyList p []        = False
-anyList p (x :: xs) = case p x of
-  False => anyList p xs
-  True  => True
+anyList p Nil       = False
+anyList p (x :: xs) = p x || anyList p xs
 
 allList : (a -> Bool) -> List a -> Bool
-allList p []        = True
-allList p (x :: xs) = case p x of
-  True  => allList p xs
-  False => False
+allList p Nil       = True
+allList p (x :: xs) = p x && allList p xs
 
 -- 2
 
@@ -89,6 +85,11 @@ joinTR = go Lin
   where go : SnocList a -> List (List a) -> List a
         go sx []        = sx <>> Nil
         go sx (x :: xs) = go (sx <>< x) xs
+
+-- Or using the connection between join and bind:
+-- joinTR xss = bindTR xss id
+-- This is also a tail recursive implementation as
+-- bindTR is tail recursive
 
 --------------------------------------------------------------------------------
 --          A few Notes on Totality Checking
