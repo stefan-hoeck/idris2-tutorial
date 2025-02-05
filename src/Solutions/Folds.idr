@@ -81,7 +81,15 @@ bindTR xs f = go Lin xs
         go sx (x :: xs) = go (sx <>< f x) xs
 
 joinTR : List (List a) -> List a
-joinTR xss = bindTR xss id
+joinTR = go Lin
+  where go : SnocList a -> List (List a) -> List a
+        go sx []        = sx <>> Nil
+        go sx (x :: xs) = go (sx <>< x) xs
+
+-- Or using the connection between join and bind:
+-- joinTR xss = bindTR xss id
+-- This is also a tail recursive implementation as
+-- bindTR is tail recursive
 
 --------------------------------------------------------------------------------
 --          A few Notes on Totality Checking
