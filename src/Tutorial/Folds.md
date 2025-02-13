@@ -594,7 +594,7 @@ in another chapter.
 
 Second note: *Ex falso quodlibet*, also called
 [the principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion)
-is a law in classical logic: From a contradiction, any statement can be proven.
+is a law in logic: From a contradiction, any statement can be proven.
 In our case, the contradiction was our proof of `Void`: The claim that we wrote
 a total function producing such a value, although `Void` is an uninhabited type.
 You can verify this by inspecting `Void` at the REPL with `:doc Void`: It
