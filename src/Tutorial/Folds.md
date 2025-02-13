@@ -143,7 +143,7 @@ module using the *Node.js* backend of Idris instead of the default
 with the Node.js binary:
 
 ```sh
-idris2 --cg node -o test.js --find-ipkg -src/Tutorial/Folds.md
+idris2 --cg node -o test.js --find-ipkg src/Tutorial/Folds.md
 node build/exec/test.js
 ```
 
@@ -918,7 +918,7 @@ Just 1
 
 While this technique can sometimes lead to very elegant code, always
 remember that `rightFold` is not stack safe in the general case. So,
-unless your accumulator is not guaranteed to return a result after
+unless your accumulator is guaranteed to return a result after
 not too many iterations, consider implementing your function
 tail recursively with an explicit pattern match. Your code will be
 slightly more verbose, but with the guaranteed benefit of stack safety.
