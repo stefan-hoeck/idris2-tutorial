@@ -13,12 +13,24 @@ import Data.Vect
 -- 1
 
 anyList : (a -> Bool) -> List a -> Bool
-anyList p Nil       = False
-anyList p (x :: xs) = p x || anyList p xs
+anyList p []        = False
+anyList p (x :: xs) = case p x of
+  False => anyList p xs
+  True  => True
+
+anyList' : (a -> Bool) -> List a -> Bool
+anyList' p Nil       = False
+anyList' p (x :: xs) = p x || anyList p xs
 
 allList : (a -> Bool) -> List a -> Bool
-allList p Nil       = True
-allList p (x :: xs) = p x && allList p xs
+allList p []        = True
+allList p (x :: xs) = case p x of
+  True  => allList p xs
+  False => False
+
+allList' : (a -> Bool) -> List a -> Bool
+allList' p Nil       = True
+allList' p (x :: xs) = p x && allList p xs
 
 -- 2
 
@@ -86,10 +98,11 @@ joinTR = go Lin
         go sx []        = sx <>> Nil
         go sx (x :: xs) = go (sx <>< x) xs
 
--- Or using the connection between join and bind:
--- joinTR xss = bindTR xss id
--- This is also a tail recursive implementation as
--- bindTR is tail recursive
+-- Using the connection between join and bind:
+-- yielding a tail recursive implementation as bindTR is.
+joinTR' : List (List a) -> List a
+joinTR' xss = bindTR xss id
+
 
 --------------------------------------------------------------------------------
 --          A few Notes on Totality Checking
