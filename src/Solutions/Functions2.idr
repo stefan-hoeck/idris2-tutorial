@@ -71,19 +71,21 @@ handleRequest xs (MkRequest (MkCredentials e pw) album) =
 
 --2
 
-data Failure : Type where
-  UnknownUser' : Email -> Failure
-  InvalidPassword' : Failure
-  AccessDenied' : Email -> Album -> Failure
+namespace Ex2
 
-handleRequest' : DB -> Request -> Either Failure Album
-handleRequest' db req = case find (\u1 => u1.email == req.credentials.email) db of
-  Nothing => Left (UnknownUser' req.credentials.email)
-  Just u2 => case (u2.email == req.credentials.email && u2.password == req.credentials.password) of
-    False => Left InvalidPassword'
-    True => case elem req.album u2.albums of
-      False => Left (AccessDenied' req.credentials.email req.album)
-      True => Right req.album
+  data Failure : Type where
+    UnknownUser : Email -> Failure
+    InvalidPassword : Failure
+    AccessDenied : Email -> Album -> Failure
+
+  handleRequest : DB -> Request -> Either Failure Album
+  handleRequest db req = case find ((==) req.credentials.email . email) db of
+    Nothing => Left (UnknownUser req.credentials.email)
+    Just u2 => case (u2.email == req.credentials.email && u2.password == req.credentials.password) of
+      False => Left InvalidPassword
+      True => case elem req.album u2.albums of
+        False => Left (AccessDenied req.credentials.email req.album)
+        True => Right req.album
 
 -- 3
 data Nucleobase = Adenine | Cytosine | Guanine | Thymine
