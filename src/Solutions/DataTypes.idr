@@ -204,9 +204,11 @@ lastMaybe (x :: Nil) = Just x
 lastMaybe (_ :: xs)  = lastMaybe xs
 
 initMaybe : List a -> Maybe (List a)
-initMaybe Nil        = Nothing
-initMaybe (x :: Nil) = Just Nil
-initMaybe (x :: xs)  = mapMaybe (x ::) (initMaybe xs)
+initMaybe l = case l of
+  Nil => Nothing
+  x :: xs => case initMaybe xs of
+    Nothing => Just Nil
+    Just ys => Just (x :: ys)
 
 foldList : (acc -> el -> acc) -> acc -> List el -> acc
 foldList fun vacc Nil       = vacc
