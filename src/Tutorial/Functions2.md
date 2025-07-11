@@ -711,6 +711,15 @@ traverseEither :  Semigroup e
                -> Either e (List b)
 ```
 
+As an optional exercise, you may wish to attempt this yourself first.
+You've seen everything you need. Consider:
+
+* semigroups have an append operation `<+> : e -> e -> e` that combines two values into one
+* the empty list will succeed vacuously
+* if any of the function applications fail, you'll return a consolidation of all of the errors `e`
+* if all of the function applications succeed, you'll return a list with all of the results `b`
+* if you get it to compile, there are some test functions and variables at the bottom of this section for you to confirm that it's working as intended
+
 Now, in order to follow along, you might want to start your own
 Idris source file, load it into a REPL session and adjust the
 code as described here. The first thing we'll do, is write a
