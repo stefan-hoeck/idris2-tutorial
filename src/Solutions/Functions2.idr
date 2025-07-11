@@ -69,7 +69,25 @@ handleRequest xs (MkRequest (MkCredentials e pw) album) =
       else if elem album albums then Success album
       else                           AccessDenied e album
 
--- 2
+--2
+
+namespace Ex2
+
+  data Failure : Type where
+    UnknownUser : Email -> Failure
+    InvalidPassword : Failure
+    AccessDenied : Email -> Album -> Failure
+
+  handleRequest : DB -> Request -> Either Failure Album
+  handleRequest db req = case find ((==) req.credentials.email . email) db of
+    Nothing => Left (UnknownUser req.credentials.email)
+    Just u2 => case (u2.email == req.credentials.email && u2.password == req.credentials.password) of
+      False => Left InvalidPassword
+      True => case elem req.album u2.albums of
+        False => Left (AccessDenied req.credentials.email req.album)
+        True => Right req.album
+
+-- 3
 data Nucleobase = Adenine | Cytosine | Guanine | Thymine
 
 readBase : Char -> Maybe Nucleobase
@@ -79,7 +97,7 @@ readBase 'G' = Just Guanine
 readBase 'T' = Just Thymine
 readBase c   = Nothing
 
--- 3
+-- 4
 traverseList : (a -> Maybe b) -> List a -> Maybe (List b)
 traverseList _ []        = Just []
 traverseList f (x :: xs) =
@@ -89,14 +107,14 @@ traverseList f (x :: xs) =
       Nothing => Nothing
     Nothing => Nothing
 
--- 4
+-- 5
 DNA : Type
 DNA = List Nucleobase
 
 readDNA : String -> Maybe DNA
 readDNA = traverseList readBase . unpack
 
--- 5
+-- 6
 complement : DNA -> DNA
 complement = map comp
   where comp : Nucleobase -> Nucleobase
