@@ -355,7 +355,7 @@ available in the *Prelude* (check out its type!).
 
 2. Refactor `handleRequest` to use `Either`, such that
    `handleRequest : DB -> Request -> Either Failure Album`, where
-  
+
    ```idris
    data Failure : Type where
      UnknownUser : Email -> Failure
