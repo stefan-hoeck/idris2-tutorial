@@ -270,6 +270,29 @@ allElems : (a -> Bool) -> List a -> Bool
 allElems f = all . foldMap (MkAll . f)
 
 -- 9
+
+record Distance where
+  constructor MkDistance
+  meters : Double
+
+implementation Semigroup Distance where
+  x <+> y = MkDistance (x.meters + y.meters)
+
+implementation Monoid Distance where
+  neutral = MkDistance 0.0
+
+square : Distance -> Distance
+square x = MkDistance (x.meters * x.meters)
+
+sqrt : Distance -> Distance
+sqrt = MkDistance . sqrt . meters
+
+euclidean : List Distance -> Maybe Distance
+euclidean list = case list of
+  Nil => Nothing
+  xs => Just . sqrt . foldMap square $ xs
+
+-- 10
 record Sum a where
   constructor MkSum
   value : a
@@ -290,7 +313,7 @@ Num a => Semigroup (Product a) where
 Num a => Monoid (Product a) where
   neutral = MkProduct 1
 
--- 10
+-- 11
 
 sumList : Num a => List a -> a
 sumList = value . foldMap MkSum
@@ -298,7 +321,7 @@ sumList = value . foldMap MkSum
 productList : Num a => List a -> a
 productList = value . foldMap MkProduct
 
--- 12
+-- 13
 
 data Element = H | C | N | O | F
 
@@ -324,7 +347,7 @@ Semigroup Mass where
 Monoid Mass where
   neutral = 0.0
 
--- 13
+-- 14
 
 atomicMass : Element -> Mass
 atomicMass H = 1.008
