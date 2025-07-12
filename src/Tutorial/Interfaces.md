@@ -734,7 +734,7 @@ different instances for these.
 
    * `euclidean Nil` should return `Nothing`
    * You may find it useful to create helper functions for performing mathematical operations on `Distance`s
-  
+
 10. Record wrappers `Sum` and `Product` are mainly used to hold
    numeric types.
 
