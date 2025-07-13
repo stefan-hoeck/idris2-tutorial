@@ -727,10 +727,10 @@ different instances for these.
    euclidean : List Distance -> Maybe Distance
    ```
 
-   where `euclidean` is the euclidean distance from the origin to a multidimensional
-   point whose coordinates are given by a list. For example,
-   `euclidean [MkDistance 3.0, MkDistance 4.0, MkDistance 12.0] = Just (MkDistance 13.0)`.
-   Other things to consider:
+   where `euclidean` is the Euclidean distance from the origin to a
+   point whose Cartesian coordinates are given by a list. For example,
+   `euclidean [MkDistance 3.0, MkDistance 4.0, MkDistance 12.0] = Just (MkDistance 13.0)`,
+   i.e. the distance from the origin to the point (3, 4, 12) is 13 units. Other things to consider:
 
    * `euclidean Nil` should return `Nothing`
    * You may find it useful to create helper functions for performing mathematical operations on `Distance`s
