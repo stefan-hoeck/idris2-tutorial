@@ -190,6 +190,10 @@ filterList f Nil       = Nil
 filterList f (x :: xs) =
   if f x then x :: filterList f xs else filterList f xs
 
+(++) : List a -> List a -> List a
+(++) Nil ys = ys
+(++) (x :: xs) ys = x :: (Solutions.DataTypes.(++) xs ys)
+
 headMaybe : List a -> Maybe a
 headMaybe Nil      = Nothing
 headMaybe (x :: _) = Just x
