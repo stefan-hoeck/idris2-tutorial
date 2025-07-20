@@ -709,6 +709,20 @@ drop' 0     xs        = xs
 drop' (S k) (_ :: xs) = drop' k xs
 ```
 
+Note that changing the order from `(m + n)` to `(n + m)`, i.e.
+
+```idris
+drop' : (m : Nat) -> Vect (n + m) -> Vect n a
+```
+
+will cause an error at the first `xs`:
+
+```
+While processing right hand side of drop'. Can't solve constraint between: plus n 0 and n.
+```
+
+You will learn why in the next section.
+
 ### Limitations
 
 After all the examples and exercises in this section
