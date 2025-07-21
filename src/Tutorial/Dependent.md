@@ -712,7 +712,9 @@ drop' (S k) (_ :: xs) = drop' k xs
 Note that changing the order from `(m + n)` to `(n + m)`
 in the second parameter will cause an error at the second `xs`:
 
-> While processing right hand side of drop'. Can't solve constraint between: plus n 0 and n.
+```repl
+While processing right hand side of drop'. Can't solve constraint between: plus n 0 and n.
+```
 
 You will learn why in the next section.
 
