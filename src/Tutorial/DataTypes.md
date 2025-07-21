@@ -1212,6 +1212,14 @@ signature are treated as type parameters.
    total
    filterList : (a -> Bool) -> List a -> List a
 
+   -- re-implement list concatenation (++) such that e.g. (++) [1, 2] [3, 4] = [1, 2, 3, 4]
+   -- note that because this function conflicts with the standard
+   -- Prelude.List.(++), if you use it then you will need to prefix it with
+   -- the name of your module, like DataTypes.(++) or Ch3.(++). alternatively
+   -- you could simply call the function something unique like myListConcat or concat'
+   total
+   (++) : List a -> List a -> List a
+
    -- return the first value of a list, if it is non-empty
    total
    headMaybe : List a -> Maybe a
