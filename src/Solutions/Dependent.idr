@@ -11,21 +11,26 @@ data Vect : (len : Nat) -> Type -> Type where
   (::) : a -> Vect n a -> Vect (S n) a
 
 -- 1
+len : List a -> Nat
+len Nil = Z
+len (_ :: xs) = S (len xs)
+
+-- 2
 head : Vect (S n) a -> a
 head (x :: _) = x
 head Nil impossible
 
--- 2
+-- 3
 tail : Vect (S n) a -> Vect n a
 tail (_ :: xs) = xs
 tail Nil impossible
 
--- 3
+-- 4
 zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
 zipWith3 f []        []        []        = []
 zipWith3 f (x :: xs) (y :: ys) (z :: zs) = f x y z :: zipWith3 f xs ys zs
 
--- 4
+-- 5
 -- Since we only have a `Semigroup` constraint, we can't conjure
 -- a value of type `a` out of nothing in case of an empty list.
 -- We therefore have to return a `Nothing` in case of an empty list.
@@ -33,7 +38,7 @@ foldSemi : Semigroup a => List a -> Maybe a
 foldSemi []        = Nothing
 foldSemi (x :: xs) = Just . maybe x (x <+>) $ foldSemi xs
 
--- 5
+-- 6
 -- the `Nil` case is impossible here, so unlike in Exercise 4,
 -- we don't need to wrap the result in a `Maybe`.
 -- However, we need to pattern match on the tail of the Vect to
@@ -42,24 +47,24 @@ foldSemiVect : Semigroup a => Vect (S n) a -> a
 foldSemiVect (x :: [])         = x
 foldSemiVect (x :: t@(_ :: _)) = x <+> foldSemiVect t
 
--- 6
+-- 7
 iterate : (n : Nat) -> (a -> a) -> a -> Vect n a
 iterate 0     _ _ = Nil
 iterate (S k) f v = v :: iterate k f (f v)
 
--- 7
+-- 8
 generate : (n : Nat) -> (s -> (s,a)) -> s -> Vect n a
 generate 0     _ _ = Nil
 generate (S k) f v =
   let (v', va) = f v
    in va :: generate k f v'
 
--- 8
+-- 9
 fromList : (as : List a) -> Vect (length as) a
 fromList []        = []
 fromList (x :: xs) = x :: fromList xs
 
--- 9
+-- 10
 -- Lookup the type and implementation of functions `maybe` `const` and
 -- try figuring out, what's going on here. An alternative implementation
 -- would of course just pattern match on the argument.

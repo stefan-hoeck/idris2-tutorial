@@ -36,8 +36,29 @@ How could we even describe such a precondition?
 ## Length-Indexed Lists
 
 The answer to the issues described above is of course: Dependent types.
-And the most common introductory example is the *vector*: A list indexed
-by its length:
+Before we proceed to our example, first consider how Idris recursively
+defines the natural numbers:
+
+```idris
+data Nat : Type where
+  Z : Nat
+  S : Nat -> Nat
+```
+
+In this scheme, 0 is represented by `Z`, 1 is represented by `S Z`, 2 is
+represented by `S (S Z)`, and so on. Idris does this automatically so if you
+enter `Z` or `S Z` into the REPL, it will return `0` or `1`. Note that the
+only function inherently available to act on the natural numbers is our data
+constructor `S`, which represents the successor function, i.e. adding 1.
+
+Note that in Idris, every natural number can be represented as either a `Z` or
+an `S n` where `n` is another natural number. Much like the fact that every
+`List a` can be represented as either a `Nil` or an `x :: xs` (where `x` is
+an `a` and `xs` is a `List a`), this informs our pattern matching when
+solving problems.
+
+Now we can consider the textbook introductory example of dependent types,
+the *vector*, which is a list indexed by its length:
 
 ```idris
 data Vect : (len : Nat) -> (a : Type) -> Type where
@@ -443,7 +464,10 @@ this, which constructor(s) of the type family to use.
 
 ### Exercises part 1
 
-1. Implement function `head` for non-empty vectors:
+1. Implement a function `len : List a -> Nat` for calculating the
+   length of a `List`. For example, `len [1, 1, 1]` produces `3`.
+
+2. Implement function `head` for non-empty vectors:
 
    ```idris
    head : Vect (S n) a -> a
@@ -455,27 +479,27 @@ this, which constructor(s) of the type family to use.
    a `Maybe`! Make sure to add an `impossible` clause for the `Nil`
    case (although this is not strictly necessary here).
 
-2. Using `head` as a reference, declare and implement function `tail`
+3. Using `head` as a reference, declare and implement function `tail`
    for non-empty vectors. The types should reflect that the output
    is exactly one element shorter than the input.
 
-3. Implement `zipWith3`. If possible, try to doing so without looking at
+4. Implement `zipWith3`. If possible, try to doing so without looking at
    the implementation of `zipWith`:
 
    ```idris
    zipWith3 : (a -> b -> c -> d) -> Vect n a -> Vect n b -> Vect n c -> Vect n d
    ```
 
-4. Declare and implement a function `foldSemi`
+5. Declare and implement a function `foldSemi`
    for accumulating the values stored
    in a `List` through `Semigroup`s append operator (`(<+>)`).
    (Make sure to only use a `Semigroup` constraint, as opposed to
    a `Monoid` constraint.)
 
-5. Do the same as in Exercise 4, but for non-empty vectors. How
+6. Do the same as in Exercise 4, but for non-empty vectors. How
    does a vector's non-emptiness affect the output type?
 
-6. Given an initial value of type `a` and a function `a -> a`,
+7. Given an initial value of type `a` and a function `a -> a`,
    we'd like to generate `Vect`s of `a`s, the first value of
    which is `a`, the second value being `f a`, the third
    being `f (f a)` and so on.
@@ -487,7 +511,7 @@ this, which constructor(s) of the type family to use.
    encapsulate this behavior. Get some inspiration from `replicate`
    if you don't know where to start.
 
-7. Given an initial value of a state type `s` and
+8. Given an initial value of a state type `s` and
    a function `fun : s -> (s,a)`,
    we'd like to generate `Vect`s of `a`s. Declare and implement
    function `generate`, which should encapsulate this behavior. Make sure to use
@@ -501,7 +525,7 @@ this, which constructor(s) of the type family to use.
    [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
    ```
 
-8. Implement function `fromList`, which converts a list of
+9. Implement function `fromList`, which converts a list of
    values to a `Vect` of the same length. Use holes if you
    get stuck:
 
@@ -513,7 +537,7 @@ this, which constructor(s) of the type family to use.
    length of the resulting vector by passing the list argument
    to function *length*.
 
-9. Consider the following declarations:
+10. Consider the following declarations:
 
    ```idris
    maybeSize : Maybe a -> Nat
