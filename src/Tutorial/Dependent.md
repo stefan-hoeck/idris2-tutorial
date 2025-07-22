@@ -37,25 +37,27 @@ How could we even describe such a precondition?
 
 The answer to the issues described above is of course: Dependent types.
 Before we proceed to our example, first consider how Idris recursively
-defines the natural numbers:
+defines the natural numbers, here affixed with apostrophes to avoid introducing
+a conflict with the actual definition of `Nat` (which you can find
+[here](https://github.com/idris-lang/Idris-dev/blob/master/libs/prelude/Prelude/Nat.idr)
+for reference):
 
 ```idris
-data Nat : Type where
-  Z : Nat
-  S : Nat -> Nat
+data Nat' : Type where
+  Z' : Nat'
+  S' : Nat' -> Nat'
 ```
 
 In this scheme, 0 is represented by `Z`, 1 is represented by `S Z`, 2 is
 represented by `S (S Z)`, and so on. Idris does this automatically so if you
 enter `Z` or `S Z` into the REPL, it will return `0` or `1`. Note that the
-only function inherently available to act on the natural numbers is our data
+only function inherently available to act on a value of type `Nat` is our data
 constructor `S`, which represents the successor function, i.e. adding 1.
 
-Note that in Idris, every natural number can be represented as either a `Z` or
-an `S n` where `n` is another natural number. Much like the fact that every
-`List a` can be represented as either a `Nil` or an `x :: xs` (where `x` is
-an `a` and `xs` is a `List a`), this informs our pattern matching when
-solving problems.
+Also note that in Idris, every `Nat` can be represented as either a `Z` or
+an `S n` where `n` is another `Nat`. Much as every `List a` can be represented
+as either a `Nil` or an `x :: xs` (where `x` is an `a` and `xs` is a `List a`),
+this informs our pattern matching when solving problems.
 
 Now we can consider the textbook introductory example of dependent types,
 the *vector*, which is a list indexed by its length:
