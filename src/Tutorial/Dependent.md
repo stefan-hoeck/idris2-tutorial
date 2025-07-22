@@ -37,10 +37,10 @@ How could we even describe such a precondition?
 
 The answer to the issues described above is of course: Dependent types.
 Before we proceed to our example, first consider how Idris recursively
-defines the natural numbers, here affixed with apostrophes to avoid introducing
-a conflict with the actual definition of `Nat` (which you can find
+defines the natural numbers (here affixed with apostrophes to avoid introducing
+a conflict with the actual definition of `Nat`, which you can find
 [here](https://github.com/idris-lang/Idris-dev/blob/master/libs/prelude/Prelude/Nat.idr)
-for reference):
+for reference)):
 
 ```idris
 data Nat' : Type where
