@@ -721,7 +721,21 @@ different instances for these.
    allElems : (a -> Bool) -> List a -> Bool
    ```
 
-9. Record wrappers `Sum` and `Product` are mainly used to hold
+9. Using `foldMap` and the `Distance` type from earlier in this section, create a function
+
+   ```idris
+   euclidean : List Distance -> Maybe Distance
+   ```
+
+   where `euclidean` is the Euclidean distance from the origin to a
+   point whose Cartesian coordinates are given by a list. For example,
+   `euclidean [MkDistance 3.0, MkDistance 4.0, MkDistance 12.0] = Just (MkDistance 13.0)`,
+   i.e. the distance from the origin to the point (3, 4, 12) is 13 units. Other things to consider:
+
+   * `euclidean Nil` should return `Nothing`
+   * You may find it useful to create helper functions for performing mathematical operations on `Distance`s
+
+10. Record wrappers `Sum` and `Product` are mainly used to hold
    numeric types.
 
    ```idris
@@ -743,7 +757,7 @@ different instances for these.
    When implementing `neutral`, remember that you can use integer
    literals when working with numeric types.
 
-10. Implement `sumList` and `productList` by using `foldMap` together
+11. Implement `sumList` and `productList` by using `foldMap` together
     with the wrappers from Exercise 9:
 
     ```idris
@@ -752,7 +766,7 @@ different instances for these.
     productList : Num a => List a -> a
     ```
 
-11. To appreciate the power and versatility of `foldMap`, after
+12. To appreciate the power and versatility of `foldMap`, after
     solving exercises 6 to 10 (or by loading `Solutions.Inderfaces`
     in a REPL session), run the following at the REPL, which will -
     in a single list traversal! - calculate the first and last
@@ -770,13 +784,13 @@ different instances for these.
     natural numbers, or 0 and 255 for `Bits8`), these can even
     be extended to `Monoid`.
 
-12. In an earlier exercise, you implemented a data type representing
+13. In an earlier exercise, you implemented a data type representing
     chemical elements and wrote a function for calculating their
     atomic masses. Define a new single field record type for
     representing atomic masses, and implement interfaces
     `Eq`, `Ord`, `Show`, `FromDouble`, `Semigroup`, and `Monoid` for this.
 
-13. Use the new data type from exercise 12 to calculate the atomic
+14. Use the new data type from exercise 12 to calculate the atomic
     mass of an element and compute the molecular mass
     of a molecule given by its formula.
 
