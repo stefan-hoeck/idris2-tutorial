@@ -1,5 +1,10 @@
 # Functional Programming in Idris 2
 
+Note: This is the original version of the Idris2 tutorial, which is now
+deprecated. The current version is being maintained by the Idris2 community
+and can be found [here](https://github.com/idris-community/idris2-tutorial).
+All fixes and new contributions should go there.
+
 [中文翻译](https://github.com/running-grass/idris2-tutorial-zh/blob/main/translation/README.md),
 [日本語訳](https://github.com/gemmaro/idris2-tutorial/blob/ja/translation/ja/README.md)
 
