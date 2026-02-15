@@ -1,6 +1,6 @@
 # A Deep Dive into Quantitative Type Theory
 
-*This section was guest-written by [Kiana Sheibani](https://github.com/kiana-S).*
+*This section was guest-written by [Kiana Sheibani](https://github.com/tokinanpa).*
 
 In the tutorial proper, when discussing functions, Idris 2's quantity
 system was introduced. The description was intentionally a bit
